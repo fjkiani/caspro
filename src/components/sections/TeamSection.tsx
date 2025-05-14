@@ -12,13 +12,13 @@ const TEAM_CONFIG = {
   teamMembers: [
     {
       name: 'Fahad Kiani',
-      role: 'Co-founder & Chief Technology Officer',
+      role: 'Co-founder & Chief Technical Executive Officer',
       bio: 'Expert in AI systems and software development, leveraging cutting-edge AI coding tools for rapid innovation and robust platform architecture.',
       image: '/images/placeholder-fahad.jpg', // Image data remains but won't be used
       socials: { linkedin: '#', web: '#', github: '#', email: 'mailto:fahad@caspro.dev' }
     },
     {
-      name: 'Rahima ',
+      name: 'Dr.Rahima Nayeem ',
       role: 'Co-founder & Chief Clinical Officer',
       bio: 'Medical doctor bringing essential firsthand clinical experience, a deep understanding of patient needs, and invaluable domain expertise in oncology.',
       image: '/images/placeholder-rahima.jpg', // Image data remains but won't be used
