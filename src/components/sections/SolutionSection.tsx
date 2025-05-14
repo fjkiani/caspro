@@ -32,7 +32,7 @@ const SOLUTION_CONFIG = {
     'Precise, data-driven treatment planning for personalized care',
     'Enhanced clinical decision support, augmenting expert knowledge'
   ],
-  quote: "CasPro combines the analytical power of AI with the clinical expertise of oncologists, creating a true co-pilot for cancer treatment decisions.",
+  quote: "Bridging a key gap in the current landscape, CasPro: Oncology Copilot delivers an integrated pipeline from genomic insight to therapeutic design by understanding variant functional impact and generating novel sequences to enable precise molecular design of interventions",
   visualPlaceholderText: "Interactive mockup of the CasPro dashboard, showcasing genomic analysis tools, therapy design modules, and collaborative features, presented in a clean, modern interface.",
   visualAltText: "CasPro platform interface mockup demonstrating AI-powered oncology solutions",
   animationVariants: {

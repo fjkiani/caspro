@@ -4,7 +4,11 @@ import HeroSection from '@/components/sections/HeroSection';
 import ProblemSection from '@/components/sections/ProblemSection';
 import SolutionSection from '@/components/sections/SolutionSection';
 import TechnologySection from '@/components/sections/TechnologySection';
+import TechnologyDeepDiveSection from '@/components/sections/TechnologyDeepDiveSection';
+import AgentCapabilitiesSection from '@/components/sections/AgentCapabilitiesSection';
 import FeaturesSection from '@/components/sections/FeaturesSection';
+import FoundationalPillarsSection from '@/components/sections/FoundationalPillarsSection';
+// import ImpactSection from '@/components/sections/ImpactSection'; // Commented out
 import TeamSection from '@/components/sections/TeamSection';
 import ContactSection from '@/components/sections/ContactSection';
 
@@ -17,6 +21,10 @@ const PAGE_CONFIG = {
     { id: 'solution', component: SolutionSection },
     { id: 'features', component: FeaturesSection },
     { id: 'science', component: TechnologySection },
+    { id: 'technology-deep-dive', component: TechnologyDeepDiveSection },
+    { id: 'agent-capabilities', component: AgentCapabilitiesSection },
+    { id: 'foundational-pillars', component: FoundationalPillarsSection },
+    // { id: 'impact', component: ImpactSection }, // Commented out
     { id: 'team', component: TeamSection },
     { id: 'contact', component: ContactSection },
   ],

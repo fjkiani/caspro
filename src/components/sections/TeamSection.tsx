@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FiLinkedin, FiMail, FiAward, FiUsers, FiCode, FiDatabase, FiGitMerge, FiGlobe, FiGithub } from 'react-icons/fi';
+import { FiLinkedin, FiMail, FiGlobe, FiGithub } from 'react-icons/fi';
 import React from 'react';
 
 // Constants for Team Section configuration
@@ -25,29 +25,6 @@ const TEAM_CONFIG = {
       socials: { web: '#', linkedin: '#', email: 'mailto:rahima@caspro.dev' }
     }
   ],
-  foundationalTech: [
-    {
-      name: 'AlphaFold 3',
-      origin: 'DeepMind by Google',
-      description: 'Unparalleled predictive power in structural biology',
-      icon: FiCode,
-      link: 'https://alphafoldserver.com/welcome'
-    },
-    {
-      name: 'Evo2',
-      origin: 'Arc Institute',
-      description: 'Deep DNA understanding and powerful generative capabilities',
-      icon: FiDatabase,
-      link: 'https://arcinstitute.org/tools/evo'
-    },
-    {
-      name: 'CRISPR',
-      origin: 'Research Leaders',
-      description: 'Foundational principles enabling precise genomic modifications',
-      icon: FiGitMerge,
-      link: 'https://crisprtx.com/'
-    }
-  ],
   animationVariants: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -57,30 +34,30 @@ const TEAM_CONFIG = {
 
 const TeamSection = () => {
   return (
-    <section id={TEAM_CONFIG.sectionId} className="section bg-white">
-      <div className="container">
+    <section id={TEAM_CONFIG.sectionId} className="section bg-white py-16 md:py-24">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={TEAM_CONFIG.animationVariants.initial}
           whileInView={TEAM_CONFIG.animationVariants.animate}
           viewport={{ once: true }}
           transition={TEAM_CONFIG.animationVariants.transition()}
-          className="max-w-3xl mx-auto text-center mb-16"
+          className="max-w-3xl mx-auto text-center mb-12 md:mb-16"
         >
-          <h2 className="heading-2 mb-6">{TEAM_CONFIG.title}</h2>
-          <p className="subheading">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">{TEAM_CONFIG.title}</h2>
+          <p className="text-lg text-slate-600">
             {TEAM_CONFIG.subtitle}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 justify-center max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center max-w-4xl mx-auto">
           {TEAM_CONFIG.teamMembers.map((member, index) => (
             <motion.div
               key={index}
               initial={TEAM_CONFIG.animationVariants.initial}
               whileInView={TEAM_CONFIG.animationVariants.animate}
               viewport={{ once: true }}
-              transition={TEAM_CONFIG.animationVariants.transition(index * 0.1)}
-              className="bg-slate-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full p-6"
+              transition={TEAM_CONFIG.animationVariants.transition(index * 0.1 + 0.2)}
+              className="bg-slate-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full p-6 border border-slate-200"
             >
               <div className="flex flex-col flex-grow">
                 <h3 className="text-xl font-bold mb-1 text-slate-900">{member.name}</h3>
@@ -112,78 +89,6 @@ const TeamSection = () => {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={TEAM_CONFIG.animationVariants.initial}
-          whileInView={TEAM_CONFIG.animationVariants.animate}
-          viewport={{ once: true }}
-          transition={TEAM_CONFIG.animationVariants.transition(0.4)}
-          className="mt-20 bg-slate-100 rounded-xl overflow-hidden"
-        >
-          {/* Core Philosophy Section */}
-          <div className="p-8 md:p-12 text-center border-b border-slate-200">
-            <div className="flex justify-center text-4xl text-primary mb-5">
-              <FiUsers />
-            </div>
-            <h3 className="heading-3 mb-4 text-slate-800">Our Foundation & Collaborative Spirit</h3>
-            <p className="text-lg max-w-3xl mx-auto text-slate-700">
-              The true power of CasPro stems from the unique synergy of our team's deep technical AI knowledge 
-              and critical firsthand clinical insight. This combination is the engine driving our innovative solutions.
-            </p>
-          </div>
-
-          {/* Foundation Statement */}
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 md:p-12 text-center">
-            <p className="text-xl font-light max-w-3xl mx-auto">
-              Our Oncology Co-Pilot is proudly built upon the groundbreaking work and open-source contributions 
-              from world-leading institutions and researchers in biological AI and gene editing.
-            </p>
-          </div>
-
-          {/* Technologies Grid */}
-          <div className="p-8 md:p-12 bg-white">
-            <h4 className="text-xl font-semibold text-center mb-8 text-slate-800">
-              Key Foundational Technologies
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {TEAM_CONFIG.foundationalTech.map((tech, index) => (
-                <motion.div
-                  key={tech.name}
-                  initial={TEAM_CONFIG.animationVariants.initial}
-                  whileInView={TEAM_CONFIG.animationVariants.animate}
-                  viewport={{ once: true }}
-                  transition={TEAM_CONFIG.animationVariants.transition(index * 0.1)}
-                  className="bg-slate-50 p-6 rounded-lg border border-slate-200 hover:shadow-lg transition-shadow"
-                >
-                  <a 
-                    href={tech.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block hover:opacity-80 transition-opacity"
-                  >
-                    <div className="flex items-center mb-4">
-                      <tech.icon className="text-2xl text-primary mr-3" />
-                      <div>
-                        <h5 className="font-bold text-slate-900">{tech.name}</h5>
-                        <p className="text-sm text-primary">by {tech.origin}</p>
-                      </div>
-                    </div>
-                    <p className="text-slate-600">{tech.description}</p>
-                  </a>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Closing Statement */}
-          <div className="bg-slate-50 p-8 md:p-12 text-center border-t border-slate-200">
-            <p className="text-lg text-slate-700 max-w-3xl mx-auto">
-              By ethically and responsibly integrating these powerful open-source tools, 
-              CasPro is dedicated to accelerating discovery and personalizing design in 
-              the future of precision oncology.
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

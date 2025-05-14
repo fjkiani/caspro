@@ -99,13 +99,13 @@ const ContactSection = () => {
             
             <div>
               <h3 className="text-xl font-semibold mb-4 text-indigo-100">{CONTACT_CONFIG.socialProofTitle}</h3>
-              <div className="grid grid-cols-2 gap-4">
+              {/* <div className="grid grid-cols-2 gap-4">
                 {CONTACT_CONFIG.socialProofOrganizations.map((org, index) => (
                   <div key={index} className="bg-white/5 hover:bg-white/10 transition-colors p-4 rounded-lg text-center text-indigo-200 text-sm border border-white/10">
                     {org}
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </motion.div>
 

@@ -116,7 +116,10 @@ const Footer = () => {
         <hr className="border-slate-700 my-8" />
 
         <div className="text-center text-slate-400 text-sm">
-          <p>&copy; {currentYear} {FOOTER_CONFIG.companyName}. All rights reserved. Built with AI and passion.</p>
+          <p>
+            &copy; {currentYear} {FOOTER_CONFIG.companyName}. All rights reserved. 
+            Built by <a href="https://jedilabs.org/" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-primary transition-colors">Jedi Labs (100x Engine)</a>.
+          </p>
         </div>
       </div>
     </footer>
