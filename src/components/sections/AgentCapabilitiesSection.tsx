@@ -32,52 +32,52 @@ const AGENTS_DATA: Agent[] = [
     id: 'orchestrator',
     name: 'Agent Orchestrator',
     icon: <FiSettings className="w-8 h-8" />,
-    role: 'The central intelligence hub, interpreting user input and routing requests to specialized agents.',
+    role: 'Your primary AI assistant and team coordinator. It understands your instructions and ensures the right specialist AI agent handles your task efficiently.',
     isKeyAgent: true,
     capabilities: [
-      'Parses user prompts using LLMs (e.g., Gemini 1.5 Flash) to identify intent and extract relevant details.',
-      'Selects the most appropriate specialized agent based on the parsed intent.',
-      'Manages execution by invoking the selected agent with necessary context (patient data, prompt details).'
+      'Listens to your requests in everyday medical language, understanding the core task you need help with.',
+      'Identifies which specialized AI agent (like the Genomic Analyst or Clinical Trial expert) is best suited for your request.',
+      'Provides the specialist agent with all relevant information (such as patient data or specific questions) to get the job done effectively.'
     ]
   },
   {
     id: 'genomic',
     name: 'Genomic Analyst Agent',
     icon: <FiCpu className="w-8 h-8" />,
-    role: 'Specializes in analyzing patient genomic data, interpreting variants, and assessing genetic criteria. Primary interactor with biological AI models.',
+    role: 'Your dedicated genomics expert. It dives deep into patient genetic data to find critical mutations, understand their impact, and see if they match important genetic criteria, working closely with our advanced AI biology models.',
     isKeyAgent: true,
     capabilities: [
-      'Parses user queries about specific genes, variants, or genomic criteria.',
-      'Utilizes Evo2 (simulated/planned) for variant effect prediction (classifications, consequences, predictive scores).',
-      'Integrates patient-specific mutation data to evaluate if queried genomic criteria are met.',
-      'Generates structured GenomicAnalysisResult (status, gene summaries, variant details, clinical context).',
-      'Links to therapy design by identifying targets and passing relevant genomic details for CRISPR guide design.'
+      "Understands your questions about specific genes, genetic changes (variants), or particular genomic conditions.",
+      "Uses advanced AI (Evo2) to predict how genetic changes might affect a patient and their condition.",
+      "Checks a patient's unique genetic makeup against the criteria you're interested in.",
+      "Provides clear, organized summaries of its findings, including gene details, variant information, and how it relates to the patient's clinical situation.",
+      "Helps identify potential targets for new therapies and provides the necessary genetic details for designing treatments like CRISPR."
     ]
   },
   {
     id: 'clinical_trial',
     name: 'Clinical Trial Agent',
     icon: <FiSearch className="w-8 h-8" />,
-    role: 'Assists users in finding relevant clinical trials based on patient profile and disease characteristics.',
+    role: 'Your clinical trial navigator. It quickly finds relevant clinical trials that match your patient\'s specific medical profile and cancer type.',
     isKeyAgent: true,
     capabilities: [
-      'Constructs search queries using patient data and user prompt details.',
-      'Performs semantic vector database searches (ChromaDB, Sentence Transformers) on trial eligibility criteria.',
-      'Retrieves full trial details from a relational database.',
-      'Simulates LLM-based patient eligibility assessment against trial criteria (narrative summary, status).',
-      'Suggests next actions based on eligibility assessment (e.g., review unmet criteria).'
+      "Uses patient details and your specific requests to intelligently search for matching trials.",
+      "Scans through vast databases of clinical trial information to find the best matches based on eligibility.",
+      "Provides comprehensive details for each potentially suitable trial.",
+      "Offers an initial assessment of whether your patient might be eligible for a trial, summarizing key points.",
+      "Suggests next steps, like reviewing specific eligibility criteria that might need closer attention."
     ]
   },
   {
     id: 'scheduling',
     name: 'Scheduling Agent',
     icon: <FiCalendar className="w-8 h-8" />,
-    role: 'Handles appointment scheduling requests by interacting with external calendar tools (simulated).',
+    role: 'Your virtual scheduling assistant. It helps manage appointments by working with your existing calendar tools.',
     isKeyAgent: true,
     capabilities: [
-      'Interprets natural language requests for appointments (dates, times, duration) using an LLM.',
-      'Utilizes LangChain to orchestrate calls to tools for finding available slots and booking appointments.',
-      'Manages multi-turn conversations to clarify details and confirm actions before booking.'
+      "Understands your spoken or typed requests for appointments (e.g., 'Schedule a follow-up next Tuesday afternoon').",
+      "Checks for available time slots and can book appointments directly into your calendar.",
+      "Can ask clarifying questions if needed (e.g., 'Is 2 PM or 3 PM better?') and confirms before finalizing."
     ]
   },
   {
@@ -165,10 +165,7 @@ const AgentCapabilitiesSection: React.FC = () => {
             Intelligent Agent Architecture: The Oncology Copilot
           </h2>
           <p className="text-lg text-slate-600 mb-4">
-            The Oncology Copilot platform is built on a modular, AI-driven agent architecture. This allows the system to delegate complex tasks to specialized components, acting as an intelligent "copilot" that can understand user requests, analyze data, and interact with various tools and knowledge sources.
-          </p>
-          <p className="text-md text-slate-500 bg-slate-100 p-4 rounded-lg inline-block">
-            At the core is the <code className="font-mono text-sm bg-slate-200 text-slate-700 px-1 py-0.5 rounded">AgentInterface</code>, an Abstract Base Class defining the standard blueprint for all agents, ensuring consistency and standardized interaction for the orchestrator.
+            Think of CasPro's Oncology Copilot as your personal team of highly specialized AI assistants, working together seamlessly. Each agent has a unique expertise, much like different specialists in a hospital. This 'Intelligent Agent Architecture' allows you to delegate complex tasks, from analyzing patient data to exploring treatment options, making your workflow faster and more insightful.
           </p>
         </motion.div>
 
