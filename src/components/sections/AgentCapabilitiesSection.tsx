@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   FiCpu, FiUsers, FiCalendar, FiSearch, FiFileText, FiSettings, FiBox, FiList, FiZap, FiMessageCircle, FiBell, FiLink2, FiCheckSquare, FiEdit
 } from 'react-icons/fi';
+import DoubleDnaHelix from '@/components/ui/DoubleDnaHelix';
+import DnaBasePairStrip from '@/components/ui/DnaBasePairStrip';
 
 interface CapabilityItemProps {
   text: string;
@@ -12,8 +14,8 @@ interface CapabilityItemProps {
 
 const CapabilityItem: React.FC<CapabilityItemProps> = ({ text }) => (
   <li className="flex items-start">
-    <FiCheckSquare className="flex-shrink-0 w-5 h-5 text-primary mr-2 mt-1" />
-    <span>{text}</span>
+    <FiCheckSquare className="flex-shrink-0 w-5 h-5 text-blue-600 mr-2 mt-1" />
+    <span className="text-slate-700">{text}</span>
   </li>
 );
 
@@ -149,8 +151,43 @@ const AgentCapabilitiesSection: React.FC = () => {
   };
 
   return (
-    <section id="agent-capabilities" className="py-16 md:py-24 bg-white"> {/* Switched to white bg for contrast with cards */}
-      <div className="container mx-auto px-4">
+    <section id="agent-capabilities" className="relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-indigo-50 via-purple-50 to-blue-50">
+      {/* DNA Background Elements */}
+      <div className="absolute left-8 top-16 w-20 h-3/5 opacity-30 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
+        <DoubleDnaHelix 
+          className="w-full h-full" 
+          baseCount={8}
+          rotationSpeed={20}
+          colors={{
+            adenine: '#a855f7',
+            thymine: '#3b82f6', 
+            guanine: '#06b6d4',
+            cytosine: '#8b5cf6',
+            backbone1: '#a855f7',
+            backbone2: '#3b82f6'
+          }}
+        />
+      </div>
+      <div className="absolute right-8 top-24 w-16 h-2/3 opacity-25 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
+        <DoubleDnaHelix 
+          className="w-full h-full" 
+          baseCount={6}
+          rotationSpeed={15}
+          colors={{
+            adenine: '#3b82f6',
+            thymine: '#a855f7',
+            guanine: '#8b5cf6', 
+            cytosine: '#06b6d4',
+            backbone1: '#3b82f6',
+            backbone2: '#a855f7'
+          }}
+        />
+      </div>
+      
+      {/* DNA base pairs decorative element at top */}
+      <DnaBasePairStrip className="absolute top-0 left-0 right-0" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={animationVariants.initial}
           whileInView={animationVariants.animate}
@@ -158,14 +195,18 @@ const AgentCapabilitiesSection: React.FC = () => {
           transition={animationVariants.transition()}
           className="max-w-3xl mx-auto text-center mb-12 md:mb-16"
         >
-          <div className="flex justify-center text-5xl text-primary mb-6">
-            <FiUsers />
+          <div className="flex justify-center text-5xl mb-6">
+            <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-600 to-cyan-600">
+              <FiUsers />
+            </div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            Intelligent Agent Architecture: The Oncology Copilot
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-700 to-cyan-700">
+              Intelligent Agent Architecture: The Oncology Copilot
+            </span>
           </h2>
           <p className="text-lg text-slate-600 mb-4">
-            Think of CasPro's Oncology Copilot as your personal team of highly specialized AI assistants, working together seamlessly. Each agent has a unique expertise, much like different specialists in a hospital. This 'Intelligent Agent Architecture' allows you to delegate complex tasks, from analyzing patient data to exploring treatment options, making your workflow faster and more insightful.
+            Think of CrisPRO's Oncology Copilot as your personal team of highly specialized AI assistants, working together seamlessly. Each agent has a unique expertise, much like different specialists in a hospital. This 'Intelligent Agent Architecture' allows you to delegate complex tasks, from analyzing patient data to exploring treatment options, making your workflow faster and more insightful.
           </p>
         </motion.div>
 
@@ -176,13 +217,16 @@ const AgentCapabilitiesSection: React.FC = () => {
           viewport={{ once: true }}
           transition={animationVariants.transition(0.2)}
         >
-          <div className="mb-8 flex flex-wrap justify-center gap-2 md:gap-3 border-b-2 border-slate-200 pb-4">
+          <div className="mb-8 flex flex-wrap justify-center gap-2 md:gap-3 border-b-2 border-gradient-to-r from-purple-200 via-blue-200 to-cyan-200 pb-4">
             {keyAgents.map((agent) => (
               <button
                 key={agent.id}
                 onClick={() => setActiveTab(agent.id)}
-                className={`px-4 py-2.5 text-sm font-medium rounded-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary/50 whitespace-nowrap
-                  ${activeTab === agent.id ? 'bg-primary text-white shadow-lg' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
+                className={`px-4 py-2.5 text-sm font-medium rounded-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500/50 whitespace-nowrap
+                  ${activeTab === agent.id 
+                    ? 'bg-gradient-to-r from-purple-500 to-blue-600 text-white shadow-lg shadow-purple-500/25' 
+                    : 'bg-white/80 backdrop-blur-sm text-slate-700 hover:bg-blue-50 border border-blue-200/50'
+                  }`}
               >
                 {agent.name}
               </button>
@@ -198,78 +242,80 @@ const AgentCapabilitiesSection: React.FC = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white p-6 md:p-8 rounded-xl shadow-2xl border border-slate-200"
+                  className="bg-white/90 backdrop-blur-sm rounded-xl p-8 shadow-xl border border-blue-200/50"
                 >
-                  <div className="flex items-center mb-4">
-                    {React.cloneElement(agent.icon, { className: "text-primary mr-3 flex-shrink-0" })}
-                    <h3 className="text-2xl font-semibold text-slate-800">{agent.name}</h3>
+                  {/* DNA-themed glowing border */}
+                  <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
+                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 opacity-60"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 opacity-60"></div>
+                    <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-400 via-blue-400 to-cyan-400 opacity-60"></div>
+                    <div className="absolute right-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-400 via-blue-400 to-purple-400 opacity-60"></div>
                   </div>
-                  <p className="text-slate-600 mb-6 italic"><strong>Role:</strong> {agent.role}</p>
-                  <h4 className="text-lg font-semibold text-slate-700 mb-3">Key Capabilities:</h4>
-                  <ul className="space-y-3 text-slate-600">
-                    {agent.capabilities.map((cap, index) => (
-                      <CapabilityItem key={index} text={cap} />
-                    ))}
-                  </ul>
+                  
+                  <div className="flex flex-col md:flex-row items-start gap-6">
+                    <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center text-white shadow-lg">
+                      {agent.icon}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold mb-3">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-700">
+                          {agent.name}
+                        </span>
+                      </h3>
+                      <p className="text-slate-700 mb-6 leading-relaxed">{agent.role}</p>
+                      {agent.capabilities.length > 0 && (
+                        <div>
+                          <h4 className="text-lg font-semibold mb-3 text-blue-700">Key Capabilities:</h4>
+                          <ul className="space-y-3">
+                            {agent.capabilities.map((capability, index) => (
+                              <CapabilityItem key={index} text={capability} />
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </motion.div>
               )
             )}
           </AnimatePresence>
         </motion.div>
 
-        {/* Planned/Conceptual Agents Section */}
+        {/* Conceptual Agents Grid */}
         <motion.div
           initial={animationVariants.initial}
           whileInView={animationVariants.animate}
           viewport={{ once: true }}
           transition={animationVariants.transition(0.4)}
-          className="mt-16 md:mt-20 pt-10 border-t border-slate-200"
+          className="mt-16"
         >
-          <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">
-            <div className="flex justify-center text-4xl text-primary mb-5">
-              <FiBox />
-            </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-4">
-              Future & Specialized Agent Ecosystem
-            </h3>
-            <p className="text-lg text-slate-600">
-              The architecture is designed to support additional specialized agents or modules, expanding CasPro&apos;s capabilities over time.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h3 className="text-2xl font-bold text-center mb-8">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600">
+              Additional Specialized Agents
+            </span>
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {conceptualAgents.map((agent, index) => (
               <motion.div
                 key={agent.id}
-                initial={animationVariants.initial}
-                whileInView={animationVariants.animate}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={animationVariants.transition(index * 0.1 + 0.5)}
-                className="bg-slate-50 p-6 rounded-lg shadow-lg border border-slate-200 h-full flex flex-col"
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-blue-200/50 hover:bg-white/90 transition-all duration-300 hover:shadow-lg"
               >
-                <div className="flex items-center text-primary mb-3">
-                  {React.cloneElement(agent.icon, { className: "mr-2 flex-shrink-0" })}
-                  <h4 className="text-md font-semibold text-slate-700">{agent.name}</h4>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center text-white">
+                    {agent.icon}
+                  </div>
+                  <h4 className="font-semibold text-slate-900">{agent.name}</h4>
                 </div>
-                <p className="text-sm text-slate-600 italic mb-2"><strong>Role:</strong> {agent.role}</p>
-                {agent.description && <p className="text-sm text-slate-600 flex-grow">{agent.description}</p>}
+                <p className="text-sm text-slate-600 mb-2">{agent.role}</p>
+                {agent.description && (
+                  <p className="text-xs text-slate-500">{agent.description}</p>
+                )}
               </motion.div>
             ))}
-          </div>
-        </motion.div>
-
-        {/* Concluding Statement */}
-        <motion.div
-          initial={animationVariants.initial}
-          whileInView={animationVariants.animate}
-          viewport={{ once: true }}
-          transition={animationVariants.transition(0.6)}
-          className="mt-16 md:mt-20 pt-10 border-t border-slate-200 text-center"
-        >
-          <div className="max-w-3xl mx-auto bg-gradient-to-r from-slate-700 to-slate-900 text-white p-8 rounded-lg shadow-xl">
-            <h4 className="text-xl font-semibold mb-3">A Flexible & Powerful Foundation</h4>
-            <p className="text-lg font-light leading-relaxed">
-              This agent-based structure provides a flexible and powerful foundation for building a comprehensive AI-powered copilot that can assist across various complex tasks in precision oncology.
-            </p>
           </div>
         </motion.div>
       </div>

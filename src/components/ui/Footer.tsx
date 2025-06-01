@@ -6,10 +6,10 @@ import { NAV_CATEGORIES, ROUTES } from '@/constants/routes';
 // Constants for Footer configuration
 const FOOTER_CONFIG = {
   brandEmoji: "🧬",
-  brandName: "CasPro",
+  brandName: "CrisPRO",
   brandSubtitle: "Oncology Co-Pilot",
   tagline: "Pioneering the future of precision oncology with AI-driven genomic insights and intelligent therapy design.",
-  companyName: "CasPro HealthTech AI", // Slightly more formal for copyright
+  companyName: "CrisPRO HealthTech AI", // Slightly more formal for copyright
   // Dynamically map icons to their components
   socialLinks: NAV_CATEGORIES.SOCIAL_LINKS.map(link => {
     const iconMap: Record<string, React.ReactNode> = {
@@ -103,7 +103,7 @@ const Footer = () => {
              <p className="text-sm mb-2">
                 Have questions or need support?
              </p>
-             <a href="mailto:support@caspro.dev" className="btn-outline text-sm py-2 px-4 inline-flex items-center gap-2">
+             <a href="mailto:jedi@jedilabs.org" className="btn-outline text-sm py-2 px-4 inline-flex items-center gap-2">
                 <FiMail /> Email Support
              </a>
              <p className="text-xs mt-4 text-slate-400">

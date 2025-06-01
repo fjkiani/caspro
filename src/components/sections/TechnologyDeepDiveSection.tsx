@@ -56,7 +56,7 @@ const TechnologyDetail: React.FC<TechnologyDetailProps> = ({ id, mainIcon, title
       <PrincipleBlock icon={<FiBookOpen />} title="Scientific Basis">
         {scientificBasis}
       </PrincipleBlock>
-      <PrincipleBlock icon={<FiSettings />} title="How it Works in CasPro">
+      <PrincipleBlock icon={<FiSettings />} title="How it Works in CrisPRO">
         {howItWorks}
       </PrincipleBlock>
     </div>
@@ -83,10 +83,10 @@ const TechnologyDeepDiveSection: React.FC = () => {
           className="max-w-3xl mx-auto text-center mb-12 md:mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            The Science & Engineering Behind CasPro
+            The Science & Engineering Behind CrisPRO
           </h2>
           <p className="text-lg text-slate-600">
-            Cancer is driven by genomic alterations. Understanding their functional impact is key to effective treatment. CasPro integrates cutting-edge AI to achieve this.
+            Cancer is driven by genomic alterations. Understanding their functional impact is key to effective treatment. CrisPRO integrates cutting-edge AI to achieve this.
           </p>
         </motion.div>
 
@@ -139,7 +139,7 @@ const TechnologyDeepDiveSection: React.FC = () => {
           }
           howItWorks={
             <p>
-              Evo2&apos;s variant analysis and generative design directly inform CRISPR component creation. CasPro facilitates designing guide RNAs for patient mutations and, for specific goals, repair templates or modified Cas proteins.
+              Evo2&apos;s variant analysis and generative design directly inform CRISPR component creation. CrisPRO facilitates designing guide RNAs for patient mutations and, for specific goals, repair templates or modified Cas proteins.
             </p>
           }
         />
@@ -157,10 +157,10 @@ const TechnologyDeepDiveSection: React.FC = () => {
               <FiArrowRightCircle />
             </div>
             <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-4">
-              The CasPro Integrated Workflow
+              The CrisPRO Integrated Workflow
             </h3>
             <p className="text-lg text-slate-600">
-              CasPro intelligently orchestrates these technologies into a seamless workflow from genomic data to therapeutic insights.
+              CrisPRO intelligently orchestrates these technologies into a seamless workflow from genomic data to therapeutic insights.
             </p>
           </div>
           
@@ -203,7 +203,7 @@ const TechnologyDeepDiveSection: React.FC = () => {
           <div className="max-w-3xl mx-auto bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 rounded-lg shadow-xl">
             <h4 className="text-xl font-semibold mb-3">Synergistic Power</h4>
             <p className="text-lg font-light leading-relaxed">
-              CasPro synergizes Evo2&apos;s high-accuracy predictions and generative power with AlphaFold 3&apos;s structural insights. This enables rapid in silico design and evaluation of novel genetic sequences for targeted cancer therapies, accelerating the path from discovery to intervention.
+              CrisPRO synergizes Evo2&apos;s high-accuracy predictions and generative power with AlphaFold 3&apos;s structural insights. This enables rapid in silico design and evaluation of novel genetic sequences for targeted cancer therapies, accelerating the path from discovery to intervention.
             </p>
           </div>
         </motion.div>

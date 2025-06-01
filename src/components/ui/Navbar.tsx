@@ -9,15 +9,17 @@ import { motion } from 'framer-motion';
 // Constants for Navbar configuration
 const NAV_CONFIG = {
   brandEmoji: "🧬", // DNA emoji as a placeholder logo element
-  brandName: "CasPro",
+  brandName: "CrisPRO",
   brandSubtitle: "Oncology Co-Pilot",
   navLinks: [
     { href: "#features", label: "Features" },
     { href: "#science", label: "Technology" },
     { href: "#team", label: "Team" },
+    { href: "/visualization-demo", label: "Visualization Demo" },
+    { href: "/knowledge-graph", label: "Knowledge Graph" },
   ],
-  ctaLink: "#contact",
-  ctaText: "Request Demo"
+  ctaLink: "/co-pilot-app", // Placeholder link for Launch Co-Pilot
+  ctaText: "Launch Co-Pilot"
 };
 
 const Navbar = () => {

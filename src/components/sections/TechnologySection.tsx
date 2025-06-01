@@ -27,20 +27,20 @@ function classNames(...classes: string[]) {
 // Constants for Technology Section configuration
 const TECHNOLOGY_CONFIG = {
   sectionId: "science",
-  title: "The Science & Technology Powering CasPro",
-  subtitle: "CasPro brings together cutting-edge AI foundation models and robust engineering to create a powerful, secure platform for cancer genomics analysis and therapy design.",
+  title: "The Science & Technology Powering CrisPRO",
+  subtitle: "CrisPRO brings together cutting-edge AI foundation models and robust engineering to create a powerful, secure platform for cancer genomics analysis and therapy design.",
   tabs: [
     {
       name: 'Evo2 Engine',
       description: 'Genomic Variant Prediction & Generation',
-      icon: React.createElement(FiCpu),
+      icon: FiCpu,
       modelPath: '/models/dna_rna.glb',
       modelScale: 2,
       content: {
         heading: "Evo2: Evolutionary Genomic Analysis & Design",
         paragraphs: [
           "Evo2 is a state-of-the-art deep learning model that predicts the functional impact of genetic variants with over 90% accuracy, as validated in peer-reviewed publications. It understands the language of DNA.",
-          "Beyond prediction, CasPro leverages Evo2s generative capabilities to design novel DNA/RNA sequences for therapeutic purposes, such as optimized gene editing constructs."
+          "Beyond prediction, CrisPRO leverages Evo2s generative capabilities to design novel DNA/RNA sequences for therapeutic purposes, such as optimized gene editing constructs."
         ],
         listItems: [
           'Accurately interpret complex cancer-related genetic variants',
@@ -54,14 +54,14 @@ const TECHNOLOGY_CONFIG = {
     {
       name: 'AlphaFold 3',
       description: 'Advanced Structural Analysis',
-      icon: React.createElement(FiActivity),
+      icon: FiActivity,
       modelPath: '/models/dna_rna.glb',
       modelScale: 2.5,
       content: {
         heading: "AlphaFold 3: Deep Dive into Structural Biology",
         paragraphs: [
           "AlphaFold 3 represents a monumental leap in predicting the 3D structure of proteins, RNA, DNA, and their interactions with unprecedented accuracy.",
-          "Within CasPro, AlphaFold 3 provides critical insights into how genetic variations affect molecular structures and how designed therapies might interact at a structural level, ensuring viability."
+          "Within CrisPRO, AlphaFold 3 provides critical insights into how genetic variations affect molecular structures and how designed therapies might interact at a structural level, ensuring viability."
         ],
         listItems: [
           'Predict protein structure changes caused by somatic or germline mutations',
@@ -73,36 +73,36 @@ const TECHNOLOGY_CONFIG = {
       }
     },
     {
-      name: 'Synergistic Workflow',
-      description: 'Integrated Analysis & Design Process',
-      icon: React.createElement(FiGitMerge),
+      name: 'Core Capabilities',
+      description: 'Platform Features & AI Co-pilot',
+      icon: FiGitMerge,
       modelPath: '/models/dna_rna.glb',
       modelScale: 2,
       content: {
-        heading: "Integrated & Intelligent Workflow",
+        heading: "CrisPRO's Integrated Capabilities",
         paragraphs: [
-          "CasPro provides a seamless, AI-augmented workflow from raw genomic data to actionable therapeutic insights, all orchestrated by our modular Agent System.",
-          "This intelligent system guides users, automates repetitive tasks, and integrates Evo2 and AlphaFold 3 into a cohesive analytical and design pipeline."
+          "CrisPRO offers a comprehensive suite of AI-driven tools designed to revolutionize cancer genomics analysis, therapy design, and clinical decision-making.",
+          "What truly sets CrisPRO apart is not just the individual power of each feature, but their seamless integration into a cohesive ecosystem. This synergy creates an unparalleled workflow from raw data to actionable insights and therapeutic innovation."
         ],
         listItems: [
-          'Automated ingestion and pre-processing of genomic data (FASTQ, VCF, BAM)',
-          'Evo2-powered variant interpretation and prioritization',
-          'AI-guided therapy design using Evo2 generative models',
-          'AlphaFold 3 for in silico structural validation of designed components',
-          'Comprehensive scoring, ranking, and refinement of therapeutic candidates',
-          'Agent-assisted clinical trial matching and treatment recommendation synthesis'
+          "AI-Powered Genomic Analysis: Deep variant interpretation, functional impact prediction (Evo2 scores), and identification of novel therapeutic targets from complex genomic data.",
+          "AI-Guided Therapy Design: Leverage Evo2's generative power to design bespoke gene editing constructs (e.g., CRISPR guide RNAs, repair templates) and other biologics.",
+          "In Silico Design Evaluation: Predict structural viability and efficacy of designed therapies using AlphaFold 3, with comprehensive multi-modal scoring of candidates.",
+          "Predictive Biomarker Discovery: Identify novel predictive biomarkers for treatment response and resistance, enhancing patient stratification for clinical trials and therapies.",
+          "Intelligent Clinical Trial Matching: AI agent-based assistance to find relevant clinical trials based on comprehensive patient genomic and clinical profiles, accelerating enrollment.",
+          "Modular Agent Assistance (AI Co-pilot): Key capabilities include: understands your questions about specific genes, genetic changes (variants), or particular genomic conditions; uses advanced AI (Evo2) to predict how genetic changes might affect a patient and their condition; checks a patient's unique genetic makeup against the criteria you're interested in; provides clear, organized summaries of its findings, including gene details, variant information, and how it relates to the patient's clinical situation; helps identify potential therapeutic options based on genomic insights."
         ],
-        visualPlaceholder: "Flowchart diagram illustrating the CasPro workflow: Data Input -> Evo2 Analysis -> Therapy Design (Evo2 Gen) -> AlphaFold 3 Validation -> Candidate Output -> Agent System Orchestration."
+        visualPlaceholder: "Flowchart diagram illustrating the CrisPRO workflow: Data Input -> AI Analysis & Design -> Candidate Output -> Agent System Orchestration."
       }
     },
     {
       name: 'Security & Compliance',
       description: 'HIPAA, GDPR, & Data Protection',
-      icon: React.createElement(FiLock),
+      icon: FiLock,
       content: {
         heading: "Robust Security & Unwavering Compliance",
         paragraphs: [
-          "CasPro is architected with patient data security and regulatory compliance (including HIPAA and GDPR considerations) as foundational principles.",
+          "CrisPRO is architected with patient data security and regulatory compliance (including HIPAA and GDPR considerations) as foundational principles.",
           "We employ state-of-the-art security measures to protect sensitive health information while enabling groundbreaking research and clinical application."
         ],
         listItems: [
@@ -113,7 +113,7 @@ const TECHNOLOGY_CONFIG = {
           'Strict data minimization, de-identification, and anonymization protocols where applicable',
           'Dedicated data protection agent (DPA) and continuous compliance monitoring'
         ],
-        visualPlaceholder: "Schematic of CasPro's multi-layered security architecture, highlighting encryption, access controls, and compliance certifications (e.g., HIPAA seal)."
+        visualPlaceholder: "Schematic of CrisPRO's multi-layered security architecture, highlighting encryption, access controls, and compliance certifications (e.g., HIPAA seal)."
       }
     }
   ],
@@ -143,28 +143,31 @@ const TechnologySection = () => {
 
         <HeadlessUiTab.Group>
           <HeadlessUiTab.List className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-1 rounded-xl bg-slate-100 p-2 max-w-3xl mx-auto mb-12 shadow-md">
-            {TECHNOLOGY_CONFIG.tabs.map((tab) => (
-              <HeadlessUiTab
-                key={tab.name}
-                className={({ selected }) =>
-                  classNames(
-                    'w-full rounded-lg py-3 px-2 text-sm font-medium leading-5 transition-colors duration-150',
-                    'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-primary-dark ring-white ring-opacity-60',
-                    selected
-                      ? 'bg-primary text-white shadow-md'
-                      : 'text-slate-700 hover:bg-white/70 hover:text-primary'
-                  )
-                }
-              >
-                <div className="flex items-center justify-center sm:justify-start space-x-2">
-                  <span className="text-lg">{tab.icon}</span>
-                  <div>
-                    <div className="font-semibold">{tab.name}</div>
-                    <div className="text-xs mt-0.5 opacity-80 hidden sm:block">{tab.description}</div>
+            {TECHNOLOGY_CONFIG.tabs.map((tab) => {
+              const TabIcon = tab.icon;
+              return (
+                <HeadlessUiTab
+                  key={tab.name}
+                  className={({ selected }) =>
+                    classNames(
+                      'w-full rounded-lg py-3 px-2 text-sm font-medium leading-5 transition-colors duration-150',
+                      'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-primary-dark ring-white ring-opacity-60',
+                      selected
+                        ? 'bg-primary text-white shadow-md'
+                        : 'text-slate-700 hover:bg-white/70 hover:text-primary'
+                    )
+                  }
+                >
+                  <div className="flex items-center justify-center sm:justify-start space-x-2">
+                    {TabIcon && <TabIcon className="text-lg w-5 h-5" />}
+                    <div>
+                      <div className="font-semibold">{tab.name}</div>
+                      <div className="text-xs mt-0.5 opacity-80 hidden sm:block">{tab.description}</div>
+                    </div>
                   </div>
-                </div>
-              </HeadlessUiTab>
-            ))}
+                </HeadlessUiTab>
+              );
+            })}
           </HeadlessUiTab.List>
           <HeadlessUiTab.Panels className="mt-8">
             {TECHNOLOGY_CONFIG.tabs.map((tab, idx) => (
@@ -178,18 +181,22 @@ const TechnologySection = () => {
                   transition={TECHNOLOGY_CONFIG.animationVariants.transition(0.2)}
                   className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start bg-slate-50 p-6 sm:p-8 rounded-lg shadow-lg border border-slate-200"
                 >
-                  <div className="prose prose-slate max-w-none lg:prose-base">
-                    <h3 className="heading-3 mb-4 !mt-0">{tab.content.heading}</h3>
-                    {tab.content.paragraphs.map((p, pIdx) => <p key={pIdx} className="text-slate-700">{p}</p>)}
-                    <h4 className="font-semibold text-slate-800 mt-6 mb-2">Key Applications:</h4>
-                    <ul className="space-y-1 text-slate-600">
-                      {tab.content.listItems.map((item, itemIdx) => (
-                        <li key={itemIdx} className="flex items-start">
-                          <FiEye className="text-primary mr-2 mt-1 flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="max-w-none lg:text-base text-slate-800">
+                    <h3 className="heading-3 mb-4 mt-0 text-slate-800">{tab.content.heading}</h3>
+                    {tab.content.paragraphs.map((p, pIdx) => <p key={pIdx} className="text-slate-700 mb-4 leading-relaxed">{p}</p>)}
+                    {tab.content.listItems && tab.content.listItems.length > 0 && (
+                      <>
+                        <h4 className="font-semibold text-slate-800 mt-6 mb-4 text-xl">Key Aspects:</h4>
+                        <ul className="space-y-3 text-slate-700 list-none pl-0">
+                          {tab.content.listItems.map((item, itemIdx) => (
+                            <li key={itemIdx} className="flex items-start text-slate-700 my-2">
+                              <FiEye className="text-primary mr-3 mt-1 flex-shrink-0 w-5 h-5" />
+                              <span className="flex-1 text-slate-700 leading-relaxed">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
                   </div>
                   <div className="relative h-[300px] lg:h-[350px] bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl flex items-center justify-center p-6 shadow-inner">
                     {tab.modelPath ? (

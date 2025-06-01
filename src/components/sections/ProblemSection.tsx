@@ -72,7 +72,7 @@ const PROBLEM_CONFIG = {
     }
   ],
   summaryTitle: "A New Standard in Oncology Workflow",
-  summaryText: "Oncology demands a paradigm shift. CasPro's intelligent agent architecture is built to dismantle these workflow bottlenecks, dramatically accelerating the path from complex data to precise, personalized patient care and groundbreaking research.",
+  summaryText: "Oncology demands a paradigm shift. CrisPRO's intelligent agent architecture is built to dismantle these workflow bottlenecks, dramatically accelerating the path from complex data to precise, personalized patient care and groundbreaking research.",
   animationVariants: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -139,12 +139,12 @@ const ProblemSection = () => {
                       <p className="text-slate-600 text-sm md:text-base" dangerouslySetInnerHTML={{ __html: challenge.problem.description }} />
                     </div>
 
-                    {/* Column 2: CasPro's Transformation / The New Way */}
+                    {/* Column 2: CrisPRO's Transformation / The New Way */}
                     <div className="transformation-pane md:border-l md:pl-8 border-slate-300">
                        <div className="flex items-center text-primary mb-4">
                          {/* Consider a different icon or color for transformation */}
                          <FiZap className="w-7 h-7 mr-3" /> 
-                         <h3 className="text-2xl font-semibold text-primary">With CasPro:</h3>
+                         <h3 className="text-2xl font-semibold text-primary">With CrisPRO:</h3>
                        </div>
                       <h4 className="text-xl font-medium text-primary mb-3">{challenge.transformation.title}</h4>
                       <ul className="space-y-2 text-slate-600 text-sm md:text-base">

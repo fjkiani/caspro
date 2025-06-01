@@ -41,7 +41,7 @@ export default function CareersPage() {
             </div>
 
             <div className="mb-12">
-              <h2 className="text-2xl font-semibold text-slate-900 mb-6">Why Join CasPro?</h2>
+              <h2 className="text-2xl font-semibold text-slate-900 mb-6">Why Join CrisPRO?</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
                   <h3 className="text-lg font-semibold text-slate-800 mb-3">Meaningful Work</h3>

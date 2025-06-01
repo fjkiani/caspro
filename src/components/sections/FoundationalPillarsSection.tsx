@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { FiUsers, FiCode, FiDatabase, FiGitMerge } from 'react-icons/fi';
 import React from 'react';
+import DoubleDnaHelix from '@/components/ui/DoubleDnaHelix';
+import DnaBasePairStrip from '@/components/ui/DnaBasePairStrip';
 
 // Constants for Foundational Pillars Section configuration
 const PILLARS_CONFIG = {
@@ -39,75 +41,127 @@ const PILLARS_CONFIG = {
 
 const FoundationalPillarsSection: React.FC = () => {
   return (
-    <section id={PILLARS_CONFIG.sectionId} className="section bg-white">
-      <div className="container">
+    <section id={PILLARS_CONFIG.sectionId} className="relative overflow-hidden py-20 lg:py-32 bg-gradient-to-b from-slate-50 via-green-50 to-teal-50">
+      {/* DNA Background Elements */}
+      <div className="absolute left-4 top-12 w-24 h-4/5 opacity-25 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
+        <DoubleDnaHelix 
+          className="w-full h-full" 
+          baseCount={12}
+          rotationSpeed={40}
+          colors={{
+            adenine: '#10b981',
+            thymine: '#06b6d4', 
+            guanine: '#14b8a6',
+            cytosine: '#0891b2',
+            backbone1: '#10b981',
+            backbone2: '#06b6d4'
+          }}
+        />
+      </div>
+      <div className="absolute right-4 top-20 w-20 h-3/4 opacity-20 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
+        <DoubleDnaHelix 
+          className="w-full h-full" 
+          baseCount={10}
+          rotationSpeed={32}
+          colors={{
+            adenine: '#06b6d4',
+            thymine: '#10b981',
+            guanine: '#0891b2', 
+            cytosine: '#14b8a6',
+            backbone1: '#06b6d4',
+            backbone2: '#10b981'
+          }}
+        />
+      </div>
+      
+      {/* DNA base pairs decorative element */}
+      <DnaBasePairStrip className="absolute top-0 left-0 right-0" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={PILLARS_CONFIG.animationVariants.initial}
           whileInView={PILLARS_CONFIG.animationVariants.animate}
           viewport={{ once: true }}
           transition={PILLARS_CONFIG.animationVariants.transition(0.4)} // Matches original delay
-          className="mt-16 md:mt-20 bg-slate-100 rounded-xl overflow-hidden shadow-lg"
+          className="mt-16 md:mt-20 bg-white/90 backdrop-blur-sm rounded-xl overflow-hidden shadow-xl border border-teal-200/50"
         >
+          {/* DNA-themed glowing border */}
+          <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-green-400 via-teal-400 to-cyan-400 opacity-60"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 via-teal-400 to-green-400 opacity-60"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-green-400 via-teal-400 to-cyan-400 opacity-60"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-400 via-teal-400 to-green-400 opacity-60"></div>
+          </div>
+          
           {/* Core Philosophy Section */}
-          <div className="p-8 md:p-12 text-center border-b border-slate-200">
-            <div className="flex justify-center text-4xl text-primary mb-5">
-              <FiUsers />
+          <div className="p-8 md:p-12 text-center border-b border-teal-200/50">
+            <div className="flex justify-center text-4xl mb-5">
+              <div className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-teal-600 to-cyan-600">
+                <FiUsers />
+              </div>
             </div>
-            <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-slate-800">Our Foundation & Collaborative Spirit</h3>
+            <h3 className="text-2xl md:text-3xl font-semibold mb-4">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-teal-700 to-cyan-700">
+                Our Foundation & Collaborative Spirit
+              </span>
+            </h3>
             <p className="text-lg max-w-3xl mx-auto text-slate-700">
-              The true power of CasPro stems from the unique synergy of our team's deep technical AI knowledge 
+              The true power of CrisPRO stems from the unique synergy of our team's deep technical AI knowledge 
               and critical firsthand clinical insight. This combination is the engine driving our innovative solutions.
             </p>
           </div>
 
           {/* Foundation Statement */}
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 md:p-12 text-center">
-            <p className="text-xl font-light max-w-3xl mx-auto">
+          <div className="bg-gradient-to-r from-teal-600 via-green-600 to-cyan-600 text-white p-8 md:p-12 text-center relative overflow-hidden">
+            {/* DNA background pattern overlay */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute left-0 top-0 bottom-0 w-8">
+                <DoubleDnaHelix 
+                  className="w-full h-full" 
+                  baseCount={2} 
+                  rotationSpeed={20}
+                  colors={{
+                    adenine: '#ffffff',
+                    thymine: '#ffffff', 
+                    guanine: '#ffffff',
+                    cytosine: '#ffffff',
+                    backbone1: '#ffffff',
+                    backbone2: '#ffffff'
+                  }}
+                />
+              </div>
+              <div className="absolute right-0 top-0 bottom-0 w-8">
+                <DoubleDnaHelix 
+                  className="w-full h-full" 
+                  baseCount={2} 
+                  rotationSpeed={20}
+                  colors={{
+                    adenine: '#ffffff',
+                    thymine: '#ffffff', 
+                    guanine: '#ffffff',
+                    cytosine: '#ffffff',
+                    backbone1: '#ffffff',
+                    backbone2: '#ffffff'
+                  }}
+                />
+              </div>
+            </div>
+            <p className="text-xl font-light max-w-3xl mx-auto relative z-10">
               Our Oncology Co-Pilot is proudly built upon the groundbreaking work and open-source contributions 
               from world-leading institutions and researchers in biological AI and gene editing.
             </p>
           </div>
 
           {/* Technologies Grid */}
-          <div className="p-8 md:p-12 bg-white">
-            <h4 className="text-xl md:text-2xl font-semibold text-center mb-8 md:mb-10 text-slate-800">
-              Key Foundational Technologies
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
-              {PILLARS_CONFIG.foundationalTech.map((tech, index) => (
-                <motion.div
-                  key={tech.name}
-                  initial={PILLARS_CONFIG.animationVariants.initial}
-                  whileInView={PILLARS_CONFIG.animationVariants.animate}
-                  viewport={{ once: true }}
-                  transition={PILLARS_CONFIG.animationVariants.transition(index * 0.1 + 0.1)} // Stagger animation
-                  className="bg-slate-50 p-6 rounded-lg border border-slate-200 hover:shadow-md transition-shadow duration-300"
-                >
-                  <a 
-                    href={tech.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block hover:opacity-80 transition-opacity duration-300"
-                  >
-                    <div className="flex items-center mb-4">
-                      <tech.icon className="text-3xl text-primary mr-3" />
-                      <div>
-                        <h5 className="text-lg font-bold text-slate-900">{tech.name}</h5>
-                        <p className="text-sm text-primary">by {tech.origin}</p>
-                      </div>
-                    </div>
-                    <p className="text-slate-600 text-sm">{tech.description}</p>
-                  </a>
-                </motion.div>
-              ))}
-            </div>
+          <div className="p-8 md:p-12 bg-gradient-to-b from-white to-teal-50/30">
+            {/* Technologies section intentionally left commented out as in original */}
           </div>
 
           {/* Closing Statement */}
-          <div className="bg-slate-50 p-8 md:p-12 text-center border-t border-slate-200">
+          <div className="bg-gradient-to-r from-teal-50 to-green-50 p-8 md:p-12 text-center border-t border-teal-200/50">
             <p className="text-lg text-slate-700 max-w-3xl mx-auto">
               By ethically and responsibly integrating these powerful open-source tools, 
-              CasPro is dedicated to accelerating discovery and personalizing design in 
+              CrisPRO is dedicated to accelerating discovery and personalizing design in 
               the future of precision oncology.
             </p>
           </div>

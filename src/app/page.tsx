@@ -1,5 +1,3 @@
-import Navbar from '@/components/ui/Navbar';
-import Footer from '@/components/ui/Footer';
 import HeroSection from '@/components/sections/HeroSection';
 import ProblemSection from '@/components/sections/ProblemSection';
 import SolutionSection from '@/components/sections/SolutionSection';
@@ -14,14 +12,14 @@ import ContactSection from '@/components/sections/ContactSection';
 
 // Page configuration constants
 const PAGE_CONFIG = {
-  title: 'CasPro: Oncology Co-Pilot',
+  title: 'CrisPRO: Oncology Co-Pilot',
   sections: [
     { id: 'hero', component: HeroSection },
-    { id: 'problem', component: ProblemSection },
+    // { id: 'problem', component: ProblemSection },
     { id: 'solution', component: SolutionSection },
-    { id: 'features', component: FeaturesSection },
-    { id: 'science', component: TechnologySection },
-    { id: 'technology-deep-dive', component: TechnologyDeepDiveSection },
+    // { id: 'features', component: FeaturesSection },
+    // { id: 'science', component: TechnologySection },
+    // { id: 'technology-deep-dive', component: TechnologyDeepDiveSection },
     { id: 'agent-capabilities', component: AgentCapabilitiesSection },
     { id: 'foundational-pillars', component: FoundationalPillarsSection },
     // { id: 'impact', component: ImpactSection }, // Commented out
@@ -33,7 +31,6 @@ const PAGE_CONFIG = {
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Navbar />
       
       {/* Render all sections */}
       {PAGE_CONFIG.sections.map((section) => {
@@ -41,7 +38,6 @@ export default function Home() {
         return <SectionComponent key={section.id} />;
       })}
       
-      <Footer />
     </main>
   );
 }
