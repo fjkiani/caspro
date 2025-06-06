@@ -4,13 +4,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
-import Navbar from '@/components/ui/Navbar';
-import Footer from '@/components/ui/Footer';
 
 export default function CareersPage() {
   return (
     <>
-      <Navbar />
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4">
           <motion.div
@@ -84,7 +81,6 @@ export default function CareersPage() {
           </motion.div>
         </div>
       </main>
-      <Footer />
     </>
   );
 } 

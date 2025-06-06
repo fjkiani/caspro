@@ -6,6 +6,8 @@ import { Suspense } from 'react';
 import DoubleDnaHelix from '../ui/DoubleDnaHelix';
 import CrisprGenomeEditor from '../ui/CrisprGenomeEditor';
 import DnaBasePairStrip from '../ui/DnaBasePairStrip';
+import { ArrowRight, Brain, Dna, FileText } from 'lucide-react';
+import Link from 'next/link';
 
 // Dynamically import ProteinModelViewer with SSR turned off
 const ProteinModelViewer = dynamic(
@@ -22,27 +24,48 @@ const ProteinModelViewer = dynamic(
 
 // Constants for Hero Section configuration
 const HERO_CONFIG = {
-  titlePart1: "Engineer",
-  titlePart2: " Precision Therapeutics with CRISPR-Powered Genomic Design",
-  subtitle: "CrisPRO is an AI-powered platform for designing targeted CRISPR gene editing therapies, predicting protein interactions, and developing novel precision oncology treatments.",
-  ctaPrimaryText: "Design Your Guide RNA",
-  ctaSecondaryText: "Explore Models",
+  titlePart1: "The Future of Oncology",
+  titlePart2: "AI Co-Pilots",
+  subtitle: "We build intelligent, specialized AI co-pilots that empower clinicians and researchers to accelerate discovery, personalize treatments, and revolutionize patient care across genomics, oncology, and clinical data intelligence.",
+  ctaPrimaryText: "Explore Co-Pilots",
+  ctaPrimaryLink: "#co-pilots-showcase",
+  ctaSecondaryText: "About The Platform",
+  ctaSecondaryLink: "#solution",
   keyFeatures: [
-    { id: 'crispr', name: 'CRISPR Design', description: 'AI-optimized guide RNA design with off-target prediction' },
-    { id: 'protein', name: 'Protein Engineering', description: 'Structure-based therapeutic protein design' },
-    { id: 'genomic', name: 'Genomic Analysis', description: 'Mutational signature detection and classification' }
+    {
+      id: 'genomic',
+      name: 'CRISPR Intelligence Platform',
+      description: 'An end-to-end co-pilot for therapeutic gene editing. Accelerate your R&D from discovery to pre-clinical with AI-powered guide design, variant effect prediction, and automated experiment planning.',
+      icon: Dna,
+      link: '/co-pilot-app/crispr-intelligence'
+    },
+    {
+      id: 'oncology',
+      name: 'PrecisionRad™ Co-Pilot',
+      description: 'Fuse multi-modal data to hyper-personalize radiation therapy. Predict patient-specific radiosensitivity and toxicity by integrating deep genomic profiles with medical imaging to optimize treatment plans.',
+      icon: Brain,
+      link: '/co-pilot-app/precision-rad'
+    },
+    {
+      id: 'emr',
+      name: 'AgenticEMR™ Co-Pilot',
+      description: 'Transform unstructured clinical data into a strategic asset. Automate patient record summarization, cohort identification, and clinical trial matching to unlock deep clinical insights from your EMR.',
+      icon: FileText,
+      link: '/co-pilot-app/agentic-emr'
+    }
   ]
 };
 
+
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden py-20 lg:py-32 bg-gradient-to-b from-slate-900 via-blue-950 to-indigo-950">
+    <section className="relative overflow-hidden py-20 lg:py-24 bg-gradient-to-b from-slate-900 via-blue-950 to-indigo-950">
       {/* Advanced background DNA elements */}
-      <div className="absolute left-10 top-10 w-24 h-3/4 opacity-70 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
-        {/* <DoubleDnaHelix className="w-full h-full" baseCount={15} /> */}
+      <div className="absolute left-10 top-10 w-24 h-3/4 opacity-70 pointer-events-none">
+        <DoubleDnaHelix className="w-full h-full" baseCount={12} rotationSpeed={25} />
       </div>
-      <div className="absolute right-10 top-20 w-20 h-3/4 opacity-70 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
-        <DoubleDnaHelix className="w-full h-full" baseCount={12} rotationSpeed={18} />
+      <div className="absolute right-10 top-20 w-20 h-3/4 opacity-70 pointer-events-none">
+        <DoubleDnaHelix className="w-full h-full" baseCount={10} rotationSpeed={18} />
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -55,60 +78,28 @@ const HeroSection = () => {
             className="text-white"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              <motion.span 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-blue-400 to-green-400 inline-block"
-                animate={{ 
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] 
-                }}
-                transition={{ 
-                  duration: 15, 
-                  repeat: Infinity, 
-                  ease: "linear"
-                }}
-                style={{ backgroundSize: '300% 100%' }}
-              >
-                {HERO_CONFIG.titlePart1}
-              </motion.span>
-              <span className="text-white">{HERO_CONFIG.titlePart2}</span>
+              <span className="block">{HERO_CONFIG.titlePart1}</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-sky-400 to-cyan-400">
+                {HERO_CONFIG.titlePart2}
+              </span>
             </h1>
             
-            <p className="text-xl text-blue-100/90 mb-8 max-w-xl">
+            <p className="text-lg text-blue-100/90 mb-8 max-w-xl">
               {HERO_CONFIG.subtitle}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <button className="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                </svg>
-                {HERO_CONFIG.ctaPrimaryText}
-              </button>
-              <button className="bg-transparent border border-blue-400 text-blue-400 hover:bg-blue-400/20 font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-                </svg>
-                {HERO_CONFIG.ctaSecondaryText}
-              </button>
-            </div>
-            
-            {/* Key features */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
-              {HERO_CONFIG.keyFeatures.map(feature => (
-                <motion.div 
-                  key={feature.id}
-                  className="bg-white/5 backdrop-blur-sm p-4 rounded-lg border border-white/10"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.8 }}
-                  whileHover={{ 
-                    scale: 1.03,
-                    boxShadow: '0 0 20px rgba(255, 255, 255, 0.1)'
-                  }}
-                >
-                  <h3 className="text-base font-semibold text-blue-300 mb-1">{feature.name}</h3>
-                  <p className="text-sm text-blue-100/80">{feature.description}</p>
-                </motion.div>
-              ))}
+              <Link href={HERO_CONFIG.ctaPrimaryLink}>
+                <button className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">
+                  <ArrowRight size={20} />
+                  {HERO_CONFIG.ctaPrimaryText}
+                </button>
+              </Link>
+              <Link href={HERO_CONFIG.ctaSecondaryLink}>
+                <button className="bg-transparent border border-blue-400 text-blue-300 hover:bg-blue-400/20 font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">
+                  {HERO_CONFIG.ctaSecondaryText}
+                </button>
+              </Link>
             </div>
           </motion.div>
 
@@ -176,8 +167,30 @@ const HeroSection = () => {
           </motion.div>
         </div>
         
-        {/* DNA base pairs decorative element */}
-        <DnaBasePairStrip className="my-16" />
+        {/* Co-Pilots Showcase Section (Integrated) */}
+        <motion.div
+          id="co-pilots-showcase"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+          className="mt-24"
+        >
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {HERO_CONFIG.keyFeatures.map((feature) => (
+              <Link href={feature.link} key={feature.id} className="block group">
+                <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6 h-full transition-all duration-300 hover:bg-slate-800 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-10 h-10 bg-slate-700 rounded-lg flex items-center justify-center text-primary">
+                      <feature.icon size={22} />
+                    </div>
+                    <h3 className="font-bold text-lg text-white">{feature.name}</h3>
+                  </div>
+                  <p className="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

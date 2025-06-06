@@ -17,21 +17,28 @@ const TEAM_CONFIG = {
       role: 'Co-founder & Chief Technical Executive Officer',
       bio: 'Expert in AI systems and software development, leveraging cutting-edge AI coding tools for rapid innovation and robust platform architecture.',
       image: '/images/placeholder-fahad.jpg', // Image data remains but won't be used
-      socials: { linkedin: 'https://www.linkedin.com/in/fjkiani', web: 'https://jedilabs.org/', github: 'http://github.com/fjkiani/', email: 'mailto:fahad@crispro.dev' }
+      socials: { linkedin: 'https://www.linkedin.com/in/fjkiani', web: 'https://jedilabs.org/', email: 'mailto:fahad@jedilabs.org' }
     },
     {
       name: 'Dr.Rahima Nayeem ',
       role: 'Co-founder & Chief Clinical Officer',
       bio: 'Medical doctor bringing essential firsthand clinical experience, a deep understanding of patient needs, and invaluable domain expertise in oncology.',
       image: '/images/placeholder-rahima.jpg', // Image data remains but won't be used
-      socials: { web: 'https://www.northwell.edu/find-care/find-a-doctor/dr-rahima-nayeem-md-11511786', linkedin: '#', email: 'mailto:rahima@crispro.dev' }
+      socials: { web: 'https://www.northwell.edu/find-care/find-a-doctor/dr-rahima-nayeem-md-11511786', email: 'mailto:nayeem.rahima@gmail.com' }
     },
     {
       name: 'Rasheed Shata ',
       role: 'Founding Scientist',
       bio: 'Doctor of Pharmacy, PharmD candidate at Rutgers University, with a passion for leveraging AI to advance healthcare.',
       image: '/images/placeholder-rahima.jpg', // Image data remains but won't be used
-      socials: { linkedin: 'https://www.linkedin.com/in/rasheed-shata/', email: 'mailto:jedi@crispro.dev' }
+      socials: { linkedin: 'https://www.linkedin.com/in/rasheed-shata/', }
+    },
+    {
+      name: 'Your Name Here',
+      role: 'The Future of CrisPRO',
+      bio: 'Scientist, Engineer, or Doctor interested in joining the CrisPRO team? We\'d love to hear from you!',
+      image: '/images/placeholder-rahima.jpg', // Image data remains but won't be used
+      socials: { email: 'mailto:jedi@jedilabs.org' , }
     }
   ],
   animationVariants: {
@@ -129,11 +136,11 @@ const TeamSection = () => {
                       <FiLinkedin />
                     </a>
                   }
-                  {member.socials.github && 
+                  {/* {member.socials.github && 
                     <a href={member.socials.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-red-500 transition-colors" aria-label={`${member.name} Github`}>
                       <FiGithub />
                     </a>
-                  }
+                  } */}
                   {member.socials.web && 
                     <a href={member.socials.web} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-red-500 transition-colors" aria-label={`${member.name} Website`}>
                       <FiGlobe />

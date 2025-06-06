@@ -3,10 +3,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  FiCpu, FiUsers, FiCalendar, FiSearch, FiFileText, FiSettings, FiBox, FiList, FiZap, FiMessageCircle, FiBell, FiLink2, FiCheckSquare, FiEdit
+  FiCpu, FiUsers, FiFileText, FiSettings, FiEdit, FiAperture, FiBookOpen, FiCheckSquare
 } from 'react-icons/fi';
 import DoubleDnaHelix from '@/components/ui/DoubleDnaHelix';
-import DnaBasePairStrip from '@/components/ui/DnaBasePairStrip';
 
 interface CapabilityItemProps {
   text: string;
@@ -14,8 +13,8 @@ interface CapabilityItemProps {
 
 const CapabilityItem: React.FC<CapabilityItemProps> = ({ text }) => (
   <li className="flex items-start">
-    <FiCheckSquare className="flex-shrink-0 w-5 h-5 text-blue-600 mr-2 mt-1" />
-    <span className="text-slate-700">{text}</span>
+    <FiCheckSquare className="flex-shrink-0 w-5 h-5 text-primary mr-2 mt-1" />
+    <span className="text-slate-300">{text}</span>
   </li>
 );
 
@@ -26,115 +25,89 @@ interface Agent {
   role: string;
   capabilities: string[];
   isKeyAgent: boolean;
-  description?: string; // For conceptual agents
+  description?: string;
 }
 
 const AGENTS_DATA: Agent[] = [
   {
     id: 'orchestrator',
-    name: 'Agent Orchestrator',
+    name: 'Orchestrator Agent',
     icon: <FiSettings className="w-8 h-8" />,
-    role: 'Your primary AI assistant and team coordinator. It understands your instructions and ensures the right specialist AI agent handles your task efficiently.',
+    role: 'Your AI team lead and workflow engine. It deconstructs your high-level goals and coordinates the specialist agents to deliver a comprehensive, multi-modal answer.',
     isKeyAgent: true,
     capabilities: [
-      'Listens to your requests in everyday medical language, understanding the core task you need help with.',
-      'Identifies which specialized AI agent (like the Genomic Analyst or Clinical Trial expert) is best suited for your request.',
-      'Provides the specialist agent with all relevant information (such as patient data or specific questions) to get the job done effectively.'
+      'Deconstructs complex natural language requests (e.g., "Find targets in the PI3K pathway for this patient and design a gene editing strategy").',
+      'Delegates sub-tasks to the appropriate specialist agents in the correct sequence.',
+      'Monitors multi-step workflows, providing real-time progress updates.',
+      'Synthesizes the findings from all agents into a single, unified, and actionable report.'
     ]
   },
   {
-    id: 'genomic',
+    id: 'genomic_analyst',
     name: 'Genomic Analyst Agent',
     icon: <FiCpu className="w-8 h-8" />,
-    role: 'Your dedicated genomics expert. It dives deep into patient genetic data to find critical mutations, understand their impact, and see if they match important genetic criteria, working closely with our advanced AI biology models.',
+    role: 'Your in-house computational biologist. It performs deep genomic analysis for therapeutic discovery, pre-clinical validation, and clinical decision support.',
     isKeyAgent: true,
     capabilities: [
-      "Understands your questions about specific genes, genetic changes (variants), or particular genomic conditions.",
-      "Uses advanced AI (Evo2) to predict how genetic changes might affect a patient and their condition.",
-      "Checks a patient's unique genetic makeup against the criteria you're interested in.",
-      "Provides clear, organized summaries of its findings, including gene details, variant information, and how it relates to the patient's clinical situation.",
-      "Helps identify potential targets for new therapies and provides the necessary genetic details for designing treatments like CRISPR."
+      '**Variant Interpretation (Evo 2):** Predicts the functional impact of any SNV with state-of-the-art accuracy to distinguish pathogenic drivers from benign passengers.',
+      '**Therapeutic Target Validation (CrisPRO™):** Identifies and annotates variants in potential drug targets to confirm their role in disease.',
+      '**Guide RNA Safety Check (CrisPRO™):** Scans gRNA binding sites for known clinical variants in your target population that could affect binding efficiency or create off-target effects.',
+      '**Pharmacogenomics (PGx):** Analyzes key genes (e.g., CYP family, TPMT) to predict a patient\'s likely response to specific drugs.',
+      '**Radio-genomic Prediction (PrecisionRad™):** Assesses variants in DNA Damage Response (DDR) pathways (e.g., ATM, BRCA) to predict patient-specific radiosensitivity and toxicity risk.'
     ]
   },
   {
-    id: 'clinical_trial',
-    name: 'Clinical Trial Agent',
-    icon: <FiSearch className="w-8 h-8" />,
-    role: 'Your clinical trial navigator. It quickly finds relevant clinical trials that match your patient\'s specific medical profile and cancer type.',
+    id: 'clinical_data_agent',
+    name: 'Clinical Data Agent',
+    icon: <FiFileText className="w-8 h-8" />,
+    role: 'Your clinical data architect. It transforms messy, unstructured EMR data into a clean, longitudinal, and queryable patient history.',
     isKeyAgent: true,
     capabilities: [
-      "Uses patient details and your specific requests to intelligently search for matching trials.",
-      "Scans through vast databases of clinical trial information to find the best matches based on eligibility.",
-      "Provides comprehensive details for each potentially suitable trial.",
-      "Offers an initial assessment of whether your patient might be eligible for a trial, summarizing key points.",
-      "Suggests next steps, like reviewing specific eligibility criteria that might need closer attention."
+      '**Unstructured Data Processing (AgenticEMR™):** Uses specialized NLP models to extract key entities (diagnoses, medications, procedures, timelines) from pathology reports, discharge summaries, and clinical notes.',
+      '**Longitudinal Patient Timeline:** Constructs a comprehensive patient journey, mapping key clinical events over time.',
+      '**Cohort Identification:** Identifies patient cohorts based on complex, multi-modal criteria (e.g., "Find all Stage III lung cancer patients with an EGFR L858R mutation who received radiation therapy").',
+      '**Clinical Trial Pre-screening:** Matches patient profiles against trial eligibility criteria using the structured data it creates.'
     ]
   },
   {
-    id: 'scheduling',
-    name: 'Scheduling Agent',
-    icon: <FiCalendar className="w-8 h-8" />,
-    role: 'Your virtual scheduling assistant. It helps manage appointments by working with your existing calendar tools.',
-    isKeyAgent: true,
+    id: 'imaging_analyst',
+    name: 'Medical Imaging Agent',
+    icon: <FiAperture className="w-8 h-8" />,
+    role: 'Your virtual medical physicist and radiologist. It performs quantitative analysis on medical scans to support diagnostics and treatment planning.',
+    isKeyAgent: false,
+    description: "Supports the PrecisionRad™ Co-Pilot by performing automated tumor contouring, radiomic feature extraction, and tracking treatment response over time.",
     capabilities: [
-      "Understands your spoken or typed requests for appointments (e.g., 'Schedule a follow-up next Tuesday afternoon').",
-      "Checks for available time slots and can book appointments directly into your calendar.",
-      "Can ask clarifying questions if needed (e.g., 'Is 2 PM or 3 PM better?') and confirms before finalizing."
+        'Performs automated segmentation of tumors (GTV) and organs-at-risk (OARs) on CT and MRI scans.',
+        'Extracts hundreds of quantitative radiomic features to build predictive models of treatment response.',
+        'Fuses PET metabolic data with anatomical CT/MRI scans for biologically-informed targeting.',
+        'Tracks changes in tumor volume and structure across multiple scans to support Adaptive Radiation Therapy (ART) decisions.'
     ]
   },
   {
-    id: 'therapy_design',
-    name: 'Therapy Design Agent ',
+    id: 'therapy_strategy_agent',
+    name: 'Therapy Strategy Agent',
     icon: <FiEdit className="w-6 h-6" />,
-    role: 'Orchestrates in silico design of novel gene therapies.',
+    role: 'Your in silico strategist. It designs and evaluates novel therapeutic interventions, from gene editors to radiation plans.',
     isKeyAgent: false,
-    description: "Uses Evo2's generative power, AlphaFold 3 for structural prediction, and cancer-specific scoring to evaluate designs.",
-    capabilities: []
+    description: 'Designs novel gene editing constructs for CrisPRO™ and evaluates personalized treatment plans for PrecisionRad™.',
+    capabilities: [
+      'Designs and ranks thousands of guide RNA and homology-directed repair (HDR) templates for gene editing.',
+      'Integrates structural biology predictions (AlphaFold) to model the downstream effect of an edit on protein function.',
+      'Simulates the potential efficacy of different radiation dose-painting strategies based on fused genomic and imaging data.'
+    ]
   },
   {
-    id: 'comparative_therapy',
-    name: 'Comparative Therapy Agent',
-    icon: <FiList className="w-6 h-6" />,
-    role: 'Compares different therapeutic options based on patient data and evidence.',
+    id: 'knowledge_agent',
+    name: 'Knowledge Agent',
+    icon: <FiBookOpen className="w-6 h-6" />,
+    role: 'Your AI research librarian. It connects your data to the world\'s biomedical knowledge base.',
     isKeyAgent: false,
-    description: "Evaluates drugs, trials, and designed therapies to inform treatment choices.",
-    capabilities: []
-  },
-  {
-    id: 'side_effect',
-    name: 'Side Effect Agent ',
-    icon: <FiZap className="w-6 h-6" />,
-    role: 'Predicts or summarizes potential side effects.',
-    isKeyAgent: false,
-    description: "Analyzes proposed therapies or patient profiles for potential adverse effects.",
-    capabilities: []
-  },
-  {
-    id: 'patient_education',
-    name: 'Patient Education Draft Agent ',
-    icon: <FiMessageCircle className="w-6 h-6" />,
-    role: 'Drafts simplified explanations for patient communication.',
-    isKeyAgent: false,
-    description: "Translates complex genomic findings or treatment options into understandable language.",
-    capabilities: []
-  },
-  {
-    id: 'referral',
-    name: 'Referral Agent ',
-    icon: <FiLink2 className="w-6 h-6" />,
-    role: 'Assists in identifying relevant specialists or clinics.',
-    isKeyAgent: false,
-    description: "Suggests referrals based on patient condition and location.",
-    capabilities: []
-  },
-  {
-    id: 'notification',
-    name: 'Notification Agent ',
-    icon: <FiBell className="w-6 h-6" />,
-    role: 'Manages automated alerts or summaries.',
-    isKeyAgent: false,
-    description: "Sends updates based on analysis results or workflow progress.",
-    capabilities: []
+    description: 'Uses advanced Retrieval-Augmented Generation (RAG) to answer complex questions, contextualize findings, and provide evidence-based summaries.',
+    capabilities: [
+        'Answers complex biological questions by querying PubMed, ClinVar, drug labels, and clinical practice guidelines.',
+        'Provides the specific citations and evidence supporting its conclusions.',
+        'Can be configured to securely search across your internal, proprietary research documents and databases.'
+    ]
   }
 ];
 
@@ -151,9 +124,9 @@ const AgentCapabilitiesSection: React.FC = () => {
   };
 
   return (
-    <section id="agent-capabilities" className="relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-indigo-50 via-purple-50 to-blue-50">
+    <section id="agent-capabilities" className="relative overflow-hidden py-16 md:py-24 bg-slate-900 text-white">
       {/* DNA Background Elements */}
-      <div className="absolute left-8 top-16 w-20 h-3/5 opacity-30 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
+      <div className="absolute left-8 top-16 w-20 h-3/5 opacity-10 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
         <DoubleDnaHelix 
           className="w-full h-full" 
           baseCount={8}
@@ -168,7 +141,7 @@ const AgentCapabilitiesSection: React.FC = () => {
           }}
         />
       </div>
-      <div className="absolute right-8 top-24 w-16 h-2/3 opacity-25 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
+      <div className="absolute right-8 top-24 w-16 h-2/3 opacity-10 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
         <DoubleDnaHelix 
           className="w-full h-full" 
           baseCount={6}
@@ -183,9 +156,6 @@ const AgentCapabilitiesSection: React.FC = () => {
           }}
         />
       </div>
-      
-      {/* DNA base pairs decorative element at top */}
-      <DnaBasePairStrip className="absolute top-0 left-0 right-0" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -195,17 +165,13 @@ const AgentCapabilitiesSection: React.FC = () => {
           transition={animationVariants.transition()}
           className="max-w-3xl mx-auto text-center mb-12 md:mb-16"
         >
-          <div className="flex justify-center text-5xl mb-6">
-            <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-600 to-cyan-600">
-              <FiUsers />
-            </div>
+          <div className="flex justify-center text-5xl mb-6 text-primary">
+            <FiUsers />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-700 to-cyan-700">
-              Intelligent Agent Architecture: The Oncology Copilot
-            </span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+            Intelligent Agent Architecture: The Oncology Copilot
           </h2>
-          <p className="text-lg text-slate-600 mb-4">
+          <p className="text-lg text-slate-300 mb-4">
             Think of CrisPRO's Oncology Copilot as your personal team of highly specialized AI assistants, working together seamlessly. Each agent has a unique expertise, much like different specialists in a hospital. This 'Intelligent Agent Architecture' allows you to delegate complex tasks, from analyzing patient data to exploring treatment options, making your workflow faster and more insightful.
           </p>
         </motion.div>
@@ -217,15 +183,15 @@ const AgentCapabilitiesSection: React.FC = () => {
           viewport={{ once: true }}
           transition={animationVariants.transition(0.2)}
         >
-          <div className="mb-8 flex flex-wrap justify-center gap-2 md:gap-3 border-b-2 border-gradient-to-r from-purple-200 via-blue-200 to-cyan-200 pb-4">
+          <div className="mb-8 flex flex-wrap justify-center gap-2 md:gap-3">
             {keyAgents.map((agent) => (
               <button
                 key={agent.id}
                 onClick={() => setActiveTab(agent.id)}
-                className={`px-4 py-2.5 text-sm font-medium rounded-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500/50 whitespace-nowrap
+                className={`px-4 py-2.5 text-sm font-medium rounded-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary/50 whitespace-nowrap
                   ${activeTab === agent.id 
-                    ? 'bg-gradient-to-r from-purple-500 to-blue-600 text-white shadow-lg shadow-purple-500/25' 
-                    : 'bg-white/80 backdrop-blur-sm text-slate-700 hover:bg-blue-50 border border-blue-200/50'
+                    ? 'bg-primary text-white shadow-lg shadow-primary/25' 
+                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
                   }`}
               >
                 {agent.name}
@@ -242,30 +208,20 @@ const AgentCapabilitiesSection: React.FC = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white/90 backdrop-blur-sm rounded-xl p-8 shadow-xl border border-blue-200/50"
+                  className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 shadow-xl border border-slate-700"
                 >
-                  {/* DNA-themed glowing border */}
-                  <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
-                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 opacity-60"></div>
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 opacity-60"></div>
-                    <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-400 via-blue-400 to-cyan-400 opacity-60"></div>
-                    <div className="absolute right-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-400 via-blue-400 to-purple-400 opacity-60"></div>
-                  </div>
-                  
                   <div className="flex flex-col md:flex-row items-start gap-6">
-                    <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center text-white shadow-lg">
+                    <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-white shadow-lg">
                       {agent.icon}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold mb-3">
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-700">
-                          {agent.name}
-                        </span>
+                      <h3 className="text-2xl font-bold mb-3 text-white">
+                        {agent.name}
                       </h3>
-                      <p className="text-slate-700 mb-6 leading-relaxed">{agent.role}</p>
+                      <p className="text-slate-300 mb-6 leading-relaxed">{agent.role}</p>
                       {agent.capabilities.length > 0 && (
                         <div>
-                          <h4 className="text-lg font-semibold mb-3 text-blue-700">Key Capabilities:</h4>
+                          <h4 className="text-lg font-semibold mb-3 text-primary">Key Capabilities:</h4>
                           <ul className="space-y-3">
                             {agent.capabilities.map((capability, index) => (
                               <CapabilityItem key={index} text={capability} />
@@ -289,10 +245,8 @@ const AgentCapabilitiesSection: React.FC = () => {
           transition={animationVariants.transition(0.4)}
           className="mt-16"
         >
-          <h3 className="text-2xl font-bold text-center mb-8">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-600">
-              Additional Specialized Agents
-            </span>
+          <h3 className="text-2xl font-bold text-center mb-8 text-white">
+            Additional Specialized Agents
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {conceptualAgents.map((agent, index) => (
@@ -302,17 +256,17 @@ const AgentCapabilitiesSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-blue-200/50 hover:bg-white/90 transition-all duration-300 hover:shadow-lg"
+                className="bg-slate-800/50 rounded-lg p-6 border border-slate-700 hover:bg-slate-800/80 transition-all duration-300 hover:shadow-lg hover:border-primary/50"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center text-white">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-blue-500 flex items-center justify-center text-white">
                     {agent.icon}
                   </div>
-                  <h4 className="font-semibold text-slate-900">{agent.name}</h4>
+                  <h4 className="font-semibold text-white">{agent.name}</h4>
                 </div>
-                <p className="text-sm text-slate-600 mb-2">{agent.role}</p>
+                <p className="text-sm text-slate-300 mb-2">{agent.role}</p>
                 {agent.description && (
-                  <p className="text-xs text-slate-500">{agent.description}</p>
+                  <p className="text-xs text-slate-400">{agent.description}</p>
                 )}
               </motion.div>
             ))}

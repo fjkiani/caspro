@@ -15,7 +15,7 @@ const PAGE_CONFIG = {
   title: 'CrisPRO: Oncology Co-Pilot',
   sections: [
     { id: 'hero', component: HeroSection },
-    // { id: 'problem', component: ProblemSection },
+    { id: 'problem', component: ProblemSection },
     { id: 'solution', component: SolutionSection },
     // { id: 'features', component: FeaturesSection },
     // { id: 'science', component: TechnologySection },

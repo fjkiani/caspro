@@ -12,26 +12,27 @@ import DnaBasePairStrip from '@/components/ui/DnaBasePairStrip';
 const CONTACT_CONFIG = {
   sectionId: 'contact',
   className: 'section bg-gradient-to-br from-slate-800 via-blue-900 to-indigo-900 text-white',
-  animationDelay: 0.2, // Adjusted for form appearance
-  titleText: 'Ready to Transform Cancer Care with CrisPRO?',
-  subtitleText: 'Request a personalized demo to see how CrisPRO can enhance your oncology practice, accelerate your research, or integrate with your drug discovery pipeline.',
-  ctaText: 'Request My Personalized Demo',
-  hintText: 'Our team typically responds within 24 business hours.',
-  formTitle: 'Get in Touch for a Demo',
-  partnerTitle: "Why Leading Institutions Partner with CrisPRO",
+  animationDelay: 0.2,
+  titleText: 'Ready to Redefine Precision Medicine?',
+  subtitleText: 'Request a demo to see how our AI Co-Pilot platform can accelerate your research, enhance clinical decisions, and unlock the full potential of your biomedical data.',
+  ctaText: 'Request a Personalized Demo',
+  hintText: 'Our team typically responds within one business day.',
+  formTitle: 'Schedule a Consultation',
+  partnerTitle: "Why Leading Organizations will love CrisPRO",
   partnerBenefits: [
-      'Access state-of-the-art AI models (Evo2, AlphaFold 3) with validated accuracy.',
-      'Streamline complex genomic analysis and therapy design workflows.',
-      'Operate on a secure, HIPAA-compliant, and scalable cloud platform.',
-      'Receive dedicated support and collaboration from our clinical and technical experts.'
+      'Leverage a unified platform with world-class AI for genomics, imaging, and clinical data.',
+      'Dramatically accelerate timelines for both therapeutic R&D and clinical decision-making.',
+      'Operate on a secure, compliant (HIPAA & GDPR), and infinitely scalable cloud architecture.',
+      'Partner with our dedicated experts in AI, biology, and clinical informatics.'
   ],
-  socialProofTitle: 'Empowering Oncology Research and Clinical Care',
+  socialProofTitle: 'Become a Pioneer in Oncology, Therapeutic Design, and Genomic Medicine',
   socialProofOrganizations: [
-    'Global Cancer Research Institute',
-    'Precision Medicine Hub',
-    'Genomic Solutions Ltd.',
-    'University Oncology Center',
+    'Dana-Farber Cancer Institute', // Represents top-tier clinical/research - for PrecisionRad
+    'Vertex Pharmaceuticals',       // Represents biotech/pharma - for CrisPRO
+    'Flatiron Health',              // Represents clinical data/EMR - for AgenticEMR
+    'Stanford Medicine'             // Represents a leading academic partner
   ],
+
   animationVariants: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },

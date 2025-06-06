@@ -554,9 +554,9 @@ export default function KnowledgeGraphExample() {
       <header className="mb-6 crispro-ai-header"> 
         <h1 className="text-3xl font-bold text-sky-400">CrisPRO.ai Knowledge Graph Explorer</h1>
         <div className="flex justify-between items-center">
-          <p className="text-sm text-gray-400">
-            Demonstrating interactive visualization of AI-enhanced biological relationship data.
-          </p>
+        <p className="text-sm text-gray-400">
+          Demonstrating interactive visualization of AI-enhanced biological relationship data.
+        </p>
           {!showTutorial && tutorialCompleted && (
             <button 
               onClick={restartTutorial}
@@ -685,29 +685,29 @@ export default function KnowledgeGraphExample() {
               )}
               <div className="grid grid-cols-2 gap-x-4">
                 {selectedNode.baseEvidenceScore !== undefined && (
-                  <div>
+                <div>
                     <label className="text-xs text-gray-400">Base Evidence:</label>
-                    <div className="w-full bg-slate-700 h-2.5 rounded-full mt-1">
-                      <div 
-                        className="bg-blue-500 h-2.5 rounded-full transition-all duration-300"
+                  <div className="w-full bg-slate-700 h-2.5 rounded-full mt-1">
+                    <div 
+                      className="bg-blue-500 h-2.5 rounded-full transition-all duration-300"
                         style={{ width: `${selectedNode.baseEvidenceScore * 100}%` }}
                         title={`${(selectedNode.baseEvidenceScore * 100).toFixed(0)}%`}
-                      />
-                    </div>
+                    />
                   </div>
-                )}
-                {enableAIFeatures.aiWeighting && selectedNode.aiRelevanceScore !== undefined && (
-                   <div>
-                    <label className="text-xs text-gray-400">CrisPRO.ai Relevance:</label>
-                    <div className="w-full bg-slate-700 h-2.5 rounded-full mt-1">
-                      <div 
-                        className="bg-green-500 h-2.5 rounded-full transition-all duration-300" 
-                        style={{ width: `${selectedNode.aiRelevanceScore * 100}%` }}
-                        title={`${(selectedNode.aiRelevanceScore * 100).toFixed(0)}%`}
-                      />
-                    </div>
+                </div>
+              )}
+              {enableAIFeatures.aiWeighting && selectedNode.aiRelevanceScore !== undefined && (
+                 <div>
+                  <label className="text-xs text-gray-400">CrisPRO.ai Relevance:</label>
+                  <div className="w-full bg-slate-700 h-2.5 rounded-full mt-1">
+                    <div 
+                      className="bg-green-500 h-2.5 rounded-full transition-all duration-300" 
+                      style={{ width: `${selectedNode.aiRelevanceScore * 100}%` }}
+                      title={`${(selectedNode.aiRelevanceScore * 100).toFixed(0)}%`}
+                    />
                   </div>
-                )}
+                </div>
+              )}
               </div>
               {enableAIFeatures.aiWeighting && selectedNode.evidenceStrength !== undefined && (
                  <div className="mt-2">
@@ -727,7 +727,7 @@ export default function KnowledgeGraphExample() {
                   {isLoadingLLMInsight && selectedNode?.id === selectedNode?.id ? (
                     <p className="text-sm italic text-sky-400 animate-pulse">Fetching LLM insight...</p>
                   ) : selectedNode.insightSummary ? (
-                    <p className="text-sm italic text-gray-300">{selectedNode.insightSummary}</p>
+                  <p className="text-sm italic text-gray-300">{selectedNode.insightSummary}</p>
                   ) : (
                     <p className="text-sm italic text-gray-500">Click node to attempt LLM insight generation.</p>
                   )}

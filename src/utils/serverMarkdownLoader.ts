@@ -30,7 +30,7 @@ export function extractEffectiveDate(content: string): string | null {
 // Replace placeholder values in the markdown content
 export function processMarkdownContent(content: string): string {
   const companyName = 'CasPro HealthTech AI';
-  const contactEmail = 'contact@caspro.dev';
+  const contactEmail = 'jedi@jedilabs.org';
   const currentDate = new Date().toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
