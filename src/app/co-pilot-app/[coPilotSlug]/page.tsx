@@ -49,17 +49,9 @@ export default async function CoPilotDetailPage({ params }: { params: { coPilotS
         </section>
         
         {/* Delegate all interactive content rendering to the Client Component */}
-        <InteractiveContentAnalysis content={content} />
-
-        {/* Conclusion Section (Static or part of InteractiveContentAnalysis if dynamic) */}
-        {content.conclusion && (
-          <section className="mt-16 md:mt-24 py-12 bg-slate-800/50 rounded-xl shadow-xl border border-slate-700">
-            <div className="max-w-3xl mx-auto text-center px-6">
-              <h2 className="text-3xl font-bold text-sky-400 mb-6">Concluding Thoughts</h2>
-              <p className="text-slate-300 leading-relaxed text-lg">{content.conclusion}</p>
-            </div>
-          </section>
-        )}
+        <div className="container mx-auto px-4 py-16">
+          <InteractiveContentAnalysis content={content} />
+        </div>
       </div>
     </main>
   );

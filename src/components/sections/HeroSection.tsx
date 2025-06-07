@@ -26,7 +26,7 @@ const ProteinModelViewer = dynamic(
 const HERO_CONFIG = {
   titlePart1: "The Future of Oncology",
   titlePart2: "AI Co-Pilots",
-  subtitle: "We build intelligent, specialized AI co-pilots that empower clinicians and researchers to accelerate discovery, personalize treatments, and revolutionize patient care across genomics, oncology, and clinical data intelligence.",
+  subtitle: "Empower clinicians and researchers to accelerate discovery, personalize treatments, and revolutionize patient care across genomics, oncology, and clinical data intelligence.",
   ctaPrimaryText: "Explore Co-Pilots",
   ctaPrimaryLink: "#co-pilots-showcase",
   ctaSecondaryText: "About The Platform",

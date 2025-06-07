@@ -47,11 +47,11 @@ const SolutionSection = () => {
             transition={{...animationVariants.transition, delay: 0.1}}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Introducing CrisPRO™: Your Therapeutic Design Co-Pilot
+            A New Standard for Care Delivery
+
             </h2>
             <p className="text-lg text-slate-300">
-              CrisPRO™ empowers therapeutic scientists to navigate the complex landscape of gene editing, moving from biological hypothesis to in silico-validated candidates with unprecedented speed and precision.
-            </p>
+            For Physicians & Clinicians:            </p>
           </motion.div>
         </div>
 
@@ -92,15 +92,35 @@ const SolutionSection = () => {
                   <div className="space-y-5">
                     <div>
                       <h4 className="font-semibold text-lg text-white mb-2 flex items-center"><Target className="w-5 h-5 mr-2 text-red-400"/> Core Problem</h4>
-                      <p className="text-slate-300 text-sm leading-relaxed border-l-2 border-red-400/30 pl-4">
-                        {activeCoPilotData.coreProblemIntro}
-                      </p>
+                      <div className="border-l-2 border-red-400/30 pl-4">
+                        <p className="text-slate-300 text-sm leading-relaxed mb-3">
+                          {activeCoPilotData.coreProblemIntro}
+                        </p>
+                        <ul className="space-y-2">
+                          {(activeCoPilotData.coreProblemPoints || []).map((point, index) => (
+                              <li key={index} className="flex items-start">
+                                  <CheckCircle className="flex-shrink-0 w-4 h-4 text-red-400 mr-2.5 mt-1" />
+                                  <span className="text-slate-300 text-sm" dangerouslySetInnerHTML={{ __html: point.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>').replace(/`(.*?)`/g, '<code class="text-xs bg-slate-700 text-amber-400 rounded px-1 py-0.5">$1</code>') }} />
+                              </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                     <div>
                       <h4 className="font-semibold text-lg text-white mb-2 flex items-center"><Layers className="w-5 h-5 mr-2 text-blue-400"/> Technical Foundation</h4>
-                      <p className="text-slate-300 text-sm leading-relaxed border-l-2 border-blue-400/30 pl-4">
-                        {activeCoPilotData.buildsOnStackIntro}
-                      </p>
+                      <div className="border-l-2 border-blue-400/30 pl-4">
+                        <p className="text-slate-300 text-sm leading-relaxed mb-3">
+                          {activeCoPilotData.buildsOnStackIntro}
+                        </p>
+                        <ul className="space-y-2">
+                          {(activeCoPilotData.buildsOnStackPoints || []).map((point, index) => (
+                              <li key={index} className="flex items-start">
+                                  <CheckCircle className="flex-shrink-0 w-4 h-4 text-blue-400 mr-2.5 mt-1" />
+                                  <span className="text-slate-300 text-sm" dangerouslySetInnerHTML={{ __html: point.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>').replace(/`(.*?)`/g, '<code class="text-xs bg-slate-700 text-amber-400 rounded px-1 py-0.5">$1</code>') }} />
+                              </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>

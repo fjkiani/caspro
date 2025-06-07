@@ -14,7 +14,7 @@ interface CapabilityItemProps {
 const CapabilityItem: React.FC<CapabilityItemProps> = ({ text }) => (
   <li className="flex items-start">
     <FiCheckSquare className="flex-shrink-0 w-5 h-5 text-primary mr-2 mt-1" />
-    <span className="text-slate-300">{text}</span>
+    <span className="text-slate-300" dangerouslySetInnerHTML={{ __html: text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>') }} />
   </li>
 );
 
@@ -24,8 +24,6 @@ interface Agent {
   icon: React.ReactElement;
   role: string;
   capabilities: string[];
-  isKeyAgent: boolean;
-  description?: string;
 }
 
 const AGENTS_DATA: Agent[] = [
@@ -33,89 +31,39 @@ const AGENTS_DATA: Agent[] = [
     id: 'orchestrator',
     name: 'Orchestrator Agent',
     icon: <FiSettings className="w-8 h-8" />,
-    role: 'Your AI team lead and workflow engine. It deconstructs your high-level goals and coordinates the specialist agents to deliver a comprehensive, multi-modal answer.',
-    isKeyAgent: true,
+    role: 'The AI team lead. It understands your high-level goals and coordinates the other specialist agents to deliver comprehensive answers.',
     capabilities: [
-      'Deconstructs complex natural language requests (e.g., "Find targets in the PI3K pathway for this patient and design a gene editing strategy").',
-      'Delegates sub-tasks to the appropriate specialist agents in the correct sequence.',
-      'Monitors multi-step workflows, providing real-time progress updates.',
-      'Synthesizes the findings from all agents into a single, unified, and actionable report.'
+      'Deconstructs complex requests into manageable sub-tasks.',
+      'Delegates tasks to the appropriate specialist agents.',
+      'Synthesizes findings into a single, unified report.'
     ]
   },
   {
     id: 'genomic_analyst',
     name: 'Genomic Analyst Agent',
     icon: <FiCpu className="w-8 h-8" />,
-    role: 'Your in-house computational biologist. It performs deep genomic analysis for therapeutic discovery, pre-clinical validation, and clinical decision support.',
-    isKeyAgent: true,
+    role: 'Your in-house computational biologist. It performs deep analysis of genomic data to find therapeutic targets and predict treatment responses.',
     capabilities: [
-      '**Variant Interpretation (Evo 2):** Predicts the functional impact of any SNV with state-of-the-art accuracy to distinguish pathogenic drivers from benign passengers.',
-      '**Therapeutic Target Validation (CrisPRO™):** Identifies and annotates variants in potential drug targets to confirm their role in disease.',
-      '**Guide RNA Safety Check (CrisPRO™):** Scans gRNA binding sites for known clinical variants in your target population that could affect binding efficiency or create off-target effects.',
-      '**Pharmacogenomics (PGx):** Analyzes key genes (e.g., CYP family, TPMT) to predict a patient\'s likely response to specific drugs.',
-      '**Radio-genomic Prediction (PrecisionRad™):** Assesses variants in DNA Damage Response (DDR) pathways (e.g., ATM, BRCA) to predict patient-specific radiosensitivity and toxicity risk.'
+      '**Variant Interpretation:** Predicts the functional impact of any genetic variant to distinguish pathogenic drivers from benign passengers.',
+      '**Therapeutic Target Validation:** Identifies and annotates variants in potential drug targets to confirm their role in disease.',
+      '**Radio-genomic Prediction:** Assesses variants in key pathways to predict patient-specific radiosensitivity and toxicity risk.'
     ]
   },
   {
     id: 'clinical_data_agent',
     name: 'Clinical Data Agent',
     icon: <FiFileText className="w-8 h-8" />,
-    role: 'Your clinical data architect. It transforms messy, unstructured EMR data into a clean, longitudinal, and queryable patient history.',
-    isKeyAgent: true,
+    role: 'Your clinical data architect. It transforms messy, unstructured EMR data into a clean, queryable patient history.',
     capabilities: [
-      '**Unstructured Data Processing (AgenticEMR™):** Uses specialized NLP models to extract key entities (diagnoses, medications, procedures, timelines) from pathology reports, discharge summaries, and clinical notes.',
+      '**Unstructured Data Processing:** Extracts key information from clinical notes, pathology reports, and discharge summaries.',
       '**Longitudinal Patient Timeline:** Constructs a comprehensive patient journey, mapping key clinical events over time.',
-      '**Cohort Identification:** Identifies patient cohorts based on complex, multi-modal criteria (e.g., "Find all Stage III lung cancer patients with an EGFR L858R mutation who received radiation therapy").',
-      '**Clinical Trial Pre-screening:** Matches patient profiles against trial eligibility criteria using the structured data it creates.'
-    ]
-  },
-  {
-    id: 'imaging_analyst',
-    name: 'Medical Imaging Agent',
-    icon: <FiAperture className="w-8 h-8" />,
-    role: 'Your virtual medical physicist and radiologist. It performs quantitative analysis on medical scans to support diagnostics and treatment planning.',
-    isKeyAgent: false,
-    description: "Supports the PrecisionRad™ Co-Pilot by performing automated tumor contouring, radiomic feature extraction, and tracking treatment response over time.",
-    capabilities: [
-        'Performs automated segmentation of tumors (GTV) and organs-at-risk (OARs) on CT and MRI scans.',
-        'Extracts hundreds of quantitative radiomic features to build predictive models of treatment response.',
-        'Fuses PET metabolic data with anatomical CT/MRI scans for biologically-informed targeting.',
-        'Tracks changes in tumor volume and structure across multiple scans to support Adaptive Radiation Therapy (ART) decisions.'
-    ]
-  },
-  {
-    id: 'therapy_strategy_agent',
-    name: 'Therapy Strategy Agent',
-    icon: <FiEdit className="w-6 h-6" />,
-    role: 'Your in silico strategist. It designs and evaluates novel therapeutic interventions, from gene editors to radiation plans.',
-    isKeyAgent: false,
-    description: 'Designs novel gene editing constructs for CrisPRO™ and evaluates personalized treatment plans for PrecisionRad™.',
-    capabilities: [
-      'Designs and ranks thousands of guide RNA and homology-directed repair (HDR) templates for gene editing.',
-      'Integrates structural biology predictions (AlphaFold) to model the downstream effect of an edit on protein function.',
-      'Simulates the potential efficacy of different radiation dose-painting strategies based on fused genomic and imaging data.'
-    ]
-  },
-  {
-    id: 'knowledge_agent',
-    name: 'Knowledge Agent',
-    icon: <FiBookOpen className="w-6 h-6" />,
-    role: 'Your AI research librarian. It connects your data to the world\'s biomedical knowledge base.',
-    isKeyAgent: false,
-    description: 'Uses advanced Retrieval-Augmented Generation (RAG) to answer complex questions, contextualize findings, and provide evidence-based summaries.',
-    capabilities: [
-        'Answers complex biological questions by querying PubMed, ClinVar, drug labels, and clinical practice guidelines.',
-        'Provides the specific citations and evidence supporting its conclusions.',
-        'Can be configured to securely search across your internal, proprietary research documents and databases.'
+      '**Clinical Trial Pre-screening:** Matches patient profiles against complex trial eligibility criteria in minutes.'
     ]
   }
 ];
 
-const keyAgents = AGENTS_DATA.filter(agent => agent.isKeyAgent);
-const conceptualAgents = AGENTS_DATA.filter(agent => !agent.isKeyAgent);
-
 const AgentCapabilitiesSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>(keyAgents[0]?.id || '');
+  const [activeTab, setActiveTab] = useState<string>(AGENTS_DATA[0]?.id || '');
 
   const animationVariants = {
     initial: { opacity: 0, y: 20 },
@@ -169,10 +117,11 @@ const AgentCapabilitiesSection: React.FC = () => {
             <FiUsers />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-            Intelligent Agent Architecture: The Oncology Copilot
+            Your Personal AI Research Team
           </h2>
           <p className="text-lg text-slate-300 mb-4">
-            Think of CrisPRO's Oncology Copilot as your personal team of highly specialized AI assistants, working together seamlessly. Each agent has a unique expertise, much like different specialists in a hospital. This 'Intelligent Agent Architecture' allows you to delegate complex tasks, from analyzing patient data to exploring treatment options, making your workflow faster and more insightful.
+            Our platform is powered by a team of specialized AI agents that work together to solve your most complex research challenges. 
+            The Orchestrator Agent acts as your team lead, delegating tasks to specialists like the Genomic Analyst and Clinical Data Agent to deliver comprehensive insights, faster.
           </p>
         </motion.div>
 
@@ -184,7 +133,7 @@ const AgentCapabilitiesSection: React.FC = () => {
           transition={animationVariants.transition(0.2)}
         >
           <div className="mb-8 flex flex-wrap justify-center gap-2 md:gap-3">
-            {keyAgents.map((agent) => (
+            {AGENTS_DATA.map((agent) => (
               <button
                 key={agent.id}
                 onClick={() => setActiveTab(agent.id)}
@@ -200,7 +149,7 @@ const AgentCapabilitiesSection: React.FC = () => {
           </div>
 
           <AnimatePresence mode="wait">
-            {keyAgents.map((agent) =>
+            {AGENTS_DATA.map((agent) =>
               activeTab === agent.id && (
                 <motion.div
                   key={agent.id}
@@ -235,42 +184,6 @@ const AgentCapabilitiesSection: React.FC = () => {
               )
             )}
           </AnimatePresence>
-        </motion.div>
-
-        {/* Conceptual Agents Grid */}
-        <motion.div
-          initial={animationVariants.initial}
-          whileInView={animationVariants.animate}
-          viewport={{ once: true }}
-          transition={animationVariants.transition(0.4)}
-          className="mt-16"
-        >
-          <h3 className="text-2xl font-bold text-center mb-8 text-white">
-            Additional Specialized Agents
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {conceptualAgents.map((agent, index) => (
-              <motion.div
-                key={agent.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-slate-800/50 rounded-lg p-6 border border-slate-700 hover:bg-slate-800/80 transition-all duration-300 hover:shadow-lg hover:border-primary/50"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-blue-500 flex items-center justify-center text-white">
-                    {agent.icon}
-                  </div>
-                  <h4 className="font-semibold text-white">{agent.name}</h4>
-                </div>
-                <p className="text-sm text-slate-300 mb-2">{agent.role}</p>
-                {agent.description && (
-                  <p className="text-xs text-slate-400">{agent.description}</p>
-                )}
-              </motion.div>
-            ))}
-          </div>
         </motion.div>
       </div>
     </section>

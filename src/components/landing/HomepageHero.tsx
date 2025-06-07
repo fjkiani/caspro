@@ -18,7 +18,7 @@ export const HomepageHero = () => {
           Powered by <span className="text-primary">AI Co-Pilots</span>.
         </h1>
         <p className="max-w-3xl mx-auto text-lg md:text-xl text-slate-300 leading-relaxed mb-10">
-          We build intelligent, specialized AI co-pilots that empower clinicians and researchers to accelerate discovery, personalize treatments, and revolutionize patient care across genomics, oncology, and clinical data intelligence.
+        Accelerating discovery, personalize treatments, and revolutionizing patient care across genomics, oncology, and clinical data intelligence.
         </p>
         <div className="flex justify-center gap-4">
           <Link href="#co-pilots">

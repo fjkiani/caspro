@@ -7,72 +7,55 @@ import React, { useState } from 'react';
 // Constants for Problem Section configuration
 const PROBLEM_CONFIG = {
   sectionId: "problem",
-  title: "From Bottlenecks to Breakthroughs in Therapeutic R&D",
-  subtitle: "The CrisPRO™ Intelligence Platform leverages biological AI and an agentic architecture to dismantle critical bottlenecks in the gene editing workflow:",
+  title: "Accelerating Medicine, from Data to Discovery",
+  subtitle: "The CrisPRO™ platform uses AI to solve the biggest challenges in developing new therapies, turning years of work into weeks.",
   challenges: [
     {
       icon: Database,
       problem: {
-        title: 'Genomic Overload: Lost in a Sea of Variants',
-        description: 'Manually sifting through genomic data to find disease-driving variants is immensely time-consuming and risks missing critical insights, delaying the first step of any therapeutic program.'
+        title: 'Data Overload',
+        description: "Scientists are buried in a mountain of complex genomic and clinical data. Finding the right signals is like searching for a needle in a haystack."
       },
       transformation: {
-        title: 'AI-Powered Variant Analysis (Powered by Evo 2)',
+        title: 'Instant, AI-Powered Analysis',
         stats: [
-          "Instantly identify the functional impact of genetic variants with over 90% accuracy, based on Evo 2's state-of-the-art performance.",
-          "Analyze all relevant variants for a target gene in minutes, not days, pinpointing the most promising targets for intervention.",
-          "Prioritize high-impact variants up to 5X faster by integrating Evo 2's predictions directly into your research workflow."
+          "Our AI Co-Pilots instantly analyze this data, pinpointing the critical information needed to start building a new therapy.",
+          "Identify disease-driving variants with state-of-the-art accuracy.",
+          "Process patient genomic data cohorts in minutes, not months."
         ]
       }
     },
     {
       icon: Clock,
       problem: {
-        title: 'The Design Bottleneck: The Slow Path from Target to Therapy',
-        description: "Designing and validating effective gene editing strategies is a slow, iterative, and laborious process. For rare diseases, this timeline can mean the difference between a viable therapy and none at all."
+        title: 'Slow & Expensive Design',
+        description: "Designing and testing new drugs and gene therapies is a slow, expensive, trial-and-error process."
       },
       transformation: {
-        title: 'Accelerated Therapeutic Design & In Silico Validation',
+        title: 'In Silico First, Lab Second',
         stats: [
-          "Design optimized guide RNAs using leading algorithms, then instantly assess the impact of nearby clinical variants with Evo 2.",
-          "Evaluate the structural and functional viability of therapeutic constructs 10X faster using integrated AlphaFold predictions and proprietary scoring.",
-          "Compress the pre-clinical timeline by moving from target identification to a list of promising, in silico-validated candidates in hours."
+          "AI-based mock validation trials to design and test thousands of therapeutic possibilities in minutes.",
+          "Identify the most promising candidates before they ever reach a lab.",
+          "Compress preclinical timelines from years to weeks."
         ]
       }
     },
     {
       icon: Workflow,
       problem: {
-        title: 'Disconnected Workflows: The Chasm Between Tools',
-        description: 'The journey from raw data to a viable therapeutic strategy involves a dozen disconnected tools and manual steps, creating a chasm between data, insight, and action.'
+        title: 'Disconnected Tools & Workflows',
+        description: "Researchers waste time juggling dozens of different software tools that don't talk to each other, slowing down progress."
       },
       transformation: {
-        title: 'Unified Workflow with an Agentic Co-Pilot',
+        title: 'A Single, Unified Platform',
         stats: [
-          "Eliminate tool-switching and reduce manual data handling by up to 70% through intelligent automation and a unified interface.",
-          "Seamlessly integrate public and proprietary data, from genomic databases to experimental results, all within a single environment.",
-          "Let the AI co-pilot manage complex, multi-step analyses, allowing your team to focus on scientific strategy, not software logistics."
-        ]
-      }
-    },
-    {
-      icon: TrendingUp,
-      problem: {
-        title: 'The Scaling Crisis: Meeting Unprecedented Demand',
-        description: 'The need for novel, effective, and safe genetic medicines is growing exponentially. Traditional R&D workflows cannot scale to meet this urgent demand.'
-      },
-      transformation: {
-        title: 'AI-Native Scalability for Your Therapeutic Pipeline',
-        stats: [
-          "Scale from analyzing a single variant to entire patient cohorts with the same AI-driven pipeline.",
-          "Run thousands of in silico experiments in parallel, testing more hypotheses and finding lead candidates faster than ever before.",
-          "Built on an adaptive AI architecture designed to grow with your pipeline and the evolving landscape of genomic medicine."
+          "CrisPRO provides one environment where all data and tools work together seamlessly.",
+          "An intelligent AI assistant manages the workflow from end to end.",
+          "Eliminate manual data handling and let scientists focus on the science."
         ]
       }
     }
   ],
-  summaryTitle: "A New Standard for Therapeutic Innovation",
-  summaryText: "The CrisPRO™ Intelligence Platform is engineered to dismantle R&D bottlenecks. Our agentic architecture transforms the drug discovery process, accelerating your pipeline from complex data to validated therapeutic candidates with unprecedented speed and precision.using mock silico validation",
   animationVariants: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -161,29 +144,13 @@ const ProblemSection = () => {
                 {currentChallenge.transformation.stats.map((stat, i) => (
                   <li key={i} className="flex items-start">
                     <CheckCircle className="flex-shrink-0 w-4 h-4 text-green-400 mr-2.5 mt-1" />
-                    <span>{stat}</span>
+                    <span dangerouslySetInnerHTML={{ __html: stat.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>') }} />
                   </li>
                 ))}
               </ul>
             </div>
           </motion.div>
         </AnimatePresence>
-        
-        <motion.div
-          initial={PROBLEM_CONFIG.animationVariants.initial}
-          whileInView={PROBLEM_CONFIG.animationVariants.animate}
-          viewport={{ once: true }}
-          transition={PROBLEM_CONFIG.animationVariants.transition(0.4)}
-          className="mt-16 p-8 md:p-10 bg-gradient-to-r from-primary to-blue-700 text-white rounded-xl max-w-4xl mx-auto text-center shadow-2xl"
-        >
-          <div className="flex justify-center text-4xl text-sky-300 mb-4">
-            <FastForward />
-          </div>
-          <h3 className="text-2xl font-semibold mb-4 text-white">{PROBLEM_CONFIG.summaryTitle}</h3>
-          <p className="text-slate-200 text-lg leading-relaxed">
-            {PROBLEM_CONFIG.summaryText}
-          </p>
-        </motion.div>
       </div>
     </section>
   );
