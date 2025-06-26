@@ -175,7 +175,7 @@ export const TeamSection = () => {
                 { skill: "Leadership", level: 85, color: "bg-yellow-500" },
             ],
             achievements: [
-                "Lead the development of CrisPRO's core AI prediction engine",
+                "Completed 2 New York City Marathon",
                 "Founded Jedilabs.org, a non-profit organization dedicated to advancing AI and ML in healthcare",
                 "Computer Science and Molecular Biology BS from John Jay College of Criminal Justice",
                 "Holds 1 patent in gene editing technology"
@@ -203,7 +203,6 @@ export const TeamSection = () => {
                 "MD Graduat from SUNY Downstate Medical Center",
                 "American Board of Internal Medicine Certified",
                 "Completed residency at Hofstra North Shore-Lij School Of Medicine",
-                "Winner of multiple Kaggle competitions in biology"
             ],
             previousCompanies: ["North Shore University Hospital", "Long Island Jewish Valley Stream", "Long Island Jewish Medical Center"],
             initials: "RN",
