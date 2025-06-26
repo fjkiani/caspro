@@ -68,7 +68,7 @@ const gtmData = [
         icon: "🎯",
         title: "Pharma & Biotech",
         description: "Lead with our **Pre-Clinical Simulation Engine** to de-risk their R&D pipeline and solve their >$2B per-drug failure problem.",
-        hook: "HOOK: Offer `in silico` redesign of a recently failed clinical asset.",
+        hook: "`in silico` redesign of a recently failed clinical asset.",
         strategies: [
             "Target failed Phase II/III assets for redesign",
             "Offer risk-free pilot programs with success-based pricing",
@@ -81,7 +81,7 @@ const gtmData = [
         icon: "🏥",
         title: "Health Systems",
         description: "Lead with our **VUS Annihilation** capability to provide immediate, undeniable clinical value and close their actionability gap.",
-        hook: "HOOK: Offer a \"VUS Annihilation\" pilot to resolve their entire backlog of uncertain cases.",
+        hook: "a \"VUS Annihilation\" pilot to resolve their entire backlog of uncertain cases.",
         strategies: [
             "Target cancer centers with high VUS volumes",
             "Integrate with existing genetic testing workflows",
@@ -93,7 +93,7 @@ const gtmData = [
     {
         icon: "🤝",
         title: "Integrations",
-        description: "Employ a **Trojan Horse** strategy, embedding our platform as a \"premium intelligence layer\" into EMRs and diagnostics.",
+        description: " \"premium intelligence layer\" into EMRs and diagnostics.",
         hook: "HOOK: Partner with a diagnostics firm to be their exclusive VUS resolution engine.",
         strategies: [
             "White-label our AI for major diagnostic companies",
@@ -107,7 +107,7 @@ const gtmData = [
         icon: "🌐",
         title: "DeSci & Web3",
         description: "Pioneer **IP-NFTs** to raise non-dilutive R&D capital from Bio-DAOs and the Web3 community, creating a new funding paradigm.",
-        hook: "HOOK: Launch the first IP-NFT for a CrisPRO-designed therapeutic for a rare disease.",
+        hook: "Launch the first IP-NFT for a CrisPRO-designed therapeutic for a rare disease.",
         strategies: [
             "Create tokenized IP for our therapeutic designs",
             "Partner with Bio-DAOs for collaborative research",
