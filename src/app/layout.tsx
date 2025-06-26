@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import { ThemeProvider } from '@/context/ThemeContext';
+import { JsonLd, organizationSchema } from "@/components/SEO/JsonLd";
 
 // Space Grotesk for headings - more technical and modern
 const spaceGrotesk = Space_Grotesk({ 
@@ -20,9 +21,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CrisPRO: Oncology Co-Pilot | AI-Powered Cancer Genomics Platform",
-  description: "CrisPRO is an AI platform leveraging Evo2 and AlphaFold 3 for clinicians and researchers to analyze cancer genomics and design novel therapies.",
-  keywords: "oncology, cancer genomics, AI platform, precision medicine, cancer therapy, CRISPR, metastasis prevention, personalized medicine",
+  title: "CrisPRO: AI-Powered Metastasis Prevention & Oncology Co-Pilot",
+  description: "CrisPRO is the world's first AI-powered metastasis prevention system. Our Oncology Co-Pilot offers VUS resolution, in silico therapeutic design, and predictive analytics.",
+  keywords: "metastasis prevention, predictive oncology, AI cancer genomics, VUS resolution, in silico therapeutic design, oncology co-pilot, CRISPR, personalized medicine, Tempus alternatives",
   authors: [{ name: "CrisPRO Team" }],
   creator: "CrisPRO",
   publisher: "CrisPRO",
@@ -85,6 +86,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+      <head>
+        <JsonLd data={organizationSchema} />
+      </head>
       <body className={`${inter.className} flex flex-col min-h-screen`}>
         <ThemeProvider>
           <Navbar />
