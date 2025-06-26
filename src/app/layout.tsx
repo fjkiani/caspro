@@ -22,7 +22,60 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "CrisPRO: Oncology Co-Pilot | AI-Powered Cancer Genomics Platform",
   description: "CrisPRO is an AI platform leveraging Evo2 and AlphaFold 3 for clinicians and researchers to analyze cancer genomics and design novel therapies.",
-  keywords: "oncology, cancer genomics, AI platform, precision medicine, cancer therapy",
+  keywords: "oncology, cancer genomics, AI platform, precision medicine, cancer therapy, CRISPR, metastasis prevention, personalized medicine",
+  authors: [{ name: "CrisPRO Team" }],
+  creator: "CrisPRO",
+  publisher: "CrisPRO",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://crispro.ai'), // Replace with your actual domain
+  openGraph: {
+    title: "CrisPRO: AI-Powered Metastasis Prevention System",
+    description: "The world's first AI-powered metastasis prevention system. Transform cancer care from reactive to preventive with our Oncology Co-Pilot.",
+    url: 'https://crispro.ai',
+    siteName: 'CrisPRO',
+    images: [
+      {
+        url: '/og-image.png', // You'll need to add this image
+        width: 1200,
+        height: 630,
+        alt: 'CrisPRO - AI-Powered Cancer Genomics Platform',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "CrisPRO: AI-Powered Metastasis Prevention",
+    description: "Transform cancer care with the world's first AI-powered metastasis prevention system.",
+    images: ['/og-image.png'], // You'll need to add this image
+    creator: '@crispro_ai', // Replace with your actual Twitter handle
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧬</text></svg>",
+    shortcut: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧬</text></svg>",
+    apple: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧬</text></svg>",
+  },
+  verification: {
+    google: 'your-google-verification-code', // Replace with your actual Google verification code
+    // yandex: 'your-yandex-verification-code',
+    // yahoo: 'your-yahoo-verification-code',
+  },
 };
 
 export default function RootLayout({
