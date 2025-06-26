@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import { ThemeProvider } from '@/context/ThemeContext';
-import { Analytics } from "@vercel/analytics/react"
 
 // Space Grotesk for headings - more technical and modern
 const spaceGrotesk = Space_Grotesk({ 
@@ -41,7 +40,6 @@ export default function RootLayout({
           </main>
           <Footer />
         </ThemeProvider>
-        <Analytics />
       </body>
     </html>
   );
