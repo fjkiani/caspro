@@ -94,9 +94,9 @@ const ContactSection = () => {
   };
 
   return (
-    <section id={CONTACT_CONFIG.sectionId} className="relative overflow-hidden py-20 lg:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 text-white">
+    <section id={CONTACT_CONFIG.sectionId} className="relative overflow-hidden py-20 lg:py-32 bg-white dark:bg-slate-900">
       {/* DNA Background Elements */}
-      <div className="absolute left-4 top-12 w-24 h-4/5 opacity-20 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
+      <div className="absolute left-4 top-12 w-24 h-4/5 opacity-5 dark:opacity-20 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
         <DoubleDnaHelix 
           className="w-full h-full" 
           baseCount={12}
@@ -111,7 +111,7 @@ const ContactSection = () => {
           }}
         />
       </div>
-      <div className="absolute right-4 top-20 w-20 h-3/4 opacity-15 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
+      <div className="absolute right-4 top-20 w-20 h-3/4 opacity-5 dark:opacity-15 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
         <DoubleDnaHelix 
           className="w-full h-full" 
           baseCount={10}
@@ -128,7 +128,7 @@ const ContactSection = () => {
       </div>
       
       {/* DNA base pairs decorative element */}
-      <DnaBasePairStrip className="absolute top-0 left-0 right-0" />
+      <DnaBasePairStrip className="absolute top-0 left-0 right-0 opacity-10" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-16 items-center">
@@ -139,39 +139,39 @@ const ContactSection = () => {
             viewport={{ once: true }}
             transition={CONTACT_CONFIG.animationVariants.transition()}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-800 dark:text-white">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400">
                 {CONTACT_CONFIG.titleText}
               </span>
             </h2>
-            <p className="text-xl mb-8 text-indigo-200 leading-relaxed">
+            <p className="text-xl mb-8 text-slate-600 dark:text-indigo-200 leading-relaxed">
               {CONTACT_CONFIG.subtitleText}
             </p>
             
             <div className="mb-10">
-              <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-purple-400/30 relative overflow-hidden">
+              <div className="bg-gray-50 dark:bg-white/10 p-6 rounded-xl border border-gray-200 dark:border-purple-400/30 relative overflow-hidden">
                 {/* DNA strand decoration */}
-                <div className="absolute right-0 top-0 bottom-0 w-6 opacity-20 pointer-events-none" style={{ perspective: '400px', transformStyle: 'preserve-3d' }}>
+                <div className="absolute right-0 top-0 bottom-0 w-6 opacity-10 dark:opacity-20 pointer-events-none" style={{ perspective: '400px', transformStyle: 'preserve-3d' }}>
                   <DoubleDnaHelix 
                     className="w-full h-full" 
                     baseCount={3}
                     rotationSpeed={15}
                     colors={{
-                      adenine: '#ffffff',
-                      thymine: '#ffffff', 
-                      guanine: '#ffffff',
-                      cytosine: '#ffffff',
-                      backbone1: '#ffffff',
-                      backbone2: '#ffffff'
+                      adenine: '#9ca3af',
+                      thymine: '#9ca3af', 
+                      guanine: '#9ca3af',
+                      cytosine: '#9ca3af',
+                      backbone1: '#9ca3af',
+                      backbone2: '#9ca3af'
                     }}
                   />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-indigo-100 relative z-10">{CONTACT_CONFIG.partnerTitle}</h3>
+                <h3 className="text-xl font-semibold mb-4 text-slate-800 dark:text-indigo-100 relative z-10">{CONTACT_CONFIG.partnerTitle}</h3>
                 <ul className="space-y-3 relative z-10">
                   {CONTACT_CONFIG.partnerBenefits.map((benefit, index) => (
                     <li key={index} className="flex items-start">
-                      <FiCheckCircle className="text-green-400 mr-3 mt-1 flex-shrink-0" />
-                      <span className="text-indigo-200">{benefit}</span>
+                      <FiCheckCircle className="text-green-500 dark:text-green-400 mr-3 mt-1 flex-shrink-0" />
+                      <span className="text-slate-600 dark:text-indigo-200">{benefit}</span>
                     </li>
                   ))}
                 </ul>
@@ -179,14 +179,7 @@ const ContactSection = () => {
             </div>
             
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-indigo-100">{CONTACT_CONFIG.socialProofTitle}</h3>
-              {/* <div className="grid grid-cols-2 gap-4">
-                {CONTACT_CONFIG.socialProofOrganizations.map((org, index) => (
-                  <div key={index} className="bg-white/5 hover:bg-white/10 transition-colors p-4 rounded-lg text-center text-indigo-200 text-sm border border-white/10">
-                    {org}
-                  </div>
-                ))}
-              </div> */}
+              <h3 className="text-xl font-semibold mb-4 text-slate-700 dark:text-indigo-100">{CONTACT_CONFIG.socialProofTitle}</h3>
             </div>
           </motion.div>
 
@@ -196,7 +189,7 @@ const ContactSection = () => {
             whileInView={CONTACT_CONFIG.animationVariants.animate}
             viewport={{ once: true }}
             transition={CONTACT_CONFIG.animationVariants.transition(CONTACT_CONFIG.animationDelay)}
-            className="relative bg-white/95 backdrop-blur-sm text-slate-900 p-8 md:p-10 rounded-xl shadow-2xl border border-blue-200/50"
+            className="relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm text-slate-900 dark:text-white p-8 md:p-10 rounded-xl shadow-2xl border border-gray-200 dark:border-blue-200/50"
           >
             {/* DNA-themed glowing border for form */}
             <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">

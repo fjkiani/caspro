@@ -14,13 +14,13 @@ const PROBLEM_CONFIG = {
       icon: Database,
       problem: {
         title: 'Data Overload',
-        description: "Scientists are buried in a mountain of complex genomic and clinical data. Finding the right signals is like searching for a needle in a haystack."
+        description: "Scientists are buried in a mountain of complex genomic and clinical data. Finding the right signals is like searching for a needle in a haystack. Manually sifting through genomic data to find disease-driving variants is immensely time-consuming and risks  missing critical insights, delaying the first step of any therapeutic program."
       },
       transformation: {
-        title: 'Instant, AI-Powered Analysis',
+        title: 'Instant, AI-Powered Variant Analysis (Powered by Evo 2)',
         stats: [
-          "Our AI Co-Pilots instantly analyze this data, pinpointing the critical information needed to start building a new therapy.",
-          "Identify disease-driving variants with state-of-the-art accuracy.",
+          "CrisPRO's AI Co-Pilots instantly analyzes functional impact of genetic variants pinpointing the most promising targets for intervention",
+          "Instantly identify the functional impact of genetic variants with over 90% accuracy, based on Evo 2's state-of-the-art performance.",
           "Process patient genomic data cohorts in minutes, not months."
         ]
       }
@@ -29,10 +29,10 @@ const PROBLEM_CONFIG = {
       icon: Clock,
       problem: {
         title: 'Slow & Expensive Design',
-        description: "Designing and testing new drugs and gene therapies is a slow, expensive, trial-and-error process."
+        description: "Designing and testing new drugs and gene therapies is a slow, expensive, trial-and-error process. For rare diseases, this timeline can mean the difference between a viable therapy and none at all."
       },
       transformation: {
-        title: 'In Silico First, Lab Second',
+        title: 'Accelerated Therapeutic Design & In Silico Validation',
         stats: [
           "AI-based mock validation trials to design and test thousands of therapeutic possibilities in minutes.",
           "Identify the most promising candidates before they ever reach a lab.",
@@ -43,19 +43,36 @@ const PROBLEM_CONFIG = {
     {
       icon: Workflow,
       problem: {
-        title: 'Disconnected Tools & Workflows',
-        description: "Researchers waste time juggling dozens of different software tools that don't talk to each other, slowing down progress."
+        title: 'Disconnected Workflows: The Chasm Between Tools',
+        description: 'The journey from raw data to a viable therapeutic strategy involves a dozen disconnected tools and manual steps, creating a chasm between data, insight, and action.'
       },
       transformation: {
-        title: 'A Single, Unified Platform',
+        title: 'Unified Workflow with an Agentic Co-Pilot',
         stats: [
-          "CrisPRO provides one environment where all data and tools work together seamlessly.",
-          "An intelligent AI assistant manages the workflow from end to end.",
-          "Eliminate manual data handling and let scientists focus on the science."
+          "Eliminate tool-switching and reduce manual data handling by up to 70% through intelligent automation and a unified interface.",
+          "Seamlessly integrate public and proprietary data, from genomic databases to experimental results, all within a single environment.",
+          "Let the AI co-pilot manage complex, multi-step analyses, allowing your team to focus on scientific strategy, not software logistics."
+        ]
+      }
+    },
+    {
+      icon: TrendingUp,
+      problem: {
+        title: 'The Scaling Crisis: Meeting Unprecedented Demand',
+        description: 'The need for novel, effective, and safe genetic medicines is growing exponentially. Traditional R&D workflows cannot scale to meet this urgent demand.'
+      },
+      transformation: {
+        title: 'AI-Native Scalability for Your Therapeutic Pipeline',
+        stats: [
+          "Scale from analyzing a single variant to entire patient cohorts with the same AI-driven pipeline.",
+          "Run thousands of in silico experiments in parallel, testing more hypotheses and finding lead candidates faster than ever before.",
+          "Built on an adaptive AI architecture designed to grow with your pipeline and the evolving landscape of genomic medicine."
         ]
       }
     }
   ],
+  summaryTitle: "From Bottleneck to Breakthrough",
+  summaryText: "The CrisPRO™ Intelligence Platform transforms therapeutic R&D. We replace slow, manual processes with an AI-powered, unified system that accelerates the journey from initial idea to validated therapeutic candidate.",
   animationVariants: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -78,7 +95,7 @@ const ProblemSection = () => {
             viewport={{ once: true }}
             transition={PROBLEM_CONFIG.animationVariants.transition()}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{PROBLEM_CONFIG.title}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient">{PROBLEM_CONFIG.title}</h2>
             <p className="text-lg text-slate-300">
               {PROBLEM_CONFIG.subtitle}
             </p>
@@ -144,13 +161,29 @@ const ProblemSection = () => {
                 {currentChallenge.transformation.stats.map((stat, i) => (
                   <li key={i} className="flex items-start">
                     <CheckCircle className="flex-shrink-0 w-4 h-4 text-green-400 mr-2.5 mt-1" />
-                    <span dangerouslySetInnerHTML={{ __html: stat.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>') }} />
+                    <span>{stat}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </motion.div>
         </AnimatePresence>
+        
+        <motion.div
+          initial={PROBLEM_CONFIG.animationVariants.initial}
+          whileInView={PROBLEM_CONFIG.animationVariants.animate}
+          viewport={{ once: true }}
+          transition={PROBLEM_CONFIG.animationVariants.transition(0.4)}
+          className="mt-16 p-8 md:p-10 bg-gradient-to-r from-primary to-blue-700 text-white rounded-xl max-w-4xl mx-auto text-center shadow-2xl"
+        >
+          <div className="flex justify-center text-4xl text-sky-300 mb-4">
+            <FastForward />
+          </div>
+          <h3 className="text-2xl font-semibold mb-4 text-white">{PROBLEM_CONFIG.summaryTitle}</h3>
+          <p className="text-slate-200 text-lg leading-relaxed">
+            {PROBLEM_CONFIG.summaryText}
+          </p>
+        </motion.div>
       </div>
     </section>
   );

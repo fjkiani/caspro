@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import { FiLinkedin, FiTwitter, FiMail, FiNavigation } from 'react-icons/fi';
 import React from 'react';

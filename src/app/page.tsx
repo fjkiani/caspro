@@ -20,8 +20,8 @@ const PAGE_CONFIG = {
     // { id: 'features', component: FeaturesSection },
     // { id: 'science', component: TechnologySection },
     // { id: 'technology-deep-dive', component: TechnologyDeepDiveSection },
-    { id: 'agent-capabilities', component: AgentCapabilitiesSection },
-    { id: 'foundational-pillars', component: FoundationalPillarsSection },
+    // { id: 'agent-capabilities', component: AgentCapabilitiesSection },
+    // { id: 'foundational-pillars', component: FoundationalPillarsSection },
     // { id: 'impact', component: ImpactSection }, // Commented out
     { id: 'team', component: TeamSection },
     { id: 'contact', component: ContactSection },

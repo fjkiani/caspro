@@ -3,6 +3,8 @@ import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import { ThemeProvider } from '@/context/ThemeContext';
+import { Analytics } from "@vercel/analytics/react"
 
 // Space Grotesk for headings - more technical and modern
 const spaceGrotesk = Space_Grotesk({ 
@@ -32,11 +34,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
       <body className={`${inter.className} flex flex-col min-h-screen`}>
-        <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider>
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

@@ -20,9 +20,18 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  html.dark body {
+    --background: #0B1120;
+    --foreground: #d1d5db;
+  }
 }
 
 @layer components {
+  .text-gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400;
+  }
+
   .btn-primary {
     @apply bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors;
   }
@@ -57,5 +66,157 @@
   
   .subheading {
     @apply text-xl text-muted-foreground;
+  }
+
+  /* Interactive Component Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in-delay {
+    animation: fadeIn 0.8s ease-out 0.3s forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.8s ease-out forwards;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  /* Custom Slider Styles */
+  .slider::-webkit-slider-thumb {
+    @apply appearance-none w-4 h-4 bg-blue-500 rounded-full cursor-pointer;
+  }
+
+  .slider::-moz-range-thumb {
+    @apply w-4 h-4 bg-blue-500 rounded-full cursor-pointer border-0;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .hover-glow {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+
+  /* Interactive Cards */
+  .interactive-card {
+    @apply transition-all duration-300 ease-out cursor-pointer;
+    transform-origin: center;
+  }
+
+  .interactive-card:hover {
+    @apply scale-105;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .interactive-card:active {
+    @apply scale-95;
+  }
+
+  /* Gradient Backgrounds */
+  .bg-gradient-interactive {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+    transition: background 0.3s ease;
+  }
+
+  .bg-gradient-interactive:hover {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
+  }
+}
+
+@layer utilities {
+  /* Animation Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.3);
+    }
+  }
+
+  /* Stagger Animation Delays */
+  .animate-stagger-1 { animation-delay: 0.1s; }
+  .animate-stagger-2 { animation-delay: 0.2s; }
+  .animate-stagger-3 { animation-delay: 0.3s; }
+  .animate-stagger-4 { animation-delay: 0.4s; }
+  .animate-stagger-5 { animation-delay: 0.5s; }
+  .animate-stagger-6 { animation-delay: 0.6s; }
+  .animate-stagger-7 { animation-delay: 0.7s; }
+  .animate-stagger-8 { animation-delay: 0.8s; }
+
+  /* Interactive States */
+  .state-loading {
+    @apply animate-pulse opacity-70 pointer-events-none;
+  }
+
+  .state-active {
+    @apply ring-2 ring-blue-500 ring-opacity-50;
+  }
+
+  .state-success {
+    @apply ring-2 ring-green-500 ring-opacity-50;
+  }
+
+  .state-error {
+    @apply ring-2 ring-red-500 ring-opacity-50;
   }
 }

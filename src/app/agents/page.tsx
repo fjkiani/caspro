@@ -14,7 +14,14 @@ interface CapabilityItemProps {
 const CapabilityItem: React.FC<CapabilityItemProps> = ({ text }) => (
   <li className="flex items-start">
     <FiCheckSquare className="flex-shrink-0 w-5 h-5 text-primary mr-2 mt-1" />
-    <span className="text-slate-300">{text}</span>
+    <span 
+      className="text-slate-300"
+      dangerouslySetInnerHTML={{ 
+        __html: text
+          .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>')
+          .replace(/`(.*?)`/g, '<code class="text-xs bg-slate-700 text-amber-400 rounded px-1 py-0.5 font-mono">$1</code>')
+      }} 
+    />
   </li>
 );
 
@@ -31,7 +38,7 @@ interface Agent {
 const AGENTS_DATA: Agent[] = [
   {
     id: 'orchestrator',
-    name: 'Orchestrator Agent',
+    name: '`Orchestrator Agent`',
     icon: <FiSettings className="w-8 h-8" />,
     role: 'Your AI team lead and workflow engine. It deconstructs your high-level goals and coordinates the specialist agents to deliver a comprehensive, multi-modal answer.',
     isKeyAgent: true,
@@ -51,9 +58,9 @@ const AGENTS_DATA: Agent[] = [
     capabilities: [
       '`Variant Interpretation (Evo 2)`: Predicts the functional impact of any SNV with state-of-the-art accuracy to distinguish pathogenic drivers from benign passengers.',
       '**`Therapeutic Target Validation (CrisPRO™)`**: Identifies and annotates variants in potential drug targets to confirm their role in disease.',
-      '**Guide RNA Safety Check (CrisPRO™):** Scans gRNA binding sites for known clinical variants in your target population that could affect binding efficiency or create off-target effects.',
-      '**Pharmacogenomics (PGx):** Analyzes key genes (e.g., CYP family, TPMT) to predict a patient\'s likely response to specific drugs.',
-      '**Radio-genomic Prediction (PrecisionRad™):** Assesses variants in DNA Damage Response (DDR) pathways (e.g., ATM, BRCA) to predict patient-specific radiosensitivity and toxicity risk.'
+      '**`Guide RNA Safety Check`**: Scans gRNA binding sites for known clinical variants in your target population that could affect binding efficiency or create off-target effects.',
+      '**`Pharmacogenomics (PGx)`**: Analyzes key genes (e.g., CYP family, TPMT) to predict a patient\'s likely response to specific drugs.',
+      '**`Radio-genomic Prediction`**: Assesses variants in DNA Damage Response (DDR) pathways (e.g., ATM, BRCA) to predict patient-specific radiosensitivity and toxicity risk.'
     ]
   },
   {
@@ -168,8 +175,8 @@ const AgentCapabilitiesSection: React.FC = () => {
           <div className="flex justify-center text-5xl mb-6 text-primary">
             <FiUsers />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient">
-            Intelligent Agent Architecture: The Oncology Copilot
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+          Your Personal AI Research Team
           </h2>
           <p className="text-lg text-slate-300 mb-4">
             Think of CrisPRO's Oncology Copilot as your personal team of highly specialized AI assistants, working together seamlessly. Each agent has a unique expertise, much like different specialists in a hospital. This 'Intelligent Agent Architecture' allows you to delegate complex tasks, from analyzing patient data to exploring treatment options, making your workflow faster and more insightful.
@@ -245,7 +252,7 @@ const AgentCapabilitiesSection: React.FC = () => {
           transition={animationVariants.transition(0.4)}
           className="mt-16"
         >
-          <h3 className="text-2xl font-bold text-center mb-8 text-white">
+          <h3 className="text-2xl font-bold text-center mb-8 text-gradient">
             Additional Specialized Agents
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

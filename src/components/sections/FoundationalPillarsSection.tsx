@@ -86,7 +86,7 @@ const FoundationalPillarsSection: React.FC = () => {
             <div className="flex justify-center text-4xl mb-5 text-primary">
               <Users />
             </div>
-            <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-white">
+            <h3 className="text-2xl md:text-3xl font-semibold mb-4 text-gradient">
               Our Foundation & Collaborative Spirit
             </h3>
             <p className="text-lg max-w-3xl mx-auto text-slate-300">
@@ -105,7 +105,7 @@ const FoundationalPillarsSection: React.FC = () => {
 
           {/* Technologies Grid */}
           <div className="p-8 md:p-12">
-             <h4 className="text-xl font-semibold text-center mb-8 text-white">Built on a Foundation of Giants</h4>
+             <h4 className="text-xl font-semibold text-center mb-8 text-gradient">Built on a Foundation of Giants</h4>
              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {PILLARS_CONFIG.foundationalTech.map((tech, index) => (
                 <motion.div 

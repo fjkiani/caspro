@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Rocket, BookOpen, Building, Mail, PenTool } from 'lucide-react';
+import { Menu, X, ChevronDown, Rocket, BookOpen, Building, Mail, PenTool, Briefcase } from 'lucide-react';
 import { coPilotDetailsData, CoPilotDetailContent } from '@/data/coPilotDetails';
 
 
@@ -41,6 +41,11 @@ const companySubLinks: NavLink[] = [
   { href: '/security', label: 'Security Overview' },
 ];
 
+const investorSubLinks: NavLink[] = [
+  { href: '/investment-thesis', label: 'Investment Thesis' },
+  { href: '/competitor-analysis', label: 'Competitor Analysis' },
+];
+
 const NAV_LINKS: NavMenu[] = [
   {
     href: '/co-pilot-app',
@@ -62,6 +67,12 @@ const NAV_LINKS: NavMenu[] = [
       { href: '/visualization-demo', label: 'Visualization Demo' },
     ],
   },
+  {
+    href: '#',
+    label: 'Investors',
+    icon: <Briefcase className="inline-block h-4 w-4" />,
+    subLinks: investorSubLinks,
+  },
   // {
   //   href: '/about',
   //   label: 'Company',
@@ -69,7 +80,7 @@ const NAV_LINKS: NavMenu[] = [
   //   subLinks: companySubLinks,
   // },
   {
-    href: '/#contact',
+    href: '/contact',
     label: 'Contact Us',
     icon: <Mail className="inline-block h-4 w-4" />,
   },
@@ -174,7 +185,7 @@ const Navbar: React.FC = () => {
                   Launch Co-Pilot
               </Link>
               <Link
-                  href="/#contact"
+                  href="/contact"
                   className="bg-primary hover:bg-primary/90 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors shadow-lg shadow-primary/20"
               >
                   Request a Demo
@@ -235,12 +246,12 @@ const Navbar: React.FC = () => {
                     Launch Co-Pilot
                 </Link>
                 <Link
-                  href="/#contact"
-                  onClick={() => setIsOpen(false)}
-                  className="flex-1 text-center bg-primary hover:bg-primary/90 text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors"
-                >
-                    Request a Demo
-                </Link>
+                href="/#contact"
+                onClick={() => setIsOpen(false)}
+                className="flex-1 text-center bg-primary hover:bg-primary/90 text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors"
+              >
+                Request a Demo
+              </Link>
               </div>
             </div>
           </motion.div>

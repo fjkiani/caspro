@@ -25,10 +25,10 @@ const ProteinModelViewer = dynamic(
 // Constants for Hero Section configuration
 const HERO_CONFIG = {
   titlePart1: "The Future of Oncology",
-  titlePart2: "AI Co-Pilots",
+  titlePart2: "The Future of Oncology: AI Co-Pilots",
   subtitle: "Empower clinicians and researchers to accelerate discovery, personalize treatments, and revolutionize patient care across genomics, oncology, and clinical data intelligence.",
   ctaPrimaryText: "Explore Co-Pilots",
-  ctaPrimaryLink: "#co-pilots-showcase",
+  ctaPrimaryLink: "/co-pilot-app",
   ctaSecondaryText: "About The Platform",
   ctaSecondaryLink: "#solution",
   keyFeatures: [
@@ -59,12 +59,12 @@ const HERO_CONFIG = {
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden py-20 lg:py-24 bg-gradient-to-b from-slate-900 via-blue-950 to-indigo-950">
+    <section className="relative overflow-hidden py-20 lg:py-24 bg-gradient-to-b from-white to-blue-50 dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
       {/* Advanced background DNA elements */}
-      <div className="absolute left-10 top-10 w-24 h-3/4 opacity-70 pointer-events-none">
+      <div className="absolute left-10 top-10 w-24 h-3/4 opacity-10 dark:opacity-70 pointer-events-none">
         <DoubleDnaHelix className="w-full h-full" baseCount={12} rotationSpeed={25} />
       </div>
-      <div className="absolute right-10 top-20 w-20 h-3/4 opacity-70 pointer-events-none">
+      <div className="absolute right-10 top-20 w-20 h-3/4 opacity-10 dark:opacity-70 pointer-events-none">
         <DoubleDnaHelix className="w-full h-full" baseCount={10} rotationSpeed={18} />
       </div>
       
@@ -75,16 +75,16 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-white"
+            className="text-slate-800 dark:text-white"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              <span className="block">{HERO_CONFIG.titlePart1}</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-sky-400 to-cyan-400">
+              <span className="text-gradient">
+                <span className="block">{HERO_CONFIG.titlePart1}</span>
                 {HERO_CONFIG.titlePart2}
               </span>
             </h1>
             
-            <p className="text-lg text-blue-100/90 mb-8 max-w-xl">
+            <p className="text-lg text-slate-600 dark:text-blue-100/90 mb-8 max-w-xl">
               {HERO_CONFIG.subtitle}
             </p>
             
@@ -96,7 +96,7 @@ const HeroSection = () => {
                 </button>
               </Link>
               <Link href={HERO_CONFIG.ctaSecondaryLink}>
-                <button className="bg-transparent border border-blue-400 text-blue-300 hover:bg-blue-400/20 font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">
+                <button className="bg-transparent border border-primary text-primary hover:bg-primary hover:text-white dark:border-blue-400 dark:text-blue-300 dark:hover:bg-blue-400/20 font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">
                   {HERO_CONFIG.ctaSecondaryText}
                 </button>
               </Link>
@@ -108,10 +108,10 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative h-[500px] lg:h-[600px] rounded-xl overflow-hidden shadow-2xl bg-gradient-to-b from-slate-900/80 to-blue-950/80 border border-white/10"
+            className="relative h-[500px] lg:h-[600px] rounded-xl overflow-hidden shadow-2xl bg-gradient-to-b from-slate-100/80 to-blue-100/80 dark:from-slate-900/80 dark:to-blue-950/80 border border-black/10 dark:border-white/10"
           >
             {/* Glowing border */}
-            <div className="absolute inset-0 rounded-xl overflow-hidden">
+            <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-400 via-blue-400 to-green-400 opacity-80 z-10"></div>
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 via-yellow-400 to-red-400 opacity-80 z-10"></div>
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-red-400 via-purple-400 to-blue-400 opacity-80 z-10"></div>
@@ -133,24 +133,24 @@ const HeroSection = () => {
             <div className="absolute bottom-0 left-0 right-0 h-2/5 opacity-90 rounded-b-xl overflow-hidden">
               <Suspense fallback={
                 <div className="w-full h-full flex items-center justify-center">
-                  <div className="animate-pulse text-white">Loading protein model...</div>
+                  <div className="animate-pulse text-slate-500 dark:text-white">Loading protein model...</div>
                 </div>
               }>
                 {/* <ProteinModelViewer className="w-full h-full" /> */}
               </Suspense>
               
               {/* Protein info overlay */}
-              <div className="absolute top-2 right-4 bg-black/30 backdrop-blur-sm p-2 rounded text-xs text-white font-mono">
+              <div className="absolute top-2 right-4 bg-white/30 dark:bg-black/30 backdrop-blur-sm p-2 rounded text-xs text-slate-700 dark:text-white font-mono">
                 Cas9 Protein • PAM: NGG • 1,368 aa
               </div>
             </div>
             
             {/* Glow effects and decorative elements */}
-            <div className="absolute bottom-1/3 left-0 right-0 h-24 bg-gradient-to-t from-blue-500/30 to-transparent"></div>
+            <div className="absolute bottom-1/3 left-0 right-0 h-24 bg-gradient-to-t from-blue-200/30 to-transparent dark:from-blue-500/30"></div>
             
             {/* Floating indicators */}
             <motion.div
-              className="absolute top-6 left-6 text-xs font-mono bg-green-500/20 border border-green-500/30 text-green-300 px-2 py-1 rounded-md"
+              className="absolute top-6 left-6 text-xs font-mono bg-green-100 dark:bg-green-500/20 border border-green-500/30 text-green-800 dark:text-green-300 px-2 py-1 rounded-md"
               animate={{ y: [0, -5, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -158,7 +158,7 @@ const HeroSection = () => {
             </motion.div>
             
             <motion.div
-              className="absolute top-6 right-6 text-xs font-mono bg-red-500/20 border border-red-500/30 text-red-300 px-2 py-1 rounded-md"
+              className="absolute top-6 right-6 text-xs font-mono bg-red-100 dark:bg-red-500/20 border border-red-500/30 text-red-800 dark:text-red-300 px-2 py-1 rounded-md"
               animate={{ y: [0, -5, 0] }}
               transition={{ duration: 4, delay: 1, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -178,14 +178,14 @@ const HeroSection = () => {
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {HERO_CONFIG.keyFeatures.map((feature) => (
               <Link href={feature.link} key={feature.id} className="block group">
-                <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6 h-full transition-all duration-300 hover:bg-slate-800 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10">
+                <div className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-2xl p-6 h-full transition-all duration-300 hover:bg-white dark:hover:bg-slate-800 hover:border-primary/50 dark:hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10">
                   <div className="flex items-center gap-4 mb-3">
-                    <div className="w-10 h-10 bg-slate-700 rounded-lg flex items-center justify-center text-primary">
+                    <div className="w-10 h-10 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center text-primary">
                       <feature.icon size={22} />
                     </div>
-                    <h3 className="font-bold text-lg text-white">{feature.name}</h3>
+                    <h3 className="font-bold text-lg text-slate-800 dark:text-white">{feature.name}</h3>
                   </div>
-                  <p className="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{feature.description}</p>
                 </div>
               </Link>
             ))}
