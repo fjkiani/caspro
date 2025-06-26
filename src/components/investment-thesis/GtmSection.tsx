@@ -94,7 +94,7 @@ const gtmData = [
         icon: "🤝",
         title: "Integrations",
         description: " \"premium intelligence layer\" into EMRs and diagnostics.",
-        hook: "HOOK: Partner with a diagnostics firm to be their exclusive VUS resolution engine.",
+        hook: "Partner with a diagnostics firm to be their exclusive VUS resolution engine.",
         strategies: [
             "White-label our AI for major diagnostic companies",
             "Embed into Epic, Cerner, and other major EMR systems",
