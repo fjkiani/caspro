@@ -151,46 +151,51 @@ const Navbar: React.FC = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navClass}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="text-3xl transition-transform duration-300 group-hover:rotate-12">
-              {NAV_CONFIG.brandEmoji}
-            </div>
-            <div>
-              <span className="text-xl font-bold text-white">{NAV_CONFIG.brandName}</span>
-              <span className="block text-xs text-slate-400 -mt-1">{NAV_CONFIG.brandSubtitle}</span>
-            </div>
-          </Link>
+          <div className="flex-shrink-0">
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="text-3xl transition-transform duration-300 group-hover:rotate-12">
+                {NAV_CONFIG.brandEmoji}
+              </div>
+              <div>
+                <span className="text-xl font-bold text-white">{NAV_CONFIG.brandName}</span>
+                <span className="block text-xs text-slate-400 -mt-1">{NAV_CONFIG.brandSubtitle}</span>
+              </div>
+            </Link>
+          </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-6">
-            {NAV_LINKS.map((link) =>
-              link.subLinks ? (
-                <DropdownMenu key={link.label} menu={link} />
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
-                  target={link.external ? '_blank' : '_self'}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-            <div className="flex items-center gap-2 ml-4">
-              <Link
-                  href="/co-pilot-app"
-                  className="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors"
-              >
-                  Launch Co-Pilot
-              </Link>
-              <Link
-                  href="/contact"
-                  className="bg-primary hover:bg-primary/90 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors shadow-lg shadow-primary/20"
-              >
-                  Request a Demo
-              </Link>
-            </div>
+          <div className="hidden md:flex items-center justify-center flex-1">
+            <nav className="flex items-center gap-6">
+              {NAV_LINKS.map((link) =>
+                link.subLinks ? (
+                  <DropdownMenu key={link.label} menu={link} />
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                    target={link.external ? '_blank' : '_self'}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
+            </nav>
+          </div>
+          
+          <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+            <Link
+                href="/co-pilot-app"
+                className="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors"
+            >
+                Launch Co-Pilot
+            </Link>
+            <Link
+                href="/contact"
+                className="bg-primary hover:bg-primary/90 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors shadow-lg shadow-primary/20"
+            >
+                Request a Demo
+            </Link>
           </div>
 
           {/* Mobile Nav Toggle */}

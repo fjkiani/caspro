@@ -159,110 +159,110 @@ const TeamMemberCard = ({ member, index }: { member: any, index: number }) => {
 };
 
 export const TeamSection = () => {
-    const [selectedFilter, setSelectedFilter] = useState<'all' | 'technical' | 'business' | 'advisory'>('all');
+    const [selectedFilter, setSelectedFilter] = useState<'all' | 'technical' | 'clinical'>('all');
 
     const teamMembers = [
         {
-            name: "Dr. Sarah Chen",
-            role: "CEO & Co-Founder",
+            name: "Fahad Kiani",
+            role: "Chief Technical and Executive Officer & Co-Founder",
             experience: 12,
             bio: "Former Principal Scientist at Broad Institute with deep expertise in CRISPR technology and computational biology. Led the development of next-generation gene editing platforms.",
             skills: ["CRISPR Technology", "Computational Biology", "Leadership", "Fundraising"],
             skillLevels: [
-                { skill: "CRISPR Technology", level: 95, color: "bg-blue-500" },
-                { skill: "Computational Biology", level: 90, color: "bg-purple-500" },
-                { skill: "Leadership", level: 88, color: "bg-green-500" },
-                { skill: "Fundraising", level: 75, color: "bg-yellow-500" },
+                { skill: "AI Engineering", level: 100, color: "bg-blue-500" },
+                { skill: "Molecular Biology", level: 90, color: "bg-purple-500" },
+                { skill: "Full Stack Development", level: 100, color: "bg-green-500" },
+                { skill: "Leadership", level: 85, color: "bg-yellow-500" },
             ],
             achievements: [
-                "Published 45+ peer-reviewed papers in Nature, Cell, Science",
-                "Raised $50M+ in previous biotech ventures",
-                "Named to Forbes 30 Under 30 in Healthcare",
-                "Holds 12 patents in gene editing technology"
+                "Lead the development of CrisPRO's core AI prediction engine",
+                "Founded Jedilabs.org, a non-profit organization dedicated to advancing AI and ML in healthcare",
+                "Computer Science and Molecular Biology BS from John Jay College of Criminal Justice",
+                "Holds 1 patent in gene editing technology"
             ],
-            previousCompanies: ["Broad Institute", "Editas Medicine", "Harvard Medical School"],
-            initials: "SC",
+            previousCompanies: ["JediLabs.org", "Talend", "1stDibs", "iMedicare"],
+            initials: "FJK",
             avatarGradient: "from-blue-500 to-purple-600",
-            linkedin: "https://linkedin.com/in/sarahchen",
-            email: "sarah@crispro.ai",
+            linkedin: "https://linkedin.com/in/fjkiani",
+            email: "fahad@jedilabs.org",
             category: "technical"
         },
         {
-            name: "Michael Rodriguez",
-            role: "CTO & Co-Founder",
-            experience: 15,
-            bio: "Former Staff Engineer at Google DeepMind specializing in protein folding and AI-driven drug discovery. Architect of our core AI prediction engine.",
-            skills: ["Machine Learning", "Protein Folding", "Distributed Systems", "Python"],
+            name: "Rahima Nayeem",
+            role: "Chief Clinical Officer & Co-Founder",
+            experience: 10,
+            bio: "Dr. Rahima Nayeem is an internist in  New York and is affiliated with North Shore University Hospital at Northwell Health. She received her medical degree from State University of New York Downstate Medical Center College of Medicine and has been in practice between 6-10 years",
+            skills: ["Life Science", "Chemistry", "Patient Care", "Clinical Research"],
             skillLevels: [
-                { skill: "Machine Learning", level: 98, color: "bg-red-500" },
-                { skill: "Protein Folding", level: 92, color: "bg-blue-500" },
-                { skill: "Distributed Systems", level: 90, color: "bg-green-500" },
-                { skill: "Python/TensorFlow", level: 95, color: "bg-purple-500" },
+                { skill: "Medicine", level: 100, color: "bg-red-500" },
+                { skill: "Chemistry", level: 100, color: "bg-blue-500" },
+                { skill: "Patient Care", level: 100, color: "bg-green-500" },
+                { skill: "Clinical Research", level: 100, color: "bg-purple-500" },
             ],
             achievements: [
-                "Lead architect of AlphaFold improvements at DeepMind",
-                "Published breakthrough papers on protein-DNA interactions",
-                "Built ML systems serving 1B+ predictions daily",
+                "MD Graduat from SUNY Downstate Medical Center",
+                "American Board of Internal Medicine Certified",
+                "Completed residency at Hofstra North Shore-Lij School Of Medicine",
                 "Winner of multiple Kaggle competitions in biology"
             ],
-            previousCompanies: ["Google DeepMind", "Atomwise", "Stanford AI Lab"],
-            initials: "MR",
+            previousCompanies: ["North Shore University Hospital", "Long Island Jewish Valley Stream", "Long Island Jewish Medical Center"],
+            initials: "RN",
             avatarGradient: "from-red-500 to-orange-600",
-            github: "https://github.com/mrodriguez",
-            linkedin: "https://linkedin.com/in/michaelrodriguez",
-            email: "michael@crispro.ai",
-            category: "technical"
+            // github: "https://github.com/mrodriguez",
+            // linkedin: "https://linkedin.com/in/michaelrodriguez",
+            email: "nayeem.rahima@gmail.com",
+            category: "clinical"
         },
-        {
-            name: "Dr. James Park",
-            role: "VP of Product & Strategy",
-            experience: 10,
-            bio: "Former McKinsey Partner with expertise in healthcare strategy and biotech commercialization. Led go-to-market for 5 FDA-approved therapeutics.",
-            skills: ["Strategy", "Product Management", "Healthcare", "Business Development"],
-            skillLevels: [
-                { skill: "Strategic Planning", level: 93, color: "bg-blue-500" },
-                { skill: "Product Management", level: 87, color: "bg-green-500" },
-                { skill: "Healthcare Markets", level: 95, color: "bg-purple-500" },
-                { skill: "Business Development", level: 89, color: "bg-yellow-500" },
-            ],
-            achievements: [
-                "Led commercialization of $2B+ in biotech products",
-                "Advised 20+ biotech IPOs and acquisitions",
-                "Former venture partner at Andreessen Horowitz Bio Fund",
-                "MBA from Wharton, MD from Johns Hopkins"
-            ],
-            previousCompanies: ["McKinsey & Company", "Genentech", "a16z Bio Fund"],
-            initials: "JP",
-            avatarGradient: "from-green-500 to-teal-600",
-            linkedin: "https://linkedin.com/in/jamespark",
-            email: "james@crispro.ai",
-            category: "business"
-        },
-        {
-            name: "Dr. Emily Watson",
-            role: "Chief Scientific Advisor",
-            experience: 20,
-            bio: "Nobel Prize nominee and pioneer in cancer genomics. Former Director of Precision Oncology at Memorial Sloan Kettering with 200+ publications.",
-            skills: ["Cancer Biology", "Genomics", "Clinical Research", "Regulatory Affairs"],
-            skillLevels: [
-                { skill: "Cancer Biology", level: 99, color: "bg-red-500" },
-                { skill: "Genomics", level: 96, color: "bg-blue-500" },
-                { skill: "Clinical Research", level: 94, color: "bg-green-500" },
-                { skill: "Regulatory Strategy", level: 85, color: "bg-purple-500" },
-            ],
-            achievements: [
-                "Nobel Prize nominee for cancer genomics research",
-                "Led clinical trials for 15+ FDA-approved cancer therapies",
-                "Authored 200+ publications with 50,000+ citations",
-                "Founded 3 successful biotech companies (2 IPOs, 1 acquisition)"
-            ],
-            previousCompanies: ["Memorial Sloan Kettering", "Dana-Farber", "Novartis"],
-            initials: "EW",
-            avatarGradient: "from-purple-500 to-pink-600",
-            linkedin: "https://linkedin.com/in/emilywatson",
-            email: "emily.advisor@crispro.ai",
-            category: "advisory"
-        }
+        // {
+        //     name: "Dr. James Park",
+        //     role: "VP of Product & Strategy",
+        //     experience: 10,
+        //     bio: "Former McKinsey Partner with expertise in healthcare strategy and biotech commercialization. Led go-to-market for 5 FDA-approved therapeutics.",
+        //     skills: ["Strategy", "Product Management", "Healthcare", "Business Development"],
+        //     skillLevels: [
+        //         { skill: "Strategic Planning", level: 93, color: "bg-blue-500" },
+        //         { skill: "Product Management", level: 87, color: "bg-green-500" },
+        //         { skill: "Healthcare Markets", level: 95, color: "bg-purple-500" },
+        //         { skill: "Business Development", level: 89, color: "bg-yellow-500" },
+        //     ],
+        //     achievements: [
+        //         "Led commercialization of $2B+ in biotech products",
+        //         "Advised 20+ biotech IPOs and acquisitions",
+        //         "Former venture partner at Andreessen Horowitz Bio Fund",
+        //         "MBA from Wharton, MD from Johns Hopkins"
+        //     ],
+        //     previousCompanies: ["McKinsey & Company", "Genentech", "a16z Bio Fund"],
+        //     initials: "JP",
+        //     avatarGradient: "from-green-500 to-teal-600",
+        //     linkedin: "https://linkedin.com/in/jamespark",
+        //     email: "james@crispro.ai",
+        //     category: "business"
+        // },
+        // {
+        //     name: "Dr. Emily Watson",
+        //     role: "Chief Scientific Advisor",
+        //     experience: 20,
+        //     bio: "Nobel Prize nominee and pioneer in cancer genomics. Former Director of Precision Oncology at Memorial Sloan Kettering with 200+ publications.",
+        //     skills: ["Cancer Biology", "Genomics", "Clinical Research", "Regulatory Affairs"],
+        //     skillLevels: [
+        //         { skill: "Cancer Biology", level: 99, color: "bg-red-500" },
+        //         { skill: "Genomics", level: 96, color: "bg-blue-500" },
+        //         { skill: "Clinical Research", level: 94, color: "bg-green-500" },
+        //         { skill: "Regulatory Strategy", level: 85, color: "bg-purple-500" },
+        //     ],
+        //     achievements: [
+        //         "Nobel Prize nominee for cancer genomics research",
+        //         "Led clinical trials for 15+ FDA-approved cancer therapies",
+        //         "Authored 200+ publications with 50,000+ citations",
+        //         "Founded 3 successful biotech companies (2 IPOs, 1 acquisition)"
+        //     ],
+        //     previousCompanies: ["Memorial Sloan Kettering", "Dana-Farber", "Novartis"],
+        //     initials: "EW",
+        //     avatarGradient: "from-purple-500 to-pink-600",
+        //     linkedin: "https://linkedin.com/in/emilywatson",
+        //     email: "emily.advisor@crispro.ai",
+        //     category: "advisory"
+        // }
     ];
 
     const filteredMembers = teamMembers.filter(member => 
@@ -272,8 +272,7 @@ export const TeamSection = () => {
     const filterOptions = [
         { value: 'all', label: 'All Team', count: teamMembers.length },
         { value: 'technical', label: 'Technical', count: teamMembers.filter(m => m.category === 'technical').length },
-        { value: 'business', label: 'Business', count: teamMembers.filter(m => m.category === 'business').length },
-        { value: 'advisory', label: 'Advisory', count: teamMembers.filter(m => m.category === 'advisory').length },
+        { value: 'clinical', label: 'Clinical', count: teamMembers.filter(m => m.category === 'clinical').length },
     ];
 
     return (
@@ -313,7 +312,7 @@ export const TeamSection = () => {
                 ))}
             </div>
 
-            {/* Team Stats */}
+            {/* Team Stats
             <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
                 <div className="text-center p-4 bg-gray-800/50 rounded-lg hover-lift">
                     <div className="text-3xl font-bold text-blue-400 mb-2">250+</div>
@@ -331,7 +330,7 @@ export const TeamSection = () => {
                     <div className="text-3xl font-bold text-yellow-400 mb-2">5</div>
                     <div className="text-sm text-gray-400">Successful Exits</div>
                 </div>
-            </div>
+            </div> */}
         </section>
     );
 }; 

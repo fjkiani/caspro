@@ -11,7 +11,7 @@ const CompetitorAnalysisPage = () => {
                 <Header />
                 <StrategicMatrix />
                 <CompetitorTabs />
-                <IntelligenceDirectives />
+                {/* <IntelligenceDirectives /> */}
             </div>
         </div>
     );
