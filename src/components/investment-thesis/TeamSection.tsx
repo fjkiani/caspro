@@ -166,8 +166,8 @@ export const TeamSection = () => {
             name: "Fahad Kiani",
             role: "Chief Technical and Executive Officer & Co-Founder",
             experience: 12,
-            bio: "Former Principal Scientist at Broad Institute with deep expertise in CRISPR technology and computational biology. Led the development of next-generation gene editing platforms.",
-            skills: ["CRISPR Technology", "Computational Biology", "Leadership", "Fundraising"],
+            bio: "Fahad is a seasoned entrepreneur with a passion for using technology to improve healthcare. He is the co-founder of Jedilabs.org, a non-profit organization dedicated to advancing AI and ML in healthcare. Previosuly was a Senior Solutions Engineer at Talend, supporting enterprise customers around data integration and data governance. Led successful exits of 1stDibs and iMedicare as a founding team member.",
+            skills: ["CRISPR", "Prompt Engineering", "Computational Biology", "Oncology", "Teaching"],
             skillLevels: [
                 { skill: "AI Engineering", level: 100, color: "bg-blue-500" },
                 { skill: "Molecular Biology", level: 90, color: "bg-purple-500" },
