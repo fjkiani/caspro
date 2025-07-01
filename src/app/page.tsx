@@ -11,7 +11,6 @@ import TeamSection from '@/components/sections/TeamSection';
 import ContactSection from '@/components/sections/ContactSection';
 import TopicsSection from '@/components/sections/TopicsSection';
 import UnfairAdvantageSection from '@/components/investment-thesis/UnfairAdvantageSection';
-import InvestmentThesisPage from './investment-thesis/page';
 import { InvestmentThesisHeader } from '@/components/investment-thesis/InvestmentThesisHeader';
 import { MetastasisFrameworkSection } from '@/components/investment-thesis/MetastasisFrameworkSection';
 // Page configuration constants
