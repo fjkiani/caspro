@@ -1,6 +1,7 @@
 import { UsersIcon, TestTube2Icon, RadiationIcon } from 'lucide-react';
+import { CoPilotOption } from './CoPilotOptionCard';
 
-export const coPilotOptions = [
+export const coPilotOptions: CoPilotOption[] = [
   {
     id: 'agentic-emr',
     // The title asserts dominance over a domain.

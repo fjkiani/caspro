@@ -6,7 +6,7 @@ import { Users, TestTube2, Radiation, ChevronDown, ChevronUp, ArrowRight } from 
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Define the shape of a single co-pilot option
-interface CoPilotOption {
+export interface CoPilotOption {
   id: string;
   title: string;
   icon: string;
