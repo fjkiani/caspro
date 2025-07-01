@@ -10,10 +10,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/agents',
     '/blog',
     '/careers',
-    '/co-pilot-app',
-    '/co-pilot-app/precision-rad',
-    '/co-pilot-app/agentic-emr',
-    '/co-pilot-app/crispr-intelligence',
+    '/platform',
+    '/platform/precision-rad',
+    '/platform/agentic-emr',
+    '/platform/crispr-intelligence',
     '/competitor-analysis',
     '/genome-editing',
     '/hipaa-statement',
@@ -36,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' ? 1 : 
              route === '/investment-thesis' ? 0.9 :
              route === '/about' ? 0.8 :
-             route.includes('/co-pilot-app') ? 0.8 :
+             route.includes('/platform') ? 0.8 :
              route === '/blog' ? 0.7 :
              0.6,
   }))

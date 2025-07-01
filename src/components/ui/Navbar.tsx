@@ -4,15 +4,63 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Rocket, BookOpen, Building, Mail, PenTool, Briefcase } from 'lucide-react';
-import { coPilotDetailsData, CoPilotDetailContent } from '@/data/coPilotDetails';
-
+import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail } from 'lucide-react';
 
 const NAV_CONFIG = {
   brandEmoji: "🧬",
   brandName: "CrisPRO",
   brandSubtitle: "Oncology Co-Pilot",
 };
+
+// --- SUB-LINK DEFINITIONS ---
+const platformSubLinks = [
+  { href: '/platform/crispr-intelligence', label: 'CRISPR Intelligence' },
+  { href: '/platform/precision-rad', label: 'PrecisionRad™ Intelligence' },
+  { href: '/platform/agentic-emr', label: 'AgenticEMR™ Dominance' },
+];
+
+const doctrineSubLinks = [
+  { href: '/doctrine/vus-annihilation', label: 'VUS Annihilation' },
+  { href: '/doctrine/metastasis-prevention', label: 'Metastasis Prevention' },
+  { href: '/doctrine/de-sci-and-ip-nfts', label: 'DeSci & IP-NFTs' },
+];
+
+const investorSubLinks = [
+  { href: '/investors/thesis', label: 'The Investment Thesis' },
+  { href: '/investors/market-landscape', label: 'Market Landscape Analysis' },
+];
+
+// --- PRIMARY NAVIGATION: THE BATTLE PLAN ---
+export const NAV_LINKS = [
+  {
+    href: '/platform',
+    label: 'Platform',
+    icon: <Rocket className="inline-block h-4 w-4" />,
+    subLinks: platformSubLinks,
+  },
+  {
+    href: '/doctrine',
+    label: 'Doctrine',
+    icon: <BookOpen className="inline-block h-4 w-4" />,
+    subLinks: doctrineSubLinks,
+  },
+  {
+    href: '/blog',
+    label: 'Blog',
+    icon: <PenTool className="inline-block h-4 w-4" />,
+  },
+  {
+    href: '/investors',
+    label: 'Investors',
+    icon: <Briefcase className="inline-block h-4 w-4" />,
+    subLinks: investorSubLinks,
+  },
+  {
+    href: '/contact',
+    label: 'Contact',
+    icon: <Mail className="inline-block h-4 w-4" />,
+  },
+];
 
 interface NavLink {
   href: string;
@@ -24,67 +72,6 @@ interface NavMenu extends NavLink {
   subLinks?: NavLink[];
   icon?: React.ReactNode;
 }
-
-const coPilotSubLinks: NavLink[] = Object.values(coPilotDetailsData).map(
-  (pilot: CoPilotDetailContent) => ({
-    href: `/co-pilot-app/${pilot.slug}`,
-    label: pilot.pageTitle.split(':')[0],
-  })
-);
-
-const companySubLinks: NavLink[] = [
-  { href: '/about', label: 'About Us' },
-  { href: '/careers', label: 'Careers' },
-  { href: '/privacy-policy', label: 'Privacy Policy' },
-  { href: '/terms-of-service', label: 'Terms of Service' },
-  { href: '/hipaa-statement', label: 'HIPAA Statement' },
-  { href: '/security', label: 'Security Overview' },
-];
-
-const investorSubLinks: NavLink[] = [
-  { href: '/investment-thesis', label: 'Investment Thesis' },
-  { href: '/competitor-analysis', label: 'Competitor Analysis' },
-];
-
-const NAV_LINKS: NavMenu[] = [
-  {
-    href: '/co-pilot-app',
-    label: 'Co-Pilots',
-    icon: <Rocket className="inline-block h-4 w-4" />,
-    subLinks: coPilotSubLinks,
-  },
-  {
-    href: '/blog',
-    label: 'Blog',
-    icon: <PenTool className="inline-block h-4 w-4" />,
-  },
-  {
-    href: '#',
-    label: 'Learn',
-    icon: <BookOpen className="inline-block h-4 w-4" />,
-    subLinks: [
-      { href: '/knowledge-graph', label: 'Knowledge Graph' },
-      { href: '/visualization-demo', label: 'Visualization Demo' },
-    ],
-  },
-  {
-    href: '#',
-    label: 'Investors',
-    icon: <Briefcase className="inline-block h-4 w-4" />,
-    subLinks: investorSubLinks,
-  },
-  // {
-  //   href: '/about',
-  //   label: 'Company',
-  //   icon: <Building className="inline-block h-4 w-4" />,
-  //   subLinks: companySubLinks,
-  // },
-  {
-    href: '/contact',
-    label: 'Contact Us',
-    icon: <Mail className="inline-block h-4 w-4" />,
-  },
-];
 
 const DropdownMenu: React.FC<{ menu: NavMenu }> = ({ menu }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -174,7 +161,6 @@ const Navbar: React.FC = () => {
                     key={link.href}
                     href={link.href}
                     className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
-                    target={link.external ? '_blank' : '_self'}
                   >
                     {link.label}
                   </Link>
@@ -185,14 +171,14 @@ const Navbar: React.FC = () => {
           
           <div className="hidden md:flex items-center gap-2 flex-shrink-0">
             <Link
-                href="/co-pilot-app"
-                className="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors"
+                href="/platform"
+                className="btn-secondary py-2 px-4 text-sm"
             >
                 Launch Co-Pilot
             </Link>
             <Link
                 href="/contact"
-                className="bg-primary hover:bg-primary/90 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors shadow-lg shadow-primary/20"
+                className="btn-primary py-2 px-4 text-sm shadow-lg shadow-primary/20"
             >
                 Request a Demo
             </Link>
@@ -244,16 +230,16 @@ const Navbar: React.FC = () => {
               ))}
               <div className="flex items-stretch gap-2 pt-4">
                 <Link
-                  href="/co-pilot-app"
+                  href="/platform"
                   onClick={() => setIsOpen(false)}
-                  className="flex-1 text-center bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors"
+                  className="btn-secondary flex-1 text-center py-2.5 px-4 text-sm"
                 >
                     Launch Co-Pilot
                 </Link>
                 <Link
                 href="/#contact"
                 onClick={() => setIsOpen(false)}
-                className="flex-1 text-center bg-primary hover:bg-primary/90 text-white font-semibold py-2.5 px-4 rounded-lg text-sm transition-colors"
+                className="btn-primary flex-1 text-center py-2.5 px-4 text-sm"
               >
                 Request a Demo
               </Link>

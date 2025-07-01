@@ -121,7 +121,7 @@ export const OpportunitySection = () => {
     return (
         <section className="mb-20">
             <SectionHeader
-                title="1.0 The True Enemy: Preventing Metastasis"
+                title="The True Enemy: Preventing Metastasis"
                 subtitle={[
                     "The Problem: Over 90% of cancer-related deaths are not caused by the primary tumor, but by metastasis—the process by which cancer spreads to other parts of the body. The current medical paradigm is reactive, treating metastasis only after it's clinically detectable. We are missing the critical window to prevent it.",
                     "Our Solution: A strategic transformation from a simple research tool to the world's first AI-powered metastasis prevention system. We don't just provide data; we provide a predictive, proactive, and personalized strategy to stop metastasis before it starts."
@@ -144,7 +144,7 @@ export const OpportunitySection = () => {
                 />
                 <StatCard
                     icon={Brain}
-                    stat="$0"
+                    stat="0"
                     description="current solutions for metastasis prevention"
                     color="text-blue-400"
                 />

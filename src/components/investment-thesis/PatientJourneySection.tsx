@@ -193,7 +193,7 @@ export const PatientJourneySection = () => {
     return (
         <section className="mb-20">
             <SectionHeader 
-                title="2.0 The Patient's Broken Journey"
+                title="The Patient's Broken Journey"
                 subtitle="Today's cancer care is reactive, fragmented, and often too late. We're building a proactive, integrated system that prevents metastasis before it starts."
             />
             

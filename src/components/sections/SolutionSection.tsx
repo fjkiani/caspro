@@ -132,7 +132,7 @@ const SolutionSection = () => {
                 </div>
 
                 <div className="mt-8">
-                  <Link href={`/co-pilot-app/${activeSlug}`} className="inline-flex items-center font-semibold text-primary hover:text-primary/80 transition-colors">
+                  <Link href={`/platform/${activeSlug}`} className="inline-flex items-center font-semibold text-primary hover:text-primary/80 transition-colors">
                     Learn More <ArrowRight className="w-4 h-4 ml-2" />
                   </Link>
                 </div>

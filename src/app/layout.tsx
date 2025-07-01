@@ -3,7 +3,6 @@ import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import { ThemeProvider } from '@/context/ThemeContext';
 import { JsonLd, organizationSchema } from "@/components/SEO/JsonLd";
 
 // Space Grotesk for headings - more technical and modern
@@ -85,18 +84,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+    <html lang="en" className={`dark ${spaceGrotesk.variable} ${inter.variable}`}>
       <head>
         <JsonLd data={organizationSchema} />
       </head>
-      <body className={`${inter.className} flex flex-col min-h-screen`}>
-        <ThemeProvider>
-          <Navbar />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </ThemeProvider>
+      <body className={`${inter.className} flex flex-col min-h-screen bg-background`}>
+        <Navbar />
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

@@ -25,37 +25,36 @@ const ProteinModelViewer = dynamic(
 // Constants for Hero Section configuration
 const HERO_CONFIG = {
   titlePart1: "The Future of Oncology",
-  titlePart2: "The Future of Oncology: AI Co-Pilots",
-  subtitle: "Empower clinicians and researchers to accelerate discovery, personalize treatments, and revolutionize patient care across genomics, oncology, and clinical data intelligence.",
-  ctaPrimaryText: "Explore Co-Pilots",
-  ctaPrimaryLink: "/co-pilot-app",
+  titlePart2: "The Actionability Gap is a Failure: CrisPRO is the Solution",
+  subtitle: "Our AI-powered command and control platform replaces diagnostic ambiguity and R&D guesswork with definitive, actionable intelligence. We don't just analyze the battle; we forge the weapons to win it.",
+  ctaPrimaryText: "Explore The Doctrine",
+  ctaPrimaryLink: "/doctrine",
   ctaSecondaryText: "About The Platform",
-  ctaSecondaryLink: "#solution",
+  ctaSecondaryLink: "/platform",
   keyFeatures: [
     {
       id: 'genomic',
       name: 'CRISPR Intelligence Platform',
       description: 'An end-to-end co-pilot for therapeutic gene editing. Accelerate your R&D from discovery to pre-clinical with AI-powered guide design, variant effect prediction, and automated experiment planning.',
       icon: Dna,
-      link: '/co-pilot-app/crispr-intelligence'
+      link: '/platform/crispr-intelligence'
     },
     {
       id: 'oncology',
       name: 'PrecisionRad™ Co-Pilot',
       description: 'Fuse multi-modal data to hyper-personalize radiation therapy. Predict patient-specific radiosensitivity and toxicity by integrating deep genomic profiles with medical imaging to optimize treatment plans.',
       icon: Brain,
-      link: '/co-pilot-app/precision-rad'
+      link: '/platform/precision-rad'
     },
     {
       id: 'emr',
       name: 'AgenticEMR™ Co-Pilot',
       description: 'Transform unstructured clinical data into a strategic asset. Automate patient record summarization, cohort identification, and clinical trial matching to unlock deep clinical insights from your EMR.',
       icon: FileText,
-      link: '/co-pilot-app/agentic-emr'
+      link: '/platform/agentic-emr'
     }
   ]
 };
-
 
 const HeroSection = () => {
   return (
@@ -90,13 +89,13 @@ const HeroSection = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <Link href={HERO_CONFIG.ctaPrimaryLink}>
-                <button className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">
+                <button className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto">
                   <ArrowRight size={20} />
                   {HERO_CONFIG.ctaPrimaryText}
                 </button>
               </Link>
               <Link href={HERO_CONFIG.ctaSecondaryLink}>
-                <button className="bg-transparent border border-primary text-primary hover:bg-primary hover:text-white dark:border-blue-400 dark:text-blue-300 dark:hover:bg-blue-400/20 font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">
+                <button className="btn-outline flex items-center justify-center gap-2 w-full sm:w-auto">
                   {HERO_CONFIG.ctaSecondaryText}
                 </button>
               </Link>

@@ -10,29 +10,38 @@ const SectionHeader = ({ title, subtitle }: { title: string, subtitle: string })
     </div>
 );
 
-const RevenueCalculator = ({ 
-    title, 
-    description, 
-    target, 
-    pricePerUnit, 
-    unitLabel, 
-    icon: Icon, 
-    color 
-}: { 
-    title: string, 
-    description: string, 
+const RevenueCalculator = ({
+    title,
+    description,
+    target,
+    pricePerUnit,
+    unitLabel,
+    icon: Icon,
+    color,
+    units,
+    onUnitsChange,
+    min,
+    max,
+    step
+}: {
+    title: string,
+    description: string,
     target: string,
     pricePerUnit: number,
     unitLabel: string,
     icon: any,
-    color: string
+    color: string,
+    units: number,
+    onUnitsChange: (value: number) => void,
+    min: number,
+    max: number,
+    step: number
 }) => {
-    const [units, setUnits] = useState(100);
     const revenue = units * pricePerUnit;
     const annualRevenue = revenue * 12;
 
     return (
-        <div className="p-6 bg-gray-800 border border-gray-700 rounded-lg h-full hover:bg-gray-800/80 transition-all duration-300 hover:scale-105 group">
+        <div className="p-6 bg-gray-800 border border-gray-700 rounded-lg h-full hover:bg-gray-800/80 transition-all duration-300 group">
             <div className="flex items-center space-x-3 mb-4">
                 <Icon className={`w-8 h-8 ${color} group-hover:scale-110 transition-transform duration-300`} />
                 <h4 className="font-bold text-white text-lg">{title}</h4>
@@ -47,16 +56,17 @@ const RevenueCalculator = ({
                     </label>
                     <input
                         type="range"
-                        min="10"
-                        max="1000"
+                        min={min}
+                        max={max}
+                        step={step}
                         value={units}
-                        onChange={(e) => setUnits(parseInt(e.target.value))}
+                        onChange={(e) => onUnitsChange(parseInt(e.target.value))}
                         className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
                     />
                     <div className="flex justify-between text-xs text-gray-500 mt-1">
-                        <span>10</span>
+                        <span>{min}</span>
                         <span className="font-bold text-white">{units}</span>
-                        <span>1000</span>
+                        <span>{max}</span>
                     </div>
                 </div>
                 
@@ -109,7 +119,8 @@ const MarketSizeCard = ({
 );
 
 export const BusinessModelSection = () => {
-    const [selectedModel, setSelectedModel] = useState(0);
+    const [reports, setReports] = useState(100);
+    const [apiCalls, setApiCalls] = useState(10);
     
     const businessModels = [
         {
@@ -119,7 +130,12 @@ export const BusinessModelSection = () => {
             unitLabel: "Reports",
             target: "Oncologists, Cancer Centers, Hospital Networks",
             icon: Building,
-            color: "text-blue-400"
+            color: "text-blue-400",
+            units: reports,
+            onUnitsChange: setReports,
+            min: 10,
+            max: 1000,
+            step: 10
         },
         {
             name: "Pharmaceutical Partnerships",
@@ -128,9 +144,21 @@ export const BusinessModelSection = () => {
             unitLabel: "API Calls (1000s)",
             target: "Biotech & Pharmaceutical R&D Departments",
             icon: Zap,
-            color: "text-purple-400"
+            color: "text-purple-400",
+            units: apiCalls,
+            onUnitsChange: setApiCalls,
+            min: 1,
+            max: 100,
+            step: 1
         }
     ];
+
+    const totalMonthlyRevenue = businessModels.reduce((acc, model) => {
+        return acc + (model.units * model.pricePerUnit);
+    }, 0);
+
+    const totalAnnualRevenue = totalMonthlyRevenue * 12;
+    const fiveYearPotential = totalAnnualRevenue * 5 * 2.5; // Simplified growth projection
 
     return (
         <section className="mb-20">
@@ -165,38 +193,27 @@ export const BusinessModelSection = () => {
             </div>
 
             {/* Interactive Revenue Models */}
-            <div className="mb-8">
-                <h4 className="text-xl font-bold text-white mb-4 text-center">Interactive Revenue Calculator</h4>
-                <div className="flex justify-center space-x-4 mb-6">
+            <div className="mb-12">
+                <h4 className="text-xl font-bold text-white mb-6 text-center">Interactive Revenue Calculator</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {businessModels.map((model, index) => (
-                        <button
+                        <RevenueCalculator
                             key={index}
-                            onClick={() => setSelectedModel(index)}
-                            className={`px-4 py-2 rounded-lg transition-colors duration-200 ${
-                                selectedModel === index
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                            }`}
-                        >
-                            {model.name}
-                        </button>
+                            title={model.name}
+                            description={model.description}
+                            target={model.target}
+                            pricePerUnit={model.pricePerUnit}
+                            unitLabel={model.unitLabel}
+                            icon={model.icon}
+                            color={model.color}
+                            units={model.units}
+                            onUnitsChange={model.onUnitsChange}
+                            min={model.min}
+                            max={model.max}
+                            step={model.step}
+                        />
                     ))}
                 </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {businessModels.map((model, index) => (
-                    <RevenueCalculator
-                        key={index}
-                        title={model.name}
-                        description={model.description}
-                        target={model.target}
-                        pricePerUnit={model.pricePerUnit}
-                        unitLabel={model.unitLabel}
-                        icon={model.icon}
-                        color={model.color}
-                    />
-                ))}
             </div>
 
             {/* Combined Revenue Projection */}
@@ -207,19 +224,19 @@ export const BusinessModelSection = () => {
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                     <div className="p-4 bg-gray-800/50 rounded-lg">
-                        <p className="text-sm text-gray-400">Year 1 Target</p>
-                        <p className="text-2xl font-bold text-green-400">$2.4M</p>
-                        <p className="text-xs text-gray-500">Conservative estimate</p>
+                        <p className="text-sm text-gray-400">Projected Monthly Revenue</p>
+                        <p className="text-2xl font-bold text-green-400">${totalMonthlyRevenue.toLocaleString()}</p>
+                        <p className="text-xs text-gray-500">Based on sliders above</p>
                     </div>
                     <div className="p-4 bg-gray-800/50 rounded-lg">
-                        <p className="text-sm text-gray-400">Year 3 Target</p>
-                        <p className="text-2xl font-bold text-blue-400">$25M</p>
-                        <p className="text-xs text-gray-500">Market penetration</p>
+                        <p className="text-sm text-gray-400">Projected Annual Revenue</p>
+                        <p className="text-2xl font-bold text-blue-400">${totalAnnualRevenue.toLocaleString()}</p>
+                        <p className="text-xs text-gray-500">12-month run rate</p>
                     </div>
                     <div className="p-4 bg-gray-800/50 rounded-lg">
-                        <p className="text-sm text-gray-400">Year 5 Target</p>
-                        <p className="text-2xl font-bold text-purple-400">$100M</p>
-                        <p className="text-xs text-gray-500">Market leadership</p>
+                        <p className="text-sm text-gray-400">5-Year Potential</p>
+                        <p className="text-2xl font-bold text-purple-400">${fiveYearPotential.toLocaleString()}</p>
+                        <p className="text-xs text-gray-500">Factoring in growth</p>
                     </div>
                 </div>
             </div>

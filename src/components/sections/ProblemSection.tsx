@@ -5,74 +5,74 @@ import { Database, Clock, Workflow, TrendingUp, Target, CheckCircle, FastForward
 import React, { useState } from 'react';
 
 // Constants for Problem Section configuration
-const PROBLEM_CONFIG = {
-  sectionId: "problem",
-  title: "Accelerating Medicine, from Data to Discovery",
-  subtitle: "The CrisPRO™ platform uses AI to solve the biggest challenges in developing new therapies, turning years of work into weeks.",
+export const PROBLEM_CONFIG = {
+  sectionId: "the-conquest",
+  title: "From a Broken System to Absolute Dominance",
+  subtitle: "The CrisPRO Intelligence Platform was not built to compete. It was built to make the competition obsolete by solving the fundamental failures of therapeutic R&D.",
   challenges: [
     {
       icon: Database,
       problem: {
-        title: 'Data Overload',
-        description: "Scientists are buried in a mountain of complex genomic and clinical data. Finding the right signals is like searching for a needle in a haystack. Manually sifting through genomic data to find disease-driving variants is immensely time-consuming and risks  missing critical insights, delaying the first step of any therapeutic program."
+        title: 'Data Overload & Ambiguity',
+        description: "The old guard is buried in a mountain of genomic data they can't interpret. They search for needles in haystacks, wasting months on manual analysis and delivering 'Variants of Uncertain Significance' that paralyze decision-making."
       },
       transformation: {
-        title: 'Instant, AI-Powered Variant Analysis (Powered by Evo 2)',
+        title: 'Our Solution: AI-Powered Target Annihilation',
         stats: [
-          "CrisPRO's AI Co-Pilots instantly analyzes functional impact of genetic variants pinpointing the most promising targets for intervention",
-          "Instantly identify the functional impact of genetic variants with over 90% accuracy, based on Evo 2's state-of-the-art performance.",
-          "Process patient genomic data cohorts in minutes, not months."
+          "Our Zeta Oracle annihilates VUS, providing definitive functional impact scores with >95% accuracy.",
+          "Instantly identify the causal drivers of disease, not just correlations.",
+          "Transform entire patient cohorts from raw data into actionable intelligence in minutes, not months."
         ]
       }
     },
     {
       icon: Clock,
       problem: {
-        title: 'Slow & Expensive Design',
-        description: "Designing and testing new drugs and gene therapies is a slow, expensive, trial-and-error process. For rare diseases, this timeline can mean the difference between a viable therapy and none at all."
+        title: 'The Slow & Expensive Guessing Game',
+        description: "Their R&D is a multi-year, multi-billion dollar gamble based on trial-and-error. They physically test a handful of candidates, praying one works. This is not science; it's  roulette."
       },
       transformation: {
-        title: 'Accelerated Therapeutic Design & In Silico Validation',
+        title: 'The `In Silico` R&D Flywheel',
         stats: [
-          "AI-based mock validation trials to design and test thousands of therapeutic possibilities in minutes.",
-          "Identify the most promising candidates before they ever reach a lab.",
-          "Compress preclinical timelines from years to weeks."
+          "Execute thousands of virtual therapeutic experiments in parallel, `in silico`.",
+          "Identify and validate the top candidates with the highest probability of success before committing a single dollar to the wet lab.",
+          "Compress pre-clinical timelines from years to weeks."
         ]
       }
     },
     {
       icon: Workflow,
       problem: {
-        title: 'Disconnected Workflows: The Chasm Between Tools',
-        description: 'The journey from raw data to a viable therapeutic strategy involves a dozen disconnected tools and manual steps, creating a chasm between data, insight, and action.'
+        title: 'The Chasm of Disconnected Tools',
+        description: 'Their researchers wrestle with a dozen disconnected, primitive tools. This fragmented workflow creates chaos, invites error, and grinds progress to a halt.'
       },
       transformation: {
-        title: 'Unified Workflow with an Agentic Co-Pilot',
+        title: 'A Unified Command & Control Center',
         stats: [
-          "Eliminate tool-switching and reduce manual data handling by up to 70% through intelligent automation and a unified interface.",
-          "Seamlessly integrate public and proprietary data, from genomic databases to experimental results, all within a single environment.",
-          "Let the AI co-pilot manage complex, multi-step analyses, allowing your team to focus on scientific strategy, not software logistics."
+          "Annihilate tool-switching with a single, unified interface for the entire R&D lifecycle.",
+          "Our agentic co-pilot manages complex, multi-step analyses, freeing your team to focus on strategic conquest, not software logistics.",
+          "Seamlessly fuse all data sources—genomic, clinical, experimental—into one strategic view."
         ]
       }
     },
     {
       icon: TrendingUp,
       problem: {
-        title: 'The Scaling Crisis: Meeting Unprecedented Demand',
-        description: 'The need for novel, effective, and safe genetic medicines is growing exponentially. Traditional R&D workflows cannot scale to meet this urgent demand.'
+        title: 'An Inability to Scale',
+        description: 'The demand for novel genetic medicines is exponential. Their antiquated, manual R&D workflows are fundamentally incapable of meeting this demand. They cannot scale.'
       },
       transformation: {
-        title: 'AI-Native Scalability for Your Therapeutic Pipeline',
+        title: 'Our Solution: AI-Native Scalability & Dominance',
         stats: [
-          "Scale from analyzing a single variant to entire patient cohorts with the same AI-driven pipeline.",
-          "Run thousands of in silico experiments in parallel, testing more hypotheses and finding lead candidates faster than ever before.",
-          "Built on an adaptive AI architecture designed to grow with your pipeline and the evolving landscape of genomic medicine."
+          "Scale from analyzing a single variant to simulating therapies for entire patient cohorts with the same automated pipeline.",
+          "Our serverless architecture provides infinite computational firepower on demand.",
+          "Built to dominate the evolving landscape of genomic medicine."
         ]
       }
     }
   ],
-  summaryTitle: "From Bottleneck to Breakthrough",
-  summaryText: "The CrisPRO™ Intelligence Platform transforms therapeutic R&D. We replace slow, manual processes with an AI-powered, unified system that accelerates the journey from initial idea to validated therapeutic candidate.",
+  summaryTitle: "From Bottleneck to Blitzkrieg",
+  summaryText: "The CrisPRO Intelligence Platform transforms therapeutic R&D. We replace the slow, manual, and uncertain processes of the old guard with an AI-powered, unified system that achieves victory with overwhelming speed and certainty.",
   animationVariants: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -86,7 +86,7 @@ const ProblemSection = () => {
   const currentChallenge = PROBLEM_CONFIG.challenges[activeChallengeIndex];
 
   return (
-    <section id={PROBLEM_CONFIG.sectionId} className="py-16 md:py-24 bg-slate-900 text-white">
+    <section id={PROBLEM_CONFIG.sectionId} className="py-16 md:py-24 bg-background text-foreground">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
           <motion.div
@@ -96,7 +96,7 @@ const ProblemSection = () => {
             transition={PROBLEM_CONFIG.animationVariants.transition()}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient">{PROBLEM_CONFIG.title}</h2>
-            <p className="text-lg text-slate-300">
+            <p className="text-lg text-muted-foreground">
               {PROBLEM_CONFIG.subtitle}
             </p>
           </motion.div>
@@ -111,11 +111,11 @@ const ProblemSection = () => {
               className={`p-4 rounded-lg cursor-pointer transition-all duration-200 flex items-center gap-3 ${
                 activeChallengeIndex === index
                   ? 'bg-slate-700 shadow-md ring-2 ring-primary'
-                  : 'bg-slate-800 hover:bg-slate-700/70'
+                  : 'bg-card hover:bg-slate-700/70'
               }`}
             >
-              <challenge.icon className={`w-6 h-6 shrink-0 ${activeChallengeIndex === index ? 'text-primary' : 'text-slate-400'}`} />
-              <h5 className={`font-semibold text-sm ${activeChallengeIndex === index ? 'text-primary' : 'text-slate-100'}`}>
+              <challenge.icon className={`w-6 h-6 shrink-0 ${activeChallengeIndex === index ? 'text-primary' : 'text-muted-foreground'}`} />
+              <h5 className={`font-semibold text-sm ${activeChallengeIndex === index ? 'text-primary' : 'text-foreground'}`}>
                 {challenge.problem.title}
               </h5>
             </div>
@@ -143,7 +143,7 @@ const ProblemSection = () => {
                   <h4 className="font-semibold text-lg text-red-200 leading-tight">{currentChallenge.problem.title}</h4>
                 </div>
               </div>
-              <p className="text-slate-300 text-sm leading-relaxed ml-14">{currentChallenge.problem.description}</p>
+              <p className="text-muted-foreground text-sm leading-relaxed ml-14">{currentChallenge.problem.description}</p>
             </div>
 
             {/* Solution Details */}
@@ -157,7 +157,7 @@ const ProblemSection = () => {
                   <h4 className="font-semibold text-lg text-green-200 leading-tight">{currentChallenge.transformation.title}</h4>
                 </div>
               </div>
-              <ul className="space-y-3 text-slate-300 text-sm ml-14">
+              <ul className="space-y-3 text-muted-foreground text-sm ml-14">
                 {currentChallenge.transformation.stats.map((stat, i) => (
                   <li key={i} className="flex items-start">
                     <CheckCircle className="flex-shrink-0 w-4 h-4 text-green-400 mr-2.5 mt-1" />
@@ -174,13 +174,13 @@ const ProblemSection = () => {
           whileInView={PROBLEM_CONFIG.animationVariants.animate}
           viewport={{ once: true }}
           transition={PROBLEM_CONFIG.animationVariants.transition(0.4)}
-          className="mt-16 p-8 md:p-10 bg-gradient-to-r from-primary to-blue-700 text-white rounded-xl max-w-4xl mx-auto text-center shadow-2xl"
+          className="mt-16 p-8 md:p-10 bg-gradient-to-r from-primary to-blue-700 text-primary-foreground rounded-xl max-w-4xl mx-auto text-center shadow-2xl"
         >
           <div className="flex justify-center text-4xl text-sky-300 mb-4">
             <FastForward />
           </div>
-          <h3 className="text-2xl font-semibold mb-4 text-white">{PROBLEM_CONFIG.summaryTitle}</h3>
-          <p className="text-slate-200 text-lg leading-relaxed">
+          <h3 className="text-2xl font-semibold mb-4 text-primary-foreground">{PROBLEM_CONFIG.summaryTitle}</h3>
+          <p className="text-blue-200 text-lg leading-relaxed">
             {PROBLEM_CONFIG.summaryText}
           </p>
         </motion.div>

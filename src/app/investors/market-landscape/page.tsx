@@ -3,6 +3,7 @@ import { Header } from '@/components/competitor-analysis/Header';
 import { StrategicMatrix } from '@/components/competitor-analysis/StrategicMatrix';
 import { CompetitorTabs } from '@/components/competitor-analysis/CompetitorTabs';
 import { IntelligenceDirectives } from '@/components/competitor-analysis/IntelligenceDirectives';
+import ContactSection from '@/components/sections/ContactSection';
 
 const CompetitorAnalysisPage = () => {
     return (
@@ -11,6 +12,9 @@ const CompetitorAnalysisPage = () => {
                 <Header />
                 <StrategicMatrix />
                 <CompetitorTabs />
+                <div className="my-16">
+                  <ContactSection />
+                </div>
                 {/* <IntelligenceDirectives /> */}
             </div>
         </div>

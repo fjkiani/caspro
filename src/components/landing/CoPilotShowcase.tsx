@@ -33,7 +33,7 @@ export const CoPilotShowcase = () => {
               <h3 className="text-xl font-bold text-white">{pilot.pageTitle.split(':')[0]}</h3>
             </div>
             <p className="text-slate-300 flex-grow mb-6">{pilot.heroSubtitle}</p>
-            <Link href={`/co-pilot-app/${pilot.slug}`}>
+            <Link href={`/platform/${pilot.slug}`}>
               <span className="inline-flex items-center font-semibold text-primary hover:text-primary/80">
                 Learn More <ArrowRight size={20} className="ml-2" />
               </span>

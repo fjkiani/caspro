@@ -9,23 +9,36 @@ import DoubleDnaHelix from '@/components/ui/DoubleDnaHelix';
 import DnaBasePairStrip from '@/components/ui/DnaBasePairStrip';
 
 // Constants for Contact Section configuration
-const CONTACT_CONFIG = {
+export const CONTACT_CONFIG = {
   sectionId: 'contact',
   className: 'section bg-gradient-to-br from-slate-800 via-blue-900 to-indigo-900 text-white',
   animationDelay: 0.2,
-  titleText: 'Ready to Redefine Precision Medicine?',
-  subtitleText: 'Request a demo to see how our AI Co-Pilot platform can accelerate your research, enhance clinical decisions, and unlock the full potential of your biomedical data.',
-  ctaText: 'Request a Personalized Demo',
-  hintText: 'Our team typically responds within one business day.',
-  formTitle: 'Schedule a Consultation',
-  partnerTitle: "Why Leading Organizations will love CrisPRO",
+  
+  // The title is a command, not a question.
+  titleText: 'Seize Your Unfair Advantage',
+  
+  // The subtitle is a direct statement of what a briefing entails.
+  subtitleText: 'The war against cancer is being won with superior intelligence. Schedule a strategic briefing to witness how our AI command and control platform can provide your organization with an insurmountable advantage.',
+  
+  // The CTA is a call to action for commanders.
+  ctaText: 'Request Strategic Briefing',
+  
+  hintText: 'Our strategic command will respond within one business day.',
+  formTitle: 'Initiate Contact',
+  
+  // We don't have "partners." We have allies who leverage our power.
+  partnerTitle: "Why Market Leaders Deploy CrisPRO",
+  
+  // Benefits are framed as tactical advantages.
   partnerBenefits: [
-      'Leverage a unified platform with world-class AI for genomics, imaging, and clinical data.',
-      'Dramatically accelerate timelines for both therapeutic R&D and clinical decision-making.',
-      'Operate on a secure, compliant (HIPAA & GDPR), and infinitely scalable cloud architecture.',
-      'Partner with our dedicated experts in AI, biology, and clinical informatics.'
+      'Deploy a single, unified command center for genomics, imaging, and clinical data warfare.',
+      'Annihilate R&D and clinical decision-making timelines with overwhelming computational force.',
+      'Operate on a secure, compliant, and infinitely scalable architecture built for total domination.',
+      'Gain access to a dedicated cadre of AI, biology, and clinical informatics strategists.'
   ],
-  socialProofTitle: 'Become a Pioneer in Oncology, Therapeutic Design, and Genomic Medicine',
+
+  // Social proof is about joining the victors.
+  socialProofTitle: 'Join the Vanguard of AI-Driven Medicine',
   socialProofOrganizations: [
     'Dana-Farber Cancer Institute', // Represents top-tier clinical/research - for PrecisionRad
     'Vertex Pharmaceuticals',       // Represents biotech/pharma - for CrisPRO
@@ -36,22 +49,21 @@ const CONTACT_CONFIG = {
   animationVariants: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: (delay: number = 0) => ({ duration: 0.6, delay })
+    transition: (delay = 0) => ({ duration: 0.6, delay })
   }
 };
 
-// Form fields configuration
-const FORM_FIELDS = [
+// Form fields remain functional but are part of a more powerful frame.
+export const FORM_FIELDS = [
   { id: 'name', label: 'Full Name', type: 'text', placeholder: 'Dr. Jane R. Smith', icon: React.createElement(FiUser) },
   { id: 'email', label: 'Work Email', type: 'email', placeholder: 'jane.smith@institution.org', icon: React.createElement(FiMail) },
   { id: 'organization', label: 'Organization / Institution', type: 'text', placeholder: 'Memorial Cancer Institute', icon: React.createElement(FiBriefcase) },
-  { id: 'role', label: 'Your Role / Specialty', type: 'text', placeholder: 'Clinical Oncologist, Cancer Researcher, etc.', icon: React.createElement(FiAward) }, // FiAward might be better for specialty
+  { id: 'role', label: 'Your Role / Specialty', type: 'text', placeholder: 'Clinical Oncologist, Cancer Researcher, etc.', icon: React.createElement(FiAward) },
 ];
-
 const MESSAGE_FIELD = {
   id: 'message',
   label: 'Specific Interests or Questions (Optional)',
-  placeholder: 'e.g., Interested in Evo2 for variant interpretation, AlphaFold 3 for structural analysis, or specific cancer types...',
+  placeholder: 'e.g., Interested in variant interpretation, structural analysis, or specific cancer types...',
   rows: 4,
   icon: React.createElement(FiMessageSquare)
 };
@@ -207,11 +219,11 @@ const ContactSection = () => {
             <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
               {FORM_FIELDS.map((field) => (
                 <div key={field.id} className="relative">
-                  <label htmlFor={field.id} className="block text-sm font-medium mb-1 text-slate-700">
+                  <label htmlFor={field.id} className="block text-sm font-medium mb-1 text-foreground/80">
                     {field.label}
                   </label>
                   <div className="relative mt-1">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted-foreground">
                       {field.icon}
                     </div>
                     <input
@@ -219,7 +231,7 @@ const ContactSection = () => {
                       id={field.id}
                       name={field.id}
                       onChange={handleChange}
-                      className="w-full pl-10 pr-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-shadow shadow-sm focus:shadow-md"
+                      className="bg-background/50 w-full pl-10 pr-4 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring transition-shadow shadow-sm focus:shadow-md text-foreground placeholder:text-muted-foreground"
                       placeholder={field.placeholder}
                       required
                     />
@@ -228,11 +240,11 @@ const ContactSection = () => {
               ))}
               
               <div className="relative">
-                <label htmlFor={MESSAGE_FIELD.id} className="block text-sm font-medium mb-1 text-slate-700">
+                <label htmlFor={MESSAGE_FIELD.id} className="block text-sm font-medium mb-1 text-foreground/80">
                   {MESSAGE_FIELD.label}
                 </label>
                 <div className="relative mt-1">
-                  <div className="absolute top-3 left-0 pl-3 flex items-start pointer-events-none text-slate-400">
+                  <div className="absolute top-3 left-0 pl-3 flex items-start pointer-events-none text-muted-foreground">
                     {MESSAGE_FIELD.icon}
                   </div>
                   <textarea
@@ -240,29 +252,27 @@ const ContactSection = () => {
                     name={MESSAGE_FIELD.id}
                     rows={MESSAGE_FIELD.rows}
                     onChange={handleChange}
-                    className="w-full pl-10 pr-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-shadow shadow-sm focus:shadow-md"
+                    className="bg-background/50 w-full pl-10 pr-4 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring transition-shadow shadow-sm focus:shadow-md text-foreground placeholder:text-muted-foreground"
                     placeholder={MESSAGE_FIELD.placeholder}
-                  ></textarea>
+                  />
                 </div>
               </div>
               
-              <button 
-                type="submit" 
-                className="w-full flex items-center justify-center gap-2 py-3 text-base bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Sending...' : CONTACT_CONFIG.ctaText} <FiArrowRight />
-              </button>
-              
               {submitStatus.message && (
-                <div className={`mt-4 text-center text-sm ${submitStatus.type === 'success' ? 'text-green-600' : 'text-red-600'}`}>
+                <div className={`p-3 rounded-lg text-sm text-center ${submitStatus.type === 'success' ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'}`}>
                   {submitStatus.message}
                 </div>
               )}
 
-              <p className="text-center text-xs text-slate-500 mt-4">
-                {CONTACT_CONFIG.hintText}
-              </p>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Sending...' : CONTACT_CONFIG.ctaText}
+                {!isSubmitting && <FiArrowRight size={20} />}
+              </button>
+              <p className="text-xs text-center text-muted-foreground mt-3">{CONTACT_CONFIG.hintText}</p>
             </form>
           </motion.div>
         </div>

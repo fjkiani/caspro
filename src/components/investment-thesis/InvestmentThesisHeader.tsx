@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Header = () => (
+export const InvestmentThesisHeader = () => (
     <header className="text-center my-16">
         <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">
             A New Paradigm in Oncology:<br />

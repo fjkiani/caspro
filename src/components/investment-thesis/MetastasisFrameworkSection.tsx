@@ -149,34 +149,34 @@ const FrameworkStepCard = ({
     onToggle: () => void
 }) => (
     <div 
-        className={`p-4 bg-gray-800 border-2 rounded-lg transition-all duration-300 cursor-pointer transform hover:scale-105 hover:shadow-lg ${bgColor} ${borderColor}`}
+        className={`p-6 bg-slate-800 border-2 rounded-lg transition-all duration-300 cursor-pointer transform hover:scale-105 hover:shadow-lg ${bgColor} ${borderColor}`}
         onClick={onToggle}
     >
-        <div className="flex items-start justify-between mb-3">
-            <div className="flex items-center space-x-3">
-                <div className={`text-2xl font-bold ${color}`}>{number}</div>
-                <Icon className={`w-6 h-6 ${color}`} />
+        <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center space-x-4">
+                <div className={`text-3xl font-bold ${color}`}>{number}</div>
+                <Icon className={`w-8 h-8 ${color}`} />
             </div>
             {isExpanded ? 
-                <ChevronDown className="w-5 h-5 text-gray-400 transition-transform duration-200" /> : 
-                <ChevronRight className="w-5 h-5 text-gray-400 transition-transform duration-200" />
+                <ChevronDown className="w-6 h-6 text-gray-400 transition-transform duration-200" /> : 
+                <ChevronRight className="w-6 h-6 text-gray-400 transition-transform duration-200" />
             }
         </div>
         
-        <div>
-            <h4 className="font-bold text-white mb-2">{name}</h4>
-            <p className="text-gray-400 text-sm mb-3">{strategy}</p>
+        <div className="min-h-[100px]">
+            <h4 className="text-lg font-semibold text-white mb-2">{name}</h4>
+            <p className="text-base text-gray-300 leading-relaxed">{strategy}</p>
             
             {isExpanded && (
-                <div className="animate-fade-in space-y-3 border-t border-gray-700 pt-3">
-                    <p className="text-gray-300 text-sm">{details.description}</p>
+                <div className="animate-fade-in space-y-4 border-t border-slate-700 pt-4 mt-4">
+                    <p className="text-base text-gray-300">{details.description}</p>
                     
                     <div>
-                        <h5 className="font-semibold text-white text-sm mb-1">Key Techniques:</h5>
-                        <ul className="text-xs text-gray-400 space-y-1">
+                        <h5 className="font-semibold text-white text-sm mb-2">Key Techniques:</h5>
+                        <ul className="text-sm text-gray-300 space-y-1.5">
                             {details.techniques.map((technique: string, idx: number) => (
                                 <li key={idx} className="flex items-center space-x-2">
-                                    <div className={`w-1 h-1 rounded-full ${color.replace('text-', 'bg-')}`}></div>
+                                    <div className={`w-1.5 h-1.5 rounded-full ${color.replace('text-', 'bg-')}`}></div>
                                     <span>{technique}</span>
                                 </li>
                             ))}
@@ -184,10 +184,10 @@ const FrameworkStepCard = ({
                     </div>
                     
                     <div>
-                        <h5 className="font-semibold text-white text-sm mb-1">API Endpoints:</h5>
-                        <div className="flex flex-wrap gap-1">
+                        <h5 className="font-semibold text-white text-sm mb-2">API Endpoints:</h5>
+                        <div className="flex flex-wrap gap-2">
                             {details.endpoints.map((endpoint: string, idx: number) => (
-                                <span key={idx} className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">
+                                <span key={idx} className="text-sm bg-gray-700 text-gray-300 px-2.5 py-1 rounded-md">
                                     {endpoint}
                                 </span>
                             ))}
@@ -224,29 +224,31 @@ export const MetastasisFrameworkSection = () => {
 
     return (
         <section className="mb-20">
-            <SectionHeader
-                title="2.0 The 8-Step Metastasis Framework: Our Clinical Roadmap"
-                subtitle="Our platform directly maps its analytical and generative capabilities to each critical step of cancer metastasis, providing a comprehensive, stage-by-stage intervention strategy."
-            />
-            
-            <div className="text-center mb-8">
-                <button
-                    onClick={toggleAll}
-                    className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-medium"
-                >
-                    {showAll ? 'Collapse All' : 'Expand All Details'}
-                </button>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {frameworkSteps.map(step => (
-                    <FrameworkStepCard 
-                        key={step.number} 
-                        {...step} 
-                        isExpanded={expandedCards.has(step.number)}
-                        onToggle={() => toggleCard(step.number)}
-                    />
-                ))}
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-10">
+                <SectionHeader
+                    title="The 8-Step Metastasis Framework: Our Clinical Roadmap"
+                    subtitle="Our platform directly maps its analytical and generative capabilities to each critical step of cancer metastasis, providing a comprehensive, stage-by-stage intervention strategy."
+                />
+                
+                <div className="text-center mb-8">
+                    <button
+                        onClick={toggleAll}
+                        className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-medium"
+                    >
+                        {showAll ? 'Collapse All' : 'Expand All Details'}
+                    </button>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {frameworkSteps.map(step => (
+                        <FrameworkStepCard 
+                            key={step.number} 
+                            {...step} 
+                            isExpanded={expandedCards.has(step.number)}
+                            onToggle={() => toggleCard(step.number)}
+                        />
+                    ))}
+                </div>
             </div>
             
             <div className="mt-8 p-4 bg-gray-800/50 border border-gray-700 rounded-lg">

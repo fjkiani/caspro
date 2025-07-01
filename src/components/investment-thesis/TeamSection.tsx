@@ -165,7 +165,7 @@ export const TeamSection = () => {
         {
             name: "Fahad Kiani",
             role: "Chief Technical and Executive Officer & Co-Founder",
-            experience: 12,
+            experience: 6,
             bio: "Fahad is a seasoned entrepreneur with a passion for using technology to improve healthcare. He is the co-founder of Jedilabs.org, a non-profit organization dedicated to advancing AI and ML in healthcare. Previosuly was a Senior Solutions Engineer at Talend, supporting enterprise customers around data integration and data governance. Led successful exits of 1stDibs and iMedicare as a founding team member.",
             skills: ["CRISPR", "Prompt Engineering", "Computational Biology", "Oncology", "Teaching"],
             skillLevels: [
@@ -190,7 +190,7 @@ export const TeamSection = () => {
         {
             name: "Rahima Nayeem",
             role: "Chief Clinical Officer & Co-Founder",
-            experience: 10,
+            experience: 8,
             bio: "Dr. Rahima Nayeem is an internist in  New York and is affiliated with North Shore University Hospital at Northwell Health. She received her medical degree from State University of New York Downstate Medical Center College of Medicine and has been in practice between 6-10 years",
             skills: ["Life Science", "Chemistry", "Patient Care", "Clinical Research"],
             skillLevels: [

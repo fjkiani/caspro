@@ -89,12 +89,23 @@ Replace `@crispro_ai` in `layout.tsx` with your actual Twitter handle.
 - `/agents`
 - `/blog`
 - `/careers`
-- `/co-pilot-app` + sub-routes
+- `/platform` + sub-routes
 - `/competitor-analysis`
 - `/genome-editing`
 - `/investment-thesis`
 - `/knowledge-graph`
 - `/visualization-demo`
+- `/investors/thesis`
+- `/investors/market-landscape`
 - Legal pages (privacy, terms, etc.)
+
+### Co-Pilot Application Pages
+
+-   `/platform` + sub-routes
+-   `/doctrine` + sub-routes
+
+### Other Key Pages
+
+-   `/blog` and individual blog posts
 
 The sitemap will be automatically updated when you add new routes to your application. 
