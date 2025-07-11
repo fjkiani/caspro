@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { modules } from '@/data/learn/modules';
 import Link from 'next/link';
@@ -9,6 +7,13 @@ interface ModulePageProps {
   params: {
     moduleSlug: string;
   };
+}
+
+// Generate static params for all modules
+export async function generateStaticParams() {
+  return modules.map(module => ({
+    moduleSlug: module.slug,
+  }));
 }
 
 const ModulePage: React.FC<ModulePageProps> = ({ params }) => {

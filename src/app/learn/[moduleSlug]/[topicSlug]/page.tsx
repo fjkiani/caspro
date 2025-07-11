@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { modules } from '@/data/learn/modules';
@@ -10,6 +8,22 @@ interface TopicPageProps {
     moduleSlug: string;
     topicSlug: string;
   };
+}
+
+// Generate static params for all topics
+export async function generateStaticParams() {
+  const params: { moduleSlug: string; topicSlug: string }[] = [];
+  
+  modules.forEach(module => {
+    module.topics.forEach(topic => {
+      params.push({
+        moduleSlug: module.slug,
+        topicSlug: topic.slug,
+      });
+    });
+  });
+  
+  return params;
 }
 
 const TopicPage: React.FC<TopicPageProps> = ({ params }) => {
