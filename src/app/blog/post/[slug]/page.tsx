@@ -27,20 +27,7 @@ interface PostPageProps {
   };
 }
 
-// Generate static params for all blog posts
-export async function generateStaticParams() {
-  try {
-    const { getPosts } = await import('@/services');
-    const posts = await getPosts();
-    
-    return posts.map((post: any) => ({
-      slug: post.node.slug,
-    }));
-  } catch (error) {
-    console.error('Error generating static params for blog posts:', error);
-    return [];
-  }
-}
+
 
 export default async function PostDetailPage({ params }: PostPageProps) {
   const { slug } = params;

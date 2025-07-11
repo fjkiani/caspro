@@ -1,3 +1,7 @@
+'use client';
+
+export const dynamic = 'force-dynamic';
+
 import React from 'react';
 import { modules } from '@/data/learn/modules';
 import Link from 'next/link';
@@ -9,12 +13,7 @@ interface ModulePageProps {
   };
 }
 
-// Generate static params for all modules
-export async function generateStaticParams() {
-  return modules.map(module => ({
-    moduleSlug: module.slug,
-  }));
-}
+
 
 const ModulePage: React.FC<ModulePageProps> = ({ params }) => {
   const { moduleSlug } = params;

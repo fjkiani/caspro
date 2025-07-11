@@ -5,9 +5,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Static export for Netlify
-  output: 'export',
-  distDir: 'out',
+  // Use standalone for Netlify with dynamic rendering
+  output: 'standalone',
+  experimental: {
+    outputFileTracingRoot: process.cwd(),
+  },
 };
 
 module.exports = nextConfig; 
