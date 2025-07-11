@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { modules } from '@/data/learn/modules';
 import Link from 'next/link';
