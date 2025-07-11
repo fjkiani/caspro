@@ -45,6 +45,11 @@ export const NAV_LINKS = [
     subLinks: doctrineSubLinks,
   },
   {
+    href: '/learn',
+    label: 'Learn',
+    icon: <BookOpen className="inline-block h-4 w-4" />,
+  },
+  {
     href: '/blog',
     label: 'Blog',
     icon: <PenTool className="inline-block h-4 w-4" />,
@@ -130,7 +135,10 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navClass = isScrolled
+  // Check if we're on a learn page (light background)
+  const isLearnPage = pathname.startsWith('/learn');
+  
+  const navClass = isScrolled || isLearnPage
     ? 'bg-slate-900/80 backdrop-blur-lg border-b border-slate-700/50'
     : 'bg-transparent';
 

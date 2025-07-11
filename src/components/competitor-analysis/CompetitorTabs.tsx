@@ -16,9 +16,9 @@ const competitors: Record<string, {
     "Foundation Medicine": {
         threat: "high",
         threatScore: 85,
-        assessment: "The Incumbent Giant. Foundation Medicine has a commanding lead in comprehensive genomic profiling (CGP), but their strength is also their weakness—they are wedded to the old paradigm of \"test, report, and hope.\"",
-        capabilities: "Primary Weapons: `FoundationOne CDx` (324 genes), `FoundationOne Liquid CDx` (liquid biopsy), `FoundationACT` (tumor-normal sequencing). Core Technology: Comprehensive genomic profiling, FDA-approved companion diagnostics, massive clinical database.",
-        weaknesses: `<ul class="list-disc list-inside space-y-2 text-gray-300"><li><strong class="text-red-400">VUS Paralysis:</strong> They generate more VUS than anyone but offer no resolution pathway.</li><li><strong class="text-red-400">Reactive Reporting:</strong> They tell you what's broken after it's already broken.</li><li><strong class="text-red-400">No Therapeutic Design:</strong> They identify targets but can't design solutions.</li><li><strong class="text-red-400">Legacy Infrastructure:</strong> Built for the "sequence and pray" era, not the "design and deploy" future.</li></ul>`,
+        assessment: "The Established Leader. Foundation Medicine has built a strong position in comprehensive genomic profiling (CGP) with proven clinical adoption and regulatory approval. Their focus on diagnostic excellence provides a solid foundation, though it represents a different approach from our predictive intervention model.",
+        capabilities: "Core Products: `FoundationOne CDx` (324 genes), `FoundationOne Liquid CDx` (liquid biopsy), `FoundationACT` (tumor-normal sequencing). Core Technology: Comprehensive genomic profiling, FDA-approved companion diagnostics, extensive clinical database with strong regulatory validation.",
+        weaknesses: `<ul class="list-disc list-inside space-y-2 text-gray-300"><li><strong class="text-orange-400">VUS Reporting:</strong> Strong at identifying variants but limited tools for VUS interpretation and resolution.</li><li><strong class="text-orange-400">Diagnostic Focus:</strong> Excels at characterizing existing tumors rather than predicting future behavior.</li><li><strong class="text-orange-400">Treatment Matching:</strong> Identifies potential targets but doesn't design custom therapeutic solutions.</li><li><strong class="text-orange-400">Established Infrastructure:</strong> Mature platform optimized for current workflows rather than next-generation approaches.</li></ul>`,
         marketCap: "$1.2B",
         founded: "2009",
         employees: "1,400+"
@@ -26,9 +26,9 @@ const competitors: Record<string, {
     "Caris Life Sciences": {
         threat: "medium",
         threatScore: 65,
-        assessment: "The Molecular Intelligence Specialist. Caris has built a reputation around \"molecular intelligence,\" but they remain fundamentally limited by their reliance on correlative, not causative, insights.",
-        capabilities: "Primary Weapons: `Caris Molecular Intelligence` (multi-platform profiling), `WholeGenome` sequencing, `MI Transcriptome` (RNA sequencing), `MI Proteome` (protein analysis). Core Technology: Multi-omic profiling, treatment matching algorithms, real-world evidence platform.",
-        weaknesses: `<ul class="list-disc list-inside space-y-2 text-gray-300"><li><strong class="text-red-400">Correlation Without Causation:</strong> They find patterns but can't explain mechanisms.</li><li><strong class="text-red-400">Treatment Matching vs. Treatment Design:</strong> They match existing drugs, we design new ones.</li><li><strong class="text-red-400">Data Rich, Insight Poor:</strong> Massive datasets with limited actionable intelligence.</li><li><strong class="text-red-400">No Predictive Power:</strong> They tell you what worked for others, not what will work for you.</li></ul>`,
+        assessment: "The Multi-Omic Specialist. Caris has developed strong capabilities in molecular intelligence through comprehensive multi-platform profiling. Their approach emphasizes broad molecular characterization and treatment matching based on real-world evidence.",
+        capabilities: "Core Products: `Caris Molecular Intelligence` (multi-platform profiling), `WholeGenome` sequencing, `MI Transcriptome` (RNA sequencing), `MI Proteome` (protein analysis). Core Technology: Multi-omic profiling, treatment matching algorithms, real-world evidence platform with broad molecular coverage.",
+        weaknesses: `<ul class="list-disc list-inside space-y-2 text-gray-300"><li><strong class="text-orange-400">Pattern Recognition Focus:</strong> Excellent at identifying molecular patterns but limited mechanistic interpretation capabilities.</li><li><strong class="text-orange-400">Treatment Matching Approach:</strong> Focuses on matching existing therapies rather than designing novel interventions.</li><li><strong class="text-orange-400">Data Volume vs. Actionability:</strong> Comprehensive datasets that may require additional interpretation for clinical decision-making.</li><li><strong class="text-orange-400">Retrospective Analysis:</strong> Primarily uses historical data rather than predictive modeling for future outcomes.</li></ul>`,
         marketCap: "Private (~$2B valuation)",
         founded: "2008",
         employees: "1,000+"
@@ -36,9 +36,9 @@ const competitors: Record<string, {
     "Guardant Health": {
         threat: "medium",
         threatScore: 70,
-        assessment: "The Liquid Biopsy Leader. Guardant dominates liquid biopsy for cancer monitoring, but they're stuck in the \"detect and react\" paradigm—finding cancer after it's already spreading.",
-        capabilities: "Primary Weapons: `Guardant360` (liquid biopsy, 74+ genes), `GuardantOMNI` (500+ genes), `GuardantINFORM` (recurrence monitoring). Core Technology: Circulating tumor DNA (ctDNA) detection, minimal residual disease monitoring, resistance mutation tracking.",
-        weaknesses: `<ul class="list-disc list-inside space-y-2 text-gray-300"><li><strong class="text-red-400">Detection After the Fact:</strong> They find cancer that's already metastasizing.</li><li><strong class="text-red-400">No Intervention Capability:</strong> They can tell you cancer is spreading but can't stop it.</li><li><strong class="text-red-400">Limited Genomic Scope:</strong> Focused on known hotspots, blind to novel mechanisms.</li><li><strong class="text-red-400">Monitoring Without Prevention:</strong> They watch the fire spread instead of preventing ignition.</li></ul>`,
+        assessment: "The Liquid Biopsy Pioneer. Guardant Health has established leadership in liquid biopsy technology with strong clinical validation and adoption. Their platform excels at non-invasive monitoring and detection, representing a complementary approach to tissue-based genomics.",
+        capabilities: "Core Products: `Guardant360` (liquid biopsy, 74+ genes), `GuardantOMNI` (500+ genes), `GuardantINFORM` (recurrence monitoring). Core Technology: Circulating tumor DNA (ctDNA) detection, minimal residual disease monitoring, resistance mutation tracking with strong clinical validation.",
+        weaknesses: `<ul class="list-disc list-inside space-y-2 text-gray-300"><li><strong class="text-orange-400">Detection-Focused Approach:</strong> Excellent at identifying circulating tumor DNA but limited predictive intervention capabilities.</li><li><strong class="text-orange-400">Monitoring Specialization:</strong> Strong at tracking disease progression but doesn't design therapeutic interventions.</li><li><strong class="text-orange-400">Targeted Gene Panel:</strong> Focuses on validated hotspots rather than comprehensive genomic analysis.</li><li><strong class="text-orange-400">Reactive Framework:</strong> Optimized for monitoring existing disease rather than preventing metastatic progression.</li></ul>`,
         marketCap: "$1.8B",
         founded: "2011",
         employees: "1,200+"
@@ -46,9 +46,9 @@ const competitors: Record<string, {
     "Tempus": {
         threat: "high",
         threatScore: 80,
-        assessment: "The AI-Powered Data Aggregator. Tempus has built an impressive data moat and AI capabilities, making them our most direct competitor in the \"intelligence layer\" space.",
-        capabilities: "Primary Weapons: `Tempus xT` (648+ genes), `Tempus xF` (liquid biopsy), `Tempus xR` (RNA sequencing), `Tempus ONE` (clinical decision support). Core Technology: Multimodal AI, clinical data lake, real-world evidence generation, clinical trial matching.",
-        weaknesses: `<ul class="list-disc list-inside space-y-2 text-gray-300"><li><strong class="text-red-400">Breadth Over Depth:</strong> They analyze everything but master nothing.</li><li><strong class="text-red-400">Correlation-Based AI:</strong> Their models find patterns, ours understand mechanisms.</li><li><strong class="text-red-400">No Therapeutic Design:</strong> They optimize existing treatments, we invent new ones.</li><li><strong class="text-red-400">Data Dependency:</strong> Their insights are only as good as their historical data—we predict the future.</li></ul>`,
+        assessment: "The AI-Driven Platform. Tempus has built impressive data infrastructure and AI capabilities, establishing themselves as a significant player in the precision medicine intelligence space with strong clinical adoption and comprehensive data integration.",
+        capabilities: "Core Products: `Tempus xT` (648+ genes), `Tempus xF` (liquid biopsy), `Tempus xR` (RNA sequencing), `Tempus ONE` (clinical decision support). Core Technology: Multimodal AI, extensive clinical data lake, real-world evidence generation, clinical trial matching with broad platform integration.",
+        weaknesses: `<ul class="list-disc list-inside space-y-2 text-gray-300"><li><strong class="text-orange-400">Broad Platform Approach:</strong> Comprehensive coverage across multiple areas but may lack deep specialization in specific domains.</li><li><strong class="text-orange-400">Pattern-Based AI:</strong> Strong at identifying correlations but limited mechanistic modeling capabilities.</li><li><strong class="text-orange-400">Treatment Optimization Focus:</strong> Excels at optimizing existing treatment protocols rather than designing novel therapeutic approaches.</li><li><strong class="text-orange-400">Historical Data Reliance:</strong> Insights primarily based on retrospective analysis rather than predictive intervention modeling.</li></ul>`,
         marketCap: "$400M",
         founded: "2015",
         employees: "2,000+"
@@ -56,9 +56,9 @@ const competitors: Record<string, {
     "Flatiron Health": {
         threat: "low",
         threatScore: 40,
-        assessment: "The EHR Data Miner. Flatiron (now part of Roche) excels at extracting insights from messy clinical data, but they're fundamentally limited to retrospective analysis of what has already happened.",
-        capabilities: "Primary Weapons: `OncoEMR` (oncology-specific EHR), `OncoTrials` (clinical trial matching), Real-world data platform. Core Technology: Natural language processing, clinical data standardization, outcomes research, regulatory-grade real-world evidence.",
-        weaknesses: `<ul class="list-disc list-inside space-y-2 text-gray-300"><li><strong class="text-red-400">Backward-Looking Intelligence:</strong> They analyze what happened, we predict what will happen.</li><li><strong class="text-red-400">Process Optimization vs. Outcome Revolution:</strong> They make existing workflows more efficient, we make them obsolete.</li><li><strong class="text-red-400">No Genomic Integration:</strong> They understand patient journeys but not genomic drivers.</li><li><strong class="text-red-400">Roche Integration Challenges:</strong> Corporate bureaucracy slows innovation.</li></ul>`,
+        assessment: "The Real-World Data Specialist. Flatiron Health (now part of Roche) has developed strong capabilities in extracting insights from clinical data and electronic health records, with a focus on real-world evidence generation and clinical workflow optimization.",
+        capabilities: "Core Products: `OncoEMR` (oncology-specific EHR), `OncoTrials` (clinical trial matching), Real-world data platform. Core Technology: Natural language processing, clinical data standardization, outcomes research, regulatory-grade real-world evidence with strong healthcare integration.",
+        weaknesses: `<ul class="list-disc list-inside space-y-2 text-gray-300"><li><strong class="text-orange-400">Retrospective Analysis Focus:</strong> Excellent at analyzing historical outcomes but limited predictive capabilities.</li><li><strong class="text-orange-400">Workflow Optimization Approach:</strong> Focused on improving existing clinical processes rather than transforming treatment paradigms.</li><li><strong class="text-orange-400">Limited Genomic Integration:</strong> Strong in clinical data but less integration with molecular and genomic insights.</li><li><strong class="text-orange-400">Large Organization Dynamics:</strong> Part of Roche's broader portfolio, which may influence innovation speed and focus.</li></ul>`,
         marketCap: "Acquired by Roche ($1.9B)",
         founded: "2012",
         employees: "1,500+"
@@ -66,9 +66,9 @@ const competitors: Record<string, {
     "Ontada": {
         threat: "low",
         threatScore: 20,
-        assessment: "The Community Oncology Foot Soldier. Focused on workflow efficiency, not technological superiority.",
-        capabilities: "Primary Weapons: `iKnowMed` EHR, `Clear Value Plus` (cost/guideline visibility). Core Technology: Workflow efficiency, practice management, NCCN guideline integration.",
-        weaknesses: `<ul class="list-disc list-inside space-y-2 text-gray-300"><li><strong class="text-red-400">Workflow over Insight:</strong> They help a clinic run on time. They don't help it devise a cure.</li><li><strong class="text-red-400">Completely Reliant on External Intelligence:</strong> They are a vessel waiting to be filled. We will fill it.</li><li><strong class="text-red-400">Actionability Gap is their Business Model:</strong> They help doctors navigate the standard playbook. We write the next chapter.</li></ul>`,
+        assessment: "The Community Oncology Enabler. Ontada focuses on supporting community oncology practices with workflow optimization and practice management tools, serving an important role in healthcare delivery infrastructure.",
+        capabilities: "Core Products: `iKnowMed` EHR, `Clear Value Plus` (cost/guideline visibility). Core Technology: Workflow efficiency, practice management, NCCN guideline integration with focus on community oncology support.",
+        weaknesses: `<ul class="list-disc list-inside space-y-2 text-gray-300"><li><strong class="text-orange-400">Workflow-Centric Approach:</strong> Excellent at practice efficiency but limited advanced diagnostic or therapeutic capabilities.</li><li><strong class="text-orange-400">Platform Dependency:</strong> Relies on external intelligence sources rather than generating proprietary insights.</li><li><strong class="text-orange-400">Standard Care Focus:</strong> Optimized for current standard-of-care protocols rather than innovative treatment approaches.</li></ul>`,
         marketCap: "Private",
         founded: "2019",
         employees: "500+"
@@ -240,7 +240,7 @@ export const CompetitorTabs = () => {
                             <div className="space-y-4">
                                 <h4 className="text-lg font-semibold text-white mb-2 flex items-center space-x-2">
                                     <Shield className="w-5 h-5 text-blue-400" />
-                                    <span>Known Capabilities</span>
+                                    <span>Core Capabilities</span>
                                 </h4>
                                 <div className="p-4 bg-gray-800/50 rounded-lg">
                                     <p className="text-gray-300 text-sm" dangerouslySetInnerHTML={{ __html: activeCompetitor.capabilities }}/>
@@ -249,8 +249,8 @@ export const CompetitorTabs = () => {
                             
                             <div className="space-y-4">
                                 <h4 className="text-lg font-semibold text-white mb-2 flex items-center space-x-2">
-                                    <TrendingDown className="w-5 h-5 text-red-400" />
-                                    <span>Weaknesses & Exploitation Vectors</span>
+                                    <TrendingDown className="w-5 h-5 text-orange-400" />
+                                    <span>Strategic Differentiation Opportunities</span>
                                 </h4>
                                 <div className="p-4 bg-gray-800/50 rounded-lg">
                                     <div className="text-sm" dangerouslySetInnerHTML={{ __html: activeCompetitor.weaknesses }} />

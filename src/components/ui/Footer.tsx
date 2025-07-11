@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { FiLinkedin, FiTwitter, FiMail, FiNavigation } from 'react-icons/fi';
 import React from 'react';
 import { NAV_CATEGORIES, ROUTES } from '@/constants/routes';
+import { NAV_LINKS } from './Navbar';
 
 // Constants for Footer configuration
 const FOOTER_CONFIG = {
@@ -22,7 +23,7 @@ const FOOTER_CONFIG = {
       icon: iconMap[link.icon] || React.createElement(FiMail)
     };
   }),
-  quickLinks: NAV_CATEGORIES.QUICK_LINKS,
+  quickLinks: NAV_LINKS,
   legalLinks: NAV_CATEGORIES.LEGAL_LINKS,
   companyLinks: NAV_CATEGORIES.COMPANY_LINKS
 };
@@ -62,7 +63,7 @@ const Footer = () => {
           {/* Spacer */}
           <div className="hidden lg:block md:col-span-1"></div>
 
-          {/* Quick Links */}
+          {/* Navigation Links */}
           <div className="md:col-span-3 lg:col-span-2">
             <h4 className="text-lg font-semibold mb-5 text-white">Explore</h4>
             <ul className="space-y-3">
@@ -71,6 +72,17 @@ const Footer = () => {
                   <Link href={link.href} className="hover:text-primary transition-colors text-sm">
                     {link.label}
                   </Link>
+                  {link.subLinks && (
+                    <ul className="ml-4 mt-2 space-y-1">
+                      {link.subLinks.map(subLink => (
+                        <li key={subLink.label}>
+                          <Link href={subLink.href} className="hover:text-primary transition-colors text-xs text-slate-400">
+                            {subLink.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               ))}
             </ul>

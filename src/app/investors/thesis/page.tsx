@@ -9,25 +9,63 @@ import { BusinessModelSection } from '@/components/investment-thesis/BusinessMod
 import { TeamSection } from '@/components/investment-thesis/TeamSection';
 import CtaSection from '@/components/investment-thesis/CtaSection';
 import { InvestmentThesisHeader } from '@/components/investment-thesis/InvestmentThesisHeader';
+import InvestmentThesisLayout from '@/components/investment-thesis/InvestmentThesisLayout';
 
 const SectionDivider = () => <div className="my-20 border-t border-gray-700" />;
 
 const InvestmentThesisPage = () => {
     return (
-        <div className="min-h-screen bg-gray-950">
-            <InvestmentThesisHeader />
+        <InvestmentThesisLayout>
+            <div id="header">
+                <InvestmentThesisHeader />
+            </div>
+            
             <main className="max-w-6xl mx-auto px-4 py-12">
-                <OpportunitySection />
-                <PatientJourneySection />
-                <PillarsSection />
-                <GtmSection />
-                <DesciSection />
-                <MetastasisFrameworkSection />
-                <BusinessModelSection />
-                <TeamSection />
-                <CtaSection />
+                <section id="opportunity">
+                    <OpportunitySection />
+                    <SectionDivider />
+                </section>
+                
+                <section id="patient-journey">
+                    <PatientJourneySection />
+                    <SectionDivider />
+                </section>
+                
+                <section id="pillars">
+                    <PillarsSection />
+                    <SectionDivider />
+                </section>
+                
+                <section id="gtm">
+                    <GtmSection />
+                    <SectionDivider />
+                </section>
+                
+                <section id="desci">
+                    <DesciSection />
+                    <SectionDivider />
+                </section>
+                
+                <section id="metastasis">
+                    <MetastasisFrameworkSection />
+                    <SectionDivider />
+                </section>
+                
+                <section id="business">
+                    <BusinessModelSection />
+                    <SectionDivider />
+                </section>
+                
+                <section id="team">
+                    <TeamSection />
+                    <SectionDivider />
+                </section>
+                
+                <section id="cta">
+                    <CtaSection />
+                </section>
             </main>
-        </div>
+        </InvestmentThesisLayout>
     );
 };
 
