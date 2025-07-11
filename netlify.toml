@@ -12,11 +12,8 @@
   command = "npm run dev"
   port = 3000
 
-# Handle client-side routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Next.js redirects are handled by the plugin
+# No manual redirects needed for Next.js apps
 
 # Security headers
 [[headers]]
