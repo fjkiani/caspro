@@ -3,6 +3,11 @@
 # CrisPRO Deployment Script
 echo "🚀 Starting CrisPRO deployment..."
 
+# Check Node version
+echo "🔍 Checking Node version..."
+node_version=$(node --version)
+echo "Current Node version: $node_version"
+
 # Install dependencies
 echo "📦 Installing dependencies..."
 npm install
