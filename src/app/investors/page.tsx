@@ -1,7 +1,5 @@
 'use client';
 
-export const dynamic = 'force-dynamic';
-
 import { investorCardsData } from './data';
 import InvestorCard from './InvestorCard';
 import { Briefcase } from 'lucide-react';

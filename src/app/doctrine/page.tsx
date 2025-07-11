@@ -1,7 +1,5 @@
 'use client';
 
-export const dynamic = 'force-dynamic';
-
 import { doctrineCardsData } from './data';
 import DoctrineCard from './DoctrineCard';
 import { BookOpen } from 'lucide-react';

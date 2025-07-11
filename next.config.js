@@ -5,10 +5,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Use standalone for Netlify with dynamic rendering
-  output: 'standalone',
-  experimental: {
-    outputFileTracingRoot: process.cwd(),
+  // Force dynamic rendering
+  generateBuildId: async () => {
+    return 'build-' + Date.now();
   },
 };
 

@@ -8,6 +8,10 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
+# Functions configuration for dynamic routes
+[functions]
+  directory = ".netlify/functions"
+
 [dev]
   command = "npm run dev"
   port = 3000

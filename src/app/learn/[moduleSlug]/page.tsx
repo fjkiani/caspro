@@ -1,7 +1,5 @@
 'use client';
 
-export const dynamic = 'force-dynamic';
-
 import React from 'react';
 import { modules } from '@/data/learn/modules';
 import Link from 'next/link';
