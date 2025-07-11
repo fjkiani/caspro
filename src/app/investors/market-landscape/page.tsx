@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Header } from '@/components/competitor-analysis/Header';
 import { StrategicMatrix } from '@/components/competitor-analysis/StrategicMatrix';

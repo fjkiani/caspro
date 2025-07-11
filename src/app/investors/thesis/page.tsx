@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { OpportunitySection } from '@/components/investment-thesis/OpportunitySection';
 import { PatientJourneySection } from '@/components/investment-thesis/PatientJourneySection';
