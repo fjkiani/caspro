@@ -1,15 +1,11 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { doctrineCardsData } from './data';
 import DoctrineCard from './DoctrineCard';
-import { Metadata } from 'next';
 import { BookOpen } from 'lucide-react';
 import SectionHeader from '@/components/SectionHeader';
-
-export const metadata: Metadata = {
-    title: 'Our Doctrine | CrisPRO',
-    description: 'The core principles that drive our mission to revolutionize oncology: VUS Annihilation, Metastasis Prevention, and DeSci & IP-NFTs.',
-};
 
 const DoctrinePage = () => {
     return (

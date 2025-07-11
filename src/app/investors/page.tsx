@@ -1,15 +1,11 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { investorCardsData } from './data';
 import InvestorCard from './InvestorCard';
-import { Metadata } from 'next';
 import { Briefcase } from 'lucide-react';
 import SectionHeader from '@/components/SectionHeader';
-
-export const metadata: Metadata = {
-    title: 'Investor Relations | CrisPRO',
-    description: 'Access key documents and analysis for investors, including our complete investment thesis and a detailed market landscape analysis.',
-};
 
 const InvestorsPage = () => {
     return (

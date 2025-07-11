@@ -5,8 +5,14 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Enable static export if needed
-  // output: 'export',
+  // Force dynamic rendering for all pages to avoid SSG issues
+  experimental: {
+    appDir: true,
+    forceSwcTransforms: true,
+  },
+  // Disable static optimization
+  generateStaticParams: false,
+  dynamicParams: true,
 };
 
 module.exports = nextConfig; 
