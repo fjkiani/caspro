@@ -6,67 +6,67 @@ import React, { useState } from 'react';
 
 // Constants for Problem Section configuration
 export const PROBLEM_CONFIG = {
-  sectionId: "the-conquest",
-  title: "From a Broken System to Absolute Dominance",
-  subtitle: "The CrisPRO Intelligence Platform was not built to compete. It was built to make the competition obsolete by solving the fundamental failures of therapeutic R&D.",
+  sectionId: "the-problem",
+  title: "Addressing Critical Gaps in Oncology R&D",
+  subtitle: "CrisPRO's AI-powered platform addresses the fundamental challenges that slow down cancer research and limit therapeutic breakthroughs.",
   challenges: [
     {
       icon: Database,
       problem: {
-        title: 'Data Overload & Ambiguity',
-        description: "The old guard is buried in a mountain of genomic data they can't interpret. They search for needles in haystacks, wasting months on manual analysis and delivering 'Variants of Uncertain Significance' that paralyze decision-making."
+        title: 'Genomic Data Interpretation Challenges',
+        description: "Researchers face overwhelming amounts of genomic data with limited interpretation capabilities. Manual analysis takes months and often results in 'Variants of Uncertain Significance' (VUS) that delay clinical decision-making."
       },
       transformation: {
-        title: 'Our Solution: AI-Powered Target Annihilation',
+        title: 'AI-Powered Variant Resolution',
         stats: [
-          "Our Zeta Oracle annihilates VUS, providing definitive functional impact scores with >95% accuracy.",
-          "Instantly identify the causal drivers of disease, not just correlations.",
-          "Transform entire patient cohorts from raw data into actionable intelligence in minutes, not months."
+          "Advanced AI algorithms resolve VUS with >95% accuracy, providing definitive functional impact scores.",
+          "Identify causal disease drivers with high confidence, not just statistical correlations.",
+          "Transform patient cohort analysis from months to minutes with automated pipelines."
         ]
       }
     },
     {
       icon: Clock,
       problem: {
-        title: 'The Slow & Expensive Guessing Game',
-        description: "Their R&D is a multi-year, multi-billion dollar gamble based on trial-and-error. They physically test a handful of candidates, praying one works. This is not science; it's  roulette."
+        title: 'Lengthy & Costly Drug Development',
+        description: "Traditional R&D involves multi-year, multi-billion dollar development cycles with high failure rates. Physical testing of limited therapeutic candidates results in significant time and resource investment with uncertain outcomes."
       },
       transformation: {
-        title: 'The `In Silico` R&D Flywheel',
+        title: 'In Silico Drug Discovery Acceleration',
         stats: [
-          "Execute thousands of virtual therapeutic experiments in parallel, `in silico`.",
-          "Identify and validate the top candidates with the highest probability of success before committing a single dollar to the wet lab.",
-          "Compress pre-clinical timelines from years to weeks."
+          "Execute thousands of virtual therapeutic experiments in parallel using computational models.",
+          "Identify and validate top candidates with highest success probability before wet lab commitment.",
+          "Compress pre-clinical timelines from years to weeks through predictive modeling."
         ]
       }
     },
     {
       icon: Workflow,
       problem: {
-        title: 'The Chasm of Disconnected Tools',
-        description: 'Their researchers wrestle with a dozen disconnected, primitive tools. This fragmented workflow creates chaos, invites error, and grinds progress to a halt.'
+        title: 'Fragmented Research Workflows',
+        description: 'Researchers often work with multiple disconnected tools and platforms. This fragmented workflow creates inefficiencies, increases error rates, and slows down research progress.'
       },
       transformation: {
-        title: 'A Unified Command & Control Center',
+        title: 'Unified Research Platform',
         stats: [
-          "Annihilate tool-switching with a single, unified interface for the entire R&D lifecycle.",
-          "Our agentic co-pilot manages complex, multi-step analyses, freeing your team to focus on strategic conquest, not software logistics.",
-          "Seamlessly fuse all data sources—genomic, clinical, experimental—into one strategic view."
+          "Streamline workflows with a single, integrated interface for the entire R&D lifecycle.",
+          "AI-powered co-pilot manages complex, multi-step analyses, allowing researchers to focus on discovery.",
+          "Seamlessly integrate all data sources—genomic, clinical, experimental—into one comprehensive view."
         ]
       }
     },
     {
       icon: TrendingUp,
       problem: {
-        title: 'An Inability to Scale',
-        description: 'The demand for novel genetic medicines is exponential. Their antiquated, manual R&D workflows are fundamentally incapable of meeting this demand. They cannot scale.'
+        title: 'Scalability Limitations',
+        description: 'Growing demand for personalized genetic medicines requires scalable R&D approaches. Traditional manual workflows struggle to keep pace with the exponential growth in genomic data and therapeutic opportunities.'
       },
       transformation: {
-        title: 'Our Solution: AI-Native Scalability & Dominance',
+        title: 'AI-Native Scalable Architecture',
         stats: [
-          "Scale from analyzing a single variant to simulating therapies for entire patient cohorts with the same automated pipeline.",
-          "Our serverless architecture provides infinite computational firepower on demand.",
-          "Built to dominate the evolving landscape of genomic medicine."
+          "Scale from analyzing single variants to simulating therapies for entire patient cohorts seamlessly.",
+          "Cloud-native architecture provides on-demand computational resources for any scale of analysis.",
+          "Purpose-built to meet the evolving demands of precision genomic medicine."
         ]
       }
     }

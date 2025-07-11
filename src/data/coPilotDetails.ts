@@ -212,7 +212,7 @@ export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
       }
     ],
 
-    coreProblemIntro: "Traditional EMRs are a fucking disgrace. They are digital filing cabinets designed for billing, not for warfare. They create the very problems our platform was built to solve:",
+    coreProblemIntro: "Traditional EMRs are a disgrace. They are digital filing cabinets designed for billing, not for warfare. They create the very problems our platform was built to solve:",
     coreProblemPoints: [
       "**Data Chaos:** A disorganized flood of clinical notes, labs, pathology reports, and genomic data that makes true insight impossible.",
       "**The VUS Black Hole:** An inability to interpret the clinical significance of genomic variants, leading to diagnostic paralysis.",

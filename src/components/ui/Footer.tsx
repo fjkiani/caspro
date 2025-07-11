@@ -36,9 +36,9 @@ const Footer = () => {
   return (
     <footer className="bg-slate-900 text-slate-300 py-16">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info & Branding */}
-          <div className="md:col-span-5 lg:col-span-4">
+          <div className="md:col-span-2 lg:col-span-1">
             <Link href={ROUTES.HOME} className="flex items-center space-x-2 mb-4 group">
               <span className="text-4xl text-primary group-hover:scale-105 transition-transform duration-200">{FOOTER_CONFIG.brandEmoji}</span>
               <div>
@@ -62,11 +62,8 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Spacer */}
-          <div className="hidden lg:block md:col-span-1"></div>
-
           {/* Navigation Links */}
-          <div className="md:col-span-3 lg:col-span-2">
+          <div>
             <h4 className="text-lg font-semibold mb-5 text-white">Explore</h4>
             <ul className="space-y-3">
               {FOOTER_CONFIG.quickLinks.map(link => (
@@ -91,7 +88,7 @@ const Footer = () => {
           </div>
 
           {/* Legal & Resources */}
-          <div className="md:col-span-3 lg:col-span-2">
+          <div>
             <h4 className="text-lg font-semibold mb-5 text-white">Company</h4>
             <ul className="space-y-3">
               {FOOTER_CONFIG.legalLinks.map(link => (
@@ -111,8 +108,8 @@ const Footer = () => {
             </ul>
           </div>
           
-          {/* Contact Info - Optional direct contact, if not covered by form */}
-          <div className="md:col-span-4 lg:col-span-3 mt-8 md:mt-0">
+          {/* Contact Info */}
+          <div>
              <h4 className="text-lg font-semibold mb-5 text-white">Get In Touch</h4>
              <p className="text-sm mb-2">
                 Have questions or need support?

@@ -24,13 +24,13 @@ const ProteinModelViewer = dynamic(
 
 // Constants for Hero Section configuration
 const HERO_CONFIG = {
-  titlePart1: "The Future of Oncology",
-  titlePart2: "The Actionability Gap is a Failure: CrisPRO is the Solution",
-  subtitle: "Our AI-powered command and control platform replaces diagnostic ambiguity and R&D guesswork with definitive, actionable intelligence. We don't just analyze the battle; we forge the weapons to win it.",
-  ctaPrimaryText: "Explore The Doctrine",
-  ctaPrimaryLink: "/doctrine",
-  ctaSecondaryText: "About The Platform",
-  ctaSecondaryLink: "/platform",
+  titlePart1: "AI-Powered Metastasis Prevention",
+  titlePart2: "Transform Cancer Care from Reactive to Preventive",
+  subtitle: "CrisPRO's Oncology Co-Pilot delivers precision genomic insights, VUS resolution, and predictive analytics to help clinicians prevent metastasis before it starts. The world's first AI platform designed specifically for metastasis prevention.",
+  ctaPrimaryText: "Launch Co-Pilot",
+  ctaPrimaryLink: "/platform",
+  ctaSecondaryText: "View Investment Thesis",
+  ctaSecondaryLink: "/investors/thesis",
   keyFeatures: [
     {
       id: 'genomic',

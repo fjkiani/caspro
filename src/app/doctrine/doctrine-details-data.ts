@@ -42,54 +42,54 @@ export interface DoctrineDetail {
 export const doctrineDetailsData: Record<string, DoctrineDetail> = {
   'vus-annihilation': {
     slug: 'vus-annihilation',
-    title: 'VUS Annihilation',
-    subtitle: 'Doctrine 1',
+    title: 'VUS Resolution',
+    subtitle: 'Core Capability 1',
     vision: {
-      title: 'The Annihilation of Clinical Uncertainty',
-      content: "Our vision is to eradicate 'Variant of Uncertain Significance' from the clinical lexicon. We will transform the VUS, a symbol of the old guard's failure and a source of agonizing patient anxiety, into a definitive, actionable intelligence asset. We do not tolerate ambiguity. We deliver verdicts.",
+      title: 'Resolving Clinical Uncertainty',
+      content: "Our vision is to significantly reduce 'Variants of Uncertain Significance' in clinical practice. We transform VUS results, which create patient anxiety and clinical uncertainty, into definitive, actionable insights that enable confident clinical decision-making.",
     },
     problem: {
-      title: 'A Market Built on "Maybe"',
-      content: 'The current diagnostics industry has a dirty secret: a significant percentage of their genetic tests—up to 40% in some hereditary cancer panels—return a VUS result. This is a catastrophic failure.',
+      title: 'The VUS Challenge in Clinical Practice',
+      content: 'A significant percentage of genetic tests—up to 40% in some hereditary cancer panels—return Variants of Uncertain Significance (VUS) results, creating challenges for patients and clinicians.',
       points: [
         {
           title: 'For the Patient',
-          content: "It is a sentence of indefinite fear. They have a mutation, but no one can tell them if it's a dud or a fucking time bomb.",
+          content: "VUS results create anxiety and uncertainty. Patients have identified genetic variants but lack clear guidance on their clinical significance.",
         },
         {
           title: 'For the Clinician',
-          content: 'It is diagnostic paralysis. They have data they cannot act upon, forcing them back to imprecise, population-level risk management.',
+          content: 'VUS results limit clinical decision-making. Clinicians must rely on family history and population-level risk assessment rather than precise genetic information.',
         },
         {
           title: 'For the System',
-          content: 'It is a driver of immense wasteful spending, triggering years of unnecessary surveillance and anxiety-driven prophylactic surgeries.',
+          content: 'VUS results can lead to increased surveillance, unnecessary procedures, and healthcare costs due to uncertainty-driven medical decisions.',
         },
       ],
     },
     doctrine: {
-      title: 'The Triumvirate Threat Assessment',
-      corePhilosophy: 'We solve this problem with overwhelming computational force, orchestrated by our Command Center in a multi-layered assault. Core Philosophy: We do not rely on outdated databases of known variants. We assess every mutation from first principles using a superior understanding of biological grammar.',
+      title: 'AI-Powered Variant Classification',
+      corePhilosophy: 'We address VUS through advanced computational analysis and machine learning. Our approach evaluates every variant from first principles using comprehensive biological context rather than relying solely on existing variant databases.',
       capabilities: {
-        title: 'Key Capabilities Deployed',
+        title: 'Key Technologies',
         items: [
-          'The Zeta Oracle: Our 40B parameter discriminative AI.',
-          'Bioinformatic Analysis Engine: For high-speed, non-AI-based checks.',
+          'Advanced AI Models: Large-scale neural networks trained on genomic and functional data.',
+          'Bioinformatic Analysis Engine: High-throughput computational analysis for variant assessment.',
         ],
       },
       tacticalBreakdown: {
-        title: 'Tactical Breakdown',
+        title: 'Technical Approach',
         steps: [
           {
-            title: 'The Truncation Check (The Sieve)',
-            content: 'Before wasting a single GPU cycle, our Command Center performs a high-speed bioinformatic check. It translates the reference and mutated DNA sequences. If the mutated protein is prematurely truncated (due to a nonsense or frameshift mutation), it is instantly flagged as "Pathogenic - Catastrophic Truncation" with a maximum damage score. The mission is over. Victory is declared.',
+            title: 'Initial Classification',
+            content: 'Our system performs rapid bioinformatic analysis by comparing reference and mutated DNA sequences. Variants causing protein truncation (nonsense or frameshift mutations) are immediately classified as likely pathogenic with high confidence scores.',
           },
           {
-            title: 'The Zeta Oracle Precision Strike',
-            content: 'If the mutation is more subtle (e.g., a missense variant), it passes to the next stage. The Command Center uses our "Downstream Impact Protocol" to create a strategically sliced 4kb context window and dispatches it to the Zeta Oracle. The Oracle calculates the delta_likelihood_score (our "Zeta Score"), providing a quantitative measure of the functional damage.',
+            title: 'Advanced AI Analysis',
+            content: 'For more complex variants (such as missense mutations), our system creates comprehensive genomic context windows and applies machine learning models to calculate functional impact scores, providing quantitative measures of variant pathogenicity.',
           },
           {
-            title: 'The Verdict',
-            content: 'We replace "uncertain" with a definitive classification ("Pathogenic" or "Benign") backed by a hard, quantitative score.',
+            title: 'Clinical Classification',
+            content: 'We provide definitive variant classifications ("Pathogenic," "Likely Pathogenic," "Benign," or "Likely Benign") with confidence scores to support clinical decision-making.',
           },
         ],
       },
@@ -108,44 +108,44 @@ export const doctrineDetailsData: Record<string, DoctrineDetail> = {
   'metastasis-prevention': {
     slug: 'metastasis-prevention',
     title: 'Metastasis Prevention',
-    subtitle: 'Doctrine 2',
+    subtitle: 'Core Capability 2',
     vision: {
-      title: 'Transforming Metastasis from Fate to a Solvable Kill Chain',
-      content: "Metastasis is what kills 90% of cancer patients. The old guard treats it as an inevitability, waiting for it to appear on a scan before reacting. This is unacceptable. Our doctrine is to treat metastasis not as a single event, but as an 8-step military campaign that can be analyzed, predicted, and intercepted.",
+      title: 'Predictive Metastasis Prevention',
+      content: "Metastasis accounts for approximately 90% of cancer deaths. Traditional approaches treat metastasis reactively, after it appears on imaging. Our approach focuses on predicting and preventing metastasis by analyzing the biological processes that enable cancer spread as a multi-step cascade that can be understood, predicted, and potentially interrupted.",
     },
     problem: {
-      title: 'Fighting a Ghost',
-      content: "Clinicians currently fight blind. They make treatment decisions based on the primary tumor, with no real insight into its potential to execute the metastatic cascade. They are fighting an enemy whose intentions and capabilities are a complete mystery.",
+      title: 'Limited Metastatic Risk Assessment',
+      content: "Clinicians currently make treatment decisions based primarily on the characteristics of the primary tumor, with limited insight into its metastatic potential. Current approaches lack comprehensive tools to predict which tumors are most likely to metastasize and when.",
       points: [],
     },
     doctrine: {
-      title: 'In Silico Counter-Intelligence',
-      corePhilosophy: "We use our platform to build a complete 'Digital Twin' of the patient's cancer and simulate its ability to execute each of the 8 steps of metastasis. Core Philosophy: Metastasis is a series of biological functions. Every function is encoded by genes. We analyze those genes to predict the enemy's capabilities.",
+      title: 'Computational Metastasis Modeling',
+      corePhilosophy: "We use computational modeling to create comprehensive tumor profiles that simulate metastatic potential across the known biological steps of cancer spread. Our approach recognizes that metastasis involves multiple biological functions, each encoded by specific genes that can be analyzed to predict metastatic risk.",
       capabilities: {
-        title: 'Key Capabilities Deployed',
+        title: 'Key Technologies',
         items: [
-            'The Zeta Oracle: To assess the functional impact of mutations in key metastasis-enabling genes.',
-            'The Zeta Forge: To design "interception" therapies that target the weakest link in the chain.',
+            'AI-Powered Variant Analysis: Advanced assessment of mutations in metastasis-related genes.',
+            'Therapeutic Design Platform: Computational tools for identifying potential therapeutic targets.',
         ],
       },
       tacticalBreakdown: {
-        title: 'Tactical Breakdown',
+        title: 'Technical Approach',
         steps: [
           {
-            title: 'Model the Cascade',
-            content: "We analyze the tumor's genome for mutations in genes critical for each of the 8 steps (e.g., VEGF for angiogenesis, MMP genes for invasion, PD-L1 for immune evasion).",
+            title: 'Metastatic Pathway Analysis',
+            content: "We analyze tumor genomes for mutations in genes critical for metastatic processes (e.g., VEGF for angiogenesis, MMP genes for invasion, immune checkpoint genes for immune evasion).",
           },
           {
-            title: 'Quantify the Threat',
-            content: 'The Zeta Oracle scores each of these mutations, generating a "Metastatic Potential Report" that quantifies the tumor\'s capability at each stage.',
+            title: 'Risk Quantification',
+            content: 'Our AI models score mutations in metastasis-related genes, generating comprehensive reports that quantify metastatic potential across different biological pathways.',
           },
           {
-            title: 'Identify the Weakest Link',
-            content: 'The report highlights the step in the cascade where the tumor is most vulnerable.',
+            title: 'Vulnerability Identification',
+            content: 'Analysis identifies which steps in the metastatic cascade represent the greatest vulnerabilities based on the tumor\'s genomic profile.',
           },
           {
-            title: 'Forge the Interception Weapon',
-            content: 'The Zeta Forge is then commanded to design a targeted therapeutic (e.g., a CRISPR guide RNA, a nanobody) to attack that specific vulnerability, severing the kill chain.',
+            title: 'Therapeutic Target Discovery',
+            content: 'Our platform identifies potential therapeutic targets and intervention strategies based on the tumor\'s specific metastatic vulnerabilities.',
           }
         ],
       },
@@ -164,44 +164,44 @@ export const doctrineDetailsData: Record<string, DoctrineDetail> = {
   'de-sci-and-ip-nfts': {
     slug: 'de-sci-and-ip-nfts',
     title: 'DeSci & IP-NFTs',
-    subtitle: 'Doctrine 3',
+    subtitle: 'Core Capability 3',
     vision: {
-      title: 'A New Economic Engine for Curing Disease',
-      content: "The traditional biotech funding model is a fucking broken, inefficient relic. It is slow, dilutive, and controlled by a handful of gatekeepers. Our doctrine is to build a new, parallel economic system based on cryptographic trust, verifiable proof, and community ownership.",
+      title: 'Alternative Funding Models for Biotech Innovation',
+      content: "Traditional biotech funding models face significant challenges including lengthy timelines, high dilution, and limited access to capital. Our approach explores decentralized science (DeSci) and intellectual property NFTs as alternative funding mechanisms based on blockchain technology, transparency, and community participation.",
     },
     problem: {
-      title: 'The R&D Funding Quagmire',
-      content: "Promising research dies on the vine every day due to a lack of funding. The path from a brilliant idea to a clinical candidate is a 'valley of death' that only the best-funded players can cross.",
+      title: 'Biotech Funding Challenges',
+      content: "Many promising research projects struggle to secure adequate funding for development. The transition from research concept to clinical candidate often faces significant funding gaps, limiting innovation in biotechnology.",
       points: [],
     },
     doctrine: {
-      title: 'From In Silico Creation to Liquid Assets',
-      corePhilosophy: "We leverage our platform's generative power and the transparency of the blockchain to create a new asset class: AI-generated, on-chain verifiable therapeutic IP. Core Philosophy: A novel therapeutic design is a valuable asset. We will make that value liquid, transparent, and accessible to a global community.",
+      title: 'Blockchain-Based IP Management',
+      corePhilosophy: "We explore blockchain technology to create transparent, verifiable records of therapeutic intellectual property. Our approach treats novel therapeutic designs as valuable digital assets that can be tokenized, making IP more accessible and liquid for funding purposes.",
       capabilities: {
-        title: 'Key Capabilities Deployed',
+        title: 'Key Technologies',
         items: [
-            'The Zeta Forge: Our in silico factory for creating novel therapeutic candidates.',
-            'The DeSci Ledger: Our on-chain registry for providing immutable "Proof of Invention."',
+            'Computational Drug Design: AI-powered platform for generating novel therapeutic candidates.',
+            'Blockchain IP Registry: Distributed ledger system for recording and verifying intellectual property.',
         ],
       },
       tacticalBreakdown: {
-        title: 'Tactical Breakdown',
+        title: 'Technical Approach',
         steps: [
             {
-                title: 'Creation',
-                content: 'Our In Silico Flywheel generates a novel, validated therapeutic candidate (e.g., a "Gene Correction Blueprint" for a rare disease).',
+                title: 'Therapeutic Generation',
+                content: 'Our computational platform generates novel therapeutic candidates through AI-driven drug design and validation processes.',
             },
             {
-                title: 'Proof of Invention',
-                content: 'We commit a cryptographic hash of this design to our on-chain ledger, creating a permanent, timestamped record of our invention.',
+                title: 'IP Documentation',
+                content: 'We create cryptographic records of therapeutic designs on blockchain networks, establishing permanent, timestamped proof of invention.',
             },
             {
-                title: 'Securitization',
-                content: 'We package the intellectual property associated with this on-chain asset into an IP-NFT. This NFT represents a share of future royalties, licensing fees, or other value derived from the asset.',
+                title: 'Asset Tokenization',
+                content: 'Intellectual property is packaged into digital tokens (IP-NFTs) that represent ownership stakes in future royalties and licensing opportunities.',
             },
             {
-                title: 'Funding & Community',
-                content: 'We offer this IP-NFT for funding to the DeSci ecosystem (Bio-DAOs, crypto VCs, etc.). This provides us with non-dilutive capital to fund real-world validation and builds a global community of stakeholders who are literally invested in our success.',
+                title: 'Community Funding',
+                content: 'Tokenized IP assets are offered to decentralized science communities, providing alternative funding sources and creating stakeholder communities invested in therapeutic development.',
             }
         ],
       },
@@ -219,58 +219,58 @@ export const doctrineDetailsData: Record<string, DoctrineDetail> = {
   },
   'trial-conquest': {
     slug: 'trial-conquest',
-    title: 'Trial Conquest',
-    subtitle: 'Doctrine 4',
+    title: 'Clinical Trial Optimization',
+    subtitle: 'Core Capability 4',
     vision: {
-      title: 'From Guesswork to Precision Strikes in Clinical Trials',
-      content: "We envision a world where clinical trial recruitment is no longer a bottleneck but a strategic advantage. We will replace the slow, manual, and inaccurate methods of the past with an intelligent system that identifies not just eligible patients, but those with the highest biological probability of responding to treatment. Our mission is to fill trials with unprecedented speed and success."
+      title: 'Precision Clinical Trial Recruitment',
+      content: "We envision transforming clinical trial recruitment from a bottleneck into a competitive advantage. Our approach replaces traditional manual recruitment methods with intelligent systems that identify not only eligible patients, but those with the highest biological probability of treatment response, accelerating trial completion and improving success rates."
     },
     problem: {
-      title: 'Recruitment is a Failure of Intelligence',
-      content: "The current paradigm for clinical trial recruitment is a monumental failure that costs the pharmaceutical industry billions and, more importantly, delays life-saving cures. It's a system built on crude keyword matching and manual chart review—a process fundamentally unequipped for the complexity of modern precision medicine.",
+      title: 'Clinical Trial Recruitment Challenges',
+      content: "Current clinical trial recruitment methods face significant challenges that impact pharmaceutical development timelines and costs. Traditional approaches rely heavily on manual processes and basic keyword matching, which are inadequate for the complexity of modern precision medicine.",
       points: [
           {
-              title: "Slow & Inefficient",
-              content: "It takes months or even years to fill trials, and a staggering 80% of them fail to meet enrollment timelines."
+              title: "Recruitment Delays",
+              content: "Trial enrollment often takes months or years to complete, with approximately 80% of trials failing to meet enrollment timelines."
           },
           {
-              title: "Inaccurate Matching",
-              content: "Current systems match based on superficial keywords, leading to high screen failure rates and excluding non-obvious but biologically suitable candidates."
+              title: "Suboptimal Patient Matching",
+              content: "Current systems often rely on basic keyword matching, leading to high screen failure rates and potentially missing suitable candidates with complex medical histories."
           },
           {
-              title: "Massive Cost",
-              content: "Every day a drug is delayed from market costs its developer millions in lost revenue, and recruitment is the single biggest cause of delay."
+              title: "Development Costs",
+              content: "Recruitment delays significantly impact drug development timelines and costs, with each day of delay representing substantial financial impact."
           }
       ]
     },
     doctrine: {
-      title: 'Biological Search & Rescue',
-      corePhilosophy: "We don't search for patients; we rescue them from the noise of the EMR. We understand the deep biological intent behind eligibility criteria, not just the words themselves. Core Philosophy: The right patient is not just one who meets the criteria, but one whose biology is primed for the therapeutic to succeed. We find that patient.",
+      title: 'AI-Powered Patient Matching',
+      corePhilosophy: "Our approach goes beyond traditional keyword matching to understand the biological rationale behind eligibility criteria. We identify patients whose biological profiles align with trial requirements and therapeutic mechanisms, improving both recruitment efficiency and trial success rates.",
       capabilities: {
-        title: 'Key Capabilities Deployed',
+        title: 'Key Technologies',
         items: [
-            "AgenticEMR™: To autonomously parse and understand unstructured clinical notes.",
-            "GenomicAnalystAgent: To analyze genomic data and identify pathway dependencies."
+            "Natural Language Processing: Advanced analysis of unstructured clinical notes and medical records.",
+            "Genomic Analysis Platform: Comprehensive analysis of patient genomic data for biological compatibility."
         ],
       },
       tacticalBreakdown: {
-        title: 'Tactical Breakdown',
+        title: 'Technical Approach',
         steps: [
             {
-                title: 'Deconstruct Criteria',
-                content: 'Our platform ingests the trial protocol and autonomously deconstructs complex eligibility criteria into a series of biological and clinical queries.'
+                title: 'Protocol Analysis',
+                content: 'Our platform analyzes trial protocols and deconstructs complex eligibility criteria into structured biological and clinical requirements.'
             },
             {
-                title: 'Execute Biological Search',
-                content: 'Our agents search across integrated EMR and genomic data, looking for patients who match the deep biological intent—not just keywords. This includes analyzing pathway dependencies to find non-obvious candidates.'
+                title: 'Comprehensive Patient Search',
+                content: 'AI agents search across integrated EMR and genomic databases, identifying patients who match both explicit criteria and underlying biological compatibility factors.'
             },
             {
-                title: 'Generate Candidate Roster',
-                content: "The system generates a ranked list of candidates with the highest probability of both eligibility and successful treatment response, complete with a full rationale for each match."
+                title: 'Candidate Ranking',
+                content: "The system generates ranked lists of potential candidates with probability scores for both eligibility and treatment response, providing detailed rationale for each match."
             },
             {
-                title: 'Accelerate & Conquer',
-                content: "We slash recruitment timelines from months to days, solving a critical bottleneck for Pharma and getting cures to patients faster."
+                title: 'Recruitment Acceleration',
+                content: "Our approach significantly reduces recruitment timelines, addressing a critical bottleneck in pharmaceutical development and accelerating patient access to innovative treatments."
             }
         ],
       },
