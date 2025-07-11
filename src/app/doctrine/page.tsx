@@ -1,3 +1,5 @@
+'use client';
+
 import { doctrineCardsData } from './data';
 import DoctrineCard from './DoctrineCard';
 import { Metadata } from 'next';

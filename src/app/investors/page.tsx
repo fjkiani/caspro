@@ -1,3 +1,5 @@
+'use client';
+
 import { investorCardsData } from './data';
 import InvestorCard from './InvestorCard';
 import { Metadata } from 'next';
