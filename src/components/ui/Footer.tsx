@@ -54,11 +54,11 @@ const Footer = () => {
               {FOOTER_CONFIG.tagline}
             </p>
             <div className="flex space-x-4 text-xl">
-              {FOOTER_CONFIG.socialLinks.map(link => (
+              {/* {FOOTER_CONFIG.socialLinks.map(link => (
                 <a key={link.label} href={link.href} className="text-slate-400 hover:text-primary transition-colors" aria-label={link.label}>
                   {link.icon}
                 </a>
-              ))}
+              ))} */}
             </div>
           </div>
 

@@ -43,9 +43,9 @@ export interface CoPilotDetailContent {
 export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
   "precision-rad": {
     slug: "precision-rad",
-    pageTitle: "PrecisionRad™ Intelligence: Predictive Warfare on Cancer",
-    heroSubtitle: "Annihilating the guesswork of radiotherapy. We fuse AI-driven genomic intelligence with medical imaging to predict treatment outcomes before the first dose is ever fired.",
-    vision: "The mission of PrecisionRad™ Intelligence is to transform radiation oncology from a practice of anatomical targeting into a science of predictive, biological warfare. We arm clinicians with the `in silico` tools to model tumor radiosensitivity, forecast normal tissue toxicity, and design lethally precise, adaptive treatment plans based on each patient's unique genetic battlefield.",
+    pageTitle: "PrecisionRad™ Intelligence: Predictive Radiation Oncology",
+    heroSubtitle: "Reducing uncertainty in radiotherapy through AI-driven genomic intelligence integrated with medical imaging to predict treatment outcomes before therapy begins.",
+    vision: "PrecisionRad™ Intelligence transforms radiation oncology from anatomical targeting to predictive, biology-based treatment planning. We provide clinicians with computational tools to model tumor radiosensitivity, forecast normal tissue toxicity, and design precise, adaptive treatment plans based on each patient's unique genetic profile.",
     
     // Simplified value props focusing on outcomes
     valueProps: [
@@ -53,29 +53,29 @@ export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
         audience: 'For Radiation Oncologists',
         icon: 'Users',
         points: [
-          'Deploy treatment plans based on predicted radiosensitivity, not just anatomy.',
-          'Quantify and pre-empt patient-specific toxicity risks.',
-          'Dominate the battle with truly adaptive, real-time therapy adjustments.'
+          'Create treatment plans based on predicted radiosensitivity, not just anatomy.',
+          'Quantify and anticipate patient-specific toxicity risks.',
+          'Implement truly adaptive, real-time therapy adjustments based on biological response.'
         ]
       },
       {
         audience: 'For Medical Physicists',
         icon: 'Microscope',
         points: [
-          'Forge treatment plans with biologically-defined targets, not just geometric shapes.',
+          'Develop treatment plans with biologically-defined targets, not just geometric shapes.',
           'Automate quality assurance for complex, AI-driven adaptive plans.',
-          'Author novel, data-driven protocols that establish a new standard of care.'
+          'Create novel, data-driven protocols that establish new standards of care.'
         ]
       }
     ],
     buildsOn: "PrecisionRad is built on a foundation of integrated, multi-modal data analysis.",
     buildsOnStackPoints: [
-      "**`AI-Powered Radio-Genomics`:** Our Zeta Oracle analyzes the functional impact of any variant in a patient's DNA Damage Response (DDR) pathway to generate a quantitative radiosensitivity score.",
-      "**`Quantitative Radiomics`:** We extract thousands of sub-visual features from CT, PET, and MRI scans, correlating them with genomic data to create a unified, predictive model of the tumor.",
-      "**`Adaptive Warfare Engine`:** We continuously monitor on-treatment imaging, using our AI to detect biological changes and recommend tactical adjustments to the treatment plan in real-time.",
-      "**`The Oracle` using its first-principles understanding of biology, calculates the Zeta Score (delta_likelihood_score) of any variant.",
-      "**`our Zeta Forge` powered by a 1M token context window—to generate ultra-long, multi-kilobase homology arms** .",
-      "**`Smarter Stratification` We run every patient's specific KRAS variant through our Zeta Oracle. We then stratify the trial into cohorts: High-Impact KRAS,Moderate-Impact KRAS, etc. This leads to a cleaner signal and a higher probability of trial success.",
+      "**AI-Powered Radio-Genomics:** Advanced AI analyzes the functional impact of variants in DNA Damage Response (DDR) pathways to generate quantitative radiosensitivity scores.",
+      "**Quantitative Radiomics:** We extract thousands of sub-visual features from CT, PET, and MRI scans, correlating them with genomic data to create unified, predictive tumor models.",
+      "**Adaptive Treatment Engine:** Continuous monitoring of on-treatment imaging, using AI to detect biological changes and recommend evidence-based adjustments to treatment plans in real-time.",
+      "**Advanced Variant Analysis:** Using comprehensive biological understanding to calculate functional impact scores for any genetic variant.",
+      "**Computational Design Platform:** AI-powered system with extensive context windows for generating complex therapeutic designs.",
+      "**Precision Stratification:** Analysis of patient-specific variants enables stratification into biologically-defined cohorts for improved trial design and outcomes.",
 
     ],
     genomicInsightsOverview: "Our platform's core `analyze_single_variant` capability is the engine of personalization. It allows us to predict tumor radiosensitivity from somatic mutations, forecast normal tissue toxicity from germline variants, and enable biologically-guided 'dose painting' to annihilate resistant tumor sub-regions. We provide the intelligence to make every radiation plan a precision-guided weapon.",
@@ -161,90 +161,90 @@ export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
       {
         audience: "For the Radiation Oncologist",
         points: [
-          "**Command, Don't Guess:** Make treatment decisions based on a predictive model of biological response, not just anatomical boundaries.",
-          "**Weaponize Your Data:** Fuse genomics, radiomics, and clinical outcomes into a single, actionable intelligence stream.",
-          "**Dominate the Battlefield:** Deploy truly adaptive radiotherapy that outmaneuvers the enemy in real-time."
+          "**Evidence-Based Decisions:** Make treatment decisions based on predictive models of biological response, not just anatomical boundaries.",
+          "**Integrated Data Analytics:** Combine genomics, radiomics, and clinical outcomes into a single, actionable intelligence platform.",
+          "**Adaptive Treatment Excellence:** Implement truly adaptive radiotherapy that responds to biological changes in real-time."
         ]
       },
       {
         audience: "For the Patient",
         points: [
-          "**A Treatment Forged for You:** Receive a radiation plan engineered for your unique tumor biology, maximizing its lethality against the cancer.",
-          "**Engineered to Protect:** Benefit from a plan that uses your own genetic data to minimize collateral damage to healthy tissue.",
-          "**An Adaptive Shield:** Your therapy adapts as your body changes, ensuring the attack remains precise and effective throughout the entire campaign."
+          "**Personalized Treatment Planning:** Receive a radiation plan designed for your unique tumor biology, optimizing treatment effectiveness.",
+          "**Precision Protection:** Benefit from a plan that uses your genetic data to minimize side effects to healthy tissue.",
+          "**Adaptive Care:** Your therapy adapts as your condition changes, ensuring treatment remains precise and effective throughout your care."
         ]
       },
       {
         audience: "For the Institution",
         points: [
-          "**Establish Technological Supremacy:** Differentiate your institution as a center of excellence by deploying the world's most advanced radio-genomic intelligence platform.",
-          "**Drive the Future of Research:** Generate high-fidelity, multi-modal data to power the next wave of discovery in radiation oncology.",
-          "**Win the Value-Based War:** Deliver superior outcomes and reduce costly toxicities, proving undeniable value to patients and payers."
+          "**Technology Leadership:** Differentiate your institution as a center of excellence with advanced radio-genomic intelligence capabilities.",
+          "**Research Innovation:** Generate high-quality, multi-modal data to advance discovery in radiation oncology.",
+          "**Value-Based Outcomes:** Deliver superior patient outcomes while reducing toxicities, demonstrating clear value to patients and payers."
         ]
       }
     ],
-    conclusion: "PrecisionRad™ Intelligence represents the end of the era of anatomical guesswork. By fusing deep genomic insight with advanced imaging analysis, we are transforming radiation oncology from a standardized practice into a discipline of predictive, personalized warfare. Our mission is to arm clinicians with the intelligence to deliver the right dose, to the right target, at the right time, with lethal precision."
+    conclusion: "PrecisionRad™ Intelligence represents a new era of precision radiation oncology. By integrating deep genomic insights with advanced imaging analysis, we are transforming radiation oncology from a standardized practice into a discipline of predictive, personalized medicine. Our mission is to provide clinicians with the intelligence to deliver the right dose, to the right target, at the right time, with optimal precision."
 },
   "agentic-emr": {
     slug: "agentic-emr",
-    pageTitle: "AgenticEMR™ Dominance: Conquer Your Clinical Data",
-    heroSubtitle: "Stop drowning in data. Start dominating it. Unleash autonomous AI agents to transform your EMR from a chaotic liability into a strategic weapon.",
-    vision: "Our vision is to annihilate the clinical data problem. We deploy a swarm of specialized AI agents that conquer unstructured notes, labs, and genomic reports, fusing them into a unified, queryable intelligence layer. We don't just streamline workflows; we forge a new command and control system for clinical and research operations.",
+    pageTitle: "AgenticEMR™: Intelligent Clinical Data Management",
+    heroSubtitle: "Transform clinical data management with autonomous AI agents that convert unstructured EMR data into actionable clinical insights.",
+    vision: "Our vision is to solve the clinical data complexity challenge. We deploy specialized AI agents that process unstructured notes, labs, and genomic reports, integrating them into a unified, queryable intelligence platform. We streamline workflows and create an intelligent system for clinical and research operations.",
     
     valueProps: [
       {
         audience: 'For Clinical Oncologists',
         icon: 'Users',
         points: [
-          'Get a unified, longitudinal view of your patient in seconds, not hours.',
-          'Instantly identify patients for mission-critical clinical trials.',
-          'Arm your entire multi-disciplinary team with real-time, synthesized intelligence.'
+          'Access a unified, longitudinal view of your patient in seconds, not hours.',
+          'Quickly identify patients for relevant clinical trials.',
+          'Provide your entire multi-disciplinary team with real-time, synthesized clinical intelligence.'
         ]
       },
       {
         audience: 'For Research Institutions',
         icon: 'BrainCircuit',
         points: [
-          'Execute cohort discovery at the speed of command.',
-          'Annihilate trial recruitment bottlenecks and accelerate your research.',
-          'Unlock the strategic value buried in your existing clinical data.'
+          'Accelerate cohort discovery with intelligent data analysis.',
+          'Streamline trial recruitment processes and accelerate research timelines.',
+          'Unlock valuable insights from your existing clinical data repositories.'
         ]
       }
     ],
 
-    coreProblemIntro: "Traditional EMRs are a disgrace. They are digital filing cabinets designed for billing, not for warfare. They create the very problems our platform was built to solve:",
+    coreProblemIntro: "Traditional EMRs present significant challenges for modern clinical practice. They are designed primarily for billing and documentation, not for clinical intelligence. Our platform addresses these key limitations:",
     coreProblemPoints: [
-      "**Data Chaos:** A disorganized flood of clinical notes, labs, pathology reports, and genomic data that makes true insight impossible.",
-      "**The VUS Black Hole:** An inability to interpret the clinical significance of genomic variants, leading to diagnostic paralysis.",
-      "**Manual Drudgery:** The soul-crushing, manual process of sifting through records to find patients eligible for clinical trials.",
-      "**The Actionability Gap:** A complete failure to connect a genomic finding to a potential therapeutic strategy.",
-      "**Fragmented Command:** A broken communication chain across the entire care team, leading to fatal delays and errors."
+      "**Data Fragmentation:** Unstructured clinical notes, labs, pathology reports, and genomic data that are difficult to analyze comprehensively.",
+      "**Variant Interpretation Challenges:** Limited ability to interpret the clinical significance of genomic variants, creating uncertainty in diagnosis and treatment.",
+      "**Manual Processes:** Time-consuming manual review of records to identify patients eligible for clinical trials.",
+      "**Clinical Translation Gap:** Difficulty connecting genomic findings to potential therapeutic strategies.",
+      "**Care Coordination Challenges:** Fragmented communication across care teams, leading to delays and potential errors."
     ],
 
     keyCapabilities: [
       {
-        title: "First-Principles Genomic Analysis",
-        business: "Annihilate clinical uncertainty. Our platform provides definitive functional impact scores for any genetic mutation, turning ambiguity into actionable intelligence.",
-        technical: "Leverages the `GenomicAnalystAgent`, powered by our Zeta Oracle, to deliver state-of-the-art variant effect prediction directly within the EMR workflow.",
-        scientific: "Applies a foundational model of biology to predict pathogenicity from first principles, obsoleting the need for slow, database-lookup-based interpretation."
+        title: "Advanced Genomic Analysis",
+        business: "Reduce clinical uncertainty by providing definitive functional impact scores for genetic mutations, transforming ambiguous results into actionable clinical intelligence.",
+        technical: "Leverages advanced AI models to deliver state-of-the-art variant effect prediction directly within the EMR workflow.",
+        scientific: "Applies comprehensive biological models to predict pathogenicity from first principles, providing faster and more accurate interpretation than traditional database-lookup methods."
       },
       {
-        title: "Autonomous Clinical Trial Matching",
-        business: "Drastically reduce trial recruitment timelines from months to minutes. Increase patient access to novel therapies and accelerate R&D.",
-        technical: "Deploys a `ClinicalTrialAgent` that uses a multi-stage process: a high-speed vector search to identify candidate trials, followed by an LLM-powered `EligibilityDeepDiveAgent` that performs a criterion-by-criterion check against the patient's full Digital Twin.",
-        scientific: "Leverages advanced NLP to understand the deep biological intent of eligibility criteria, not just keyword matching."
+        title: "Intelligent Clinical Trial Matching",
+        business: "Significantly reduce trial recruitment timelines from months to days. Increase patient access to novel therapies and accelerate research.",
+        technical: "Deploys AI agents that use multi-stage processes: high-speed vector search to identify candidate trials, followed by detailed eligibility analysis against comprehensive patient profiles.",
+        scientific: "Leverages advanced natural language processing to understand the biological intent of eligibility criteria, going beyond simple keyword matching."
       },
       {
-        title: "Seamless `In Silico` Therapeutic Design",
-        business: "Forge a direct, unbreakable link between a clinical finding and a potential cure. This is the ultimate expression of our end-to-end dominance.",
-        technical: "A single click on a high-impact variant in our UI can pass its precise genomic coordinates to our integrated CRISPR Intelligence Platform, initiating a full therapeutic design workflow.",
-        scientific: "Creates a true precision medicine pipeline, connecting `in silico` functional genomics directly to the tools for targeted therapeutic engineering."
+        title: "Integrated Therapeutic Design",
+        business: "Create direct connections between clinical findings and potential therapeutic strategies, enabling comprehensive precision medicine workflows.",
+        technical: "Seamless integration allows high-impact variants to be passed to therapeutic design platforms, initiating comprehensive drug discovery workflows.",
+        scientific: "Creates a complete precision medicine pipeline, connecting functional genomics directly to targeted therapeutic development tools."
       },
       {
-        title: "Agentic Collaboration & Workflow Automation",
-        business: "Arm your entire care team with an AI that actively participates in strategy. Automate routine intelligence gathering and decision support.",
-        technical: "A real-time collaboration hub where clinicians can invoke specialized agents (e.g., `/summarize_patient_history`, `/compare_therapies`) to receive on-demand analysis directly within their workflow.",
-        scientific: "Pioneers a new human-computer interaction model where AI agents act as persistent, proactive members of the clinical team."
+        title: "AI-Powered Collaboration & Workflow Automation",
+        business: "Enhance care team efficiency with AI that actively supports clinical decision-making. Automate routine analysis and provide intelligent decision support.",
+        technical: "Real-time collaboration platform where clinicians can invoke specialized AI agents for on-demand analysis directly within their workflow.",
+        scientific: "Advances human-computer interaction by integrating AI agents as persistent, proactive members of the clinical team."
       }
     ],
 
@@ -298,13 +298,13 @@ export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
         ]
       }
     ],
-   "conclusion": "The AgenticEMR™ is more than an assistant; it is an active, intelligent member of the cancer care team. By translating the vast and complex chaos of clinical data into clear, actionable intelligence, it empowers clinicians to make faster, more informed decisions. It bridges the critical gap between cutting-edge research and personalized patient care, accelerating the promise of precision oncology for every patient."
+   "conclusion": "AgenticEMR™ is more than an assistant; it is an intelligent, integrated member of the cancer care team. By transforming complex clinical data into clear, actionable insights, it empowers clinicians to make faster, more informed decisions. It bridges the critical gap between cutting-edge research and personalized patient care, accelerating the promise of precision oncology for every patient."
   },
   "crispr-intelligence": {
     slug: "crispr-intelligence",
-    pageTitle: "CRISPR Intelligence: The Command System for Therapeutic R&D",
-    heroSubtitle: "Annihilate the R&D quagmire. We replace years of guesswork with weeks of decisive, `in silico` action, forging validated therapeutic candidates with overwhelming speed and certainty.",
-    vision: "Our vision is to establish the CrisPRO Intelligence Platform as the indispensable command and control system for all CRISPR-based therapeutic R&D. We will obsolete the slow, expensive, and uncertain methods of the old guard by providing a unified platform that moves from target acquisition to a validated pre-clinical asset with lethal precision.",
+    pageTitle: "CRISPR Intelligence: Advanced Therapeutic R&D Platform",
+    heroSubtitle: "Accelerate therapeutic R&D by replacing years of trial-and-error with weeks of precise, computational validation, creating validated therapeutic candidates with unprecedented speed and accuracy.",
+    vision: "Our vision is to establish the CrisPRO Intelligence Platform as the essential system for CRISPR-based therapeutic R&D. We will transform slow, expensive, and uncertain traditional methods by providing a unified platform that moves from target identification to validated pre-clinical assets with optimal precision.",
     
     valueProps: [
       {
@@ -327,12 +327,12 @@ export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
       }
     ],
 
-    coreProblemIntro: "Developing CRISPR-based therapies are a nightmare of disconnected tools and failed experiments. We have built our platform to annihilate these critical bottlenecks:",
+    coreProblemIntro: "Developing CRISPR-based therapies faces significant challenges with current tools and methodologies. Our platform addresses these critical bottlenecks:",
     coreProblemPoints: [
-      "**The Design Guessing Game:** Designing optimal gRNAs with high efficacy and low off-target effects is a slow, brute-force process.",
-      "**The Black Hole of Outcome Analysis:** Interpreting complex NGS data from CRISPR experiments is a time-consuming, ambiguous task that stalls critical decisions.",
-      "**The Translational Chasm:** A massive gap exists between a successful lab experiment and a viable therapeutic, with critical factors like immunogenicity and delivery considered far too late.",
-      "**Fragmented Arsenals:** Scientists are forced to fight a modern war with a dozen disconnected, primitive tools, leading to chaos and inefficiency."
+      "**Complex Design Optimization:** Designing optimal gRNAs with high efficacy and minimal off-target effects requires extensive optimization and testing.",
+      "**Data Analysis Complexity:** Interpreting complex NGS data from CRISPR experiments is time-consuming and requires specialized expertise.",
+      "**Translation Challenges:** Significant gaps exist between successful lab experiments and viable therapeutics, with critical factors like immunogenicity and delivery often addressed late in development.",
+      "**Tool Fragmentation:** Scientists must use multiple disconnected tools and platforms, leading to inefficiencies and integration challenges."
     ],
 
     keyCapabilities: [
@@ -406,6 +406,6 @@ export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
         ]
       }
     ],
-    conclusion: "The CRISPR Intelligence Platform transforms therapeutic design from a manual, iterative process into a scalable, AI-driven campaign. We provide the weapons to win the war against genetic disease."      
+    conclusion: "The CRISPR Intelligence Platform transforms therapeutic design from a manual, iterative process into a scalable, AI-driven system. We provide the tools to advance the fight against genetic disease through precision medicine."      
   }
 }; 
