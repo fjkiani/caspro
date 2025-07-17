@@ -187,9 +187,9 @@ const FrameworkStepCard = ({
                         <h5 className="font-semibold text-white text-sm mb-2">API Endpoints:</h5>
                         <div className="flex flex-wrap gap-2">
                             {details.endpoints.map((endpoint: string, idx: number) => (
-                                <span key={idx} className="text-sm bg-gray-700 text-gray-300 px-2.5 py-1 rounded-md">
+                                <div key={idx} className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded-md whitespace-nowrap overflow-hidden text-ellipsis">
                                     {endpoint}
-                                </span>
+                                </div>
                             ))}
                         </div>
                     </div>

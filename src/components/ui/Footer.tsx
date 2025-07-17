@@ -72,7 +72,7 @@ const Footer = () => {
                     {link.label}
                   </Link>
                   {link.subLinks && (
-                    <ul className="ml-4 mt-2 space-y-1">
+                    <ul className="mt-2 space-y-1">
                       {link.subLinks.map(subLink => (
                         <li key={subLink.label}>
                           <Link href={subLink.href} className="hover:text-primary transition-colors text-xs text-slate-400">
@@ -91,14 +91,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-5 text-white">Company</h4>
             <ul className="space-y-3">
-              {FOOTER_CONFIG.legalLinks.map(link => (
-                <li key={link.label}>
-                  <Link href={link.href} className="hover:text-primary transition-colors text-sm">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-              {FOOTER_CONFIG.companyLinks.map(link => (
+              {[...FOOTER_CONFIG.companyLinks, ...FOOTER_CONFIG.legalLinks].map(link => (
                 <li key={link.label}>
                   <Link href={link.href} className="hover:text-primary transition-colors text-sm">
                     {link.label}
@@ -109,16 +102,16 @@ const Footer = () => {
           </div>
           
           {/* Contact Info */}
-          <div>
+          <div className="text-right">
              <h4 className="text-lg font-semibold mb-5 text-white">Get In Touch</h4>
-             <p className="text-sm mb-2">
+             <p className="text-sm mb-4">
                 Have questions or need support?
              </p>
-             <a href="mailto:jedi@jedilabs.org" className="btn-outline text-sm py-2 px-4 inline-flex items-center gap-2">
+             <a href="mailto:jedi@jedilabs.org" className="btn-outline text-sm py-2 px-4 inline-flex items-center gap-2 hover:bg-primary hover:text-white transition-all">
                 <FiMail /> Email Support
              </a>
              <p className="text-xs mt-4 text-slate-400">
-                For demo requests, please use the form in our Contact section.
+                For demo requests, please visit our Contact page.
              </p>
           </div>
 
