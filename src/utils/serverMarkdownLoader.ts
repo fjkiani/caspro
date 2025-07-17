@@ -5,8 +5,8 @@ import path from 'path';
 export function getMarkdownContent(filePath: string): string {
   try {
     // Path to the .cursor/rules directory
-    const rulesDir = path.join(process.cwd(), '..', '.cursor', 'rules');
-    const fullPath = path.join(rulesDir, filePath);
+    const legalDir = path.join(process.cwd(), 'caspro', 'legal');
+    const fullPath = path.join(legalDir, filePath);
     
     // Read the file
     const fileContent = fs.readFileSync(fullPath, 'utf8');

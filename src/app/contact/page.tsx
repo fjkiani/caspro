@@ -35,11 +35,11 @@ const ContactPage = () => {
               <div className="bg-gray-900 p-8 rounded-2xl">
                 <div className="flex items-center gap-x-4">
                     <Mail className="h-7 w-7 text-primary" aria-hidden="true" />
-                    <h3 className="text-lg font-semibold leading-7 text-white">Email</h3>
+                    {/* <h3 className="text-lg font-semibold leading-7 text-white">Email</h3> */}
                 </div>
-                <p className="mt-6 text-base leading-7 text-gray-300">
+                {/* <p className="mt-6 text-base leading-7 text-gray-300">
                   For inquiries, email us at <a href="mailto:jedi@jedilabs.org" className="font-semibold text-primary hover:text-primary/80">jedi@jedilabs.org</a>.
-                </p>
+                </p> */}
               </div>
                {/* <div className="bg-gray-900 p-8 rounded-2xl">
                 <div className="flex items-center gap-x-4">
