@@ -4,8 +4,8 @@ import path from 'path';
 // Utility function to load markdown content from a specific file
 export function getMarkdownContent(filePath: string): string {
   try {
-    // Path to the .cursor/rules directory
-    const legalDir = path.join(process.cwd(), 'caspro', 'legal');
+    // Path to the legal directory
+    const legalDir = path.join(process.cwd(), 'legal');
     const fullPath = path.join(legalDir, filePath);
     
     // Read the file
