@@ -46,7 +46,7 @@ export const NAV_LINKS = [
   },
   {
     href: '/learn',
-    label: 'Learn',
+    label: '101',
     icon: <BookOpen className="inline-block h-4 w-4" />,
   },
   {
@@ -54,12 +54,12 @@ export const NAV_LINKS = [
     label: 'Blog',
     icon: <PenTool className="inline-block h-4 w-4" />,
   },
-  {
-    href: '/investors',
-    label: 'Investors',
-    icon: <Briefcase className="inline-block h-4 w-4" />,
-    subLinks: investorSubLinks,
-  },
+  // {
+  //   href: '/investors',
+  //   label: 'Investors',
+  //   icon: <Briefcase className="inline-block h-4 w-4" />,
+  //   subLinks: investorSubLinks,
+  // },
   {
     href: '/contact',
     label: 'Contact',
