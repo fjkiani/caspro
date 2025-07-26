@@ -232,7 +232,6 @@ const ContactSection = () => {
                       name={field.id}
                       onChange={handleChange}
                       className="bg-background/50 w-full pl-10 pr-4 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring transition-shadow shadow-sm focus:shadow-md text-foreground placeholder:text-muted-foreground"
-                      placeholder={field.placeholder}
                       required
                     />
                   </div>
