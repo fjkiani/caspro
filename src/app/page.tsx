@@ -15,24 +15,27 @@ import TopicsSection from '@/components/sections/TopicsSection';
 import UnfairAdvantageSection from '@/components/investment-thesis/UnfairAdvantageSection';
 import { InvestmentThesisHeader } from '@/components/investment-thesis/InvestmentThesisHeader';
 import { MetastasisFrameworkSection } from '@/components/investment-thesis/MetastasisFrameworkSection';
+import BlogTeaserSection from '@/components/sections/BlogTeaserSection';
 // Page configuration constants
 const PAGE_CONFIG = {
   title: 'CrisPRO: Oncology Co-Pilot',
   sections: [
     { id: 'hero', component: HeroSection },
-    { id: 'problem', component: ProblemSection },
-    { id: 'investment-thesis', component: InvestmentThesisHeader },
-    { id: 'metastasis-framework', component: MetastasisFrameworkSection },
+    // { id: 'problem', component: ProblemSection },
+    // { id: 'investment-thesis', component: InvestmentThesisHeader },
+    // { id: 'technology', component: TechnologySection },
+    // { id: 'metastasis-framework', component: MetastasisFrameworkSection },
 
     // { id: 'solution', component: SolutionSection },
     // { id: 'topics', component: TopicsSection },
     // { id: 'features', component: FeaturesSection },
     // { id: 'science', component: TechnologySection },
-    // { id: 'technology-deep-dive', component: TechnologyDeepDiveSection },
+    { id: 'technology-deep-dive', component: TechnologyDeepDiveSection },
     // { id: 'agent-capabilities', component: AgentCapabilitiesSection },
     // { id: 'foundational-pillars', component: FoundationalPillarsSection },
     // { id: 'impact', component: ImpactSection }, // Commented out
     // { id: 'team', component: TeamSection },
+    { id: 'blog-teaser', component: BlogTeaserSection },
     { id: 'contact', component: ContactSection },
   ],
 };

@@ -1,215 +1,137 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import {
-  FiBookOpen,      // For Scientific Basis
-  FiSettings,      // For How it Works
-  FiCpu,           // For Evo2
-  FiShare2,        // For AlphaFold 3 (representing interactions/complexes)
-  FiEdit,          // For CRISPR
-  FiPlayCircle,    // For Workflow Step
-  FiArrowRightCircle // For overall workflow direction
-} from 'react-icons/fi';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { BookOpen, Settings, CheckCircle } from 'lucide-react';
+import { DEEP_DIVE_CONFIG } from '@/data/technology-deep-dive-config';
+import ModelViewer from '../ui/ProteinModelViewer';
 
-interface PrincipleBlockProps {
-  icon: React.ReactElement;
-  title: string;
-  bgColor?: string;
-  children: React.ReactNode;
-}
-
-const PrincipleBlock: React.FC<PrincipleBlockProps> = ({ icon, title, bgColor = 'bg-slate-50', children }) => (
-  <div className={`p-6 rounded-lg border border-slate-200 ${bgColor} shadow-md h-full flex flex-col`}>
-    <div className="flex items-center text-primary mb-3">
-      {React.cloneElement(icon, { className: "w-6 h-6 mr-2 flex-shrink-0" })}
-      <h4 className="text-lg font-semibold text-slate-700">{title}</h4>
-    </div>
-    <div className="text-slate-600 space-y-2 text-sm md:text-base flex-grow">
-      {children}
-    </div>
-  </div>
-);
-
-interface TechnologyDetailProps {
-  id: string;
-  mainIcon: React.ReactElement;
-  title: string;
-  scientificBasis: React.ReactNode;
-  howItWorks: React.ReactNode;
-  delay?: number;
-}
-
-const TechnologyDetail: React.FC<TechnologyDetailProps> = ({ id, mainIcon, title, scientificBasis, howItWorks, delay = 0 }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay }}
-    className="mb-10 md:mb-12 p-6 bg-white rounded-xl shadow-xl border border-slate-200"
-  >
-    <div className="flex items-center mb-4 md:mb-6">
-      {React.cloneElement(mainIcon, { className: "w-10 h-10 text-primary mr-4 flex-shrink-0" })}
-      <h3 className="text-xl md:text-2xl font-bold text-slate-800">{title}</h3>
-    </div>
-    <div className="grid md:grid-cols-2 gap-6">
-      <PrincipleBlock icon={<FiBookOpen />} title="Scientific Basis">
-        {scientificBasis}
-      </PrincipleBlock>
-      <PrincipleBlock icon={<FiSettings />} title="How it Works in CrisPRO">
-        {howItWorks}
-      </PrincipleBlock>
-    </div>
-  </motion.div>
-);
-
-const WORKFLOW_STEP_ICON_SIZE = "w-7 h-7";
-
-const TechnologyDeepDiveSection: React.FC = () => {
-  const animationVariants = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: (delay: number = 0) => ({ duration: 0.5, delay })
-  };
+const TechnologySlide = ({ tech, scrollYProgress, index, total }: { tech: any, scrollYProgress: any, index: number, total: number }) => {
+  const start = (index + 1) / (total + 2);
+  const end = (index + 2) / (total + 2);
+  const fadeDuration = 0.055;
+  const opacity = useTransform(scrollYProgress, [start - fadeDuration, start, end - fadeDuration, end], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [start - fadeDuration, start, end - fadeDuration, end], [0.95, 1, 1, 0.95]);
 
   return (
-    <section id="technology-deep-dive" className="py-16 md:py-24 bg-slate-50">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={animationVariants.initial}
-          whileInView={animationVariants.animate}
-          viewport={{ once: true }}
-          transition={animationVariants.transition()}
-          className="max-w-3xl mx-auto text-center mb-12 md:mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            The Science & Engineering Behind CrisPRO
-          </h2>
-          <p className="text-lg text-slate-600">
-            Cancer is driven by genomic alterations. Understanding their functional impact is key to effective treatment. CrisPRO integrates cutting-edge AI to achieve this.
-          </p>
-        </motion.div>
-
-        {/* Evo2 Section */}
-        <TechnologyDetail
-          id="evo2-deep-dive"
-          mainIcon={<FiCpu />}
-          title="Evo2: Variant Analysis & Therapeutic Design"
-          delay={0.1}
-          scientificBasis={
-            <p>
-              A biological foundation model trained on vast DNA sequence data, Evo2 deciphers the complex "language" of DNA. It boasts <strong className="text-primary">over 90% accuracy</strong> in predicting the functional impact of genetic variants.
-            </p>
-          }
-          howItWorks={
-            <p>
-              Analyzes patient tumor mutations, predicting functional impact via <strong className="text-primary">delta likelihood scores</strong>. Its generative abilities design novel DNA/RNA sequences for therapeutic constructs (e.g., CRISPR guide RNAs, repair templates).
-            </p>
-          }
-        />
-
-        {/* AlphaFold 3 Section */}
-        <TechnologyDetail
-          id="alphafold3-deep-dive"
-          mainIcon={<FiShare2 />}
-          title="AlphaFold 3: Structural Validation"
-          delay={0.2}
-          scientificBasis={
-            <p>
-              Predicts the 3D structure of biological molecules (proteins, DNA, RNA) and their interactions. Structure is fundamental to biological function.
-            </p>
-          }
-          howItWorks={
-            <p>
-              After Evo2 designs therapeutic sequences, AlphaFold 3 predicts their 3D structures and complexes. Confidence metrics (<strong className="text-primary">pLDDT, ranking score</strong>) enable in silico validation of folding, target binding, and system interaction.
-            </p>
-          }
-        />
-
-        {/* CRISPR Section */}
-        <TechnologyDetail
-          id="crispr-deep-dive"
-          mainIcon={<FiEdit />}
-          title="CRISPR Gene Editing: Precision Intervention"
-          delay={0.3}
-          scientificBasis={
-            <p>
-              Programmable gene editing tools using a guide RNA to direct a Cas enzyme for precise DNA cuts. Can disrupt genes or, with a repair template, correct/insert genetic material.
-            </p>
-          }
-          howItWorks={
-            <p>
-              Evo2&apos;s variant analysis and generative design directly inform CRISPR component creation. CrisPRO facilitates designing guide RNAs for patient mutations and, for specific goals, repair templates or modified Cas proteins.
-            </p>
-          }
-        />
-
-        {/* Integrated Workflow Section */}
-        <motion.div
-          initial={animationVariants.initial}
-          whileInView={animationVariants.animate}
-          viewport={{ once: true }}
-          transition={animationVariants.transition(0.4)}
-          className="mt-12 md:mt-16 pt-10 border-t border-slate-200"
-        >
-          <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">
-            <div className="flex justify-center text-4xl text-primary mb-5">
-              <FiArrowRightCircle />
+    <motion.div style={{ opacity, scale }} className="w-full max-w-6xl mx-auto h-full flex items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-slate-800/50 p-8 rounded-2xl border border-slate-700 backdrop-blur-md">
+        <div>
+          <div className="flex items-center mb-4">
+            <tech.icon className="w-10 h-10 text-primary mr-4" />
+            <h3 className="text-2xl font-bold text-slate-100">{tech.title}</h3>
+          </div>
+          <div className="space-y-6">
+            <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+              <div className="flex items-center text-teal-400 mb-2">
+                <BookOpen className="w-5 h-5 mr-2" />
+                <h4 className="font-semibold">Scientific Doctrine</h4>
+              </div>
+              <p className="text-slate-400 text-sm">{tech.scientificBasis}</p>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-4">
-              The CrisPRO Integrated Workflow
-            </h3>
-            <p className="text-lg text-slate-600">
-              CrisPRO intelligently orchestrates these technologies into a seamless workflow from genomic data to therapeutic insights.
-            </p>
+            <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+              <div className="flex items-center text-purple-400 mb-2">
+                <Settings className="w-5 h-5 mr-2" />
+                <h4 className="font-semibold">How it Fights: </h4>
+              </div>
+              <p className="text-slate-400 text-sm">{tech.howItWorks}</p>
+            </div>
           </div>
-          
-          <div className="space-y-6 max-w-4xl mx-auto">
-            {[
-              { title: "Genomic Data Input", text: "Patient genomic data, including mutations and coordinates." },
-              { title: "Evo2 Variant Analysis", text: "Accurate functional impact prediction to identify key drivers and targets." },
-              { title: "Target Identification", text: "Prioritize mutations/genomic regions for intervention based on Evo2 and clinical context." },
-              { title: "AI-Guided Therapeutic Design", text: "Evo2 generates candidate sequences for CRISPR components (guides, templates)." },
-              { title: "AlphaFold 3 Structural Evaluation", text: "Predict 3D structures and interactions of designed components and complexes." },
-              { title: "Integrated Scoring & Evaluation", text: "Combine Evo2 & AlphaFold 3 insights to score therapeutic strategies for efficacy and safety." },
-              { title: "Recommendation Generation", text: "Present top AI-designed therapeutic candidates with simulated supporting evidence." },
-            ].map((step, index) => (
-              <motion.div
-                key={index}
-                initial={animationVariants.initial}
-                whileInView={animationVariants.animate}
-                viewport={{ once: true }}
-                transition={animationVariants.transition(index * 0.05 + 0.5)}
-                className="flex items-start p-4 bg-white rounded-lg border border-slate-200 shadow-md hover:shadow-lg transition-shadow duration-300"
-              >
-                <FiPlayCircle className={`flex-shrink-0 ${WORKFLOW_STEP_ICON_SIZE} text-primary mr-3 mt-0.5`} />
-                <div>
-                  <h4 className="font-semibold text-slate-800 mb-0.5">{index + 1}. {step.title}</h4>
-                  <p className="text-slate-600 text-sm">{step.text}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Concluding Summary */}
-        <motion.div
-          initial={animationVariants.initial}
-          whileInView={animationVariants.animate}
-          viewport={{ once: true }}
-          transition={animationVariants.transition(0.6)}
-          className="mt-12 md:mt-16 pt-10 border-t border-slate-200 text-center"
-        >
-          <div className="max-w-3xl mx-auto bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 rounded-lg shadow-xl">
-            <h4 className="text-xl font-semibold mb-3">Synergistic Power</h4>
-            <p className="text-lg font-light leading-relaxed">
-              CrisPRO synergizes Evo2&apos;s high-accuracy predictions and generative power with AlphaFold 3&apos;s structural insights. This enables rapid in silico design and evaluation of novel genetic sequences for targeted cancer therapies, accelerating the path from discovery to intervention.
-            </p>
-          </div>
-        </motion.div>
+        </div>
+        <div className="h-80 bg-slate-900/50 rounded-xl flex items-center justify-center p-4 shadow-inner border border-slate-800">
+          <ModelViewer modelUrl={tech.modelPath} />
+        </div>
       </div>
-    </section>
+    </motion.div>
   );
+};
+
+const WorkflowSlide = ({ scrollYProgress, index, total }: { scrollYProgress: any, index: number, total: number }) => {
+    const start = (index + 1) / (total + 2);
+    const end = (index + 2) / (total + 2);
+    const fadeDuration = 0.025;
+    const opacity = useTransform(scrollYProgress, [start - fadeDuration, start, end - fadeDuration, end], [0, 1, 1, 0]);
+    
+    return (
+        <motion.div style={{ opacity }} className="w-full max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-6">
+                <DEEP_DIVE_CONFIG.workflow.icon className="w-12 h-12 text-primary" />
+            </div>
+            <h3 className="text-3xl font-bold mb-4 text-slate-100">{DEEP_DIVE_CONFIG.workflow.title}</h3>
+            <p className="text-slate-400 mb-8">{DEEP_DIVE_CONFIG.workflow.subtitle}</p>
+            <div className="space-y-3">
+                {DEEP_DIVE_CONFIG.workflow.steps.map((step, i) => {
+                    const stepStart = start + (i / DEEP_DIVE_CONFIG.workflow.steps.length) * (end - start);
+                    const stepEnd = start + ((i + 1) / DEEP_DIVE_CONFIG.workflow.steps.length) * (end - start);
+                    const stepProgress = useTransform(scrollYProgress, [stepStart, stepEnd], [0, 1]);
+                    return(
+                        <motion.div
+                            key={i}
+                            style={{ opacity: stepProgress, y: useTransform(stepProgress, [0, 1], [20, 0]) }}
+                            className="flex items-start p-3 bg-slate-800/50 rounded-lg border border-slate-700 text-left"
+                        >
+                            <CheckCircle className="flex-shrink-0 w-5 h-5 text-green-400 mr-3 mt-0.5" />
+                            <div>
+                                <h4 className="font-semibold text-slate-200">{i + 1}. {step.title}</h4>
+                                <p className="text-slate-400 text-sm">{step.text}</p>
+                            </div>
+                        </motion.div>
+                    )
+                })}
+            </div>
+        </motion.div>
+    );
+};
+
+
+const TechnologyDeepDiveSection: React.FC = () => {
+    const sectionRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ['start start', 'end end']
+    });
+
+    const totalParts = DEEP_DIVE_CONFIG.technologies.length + 3; // header + techs + workflow + summary
+    
+    const headerTransitionPoint = 1.2 / totalParts;
+    const headerY = useTransform(scrollYProgress, [0, headerTransitionPoint], ['0vh', '-30vh']);
+    const headerScale = useTransform(scrollYProgress, [0, headerTransitionPoint], [1, 0.9]);
+    
+    const summaryStartPoint = (totalParts - 1) / totalParts;
+    const finalHeaderOpacity = useTransform(scrollYProgress, [summaryStartPoint - 0.05, summaryStartPoint], [1, 0]);
+    const summaryOpacity = useTransform(scrollYProgress, [summaryStartPoint - 0.05, summaryStartPoint], [0, 1]);
+
+    return (
+        <section ref={sectionRef} id={DEEP_DIVE_CONFIG.sectionId} className="relative bg-background text-foreground" style={{ height: `${totalParts * 100}vh` }}>
+            <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
+
+                <motion.div style={{ opacity: finalHeaderOpacity }} className="absolute inset-0 flex items-center justify-center z-20">
+                    <motion.div style={{ y: headerY, scale: headerScale }} className="max-w-3xl mx-auto text-center px-4">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient">{DEEP_DIVE_CONFIG.title}</h2>
+                        <p className="text-lg text-muted-foreground">{DEEP_DIVE_CONFIG.subtitle}</p>
+                    </motion.div>
+                </motion.div>
+
+                {DEEP_DIVE_CONFIG.technologies.map((tech, i) => (
+                    <div key={tech.id} className="absolute inset-0 flex items-center justify-center px-4 z-10">
+                        <TechnologySlide tech={tech} scrollYProgress={scrollYProgress} index={i} total={totalParts - 2} />
+                    </div>
+                ))}
+                
+                {/* <div className="absolute inset-0 flex items-center justify-center px-4 z-10">
+                    <WorkflowSlide scrollYProgress={scrollYProgress} index={DEEP_DIVE_CONFIG.technologies.length} total={totalParts - 2} />
+                </div> */}
+
+                <motion.div style={{ opacity: summaryOpacity }} className="absolute inset-0 flex items-center justify-center z-10">
+                    <div className="p-8 md:p-10 bg-gradient-to-r from-primary/80 to-blue-700/80 backdrop-blur-md rounded-2xl max-w-3xl mx-auto text-center shadow-2xl shadow-primary/20 border border-slate-700">
+                        <h4 className="text-xl font-semibold mb-3 text-white">{DEEP_DIVE_CONFIG.summary.title}</h4>
+                        <p className="text-blue-200 text-lg leading-relaxed">{DEEP_DIVE_CONFIG.summary.text}</p>
+                    </div>
+                </motion.div>
+
+            </div>
+        </section>
+    );
 };
 
 export default TechnologyDeepDiveSection; 

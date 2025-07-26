@@ -27,10 +27,10 @@ const HERO_CONFIG = {
   titlePart1: "AI-Powered Metastasis Prevention",
   titlePart2: "Transform Cancer Care from Reactive to Preventive",
   subtitle: "CrisPRO's Oncology Co-Pilot delivers precision genomic insights, VUS resolution, and predictive analytics to help clinicians prevent metastasis before it starts. The world's first AI platform designed specifically for metastasis prevention.",
-  ctaPrimaryText: "Launch Co-Pilot",
+  ctaPrimaryText: "Platform",
   ctaPrimaryLink: "/platform",
-  ctaSecondaryText: "View Investment Thesis",
-  ctaSecondaryLink: "/investors/thesis",
+  ctaSecondaryText: "Research",
+  ctaSecondaryLink: "/blog",
   keyFeatures: [
     {
       id: 'genomic',
