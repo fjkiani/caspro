@@ -83,7 +83,7 @@ const BlogTeaserSection = () => {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white text-lg font-bold rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-black text-lg font-bold rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300"
             >
               View All Posts <ArrowRight />
             </motion.a>
