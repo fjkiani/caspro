@@ -3,7 +3,7 @@ import { Cpu, Share2, Edit, Workflow } from 'lucide-react';
 export const DEEP_DIVE_CONFIG = {
   sectionId: "technology-deep-dive",
   title: "The Science & Engineering Behind CrisPRO",
-  subtitle: "end-to-end in silico agentic war machine to conquer the future with a command and control system for therapeutic R&D with state of the art accuracy.",
+  subtitle: "End-to-end in silico agentic war machine to conquer the future with a command and control system for therapeutic R&D with state of the art accuracy.",
   
   technologies: [
     {

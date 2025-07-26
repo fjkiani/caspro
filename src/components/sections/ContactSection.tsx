@@ -15,19 +15,19 @@ export const CONTACT_CONFIG = {
   animationDelay: 0.2,
   
   // The title is a command, not a question.
-  titleText: 'Seize Your Unfair Advantage',
+  titleText: 'Annihilate the Actionability Gap',
   
   // The subtitle is a direct statement of what a briefing entails.
-  subtitleText: 'The war against cancer is being won with superior intelligence. Schedule a strategic briefing to witness how our AI command and control platform can provide your organization with an insurmountable advantage.',
+  subtitleText: 'The old guard delivers data; we deliver decisions. Schedule a strategic briefing to witness how our AI command and control platform transforms diagnostic ambiguity and R&D guesswork into your decisive advantage.',
   
   // The CTA is a call to action for commanders.
   ctaText: 'Request Strategic Briefing',
   
-  hintText: 'Our strategic command will respond within one business day.',
+  hintText: 'Our AI agents will respond shortly.',
   formTitle: 'Initiate Contact',
   
   // We don't have "partners." We have allies who leverage our power.
-  partnerTitle: "Why Market Leaders Deploy CrisPRO",
+  partnerTitle: "Sieze Unfair Advantage",
   
   // Benefits are framed as tactical advantages.
   partnerBenefits: [
@@ -38,7 +38,7 @@ export const CONTACT_CONFIG = {
   ],
 
   // Social proof is about joining the victors.
-  socialProofTitle: 'Join the Vanguard of AI-Driven Medicine',
+  socialProofTitle: ' The CrisPRO Intelligence Platform',
   socialProofOrganizations: [
     'Dana-Farber Cancer Institute', // Represents top-tier clinical/research - for PrecisionRad
     'Vertex Pharmaceuticals',       // Represents biotech/pharma - for CrisPRO
@@ -55,15 +55,15 @@ export const CONTACT_CONFIG = {
 
 // Form fields remain functional but are part of a more powerful frame.
 export const FORM_FIELDS = [
-  { id: 'name', label: 'Full Name', type: 'text', placeholder: 'Dr. Jane R. Smith', icon: React.createElement(FiUser) },
-  { id: 'email', label: 'Work Email', type: 'email', placeholder: 'jane.smith@institution.org', icon: React.createElement(FiMail) },
-  { id: 'organization', label: 'Organization / Institution', type: 'text', placeholder: 'Memorial Cancer Institute', icon: React.createElement(FiBriefcase) },
-  { id: 'role', label: 'Your Role / Specialty', type: 'text', placeholder: 'Clinical Oncologist, Cancer Researcher, etc.', icon: React.createElement(FiAward) },
+  { id: 'name', label: 'Full Name', type: 'text', icon: React.createElement(FiUser) },
+  { id: 'email', label: 'Work Email', type: 'email', icon: React.createElement(FiMail) },
+  { id: 'organization', label: 'Organization / Institution', type: 'text',  icon: React.createElement(FiBriefcase) },
+  { id: 'role', label: 'Your Role / Specialty', type: 'text', icon: React.createElement(FiAward) },
 ];
 const MESSAGE_FIELD = {
   id: 'message',
   label: 'Specific Interests or Questions (Optional)',
-  placeholder: 'e.g., Interested in variant interpretation, structural analysis, or specific cancer types...',
+  placeholder: 'e.g., Interested in variant interpretation, protien structure, CRISPR design, clinical trials, etc.',
   rows: 4,
   icon: React.createElement(FiMessageSquare)
 };
