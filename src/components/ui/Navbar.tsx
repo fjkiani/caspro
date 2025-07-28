@@ -23,6 +23,7 @@ const doctrineSubLinks = [
   { href: '/doctrine/vus-annihilation', label: 'VUS Annihilation' },
   { href: '/doctrine/metastasis-prevention', label: 'Metastasis Prevention' },
   { href: '/doctrine/de-sci-and-ip-nfts', label: 'DeSci & IP-NFTs' },
+  { href: '/kill-chain', label: 'The \'In Silico\' Kill Chain' },
 ];
 
 const investorSubLinks = [

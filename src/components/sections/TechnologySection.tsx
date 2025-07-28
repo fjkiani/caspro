@@ -123,9 +123,9 @@ const TechnologySection = () => {
                   </div>
                   <div className="lg:col-span-3 relative h-80 lg:h-96 bg-slate-900/50 rounded-xl flex items-center justify-center p-4 shadow-inner border border-slate-800">
                     {tab.modelPath ? (
-                        <ModelViewer 
+                          <ModelViewer 
                             modelUrl={tab.modelPath}
-                        />
+                          />
                     ) : (
                       <SecurityDiagram />
                     )}

@@ -29,7 +29,7 @@ export type { DashboardLayoutProps, DashboardPanel, DashboardWidget } from './Da
 export type { ScientificNotationProps } from './ScientificNotation';
 export type { SequenceViewerProps, SequenceRange } from './SequenceViewer';
 export type { RiskHeatmapProps, RiskCategory, RiskItem } from './RiskHeatmap';
-export type { KnowledgeGraphProps, GraphNode, GraphEdge } from './KnowledgeGraph';
+export type { KnowledgeGraphProps, GraphNode, GraphEdge, KnowledgeGraphInstance } from './KnowledgeGraph';
 export type { 
   TimelineVisualizerProps, 
   TimelineEvent, 

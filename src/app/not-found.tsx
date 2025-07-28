@@ -3,63 +3,41 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { Home, Mail } from 'lucide-react';
 import { ROUTES } from '@/constants/routes';
-import Navbar from '@/components/ui/Navbar';
-import Footer from '@/components/ui/Footer';
 
 export default function NotFound() {
   return (
-    <>
-      <Navbar />
-      <main className="flex items-center justify-center min-h-[70vh] py-24">
-        <div className="container max-w-4xl mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-4">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center"
+      >
+        <h1 className="text-6xl md:text-8xl font-bold text-red-500 mb-4">404</h1>
+        <h2 className="text-2xl md:text-4xl font-semibold text-slate-200 mb-6">Page Not Found</h2>
+        <p className="text-lg text-slate-400 mb-10 max-w-md">
+          The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link 
+            href={ROUTES.HOME}
+            className="inline-flex items-center px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors shadow-lg"
           >
-            <span className="text-7xl mb-6 block">😕</span>
-            <h1 className="text-4xl font-bold text-slate-900 mb-4">Page Not Found</h1>
-            <p className="text-xl text-slate-600 mb-8">
-              Sorry, we couldn't find the page you're looking for.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link 
-                href={ROUTES.HOME}
-                className="px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"
-              >
-                Go to Homepage
-              </Link>
-              <Link 
-                href={ROUTES.CONTACT}
-                className="px-6 py-3 bg-slate-100 text-slate-800 rounded-md hover:bg-slate-200 transition-colors"
-              >
-                Contact Support
-              </Link>
-            </div>
-            
-            <div className="mt-16 pt-8 border-t border-slate-200">
-              <h2 className="text-xl font-semibold text-slate-800 mb-4">You might be looking for:</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <Link href={ROUTES.ABOUT} className="p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                  <h3 className="font-medium text-primary">About Us</h3>
-                  <p className="text-sm text-slate-600">Learn about our mission</p>
-                </Link>
-                <Link href={ROUTES.PRIVACY} className="p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                  <h3 className="font-medium text-primary">Privacy Policy</h3>
-                  <p className="text-sm text-slate-600">How we protect your data</p>
-                </Link>
-                <Link href={ROUTES.TERMS} className="p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                  <h3 className="font-medium text-primary">Terms of Service</h3>
-                  <p className="text-sm text-slate-600">Our usage guidelines</p>
-                </Link>
-              </div>
-            </div>
-          </motion.div>
+            <Home className="mr-2 h-5 w-5" />
+            Go to Homepage
+          </Link>
+          <Link 
+            href={ROUTES.CONTACT}
+            className="inline-flex items-center px-6 py-3 bg-slate-700 text-slate-200 rounded-md hover:bg-slate-600 transition-colors"
+          >
+            <Mail className="mr-2 h-5 w-5" />
+            Contact Support
+          </Link>
         </div>
-      </main>
-      <Footer />
-    </>
+      </motion.div>
+    </div>
   );
 } 

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 import PostCard from './PostCard';
-import { PostNode } from './page'; // Category and RecentPost removed from import
+import { PostNode } from '@/types/blog'; // Corrected import path
 // CategoriesWidget and PostWidget imports removed
 import { ArrowRight } from 'lucide-react';
 

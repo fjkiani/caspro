@@ -3,35 +3,7 @@
 import React from 'react';
 import { getPosts } from '@/services'; // Only getPosts is needed now
 import BlogPageClient from './BlogPageClient'; 
-
-// Type definitions for Hygraph post data
-export interface Author {
-  bio?: string;
-  name: string;
-  id: string;
-  photo?: {
-    url: string;
-  };
-}
-
-export interface FeaturedImage {
-  url: string;
-}
-
-export interface Category { // Keep Category type in case PostNode uses it, even if not displayed separately
-  name: string;
-  slug: string;
-}
-
-export interface PostNode {
-  author?: Author;
-  createdAt: string;
-  slug: string;
-  title: string;
-  excerpt?: string;
-  featuredImage?: FeaturedImage;
-  categories?: Category[]; // PostNode might still have categories data
-}
+import { PostNode } from '@/types/blog';
 
 interface PostEdge {
   node: PostNode;

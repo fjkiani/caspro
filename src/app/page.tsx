@@ -16,6 +16,7 @@ import UnfairAdvantageSection from '@/components/investment-thesis/UnfairAdvanta
 import { InvestmentThesisHeader } from '@/components/investment-thesis/InvestmentThesisHeader';
 import { MetastasisFrameworkSection } from '@/components/investment-thesis/MetastasisFrameworkSection';
 import BlogTeaserSection from '@/components/sections/BlogTeaserSection';
+import IntegratedWorkflowSection from '@/components/sections/IntegratedWorkflowSection';
 // Page configuration constants
 const PAGE_CONFIG = {
   title: 'CrisPRO: Oncology Co-Pilot',
@@ -31,6 +32,7 @@ const PAGE_CONFIG = {
     // { id: 'features', component: FeaturesSection },
     // { id: 'science', component: TechnologySection },
     { id: 'technology-deep-dive', component: TechnologyDeepDiveSection },
+    { id: 'integrated-workflow', component: IntegratedWorkflowSection },
     // { id: 'agent-capabilities', component: AgentCapabilitiesSection },
     // { id: 'foundational-pillars', component: FoundationalPillarsSection },
     // { id: 'impact', component: ImpactSection }, // Commented out

@@ -32,7 +32,7 @@
 'use client';
 
 import React, { useState, useCallback, useEffect, useRef } from 'react';
-import { KnowledgeGraph, GraphNode as BaseGraphNode, GraphEdge as BaseGraphEdge, CrisPROGraphNodeDetailedType } from './KnowledgeGraph';
+import KnowledgeGraph, { GraphNode as BaseGraphNode, GraphEdge as BaseGraphEdge, CrisPROGraphNodeDetailedType } from './KnowledgeGraph';
 
 // CrisPRO.ai Specific Tutorial Steps
 interface CrisPROTutorialStep {

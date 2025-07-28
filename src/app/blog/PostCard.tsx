@@ -3,7 +3,7 @@
 import React from 'react';
 import moment from 'moment';
 import Link from 'next/link';
-import { PostNode } from './page'; // Assuming PostNode is exported from page.tsx
+import { PostNode } from '@/types/blog'; // Corrected import path
 import { ArrowRight } from 'lucide-react';
 
 interface PostCardProps {

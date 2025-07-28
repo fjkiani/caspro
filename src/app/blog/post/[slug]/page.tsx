@@ -1,25 +1,9 @@
 import React from 'react';
 import { getPostDetails } from '@/services';
-import { Author, Category, FeaturedImage } from '@/app/blog/page'; // Ensure correct path to types
+import { PostDetail } from '@/types/blog';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import Link from 'next/link'; // Import Link for the back button
 import { ChevronLeft } from 'lucide-react'; // For a nice back icon
-
-// Define the structure of the post details we expect
-interface PostDetail { // Removed Omit as Author type should be complete
-  title: string;
-  excerpt?: string; // Excerpt is often part of post details too
-  featuredImage?: FeaturedImage; 
-  author?: Author; // Author can be optional if a post might not have one
-  createdAt: string; 
-  slug: string;
-  content: {
-    raw: any; 
-    html?: string; 
-    text?: string;
-  };
-  categories?: Category[];
-}
 
 interface PostPageProps {
   params: {

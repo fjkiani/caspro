@@ -55,7 +55,7 @@ export type CrisPROGraphNodeDetailedType =
 export interface GraphNode {
   id: string;
   label: string;
-  type: 'gene' | 'variant' | 'outcome' | 'therapy' | 'publication' | 'other';
+  type: string;
   description?: string;
   size?: number;
   color?: string;
@@ -76,7 +76,7 @@ export interface GraphEdge {
   target: string; // ID of target node
   label?: string;
   weight?: number; // Base weight, potentially modulated by AI scores
-  type?: 'causes' | 'treats' | 'associates' | 'reports' | 'includes' | 'other';
+  type?: string;
   color?: string;
   metadata?: Record<string, any>;
   // CrisPRO.ai specific properties
@@ -143,7 +143,12 @@ export interface KnowledgeGraphProps {
   diseaseContext?: string;
   /** Patient profile information (e.g., genetic markers, demographics). Used by CrisPRO.ai for personalized graph views. */
   patientProfile?: Record<string, any>;
+  customNodeColors?: Record<string, string>;
 }
+
+export type KnowledgeGraphInstance = {
+  fitView: () => void;
+};
 
 /**
  * @function KnowledgeGraph
@@ -152,32 +157,36 @@ export interface KnowledgeGraphProps {
  * and rendering of nodes and edges. This component is designed to be highly configurable
  * and deeply integrated with CrisPRO.ai's data and intelligence layers.
  */
-export function KnowledgeGraph({
-  nodes,
-  edges,
-  enableDragging = true,
-  enableZoom = true,
-  showLabels = true,
-  showEdgeLabels = false,
-  usePhysics = true,
-  simulationRunning = false, // Controlled by parent, starts inactive
-  physicsConfig, // Prop will be merged with defaults below
-  nodeSpacing = 70,     // Increased default nodeSpacing
-  onNodeClick,
-  onEdgeClick,
-  typeFilters, // TODO: CrisPRO.ai - Implement filtering logic based on typeFilters
-  highlightConnections = true,
-  className = '',
-  width = 800,
-  height = 600,
-  // CrisPRO.ai specific props
-  therapeuticContext, // Used for displaying context and potentially by AI for filtering
-  enableAIWeighting = false, // If true, AI scores influence node/edge visuals
-  enableLLMInsights = false, // If true, onNodeClick might trigger LLM calls
-  highlightKeyPathways = false, // If true, pathways identified by CrisPRO.ai are visually emphasized
-  diseaseContext, // Additional context for CrisPRO.ai
-  patientProfile, // Additional context for CrisPRO.ai
-}: KnowledgeGraphProps) {
+const KnowledgeGraph = React.forwardRef<KnowledgeGraphInstance, KnowledgeGraphProps>((
+  {
+    nodes,
+    edges,
+    enableDragging = true,
+    enableZoom = true,
+    showLabels = true,
+    showEdgeLabels = false,
+    usePhysics = true,
+    simulationRunning = false, // Controlled by parent, starts inactive
+    physicsConfig, // Prop will be merged with defaults below
+    nodeSpacing = 70,     // Increased default nodeSpacing
+    onNodeClick,
+    onEdgeClick,
+    typeFilters, // TODO: CrisPRO.ai - Implement filtering logic based on typeFilters
+    highlightConnections = true,
+    className = '',
+    width = 800,
+    height = 600,
+    // CrisPRO.ai specific props
+    therapeuticContext, // Used for displaying context and potentially by AI for filtering
+    enableAIWeighting = false, // If true, AI scores influence node/edge visuals
+    enableLLMInsights = false, // If true, onNodeClick might trigger LLM calls
+    highlightKeyPathways = false, // If true, pathways identified by CrisPRO.ai are visually emphasized
+    diseaseContext, // Additional context for CrisPRO.ai
+    patientProfile, // Additional context for CrisPRO.ai
+    customNodeColors,
+  },
+  ref
+) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
   const [hoveredEdge, setHoveredEdge] = useState<string | null>(null);
@@ -199,6 +208,43 @@ export function KnowledgeGraph({
     maxVelocity: 35,    // Reduced from 45 to prevent fast jumps
     ...(physicsConfig || {}), // Merge with prop, ensuring physicsConfig is not undefined
   };
+
+  // Expose the fitView function via the ref
+  React.useImperativeHandle(ref, () => ({
+    fitView: () => {
+      if (!containerRef.current || !nodes.length || Object.keys(nodePositions).length === 0) return;
+
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      nodes.forEach(node => {
+        const pos = nodePositions[node.id];
+        if (pos) {
+          minX = Math.min(minX, pos.x);
+          minY = Math.min(minY, pos.y);
+          maxX = Math.max(maxX, pos.x);
+          maxY = Math.max(maxY, pos.y);
+        }
+      });
+
+      if (minX === Infinity) return;
+
+      const graphWidth = maxX - minX;
+      const graphHeight = maxY - minY;
+      
+      const containerWidth = containerRef.current.offsetWidth;
+      const containerHeight = containerRef.current.offsetHeight;
+
+      const padding = 100;
+      const scaleX = containerWidth / (graphWidth + padding);
+      const scaleY = containerHeight / (graphHeight + padding);
+      const newScale = Math.min(scaleX, scaleY, 1.5); // Allow slight zoom-in
+
+      const newOffsetX = (containerWidth / 2) - ((minX + maxX) / 2) * newScale;
+      const newOffsetY = (containerHeight / 2) - ((minY + maxY) / 2) * newScale;
+
+      setScale(newScale);
+      setOffset({ x: newOffsetX, y: newOffsetY });
+    }
+  }));
 
   // Effect to observe container size and update actualWidth/Height
   useEffect(() => {
@@ -523,10 +569,9 @@ export function KnowledgeGraph({
   // based on AI scores, relevance, or user-defined color schemes related to therapeutic areas.
   const getNodeColor = (node: GraphNode): string => {
     if (node.color) return node.color;
-    // CrisPRO.ai: If `enableAIWeighting` is true, color could be derived from `aiRelevanceScore`
-    // or `evidenceStrength` using a color scale (e.g., via `getColorInRange`).
-    // Example: if (enableAIWeighting && node.aiRelevanceScore) return getColorInRange(node.aiRelevanceScore, 0, 1, ['#cccccc', '#007bff']);
-
+    if (customNodeColors && customNodeColors[node.type]) {
+        return customNodeColors[node.type];
+    }
     switch (node.type) {
       case 'gene': return '#2563eb';
       case 'variant': return '#dc2626';
@@ -863,6 +908,7 @@ export function KnowledgeGraph({
       </div>
     </DataVisualizer>
   );
-}
+});
+KnowledgeGraph.displayName = 'KnowledgeGraph';
 
 export default KnowledgeGraph; 
