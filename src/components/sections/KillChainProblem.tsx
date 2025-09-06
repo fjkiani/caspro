@@ -46,8 +46,8 @@ const KillChainProblem = () => {
   return (
     <section id="kill-chain-problem" className="py-20">
       <KillChainSectionHeader 
-        title="The State of Play: A Broken System" 
-        subtitle="Traditional therapeutic development is an expensive, slow, and inefficient war of attrition. We need a new doctrine." 
+        title="The State of Play:" 
+        subtitle="Accelerating Therapeutic Development" 
       />
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
         {problems.map((problem, i) => (

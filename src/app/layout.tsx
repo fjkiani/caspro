@@ -7,6 +7,8 @@ import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import FloatingToggleButton from "@/components/ui/FloatingToggleButton";
+import { ThemeProvider } from "@/context/ThemeContext";
 import { JsonLd, organizationSchema } from "@/components/SEO/JsonLd";
 
 // Space Grotesk for headings - more technical and modern
@@ -54,8 +56,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "CrisPRO: AI-Powered Metastasis Prevention",
-    description: "Transform cancer care with the world's first AI-powered metastasis prevention system.",
+    title: "CrisPRO:",
+    description: "world's first AI-powered metastasis prevention system.",
     images: ['/og-image.png'], // You'll need to add this image
     creator: '@crispro_ai', // Replace with your actual Twitter handle
   },
@@ -107,11 +109,16 @@ export default function RootLayout({
         <JsonLd data={organizationSchema} />
       </head>
       <body className={`${inter.className} flex flex-col min-h-screen bg-background`}>
-        <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider>
+          <Navbar />
+          <FloatingToggleButton href="/platform">
+            Research Use Only
+          </FloatingToggleButton>
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

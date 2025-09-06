@@ -15,7 +15,7 @@ interface KeyCapabilityCardProps {
 }
 
 const KeyCapabilityDisplay: React.FC<KeyCapabilityCardProps> = ({ capability, globalGenomicInsightsOverview }) => {
-  const [isExpanded, setIsExpanded] = useState(false); 
+  const [isExpanded, setIsExpanded] = useState(true); 
   const [isGenomicsExpanded, setIsGenomicsExpanded] = useState(true); // Keep it expanded by default
 
   const genomicTextToDisplay = capability.genomicUseCasesParagraph || globalGenomicInsightsOverview;
@@ -34,7 +34,7 @@ const KeyCapabilityDisplay: React.FC<KeyCapabilityCardProps> = ({ capability, gl
   };
 
   return (
-    <div className="bg-slate-800/70 backdrop-blur-md rounded-xl shadow-xl p-6 md:p-8 border border-slate-700 hover:shadow-primary/20 transition-shadow duration-300">
+    <div className="bg-white/90 backdrop-blur-md rounded-xl shadow-xl p-6 md:p-8 border border-slate-200 hover:shadow-primary/20 transition-shadow duration-300">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className="flex items-center justify-between w-full text-left text-2xl font-bold text-primary mb-6 group"
@@ -59,27 +59,27 @@ const KeyCapabilityDisplay: React.FC<KeyCapabilityCardProps> = ({ capability, gl
             transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
             className="overflow-hidden"
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm mb-6">
-              <div className="bg-slate-700/50 p-4 rounded-lg">
-                <div className="flex items-center text-sky-400 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm mb-6 text-center">
+              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                <div className="flex items-center justify-center text-sky-600 mb-2">
                   <Settings size={18} className="mr-2 flex-shrink-0" />
                   <h4 className="font-semibold">Technical Approach</h4>
                 </div>
-                <div className="text-slate-300 leading-relaxed prose prose-base prose-invert max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.technical)} />
+                <div className="text-slate-700 leading-relaxed prose prose-base max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.technical)} />
               </div>
-              <div className="bg-slate-700/50 p-4 rounded-lg">
-                <div className="flex items-center text-teal-400 mb-2">
+              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                <div className="flex items-center justify-center text-teal-600 mb-2">
                   <Microscope size={18} className="mr-2 flex-shrink-0" />
                   <h4 className="font-semibold">Scientific Impact</h4>
                 </div>
-                <div className="text-slate-300 leading-relaxed prose prose-base prose-invert max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.scientific)} />
+                <div className="text-slate-700 leading-relaxed prose prose-base max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.scientific)} />
               </div>
-              <div className="bg-slate-700/50 p-4 rounded-lg">
-                <div className="flex items-center text-indigo-400 mb-2">
+              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                <div className="flex items-center justify-center text-indigo-600 mb-2">
                   <Briefcase size={18} className="mr-2 flex-shrink-0" />
                   <h4 className="font-semibold">Business Value</h4>
                 </div>
-                <div className="text-slate-300 leading-relaxed prose prose-base prose-invert max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.business)} />
+                <div className="text-slate-700 leading-relaxed prose prose-base max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.business)} />
               </div>
             </div>
           </motion.div>
@@ -88,13 +88,13 @@ const KeyCapabilityDisplay: React.FC<KeyCapabilityCardProps> = ({ capability, gl
       
       {/* Genomic Use Cases Integration - Moved outside the main expand/collapse animation */}
       {genomicTextToDisplay && (
-        <div className="mt-8 pt-6 border-t border-slate-700 bg-slate-700/30 p-5 rounded-lg shadow">
+        <div className="mt-8 pt-6 border-t border-slate-200 bg-slate-50 p-5 rounded-lg shadow">
           <button 
             onClick={() => setIsGenomicsExpanded(!isGenomicsExpanded)}
-            className="flex items-center justify-between w-full text-left text-xl font-semibold text-sky-300 hover:text-sky-200 transition-colors mb-4 group"
+            className="flex items-center justify-between w-full text-left text-xl font-semibold text-blue-600 hover:text-blue-700 transition-colors mb-4 group"
           >
             <span>Genomic Use Cases Integration</span>
-            {isGenomicsExpanded ? <ChevronUp size={22} className="text-sky-300 group-hover:text-sky-200" /> : <ChevronDown size={22} className="text-sky-400 group-hover:text-sky-300" />}
+            {isGenomicsExpanded ? <ChevronUp size={22} className="text-blue-600 group-hover:text-blue-700" /> : <ChevronDown size={22} className="text-blue-500 group-hover:text-blue-600" />}
           </button>
           <AnimatePresence initial={false}>
             {isGenomicsExpanded && (

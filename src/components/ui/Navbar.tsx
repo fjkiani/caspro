@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail } from 'lucide-react';
+import ToggleButton from './ToggleButton';
 
 const NAV_CONFIG = {
   brandEmoji: "🧬",
@@ -35,7 +36,7 @@ const investorSubLinks = [
 export const NAV_LINKS = [
   {
     href: '/platform',
-    label: 'Platform',
+    label: 'In-Silico',
     icon: <Rocket className="inline-block h-4 w-4" />,
     subLinks: platformSubLinks,
   },
@@ -107,14 +108,14 @@ const DropdownMenu: React.FC<{ menu: NavMenu }> = ({ menu }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-slate-800 rounded-lg shadow-lg border border-slate-700 z-50"
+            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-white rounded-lg shadow-lg border border-slate-200 z-50"
           >
             <div className="p-2">
               {menu.subLinks?.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block px-3 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white rounded-md transition-colors"
+                  className="block px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900 rounded-md transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
@@ -144,12 +145,12 @@ const Navbar: React.FC = () => {
   // Check if we're on a learn page (light background)
   const isLearnPage = pathname.startsWith('/learn');
   
-  const navClass = isScrolled || isLearnPage
+  const navClass = isLearnPage
     ? 'bg-slate-900/80 backdrop-blur-lg border-b border-slate-700/50'
     : 'bg-transparent';
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navClass}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navClass} ${isScrolled ? 'transform -translate-y-full' : 'transform translate-y-0'}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
@@ -184,18 +185,10 @@ const Navbar: React.FC = () => {
           </div>
           
           <div className="hidden md:flex items-center gap-2 flex-shrink-0">
-            <Link
-                href="/platform"
-                className="btn-secondary py-2 px-4 text-sm"
-            >
-                Launch Co-Pilot
-            </Link>
-            <Link
-                href="/contact"
-                className="btn-primary py-2 px-4 text-sm shadow-lg shadow-primary/20"
-            >
-                Request a Demo
-            </Link>
+            <ToggleButton href="/platform">
+              Research Use Only
+            </ToggleButton>
+          
           </div>
 
           {/* Mobile Nav Toggle */}
@@ -214,7 +207,7 @@ const Navbar: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-slate-900 border-t border-slate-700"
+            className="md:hidden bg-white border-t border-slate-200"
           >
             <div className="px-4 pt-2 pb-4 space-y-2">
               {NAV_LINKS.map((link) => (
@@ -222,18 +215,18 @@ const Navbar: React.FC = () => {
                     <Link
                       href={link.subLinks ? '#' : link.href}
                       onClick={() => !link.subLinks && setIsOpen(false)}
-                      className="block py-2 text-base font-medium text-slate-200 hover:text-primary"
+                      className="block py-2 text-base font-medium text-slate-700 hover:text-primary"
                     >
                       {link.icon} {link.label}
                     </Link>
                     {link.subLinks && (
-                        <div className="pl-4 mt-1 space-y-1 border-l border-slate-700">
+                        <div className="pl-4 mt-1 space-y-1 border-l border-slate-200">
                         {link.subLinks.map(sub => (
                             <Link
                                 key={sub.href}
                                 href={sub.href}
                                 onClick={() => setIsOpen(false)}
-                                className="block py-1.5 text-sm text-slate-400 hover:text-primary"
+                                className="block py-1.5 text-sm text-slate-600 hover:text-primary"
                             >
                             - {sub.label}
                             </Link>
@@ -243,20 +236,12 @@ const Navbar: React.FC = () => {
                 </div>
               ))}
               <div className="flex items-stretch gap-2 pt-4">
-                <Link
-                  href="/platform"
-                  onClick={() => setIsOpen(false)}
-                  className="btn-secondary flex-1 text-center py-2.5 px-4 text-sm"
-                >
-                    Launch Co-Pilot
-                </Link>
-                <Link
-                href="/#contact"
-                onClick={() => setIsOpen(false)}
-                className="btn-primary flex-1 text-center py-2.5 px-4 text-sm"
-              >
-                Request a Demo
-              </Link>
+                <div className="flex-1">
+                  <ToggleButton href="/platform">
+                    Research Use Only
+                  </ToggleButton>
+                </div>
+              
               </div>
             </div>
           </motion.div>

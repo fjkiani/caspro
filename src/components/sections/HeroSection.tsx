@@ -6,8 +6,9 @@ import { Suspense } from 'react';
 import DoubleDnaHelix from '../ui/DoubleDnaHelix';
 import CrisprGenomeEditor from '../ui/CrisprGenomeEditor';
 import DnaBasePairStrip from '../ui/DnaBasePairStrip';
-import { ArrowRight, Brain, Dna, FileText } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { HERO_CONFIG } from '@/data/hero-config';
 
 // Dynamically import ProteinModelViewer with SSR turned off
 const ProteinModelViewer = dynamic(
@@ -22,39 +23,6 @@ const ProteinModelViewer = dynamic(
   }
 );
 
-// Constants for Hero Section configuration
-const HERO_CONFIG = {
-  titlePart1: "AI-Powered Metastasis Prevention",
-  titlePart2: "Transform Cancer Care from Reactive to Preventive",
-  subtitle: "CrisPRO's Oncology Co-Pilot delivers precision genomic insights, VUS resolution, and predictive analytics to help clinicians prevent metastasis before it starts. The world's first AI platform designed specifically for metastasis prevention.",
-  ctaPrimaryText: "Platform",
-  ctaPrimaryLink: "/platform",
-  ctaSecondaryText: "Research",
-  ctaSecondaryLink: "/blog",
-  keyFeatures: [
-    {
-      id: 'genomic',
-      name: 'CRISPR Intelligence Platform',
-      description: 'An end-to-end co-pilot for therapeutic gene editing. Accelerate your R&D from discovery to pre-clinical with AI-powered guide design, variant effect prediction, and automated experiment planning.',
-      icon: Dna,
-      link: '/platform/crispr-intelligence'
-    },
-    {
-      id: 'oncology',
-      name: 'PrecisionRad™ Co-Pilot',
-      description: 'Fuse multi-modal data to hyper-personalize radiation therapy. Predict patient-specific radiosensitivity and toxicity by integrating deep genomic profiles with medical imaging to optimize treatment plans.',
-      icon: Brain,
-      link: '/platform/precision-rad'
-    },
-    {
-      id: 'emr',
-      name: 'AgenticEMR™ Co-Pilot',
-      description: 'Transform unstructured clinical data into a strategic asset. Automate patient record summarization, cohort identification, and clinical trial matching to unlock deep clinical insights from your EMR.',
-      icon: FileText,
-      link: '/platform/agentic-emr'
-    }
-  ]
-};
 
 const HeroSection = () => {
   return (
@@ -77,10 +45,8 @@ const HeroSection = () => {
             className="text-slate-800 dark:text-white"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              <span className="text-gradient">
-                <span className="block">{HERO_CONFIG.titlePart1}</span>
-                {HERO_CONFIG.titlePart2}
-              </span>
+              <span className="text-gradient block">{HERO_CONFIG.titlePart1}</span>
+              <span className="text-gradient">{HERO_CONFIG.titlePart2}</span>
             </h1>
             
             <p className="text-lg text-slate-600 dark:text-blue-100/90 mb-8 max-w-xl">

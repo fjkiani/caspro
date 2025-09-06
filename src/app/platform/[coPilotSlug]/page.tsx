@@ -1,7 +1,17 @@
 import { Metadata } from 'next';
 import { coPilotDetailsData, CoPilotDetailContent } from '@/data/coPilotDetails';
 import InteractiveContentAnalysis from '@/components/co-pilot-detail/InteractiveContentAnalysis';
+import DesciStyleDoctrineInsights from '@/components/co-pilot-detail/DesciStyleDoctrineInsights';
+import CapabilityJourneySection from '@/components/co-pilot-detail/CapabilityJourneySection';
 import { notFound } from 'next/navigation';
+
+import { CapabilityType } from '@/data/capability-journeys';
+
+// Function to map page titles to capability types
+function getCapabilityType(pageTitle: string): CapabilityType {
+  // For now, we only have chemotherapy journey
+  return 'chemotherapy';
+}
 
 // This function generates the static paths for each co-pilot page at build time.
 export async function generateStaticParams() {
@@ -34,7 +44,7 @@ export default async function CoPilotDetailPage({ params }: { params: { coPilotS
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900 text-white pt-20 pb-12 px-4 md:px-8">
+    <main className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white text-slate-800 pt-20 pb-12 px-4 md:px-8">
       <div className="container mx-auto max-w-7xl">
         {/* Hero Section (Static or part of InteractiveContentAnalysis if dynamic) */}
         <section className="text-center mb-16 md:mb-24 pt-10">
@@ -42,7 +52,7 @@ export default async function CoPilotDetailPage({ params }: { params: { coPilotS
             {content.pageTitle}
           </h1>
           {content.heroSubtitle && (
-            <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
               {content.heroSubtitle}
             </p>
           )}
@@ -52,6 +62,16 @@ export default async function CoPilotDetailPage({ params }: { params: { coPilotS
         <div className="container mx-auto px-4 py-16">
           <InteractiveContentAnalysis content={content} />
         </div>
+
+        {/* Visual Storytelling: Old Way vs New Way */}
+        <div className="container mx-auto px-4 py-16">
+          <CapabilityJourneySection 
+            capabilityType={getCapabilityType(content.pageTitle)}
+          />
+        </div>
+
+        {/* Desci-Style Doctrine Strategic Insights */}
+        <DesciStyleDoctrineInsights content={content} />
       </div>
     </main>
   );

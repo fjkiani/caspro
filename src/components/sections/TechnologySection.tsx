@@ -66,7 +66,7 @@ const TechnologySection = () => {
         </motion.div>
 
         <HeadlessUiTab.Group>
-          <HeadlessUiTab.List className="flex flex-col sm:flex-row gap-2 rounded-xl bg-slate-800/60 p-2 max-w-4xl mx-auto mb-12 shadow-md border border-slate-700">
+          <HeadlessUiTab.List className="flex flex-col sm:flex-row gap-2 rounded-xl bg-white/90 p-2 max-w-4xl mx-auto mb-12 shadow-md border border-slate-200">
             {TECHNOLOGY_CONFIG.tabs.map((tab) => {
               const Icon = tab.icon;
               return (
@@ -75,10 +75,10 @@ const TechnologySection = () => {
                   className={({ selected }) =>
                     classNames(
                       'w-full rounded-lg py-3 px-2 text-sm font-medium leading-5 transition-colors duration-200',
-                      'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-slate-900 ring-primary/60',
+                      'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-white ring-primary/60',
                       selected
                         ? 'bg-primary text-white shadow-lg'
-                        : 'text-slate-300 hover:bg-white/10'
+                        : 'text-slate-700 hover:bg-slate-100'
                     )
                   }
                 >
@@ -86,7 +86,7 @@ const TechnologySection = () => {
                     <Icon className="w-5 h-5" />
                     <div>
                       <span className="font-semibold">{tab.name}</span>
-                      <span className="text-xs text-slate-400 ml-2 hidden md:inline">{tab.description}</span>
+                      <span className="text-xs text-slate-600 ml-2 hidden md:inline">{tab.description}</span>
                     </div>
                   </div>
                 </HeadlessUiTab>
@@ -106,8 +106,8 @@ const TechnologySection = () => {
                   className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start"
                 >
                   <div className="lg:col-span-2">
-                    <h3 className="text-2xl font-bold mb-4 text-slate-100">{tab.content.heading}</h3>
-                    <p className="text-slate-400 mb-6">{tab.content.description}</p>
+                    <h3 className="text-2xl font-bold mb-4 text-slate-800">{tab.content.heading}</h3>
+                    <p className="text-slate-600 mb-6">{tab.content.description}</p>
                     <motion.div 
                       initial="hidden"
                       animate="visible"
@@ -121,7 +121,7 @@ const TechnologySection = () => {
                       ))}
                     </motion.div>
                   </div>
-                  <div className="lg:col-span-3 relative h-80 lg:h-96 bg-slate-900/50 rounded-xl flex items-center justify-center p-4 shadow-inner border border-slate-800">
+                  <div className="lg:col-span-3 relative h-80 lg:h-96 bg-slate-50 rounded-xl flex items-center justify-center p-4 shadow-inner border border-slate-200">
                     {tab.modelPath ? (
                           <ModelViewer 
                             modelUrl={tab.modelPath}

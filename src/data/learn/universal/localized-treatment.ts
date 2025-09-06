@@ -590,7 +590,7 @@ export const localizedTreatmentContent: UniversalContent = {
             label: 'Baseline ED (Untreated Men)',
             value: '30% → 70%',
             description: 'ED rates in untreated men: 30% at diagnosis, 70% at 5 years',
-            trend: 'down',
+            trend: 'stable',
             context: 'ED is largely age and health-related'
           },
           {

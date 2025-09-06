@@ -22,15 +22,17 @@ const KillChainCta = () => {
                 The In Silico Kill Chain is not a theoretical model; it is an operational weapons platform for the war on disease. 
                 See how CrisPRO.ai delivers on the promise of speed, precision, and certainty.
             </p>
-            <Link href={ROUTES.CONTACT} passHref>
-                <motion.a
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+            >
+                <Link 
+                    href={ROUTES.CONTACT}
                     className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-red-600 rounded-lg shadow-lg hover:bg-red-700 transition-colors duration-300"
                 >
                     Request a Strategic Briefing <ArrowRight className="ml-2 w-6 h-6" />
-                </motion.a>
-            </Link>
+                </Link>
+            </motion.div>
       </motion.div>
     </section>
   );

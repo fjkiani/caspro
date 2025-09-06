@@ -72,7 +72,7 @@ export default function KillChainPage() {
             <main className="bg-black text-white">
                 <div className="container mx-auto px-4">
                     {pageTitle}
-                    <KillChainProblem />
+                    {/* <KillChainProblem /> */}
                     <MobileView />
                     <KillChainSummary />
                     <KillChainCta />

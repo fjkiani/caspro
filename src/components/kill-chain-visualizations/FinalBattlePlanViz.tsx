@@ -16,16 +16,16 @@ const BattlePlanEntry = ({ rank, name, score, status }: BattlePlanEntryProps) =>
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: rank * 0.1 }}
-        className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg border border-slate-700"
+        className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 bg-slate-800/50 rounded-lg border border-slate-700"
     >
-        <div className="flex items-center">
+        <div className="flex items-center mb-3 sm:mb-0">
             <span className="text-xl font-bold text-red-400 mr-4">{rank}.</span>
             <div>
                 <p className="font-semibold text-slate-200">{name}</p>
                 <p className="text-xs text-slate-500">Therapeutic Candidate</p>
             </div>
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 w-full sm:w-auto justify-end">
             <div className="text-right">
                 <p className="font-bold text-lg text-green-400">{score}</p>
                 <p className="text-xs text-slate-500">Assassin Score</p>

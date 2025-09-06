@@ -222,7 +222,7 @@ export default function InteractiveContentAnalysis({ content }: InteractiveConte
   return (
     <>
       {/* Vision Section */}
-      {content.vision && (
+      {/* {content.vision && (
         <motion.div 
           variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
           className="my-12"
@@ -237,7 +237,7 @@ export default function InteractiveContentAnalysis({ content }: InteractiveConte
             <div className="text-slate-300 leading-relaxed" dangerouslySetInnerHTML={renderMarkdown(content.vision)} />
           </div>
         </motion.div>
-      )}
+      )} */}
     
       {/* Dynamic Problem-Solution Matrix */}
       {problemCategories.length > 0 && currentProblemCategory && currentProblemCategory.problems.length > 0 && (
@@ -245,117 +245,15 @@ export default function InteractiveContentAnalysis({ content }: InteractiveConte
           variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
           className="mb-16"
         >
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white mb-4">Challenge → Solution Matrix</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-red-400 via-yellow-400 to-green-400 mx-auto mb-4"></div>
-            <p className="text-slate-300 max-w-2xl mx-auto">
-              {content.coreProblemIntro || "Addressing key challenges with targeted AI solutions"}
-            </p>
-          </div>
-          
-          {/* Problem Category Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
-            {problemCategories.map((category, index) => (
-              <button
-                key={category.id}
-                onClick={() => {
-                  setActiveProblemTab(index);
-                }}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center ${
-                  activeProblemTab === index
-                    ? 'bg-primary text-white shadow-lg'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-                }`}
-              >
-                <category.icon size={16} className={`mr-2 ${category.color || 'text-primary'}`} />
-                {category.label}
-                <span className="ml-2 px-2 py-1 text-xs rounded-full bg-white/20">
-                  {category.problems.length}
-                </span>
-              </button>
-            ))}
-          </div>
+         
 
-          {/* Problem Titles List for the active category */} 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
-            {currentProblemCategory.problems.map((problem, index) => (
-              <div
-                key={problem.id}
-                onClick={() => setActiveChallengeIndex(index)}
-                className={`p-3 rounded-lg cursor-pointer transition-all duration-200 ${
-                  activeChallengeIndex === index
-                    ? 'bg-slate-700 shadow-md ring-2 ring-primary'
-                    : 'bg-slate-800 hover:bg-slate-700/70'
-                }`}
-              >
-                <h5 className={`font-semibold text-sm ${activeChallengeIndex === index ? 'text-primary' : 'text-slate-100'}`}>
-                  {problem.title}
-                </h5>
-              </div>
-            ))}
-          </div>
+          
 
           {/* Selected Challenge and Solution Display */}
-          {currentChallenge && (
-            <div className={`grid md:grid-cols-2 gap-6 items-start`}>
-              {/* Problem Details */}
-              <div className={`bg-gradient-to-br from-red-500/10 to-orange-500/10 border border-red-500/20 rounded-xl p-6 h-full`}>
-                <div className="flex items-center mb-4">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0 ${
-                    currentChallenge.severity === 'high' ? 'bg-red-500/20' : 
-                    currentChallenge.severity === 'medium' ? 'bg-yellow-500/20' : 'bg-orange-500/20'
-                  }`}>
-                    <Target size={20} className={
-                      currentChallenge.severity === 'high' ? 'text-red-400' : 
-                      currentChallenge.severity === 'medium' ? 'text-yellow-400' : 'text-orange-400'
-                    } />
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium text-red-300/80">Common Problem</p>
-                    <h4 className="font-semibold text-lg text-red-200 leading-tight" dangerouslySetInnerHTML={renderMarkdown(currentChallenge.title)} />
-                  </div>
-                </div>
-                {/* Show full description by default */} 
-                {currentChallenge.description ? (
-                  <div className="text-slate-200 text-sm leading-relaxed prose prose-sm prose-invert max-w-none mt-2" dangerouslySetInnerHTML={renderMarkdown(currentChallenge.description)} />
-                ) : currentChallenge.fullText && (
-                  <div className="text-slate-200 text-sm leading-relaxed prose prose-sm prose-invert max-w-none mt-2" dangerouslySetInnerHTML={renderMarkdown(currentChallenge.fullText)} />
-                )}
-              </div>
+          
+              
 
-              {/* Solution Details */}
-              <div>
-                {currentChallenge.relatedCapability ? (
-                  <div className="bg-gradient-to-br from-green-500/10 to-blue-500/10 border border-green-500/20 rounded-xl p-6 h-full">
-                    <div className="flex items-center mb-4">
-                      <div className="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center mr-4 shrink-0">
-                        <CheckCircle size={20} className="text-green-400" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-medium text-green-300/80">Our Solution</p>
-                        <h4 className="font-semibold text-lg text-green-200 leading-tight">{currentChallenge.relatedCapability.title}</h4>
-                      </div>
-                    </div>
-                    <div className="text-slate-300 text-sm leading-relaxed prose prose-sm prose-invert max-w-none" dangerouslySetInnerHTML={renderMarkdown(currentChallenge.relatedCapability.business)} />
-                  </div>
-                ) : (
-                  <div className="bg-gradient-to-br from-primary/10 to-blue-500/10 border border-primary/20 rounded-xl p-6 h-full">
-                    <div className="flex items-center mb-3">
-                      <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-3 shrink-0">
-                        <Lightbulb size={20} className="text-primary" />
-                      </div>
-                      <h4 className="font-semibold text-lg text-primary">Our Approach</h4>
-                    </div>
-                    <p className="text-slate-200 text-sm leading-relaxed prose prose-sm prose-invert max-w-none">
-                      Advanced AI integration and intelligent automation address this challenge through our comprehensive platform capabilities, tailored to resolve the specific issues highlighted.
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-        </motion.div>
-      )}
+              
 
       {/* Technology Foundation - Standardized for all co-pilots */}
       {content.genomicUseCasesGrid && content.genomicUseCasesGrid.length > 0 && content.buildsOnStackPoints && content.buildsOnStackPoints.length > 0 && (
@@ -363,13 +261,13 @@ export default function InteractiveContentAnalysis({ content }: InteractiveConte
           variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
           className="mb-16"
         >
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white mb-4">Technology Foundation</h2>
+          {/* <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-white mb-4">Core technological capabilities</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto mb-6"></div>
             <p className="text-slate-300 max-w-2xl mx-auto">
-              {content.buildsOnStackIntro || "Core technological capabilities enabling advanced genomic insights."}
+              {content.buildsOnStackIntro || "Enabling advanced genomic insights."}
             </p>
-          </div>
+          </div> */}
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-6 gap-y-8 mb-10"> 
             {content.genomicUseCasesGrid.map((item, index) => {
@@ -450,42 +348,10 @@ export default function InteractiveContentAnalysis({ content }: InteractiveConte
           variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
           className="mb-16"
         >
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white mb-4">Value for Every Team</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-blue-500 mx-auto mb-6"></div>
-            <p className="text-slate-300 max-w-2xl mx-auto">
-              {contentAnalysis.totalValueProps} benefits across {content.valuePropositionSections.length} stakeholder groups
-            </p>
-          </div>
-          
-          {/* Value Proposition Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {content.valuePropositionSections.map((vp, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveValueTab(index)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center ${
-                  activeValueTab === index
-                    ? 'bg-primary text-white shadow-lg'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-                }`}
-              >
-                <Users size={16} className="mr-2" />
-                {vp.audience}
-                <span className="ml-2 px-2 py-1 text-xs rounded-full bg-white/20">
-                  {vp.points.length}
-                </span>
-              </button>
-            ))}
-          </div>
+         
 
           {/* Active Value Proposition Display */}
-          <div className="relative group">
-            <ValuePropositionItem valueProposition={content.valuePropositionSections[activeValueTab]} />
-            <div className="absolute -top-3 -right-3 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-              {activeValueTab + 1}
-            </div>
-          </div>
+    
         </motion.div>
       )}
 
@@ -494,18 +360,7 @@ export default function InteractiveContentAnalysis({ content }: InteractiveConte
         variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
         className="my-16"
       >
-        <div className={`bg-slate-800/60 p-8 md:p-10 rounded-2xl shadow-xl border border-slate-700 max-w-4xl mx-auto`}>
-          <div className="flex justify-center mb-5">
-            <Quote className="w-10 h-10 text-sky-400/50" />
-          </div>
-          <h2 className="text-3xl font-bold text-center text-white mb-6">
-            Concluding Thoughts
-          </h2>
-          <div 
-            className="prose prose-lg prose-invert text-center max-w-none mx-auto text-slate-300"
-            dangerouslySetInnerHTML={renderMarkdown(content.conclusion)}
-          />
-        </div>
+       
       </motion.div>
       
 
@@ -513,6 +368,12 @@ export default function InteractiveContentAnalysis({ content }: InteractiveConte
       <div className="my-20">
         <DemoRequestForm />
       </div>
+
+        </motion.div>
+      )}
     </>
   );
-} 
+}
+
+// export default InteractiveContentAnalysis;
+ 

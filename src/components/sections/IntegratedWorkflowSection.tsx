@@ -4,10 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { WORKFLOW_CONFIG } from '@/data/workflow-config';
 
 const IntegratedWorkflowSection: React.FC = () => {
     return (
-        <section id="workflow" className="relative bg-black text-white py-24">
+        <section id="workflow" className="relative bg-white text-slate-800 py-24">
             <div className="container mx-auto px-4 text-center">
                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -23,21 +24,23 @@ const IntegratedWorkflowSection: React.FC = () => {
                     </p> */}
 
                     <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">
-                        The `In Silico` Kill Chain
+                        {WORKFLOW_CONFIG.title}
                     </h2>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
-                        Our platform executes a seamless, end-to-end campaign, moving from raw intelligence to a validated therapeutic weapon with overwhelming speed and certainty.
+                        {WORKFLOW_CONFIG.subtitle}
                     </p>
                     
-                    <Link href="/kill-chain" passHref>
-                        <motion.a
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <Link 
+                            href={WORKFLOW_CONFIG.ctaLink}
                             className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-red-600 rounded-lg shadow-lg hover:bg-red-700 transition-colors duration-300"
                         >
-                            Visualize the Doctrine <ArrowRight className="ml-2 w-6 h-6" />
-                        </motion.a>
-                    </Link>
+                            {WORKFLOW_CONFIG.ctaText} <ArrowRight className="ml-2 w-6 h-6" />
+                        </Link>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>

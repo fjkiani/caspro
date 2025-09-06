@@ -22,7 +22,7 @@ const PAGE_CONFIG = {
   title: 'CrisPRO: Oncology Co-Pilot',
   sections: [
     { id: 'hero', component: HeroSection },
-    // { id: 'problem', component: ProblemSection },
+    { id: 'problem', component: ProblemSection },
     // { id: 'investment-thesis', component: InvestmentThesisHeader },
     // { id: 'technology', component: TechnologySection },
     // { id: 'metastasis-framework', component: MetastasisFrameworkSection },
@@ -31,7 +31,7 @@ const PAGE_CONFIG = {
     // { id: 'topics', component: TopicsSection },
     // { id: 'features', component: FeaturesSection },
     // { id: 'science', component: TechnologySection },
-    { id: 'technology-deep-dive', component: TechnologyDeepDiveSection },
+    // { id: 'technology-deep-dive', component: TechnologyDeepDiveSection },
     { id: 'integrated-workflow', component: IntegratedWorkflowSection },
     // { id: 'agent-capabilities', component: AgentCapabilitiesSection },
     // { id: 'foundational-pillars', component: FoundationalPillarsSection },
