@@ -76,7 +76,6 @@ export const NAV_CATEGORIES = {
   ],
   SOCIAL_LINKS: [
     { href: "https://www.linkedin.com/company/crispro/", label: "LinkedIn", icon: "FiLinkedin" },
-    { href: "#", label: "Twitter", icon: "FiTwitter" },
-    { href: "mailto:contact@caspro.dev", label: "Email", icon: "FiMail" }
+    { href: "mailto:fahad@crispro.ai", label: "Email", icon: "FiMail" }
   ]
 }; 
