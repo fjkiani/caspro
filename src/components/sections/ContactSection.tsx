@@ -15,10 +15,10 @@ export const CONTACT_CONFIG = {
   animationDelay: 0.2,
   
   // The title is a command, not a question.
-  titleText: 'Annihilate the Actionability Gap',
+  titleText: 'Request a Demo',
   
   // The subtitle is a direct statement of what a briefing entails.
-  subtitleText: 'The old guard delivers data; we deliver decisions. Schedule a strategic briefing to witness how our AI command and control platform transforms diagnostic ambiguity and R&D guesswork into your decisive advantage.',
+  subtitleText: 'Schedule a demo to witness how our AI command and control platform transforms diagnostic ambiguity and R&D guesswork into your decisive advantage.',
   
   // The CTA is a call to action for commanders.
   ctaText: 'Request Strategic Briefing',
@@ -27,18 +27,18 @@ export const CONTACT_CONFIG = {
   formTitle: 'Initiate Contact',
   
   // We don't have "partners." We have allies who leverage our power.
-  partnerTitle: "Sieze Unfair Advantage",
+  partnerTitle: "Research Use Only",
   
   // Benefits are framed as tactical advantages.
   partnerBenefits: [
-      'Deploy a single, unified command center for genomics, imaging, and clinical data warfare.',
-      'Annihilate R&D and clinical decision-making timelines with overwhelming computational force.',
-      'Operate on a secure, compliant, and infinitely scalable architecture built for total domination.',
-      'Gain access to a dedicated cadre of AI, biology, and clinical informatics strategists.'
+      '95.7% AUROC ClinVar (53,210 samples)',
+      '73% VUS Resolution Rate',
+      '89.1% AUROC BRCA1 Zero-shot',
+      '82.6% AUROC SpliceVarDB Exonic Variants'
   ],
 
   // Social proof is about joining the victors.
-  socialProofTitle: ' The CrisPRO Intelligence Platform',
+    socialProofTitle: ' The CrisPRO Research Platform',
   socialProofOrganizations: [
     'Dana-Farber Cancer Institute', // Represents top-tier clinical/research - for PrecisionRad
     'Vertex Pharmaceuticals',       // Represents biotech/pharma - for CrisPRO
@@ -190,9 +190,7 @@ const ContactSection = () => {
               </div>
             </div>
             
-            <div>
-              <h3 className="text-xl font-semibold mb-4 text-slate-700 dark:text-indigo-100">{CONTACT_CONFIG.socialProofTitle}</h3>
-            </div>
+          
           </motion.div>
 
           {/* Form */}

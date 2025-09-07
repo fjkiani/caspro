@@ -46,36 +46,36 @@ export const LEGAL_PAGES = [
     filePath: 'security.md',
     subtitle: 'How we safeguard your data'
   },
-  {
-    id: 'about',
-    path: ROUTES.ABOUT,
-    title: 'About Us',
-    filePath: 'company.md',
-    subtitle: 'Our mission, vision, and values'
-  }
+  // {
+  //   id: 'about',
+  //   path: ROUTES.ABOUT,
+  //   title: 'About Us',
+  //   filePath: 'company.md',
+  //   subtitle: 'Our mission, vision, and values'
+  // }
 ];
 
 // Navigation categories for footer and other sections
 export const NAV_CATEGORIES = {
   QUICK_LINKS: [
-    { href: ROUTES.FEATURES, label: 'Features' },
-    { href: ROUTES.SCIENCE, label: 'Technology' },
-    { href: ROUTES.TEAM, label: 'Our Team' },
+    // { href: ROUTES.FEATURES, label: 'Features' },
+    // { href: ROUTES.SCIENCE, label: 'Technology' },
+    // { href: ROUTES.TEAM, label: 'Our Team' },
     { href: ROUTES.CONTACT, label: 'Contact Us' },
     { href: ROUTES.BLOG, label: 'Blog & News' }
   ],
   LEGAL_LINKS: [
-    { href: ROUTES.PRIVACY, label: 'Privacy Policy' },
-    { href: ROUTES.TERMS, label: 'Terms of Service' },
+    // { href: ROUTES.PRIVACY, label: 'Privacy Policy' },
+    // { href: ROUTES.TERMS, label: 'Terms of Service' },
     { href: ROUTES.HIPAA, label: 'HIPAA Statement' },
     { href: ROUTES.SECURITY, label: 'Security Overview' }
   ],
   COMPANY_LINKS: [
-    { href: ROUTES.ABOUT, label: 'About Us' },
-    { href: ROUTES.CAREERS, label: 'Careers' }
+    // { href: ROUTES.ABOUT, label: 'About Us' },
+    // { href: ROUTES.CAREERS, label: 'Careers' }
   ],
   SOCIAL_LINKS: [
-    { href: "#", label: "LinkedIn", icon: "FiLinkedin" },
+    { href: "https://www.linkedin.com/company/crispro/", label: "LinkedIn", icon: "FiLinkedin" },
     { href: "#", label: "Twitter", icon: "FiTwitter" },
     { href: "mailto:contact@caspro.dev", label: "Email", icon: "FiMail" }
   ]

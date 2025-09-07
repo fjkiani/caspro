@@ -18,13 +18,12 @@ At CrisPRO, we take security seriously. We implement industry-leading security m
 
 ### Compliance
 - HIPAA compliant
-- SOC 2 Type II certified
-- GDPR compliant for international users
+- GDPR compliant for international users 
 
 ## Infrastructure Security
 
 ### Cloud Security
-- Hosted on AWS with security best practices
+- Hosted on cloud with security best practices
 - Regular security assessments and penetration testing
 - 24/7 monitoring and incident response
 

@@ -11,7 +11,15 @@ interface JourneyNarrativeProps {
 
 const JourneyNarrative: React.FC<JourneyNarrativeProps> = ({ journeyData, onStepInView }) => {
   // Create alternating old/new steps
-  const narrativeSteps = [];
+  const narrativeSteps: Array<{
+    id: string;
+    title: string;
+    description: string;
+    icon: any;
+    variant: 'old' | 'new';
+    problems?: string[];
+    solutions?: string[];
+  }> = [];
   
   // Add old way steps
   journeyData.oldWaySteps.forEach((step, index) => {

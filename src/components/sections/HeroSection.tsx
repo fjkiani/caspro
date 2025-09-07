@@ -140,7 +140,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           className="mt-24"
         >
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {/* <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {HERO_CONFIG.keyFeatures.map((feature) => (
               <Link href={feature.link} key={feature.id} className="block group">
                 <div className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-2xl p-6 h-full transition-all duration-300 hover:bg-white dark:hover:bg-slate-800 hover:border-primary/50 dark:hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10">
@@ -154,7 +154,7 @@ const HeroSection = () => {
                 </div>
               </Link>
             ))}
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </section>

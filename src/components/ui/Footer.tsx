@@ -54,11 +54,18 @@ const Footer = () => {
               {FOOTER_CONFIG.tagline}
             </p>
             <div className="flex space-x-4 text-xl">
-              {/* {FOOTER_CONFIG.socialLinks.map(link => (
-                <a key={link.label} href={link.href} className="text-slate-400 hover:text-primary transition-colors" aria-label={link.label}>
+              {FOOTER_CONFIG.socialLinks.map(link => (
+                <a 
+                  key={link.label} 
+                  href={link.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-slate-400 hover:text-primary transition-colors" 
+                  aria-label={link.label}
+                >
                   {link.icon}
                 </a>
-              ))} */}
+              ))}
             </div>
           </div>
 
@@ -71,9 +78,9 @@ const Footer = () => {
                   <Link href={link.href} className="hover:text-primary transition-colors text-sm">
                     {link.label}
                   </Link>
-                  {link.subLinks && (
+                  {('subLinks' in link && link.subLinks) ? (
                     <ul className="mt-2 space-y-1">
-                      {link.subLinks.map(subLink => (
+                      {(link as any).subLinks.map((subLink: any) => (
                         <li key={subLink.label}>
                           <Link href={subLink.href} className="hover:text-primary transition-colors text-xs text-slate-400">
                             {subLink.label}
@@ -81,7 +88,7 @@ const Footer = () => {
                         </li>
                       ))}
                     </ul>
-                  )}
+                  ) : null}
                 </li>
               ))}
             </ul>
@@ -124,6 +131,27 @@ const Footer = () => {
             &copy; {currentYear} {FOOTER_CONFIG.companyName}. All rights reserved. 
             Built by <a href="https://jedilabs.org/" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-primary transition-colors">Jedi Labs (100x Engine)</a>.
           </p>
+        </div>
+
+        {/* Compliance & Disclaimer Stickers */}
+        <div className="flex flex-col items-center gap-3 mt-6">
+          {/* HIPAA Compliance Sticker */}
+          <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-600/30 rounded-lg px-4 py-2 flex items-center gap-2 text-xs text-slate-300">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span>HIPAA Compliant</span>
+            <span className="text-slate-500">•</span>
+            <span className="text-slate-400">Powered by Supabase</span>
+          </div>
+          
+          {/* Research Use Disclaimer */}
+          <div className="bg-slate-800/40 backdrop-blur-sm border border-slate-500/40 rounded-lg px-4 py-2 flex items-center gap-2 text-xs text-slate-200">
+            <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+            <span className="font-medium">⚠️ Research Use Only</span>
+            <span className="text-slate-400">•</span>
+            <span className="text-slate-300">Not intended for clinical decision-making</span>
+            <span className="text-slate-400">•</span>
+            <span className="text-slate-300">Consult healthcare professionals</span>
+          </div>
         </div>
       </div>
     </footer>

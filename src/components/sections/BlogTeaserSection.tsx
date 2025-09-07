@@ -85,7 +85,7 @@ const BlogTeaserSection = () => {
           >
             <Link 
               href="/blog"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-black text-lg font-bold rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white text-lg font-bold rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300"
             >
               View All Posts <ArrowRight />
             </Link>

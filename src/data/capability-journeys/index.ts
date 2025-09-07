@@ -6,7 +6,7 @@ export { chemotherapyJourney } from './chemotherapy';
 
 // Export all journeys as a collection
 import { chemotherapyJourney } from './chemotherapy';
-import { CapabilityType } from './types';
+import { CapabilityType, CapabilityJourneyData } from './types';
 
 export const capabilityJourneys: Record<CapabilityType, CapabilityJourneyData> = {
   chemotherapy: chemotherapyJourney

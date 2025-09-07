@@ -108,7 +108,7 @@ const FloatingToggleButton: React.FC<FloatingToggleButtonProps> = ({ href, child
             </motion.div>
             
             {/* Scientific Labels */}
-            <div className="absolute inset-0 flex items-center justify-between px-3 text-xs font-bold">
+            <div className="absolute inset-0 flex items-center justify-between px-2 text-xs font-bold">
               <motion.span
                 className="text-blue-600"
                 animate={{
@@ -117,7 +117,7 @@ const FloatingToggleButton: React.FC<FloatingToggleButtonProps> = ({ href, child
                 }}
                 transition={{ duration: 0.2 }}
               >
-                DARK
+                CLINICAL
               </motion.span>
               <motion.span
                 className="text-white"
@@ -127,7 +127,7 @@ const FloatingToggleButton: React.FC<FloatingToggleButtonProps> = ({ href, child
                 }}
                 transition={{ duration: 0.2 }}
               >
-                LIGHT
+                RESEARCH
               </motion.span>
             </div>
           </div>

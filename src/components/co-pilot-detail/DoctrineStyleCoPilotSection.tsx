@@ -85,7 +85,27 @@ const DoctrineStyleCoPilotSection: React.FC<DoctrineStyleCoPilotSectionProps> = 
           </div>
 
           {/* Strategic Impact */}
-          
+          <div className="bg-slate-50 p-6 rounded-lg border border-slate-200">
+            <div className="flex items-center gap-3 mb-4">
+              <Zap className="h-7 w-7 text-purple-600" />
+              <h3 className="text-xl font-bold text-slate-800">Strategic Impact</h3>
+            </div>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-3">
+                <CheckCircle className="h-5 w-5 text-purple-600 mt-1 flex-shrink-0" />
+                <span className="text-slate-700 text-sm">Accelerated Research Timeline</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle className="h-5 w-5 text-purple-600 mt-1 flex-shrink-0" />
+                <span className="text-slate-700 text-sm">Enhanced Precision & Accuracy</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle className="h-5 w-5 text-purple-600 mt-1 flex-shrink-0" />
+                <span className="text-slate-700 text-sm">Reduced Development Costs</span>
+              </li>
+            </ul>
+          </div>
+        </div>
 
         {/* Tactical Breakdown */}
         <div className="mb-12">
@@ -168,6 +188,7 @@ const DoctrineStyleCoPilotSection: React.FC<DoctrineStyleCoPilotSectionProps> = 
       </div>
     </section>
   );
+    
 };
 
 export default DoctrineStyleCoPilotSection;

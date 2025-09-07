@@ -34,33 +34,33 @@ const investorSubLinks = [
 
 // --- PRIMARY NAVIGATION: THE BATTLE PLAN ---
 export const NAV_LINKS = [
-  {
-    href: '/platform',
-    label: 'In-Silico',
-    icon: <Rocket className="inline-block h-4 w-4" />,
-    subLinks: platformSubLinks,
-  },
-  {
-    href: '/doctrine',
-    label: 'Doctrine',
-    icon: <BookOpen className="inline-block h-4 w-4" />,
-    subLinks: doctrineSubLinks,
-  },
-  {
-    href: '/learn',
-    label: 'Cancer 101',
-    icon: <BookOpen className="inline-block h-4 w-4" />,
-  },
+  // {
+  //   href: '/platform',
+  //   label: 'In-Silico',
+  //   icon: <Rocket className="inline-block h-4 w-4" />,
+  //   subLinks: platformSubLinks,
+  // },
+  // {
+  //   href: '/doctrine',
+  //   label: 'Doctrine',
+  //   icon: <BookOpen className="inline-block h-4 w-4" />,
+  //   subLinks: doctrineSubLinks,
+  // },
+  // {
+  //   href: '/learn',
+  //   label: 'Cancer 101',
+  //   icon: <BookOpen className="inline-block h-4 w-4" />,
+  // },
   {
     href: '/blog',
     label: 'Blog',
     icon: <PenTool className="inline-block h-4 w-4" />,
   },
-  {
-    href: '/desci',
-    label: 'DeSci',
-    icon: <Briefcase className="inline-block h-4 w-4" />,
-  },
+  // {
+  //   href: '/desci',
+  //   label: 'DeSci',
+  //   icon: <Briefcase className="inline-block h-4 w-4" />,
+  // },
   // {
   //   href: '/investors',
   //   label: 'Investors',
@@ -169,8 +169,8 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center justify-center flex-1">
             <nav className="flex items-center gap-6">
               {NAV_LINKS.map((link) =>
-                link.subLinks ? (
-                  <DropdownMenu key={link.label} menu={link} />
+                ('subLinks' in link && link.subLinks) ? (
+                  <DropdownMenu key={link.label} menu={link as any} />
                 ) : (
                   <Link
                     key={link.href}
@@ -213,15 +213,15 @@ const Navbar: React.FC = () => {
               {NAV_LINKS.map((link) => (
                 <div key={link.label}>
                     <Link
-                      href={link.subLinks ? '#' : link.href}
-                      onClick={() => !link.subLinks && setIsOpen(false)}
+                      href={('subLinks' in link && link.subLinks) ? '#' : link.href}
+                      onClick={() => !('subLinks' in link && link.subLinks) && setIsOpen(false)}
                       className="block py-2 text-base font-medium text-slate-700 hover:text-primary"
                     >
                       {link.icon} {link.label}
                     </Link>
-                    {link.subLinks && (
+                    {('subLinks' in link && link.subLinks) ? (
                         <div className="pl-4 mt-1 space-y-1 border-l border-slate-200">
-                        {link.subLinks.map(sub => (
+                        {(link as any).subLinks.map((sub: any) => (
                             <Link
                                 key={sub.href}
                                 href={sub.href}
@@ -232,7 +232,7 @@ const Navbar: React.FC = () => {
                             </Link>
                         ))}
                         </div>
-                    )}
+                    ) : null}
                 </div>
               ))}
               <div className="flex items-stretch gap-2 pt-4">

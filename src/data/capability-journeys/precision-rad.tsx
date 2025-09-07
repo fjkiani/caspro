@@ -1,3 +1,5 @@
+import { CoPilotDetailContent } from '@/data/coPilotDetails';
+
 export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
     "precision-rad": {
       slug: "precision-rad",
