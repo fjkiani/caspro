@@ -25,7 +25,7 @@ const PAGE_CONFIG = {
   sections: [
     { id: 'hero', component: HeroSection },
     { id: 'capabilities-showcase', component: CapabilitiesShowcase },
-    { id: 'insilico-teaser', component: InSilicoTeaser },
+    // { id: 'insilico-teaser', component: InSilicoTeaser },
     // { id: 'problem', component: ProblemSection },
     // { id: 'investment-thesis', component: InvestmentThesisHeader },
     // { id: 'technology', component: TechnologySection },

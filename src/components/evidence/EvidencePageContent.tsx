@@ -114,7 +114,7 @@ export const EvidencePageContent: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
       {/* Hero Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-purple-700 text-white">
+      <section className="py-20 px-4 bg-white text-slate-900">
         <div className="max-w-7xl mx-auto text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -140,13 +140,13 @@ export const EvidencePageContent: React.FC = () => {
           >
             <a
               href="/evidence/spe-fusion"
-              className="px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+              className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
             >
               Explore S/P/E Fusion
             </a>
             <a
               href="/evidence/data-lab"
-              className="px-8 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"
+              className="px-8 py-3 border-2 border-slate-300 text-slate-700 rounded-lg font-semibold hover:border-slate-400 transition-colors"
             >
               Visit Data Lab
             </a>

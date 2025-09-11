@@ -3,10 +3,10 @@ import { Dna, Brain, FileText } from 'lucide-react';
 // Hero Section Configuration
 export const HERO_CONFIG = {
   titlePart1: "In-Silico Therapeutic",
-  titlePart2: "Transform 90% Drug Failure into 95% Success",
+  titlePart2: "Transforming 90% Drug Failure into 95% Success",
   subtitle: "CrisPRO accelerates research with validated AI engines: 95.7% AUROC ClinVar validation, 73% VUS resolution, and 1M token context for comprehensive genomic analysis..",
-  ctaPrimaryText: "Platform",
-  ctaPrimaryLink: "/blog",
+  ctaPrimaryText: "In-Silico Platform",
+  ctaPrimaryLink: "/insilico",
   ctaSecondaryText: "Contact Us",
   ctaSecondaryLink: "/contact",
   keyFeatures: [

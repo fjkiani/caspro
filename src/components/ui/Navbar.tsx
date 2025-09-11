@@ -75,11 +75,11 @@ export const NAV_LINKS = [
       { href: '/cohort', label: 'Cohort Context' },
     ],
   },
-  {
-    href: '/learn',
-    label: 'Cancer 101',
-    icon: <BookOpen className="inline-block h-4 w-4" />,
-  },
+  // {
+  //   href: '/learn',
+  //   label: 'Cancer 101',
+  //   icon: <BookOpen className="inline-block h-4 w-4" />,
+  // },
   {
     href: '/blog',
     label: 'Blog',
