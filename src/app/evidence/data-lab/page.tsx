@@ -16,6 +16,8 @@ import {
   InSilicoCapabilityCard 
 } from '@/components/insilico/InSilicoCapabilityCard';
 import { TherapeuticPipeline } from '@/components/insilico/FusionWorkflow/TherapeuticPipeline';
+import { PipelineHeader } from '@/components/insilico/FusionWorkflow/PipelineHeader';
+import { PipelineControls } from '@/components/insilico/FusionWorkflow/PipelineControls';
 import { 
   ObservedOutcomes,
   ValuePropositionCard,
