@@ -4,14 +4,10 @@ import InteractiveContentAnalysis from '@/components/co-pilot-detail/Interactive
 import DesciStyleDoctrineInsights from '@/components/co-pilot-detail/DesciStyleDoctrineInsights';
 import CapabilityJourneySection from '@/components/co-pilot-detail/CapabilityJourneySection';
 import { notFound } from 'next/navigation';
+import TabbedContent, { Tab } from '@/components/ui/TabbedContent';
+import { Layers, Zap, BookOpen } from 'lucide-react';
 
-import { CapabilityType } from '@/data/capability-journeys';
-
-// Function to map page titles to capability types
-function getCapabilityType(pageTitle: string): CapabilityType {
-  // For now, we only have chemotherapy journey
-  return 'chemotherapy';
-}
+import { allCapabilityJourneys } from '@/data/capability-journeys';
 
 // This function generates the static paths for each co-pilot page at build time.
 export async function generateStaticParams() {
@@ -43,10 +39,37 @@ export default async function CoPilotDetailPage({ params }: { params: { coPilotS
     notFound(); // Triggers the 404 page if content for the slug is not found
   }
 
+  const hasJourney = Object.keys(allCapabilityJourneys).includes(coPilotSlug);
+
+  const tabs: Tab[] = [
+    {
+      id: 'battle-plan',
+      label: 'Battle Plan',
+      iconName: 'Layers',
+      content: <InteractiveContentAnalysis content={content} />,
+    },
+  ];
+
+  if (hasJourney) {
+    tabs.push({
+      id: 'war-stories',
+      label: 'War Stories',
+      iconName: 'Zap',
+      content: <CapabilityJourneySection capabilityType={coPilotSlug} />,
+    });
+  }
+
+  tabs.push({
+    id: 'strategic-doctrine',
+    label: 'Strategic Doctrine',
+    iconName: 'BookOpen',
+    content: <DesciStyleDoctrineInsights content={content} />,
+  });
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white text-slate-800 pt-20 pb-12 px-4 md:px-8">
       <div className="container mx-auto max-w-7xl">
-        {/* Hero Section (Static or part of InteractiveContentAnalysis if dynamic) */}
+        {/* Hero Section */}
         <section className="text-center mb-16 md:mb-24 pt-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-sky-400 to-indigo-400">
             {content.pageTitle}
@@ -58,20 +81,10 @@ export default async function CoPilotDetailPage({ params }: { params: { coPilotS
           )}
         </section>
         
-        {/* Delegate all interactive content rendering to the Client Component */}
-        <div className="container mx-auto px-4 py-16">
-          <InteractiveContentAnalysis content={content} />
+        {/* Tabbed Content */}
+        <div className="container mx-auto px-4 py-8">
+          <TabbedContent tabs={tabs} initialTab="strategic-doctrine" />
         </div>
-
-        {/* Visual Storytelling: Old Way vs New Way */}
-        <div className="container mx-auto px-4 py-16">
-          <CapabilityJourneySection 
-            capabilityType={getCapabilityType(content.pageTitle)}
-          />
-        </div>
-
-        {/* Desci-Style Doctrine Strategic Insights */}
-        <DesciStyleDoctrineInsights content={content} />
       </div>
     </main>
   );

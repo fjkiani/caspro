@@ -31,3 +31,4 @@ export const getSafetyMeasuresByCategory = (category: SafetyMeasure['category'])
 export const getSafetyMeasures = () => getSafetyMeasuresByCategory('Safety');
 export const getTransparencyMeasures = () => getSafetyMeasuresByCategory('Transparency');
 export const getComplianceMeasures = () => getSafetyMeasuresByCategory('Compliance');
+

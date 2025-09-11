@@ -26,3 +26,4 @@ export default function SectionHeader({ title, subtitle }: SectionHeaderProps) {
     </motion.div>
   );
 }
+

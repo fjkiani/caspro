@@ -170,9 +170,11 @@ const DoctrineInsightsSection: React.FC<DoctrineInsightsSectionProps> = ({ conte
                               <h5 className="font-semibold text-sky-600 text-sm">Technical Approach</h5>
                             </div>
                             <p className="text-slate-700 text-sm leading-relaxed">
-                              {capability.technical.length > 120 
-                                ? `${capability.technical.substring(0, 120)}...` 
-                                : capability.technical
+                              {typeof capability.technical === 'string' 
+                                ? (capability.technical.length > 120 
+                                    ? `${capability.technical.substring(0, 120)}...` 
+                                    : capability.technical)
+                                : capability.technical.keyMetric
                               }
                             </p>
                           </div>
@@ -184,9 +186,11 @@ const DoctrineInsightsSection: React.FC<DoctrineInsightsSectionProps> = ({ conte
                               <h5 className="font-semibold text-teal-600 text-sm">Scientific Impact</h5>
                             </div>
                             <p className="text-slate-700 text-sm leading-relaxed">
-                              {capability.scientific.length > 120 
-                                ? `${capability.scientific.substring(0, 120)}...` 
-                                : capability.scientific
+                              {typeof capability.scientific === 'string' 
+                                ? (capability.scientific.length > 120 
+                                    ? `${capability.scientific.substring(0, 120)}...` 
+                                    : capability.scientific)
+                                : capability.scientific.keyMetric
                               }
                             </p>
                           </div>

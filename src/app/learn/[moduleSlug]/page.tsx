@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { modules } from '@/data/learn/modules';
+import { learnModules } from '@/data/learn/modules';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -15,7 +15,7 @@ interface ModulePageProps {
 
 const ModulePage: React.FC<ModulePageProps> = ({ params }) => {
   const { moduleSlug } = params;
-  const module = modules.find(m => m.slug === moduleSlug);
+  const module = learnModules.find(m => m.slug === moduleSlug);
 
   if (!module) {
     notFound();

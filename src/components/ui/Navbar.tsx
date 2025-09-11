@@ -4,8 +4,9 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail } from 'lucide-react';
+import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail, Users } from 'lucide-react';
 import ToggleButton from './ToggleButton';
+import { coPilotDetailsData } from '@/data/coPilotDetails';
 
 const NAV_CONFIG = {
   brandEmoji: "🧬",
@@ -13,18 +14,35 @@ const NAV_CONFIG = {
   brandSubtitle: "Oncology Co-Pilot",
 };
 
+// --- DYNAMIC SUB-LINK GENERATION ---
+const generatePlatformSubLinks = () => {
+  return Object.entries(coPilotDetailsData).map(([slug, data]) => ({
+    href: `/platform/${slug}`,
+    label: data.pageTitle || data.slug
+  }));
+};
+
 // --- SUB-LINK DEFINITIONS ---
-const platformSubLinks = [
-  { href: '/platform/crispr-intelligence', label: 'CRISPR Intelligence' },
-  { href: '/platform/precision-rad', label: 'PrecisionRad™ Intelligence' },
-  { href: '/platform/agentic-emr', label: 'AgenticEMR™ Dominance' },
-];
+const platformSubLinks = generatePlatformSubLinks();
 
 const doctrineSubLinks = [
   { href: '/doctrine/vus-annihilation', label: 'VUS Annihilation' },
   { href: '/doctrine/metastasis-prevention', label: 'Metastasis Prevention' },
   { href: '/doctrine/de-sci-and-ip-nfts', label: 'DeSci & IP-NFTs' },
   { href: '/kill-chain', label: 'The \'In Silico\' Kill Chain' },
+];
+
+const useCasesSubLinks = [
+  { href: '/use-cases/multiple-myeloma', label: 'Multiple Myeloma' },
+];
+
+const metricsSubLinks = [
+  { href: '/metrics/brca', label: 'BRCA1/2' },
+  { href: '/metrics/snv', label: 'SNV Prediction' },
+  { href: '/metrics/splice', label: 'Splice Variants' },
+  { href: '/metrics/vus', label: 'VUS Resolution' },
+  { href: '/metrics/generative', label: 'Generative AI' },
+  { href: '/metrics/business', label: 'Business Impact' },
 ];
 
 const investorSubLinks = [
@@ -34,39 +52,51 @@ const investorSubLinks = [
 
 // --- PRIMARY NAVIGATION: THE BATTLE PLAN ---
 export const NAV_LINKS = [
-  // {
-  //   href: '/platform',
-  //   label: 'In-Silico',
-  //   icon: <Rocket className="inline-block h-4 w-4" />,
-  //   subLinks: platformSubLinks,
-  // },
-  // {
-  //   href: '/doctrine',
-  //   label: 'Doctrine',
-  //   icon: <BookOpen className="inline-block h-4 w-4" />,
-  //   subLinks: doctrineSubLinks,
-  // },
-  // {
-  //   href: '/learn',
-  //   label: 'Cancer 101',
-  //   icon: <BookOpen className="inline-block h-4 w-4" />,
-  // },
+  {
+    href: '/about',
+    label: 'About',
+    icon: <BookOpen className="inline-block h-4 w-4" />,
+  },
+  {
+    href: '/insilico',
+    label: 'In-Silico',
+    icon: <Rocket className="inline-block h-4 w-4" />,
+    subLinks: platformSubLinks,
+  },
+  {
+    href: '/evidence',
+    label: 'Evidence',
+    icon: <BookOpen className="inline-block h-4 w-4" />,
+    subLinks: [
+      { href: '/evidence', label: 'Evidence Intelligence' },
+      { href: '/evidence/spe-fusion', label: 'S/P/E Fusion' },
+      { href: '/evidence/data-lab', label: 'Data Lab' },
+      { href: '/evidence/sae-intelligence', label: 'SAE Intelligence' },
+      { href: '/cohort', label: 'Cohort Context' },
+    ],
+  },
+  {
+    href: '/learn',
+    label: 'Cancer 101',
+    icon: <BookOpen className="inline-block h-4 w-4" />,
+  },
   {
     href: '/blog',
     label: 'Blog',
     icon: <PenTool className="inline-block h-4 w-4" />,
   },
-  // {
-  //   href: '/desci',
-  //   label: 'DeSci',
-  //   icon: <Briefcase className="inline-block h-4 w-4" />,
-  // },
-  // {
-  //   href: '/investors',
-  //   label: 'Investors',
-  //   icon: <Briefcase className="inline-block h-4 w-4" />,
-  //   subLinks: investorSubLinks,
-  // },
+  {
+    href: '/use-cases',
+    label: 'Use Cases',
+    icon: <Briefcase className="inline-block h-4 w-4" />,
+    subLinks: useCasesSubLinks,
+  },
+  {
+    href: '/metrics',
+    label: 'Metrics',
+    icon: <PenTool className="inline-block h-4 w-4" />,
+    subLinks: metricsSubLinks,
+  },
   {
     href: '/contact',
     label: 'Contact',

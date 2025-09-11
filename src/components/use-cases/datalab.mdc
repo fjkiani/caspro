@@ -1,0 +1,180 @@
+we also have this 
+
+---
+alwaysApply: false
+description: Datasets – In‑Silico Data Lab (Sept 2025). Plain‑language website copy + execution plan for study discovery, extraction, labeling, benchmarking, artifacts, and coverage with JSON schemas (RUO).
+globs: 
+---
+
+
+export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
+  "datasets": {
+    slug: "datasets",
+    pageTitle: "Datasets: In‑Silico Data Lab",
+    heroSubtitle: "Find studies, extract cohorts, label, benchmark, and export artifacts — fast and reproducible (RUO).",
+    vision: "Give researchers a reliable data lane: discover a study, extract it with guardrails, add labels, run a quick benchmark, and export artifacts — all with provenance.",
+
+    valueProps: [
+      {
+        audience: 'For Researchers',
+        icon: 'Database',
+        points: [
+          'Pick a study and extract cohorts with retries and caching.',
+          'Add simple labels (e.g., treatments) and run quick benchmarks.',
+          'Artifacts (CSV/JSON) you can reuse and share.'
+        ]
+      },
+      {
+        audience: 'For Data Engineers',
+        icon: 'Settings',
+        points: [
+          'Chunked POST for large queries; single‑flight and idempotency.',
+          'Deterministic keys for cache; stable contracts for FE.',
+          'Provenance on every run (run_id, study_id, params).'
+        ]
+      }
+    ],
+
+    buildsOn: "What this runs on (today vs roadmap)",
+    buildsOnStackPoints: [
+      "**Today:** cBio/pyBioPortal first; extraction + minimal benchmark (AUPRC/AUROC).",
+      "**Optional today:** GDC extractor with chunked POST and retries.",
+      "**Roadmap:** Multi‑study joins, advanced labels, disease‑specific panels."
+    ],
+
+    kpis: [
+      { label: 'Extract time (typical)', value: 'minutes' },
+      { label: 'Artifact completeness', value: '100% metrics + coverage + CSV/JSON' },
+      { label: 'Retry success rate', value: '≥ 95% on transient errors' },
+      { label: 'Coverage by gene', value: 'available for overlays' }
+    ],
+
+    observedOutcomes: [
+      'Faster cohort prep with reproducible artifacts and provenance.',
+      'Fewer failures via chunking, retries, and caching.',
+      'Consistent overlays (coverage/metrics) that lift confidence in Efficacy/Pathway views.'
+    ],
+
+    genomicInsightsOverview: "The Datasets API lists studies, extracts cohorts with guardrails, builds simple labels, runs a quick benchmark, and returns artifacts + coverage for overlays.",
+    coreProblemIntro: "Cohort prep is fragile and slow. We make it fast, consistent, and reproducible (RUO).",
+    coreProblemPoints: [
+      "Rate limits and timeouts cause unpredictable failures.",
+      "Schemas drift; FE needs stable contracts.",
+      "Artifacts are scattered and lack provenance."
+    ],
+
+    genomicUseCasesGrid: [
+      { label: "Study discovery", iconName: "Search", color: "text-blue-400" },
+      { label: "Extraction", iconName: "Play", color: "text-green-400" },
+      { label: "Label building", iconName: "Tag", color: "text-purple-400" },
+      { label: "Benchmark (AUPRC/AUROC)", iconName: "BarChart2", color: "text-orange-400" },
+      { label: "Artifacts & coverage", iconName: "Download", color: "text-cyan-400" },
+      { label: "Provenance", iconName: "Hash", color: "text-pink-400" }
+    ],
+
+    keyCapabilities: [
+      {
+        title: "Study Catalog (live)",
+        technical: "List available studies via pyBioPortal; filter by disease/genes.",
+        scientific: "Ensures you start with a relevant cohort.",
+        business: `
+- **Speed:** Less hunting, more doing.
+`,
+        genomicUseCasesParagraph: "Today: \n1. **GET /studies** feeds a searchable list."
+      },
+      {
+        title: "Cohort Extractor (live)",
+        technical: "`/api/datasets/extract_and_benchmark` orchestrates extraction with chunked POST, retries, and caching; returns artifacts and coverage.",
+        scientific: "Stable extraction reduces errors and variance.",
+        business: `
+- **Reliability:** Guardrails keep the pipeline moving.
+`,
+        genomicUseCasesParagraph: "Today: \n1. **POST /extract_and_benchmark** with study + mode."
+      },
+      {
+        title: "Label Builder (today) & Benchmarks (live)",
+        technical: "Build light labels (e.g., treatments); run minimal benchmarks (AUPRC/AUROC).",
+        scientific: "Adds quick context to cohorts (RUO).",
+        business: `
+- **Comparable:** Same metrics for everyone.
+`,
+        genomicUseCasesParagraph: "Today: \n1. **labels** optional; **metrics** returned in response."
+      },
+      {
+        title: "Artifacts & Coverage (live)",
+        technical: "Return artifact manifest (CSV/JSON) and coverage by gene for overlays.",
+        scientific: "Enables reproducible overlays across flows.",
+        business: `
+- **Reuse:** Shareable outputs with stable links.
+`,
+        genomicUseCasesParagraph: "Today: \n1. **artifacts[]** and **coverage.by_gene[]** in payload."
+      }
+    ],
+
+    valuePropositionSections: [
+      {
+        audience: "For the Research Team",
+        points: [
+          "Less time on plumbing; more time on questions.",
+          "Reproducible artifacts with provenance.",
+          "Stable overlays that lift confidence elsewhere."
+        ]
+      }
+    ],
+
+    conclusion: "Datasets you can pull, label, benchmark, and reuse — quickly and safely (RUO)."
+  },
+};
+
+
+# Datasets – Execution Doctrine (Sept 2025)
+
+This rule describes how to deliver study discovery, extraction, labeling, benchmarking, artifacts, and coverage with transparent provenance.
+
+## What we can deliver today (research‑grade)
+- A Datasets response with:
+  - **studies[] (catalog):** id, name, disease, n, updated
+  - **extract result:** metrics {auroc, auprc}, artifacts[], coverage {by_gene[]}, provenance {run_id, study_id, params}
+
+## Endpoints (current)
+- `GET /api/datasets/studies` → StudyList
+- `POST /api/datasets/extract_and_benchmark` → ExtractAndBenchmarkResponse
+
+## Contracts (JSON)
+```json
+{
+  "Study": {"id": "tcga_ov_pan_can", "name": "TCGA-OV PanCan", "disease": "ovarian", "n": 600, "updated": "2025-09-01"},
+  "StudyList": {"items": [{"id": "...", "name": "...", "disease": "...", "n": 123, "updated": "ISO"}]},
+  "ExtractRequest": {"study": "tcga_ov_pan_can", "mode": "extract_only|run_only|both", "filters": {"genes": ["BRCA1","BRAF"]}},
+  "BenchmarkMetrics": {"auroc": 0.50, "auprc": 0.50},
+  "Artifact": {"name": "metrics.json", "url": "/artifacts/tcga_ov/metrics.json", "content_type": "application/json"},
+  "CoverageByGene": {"gene": "BRAF", "n": 42, "prevalence": 0.07},
+  "ExtractAndBenchmarkResponse": {
+    "metrics": {"auroc": 0.50, "auprc": 0.50},
+    "artifacts": [{"name": "metrics.json", "url": "..."}, {"name": "cohort.csv", "url": "..."}],
+    "coverage": {"by_gene": [{"gene": "BRAF", "n": 42, "prevalence": 0.07}]},
+    "provenance": {"run_id": "uuid", "study_id": "tcga_ov_pan_can", "timestamp": "ISO"}
+  }
+}
+```
+
+## Ops (guardrails)
+- Chunked POST for large filters; backoff + retry on 429/5xx; Redis cache (24–72h) keyed by `{study}:{mode}:{filters_hash}`; single‑flight per key.
+
+## Frontend integration (Cohort Lab)
+- Pages: Study catalog → Extract form → Results view (metrics + artifacts + coverage) → “Overlay to Pathway/Therapy” action.
+
+## Example
+```bash
+curl -sS -X POST http://127.0.0.1:8000/api/datasets/extract_and_benchmark \
+  -H 'Content-Type: application/json' --data '{
+    "study":"tcga_ov_pan_can",
+    "mode":"both",
+    "filters": {"genes": ["BRCA1","BRAF"]}
+  }'
+```
+
+## Success criteria
+- Catalog loads and filters; extract returns metrics, artifacts, coverage, provenance; overlays render consistently.
+- RUO labels and source links visible; contracts stable for FE.
+

@@ -10,7 +10,7 @@ interface JourneyNarrativeProps {
 }
 
 const JourneyNarrative: React.FC<JourneyNarrativeProps> = ({ journeyData, onStepInView }) => {
-  // Create alternating old/new steps
+  // Create alternating old/new steps (problems on left, solutions on right)
   const narrativeSteps: Array<{
     id: string;
     title: string;
@@ -21,7 +21,7 @@ const JourneyNarrative: React.FC<JourneyNarrativeProps> = ({ journeyData, onStep
     solutions?: string[];
   }> = [];
   
-  // Add old way steps
+  // Add old way steps first (problems on left)
   journeyData.oldWaySteps.forEach((step, index) => {
     narrativeSteps.push({
       ...step,
@@ -30,7 +30,7 @@ const JourneyNarrative: React.FC<JourneyNarrativeProps> = ({ journeyData, onStep
     });
   });
   
-  // Add new way steps
+  // Add new way steps second (solutions on right)
   journeyData.newWaySteps.forEach((step, index) => {
     narrativeSteps.push({
       ...step,

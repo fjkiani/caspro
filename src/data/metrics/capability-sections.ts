@@ -47,3 +47,4 @@ export const getCapabilitiesByCategory = (category: 'discriminative' | 'generati
   capabilitySections.filter(section => 
     section.metrics.some(metric => metric.category === category)
   );
+

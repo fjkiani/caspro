@@ -1,59 +1,49 @@
-// Type definitions for metrics and capabilities data
+// Core metric types for evidence and validation
 
-export interface PerformanceMetric {
-  label: string;
-  value: string;
+export interface MetricValue {
+  value: number;
+  unit?: string;
+  format?: 'percentage' | 'decimal' | 'integer' | 'ratio';
+  precision?: number;
+}
+
+export interface MetricBenchmark {
+  title: string;
+  value: MetricValue;
+  description: string;
   dataset: string;
-  samples: number;
-  description: string;
-  category: 'discriminative' | 'generative' | 'validation' | 'business';
-  isStateOfArt?: boolean;
+  sampleSize: number;
+  isStateOfTheArt?: boolean;
+  source: string;
+  category: 'discriminative' | 'generative' | 'business' | 'validation' | 'technical' | 'estimated';
 }
 
-export interface BusinessImpact {
-  metric: string;
-  value: string;
-  description: string;
-  category: 'cost' | 'timeline' | 'accuracy' | 'efficiency';
-}
-
-export interface CapabilitySection {
-  title: string;
-  subtitle: string;
-  metrics: PerformanceMetric[];
-  businessImpacts: BusinessImpact[];
-  description: string;
-}
-
-export interface UseCase {
-  title: string;
-  problem: string;
-  solution: string;
-  businessImpact: string;
-  metrics: PerformanceMetric[];
-}
-
-export interface WorkflowStep {
-  step: number;
+export interface MetricGroup {
+  id: string;
   title: string;
   description: string;
-  capability: string;
-  businessValue: string;
+  category: 'discriminative' | 'generative' | 'business' | 'validation' | 'technical' | 'estimated';
+  benchmarks: MetricBenchmark[];
+  businessImpact?: string;
+  methodology?: string;
 }
 
-export interface SafetyMeasure {
+export interface UseCaseMetrics {
+  useCaseId: string;
   title: string;
   description: string;
-  category: 'Safety' | 'Transparency' | 'Compliance';
-}
-
-export interface KeyStats {
-  totalVariants: number;
-  aurocScore: number;
-  vusResolution: number;
-  contextWindow: string;
-  timelineCompression: string;
-  costReduction: string;
-  crossSpeciesRange: string;
-  speciesCount: number;
+  whyItMatters?: string[];
+  delivered?: string[];
+  howToRead?: string[];
+  metrics: {
+    discriminative: MetricGroup[];
+    generative: MetricGroup[];
+    business: MetricGroup[];
+    validation: MetricBenchmark[];
+  };
+  specificFindings?: {
+    title: string;
+    description: string;
+    metrics: MetricBenchmark[];
+  }[];
 }

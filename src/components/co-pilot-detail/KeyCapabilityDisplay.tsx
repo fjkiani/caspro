@@ -65,21 +65,21 @@ const KeyCapabilityDisplay: React.FC<KeyCapabilityCardProps> = ({ capability, gl
                   <Settings size={18} className="mr-2 flex-shrink-0" />
                   <h4 className="font-semibold">Technical Approach</h4>
                 </div>
-                <div className="text-slate-700 leading-relaxed prose prose-base max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.technical)} />
+                <div className="text-slate-700 leading-relaxed prose prose-base max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.technical.description)} />
               </div>
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="flex items-center justify-center text-teal-600 mb-2">
                   <Microscope size={18} className="mr-2 flex-shrink-0" />
                   <h4 className="font-semibold">Scientific Impact</h4>
                 </div>
-                <div className="text-slate-700 leading-relaxed prose prose-base max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.scientific)} />
+                <div className="text-slate-700 leading-relaxed prose prose-base max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.scientific.description)} />
               </div>
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
                 <div className="flex items-center justify-center text-indigo-600 mb-2">
                   <Briefcase size={18} className="mr-2 flex-shrink-0" />
                   <h4 className="font-semibold">Business Value</h4>
                 </div>
-                <div className="text-slate-700 leading-relaxed prose prose-base max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.business)} />
+                <div className="text-slate-700 leading-relaxed prose prose-base max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.business.description)} />
               </div>
             </div>
           </motion.div>

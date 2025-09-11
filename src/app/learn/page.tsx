@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { modules } from '@/data/learn/modules';
+import { learnModules } from '@/data/learn/modules';
 
 const LearnPage = () => {
   return (
@@ -19,7 +19,7 @@ const LearnPage = () => {
         </div>
         
         <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {modules.map(module => (
+          {learnModules.map(module => (
             <Link 
               key={module.slug} 
               href={`/learn/${module.slug}`} 

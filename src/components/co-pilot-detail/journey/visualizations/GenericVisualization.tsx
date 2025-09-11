@@ -15,10 +15,15 @@ const GenericVisualization: React.FC<GenericVisualizationProps> = ({ journeyData
   const stepNumber = parseInt(stepId.split('-')[1]) - 1; // Convert to 0-based index
   
   const getStepData = () => {
+    // Show the corresponding step from the opposite variant
+    // If left shows old step 1, right shows new step 1
+    // If left shows old step 2, right shows new step 2, etc.
     if (variant === 'old') {
-      return journeyData.oldWaySteps[stepNumber];
-    } else {
+      // Left side is showing old step, so right side should show corresponding new step
       return journeyData.newWaySteps[stepNumber];
+    } else {
+      // Left side is showing new step, so right side should show corresponding old step
+      return journeyData.oldWaySteps[stepNumber];
     }
   };
   
@@ -35,7 +40,10 @@ const GenericVisualization: React.FC<GenericVisualizationProps> = ({ journeyData
     );
   }
   
-  return <StepVisualization step={stepData} variant={variant} />;
+  // Use the opposite variant for the right side
+  const rightSideVariant = variant === 'old' ? 'new' : 'old';
+  
+  return <StepVisualization step={stepData} variant={rightSideVariant} />;
 };
 
 export default GenericVisualization;

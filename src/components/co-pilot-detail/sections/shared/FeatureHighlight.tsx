@@ -17,3 +17,4 @@ export default function FeatureHighlight({ icon, title, description }: FeatureHi
     </div>
   );
 }
+

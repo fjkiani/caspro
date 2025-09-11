@@ -26,3 +26,4 @@ export default function StrategicConclusion({ conclusion }: StrategicConclusionP
     </div>
   );
 }
+

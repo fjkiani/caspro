@@ -39,3 +39,4 @@ export default function IconSelector({ title, size = 48, className = "" }: IconS
   
   return <Brain size={size} className={`text-blue-400 ${className}`} />;
 }
+

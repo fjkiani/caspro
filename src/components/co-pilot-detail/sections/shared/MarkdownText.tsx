@@ -19,3 +19,4 @@ export default function MarkdownText({ text, className = "" }: MarkdownTextProps
     </div>
   );
 }
+

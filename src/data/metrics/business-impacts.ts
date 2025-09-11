@@ -54,3 +54,4 @@ export const getCostImpacts = () => getImpactsByCategory('cost');
 export const getTimelineImpacts = () => getImpactsByCategory('timeline');
 export const getAccuracyImpacts = () => getImpactsByCategory('accuracy');
 export const getEfficiencyImpacts = () => getImpactsByCategory('efficiency');
+

@@ -1,37 +1,44 @@
-// Central export file for all metrics and capabilities data
-// This provides a clean, modular architecture for easy expansion
-
-// Export types
+// Metrics and use case exports
 export * from './types';
+export * from './core-metrics';
 
-// Export data modules
-export * from './performance-metrics';
-export * from './business-impacts';
-export * from './capability-sections';
-export * from './use-cases';
-export * from './workflow-steps';
-export * from './safety-measures';
-export * from './key-stats';
+// Use cases
+export { multipleMyelomaUseCase, multipleMyelomaCapabilities } from '../use-cases/multiple-myeloma';
 
-// Re-export everything for convenience
-import { performanceMetrics } from './performance-metrics';
-import { businessImpacts } from './business-impacts';
-import { capabilitySections } from './capability-sections';
-import { useCases } from './use-cases';
-import { workflowSteps } from './workflow-steps';
-import { safetyMeasures } from './safety-measures';
-import { keyStats } from './key-stats';
-
-// Main export object for easy access
-export const metricsAndCapabilities = {
-  performanceMetrics,
-  businessImpacts,
-  capabilitySections,
-  useCases,
-  workflowSteps,
-  safetyMeasures,
-  keyStats
+// Utility functions for metrics
+export const formatMetricValue = (value: any, format?: string, precision?: number): string => {
+  if (typeof value !== 'number') return String(value);
+  
+  switch (format) {
+    case 'percentage':
+      return `${value.toFixed(precision || 1)}%`;
+    case 'decimal':
+      return value.toFixed(precision || 2);
+    case 'integer':
+      return value.toLocaleString();
+    case 'ratio':
+      return `${value.toFixed(precision || 2)}:1`;
+    default:
+      return value.toString();
+  }
 };
 
-// Default export
-export default metricsAndCapabilities;
+export const getMetricColor = (category: string): string => {
+  switch (category) {
+    case 'discriminative': return 'blue';
+    case 'generative': return 'purple';
+    case 'business': return 'green';
+    case 'validation': return 'orange';
+    default: return 'gray';
+  }
+};
+
+export const getMetricIcon = (category: string): string => {
+  switch (category) {
+    case 'discriminative': return 'Target';
+    case 'generative': return 'Dna';
+    case 'business': return 'TrendingUp';
+    case 'validation': return 'CheckCircle';
+    default: return 'Activity';
+  }
+};

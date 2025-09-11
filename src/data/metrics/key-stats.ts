@@ -47,3 +47,4 @@ export const getStatsByCategory = (category: 'performance' | 'business' | 'techn
       return keyStats;
   }
 };
+

@@ -8,6 +8,17 @@ export const ROUTES = {
   ABOUT: '/about',
   CAREERS: '/careers',
   BLOG: '/blog',
+  METRICS: '/metrics',
+  INSILICO: '/insilico',
+  LEARN: '/learn',
+  PLATFORM: '/platform',
+  USE_CASES: '/use-cases',
+  DOCTRINE: '/doctrine',
+  EVIDENCE: '/evidence',
+  COHORT: '/cohort',
+  SPE_FUSION: '/evidence/spe-fusion',
+  DATA_LAB: '/evidence/data-lab',
+  SAE_INTELLIGENCE: '/evidence/sae-intelligence',
   
   // Anchor links on main page
   FEATURES: '#features',

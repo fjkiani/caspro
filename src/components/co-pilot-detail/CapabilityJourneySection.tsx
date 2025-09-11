@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { EnhancedCapabilityJourney } from './journey';
-import { capabilityJourneys, CapabilityJourneyData, CapabilityType } from '@/data/capability-journeys';
+import { allCapabilityJourneys, CapabilityJourneyData } from '@/data/capability-journeys';
 
 interface CapabilityJourneySectionProps {
-  capabilityType: CapabilityType;
+  capabilityType: string; // Now just a string slug
   customJourney?: CapabilityJourneyData;
 }
 
@@ -13,11 +13,16 @@ export const CapabilityJourneySection: React.FC<CapabilityJourneySectionProps> =
   capabilityType,
   customJourney
 }) => {
-  const journeyData = customJourney || capabilityJourneys[capabilityType];
+  const journeyData = customJourney || allCapabilityJourneys[capabilityType];
 
   if (!journeyData) {
     console.warn(`No journey data found for capability type: ${capabilityType}`);
-    return null;
+    return (
+      <div className="text-center py-16">
+        <h3 className="text-2xl font-bold text-slate-800">Journey Data Not Found</h3>
+        <p className="text-slate-600">The "War Stories" for this capability are still being compiled.</p>
+      </div>
+    );
   }
 
   return (

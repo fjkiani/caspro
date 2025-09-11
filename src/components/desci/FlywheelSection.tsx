@@ -5,17 +5,17 @@ import { SectionHeader } from './common/SectionHeader';
 import { motion } from 'framer-motion';
 import { BrainCircuit, DollarSign, FlaskConical, LineChart, Repeat } from 'lucide-react';
 
-const FlywheelStep = ({ title, description, icon }: { title: string, description: string, icon: React.ReactNode }) => (
+const FlywheelStep = ({ title, description, icon, theme }: { title: string, description: string, icon: React.ReactNode, theme: 'light' | 'dark' }) => (
     <div className="flex items-start space-x-4">
         <div className="flex-shrink-0 mt-1">{icon}</div>
         <div>
-            <h3 className="text-xl font-bold text-white">{title}</h3>
-            <p className="text-gray-400">{description}</p>
+            <h3 className={`text-xl font-bold ${theme === 'light' ? 'text-slate-800' : 'text-white'}`}>{title}</h3>
+            <p className={`${theme === 'light' ? 'text-slate-600' : 'text-gray-400'}`}>{description}</p>
         </div>
     </div>
 );
 
-export const FlywheelSection = () => {
+export const FlywheelSection = ({ theme = 'dark' }: { theme?: 'light' | 'dark' }) => {
   const steps = [
     { icon: <BrainCircuit className="text-blue-400" size={32} />, title: "AI Generates High-Value Assets", description: "Our Zeta Forge continuously generates novel, in-silico validated therapeutic designs (IP-NFTs)." },
     { icon: <DollarSign className="text-green-400" size={32} />, title: "IP-NFTs Attract Global Capital", description: "These assets attract non-dilutive capital from the global DeSci ecosystem." },
@@ -24,11 +24,15 @@ export const FlywheelSection = () => {
     { icon: <Repeat className="text-teal-400" size={32} />, title: "Enhanced AI, More Valuable Assets", description: "The improved AI generates even more novel and effective therapeutic designs, restarting the cycle." },
   ];
 
+  const conclusionTextColor = theme === 'light' ? 'text-slate-600' : 'text-teal-300';
+  const nodeFillColor = theme === 'light' ? '#f8fafc' : '#1f2937'; // slate-50 for light
+
   return (
     <section id="flywheel" className="py-20">
       <SectionHeader 
         title="The AI-Powered Economic Flywheel" 
         subtitle="Fueling a self-sustaining cycle of innovation and discovery." 
+        theme={theme}
       />
       <div className="mt-16 grid lg:grid-cols-2 gap-16 items-center">
         <div className="space-y-8">
@@ -40,7 +44,7 @@ export const FlywheelSection = () => {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ delay: i * 0.2, duration: 0.6 }}
                 >
-                    <FlywheelStep {...step} />
+                    <FlywheelStep {...step} theme={theme} />
                 </motion.div>
             ))}
         </div>
@@ -84,7 +88,7 @@ export const FlywheelSection = () => {
                             cx={200 + 180 * Math.cos(i * 2 * Math.PI / 5 - Math.PI / 2)}
                             cy={200 + 180 * Math.sin(i * 2 * Math.PI / 5 - Math.PI / 2)}
                             r="20"
-                            fill="#1f2937"
+                            fill={nodeFillColor}
                             stroke="url(#flywheel-gradient)"
                             strokeWidth="3"
                         />
@@ -101,7 +105,7 @@ export const FlywheelSection = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ delay: 0.5, duration: 0.8 }}
-        className="text-center text-xl text-teal-300 mt-16 max-w-4xl mx-auto"
+        className={`text-center text-xl ${conclusionTextColor} mt-16 max-w-4xl mx-auto`}
       >
         This virtuous cycle creates a self-sustaining loop of scientific discovery, funding, and AI advancement, accelerating the development of life-saving cures at an unprecedented pace.
       </motion.p>

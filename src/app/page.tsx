@@ -17,11 +17,15 @@ import { InvestmentThesisHeader } from '@/components/investment-thesis/Investmen
 import { MetastasisFrameworkSection } from '@/components/investment-thesis/MetastasisFrameworkSection';
 import BlogTeaserSection from '@/components/sections/BlogTeaserSection';
 import IntegratedWorkflowSection from '@/components/sections/IntegratedWorkflowSection';
+import { CapabilitiesShowcase, InSilicoTeaser } from '@/components/landing';
+// Evidence and Cohort sections moved to dedicated pages
 // Page configuration constants
 const PAGE_CONFIG = {
   title: 'CrisPRO.AI: Oncology R&D Co-Pilot',
   sections: [
     { id: 'hero', component: HeroSection },
+    { id: 'capabilities-showcase', component: CapabilitiesShowcase },
+    { id: 'insilico-teaser', component: InSilicoTeaser },
     // { id: 'problem', component: ProblemSection },
     // { id: 'investment-thesis', component: InvestmentThesisHeader },
     // { id: 'technology', component: TechnologySection },
