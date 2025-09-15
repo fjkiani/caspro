@@ -1,0 +1,461 @@
+---
+alwaysApply: true
+description: "Homepage Simulation Transformation Doctrine - Converting static homepage into dynamic, interactive simulation platform"
+---
+
+# Homepage Simulation Transformation Doctrine
+## From Static Brochure to Live Product Demo
+
+### MISSION STATEMENT
+Transform the CrisPRO.ai homepage from a static presentation into a **living simulation platform** where every section becomes an interactive demo that prospects can run in real-time to experience our AI capabilities firsthand.
+
+---
+
+## 🎯 CORE TRANSFORMATION PRINCIPLES
+
+### 1. **EVERYTHING IS A SIMULATION**
+- **Static Content → Interactive Demo**: Every homepage section must offer live simulation capability
+- **Read About → Experience Live**: Replace descriptions with executable demonstrations
+- **Claims → Proof**: Show real API results, not just marketing copy
+
+### 2. **MODULAR SIMULATION ARCHITECTURE**
+```typescript
+interface SimulationComponent {
+  id: string;
+  type: 'api-demo' | 'comparison' | 'pipeline' | 'calculator' | 'visualization';
+  apis: string[];              // Which APIs this simulation uses
+  inputData: any;              // Default simulation inputs
+  duration: number;            // Expected simulation time
+  resultComponents: string[];  // Which result components to render
+  dependencies?: string[];     // Other simulations this depends on
+}
+```
+
+### 3. **NO HARD-CODING RULE**
+- All simulation data must come from `src/data/simulations/` directory
+- All API endpoints defined in `src/data/api-registry.ts`
+- All component mappings in `src/data/simulation-components.ts`
+- All timing configurations in `src/data/simulation-timing.ts`
+
+---
+
+## 🧬 SOURCE COMPONENTS FROM SRC2
+
+### **TIER 1: CORE SIMULATION ENGINES**
+Extract and adapt these proven components from [src2](mdc:src/src2):
+
+#### **A. Primary Simulation Controllers**
+- **`DemoFactory`** ([src2/components/site/blocks/DemoFactory.tsx](mdc:src/src2/components/site/blocks/DemoFactory.tsx))
+  - **Purpose**: API simulation orchestration with step-by-step execution
+  - **Extract to**: `src/components/simulations/core/APISimulationEngine.tsx`
+  - **Key Features**: Multi-step API calls, result visualization, timing control
+
+- **`FactoryDemoShowcase`** ([src2/components/site/blocks/FactoryDemoShowcase.tsx](mdc:src/src2/components/site/blocks/FactoryDemoShowcase.tsx))
+  - **Purpose**: End-to-end workflow demonstrations with Oracle thinking process
+  - **Extract to**: `src/components/simulations/workflows/WorkflowSimulator.tsx`
+  - **Key Features**: Multi-API pipelines, visual thinking steps, contextual results
+
+- **`InteractiveDemoShowcase`** ([src2/components/site/blocks/InteractiveDemoShowcase.tsx](mdc:src/src2/components/site/blocks/InteractiveDemoShowcase.tsx))
+  - **Purpose**: Demo selection and execution interface
+  - **Extract to**: `src/components/simulations/core/DemoOrchestrator.tsx`
+  - **Key Features**: Demo selection, progress tracking, reset functionality
+
+#### **B. Visualization Components**
+- **`OracleExplainTrack`** ([src2/components/site/blocks/OracleExplainTrack.tsx](mdc:src/src2/components/site/blocks/OracleExplainTrack.tsx))
+  - **Purpose**: SAE feature visualization and delta likelihood scoring
+  - **Extract to**: `src/components/simulations/visualizations/SAEVisualization.tsx`
+  - **Key Features**: Genomic sequence visualization, feature highlighting, variant impact
+
+- **`VariantDetailCard`** ([src2/components/site/blocks/VariantDetailCard.tsx](mdc:src/src2/components/site/blocks/VariantDetailCard.tsx))
+  - **Purpose**: Real-time variant classification results
+  - **Extract to**: `src/components/simulations/results/VariantClassification.tsx`
+
+- **`ProteinDeltaCard`** ([src2/components/site/blocks/ProteinDeltaCard.tsx](mdc:src/src2/components/site/blocks/ProteinDeltaCard.tsx))
+  - **Purpose**: Protein functional impact analysis
+  - **Extract to**: `src/components/simulations/results/ProteinImpactAnalysis.tsx`
+
+- **`EssentialityChart`** ([src2/components/site/blocks/EssentialityChart.tsx](mdc:src/src2/components/site/blocks/EssentialityChart.tsx))
+  - **Purpose**: Context-dependent gene essentiality scoring
+  - **Extract to**: `src/components/simulations/results/EssentialityAnalysis.tsx`
+
+#### **C. Advanced Demos**
+- **`ForgeDesignChallenges`** ([src2/components/site/blocks/ForgeDesignChallenges.tsx](mdc:src/src2/components/site/blocks/ForgeDesignChallenges.tsx))
+  - **Purpose**: Interactive generative design challenges
+  - **Extract to**: `src/components/simulations/generative/DesignChallengeSimulator.tsx`
+  - **Key Features**: Design parameter input, challenge selection, outcome visualization
+
+---
+
+## 🏗️ HOMEPAGE SIMULATION ARCHITECTURE
+
+### **FILE STRUCTURE**
+```
+src/components/homepage/simulations/
+├── core/
+│   ├── SimulationOrchestrator.tsx     # Master simulation controller
+│   ├── APISimulationEngine.tsx        # From DemoFactory
+│   ├── WorkflowSimulator.tsx          # From FactoryDemoShowcase
+│   └── DemoOrchestrator.tsx           # From InteractiveDemoShowcase
+├── sections/
+│   ├── BridgingValleySimulation.tsx   # 3-stage API pipeline
+│   ├── DiscoveryRaceSimulation.tsx    # Funnel vs Factory comparison
+│   ├── LiveROICalculator.tsx          # Metrics-driven ROI simulation
+│   ├── EvidenceProtocolDemo.tsx       # Live correlation proof
+│   └── ProteinBindingSimulation.tsx   # Key-lock mechanism demo
+├── visualizations/
+│   ├── SAEVisualization.tsx           # From OracleExplainTrack
+│   ├── PipelineVisualization.tsx      # 3-stage visual pipeline
+│   └── ComparisonVisualization.tsx    # Side-by-side race visualization
+└── results/
+    ├── VariantClassification.tsx      # From VariantDetailCard
+    ├── ProteinImpactAnalysis.tsx      # From ProteinDeltaCard
+    ├── EssentialityAnalysis.tsx       # From EssentialityChart
+    └── ROIImpactDisplay.tsx           # ROI calculation results
+
+src/data/simulations/
+├── api-registry.ts                    # All API endpoint definitions
+├── simulation-components.ts           # Component mapping registry
+├── simulation-timing.ts               # Duration and timing configs
+├── homepage-scenarios.ts              # Predefined simulation scenarios
+└── demo-data/
+    ├── variant-examples.ts            # Sample variant data
+    ├── protein-examples.ts            # Sample protein data
+    └── roi-scenarios.ts               # ROI calculation scenarios
+```
+
+### **COMPONENT TRANSFORMATION MAP**
+
+#### **1. BridgingValleyOfDeath → BridgingValleySimulation**
+```typescript
+// Convert static pipeline to interactive API orchestration
+interface ValleySimulationConfig {
+  stages: [
+    {
+      id: 'target-validation',
+      title: '1. Target Validation',
+      api: '/predict_variant_impact',
+      component: 'VariantClassification',
+      input: 'variantExamples.brca1Pathogenic',
+      duration: 2000,
+      successMetrics: { auroc: 0.957, confidence: 0.94 }
+    },
+    {
+      id: 'lead-engineering',
+      title: '2. Lead Engineering', 
+      api: '/generate_optimized_guide_rna',
+      component: 'DesignChallengeResult',
+      input: 'designExamples.brca1Guide',
+      duration: 3000,
+      successMetrics: { efficiency: 0.87, specificity: 0.94 }
+    },
+    {
+      id: 'preclinical-confirmation',
+      title: '3. Pre-Clinical Confirmation',
+      api: '/predict_protein_functionality_change',
+      component: 'ProteinImpactAnalysis',
+      input: 'proteinExamples.brca1Mutation',
+      duration: 2500,
+      successMetrics: { functionalImpact: 0.82, confidence: 0.91 }
+    }
+  ];
+}
+```
+
+#### **2. DiscoveryVsEngineering → DiscoveryRaceSimulation**
+```typescript
+// Convert static comparison to live race demo
+interface RaceSimulationConfig {
+  traditional: {
+    type: 'screening-funnel',
+    stages: ['compound-library', 'hts-screening', 'hit-validation', 'lead-optimization'],
+    duration: 100000, // 18 months metaphor
+    successRate: 0.05,
+    cost: 50000000
+  },
+  ai: {
+    type: 'generative-factory',
+    apis: ['/generate_therapeutic_protein', '/predict_protein_functionality_change'],
+    duration: 5000, // 1 week metaphor
+    successRate: 0.90,
+    cost: 50000
+  }
+}
+```
+
+#### **3. ROI Calculator → LiveROICalculator**
+```typescript
+// Enhance ROI with real simulation data
+interface ROISimulationConfig {
+  inputSources: {
+    apiMetrics: 'simulation-results',  // Pull from live API results
+    industryBenchmarks: 'roi-scenarios.industryStandards',
+    customParameters: 'user-input'
+  },
+  calculations: {
+    costSavings: 'real-time',         // Calculate from actual API performance
+    timeAcceleration: 'measured',     // Based on actual simulation timing
+    successRateImprovement: 'validated' // From real API accuracy metrics
+  }
+}
+```
+
+---
+
+## 🎬 SIMULATION ORCHESTRATION PATTERNS
+
+### **PATTERN 1: SEQUENTIAL PIPELINE**
+```typescript
+// For multi-stage workflows (Valley of Death)
+const SequentialSimulation = {
+  execution: 'sequential',
+  stages: ['stage1', 'stage2', 'stage3'],
+  dataFlow: 'stage1.output → stage2.input → stage3.input',
+  visualization: 'progressive-reveal'
+};
+```
+
+### **PATTERN 2: PARALLEL COMPARISON**
+```typescript
+// For side-by-side demos (Discovery vs Engineering)
+const ParallelComparison = {
+  execution: 'parallel',
+  tracks: ['traditional', 'ai'],
+  dataFlow: 'independent',
+  visualization: 'race-visualization'
+};
+```
+
+### **PATTERN 3: INTERACTIVE CALCULATOR**
+```typescript
+// For dynamic calculations (ROI Calculator)
+const InteractiveCalculation = {
+  execution: 'reactive',
+  inputs: 'user-controlled',
+  dataFlow: 'input-change → recalculate → update-display',
+  visualization: 'real-time-charts'
+};
+```
+
+### **PATTERN 4: EVIDENCE DEMONSTRATION**
+```typescript
+// For proof/validation demos (Evidence Protocol)
+const EvidenceDemo = {
+  execution: 'explanatory',
+  steps: ['hypothesis', 'method', 'results', 'conclusion'],
+  dataFlow: 'educational-sequence',
+  visualization: 'step-by-step-reveal'
+};
+```
+
+---
+
+## 🔧 IMPLEMENTATION STANDARDS
+
+### **1. COMPONENT INTERFACE STANDARD**
+```typescript
+interface HomepageSimulationComponent {
+  // Identification
+  id: string;
+  name: string;
+  description: string;
+  
+  // Configuration
+  config: SimulationConfig;
+  apis: APIEndpoint[];
+  timing: TimingConfig;
+  
+  // State Management
+  state: SimulationState;
+  onStateChange: (state: SimulationState) => void;
+  
+  // Controls
+  start: () => Promise<void>;
+  pause: () => void;
+  reset: () => void;
+  
+  // Results
+  results: SimulationResults;
+  onResults: (results: SimulationResults) => void;
+}
+```
+
+### **2. DATA STRUCTURE STANDARD**
+```typescript
+// All simulation data must follow this structure
+interface SimulationData {
+  meta: {
+    id: string;
+    version: string;
+    lastUpdated: string;
+    source: 'real-api' | 'validated-sample' | 'benchmark';
+  };
+  input: {
+    required: Record<string, any>;
+    optional?: Record<string, any>;
+    examples: Record<string, any>;
+  };
+  expected: {
+    output: Record<string, any>;
+    timing: number;
+    metrics: Record<string, number>;
+  };
+  visualization: {
+    components: string[];
+    layout: 'card' | 'chart' | 'pipeline' | 'comparison';
+    animations: boolean;
+  };
+}
+```
+
+### **3. INTEGRATION REQUIREMENTS**
+
+#### **A. Existing Homepage Components**
+- **HeroSection**: Add simulation trigger CTA
+- **BridgingValleyOfDeath**: Replace with `BridgingValleySimulation`
+- **DiscoveryVsEngineering**: Replace with `DiscoveryRaceSimulation`
+- **ROICalculatorSection**: Enhance with `LiveROICalculator`
+- **InteractiveDemoSection**: Expand with more simulations
+
+#### **B. New Simulation Components**
+- Must integrate seamlessly with existing design system
+- Must maintain responsive design across all screen sizes
+- Must include loading states, error handling, and accessibility
+- Must support both auto-play and user-triggered modes
+
+#### **C. Performance Requirements**
+- Simulations must load within 2 seconds
+- API calls must complete within 5 seconds (with timeout handling)
+- Animations must maintain 60fps
+- Must work offline with cached sample data
+
+---
+
+## 🎯 SIMULATION SCENARIOS
+
+### **PREDEFINED DEMO SCENARIOS**
+Store in `src/data/simulations/homepage-scenarios.ts`:
+
+#### **1. BRCA1 Pathogenic Variant Journey**
+```typescript
+const brca1Journey = {
+  id: 'brca1-pathogenic-journey',
+  title: 'BRCA1 Pathogenic Variant: From VUS to Therapeutic Target',
+  stages: [
+    {
+      api: '/predict_variant_impact',
+      input: { variant: 'chr17:43044295:A>T', gene: 'BRCA1' },
+      expected: { pathogenicity: 0.89, classification: 'Likely Pathogenic' }
+    },
+    {
+      api: '/predict_gene_essentiality', 
+      input: { gene: 'BRCA1', context: 'breast-cancer' },
+      expected: { essentiality: 0.76, dependency: 'high' }
+    },
+    {
+      api: '/generate_optimized_guide_rna',
+      input: { target: 'BRCA1', strategy: 'knockout' },
+      expected: { efficiency: 0.87, guides: ['GTTCCAGAACCTGAAAGCTG'] }
+    }
+  ]
+};
+```
+
+#### **2. Drug Development Speed Comparison**
+```typescript
+const speedComparison = {
+  id: 'speed-comparison',
+  title: 'Traditional vs AI-Powered Drug Development',
+  parallel: {
+    traditional: {
+      steps: ['library-screening', 'hit-validation', 'lead-optimization'],
+      totalTime: 18 * 30 * 24 * 60 * 60 * 1000, // 18 months in ms
+      successRate: 0.05
+    },
+    ai: {
+      apis: ['/generate_therapeutic_protein', '/predict_protein_functionality_change'],
+      totalTime: 7 * 24 * 60 * 60 * 1000, // 1 week in ms  
+      successRate: 0.90
+    }
+  }
+};
+```
+
+---
+
+## 🚀 IMPLEMENTATION PHASES
+
+### **PHASE 1: CORE SIMULATION ENGINE**
+1. Extract `DemoFactory` → `APISimulationEngine`
+2. Extract `FactoryDemoShowcase` → `WorkflowSimulator`
+3. Create `SimulationOrchestrator` for homepage coordination
+4. Establish data structure standards and registries
+
+### **PHASE 2: HOMEPAGE SECTION TRANSFORMATION**
+1. Convert `BridgingValleyOfDeath` → `BridgingValleySimulation`
+2. Convert `DiscoveryVsEngineering` → `DiscoveryRaceSimulation`
+3. Enhance `ROICalculatorSection` with live simulation data
+4. Add simulation triggers to `HeroSection`
+
+### **PHASE 3: ADVANCED SIMULATIONS**
+1. Create `EvidenceProtocolDemo` with correlation proofs
+2. Build `ProteinBindingSimulation` for key-lock mechanism
+3. Add `DesignChallengeSimulator` for generative demos
+4. Implement cross-simulation data sharing
+
+### **PHASE 4: ORCHESTRATION & POLISH**
+1. Master simulation controller for homepage flow
+2. User journey tracking and analytics
+3. Performance optimization and caching
+4. A/B testing framework for simulation effectiveness
+
+---
+
+## 🎭 SUCCESS METRICS
+
+### **USER ENGAGEMENT**
+- **Simulation Completion Rate**: >70% of visitors complete at least one simulation
+- **Time on Page**: 3x increase in average session duration
+- **Interaction Depth**: >50% of visitors try multiple simulations
+
+### **CONVERSION IMPACT**
+- **Demo Request Rate**: 2x increase in demo requests
+- **Lead Quality**: Higher engagement scores from prospects
+- **Sales Cycle**: Reduced time from first visit to qualified lead
+
+### **TECHNICAL PERFORMANCE**
+- **Load Time**: All simulations load within 2 seconds
+- **Success Rate**: >95% simulation completion without errors
+- **Cross-Device**: Consistent experience across desktop/mobile
+
+---
+
+## 🔒 CRITICAL RULES
+
+### **DO NOT HARD-CODE**
+- No API endpoints in component files
+- No simulation data embedded in JSX
+- No timing values as magic numbers
+- All configuration must be externalized
+
+### **MAINTAIN MODULARITY**
+- Each simulation must be independently testable
+- Components must be reusable across different scenarios
+- Clear separation between data, logic, and presentation
+
+### **PRESERVE PERFORMANCE**
+- Lazy load simulation components
+- Cache frequently used simulation data
+- Optimize animations and transitions
+- Implement proper error boundaries
+
+### **ENSURE ACCESSIBILITY**
+- All simulations must be keyboard navigable
+- Screen reader compatible descriptions
+- Proper ARIA labels for dynamic content
+- Respect prefers-reduced-motion settings
+
+---
+
+This doctrine transforms the CrisPRO.ai homepage from a static brochure into a **living laboratory** where prospects don't just read about our capabilities—they **experience them firsthand** through interactive, real-time simulations powered by our actual AI engines.
+
+**Every visitor becomes a user. Every section becomes a demo. Every claim becomes proof.**

@@ -7,7 +7,7 @@ import { Target, Info } from 'lucide-react';
 interface VariantResult {
   variant: string;
   gene: string;
-  evo2Score: number;
+  crisproScore: number;
   alphaMissenseScore?: number;
   gpnMsaScore?: number;
   ensembleScore: number;
@@ -37,8 +37,8 @@ const VariantDetails: React.FC<VariantDetailsProps> = ({ variant }) => {
             <h4 className="text-lg font-semibold text-gray-700 mb-3">Scoring Breakdown</h4>
             <div className="space-y-3">
               <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                <span className="font-medium">Evo2 Zero-shot</span>
-                <span className="font-bold text-blue-600">{variant.evo2Score}</span>
+                <span className="font-medium">CrisPRO.ai Zero-shot</span>
+                <span className="font-bold text-blue-600">{variant.crisproScore}</span>
               </div>
               {variant.alphaMissenseScore && (
                 <div className="flex justify-between items-center p-3 bg-teal-50 rounded-lg">
@@ -79,7 +79,7 @@ const VariantDetails: React.FC<VariantDetailsProps> = ({ variant }) => {
               <span className="font-semibold text-orange-800">Context Window</span>
             </div>
             <p className="text-sm text-gray-700">
-              Evo2 uses 8,192 bp context with reverse-complement averaging for robust scoring.
+              CrisPRO.ai uses 8,192 bp context with reverse-complement averaging for robust scoring.
               Noncoding and splice variants benefit from extended genomic context.
             </p>
           </div>

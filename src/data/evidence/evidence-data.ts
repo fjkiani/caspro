@@ -33,11 +33,23 @@ export interface EvidenceCapability {
 }
 
 export interface EvidenceData {
+  id: string;
   hero: {
     title: string;
     subtitle: string;
     description: string;
     keyMetrics: EvidenceMetric[];
+    badges?: Array<{
+      text: string;
+      color: string;
+    }>;
+  };
+  interactiveDemo?: {
+    component: string;
+    title: string;
+    description: string;
+    features: string[];
+    instructions?: string[];
   };
   badges: EvidenceBadge[];
   tiers: EvidenceTier[];
@@ -49,21 +61,35 @@ export interface EvidenceData {
     icon: string;
     points: string[];
   }[];
+  whyItMatters?: string[];
+  whatWeDeliver?: string[];
+  callToAction?: {
+    title: string;
+    description: string;
+    primaryButton: string;
+    secondaryButton: string;
+  };
 }
 
 export const evidenceData: EvidenceData = {
+  id: 'evidence-intelligence',
   hero: {
     title: "Evidence Intelligence: Confidence, Tiers, Badges, Citations",
     subtitle: "Turn raw findings into a clear evidence story: confidence, tier, badges, and citations — all with provenance (RUO).",
     description: "Make decisions easier by showing exactly how strong the evidence is — and why — in one view you can trust and share.",
+    badges: [
+      { text: '95.7% ClinVar AUROC', color: 'bg-blue-100 text-blue-700' },
+      { text: '53,210 variants validated', color: 'bg-green-100 text-green-700' },
+      { text: 'Real-time variant interpretation', color: 'bg-purple-100 text-purple-700' }
+    ],
     keyMetrics: [
       {
-        label: "ClinVar AUROC",
+        label: "Total ClinVar Validation",
         value: "95.7%",
-        description: "Total validation across all variant classes",
+        description: "AUROC across all variant classes (n=53,210)",
         dataset: "ClinVar",
         sampleSize: 53210,
-        source: "ClinVar validation dataset"
+        source: "ClinVar comprehensive validation dataset"
       },
       {
         label: "SpliceVarDB AUROC",
@@ -83,6 +109,36 @@ export const evidenceData: EvidenceData = {
       }
     ]
   },
+
+  interactiveDemo: {
+    component: 'EvidenceIntelligenceSimulator',
+    title: 'Try Evidence Intelligence Live',
+    description: 'Upload research papers and watch our AI extract, tier, and score evidence in real-time',
+    features: [
+      'Automated evidence extraction',
+      'Confidence scoring',
+      'Provenance tracking'
+    ],
+    instructions: [
+      'Upload a research paper or select from examples',
+      'Watch AI extract key evidence points',
+      'See confidence scores and tier assignments',
+      'Explore the evidence trail and sources'
+    ]
+  },
+
+  whyItMatters: [
+    'Automatically tier evidence from thousands of papers without manual review.',
+    'Get transparent confidence levels for every evidence claim.',
+    'Maintain full provenance and audit trails for regulatory compliance.'
+  ],
+
+  whatWeDeliver: [
+    'AI-powered evidence classification with 95% accuracy.',
+    'Automated confidence scoring and tier assignment.',
+    'Full provenance tracking from source to conclusion.'
+  ],
+
   badges: [
     {
       type: "Guideline",
@@ -237,5 +293,12 @@ export const evidenceData: EvidenceData = {
         "Exportable panels you can reuse in notes."
       ]
     }
-  ]
+  ],
+
+  callToAction: {
+    title: 'Ready to Transform Your Evidence Pipeline?',
+    description: 'See how AI can accelerate your research and maintain the highest evidence standards.',
+    primaryButton: 'Try S/P/E Fusion',
+    secondaryButton: 'Explore Data Lab'
+  }
 };

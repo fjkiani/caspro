@@ -6,13 +6,13 @@ export const TECHNOLOGY_CONFIG = {
   subtitle: "CrisPRO brings together cutting-edge AI foundation models and robust engineering to create a powerful, secure platform for genomics analysis and therapy design.",
   tabs: [
     {
-      name: 'Evo2 Engine',
+      name: 'CrisPRO.ai Engine',
       description: 'Genomic Prediction & Generation',
       icon: Cpu,
       modelPath: '/models/dna.glb',
       content: {
-        heading: "Evo2: Evolutionary Genomic Analysis",
-        description: "Evo2 is a state-of-the-art deep learning model that predicts the functional impact of genetic variants with over 90% accuracy. Beyond prediction, CrisPRO leverages Evo2's generative capabilities to design novel DNA/RNA sequences for therapeutic purposes.",
+        heading: "CrisPRO.ai: Evolutionary Genomic Analysis",
+        description: "CrisPRO.ai is a state-of-the-art deep learning model that predicts the functional impact of genetic variants with over 90% accuracy. Beyond prediction, CrisPRO leverages CrisPRO.ai's generative capabilities to design novel DNA/RNA sequences for therapeutic purposes.",
         capabilities: [
           { name: 'Interpret Variants', details: 'Accurately interpret complex cancer-related genetic variants.' },
           { name: 'Identify Targets', details: 'Identify high-potential therapeutic targets based on variant effects.' },

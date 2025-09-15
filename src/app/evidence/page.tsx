@@ -1,13 +1,12 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { EvidencePageContent } from '@/components/evidence/EvidencePageContent';
+import UnifiedEvidencePage from '@/components/evidence/UnifiedEvidencePage';
 
 export const metadata: Metadata = {
-  title: 'Evidence Intelligence - CrisPRO.ai',
-  description: 'Turn raw findings into a clear evidence story: confidence, tier, badges, and citations — all with provenance (RUO).',
+  title: 'Evidence Intelligence Platform - CrisPRO.ai',
+  description: 'Transform raw findings into structured, actionable evidence with AI-powered confidence scoring, multi-dimensional analysis, and population context.',
 };
 
-
 export default function EvidencePage() {
-  return <EvidencePageContent />;
+  return <UnifiedEvidencePage />;
 }

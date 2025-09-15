@@ -1,3 +1,17 @@
 export { CapabilityPreview } from './CapabilityPreview';
 export { CapabilitiesShowcase } from './CapabilitiesShowcase';
 export { InSilicoTeaser } from './InSilicoTeaser';
+export { default as LiveDemoSection } from './LiveDemoSection';
+export { default as MetricsShowcase } from './MetricsShowcase';
+export { default as BiotechValueProps } from './BiotechValueProps';
+export { default as BiotechCapabilities } from './BiotechCapabilities';
+export { default as PatientJourneyCards } from './PatientJourneyCards';
+export { default as BiotechRDChallenges } from './BiotechRDChallenges';
+export { default as ROICalculatorSection } from './ROICalculatorSection';
+export { default as CrisPROValueCalculator } from './CrisPROValueCalculator';
+export { default as PatientImpactCalculator } from './PatientImpactCalculator';
+export { default as BiotechROICalculator } from './BiotechROICalculator';
+export { default as DrugDevelopmentProblem } from './DrugDevelopmentProblem';
+export { default as BridgingValleyOfDeath } from './BridgingValleyOfDeath';
+export { default as DiscoveryVsEngineering } from './DiscoveryVsEngineering';
+export { default as InteractiveDemoSection } from './InteractiveDemoSection';

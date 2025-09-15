@@ -1,14 +1,12 @@
-// Data Lab data structure - extracted from datalab.mdc documentation
 export interface DataLabCapability {
   title: string;
-  description: string;
   icon: string;
   color: string;
   status: 'live' | 'roadmap';
   technical: string;
   scientific: string;
   business: string;
-  features: string[];
+  genomicUseCases: string;
 }
 
 export interface DataLabStep {
@@ -22,10 +20,22 @@ export interface DataLabStep {
 }
 
 export interface DataLabData {
+  id: string;
   hero: {
     title: string;
     subtitle: string;
     description: string;
+    badges?: Array<{
+      text: string;
+      color: string;
+    }>;
+  };
+  interactiveDemo?: {
+    component: string;
+    title: string;
+    description: string;
+    features: string[];
+    instructions?: string[];
   };
   capabilities: DataLabCapability[];
   pipeline: DataLabStep[];
@@ -42,75 +52,73 @@ export interface DataLabData {
 }
 
 export const dataLabData: DataLabData = {
+  id: 'data-lab',
   hero: {
     title: "In-Silico Data Lab",
     subtitle: "Find studies, extract cohorts, label, benchmark, and export artifacts — fast and reproducible (RUO)",
-    description: "Give researchers a reliable data lane: discover a study, extract it with guardrails, add labels, run a quick benchmark, and export artifacts — all with provenance."
+    description: "Give researchers a reliable data lane: discover a study, extract it with guardrails, add labels, run a quick benchmark, and export artifacts — all with provenance.",
+    badges: [
+      { text: 'Rapid cohort extraction', color: 'bg-purple-100 text-purple-700' },
+      { text: '10x faster study analysis', color: 'bg-green-100 text-green-700' },
+      { text: 'Full provenance tracking', color: 'bg-blue-100 text-blue-700' }
+    ]
+  },
+  interactiveDemo: {
+    component: 'DataLabExplorer',
+    title: 'Try Data Lab Live',
+    description: 'Explore study catalogs, extract cohorts, and analyze genomic data with interactive research tools',
+    features: [
+      'Study Discovery',
+      'Cohort Extraction',
+      'Benchmark Analysis'
+    ],
+    instructions: [
+      'Browse available studies in the catalog',
+      'Select cohorts and apply filters',
+      'Run benchmarks and export results',
+      'See full provenance tracking'
+    ]
   },
   capabilities: [
     {
       title: "Study Catalog",
-      description: "List available studies via pyBioPortal; filter by disease/genes",
       icon: "Search",
       color: "blue",
       status: "live",
       technical: "GET /studies feeds a searchable list with disease/gene filtering",
       scientific: "Ensures you start with a relevant cohort",
       business: "Speed: Less hunting, more doing",
-      features: [
-        "Study discovery and filtering",
-        "Disease and gene-based search",
-        "Sample size and metadata display",
-        "Real-time study availability"
-      ]
+      genomicUseCases: "1. **Discover** studies by disease and gene.\n2. **Filter** by sample size and metadata.\n3. **Verify** real-time availability."
     },
     {
       title: "Cohort Extractor",
-      description: "Extract cohorts with chunked POST, retries, and caching",
       icon: "Play",
       color: "green",
       status: "live",
       technical: "POST /extract_and_benchmark orchestrates extraction with guardrails",
       scientific: "Stable extraction reduces errors and variance",
       business: "Reliability: Guardrails keep the pipeline moving",
-      features: [
-        "Chunked POST for large queries",
-        "Retry logic with backoff",
-        "Redis caching (24-72h)",
-        "Single-flight per key"
-      ]
+      genomicUseCases: "1. **Extract** cohorts via chunked POST.\n2. **Utilize** retry logic and caching.\n3. **Ensure** single-flight per key for consistency."
     },
     {
       title: "Label Builder & Benchmarks",
-      description: "Build light labels and run minimal benchmarks (AUPRC/AUROC)",
       icon: "Tag",
       color: "purple",
       status: "live",
       technical: "Build light labels (e.g., treatments); run minimal benchmarks",
       scientific: "Adds quick context to cohorts (RUO)",
       business: "Comparable: Same metrics for everyone",
-      features: [
-        "Treatment labeling",
-        "AUROC/AUPRC benchmarking",
-        "Minimal benchmark execution",
-        "Contextual cohort annotation"
-      ]
+      genomicUseCases: "1. **Build** labels for treatments.\n2. **Run** AUROC/AUPRC benchmarks.\n3. **Annotate** cohorts for context."
     },
     {
       title: "Artifacts & Coverage",
-      description: "Return artifact manifest (CSV/JSON) and coverage by gene for overlays",
       icon: "Download",
       color: "indigo",
       status: "live",
       technical: "Return artifact manifest and coverage by gene for overlays",
       scientific: "Enables reproducible overlays across flows",
       business: "Reuse: Shareable outputs with stable links",
-      features: [
-        "CSV/JSON artifact export",
-        "Gene coverage mapping",
-        "Stable artifact links",
-        "Provenance tracking"
-      ]
+      genomicUseCases: "1. **Export** artifacts in CSV/JSON.\n2. **Map** gene coverage.\n3. **Generate** stable links with provenance."
     }
   ],
   pipeline: [

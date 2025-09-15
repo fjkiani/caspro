@@ -1,44 +1,58 @@
 import { MetricGroup } from './types';
+import { UseCaseMetrics } from './types';
 
-export const spliceMetrics: MetricGroup = {
-  id: 'splice-prediction',
+export const spliceMetricsData: UseCaseMetrics = {
+  useCaseId: 'splice',
   title: 'Splice Variant Prediction',
-  description: 'Performance on splice-altering variants using SpliceVarDB',
-  category: 'discriminative',
-  benchmarks: [
-    {
-      title: 'Exonic Splice Variants',
-      value: { value: 82.6, format: 'percentage', precision: 1 },
-      description: 'AUROC on exonic splice-altering variants',
-      dataset: 'SpliceVarDB',
-      sampleSize: 1181,
-      source: 'SpliceVarDB validation',
-      category: 'discriminative'
-    },
-    {
-      title: 'Intronic Splice Variants',
-      value: { value: 82.5, format: 'percentage', precision: 1 },
-      description: 'AUROC on intronic splice-altering variants',
-      dataset: 'SpliceVarDB',
-      sampleSize: 3769,
-      source: 'SpliceVarDB validation',
-      category: 'discriminative'
-    }
+  description: 'Evaluating our model\'s ability to identify variants that disrupt RNA splicing, a critical mechanism in many genetic diseases.',
+  metrics: {
+    discriminative: [
+      {
+        id: 'splice-prediction-auroc',
+        title: 'Splice Variant Prediction Performance',
+        description: 'AUROC scores demonstrating the accuracy of our zero-shot classification on splice-altering variants from the SpliceVarDB dataset.',
+        category: 'discriminative',
+        benchmarks: [
+          {
+            title: 'Exonic Splice Variants AUROC',
+            value: { value: 0.826, format: 'decimal', precision: 3 },
+            description: 'Model accuracy in identifying splice-altering variants located within exons.',
+            dataset: 'SpliceVarDB',
+            sampleSize: 1181,
+            isStateOfTheArt: false,
+            source: 'Internal validation on SpliceVarDB dataset.',
+            category: 'discriminative'
+          },
+          {
+            title: 'Intronic Splice Variants AUROC',
+            value: { value: 0.825, format: 'decimal', precision: 3 },
+            description: 'Model accuracy in identifying splice-altering variants located within introns.',
+            dataset: 'SpliceVarDB',
+            sampleSize: 3769,
+            isStateOfTheArt: false,
+            source: 'Internal validation on SpliceVarDB dataset.',
+            category: 'discriminative'
+          }
+        ],
+      }
+    ],
+    generative: [],
+    business: [],
+    validation: [],
+  },
+  whyItMatters: [
+    'Splice variants are a major cause of genetic diseases, including many cancers, but are often overlooked by standard analysis pipelines.',
+    'Identifying these variants is critical for accurate diagnosis, predicting disease progression, and developing targeted therapies.',
+    'Misinterpretation of splice variants can lead to incorrect diagnoses and ineffective treatment strategies.'
   ],
-  businessImpact: 'Enables identification of functional variants affecting RNA processing and drug response',
-  methodology: 'Evo2 7B/40B zero-shot classification on splice-altering variants'
-};
-
-export const spliceOverview = {
-  title: 'Splice Variant Prediction',
-  subtitle: 'Identifying variants that affect RNA splicing and processing',
-  description: 'Splice variants are genetic changes that affect how genes are processed into functional proteins. These variants can disrupt normal RNA splicing, leading to altered protein function or disease. Our models predict the functional impact of variants on splicing with high accuracy.',
-  keyConcepts: [
-    'Variants affecting RNA splicing machinery',
-    'Exonic variants disrupting splice sites',
-    'Intronic variants creating new splice sites',
-    'Impact on protein function and disease'
+  delivered: [
+    'High-accuracy prediction of both exonic and intronic splice variants without the need for specialized assays.',
+    'Provides a deeper, more comprehensive understanding of the genetic drivers of a disease.',
+    'Enables the identification of novel therapeutic targets and biomarkers related to RNA processing.'
   ],
-  clinicalSignificance: 'Splice variants are a major cause of genetic disease and can significantly impact therapeutic response. Accurate prediction enables better understanding of variant pathogenicity.',
-  methodology: 'Our models use Evo2 7B/40B zero-shot classification to predict splice-altering variants with high accuracy across both exonic and intronic regions.'
+  howToRead: [
+    'AUROC (Area Under the Receiver Operating Characteristic curve) measures the model\'s ability to distinguish between pathogenic and benign variants.',
+    'An AUROC of 1.0 represents a perfect classifier, while 0.5 represents a random guess.',
+    'Our scores (0.826 and 0.825) indicate a high degree of accuracy in identifying splice-altering variants.'
+  ]
 };

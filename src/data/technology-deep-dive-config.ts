@@ -7,7 +7,7 @@ export const DEEP_DIVE_CONFIG = {
   
   technologies: [
     {
-      id: "evo2",
+      id: "crispro",
       icon: Cpu,
       title: "The Zeta Oracle (The Intelligence Agent)",
       modelPath: "/models/dna.glb",
@@ -36,7 +36,7 @@ export const DEEP_DIVE_CONFIG = {
         title: "CRISPR: Precision Gene Editing",
         modelPath: "/models/dna.glb",
         scientificBasis: "A programmable gene editing tool using a guide RNA to direct a Cas enzyme for precise DNA modifications. It can disrupt genes or, with a repair template, correct or insert genetic material.",
-        howItWorks: "Evo2's analysis and generative design directly inform CRISPR component creation. CrisPRO facilitates designing optimal guide RNAs and repair templates for specific therapeutic goals."
+        howItWorks: "CrisPRO.ai's analysis and generative design directly inform CRISPR component creation. CrisPRO facilitates designing optimal guide RNAs and repair templates for specific therapeutic goals."
       }
   ],
 
@@ -62,7 +62,7 @@ export const DEEP_DIVE_CONFIG = {
       title: "2. Intelligence Gathering", 
       text: "Our Zeta Oracle is deployed. It analyzes the target, annihilates any uncertainty, and delivers a definitive 'Zeta Score' quantifying the functional damage.",
       icon: BrainCircuit,
-      how: "Our GenomicAnalystAgent deploys the Zeta Oracle (powered by Evo2) to systematically analyze every genetic alteration, calculating its biological disruptiveness and predicting its impact on protein function and gene essentiality. This process transforms raw genomic noise into actionable intelligence.",
+      how: "Our GenomicAnalystAgent deploys the Zeta Oracle (powered by CrisPRO.ai) to systematically analyze every genetic alteration, calculating its biological disruptiveness and predicting its impact on protein function and gene essentiality. This process transforms raw genomic noise into actionable intelligence.",
       why: "We move from mere variant lists to a deep, causal understanding of the enemy's genetic weaknesses in minutes, not weeks, annihilating 'Variants of Uncertain Significance' (VUS) that plague traditional diagnostics.",
       endpoints: ["/predict_variant_impact", "/predict_gene_essentiality", "/predict_protein_functionality_change", "/predict_chromatin_accessibility"]
     },
@@ -77,7 +77,7 @@ export const DEEP_DIVE_CONFIG = {
       title: "4. Weapon Forging", 
       text: "With a validated target, the Zeta Forge is unleashed. It designs a slate of novel, optimized therapeutic candidates—from CRISPR guides to protein-based biologics.",
       icon: Hammer,
-      how: "Our Therapeutic Design Agent leverages Evo2's generative endpoints to design a slate of novel, optimized therapeutic candidates—from CRISPR guides to protein-based biologics—specifically tailored to the identified vulnerability.",
+      how: "Our Therapeutic Design Agent leverages CrisPRO.ai's generative endpoints to design a slate of novel, optimized therapeutic candidates—from CRISPR guides to protein-based biologics—specifically tailored to the identified vulnerability.",
       why: "We don't just pick from a library; we create custom-designed solutions. This is de novo biological engineering, tailored for maximum impact.",
       endpoints: ["/generate_optimized_guide_rna", "/generate_repair_template", "/generate_therapeutic_protein_coding_sequence", "/generate_optimized_regulatory_element"]
     },
@@ -85,7 +85,7 @@ export const DEEP_DIVE_CONFIG = {
       title: "5. Structural Validation", 
       text: "Every forged weapon is subjected to the gauntlet. We run it through our structural validation engine to ensure it can hold its shape on the battlefield. The weak are discarded.",
       icon: ShieldCheck,
-      how: "Generated candidates first pass through Evo2 for a 1D 'grammatical' check. Survivors are then dispatched to AlphaFold 3 for 3D structural validation. We analyze the pLDDT score and disordered regions.",
+      how: "Generated candidates first pass through CrisPRO.ai for a 1D 'grammatical' check. Survivors are then dispatched to AlphaFold 3 for 3D structural validation. We analyze the pLDDT score and disordered regions.",
       why: "This mandatory phase ensures our AI-designed weapons are not just theoretically sound but structurally robust. We save immense resources by eliminating non-viable 'wet noodle' designs in silico before they reach the lab.",
       endpoints: ["/predict_variant_impact (internal check)", "predict_protein_structure_quality (via AlphaFold 3)"]
     },

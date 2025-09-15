@@ -1,3 +1,4 @@
+import React from 'react';
 import { Metadata } from 'next';
 import { coPilotDetailsData, CoPilotDetailContent } from '@/data/coPilotDetails';
 import InteractiveContentAnalysis from '@/components/co-pilot-detail/InteractiveContentAnalysis';
@@ -8,6 +9,7 @@ import TabbedContent, { Tab } from '@/components/ui/TabbedContent';
 import { Layers, Zap, BookOpen } from 'lucide-react';
 
 import { allCapabilityJourneys } from '@/data/capability-journeys';
+import Link from 'next/link';
 
 // This function generates the static paths for each co-pilot page at build time.
 export async function generateStaticParams() {
@@ -66,6 +68,8 @@ export default async function CoPilotDetailPage({ params }: { params: { coPilotS
     content: <DesciStyleDoctrineInsights content={content} />,
   });
 
+  const otherCoPilots = Object.values(coPilotDetailsData).filter(p => p.slug !== coPilotSlug);
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white text-slate-800 pt-20 pb-12 px-4 md:px-8">
       <div className="container mx-auto max-w-7xl">
@@ -85,6 +89,21 @@ export default async function CoPilotDetailPage({ params }: { params: { coPilotS
         <div className="container mx-auto px-4 py-8">
           <TabbedContent tabs={tabs} initialTab="strategic-doctrine" />
         </div>
+
+        {/* Inter-linking Section */}
+        <section className="mt-24">
+          <h2 className="text-3xl font-bold text-center text-slate-800 mb-12">Explore Other Co-Pilots</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {otherCoPilots.map(pilot => (
+              <Link href={`/platform/${pilot.slug}`} key={pilot.slug}>
+                <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-slate-200 h-full flex flex-col">
+                  <h3 className="text-xl font-bold text-slate-900 mb-4">{pilot.pageTitle}</h3>
+                  <p className="text-slate-600 flex-grow">{pilot.heroSubtitle}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );

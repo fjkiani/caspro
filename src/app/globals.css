@@ -1,499 +1,190 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-/* 3D Card Flip Styles */
-.perspective-1000 {
-  perspective: 1000px;
+/* Custom styles for homepage tabbed interface */
+.homepage-tabbed-interface {
+  /* Ensure full height and smooth scrolling */
+  min-height: 100vh;
 }
 
-.transform-style-preserve-3d {
-  transform-style: preserve-3d;
+.homepage-tabbed-interface .sidebar-nav {
+  /* Enhanced sidebar styling for homepage */
+  background: linear-gradient(to bottom, rgba(30, 41, 59, 0.95), rgba(51, 65, 85, 0.95));
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(148, 163, 184, 0.2);
 }
 
-.backface-hidden {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+.homepage-tabbed-interface .sidebar-nav .nav-item {
+  /* Enhanced nav item styling */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  margin: 4px 8px;
 }
 
-.rotate-y-180 {
-  transform: rotateY(180deg);
+.homepage-tabbed-interface .sidebar-nav .nav-item:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateX(4px);
 }
 
-/* Fix for card flip container */
-.card-flip-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease-in-out;
+.homepage-tabbed-interface .sidebar-nav .nav-item.active {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2));
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-.card-flip-container.flipped {
-  transform: rotateY(180deg);
+.homepage-tabbed-interface .content-area {
+  /* Smooth content transitions */
+  transition: opacity 0.3s ease-in-out;
 }
 
-.card-face {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-radius: 0.5rem;
-  display: flex;
-  flex-direction: column;
+/* Smooth scroll behavior for navigation */
+html {
+  scroll-behavior: smooth;
 }
 
-.card-face.back {
-  transform: rotateY(180deg);
-}
-
-/* Custom scrollbar for better UX */
-.scrollbar-thin::-webkit-scrollbar {
+/* Custom scrollbar for sidebar */
+.homepage-tabbed-interface .sidebar-nav::-webkit-scrollbar {
   width: 6px;
 }
 
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: #f8fafc;
-}
-
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+.homepage-tabbed-interface .sidebar-nav::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.1);
   border-radius: 3px;
 }
 
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+.homepage-tabbed-interface .sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 3px;
 }
 
-/* Enhance text selection */
-::selection {
-  background-color: #3b82f6;
-  color: white;
+.homepage-tabbed-interface .sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
 }
 
-/* Smooth focus rings */
-.focus-ring {
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
-}
-
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 47.4% 11.2%;
-  }
-
-  body {
-    @apply bg-background text-foreground;
+/* Enhanced mobile responsiveness */
+@media (max-width: 768px) {
+  .homepage-tabbed-interface .sidebar-nav {
+    background: rgba(30, 41, 59, 0.98);
+    backdrop-filter: blur(20px);
   }
 }
 
-@layer components {
-  .text-gradient {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600;
-  }
+/* Animation for content sections */
+.homepage-tabbed-interface .tab-content {
+  animation: fadeInUp 0.5s ease-out;
+}
 
-  .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-3 px-6 rounded-lg transition-colors;
-  }
-  
-  .btn-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 font-semibold py-3 px-6 rounded-lg transition-colors;
-  }
-  
-  .btn-outline {
-    @apply border border-input bg-transparent hover:bg-accent hover:text-accent-foreground font-semibold py-3 px-6 rounded-lg transition-colors;
-  }
-  
-  .section {
-    @apply py-16 md:py-24;
-  }
-  
-  .container {
-    @apply px-4 mx-auto max-w-7xl;
-  }
-  
-  .heading-1 {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
-  }
-  
-  .heading-2 {
-    @apply text-3xl md:text-4xl font-bold tracking-tight;
-  }
-  
-  .heading-3 {
-    @apply text-2xl md:text-3xl font-bold;
-  }
-  
-  .subheading {
-    @apply text-xl text-muted-foreground;
-  }
-
-  /* Interactive Component Animations */
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-
-  .animate-fade-in-delay {
-    animation: fadeIn 0.8s ease-out 0.3s forwards;
+@keyframes fadeInUp {
+  from {
     opacity: 0;
+    transform: translateY(20px);
   }
-
-  .animate-slide-up {
-    animation: slideUp 0.6s ease-out forwards;
-  }
-
-  .animate-bounce-in {
-    animation: bounceIn 0.8s ease-out forwards;
-  }
-
-  .animate-pulse-glow {
-    animation: pulseGlow 2s ease-in-out infinite;
-  }
-
-  /* Custom Slider Styles */
-  .slider::-webkit-slider-thumb {
-    @apply appearance-none w-4 h-4 bg-blue-500 rounded-full cursor-pointer;
-  }
-
-  .slider::-moz-range-thumb {
-    @apply w-4 h-4 bg-blue-500 rounded-full cursor-pointer border-0;
-  }
-
-  /* Hover Effects */
-  .hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  }
-
-  .hover-glow {
-    transition: box-shadow 0.3s ease;
-  }
-
-  .hover-glow:hover {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-  }
-
-  /* Interactive Cards */
-  .interactive-card {
-    @apply transition-all duration-300 ease-out cursor-pointer;
-    transform-origin: center;
-  }
-
-  .interactive-card:hover {
-    @apply scale-105;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .interactive-card:active {
-    @apply scale-95;
-  }
-
-  /* Gradient Backgrounds */
-  .bg-gradient-interactive {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
-    transition: background 0.3s ease;
-  }
-
-  .bg-gradient-interactive:hover {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@layer utilities {
-  /* Global White Theme Overrides */
-  .bg-black,
-  .bg-slate-900,
-  .bg-slate-800,
-  .bg-slate-700,
-  .bg-gray-900,
-  .bg-gray-800,
-  .bg-gray-700 {
-    background-color: white !important;
-  }
+/* Enhanced focus states for accessibility */
+.homepage-tabbed-interface .sidebar-nav .nav-item:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+}
 
-  .text-white {
-    color: #1e293b !important; /* slate-800 */
-  }
+/* Loading state animations */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
 
-  .text-slate-300,
-  .text-slate-400 {
-    color: #475569 !important; /* slate-600 */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
   }
-
-  .text-slate-200 {
-    color: #334155 !important; /* slate-700 */
+  100% {
+    background-position: 200% 0;
   }
+}
 
-  .text-slate-100 {
-    color: #1e293b !important; /* slate-800 */
-  }
+/* Enhanced button styles */
+.homepage-tabbed-interface .cta-button {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
 
-  /* Override dark mode classes */
-  .dark\:text-white {
-    color: #1e293b !important;
-  }
+.homepage-tabbed-interface .cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+}
 
-  .dark\:text-slate-300,
-  .dark\:text-slate-400 {
-    color: #475569 !important;
-  }
+/* Section spacing optimization */
+.homepage-tabbed-interface section {
+  scroll-margin-top: 2rem;
+}
 
-  .dark\:bg-slate-900,
-  .dark\:bg-slate-800,
-  .dark\:bg-slate-700 {
-    background-color: white !important;
-  }
+/* Enhanced typography */
+.homepage-tabbed-interface h1 {
+  background: linear-gradient(135deg, #1e293b, #3b82f6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-  /* Fix borders for white theme */
-  .border-slate-700,
-  .border-slate-600 {
-    border-color: #e2e8f0 !important; /* slate-200 */
-  }
+.homepage-tabbed-interface .subtitle {
+  color: #64748b;
+  line-height: 1.6;
+}
 
-  .dark\:border-slate-700,
-  .dark\:border-slate-600 {
-    border-color: #e2e8f0 !important;
-  }
+/* Interactive element highlights */
+.homepage-tabbed-interface .interactive-element {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
 
-  /* Fix card backgrounds */
-  .bg-slate-800\/50,
-  .bg-slate-800\/80,
-  .bg-slate-700\/80 {
-    background-color: rgba(255, 255, 255, 0.8) !important;
-  }
+.homepage-tabbed-interface .interactive-element:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+}
 
-  /* Fix backdrop blur backgrounds */
-  .backdrop-blur-sm {
-    background-color: rgba(255, 255, 255, 0.9) !important;
-  }
+/* Platform metrics styling */
+.homepage-tabbed-interface .metric-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  transition: all 0.3s ease;
+}
 
-  /* Override all gradient backgrounds to white variants */
-  .bg-gradient-to-br.from-slate-800\/80.to-slate-700\/80,
-  .bg-gradient-to-br.from-slate-800.to-slate-700,
-  .bg-gradient-to-br.from-slate-900.to-slate-800 {
-    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.8), rgba(248, 250, 252, 0.8)) !important;
-  }
+.homepage-tabbed-interface .metric-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
+}
 
-  .bg-gradient-to-t.from-slate-800\/80.to-slate-800\/50 {
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5)) !important;
-  }
+/* Simulation container enhancements */
+.homepage-tabbed-interface .simulation-container {
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.8), rgba(255, 255, 255, 0.8));
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
 
-  /* Fix hover states */
-  .hover\:bg-slate-700:hover,
-  .hover\:bg-slate-800:hover {
-    background-color: #f8fafc !important; /* slate-50 */
-  }
+/* Progress indicators */
+.homepage-tabbed-interface .progress-indicator {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
 
-  /* Fix button states */
-  .bg-slate-800\/70.hover\:bg-slate-700\/70:hover {
-    background-color: rgba(248, 250, 252, 0.7) !important;
-  }
-
-  /* Fix text in buttons and interactive elements */
-  .bg-slate-800.text-slate-300,
-  .bg-slate-700.text-slate-300 {
-    color: #475569 !important; /* slate-600 */
-  }
-
-  /* Fix ring colors for focus states */
-  .ring-primary\/50 {
-    --tw-ring-color: rgba(59, 130, 246, 0.5) !important;
-  }
-
-  /* Fix shadow colors */
-  .shadow-primary\/10 {
-    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1), 0 4px 6px -2px rgba(59, 130, 246, 0.05) !important;
-  }
-
-  /* Comprehensive component overrides */
-  .bg-slate-800\/50.backdrop-blur-sm,
-  .bg-slate-800\/80.backdrop-blur-sm {
-    background-color: rgba(255, 255, 255, 0.9) !important;
-  }
-
-  /* Fix all text colors in dark sections */
-  .text-slate-300,
-  .text-slate-400,
-  .text-slate-200,
-  .text-slate-100 {
-    color: #475569 !important; /* slate-600 for better contrast */
-  }
-
-  /* Fix prose text colors */
-  .prose-invert {
-    color: #475569 !important;
-  }
-
-  .prose-invert h1,
-  .prose-invert h2,
-  .prose-invert h3,
-  .prose-invert h4,
-  .prose-invert h5,
-  .prose-invert h6 {
-    color: #1e293b !important; /* slate-800 */
-  }
-
-  .prose-invert strong {
-    color: #1e293b !important;
-  }
-
-  /* Fix all interactive elements */
-  .bg-slate-800\/70,
-  .bg-slate-700\/80,
-  .bg-slate-800\/80 {
-    background-color: rgba(255, 255, 255, 0.8) !important;
-  }
-
-  /* Fix border colors for white theme */
-  .border-slate-700,
-  .border-slate-600,
-  .border-slate-500 {
-    border-color: #e2e8f0 !important; /* slate-200 */
-  }
-
-  /* Fix all hover states */
-  .hover\:bg-slate-700\/70:hover,
-  .hover\:bg-slate-800\/80:hover {
-    background-color: rgba(248, 250, 252, 0.8) !important;
-  }
-
-  /* Light mode overrides - only apply when not in dark mode */
-  :not(.dark) .text-white:not(.text-gradient):not([class*="gradient"]):not(.bg-primary):not(.bg-green-100):not(.bg-red-100):not(.bg-slate-800):not(.bg-black) {
-    color: #1e293b !important; /* slate-800 */
-  }
-
-  /* Dark mode - restore original dark theme */
-  .dark .text-slate-300,
-  .dark .text-slate-400,
-  .dark .text-slate-200,
-  .dark .text-slate-100 {
-    color: inherit !important;
-  }
-
-  .dark .bg-slate-800,
-  .dark .bg-slate-900,
-  .dark .bg-slate-700 {
-    background-color: inherit !important;
-  }
-
-  /* Fix prose text that's invisible on white backgrounds */
-  .prose-invert,
-  .prose-invert p,
-  .prose-invert li,
-  .prose-invert ul,
-  .prose-invert ol {
-    color: #475569 !important; /* slate-600 */
-  }
-
-  /* Fix specific invisible text patterns */
-  .text-slate-300:not(.text-gradient):not([class*="gradient"]),
-  .text-slate-400:not(.text-gradient):not([class*="gradient"]) {
-    color: #475569 !important; /* slate-600 */
-  }
-
-  /* Ensure selected tab text stays white */
-  .bg-primary .text-white,
-  .bg-primary.text-white {
-    color: white !important;
-  }
-
-  /* Animation Keyframes */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes bounceIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.3);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    70% {
-      transform: scale(0.9);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes pulseGlow {
-    0%, 100% {
-      box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
-    }
-    50% {
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.3);
-    }
-  }
-
-  /* Stagger Animation Delays */
-  .animate-stagger-1 { animation-delay: 0.1s; }
-  .animate-stagger-2 { animation-delay: 0.2s; }
-  .animate-stagger-3 { animation-delay: 0.3s; }
-  .animate-stagger-4 { animation-delay: 0.4s; }
-  .animate-stagger-5 { animation-delay: 0.5s; }
-  .animate-stagger-6 { animation-delay: 0.6s; }
-  .animate-stagger-7 { animation-delay: 0.7s; }
-  .animate-stagger-8 { animation-delay: 0.8s; }
-
-  /* Interactive States */
-  .state-loading {
-    @apply animate-pulse opacity-70 pointer-events-none;
-  }
-
-  .state-active {
-    @apply ring-2 ring-blue-500 ring-opacity-50;
-  }
-
-  .state-success {
-    @apply ring-2 ring-green-500 ring-opacity-50;
-  }
-
-  .state-error {
-    @apply ring-2 ring-red-500 ring-opacity-50;
-  }
+/* Status badges */
+.homepage-tabbed-interface .status-badge {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #059669;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
 }

@@ -17,7 +17,7 @@ const chemotherapyDrugFitSlides = [
       presenter: 'Oncology Research Team',
       presenterTitle: 'CrisPRO.ai 🧬'
     },
-    notes: "Chemotherapy drug fit use case - translating Evo2 performance to real chemotherapy applications."
+    notes: "Chemotherapy drug fit use case - translating CrisPRO.ai performance to real chemotherapy applications."
   },
 
   {
@@ -49,7 +49,7 @@ const chemotherapyDrugFitSlides = [
         borderColor: 'border-green-500/30'
       }
     },
-    notes: "Establishes the chemotherapy optimization challenge using real Evo2 performance metrics."
+    notes: "Establishes the chemotherapy optimization challenge using real CrisPRO.ai performance metrics."
   },
 
   {
@@ -77,12 +77,12 @@ const chemotherapyDrugFitSlides = [
         />
       )
     },
-    notes: "Shows real Evo2 performance on ClinVar variant classification - the foundation for genomic analysis."
+    notes: "Shows real CrisPRO.ai performance on ClinVar variant classification - the foundation for genomic analysis."
   },
 
   {
     title: "What 95.7% AUROC Means for Genomic Analysis",
-    subtitle: "Real Evo2 performance metrics and their potential applications",
+    subtitle: "Real CrisPRO.ai performance metrics and their potential applications",
     titleClassName: "from-purple-500 to-pink-400",
     content: {
       type: 'info-cards',
@@ -113,24 +113,24 @@ const chemotherapyDrugFitSlides = [
         }
       ]
     },
-    notes: "Honest translation of real Evo2 performance metrics without hallucinating specific chemotherapy outcomes."
+    notes: "Honest translation of real CrisPRO.ai performance metrics without hallucinating specific chemotherapy outcomes."
   },
 
   {
     title: "Technical Capabilities: Genomic Analysis",
-    subtitle: "Evo2's validated technical specifications for genomic research",
+    subtitle: "CrisPRO.ai's validated technical specifications for genomic research",
     titleClassName: "from-green-500 to-teal-400",
     content: {
       type: 'simple-block',
       block: {
         icon: Pill,
-        mainText: "Evo2's 40B parameters trained on 9.3 trillion DNA base pairs enable comprehensive genomic analysis with 95.7% AUROC on ClinVar validation.",
+        mainText: "CrisPRO.ai's 40B parameters trained on 9.3 trillion DNA base pairs enable comprehensive genomic analysis with 95.7% AUROC on ClinVar validation.",
         subText: "1M token context window captures complete genomic regions, enabling analysis of complex regulatory networks and pathway interactions.",
         iconColor: "text-green-400",
         borderColor: "border-slate-700"
       }
     },
-    notes: "Real Evo2 technical capabilities without extrapolating to specific chemotherapy applications."
+    notes: "Real CrisPRO.ai technical capabilities without extrapolating to specific chemotherapy applications."
   },
 
   {
@@ -228,10 +228,10 @@ export default chemotherapyDrugFitSlides;
 // Export metadata for auto-discovery
 export const chemotherapyDrugFitSlideData = {
   title: "Chemotherapy Drug Fit Optimization",
-  description: "AI-powered chemotherapy optimization using Evo2 performance metrics",
+  description: "AI-powered chemotherapy optimization using CrisPRO.ai performance metrics",
   slideCount: chemotherapyDrugFitSlides.length,
   metadata: {
-    tags: ['chemotherapy', 'drug-fit', 'precision-oncology', 'evo2-performance'],
+    tags: ['chemotherapy', 'drug-fit', 'precision-oncology', 'crispro-performance'],
     audience: ['research', 'clinical', 'pharma'],
     created: '2024-01-15',
     author: 'CrisPRO.ai Research Team',

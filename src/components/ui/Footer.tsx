@@ -36,7 +36,7 @@ const Footer = () => {
   return (
     <footer className="bg-slate-900 text-slate-300 py-16">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-12">
           {/* Company Info & Branding */}
           <div className="md:col-span-2 lg:col-span-1">
             <Link href={ROUTES.HOME} className="flex items-center space-x-2 mb-4 group">
@@ -69,32 +69,100 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Navigation Links */}
+          {/* Core Co-Pilots */}
           <div>
-            <h4 className="text-lg font-semibold mb-5 text-white">Explore</h4>
+            <h4 className="text-lg font-semibold mb-5 text-white">Core Co-Pilots</h4>
             <ul className="space-y-3">
-              {FOOTER_CONFIG.quickLinks.map(link => (
-                <li key={link.label}>
-                  <Link href={link.href} className="hover:text-primary transition-colors text-sm">
-                    {link.label}
-                  </Link>
-                  {('subLinks' in link && link.subLinks) ? (
-                    <ul className="mt-2 space-y-1">
-                      {(link as any).subLinks.map((subLink: any) => (
-                        <li key={subLink.label}>
-                          <Link href={subLink.href} className="hover:text-primary transition-colors text-xs text-slate-400">
-                            {subLink.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </li>
-              ))}
+              <li>
+                <Link href="/platform/chemo" className="hover:text-primary transition-colors text-sm">
+                  Chemo Co-Pilot
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">In-silico chemotherapy guidance</p>
+              </li>
+              <li>
+                <Link href="/platform/clinical-trials" className="hover:text-primary transition-colors text-sm">
+                  Clinical Trials Co-Pilot
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">Trial matching & eligibility</p>
+              </li>
+              <li>
+                <Link href="/platform/crispr-intelligence" className="hover:text-primary transition-colors text-sm">
+                  CRISPR Intelligence
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">Genome editing guidance</p>
+              </li>
+              <li>
+                <Link href="/platform/therapy-fit" className="hover:text-primary transition-colors text-sm">
+                  Therapy Fit Co-Pilot
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">Treatment optimization</p>
+              </li>
             </ul>
           </div>
 
-          {/* Legal & Resources */}
+          {/* Evidence Intelligence */}
+          <div>
+            <h4 className="text-lg font-semibold mb-5 text-white">Evidence Intelligence</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/evidence/spe-fusion" className="hover:text-primary transition-colors text-sm">
+                  S/P/E Fusion
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">Sequence, Pathway, Evidence</p>
+              </li>
+              <li>
+                <Link href="/evidence/sae-intelligence" className="hover:text-primary transition-colors text-sm">
+                  SAE Intelligence
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">Serious adverse events</p>
+              </li>
+              <li>
+                <Link href="/evidence/data-lab" className="hover:text-primary transition-colors text-sm">
+                  Data Lab
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">Research data management</p>
+              </li>
+              <li>
+                <Link href="/cohort" className="hover:text-primary transition-colors text-sm">
+                  Cohort Context
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">Population insights</p>
+              </li>
+            </ul>
+          </div>
+
+          {/* Research Tools */}
+          <div>
+            <h4 className="text-lg font-semibold mb-5 text-white">Research Tools</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/metrics" className="hover:text-primary transition-colors text-sm">
+                  Performance Metrics
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">BRCA, SNV, VUS, Generative AI</p>
+              </li>
+              <li>
+                <Link href="/use-cases" className="hover:text-primary transition-colors text-sm">
+                  Use Cases
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">Multiple myeloma & more</p>
+              </li>
+              <li>
+                <Link href="/platform/pathway" className="hover:text-primary transition-colors text-sm">
+                  Pathway Analysis
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">Biological pathway insights</p>
+              </li>
+              <li>
+                <Link href="/platform/toxicity-risk" className="hover:text-primary transition-colors text-sm">
+                  Toxicity Risk
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">Safety assessment tools</p>
+              </li>
+            </ul>
+          </div>
+
+          {/* Company */}
           <div>
             <h4 className="text-lg font-semibold mb-5 text-white">Company</h4>
             <ul className="space-y-3">

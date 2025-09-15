@@ -8,6 +8,7 @@ export interface MetricValue {
 }
 
 export interface MetricBenchmark {
+  slug?: string;
   title: string;
   value: MetricValue;
   description: string;
@@ -16,6 +17,20 @@ export interface MetricBenchmark {
   isStateOfTheArt?: boolean;
   source: string;
   category: 'discriminative' | 'generative' | 'business' | 'validation' | 'technical' | 'estimated';
+  humanReadable?: string;
+  realWorldImpact?: {
+    whatItMeans: string;
+    whyItMatters: string;
+    businessValue: string;
+    timeframe: string;
+    stakeholders: string[];
+    comparisonBenchmark?: {
+      industry: string;
+      ourScore: string;
+      industryAverage: string;
+      improvement: string;
+    };
+  };
 }
 
 export interface MetricGroup {
@@ -26,6 +41,13 @@ export interface MetricGroup {
   benchmarks: MetricBenchmark[];
   businessImpact?: string;
   methodology?: string;
+  realWorldImpact?: {
+    whatItMeans: string;
+    whyItMatters: string;
+    businessValue: string;
+    timeframe: string;
+    stakeholders: string[];
+  };
 }
 
 export interface UseCaseMetrics {

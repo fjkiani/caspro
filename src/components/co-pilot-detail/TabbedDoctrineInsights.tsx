@@ -45,7 +45,7 @@ const TabbedDoctrineInsights: React.FC<TabbedDoctrineInsightsProps> = ({ content
     <section className={`py-16 bg-white ${className}`}>
       <div className="container mx-auto px-6">
         {/* Strategic Overview Header */}
-        <div className="text-center mb-12">
+        {/* <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-4">
             <ShieldCheck className="h-8 w-8 text-indigo-600" />
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
@@ -55,7 +55,7 @@ const TabbedDoctrineInsights: React.FC<TabbedDoctrineInsightsProps> = ({ content
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Our operational approach delivers multi-stage precision with cascading strategic advantages. 
             Each capability builds upon the last, creating overwhelming competitive superiority.
-          </p>
+          </p> */}
         </div>
 
         {/* Strategic Overview Grid */}

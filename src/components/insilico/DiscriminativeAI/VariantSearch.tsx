@@ -47,7 +47,7 @@ const VariantSearch: React.FC<VariantSearchProps> = ({ searchTerm, onSearchChang
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div className="flex items-center gap-2">
             <Database className="w-4 h-4 text-blue-600" />
-            <span><strong>Evo2:</strong> Zero-shot ΔLL (8,192 bp context)</span>
+            <span><strong>CrisPRO.ai:</strong> Zero-shot ΔLL (8,192 bp context)</span>
           </div>
           <div className="flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-teal-600" />

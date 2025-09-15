@@ -5,7 +5,7 @@ const oracleNode: GraphNode = {
     label: 'Zeta Oracle',
     type: 'service',
     weight: 1.0,
-    description: 'Central intelligence agency, powered by Evo2. Annihilates uncertainty and quantifies damage.'
+    description: 'Central intelligence agency, powered by CrisPRO.ai. Annihilates uncertainty and quantifies damage.'
 };
 
 const endpointNodes: GraphNode[] = [

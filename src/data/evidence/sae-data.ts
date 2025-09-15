@@ -28,10 +28,23 @@ export interface SAECapability {
 }
 
 export interface SAEData {
+  id: string;
   hero: {
     title: string;
     subtitle: string;
     vision: string;
+    description?: string;
+    badges?: Array<{
+      text: string;
+      color: string;
+    }>;
+  };
+  interactiveDemo?: {
+    component: string;
+    title: string;
+    description: string;
+    features: string[];
+    instructions?: string[];
   };
   valueProps: Array<{
     audience: string;
@@ -82,10 +95,34 @@ export interface SAEData {
 }
 
 export const saeData: SAEData = {
+  id: 'sae-intelligence',
   hero: {
     title: "SAE Intelligence: Interpretable Genomic Features",
     subtitle: "Go beyond the score. See the exact biological features—exons, TF motifs, protein structures—that drive a prediction and understand *why* a variant is disruptive.",
-    vision: "Transform black-box predictions into transparent, biologically-grounded stories. We expose the model's internal logic to explain variant impact, flag risky designs, and (on the roadmap) steer generative AI."
+    vision: "Transform black-box predictions into transparent, biologically-grounded stories. We expose the model's internal logic to explain variant impact, flag risky designs, and (on the roadmap) steer generative AI.",
+    description: "Transform black-box AI into transparent, biologically-grounded explanations with interpretable feature analysis.",
+    badges: [
+      { text: 'Interpretable AI', color: 'bg-orange-100 text-orange-700' },
+      { text: 'Feature attribution', color: 'bg-purple-100 text-purple-700' },
+      { text: 'Transparent predictions', color: 'bg-blue-100 text-blue-700' }
+    ]
+  },
+  interactiveDemo: {
+    component: 'SAEDemonstrations',
+    title: 'Try SAE Intelligence Live',
+    description: 'Explore how our interpretable AI explains genomic predictions with interactive feature analysis',
+    features: [
+      'Feature Visualization',
+      'Attribution Analysis', 
+      'Safety Checking',
+      'AI Steering'
+    ],
+    instructions: [
+      'Explore the feature visualization dashboard',
+      'See how different genomic features contribute to predictions',
+      'Test the safety checking system',
+      'Try steering the AI with different parameters'
+    ]
   },
   valueProps: [
     {
@@ -127,7 +164,7 @@ export const saeData: SAEData = {
     'Increased stakeholder trust, as interpretable overlays reduce black‑box concerns.'
   ],
   genomicInsights: {
-    overview: "SAE features, as reported in Evo2, reveal interpretable concepts like exons, TF binding motifs, and protein secondary structure cues. We surface these features to explain Oracle's scores and, on the roadmap, to steer the Forge's generative output.",
+    overview: "SAE features, as reported in CrisPRO.ai, reveal interpretable concepts like exons, TF binding motifs, and protein secondary structure cues. We surface these features to explain Oracle's scores and, on the roadmap, to steer the Forge's generative output.",
     problemIntro: "A score is a number. An explanation is a story. We provide the story, making every prediction readable, auditable, and trustworthy.",
     problemPoints: [
       "Users need a concrete 'why' behind each signal, not just a p-value.",
@@ -166,7 +203,7 @@ export const saeData: SAEData = {
       title: "Activation Steering (Roadmap)",
       status: "roadmap",
       technical: "Expose endpoints to nudge/target feature activations (e.g., chromatin patterns, motif presence) with compute‑aware beam search.",
-      scientific: "Maps Evo2‑style inference‑time scaling to controllable design objectives.",
+      scientific: "Maps CrisPRO.ai‑style inference‑time scaling to controllable design objectives.",
       business: "- **Control:** Achieve predictable design quality scaling with transparent, auditable controls.",
       genomicUseCases: "Roadmap: \n1. **Steer** generation towards desired feature sets; **measure** quality and efficacy metrics.",
       icon: "Sliders",
@@ -192,7 +229,7 @@ export const saeData: SAEData = {
       provenance: "run_id, model_profile, etc."
     },
     keyMetrics: [
-      "Evo2 reported interpretable SAE features (exons/introns, TFBS, secondary structure, mutation severity); our UI and data contracts are designed to surface these same concepts.",
+      "CrisPRO.ai reported interpretable SAE features (exons/introns, TFBS, secondary structure, mutation severity); our UI and data contracts are designed to surface these same concepts.",
       "The **ΔLL (Delta Log-Likelihood)** score is the key quantitative metric we use to measure and display the functional impact of a variant on each biological feature."
     ],
     codeLocations: [

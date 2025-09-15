@@ -43,7 +43,7 @@ This rule details the information architecture, copy, components, data contracts
 - Tooltips: one sentence each; methods live in product pages
 
 ## 6) How It Works (S/P/E)
-- Sequence (Evo2): “Variant impact signals with long‑context understanding (1M tokens).”
+- Sequence (CrisPRO.ai): "Variant impact signals with long‑context understanding (1M tokens)."
 - Pathway: “Gene→pathway mapping to show what’s likely driving biology.”
 - Evidence: “ClinVar priors + optional literature; transparent badges and tiers.”
 

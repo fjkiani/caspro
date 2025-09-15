@@ -38,11 +38,11 @@ const workflowSteps: WorkflowStepData[] = [
   {
     id: 2,
     title: 'Target Assessment (Discriminative)',
-    description: 'Score disease-relevant variants with Evo2 ΔLL and specialist ensemble',
+    description: 'Score disease-relevant variants with CrisPRO.ai ΔLL and specialist ensemble',
     icon: Target,
     color: 'teal',
     details: [
-      'Evo2 zero-shot ΔLL scoring (8,192 bp context)',
+      'CrisPRO.ai zero-shot ΔLL scoring (8,192 bp context)',
       'AlphaMissense/GPN-MSA ensemble',
       'Noncoding and splice variant analysis',
       'Confidence score generation'
@@ -52,11 +52,11 @@ const workflowSteps: WorkflowStepData[] = [
   {
     id: 3,
     title: 'Mechanistic Triage & Hypothesis',
-    description: 'Use Evo2 embeddings for exon/intron features and region ranking',
+    description: 'Use CrisPRO.ai embeddings for exon/intron features and region ranking',
     icon: Search,
     color: 'indigo',
     details: [
-      'Evo2 embedding analysis',
+      'CrisPRO.ai embedding analysis',
       'Exon/intron classification',
       'Motif feature extraction',
       'Perturbation region ranking'
@@ -66,11 +66,11 @@ const workflowSteps: WorkflowStepData[] = [
   {
     id: 4,
     title: 'Design (Generative)',
-    description: 'Evo2 sequence proposals with epigenomic guidance and structural validation',
+    description: 'CrisPRO.ai sequence proposals with epigenomic guidance and structural validation',
     icon: Dna,
     color: 'purple',
     details: [
-      'Evo2 sequence generation',
+      'CrisPRO.ai sequence generation',
       'Enformer+Borzoi epigenomic guidance',
       'AlphaFold 3 structural validation',
       'Sequence naturalness screening'
@@ -99,7 +99,7 @@ const workflowSteps: WorkflowStepData[] = [
     color: 'red',
     details: [
       'Lightweight supervised head training',
-      'Evo2 embedding calibration',
+      'CrisPRO.ai embedding calibration',
       'Cohort-specific adjustment',
       'Platt/isotonic calibration'
     ],

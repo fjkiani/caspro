@@ -17,7 +17,7 @@ export const codingSnvMetrics: MetricGroup = {
     }
   ],
   businessImpact: 'High accuracy on coding variants enables reliable protein impact prediction',
-  methodology: 'Evo2 zero-shot ΔLL scoring with 8,192 bp context and reverse-complement averaging'
+  methodology: 'CrisPRO.ai zero-shot ΔLL scoring with 8,192 bp context and reverse-complement averaging'
 };
 
 export const nonCodingSnvMetrics: MetricGroup = {
@@ -38,7 +38,7 @@ export const nonCodingSnvMetrics: MetricGroup = {
     }
   ],
   businessImpact: 'State-of-the-art performance on non-coding variants enables regulatory impact prediction',
-  methodology: 'Evo2 zero-shot ΔLL scoring with 8,192 bp context and reverse-complement averaging'
+  methodology: 'CrisPRO.ai zero-shot ΔLL scoring with 8,192 bp context and reverse-complement averaging'
 };
 
 export const snvOverview = {
@@ -52,5 +52,5 @@ export const snvOverview = {
     'Critical for understanding disease mechanisms'
   ],
   clinicalSignificance: 'SNVs are the foundation of precision medicine, with coding variants directly affecting drug targets and non-coding variants influencing gene expression and therapeutic response.',
-  methodology: 'Our models achieve state-of-the-art performance on both coding and non-coding SNVs using Evo2 zero-shot scoring with comprehensive genomic context.'
+  methodology: 'Our models achieve state-of-the-art performance on both coding and non-coding SNVs using CrisPRO.ai zero-shot scoring with comprehensive genomic context.'
 };

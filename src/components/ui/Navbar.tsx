@@ -87,7 +87,7 @@ export const NAV_LINKS = [
   },
   {
     href: '/use-cases',
-    label: 'Use Cases',
+    label: 'Success Stories',
     icon: <Briefcase className="inline-block h-4 w-4" />,
     subLinks: useCasesSubLinks,
   },

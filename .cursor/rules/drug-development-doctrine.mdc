@@ -1,0 +1,185 @@
+---
+alwaysApply: true
+description: Core doctrine for CrisPRO.ai drug development platform integration
+---
+
+# CrisPRO.ai Drug Development Doctrine
+## From a Gamble to a Verdict
+
+## Mission Statement
+Transform drug development from a high-risk gamble ($2.6B failure rate, <5% success) into deterministic engineering through AI-powered intelligence at three critical intervention points in the discovery phase.
+
+## Core Philosophy: "We Don't Discover, We Engineer"
+
+**The Fundamental Truth**: This <5% success rate is not a law of nature; it is a failure of intelligence. The $2.6 billion price tag is the cost of ambiguity. Our platform replaces this ambiguity with mathematical certainty, fundamentally changing the economics of drug development.
+
+### Phase I: The Discovery Campaign (Pre-Clinical)
+*Most projects are won or lost here.*
+
+#### Stage 1: Target Identification & Validation 🧬
+**Traditional Approach**: Exploratory phase requiring months or years to collect scientific data supporting target validation.
+
+**The CrisPRO.ai Doctrine**: We replace the "exploratory phase" with a 60-second in-silico conquest. We provide an immediate, evidence-backed "Yes/GO" verdict on any proposed target.
+
+**APIs**:
+- `/predict_variant_impact` - Mathematical proof that the target contains a catastrophic functional error
+- `/predict_gene_essentiality` - Confirmation that the cancer is critically dependent on this broken gene for its survival
+
+**Evidence Protocol**:
+- **ClinVar SOTA**: New state-of-the-art for interpreting non-coding variants and indels on gold-standard ClinVar benchmark (Evo 2 Paper, Fig. 3C)
+- **BRCA1 Precision**: Lightweight supervised classifier achieves ≈0.95 AUROC on clinically critical genes (Evo 2 Paper, Methods 4.3.16)
+- **Dependency Validation**: Matches experimental CRISPR screens in predicting essential lncRNAs, proving accurate Achilles' heel identification (Evo 2 Paper, Fig. 2J)
+
+**Use-Case Spotlight**: Conquering BRCA1/2 and the VUS Crisis
+- Transforms VUS from clinical question mark into actionable intelligence
+- 95% certainty in distinguishing pathogenic vs benign mutations
+- Provides definitive validation dossier before first dollar spent in lab
+
+#### Stage 2: Lead Discovery & Optimization 🔬
+**Traditional Approach**: Screen hundreds of thousands to millions of molecules, then optimize structure to improve activity and minimize safety risks.
+
+**The CrisPRO.ai Doctrine**: We do not discover leads; we engineer them. Our generative AI, the **Zeta Forge**, makes the entire screening process obsolete.
+
+**APIs**:
+- `/generate_optimized_guide_rna` - Forges precision CRISPR therapeutic with predicted efficacy exceeding FDA-approved drugs
+- `/generate_therapeutic_protein` - Engineers novel, patent-worthy biologic with superior binding affinity and de-risked safety profile
+
+**Key Principle**: Optimization is not a separate step; it is embedded in the design process. We engineer for efficacy and safety from first principles.
+
+**Evidence Protocol**:
+- **Functional Coherence**: Generated minimal prokaryote genomes achieve ~70% Pfam-hit rate vs ~18% for previous models (Evo 2 Paper, Fig. 5H)
+- **Structural Validation**: Generated mitochondrial protein complexes confirmed to fold into plausible 3D structures by AlphaFold 3 (Evo 2 Paper, Fig. 5F)
+
+#### Stage 3: Pre-Clinical Confirmation ⚗️
+**Traditional Approach**: Expensive wet-lab confirmation of ideal molecular properties and dosing levels - the final gate before human testing.
+
+**The CrisPRO.ai Doctrine**: We shift this confirmation from expensive wet-lab to near-zero-cost in-silico trial.
+
+**APIs**:
+- `/predict_protein_functionality_change` - Simulates therapeutic effect at cellular level, predicting precise target knockdown and cancer cell viability loss
+- **Zeta Boltz** (Structural Engine) - Provides physical proof of mechanism with high structural confidence
+
+**Deliverable**: Complete, IND-ready dossier with high certainty, transforming pre-clinical stage from gate into formality.
+
+**Evidence Protocol**:
+- **DMS Correlation**: Strong correlation between Evo 2 likelihood scores and real-world experimental fitness from Deep Mutational Scanning assays (Evo 2 Paper, Fig. 2E)
+- **Structural Oracle Integration**: AlphaFold 3 integration confirms structural integrity of generated protein complexes (Evo 2 Paper, Fig. 5F)
+
+## Development Guidelines
+
+### Business Impact Framework
+
+#### For Oncologists:
+- **Pathogenic Verdict**: Justifies targeted therapies (PARP inhibitors) and risk-reducing surgery decisions
+- **Benign Verdict**: Prevents years of unnecessary anxiety and invasive procedures
+- **Clinical Confidence**: Evidence-backed guidance for patient care decisions
+
+#### For Biotechs:
+- **R&D De-risking**: 95% accuracy provides powerful tool for reducing development risk
+- **Precision Patient Selection**: Enables accurate clinical trial enrollment (e.g., PARP inhibitor development)
+- **High-Certainty Foundation**: Provides basis for commanding Zeta Forge to engineer solutions
+- **Asset Generation**: From HDR repair templates to novel biologics exploiting identified vulnerabilities
+
+### Phase II: Development Campaign Advantages
+While primary intervention is in discovery phase, our intelligence provides critical advantages:
+
+- **Phase 1 (Safety)**: In-silico safety and off-target analysis for stronger patient safety foundation
+- **Phase 2 (Efficacy & Dosing)**: Predicted efficacy scores give clinical teams higher confidence in therapeutic benefit
+- **Phase 3 (Pivotal Trials)**: Computationally validated, high-certainty assets dramatically increase success probability in large, expensive trials
+
+**Result**: By transforming discovery phase, we ensure only the most promising, highest-certainty candidates reach development phase, inverting the 90% failure rate of the old-world model.
+
+### Homepage Integration Strategy
+1. **Replace generic demos** with the three-stage drug development doctrine
+2. **Show real capabilities** that solve the $2.6B ambiguity problem
+3. **Demonstrate 60-second conquest** vs months/years traditional approach
+4. **Prove with evidence** - embed validated performance metrics from Evo 2 paper
+
+### Component Architecture
+All drug development components should follow this structure:
+
+```typescript
+interface DrugDevelopmentDemo {
+  api: string; // e.g., "/predict_variant_impact"
+  problem: string; // The traditional failure mode
+  solution: string; // Our AI-powered approach
+  evidence: {
+    metric: string; // e.g., "95% AUROC"
+    source: string; // e.g., "Evo 2 Paper, Methods 4.3.16"
+  };
+  interactive: React.ComponentType; // Live demo component
+}
+```
+
+### File Structure Requirements
+- **API Demos**: `src/components/drug-development/apis/`
+- **Evidence Components**: `src/components/drug-development/evidence/`
+- **Slide Components**: `src/components/drug-development/slides/`
+- **Data**: `src/data/drug-development/`
+
+### Key Components to Extract from [drugDevelopmentSlide.tsx](mdc:src/app/drugDevelopmentSlide.tsx)
+
+#### Interactive Components:
+1. **ZetaScoreGauge** - Biological impact visualization
+2. **DependencyAnalysis** - Achilles' heel detection
+3. **TherapeuticGenerator** - Live lead engineering
+4. **FunctionalityPredictor** - Key-lock simulation
+5. **CorrelationProof** - Scatter plot validation
+
+#### Evidence Components:
+1. **EvidenceCard** - Standardized metric display
+2. **StatCard** - Performance statistics
+3. **PathOutcome** - Before/after comparisons
+
+### Messaging Framework
+
+#### Problem → Solution → Evidence Pattern
+Every demo must follow this narrative:
+1. **Traditional Approach**: "The expensive, slow gamble"
+2. **CrisPRO Doctrine**: "The deterministic engineering approach"
+3. **Evidence Protocol**: "Proven performance metrics"
+
+#### Approved Terminology:
+- ✅ "Engineering success" vs ❌ "Discovering leads"
+- ✅ "Mathematical proof" vs ❌ "Prediction"
+- ✅ "Achilles' heel" vs ❌ "Target"
+- ✅ "In-silico verdict" vs ❌ "Analysis"
+- ✅ "Deterministic launchpad" vs ❌ "Platform"
+
+### Integration Priorities
+
+#### Phase 1: Homepage Transformation
+1. Replace [LiveDemoSection.tsx](mdc:src/components/landing/LiveDemoSection.tsx) with drug development APIs
+2. Update [HeroSection.tsx](mdc:src/components/sections/HeroSection.tsx) messaging to focus on $2.6B problem
+3. Align all CTAs with drug development mission
+
+#### Phase 2: Platform Pages
+1. Create dedicated drug development workflow pages
+2. Integrate slide components as interactive tutorials
+3. Build evidence-backed performance dashboards
+
+#### Phase 3: API Integration
+1. Connect live demos to actual backend APIs
+2. Implement real-time drug development workflows
+3. Enable end-to-end therapeutic design pipeline
+
+### Success Metrics
+- **User Understanding**: Can visitors immediately grasp how we solve the $2.6B problem?
+- **Engagement**: Do users interact with drug development APIs vs generic demos?
+- **Conversion**: Do leads understand our competitive advantage in drug development?
+
+### Anti-Patterns to Avoid
+- ❌ Generic genomics demos disconnected from drug development
+- ❌ Technical jargon without business impact context
+- ❌ Claims without evidence backing
+- ❌ Static content that doesn't demonstrate our AI capabilities
+
+## Implementation Commands
+
+When building drug development features, always ask:
+1. **Does this advance our drug development doctrine?**
+2. **Does this show how we solve the $2.6B problem?**
+3. **Is this backed by real evidence metrics?**
+4. **Can users immediately see the competitive advantage?**
+
+This doctrine should guide every decision in our platform development, ensuring we stay focused on our core mission of transforming drug development through AI engineering.

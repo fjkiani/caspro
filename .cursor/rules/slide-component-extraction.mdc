@@ -1,0 +1,247 @@
+---
+description: Guide for extracting and modularizing components from drugDevelopmentSlide.tsx
+globs: src/components/drug-development/**/*,src/app/drugDevelopmentSlide.tsx
+---
+
+# Slide Component Extraction Guide
+
+## Source File Analysis
+[drugDevelopmentSlide.tsx](mdc:src/app/drugDevelopmentSlide.tsx) contains our complete drug development doctrine in slide format. This file serves as the blueprint for our interactive platform components.
+
+## Extraction Priority Matrix
+*Based on the three-stage drug development doctrine from [DD.md](mdc:src/app/DD.md)*
+
+### Tier 1: Core Discovery Campaign Demos (Immediate Homepage Integration)
+
+#### Stage 1: Target Validation Demo
+**Component**: VUSConquestDemo (combines ZetaScoreGauge + DependencyAnalysis)
+- **Location**: Lines 160-180, 391-413 in [drugDevelopmentSlide.tsx](mdc:src/app/drugDevelopmentSlide.tsx)
+- **Purpose**: Demonstrate 60-second in-silico conquest replacing months of exploratory validation
+- **Extract to**: `src/components/drug-development/apis/TargetValidationDemo.tsx`
+- **APIs**: `/predict_variant_impact` + `/predict_gene_essentiality`
+- **Problem**: "Exploratory phase requiring months or years to collect scientific data"
+- **Solution**: "Immediate, evidence-backed 'Yes/GO' verdict on any proposed target"
+- **Evidence**: 
+  - ≈0.95 AUROC on BRCA1 (Evo 2 Paper, Methods 4.3.16)
+  - Matches experimental CRISPR screens (Evo 2 Paper, Fig. 2J)
+  - New SOTA on ClinVar benchmark (Evo 2 Paper, Fig. 3C)
+- **Use Case**: BRCA1/2 VUS Crisis - transforming clinical question marks into actionable intelligence
+
+#### Stage 2: Lead Engineering Demo  
+**Component**: ZetaForgeDemo (TherapeuticGenerator)
+- **Location**: Lines 450-478 (DoctrineLeadDiscoverySlide)
+- **Purpose**: Show "we don't discover leads; we engineer them" - making screening obsolete
+- **Extract to**: `src/components/drug-development/apis/ZetaForgeDemo.tsx`
+- **APIs**: `/generate_optimized_guide_rna`, `/generate_therapeutic_protein`
+- **Problem**: "Screen hundreds of thousands to millions of molecules for action on drug target"
+- **Solution**: "Generative AI Zeta Forge makes entire screening process obsolete"
+- **Evidence**: 
+  - ~70% Pfam-hit rate vs ~18% previous models (Evo 2 Paper, Fig. 5H)
+  - AlphaFold 3 validated 3D structures (Evo 2 Paper, Fig. 5F)
+- **Key Principle**: "Optimization embedded in design process - engineer for efficacy and safety from first principles"
+
+#### Stage 3: Pre-Clinical Confirmation Demo
+**Component**: InSilicoTrialDemo (FunctionalityPredictor + Structural Validation)
+- **Location**: Lines 547-571 (PredictProteinFunctionalitySlide_Part1)
+- **Purpose**: Shift confirmation from expensive wet-lab to near-zero-cost in-silico trial
+- **Extract to**: `src/components/drug-development/apis/InSilicoTrialDemo.tsx`
+- **APIs**: `/predict_protein_functionality_change` + Zeta Boltz structural engine
+- **Problem**: "Expensive wet-lab confirmation - final gate before human testing"
+- **Solution**: "Complete IND-ready dossier with high certainty, transforming pre-clinical stage from gate into formality"
+- **Evidence**: 
+  - Strong correlation with DMS assays (Evo 2 Paper, Fig. 2E)
+  - AlphaFold 3 structural oracle integration (Evo 2 Paper, Fig. 5F)
+- **Deliverable**: "Cellular-level therapeutic effect simulation + physical proof of mechanism"
+
+### Tier 2: Supporting Visual Components
+
+#### 5. EvidenceCard Component
+- **Location**: Lines 182-196
+- **Purpose**: Standardized evidence metric display
+- **Extract to**: `src/components/drug-development/evidence/EvidenceCard.tsx`
+- **Usage**: Show performance metrics with sources
+
+#### 6. StatCard Component  
+- **Location**: Lines 108-113
+- **Purpose**: Display key statistics (success rates, costs, timelines)
+- **Extract to**: `src/components/drug-development/evidence/StatCard.tsx`
+- **Usage**: Homepage problem statement ($2.6B, <5% success rate)
+
+#### 7. ScatterPlot Component
+- **Location**: Lines 205-225
+- **Purpose**: Show correlation between predictions and experimental results
+- **Extract to**: `src/components/drug-development/evidence/CorrelationChart.tsx`
+- **Usage**: Prove in-silico accuracy
+
+### Tier 3: Narrative Components
+
+#### 8. DoctrineComparison Component
+- **Location**: Lines 123-151
+- **Purpose**: Traditional vs CrisPRO approach comparison
+- **Extract to**: `src/components/drug-development/narrative/DoctrineComparison.tsx`
+- **Usage**: Educational content, about pages
+
+#### 9. PathOutcome Component
+- **Location**: Lines 198-203
+- **Purpose**: Show verified outcomes with color coding
+- **Extract to**: `src/components/drug-development/evidence/PathOutcome.tsx`
+- **Usage**: Before/after result displays
+
+## Component Extraction Standards
+
+### File Structure
+```
+src/components/drug-development/
+├── apis/                    # Live API demonstrations
+│   ├── ZetaScoreDemo.tsx
+│   ├── EssentialityDemo.tsx
+│   ├── GenerativeDemo.tsx
+│   └── BindingDemo.tsx
+├── evidence/               # Performance metrics
+│   ├── EvidenceCard.tsx
+│   ├── StatCard.tsx
+│   └── CorrelationChart.tsx
+├── narrative/              # Educational comparisons
+│   └── DoctrineComparison.tsx
+└── shared/                 # Reusable utilities
+    ├── SlideLayout.tsx
+    └── AnimationComponents.tsx
+```
+
+### Component Interface Pattern
+*Aligned with DD.md doctrine structure*
+
+```typescript
+interface DrugDevelopmentStage {
+  // Stage identification
+  stage: 'target-validation' | 'lead-engineering' | 'preclinical-confirmation';
+  stageNumber: 1 | 2 | 3;
+  
+  // API endpoints for this stage
+  apis: string[];
+  
+  // Problem-solution-evidence narrative
+  traditional: {
+    approach: string;
+    timeframe: string;
+    cost: string;
+    problems: string[];
+  };
+  
+  doctrine: {
+    approach: string;
+    timeframe: string; // e.g., "60-second conquest"
+    advantage: string;
+    deliverable: string;
+  };
+  
+  // Evidence protocol from Evo 2 paper
+  evidence: Array<{
+    metric: string;
+    description: string;
+    source: string; // e.g., "Evo 2 Paper, Fig. 3C"
+  }>;
+  
+  // Business impact
+  impact: {
+    oncologists: string[];
+    biotechs: string[];
+  };
+  
+  // Interactive demo configuration
+  demo: {
+    component: React.ComponentType;
+    title: string;
+    description: string;
+    features: string[];
+    useCaseSpotlight?: {
+      title: string;
+      problem: string;
+      solution: string;
+      impact: string;
+    };
+  };
+}
+```
+
+### Animation Preservation
+When extracting components, preserve these key animations:
+- **ZetaScoreGauge**: Needle rotation animation (lines 166-169)
+- **Key-Lock Simulation**: X-axis movement for binding (lines 587-591, 614-616)
+- **Scatter Plot**: Sequential point appearance (lines 219-220)
+- **Block Tower**: Collapse animation for Achilles' heel (lines 438-441)
+
+### Data Dependencies
+Extract these data structures to `src/data/drug-development/`:
+
+#### API Configurations
+```typescript
+export const API_ENDPOINTS = {
+  VARIANT_IMPACT: '/predict_variant_impact',
+  GENE_ESSENTIALITY: '/predict_gene_essentiality', 
+  GENERATE_GUIDE_RNA: '/generate_optimized_guide_rna',
+  GENERATE_PROTEIN: '/generate_therapeutic_protein',
+  FUNCTIONALITY_CHANGE: '/predict_protein_functionality_change'
+};
+```
+
+#### Evidence Metrics
+```typescript
+export const EVIDENCE_METRICS = {
+  BRCA_AUROC: { value: '≈0.95', label: 'AUROC', source: 'Evo 2 Paper, Methods 4.3.16' },
+  PFAM_HIT_RATE: { value: '~70%', label: 'Pfam-hit rate', source: 'Evo 2 Paper, Fig. 5H' },
+  // ... other metrics
+};
+```
+
+## Integration Checklist
+
+For each extracted component:
+
+- [ ] Maintains original visual design and animations
+- [ ] Includes problem-solution-evidence narrative
+- [ ] Connects to appropriate API endpoint
+- [ ] Displays validated performance metrics
+- [ ] Follows component interface pattern
+- [ ] Includes proper TypeScript types
+- [ ] Has responsive design for mobile/desktop
+- [ ] Integrates with existing design system
+- [ ] Preserves accessibility features
+- [ ] Includes proper error handling
+
+## Usage Priority & Integration Strategy
+
+### 1. **Homepage Transformation**
+Replace [LiveDemoSection.tsx](mdc:src/components/landing/LiveDemoSection.tsx) with three-stage doctrine:
+
+**Hero Message**: "Transform drug development from a $2.6B gamble into deterministic engineering"
+
+**Three Live Demos**:
+1. **Target Validation**: "60-Second Conquest" - VUS → Verdict with 95% certainty
+2. **Lead Engineering**: "Zeta Forge" - Engineer don't discover, screening obsolete  
+3. **Pre-Clinical Confirmation**: "In-Silico Trial" - Wet lab → computational verdict
+
+**Evidence Integration**: Each demo shows Problem → CrisPRO Doctrine → Evidence Protocol pattern
+
+### 2. **Platform Pages**  
+- `/drug-development/target-validation` - Full Stage 1 workflow
+- `/drug-development/lead-engineering` - Full Stage 2 workflow  
+- `/drug-development/preclinical-confirmation` - Full Stage 3 workflow
+- Each page includes business impact for oncologists and biotechs
+
+### 3. **About/Evidence Pages**
+- **BRCA1/2 VUS Crisis** spotlight as primary use case
+- **Phase II advantages** for clinical trials (safety, efficacy, pivotal)
+- **90% failure rate inversion** through discovery transformation
+
+### 4. **Marketing/Sales Materials**
+- **Problem Metrics**: <5% success rate, $2.6B cost, 10-15 years
+- **Solution Metrics**: 60-second conquest, 95% AUROC, 70% Pfam-hit rate
+- **Business Impact**: Precision patient selection, R&D de-risking, IND-ready dossiers
+
+### Success Metrics
+- **Understanding**: Can visitors immediately grasp how we solve the $2.6B problem?
+- **Engagement**: Do users interact with drug development stages vs generic demos?
+- **Conversion**: Do leads understand our competitive advantage in replacing ambiguity with mathematical certainty?
+
+This extraction plan transforms our slide deck into a living, interactive platform that demonstrates our drug development doctrine at every touchpoint, replacing the traditional high-risk gamble with deterministic engineering.

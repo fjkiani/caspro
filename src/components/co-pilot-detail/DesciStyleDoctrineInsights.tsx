@@ -18,10 +18,7 @@ const DesciStyleDoctrineInsights: React.FC<DesciStyleDoctrineInsightsProps> = ({
   return (
     <section className={`py-20 bg-white ${className}`}>
       <div className="container mx-auto px-6">
-        <SectionHeader 
-          title="Strategic Doctrine" 
-          subtitle="Operational doctrine with KPIs, tactical strengths, and an end-to-end in-silico workflow." 
-        />
+  
 
         {/* In-Silico Overview */}
         <InSilicoOverviewSection content={content} className="mb-16" />

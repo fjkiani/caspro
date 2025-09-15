@@ -202,9 +202,11 @@ const DoctrineInsightsSection: React.FC<DoctrineInsightsSectionProps> = ({ conte
                               <h5 className="font-semibold text-indigo-600 text-sm">Business Value</h5>
                             </div>
                             <p className="text-slate-700 text-sm leading-relaxed">
-                              {capability.business.length > 120 
-                                ? `${capability.business.substring(0, 120)}...` 
-                                : capability.business
+                              {typeof capability.business === 'string' 
+                                ? (capability.business.length > 120 
+                                    ? `${capability.business.substring(0, 120)}...` 
+                                    : capability.business)
+                                : capability.business.description
                               }
                             </p>
                           </div>

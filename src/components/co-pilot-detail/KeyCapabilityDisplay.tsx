@@ -1,18 +1,80 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
 import React, { useState } from 'react';
-import { KeyCapability } from '@/data/coPilotDetails'; // Assuming this path is correct
+import { KeyCapability, CapabilityAspect } from '../../types/copilot-types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ChevronDown, ChevronUp, Brain, TestTube, Briefcase, Zap, Lightbulb, Microscope, Dna, Settings,
-  ChevronRight // Added for list item styling
-} from 'lucide-react'; // Added more icons for variety
+  ChevronRight, Target, Database, FileText, MessageSquare, RefreshCw, TrendingUp, ShieldCheck, AlertTriangle
+} from 'lucide-react'; 
 import { renderMarkdown } from '@/utils/markdownRenderer';
 
 interface KeyCapabilityCardProps {
   capability: KeyCapability;
-  globalGenomicInsightsOverview?: string; // New prop for fallback
+  globalGenomicInsightsOverview?: string;
 }
+
+const AspectIcon = ({ iconName, className }: { iconName: string, className?: string }) => {
+  const icons: { [key: string]: React.ElementType } = {
+    Settings,
+    Microscope,
+    Briefcase,
+    Database,
+    Target,
+    FileText,
+    Brain,
+    ShieldCheck,
+    Users: TrendingUp, // Assuming Users maps to an icon
+    Zap,
+    MessageSquare,
+    RefreshCw,
+    TrendingUp,
+    AlertTriangle,
+    Dna,
+    TestTube,
+    Lightbulb
+  };
+  const Icon = icons[iconName] || Settings;
+  return <Icon className={className} />;
+};
+
+const CapabilityAspectDisplay = ({ aspect, colorClass, icon: AspectIconComponent }: { aspect: CapabilityAspect, colorClass: string, icon: React.ElementType }) => {
+  return (
+    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col h-full">
+      <div className={`flex items-center justify-center ${colorClass} mb-4`}>
+        <AspectIconComponent size={18} className="mr-2 flex-shrink-0" />
+        <h4 className="font-semibold text-center">{aspect.title}</h4>
+      </div>
+      <div className="text-center mb-4">
+        <span className="inline-block bg-slate-200 rounded-full px-3 py-1 text-sm font-semibold text-slate-700">
+          {aspect.keyMetric}
+        </span>
+      </div>
+      <div className="space-y-4">
+        {aspect.components && aspect.components.map((component, idx) => (
+          <div key={idx} className="bg-white p-3 rounded-md border border-slate-200 text-left">
+            <div className="flex items-start">
+              <AspectIcon iconName={component.iconName} className={`w-5 h-5 mr-3 mt-1 text-${component.color}-500 flex-shrink-0`} />
+              <div>
+                <h5 className="font-semibold text-slate-800">{component.title}</h5>
+                <p className="text-xs text-slate-500 mb-2">{component.subtitle}</p>
+                <ul className="space-y-1">
+                  {component.features && component.features.map((feature, fIdx) => (
+                    <li key={fIdx} className="flex items-start text-xs text-slate-600">
+                      <ChevronRight size={12} className="mr-1.5 mt-0.5 text-slate-400 flex-shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 
 const KeyCapabilityDisplay: React.FC<KeyCapabilityCardProps> = ({ capability, globalGenomicInsightsOverview }) => {
   const [isExpanded, setIsExpanded] = useState(true); 
@@ -59,28 +121,10 @@ const KeyCapabilityDisplay: React.FC<KeyCapabilityCardProps> = ({ capability, gl
             transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
             className="overflow-hidden"
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm mb-6 text-center">
-              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                <div className="flex items-center justify-center text-sky-600 mb-2">
-                  <Settings size={18} className="mr-2 flex-shrink-0" />
-                  <h4 className="font-semibold">Technical Approach</h4>
-                </div>
-                <div className="text-slate-700 leading-relaxed prose prose-base max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.technical.description)} />
-              </div>
-              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                <div className="flex items-center justify-center text-teal-600 mb-2">
-                  <Microscope size={18} className="mr-2 flex-shrink-0" />
-                  <h4 className="font-semibold">Scientific Impact</h4>
-                </div>
-                <div className="text-slate-700 leading-relaxed prose prose-base max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.scientific.description)} />
-              </div>
-              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                <div className="flex items-center justify-center text-indigo-600 mb-2">
-                  <Briefcase size={18} className="mr-2 flex-shrink-0" />
-                  <h4 className="font-semibold">Business Value</h4>
-                </div>
-                <div className="text-slate-700 leading-relaxed prose prose-base max-w-none" dangerouslySetInnerHTML={renderMarkdown(capability.business.description)} />
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm mb-6">
+              {capability.technical && typeof capability.technical === 'object' && <CapabilityAspectDisplay aspect={capability.technical} colorClass="text-sky-600" icon={Settings} />}
+              {capability.scientific && typeof capability.scientific === 'object' && <CapabilityAspectDisplay aspect={capability.scientific} colorClass="text-teal-600" icon={Microscope} />}
+              {capability.business && typeof capability.business === 'object' && <CapabilityAspectDisplay aspect={capability.business} colorClass="text-indigo-600" icon={Briefcase} />}
             </div>
           </motion.div>
         )}

@@ -1,61 +1,46 @@
 'use client';
 
 import HeroSection from '@/components/sections/HeroSection';
-import ProblemSection from '@/components/sections/ProblemSection';
-import SolutionSection from '@/components/sections/SolutionSection';
-import TechnologySection from '@/components/sections/TechnologySection';
-import TechnologyDeepDiveSection from '@/components/sections/TechnologyDeepDiveSection';
-import AgentCapabilitiesSection from '@/components/sections/AgentCapabilitiesSection';
-import FeaturesSection from '@/components/sections/FeaturesSection';
-import FoundationalPillarsSection from '@/components/sections/FoundationalPillarsSection';
-// import ImpactSection from '@/components/sections/ImpactSection'; // Commented out
-import TeamSection from '@/components/sections/TeamSection';
-import ContactSection from '@/components/sections/ContactSection';
-import TopicsSection from '@/components/sections/TopicsSection';
-import UnfairAdvantageSection from '@/components/investment-thesis/UnfairAdvantageSection';
-import { InvestmentThesisHeader } from '@/components/investment-thesis/InvestmentThesisHeader';
-import { MetastasisFrameworkSection } from '@/components/investment-thesis/MetastasisFrameworkSection';
-import BlogTeaserSection from '@/components/sections/BlogTeaserSection';
-import IntegratedWorkflowSection from '@/components/sections/IntegratedWorkflowSection';
-import { CapabilitiesShowcase, InSilicoTeaser } from '@/components/landing';
-// Evidence and Cohort sections moved to dedicated pages
-// Page configuration constants
-const PAGE_CONFIG = {
-  title: 'CrisPRO.AI: Oncology R&D Co-Pilot',
-  sections: [
-    { id: 'hero', component: HeroSection },
-    { id: 'capabilities-showcase', component: CapabilitiesShowcase },
-    // { id: 'insilico-teaser', component: InSilicoTeaser },
-    // { id: 'problem', component: ProblemSection },
-    // { id: 'investment-thesis', component: InvestmentThesisHeader },
-    // { id: 'technology', component: TechnologySection },
-    // { id: 'metastasis-framework', component: MetastasisFrameworkSection },
-
-    // { id: 'solution', component: SolutionSection },
-    // { id: 'topics', component: TopicsSection },
-    // { id: 'features', component: FeaturesSection },
-    // { id: 'science', component: TechnologySection },
-    // { id: 'technology-deep-dive', component: TechnologyDeepDiveSection },
-    // { id: 'integrated-workflow', component: IntegratedWorkflowSection },
-    // { id: 'agent-capabilities', component: AgentCapabilitiesSection },
-    // { id: 'foundational-pillars', component: FoundationalPillarsSection },
-    // { id: 'impact', component: ImpactSection }, // Commented out
-    // { id: 'team', component: TeamSection },
-    { id: 'blog-teaser', component: BlogTeaserSection },
-    { id: 'contact', component: ContactSection },
-  ],
-};
+import MetricsShowcase from '@/components/landing/MetricsShowcase';
+import DrugDevelopmentProblem from '@/components/landing/DrugDevelopmentProblem';
+import BridgingValleySimulation from '@/components/simulations/sections/BridgingValleySimulation';
+import DiscoveryRaceSimulation from '@/components/simulations/sections/DiscoveryRaceSimulation';
+import ROICalculatorSection from '@/components/landing/ROICalculatorSection';
+import InteractiveDemoSection from '@/components/landing/InteractiveDemoSection';
+import CrisproFrameworkTeaser from '@/components/landing/CrisproFrameworkTeaser';
+import FusionWorkflowTeaser from '@/components/landing/FusionWorkflowTeaser';
+import CTASection from '@/components/shared/CTASection';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      
-      {/* Render all sections */}
-      {PAGE_CONFIG.sections.map((section) => {
-        const SectionComponent = section.component;
-        return <SectionComponent key={section.id} />;
-      })}
-      
+    <main className="min-h-screen bg-white">
+      <HeroSection />
+      <MetricsShowcase />
+      <DrugDevelopmentProblem />
+      <BridgingValleySimulation />
+      <DiscoveryRaceSimulation />
+      <InteractiveDemoSection />
+      <div id="roi-calculator">
+        <ROICalculatorSection />
+      </div>
+      <CrisproFrameworkTeaser />
+      <FusionWorkflowTeaser />
+      <CTASection
+        title="Eliminate the $2.6B gamble with mathematical certainty."
+        description="Join the biotech leaders who've eliminated the $2.6B gamble with mathematical certainty. Transform your R&D pipeline from gambling to engineering."
+        primaryButton={{
+          text: "Schedule Executive Demo",
+          href: "/contact",
+          color: "blue"
+        }}
+        secondaryButton={{
+          text: "See Platform Overview",
+          href: "/platform",
+          color: "blue"
+        }}
+        backgroundColor="blue"
+        className="py-20"
+      />
     </main>
   );
 }

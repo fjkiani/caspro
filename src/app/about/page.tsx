@@ -21,8 +21,20 @@ export default function AboutPage() {
       {/* Story Section */}
       <AboutSection section={aboutData.story} index={0} />
 
+      {/* In-Page Navigation */}
+      <nav className="sticky top-20 bg-white/80 backdrop-blur-md z-40 shadow-md rounded-full py-2 px-4 max-w-3xl mx-auto my-12">
+        <ul className="flex items-center justify-center gap-6">
+          <li><a href="#evidence-backbone" className="font-medium text-slate-600 hover:text-blue-600 transition-colors">Evidence</a></li>
+          <li><a href="#fusion-workflow" className="font-medium text-slate-600 hover:text-blue-600 transition-colors">Workflow</a></li>
+          <li><a href="#capabilities" className="font-medium text-slate-600 hover:text-blue-600 transition-colors">Capabilities</a></li>
+          <li><a href="#business-value" className="font-medium text-slate-600 hover:text-blue-600 transition-colors">Value</a></li>
+        </ul>
+      </nav>
+
       {/* Evidence Backbone - Reuse existing component */}
-      <EvidenceMetrics />
+      <div id="evidence-backbone">
+        <EvidenceMetrics />
+      </div>
 
       {/* Discriminative AI Section */}
       <AboutSection section={aboutData.evidence.discriminative} index={1} />
@@ -31,7 +43,7 @@ export default function AboutPage() {
       <AboutSection section={aboutData.evidence.generative} index={2} />
 
       {/* Fusion Workflow - Reuse existing component */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+      <section id="fusion-workflow" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-6">Fusion Workflow</h2>
@@ -47,10 +59,14 @@ export default function AboutPage() {
       <AboutSection section={aboutData.fusion} index={3} />
 
       {/* Capabilities Grid - Reuse existing component */}
-      <CapabilitiesGrid capabilities={aboutData.capabilities} />
+      <div id="capabilities">
+        <CapabilitiesGrid capabilities={aboutData.capabilities} />
+      </div>
 
       {/* Business Value Section */}
-      <AboutSection section={aboutData.businessValue} index={4} />
+      <div id="business-value">
+        <AboutSection section={aboutData.businessValue} index={4} />
+      </div>
 
       {/* RUO Disclaimer */}
       <section className="py-16 bg-gradient-to-r from-orange-50 to-red-50">

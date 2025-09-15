@@ -8,7 +8,7 @@ import CrisprGenomeEditor from '../ui/CrisprGenomeEditor';
 import DnaBasePairStrip from '../ui/DnaBasePairStrip';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { HERO_CONFIG } from '@/data/hero-config';
+import { HERO_DRUG_DEVELOPMENT_CONFIG } from '@/data/homepage/hero-drug-development';
 
 // Dynamically import ProteinModelViewer with SSR turned off
 const ProteinModelViewer = dynamic(
@@ -45,26 +45,67 @@ const HeroSection = () => {
             className="text-slate-800 dark:text-white"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              <span className="text-gradient block">{HERO_CONFIG.titlePart1}</span>
-              <span className="text-gradient">{HERO_CONFIG.titlePart2}</span>
+              <span className="text-gradient block">{HERO_DRUG_DEVELOPMENT_CONFIG.crisis.titlePart1}</span>
+              <span className="text-gradient">{HERO_DRUG_DEVELOPMENT_CONFIG.crisis.titlePart2}</span>
             </h1>
             
-            <p className="text-lg text-slate-600 dark:text-blue-100/90 mb-8 max-w-xl">
-              {HERO_CONFIG.subtitle}
+            <p className="text-lg text-slate-600 dark:text-blue-100/90 mb-6 max-w-xl">
+              {HERO_DRUG_DEVELOPMENT_CONFIG.crisis.subtitle}
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <Link href={HERO_CONFIG.ctaPrimaryLink}>
-                <button className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto">
+            {/* Real Metrics Badges */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap gap-3 mb-8"
+            >
+              <div className="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium">
+                ✅ 95.7% ClinVar AUROC
+              </div>
+              <div className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+                🧬 95.0% BRCA AUROC
+              </div>
+              <div className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
+                ⚡ Real-time predictions
+              </div>
+            </motion.div>
+
+            {/* STRONG CALL-TO-ACTION */}
+            <div className="space-y-4 mb-10">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => {
+                    const demoSection = document.querySelector('#live-demo-section');
+                    if (demoSection) {
+                      demoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  className="btn-primary flex items-center justify-center gap-3 w-full sm:w-auto text-lg px-8 py-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600"
+                >
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  >
+                    🚀
+                  </motion.div>
+                  TRY OUR AI LIVE - FREE
                   <ArrowRight size={20} />
-                  {HERO_CONFIG.ctaPrimaryText}
-                </button>
-              </Link>
-              <Link href={HERO_CONFIG.ctaSecondaryLink}>
-                <button className="btn-outline flex items-center justify-center gap-2 w-full sm:w-auto">
-                  {HERO_CONFIG.ctaSecondaryText}
-                </button>
-              </Link>
+                </motion.button>
+                
+                <Link href={HERO_DRUG_DEVELOPMENT_CONFIG.cta.secondary.href}>
+                  <button className="btn-outline flex items-center justify-center gap-2 w-full sm:w-auto">
+                    {HERO_DRUG_DEVELOPMENT_CONFIG.cta.secondary.text}
+                  </button>
+                </Link>
+              </div>
+              
+              {/* Urgency Message */}
+              <p className="text-sm text-slate-500 dark:text-slate-400">
+                ⚡ <strong>No signup required</strong> • <strong>See results in 30 seconds</strong> • <strong>Try real genetic variants</strong>
+              </p>
             </div>
           </motion.div>
 

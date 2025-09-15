@@ -10,7 +10,7 @@ import VariantDetails from './VariantDetails';
 interface VariantResult {
   variant: string;
   gene: string;
-  evo2Score: number;
+  crisproScore: number;
   alphaMissenseScore?: number;
   gpnMsaScore?: number;
   ensembleScore: number;
@@ -23,7 +23,7 @@ const mockVariants: VariantResult[] = [
   {
     variant: 'R175H',
     gene: 'TP53',
-    evo2Score: 0.92,
+    crisproScore: 0.92,
     alphaMissenseScore: 0.95,
     gpnMsaScore: 0.89,
     ensembleScore: 0.94,
@@ -34,7 +34,7 @@ const mockVariants: VariantResult[] = [
   {
     variant: 'V600E',
     gene: 'BRAF',
-    evo2Score: 0.88,
+    crisproScore: 0.88,
     alphaMissenseScore: 0.91,
     ensembleScore: 0.90,
     confidence: 'high',
@@ -44,7 +44,7 @@ const mockVariants: VariantResult[] = [
   {
     variant: 'c.1234+1G>A',
     gene: 'BRCA1',
-    evo2Score: 0.85,
+    crisproScore: 0.85,
     ensembleScore: 0.85,
     confidence: 'medium',
     evidence: ['Splice prediction', 'Conservation score'],
@@ -72,7 +72,7 @@ const VariantScoring: React.FC = () => {
       >
         <h2 className="text-4xl font-bold text-gray-800 mb-6">Discriminative AI: Variant Scoring</h2>
         <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-          Evo2 zero-shot ΔLL scoring with specialist ensemble (AlphaMissense/GPN-MSA) 
+          CrisPRO.ai zero-shot ΔLL scoring with specialist ensemble (AlphaMissense/GPN-MSA) 
           for comprehensive variant effect prediction across coding and noncoding regions.
         </p>
       </motion.div>

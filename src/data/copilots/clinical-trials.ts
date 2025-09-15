@@ -37,16 +37,18 @@ export const clinicalTrialsData: CoPilotDetailContent = {
     ],
 
     kpis: [
-      { label: 'ClinVar AUROC (total n=53,210)', value: '0.957' },
-      { label: 'Coding SNVs (n=14,319)', value: '0.957' },
-      { label: 'Non‑coding SNVs (n=34,761)', value: '0.958 (SOTA)' },
-      { label: 'Coding non‑SNVs (n=1,236)', value: '0.939 (SOTA)' },
-      { label: 'Non‑coding non‑SNVs (n=3,894)', value: '0.918' },
-      { label: 'SpliceVarDB AUROC (n=4,950)', value: '0.825–0.826' },
-      { label: 'Target VUS 40% → 15%', value: '≈$2.1M saved/program' },
-      { label: 'Shortlist compression', value: '50+ → 5–12 trials' },
-      { label: 'Time‑to‑first‑trial', value: '−60% to −65%' },
-      { label: 'Evo2 context window', value: '1M tokens (single‑nucleotide resolution)' }
+      // --- Trial Matching Efficiency ---
+      { label: 'Shortlist Compression', value: '50+ → 5-12 trials' },
+      { label: 'Time-to-First-Trial', value: '↓ 60-65%' },
+      // --- Foundation Model Performance ---
+      { label: 'Overall ClinVar AUROC', value: '0.957 (n=53,210)' },
+      { label: 'Non-coding SNVs AUROC', value: '0.958 (SOTA, n=34,761)' },
+      { label: 'Coding non-SNVs AUROC', value: '0.939 (SOTA, n=1,236)' },
+      { label: 'SpliceVarDB AUROC', value: '0.826 (n=4,950)' },
+      { label: 'VUS Rate Reduction', value: '40% → 15%' },
+      // --- Foundation Model ---
+      { label: 'CrisPRO.ai Context Window', value: '1M Tokens' },
+      { label: 'Est. Cost Savings', value: '≈$2.1M / program' },
     ],
 
     observedOutcomes: [
@@ -108,7 +110,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         technical: {
           title: "Technical Approach",
           keyMetric: "Live Refresh + Snapshot Fallback",
-          description: "Pull new trials when connected; otherwise use a reliable local snapshot.",
+          description: "Pulls new trials in real-time when connected, ensuring the latest data. If offline, it seamlessly reverts to a reliable local snapshot, guaranteeing uninterrupted access.",
           icon: "Settings",
           color: "blue",
           components: [
@@ -121,7 +123,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         scientific: {
           title: "Scientific Impact",
           keyMetric: "Current Data Access",
-          description: "Shortlists stay current without extra work.",
+          description: "Ensures that all trial shortlists are generated using the most current data available, eliminating the risk of relying on outdated information without requiring manual intervention.",
           icon: "Microscope",
           color: "teal",
           components: [
@@ -134,7 +136,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         business: {
           title: "Business Value",
           keyMetric: "Speed + Reliability",
-          description: "- **Speed:** Less waiting, more doing.",
+          description: "Combines the speed of live data with the reliability of local snapshots, minimizing delays and ensuring the trial matching process is always operational and efficient.",
           icon: "Briefcase",
           color: "indigo",
           components: [
@@ -151,7 +153,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         technical: {
           title: "Technical Approach",
           keyMetric: "Semantic Search + AI Labeling",
-          description: "Understands synonyms and biomarkers; labels each trial as Likely / Potential / Unlikely with a short 'why.'",
+          description: "Our semantic search engine understands clinical context, including synonyms and biomarkers, to surface the most relevant trials. Each result is then automatically labeled:\n- **Likely**\n- **Potential**\n- **Unlikely**\n...along with a concise rationale.",
           icon: "Settings",
           color: "blue",
           components: [
@@ -164,7 +166,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         scientific: {
           title: "Scientific Impact",
           keyMetric: "Decision Aid Transformation",
-          description: "Turns free‑text criteria into a usable decision aid.",
+          description: "Transforms unstructured, free-text eligibility criteria from trial documentation into a structured, actionable decision aid, reducing ambiguity and improving the quality of matches.",
           icon: "Microscope",
           color: "teal",
           components: [
@@ -177,7 +179,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         business: {
           title: "Business Value",
           keyMetric: "Better Matching + Explanation",
-          description: "- **Better matching:** Finds relevant trials and explains why.",
+          description: "Delivers higher quality matches by understanding the underlying biology, not just keywords. Every recommendation is paired with a clear explanation, building trust and simplifying the review process.",
           icon: "Briefcase",
           color: "indigo",
           components: [
@@ -194,7 +196,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         technical: {
           title: "Technical Approach",
           keyMetric: "Synonym Maps + Metadata",
-          description: "Built‑in synonym maps for genes, variants, and diseases improve recall and consistency.",
+          description: "Improves recall and consistency through built-in synonym maps for genes, variants, and diseases, ensuring that complex or varied terminology doesn't result in missed opportunities.",
           icon: "Settings",
           color: "blue",
           components: [
@@ -207,7 +209,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         scientific: {
           title: "Scientific Impact",
           keyMetric: "Comparable Results",
-          description: "Makes results comparable across runs and teams.",
+          description: "Standardizes the matching process, ensuring that results are comparable and reproducible across different runs and teams, which is critical for longitudinal analysis and internal reviews.",
           icon: "Microscope",
           color: "teal",
           components: [
@@ -220,7 +222,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         business: {
           title: "Business Value",
           keyMetric: "Consistency + Trust",
-          description: "- **Consistency:** Fewer misses, easier review.",
+          description: "Drives consistency by programmatically applying knowledge, which reduces missed opportunities and simplifies the review process. This builds trust in the results and the system.",
           icon: "Briefcase",
           color: "indigo",
           components: [
@@ -237,7 +239,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         technical: {
           title: "Technical Approach",
           keyMetric: "Run ID + Export System",
-          description: "Every shortlist has a run ID; export the one‑pager for handoffs.",
+          description: "Every trial shortlist is assigned a unique Run ID for traceability and provenance. The system can then export a clean, shareable one-pager for handoffs and briefings.",
           icon: "Settings",
           color: "blue",
           components: [
@@ -250,7 +252,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         scientific: {
           title: "Scientific Impact",
           keyMetric: "Reusability + Review",
-          description: "Simple to reuse and review later.",
+          description: "The combination of unique Run IDs and standardized one-pagers makes every output simple to reuse, review, and integrate into broader research and clinical workflows.",
           icon: "Microscope",
           color: "teal",
           components: [
@@ -263,7 +265,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         business: {
           title: "Business Value",
           keyMetric: "Shareable + Quick Briefing",
-          description: "- **Shareable:** Brief patients and boards quickly.",
+          description: "Generates artifacts that are easy to share, enabling quick and effective briefings for patients, tumor boards, and other stakeholders, which accelerates the decision-making process.",
           icon: "Briefcase",
           color: "indigo",
           components: [

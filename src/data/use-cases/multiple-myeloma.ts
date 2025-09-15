@@ -4,7 +4,7 @@ import { discriminativeMetrics, generativeMetrics, businessMetrics } from '../me
 export const multipleMyelomaUseCase: UseCaseMetrics = {
   useCaseId: 'multiple-myeloma',
   title: 'Multiple Myeloma Digital Twin',
-  description: 'Expert-grade therapy response prediction using Evo2 genome-scale language model. We quantify mutation disruption in critical cancer pathways (RAS/MAPK and TP53) to predict patient sensitivity vs resistance — with live, transcript-aware scoring and strict data hygiene.',
+  description: 'Expert-grade therapy response prediction using CrisPRO.ai genome-scale language model. We quantify mutation disruption in critical cancer pathways (RAS/MAPK and TP53) to predict patient sensitivity vs resistance — with live, transcript-aware scoring and strict data hygiene.',
   metrics: {
     discriminative: discriminativeMetrics,
     generative: generativeMetrics,
@@ -40,18 +40,18 @@ export const multipleMyelomaUseCase: UseCaseMetrics = {
     ]
   },
   whyItMatters: [
-    'Expert-grade Evo2 genome-scale language model provides live, transcript-aware scoring — no canned lookups.',
+    'Expert-grade CrisPRO.ai genome-scale language model provides live, transcript-aware scoring — no canned lookups.',
     'Strict data hygiene with allele/coordinate validation and error transparency (fail rather than fabricate).',
     'Clinically relevant pathway aggregation (KRAS/NRAS/BRAF; TP53) with interpretable resistance predictions.'
   ],
   delivered: [
-    'Live Evo2 delta scoring with multi-scale context windows (1k/2k/4k/8k nt).',
+    'Live CrisPRO.ai delta scoring with multi-scale context windows (1k/2k/4k/8k nt).',
     'Pathway-level aggregation for RAS/MAPK and TP53 disruption quantification.',
     'JSON outputs with zeta scores, impact levels, and resistance predictions.'
   ],
   howToRead: [
-    'Evo2 delta scores: ≤ -3 = strong disruption (resistance risk), |delta| < 0.5 = likely neutral.',
-    'S/P/E fusion: Sequence (Evo2) + Pathway (burden) + Evidence (ClinVar/literature) = ranked therapy classes.',
+    'CrisPRO.ai delta scores: ≤ -3 = strong disruption (resistance risk), |delta| < 0.5 = likely neutral.',
+    'S/P/E fusion: Sequence (CrisPRO.ai) + Pathway (burden) + Evidence (ClinVar/literature) = ranked therapy classes.',
     'Confidence reflects multi-scale consistency and supportive chips; tier promotions when ClinVar-Strong + Pathway-Aligned.'
   ],
   specificFindings: [
@@ -89,23 +89,23 @@ export const multipleMyelomaUseCase: UseCaseMetrics = {
       ]
     },
     {
-      title: 'Evo2 Delta Scoring Performance',
+      title: 'CrisPRO.ai Delta Scoring Performance',
       description: 'Live genome-scale language model scoring with transcript-aware, multi-scale analysis',
       metrics: [
         {
           title: 'Strong Disruption Threshold',
           value: { value: -3.0, format: 'decimal', precision: 1 },
           description: 'Delta score ≤ -3 indicates high functional disruption and resistance risk',
-          dataset: 'Evo2 Pipeline',
+          dataset: 'CrisPRO.ai Pipeline',
           sampleSize: 1000,
-          source: 'Evo2 model specifications',
+          source: 'CrisPRO.ai model specifications',
           category: 'technical'
         },
         {
           title: 'Context Window Size',
           value: { value: 8192, format: 'integer' },
           description: 'Optimal genomic context window (8,192 nt) for signal-to-noise balance',
-          dataset: 'Evo2 Pipeline',
+          dataset: 'CrisPRO.ai Pipeline',
           sampleSize: 500,
           source: 'Window size optimization studies',
           category: 'technical'
@@ -116,7 +116,7 @@ export const multipleMyelomaUseCase: UseCaseMetrics = {
           description: 'Estimated consistency across 1k/2k/4k/8k windows for high-confidence calls',
           dataset: 'Multi-Scale Analysis',
           sampleSize: 200,
-          source: 'Estimated based on Evo2 performance',
+          source: 'Estimated based on CrisPRO.ai performance',
           category: 'estimated'
         }
       ]
@@ -258,7 +258,7 @@ export const multipleMyelomaCapabilities = {
   },
   therapyFit: {
     title: 'Efficacy Intelligence (S/P/E Fusion)',
-    description: 'S/P/E fusion: Sequence (Evo2) + Pathway (burden) + Evidence (ClinVar/literature) into ranked therapy classes with explainable confidence and citations.',
+    description: 'S/P/E fusion: Sequence (CrisPRO.ai) + Pathway (burden) + Evidence (ClinVar/literature) into ranked therapy classes with explainable confidence and citations.',
     features: [
       'S/P/E fusion framework with insight chips',
       'Ranked drug classes with confidence scores',

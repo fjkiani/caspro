@@ -34,19 +34,24 @@ export const chemoData: CoPilotDetailContent = {
     "**Drug interaction/toxicity enrichment (roadmap):** Add regimen‑level safety/context checks."
   ],
 
+  // KPIs - Reorganized for clarity and impact
   kpis: [
-    { label: 'ClinVar AUROC (total n=53,210)', value: '0.957' },
-    { label: 'Coding SNVs (n=14,319)', value: '0.957' },
-    { label: 'Non‑coding SNVs (n=34,761)', value: '0.958 (SOTA)' },
-    { label: 'Coding non‑SNVs (n=1,236)', value: '0.939 (SOTA)' },
-    { label: 'Non‑coding non‑SNVs (n=3,894)', value: '0.918' },
-    { label: 'BRCA1 supervised AUROC/AUPRC', value: '0.94 / 0.84' },
-    { label: 'BRCA1 supervised (all SNVs) AUROC/AUPRC', value: '0.95 / 0.86' },
-    { label: 'BRCA1 zero‑shot AUROC', value: '0.891 (from 0.793)' },
-    { label: 'BRCA2 zero‑shot AUROC', value: '0.901' },
-    { label: 'SpliceVarDB AUROC (n=4,950)', value: '0.825–0.826' },
-    { label: 'Target VUS 40% → 15%', value: '≈$2.1M saved/program' },
-    { label: 'Evo2 context window', value: '1M tokens (single‑nucleotide resolution)' }
+    // --- ClinVar Foundation ---
+    { label: 'Overall ClinVar AUROC', value: '0.957 (n=53,210)' },
+    { label: 'Coding SNVs AUROC', value: '0.957 (n=14,319)' },
+    { label: 'Non-coding SNVs AUROC', value: '0.958 (SOTA, n=34,761)' },
+    { label: 'Coding non-SNVs AUROC', value: '0.939 (SOTA, n=1,236)' },
+    { label: 'Non-coding non-SNVs AUROC', value: '0.918 (n=3,894)' },
+    // --- Oncology-Specific ---
+    { label: 'BRCA1 Supervised AUROC/AUPRC', value: '0.95 / 0.86 (all SNVs)' },
+    { label: 'BRCA1 Zero-Shot AUROC', value: '0.891 (from 0.793)' },
+    { label: 'BRCA2 Zero-Shot AUROC', value: '0.901' },
+    // --- Specialized Performance ---
+    { label: 'SpliceVarDB AUROC', value: '0.826 (n=4,950)' },
+    { label: 'VUS Rate Reduction', value: '40% → 15%' },
+    // --- Foundation Model ---
+    { label: 'CrisPRO.ai Context Window', value: '1M Tokens' },
+    { label: 'Est. Cost Savings', value: '≈$2.1M / program' },
   ],
 
   observedOutcomes: [
@@ -131,7 +136,7 @@ export const chemoData: CoPilotDetailContent = {
       technical: {
         title: "Technical Approach",
         keyMetric: "S/P/E Fusion",
-        description: "We surface a ranked list of chemo drug classes aligned to tumor biology using our S/P/E fusion: Sequence (Evo‑based disruption), Pathway (gene→pathway burden), and Evidence (ClinVar + literature when enabled). Output includes confidence, evidence tier, badges, and rationale.",
+        description: "Fuses three core signals to generate a ranked list of chemo drug classes aligned to tumor biology:\n- **Sequence:** Evo-based disruption scores.\n- **Pathway:** Gene-to-pathway burden analysis.\n- **Evidence:** ClinVar and literature integration (when enabled).\n\n**Output:** Confidence scores, evidence tiers, quality badges, and concise rationale.",
         icon: "Settings",
         color: "blue",
         components: [
@@ -144,7 +149,7 @@ export const chemoData: CoPilotDetailContent = {
       scientific: {
         title: "Scientific Impact",
         keyMetric: "Auditable Provenance",
-        description: "Signals translate variant biology into therapy fit (e.g., MAPK/DDR burden → aligned classes) with auditable provenance (run ID, profile).",
+        description: "Translates raw variant data into therapeutically relevant signals with full provenance:\n- **Biology-to-Therapy:** Maps biological signals (e.g., MAPK/DDR pathway burden) to aligned therapy classes.\n- **Auditable Provenance:** Every output is tagged with a unique run ID and the configuration profile used.",
         icon: "Microscope",
         color: "teal",
         components: [
@@ -174,7 +179,7 @@ export const chemoData: CoPilotDetailContent = {
       technical: {
         title: "Technical Approach",
         keyMetric: "S/P/E + Cohort Lab",
-        description: "Live: genomics‑first S/P/E scoring with insight chips, ClinVar/coverage priors; optional Cohort Lab adds small extracts/benchmarks to ground findings.",
+        description: "Our genomics-first S/P/E scoring is enhanced with insight chips and priors from ClinVar and coverage data.\n\n**Optional Enrichment:** The Cohort Lab can be enabled to add small extracts and benchmarks to ground findings in population-level context.",
         icon: "Settings",
         color: "blue",
         components: [
@@ -186,7 +191,7 @@ export const chemoData: CoPilotDetailContent = {
       scientific: {
         title: "Scientific Impact",
         keyMetric: "Contextualized Biology",
-        description: "Current outputs contextualize variant biology; cohort context strengthens confidence when present.",
+        description: "Provides deep biological context for each variant, with the option to strengthen confidence by aligning findings with cohort-level data.",
         icon: "Microscope",
         color: "teal",
         components: [
@@ -216,7 +221,7 @@ export const chemoData: CoPilotDetailContent = {
       technical: {
         title: "Technical Approach",
         keyMetric: "Regimen‑Aware Checks",
-        description: "Planned: regimen‑aware checks (interactions, cumulative toxicities) layered on top of baseline guidance.",
+        description: "Our roadmap includes layering regimen-aware checks on top of our baseline guidance, including:\n- **Drug-Drug Interactions:** Flagging potential adverse interactions.\n- **Cumulative Toxicities:** Monitoring and flagging potential cumulative toxicity issues.",
         icon: "Settings",
         color: "blue",
         components: [
@@ -229,7 +234,7 @@ export const chemoData: CoPilotDetailContent = {
       scientific: {
         title: "Scientific Impact",
         keyMetric: "Pharmacology Integration",
-        description: "Future: incorporate pharmacology and prior toxicity signals to refine fit.",
+        description: "Future capabilities will incorporate pharmacology and prior toxicity signals to refine therapeutic fit and enhance safety predictions.",
         icon: "Microscope",
         color: "teal",
         components: [
@@ -259,7 +264,7 @@ export const chemoData: CoPilotDetailContent = {
       technical: {
         title: "Technical Approach",
         keyMetric: "Evidence Services",
-        description: "Co‑Pilot + Evidence services provide literature/ClinVar priors, badges, and rationale with provenance; Cohort Lab adds small extracts/benchmarks. Guidance agent (roadmap) can lift tiers with curated signals.",
+        description: "Our integrated Evidence services provide robust support for all findings:\n- **Priors & Badges:** Literature and ClinVar priors are used to generate evidence badges.\n- **Provenance:** All outputs include a full rationale and provenance details.\n- **Cohort Lab:** Optional integration provides small extracts and benchmarks for context.\n- **Guidance Agent (Roadmap):** Future capabilities will use curated signals to lift evidence tiers.",
         icon: "Settings",
         color: "blue",
         components: [
@@ -272,7 +277,7 @@ export const chemoData: CoPilotDetailContent = {
       scientific: {
         title: "Scientific Impact",
         keyMetric: "Evidence-Based Practice",
-        description: "Supports evidence‑based practice and research with auditable, multi‑modal context; expands as provider keys and guidance agents come online.",
+        description: "Supports rigorous evidence-based practice and research with auditable, multi-modal context that will expand as provider keys and guidance agents come online.",
         icon: "Microscope",
         color: "teal",
         components: [

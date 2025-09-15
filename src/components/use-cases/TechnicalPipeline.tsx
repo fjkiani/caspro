@@ -40,11 +40,11 @@ const pipelineSteps: PipelineStep[] = [
     icon: <Database className="w-6 h-6" />,
     color: 'from-blue-500 to-blue-600',
     details: ['8,192 nt default window', 'Variant centering', 'Ensembl API integration'],
-    technical: 'Optimal signal-to-noise balance for Evo2 scoring'
+    technical: 'Optimal signal-to-noise balance for CrisPRO.ai scoring'
   },
   {
     id: 'scoring',
-    title: 'Evo2 Delta Scoring',
+    title: 'CrisPRO.ai Delta Scoring',
     description: 'Live genome-scale language model scoring',
     icon: <Cpu className="w-6 h-6" />,
     color: 'from-purple-500 to-purple-600',
@@ -92,7 +92,7 @@ export const TechnicalPipeline: React.FC = () => {
         >
           <h2 className="text-4xl font-bold text-gray-800 mb-4">Live Technical Pipeline</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Expert-grade Evo2 genome-scale language model with strict data hygiene and transparent error handling
+            Expert-grade CrisPRO.ai genome-scale language model with strict data hygiene and transparent error handling
           </p>
         </motion.div>
 
@@ -208,7 +208,7 @@ export const TechnicalPipeline: React.FC = () => {
             {[
               {
                 icon: <Zap className="w-6 h-6" />,
-                title: 'Live Evo2 Scoring',
+                title: 'Live CrisPRO.ai Scoring',
                 description: 'No canned lookups, real-time genome-scale language model'
               },
               {

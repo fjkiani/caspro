@@ -32,11 +32,11 @@ const fusionComponents: FusionComponent[] = [
   {
     id: 'sequence',
     title: 'Sequence (S)',
-    description: 'Evo2 multi-scale magnitudes with hotspot-aware functionality',
+    description: 'CrisPRO.ai multi-scale magnitudes with hotspot-aware functionality',
     icon: <Dna className="w-6 h-6" />,
     color: 'from-blue-500 to-blue-600',
     details: [
-      'Evo2 multi/exon magnitudes',
+      'CrisPRO.ai multi/exon magnitudes',
       'Hotspot-aware functionality lift',
       'Truncation gates for protein impact',
       'Multi-scale context windows (1k/2k/4k/8k)'

@@ -110,13 +110,13 @@ The competitive advantage of CrisPRO.ai lies in our fusion approach. We combine 
 - DMS correlation validation
 
 #### Discriminative AI
-- Evo2 zero-shot ΔLL scoring
+- CrisPRO.ai zero-shot ΔLL scoring
 - AlphaMissense/GPN-MSA ensemble
 - Noncoding variant coverage
 - Splicing variant analysis
 
 #### Generative AI  
-- Evo2 sequence proposals
+- CrisPRO.ai sequence proposals
 - Enformer+Borzoi epigenomic guidance
 - AlphaFold 3 structural validation
 - Mitochondrial genome generation

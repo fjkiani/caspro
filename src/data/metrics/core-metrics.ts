@@ -9,6 +9,7 @@ export const discriminativeMetrics: MetricGroup[] = [
     category: 'discriminative',
     benchmarks: [
       {
+        slug: 'coding-snv',
         title: 'Coding SNVs',
         value: { value: 95.7, format: 'percentage', precision: 1 },
         description: 'AUROC on coding single nucleotide variants',
@@ -18,6 +19,7 @@ export const discriminativeMetrics: MetricGroup[] = [
         category: 'discriminative'
       },
       {
+        slug: 'non-coding-snv',
         title: 'Non-coding SNVs',
         value: { value: 95.8, format: 'percentage', precision: 1 },
         description: 'AUROC on non-coding single nucleotide variants - SOTA',
@@ -28,6 +30,7 @@ export const discriminativeMetrics: MetricGroup[] = [
         category: 'discriminative'
       },
       {
+        slug: 'coding-non-snv',
         title: 'Coding Non-SNVs',
         value: { value: 93.9, format: 'percentage', precision: 1 },
         description: 'AUROC on coding indels and complex variants - SOTA',
@@ -38,6 +41,7 @@ export const discriminativeMetrics: MetricGroup[] = [
         category: 'discriminative'
       },
       {
+        slug: 'non-coding-non-snv',
         title: 'Non-coding Non-SNVs',
         value: { value: 91.8, format: 'percentage', precision: 1 },
         description: 'AUROC on non-coding indels and complex variants',
@@ -48,7 +52,7 @@ export const discriminativeMetrics: MetricGroup[] = [
       }
     ],
     businessImpact: 'Comprehensive variant coverage enables reliable interpretation across all genomic regions',
-    methodology: 'Evo2 zero-shot ΔLL scoring with 8,192 bp context and reverse-complement averaging'
+    methodology: 'CrisPRO.ai zero-shot ΔLL scoring with 8,192 bp context and reverse-complement averaging'
   },
   {
     id: 'oncology-specific',
@@ -57,15 +61,17 @@ export const discriminativeMetrics: MetricGroup[] = [
     category: 'discriminative',
     benchmarks: [
       {
+        slug: 'brca1-supervised-coding',
         title: 'BRCA1 Supervised (Coding SNV)',
         value: { value: 94.0, format: 'percentage', precision: 1 },
-        description: 'AUROC with lightweight classifier on Evo2 40B embeddings',
+        description: 'AUROC with lightweight classifier on CrisPRO.ai 40B embeddings',
         dataset: 'BRCA1/2',
         sampleSize: 3893,
         source: 'BRCA1/2 validation',
         category: 'discriminative'
       },
       {
+        slug: 'brca1-supervised-all',
         title: 'BRCA1 Supervised (All SNVs)',
         value: { value: 95.0, format: 'percentage', precision: 1 },
         description: 'AUROC on all SNVs with AUPRC of 86.0%',
@@ -75,6 +81,7 @@ export const discriminativeMetrics: MetricGroup[] = [
         category: 'discriminative'
       },
       {
+        slug: 'brca1-zero-shot',
         title: 'BRCA1 Zero-shot',
         value: { value: 89.1, format: 'percentage', precision: 1 },
         description: 'AUROC improvement from 79.3% baseline',
@@ -84,6 +91,7 @@ export const discriminativeMetrics: MetricGroup[] = [
         category: 'discriminative'
       },
       {
+        slug: 'brca2-zero-shot',
         title: 'BRCA2 Zero-shot',
         value: { value: 90.1, format: 'percentage', precision: 1 },
         description: 'AUROC on combined coding/noncoding variants',
@@ -94,7 +102,7 @@ export const discriminativeMetrics: MetricGroup[] = [
       }
     ],
     businessImpact: 'High accuracy on key oncology targets enables reliable therapeutic guidance',
-    methodology: 'Lightweight supervised heads on Evo2 40B block-20 embeddings'
+    methodology: 'Lightweight supervised heads on CrisPRO.ai 40B block-20 embeddings'
   },
   {
     id: 'splice-prediction',
@@ -103,6 +111,7 @@ export const discriminativeMetrics: MetricGroup[] = [
     category: 'discriminative',
     benchmarks: [
       {
+        slug: 'splice-exonic',
         title: 'Exonic Splice Variants',
         value: { value: 82.6, format: 'percentage', precision: 1 },
         description: 'AUROC on exonic splice-altering variants',
@@ -112,6 +121,7 @@ export const discriminativeMetrics: MetricGroup[] = [
         category: 'discriminative'
       },
       {
+        slug: 'splice-intronic',
         title: 'Intronic Splice Variants',
         value: { value: 82.5, format: 'percentage', precision: 1 },
         description: 'AUROC on intronic splice-altering variants',
@@ -122,7 +132,7 @@ export const discriminativeMetrics: MetricGroup[] = [
       }
     ],
     businessImpact: 'Enables identification of functional variants affecting RNA processing and drug response',
-    methodology: 'Evo2 7B/40B zero-shot classification on splice-altering variants'
+    methodology: 'CrisPRO.ai 7B/40B zero-shot classification on splice-altering variants'
   }
 ];
 
@@ -135,6 +145,7 @@ export const generativeMetrics: MetricGroup[] = [
     category: 'generative',
     benchmarks: [
       {
+        slug: 'mito-genomes',
         title: 'Mitochondrial Genomes',
         value: { value: 100, format: 'percentage', precision: 0 },
         description: 'Correct feature counts with diverse homology and AF3 multimers',
@@ -144,6 +155,7 @@ export const generativeMetrics: MetricGroup[] = [
         category: 'generative'
       },
       {
+        slug: 'prokaryote-pfam',
         title: 'Minimal Prokaryote Pfam Hits',
         value: { value: 70, format: 'percentage', precision: 0 },
         description: 'Pfam-hit rate vs 18% for previous models',
@@ -153,17 +165,18 @@ export const generativeMetrics: MetricGroup[] = [
         category: 'generative'
       },
       {
+        slug: 'context-window',
         title: 'Context Window',
         value: { value: 1000000, format: 'integer' },
         description: 'Single-nucleotide resolution context window',
-        dataset: 'Evo2',
+        dataset: 'CrisPRO.ai',
         sampleSize: 1,
-        source: 'Evo2 specification',
+        source: 'CrisPRO.ai specification',
         category: 'generative'
       }
     ],
     businessImpact: 'Generate therapeutic candidates 36x faster than traditional R&D',
-    methodology: 'Evo2 sequence proposals with functional steering via Enformer/Borzoi'
+    methodology: 'CrisPRO.ai sequence proposals with functional steering via Enformer/Borzoi'
   },
   {
     id: 'epigenomic-design',
@@ -172,6 +185,7 @@ export const generativeMetrics: MetricGroup[] = [
     category: 'generative',
     benchmarks: [
       {
+        slug: 'quality-scaling',
         title: 'Quality Scaling',
         value: { value: 100, format: 'percentage', precision: 0 },
         description: 'Predictable log-linear relationship between beam width and AUROC',
@@ -182,7 +196,7 @@ export const generativeMetrics: MetricGroup[] = [
       }
     ],
     businessImpact: 'Enable precision therapeutic design with predictable quality scaling',
-    methodology: 'Beam-searched Evo2 proposals scored by Enformer+Borzoi'
+    methodology: 'Beam-searched CrisPRO.ai proposals scored by Enformer+Borzoi'
   }
 ];
 
@@ -195,6 +209,7 @@ export const businessMetrics: MetricGroup[] = [
     category: 'business',
     benchmarks: [
       {
+        slug: 'vus-resolution-rate',
         title: 'VUS Resolution Rate',
         value: { value: 73, format: 'percentage', precision: 0 },
         description: 'Variants of Uncertain Significance resolved',
@@ -204,6 +219,7 @@ export const businessMetrics: MetricGroup[] = [
         category: 'business'
       },
       {
+        slug: 'vus-rate-reduction',
         title: 'VUS Rate Reduction',
         value: { value: 40, format: 'percentage', precision: 0 },
         description: 'Target reduction from 40% to 15% VUS rate',
@@ -213,6 +229,7 @@ export const businessMetrics: MetricGroup[] = [
         category: 'business'
       },
       {
+        slug: 'cost-savings',
         title: 'Cost Savings per Program',
         value: { value: 2100000, format: 'integer' },
         description: 'Estimated savings per program through focused wet-lab validation',

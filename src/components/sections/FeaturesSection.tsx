@@ -39,13 +39,13 @@ const FEATURES_CONFIG = {
     {
       icon: React.createElement(FiSearch),
       title: 'AI-Powered Genomic Analysis',
-      description: 'Deep variant interpretation, functional impact prediction (Evo2 scores), and identification of novel therapeutic targets from complex genomic data.',
+      description: 'Deep variant interpretation, functional impact prediction (CrisPRO.ai scores), and identification of novel therapeutic targets from complex genomic data.',
       variant: 'adenine' as FeatureVariant
     },
     {
       icon: React.createElement(FiEdit),
       title: 'AI-Guided Therapy Design',
-      description: 'Leverage Evo2s generative power to design bespoke gene editing constructs (e.g., CRISPR guide RNAs, repair templates) and other biologics.',
+      description: 'Leverage CrisPRO.ai generative power to design bespoke gene editing constructs (e.g., CRISPR guide RNAs, repair templates) and other biologics.',
       variant: 'thymine' as FeatureVariant
     },
     {

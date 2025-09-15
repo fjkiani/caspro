@@ -75,10 +75,10 @@ export const chemotherapyJourney: CapabilityJourneyData = {
     {
       number: 2,
       title: "Validated Pharmacogenomic Insights",
-      description: "Oracle delivers peer-reviewed variant impact prediction with Evo2 embeddings and BRCA1 supervised AUROC ≈ 0.95 for drug-gene interactions.",
+      description: "Oracle delivers peer-reviewed variant impact prediction with CrisPRO.ai embeddings and BRCA1 supervised AUROC ≈ 0.95 for drug-gene interactions.",
       icon: Shield,
       solutions: [
-        "BRCA1 supervised AUROC ≈ 0.95 with Evo2 40B block-20 embeddings",
+        "BRCA1 supervised AUROC ≈ 0.95 with CrisPRO.ai 40B block-20 embeddings",
         "Cross-species generalization for drug response pathways",
         "Transparent explanations with auditable provenance"
       ]

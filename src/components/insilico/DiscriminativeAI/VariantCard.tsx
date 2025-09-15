@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 interface VariantResult {
   variant: string;
   gene: string;
-  evo2Score: number;
+  crisproScore: number;
   alphaMissenseScore?: number;
   gpnMsaScore?: number;
   ensembleScore: number;
@@ -73,8 +73,8 @@ const VariantCard: React.FC<VariantCardProps> = ({ variant, isSelected, onSelect
       
       <div className="grid grid-cols-3 gap-4 text-sm">
         <div>
-          <p className="text-gray-500">Evo2</p>
-          <p className="font-semibold">{variant.evo2Score}</p>
+          <p className="text-gray-500">CrisPRO.ai</p>
+          <p className="font-semibold">{variant.crisproScore}</p>
         </div>
         {variant.alphaMissenseScore && (
           <div>

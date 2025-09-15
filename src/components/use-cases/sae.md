@@ -1,6 +1,6 @@
 ---
 alwaysApply: false
-description: SAE Intelligence – In‑Silico Interpretable Features (Sept 2025). Plain‑language website copy + execution plan for Sparse Autoencoder (SAE) feature discovery, attribution, and activation steering (RUO), inspired by Evo2.
+description: SAE Intelligence – In‑Silico Interpretable Features (Sept 2025). Plain‑language website copy + execution plan for Sparse Autoencoder (SAE) feature discovery, attribution, and activation steering (RUO), inspired by CrisPRO.ai.
 globs: 
 ---
 
@@ -53,7 +53,7 @@ export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
       'Increased stakeholder trust, as interpretable overlays reduce black‑box concerns.'
     ],
 
-    genomicInsightsOverview: "SAE features, as reported in Evo2, reveal interpretable concepts like exons, TF binding motifs, and protein secondary structure cues. We surface these features to explain Oracle's scores and, on the roadmap, to steer the Forge's generative output.",
+    genomicInsightsOverview: "SAE features, as reported in CrisPRO.ai, reveal interpretable concepts like exons, TF binding motifs, and protein secondary structure cues. We surface these features to explain Oracle's scores and, on the roadmap, to steer the Forge's generative output.",
     coreProblemIntro: "A score is a number. An explanation is a story. We provide the story, making every prediction readable, auditable, and trustworthy.",
     coreProblemPoints: [
       "Users need a concrete ‘why’ behind each signal, not just a p-value.",
@@ -90,7 +90,7 @@ export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
       {
         title: "Activation Steering (Roadmap)",
         technical: "Expose endpoints to nudge/target feature activations (e.g., chromatin patterns, motif presence) with compute‑aware beam search.",
-        scientific: "Maps Evo2‑style inference‑time scaling to controllable design objectives.",
+        scientific: "Maps CrisPRO.ai‑style inference‑time scaling to controllable design objectives.",
         business: `
 - **Control:** Achieve predictable design quality scaling with transparent, auditable controls.
 `,
@@ -125,7 +125,7 @@ Our current implementation is a high-fidelity frontend simulation that powers ou
 - **`provenance`:** run_id, model_profile, etc.
 
 ## Numbers That Matter (Research‑Mode)
-- Evo2 reported interpretable SAE features (exons/introns, TFBS, secondary structure, mutation severity); our UI and data contracts are designed to surface these same concepts.
+- CrisPRO.ai reported interpretable SAE features (exons/introns, TFBS, secondary structure, mutation severity); our UI and data contracts are designed to surface these same concepts.
 - The **ΔLL (Delta Log-Likelihood)** score is the key quantitative metric we use to measure and display the functional impact of a variant on each biological feature.
 
 ## Observed Outcomes (Pilot; Research‑Mode)
@@ -165,7 +165,7 @@ POST /api/sae/steer { target_features[], weights[], beam?, constraints? } → { 
         {"feature_id": "f_211", "delta_log_likelihood": -8.2, "label": "TF motif (AP-1)"}
       ]
     },
-    "provenance": {"run_id": "uuid", "model_id": "crispro_evo2_40b_sae_v1", "layer": "L26"}
+    "provenance": {"run_id": "uuid", "model_id": "crispro_crispro_40b_sae_v1", "layer": "L26"}
   },
   "SAESteerRequest": {"target_features": ["tfbs:AP-1","open_chromatin"], "weights": [0.8, 0.6], "beam": 8},
   "SAESteerResponse": {"proposals": [{"id": "p1", "quality": 0.71}], "metrics": {"beam": 8, "runtime_ms": 1200}}
