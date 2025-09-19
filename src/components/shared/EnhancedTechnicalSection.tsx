@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lightbulb, BookOpen, ToggleLeft, ToggleRight } from 'lucide-react';
-import TechnicalConceptSimplifier from './TechnicalConceptSimplifier';
-import ConceptExplainer from './ConceptExplainer';
-import { getConceptsByCategory, technicalGlossary } from '@/data/concepts/technical-glossary';
+// import TechnicalConceptSimplifier from './TechnicalConceptSimplifier';
+// import ConceptExplainer from './ConceptExplainer';
+// import { getConceptsByCategory, technicalGlossary } from '@/data/concepts/technical-glossary';
 
 interface EnhancedTechnicalSectionProps {
   title: string;
@@ -25,7 +25,7 @@ const EnhancedTechnicalSection: React.FC<EnhancedTechnicalSectionProps> = ({
   const [simplificationEnabled, setSimplificationEnabled] = useState(true);
   const [showQuickGlossary, setShowQuickGlossary] = useState(false);
 
-  const quickGlossaryTerms = technicalGlossary.slice(0, 6); // Show first 6 most important terms
+  // const quickGlossaryTerms = technicalGlossary.slice(0, 6); // Show first 6 most important terms
 
   return (
     <div className={`relative ${className}`}>
@@ -79,7 +79,7 @@ const EnhancedTechnicalSection: React.FC<EnhancedTechnicalSectionProps> = ({
               <h4 className="text-lg font-semibold text-slate-800">Key Terms in This Section</h4>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {quickGlossaryTerms.map((concept, index) => (
                 <motion.div
                   key={concept.term}
@@ -102,20 +102,21 @@ const EnhancedTechnicalSection: React.FC<EnhancedTechnicalSectionProps> = ({
                   <p className="text-sm text-slate-600">{concept.simpleDefinition}</p>
                 </motion.div>
               ))}
-            </div>
+            </div> */}
           </div>
         </motion.div>
       )}
 
       {/* Enhanced Content */}
       <div className="prose prose-slate max-w-none">
-        {simplificationEnabled ? (
+        {/* {simplificationEnabled ? (
           <TechnicalConceptSimplifier>
             {typeof children === 'string' ? children : ''}
           </TechnicalConceptSimplifier>
         ) : (
           children
-        )}
+        )} */}
+        {children}
       </div>
 
       {/* Help Text */}

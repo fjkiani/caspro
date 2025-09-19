@@ -2,11 +2,11 @@
 // Replaces generic messaging with contract-winning biotech value proposition
 
 export const HERO_DRUG_DEVELOPMENT_CONFIG = {
-  // Crisis-focused messaging
+  // SAE Biological Mastery + Solution messaging
   crisis: {
-    titlePart1: "The $2.6 Billion",
-    titlePart2: "Drug Development Crisis",
-    subtitle: "90% failure rate. 15-year timelines. Biotech R&D is gambling, not engineering.",
+    titlePart1: "We Don't Discover Drugs.",
+    titlePart2: "We Engineer Life.",
+    subtitle: "Our AI has mastered the fundamental laws of biology. We transform the $2.6B drug development gamble into deterministic engineering.",
     problemStats: [
       { 
         value: "90%", 

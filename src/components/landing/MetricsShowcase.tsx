@@ -76,16 +76,16 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Validated Performance Metrics
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
+          We Don't Cure Cancer. We Eliminate Failure.
           </h2>
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-4xl mx-auto mb-6 sm:mb-8 leading-relaxed">
             Real results from peer-reviewed research. <strong>No hallucination, no marketing fluff.</strong> 
             These are the metrics that close multi-million dollar biotech contracts.
           </p>
           
           {/* Quick Stats */}
-          <div className="flex flex-wrap justify-center gap-6 mb-8">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-6 mb-6 sm:mb-8">
             <div className="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
               📊 53,210+ variants validated
             </div>
@@ -93,16 +93,14 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
               🏆 State-of-the-art on ClinVar
             </div>
             <div className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold">
-              🧬 Zero-shot capability
+              🧬 No training required
             </div>
-            <div className="px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-semibold">
-              💰 Contract-ready ROI
-            </div>
+          
           </div>
         </motion.div>
 
         {/* Metrics Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
           {showcaseMetrics.map((metric, index) => {
             const Icon = metric.icon;
             
@@ -126,31 +124,31 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
                 </div>
                 
                 {/* Content */}
-                <div className="relative p-6">
+                <div className="relative p-4 sm:p-6">
                   {/* Icon */}
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${metric.color} flex items-center justify-center mb-4`}>
-                    <Icon className="w-6 h-6 text-white" />
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${metric.color} flex items-center justify-center mb-3 sm:mb-4`}>
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </div>
                   
                   {/* Title */}
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2 leading-tight">
                     {metric.title}
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-slate-600 text-sm mb-4 leading-relaxed">
+                  <p className="text-slate-600 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
                     {metric.description}
                   </p>
                   
                   {/* Main Metric */}
-                  <div className="mb-4">
-                    <div className="text-3xl font-bold text-slate-900 mb-1">
+                  <div className="mb-3 sm:mb-4">
+                    <div className="text-2xl sm:text-3xl font-bold text-slate-900 mb-1">
                       {metric.value}
                     </div>
-                    <div className="text-sm text-slate-500 font-semibold">
+                    <div className="text-xs sm:text-sm text-slate-500 font-semibold">
                       {metric.metric}
                     </div>
-                    <div className="text-xs text-slate-400 mt-1">
+                    <div className="text-xs text-slate-400 mt-1 leading-tight">
                       {metric.details}
                     </div>
                   </div>
@@ -158,7 +156,7 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
                   {/* CTA */}
                   <Link href={metric.link}>
                     <motion.button
-                      className="w-full px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 group-hover:bg-gradient-to-r group-hover:from-slate-100 group-hover:to-slate-50"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 group-hover:bg-gradient-to-r group-hover:from-slate-100 group-hover:to-slate-50 text-sm sm:text-base touch-manipulation"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -191,7 +189,7 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/metrics">
               <motion.button
-                className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors flex items-center gap-3"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors flex items-center gap-2 sm:gap-3 text-sm sm:text-base touch-manipulation"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -203,7 +201,7 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
             
             <Link href="/evidence">
               <motion.button
-                className="px-8 py-4 border-2 border-blue-600 text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition-colors flex items-center gap-3"
+                className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-blue-600 text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition-colors flex items-center gap-2 sm:gap-3 text-sm sm:text-base touch-manipulation"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

@@ -177,10 +177,12 @@ const Navbar: React.FC = () => {
   
   const navClass = isLearnPage
     ? 'bg-slate-900/80 backdrop-blur-lg border-b border-slate-700/50'
-    : 'bg-transparent';
+    : isScrolled 
+      ? 'bg-slate-900/90 backdrop-blur-lg border-b border-slate-700/50'
+      : 'bg-slate-900/80 backdrop-blur-lg';
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navClass} ${isScrolled ? 'transform -translate-y-full' : 'transform translate-y-0'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navClass}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">

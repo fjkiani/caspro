@@ -75,7 +75,7 @@ const InSilicoWorkflowSection: React.FC<InSilicoWorkflowSectionProps> = ({ workf
           initial="hidden"
           animate="visible"
         >
-          {workflow.steps.map((step, index) => {
+          {workflow.steps.map((step: any, index: number) => {
             const Icon = iconMap[step.iconName] || HelpCircle;
             return (
               <motion.li key={index} className="relative pl-20" variants={itemVariants}>

@@ -2,9 +2,9 @@
 // Real validated metrics translated to chemotherapy applications
 
 import { Pill, Target, TrendingUp, Shield, Clock, Users } from 'lucide-react';
-import ZetaOracleInAction from '../../../components/deck/slides/ZetaOracleInAction';
-import OracleExplainTrack from '../../../components/site/blocks/OracleExplainTrack';
-import ForgeAssets from '../../../components/site/blocks/ForgeAssets';
+// import ZetaOracleInAction from '../../../components/deck/slides/ZetaOracleInAction';
+// import OracleExplainTrack from '../../../components/site/blocks/OracleExplainTrack';
+// import ForgeAssets from '../../../components/site/blocks/ForgeAssets';
 
 const chemotherapyDrugFitSlides = [
   {
@@ -52,33 +52,33 @@ const chemotherapyDrugFitSlides = [
     notes: "Establishes the chemotherapy optimization challenge using real CrisPRO.ai performance metrics."
   },
 
-  {
-    title: "Oracle Analysis: Genomic Variant Classification",
-    subtitle: "95.7% AUROC ClinVar validation for variant impact prediction",
-    titleClassName: "from-cyan-400 to-blue-300",
-    content: {
-      type: 'custom',
-      render: () => (
-        <ZetaOracleInAction
-          left={{ 
-            title: 'Traditional Approach', 
-            value: 'VUS Classification', 
-            subtitle: '(Variants of Uncertain Significance)' 
-          }}
-          right={{ 
-            title: 'Oracle Analysis', 
-            value: '95.7% AUROC', 
-            subtitle: '(ClinVar-validated performance)' 
-          }}
-          score={{ 
-            title: 'ClinVar AUROC', 
-            value: '0.957' 
-          }}
-        />
-      )
-    },
-    notes: "Shows real CrisPRO.ai performance on ClinVar variant classification - the foundation for genomic analysis."
-  },
+  // {
+  //   title: "Oracle Analysis: Genomic Variant Classification",
+  //   subtitle: "95.7% AUROC ClinVar validation for variant impact prediction",
+  //   titleClassName: "from-cyan-400 to-blue-300",
+  //   content: {
+  //     type: 'custom',
+  //     render: () => (
+  //       <ZetaOracleInAction
+  //         left={{ 
+  //           title: 'Traditional Approach', 
+  //           value: 'VUS Classification', 
+  //           subtitle: '(Variants of Uncertain Significance)' 
+  //         }}
+  //         right={{ 
+  //           title: 'Oracle Analysis', 
+  //           value: '95.7% AUROC', 
+  //           subtitle: '(ClinVar-validated performance)' 
+  //         }}
+  //         score={{ 
+  //           title: 'ClinVar AUROC', 
+  //           value: '0.957' 
+  //         }}
+  //       />
+  //     )
+  //   },
+  //   notes: "Shows real CrisPRO.ai performance on ClinVar variant classification - the foundation for genomic analysis."
+  // },
 
   {
     title: "What 95.7% AUROC Means for Genomic Analysis",

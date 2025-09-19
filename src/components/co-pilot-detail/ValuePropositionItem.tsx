@@ -16,7 +16,7 @@ const ValuePropositionItem: React.FC<ValuePropositionItemProps> = ({ valuePropos
         {valueProposition.audience}
       </h4>
       <ul className="space-y-4">
-        {valueProposition.points.map((point, index) => (
+        {valueProposition.points.map((point: any, index: number) => (
           <li key={index} className="flex items-start">
             <CheckCircle className="text-primary mr-4 mt-1.5 flex-shrink-0" size={24} />
             <div 

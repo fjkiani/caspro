@@ -7,7 +7,7 @@ import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import FloatingToggleButton from "@/components/ui/FloatingToggleButton";
+// import FloatingToggleButton from "@/components/ui/FloatingToggleButton";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { JsonLd, organizationSchema } from "@/components/SEO/JsonLd";
 
@@ -111,9 +111,9 @@ export default function RootLayout({
       <body className={`${inter.className} flex flex-col min-h-screen bg-background`}>
         <ThemeProvider>
           <Navbar />
-          <FloatingToggleButton href="/platform">
+          {/* <FloatingToggleButton href="/platform">
             Research Use Only
-          </FloatingToggleButton>
+          </FloatingToggleButton> */}
           <main className="flex-grow">
             {children}
           </main>

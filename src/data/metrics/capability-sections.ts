@@ -1,6 +1,13 @@
-import { CapabilitySection } from './types';
 import { performanceMetrics } from './performance-metrics';
 import { businessImpacts } from './business-impacts';
+
+interface CapabilitySection {
+  title: string;
+  subtitle: string;
+  description: string;
+  metrics: any[];
+  businessImpacts: any[];
+}
 
 // Capability Sections
 export const capabilitySections: CapabilitySection[] = [

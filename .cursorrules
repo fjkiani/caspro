@@ -1,100 +1,161 @@
-# Oncology Learn Section Refactoring Plan
+---
+alwaysApply: true
+---
+instructions
+During you interaction with the user, if you find anything reusable in this project (e.g. version of a library, model name), especially about a fix to a mistake you made or a correction you received, you should take note in the Lessons section in the .cursorrules file so you will not make the same mistake again.
 
-The goal is to refactor the static `file.html` into a dynamic, component-based structure within the Next.js application under a new `/learn` tab. This will improve maintainability, scalability, and reusability.
+You should also use the .cursorrules file as a scratchpad to organize your thoughts. Especially when you receive a new task, you should first review the content of the scratchpad, clear old different task if necessary, first explain the task, and plan the steps you need to take to complete the task. You can use todo markers to indicate the progress, e.g. [X] Task 1 [ ] Task 2
 
-## 1. Understand Existing Content
+Also update the progress of the task in the Scratchpad when you finish a subtask. Especially when you finished a milestone, it will help to improve your depth of task accomplishment to use the scratchpad to reflect and plan. The goal is to help you maintain a big picture as well as the progress of the task. Always refer to the Scratchpad when you plan the next step.
 
-[X] Analyze the structure of `src/components/learn/file.html`.
-    - The document is divided into 12 parts, covering various aspects of oncology.
-    - It uses TailwindCSS for styling.
-    - It uses Chart.js for data visualization.
-    - It includes an interactive quiz at the end.
+Tools
+Note all the tools are in python. So in the case you need to do batch processing, you can always consult the python files and write your own script.
 
-## 2. Plan Component Architecture
+Screenshot Verification
+The screenshot verification workflow allows you to capture screenshots of web pages and verify their appearance using LLMs. The following tools are available:
 
-We will break down the page into a set of reusable React components.
+Screenshot Capture:
+venv/bin/python tools/screenshot_utils.py URL [--output OUTPUT] [--width WIDTH] [--height HEIGHT]
+LLM Verification with Images:
+venv/bin/python tools/llm_api.py --prompt "Your verification question" --provider {openai|anthropic} --image path/to/screenshot.png
+Example workflow:
 
-[ ] **Create a new directory `src/components/learn/` for these components.**
-    - `LearnLayout.tsx`: Main layout with sidebar navigation for topics.
-    - `TopicPage.tsx`: A component that renders a specific topic based on data.
-    - `SectionHeader.tsx`: A reusable component for section titles (e.g., "Part 1: Defining the Enemy").
-    - `ContentCard.tsx`: A generic card for displaying snippets of information.
-    - `ChartComponent.tsx`: A wrapper for Chart.js to render various charts.
-    - `Timeline.tsx`: For historical timelines (e.g., Metastasis Theory).
-    - `Quiz.tsx`: An interactive quiz component.
-    - `CancerProfileCard.tsx`: For the "In-Depth Profiles" section.
-    - `TNMCard.tsx`: For the TNM staging system display.
-    - `MetastasisCascadeStep.tsx`: For the steps of metastasis.
-    - `HallmarkCard.tsx`: For the hallmarks of cancer.
+from screenshot_utils import take_screenshot_sync
+from llm_api import query_llm
 
-## 3. Content Organization and Data Structure (Component-Based)
+# Take a screenshot
+screenshot_path = take_screenshot_sync('https://example.com', 'screenshot.png')
 
-Following the pattern from `investment-thesis` components, each topic will be a specialized React component with its own data and interactivity. We will NOT use Markdown for rich content.
+# Verify with LLM
+response = query_llm(
+    "What is the background color and title of this webpage?",
+    provider="openai",  # or "anthropic"
+    image_path=screenshot_path
+)
+print(response)
+LLM
+You always have an LLM at your side to help you with the task. For simple tasks, you could invoke the LLM by running the following command:
 
-[ ] **Create a `src/components/learn/topics/` directory for topic components.**
-    - `BiologyOfCancerSection.tsx`: Part 1 with interactive concept cards
-    - `GeneticsOfCancerSection.tsx`: Part 2 with Two-Hit Hypothesis visualization
-    - `HallmarksSection.tsx`: Part 3 with interactive hallmark cards
-    - `MetastasisSection.tsx`: Part 4 with charts, timeline, and cascade steps
-    - `StagingSection.tsx`: Part 5 with TNM cards and ecology visualization
-    - `ImagingSection.tsx`: Part 6 with modality cards and workflow
-    - `TreatmentsSection.tsx`: Part 7 with therapy type cards
-    - `ScaleSection.tsx`: Part 8 with Chart.js visualizations
-    - `AISection.tsx`: Part 9 with capability cards
-    - `ProfilesSection.tsx`: Part 10 with cancer profile cards and charts
-    - `PreventionSection.tsx`: Part 11 with strategy cards
-    - `QuizSection.tsx`: Part 12 with interactive quiz component
+venv/bin/python ./tools/llm_api.py --prompt "What is the capital of France?" --provider "anthropic"
+The LLM API supports multiple providers:
 
-[ ] **Create shared component library in `src/components/learn/shared/`:**
-    - `LearnLayout.tsx`: Main layout with sidebar navigation
-    - `SectionHeader.tsx`: Consistent section headers
-    - `ConceptCard.tsx`: For displaying key concepts
-    - `ChartWrapper.tsx`: Chart.js integration
-    - `InteractiveTimeline.tsx`: For historical events
-    - `QuizComponent.tsx`: Reusable quiz functionality
+OpenAI (default, model: gpt-4o)
+Azure OpenAI (model: configured via AZURE_OPENAI_MODEL_DEPLOYMENT in .env file, defaults to gpt-4o-ms)
+DeepSeek (model: deepseek-chat)
+Anthropic (model: claude-3-sonnet-20240229)
+Gemini (model: gemini-1.5-pro)
+Local LLM (model: Qwen/Qwen2.5-32B-Instruct-AWQ)
+But usually it's a better idea to check the content of the file and use the APIs in the tools/llm_api.py file to invoke the LLM if needed.
 
-[ ] **Create data files in `src/data/learn/oncology-101/`:**
-    - `biology-concepts.ts`: Core cancer concepts data
-    - `genetics-data.ts`: Two-hit hypothesis and gene data
-    - `hallmarks-data.ts`: Array of hallmark objects
-    - `metastasis-data.ts`: Charts, timeline, cascade steps
-    - `staging-data.ts`: TNM system and ecology data
-    - `treatments-data.ts`: Treatment modalities data
-    - `charts-data.ts`: All Chart.js configurations
-    - `cancer-profiles-data.ts`: Cancer profile objects
-    - `quiz-data.ts`: Quiz questions and answers
+Web browser
+You could use the tools/web_scraper.py file to scrape the web.
 
-[ ] **Create a central `modules.ts` file.** This will define the top-level learning modules and map topics to their component files.
+venv/bin/python ./tools/web_scraper.py --max-concurrent 3 URL1 URL2 URL3
+This will output the content of the web pages.
 
-## 4. Navigation and Routing (Hierarchical)
+Search engine
+You could use the tools/search_engine.py file to search the web.
 
-[ ] **Set up hierarchical routing.**
-    - `src/app/learn/page.tsx`: The main landing page, listing all available **modules**.
-    - `src/app/learn/[moduleSlug]/page.tsx`: A page for a specific module, listing all its **topics**.
-    - `src/app/learn/[moduleSlug]/[topicSlug]/page.tsx`: The dynamic page that renders the appropriate topic component.
-    - Update the main `Navbar.tsx` to include a "Learn" tab linking to `/learn`.
+venv/bin/python ./tools/search_engine.py "your search keywords"
+This will output the search results in the following format:
 
-## 5. Implementation Steps (TODO)
+URL: https://example.com
+Title: This is the title of the search result
+Snippet: This is a snippet of the search result
+If needed, you can further use the web_scraper.py file to scrape the web page content.
 
-[X] 1. Set up the basic file structure (`/learn` route, `/components/learn`, `/data/learn/oncology-101`).
-[X] 2. Create the main `Navbar.tsx` link to `/learn`.
-[X] 3. Create the `LearnLayout.tsx` with a placeholder sidebar and content area.
-[X] 4. Migrate one topic (e.g., Part 1: Biology of Cancer) as a proof of concept.
-    - [X] Create `src/data/learn/oncology-101/biology-concepts.ts`.
-    - [X] Create `src/components/learn/topics/BiologyOfCancerSection.tsx`.
-    - [X] Create `src/components/learn/shared/ConceptCard.tsx`.
-    - [X] Update `modules.ts` with component mapping.
-    - [X] Build the `/learn/oncology-101/biology-of-cancer` page to render the component.
-[ ] 5. Migrate the remaining topics one by one.
-    - [ ] Hallmarks of Cancer (requires `HallmarksSection.tsx` and `HallmarkCard.tsx`)
-    - [ ] Metastasis section (requires `MetastasisSection.tsx`, `ChartWrapper.tsx`, `InteractiveTimeline.tsx`)
-    - [ ] Staging & Ecology (requires `StagingSection.tsx` and `TNMCard.tsx`)
-    - [ ] Cancer Profiles (requires `ProfilesSection.tsx` and `CancerProfileCard.tsx`)
-    - [ ] Quiz (requires `QuizSection.tsx` and `QuizComponent.tsx`)
-[X] 6. Implement the main `/learn` landing page to list all modules.
-[X] 7. Implement the module page at `/learn/[moduleSlug]` to list its topics.
-[ ] 8. Enhance `LearnLayout`'s sidebar to show topics for the current module.
-[ ] 9. Delete the old `src/components/learn/file.html`.
-[ ] 10. Review and refine styles.
+Cursor learned
+=======
 
 
+Scratchpad
+==========
+## TASK: Strategic Data Migration from src2 to main codebase
+**GOAL**: Migrate Oracle, Forge, Boltz capabilities and slide decks while maintaining modularity
+
+### Current State Analysis:
+- [X] Identified src2/data structure with existing content
+- [X] Found existing endpoints in discriminativeAIContent.ts, forgeGenerativeAPIs.ts, etc.
+- [ ] MISTAKE: Started hard-coding instead of using existing data structures
+- [ ] Need to understand what already exists vs what needs migration
+
+### Next Steps:
+1. [X] Audit existing src2/data files to understand current structure
+2. [ ] Create migration plan that REUSES existing data, doesn't recreate
+3. [ ] Identify gaps between src2 and main codebase
+4. [ ] Create modular migration strategy
+
+### AUDIT FINDINGS:
+**Existing Data Structure in src2/data:**
+- discriminativeAIContent.ts - Complete Oracle endpoints with REAL metrics
+- forgeGenerativeAPIs.ts - Complete Forge endpoints with simulations
+- forgeCapabilities.ts - Forge multi-modal capabilities
+- oracleCapabilities.ts - Oracle multi-modal predictions
+- dossierSummaries.ts - API result summaries
+- multiModalContexts.ts - Business context for biotech/clinical
+- Slide decks in decks/ folder (oracle-showcase.tsx, forge-showcase.tsx, etc.)
+- Use cases in useCases/ (discriminative.ts, generative.ts)
+
+**MIGRATION STRATEGY:**
+Phase 1: Direct file migration (copy + adapt imports) ✅
+Phase 2: Create adapter layer for component integration ✅
+Phase 3: Integrate with existing homepage components
+
+### STRATEGIC MISSION EXECUTION:
+**Phase 1 - DATA FOUNDATION ✅:**
+- ✅ Migrated Oracle discriminative intelligence (95.7% AUROC, 73% VUS resolution)
+- ✅ Migrated Forge generative capabilities (70% Pfam-hit rate, AlphaFold 3 validation)
+- ✅ Created modular adapter system for component integration
+- ✅ Eliminated component dependencies - pure data architecture
+
+**Phase 2 - PRODUCT DEMONSTRATION ✅:**
+- ✅ Oracle product page (/products/oracle) - WORKING with real metrics
+- ✅ Homepage integration component (OracleShowcase) using adapters
+- ✅ Fixed all runtime errors - EssentialityChart resolved
+
+**Phase 3 - BILLION DOLLAR EXECUTION (CURRENT):**
+- [ ] Complete remaining data migrations (Boltz, Command Center, Use Cases)
+- [ ] Transform homepage with drug development doctrine 
+- [ ] Replace static demos with interactive simulations using migrated data
+- [ ] Create slide composition system for investor presentations
+- [ ] Integrate with existing clinical dossier and trial matching systems
+
+**STRATEGIC OBJECTIVE:** Transform CrisPRO.ai homepage into a LIVING DEMONSTRATION of our drug development transformation doctrine - replacing $2.6B gambling with mathematical certainty through Oracle + Forge + Boltz intelligence engines.
+
+### Lessons Learned:
+- Don't hard-code when data structures already exist
+- Always audit existing code before creating new structures
+- Take incremental steps, not massive code edits
+
+
+// New structure - following existing patterns but enhanced
+src/data/
+├── products/                    # Core product capabilities
+│   ├── oracle/                 # Discriminative AI content
+│   │   ├── capabilities.ts     # From oracleCapabilities.ts
+│   │   ├── content.ts          # From oracleContent.ts  
+│   │   ├── sample-data.ts      # From discriminativeAISampleData.ts
+│   │   └── use-cases.ts        # From useCases/discriminative.ts
+│   ├── forge/                  # Generative AI content
+│   │   ├── capabilities.ts     # From forgeCapabilities.ts
+│   │   ├── content.ts          # From forgeContent.ts
+│   │   ├── apis.ts             # From forgeGenerativeAPIs.ts
+│   │   └── use-cases.ts        # From useCases/generative.ts
+│   ├── boltz/                  # Structural validation
+│   │   └── content.ts          # From boltzContent.ts
+│   └── command-center/         # Orchestration
+│       └── content.ts          # From commandCenterContent.ts
+├── slides/                     # Pre-built slide decks
+│   ├── decks/                  # From src2/data/decks/
+│   ├── templates/              # Slide templates
+│   └── compositions/           # Dynamic slide compositions
+├── use-cases/                  # Integrated use cases
+│   ├── multiple-myeloma/       # From multipleMyeloma*.ts
+│   ├── breast-cancer/          # Extracted from content
+│   └── crispr-therapy/         # Extracted from content
+├── contexts/                   # Multi-modal contexts
+│   └── multi-modal.ts          # From multiModalContexts.ts
+└── adapters/                   # Content-component adapters
+    ├── oracle-adapter.ts       # Component binding
+    ├── forge-adapter.ts        # Component binding
+    └── slide-composer.ts       # Slide composition

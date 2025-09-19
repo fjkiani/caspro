@@ -64,7 +64,7 @@ export interface BiotechValueProp {
 // HERO SECTION - Drug Development Crisis & Solution
 export const HERO_DRUG_DEVELOPMENT = {
   crisis: {
-    title: "The $2.6 Billion Drug Development Crisis",
+    title: "From 90% Failure to Predictable Success",
     subtitle: "90% failure rate. 15-year timelines. Biotech R&D is gambling, not engineering.",
     statistics: [
       { label: "Failure Rate", value: "90%", description: "of drugs fail in development" },

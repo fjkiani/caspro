@@ -20,6 +20,9 @@ export interface TabbedInterfaceProps {
   sidebarTitle?: string;
   sidebarSubtitle?: string;
   footerContent?: React.ReactNode;
+  hideSidebarOnMobile?: boolean;
+  compactMode?: boolean;
+  showSidebar?: boolean;
 }
 
 const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
@@ -30,43 +33,65 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
   className = '',
   sidebarTitle = 'Navigation',
   sidebarSubtitle = 'Navigate sections',
-  footerContent
+  footerContent,
+  hideSidebarOnMobile = false,
+  compactMode = false,
+  showSidebar = true
 }) => {
   const [activeSection, setActiveSection] = useState(defaultTab || tabs[0]?.id || '');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // Scroll spy functionality
+  // Enhanced scroll spy functionality
   useEffect(() => {
+    // Find the scrollable container - try multiple selectors
+    const scrollContainer = document.querySelector('.dossier-content.overflow-y-auto') || 
+                           document.querySelector('.overflow-y-auto') ||
+                           document.querySelector('[data-scroll-container]');
+    
     const observerOptions = {
-      root: null,
-      rootMargin: '-20% 0px -60% 0px',
-      threshold: 0
+      root: scrollContainer, // Use the actual scrollable container
+      rootMargin: '-20% 0px -60% 0px', // Better detection zone
+      threshold: [0, 0.1, 0.3, 0.5, 0.7, 1.0] // More thresholds for better tracking
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      // Find the section with the highest intersection ratio
+      let maxRatio = 0;
+      let activeId = activeSection;
+
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+          maxRatio = entry.intersectionRatio;
           const sectionId = entry.target.getAttribute('data-section');
           if (sectionId && tabs.some(tab => tab.id === sectionId)) {
-            setActiveSection(sectionId);
-            window.history.replaceState(null, '', `#${sectionId}`);
+            activeId = sectionId;
           }
         }
       });
+
+      if (activeId !== activeSection && maxRatio > 0.1) {
+        setActiveSection(activeId);
+        window.history.replaceState(null, '', `#${activeId}`);
+      }
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    // Observe all sections
-    tabs.forEach(tab => {
-      const element = document.getElementById(tab.id);
-      if (element) {
-        observer.observe(element);
-      }
-    });
+    // Wait for DOM to be ready, then observe sections
+      const timeoutId = setTimeout(() => {
+        const elements = tabs.map(tab => document.getElementById(tab.id)).filter(Boolean);
+        elements.forEach(element => {
+          if (element) {
+            observer.observe(element);
+          }
+        });
+      }, 100);
 
-    return () => observer.disconnect();
-  }, [tabs]);
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, [tabs, activeSection]);
 
   // Handle URL hash changes
   useEffect(() => {
@@ -92,60 +117,17 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
 
   const renderContent = () => {
     return (
-      <div className="space-y-32">
-        {/* Overview Section */}
-        <section id="overview" data-section="overview" className="scroll-mt-8">
-          <div className="text-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-6xl font-extrabold text-slate-900 mb-6 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                {title}
-              </h1>
-              {subtitle && (
-                <p className="text-2xl text-slate-700 max-w-4xl mx-auto leading-relaxed">
-                  {subtitle}
-                </p>
-              )}
-            </motion.div>
-          </div>
-          
-          {/* Tab Overview Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tabs.slice(1).map((tab, index) => {
-              const Icon = tab.icon;
-              return (
-                <motion.div
-                  key={tab.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group"
-                  onClick={() => handleNavClick(tab.id)}
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg group-hover:scale-110 transition-transform">
-                      <Icon className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
-                      {tab.label}
-                    </h3>
-                  </div>
-                  <div className="mt-4 text-sm text-blue-600 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                    Explore section →
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* Individual Tab Sections */}
-        {tabs.slice(1).map((tab) => (
-          <section key={tab.id} id={tab.id} data-section={tab.id} className="scroll-mt-8">
-            {tab.content}
+      <div className="space-y-16">
+        {tabs.map((tab) => (
+          <section 
+            key={tab.id}
+            id={tab.id} 
+            data-section={tab.id} 
+            className="scroll-mt-8"
+          >
+            <div className="max-w-6xl mx-auto">
+              {tab.content}
+            </div>
           </section>
         ))}
       </div>
@@ -153,19 +135,22 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
   };
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 relative ${className}`}>
-      {/* Mobile Menu Button */}
-      <button
-        onClick={() => setSidebarOpen(!sidebarOpen)}
-        className="fixed top-6 left-6 z-50 lg:hidden bg-white rounded-full p-3 shadow-lg border border-slate-200 hover:shadow-xl transition-all"
-      >
-        {sidebarOpen ? <X className="w-6 h-6 text-slate-700" /> : <Menu className="w-6 h-6 text-slate-700" />}
-      </button>
+    <div className={`bg-gradient-to-br from-slate-50 via-white to-blue-50 relative ${className}`}>
+      {/* Mobile Menu Button - Only show if sidebar is enabled */}
+      {showSidebar && (
+        <button
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="fixed top-6 left-6 z-50 lg:hidden bg-white rounded-full p-3 shadow-lg border border-slate-200 hover:shadow-xl transition-all"
+        >
+          {sidebarOpen ? <X className="w-6 h-6 text-slate-700" /> : <Menu className="w-6 h-6 text-slate-700" />}
+        </button>
+      )}
 
-      {/* Floating Sidebar Navigation */}
-      <div className={`fixed left-6 top-1/2 -translate-y-1/2 z-40 transition-all duration-300 ${
-        sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-      }`}>
+      {/* Floating Sidebar Navigation - Only show if enabled */}
+      {showSidebar && (
+        <div className={`fixed left-6 top-1/2 -translate-y-1/2 z-40 transition-all duration-300 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        } ${hideSidebarOnMobile ? 'hidden lg:block' : ''}`}>
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/50 p-4 max-w-xs">
           {/* Header */}
           <div className="text-center mb-6 pb-4 border-b border-slate-200">
@@ -243,9 +228,10 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
           </div>
         </div>
       </div>
+      )}
 
-      {/* Mobile Overlay */}
-      {sidebarOpen && (
+      {/* Mobile Overlay - Only show if sidebar is enabled */}
+      {showSidebar && sidebarOpen && (
         <div 
           className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 lg:hidden"
           onClick={() => setSidebarOpen(false)}
@@ -253,8 +239,8 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
       )}
 
       {/* Main Content */}
-      <div className="w-full">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-24">
+      <div className="w-full lg:ml-80">
+        <div className="max-w-7xl mx-auto px-6 py-12 lg:px-12 lg:py-24">
           {renderContent()}
         </div>
       </div>

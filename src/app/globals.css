@@ -2,6 +2,33 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* Mobile Performance Optimizations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Reduce complex animations on mobile */
+  .animate-pulse {
+    animation-duration: 2s;
+  }
+  
+  /* Optimize transforms for mobile */
+  .transform {
+    will-change: transform;
+  }
+  
+  /* Reduce shadow complexity on mobile */
+  .shadow-2xl {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+}
+
 /* Custom styles for homepage tabbed interface */
 .homepage-tabbed-interface {
   /* Ensure full height and smooth scrolling */
@@ -187,4 +214,145 @@ html {
   padding: 4px 12px;
   border-radius: 9999px;
   font-size: 0.75rem;
+}
+
+/* Clinical Dossier specific styling */
+.clinical-dossier {
+  /* Ensure dossier is contained */
+  position: relative;
+  isolation: isolate;
+}
+
+.dossier-tabbed-interface {
+  /* Dossier-specific tab styling */
+  min-height: 600px;
+  max-height: 800px;
+  overflow: hidden;
+}
+
+.dossier-tabbed-interface .sidebar-nav {
+  /* Enhanced sidebar for dossier */
+  background: linear-gradient(to bottom, rgba(51, 65, 85, 0.95), rgba(71, 85, 105, 0.95));
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(148, 163, 184, 0.3);
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.dossier-tabbed-interface .sidebar-nav .nav-item {
+  /* Dossier nav item styling */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px;
+  margin: 2px 6px;
+  font-size: 0.875rem;
+}
+
+.dossier-tabbed-interface .sidebar-nav .nav-item:hover {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+  transform: translateX(2px);
+}
+
+.dossier-tabbed-interface .sidebar-nav .nav-item.active {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(147, 51, 234, 0.25));
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+}
+
+.dossier-tabbed-interface .content-area {
+  /* Dossier content area */
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 2rem;
+  background: linear-gradient(to bottom, #ffffff, #f8fafc);
+}
+
+/* Dossier content sections */
+.dossier-tabbed-interface .tab-content {
+  animation: dossierFadeIn 0.4s ease-out;
+}
+
+@keyframes dossierFadeIn {
+    from {
+      opacity: 0;
+    transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+/* Dossier header enhancements */
+.clinical-dossier h2 {
+  background: linear-gradient(135deg, #ffffff, #e2e8f0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dossier metric cards */
+.clinical-dossier .metric-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+
+.clinical-dossier .metric-card:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Dossier section headers */
+.clinical-dossier h3 {
+  color: #1e293b;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.clinical-dossier h4 {
+  color: #334155;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Dossier evidence cards */
+.clinical-dossier .evidence-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.clinical-dossier .evidence-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+/* Scrollbar styling for dossier */
+.dossier-tabbed-interface .content-area::-webkit-scrollbar,
+.dossier-tabbed-interface .sidebar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.dossier-tabbed-interface .content-area::-webkit-scrollbar-track,
+.dossier-tabbed-interface .sidebar-nav::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.1);
+  border-radius: 2px;
+}
+
+.dossier-tabbed-interface .content-area::-webkit-scrollbar-thumb,
+.dossier-tabbed-interface .sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 2px;
+}
+
+.dossier-tabbed-interface .content-area::-webkit-scrollbar-thumb:hover,
+.dossier-tabbed-interface .sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
 }

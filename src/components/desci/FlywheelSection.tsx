@@ -31,8 +31,7 @@ export const FlywheelSection = ({ theme = 'dark' }: { theme?: 'light' | 'dark' }
     <section id="flywheel" className="py-20">
       <SectionHeader 
         title="The AI-Powered Economic Flywheel" 
-        subtitle="Fueling a self-sustaining cycle of innovation and discovery." 
-        theme={theme}
+        subtitle="Fueling a self-sustaining cycle of innovation and discovery."
       />
       <div className="mt-16 grid lg:grid-cols-2 gap-16 items-center">
         <div className="space-y-8">

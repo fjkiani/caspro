@@ -18,34 +18,34 @@ const Brand = () => (
 );
 
 const DigitalSynapseBackground = () => {
-    const mountRef = useRef(null);
+    const mountRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         const currentMount = mountRef.current;
         if (!currentMount) return;
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, currentMount.clientWidth / currentMount.clientHeight, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(75, (currentMount as HTMLDivElement).clientWidth / (currentMount as HTMLDivElement).clientHeight, 0.1, 1000);
         camera.position.z = 50;
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
+        renderer.setSize((currentMount as HTMLDivElement).clientWidth, (currentMount as HTMLDivElement).clientHeight);
         currentMount.appendChild(renderer.domElement);
-        const nodes = [];
+        const nodes: (THREE.Mesh & { velocity: THREE.Vector3 })[] = [];
         const nodeGeometry = new THREE.SphereGeometry(0.3, 16, 16);
         const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x64748b, transparent: true, opacity: 0.6 });
         for (let i = 0; i < 150; i++) {
             const node = new THREE.Mesh(nodeGeometry, nodeMaterial.clone());
             node.position.set((Math.random() - 0.5) * 120, (Math.random() - 0.5) * 120, (Math.random() - 0.5) * 120);
-            node.velocity = new THREE.Vector3((Math.random() - 0.5) * 0.08, (Math.random() - 0.5) * 0.08, (Math.random() - 0.5) * 0.08);
-            nodes.push(node);
+            (node as any).velocity = new THREE.Vector3((Math.random() - 0.5) * 0.08, (Math.random() - 0.5) * 0.08, (Math.random() - 0.5) * 0.08);
+            nodes.push(node as any);
             scene.add(node);
         }
         const lines = new THREE.Group();
         scene.add(lines);
-        let animationFrameId;
+        let animationFrameId: number;
         const animate = () => {
             animationFrameId = requestAnimationFrame(animate);
             lines.children.forEach(line => {
-                line.material.opacity -= 0.015;
-                if (line.material.opacity <= 0) lines.remove(line);
+                (line as any).material.opacity -= 0.015;
+                if ((line as any).material.opacity <= 0) lines.remove(line);
             });
             nodes.forEach(node => {
                 node.position.add(node.velocity);
@@ -69,9 +69,9 @@ const DigitalSynapseBackground = () => {
         animate();
         const handleResize = () => {
              if (currentMount) {
-                camera.aspect = currentMount.clientWidth / currentMount.clientHeight;
+                camera.aspect = (currentMount as HTMLDivElement).clientWidth / (currentMount as HTMLDivElement).clientHeight;
                 camera.updateProjectionMatrix();
-                renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
+                renderer.setSize((currentMount as HTMLDivElement).clientWidth, (currentMount as HTMLDivElement).clientHeight);
             }
         };
         window.addEventListener('resize', handleResize);
@@ -86,7 +86,7 @@ const DigitalSynapseBackground = () => {
     return <div ref={mountRef} className="absolute inset-0 z-0 opacity-20"></div>;
 };
 
-const SlideLayout = ({ children, className = '' }) => (
+const SlideLayout = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
     <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className={`relative w-full h-full flex flex-col items-center justify-center text-center p-8 bg-gray-50 text-gray-800 overflow-hidden ${className}`}>
         <div className="relative z-10 w-full max-w-7xl space-y-12">
             {children}
@@ -94,7 +94,7 @@ const SlideLayout = ({ children, className = '' }) => (
     </motion.section>
 );
 
-const SlideHeader = ({ title, subtitle, titleClassName = '', isApi = false }) => (
+const SlideHeader = ({ title, subtitle, titleClassName = '', isApi = false }: { title: string; subtitle: string; titleClassName?: string; isApi?: boolean }) => (
     <div className="space-y-4">
         <h1 className={`text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r ${titleClassName}`}>
             {isApi ? <span className="font-mono bg-gray-200 text-gray-700 px-4 py-2 rounded-lg mr-4">{title}</span> : title}
@@ -105,14 +105,14 @@ const SlideHeader = ({ title, subtitle, titleClassName = '', isApi = false }) =>
     </div>
 );
 
-const StatCard = ({ value, label }) => (
+const StatCard = ({ value, label }: { value: string; label: string }) => (
     <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-lg">
         <p className="text-7xl font-black text-red-500">{value}</p>
         <p className="text-2xl text-slate-600 mt-2">{label}</p>
     </div>
 );
 
-const NavigationControls = ({ current, total, onPrev, onNext }) => (
+const NavigationControls = ({ current, total, onPrev, onNext }: { current: number; total: number; onPrev: () => void; onNext: () => void }) => (
     <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center space-x-2 bg-white/50 backdrop-blur-md p-2 rounded-full border border-slate-200 shadow-md">
         <button onClick={onPrev} className="px-4 py-2 text-slate-600 rounded-full hover:bg-slate-200/70 transition-colors">&larr;</button>
         <span className="text-slate-700 font-semibold text-sm">Slide {current + 1} / {total}</span>
@@ -120,7 +120,7 @@ const NavigationControls = ({ current, total, onPrev, onNext }) => (
     </div>
 );
 
-const DoctrineComparison = ({ title, subtitle, traditionalText, commands, evidenceText, icon, color }) => (
+const DoctrineComparison = ({ title, subtitle, traditionalText, commands, evidenceText, icon, color }: { title: string; subtitle: string; traditionalText: string; commands: any[]; evidenceText: string; icon: any; color: string }) => (
     <div className="text-left bg-white/80 backdrop-blur-sm p-8 rounded-3xl border border-slate-200 shadow-2xl">
         <div className="flex items-center mb-8">
             {React.createElement(icon, { size: 48, className: `mr-5 text-${color}-500`})}
@@ -150,7 +150,7 @@ const DoctrineComparison = ({ title, subtitle, traditionalText, commands, eviden
     </div>
 );
 
-const CommandCard = ({ command, description, color }) => (
+const CommandCard = ({ command, description, color }: { command: string; description: string; color: string }) => (
     <div className={`bg-white p-4 rounded-lg border-l-4 border-${color}-400 shadow-md`}>
         <p className={`text-lg font-semibold text-${color}-600 font-mono`}>{command}</p>
         <p className="text-slate-600 mt-1">{description}</p>
@@ -179,7 +179,7 @@ const ZetaScoreGauge = () => (
     </div>
 );
 
-const EvidenceCard = ({ metric, metricLabel, description, source }) => (
+const EvidenceCard = ({ metric, metricLabel, description, source }: { metric: string; metricLabel: string; description: string; source: string }) => (
     <div className="mt-10 border-t border-slate-200 pt-8 text-left">
         <h3 className="text-2xl font-bold text-slate-700 mb-4 flex items-center"><BookOpenCheck size={28} className="mr-3 text-slate-500"/> Evidence Protocol</h3>
         <div className="bg-slate-100 p-6 rounded-2xl flex items-center">
@@ -195,7 +195,7 @@ const EvidenceCard = ({ metric, metricLabel, description, source }) => (
     </div>
 );
 
-const PathOutcome = ({ score, color }) => (
+const PathOutcome = ({ score, color }: { score: string; color: string }) => (
     <div className={`p-6 rounded-xl bg-${color}-100 border-2 border-${color}-300 shadow-lg`}>
         <p className={`text-lg font-semibold text-${color}-700`}>Verified Outcome</p>
         <p className={`text-5xl font-bold font-mono text-${color}-800`}>{score}</p>
@@ -757,7 +757,7 @@ const App = () => {
     const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
     const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
     useEffect(() => {
-        const handleKeyDown = (event) => {
+        const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key === 'ArrowRight') nextSlide();
             else if (event.key === 'ArrowLeft') prevSlide();
         };

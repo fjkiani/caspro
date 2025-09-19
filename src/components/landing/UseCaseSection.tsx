@@ -73,7 +73,7 @@ const UseCaseSection: React.FC = () => {
                   </h4>
                   <div className="grid grid-cols-1 gap-3">
                     {metricGroups.slice(0, 2).map((group, groupIndex) => 
-                      group.benchmarks.slice(0, 1).map((benchmark, benchmarkIndex) => (
+                      ('benchmarks' in group ? group.benchmarks : []).slice(0, 1).map((benchmark, benchmarkIndex) => (
                         <div key={`${groupIndex}-${benchmarkIndex}`} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                           <span className="text-gray-700 font-medium">{benchmark.title}</span>
                           <span className="text-lg font-bold text-blue-600">

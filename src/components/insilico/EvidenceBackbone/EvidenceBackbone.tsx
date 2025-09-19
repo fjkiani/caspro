@@ -12,7 +12,7 @@ interface EvidenceMetricCardProps {
   index: number;
 }
 
-const iconMap: { [key: string]: LucideIcon } = {
+const iconMap: { [key: string]: React.ComponentType<any> } = {
   'default': Target,
   'brca1': CheckCircle,
   'non-coding': TrendingUp,

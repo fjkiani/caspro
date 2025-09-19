@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { modules } from '@/data/learn/modules';
+import { learnModules } from '@/data/learn/modules';
 import { Clock, CheckCircle } from 'lucide-react';
 
 interface LearnLayoutProps {
@@ -16,7 +16,7 @@ const LearnLayout: React.FC<LearnLayoutProps> = ({ children }) => {
   const moduleSlug = pathSegments[2];
   const topicSlug = pathSegments[3];
   
-  const currentModule = modules.find(m => m.slug === moduleSlug);
+  const currentModule = learnModules.find(m => m.slug === moduleSlug);
   
   // Progress tracking state
   const [readingProgress, setReadingProgress] = useState(0);

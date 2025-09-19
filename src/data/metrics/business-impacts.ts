@@ -1,6 +1,10 @@
-import { BusinessImpact } from './types';
-
 // Business Impact Metrics
+interface BusinessImpact {
+  metric: string;
+  value: string;
+  description: string;
+  category: string;
+}
 export const businessImpacts: BusinessImpact[] = [
   {
     metric: "VUS Rate Reduction",

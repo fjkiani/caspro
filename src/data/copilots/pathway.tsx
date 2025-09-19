@@ -1,4 +1,6 @@
 
+import { CoPilotDetailContent } from '../../types/copilot-types';
+
 // # Pathway View – Execution Doctrine (Aug 2025)
 
 // This rule describes how to deliver a live Pathway card now using our existing mapping inside the efficacy stack with transparent provenance.
@@ -78,11 +80,41 @@ export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
     ],
 
     observedOutcomes: [
-      'Stable top‑3 pathways; fewer reorders on re‑run',
-      'Clear therapy alignment hints reduce discussion time',
-      'Confidence +0.07 median lift with chips and cohort overlay',
-      'Tier promotions when pathway aligns and evidence present',
-      'One‑pager improves board prep speed and consistency'
+      {
+        title: 'Stable Pathway Rankings',
+        keyMetric: 'Fewer reorders on re-run',
+        description: 'Stable top‑3 pathways; fewer reorders on re‑run',
+        icon: 'TrendingUp',
+        color: 'blue'
+      },
+      {
+        title: 'Clear Therapy Alignment',
+        keyMetric: 'Reduced discussion time',
+        description: 'Clear therapy alignment hints reduce discussion time',
+        icon: 'Target',
+        color: 'teal'
+      },
+      {
+        title: 'Confidence Boost',
+        keyMetric: '+0.07 median lift',
+        description: 'Confidence +0.07 median lift with chips and cohort overlay',
+        icon: 'Shield',
+        color: 'indigo'
+      },
+      {
+        title: 'Tier Promotions',
+        keyMetric: 'Evidence-driven upgrades',
+        description: 'Tier promotions when pathway aligns and evidence present',
+        icon: 'ArrowUp',
+        color: 'purple'
+      },
+      {
+        title: 'Board Prep Efficiency',
+        keyMetric: 'Improved speed and consistency',
+        description: 'One‑pager improves board prep speed and consistency',
+        icon: 'FileText',
+        color: 'blue'
+      }
     ],
 
     genomicInsightsOverview: "Our live stack (research‑mode) produces a compact Pathway card: top pathways with contribution bars, one‑line ‘why,’ and a small therapy alignment hint—plus run ID and profile.",

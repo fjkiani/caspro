@@ -40,7 +40,7 @@ export default function ValuePropositionFlywheel({ valuePropositionSections }: V
                 <div>
                   <h3 className="text-xl font-bold text-slate-800 mb-2">{section.audience}</h3>
                   <ul className="space-y-2">
-                    {section.points.map((point, pointIndex) => (
+                    {section.points.map((point: any, pointIndex: number) => (
                       <li key={pointIndex} className="flex items-start gap-2">
                         <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
                         <MarkdownText 

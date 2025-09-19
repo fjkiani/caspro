@@ -6,7 +6,7 @@ export const precisionRadJourney: CapabilityJourneyData = {
   subtitle: 'From one-size-fits-all radiation to genetically-informed, personalized radiotherapy. (Content Coming Soon)',
   oldWaySteps: [
     {
-      id: 'old-1',
+      number: 1,
       title: 'Imaging-Only Planning',
       description: 'Radiation planning is based primarily on anatomical imaging, ignoring the underlying genetic factors that determine tumor sensitivity.',
       icon: Radio,
@@ -19,7 +19,7 @@ export const precisionRadJourney: CapabilityJourneyData = {
   ],
   newWaySteps: [
     {
-      id: 'new-1',
+      number: 1,
       title: 'Radio-Genomic Planning',
       description: 'CrisPRO integrates genomic insights to predict radiosensitivity, allowing for personalized treatment plans that maximize efficacy and minimize toxicity.',
       icon: Radio,

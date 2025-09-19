@@ -55,8 +55,8 @@ const TabbedDoctrineInsights: React.FC<TabbedDoctrineInsightsProps> = ({ content
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Our operational approach delivers multi-stage precision with cascading strategic advantages. 
             Each capability builds upon the last, creating overwhelming competitive superiority.
-          </p> */}
-        </div>
+          </p>
+        </div> */}
 
         {/* Strategic Overview Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -166,7 +166,10 @@ const TabbedDoctrineInsights: React.FC<TabbedDoctrineInsightsProps> = ({ content
                   <h5 className="font-semibold text-sky-600">Technical Approach</h5>
                 </div>
                 <p className="text-slate-700 text-sm leading-relaxed">
-                  {activeCapability.technical}
+                  {typeof activeCapability.technical === 'string' 
+                    ? activeCapability.technical
+                    : activeCapability.technical.description
+                  }
                 </p>
               </div>
               
@@ -177,7 +180,10 @@ const TabbedDoctrineInsights: React.FC<TabbedDoctrineInsightsProps> = ({ content
                   <h5 className="font-semibold text-teal-600">Scientific Impact</h5>
                 </div>
                 <p className="text-slate-700 text-sm leading-relaxed">
-                  {activeCapability.scientific}
+                  {typeof activeCapability.scientific === 'string' 
+                    ? activeCapability.scientific
+                    : activeCapability.scientific.description
+                  }
                 </p>
               </div>
               
@@ -188,7 +194,10 @@ const TabbedDoctrineInsights: React.FC<TabbedDoctrineInsightsProps> = ({ content
                   <h5 className="font-semibold text-indigo-600">Business Value</h5>
                 </div>
                 <p className="text-slate-700 text-sm leading-relaxed">
-                  {activeCapability.business}
+                  {typeof activeCapability.business === 'string' 
+                    ? activeCapability.business
+                    : activeCapability.business.description
+                  }
                 </p>
               </div>
             </div>

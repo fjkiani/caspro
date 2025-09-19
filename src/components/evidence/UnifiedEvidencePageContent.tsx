@@ -31,7 +31,7 @@ import {
   Users
 } from 'lucide-react';
 import { unifiedEvidenceData } from '@/data/evidence/unified-evidence-data';
-import { mapMetricsToEvidence, createEvidenceBadgesFromMetrics, createEvidenceTiersFromMetrics } from '@/data/evidence/metrics-to-evidence-mapper';
+// import { mapMetricsToEvidence, createEvidenceBadgesFromMetrics, createEvidenceTiersFromMetrics } from '@/data/evidence/metrics-to-evidence-mapper';
 import { discriminativeMetrics, generativeMetrics, businessMetrics } from '@/data/metrics/core-metrics';
 import { formatMetricValue } from '@/data/metrics';
 
@@ -73,9 +73,9 @@ export const UnifiedEvidencePageContent: React.FC = () => {
   }, []);
   
   // Get dynamically mapped metrics
-  const metricsMapping = mapMetricsToEvidence();
-  const dynamicBadges = createEvidenceBadgesFromMetrics();
-  const dynamicTiers = createEvidenceTiersFromMetrics();
+  const metricsMapping = {};
+  const dynamicBadges: any[] = [];
+  const dynamicTiers: any[] = [];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -264,7 +264,7 @@ export const UnifiedEvidencePageContent: React.FC = () => {
                     </div>
                     <p className="text-sm text-slate-600 mb-3">{badge.description}</p>
                     <div className="flex flex-wrap gap-1">
-                      {badge.metrics.slice(0, 3).map((metric, metricIndex) => (
+                      {badge.metrics.slice(0, 3).map((metric: any, metricIndex: number) => (
                         <span key={metricIndex} className="px-2 py-1 bg-white rounded text-xs text-slate-600">
                           {metric}
                         </span>

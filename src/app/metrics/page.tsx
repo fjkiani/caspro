@@ -188,11 +188,11 @@ const MetricSectionContent: React.FC<{ metric: any }> = ({ metric }) => {
                       </motion.li>
                     ))}
                   </ul>
-                </motion.div>
+          </motion.div>
               )}
               
               {metric.delivered && (
-                <motion.div 
+                <motion.div
                   className="relative bg-white p-8 rounded-2xl shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300"
                   whileHover={{ y: -4 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -203,9 +203,9 @@ const MetricSectionContent: React.FC<{ metric: any }> = ({ metric }) => {
                   <div className="flex items-center gap-3 mb-6">
                     <div className="p-3 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-xl shadow-lg">
                       <TrendingUp className="w-6 h-6 text-white"/>
-                    </div>
+                      </div>
                     <h4 className="text-2xl font-bold text-slate-800">What We Deliver</h4>
-                  </div>
+                          </div>
                   <ul className="space-y-4">
                     {metric.delivered.map((item: string, index: number) => (
                       <motion.li 
@@ -255,8 +255,8 @@ const MetricSectionContent: React.FC<{ metric: any }> = ({ metric }) => {
                 </motion.div>
               )}
             </div>
-          </div>
-        </section>
+        </div>
+      </section>
       )}
     </div>
   );

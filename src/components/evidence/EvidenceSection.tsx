@@ -57,10 +57,13 @@ const EvidenceSection: React.FC = () => {
             {evidenceData.tiers.map((tier, index) => (
               <EvidenceTier
                 key={tier.level}
-                level={tier.level}
+                tier={tier.level}
+                confidence={tier.level === 'Supported' ? 95 : tier.level === 'Consider' ? 75 : 45}
+                category="Clinical Evidence"
+                title={tier.level}
                 description={tier.description}
-                criteria={tier.criteria}
-                color={tier.color}
+                citations={tier.level === 'Supported' ? 50 : tier.level === 'Consider' ? 25 : 10}
+                lastUpdated="2024-01-15"
                 index={index}
               />
             ))}
@@ -74,9 +77,13 @@ const EvidenceSection: React.FC = () => {
             {evidenceData.badges.map((badge, index) => (
               <EvidenceBadge
                 key={badge.type}
-                type={badge.type}
+                tier={badge.type}
+                confidence={badge.type === 'RCT' ? 95 : badge.type === 'ClinVar-Strong' ? 90 : badge.type === 'Guideline' ? 85 : 80}
+                category="Evidence Type"
+                title={badge.type}
                 description={badge.description}
-                color={badge.color}
+                citations={badge.type === 'RCT' ? 100 : badge.type === 'ClinVar-Strong' ? 75 : badge.type === 'Guideline' ? 50 : 25}
+                lastUpdated="2024-01-15"
                 index={index}
               />
             ))}

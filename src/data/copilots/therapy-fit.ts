@@ -1,4 +1,6 @@
 
+import { CoPilotDetailContent } from '../../types/copilot-types';
+
 // # Therapy Fit – Execution Doctrine (Aug 2025)
 
 // This rule describes how to deliver drug ranking now using our existing Oncology Co‑Pilot stack with transparent provenance.
@@ -92,11 +94,41 @@ export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
     ],
 
     observedOutcomes: [
-      'Tier promotions: Insufficient→Consider ~30–45%; Consider→Supported ~10–20% (when evidence aligns)',
-      'Confidence +0.08 median lift with supportive chips and cohort overlays',
-      'Pathway‑Aligned badge more frequent; steadier class rankings',
-      'Decision time reduced 50–70% with shareable one‑pager',
-      'Fusion used when eligible; +0.03–0.07 confidence lift'
+      {
+        title: 'Tier Promotions',
+        keyMetric: '30–45% Insufficient→Consider',
+        description: 'Tier promotions: Insufficient→Consider ~30–45%; Consider→Supported ~10–20% (when evidence aligns)',
+        icon: 'ArrowUp',
+        color: 'blue'
+      },
+      {
+        title: 'Confidence Boost',
+        keyMetric: '+0.08 median lift',
+        description: 'Confidence +0.08 median lift with supportive chips and cohort overlays',
+        icon: 'Shield',
+        color: 'teal'
+      },
+      {
+        title: 'Pathway Alignment',
+        keyMetric: 'More frequent badges',
+        description: 'Pathway‑Aligned badge more frequent; steadier class rankings',
+        icon: 'Target',
+        color: 'indigo'
+      },
+      {
+        title: 'Decision Speed',
+        keyMetric: '50–70% faster',
+        description: 'Decision time reduced 50–70% with shareable one‑pager',
+        icon: 'Clock',
+        color: 'purple'
+      },
+      {
+        title: 'Fusion Utilization',
+        keyMetric: '+0.03–0.07 confidence lift',
+        description: 'Fusion used when eligible; +0.03–0.07 confidence lift',
+        icon: 'Zap',
+        color: 'blue'
+      }
     ],
 
     genomicInsightsOverview: "Our live stack (research‑mode) produces a compact ranked therapy table: class, score, confidence, short rationale, and citations—plus run ID and profile.",

@@ -22,4 +22,16 @@ export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
 export { chemoData, crisprIntelligenceData, clinicalTrialsData, pathwayData, therapyFitData, toxicityData };
 
 // Export types
-export type { CoPilotDetailContent, KeyCapability, CapabilityAspect, CapabilityComponent } from '../../types/copilot-types';
+export type { 
+  CoPilotDetailContent, 
+  KeyCapability, 
+  CapabilityAspect, 
+  CapabilityComponent, 
+  ValuePropositionSection,
+  GenomicUseCaseGridItem,
+  WorkflowStep,
+  InSilicoWorkflow,
+  KPI,
+  KPINarrative,
+  ObservedOutcome
+} from '../../types/copilot-types';

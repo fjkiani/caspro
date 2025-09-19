@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Target, Factory, Beaker, FlaskConical, Shield, ArrowUp, Play, Zap } from 'lucide-react';
+import { Target, Factory, Beaker, FlaskConical, Shield, ArrowUp, Play, Zap, FileText, X } from 'lucide-react';
 import APISimulationEngine, { SimulationConfig, SimulationResults } from '../core/APISimulationEngine';
 import ClinicalDossier from '../results/ClinicalDossier';
 
@@ -14,12 +14,15 @@ interface BridgingValleySimulationProps {
 
 const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
   className = '',
-  autoStart = false,
-  showStaticVersion = true
+  autoStart = false, // DON'T AUTO-START - USER MUST CLICK
+  showStaticVersion = true // SHOW STATIC VERSION FIRST
 }) => {
   const [simulationStarted, setSimulationStarted] = useState(false);
   const [simulationComplete, setSimulationComplete] = useState(false);
   const [results, setResults] = useState<SimulationResults>({});
+  const [showDossier, setShowDossier] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const dossierRef = useRef<HTMLDivElement>(null);
 
   // Define the 3-stage simulation configuration
   const simulationConfig: SimulationConfig = {
@@ -98,6 +101,22 @@ const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
   const handleSimulationComplete = useCallback((finalResults: SimulationResults) => {
     setResults(finalResults);
     setSimulationComplete(true);
+    setShowDossier(true); // SHOW DOSSIER ONLY AFTER SIMULATION COMPLETES
+    
+    // AUTO-SCROLL TO DOSSIER WHEN SIMULATION COMPLETES
+    setTimeout(() => {
+      const dossierElement = document.getElementById('target-validation-dossier');
+      if (dossierElement) {
+        // Scroll to the dossier with offset for better visibility
+        const elementPosition = dossierElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - 100; // 100px offset from top
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 1500); // Wait 1.5 seconds for animation to complete
   }, []);
 
   const handleSimulationError = useCallback((error: string) => {
@@ -120,12 +139,12 @@ const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
               <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
                 Bridging the Valley of Death
               </span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-4xl mx-auto mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-4xl mx-auto mb-6 sm:mb-8 leading-relaxed">
               Replacing ambiguity with a <strong>deterministic launchpad</strong> through AI-powered intelligence.
             </p>
 
@@ -133,7 +152,7 @@ const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={startSimulation}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300 mb-12"
+              className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300 mb-8 sm:mb-12 touch-manipulation text-sm sm:text-base"
             >
               <Zap className="w-5 h-5" />
               🚀 RUN LIVE SIMULATION
@@ -171,20 +190,20 @@ const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
                 <div className="absolute top-1/2 left-0 w-full h-1 bg-slate-200 -translate-y-8"></div>
                 <div className="absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-orange-400 -translate-y-8 opacity-75"></div>
                 
-                <div className="relative flex justify-between">
+                <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                   <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                     viewport={{ once: true }}
-                    className="w-1/3 px-4"
+                    className="w-full px-4"
                   >
-                    <div className="relative bg-white p-6 rounded-2xl border-2 border-blue-400 shadow-xl text-center h-full">
-                      <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-blue-500 text-white rounded-full w-16 h-16 flex items-center justify-center border-4 border-white">
-                        <Target size={32} />
+                    <div className="relative bg-white p-4 sm:p-6 rounded-2xl border-2 border-blue-400 shadow-xl text-center h-full">
+                      <div className="absolute -top-6 sm:-top-8 left-1/2 -translate-x-1/2 bg-blue-500 text-white rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center border-4 border-white">
+                        <Target size={24} className="sm:w-8 sm:h-8" />
                       </div>
-                      <h4 className="font-bold text-2xl text-gray-800 mt-8 mb-4">1. Target Validation</h4>
-                      <p className="text-lg text-slate-600 mb-4">
+                      <h4 className="font-bold text-lg sm:text-xl md:text-2xl text-gray-800 mt-6 sm:mt-8 mb-3 sm:mb-4">1. Target Validation</h4>
+                      <p className="text-sm sm:text-base md:text-lg text-slate-600 mb-3 sm:mb-4 leading-relaxed">
                         Replace years of exploration with a <strong>60-second in-silico verdict</strong>.
                       </p>
                       <div className="text-sm text-blue-600 font-semibold">
@@ -198,14 +217,14 @@ const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.5 }}
                     viewport={{ once: true }}
-                    className="w-1/3 px-4"
+                    className="w-full px-4"
                   >
-                    <div className="relative bg-white p-6 rounded-2xl border-2 border-purple-400 shadow-xl text-center h-full">
-                      <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-purple-500 text-white rounded-full w-16 h-16 flex items-center justify-center border-4 border-white">
-                        <Factory size={32} />
+                    <div className="relative bg-white p-4 sm:p-6 rounded-2xl border-2 border-purple-400 shadow-xl text-center h-full">
+                      <div className="absolute -top-6 sm:-top-8 left-1/2 -translate-x-1/2 bg-purple-500 text-white rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center border-4 border-white">
+                        <Factory size={24} className="sm:w-8 sm:h-8" />
                       </div>
-                      <h4 className="font-bold text-2xl text-gray-800 mt-8 mb-4">2. Lead Engineering</h4>
-                      <p className="text-lg text-slate-600 mb-4">
+                      <h4 className="font-bold text-lg sm:text-xl md:text-2xl text-gray-800 mt-6 sm:mt-8 mb-3 sm:mb-4">2. Lead Engineering</h4>
+                      <p className="text-sm sm:text-base md:text-lg text-slate-600 mb-3 sm:mb-4 leading-relaxed">
                         Make screening obsolete by <strong>engineering optimized leads</strong> from first principles.
                       </p>
                       <div className="text-sm text-purple-600 font-semibold">
@@ -219,14 +238,14 @@ const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.7 }}
                     viewport={{ once: true }}
-                    className="w-1/3 px-4"
+                    className="w-full px-4"
                   >
-                    <div className="relative bg-white p-6 rounded-2xl border-2 border-orange-400 shadow-xl text-center h-full">
-                      <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-orange-500 text-white rounded-full w-16 h-16 flex items-center justify-center border-4 border-white">
-                        <Beaker size={32} />
+                    <div className="relative bg-white p-4 sm:p-6 rounded-2xl border-2 border-orange-400 shadow-xl text-center h-full">
+                      <div className="absolute -top-6 sm:-top-8 left-1/2 -translate-x-1/2 bg-orange-500 text-white rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center border-4 border-white">
+                        <Beaker size={24} className="sm:w-8 sm:h-8" />
                       </div>
-                      <h4 className="font-bold text-2xl text-gray-800 mt-8 mb-4">3. Pre-Clinical Confirmation</h4>
-                      <p className="text-lg text-slate-600 mb-4">
+                      <h4 className="font-bold text-lg sm:text-xl md:text-2xl text-gray-800 mt-6 sm:mt-8 mb-3 sm:mb-4">3. Pre-Clinical Confirmation</h4>
+                      <p className="text-sm sm:text-base md:text-lg text-slate-600 mb-3 sm:mb-4 leading-relaxed">
                         Shift confirmation from expensive wet lab to <strong>near-zero-cost in-silico trial</strong>.
                       </p>
                       <div className="text-sm text-orange-600 font-semibold">
@@ -304,12 +323,31 @@ const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
           className="max-w-6xl mx-auto"
         />
 
+        {/* Dossier Toggle Button - Only show after simulation completes */}
+        {simulationComplete && (
+          <div className="flex justify-center mt-8">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowDossier(!showDossier)}
+              className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300"
+            >
+              <FileText className="w-5 h-5" />
+              {showDossier ? 'Hide' : 'View'} Target Validation Dossier
+              <ArrowUp className={`w-5 h-5 transition-transform ${showDossier ? 'rotate-180' : ''}`} />
+            </motion.button>
+          </div>
+        )}
+
         <AnimatePresence>
-          {simulationComplete && (
+          {showDossier && simulationComplete && (
             <motion.div
+              ref={dossierRef}
+              id="target-validation-dossier"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-12"
+              exit={{ opacity: 0, y: -20 }}
+              className="mt-12 w-full"
             >
               <ClinicalDossier
                 results={results}

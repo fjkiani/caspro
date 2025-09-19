@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 // Import slide deck components
-const CommandCard = ({ title, description, icon: Icon, color }) => (
+const CommandCard = ({ title, description, icon: Icon, color }: { title: string; description: string; icon: any; color: string }) => (
   <div className={`p-6 rounded-xl border-2 ${color} shadow-lg h-full flex flex-col`}>
     <div className="flex items-center gap-3 mb-4">
       <div className="p-2 bg-white rounded-lg shadow-sm">
@@ -28,7 +28,7 @@ const CommandCard = ({ title, description, icon: Icon, color }) => (
   </div>
 );
 
-const EvidenceCard = ({ metric, value, description, source }) => (
+const EvidenceCard = ({ metric, value, description, source }: { metric: string; value: string; description: string; source: string }) => (
   <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
     <div className="text-center">
       <div className="text-2xl font-bold text-blue-600 mb-1">{value}</div>

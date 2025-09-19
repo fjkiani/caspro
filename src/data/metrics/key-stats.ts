@@ -1,6 +1,7 @@
-import { KeyStats } from './types';
-
 // Key Statistics Summary
+interface KeyStats {
+  [key: string]: any;
+}
 export const keyStats: KeyStats = {
   totalVariants: 53210,
   aurocScore: 95.7,
