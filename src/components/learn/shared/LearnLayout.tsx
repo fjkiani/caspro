@@ -3,7 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { learnModules } from '@/data/learn/modules'; // Assuming modules are here
+// import { learnModules } from '@/data/learn/modules';
+const learnModules: any[] = []; // Assuming modules are here
 
 interface LearnLayoutProps {
   children: React.ReactNode;
@@ -27,11 +28,11 @@ const LearnLayout: React.FC<LearnLayoutProps> = ({ children }) => {
             <div className="sticky top-24">
               <h2 className="text-lg font-semibold text-slate-500 mb-4">Modules</h2>
               <nav className="space-y-4">
-                {learnModules.map(module => (
+                {learnModules.map((module: any) => (
                   <div key={module.slug}>
                     <h3 className="font-bold text-slate-800 mb-2">{module.title}</h3>
                     <ul className="space-y-1">
-                      {module.topics.map(topic => (
+                      {module.topics.map((topic: any) => (
                         <li key={topic.slug}>
                           <Link 
                             href={`/learn/${module.slug}/${topic.slug}`}

@@ -20,9 +20,7 @@ const BridgingValleyOfDeath: React.FC<BridgingValleyOfDeathProps> = ({ className
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-              Bridging the Valley of Death
-            </span>
+        
           </h2>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto mb-8">
             Replacing ambiguity with a <strong>deterministic launchpad</strong> through AI-powered intelligence.

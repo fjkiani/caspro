@@ -5,22 +5,22 @@ export const safetyMeasures: SafetyMeasure[] = [
   {
     title: "Viral Protein Exclusion",
     description: "Intentionally reduced capabilities on human viral proteins",
-    category: "Safety"
+    category: "safety"
   },
   {
     title: "Audit Trails",
     description: "Complete provenance with run IDs and citations",
-    category: "Transparency"
+    category: "governance"
   },
   {
     title: "Viral Prompt Guards",
     description: "Safety mechanisms for sequence screening",
-    category: "Safety"
+    category: "safety"
   },
   {
     title: "Research-Use-Only",
     description: "All outputs clearly labeled RUO",
-    category: "Compliance"
+    category: "governance"
   }
 ];
 
@@ -28,7 +28,7 @@ export const safetyMeasures: SafetyMeasure[] = [
 export const getSafetyMeasuresByCategory = (category: SafetyMeasure['category']) => 
   safetyMeasures.filter(measure => measure.category === category);
 
-export const getSafetyMeasures = () => getSafetyMeasuresByCategory('Safety');
-export const getTransparencyMeasures = () => getSafetyMeasuresByCategory('Transparency');
-export const getComplianceMeasures = () => getSafetyMeasuresByCategory('Compliance');
+export const getSafetyMeasures = () => getSafetyMeasuresByCategory('safety');
+export const getTransparencyMeasures = () => getSafetyMeasuresByCategory('governance');
+export const getComplianceMeasures = () => getSafetyMeasuresByCategory('governance');
 

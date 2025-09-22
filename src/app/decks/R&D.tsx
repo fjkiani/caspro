@@ -19,7 +19,7 @@ const Brand = () => (
 );
 
 const DigitalSynapseBackground = () => {
-    const mountRef = useRef(null);
+    const mountRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         const currentMount = mountRef.current;
         if (!currentMount) return;
@@ -29,30 +29,36 @@ const DigitalSynapseBackground = () => {
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
         currentMount.appendChild(renderer.domElement);
-        const nodes = [];
+        const nodes: THREE.Mesh[] = [];
         const nodeGeometry = new THREE.SphereGeometry(0.3, 16, 16);
         const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x64748b, transparent: true, opacity: 0.6 });
         for (let i = 0; i < 150; i++) {
             const node = new THREE.Mesh(nodeGeometry, nodeMaterial.clone());
             node.position.set((Math.random() - 0.5) * 120, (Math.random() - 0.5) * 120, (Math.random() - 0.5) * 120);
-            node.velocity = new THREE.Vector3((Math.random() - 0.5) * 0.08, (Math.random() - 0.5) * 0.08, (Math.random() - 0.5) * 0.08);
+            (node as any).velocity = new THREE.Vector3((Math.random() - 0.5) * 0.08, (Math.random() - 0.5) * 0.08, (Math.random() - 0.5) * 0.08);
             nodes.push(node);
             scene.add(node);
         }
         const lines = new THREE.Group();
         scene.add(lines);
-        let animationFrameId;
+        let animationFrameId: number;
         const animate = () => {
             animationFrameId = requestAnimationFrame(animate);
             lines.children.forEach(line => {
-                line.material.opacity -= 0.015;
-                if (line.material.opacity <= 0) lines.remove(line);
+                const mesh = line as THREE.Mesh;
+                if (mesh.material) {
+                    (mesh.material as THREE.Material).opacity -= 0.015;
+                    if ((mesh.material as THREE.Material).opacity <= 0) lines.remove(line);
+                }
             });
             nodes.forEach(node => {
-                node.position.add(node.velocity);
-                if (Math.abs(node.position.x) > 60) node.velocity.x *= -1;
-                if (Math.abs(node.position.y) > 60) node.velocity.y *= -1;
-                if (Math.abs(node.position.z) > 60) node.velocity.z *= -1;
+                const velocity = (node as any).velocity;
+                if (velocity) {
+                    node.position.add(velocity);
+                    if (Math.abs(node.position.x) > 60) velocity.x *= -1;
+                    if (Math.abs(node.position.y) > 60) velocity.y *= -1;
+                    if (Math.abs(node.position.z) > 60) velocity.z *= -1;
+                }
             });
             if (Math.random() > 0.96 && lines.children.length < 70) {
                 const node1 = nodes[Math.floor(Math.random() * nodes.length)];
@@ -78,7 +84,9 @@ const DigitalSynapseBackground = () => {
         window.addEventListener('resize', handleResize);
         return () => {
             window.removeEventListener('resize', handleResize);
-            cancelAnimationFrame(animationFrameId);
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
             if (currentMount && renderer.domElement) {
                 currentMount.removeChild(renderer.domElement);
             }
@@ -87,7 +95,7 @@ const DigitalSynapseBackground = () => {
     return <div ref={mountRef} className="absolute inset-0 z-0 opacity-20"></div>;
 };
 
-const SlideLayout = ({ children, className = '' }) => (
+const SlideLayout = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
     <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className={`relative w-full h-full flex flex-col items-center justify-center text-center p-8 bg-gray-50 text-gray-800 overflow-hidden ${className}`}>
         <div className="relative z-10 w-full max-w-7xl space-y-12">
             {children}
@@ -95,7 +103,7 @@ const SlideLayout = ({ children, className = '' }) => (
     </motion.section>
 );
 
-const SlideHeader = ({ title, subtitle, titleClassName = '', isApi = false }) => (
+const SlideHeader = ({ title, subtitle, titleClassName = '', isApi = false }: { title: string; subtitle: string; titleClassName?: string; isApi?: boolean }) => (
     <div className="space-y-4">
         <h1 className={`text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r ${titleClassName}`}>
             {isApi ? <span className="font-mono bg-gray-200 text-gray-700 px-4 py-2 rounded-lg mr-4">{title}</span> : title}
@@ -106,14 +114,14 @@ const SlideHeader = ({ title, subtitle, titleClassName = '', isApi = false }) =>
     </div>
 );
 
-const StatCard = ({ value, label }) => (
+const StatCard = ({ value, label }: { value: string; label: string }) => (
     <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-lg">
         <p className="text-7xl font-black text-red-500">{value}</p>
         <p className="text-2xl text-slate-600 mt-2">{label}</p>
     </div>
 );
 
-const NavigationControls = ({ current, total, onPrev, onNext }) => (
+const NavigationControls = ({ current, total, onPrev, onNext }: { current: number; total: number; onPrev: () => void; onNext: () => void }) => (
     <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center space-x-2 bg-white/50 backdrop-blur-md p-2 rounded-full border border-slate-200 shadow-md">
         <button onClick={onPrev} className="px-4 py-2 text-slate-600 rounded-full hover:bg-slate-200/70 transition-colors">&larr;</button>
         <span className="text-slate-700 font-semibold text-sm">Slide {current + 1} / {total}</span>
@@ -121,7 +129,7 @@ const NavigationControls = ({ current, total, onPrev, onNext }) => (
     </div>
 );
 
-const CommandCard = ({ command, description, color }) => (
+const CommandCard = ({ command, description, color }: { command: string; description: string; color: string }) => (
     <div className={`bg-white p-4 rounded-lg border-l-4 border-${color}-400 shadow-md`}>
         <p className={`text-lg font-semibold text-${color}-600 font-mono`}>{command}</p>
         <p className="text-slate-600 mt-1">{description}</p>
@@ -150,7 +158,7 @@ const ZetaScoreGauge = () => (
     </div>
 );
 
-const EvidenceCard = ({ metric, metricLabel, description, source, color = 'blue' }) => (
+const EvidenceCard = ({ metric, metricLabel, description, source, color = 'blue' }: { metric: string; metricLabel: string; description: string; source: string; color?: string }) => (
     <div className="mt-10 border-t border-slate-200 pt-8 text-left">
         <h3 className="text-2xl font-bold text-slate-700 mb-4 flex items-center"><BookOpenCheck size={28} className="mr-3 text-slate-500"/> Evidence Protocol</h3>
         <div className="bg-slate-100 p-6 rounded-2xl flex items-center">
@@ -166,7 +174,7 @@ const EvidenceCard = ({ metric, metricLabel, description, source, color = 'blue'
     </div>
 );
 
-const PathOutcome = ({ score, color }) => (
+const PathOutcome = ({ score, color }: { score: string; color: string }) => (
     <div className={`p-6 rounded-xl bg-${color}-100 border-2 border-${color}-300 shadow-lg`}>
         <p className={`text-lg font-semibold text-${color}-700`}>Verified Outcome</p>
         <p className={`text-5xl font-bold font-mono text-${color}-800`}>{score}</p>
@@ -195,7 +203,7 @@ const ScatterPlot = () => {
     );
 };
 
-const FailureGate = ({ question, answer, delay }) => (
+const FailureGate = ({ question, answer, delay }: { question: string; answer: string; delay: number }) => (
     <motion.div
         className="w-full max-w-xl"
         initial={{ opacity: 0, y: 30 }}
@@ -214,7 +222,7 @@ const FailureGate = ({ question, answer, delay }) => (
     </motion.div>
 );
 
-const Connector = ({ delay }) => (
+const Connector = ({ delay }: { delay: number }) => (
      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -224,7 +232,7 @@ const Connector = ({ delay }) => (
     </motion.div>
 );
 
-const EngineSegment = ({ icon: Icon, color, title, description, delay }) => (
+const EngineSegment = ({ icon: Icon, color, title, description, delay }: { icon: React.ComponentType<any>; color: string; title: string; description: string; delay: number }) => (
     <motion.div
         className="text-left"
         initial={{ opacity: 0, x: -30 }}
@@ -239,7 +247,7 @@ const EngineSegment = ({ icon: Icon, color, title, description, delay }) => (
     </motion.div>
 );
 
-const FunnelPoint = ({ number, label, delay }) => (
+const FunnelPoint = ({ number, label, delay }: { number: string; label: string; delay: number }) => (
     <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -255,7 +263,7 @@ const FunnelPoint = ({ number, label, delay }) => (
     </motion.div>
 );
 
-const InterventionPoint = ({ icon: Icon, color, title, subtitle, delay }) => (
+const InterventionPoint = ({ icon: Icon, color, title, subtitle, delay }: { icon: React.ComponentType<any>; color: string; title: string; subtitle: string; delay: number }) => (
     <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -276,7 +284,7 @@ const InterventionPoint = ({ icon: Icon, color, title, subtitle, delay }) => (
     </motion.div>
 );
 
-const ProcessStage = ({ text, color, delay, isFirst, isLast }) => {
+const ProcessStage = ({ text, color, delay, isFirst, isLast }: { text: string; color: string; delay: number; isFirst: boolean; isLast: boolean }) => {
     const baseClasses = `h-20 flex items-center justify-center font-semibold text-white text-lg relative px-8`;
     const shapeClasses = `
         before:content-[''] before:absolute before:top-0 before:right-[-2.5rem] before:w-0 before:h-0 
@@ -303,7 +311,7 @@ const ProcessStage = ({ text, color, delay, isFirst, isLast }) => {
     );
 };
 
-const DossierItem = ({ icon: Icon, text, color, delay }) => (
+const DossierItem = ({ icon: Icon, text, color, delay }: { icon: React.ComponentType<any>; text: string; color: string; delay: number }) => (
     <motion.div
         className="flex items-center"
         initial={{ opacity: 0, x: -20 }}
@@ -315,7 +323,7 @@ const DossierItem = ({ icon: Icon, text, color, delay }) => (
     </motion.div>
 );
 
-const PatientIcon = ({ isResponder, delay }) => (
+const PatientIcon = ({ isResponder, delay }: { isResponder: boolean; delay: number }) => (
     <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -1053,7 +1061,7 @@ const App = () => {
     const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
     const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
     useEffect(() => {
-        const handleKeyDown = (event) => {
+        const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key === 'ArrowRight') nextSlide();
             else if (event.key === 'ArrowLeft') prevSlide();
         };

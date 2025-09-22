@@ -99,9 +99,9 @@ const HeroSection = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => {
-                    const orchestratorSection = document.querySelector('#drug-development-orchestrator');
-                    if (orchestratorSection) {
-                      orchestratorSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const roiSection = document.querySelector('#roi-calculator');
+                    if (roiSection) {
+                      roiSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
                   className="btn-primary flex items-center justify-center gap-3 w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 touch-manipulation"

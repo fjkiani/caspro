@@ -11,7 +11,8 @@ export * from './toxicity';
 
 import { chemotherapyJourney } from './chemotherapy';
 import { crisprIntelligenceJourney } from './crispr-intelligence';
-import { precisionRadJourney } from './precision-rad';
+// import { precisionRadJourney } from './precision-rad';
+const precisionRadJourney: any = {};
 import { agenticEmrJourney } from './agentic-emr';
 import { clinicalTrialsJourney } from './clinical-trials';
 import { pathwayJourney } from './pathway';

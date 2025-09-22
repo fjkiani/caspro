@@ -18,7 +18,7 @@ export const performanceMetrics: PerformanceMetric[] = [
     samples: 34761,
     description: "Single nucleotide variants in non-coding regions",
     category: "discriminative",
-    isStateOfArt: true
+    isStateOfTheArt: true
   },
   {
     label: "Coding non-SNVs",
@@ -27,7 +27,7 @@ export const performanceMetrics: PerformanceMetric[] = [
     samples: 1236,
     description: "Non-single nucleotide variants in coding regions",
     category: "discriminative",
-    isStateOfArt: true
+    isStateOfTheArt: true
   },
   {
     label: "Non-coding non-SNVs",
@@ -164,7 +164,7 @@ export const getMetricsByCategory = (category: PerformanceMetric['category']) =>
   performanceMetrics.filter(metric => metric.category === category);
 
 export const getStateOfArtMetrics = () => 
-  performanceMetrics.filter(metric => metric.isStateOfArt);
+  performanceMetrics.filter(metric => metric.isStateOfTheArt);
 
 export const getMetricsByDataset = (dataset: string) => 
   performanceMetrics.filter(metric => metric.dataset === dataset);

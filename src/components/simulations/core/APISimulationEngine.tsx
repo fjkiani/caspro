@@ -356,49 +356,7 @@ const APISimulationEngine: React.FC<APISimulationEngineProps> = ({
         })}
       </div>
 
-      {/* Results Summary */}
-      <AnimatePresence>
-        {showResults && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="p-6 bg-green-50 dark:bg-green-900/20 border-2 border-green-500 rounded-xl"
-          >
-            <h4 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">
-              🎉 Simulation Complete!
-            </h4>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-              <div>
-                <div className="text-2xl font-bold text-green-600">
-                  {steps.filter(s => s.status === 'completed').length}
-                </div>
-                <div className="text-sm text-green-700 dark:text-green-300">
-                  Steps Completed
-                </div>
-              </div>
-              
-              <div>
-                <div className="text-2xl font-bold text-green-600">
-                  {Object.keys(results).length}
-                </div>
-                <div className="text-sm text-green-700 dark:text-green-300">
-                  API Calls
-                </div>
-              </div>
-              
-              <div>
-                <div className="text-2xl font-bold text-green-600">
-                  {adjustedTiming?.durations.total || config.steps.reduce((sum, step) => sum + step.duration, 0)}ms
-                </div>
-                <div className="text-sm text-green-700 dark:text-green-300">
-                  Total Time
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+     
     </div>
   );
 };

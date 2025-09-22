@@ -4,6 +4,10 @@
 export * from './oracle-adapter';
 export * from './forge-adapter';
 
+// Import functions for use in this file
+import { adaptOracleForHomepage } from './oracle-adapter';
+import { adaptForgeForHomepage } from './forge-adapter';
+
 // Discriminative AI (Oracle) exports
 export { 
   oracleContent, 

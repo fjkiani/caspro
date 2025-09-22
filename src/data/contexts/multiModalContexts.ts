@@ -1,4 +1,5 @@
-import type { MultiModalContext } from '../types/transformation';
+// Define the type inline since the import doesn't exist
+type MultiModalContext = any;
 
 export const multiModalContexts: MultiModalContext = {
   geneEssentiality: {

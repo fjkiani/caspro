@@ -239,7 +239,7 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
       )}
 
       {/* Main Content */}
-      <div className="w-full lg:ml-80">
+      <div className={`w-full ${showSidebar ? 'lg:ml-72' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 py-12 lg:px-12 lg:py-24">
           {renderContent()}
         </div>

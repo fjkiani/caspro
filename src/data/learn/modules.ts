@@ -12,7 +12,7 @@ export interface LearnModule {
   topics: LearnTopic[];
 }
 
-// Example structure - this will be populated as we build the components
+// Learn modules data
 export const learnModules: LearnModule[] = [
   {
     slug: 'oncology-101',
@@ -29,3 +29,5 @@ export const learnModules: LearnModule[] = [
     ],
   },
 ];
+
+export default learnModules;

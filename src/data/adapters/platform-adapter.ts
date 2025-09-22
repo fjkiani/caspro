@@ -3,82 +3,105 @@
 
 import { adaptOracleForHomepage } from './oracle-adapter';
 import { adaptForgeForHomepage } from './forge-adapter';
+import { boltzContent } from '../products/boltz/content';
+import { commandCenterContent } from '../products/command-center/content';
 
-// Boltz Structural Validation Engine
+// Boltz Structural Validation Engine - REAL user content
 export const adaptBoltzForHomepage = () => ({
-  name: 'Boltz: Structural Validation Engine',
-  description: '3D structural validation and binding affinity prediction with AlphaFold 3 integration',
-  capabilities: [
-    {
-      id: 'structural-validation',
-      title: '3D Structural Validation',
-      description: 'AlphaFold 3 integration for complex confidence scoring',
-      metrics: [
-        { value: '95.8%', label: 'Average Confidence', color: 'text-green-400' },
-        { value: '83%', label: 'High Confidence Threshold', color: 'text-blue-400' }
-      ]
-    },
-    {
-      id: 'binding-affinity',
-      title: 'Binding Affinity Prediction',
-      description: 'Therapeutic-target interaction analysis',
-      metrics: [
-        { value: 'Confirmed', label: '3D Structures', color: 'text-green-400' },
-        { value: 'Multi-Component', label: 'Validation', color: 'text-blue-400' }
-      ]
-    }
-  ],
+  // Use actual content data from user
+  content: boltzContent,
+  
+  // Basic info for homepage display
+  name: 'Boltz: 3D Structural Assessment',
+  description: boltzContent.about.oneLiner,
+  subtext: boltzContent.about.subtext,
+  
+  // Real metrics from user content
   metrics: {
-    confidenceThreshold: '83%',
-    averageConfidence: '95.8%',
-    structuralValidation: 'Confirmed plausible 3D structures',
-    bindingAffinity: 'Therapeutic-target interaction analysis'
+    pLDDT: '82.4',
+    pTM: '0.87', 
+    structuralPassRate: '78%',
+    timeToVerdict: '2.3s'
   },
+  
+  // Real capabilities from user content
+  capabilities: [
+    '3D Structural Assessment (RUO)',
+    'pLDDT confidence score per design with provenance',
+    'AlphaFold/Boltz structural assessment',
+    'Filter out unstable designs before synthesis'
+  ],
+  
+  // Real key features from user content
   keyFeatures: [
-    'Complex confidence scoring',
-    'Binding affinity prediction',
-    'Multi-component validation',
-    'Physical proof of mechanism'
-  ]
+    'From 1D sequence to 3D certainty',
+    'Filter out "wet noodles" before they hit the bench',
+    'Reduce failed syntheses and assays',
+    'Increase trust in in-silico designs',
+    'Faster iteration: promote only promising candidates'
+  ],
+  
+  // Real KPIs from user content
+  kpis: boltzContent.kpis.items,
+  
+  // Real use cases from user content
+  whyItMatters: boltzContent.whyItMatters,
+  howItWorks: boltzContent.howItWorks,
+  whatYouGet: boltzContent.whatYouGet
 });
 
 // Command Center Orchestration Engine
 export const adaptCommandCenterForHomepage = () => ({
+  // Use actual content data from src2
+  content: commandCenterContent,
+  
+  // Basic info for homepage display
   name: 'Command Center: Orchestration Engine',
-  description: 'Workflow orchestration, provenance tracking, and evidence aggregation',
-  capabilities: [
-    {
-      id: 'pipeline-orchestration',
-      title: 'Pipeline Orchestration',
-      description: 'Multi-engine workflow coordination',
-      metrics: [
-        { value: '5-Stage', label: 'Pipeline', color: 'text-green-400' },
-        { value: 'Real-Time', label: 'Monitoring', color: 'text-blue-400' }
-      ]
-    },
-    {
-      id: 'provenance-tracking',
-      title: 'Provenance Tracking',
-      description: 'Complete audit trail from input to therapeutic design',
-      metrics: [
-        { value: 'Complete', label: 'Audit Trail', color: 'text-green-400' },
-        { value: 'Cryptographic', label: 'Verification', color: 'text-blue-400' }
-      ]
-    }
-  ],
+  description: commandCenterContent.about.oneLiner,
+  
+  // Real metrics from src2 content
   metrics: {
-    orchestrationFlow: '5-stage pipeline',
-    provenanceTracking: 'Complete audit trail',
-    evidenceAggregation: 'Regulatory-ready dossiers',
-    realTimeMonitoring: 'Live pipeline status'
+    runsToday: commandCenterContent.kpis.items[0].value,
+    avgRunTime: commandCenterContent.kpis.items[1].value,
+    evidenceItems: commandCenterContent.kpis.items[2].value,
+    queueLength: commandCenterContent.kpis.items[3].value
   },
+  
+  // Real capabilities from src2 content
+  capabilities: [
+    'Multi-engine workflow orchestration',
+    'Complete audit trail tracking', 
+    'Evidence aggregation and management',
+    'Role-based access control',
+    'Real-time pipeline monitoring'
+  ],
+  
+  // Real key features from doctrine
   keyFeatures: [
-    'Pipeline orchestration',
-    'Provenance tracking',
-    'Evidence aggregation',
-    'Role-based access',
-    'Real-time monitoring'
-  ]
+    'State-managed kill chain (QUEUED → INDEXING → FORGING → VALIDATING → AGGREGATING → COMPLETE)',
+    'Zeta Shield security (Okta + Blockchain asset-level permissions)',
+    'CrisPRO Studio Mission Control interface',
+    'Cryptographic provenance with immutable blockchain verification',
+    'Agentic end-to-end platform from hypothesis to IND-ready asset'
+  ],
+  
+  // Real KPIs from src2 content
+  kpis: commandCenterContent.kpis.items,
+  
+  // Real data from doctrine
+  killChain: commandCenterContent.killChain,
+  apiEndpoints: commandCenterContent.apiEndpoints,
+  zetaShield: commandCenterContent.zetaShield,
+  businessUseCases: commandCenterContent.businessUseCases,
+  missionControl: commandCenterContent.missionControl,
+  
+  // Legacy data for backward compatibility
+  pipeline: commandCenterContent.pipeline,
+  runs: commandCenterContent.runs,
+  logs: commandCenterContent.logs,
+  evidence: commandCenterContent.evidence,
+  roles: commandCenterContent.roles,
+  provenance: commandCenterContent.provenance
 });
 
 // Complete 4-Engine Platform Integration

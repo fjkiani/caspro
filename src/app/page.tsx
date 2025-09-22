@@ -4,6 +4,8 @@ import HeroSection from '@/components/sections/HeroSection';
 import MetricsShowcase from '@/components/landing/MetricsShowcase';
 import DrugDevelopmentTransformation from '@/components/landing/DrugDevelopmentTransformation';
 import BridgingValleyOfDeath from '@/components/landing/BridgingValleyOfDeath';
+import DrugDevelopmentComparison from '@/components/visuals/DrugDevelopmentComparison';
+import DrugDevelopmentComparisonCompact from '@/components/visuals/DrugDevelopmentComparisonCompact';
 import DiscoveryVsEngineering from '@/components/landing/DiscoveryVsEngineering';
 import InteractiveDemoSection from '@/components/landing/InteractiveDemoSection';
 import BridgingValleySimulation from '@/components/simulations/sections/BridgingValleySimulation';
@@ -14,8 +16,13 @@ import CrisproFrameworkTeaser from '@/components/landing/CrisproFrameworkTeaser'
 import FusionWorkflowTeaser from '@/components/landing/FusionWorkflowTeaser';
 import CTASection from '@/components/shared/CTASection';
 import DiscoveryRaceSimulation from '@/components/simulations/sections/DiscoveryRaceSimulation';
+// import OracleShowcase from '@/components/homepage/OracleShowcase';
+
 import DeckViewer from '@/components/shared/DeckViewer';
 import { rAndDDeckData } from '@/data/decks/r-and-d-deck';
+
+// Engine Teasers
+// import EngineTeasers from '@/components/homepage/EngineTeasers';
 // Removed broken imports - using DrugDevelopmentOrchestrator instead
 
 
@@ -25,10 +32,19 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white">
       <HeroSection />
+      
+      {/* Engine Teasers */}
+      {/* <EngineTeasers /> */}
+      
       <MetricsShowcase />
-      <DiscoveryVsEngineering />
+      {/* <DrugDevelopmentComparison /> */}
+      <DrugDevelopmentComparisonCompact />
+      {/* <OracleShowcase /> */}
+
+      {/* <DiscoveryVsEngineering /> */}
       {/* <BridgingValleyOfDeath /> */}
-    
+      <DiscoveryVsEngineering />
+
       <BridgingValleySimulation />
       {/* <DiscoveryRaceSimulation/> */}
        {/* <DrugDevelopmentTransformation /> */}
@@ -42,7 +58,7 @@ export default function Home() {
       <div id="roi-calculator">
         <ROICalculatorSection />
       </div>
-      <CrisproFrameworkTeaser />
+      <DrugDevelopmentPlatform />
       <FusionWorkflowTeaser />
       
       {/* Pitch Deck Showcase */}

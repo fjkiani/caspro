@@ -32,3 +32,5 @@ export const precisionRadJourney: CapabilityJourneyData = {
   ],
 };
 
+export default precisionRadJourney;
+

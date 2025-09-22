@@ -16,7 +16,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <AboutHero {...aboutData.hero} />
+      <AboutHero data={aboutData.hero} />
 
       {/* Story Section */}
       <AboutSection section={aboutData.story} index={0} />

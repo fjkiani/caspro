@@ -11,7 +11,7 @@ const RAndDDeckSlide: React.FC = () => {
 };
 
 export const rAndDDeckData = {
-  title: "Investor Pitch Deck",
+  title: "Learn More About CrisPRO.ai",
   description: "The complete story of how we're transforming drug development from a $2.6B gamble into deterministic engineering through our integrated AI platform.",
   slides: [
     {

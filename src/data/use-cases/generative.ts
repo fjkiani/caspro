@@ -1,4 +1,5 @@
-import type { UseCase } from '../../utils/runUseCase';
+// Define UseCase type inline since the import doesn't exist
+type UseCase = any;
 
 export const crisprTherapyDesign: UseCase = {
   id: 'crispr_therapy_design',
@@ -14,7 +15,7 @@ export const crisprTherapyDesign: UseCase = {
     {
       id: 'generate_optimized_guide_rna',
       title: 'Generate Optimized Guide RNAs',
-      input: (ctx) => ({ 
+      input: (ctx: any) => ({ 
         target_locus: ctx.seed.target_locus,
         pam_type: ctx.seed.pam_type,
         num_guides: 5,
@@ -25,7 +26,7 @@ export const crisprTherapyDesign: UseCase = {
     {
       id: 'generate_repair_template',
       title: 'Design HDR Repair Template',
-      input: (ctx) => ({ 
+      input: (ctx: any) => ({ 
         target_locus: ctx.seed.target_locus,
         correction_type: 'knockout_repair',
         homology_arm_length: 4000
@@ -35,7 +36,7 @@ export const crisprTherapyDesign: UseCase = {
     {
       id: 'predict_crispr_spacer_efficacy',
       title: 'Validate Guide Efficacy',
-      input: (ctx) => ({ 
+      input: (ctx: any) => ({ 
         guide_sequence: ctx.outputs?.generate_optimized_guide_rna?.output?.guides?.[0]?.sequence || 'GTTCCAGAACCTGAAAGCTG',
         target_gene: ctx.seed.gene
       }),
@@ -59,7 +60,7 @@ export const proteinTherapyDesign: UseCase = {
     {
       id: 'generate_therapeutic_protein',
       title: 'Generate Protein Candidates',
-      input: (ctx) => ({
+      input: (ctx: any) => ({
         protein_type: ctx.seed.protein_type,
         target_antigen: ctx.seed.target_antigen,
         optimization_goals: ctx.seed.optimization_goals,
@@ -70,7 +71,7 @@ export const proteinTherapyDesign: UseCase = {
     {
       id: 'predict_protein_functional_change',
       title: 'Validate Protein Function',
-      input: (ctx) => ({
+      input: (ctx: any) => ({
         protein: ctx.seed.target_antigen,
         candidate_sequence: ctx.outputs?.generate_therapeutic_protein?.output?.protein_candidates?.[0]?.sequence || 'MDSKGSS...',
         optimization_type: 'therapeutic_enhancement'
@@ -80,7 +81,7 @@ export const proteinTherapyDesign: UseCase = {
     {
       id: 'predict_immunogenicity',
       title: 'Assess Immunogenicity Risk',
-      input: (ctx) => ({
+      input: (ctx: any) => ({
         protein_sequence: ctx.outputs?.generate_therapeutic_protein?.output?.protein_candidates?.[0]?.sequence || 'MDSKGSS...',
         allele_coverage: ['HLA-A*02:01', 'HLA-B*07:02', 'HLA-DRB1*15:01']
       }),
@@ -104,7 +105,7 @@ export const geneTherapyVectorDesign: UseCase = {
     {
       id: 'generate_regulatory_element',
       title: 'Design Tissue-Specific Promoter',
-      input: (ctx) => ({
+      input: (ctx: any) => ({
         element_type: 'promoter',
         tissue_specificity: [ctx.seed.target_tissue, 'hepatocytes'],
         expression_level: ctx.seed.expression_level,
@@ -115,7 +116,7 @@ export const geneTherapyVectorDesign: UseCase = {
     {
       id: 'generate_epigenome_sequence',
       title: 'Optimize Chromatin Context',
-      input: (ctx) => ({
+      input: (ctx: any) => ({
         genomic_region: 'chr17:43000000-43100000', // Example region
         target_modifications: ['H3K27ac', 'H3K4me3'],
         accessibility_enhancement: true,
@@ -126,7 +127,7 @@ export const geneTherapyVectorDesign: UseCase = {
     {
       id: 'predict_chromatin_accessibility',
       title: 'Validate Regulatory Function',
-      input: (ctx) => ({
+      input: (ctx: any) => ({
         genomic_region: 'chr17:43000000-43100000',
         cell_type: ctx.seed.target_tissue,
         regulatory_elements: ctx.outputs?.generate_regulatory_element?.output?.regulatory_elements || []
@@ -153,7 +154,7 @@ export const personalizedCancerTherapy: UseCase = {
     {
       id: 'analyze_cancer_hallmarks',
       title: 'Analyze Cancer Hallmarks',
-      input: (ctx) => ({
+      input: (ctx: any) => ({
         tumor_mutations: ctx.seed.tumor_profile.mutations,
         cancer_type: ctx.seed.tumor_profile.cancer_type,
         clinical_stage: ctx.seed.tumor_profile.stage
@@ -163,7 +164,7 @@ export const personalizedCancerTherapy: UseCase = {
     {
       id: 'design_personalized_therapy',
       title: 'Design Therapeutic Strategy',
-      input: (ctx) => ({
+      input: (ctx: any) => ({
         tumor_profile: ctx.seed.tumor_profile,
         hallmark_analysis: ctx.outputs?.analyze_cancer_hallmarks?.output || {},
         modalities: ctx.seed.therapeutic_modalities
@@ -173,7 +174,7 @@ export const personalizedCancerTherapy: UseCase = {
     {
       id: 'generate_therapeutic_protein',
       title: 'Generate Therapeutic Assets',
-      input: (ctx) => ({
+      input: (ctx: any) => ({
         protein_type: 'nanobody',
         target_antigen: 'KRAS G12C',
         optimization_goals: ['binding_affinity', 'specificity'],

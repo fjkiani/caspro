@@ -161,7 +161,7 @@ export default function DrugDevelopmentPlatform() {
                     {/* Key Features */}
                     <div className="space-y-3">
                       <h4 className="text-lg font-bold text-white">Key Capabilities:</h4>
-                      {engine.data.keyFeatures?.slice(0, 4).map((feature: string, idx: number) => (
+                      {(('keyFeatures' in engine.data ? engine.data.keyFeatures : null) || ('capabilities' in engine.data ? engine.data.capabilities?.map((cap: any) => cap.title) : null) || []).slice(0, 4).map((feature: string, idx: number) => (
                         <div key={idx} className="flex items-center gap-3">
                           <ChevronRight className="w-4 h-4 text-cyan-400" />
                           <span className="text-slate-300">{feature}</span>
@@ -174,7 +174,7 @@ export default function DrugDevelopmentPlatform() {
                   <div>
                     <h4 className="text-lg font-bold text-white mb-4">Validated Performance:</h4>
                     <div className="space-y-4">
-                      {Object.entries(engine.data.metrics || {}).slice(0, 4).map(([key, value]) => (
+                      {Object.entries(('metrics' in engine.data ? engine.data.metrics : null) || {}).slice(0, 4).map(([key, value]) => (
                         <div key={key} className="bg-slate-700/50 p-4 rounded-lg">
                           <div className="flex justify-between items-center">
                             <span className="text-slate-400 capitalize">

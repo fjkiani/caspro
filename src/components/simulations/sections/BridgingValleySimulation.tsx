@@ -14,10 +14,10 @@ interface BridgingValleySimulationProps {
 
 const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
   className = '',
-  autoStart = false, // DON'T AUTO-START - USER MUST CLICK
-  showStaticVersion = true // SHOW STATIC VERSION FIRST
+  autoStart = true, // AUTO-START BY DEFAULT
+  showStaticVersion = false // SHOW INTERACTIVE VERSION BY DEFAULT
 }) => {
-  const [simulationStarted, setSimulationStarted] = useState(false);
+  const [simulationStarted, setSimulationStarted] = useState(true); // START IMMEDIATELY
   const [simulationComplete, setSimulationComplete] = useState(false);
   const [results, setResults] = useState<SimulationResults>({});
   const [showDossier, setShowDossier] = useState(false);
@@ -27,7 +27,7 @@ const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
   // Define the 3-stage simulation configuration
   const simulationConfig: SimulationConfig = {
     id: 'bridging-valley-simulation',
-    name: 'Bridging the Valley of Death',
+    name: '',
     description: 'Live 3-stage API demonstration: Target Validation → Lead Engineering → Pre-Clinical Confirmation',
     steps: [
       {
@@ -89,7 +89,7 @@ const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
     ],
     timingConfig: 'pipeline',
     speedMultiplier: 'normal',
-    autoStart: autoStart,
+    autoStart: true, // ALWAYS AUTO-START
     showResults: true
   };
 
@@ -127,6 +127,13 @@ const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
     setSimulationStarted(true);
   };
 
+  // Auto-start simulation on mount
+  useEffect(() => {
+    if (autoStart && !simulationStarted) {
+      setSimulationStarted(true);
+    }
+  }, [autoStart, simulationStarted]);
+
   // Static version (original component)
   if (showStaticVersion && !simulationStarted) {
     return (
@@ -140,9 +147,7 @@ const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
             className="text-center mb-16"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                Bridging the Valley of Death
-              </span>
+            
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-4xl mx-auto mb-6 sm:mb-8 leading-relaxed">
               Replacing ambiguity with a <strong>deterministic launchpad</strong> through AI-powered intelligence.
@@ -307,12 +312,10 @@ const BridgingValleySimulation: React.FC<BridgingValleySimulationProps> = ({
         >
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
             <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-              🚀 LIVE SIMULATION: Bridging the Valley of Death
+              Bridging the Valley of Death
             </span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto">
-            Watch our AI transform drug development in real-time with <strong>live API calls</strong>
-          </p>
+         
         </motion.div>
 
         <APISimulationEngine

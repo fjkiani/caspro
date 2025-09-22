@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FlaskConical, ArrowRight, DraftingCompass, Shield, Dna, Bot } from 'lucide-react';
+import Link from 'next/link';
+import { FlaskConical, ArrowRight, DraftingCompass, Shield, Dna, Bot, BrainCircuit, Factory } from 'lucide-react';
 
 interface DiscoveryVsEngineeringProps {
   className?: string;
@@ -146,11 +147,11 @@ const DiscoveryVsEngineering: React.FC<DiscoveryVsEngineeringProps> = ({ classNa
             <div className="mt-8 pt-6 border-t border-emerald-200">
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <div className="text-2xl font-bold text-emerald-600">1 week</div>
+                  <div className="text-2xl font-bold text-emerald-600">6 week</div>
                   <div className="text-slate-500">Timeline</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-emerald-600">$50K</div>
+                  <div className="text-2xl font-bold text-emerald-600">$500K</div>
                   <div className="text-slate-500">Cost</div>
                 </div>
               </div>

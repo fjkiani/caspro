@@ -1,0 +1,109 @@
+---
+description: AlphaFold/Boltz 1D→3D doctrine – how structure fits our product, what failed, what to build next, smoke tests, and acceptance (RUO)
+alwaysApply: false
+---
+
+# Boltz / Gauntlet – 1D → 3D Structural Doctrine (RUO)
+
+## What this is (plain English)
+- **Problem**: A sequence that “looks good” in 1D can still fold poorly in 3D – the “wet noodle” problem.
+- **Solution**: Add a structural gate (“Gauntlet”) after 1D scoring: run AlphaFold/ColabFold to get 3D confidence (pLDDT/pTM). Pass designs that are likely to fold; reject noodles.
+- **Why it matters**: This lifts confidence and credibility of any designed therapeutic (proteins, repair templates → peptides), reduces wasted wet‑lab cycles, and aligns with our RUO transparency.
+
+## Where it fits in our product
+- **S (Sequence)**: Evo2 zero‑shot scoring and calibration – disruption/impact signals.
+- **P (Pathway)**: Map variants/targets to disease pathways.
+- **E (Evidence)**: ClinVar/literature/cohort priors.
+- **Design (Forge)**: Generate candidates under constraints.
+- **Gauntlet (Boltz/AlphaFold)**: 3D structural validation to certify designs are physically plausible before hand‑off.
+
+## Current state (what exists now)
+- Notes and manual plans live in:
+  - Gauntlet doctrine: [gauntlet_doctrine.mdc](mdc:.cursor/rules/gauntlet_doctrine.mdc)
+  - Manual test plan: [boltz_gauntlet_manual_test_plan.mdc](mdc:.cursor/rules/boltz_gauntlet_manual_test_plan.mdc)
+- Clients and service attempts:
+  - Command Center structural call (legacy): [services/command_center/main.py](mdc:src/services/command_center/main.py)
+  - Gauntlet service (Modal/ColabFold attempt): [src/services/gauntlet/main.py](mdc:src/services/gauntlet/main.py)
+  - Boltz service scaffolding: [src/services/boltz_service/main.py](mdc:src/services/boltz_service/main.py)
+  - Local tester: [tools/gauntlet_client.py](mdc:tools/gauntlet_client.py)
+
+## What failed before (and why)
+- **Webhook vs function invocation mismatch**: Tried to use remote invocation patterns on webhook apps, causing runtime errors. Fix: treat webhook endpoints as HTTP only.
+- **Resource under‑provisioning**: Structure predictors need large GPU/RAM; cold starts and OOM led to silent failures. Fix: provision H100/A100 with ≥32–64GB RAM and long timeouts.
+- **Model/download confusion**: Attempted non‑existent/private model IDs; incorrect container stacks. Fix: use ColabFold runner in a stable CUDA image; cache params in container.
+- **Brittle coupling**: Command Center directly called an external structural service without robust failure handling. Fix: isolate Gauntlet with clear timeouts, retries, and graceful degradation.
+
+## Minimal viable Gauntlet (what to implement next)
+1) Stand up a ColabFold‑backed function (Modal or container) that accepts `{ protein_sequence, job_id? }` and returns `{ plddt, ptm, fraction_disordered, timings }`.
+2) Add a thin backend proxy `POST /api/gauntlet/predict` (FastAPI) with:
+   - Input validation (AAs only, length caps), non‑interactive timeouts, RUO banner.
+   - Headers: `x-run-id` and `cache-control: no-store`.
+3) Wire optional Gauntlet step in design flows:
+   - After Forge outputs candidates with translated proteins, allow “Validate structure” toggle.
+   - Save `plddt` into `provenance.structural` for downstream UI badges.
+
+## Acceptance (research-mode)
+- Gauntlet returns JSON with `plddt` in [0,100].
+- For a known, well‑behaved protein fragment, `plddt ≥ 70` in at least one model run.
+- Backend proxy returns `200` with `x-run-id` and RUO headers; logs time and failure reasons.
+- UI surfaces a “Structural Confidence” chip/badge when present; otherwise shows “Not assessed.”
+
+## Smoke tests
+### Isolated service (if deployed)
+```bash
+curl -sS -X POST "$GAUNTLET_URL/predict_structure" \
+  -H 'Content-Type: application/json' \
+  -d '{"protein_sequence":"GIVEQCCTSICSLYQLENYCN"}' | jq .
+```
+
+### Local client
+```bash
+python tools/gauntlet_client.py
+```
+
+### Backend proxy (after wiring)
+```bash
+curl -sS -X POST http://127.0.0.1:8000/api/gauntlet/predict \
+  -H 'Content-Type: application/json' \
+  -d '{"protein_sequence":"GIVEQCCTSICSLYQLENYCN"}' | jq .
+```
+
+## Data contract (proposed)
+- Request: `{ protein_sequence: string, model?: "af2_ptm", num_recycle?: 3 }`
+- Response: `{ plddt: number, ptm?: number, fraction_disordered?: number, timings?: object, provenance: { engine: "colabfold_af2_ptm", version, params } }`
+
+## Safety and guardrails
+- RUO only. Do not overstate performance. Present “Structural Assessment” as supporting evidence, not proof.
+- Validate inputs (AA alphabet, max length); redact sequences in logs by default.
+- Timeouts and retries; mark responses with `provenance.structural` fields. On failure, return `{ plddt: null }` and proceed.
+
+## How this lifts confidence (1D → 3D)
+- **1D (Evo2)**: High delta suggests functional change; calibrations turn it into interpretable percentiles.
+- **3D (Gauntlet)**: High `plddt` suggests the designed protein is physically plausible.
+- **Together**: Designs must be both biologically sensible and structurally sound → higher confidence scores and fewer dead ends.
+
+## Links and references
+- Doctrine: [gauntlet_doctrine.mdc](mdc:.cursor/rules/gauntlet_doctrine.mdc)
+- Manual test plan: [boltz_gauntlet_manual_test_plan.mdc](mdc:.cursor/rules/boltz_gauntlet_manual_test_plan.mdc)
+- Command Center structural call (legacy): [src/services/command_center/main.py](mdc:src/services/command_center/main.py)
+- Gauntlet service attempt: [src/services/gauntlet/main.py](mdc:src/services/gauntlet/main.py)
+- Boltz scaffolding: [src/services/boltz_service/main.py](mdc:src/services/boltz_service/main.py)
+- Local tester: [tools/gauntlet_client.py](mdc:tools/gauntlet_client.py)
+
+## Roadmap
+- Add batch mode and caching for repeated targets.
+- Compare AF2 pTM vs pLDDT distributions on a small benchmark set.
+- Optional: ligand/complex modeling via Boltz when stable (roadmap only).
+
+## Website copy (drop‑in)
+- **Core Capability**: 3D Structural Assessment (RUO)
+- **Evidence**: Confidence score (pLDDT) per design, with provenance.
+- **Target Audience**: Researchers and biotech R&D – reduce wet‑lab churn by filtering out unstable designs before synthesis.
+
+
+
+---
+description:
+globs:
+alwaysApply: true
+---

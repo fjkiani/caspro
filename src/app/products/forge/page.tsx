@@ -9,9 +9,9 @@ export default function ForgePage() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 pt-24 pb-16">
         {/* Hero Section */}
-        <section className="text-center mb-16">
+        <section className="text-center mb-20 mt-8">
           <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-300 bg-clip-text text-transparent">
             Forge: Generative AI Engine
           </h1>
@@ -106,7 +106,7 @@ export default function ForgePage() {
         <section>
           <h2 className="text-3xl font-bold mb-8 text-center">Therapeutic Use Cases</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            {Object.entries(forgeData.useCases).map(([key, useCase]) => (
+            {Object.entries(forgeData.useCases).map(([key, useCase]: [string, any]) => (
               <div key={key} className="bg-slate-800 p-6 rounded-xl border border-slate-700">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-2xl">{useCase.icon}</span>
@@ -118,7 +118,7 @@ export default function ForgePage() {
                 <div className="mb-4">
                   <h4 className="font-semibold text-sm text-slate-400 mb-2">WORKFLOW:</h4>
                   <ol className="text-sm text-slate-300 space-y-1">
-                    {useCase.workflow.slice(0, 4).map((step, idx) => (
+                    {useCase.workflow?.slice(0, 4).map((step: string, idx: number) => (
                       <li key={idx} className="flex items-start gap-2">
                         <span className="text-purple-400 font-mono text-xs mt-1">{idx + 1}.</span>
                         {step}
@@ -129,7 +129,7 @@ export default function ForgePage() {
 
                 {/* Metrics */}
                 <div className="grid grid-cols-2 gap-4 text-sm">
-                  {Object.entries(useCase.metrics).slice(0, 4).map(([key, value]) => (
+                  {Object.entries(useCase.metrics || {}).slice(0, 4).map(([key, value]: [string, any]) => (
                     <div key={key}>
                       <div className="text-green-400 font-mono">{value}</div>
                       <div className="text-slate-400 capitalize">{key.replace(/([A-Z])/g, ' $1')}</div>

@@ -18,7 +18,7 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
     {
       id: 'clinvar-performance',
       title: 'ClinVar Validation',
-      description: 'State-of-the-art performance across all variant types',
+      description: 'We Eliminate Failure at the Source.',
       value: '95.7%',
       metric: 'AUROC',
       details: '53,210 variants validated',
@@ -30,7 +30,7 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
     {
       id: 'brca-accuracy',
       title: 'BRCA1/2 Precision',
-      description: 'Clinical-grade accuracy on critical oncology targets',
+      description: 'We eliminate the failure of clinical translation',
       value: '95.0%',
       metric: 'BRCA1 AUROC',
       details: '3,893 variants analyzed',
@@ -42,7 +42,7 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
     {
       id: 'generative-quality',
       title: 'Therapeutic Design',
-      description: 'Biologically coherent therapeutic candidate generation',
+      description: 'we design viable candidates from day one, not by chance',
       value: '70%',
       metric: 'Pfam-hit Rate',
       details: 'vs 18% previous models',
@@ -54,10 +54,10 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
     {
       id: 'business-impact',
       title: 'ROI for Biotechs',
-      description: 'Validated cost reduction in drug development',
-      value: '99.8%',
+      description: 'We Eliminate the Failure of Bankruptcy',
+      value: '80%',
       metric: 'Cost Reduction',
-      details: '$2.5M → $3K per target',
+      details: '$2.5M → $500K per target',
       color: 'from-orange-500 to-red-600',
       icon: TrendingUp,
       link: '/metrics#business',

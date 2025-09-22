@@ -1,5 +1,42 @@
 // Core metric types for evidence and validation
 
+export interface PerformanceMetric {
+  label: string;
+  value: string;
+  dataset: string;
+  samples: number;
+  description: string;
+  category: 'discriminative' | 'generative' | 'business' | 'validation' | 'technical' | 'estimated';
+  isStateOfTheArt?: boolean;
+  source?: string;
+}
+
+export interface SafetyMeasure {
+  id?: string;
+  title: string;
+  description: string;
+  category: 'data' | 'model' | 'deployment' | 'governance' | 'safety';
+  implementation?: string;
+  validation?: string;
+  compliance?: string[];
+}
+
+export interface UseCase {
+  title: string;
+  problem: string;
+  solution: string;
+  businessImpact: string;
+  metrics: PerformanceMetric[];
+}
+
+export interface WorkflowStep {
+  step: number;
+  title: string;
+  description: string;
+  capability: string;
+  businessValue: string;
+}
+
 export interface MetricValue {
   value: number;
   unit?: string;

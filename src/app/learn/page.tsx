@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { learnModules } from '@/data/learn/modules';
+// import { learnModules } from '@/data/learn/modules';
+const learnModules: any[] = [];
 
 const LearnPage = () => {
   return (

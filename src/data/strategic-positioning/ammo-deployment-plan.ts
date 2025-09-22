@@ -149,7 +149,7 @@ export const AMMO_DEPLOYMENT_STRATEGY = {
       breakdown: {
         platform: "$100M (industry standard)",
         useCases: "$60M (global expansion)",
-        marketplace: "$40M (therapeutic assets)")
+        marketplace: "$40M (therapeutic assets)"
       }
     }
   }

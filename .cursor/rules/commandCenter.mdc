@@ -1,0 +1,91 @@
+Acknowledged, Commander. You are asking for the definitive doctrine on the CrisPRO.ai Command Center. A wise request. Our individual weapon systems—the Zeta Index, Forge, and Boltz—are formidable, but it is the Command Center that transforms them from siloed tools into a unified, conquering army.
+
+This is not just a product; it is the central nervous system of our entire in silico war machine. I have forged the complete intelligence briefing. This is the new standard.
+
+Doctrine: The CrisPRO.ai Command Center
+The Command Center is the orchestrator of our entire in silico conquest. It is the agentic, end-to-end platform that a researcher uses to launch, manage, and audit a complete therapeutic R&D campaign, from an unvalidated hypothesis to a de-risked, IND-ready asset.
+
+Command Center Specifics
+What does the actual pipeline orchestration look like in practice?
+A therapeutic campaign is executed as a state-managed, multi-stage "kill chain." When a researcher initiates a campaign, the Command Center creates a unique campaign_id and moves it through a series of automated states:
+
+QUEUED: The mission is defined and awaiting resources.
+
+INDEXING: The Command Center dispatches the target to the Zeta Index for the Triumvirate Threat Assessment. It waits for a definitive "GO/NO-GO" verdict.
+
+FORGING: Upon a "GO" verdict, the Command Center commands the Zeta Forge to design a multi-modal arsenal of therapeutic candidates.
+
+VALIDATING: Each forged candidate is then dispatched to Zeta Boltz for structural validation and our efficacy simulation engine.
+
+AGGREGATING: The Command Center gathers all intelligence reports—the Zeta Score, the forged blueprints, the structural validation data—into a single location.
+
+COMPLETE: The final Therapeutic Dossier is generated and the campaign is marked as a victory.
+
+How do the role-based permissions actually work?
+We use the Zeta Shield, our two-layer security protocol:
+
+The Human Layer (Powered by Okta): A user's top-level permissions are defined by their roles in Okta. A "Researcher" can launch and view their own campaigns. A "Clinical Lead" can view all campaigns for their indication. An "Admin" can manage users and system settings. Okta is the source of truth for who a person is.
+
+The Asset Layer (Powered by Blockchain): Granular access to a specific therapeutic asset (e.g., RUNX1-nanobody-003) is controlled by an on-chain smart contract. The Command Center uses a user's verified identity to grant their cryptographic wallet access to specific campaign_ids. This allows for ruthlessly precise, auditable control over our most valuable IP.
+
+What's the evidence aggregation process really like?
+It is an automated, real-time process. As each stage of the kill chain is completed, the resulting intelligence artifacts (JSON reports, PDB files, sequence data) are cryptographically hashed and stored in a secure, version-controlled repository, linked to the campaign_id. The Command Center's final act is to pull all of these artifacts together, render them into a human-readable format, and generate the final, immutable Therapeutic Dossier.
+
+How does provenance tracking work technically?
+Every action orchestrated by the Command Center is an auditable event. Each API call to one of our engines (/zeta_index/predict, /zeta_forge/generate) includes the campaign_id. The engine's response, including the models and parameters used, is logged as a transaction on our private blockchain, creating an immutable, cryptographically verifiable "chain of custody" for every piece of data. This is the foundation of scientific reproducibility and the core of our "evidence-first" doctrine.
+
+Technical Implementation
+What are the real API endpoints for Command Center?
+The Command Center exposes a clean, RESTful API for managing the entire lifecycle of a campaign:
+
+POST /v1/campaigns: Creates a new therapeutic campaign from a target. Returns a campaign_id.
+
+GET /v1/campaigns/{campaign_id}/status: Retrieves the real-time status and logs for a campaign.
+
+GET /v1/campaigns/{campaign_id}/dossier: Retrieves the final, completed Therapeutic Dossier.
+
+GET /v1/campaigns: Lists all campaigns accessible to the authenticated user.
+
+How does it coordinate between Zeta Index, Forge, and Boltz?
+The Command Center acts as a classic microservices orchestrator. When a campaign is launched, it makes a series of asynchronous calls to our specialized AI engines. It uses a message queue to manage the handoffs. For example, upon receiving a successful "GO" verdict from the Zeta Index, a message is placed on the queue that triggers the Zeta Forge to begin its design work for that campaign_id.
+
+What's the actual UI/UX for managing workflows?
+The UI is our CrisPRO Studio, or "Mission Control."  It is a web-based interface that provides:
+
+A Kanban-style board showing all active campaigns and their current stage in the kill chain (INDEXING, FORGING, etc.).
+
+A detailed view for each campaign, showing a real-time log of every step, the parameters used, and links to intermediate artifacts.
+
+A beautiful, interactive dossier viewer for completed campaigns.
+
+How does real-time monitoring work?
+The CrisPRO Studio frontend polls the /v1/campaigns/{campaign_id}/status endpoint every few seconds to update the UI. For a more detailed view, it establishes a WebSocket connection to stream the detailed operational logs directly to the user's screen as they happen.
+
+Business Context
+What are the real use cases for Command Center?
+We sell access to the Command Center to execute specific, high-value campaigns:
+
+Target Validation as a Service: A biotech provides a list of potential targets; we return a ranked list of validated dossiers.
+
+In Silico Lead Generation: A partner has a validated target; we use the Forge and Boltz to deliver a portfolio of novel, patent-worthy therapeutic candidates.
+
+Full In Silico R&D: Our premier offering. We execute the entire kill chain, from an unvalidated target to a de-risked, IND-ready asset.
+
+How do researchers actually use it?
+A researcher no longer needs to spend months orchestrating a dozen different tools and teams. They log into the CrisPRO Studio, define their target, and click "Launch Campaign." The Command Center handles the entire complex, multi-day in silico conquest. They are freed from the "swivel chair" of managing process and are elevated to the role of a true commander, focused on strategic decisions.
+
+What's the value proposition beyond orchestration?
+The Command Center is not just a workflow tool. Its true value is that it is a system of record for verifiable truth. The immutable, on-chain provenance for every result it produces provides our partners with something they have never had before: absolute, undeniable confidence in their data.
+
+How does it integrate with existing lab workflows?
+We are an accelerator, not a replacement. The Command Center is designed to seamlessly integrate at the two most critical junctures of R&D:
+
+Input: It can ingest target data directly from a partner's existing LIMS or ELN systems.
+
+Output: The final Therapeutic Dossier is a perfectly formatted, de-risked package that serves as the ideal input for a partner's existing wet-lab validation and IND-filing processes. We make the most expensive part of their workflow radically more efficient.
+
+---
+description:
+globs:
+alwaysApply: true
+---

@@ -107,7 +107,7 @@ const ForgeShowcase: React.FC = () => {
         <div className="mb-12">
           <h3 className="text-2xl font-bold text-center mb-8 text-white">Therapeutic Use Cases</h3>
           <div className="grid md:grid-cols-2 gap-6">
-            {Object.entries(forgeData.useCases).slice(0, 4).map(([key, useCase]) => (
+            {Object.entries(forgeData.useCases).slice(0, 4).map(([key, useCase]: [string, any]) => (
               <motion.div
                 key={key}
                 initial={{ opacity: 0, x: -20 }}
@@ -125,7 +125,7 @@ const ForgeShowcase: React.FC = () => {
                 <div className="mb-4">
                   <h5 className="text-sm font-semibold text-slate-400 mb-2">WORKFLOW:</h5>
                   <ol className="text-sm text-slate-300 space-y-1">
-                    {useCase.workflow.slice(0, 3).map((step, idx) => (
+                    {useCase.workflow.slice(0, 3).map((step: string, idx: number) => (
                       <li key={idx} className="flex items-start gap-2">
                         <span className="text-purple-400 font-mono text-xs mt-1">{idx + 1}.</span>
                         {step}
@@ -136,7 +136,7 @@ const ForgeShowcase: React.FC = () => {
 
                 {/* Key Metrics */}
                 <div className="grid grid-cols-2 gap-4 text-sm">
-                  {Object.entries(useCase.metrics).slice(0, 4).map(([key, value]) => (
+                  {Object.entries(useCase.metrics).slice(0, 4).map(([key, value]: [string, any]) => (
                     <div key={key}>
                       <div className="text-green-400 font-mono">{value}</div>
                       <div className="text-slate-400 capitalize text-xs">
