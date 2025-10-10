@@ -80,37 +80,35 @@ const TrustedBy: React.FC = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <Link href={`/partners/${partner.id}`}>
-                <div className="bg-white rounded-2xl p-8 h-full border border-slate-200 hover:border-slate-300 transition-all duration-300 hover:shadow-lg group-hover:scale-105 flex flex-col">
-                  {/* Logo - Takes up most of the space */}
-                  <div className="flex-1 flex items-center justify-center mb-6">
-                    <div className="w-full h-48 flex items-center justify-center bg-transparent">
-                      <img 
-                        src={partner.logo} 
-                        alt={`${partner.name} logo`}
-                        className="max-w-full max-h-full object-contain bg-transparent"
-                        style={{ backgroundColor: 'transparent' }}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Content - Compact at bottom */}
-                  <div className="text-center">
-                    <h3 className={`text-lg font-bold ${partner.color} mb-2 group-hover:text-slate-800 transition-colors duration-300`}>
-                      {partner.name}
-                    </h3>
-                    <p className="text-slate-600 text-xs leading-relaxed mb-3">
-                      {partner.description}
-                    </p>
-                    
-                    {/* Learn More Link */}
-                    <div className="flex items-center justify-center gap-2 text-slate-500 group-hover:text-slate-700 transition-colors duration-300">
-                      <span className="text-xs font-medium">Learn more</span>
-                      <ExternalLink className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
-                    </div>
+              <div className="bg-white rounded-2xl p-8 h-full border border-slate-200 hover:border-slate-300 transition-all duration-300 hover:shadow-lg group-hover:scale-105 flex flex-col">
+                {/* Logo - Takes up most of the space */}
+                <div className="flex-1 flex items-center justify-center mb-6">
+                  <div className="w-full h-48 flex items-center justify-center bg-transparent">
+                    <img 
+                      src={partner.logo} 
+                      alt={`${partner.name} logo`}
+                      className="max-w-full max-h-full object-contain bg-transparent"
+                      style={{ backgroundColor: 'transparent' }}
+                    />
                   </div>
                 </div>
-              </Link>
+
+                {/* Content - Compact at bottom */}
+                <div className="text-center">
+                  <h3 className={`text-lg font-bold ${partner.color} mb-2 group-hover:text-slate-800 transition-colors duration-300`}>
+                    {partner.name}
+                  </h3>
+                  <p className="text-slate-600 text-xs leading-relaxed mb-3">
+                    {partner.description}
+                  </p>
+                  
+                  {/* Learn More Link - Disabled */}
+                  <div className="flex items-center justify-center gap-2 text-slate-400 group-hover:text-slate-500 transition-colors duration-300">
+                    <span className="text-xs font-medium">Coming Soon</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </div>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
