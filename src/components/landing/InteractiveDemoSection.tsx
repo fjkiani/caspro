@@ -17,6 +17,7 @@ import {
 // Import real interactive components
 import { BRCAMutationSimulator, VUSResolutionPlayground } from '@/components/metrics/interactive';
 import { SPEFusionPlayground, DataLabExplorer } from '@/components/evidence/interactive';
+import AnimatedText from '@/components/shared/AnimatedText';
 
 interface InteractiveDemoSectionProps {
   className?: string;
@@ -78,7 +79,7 @@ const DRUG_DEVELOPMENT_DEMOS = [
       'predict_chromatin_accessibility',
       'generate_repair_template'
     ],
-    metrics: '0.82-0.99 AUROC Range',
+    metrics: '0.82-0.95 AUROC Range',
     time: '60 seconds',
     badge: 'Structural Proof',
     businessImpact: 'IND-ready dossier generation',
@@ -115,7 +116,16 @@ const InteractiveDemoSection: React.FC<InteractiveDemoSectionProps> = ({ classNa
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
             🧬 <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">
-              Build Your Next Cancer Drug
+              <AnimatedText 
+                texts={[
+                  'Research ',
+                  'Validate',
+                  'Engineer ',
+                  'CURE',
+                  'Discover '
+                ]}
+                interval={2000}
+              />
             </span>
           </h2>
           <p className="text-lg md:text-xl text-slate-600 max-w-4xl mx-auto mb-8">
@@ -128,9 +138,9 @@ const InteractiveDemoSection: React.FC<InteractiveDemoSectionProps> = ({ classNa
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-green-100 to-blue-100 rounded-full border border-green-200 mb-8">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm font-semibold text-green-700">LIVE DRUG DEVELOPMENT PIPELINE</span>
+              <span className="text-sm font-semibold text-green-700">Research Use Only - Simulated Results</span>
             </div>
-            <span className="text-sm text-slate-600">3-Stage Process • Real APIs • Validated Results</span>
+            <span className="text-sm text-slate-600">From Target Validation to Therapeutic Dossier (RUO)</span>
           </div>
         </motion.div>
 
@@ -292,7 +302,7 @@ const InteractiveDemoSection: React.FC<InteractiveDemoSectionProps> = ({ classNa
                   <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
                 </motion.button>
                 <p className="mt-4 text-xs md:text-sm text-slate-500">
-                  Live APIs • Real validation data • Complete therapeutic dossier
+                  Research Use Only - Simulated Results
                 </p>
               </div>
             ) : (
@@ -312,7 +322,7 @@ const InteractiveDemoSection: React.FC<InteractiveDemoSectionProps> = ({ classNa
         </motion.div>
 
         {/* What You Just Experienced */}
-        {demoStarted && (
+        {/* {demoStarted && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -346,7 +356,7 @@ const InteractiveDemoSection: React.FC<InteractiveDemoSectionProps> = ({ classNa
               </div>
             </div>
           </motion.div>
-        )}
+        )} */}
       </div>
     </section>
   );

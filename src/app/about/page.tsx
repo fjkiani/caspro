@@ -22,12 +22,12 @@ export default function AboutPage() {
       <AboutSection section={aboutData.story} index={0} />
 
       {/* In-Page Navigation */}
-      <nav className="sticky top-20 bg-white/80 backdrop-blur-md z-40 shadow-md rounded-full py-2 px-4 max-w-3xl mx-auto my-12">
-        <ul className="flex items-center justify-center gap-6">
-          <li><a href="#evidence-backbone" className="font-medium text-slate-600 hover:text-blue-600 transition-colors">Evidence</a></li>
-          <li><a href="#fusion-workflow" className="font-medium text-slate-600 hover:text-blue-600 transition-colors">Workflow</a></li>
-          <li><a href="#capabilities" className="font-medium text-slate-600 hover:text-blue-600 transition-colors">Capabilities</a></li>
-          <li><a href="#business-value" className="font-medium text-slate-600 hover:text-blue-600 transition-colors">Value</a></li>
+      <nav className="sticky top-20 bg-white/80 backdrop-blur-md z-40 shadow-md rounded-full py-2 px-4 max-w-3xl mx-auto my-8 sm:my-12">
+        <ul className="flex items-center justify-center gap-2 sm:gap-4 lg:gap-6 overflow-x-auto">
+          <li><a href="#evidence-backbone" className="font-medium text-slate-600 hover:text-blue-600 transition-colors text-sm sm:text-base whitespace-nowrap px-2 py-1">Evidence</a></li>
+          <li><a href="#fusion-workflow" className="font-medium text-slate-600 hover:text-blue-600 transition-colors text-sm sm:text-base whitespace-nowrap px-2 py-1">Workflow</a></li>
+          <li><a href="#capabilities" className="font-medium text-slate-600 hover:text-blue-600 transition-colors text-sm sm:text-base whitespace-nowrap px-2 py-1">Capabilities</a></li>
+          <li><a href="#business-value" className="font-medium text-slate-600 hover:text-blue-600 transition-colors text-sm sm:text-base whitespace-nowrap px-2 py-1">Value</a></li>
         </ul>
       </nav>
 
@@ -43,11 +43,11 @@ export default function AboutPage() {
       <AboutSection section={aboutData.evidence.generative} index={2} />
 
       {/* Fusion Workflow - Reuse existing component */}
-      <section id="fusion-workflow" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-800 mb-6">Fusion Workflow</h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+      <section id="fusion-workflow" className="py-16 sm:py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">Fusion Workflow</h2>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto">
               Complete RUO workflow combining discriminative and generative AI for therapeutic discovery
             </p>
           </div>
@@ -69,12 +69,12 @@ export default function AboutPage() {
       </div>
 
       {/* RUO Disclaimer */}
-      <section className="py-16 bg-gradient-to-r from-orange-50 to-red-50">
-        <div className="container mx-auto px-6">
+      <section className="py-12 sm:py-16 bg-gradient-to-r from-orange-50 to-red-50">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-white rounded-2xl p-8 border border-orange-200 shadow-lg">
-              <h3 className="text-2xl font-bold text-orange-800 mb-4">Research Use Only (RUO)</h3>
-              <p className="text-gray-700 leading-relaxed">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-orange-200 shadow-lg">
+              <h3 className="text-xl sm:text-2xl font-bold text-orange-800 mb-4">Research Use Only (RUO)</h3>
+              <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
                 All capabilities and performance metrics are designed for research purposes. Not intended for diagnostic or therapeutic decision-making without independent validation and regulatory review. All results should be validated through appropriate experimental and clinical studies.
               </p>
             </div>

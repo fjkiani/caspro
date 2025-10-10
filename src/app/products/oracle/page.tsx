@@ -9,28 +9,28 @@ export default function OraclePage() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 pt-24 pb-16">
         {/* Hero Section */}
-        <section className="text-center mb-16">
-          <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
+        <section className="text-center mb-16 sm:mb-20">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent leading-tight">
             Oracle: Discriminative AI Engine
           </h1>
-          <p className="text-xl text-slate-300 max-w-4xl mx-auto">
+          <p className="text-xl sm:text-2xl text-slate-300 max-w-5xl mx-auto px-4 leading-relaxed">
             Transform genetic uncertainty into actionable intelligence with zero-shot variant impact prediction
           </p>
         </section>
 
         {/* API Endpoints */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">Core API Endpoints</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">Core API Endpoints</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {oracleData.endpoints && oracleData.endpoints.map((endpoint) => (
-              <div key={endpoint.id} className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+              <div key={endpoint.id} className="bg-slate-800 p-4 sm:p-6 rounded-xl border border-slate-700">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{endpoint.icon}</span>
-                  <h3 className="text-xl font-bold">{endpoint.name}</h3>
+                  <span className="text-xl sm:text-2xl">{endpoint.icon}</span>
+                  <h3 className="text-lg sm:text-xl font-bold">{endpoint.name}</h3>
                 </div>
-                <p className="text-slate-300 mb-4">{endpoint.description}</p>
+                <p className="text-slate-300 mb-4 text-sm sm:text-base">{endpoint.description}</p>
                 
                 {/* Metrics */}
                 {endpoint.metrics && (
@@ -58,16 +58,16 @@ export default function OraclePage() {
         </section>
 
         {/* Multi-Modal Capabilities */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">Multi-Modal Predictions</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">Multi-Modal Predictions</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {oracleData.capabilities && oracleData.capabilities.map((capability) => (
-              <div key={capability.id} className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+              <div key={capability.id} className="bg-slate-800 p-4 sm:p-6 rounded-xl border border-slate-700">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{capability.icon}</span>
-                  <h3 className="text-xl font-bold">{capability.title}</h3>
+                  <span className="text-xl sm:text-2xl">{capability.icon}</span>
+                  <h3 className="text-lg sm:text-xl font-bold">{capability.title}</h3>
                 </div>
-                <p className="text-slate-300 mb-4">{capability.description}</p>
+                <p className="text-slate-300 mb-4 text-sm sm:text-base">{capability.description}</p>
                 
                 {/* Metrics */}
                 <div className="mb-4">
@@ -97,16 +97,16 @@ export default function OraclePage() {
         </section>
 
         {/* Scientific Validation */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">Scientific Validation</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">Scientific Validation</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {oracleData.validation && oracleData.validation.map((validation) => (
-              <div key={validation.id} className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+              <div key={validation.id} className="bg-slate-800 p-4 sm:p-6 rounded-xl border border-slate-700">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{validation.icon}</span>
-                  <h3 className="text-xl font-bold">{validation.title}</h3>
+                  <span className="text-xl sm:text-2xl">{validation.icon}</span>
+                  <h3 className="text-lg sm:text-xl font-bold">{validation.title}</h3>
                 </div>
-                <p className="text-slate-300 mb-4">{validation.description}</p>
+                <p className="text-slate-300 mb-4 text-sm sm:text-base">{validation.description}</p>
                 
                 {/* Validation Metrics */}
                 <div className="mb-4">
@@ -124,15 +124,15 @@ export default function OraclePage() {
 
         {/* Use Cases */}
         <section>
-          <h2 className="text-3xl font-bold mb-8 text-center">Clinical Use Cases</h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">Clinical Use Cases</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
             {oracleData.useCases && Object.entries(oracleData.useCases).map(([key, useCase]) => (
-              <div key={key} className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+              <div key={key} className="bg-slate-800 p-4 sm:p-6 rounded-xl border border-slate-700">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{useCase.icon}</span>
-                  <h3 className="text-xl font-bold">{useCase.title}</h3>
+                  <span className="text-xl sm:text-2xl">{useCase.icon}</span>
+                  <h3 className="text-lg sm:text-xl font-bold">{useCase.title}</h3>
                 </div>
-                <p className="text-slate-300 mb-4">{useCase.description}</p>
+                <p className="text-slate-300 mb-4 text-sm sm:text-base">{useCase.description}</p>
                 
                 {/* Workflow */}
                 {useCase.workflow && (
@@ -166,8 +166,22 @@ export default function OraclePage() {
         </section>
 
         {/* Footer */}
-        <div className="mt-16 text-center text-slate-400">
-          <p>Powered by migrated CrisPRO.ai data architecture • Research Use Only</p>
+        <div className="mt-16 text-center">
+          {/* Research Use Only Disclaimer */}
+          <div className="mb-8 p-6 bg-yellow-900/20 border border-yellow-600/30 rounded-lg max-w-4xl mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <span className="text-yellow-400 text-xl">⚠️</span>
+              <h3 className="text-yellow-400 font-bold text-xl">Research Use Only</h3>
+            </div>
+            <p className="text-yellow-200 text-sm mb-2">
+              Oracle predictions are for research purposes only. Not for use in diagnostic procedures or clinical decision-making.
+            </p>
+            <p className="text-yellow-300 text-xs">
+              All variant classifications require experimental validation before clinical application.
+            </p>
+          </div>
+          
+          <p className="text-slate-400">Powered by migrated CrisPRO.ai data architecture • Research Use Only</p>
         </div>
       </div>
     </div>

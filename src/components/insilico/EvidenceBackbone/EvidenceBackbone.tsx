@@ -43,7 +43,7 @@ const EvidenceMetricCard: React.FC<EvidenceMetricCardProps> = ({ metric, index }
 
   return (
     <motion.div
-      className={`relative overflow-hidden bg-white rounded-3xl p-8 border-2 ${theme.border} shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col h-full`}
+      className={`relative overflow-hidden bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border-2 ${theme.border} shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col h-full`}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -51,21 +51,21 @@ const EvidenceMetricCard: React.FC<EvidenceMetricCardProps> = ({ metric, index }
     >
       <Link href={`/metrics/${metric.slug}`} className="flex flex-col h-full">
         {/* Icon */}
-        <div className={`inline-flex p-4 rounded-2xl mb-6 ${theme.bg}`}>
-          <IconComponent className={`w-8 h-8 ${theme.text}`} />
+        <div className={`inline-flex p-3 sm:p-4 rounded-xl sm:rounded-2xl mb-4 sm:mb-6 ${theme.bg}`}>
+          <IconComponent className={`w-6 h-6 sm:w-8 sm:h-8 ${theme.text}`} />
         </div>
 
         {/* Title and Value */}
-        <div className="mb-4">
-          <h3 className="text-xl font-bold text-gray-800 mb-2">{metric.title}</h3>
-          <div className="text-3xl font-bold text-gray-900 mb-2">{formattedValue}</div>
-          <p className="text-gray-600 leading-relaxed">{metric.description}</p>
+        <div className="mb-3 sm:mb-4">
+          <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">{metric.title}</h3>
+          <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{formattedValue}</div>
+          <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{metric.description}</p>
         </div>
 
         {/* Benchmark */}
         {metric.dataset && (
-          <div className="mb-4 p-3 bg-gray-50 rounded-lg">
-            <p className="text-sm text-gray-700">
+          <div className="mb-3 sm:mb-4 p-2 sm:p-3 bg-gray-50 rounded-lg">
+            <p className="text-xs sm:text-sm text-gray-700">
               <strong>Dataset:</strong> {metric.dataset} ({metric.sampleSize?.toLocaleString()} samples)
             </p>
           </div>
@@ -73,8 +73,8 @@ const EvidenceMetricCard: React.FC<EvidenceMetricCardProps> = ({ metric, index }
 
         {/* Source */}
         {metric.source && (
-          <div className="flex items-center gap-2 text-sm text-gray-500 mt-auto">
-            <FileText className="w-4 h-4" />
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mt-auto">
+            <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
             <span>Source: {metric.source}</span>
           </div>
         )}
@@ -100,21 +100,21 @@ const EvidenceBackbone: React.FC<EvidenceBackboneProps> = ({
   showDisclaimer = true
 }) => {
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="container mx-auto px-6">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl font-bold text-gray-800 mb-6">{title}</h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">{title}</h2>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto px-4">
             {description}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {metrics.map((metric, index) => (
             <EvidenceMetricCard key={metric.slug || index} metric={metric} index={index} />
           ))}
@@ -122,17 +122,17 @@ const EvidenceBackbone: React.FC<EvidenceBackboneProps> = ({
 
         {showDisclaimer && (
           <motion.div
-            className="mt-16 text-center"
+            className="mt-8 sm:mt-12 lg:mt-16 text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-8 border border-orange-200 max-w-4xl mx-auto">
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <Shield className="w-8 h-8 text-orange-600" />
-                <span className="text-lg font-semibold text-orange-800">Research Use Only (RUO)</span>
+            <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-orange-200 max-w-4xl mx-auto">
+              <div className="flex items-center justify-center gap-2 sm:gap-4 mb-3 sm:mb-4">
+                <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-orange-600" />
+                <span className="text-base sm:text-lg font-semibold text-orange-800">Research Use Only (RUO)</span>
               </div>
-              <p className="text-gray-700">
+              <p className="text-sm sm:text-base text-gray-700">
                 All performance metrics are for research purposes. Not intended for diagnostic or therapeutic
                 decision-making without independent validation and regulatory review.
               </p>

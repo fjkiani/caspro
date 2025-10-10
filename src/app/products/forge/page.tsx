@@ -11,26 +11,26 @@ export default function ForgePage() {
     <div className="min-h-screen bg-slate-900 text-white">
       <div className="container mx-auto px-4 pt-24 pb-16">
         {/* Hero Section */}
-        <section className="text-center mb-20 mt-8">
-          <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-300 bg-clip-text text-transparent">
+        <section className="text-center mb-12 sm:mb-20 mt-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-purple-400 to-pink-300 bg-clip-text text-transparent">
             Forge: Generative AI Engine
           </h1>
-          <p className="text-xl text-slate-300 max-w-4xl mx-auto">
+          <p className="text-lg sm:text-xl text-slate-300 max-w-4xl mx-auto px-4">
             {forgeData.content.about.oneLiner}
           </p>
         </section>
 
         {/* API Endpoints */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">Generative AI APIs</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">Generative AI APIs</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {forgeData.apis.map((api) => (
-              <div key={api.id} className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+              <div key={api.id} className="bg-slate-800 p-4 sm:p-6 rounded-xl border border-slate-700">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{api.icon}</span>
-                  <h3 className="text-xl font-bold">{api.name}</h3>
+                  <span className="text-xl sm:text-2xl">{api.icon}</span>
+                  <h3 className="text-lg sm:text-xl font-bold">{api.name}</h3>
                 </div>
-                <p className="text-slate-300 mb-4">{api.description}</p>
+                <p className="text-slate-300 mb-4 text-sm sm:text-base">{api.description}</p>
                 
                 {/* Capabilities */}
                 <div className="mb-4">
@@ -63,16 +63,16 @@ export default function ForgePage() {
         </section>
 
         {/* Capabilities */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">Multi-Modal Generation</h2>
-          <div className="grid md:grid-cols-2 gap-8">
+        <section className="mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">Multi-Modal Generation</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
             {forgeData.capabilities.map((capability) => (
-              <div key={capability.id} className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+              <div key={capability.id} className="bg-slate-800 p-4 sm:p-6 rounded-xl border border-slate-700">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{capability.icon}</span>
-                  <h3 className="text-xl font-bold">{capability.title}</h3>
+                  <span className="text-xl sm:text-2xl">{capability.icon}</span>
+                  <h3 className="text-lg sm:text-xl font-bold">{capability.title}</h3>
                 </div>
-                <p className="text-slate-300 mb-4">{capability.description}</p>
+                <p className="text-slate-300 mb-4 text-sm sm:text-base">{capability.description}</p>
                 
                 {/* Metrics */}
                 <div className="grid grid-cols-3 gap-4 mb-4">
@@ -104,15 +104,15 @@ export default function ForgePage() {
 
         {/* Use Cases */}
         <section>
-          <h2 className="text-3xl font-bold mb-8 text-center">Therapeutic Use Cases</h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">Therapeutic Use Cases</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
             {Object.entries(forgeData.useCases).map(([key, useCase]: [string, any]) => (
-              <div key={key} className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+              <div key={key} className="bg-slate-800 p-4 sm:p-6 rounded-xl border border-slate-700">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{useCase.icon}</span>
-                  <h3 className="text-xl font-bold">{useCase.title}</h3>
+                  <span className="text-xl sm:text-2xl">{useCase.icon}</span>
+                  <h3 className="text-lg sm:text-xl font-bold">{useCase.title}</h3>
                 </div>
-                <p className="text-slate-300 mb-4">{useCase.description}</p>
+                <p className="text-slate-300 mb-4 text-sm sm:text-base">{useCase.description}</p>
                 
                 {/* Workflow */}
                 <div className="mb-4">

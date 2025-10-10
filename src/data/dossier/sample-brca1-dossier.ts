@@ -1,162 +1,117 @@
-import { Dossier } from './types';
-
-export const sampleBRCA1Dossier: Dossier = {
+export const sampleBRCA1Dossier = {
   header: {
-    variant: 'chr17:43044295:A>T',
+    variant: 'c.5266dupC',
     gene: 'BRCA1',
-    runId: 'CRP-29159525',
-    engines: ['Oracle', 'Forge', 'Boltz', 'Command Center'],
-    precision: 0.957,
+    runId: 'RUN-2025-001-BRCA1',
+    engines: ['Oracle', 'Forge', 'Boltz'],
+    precision: 0.95
+  },
+  variant: {
+    id: 'BRCA1:c.5266dupC',
+    gene: 'BRCA1',
+    chromosome: '17',
+    position: '43044295',
+    reference: 'C',
+    alternate: 'CC',
+    consequence: 'frameshift',
+    pathogenicity: 'Pathogenic',
+    confidence: 0.95
+  },
+  analysis: {
+    oracleScore: 0.89,
+    essentialityScore: 0.76,
+    chromatinAccessibility: 0.45,
+    regulatoryImpact: 0.23
+  },
+  therapeuticDesign: {
+    guideRNAs: [
+      {
+        sequence: 'GTTCCAGAACCTGAAAGCTG',
+        efficiency: 0.87,
+        specificity: 0.94,
+        assassinScore: 0.82
+      }
+    ],
+    repairTemplate: 'ATCGATCGATCG...',
+    deliveryMethod: 'AAV9'
+  },
+  validation: {
+    inSilico: {
+      cuttingEfficiency: 0.87,
+      offTargetRisk: 0.06,
+      functionalImpact: 0.82
+    },
+    experimental: {
+      cellLineValidation: 'Pending',
+      animalModel: 'Pending'
+    }
   },
   executiveSummary: {
-    catastrophicError: {
-      verdict: 'Likely Pathogenic',
-      confidence: 0.94,
-      deltaLogLikelihood: -8.2,
-      api: '/predict_variant_impact',
-      evidence: 'Confirms loss-of-function mutation with 95.7% AUROC precision (n=53,210 ClinVar variants).',
-    },
-    criticalDependency: {
-      geneEssentiality: 'High (0.82-0.99 AUROC)',
-      syntheticLethality: true,
-      depMapCorrelation: 0.73,
-      api: '/predict_gene_essentiality',
-      evidence: 'Validates cancer dependency on broken DNA repair pathway.',
-    },
-    conclusion: {
-      title: 'Perfect PARP Inhibitor Candidate',
-      details: 'Mathematical proof of synthetic lethality vulnerability. This patient represents the precise biomarker-positive population for which PARP inhibitors demonstrate maximum efficacy. Trial enrollment recommended.',
-    },
+    title: 'BRCA1 Pathogenic Variant Analysis',
+    summary: 'Comprehensive analysis of BRCA1:c.5266dupC frameshift variant',
+    keyFindings: ['Pathogenic classification', 'High therapeutic potential', 'IND-ready candidate']
+  },
+  saeAnalysis: {
+    features: ['Exon boundary', 'Protein domain', 'Regulatory element'],
+    scores: [0.89, 0.76, 0.45]
   },
   saeIntelligence: {
-    title: 'SAE Intelligence: Interpretable Genomic Features',
-    subtitle: '32,768 learned biological concepts from Layer 26 SAE',
-    totalFeatures: 32768,
-    activeFeatures: [
-        {
-            id: 'f_102',
-            label: 'Exon Boundary',
-            type: 'exon',
-            position: 43044290,
-            strength: 0.89,
-            description: 'Critical exon-intron junction disrupted by variant',
-            deltaLL: -12.5,
-            biologicalImpact: 'Splicing disruption leads to protein truncation'
-        },
-        {
-            id: 'f_211',
-            label: 'TF Motif (AP-1)',
-            type: 'tfbs',
-            position: 43044310,
-            strength: 0.76,
-            description: 'Transcription factor binding site affected',
-            deltaLL: -8.2,
-            biologicalImpact: 'Reduced transcriptional regulation'
-        },
-        {
-            id: 'f_156',
-            label: 'Protein Structure',
-            type: 'structure',
-            position: 43044350,
-            strength: 0.92,
-            description: 'Alpha-helix formation region disrupted',
-            deltaLL: -6.1,
-            biologicalImpact: 'Protein folding instability'
-        },
-        {
-            id: 'f_089',
-            label: 'Splice Site',
-            type: 'motif',
-            position: 43044400,
-            strength: 0.67,
-            description: 'Canonical splice acceptor site altered',
-            deltaLL: -4.3,
-            biologicalImpact: 'Alternative splicing activation'
-        }
-    ],
-    disruptionAnalysis: {
-      cumulativeScore: -8.2,
-    },
-    methodology: {
-      layer: 26,
-      concepts: ['Exon/Intron/TFBS/2° Structure'],
-      metric: 'Delta Log-Likelihood (ΔLL)',
-    },
+    features: ['Exon boundary', 'Protein domain', 'Regulatory element'],
+    scores: [0.89, 0.76, 0.45],
+    interpretation: 'SAE features indicate strong functional disruption'
   },
   speFusion: {
-    title: 'S/P/E Fusion: Sequence + Pathway + Evidence Integration',
-    subtitle: 'Explainable therapy ranking with confidence, evidence tier, badges, and citations',
-    sequence: {
-      deltaThreshold: -3.2,
-      contextWindow: 8192,
-      consistency: 0.85,
-      hotspotAware: true,
-    },
-    pathway: {
-      topPathways: [
-        { name: 'DNA Repair (BRCA)', weight: 0.87, moa: 'PARP inhibitor target' },
-        { name: 'Cell Cycle Control', weight: 0.64, moa: 'CDK4/6 inhibitor synergy' },
-        { name: 'Apoptosis Regulation', weight: 0.52, moa: 'BCL-2 inhibitor potential' }
-      ],
-      coverage: 0.95,
-      cooperation: 0.25,
-      accuracy: 0.89,
-    },
-    evidence: {
-      clinvarAUROC: 0.957,
-      splicevardbAUROC: 0.826,
-      tierPromotions: '10-20%',
-      evidenceTier: 'Supported',
-    },
-    integratedResult: {
-      sequenceConfidence: 0.957,
-      pathwayAlignments: 3,
-      evidenceLevel: 'Tier 2',
-    },
+    perturbationEffects: ['Cell viability', 'DNA repair', 'Apoptosis'],
+    fusionScores: [0.82, 0.91, 0.78]
   },
   cohortContext: {
-    title: 'Cohort Context: Population-Level Intelligence',
-    subtitle: 'See how this patient fits within the broader BRCA1+ population context',
+    title: 'BRCA1+ Patient Cohort Analysis',
+    subtitle: 'Population-specific data improves treatment selection accuracy by 67%',
     cohorts: [
-        {
-            id: 'brca1-cohort',
-            name: 'BRCA1+ Breast Cancer Patients',
-            population: '2.8K patients • Hereditary Breast Cancer',
-            size: 2847,
-            riskStratification: 'high',
-        }
-    ],
+      {
+        id: 'brca1-positive',
+        name: 'BRCA1+ Patients',
+        population: 'Hereditary breast cancer patients',
+        size: 156,
+        riskStratification: 'high' as const,
+        demographics: { avgAge: 52, genderSplit: { male: 2, female: 98 }, ethnicity: {} },
+        geneticProfile: { variantFrequency: 0.34, pathogenicVariants: 156, vusCount: 89 },
+        clinicalOutcomes: { responseRate: 0.78, progressionFreeMonths: 24.3, overallSurvivalMonths: 67.8 },
+        biomarkers: ['BRCA1/2 mutations', 'Homologous recombination deficiency'],
+        therapeuticRecommendations: ['PARP inhibitors', 'Platinum-based chemotherapy']
+      }
+    ]
   },
   dataLab: {
-    title: 'Data Lab: Supporting Evidence & Studies',
-    subtitle: 'Explore the genomic datasets and therapeutic pipelines supporting this analysis',
-    browserTitle: 'BRCA1 Research Evidence Browser',
-    browserSubtitle: 'Access 50+ curated datasets with real-time therapeutic pipeline integration',
+    experimentalData: ['Cutting efficiency', 'Off-target analysis', 'Functional validation'],
+    results: [0.87, 0.06, 0.82]
+  },
+  clinicalTrial: {
+    design: 'Phase I safety study',
+    endpoints: ['Safety', 'Efficacy', 'Biomarkers'],
+    timeline: '18 months'
   },
   clinicalTrials: {
-    title: 'Clinical Trial Matching Intelligence',
-    subtitle: 'Precision enrollment with surgical precision patient selection',
+    title: 'Clinical Trial Matching',
+    subtitle: 'BRCA1+ patients eligible for targeted therapies',
     eligibility: [
-      { criterion: 'BRCA1/2 Mutation Status', status: 'CONFIRMED' },
-      { criterion: 'Loss-of-Function Verified', status: '94.0% CONFIDENCE', confidence: 0.94 },
-      { criterion: 'Synthetic Lethality Target', status: 'VALIDATED' },
+      { criterion: 'BRCA1/2 mutation', status: 'Eligible', confidence: 0.95 },
+      { criterion: 'Advanced breast cancer', status: 'Eligible', confidence: 0.89 },
+      { criterion: 'Prior PARP inhibitor', status: 'Not applicable', confidence: 1.0 }
     ],
     recommendations: [
-      { trial: 'PARP Inhibitor Monotherapy', likelihood: 'LIKELY', details: '3 active trials • Phase II/III' },
-      { trial: 'PARP + CDK4/6 Combination', likelihood: 'POTENTIAL', details: '2 active trials • Phase I/II' },
-      { trial: 'Immunotherapy + PARP', likelihood: 'EMERGING', details: '1 active trial • Phase I' },
+      { trial: 'PARP Inhibitor Study', likelihood: 'High', details: 'Primary endpoint: PFS' },
+      { trial: 'Platinum Chemotherapy', likelihood: 'High', details: 'Secondary endpoint: ORR' }
     ],
     conclusion: {
-      title: 'The Perfect Clinical Trial',
-      points: ['Smaller', 'Faster', 'Cheaper'],
-      finalVerdict: 'Higher Probability of Success: Clear signal, overwhelming data, FDA approval',
+      title: 'High Trial Eligibility',
+      points: ['95% eligibility for PARP inhibitors', '89% eligibility for platinum therapy', 'Strong biomarker profile'],
+      finalVerdict: 'Recommended for clinical trial enrollment'
     },
     actions: [
-      { label: 'Launch Clinical Trials Co-Pilot', link: '/platform/clinical-trials' },
-      { label: 'Export Complete Dossier' },
-      { label: 'Generate Enrollment Strategy' },
+      { label: 'View Trial Details', link: '/trials/parp-inhibitor' },
+      { label: 'Contact Study Coordinator' }
     ],
-    researchUseNotice: 'Comprehensive analysis powered by Oracle (95.7% AUROC), SAE Intelligence (32,768 features), S/P/E Fusion, Cohort Context, and Data Lab evidence. Clinical decisions require multidisciplinary team review and additional clinical context.',
-  },
+    researchUseNotice: 'For research use only - not for clinical decision making'
+  }
 };
-

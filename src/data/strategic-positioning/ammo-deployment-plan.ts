@@ -44,7 +44,7 @@ export const AMMO_DEPLOYMENT_STRATEGY = {
     },
     multipleMyeloma: {
       problem: "Complex multi-hit genetics - 20% interpretation success",
-      solution: "Oracle + Forge + Boltz integrated analysis",
+      solution: "Preditive AI + Generative AI + Protien Engineering",
       market: "Oncology centers, precision medicine programs",
       revenue: "$150K per case → $15K per case (90% cost reduction)"
     },

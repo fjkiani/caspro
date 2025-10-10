@@ -206,30 +206,31 @@ const ClinicalDossier: React.FC<ClinicalDossierProps> = ({
   return (
     <div className={`clinical-dossier bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col ${className}`}>
       {/* Dossier Header */}
-      <div className="bg-gradient-to-r from-slate-900 to-blue-900 text-white p-8 flex-shrink-0">
-        <div className="flex items-center justify-between">
+      <div className="bg-gradient-to-r from-slate-900 to-blue-900 text-white p-4 sm:p-8 flex-shrink-0">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-bold mb-2 flex items-center gap-3">
-              <Shield className="w-8 h-8" />
-              Target Validation Dossier
+            <h2 className="text-xl sm:text-3xl font-bold mb-2 flex items-center gap-3">
+              <Shield className="w-6 h-6 sm:w-8 sm:h-8" />
+              <span className="hidden sm:inline">Target Validation Dossier</span>
+              <span className="sm:hidden">Dossier</span>
             </h2>
             <div className="space-y-1">
-              <div className="text-2xl font-bold text-blue-300 font-mono">
+              <div className="text-lg sm:text-2xl font-bold text-blue-300 font-mono break-all">
                 {dossier.header.gene}:{dossier.header.variant}
               </div>
-              <div className="text-lg text-slate-200">
-                Multi-Engine Intelligence Analysis • Run ID: {runId}
+              <div className="text-sm sm:text-lg text-slate-200">
+                <span className="hidden sm:inline">Multi-Engine Intelligence Analysis • </span>Run ID: {runId}
               </div>
-              <div className="text-sm text-slate-300">
-                {dossier.header.engines.join(' + ')} • {dossier.header.precision * 100}% AUROC Precision
+              <div className="text-xs sm:text-sm text-slate-300">
+                {dossier.header.engines.join(' + ')} • {dossier.header.precision * 100}% AUROC
               </div>
             </div>
           </div>
           
-          <div className="text-right">
-            <div className="text-sm text-slate-300">Analysis Complete</div>
-            <div className="text-lg font-mono text-blue-300">{runId}</div>
-            <div className="text-sm text-slate-300 mt-2">
+          <div className="text-left sm:text-right">
+            <div className="text-xs sm:text-sm text-slate-300">Analysis Complete</div>
+            <div className="text-sm sm:text-lg font-mono text-blue-300 break-all">{runId}</div>
+            <div className="text-xs sm:text-sm text-slate-300 mt-1 sm:mt-2">
               {tabs.length} Intelligence Layers
             </div>
           </div>

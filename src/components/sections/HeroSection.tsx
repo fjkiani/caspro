@@ -26,7 +26,7 @@ const ProteinModelViewer = dynamic(
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-white to-blue-50 dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
+    <section className="relative overflow-hidden pt-24 pb-16 sm:pt-28 sm:pb-20 lg:py-24 bg-gradient-to-b from-white to-blue-50 dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
       {/* Advanced background DNA elements - reduced on mobile for performance */}
       <div className="absolute left-4 sm:left-10 top-10 w-16 sm:w-24 h-3/4 opacity-5 sm:opacity-10 dark:opacity-30 dark:sm:opacity-70 pointer-events-none">
         <DoubleDnaHelix className="w-full h-full" baseCount={8} rotationSpeed={15} />
@@ -62,13 +62,13 @@ const HeroSection = () => {
               className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8"
             >
               <div className="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-                ✅ 95.7% ClinVar AUROC
+                ✅ 95.7% Target Validation
               </div>
               <div className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                🧬 95.0% BRCA AUROC
+                🧬 1 million token context
               </div>
               <div className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
-                ⚡ Real-time predictions
+                ⚡Research-Use-Only
               </div>
             </motion.div>
 
@@ -79,7 +79,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border border-green-200 dark:border-green-700 rounded-xl p-6 mb-8"
             >
-              <div className="text-center">
+              {/* <div className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-2">
                   $2.6B → $500K
                 </div>
@@ -89,7 +89,7 @@ const HeroSection = () => {
                 <div className="text-sm text-green-600 dark:text-green-400 font-semibold">
                   ⚡ 80% cost reduction • 15 years → 2 years • 90% success rate
                 </div>
-              </div>
+              </div> */}
             </motion.div>
 
             {/* STRONG CALL-TO-ACTION */}

@@ -96,28 +96,28 @@ const DigitalSynapseBackground = () => {
 };
 
 const SlideLayout = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-    <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className={`relative w-full h-full flex flex-col items-center justify-center text-center p-8 bg-gray-50 text-gray-800 overflow-hidden ${className}`}>
-        <div className="relative z-10 w-full max-w-7xl space-y-12">
+    <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className={`relative w-full h-full flex flex-col items-center justify-center text-center p-4 md:p-8 bg-gray-50 text-gray-800 overflow-hidden ${className}`}>
+        <div className="relative z-10 w-full max-w-7xl space-y-8 md:space-y-12">
             {children}
         </div>
     </motion.section>
 );
 
 const SlideHeader = ({ title, subtitle, titleClassName = '', isApi = false }: { title: string; subtitle: string; titleClassName?: string; isApi?: boolean }) => (
-    <div className="space-y-4">
-        <h1 className={`text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r ${titleClassName}`}>
-            {isApi ? <span className="font-mono bg-gray-200 text-gray-700 px-4 py-2 rounded-lg mr-4">{title}</span> : title}
+    <div className="space-y-3 md:space-y-4">
+        <h1 className={`text-3xl md:text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r ${titleClassName}`}>
+            {isApi ? <span className="font-mono bg-gray-200 text-gray-700 px-2 md:px-4 py-1 md:py-2 rounded-lg mr-2 md:mr-4 text-sm md:text-base">{title}</span> : title}
         </h1>
-        <p className="text-2xl md:text-4xl font-light text-slate-600 max-w-5xl mx-auto">
+        <p className="text-lg md:text-2xl lg:text-4xl font-light text-slate-600 max-w-5xl mx-auto px-4">
             {subtitle}
         </p>
     </div>
 );
 
 const StatCard = ({ value, label }: { value: string; label: string }) => (
-    <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-lg">
-        <p className="text-7xl font-black text-red-500">{value}</p>
-        <p className="text-2xl text-slate-600 mt-2">{label}</p>
+    <div className="bg-white p-4 md:p-8 rounded-2xl border border-slate-200 shadow-lg">
+        <p className="text-4xl md:text-7xl font-black text-red-500">{value}</p>
+        <p className="text-lg md:text-2xl text-slate-600 mt-2">{label}</p>
     </div>
 );
 
@@ -339,12 +339,12 @@ const PatientIcon = ({ isResponder, delay }: { isResponder: boolean; delay: numb
 //================================================================================
 
 const TitleSlide = () => (
-    <section className="relative w-full h-full flex flex-col items-center justify-center text-center p-8 bg-gray-50 text-gray-800 overflow-hidden">
+    <section className="relative w-full h-full flex flex-col items-center justify-center text-center p-4 md:p-8 bg-gray-50 text-gray-800 overflow-hidden">
         <DigitalSynapseBackground />
         <Brand />
-        <div className="relative z-10 w-full px-4 space-y-8">
-            <h1 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 drop-shadow-sm">The Certainty Engine</h1>
-            <h2 className="text-3xl md:text-5xl font-light text-slate-600 max-w-5xl mx-auto">Transforming a $2.6 Billion Gamble into a Deterministic Science</h2>
+        <div className="relative z-10 w-full px-4 space-y-6 md:space-y-8">
+            <h1 className="text-4xl md:text-7xl lg:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 drop-shadow-sm">The Certainty Engine</h1>
+            <h2 className="text-xl md:text-3xl lg:text-5xl font-light text-slate-600 max-w-5xl mx-auto">Transforming a $2.6 Billion Gamble into a Deterministic Science</h2>
         </div>
     </section>
 );
@@ -400,7 +400,7 @@ const DrugFunnelSlide = () => {
             subtitle="The numbers reveal a process defined by catastrophic, systemic failure. This is not a pipeline; it's a graveyard."
             titleClassName="from-slate-700 to-slate-900"
         />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 w-full max-w-6xl mx-auto">
             <StatCard value="<5%" label="Success Rate" />
             <StatCard value="10-15" label="Years to Market" />
             <StatCard value="$2.6B" label="Cost of Failure" />
@@ -475,16 +475,16 @@ const TwoDoctrinesSlide = () => (
             subtitle="Our platform is built on two core doctrines: Prediction and Generation."
             titleClassName="from-slate-700 to-slate-900"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            <div className="bg-white p-8 rounded-2xl border-2 border-blue-200 shadow-xl text-center flex flex-col">
-                <div className="flex items-center justify-center text-blue-600 mb-4"><Target size={32} className="mr-3"/><h3 className="text-4xl font-bold">The Prediction Doctrine</h3></div>
-                <p className="text-2xl text-slate-600 mt-2 flex-grow">We don't guess at targets; we deliver a definitive, data-driven verdict.</p>
-                <div className="mt-8"><Gavel size={64} className="text-blue-500 mx-auto"/></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-stretch">
+            <div className="bg-white p-4 md:p-8 rounded-2xl border-2 border-blue-200 shadow-xl text-center flex flex-col">
+                <div className="flex items-center justify-center text-blue-600 mb-4"><Target size={24} className="mr-2 md:mr-3"/><h3 className="text-2xl md:text-4xl font-bold">The Prediction Doctrine</h3></div>
+                <p className="text-lg md:text-2xl text-slate-600 mt-2 flex-grow">We don't guess at targets; we deliver a definitive, data-driven verdict.</p>
+                <div className="mt-4 md:mt-8"><Gavel size={48} className="text-blue-500 mx-auto md:w-16 md:h-16"/></div>
             </div>
-            <div className="bg-white p-8 rounded-2xl border-2 border-purple-200 shadow-xl text-center flex flex-col">
-                 <div className="flex items-center justify-center text-purple-600 mb-4"><Factory size={32} className="mr-3"/><h3 className="text-4xl font-bold">The Generation Doctrine</h3></div>
-                <p className="text-2xl text-slate-600 mt-2 flex-grow">We don't discover leads by chance; we engineer them with cold, hard intention.</p>
-                 <div className="mt-8"><DraftingCompass size={64} className="text-purple-500 mx-auto"/></div>
+            <div className="bg-white p-4 md:p-8 rounded-2xl border-2 border-purple-200 shadow-xl text-center flex flex-col">
+                 <div className="flex items-center justify-center text-purple-600 mb-4"><Factory size={24} className="mr-2 md:mr-3"/><h3 className="text-2xl md:text-4xl font-bold">The Generation Doctrine</h3></div>
+                <p className="text-lg md:text-2xl text-slate-600 mt-2 flex-grow">We don't discover leads by chance; we engineer them with cold, hard intention.</p>
+                 <div className="mt-4 md:mt-8"><DraftingCompass size={48} className="text-purple-500 mx-auto md:w-16 md:h-16"/></div>
             </div>
         </div>
     </SlideLayout>
@@ -494,7 +494,7 @@ const PredictVariantImpactSlide = () => (
     <SlideLayout>
         <SlideHeader title="/predict_variant_impact" subtitle="Delivers mathematical proof of a catastrophic functional error, turning 'maybe' into a definitive verdict." titleClassName="from-blue-600 to-cyan-500" isApi />
         <div className="bg-white/80 backdrop-blur-sm p-10 rounded-3xl border border-slate-200 shadow-2xl">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                 <div className="bg-amber-50 p-8 rounded-2xl border-2 border-dashed border-amber-400 text-left h-full flex flex-col">
                     <div className="flex items-center text-amber-600 mb-6"><AlertTriangle size={32} className="mr-3" /><h3 className="text-3xl font-bold">The Problem: VUS Paralysis</h3></div>
                     <p className="text-xl text-amber-800 mb-6">A "Variant of Uncertain Significance" is a hard stop for R&D, creating a cascade of negative consequences:</p>
@@ -832,7 +832,7 @@ const GroundTruthSlide = () => (
         />
         <div className="bg-white/80 backdrop-blur-sm p-10 rounded-3xl border border-slate-200 shadow-2xl max-w-5xl mx-auto">
             <div className="flex flex-col items-center"><div className="flex items-center text-slate-700"><FlaskConical size={40} className="mr-4"/><h2 className="text-4xl font-bold">The Wet-Lab Experiment</h2></div><p className="text-xl text-slate-500 mt-2">Measuring biological reality, one variant at a time.</p></div>
-            <div className="grid grid-cols-3 gap-8 text-center my-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 text-center my-6 md:my-10">
                 <div className="bg-slate-100 p-6 rounded-xl"><Microscope size={48} className="mx-auto text-slate-500"/><h3 className="text-xl font-semibold mt-4">Thousands of Variants</h3><p className="text-slate-600">Each protein variant is physically created and tested.</p></div>
                 <div className="bg-slate-100 p-6 rounded-xl"><Clock size={48} className="mx-auto text-slate-500"/><h3 className="text-xl font-semibold mt-4">Months of Work</h3><p className="text-slate-600">A slow, painstaking, and resource-intensive process.</p></div>
                 <div className="bg-slate-100 p-6 rounded-xl"><DollarSign size={48} className="mx-auto text-slate-500"/><h3 className="text-xl font-semibold mt-4">High Cost</h3><p className="text-slate-600">Extremely expensive to run at scale.</p></div>
@@ -851,7 +851,7 @@ const PredictionSlide = () => (
         />
         <div className="bg-white/80 backdrop-blur-sm p-10 rounded-3xl border border-slate-200 shadow-2xl max-w-5xl mx-auto">
             <div className="flex flex-col items-center"><div className="flex items-center text-blue-700"><Cpu size={40} className="mr-4"/><h2 className="text-4xl font-bold">The Computational Verdict</h2></div><p className="text-xl text-slate-500 mt-2">Predicting biological reality from first principles.</p></div>
-            <div className="grid grid-cols-3 gap-8 text-center my-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 text-center my-6 md:my-10">
                 <div className="bg-blue-100 p-6 rounded-xl"><Zap size={48} className="mx-auto text-blue-500"/><h3 className="text-xl font-semibold mt-4">Thousands of Variants</h3><p className="text-slate-600">The same set of variants is analyzed computationally.</p></div>
                 <div className="bg-blue-100 p-6 rounded-xl"><Clock size={48} className="mx-auto text-blue-500"/><h3 className="text-xl font-semibold mt-4">Seconds of Work</h3><p className="text-slate-600">A rapid, scalable, and fully automated process.</p></div>
                 <div className="bg-blue-100 p-6 rounded-xl"><DollarSign size={48} className="mx-auto text-blue-500"/><h3 className="text-xl font-semibold mt-4">Fraction of the Cost</h3><p className="text-slate-600">Near-zero marginal cost to run at scale.</p></div>
@@ -902,7 +902,7 @@ const AnatomyOfFailureSlide = () => (
 const TheCertaintyEngineSlide = () => (
     <SlideLayout>
         <SlideHeader title="The Certainty Engine" subtitle="Our integrated platform transforms unanswered questions into de-risked assets." titleClassName="from-blue-600 to-emerald-500" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 items-center">
             <div className="space-y-6">
                  <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.2}} className="text-2xl font-semibold text-slate-500 text-left p-4 border-l-4 border-slate-300">Is the Target Correct?</motion.div>
                  <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.4}} className="text-2xl font-semibold text-slate-500 text-left p-4 border-l-4 border-slate-300">Can We Build an Effective Drug?</motion.div>
@@ -940,7 +940,7 @@ const DevelopmentAdvantageSlide_Phase2 = () => (
                 <h3 className="text-3xl font-bold text-slate-800">The Traditional Trial</h3><p className="text-xl text-slate-500 mt-2">Hope is the Strategy</p>
                 <div className="flex-grow flex flex-col items-center justify-center my-8">
                     <p className="font-semibold text-slate-600 mb-4">Enroll a broad patient population...</p>
-                    <div className="grid grid-cols-5 gap-4 w-64">
+                    <div className="grid grid-cols-3 md:grid-cols-5 gap-2 md:gap-4 w-full max-w-xs md:w-64">
                         {Array.from({ length: 15 }).map((_, i) => (<PatientIcon key={i} isResponder={i % 7 === 0} delay={0.5 + i * 0.05} />))}
                     </div>
                 </div>
@@ -950,8 +950,8 @@ const DevelopmentAdvantageSlide_Phase2 = () => (
                 <h3 className="text-3xl font-bold text-emerald-800">The CrisPRO.ai Trial</h3><p className="text-xl text-emerald-600 mt-2">Certainty is the Strategy</p>
                  <div className="flex-grow flex flex-col items-center justify-center my-8">
                     <p className="font-semibold text-slate-600 mb-4">Computationally filter for ideal candidates...</p>
-                    <div className="flex items-center space-x-4">
-                        <div className="grid grid-cols-3 gap-2">{Array.from({ length: 6 }).map((_, i) => (<PatientIcon key={i} isResponder={i % 3 === 0} delay={0.5 + i * 0.1} />))}</div>
+                    <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-2">{Array.from({ length: 6 }).map((_, i) => (<PatientIcon key={i} isResponder={i % 3 === 0} delay={0.5 + i * 0.1} />))}</div>
                         <ArrowRight size={32} className="text-slate-400"/>
                         <div className="bg-blue-100 p-4 rounded-lg border border-blue-300"><Command className="text-blue-600 mx-auto mb-2" /><p className="font-mono text-sm text-blue-800 whitespace-nowrap">/predict_gene_essentiality</p></div>
                         <ArrowRight size={32} className="text-slate-400"/>
@@ -1013,7 +1013,7 @@ const EconomicFailureSlide = () => (
 const IpNftSlide = () => (
     <SlideLayout>
         <SlideHeader title="DeSci & The IP-NFT" subtitle="Creating Liquid Assets from `In Silico` Discoveries" titleClassName="from-green-600 to-teal-500" />
-        <div className="flex flex-col lg:flex-row items-center justify-center w-full space-y-8 lg:space-y-0 lg:space-x-8">
+        <div className="flex flex-col lg:flex-row items-center justify-center w-full space-y-6 md:space-y-8 lg:space-y-0 lg:space-x-8">
             <div className="flex flex-col items-center space-y-4"><div className="text-4xl p-5 bg-green-500/10 rounded-full border-2 border-green-500 text-green-500"><Package/></div><h3 className="text-2xl font-bold text-gray-800">1. Minting</h3><p className="text-lg text-slate-600 max-w-xs">A validated "Digital Dossier" is minted as an IP-NFT, creating a permanent, verifiable record of invention.</p></div>
             <div className="text-3xl text-slate-300 animate-pulse hidden lg:block"><ArrowRight/></div>
             <div className="flex flex-col items-center space-y-4"><div className="text-4xl p-5 bg-yellow-500/10 rounded-full border-2 border-yellow-500 text-yellow-500"><Banknote/></div><h3 className="text-2xl font-bold text-gray-800">2. Funding</h3><p className="text-lg text-slate-600 max-w-xs">The IP-NFT is sold to fund wet-lab validation, with ownership fractionalized among stakeholders.</p></div>

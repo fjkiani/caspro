@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Target, TrendingUp, Shield, Zap } from 'lucide-react';
 import Link from 'next/link';
+import CardSlider from '@/components/shared/CardSlider';
 
 // Import the real metrics data
 import { discriminativeMetrics, generativeMetrics, businessMetrics } from '@/data/metrics/core-metrics';
@@ -77,12 +78,11 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
           className="text-center mb-16"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
-          We Don't Cure Cancer. We Eliminate Failure.
+          You Bring the Science, We Bring the AI Engineering
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-4xl mx-auto mb-6 sm:mb-8 leading-relaxed">
-            Real results from peer-reviewed research. <strong>No hallucination, no marketing fluff.</strong> 
-            These are the metrics that close multi-million dollar biotech contracts.
-          </p>
+            <strong>Validated in-silico predictions for variant impact, drug fit, and CRISPR design.</strong> 
+          </p>  
           
           {/* Quick Stats */}
           <div className="flex flex-wrap justify-center gap-3 sm:gap-6 mb-6 sm:mb-8">
@@ -99,8 +99,8 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
           </div>
         </motion.div>
 
-        {/* Metrics Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
+        {/* Metrics Cards - Desktop Grid / Mobile Slider */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
           {showcaseMetrics.map((metric, index) => {
             const Icon = metric.icon;
             
@@ -168,6 +168,91 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
               </motion.div>
             );
           })}
+        </div>
+
+        {/* Mobile Slider */}
+        <div className="sm:hidden mb-8">
+          <div className="text-center mb-4">
+            <p className="text-sm text-slate-500 flex items-center justify-center gap-2">
+              <span>← Swipe to explore →</span>
+            </p>
+          </div>
+          <CardSlider
+            slidesToShow={1}
+            slidesToScroll={1}
+            showDots={true}
+            showArrows={true}
+            autoPlay={false}
+            className="mx-2"
+          >
+            {showcaseMetrics.map((metric, index) => {
+              const Icon = metric.icon;
+              
+              return (
+                <motion.div
+                  key={metric.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group relative bg-white rounded-2xl border border-slate-200 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+                >
+                  {/* Gradient Background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${metric.color} opacity-5 group-hover:opacity-10 transition-opacity`} />
+                  
+                  {/* Badge */}
+                  <div className="absolute top-4 right-4">
+                    <span className={`px-2 py-1 bg-gradient-to-r ${metric.color} text-white text-xs font-bold rounded-full`}>
+                      {metric.badge}
+                    </span>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="relative p-6">
+                    {/* Icon */}
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${metric.color} flex items-center justify-center mb-4`}>
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-slate-900 mb-2 leading-tight">
+                      {metric.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="text-slate-600 text-sm mb-4 leading-relaxed">
+                      {metric.description}
+                    </p>
+                    
+                    {/* Main Metric */}
+                    <div className="mb-4">
+                      <div className="text-3xl font-bold text-slate-900 mb-1">
+                        {metric.value}
+                      </div>
+                      <div className="text-sm text-slate-500 font-semibold">
+                        {metric.metric}
+                      </div>
+                      <div className="text-sm text-slate-400 mt-1 leading-tight">
+                        {metric.details}
+                      </div>
+                    </div>
+                    
+                    {/* CTA */}
+                    <Link href={metric.link}>
+                      <motion.button
+                        className="w-full px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 group-hover:bg-gradient-to-r group-hover:from-slate-100 group-hover:to-slate-50 text-base touch-manipulation"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        View Details
+                        <ArrowRight className="w-4 h-4" />
+                      </motion.button>
+                    </Link>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </CardSlider>
         </div>
 
         {/* Bottom CTA */}

@@ -195,7 +195,7 @@ const BiotechROICalculator: React.FC = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="bg-white rounded-2xl p-8 shadow-2xl border border-slate-200"
+      className="bg-white rounded-2xl p-4 sm:p-8 shadow-2xl border border-slate-200"
     >
       {/* Header */}
       <div className="text-center mb-8">
@@ -203,50 +203,52 @@ const BiotechROICalculator: React.FC = () => {
           <Calculator className="w-4 h-4" />
           Biotech ROI Calculator
         </div>
-        <h3 className="text-2xl font-bold text-slate-900 mb-2">
+        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
           Calculate Your R&D ROI Improvement
         </h3>
-        <p className="text-slate-600 mb-6">
+        <p className="text-sm sm:text-base text-slate-600 mb-6 px-4">
           See exactly how CrisPRO's AI reduces failure costs and accelerates your pipeline
         </p>
 
         {/* Mode Toggle */}
         <div className="flex justify-center mb-6">
-          <div className="bg-slate-100 p-1 rounded-lg">
+          <div className="bg-slate-100 p-1 rounded-lg w-full max-w-sm">
             <button
               onClick={() => setMode('auto')}
-              className={`px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 flex items-center gap-2 ${
+              className={`w-full px-3 sm:px-6 py-3 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-2 ${
                 mode === 'auto' 
                   ? 'bg-blue-500 text-white shadow-md' 
                   : 'text-slate-600 hover:text-slate-800'
               }`}
             >
-              <Play className="w-4 h-4" />
-              Auto Simulation
+              <Play className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">Auto Simulation</span>
+              <span className="sm:hidden">Auto</span>
             </button>
             <button
               onClick={() => setMode('custom')}
-              className={`px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 flex items-center gap-2 ${
+              className={`w-full px-3 sm:px-6 py-3 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-2 ${
                 mode === 'custom' 
                   ? 'bg-green-500 text-white shadow-md' 
                   : 'text-slate-600 hover:text-slate-800'
               }`}
             >
-              <Target className="w-4 h-4" />
-              Custom Calculator
+              <Target className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">Custom Calculator</span>
+              <span className="sm:hidden">Custom</span>
             </button>
           </div>
         </div>
 
-        <p className="text-sm text-slate-500">
+        <p className="text-xs sm:text-sm text-slate-500 px-4">
           {mode === 'auto' 
-            ? '🚀 Watch live simulation with industry standard data' 
-            : '🎯 Adjust parameters to match your specific R&D program'
+            ? '🚀 Watch live simulation with industry data' 
+            : '🎯 Adjust parameters to match your R&D program'
           }
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
         {/* Left Side - Mode Dependent */}
         <div className="space-y-6">
           {mode === 'auto' ? (
@@ -258,36 +260,36 @@ const BiotechROICalculator: React.FC = () => {
               </h4>
             
             {/* Simulation Steps */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {/* Step 1: Current Industry Standards */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: simulationStep >= 1 ? 1 : 0.3, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className={`p-4 rounded-lg border-2 ${
+                className={`p-3 sm:p-4 rounded-lg border-2 ${
                   simulationStep >= 1 ? 'border-red-300 bg-red-50' : 'border-slate-200 bg-white'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <AlertCircle className="w-4 h-4 text-red-500" />
-                  <span className="text-sm font-semibold text-red-700">Current Industry Reality</span>
+                  <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4 text-red-500" />
+                  <span className="text-xs sm:text-sm font-semibold text-red-700">Current Industry Reality</span>
                 </div>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 sm:gap-4 text-xs sm:text-sm">
                   <div>
-                    <div className="text-red-600 font-bold">{formatCurrency(industryStandards.monthlyRDSpend)}/month</div>
-                    <div className="text-red-500">R&D Investment</div>
+                    <div className="text-red-600 font-bold text-xs sm:text-sm">{formatCurrency(industryStandards.monthlyRDSpend)}/mo</div>
+                    <div className="text-red-500 text-xs">R&D Investment</div>
                   </div>
                   <div>
-                    <div className="text-red-600 font-bold">{industryStandards.currentSuccessRate}%</div>
-                    <div className="text-red-500">Success Rate</div>
+                    <div className="text-red-600 font-bold text-xs sm:text-sm">{industryStandards.currentSuccessRate}%</div>
+                    <div className="text-red-500 text-xs">Success Rate</div>
                   </div>
                   <div>
-                    <div className="text-red-600 font-bold">{industryStandards.targetsPerYear}/year</div>
-                    <div className="text-red-500">Targets Validated</div>
+                    <div className="text-red-600 font-bold text-xs sm:text-sm">{industryStandards.targetsPerYear}/year</div>
+                    <div className="text-red-500 text-xs">Targets Validated</div>
                   </div>
                   <div>
-                    <div className="text-red-600 font-bold">18 months</div>
-                    <div className="text-red-500">Validation Time</div>
+                    <div className="text-red-600 font-bold text-xs sm:text-sm">18mo</div>
+                    <div className="text-red-500 text-xs">Validation Time</div>
                   </div>
                 </div>
                 {simulationStep >= 1 && (

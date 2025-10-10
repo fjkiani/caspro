@@ -117,15 +117,15 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
 
   const renderContent = () => {
     return (
-      <div className="space-y-16">
+      <div className="space-y-16 w-full">
         {tabs.map((tab) => (
           <section 
             key={tab.id}
             id={tab.id} 
             data-section={tab.id} 
-            className="scroll-mt-8"
+            className="scroll-mt-8 w-full"
           >
-            <div className="max-w-6xl mx-auto">
+            <div className="w-full">
               {tab.content}
             </div>
           </section>
@@ -140,7 +140,7 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
       {showSidebar && (
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="fixed top-6 left-6 z-50 lg:hidden bg-white rounded-full p-3 shadow-lg border border-slate-200 hover:shadow-xl transition-all"
+          className="fixed top-4 left-4 z-50 lg:hidden bg-white rounded-full p-3 shadow-lg border border-slate-200 hover:shadow-xl transition-all"
         >
           {sidebarOpen ? <X className="w-6 h-6 text-slate-700" /> : <Menu className="w-6 h-6 text-slate-700" />}
         </button>
@@ -148,7 +148,7 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
 
       {/* Floating Sidebar Navigation - Only show if enabled */}
       {showSidebar && (
-        <div className={`fixed left-6 top-1/2 -translate-y-1/2 z-40 transition-all duration-300 ${
+        <div className={`fixed left-4 top-1/2 -translate-y-1/2 z-40 transition-all duration-300 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         } ${hideSidebarOnMobile ? 'hidden lg:block' : ''}`}>
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/50 p-4 max-w-xs">
@@ -239,9 +239,11 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
       )}
 
       {/* Main Content */}
-      <div className={`w-full ${showSidebar ? 'lg:ml-72' : ''}`}>
-        <div className="max-w-7xl mx-auto px-6 py-12 lg:px-12 lg:py-24">
-          {renderContent()}
+      <div className="w-full">
+        <div className={`w-full px-4 sm:px-6 lg:px-8 py-12 lg:py-24 ${showSidebar ? 'lg:pl-80' : ''}`}>
+          <div className="max-w-5xl mx-auto">
+            {renderContent()}
+          </div>
         </div>
       </div>
     </div>

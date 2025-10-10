@@ -48,7 +48,7 @@ const EvidenceSectionRenderer: React.FC<EvidenceSectionRendererProps> = ({ data 
   // Handle special case for overview
   if (data.capabilities && data.featureConnections) {
     return (
-      <div className="space-y-16 ml-8"> {/* Add left margin to avoid sidebar overlap */}
+      <div className="space-y-16 w-full evidence-page-content"> {/* Full width with proper constraints */}
         {/* Hero Section */}
         <div className="text-center space-y-6">
           <h1 className="text-5xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent">
@@ -121,7 +121,7 @@ const EvidenceSectionRenderer: React.FC<EvidenceSectionRendererProps> = ({ data 
     null;
 
   return (
-    <div className="space-y-16 ml-8"> {/* Add left margin to avoid sidebar overlap */}
+    <div className="space-y-16 w-full evidence-page-content"> {/* Full width with proper constraints */}
       {/* Hero Section */}
       <div className="text-center space-y-8">
         <div className="space-y-4">

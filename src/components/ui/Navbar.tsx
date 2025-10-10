@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail, Users } from 'lucide-react';
+import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail, Users, BarChart3 } from 'lucide-react';
 import ToggleButton from './ToggleButton';
 import { coPilotDetailsData } from '@/data/coPilotDetails';
 
@@ -96,6 +96,11 @@ export const NAV_LINKS = [
     label: 'Metrics',
     icon: <PenTool className="inline-block h-4 w-4" />,
     subLinks: metricsSubLinks,
+  },
+  {
+    href: '/decks',
+    label: 'Decks',
+    icon: <BarChart3 className="inline-block h-4 w-4" />,
   },
   {
     href: '/contact',
@@ -225,7 +230,11 @@ const Navbar: React.FC = () => {
 
           {/* Mobile Nav Toggle */}
           <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-white">
+            <button 
+              onClick={() => setIsOpen(!isOpen)} 
+              className="p-2 text-white hover:text-slate-300 transition-colors rounded-lg hover:bg-slate-800/50"
+              aria-label="Toggle mobile menu"
+            >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -235,48 +244,59 @@ const Navbar: React.FC = () => {
       {/* Mobile Nav Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-slate-200"
-          >
-            <div className="px-4 pt-2 pb-4 space-y-2">
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+            {/* Menu */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden bg-slate-900/95 backdrop-blur-lg border-t border-slate-700/50 relative z-50 max-h-[80vh] overflow-y-auto"
+            >
+            <div className="px-4 pt-4 pb-6 space-y-1">
               {NAV_LINKS.map((link) => (
                 <div key={link.label}>
                     <Link
-                      href={('subLinks' in link && link.subLinks) ? '#' : link.href}
-                      onClick={() => !('subLinks' in link && link.subLinks) && setIsOpen(false)}
-                      className="block py-2 text-base font-medium text-slate-700 hover:text-primary"
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center gap-2 py-3 text-base font-medium text-slate-300 hover:text-white transition-colors border-b border-slate-700/30"
                     >
                       {link.icon} {link.label}
                     </Link>
                     {('subLinks' in link && link.subLinks) ? (
-                        <div className="pl-4 mt-1 space-y-1 border-l border-slate-200">
+                        <div className="pl-6 mt-1 mb-2 space-y-1 border-l border-slate-600/50">
                         {(link as any).subLinks.map((sub: any) => (
                             <Link
                                 key={sub.href}
                                 href={sub.href}
                                 onClick={() => setIsOpen(false)}
-                                className="block py-1.5 text-sm text-slate-600 hover:text-primary"
+                                className="block py-1.5 text-sm text-slate-400 hover:text-slate-200 transition-colors"
                             >
-                            - {sub.label}
+                            • {sub.label}
                             </Link>
                         ))}
                         </div>
                     ) : null}
                 </div>
               ))}
-              <div className="flex items-stretch gap-2 pt-4">
-                <div className="flex-1">
+              <div className="pt-4 border-t border-slate-700/50">
+                <div className="flex justify-center">
                   <ToggleButton href="/platform">
                     Research Use Only
                   </ToggleButton>
                 </div>
-              
               </div>
             </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>

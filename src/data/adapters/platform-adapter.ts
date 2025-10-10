@@ -140,7 +140,7 @@ export const adaptCompletePlatformForHomepage = () => {
       },
       solution: {
         title: 'Mathematical Certainty Through AI Intelligence',
-        approach: 'Oracle + Forge + Boltz + Command Center',
+        approach: 'Preditive AI + Generative AI + Protien Engineering ',
         targetValidation: '95.7% accuracy eliminates guesswork',
         therapeuticGeneration: '70% functional coherence',
         structuralProof: '95.8% confidence validation',

@@ -1,29 +1,23 @@
-'use client';
-
 import React from 'react';
-import DataLabExplorer from '@/components/evidence/interactive/DataLabExplorer';
-import { DataLab as DataLabData } from '@/data/dossier/types';
 
 interface DataLabProps {
-  data: DataLabData;
+  data?: any;
 }
 
 const DataLab: React.FC<DataLabProps> = ({ data }) => {
   return (
-    <div className="space-y-8">
-      <div className="mb-6">
-        <h3 className="text-2xl font-bold text-slate-900 mb-2">{data.title}</h3>
-        <p className="text-slate-600">{data.subtitle}</p>
-      </div>
-      
-      <DataLabExplorer 
-        title={data.browserTitle}
-        subtitle={data.browserSubtitle}
-        showPipeline={true}
-      />
+    <div className="bg-white rounded-lg p-6 shadow-md">
+      <h3 className="text-xl font-bold text-gray-800 mb-4">Data Lab</h3>
+      <p className="text-gray-600">
+        Experimental data integration and validation results.
+      </p>
+      {data && (
+        <div className="mt-4">
+          <p className="text-sm text-gray-500">Data: {JSON.stringify(data)}</p>
+        </div>
+      )}
     </div>
   );
 };
 
 export default DataLab;
-

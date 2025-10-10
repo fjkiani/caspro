@@ -20,6 +20,8 @@ import DiscoveryRaceSimulation from '@/components/simulations/sections/Discovery
 
 import DeckViewer from '@/components/shared/DeckViewer';
 import { rAndDDeckData } from '@/data/decks/r-and-d-deck';
+import AboutPreview from '@/components/homepage/AboutPreview';
+import TrustedBy from '@/components/shared/TrustedBy';
 
 // Engine Teasers
 // import EngineTeasers from '@/components/homepage/EngineTeasers';
@@ -30,22 +32,26 @@ import { rAndDDeckData } from '@/data/decks/r-and-d-deck';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white w-full overflow-x-hidden">
       <HeroSection />
       
       {/* Engine Teasers */}
       {/* <EngineTeasers /> */}
+      <TrustedBy />
       
       <MetricsShowcase />
-      {/* <DrugDevelopmentComparison /> */}
-      <DrugDevelopmentComparisonCompact />
+      {/* <AboutPreview /> */}
+
+      {/* <DiscoveryVsEngineering /> */}
+      <InteractiveDemoSection />
+            {/* <BridgingValleyOfDeath /> */}
+
+      {/* <DrugDevelopmentComparisonCompact /> */}
       {/* <OracleShowcase /> */}
 
       {/* <DiscoveryVsEngineering /> */}
       {/* <BridgingValleyOfDeath /> */}
-      <DiscoveryVsEngineering />
 
-      <BridgingValleySimulation />
       {/* <DiscoveryRaceSimulation/> */}
        {/* <DrugDevelopmentTransformation /> */}
 
@@ -55,18 +61,21 @@ export default function Home() {
         <DrugDevelopmentOrchestrator />
       </div> */}
   
-      <div id="roi-calculator">
+      {/* <div id="roi-calculator">
         <ROICalculatorSection />
-      </div>
-      <DrugDevelopmentPlatform />
-      <FusionWorkflowTeaser />
+      </div> */}
+      {/* <DrugDevelopmentPlatform /> */}
+      {/* <FusionWorkflowTeaser /> */}
+      
+      {/* About Preview - Platform Overview */}
+      {/* <AboutPreview /> */}
       
       {/* Pitch Deck Showcase */}
-      <DeckViewer 
+      {/* <DeckViewer 
         slides={rAndDDeckData.slides}
         title={rAndDDeckData.title}
         description={rAndDDeckData.description}
-      />
+      /> */}
       
       <CTASection
         title="Eliminate the $2.6B gamble with mathematical certainty."

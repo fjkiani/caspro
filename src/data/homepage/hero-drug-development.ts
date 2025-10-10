@@ -2,11 +2,11 @@
 // Replaces generic messaging with contract-winning biotech value proposition
 
 export const HERO_DRUG_DEVELOPMENT_CONFIG = {
-  // SAE Biological Mastery + Solution messaging
-  crisis: {
-    titlePart1: "We Don't Discover Drugs.",
-    titlePart2: "We Engineer Life.",
-    subtitle: "Our AI has mastered the fundamental laws of biology. We transform the $2.6B drug development gamble into deterministic engineering.",
+  // Crisis-focused messaging
+  crisis: {   
+    titlePart1: "We Don't Discover Cures, We Help YOU Engineer Them",
+    titlePart2: "",
+    subtitle: "Our In-Silico Therapeutics Platform doesn't replace experiments. It help you choose WHICH experiments to run.",
     problemStats: [
       { 
         value: "90%", 
@@ -76,7 +76,7 @@ export const HERO_DRUG_DEVELOPMENT_CONFIG = {
   cta: {
     primary: {
       text: "See Live Drug Development AI",
-      action: "scroll_to_demo",
+      href: "/contact",
       icon: "🚀",
       urgency: "No signup required • See results in 30 seconds • Try real genetic variants"
     },

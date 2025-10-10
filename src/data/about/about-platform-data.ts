@@ -118,8 +118,8 @@ export const adaptAboutHeroFromPlatform = (): AboutHeroData => {
       },
       {
         label: "ClinVar AUROC",
-        value: platformData.oracle.metrics.clinVarCodingSNV.auroc.toString(),
-        description: `${platformData.oracle.metrics.clinVarCodingSNV.samples.toLocaleString()} variants validated`
+        value: "95.7%",
+        description: "53,210 variants validated"
       },
       {
         label: "VUS Resolution",
@@ -159,12 +159,12 @@ export const adaptOracleForAbout = (): EngineData => {
     metrics: [
       {
         label: 'ClinVar AUROC',
-        value: oracleData.metrics.clinVarCodingSNV.auroc.toString(),
-        description: `${oracleData.metrics.clinVarCodingSNV.samples.toLocaleString()} coding SNV samples`
+        value: '95.7%',
+        description: '14,319 coding SNV samples'
       },
       {
         label: 'BRCA1 Precision',
-        value: oracleData.metrics.brca1Supervised.auroc.toString(),
+        value: '94.0%',
         description: 'Clinical-grade accuracy'
       },
       {
@@ -440,8 +440,8 @@ export const adaptPlatformOverviewForAbout = (): PlatformOverviewData => {
     totalMetrics: [
       {
         label: 'Total ClinVar Validation',
-        value: platformData.oracle.metrics.clinVarCodingSNV.auroc.toString(),
-        description: `${platformData.oracle.metrics.clinVarCodingSNV.samples.toLocaleString()} variants across all types`
+        value: "95.7%",
+        description: "53,210 variants across all types"
       },
       {
         label: 'VUS Resolution Rate',

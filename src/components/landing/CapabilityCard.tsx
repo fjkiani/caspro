@@ -35,32 +35,32 @@ const CapabilityCard: React.FC<CapabilityCardProps> = ({ capability, index }) =>
 
   return (
     <motion.div
-      className={`relative overflow-hidden bg-white rounded-2xl p-6 border-2 ${theme.border} shadow-lg hover:shadow-xl transition-all duration-300 group`}
+      className={`relative overflow-hidden bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border-2 ${theme.border} shadow-lg hover:shadow-xl transition-all duration-300 group`}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ y: -5 }}
     >
       {/* Icon */}
-      <div className={`inline-flex p-3 rounded-xl mb-4 ${theme.bg} group-hover:scale-110 transition-transform duration-300`}>
-        <IconComponent className={`w-6 h-6 ${theme.text}`} />
+      <div className={`inline-flex p-2 sm:p-3 rounded-lg sm:rounded-xl mb-3 sm:mb-4 ${theme.bg} group-hover:scale-110 transition-transform duration-300`}>
+        <IconComponent className={`w-5 h-5 sm:w-6 sm:h-6 ${theme.text}`} />
       </div>
 
       {/* Title */}
-      <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-gray-900 transition-colors duration-300">
+      <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 group-hover:text-gray-900 transition-colors duration-300">
         {capability.title}
       </h3>
 
       {/* Subtitle */}
-      <p className="text-gray-600 mb-4 leading-relaxed">
+      <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 leading-relaxed">
         {capability.subtitle}
       </p>
 
       {/* KPIs */}
-      <div className="mb-6">
-        <div className="grid grid-cols-1 gap-2">
+      <div className="mb-4 sm:mb-6">
+        <div className="grid grid-cols-1 gap-1 sm:gap-2">
           {capability.kpis.map((kpi, kpiIndex) => (
-            <div key={kpiIndex} className="flex items-center justify-between text-sm">
+            <div key={kpiIndex} className="flex items-center justify-between text-xs sm:text-sm">
               <span className="text-gray-500 font-medium">{kpi.label}:</span>
               <span className="font-bold text-gray-800">
                 {typeof kpi.value === 'number' ? kpi.value.toFixed(3) : kpi.value}
@@ -72,15 +72,15 @@ const CapabilityCard: React.FC<CapabilityCardProps> = ({ capability, index }) =>
       </div>
 
       {/* Actions */}
-      <div className="space-y-2">
+      <div className="space-y-1 sm:space-y-2">
         {capability.actions.map((action, actionIndex) => (
           <Link
             key={actionIndex}
             href={action.href}
-            className={`group/btn flex items-center justify-center gap-2 w-full px-4 py-2 ${theme.bg} ${theme.text} rounded-lg text-sm font-medium hover:opacity-90 transition-all duration-300`}
+            className={`group/btn flex items-center justify-center gap-2 w-full px-3 sm:px-4 py-2 ${theme.bg} ${theme.text} rounded-lg text-xs sm:text-sm font-medium hover:opacity-90 transition-all duration-300`}
           >
             {action.label}
-            <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+            <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
           </Link>
         ))}
       </div>

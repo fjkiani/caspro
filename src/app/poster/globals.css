@@ -1,0 +1,383 @@
+/* Poster-specific styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f3f4f6;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.poster-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2rem;
+  padding: 3rem;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  background-color: white;
+  min-height: calc(100vh - 5rem);
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.poster-column {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 2rem;
+  text-align: left;
+  border-bottom: 4px solid #d1d5db;
+  padding-bottom: 1rem;
+}
+
+.section-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-content p {
+  font-size: 1.8rem;
+  line-height: 1.7;
+  color: #374151;
+  text-align: left;
+}
+
+.failure-card {
+  background-color: #fff;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  border: 2px solid #fee2e2;
+  background-color: #fef2f2;
+}
+
+.failure-card p {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.failure-card .text-5xl {
+  font-size: 6rem;
+}
+
+.jenga-block {
+  height: 3rem;
+  border: 3px solid #9ca3af;
+  border-radius: 0.5rem;
+  background-color: #e5e7eb;
+}
+
+.evidence-block {
+  background-color: white;
+  border: 2px solid #e5e7eb;
+  border-left: 8px solid #3b82f6;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: left;
+  margin-top: auto; /* Pushes the card to the bottom */
+}
+
+.evidence-block p {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.evidence-block .text-4xl {
+  font-size: 5rem;
+}
+
+@keyframes fall {
+  to {
+    transform: translateX(30px) rotate(45deg);
+    opacity: 1;
+  }
+}
+
+/* Print-specific styles */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .poster-container {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    margin: 0;
+    padding: 1rem;
+    transform: none !important;
+    aspect-ratio: 2 / 1; /* 96x48 ratio for printing */
+  }
+  
+  /* Ensure proper scaling for different poster sizes */
+  @page {
+    size: 96in 48in; /* Optimized for 96x48 inches */
+    margin: 0.5in;
+  }
+  
+  /* Alternative page sizes for different poster requirements */
+  @page :first {
+    size: 96in 48in; /* 96x48 inches - Primary size */
+  }
+  
+  @page :nth(2) {
+    size: 48in 24in; /* 48x24 inches */
+  }
+  
+  @page :nth(3) {
+    size: 72in 36in; /* 72x36 inches */
+  }
+  
+  @page :nth(4) {
+    size: 84in 42in; /* 84x42 inches */
+  }
+}
+
+/* Screen scaling for different viewport sizes */
+@media screen and (max-width: 1920px) {
+  .poster-container {
+    transform: scale(0.9);
+    transform-origin: top center;
+  }
+}
+
+@media screen and (max-width: 1536px) {
+  .poster-container {
+    transform: scale(0.7);
+    transform-origin: top center;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .poster-container {
+    transform: scale(0.5);
+    transform-origin: top center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .poster-container {
+    transform: scale(0.3);
+    transform-origin: top center;
+  }
+}
+
+/* Animation for falling jenga block */
+.falling-block {
+  animation: fall 2s ease-in-out forwards 1s;
+}
+
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f3f4f6;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.poster-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2rem;
+  padding: 3rem;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  background-color: white;
+  min-height: calc(100vh - 5rem);
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.poster-column {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 2rem;
+  text-align: left;
+  border-bottom: 4px solid #d1d5db;
+  padding-bottom: 1rem;
+}
+
+.section-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-content p {
+  font-size: 1.8rem;
+  line-height: 1.7;
+  color: #374151;
+  text-align: left;
+}
+
+.failure-card {
+  background-color: #fff;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  border: 2px solid #fee2e2;
+  background-color: #fef2f2;
+}
+
+.failure-card p {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.failure-card .text-5xl {
+  font-size: 6rem;
+}
+
+.jenga-block {
+  height: 3rem;
+  border: 3px solid #9ca3af;
+  border-radius: 0.5rem;
+  background-color: #e5e7eb;
+}
+
+.evidence-block {
+  background-color: white;
+  border: 2px solid #e5e7eb;
+  border-left: 8px solid #3b82f6;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: left;
+  margin-top: auto; /* Pushes the card to the bottom */
+}
+
+.evidence-block p {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.evidence-block .text-4xl {
+  font-size: 5rem;
+}
+
+@keyframes fall {
+  to {
+    transform: translateX(30px) rotate(45deg);
+    opacity: 1;
+  }
+}
+
+/* Print-specific styles */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .poster-container {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    margin: 0;
+    padding: 1rem;
+    transform: none !important;
+    aspect-ratio: 2 / 1; /* 96x48 ratio for printing */
+  }
+  
+  /* Ensure proper scaling for different poster sizes */
+  @page {
+    size: 96in 48in; /* Optimized for 96x48 inches */
+    margin: 0.5in;
+  }
+  
+  /* Alternative page sizes for different poster requirements */
+  @page :first {
+    size: 96in 48in; /* 96x48 inches - Primary size */
+  }
+  
+  @page :nth(2) {
+    size: 48in 24in; /* 48x24 inches */
+  }
+  
+  @page :nth(3) {
+    size: 72in 36in; /* 72x36 inches */
+  }
+  
+  @page :nth(4) {
+    size: 84in 42in; /* 84x42 inches */
+  }
+}
+
+/* Screen scaling for different viewport sizes */
+@media screen and (max-width: 1920px) {
+  .poster-container {
+    transform: scale(0.9);
+    transform-origin: top center;
+  }
+}
+
+@media screen and (max-width: 1536px) {
+  .poster-container {
+    transform: scale(0.7);
+    transform-origin: top center;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .poster-container {
+    transform: scale(0.5);
+    transform-origin: top center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .poster-container {
+    transform: scale(0.3);
+    transform-origin: top center;
+  }
+}
+
+/* Animation for falling jenga block */
+.falling-block {
+  animation: fall 2s ease-in-out forwards 1s;
+}

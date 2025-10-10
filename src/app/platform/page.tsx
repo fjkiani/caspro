@@ -41,14 +41,14 @@ export default function CoPilotAppPage() {
   return (
     <main className="pt-24 pb-16 bg-gradient-to-b from-white to-slate-50 text-foreground text-gradient">
       <div className="container mx-auto px-4 py-12">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-6 text-gradient">Launch Your Oncology Co-Pilot</h1>
-          <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-4 sm:mb-6 text-gradient">Launch Your Oncology Co-Pilot</h1>
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto px-4">
             Select the CrisPRO Co-Pilot instance tailored to your specific needs in cancer care, research, or therapeutic design.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 xl:gap-10">
           {coPilotOptions.map((option) => (
             <CoPilotOptionCard key={option.id} option={option} />
           ))}

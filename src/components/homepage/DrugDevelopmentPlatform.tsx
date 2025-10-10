@@ -73,7 +73,7 @@ export default function DrugDevelopmentPlatform() {
             The Complete AI Engine for Therapeutic Development
           </h2>
           <p className="text-2xl text-slate-300 max-w-5xl mx-auto mb-8">
-            Oracle + Forge + Boltz + Command Center = Transform drug development from a $2.6B gamble into deterministic engineering
+            Preditive AI + Generative AI + Protien Engineering + Command Center = Transform drug development from a $2.6B gamble into deterministic engineering
           </p>
           
           {/* Platform Metrics */}
