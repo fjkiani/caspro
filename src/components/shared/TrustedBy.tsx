@@ -104,7 +104,7 @@ const TrustedBy: React.FC = () => {
                   
                   {/* Learn More Link - Disabled */}
                   <div className="flex items-center justify-center gap-2 text-slate-400 group-hover:text-slate-500 transition-colors duration-300">
-                    <span className="text-xs font-medium">Coming Soon</span>
+                    {/* <span className="text-xs font-medium">Coming Soon</span> */}
                     <ExternalLink className="w-3 h-3" />
                   </div>
                 </div>
