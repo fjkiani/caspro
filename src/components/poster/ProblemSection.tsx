@@ -1,9 +1,7 @@
 import React from 'react';
 import { X, Clock, AlertTriangle, DollarSign } from 'lucide-react';
-import { adaptPosterData } from '@/data/poster/poster-data-adapter';
 
 const ProblemSection: React.FC = () => {
-  const posterData = adaptPosterData();
   return (
     <>
       {/* Abstract Section */}
@@ -92,7 +90,7 @@ const ProblemSection: React.FC = () => {
             </div>
             <div className="failure-card bg-red-50 border border-red-200 rounded-2xl p-8 text-center">
               <AlertTriangle className="w-24 h-24 text-red-500 mx-auto mb-6" />
-              <p className="text-8xl font-black text-red-600 mb-6">{Math.round(posterData.business.vusReduction.from * 100)}%</p>
+              <p className="text-8xl font-black text-red-600 mb-6">40%</p>
               <p className="text-4xl font-semibold text-gray-800">VUS Rate</p>
             </div>
             <div className="failure-card bg-red-50 border border-red-200 rounded-2xl p-8 text-center">

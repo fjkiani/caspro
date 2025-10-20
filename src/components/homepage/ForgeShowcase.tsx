@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Target, Dna, FlaskConical, Code, ArrowRight } from 'lucide-react';
 import { adaptForgeForHomepage } from '@/data/adapters';
-import ForgeSimulation from '@/components/simulations/generative/ForgeSimulation';
+// import ForgeSimulation from '@/components/simulations/generative/ForgeSimulation';
 
 const ForgeShowcase: React.FC = () => {
   const [selectedAPI, setSelectedAPI] = useState('generate_crispr_payload');
@@ -54,7 +54,10 @@ const ForgeShowcase: React.FC = () => {
 
         {/* Selected API Simulation */}
         <div className="mb-12">
-          <ForgeSimulation apiId={selectedAPI} />
+          {/* <ForgeSimulation apiId={selectedAPI} /> */}
+          <div className="bg-slate-800 p-8 rounded-xl border border-slate-700 text-center">
+            <p className="text-slate-400">Forge Simulation Coming Soon</p>
+          </div>
         </div>
 
         {/* Capabilities Grid */}

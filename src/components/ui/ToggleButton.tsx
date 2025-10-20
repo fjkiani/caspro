@@ -83,9 +83,9 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({ href, children, className =
           
           {/* Button Text */}
           <motion.div
-            className="text-center mt-2 text-xs md:text-sm font-medium text-slate-300 md:text-slate-700"
+            className="text-center mt-2 text-sm font-medium text-slate-700"
             animate={{
-              color: isToggled ? '#10b981' : '#94a3b8'
+              color: isToggled ? '#10b981' : '#475569'
             }}
             transition={{ duration: 0.2 }}
           >

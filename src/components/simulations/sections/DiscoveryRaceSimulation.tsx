@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
-import { FlaskConical, DraftingCompass, Play, Zap, RotateCcw, Timer, BrainCircuit, Factory } from 'lucide-react';
+import { FlaskConical, DraftingCompass, Play, Zap, RotateCcw, Timer } from 'lucide-react';
 import ComparisonVisualization, { TrackConfig, ComparisonProgress } from '../visualizations/ComparisonVisualization';
 
 interface DiscoveryRaceSimulationProps {
@@ -259,12 +258,12 @@ const DiscoveryRaceSimulation: React.FC<DiscoveryRaceSimulationProps> = ({
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 Discovery vs. Engineering
               </span>
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 max-w-4xl mx-auto mb-8">
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto mb-8">
               The fundamental shift from a game of chance to a discipline of creation.
             </p>
 
@@ -272,7 +271,7 @@ const DiscoveryRaceSimulation: React.FC<DiscoveryRaceSimulationProps> = ({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setSimulationStarted(true)}
-              className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300 mb-12 touch-manipulation"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300 mb-12"
             >
               <Timer className="w-5 h-5" />
               🏁 START THE RACE
@@ -280,40 +279,40 @@ const DiscoveryRaceSimulation: React.FC<DiscoveryRaceSimulationProps> = ({
             </motion.button>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-red-50 border-2 border-red-200 rounded-2xl p-4 md:p-8 text-center"
+              className="bg-red-50 border-2 border-red-200 rounded-2xl p-8 text-center"
             >
-              <div className="bg-red-100 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FlaskConical size={32} className="text-red-600 md:w-10 md:h-10" />
+              <div className="bg-red-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <FlaskConical size={40} className="text-red-600" />
               </div>
               
-              <h3 className="text-2xl md:text-3xl font-bold text-red-800 mb-4">
+              <h3 className="text-3xl font-bold text-red-800 mb-4">
                 The Old Way: A Funnel
               </h3>
               
-              <p className="text-base md:text-lg text-red-700 mb-6">
+              <p className="text-lg text-red-700 mb-6">
                 Screen hundreds of thousands of compounds, hoping something sticks.
               </p>
               
               <div className="space-y-4 text-left">
-                <div className="flex justify-between items-center p-2 md:p-3 bg-white rounded-lg border border-red-200">
-                  <span className="text-red-800 font-medium text-sm md:text-base">Timeline</span>
-                  <span className="text-red-600 font-bold text-sm md:text-base">18+ Months</span>
+                <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-red-200">
+                  <span className="text-red-800 font-medium">Timeline</span>
+                  <span className="text-red-600 font-bold">18+ Months</span>
                 </div>
                 
-                <div className="flex justify-between items-center p-2 md:p-3 bg-white rounded-lg border border-red-200">
-                  <span className="text-red-800 font-medium text-sm md:text-base">Success Rate</span>
-                  <span className="text-red-600 font-bold text-sm md:text-base">~5%</span>
+                <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-red-200">
+                  <span className="text-red-800 font-medium">Success Rate</span>
+                  <span className="text-red-600 font-bold">~5%</span>
                 </div>
                 
-                <div className="flex justify-between items-center p-2 md:p-3 bg-white rounded-lg border border-red-200">
-                  <span className="text-red-800 font-medium text-sm md:text-base">Investment</span>
-                  <span className="text-red-600 font-bold text-sm md:text-base">$40M+</span>
+                <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-red-200">
+                  <span className="text-red-800 font-medium">Investment</span>
+                  <span className="text-red-600 font-bold">$40M+</span>
                 </div>
               </div>
               
@@ -329,99 +328,41 @@ const DiscoveryRaceSimulation: React.FC<DiscoveryRaceSimulationProps> = ({
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-2xl p-4 md:p-8"
+              className="bg-blue-50 border-2 border-blue-200 rounded-2xl p-8 text-center"
             >
-              <div className="text-center mb-6">
-                <div className="bg-gradient-to-r from-blue-100 to-purple-100 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <DraftingCompass size={32} className="text-blue-600 md:w-10 md:h-10" />
+              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <DraftingCompass size={40} className="text-blue-600" />
+              </div>
+              
+              <h3 className="text-3xl font-bold text-blue-800 mb-4">
+                The New Doctrine: A Factory
+              </h3>
+              
+              <p className="text-lg text-blue-700 mb-6">
+                Engineer optimized therapeutics from first principles with AI.
+              </p>
+              
+              <div className="space-y-4 text-left">
+                <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-blue-200">
+                  <span className="text-blue-800 font-medium">Timeline</span>
+                  <span className="text-blue-600 font-bold">1 Week</span>
                 </div>
                 
-                <h3 className="text-2xl md:text-3xl font-bold text-blue-800 mb-2">
-                  The New Doctrine: A Factory
-                </h3>
+                <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-blue-200">
+                  <span className="text-blue-800 font-medium">Success Rate</span>
+                  <span className="text-blue-600 font-bold">~90%</span>
+                </div>
                 
-                <p className="text-base md:text-lg text-blue-700">
-                  Two AI engines working in perfect harmony
+                <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-blue-200">
+                  <span className="text-blue-800 font-medium">Investment</span>
+                  <span className="text-blue-600 font-bold">$50K</span>
+                </div>
+              </div>
+              
+              <div className="mt-6 p-4 bg-blue-100 rounded-lg">
+                <p className="text-blue-800 font-semibold">
+                  "We'll engineer exactly what we need"
                 </p>
-              </div>
-              
-              {/* Oracle & Forge Capabilities */}
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                {/* Oracle - Discriminative AI */}
-                <div className="bg-white p-4 rounded-xl border border-blue-200 hover:border-blue-300 transition-colors">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <BrainCircuit size={16} className="text-blue-600" />
-                    </div>
-                    <h4 className="font-bold text-blue-800">Oracle</h4>
-                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Discriminative</span>
-                  </div>
-                  <p className="text-sm text-blue-700 mb-3">95.7% AUROC variant prediction</p>
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-xs">
-                      <span className="text-blue-600">VUS Resolution</span>
-                      <span className="font-bold text-blue-800">73%</span>
-                    </div>
-                    <div className="flex justify-between text-xs">
-                      <span className="text-blue-600">Gene Essentiality</span>
-                      <span className="font-bold text-blue-800">0.82-0.99 AUROC</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Forge - Generative AI */}
-                <div className="bg-white p-4 rounded-xl border border-purple-200 hover:border-purple-300 transition-colors">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <Factory size={16} className="text-purple-600" />
-                    </div>
-                    <h4 className="font-bold text-purple-800">Forge</h4>
-                    <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">Generative</span>
-                  </div>
-                  <p className="text-sm text-purple-700 mb-3">70% Pfam-hit rate generation</p>
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-xs">
-                      <span className="text-purple-600">Guide RNA Design</span>
-                      <span className="font-bold text-purple-800">92% efficiency</span>
-                    </div>
-                    <div className="flex justify-between text-xs">
-                      <span className="text-purple-600">Protein Engineering</span>
-                      <span className="font-bold text-purple-800">AF3 validated</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Key Metrics */}
-              <div className="grid grid-cols-3 gap-3 mb-6">
-                <div className="bg-white p-3 rounded-lg border border-blue-200 text-center">
-                  <div className="text-lg font-bold text-blue-600">1 Week</div>
-                  <div className="text-xs text-blue-700">Timeline</div>
-                </div>
-                <div className="bg-white p-3 rounded-lg border border-blue-200 text-center">
-                  <div className="text-lg font-bold text-blue-600">90%</div>
-                  <div className="text-xs text-blue-700">Success Rate</div>
-                </div>
-                <div className="bg-white p-3 rounded-lg border border-blue-200 text-center">
-                  <div className="text-lg font-bold text-blue-600">$50K</div>
-                  <div className="text-xs text-blue-700">Investment</div>
-                </div>
-              </div>
-              
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link 
-                  href="/products/oracle"
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors text-center"
-                >
-                  Explore Oracle →
-                </Link>
-                <Link 
-                  href="/products/forge"
-                  className="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors text-center"
-                >
-                  Explore Forge →
-                </Link>
               </div>
             </motion.div>
           </div>
@@ -451,23 +392,23 @@ const DiscoveryRaceSimulation: React.FC<DiscoveryRaceSimulationProps> = ({
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
             <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               🏁 LIVE RACE: Discovery vs Engineering
             </span>
           </h2>
-          <p className="text-lg md:text-xl text-slate-600 max-w-4xl mx-auto">
+          <p className="text-xl text-slate-600 max-w-4xl mx-auto">
             Watch traditional screening get demolished by AI generation in real-time
           </p>
         </motion.div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+        <div className="flex items-center justify-center gap-4 mb-8">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={startRace}
             disabled={isRunning}
-            className={`flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition-colors touch-manipulation ${
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-colors ${
               isRunning 
                 ? 'bg-gray-400 cursor-not-allowed' 
                 : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white'
@@ -490,7 +431,7 @@ const DiscoveryRaceSimulation: React.FC<DiscoveryRaceSimulationProps> = ({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={resetRace}
-            className="flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-semibold transition-colors touch-manipulation"
+            className="flex items-center gap-2 px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-semibold transition-colors"
           >
             <RotateCcw className="w-4 h-4" />
             Reset
@@ -513,11 +454,11 @@ const DiscoveryRaceSimulation: React.FC<DiscoveryRaceSimulationProps> = ({
               animate={{ opacity: 1, y: 0 }}
               className="mt-12 text-center"
             >
-              <div className="max-w-4xl mx-auto p-4 md:p-8 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl border border-purple-200">
-                <h3 className="text-2xl md:text-3xl font-bold text-purple-800 mb-4">
+              <div className="max-w-4xl mx-auto p-8 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl border border-purple-200">
+                <h3 className="text-3xl font-bold text-purple-800 mb-4">
                   🎯 The Verdict: Engineering Dominates Discovery
                 </h3>
-                <p className="text-lg md:text-xl text-purple-700 leading-relaxed">
+                <p className="text-xl text-purple-700 leading-relaxed">
                   In the time it takes traditional screening to complete just one cycle, 
                   AI has already <strong>engineered, validated, and optimized</strong> multiple therapeutic candidates.
                   <br />

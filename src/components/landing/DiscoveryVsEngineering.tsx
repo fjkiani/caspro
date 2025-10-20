@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { FlaskConical, ArrowRight, DraftingCompass, Shield, Dna, Bot, BrainCircuit, Factory } from 'lucide-react';
+import { FlaskConical, ArrowRight, DraftingCompass, Shield, Dna, Bot } from 'lucide-react';
 
 interface DiscoveryVsEngineeringProps {
   className?: string;

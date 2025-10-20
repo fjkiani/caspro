@@ -1,4 +1,5 @@
-// Forge Multi-Modal Generation Capabilities
+
+
 export const forgeCapabilities = {
   multiModalGeneration: [
     {
@@ -86,96 +87,131 @@ export const forgeCapabilities = {
         'Nucleosome positioning'
       ]
     }
-  ],
-  
-  // Business transformation data
-  businessTransformation: {
-    industryProblem: {
-      title: 'The Design Bottleneck Crisis',
-      metrics: [
-        { label: 'Design failure rate', value: '85%', subtitle: 'Therapeutic candidates fail in preclinical' },
-        { label: 'Design-to-candidate time', value: '18 months', subtitle: 'Traditional iterative design' },
-        { label: 'Cost per successful design', value: '$8M', subtitle: 'Including failed iterations' },
-      ],
-      description: 'Most therapeutic failures occur because designs are based on intuition rather than systematic engineering. Teams waste years iterating on fundamentally flawed concepts.',
-    },
-    valuePropositions: [
-      {
-        title: 'Engineer Multi-Modal Therapeutics with Guided Generation',
-        description: 'Design complete therapeutic portfolios with predictable quality scaling using Evo2\'s guided generation capabilities.',
-        comparison: {
-          traditional: [
-            { label: '20+ design iterations', cost: '$4M' },
-            { label: '18 months to candidate', cost: '$8M total' },
-            { label: 'Random success rate', cost: '15% viable' },
-          ],
-          forge: [
-            { label: '3 guided iterations', cost: '$200K' },
-            { label: '2 weeks to portfolio', cost: '$300K total' },
-            { label: 'Predictable AUROC 0.9', cost: '90% viable' },
-          ],
-        },
-        impact: [
-          { label: 'Design iterations', before: '20+', after: '3' },
-          { label: 'Time to portfolio', before: '18 months', after: '2 weeks' },
-          { label: 'Success predictability', before: 'Random', after: '90% AUROC' },
-          { label: 'Cost reduction', before: 'baseline', after: '96% savings' },
-        ],
-      },
-      {
-        title: 'Generate Ultra-Long Homology Arms for HDR Efficiency',
-        description: 'Leverage 1M-token context to design ultra-long homology arms that dramatically improve HDR integration rates.',
-        comparison: {
-          traditional: [
-            { label: 'Short homology arms (500bp)', cost: '15% HDR rate' },
-            { label: 'Multiple delivery attempts', cost: '$2M' },
-            { label: 'Low integration efficiency', cost: '3 months delay' },
-          ],
-          forge: [
-            { label: 'Ultra-long arms (4kb)', cost: '85% HDR rate' },
-            { label: 'Single delivery success', cost: '$200K' },
-            { label: 'High integration efficiency', cost: 'On schedule' },
-          ],
-        },
-        impact: [
-          { label: 'HDR integration rate', before: '15%', after: '85%' },
-          { label: 'Delivery attempts', before: 'Multiple', after: 'Single' },
-          { label: 'Development timeline', before: '+3 months', after: 'On schedule' },
-          { label: 'Cost per success', before: '$13M', after: '$235K' },
-        ],
-      },
-      {
-        title: 'Design Novel Therapeutic Proteins with Structural Validation',
-        description: 'Generate bespoke nanobodies and therapeutic proteins with built-in structural plausibility validation.',
-        comparison: {
-          traditional: [
-            { label: 'Library screening', cost: '$3M' },
-            { label: '12 months optimization', cost: '$5M' },
-            { label: 'Structural unknowns', cost: 'High risk' },
-          ],
-          forge: [
-            { label: 'Rational design', cost: '$100K' },
-            { label: '4 weeks optimization', cost: '$200K' },
-            { label: 'AF3 structural validation', cost: 'Low risk' },
-          ],
-        },
-        impact: [
-          { label: 'Discovery approach', before: 'Random screening', after: 'Rational design' },
-          { label: 'Optimization time', before: '12 months', after: '4 weeks' },
-          { label: 'Structural risk', before: 'Unknown', after: 'AF3 validated' },
-          { label: 'Total cost', before: '$8M', after: '$300K' },
-        ],
-      },
-    ],
-    summary: {
-      title: 'Total Design Revolution',
-      metrics: [
-        { label: 'Design cost reduction', value: '96%', subtitle: '$8M → $300K per program' },
-        { label: 'Time compression', value: '36x', subtitle: '18 months → 2 weeks' },
-        { label: 'Success predictability', value: '90%', subtitle: 'AUROC vs random chance' },
-        { label: 'Portfolio diversity', value: '10x', subtitle: 'Multiple families per command' },
-      ],
-      description: 'Forge transforms therapeutic design from an art into an engineering discipline. Instead of hoping random iterations will work, teams can systematically engineer solutions with predictable outcomes and scientific confidence.',
-    },
-  }
+  ]
 };
+
+// Forge-specific demo data for DemoFactory
+export const forgeAPIDemos = [
+  {
+    id: 'generate_optimized_guide_rna',
+    name: 'Guide RNA Generation',
+    endpoint: '/generate_optimized_guide_rna',
+    description: 'Generate highly efficient CRISPR guide RNAs with minimal off-target effects',
+    icon: "🧬",
+    color: 'purple',
+    capabilities: [
+      'Multi-objective optimization',
+      'Off-target minimization',
+      'Efficiency prediction',
+      'PAM compatibility'
+    ],
+    useCases: [
+      {
+        title: 'Gene Knockout',
+        description: 'Design guides for precise gene knockout experiments',
+        examples: ['BRCA1 knockout', 'Tumor suppressor disruption', 'Essential gene analysis']
+      },
+      {
+        title: 'Therapeutic Editing',
+        description: 'Generate guides for therapeutic genome editing',
+        examples: ['Sickle cell correction', 'Duchenne MD therapy', 'Hemophilia treatment']
+      }
+    ],
+    simulation: {
+      input: {
+        target_sequence: 'chr17:43044295-43044395',
+        pam_type: 'NGG',
+        num_guides: 5,
+        avoid_off_targets: true
+      },
+      steps: [
+        {
+          title: 'Target Analysis',
+          description: 'Analyzing genomic locus for optimal guide placement',
+          duration: 2000
+        },
+        {
+          title: 'Guide Generation',
+          description: 'Generating candidate guide RNAs with Evo2',
+          duration: 3000
+        },
+        {
+          title: 'Off-target Screening',
+          description: 'Screening for potential off-target sites',
+          duration: 2500
+        },
+        {
+          title: 'Efficiency Prediction',
+          description: 'Predicting on-target cutting efficiency',
+          duration: 1500
+        }
+      ],
+      finalOutput: {
+        guides: [
+          { sequence: 'GTTCCAGAACCTGAAAGCTG', efficiency: 0.92, off_targets: 0 },
+          { sequence: 'CTGAAAGCTGACCCTGAAGT', efficiency: 0.87, off_targets: 1 },
+          { sequence: 'AGCTGACCCTGAAGTCAGAT', efficiency: 0.84, off_targets: 0 }
+        ]
+      }
+    }
+  },
+  {
+    id: 'generate_repair_template',
+    name: 'HDR Template Design',
+    endpoint: '/generate_repair_template',
+    description: 'Design optimized homology-directed repair templates with ultra-long arms',
+    icon: "🔧",
+    color: 'blue',
+    capabilities: [
+      'Ultra-long homology arms',
+      'High HDR efficiency',
+      'Minimal indel formation',
+      'Optimized recombination'
+    ],
+    useCases: [
+      {
+        title: 'Pathogenic Variant Correction',
+        description: 'Correct disease-causing mutations with HDR',
+        examples: ['BRCA1 variant correction', 'CFTR mutation repair', 'Huntingtin correction']
+      },
+      {
+        title: 'Safe Harbor Integration',
+        description: 'Insert therapeutic sequences at safe sites',
+        examples: ['AAVS1 integration', 'CCR5 locus targeting', 'ROSA26 insertion']
+      }
+    ],
+    simulation: {
+      input: {
+        target_locus: 'chr17:43044295',
+        correction_type: 'point_mutation',
+        homology_arm_length: 4000,
+        insert_sequence: 'ATCGATCG'
+      },
+      steps: [
+        {
+          title: 'Locus Analysis',
+          description: 'Analyzing target genomic region',
+          duration: 2000
+        },
+        {
+          title: 'Homology Arm Design',
+          description: 'Designing optimal homology arms',
+          duration: 4000
+        },
+        {
+          title: 'Template Optimization',
+          description: 'Optimizing template for HDR efficiency',
+          duration: 3000
+        }
+      ],
+      finalOutput: {
+        template: {
+          left_arm: 'ATCGATCG...4kb',
+          insert: 'CORRECTED_SEQUENCE',
+          right_arm: 'GCTAGCTA...4kb',
+          predicted_efficiency: 0.78
+        }
+      }
+    }
+  }
+]; 

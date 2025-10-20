@@ -18,7 +18,7 @@ import CTASection from '@/components/shared/CTASection';
 import DiscoveryRaceSimulation from '@/components/simulations/sections/DiscoveryRaceSimulation';
 // import OracleShowcase from '@/components/homepage/OracleShowcase';
 
-import DeckViewer from '@/components/shared/DeckViewer';
+import DeckViewer from '@/components/decks/DeckViewer';
 import { rAndDDeckData } from '@/data/decks/r-and-d-deck';
 import AboutPreview from '@/components/homepage/AboutPreview';
 import TrustedBy from '@/components/shared/TrustedBy';

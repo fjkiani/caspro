@@ -27,68 +27,68 @@ export interface GenerativeAPIDemo {
 export const forgeGenerativeAPIs: GenerativeAPIDemo[] = [
   {
     id: 'generate_crispr_payload',
-    name: 'Design CRISPR Guide RNAs',
+    name: 'Design Genetic Warhead',
     endpoint: '/generate_crispr_payload',
     icon: '🎯',
     color: 'red',
-    description: 'Engineer and validate high-efficiency CRISPR guide RNAs for precise gene editing and transcriptional modulation.',
+    description: 'Engineer and validate hyper-lethal CRISPR guide RNAs for absolute precision gene annihilation or forced activation.',
     capabilities: [
-      'De Novo Guide RNA Design',
-      'Efficiency Prediction (via Zeta Index)',
-      'Off-Target Analysis (Genome-Wide)',
+      'De Novo Warhead Design',
+      'Kill Probability Prediction (via Zeta Index)',
+      'Zero Collateral Damage Analysis (Genome-Wide)',
       'Universal PAM Compatibility'
     ],
     useCases: [
       {
-        title: 'Oncogene Targeting',
-        description: 'Design guide RNAs for precise targeting of oncogenes and disease-driving genetic elements.',
-        examples: ['MYC Targeting', 'KRAS G12C Editing', 'BCR-ABL Fusion Gene Correction']
+        title: 'Oncogene Assassination',
+        description: 'Design genetic weapons to permanently execute oncogenes or other disease-driving command nodes.',
+        examples: ['MYC Annihilation', 'KRAS G12C Eradication', 'BCR-ABL Fusion Gene Neutralization']
       },
       {
-        title: 'Gene Activation (CRISPRa)',
-        description: 'Engineer guide RNAs for transcriptional activation of tumor suppressor genes.',
-        examples: ['TP53 Activation', 'PTEN Restoration']
+        title: 'Forced Gene Activation (CRISPRa)',
+        description: 'Engineer payloads to forcibly reactivate dormant tumor suppressor genes.',
+        examples: ['TP53 Forced Reactivation', 'PTEN System Restore']
       }
     ],
     simulation: {
       input: {
         target_locus: 'chr8:127735434-127735534', // MYC locus
-        editing_type: 'knockout',
+        mission: 'annihilate',
         pam_type: 'any',
-        off_target_threshold: 0,
+        collateral_damage_threshold: 0,
       },
       steps: [
         {
-          title: 'Target Analysis',
-          description: 'Analyzing 1M token genomic context with Evo2 for optimal guide RNA placement',
+          title: 'Target Reconnaissance',
+          description: 'Analyzing 1M token genomic kill-zone with Evo2 for strategic vulnerabilities',
           duration: 1800
         },
         {
-          title: 'Guide RNA Generation',
-          description: 'Generating candidate guide RNAs engineered for maximum on-target efficiency',
+          title: 'Warhead Generation',
+          description: 'Generating an arsenal of candidate guide RNAs engineered for maximum target devastation',
           duration: 2500
         },
         {
-          title: 'Off-Target Assessment',
-          description: 'Executing genome-wide scan to ensure minimal off-target activity',
+          title: 'Collateral Damage Assessment',
+          description: 'Executing genome-wide scan to ensure zero off-target strikes',
           duration: 3000
         },
         {
-          title: 'Efficiency Scoring (Zeta Index)',
-          description: 'Calculating the probability of successful target editing and ranking candidates',
+          title: 'Kill Probability Scoring (Zeta Index)',
+          description: 'Calculating the probability of successful target annihilation and ranking the arsenal',
           duration: 1200
         }
       ],
       finalOutput: {
-        candidates: [
-          { sequence: 'GTTCCAGAACCTGAAAGCTG', editing_efficiency: 0.98, off_targets: 0, pam: 'TGG' },
-          { sequence: 'CTGAAAGCTGACCCTGAAGT', editing_efficiency: 0.95, off_targets: 0, pam: 'AGG' },
-          { sequence: 'AGCTGACCCTGAAGTCAGAT', editing_efficiency: 0.91, off_targets: 0, pam: 'CGG' }
+        arsenal: [
+          { sequence: 'GTTCCAGAACCTGAAAGCTG', destruction_probability: 0.98, collateral_strikes: 0, pam: 'TGG' },
+          { sequence: 'CTGAAAGCTGACCCTGAAGT', destruction_probability: 0.95, collateral_strikes: 0, pam: 'AGG' },
+          { sequence: 'AGCTGACCCTGAAGTCAGAT', destruction_probability: 0.91, collateral_strikes: 0, pam: 'CGG' }
         ],
         summary: {
           total_candidates_generated: 127,
-          high_efficiency_candidates: 3,
-          zero_off_targets: 3,
+          elite_grade_warheads: 3,
+          zero_collateral_damage: 3,
         }
       }
     }
@@ -159,92 +159,92 @@ export const forgeGenerativeAPIs: GenerativeAPIDemo[] = [
   },
   {
     id: 'generate_therapeutic_protein',
-    name: 'Design Therapeutic Proteins',
+    name: 'Forge Biologic Weapon',
     endpoint: '/generate_therapeutic_protein_coding_sequence',
     icon: '🧬',
     color: 'green',
-    description: 'Engineer de novo therapeutic proteins (e.g., nanobodies, inhibitors) with high binding affinity and stability.',
+    description: 'Engineer de novo protein weapons (e.g., nanobodies, inhibitors) with overwhelming therapeutic superiority.',
     capabilities: [
       'Picomolar Binding Affinity Prediction',
-      'Enhanced Thermostability Engineering',
-      'Immunogenicity Minimization',
-      'Optimized Codon Usage'
+      'Extreme Thermostability Engineering',
+      'Immunogenic Signature Erasure',
+      'Max-Yield Codon Optimization'
     ],
     useCases: [
       {
         title: 'De Novo Biologics',
-        description: 'Design high-affinity nanobodies or molecular inhibitors for specific biological targets.',
-        examples: ['Anti-RUNX1 Nanobody', 'Anti-MMP9 Metastasis Inhibitor']
+        description: 'Design hyper-potent nanobodies or molecular inhibitors to neutralize any biological target.',
+        examples: ['Anti-RUNX1 Nanobody Assassin', 'Anti-MMP9 Metastasis Inhibitor']
       },
       {
-        title: 'Enzyme Engineering',
-        description: 'Engineer enhanced enzymes for metabolic disorders or therapeutic applications.',
-        examples: ['Stable Lysosomal Enzymes', 'High-Activity Metabolic Enzymes']
+        title: 'Enzyme Augmentation',
+        description: 'Engineer hyper-efficient enzymes to correct metabolic disorders or degrade toxins.',
+        examples: ['Super-stable Lysosomal Enzymes', 'Hyperactive Metabolic Enzymes']
       }
     ],
     simulation: {
       input: {
-        protein_type: 'nanobody',
+        weapon_type: 'nanobody',
         target_protein: 'PD-L1',
-        design_parameters: ['high_binding_affinity', 'thermostability', 'low_immunogenicity'],
+        mission_parameters: ['extreme_binding_affinity', 'thermostability', 'stealth_immunogenicity'],
       },
       steps: [
         {
-          title: 'Candidate Generation',
-          description: 'Generating novel protein sequences with the Zeta Forge',
+          title: 'Candidate Forging',
+          description: 'Forging a vast arsenal of novel protein sequences with the Zeta Forge',
           duration: 4000
         },
         {
-          title: 'Structural Validation (Zeta Boltz)',
-          description: 'Simulating 3D target binding with AlphaFold 3 to confirm optimal protein-target interaction',
+          title: 'Structural Integrity Test (Zeta Boltz)',
+          description: 'Simulating 3D target engagement with AlphaFold 3 to confirm a perfect kill-vehicle fit',
           duration: 4500
         },
         {
-          title: 'Performance Scoring (Zeta Index)',
-          description: 'Ranking candidates by binding affinity, stability, and immunogenicity profile',
+          title: 'Lethality Scoring (Zeta Index)',
+          description: 'Ranking candidates by binding affinity, stability, and stealth profile',
           duration: 1500
         }
       ],
       finalOutput: {
-        top_candidates: [
+        elite_candidates: [
           {
             sequence: 'QVQLQESGGGLVQPGGSLRLSCAASGFTFSSYAMSWVRQAPGKGLEWVSGISWNSGSIGYADSVKGR...',
             predicted_binding_affinity_kd: '52 pM', // Picomolar
             predicted_melting_temp: '95°C',
-            immunogenicity_risk: 'low',
+            immunogenicity_risk: 'undetectable',
           }
         ],
         design_summary: {
-          total_candidates_generated: 2103,
-          high_affinity_candidates: 22,
-          low_immunogenicity_candidates: 412,
+          total_candidates_forged: 2103,
+          elite_affinity_candidates: 22,
+          stealth_profile_candidates: 412,
         }
       }
     }
   },
   {
     id: 'generate_genomic_sequence',
-    name: 'Design Synthetic Genomes',
+    name: 'Forge Synthetic Genome',
     endpoint: '/generate_genomic_sequence',
     icon: '📜',
     color: 'purple',
-    description: 'Generate complete, biologically coherent genomes with functional gene architecture and regulatory elements.',
+    description: 'Generate entire, biologically coherent genomes from scratch, authoring new blueprints for life.',
     capabilities: [
-      'Large-Scale Generation (up to 10Mb)',
-      'Conserved Synteny and Gene Architecture',
+      'Planetary-Scale Generation (up to 10Mb)',
+      'Perfect Synteny and Gene Architecture',
       'De Novo Functional Gene Creation',
-      'Multi-Domain Organism Design'
+      'Multi-Domain Life Authoring'
     ],
     useCases: [
       {
-        title: 'Synthetic Biology Design',
+        title: 'Synthetic Life Design',
         description: 'Generate complete and functional mitochondrial, prokaryotic, or eukaryotic genomes.',
-        examples: ['Custom Mitochondria (~16kb)', 'Minimal Bacterial Chassis (~580kb)', 'Synthetic Yeast Chromosome (~330kb)']
+        examples: ['Custom Mitochondria (~16kb)', 'Minimalist Bacterial Chassis (~580kb)', 'Synthetic Yeast Chromosome (~330kb)']
       },
       {
-        title: 'Genome Completion',
-        description: 'Complete and optimize partial genetic sequences with high accuracy.',
-        examples: ['Ancient DNA Reconstruction', 'Cross-species Gene Synthesis']
+        title: 'Genetic Blueprint Completion',
+        description: 'Complete and perfect partial genetic blueprints with flawless accuracy.',
+        examples: ['Ancient DNA Restoration', 'Cross-species Gene Synthesis']
       }
     ],
     simulation: {
@@ -284,11 +284,11 @@ export const forgeGenerativeAPIs: GenerativeAPIDemo[] = [
   },
   {
     id: 'generate_regulatory_element',
-    name: 'Design Regulatory Elements',
+    name: 'Forge Genetic Switch',
     endpoint: '/generate_optimized_regulatory_element',
     icon: '⚡',
     color: 'orange',
-    description: 'Design precise genetic regulatory elements that respond to specific cellular conditions and states.',
+    description: 'Design hyper-specific genetic "on/off" switches that respond to precise cellular states.',
     capabilities: [
       'Tissue-Specific Expression Control',
       'Custom Transcription Factor Logic',
@@ -297,13 +297,13 @@ export const forgeGenerativeAPIs: GenerativeAPIDemo[] = [
     ],
     useCases: [
       {
-        title: 'Targeted Gene Therapy',
-        description: 'Create regulatory elements that activate therapeutic genes only in specific tissues.',
+        title: 'Stealth Gene Therapy',
+        description: 'Create regulatory elements that only activate a therapeutic gene in the target tissue.',
         examples: ['Tumor-Specific Promoters', 'Neuron-Specific Enhancers']
       },
       {
-        title: 'Synthetic Biology Circuits',
-        description: 'Engineer genetic logic gates for advanced synthetic biology applications.',
+        title: 'Programmable Genetic Circuits',
+        description: 'Engineer genetic logic gates for advanced synthetic biology.',
         examples: ['AND-gate for dual-input activation', 'NOT-gate for repression']
       }
     ],

@@ -1,9 +1,7 @@
 import React from 'react';
 import { ArrowRight, CheckCircle, Plus } from 'lucide-react';
-import { adaptPosterData } from '@/data/poster/poster-data-adapter';
 
 const TherapeuticDesignSection: React.FC = () => {
-  const posterData = adaptPosterData();
   return (
     <>
       {/* Step 1: Design */}
@@ -41,13 +39,7 @@ const TherapeuticDesignSection: React.FC = () => {
           {/* Evidence Box */}
           <div className="p-4 bg-amber-50 border-l-4 border-amber-400 text-amber-900">
             <p className="font-semibold">Hard Evidence:</p>
-            <p className="text-sm">Generated genomes achieve a <strong>{(posterData.forge.pfamHitRate.rate * 100).toFixed(0)}% Pfam-hit rate</strong> vs. {(posterData.forge.pfamHitRate.comparison * 100).toFixed(0)}% for prior models, proving we engineer biologically coherent assets.</p>
-          </div>
-          
-          {/* Real Clinical Validation Box */}
-          <div className="p-4 bg-green-50 border-l-4 border-green-400 text-green-900">
-            <p className="font-semibold">Real Clinical Validation (Multiple Myeloma):</p>
-            <p className="text-sm">Confidence improved from <strong>{posterData.clinicalValidation.confidenceImprovement.previous}</strong> to <strong>{posterData.clinicalValidation.confidenceImprovement.range}</strong> with {posterData.clinicalValidation.evidenceTiers.supported}% drugs promoted to "supported" tier.</p>
+            <p className="text-sm">Generated genomes achieve a **~70% Pfam-hit rate** vs. ~18% for prior models, proving we engineer biologically coherent assets.</p>
           </div>
         </div>
       </div>
@@ -103,8 +95,8 @@ const TherapeuticDesignSection: React.FC = () => {
             
             {/* R² Value */}
             <div className="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-md border border-slate-300">
-              <p className="font-bold text-emerald-800 text-lg">R² ≈ {posterData.dmsCorrelation.rSquared}</p>
-              <p className="text-xs text-slate-500">{posterData.dmsCorrelation.description}</p>
+              <p className="font-bold text-emerald-800 text-lg">R² ≈ 0.92</p>
+              <p className="text-xs text-slate-500">Strong Correlation</p>
             </div>
           </div>
         </div>
@@ -140,9 +132,9 @@ const TherapeuticDesignSection: React.FC = () => {
                 <h4 className="font-bold text-slate-800 mb-2 text-lg">Final Deliverable: The Blueprint</h4>
                 <div className="bg-slate-800 text-white rounded-lg p-4 border-2 border-slate-600 shadow-lg font-mono text-left w-full">
                   <p className="text-sm text-cyan-400">// THERAPEUTIC_BLUEPRINT</p>
-                  <p><span className="text-slate-400">asset_id:</span> "CS-{posterData.caseStudies.brca1.variant.split(':')[0].replace('chr', '')}-GC-001"</p>
+                  <p><span className="text-slate-400">asset_id:</span> "CS-BRCA1-GC-001"</p>
                   <p><span className="text-slate-400">type:</span> "High-Fidelity HDR"</p>
-                  <p><span className="text-slate-400">predicted_efficacy:</span> <span className="text-green-400 font-bold">{posterData.forge.designQuality.auroc}</span></p>
+                  <p><span className="text-slate-400">predicted_efficacy:</span> <span className="text-green-400 font-bold">0.895</span></p>
                   <p><span className="text-slate-400">status:</span> "<span className="text-yellow-400">READY_FOR_SYNTHESIS</span>"</p>
                 </div>
               </div>

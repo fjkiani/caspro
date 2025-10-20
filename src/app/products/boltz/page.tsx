@@ -8,18 +8,15 @@ export default function BoltzPage() {
   const boltzData = adaptBoltzForHomepage();
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
-      <div className="container mx-auto px-4 pt-24 pb-16">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-orange-900/20 pt-20 pb-16">
+      <div className="container mx-auto px-4">
         {/* Hero Section */}
         <section className="text-center mb-20 mt-8">
           <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-red-300 bg-clip-text text-transparent">
             ⚡ Boltz: 3D Structural Assessment
           </h1>
           <p className="text-xl text-slate-300 max-w-4xl mx-auto mb-4">
-            {boltzData.content.about.oneLiner}
-          </p>
-          <p className="text-lg text-slate-400 max-w-3xl mx-auto">
-            {boltzData.content.about.subtext}
+            {boltzData.description}
           </p>
         </section>
 
@@ -28,7 +25,7 @@ export default function BoltzPage() {
           <h2 className="text-3xl font-bold mb-8 text-center">What It Does</h2>
           <div className="bg-slate-800 p-8 rounded-xl border border-slate-700">
             <p className="text-lg text-slate-300 mb-6">
-              {boltzData.content.about.coreConcept}
+              {boltzData.description}
             </p>
             <p className="text-slate-400">
               You see a clear pLDDT confidence score, timing, and full provenance.
@@ -36,117 +33,85 @@ export default function BoltzPage() {
           </div>
         </section>
 
-        {/* Real KPIs */}
+        {/* Capabilities */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">Key Performance Indicators</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {boltzData.kpis.map((kpi, idx) => (
-              <div key={idx} className="bg-slate-800 p-6 rounded-xl border border-slate-700 text-center">
-                <div className="text-3xl font-bold text-orange-400 mb-2">{kpi.value}</div>
-                <div className="text-lg font-semibold text-slate-300 mb-2">{kpi.label}</div>
-                <div className="text-sm text-slate-400">{kpi.description}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Why It Matters */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">Why It Matters</h2>
-          <div className="bg-slate-800 p-8 rounded-xl border border-slate-700">
-            <ul className="space-y-4">
-              {boltzData.whyItMatters.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-slate-300">
-                  <span className="text-orange-400 font-mono text-lg mt-1">•</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* How It Works */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">How It Works</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {boltzData.howItWorks.map((step, idx) => (
-              <div key={idx} className="bg-slate-800 p-6 rounded-xl border border-slate-700 text-center">
-                <div className="text-2xl font-bold text-orange-400 mb-4">{idx + 1}</div>
-                <p className="text-slate-300">{step}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* What You Get */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">What You Get</h2>
-          <div className="bg-slate-800 p-8 rounded-xl border border-slate-700">
-            <ul className="space-y-4">
-              {boltzData.whatYouGet.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-slate-300">
-                  <span className="text-green-400 font-mono text-lg mt-1">✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* Provenance Panel */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">Provenance Panel</h2>
-          <div className="bg-slate-800 p-8 rounded-xl border border-slate-700">
-            <h3 className="text-2xl font-bold mb-6">{boltzData.content.provenance.title}</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h4 className="text-lg font-semibold mb-4 text-slate-300">Fields:</h4>
-                <ul className="space-y-2">
-                  {boltzData.content.provenance.fields.map((field: string, idx: number) => (
-                    <li key={idx} className="flex items-center gap-2 text-slate-300">
-                      <span className="text-orange-400 font-mono text-sm">•</span>
-                      {field}
-                    </li>
+          <h2 className="text-3xl font-bold mb-8 text-center">Core Capabilities</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {boltzData.capabilities.map((capability, idx) => (
+              <div key={idx} className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                <h3 className="text-xl font-bold text-orange-400 mb-4">{capability.title}</h3>
+                <p className="text-slate-300 mb-4">{capability.description}</p>
+                <div className="grid grid-cols-2 gap-4">
+                  {capability.metrics.map((metric, metricIdx) => (
+                    <div key={metricIdx} className="text-center">
+                      <div className={`text-2xl font-bold ${metric.color} mb-1`}>{metric.value}</div>
+                      <div className="text-sm text-slate-400">{metric.label}</div>
+                    </div>
                   ))}
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold mb-4 text-slate-300">Example:</h4>
-                <div className="bg-slate-700 p-4 rounded-lg space-y-2">
-                  <div className="text-sm text-slate-300">
-                    <strong>Run ID:</strong> {boltzData.content.provenance.example.runId}
-                  </div>
-                  <div className="text-sm text-slate-300">
-                    <strong>Engine:</strong> {boltzData.content.provenance.example.engine}
-                  </div>
-                  <div className="text-sm text-slate-300">
-                    <strong>Params:</strong> {boltzData.content.provenance.example.params}
-                  </div>
-                  <div className="text-sm text-slate-300">
-                    <strong>Timestamp:</strong> {boltzData.content.provenance.example.timestamp}
-                  </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </section>
 
-        {/* RUO Disclaimer */}
+        {/* Key Features */}
         <section className="mb-16">
-          <div className="bg-amber-900/20 border border-amber-500/30 p-6 rounded-xl">
-            <div className="flex items-start gap-3">
-              <span className="text-amber-400 text-2xl">⚠️</span>
-              <div>
-                <h3 className="text-lg font-semibold text-amber-300 mb-2">Research Use Only</h3>
-                <p className="text-amber-100">{boltzData.content.ruoDisclaimer}</p>
-              </div>
+          <h2 className="text-3xl font-bold mb-8 text-center">Key Features</h2>
+          <div className="bg-slate-800 p-8 rounded-xl border border-slate-700">
+            <ul className="space-y-4">
+              {boltzData.keyFeatures.map((feature, idx) => (
+                <li key={idx} className="flex items-start gap-3 text-slate-300">
+                  <span className="text-green-400 font-mono text-lg mt-1">✓</span>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* Performance Metrics */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-center">Performance Metrics</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 text-center">
+              <div className="text-3xl font-bold text-orange-400 mb-2">{boltzData.metrics.confidenceThreshold}</div>
+              <div className="text-lg font-semibold text-slate-300 mb-2">High Confidence Threshold</div>
+              <div className="text-sm text-slate-400">Structural validation threshold</div>
+            </div>
+            <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 text-center">
+              <div className="text-3xl font-bold text-orange-400 mb-2">{boltzData.metrics.averageConfidence}</div>
+              <div className="text-lg font-semibold text-slate-300 mb-2">Average Confidence</div>
+              <div className="text-sm text-slate-400">Across all validations</div>
+            </div>
+            <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 text-center">
+              <div className="text-3xl font-bold text-orange-400 mb-2">Confirmed</div>
+              <div className="text-lg font-semibold text-slate-300 mb-2">3D Structures</div>
+              <div className="text-sm text-slate-400">Plausible folding confirmed</div>
+            </div>
+            <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 text-center">
+              <div className="text-3xl font-bold text-orange-400 mb-2">Multi-Component</div>
+              <div className="text-lg font-semibold text-slate-300 mb-2">Validation</div>
+              <div className="text-sm text-slate-400">Complex system assessment</div>
             </div>
           </div>
         </section>
 
-        {/* Footer */}
-        <div className="mt-16 text-center text-slate-400">
-          <p>Powered by AlphaFold 3 integration with real-time structural validation</p>
+        {/* Research Use Only Disclaimer */}
+        <div className="mt-16 text-center">
+          <div className="mb-8 p-6 bg-yellow-900/20 border border-yellow-600/30 rounded-lg max-w-4xl mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <span className="text-yellow-400 text-xl">⚠️</span>
+              <h3 className="text-yellow-400 font-bold text-xl">Research Use Only</h3>
+            </div>
+            <p className="text-yellow-200 text-sm mb-2">
+              Boltz predictions are for research purposes only. Not for use in diagnostic procedures or clinical decision-making.
+            </p>
+            <p className="text-yellow-300 text-xs">
+              All structural validations require experimental confirmation before clinical application.
+            </p>
+          </div>
+          
+          <p className="text-slate-400">Powered by migrated CrisPRO.ai data architecture • Research Use Only</p>
         </div>
       </div>
     </div>

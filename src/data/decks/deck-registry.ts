@@ -4,6 +4,7 @@ import SafetyDeck from './safety';
 import EfficacyDeck from './efficacy';
 import TrialsDeck from './trials';
 import CrisPRO101Deck from './CrisPRO101';
+import MetastasisDeckWrapper from './Metastasis/MetastasisDeckWrapper';
 
 // Simple wrapper component for R&D deck
 const RAndDDeckWrapper: React.FC = () => {
@@ -15,7 +16,7 @@ export interface DeckMetadata {
   id: string;
   title: string;
   description: string;
-  category: 'safety' | 'efficacy' | 'trials' | 'r-and-d' | 'crispro-101' | 'oracle' | 'forge' | 'boltz' | 'command-center';
+  category: 'safety' | 'efficacy' | 'trials' | 'r-and-d' | 'crispro-101' | 'metastasis' | 'oracle' | 'forge' | 'boltz' | 'command-center';
   icon: string;
   component: React.ComponentType;
   slideCount?: number;
@@ -73,6 +74,16 @@ export const deckRegistry: DeckMetadata[] = [
     component: CrisPRO101Deck,
     slideCount: 9,
     tags: ['overview', 'platform-intro', 'biological-simulation', 'therapeutic-certainty', 'evo2', 'agentic-platform']
+  },
+  {
+    id: 'metastasis',
+    title: 'Metastasis Interception',
+    description: 'The First AI-Powered Platform for Stage-Specific CRISPR Therapeutics Against Cancer\'s Deadliest Threat',
+    category: 'metastasis',
+    icon: '🎯',
+    component: MetastasisDeckWrapper,
+    slideCount: 14,
+    tags: ['metastasis', 'crispr-therapeutics', 'stage-specific', 'cancer-interception', 'ai-platform', 'therapeutic-design']
   }
 ];
 
