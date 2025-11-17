@@ -1,0 +1,1449 @@
+# 🔍 COMPREHENSIVE APPLICATION AUDIT & STRATEGIC PLAN
+
+**Last Updated:** January 17, 2025  
+**Status:** 📊 **COMPLETE DEEP-DIVE AUDIT** - Full application mapping, product.mdc analysis, and strategic roadmap
+
+---
+
+## 📊 EXECUTIVE SUMMARY
+
+This document provides a comprehensive audit of the CrisPRO.ai application structure, analyzing 49 pages, 400+ components, 120+ data files, and their interconnections. It maps the current implementation against the product doctrine (`product.mdc`) to identify gaps, opportunities, and a strategic implementation plan.
+
+### 🎯 Key Findings:
+
+**Strengths:**
+- ✅ **Strong technical foundation** - SAE components fully modularized, Evidence framework robust, Co-Pilot architecture flexible
+- ✅ **Excellent educational content** - Cancer 101, Doctrine system, Learn modules with interactive components
+- ✅ **Comprehensive metrics and validation data** - 6 dedicated metric pages, extensive validation data
+- ✅ **Multiple use cases demonstrating value** - Multiple Myeloma case study with real metrics
+- ✅ **No src2 directory** - Previous audit concern resolved, single codebase
+- ✅ **Well-structured data layer** - 110+ component imports from @/data/, clear separation of concerns
+- ✅ **Adapter pattern for cross-engine data** - `oracle-adapter.ts`, `forge-adapter.ts`, `platform-adapter.ts` provide clean data transformation
+- ✅ **SAE components extracted and modularized** - 24 files in `/components/sae/` with data/utils/types separation
+
+**Critical Problems:**
+- ❌ **Gap between product.mdc vision and current implementation** - 90% of capabilities from product.mdc are not visible on website
+- ❌ **Lack of clear product direction** - Homepage shows only 4 sections (Hero, Metrics, Interactive Demo, CTA) with 17+ commented components
+- ❌ **Confusing navigation** - "In-Silico" vs "Platform" vs "Evidence" vs "Products" - unclear taxonomy
+- ❌ **Product pages are basic data dumps** - Oracle, Forge, Boltz pages are just API listings with no compelling narrative
+- ❌ **Co-Pilots are scattered** - No unified "Clinical Decision Support" hub showcasing the flagship "Unified Care Plan"
+- ❌ **Missing customer journey** - No clear path from "I have this problem" → "CrisPRO solves it" → "See it in action" → "Get started"
+- ❌ **SAE features buried** - Powerful SAE components exist but not prominently featured as core differentiator
+- ❌ **Redundant/incomplete pages** - investors/, partners/, decks/, agents/, poster/, visualization-demo/, desci/ add noise
+- ❌ **No unified care plan showcase** - The #1 capability from product.mdc (Clinical Decision Support) is nowhere to be seen
+- ❌ **No SAE explainability in product pages** - Oracle doesn't show SAE features, missing "transparent AI" narrative
+
+---
+
+## 🗺️ APPLICATION STRUCTURE DEEP DIVE
+
+### Pages Inventory (49 Total)
+
+**Core Product Pages (4):**
+- `/products/oracle/page.tsx` - Discriminative AI Engine (basic data dump)
+- `/products/forge/page.tsx` - Generative AI Engine (basic data dump)
+- `/products/boltz/page.tsx` - Structural Validation (no 3D viewer)
+- `/products/command-center/page.tsx` - Orchestration (basic capabilities list)
+
+**Platform/Co-Pilot Pages (8):**
+- `/platform/page.tsx` - Co-Pilot hub (3 cards: AgenticEMR, CRISPR Intel, PrecisionRad)
+- `/platform/[coPilotSlug]/page.tsx` - Dynamic co-pilot pages (6 co-pilots total)
+  - agentic-emr, chemotherapy, clinical-trials, crispr-intelligence, pathway, precision-rad, therapy-fit, toxicity
+- `/insilico/page.tsx` - In-silico homepage (redundant with platform?)
+- `/co-pilot-app/page.tsx` - Another co-pilot entry (redundant with platform)
+
+**Evidence Pages (5):**
+- `/evidence/page.tsx` - Evidence Intelligence Platform (unified page)
+- `/evidence/data-lab/page.tsx` - Data Lab explorer
+- `/evidence/sae-intelligence/page.tsx` - SAE Intelligence (BURIED, should be prominent!)
+- `/evidence/spe-fusion/page.tsx` - S/P/E Fusion
+- `/evidence/index/page.tsx` - Evidence index (redundant?)
+
+**Educational/Content Pages (8):**
+- `/learn/page.tsx` - Learning modules hub
+- `/learn/[moduleSlug]/page.tsx` - Module overview
+- `/learn/[moduleSlug]/[topicSlug]/page.tsx` - Topic detail
+- `/learn/universal-demo/page.tsx` - Universal demo
+- `/blog/page.tsx` - Blog index
+- `/blog/post/[slug]/page.tsx` - Blog post detail
+- `/doctrine/page.tsx` - Doctrine hub
+- `/doctrine/[doctrineSlug]/page.tsx` - Doctrine detail
+
+**Use Case/Metrics Pages (9):**
+- `/use-cases/page.tsx` - Use cases index (only Multiple Myeloma)
+- `/use-cases/[slug]/page.tsx` - Dynamic use case detail
+- `/metrics/page.tsx` - Metrics dashboard
+- `/metrics/[metricSlug]/page.tsx` - Dynamic metric pages (6 total: brca, snv, splice, vus, generative, business)
+
+**Specialized Pages (7):**
+- `/kill-chain/page.tsx` - Kill Chain visualization (impressive!)
+- `/genome-editing/page.tsx` - Genome editing overview
+- `/metastasis-interception/page.tsx` - Metastasis framework
+- `/knowledge-graph/page.tsx` - Knowledge graph
+- `/cohort/page.tsx` - Cohort intelligence
+- `/agents/page.tsx` - Agent capabilities (unclear value prop)
+- `/desci/page.tsx` - DeSci page (unclear connection)
+
+**Company/Legal Pages (8):**
+- `/about/page.tsx` - About us
+- `/contact/page.tsx` - Contact form
+- `/careers/page.tsx` - Careers page
+- `/privacy/page.tsx` - Privacy policy
+- `/terms/page.tsx` - Terms of service
+- `/hipaa-statement/page.tsx` - HIPAA statement
+- `/security-overview/page.tsx` - Security overview
+
+**Investor/Partner Pages (5):**
+- `/investors/page.tsx` - Investor hub
+- `/investors/thesis/page.tsx` - Investment thesis
+- `/investors/market-landscape/page.tsx` - Market landscape
+- `/partners/aacr/page.tsx` - AACR partnership
+- `/partners/auth0/page.tsx` - Auth0 partnership
+- `/partners/uc-berkeley/page.tsx` - UC Berkeley partnership
+
+**Experimental/Demo Pages (5):**
+- `/poster/page.tsx` - Research poster (should be in resources)
+- `/visualization-demo/page.tsx` - Visualization demo (should be absorbed)
+- `/decks/page.tsx` - Deck viewer (should be in resources)
+
+### Component Architecture (400+ Components)
+
+**Top-Level Component Directories:**
+```
+/components/
+├── about/ (4 components) - About page sections
+├── co-pilot-detail/ (37 components) - Co-pilot page builders with journey visualizations
+├── cohort/ (5 components) - Cohort intelligence UI
+├── competitor-analysis/ (4 components) - Strategic analysis tools
+├── content/ (4 components) - Generic content layout components
+├── decks/ (1 component) - Deck viewer
+├── desci/ (8 components) - DeSci-style sections (elegant flowing layout)
+├── doctrine/ (6 components) - Doctrine page sections
+├── dossier/ (6 components) - Clinical dossier components
+├── evidence/ (20 components) - Evidence framework UI (SAE, SPE, Data Lab)
+├── homepage/ (7 components) - Homepage-specific showcases
+├── insilico/ (15 components) - In-silico platform components
+├── investment-thesis/ (18 components) - Investor-facing content
+├── kill-chain-visualizations/ (7 components) - Kill Chain viz components
+├── landing/ (37 components) - Landing page building blocks
+├── layouts/ (2 components) - Page layout templates
+├── learn/ (35 components) - Educational content with interactive elements
+├── metastasis/ (1 component) - Metastasis framework
+├── metrics/ (11 components) - Metrics display and cards
+├── partners/ (1 component) - Partner page template
+├── poster/ (7 components) - Research poster components
+├── sae/ (24 components) - **SAE POWERHOUSE** - Feature viz, attribution, safety
+├── sections/ (24 components) - Reusable page sections
+├── SEO/ (1 component) - Structured data
+├── shared/ (13 components) - Shared UI patterns
+├── simulations/ (5 components) - API simulations
+├── ui/ (21 components) - Base UI components (Navbar, Footer, DNA viz, CRISPR editor)
+├── universal/ (12 components) - Universal presentation system
+├── use-cases/ (9 components) - Use case display components
+├── visualization/ (12 components) - Genomic visualizations
+└── visuals/ (2 components) - Visual comparisons
+```
+
+**Critical Component Usage Patterns:**
+- **118 imports from @/components/** in `/app` pages (high coupling)
+- **126 imports from @/data/** in `/components` (good data layer separation)
+- **SAE components** (`/components/sae/`) exist but only imported in:
+  - `/evidence/sae-intelligence/page.tsx`
+  - `/components/evidence/EvidencePageContent.tsx`
+  - NOT imported in Oracle, Forge, or any product pages!
+
+### Data Architecture (120+ Files)
+
+**Data Directory Structure:**
+```
+/data/
+├── about/ (3 files) - About page data + extractors
+├── adapters/ (6 files) - **KEY**: Oracle, Forge, Platform adapters for cross-engine data
+├── capability-journeys/ (10 files) - Co-pilot journey definitions
+├── cohort/ (1 file) - Cohort data
+├── contexts/ (1 file) - Multi-modal contexts
+├── copilots/ (7 files) - Co-pilot configurations
+├── decks/ (7 files) - Presentation decks
+├── dossier/ (2 files) - Clinical dossier data + types
+├── evidence/ (5 files) - Evidence data (unified, SAE, SPE, Data Lab)
+├── homepage/ (2 files) - Homepage hero data
+├── insilico/ (1 file) - In-silico capabilities
+├── landing/ (3 files) - Landing page data + extractors
+├── learn/ (30+ files) - Educational module data (Oncology 101, Prostate, etc.)
+├── metrics/ (15 files) - Performance metrics, use cases, business impacts
+├── poster/ (1 file) - Research poster content
+├── presentations/ (2 files) - Universal presentation configs
+├── products/ (7 files) - Oracle, Forge, Boltz, Command Center content
+├── simulations/ (3 files) - API simulation data
+├── slides/ (3 files) - Slide deck data
+├── strategic-positioning/ (1 file) - Ammo deployment plan
+├── use-cases/ (4 files) - Discriminative, generative, multiple myeloma
+└── Various config files (hero, problem-section, technology, workflow, etc.)
+```
+
+**Key Data Files:**
+- `data/products/oracle/content.ts` - Oracle product data (used by adapter)
+- `data/products/forge/content.ts` - Forge product data (used by adapter)
+- `data/evidence/sae-data.ts` - SAE Intelligence data (comprehensive!)
+- `data/evidence/unified-evidence-data.ts` - Evidence framework structure
+- `data/copilots/*.ts` - 7 co-pilot configurations
+- `data/metrics/core-metrics.ts` - Central metrics registry
+
+---
+
+## 📋 PRODUCT.MDC IMPLEMENTATION GAP ANALYSIS
+
+### Capability Group 1: Clinical Decision Support 🏥
+
+**From product.mdc - What Should Exist:**
+1. **Will It Work For Me (WIWFM)** - Per-drug efficacy ranking with confidence scores
+2. **Sporadic Cancer Intelligence** - 85% of cancer patients, PARP rescue, IO boosts
+3. **Treatment Line Intelligence** - Sequencing guidance (L1/L2/L3) with cross-resistance
+4. **Toxicity Risk Prevention** - Life-threatening toxicity prevention (DPYD/TPMT/UGT1A1/CYP2D6)
+5. **Proactive Resistance Detection** - Predict resistance BEFORE they happen
+6. **CA-125 Intelligence** - Early resistance detection (3-6 weeks faster than imaging)
+7. **Clinical Trial Matching** - Top 10 trials with transparent eligibility reasoning
+8. **SOC Recommendations** - NCCN-aligned treatment plans
+9. **Resistance Playbook** - Next-line strategies when first-line fails
+10. **Complete Unified Care Plan** - Single output integrating drugs + trials + food + monitoring + PGx
+11. **Supportive Care Integration** - Food/supplement recommendations
+12. **Biomarker-Aware Recommendations** - Shared biomarkers (HRD+, TMB, TP53)
+13. **SAE Explainability** - Transparent confidence breakdown with provenance
+14. **Honest Limitations** - "Awaiting NGS" messaging instead of fake predictions
+15. **Clinician-Ready Dossiers** - Action-ready one-pagers with contacts
+16. **NGS Fast-Track** - Parallel ctDNA/HRD orders
+
+**Current Implementation Status:**
+- ❌ **No Unified Care Plan showcase** - The flagship capability is invisible
+- ✅ **Therapy Fit co-pilot exists** (`/platform/therapy-fit`) - Could be WIWFM
+- ✅ **Clinical Trials co-pilot exists** (`/platform/clinical-trials`) - Good foundation
+- ✅ **Toxicity co-pilot exists** (`/platform/toxicity`) - Matches PGx prevention
+- ✅ **Chemotherapy co-pilot exists** (`/platform/chemotherapy`) - Could integrate SOC
+- ❌ **No unified hub** - Co-pilots are scattered, not presented as orchestrated system
+- ❌ **No SAE explainability on co-pilot pages** - Missing transparency narrative
+- ❌ **No resistance playbook** - Not mentioned anywhere
+- ❌ **No CA-125 intelligence** - Not implemented
+- ❌ **No NGS fast-track guidance** - Not visible
+
+**Where to Implement:**
+- **Create:** `/solutions/clinical-decision-support/page.tsx` - Flagship hub
+- **Enhance:** `/platform/[coPilotSlug]` pages with SAE explainability
+- **Add:** Unified Care Plan demo component to homepage
+- **Integrate:** SAE components (`VUSResolutionDemo`, `DynamicOracleExplain`) into clinical pages
+
+---
+
+### Capability Group 2: Research Acceleration 🔬
+
+**From product.mdc - What Should Exist:**
+1. **Universal Hypothesis Testing** - Test compounds/supplements against 50+ diseases
+2. **VUS Explorer** - Turn "unknown" variants into "understood and actionable"
+3. **Metastasis Assessment** - 8-step cascade risk prediction
+4. **Cohort Intelligence** - Extract, label, and benchmark datasets
+5. **Evidence Synthesis** - Multi-provider literature search
+
+**Current Implementation Status:**
+- ✅ **VUS components exist** - `VUSResolutionDemo` in `/components/sae/`
+- ✅ **Metastasis page exists** - `/metastasis-interception/page.tsx`
+- ✅ **Cohort page exists** - `/cohort/page.tsx`
+- ✅ **Evidence framework exists** - `/evidence/page.tsx` with S/P/E fusion
+- ❌ **No standalone VUS Explorer page** - Components buried
+- ❌ **No hypothesis testing interface** - Not exposed
+- ❌ **No unified research hub** - Capabilities are scattered
+
+**Where to Implement:**
+- **Create:** `/solutions/research-acceleration/page.tsx` - Research hub
+- **Create:** `/research/vus-explorer/page.tsx` - Standalone VUS tool
+- **Enhance:** Oracle page with VUS resolution demo
+- **Add:** Hypothesis testing interactive component
+
+---
+
+### Capability Group 3: Therapeutic Design ⚔️
+
+**From product.mdc - What Should Exist:**
+1. **CRISPR Guide Generation** - Evo2-powered guide RNA design with safety gates
+2. **Structural Validation** - AlphaFold 3 integration (pLDDT ≥70 threshold)
+3. **IND Package Generation** - FDA-grade regulatory documentation
+4. **IP Monetization** - 5-stage workflow (Victory → Fortify → Arm → Fund → Conquer)
+5. **Design Router** - PAM windowing, heuristic scoring, viral content checks
+
+**Current Implementation Status:**
+- ✅ **Kill Chain exists** - `/kill-chain/page.tsx` - Impressive 5-stage visualization
+- ✅ **Genome Editing exists** - `/genome-editing/page.tsx`
+- ✅ **Forge product page exists** - `/products/forge/page.tsx` (but basic)
+- ✅ **Boltz product page exists** - `/products/boltz/page.tsx` (but no 3D viewer)
+- ❌ **No IND package showcase** - Not visible
+- ❌ **No IP monetization workflow** - Not exposed beyond kill-chain
+- ❌ **No therapeutic design hub** - Capabilities scattered
+
+**Where to Implement:**
+- **Create:** `/solutions/therapeutic-design/page.tsx` - Therapeutic hub
+- **Enhance:** Forge page with interactive guide designer
+- **Enhance:** Boltz page with 3D structure viewer (`ProteinModelViewer` exists!)
+- **Add:** IND package preview to Command Center page
+- **Link:** Kill Chain to therapeutic hub
+
+---
+
+### Capability Group 4: Platform Intelligence 🧠
+
+**From product.mdc - What Should Exist:**
+1. **SAE Explainability** - 32,768 interpretable features
+2. **S/P/E Fusion** - Sequence/Pathway/Evidence framework
+3. **Data Lab** - Cohort extraction and benchmarking
+4. **Knowledge Base Integration** - Contextual help, coverage indicators
+
+**Current Implementation Status:**
+- ✅ **SAE components exist** - 24 files in `/components/sae/`
+- ✅ **SAE Intelligence page exists** - `/evidence/sae-intelligence/page.tsx`
+- ✅ **S/P/E Fusion page exists** - `/evidence/spe-fusion/page.tsx`
+- ✅ **Data Lab page exists** - `/evidence/data-lab/page.tsx`
+- ✅ **Evidence framework exists** - `/evidence/page.tsx`
+- ❌ **SAE NOT on homepage** - Missing from hero section
+- ❌ **SAE NOT on Oracle page** - Missing key differentiator
+- ❌ **SAE NOT on Forge page** - Missing transparency narrative
+- ❌ **No "Platform Intelligence" hub** - Evidence menu doesn't use product.mdc language
+
+**Where to Implement:**
+- **Enhance:** Homepage hero with SAE badges ("32,768 SAE Features", "Explainable AI")
+- **Enhance:** Oracle page with SAE feature visualization
+- **Enhance:** Forge page with SAE steering capabilities (roadmap item)
+- **Rename:** "Evidence" nav menu to "Platform Intelligence" (align with product.mdc)
+- **Add:** SAE transparency section to all product pages
+
+---
+
+### Key Product Differentiators (from product.mdc)
+
+**What product.mdc Says Are Key:**
+1. **Transparent Reasoning** - Every trial match shows WHY (eligibility + fit + conditions)
+2. **Deterministic Confidence** - 90-100% confidence from checkboxes, not AI magic
+3. **Action-Ready Outputs** - Clinician-ready dossiers with contacts, next steps
+4. **Same-Day Action** - Oncologist can call sites same day
+5. **Seamless Upgrade Path** - Pre-NGS guideline → Post-NGS Evo2 predictions
+
+**Current Implementation:**
+- ❌ **No transparency narrative on product pages** - Oracle/Forge don't emphasize explainability
+- ❌ **No confidence score visualization** - Not shown in demos
+- ❌ **No action-ready outputs showcase** - Dossier components exist but not featured
+- ❌ **No upgrade path explanation** - Pre-NGS vs Post-NGS not explained
+- ✅ **Metrics showcased** - Homepage has MetricsShowcase component
+
+**Where to Implement:**
+- **Add:** "Why Trust CrisPRO" section to all product pages
+- **Add:** Confidence score breakdown to interactive demos
+- **Add:** Dossier preview to clinical hub
+- **Add:** "Awaiting NGS" vs "Post-NGS" comparison to clinical pages
+
+---
+
+## 🗺️ PAGE-TO-CAPABILITY MAPPING
+
+### Pages That Showcase Capabilities (Currently)
+
+| Page | product.mdc Capabilities | Gap |
+|------|-------------------------|-----|
+| `/page.tsx` (Homepage) | None explicitly | Missing all 4 capability groups |
+| `/products/oracle/page.tsx` | Discriminative AI (implied) | Missing SAE explainability, VUS demo |
+| `/products/forge/page.tsx` | Generative AI (implied) | Missing interactive guide designer |
+| `/products/boltz/page.tsx` | Structural Validation (implied) | Missing 3D structure viewer |
+| `/platform/therapy-fit` | WIWFM (partial) | Missing unified care plan context |
+| `/platform/clinical-trials` | Trial Matching (partial) | Missing transparent eligibility reasoning |
+| `/platform/toxicity` | Toxicity Prevention (partial) | Missing PGx emphasis |
+| `/evidence/sae-intelligence` | SAE Explainability ✅ | Buried, not prominent |
+| `/evidence/spe-fusion` | S/P/E Fusion ✅ | Good, but not linked from products |
+| `/kill-chain` | Therapeutic Design ✅ | Excellent, but standalone |
+
+### Pages With NO Clear Capability Mapping
+
+- `/co-pilot-app/page.tsx` - Redundant with `/platform`
+- `/insilico/page.tsx` - Redundant with `/platform`
+- `/agents/page.tsx` - Unclear value prop
+- `/desci/page.tsx` - Unclear connection to product
+- `/poster/page.tsx` - Research artifact, not customer-facing
+- `/visualization-demo/page.tsx` - Demo that should be absorbed
+- `/decks/page.tsx` - Internal tool, not customer-facing
+
+---
+
+## 🏠 HOMEPAGE AUDIT
+
+### Current State (page.tsx)
+
+**What's Shown:**
+1. `HeroSection` - Drug development transformation messaging
+2. `TrustedBy` - Social proof
+3. `MetricsShowcase` - Validation metrics
+4. `InteractiveDemoSection` - Some kind of interactive demo
+5. `CTASection` - "Eliminate the $2.6B gamble"
+
+**What's Commented Out (17+ components!):**
+- `EngineTeasers` - Product showcases
+- `AboutPreview` - Platform overview
+- `DiscoveryVsEngineering` - Value prop
+- `BridgingValleyOfDeath` - Problem/solution
+- `DrugDevelopmentComparisonCompact` - Comparative analysis
+- `OracleShowcase` - Product demo
+- `DiscoveryRaceSimulation` - Interactive sim
+- `DrugDevelopmentTransformation` - Value prop
+- `DrugDevelopmentOrchestrator` - Main demo section
+- `ROICalculatorSection` - Business value
+- `DrugDevelopmentPlatform` - Platform overview
+- `FusionWorkflowTeaser` - Technical showcase
+- `DeckViewer` - Pitch deck
+
+### Problem Diagnosis:
+
+🚨 **The homepage has lost its narrative**. It's been stripped down to almost nothing, with 17+ components commented out. This suggests:
+1. **Lack of clarity** on what message to convey
+2. **Performance concerns** or **technical issues** with components
+3. **Uncertainty** about target audience
+4. **Feature overload** - tried to show everything, ended up showing nothing
+
+### What's Missing:
+
+1. **Clear value proposition hierarchy**:
+   - Primary: "We solve X problem for Y customer"
+   - Secondary: "Here's how we're different"
+   - Tertiary: "See it in action"
+
+2. **Customer-centric messaging**:
+   - Current: "Drug development transformation" (generic)
+   - Needed: "Clinicians: Get unified care plans in minutes" / "Researchers: Validate targets in silico"
+
+3. **Product showcase**:
+   - No clear product cards (Oracle, Forge, Boltz, Command Center)
+   - No capability cards (Clinical Decision Support, Research Acceleration, Therapeutic Design)
+
+4. **Social proof**:
+   - `TrustedBy` is there, but what about case studies? Testimonials? Real outcomes?
+
+5. **Interactive engagement**:
+   - `InteractiveDemoSection` exists but unclear what it does
+   - Need: "Try Oracle on your VUS" or "See Unified Care Plan in action"
+
+---
+
+## 🧭 NAVIGATION AUDIT
+
+### Current Structure (Navbar.tsx)
+
+```
+- About
+- In-Silico (with platform sub-links!)
+  - [Dynamic co-pilot links]
+- Evidence
+  - Evidence Intelligence
+  - S/P/E Fusion
+  - Data Lab
+  - SAE Intelligence
+  - Cohort Context
+- Blog
+- Success Stories
+  - Multiple Myeloma
+- Metrics
+  - BRCA1/2, SNV, Splice, VUS, Generative, Business
+- Contact
+```
+
+### Problems:
+
+1. **"In-Silico" is confusing**:
+   - Says "In-Silico" but links to `/insilico`
+   - Has sub-links to co-pilots (which are at `/platform/*`)
+   - Unclear if this is for research or clinical use
+
+2. **No "Products" menu**:
+   - Oracle, Forge, Boltz are buried under `/products/*`
+   - Not discoverable from nav
+
+3. **No "Clinical Decision Support" hub**:
+   - Co-Pilots are scattered
+   - No unified entry point for clinicians
+
+4. **No "Platform" menu item**:
+   - Platform page exists at `/platform` (shows 3 co-pilot cards)
+   - But not in main nav
+
+5. **"Success Stories" vs "Use Cases"**:
+   - Nav says "Success Stories"
+   - URL is `/use-cases`
+   - Only has Multiple Myeloma
+
+6. **Too many metrics pages**:
+   - 6 metric pages (BRCA, SNV, Splice, VUS, Generative, Business)
+   - Should these be one metrics dashboard?
+
+### Recommended Structure:
+
+```
+**Primary Navigation:**
+- Home
+- Products
+  - Oracle (Discriminative AI)
+  - Forge (Generative AI)
+  - Boltz (Structural Validation)
+  - Command Center (Orchestration) [NEW]
+- Solutions
+  - Clinical Decision Support
+    - Unified Care Plan [NEW - FLAGSHIP]
+    - WIWFM (Therapy Fit)
+    - Clinical Trials Matching
+    - Toxicity Prevention
+  - Research Acceleration
+    - VUS Explorer
+    - Hypothesis Testing
+    - Cohort Intelligence
+  - Therapeutic Design
+    - Kill Chain
+    - Genome Editing
+    - IND Package Generation [NEW]
+- Platform Intelligence
+  - Evidence Framework
+  - S/P/E Fusion
+  - SAE Intelligence
+  - Data Lab
+- Resources
+  - Cancer 101 (Learn)
+  - Use Cases
+  - Metrics Dashboard [CONSOLIDATED]
+  - Blog
+  - Documentation [NEW]
+- Company
+  - About
+  - Careers
+  - Contact
+```
+
+---
+
+## 🎯 PRODUCT PAGES AUDIT
+
+### Oracle Page (/products/oracle/page.tsx)
+
+**Current State:**
+- Basic data dump: API endpoints, capabilities, validation, use cases
+- No narrative, no demo, no interactivity
+- Just lists: "Core API Endpoints", "Multi-Modal Predictions", "Scientific Validation", "Clinical Use Cases"
+
+**Problems:**
+1. No hero story ("Why Oracle exists")
+2. No before/after comparison
+3. No interactive demo
+4. No customer testimonials
+5. No clear CTA
+6. Feels like API documentation, not a product page
+
+**What's Missing:**
+1. **Hero**: "From VUS Overwhelm to Clinical Clarity"
+2. **Problem**: "25% of variants are VUS → delays treatment by 6 months"
+3. **Solution**: "Oracle classifies VUS in <1 minute with 95.7% accuracy"
+4. **Demo**: Interactive VUS classifier (use existing `VUSResolutionDemo`)
+5. **SAE Explainability**: Show how Oracle explains its predictions
+6. **Case Study**: "How Oracle helped Dr. Smith resolve 50 VUS in ovarian cancer"
+7. **Validation**: Metrics (already has this)
+8. **CTA**: "Try Oracle on your VUS backlog"
+
+### Forge Page (/products/forge/page.tsx)
+
+**Current State:**
+- Similar data dump: APIs, capabilities, use cases
+- No demo, no narrative, no interactivity
+
+**Problems:** Same as Oracle
+
+**What's Missing:**
+1. **Hero**: "From Target Idea to Validated Therapeutic in Weeks"
+2. **Problem**: "$2.6B + 15 years to develop a drug → 90% fail"
+3. **Solution**: "Forge designs & validates therapeutics in silico → $500K, 2 years, 90% success"
+4. **Demo**: Interactive guide designer (show PAM windowing, safety checks)
+5. **Kill Chain Integration**: Link to `/kill-chain` page
+6. **Case Study**: "How Forge designed a RUNX1 therapeutic"
+7. **Validation**: Metrics
+8. **CTA**: "Design your first therapeutic"
+
+### Boltz Page (/products/boltz/page.tsx)
+
+**Current State:**
+- Basic capabilities, metrics, features
+- No demo, no 3D visualization
+
+**Problems:**
+1. Page says it validates structures but shows no structures
+2. No before/after (bad fold vs good fold)
+3. No interactive 3D model viewer (already have `ProteinModelViewer` component!)
+
+**What's Missing:**
+1. **Hero**: "From Sequence to Structure: Validate Therapeutics Before Synthesis"
+2. **Problem**: "40% of designed therapeutics fail due to poor folding"
+3. **Solution**: "Boltz predicts 3D structure with 90%+ confidence → eliminates synthesis failures"
+4. **Demo**: Interactive 3D structure viewer with pLDDT scores
+5. **Case Study**: "How Boltz validated TLS seed structures"
+6. **Validation**: Metrics
+7. **CTA**: "Validate your next candidate"
+
+### Command Center Page (/products/command-center/page.tsx)
+
+**Current State:**
+- Similar data dump: capabilities, metrics, features
+- No workflow visualization, no orchestration demo
+
+**Problems:** Same pattern as other product pages
+
+**What's Missing:**
+1. **Hero**: "Orchestrate Complete R&D Pipelines with One Command"
+2. **Problem**: "Managing Oracle → Forge → Boltz → Evidence manually is error-prone"
+3. **Solution**: "Command Center automates end-to-end workflows with complete provenance"
+4. **Demo**: Interactive pipeline builder / visualizer
+5. **Case Study**: "How Command Center automated RUNX1 therapeutic validation"
+6. **Validation**: Metrics
+7. **CTA**: "Automate your next pipeline"
+
+---
+
+## 🔧 CO-PILOT PAGES AUDIT
+
+### Current State:
+
+**Platform Structure:**
+1. `/platform` - Shows 3 co-pilot option cards:
+   - AgenticEMR™ Dominance (active)
+   - CRISPR Intelligence Platform (coming soon)
+   - PrecisionRad™ Intelligence (coming soon)
+
+2. `/platform/{slug}` - Individual co-pilot pages:
+   - Chemo Co-Pilot
+   - Clinical Trials Co-Pilot
+   - Therapy Fit Co-Pilot
+   - Toxicity Risk Co-Pilot
+   - Pathway Co-Pilot
+   - CRISPR Intelligence
+  
+3. `/insilico` - InSilico HomePage with capabilities
+
+**Problems:**
+
+1. **Scattered Architecture**:
+   - Co-pilots at `/platform/*`
+   - InSilico at `/insilico`
+   - Nav says "In-Silico" but links to platform co-pilots
+   - No clear distinction between "clinical" vs "research" co-pilots
+
+2. **Lack of Unified "Clinical Decision Support" Hub**:
+   - Chemo, Clinical Trials, Therapy Fit, Toxicity, Pathway are all clinical
+   - But no unified entry point showcasing the "Unified Care Plan"
+   - No page showing how they work together
+
+3. **Missing Customer Journey**:
+   - Clinician lands on platform → sees 3 cards → clicks one → sees detailed page
+   - But where's the "I want to solve X problem" → "Use these 3 co-pilots together" flow?
+
+4. **"Coming Soon" Placeholders**:
+   - CRISPR Intelligence and PrecisionRad marked as "coming soon"
+   - Makes platform feel incomplete
+
+5. **No Demos on Co-Pilot Pages**:
+   - Each co-pilot page is text-heavy, no interactive demos
+   - Should integrate SAE components (DynamicOracleExplain, VUSResolutionDemo, DemoFactory)
+
+### Recommended Structure:
+
+```
+/solutions/clinical-decision-support (NEW - FLAGSHIP HUB)
+  - Hero: "Complete Care Plans in Minutes, Not Weeks"
+  - Problem: Fragmented workflows, manual data synthesis, lack of confidence
+  - Solution: Unified Care Plan orchestrates 5 co-pilots
+  - Demo: Interactive Unified Care Plan (drugs + trials + food + toxicity + pathway)
+  - Individual Co-Pilots:
+    - Therapy Fit (WIWFM)
+    - Clinical Trials Matching
+    - Toxicity Prevention
+    - Pathway Analysis
+    - Chemo Selection
+  - CTA: "Get your unified care plan"
+
+/solutions/research-acceleration (NEW)
+  - Hero: "From Hypothesis to Validation in Weeks"
+  - VUS Explorer
+  - Hypothesis Testing
+  - Cohort Intelligence
+  - Evidence Synthesis
+
+/solutions/therapeutic-design (CONSOLIDATE)
+  - Hero: "Design Therapeutics, Not Experiments"
+  - Kill Chain
+  - Genome Editing
+  - IND Package Generation
+```
+
+---
+
+## 🗑️ PAGES TO REMOVE / CONSOLIDATE
+
+### 1. **Redundant/Incomplete Pages:**
+
+**Remove:**
+- `/agents` - Shows agent capabilities but no clear value prop. Could be absorbed into "About" or "Platform"
+- `/poster` - Research poster for AACR. Should be in `/resources` or `/research` if needed, not a top-level page
+- `/visualization-demo` - Demo page, should be absorbed into product pages
+- `/desci` - DeSci page exists but no clear connection to product
+- `/decks` - Deck viewer, should be in `/resources` or removed
+- `/investors/thesis` and `/investors/market-landscape` - Investor pages should be gated or in a separate section
+- `/partners/aacr`, `/partners/auth0`, `/partners/uc-berkeley` - Partner pages feel incomplete
+
+**Consolidate:**
+- `/metrics/*` (6 pages) → `/metrics` (single dashboard with tabs)
+- `/use-cases/*` → `/use-cases` (single index page + modal/tabs for each)
+- `/co-pilot-app` + `/platform` → Consolidate to `/solutions/clinical-decision-support`
+
+### 2. **Pages to Keep but Enhance:**
+
+**Keep & Enhance:**
+- `/products/*` (Oracle, Forge, Boltz, Command Center) - Add narrative, demos, case studies
+- `/evidence/*` - Strong foundation, add SAE integration
+- `/learn/*` (Cancer 101) - Excellent educational content
+- `/blog` - Keep for content marketing
+- `/about` - Keep for company info
+- `/careers` - Keep for hiring
+- `/contact` - Keep for lead gen
+
+---
+
+## 🎨 MISSING "WOW" FACTOR
+
+### Current State:
+The application has all the technical building blocks but lacks the "wow" moment that makes visitors say "I need this now!"
+
+### What's Missing:
+
+1. **No Interactive Demos on Homepage**:
+   - Homepage should let visitors "Try Oracle on your VUS" or "Generate a care plan"
+   - Currently just shows metrics (boring!)
+
+2. **No Before/After Comparisons**:
+   - "Manual VUS resolution: 6 months → With Oracle: <1 minute"
+   - "Traditional R&D: $2.6B, 15 years → With CrisPRO: $500K, 2 years"
+   - Needs visual comparison (split screen, animated transition)
+
+3. **No Live Demos**:
+   - SAE components (VUSResolutionDemo, DynamicOracleExplain) exist but aren't showcased
+   - Kill Chain visualization exists but not prominently featured
+   - ProteinModelViewer exists but not on Boltz page
+
+4. **No Customer Testimonials / Case Studies**:
+   - "Dr. Smith resolved 50 VUS in ovarian cancer in 1 day"
+   - "Biotech X validated RUNX1 therapeutic in 6 weeks"
+   - Real stories build trust
+
+5. **No ROI Calculator**:
+   - Interactive tool: "How much will CrisPRO save you?"
+   - Input: # of VUS, # of R&D projects, team size
+   - Output: Time saved, cost saved, success rate increase
+
+---
+
+## 📊 STRATEGIC DIRECTION: CUSTOMER SEGMENTATION
+
+### Problem:
+The application tries to serve everyone (clinicians, researchers, biotech companies, investors, partners) but the messaging is generic and doesn't resonate with anyone specific.
+
+### Solution: Three Clear Customer Journeys
+
+#### 1. **Clinical Journey** (Doctors, Oncologists, Genetic Counselors)
+
+**Pain Point:** "I have 50 VUS in my ovarian cancer patient. I don't know which drugs will work. Treatment is delayed."
+
+**Entry Point:** Homepage → "Clinicians: Get Unified Care Plans in Minutes"
+
+**Journey:**
+1. **Hero**: "From Genomic Overwhelm to Clinical Clarity"
+2. **Problem**: Show the fragmentation (VUS backlog, multiple tools, no confidence)
+3. **Solution**: Unified Care Plan (drugs + trials + food + toxicity + pathway)
+4. **Demo**: Interactive care plan builder (upload VCF → see results)
+5. **Case Study**: "Dr. Smith's story"
+6. **CTA**: "Schedule clinical demo"
+
+**Key Pages:**
+- `/solutions/clinical-decision-support` (FLAGSHIP)
+- `/products/oracle` (VUS resolution)
+- `/evidence/sae-intelligence` (Explainability)
+
+#### 2. **Research Journey** (Scientists, Bioinformaticians, R&D Teams)
+
+**Pain Point:** "I need to validate 20 targets for a new cancer therapy. Traditional methods take 2 years and cost millions."
+
+**Entry Point:** Homepage → "Researchers: Validate Targets In Silico"
+
+**Journey:**
+1. **Hero**: "From Hypothesis to Validation in Weeks, Not Years"
+2. **Problem**: Show R&D bottleneck ($2.6B, 15 years, 90% failure rate)
+3. **Solution**: In-Silico platform (discriminative + generative + structural validation)
+4. **Demo**: Interactive target validation workflow
+5. **Case Study**: "How we validated RUNX1 therapeutic"
+6. **CTA**: "Start your R&D project"
+
+**Key Pages:**
+- `/solutions/research-acceleration`
+- `/products/oracle` + `/products/forge` + `/products/boltz`
+- `/use-cases/multiple-myeloma`
+- `/kill-chain`
+
+#### 3. **Therapeutic Design Journey** (Biotech Companies, CRISPR Designers)
+
+**Pain Point:** "I need to design a CRISPR therapeutic for a specific target. I need safety validation, IND package, and patent-ready IP."
+
+**Entry Point:** Homepage → "Biotech: Design Therapeutics, Not Experiments"
+
+**Journey:**
+1. **Hero**: "From Target to IND in Months, Not Years"
+2. **Problem**: Show therapeutic design bottleneck (design failures, safety issues, regulatory hurdles)
+3. **Solution**: Therapeutic Design Platform (Forge + Boltz + Command Center + IP/IND packages)
+4. **Demo**: Interactive therapeutic designer (target → guides → validation → IND)
+5. **Case Study**: "How we designed a TLS seed therapeutic"
+6. **CTA**: "Design your first therapeutic"
+
+**Key Pages:**
+- `/solutions/therapeutic-design`
+- `/products/forge` + `/products/boltz` + `/products/command-center`
+- `/kill-chain` + `/genome-editing`
+
+---
+
+## 🎯 STRATEGIC PLAN: WHAT TO DO
+
+### Phase 1: Foundation (Weeks 1-2)
+**Goal:** Establish clear product direction and navigation
+
+1. **Restructure Navigation** (Navbar.tsx):
+   - Remove "In-Silico" menu item
+   - Add "Products" dropdown (Oracle, Forge, Boltz, Command Center)
+   - Add "Solutions" dropdown (Clinical, Research, Therapeutic)
+   - Rename "Success Stories" to "Use Cases"
+   - Consolidate "Metrics" into single dashboard
+
+2. **Clean Up Homepage**:
+   - Decide on 1 primary message: "Unified Care Plans" OR "In-Silico R&D" OR "Therapeutic Design"
+   - Remove all commented-out components or create a "Homepage V2" experiment
+   - Add 3 customer journey cards: "For Clinicians", "For Researchers", "For Biotech"
+   - Add 1 interactive demo (VUS Resolution or Unified Care Plan preview)
+   - Add before/after comparison visual
+
+3. **Remove Redundant Pages**:
+   - Delete `/agents`, `/poster`, `/visualization-demo`, `/desci`, `/decks`
+   - Move `/investors/*` to gated section or remove
+   - Move `/partners/*` to footer or remove
+
+### Phase 2: Product Page Overhaul (Weeks 3-4)
+**Goal:** Transform product pages from API dumps to compelling narratives
+
+For each product page (Oracle, Forge, Boltz, Command Center):
+1. Add hero story (Why this exists)
+2. Add problem/solution section
+3. Add interactive demo (integrate existing SAE components)
+4. Add case study
+5. Add clear CTA
+
+### Phase 3: Solutions Hub (Weeks 5-6)
+**Goal:** Create flagship "Unified Care Plan" showcase
+
+1. **Create `/solutions/clinical-decision-support`**:
+   - Hero: Unified Care Plan visualization
+   - Demo: Interactive care plan builder
+   - Show how 5 co-pilots work together
+   - Add SAE explainability integration
+   - Add case study
+   - Add CTA
+
+2. **Create `/solutions/research-acceleration`**:
+   - Hero: In-Silico R&D workflow
+   - Demo: Target validation workflow
+   - Link to Oracle + Forge + Boltz
+   - Add use case (Multiple Myeloma)
+
+3. **Create `/solutions/therapeutic-design`**:
+   - Hero: Therapeutic design workflow
+   - Demo: CRISPR guide designer
+   - Link to Forge + Boltz + Kill Chain
+   - Add IND package preview
+
+### Phase 4: Integration & Polish (Weeks 7-8)
+**Goal:** Integrate SAE components and add interactive elements
+
+1. **Integrate SAE Components**:
+   - Add VUSResolutionDemo to Oracle page
+   - Add DynamicOracleExplain to Clinical Decision Support
+   - Add DemoFactory to homepage
+   - Add TLSSAEThinkingProcess to use cases
+
+2. **Add Interactive Elements**:
+   - ROI Calculator on homepage
+   - Live VUS classifier on Oracle page
+   - 3D protein viewer on Boltz page
+   - Pipeline visualizer on Command Center page
+
+3. **Add Social Proof**:
+   - Customer testimonials
+   - Case studies
+   - Metrics dashboard
+   - Trust badges
+
+### Phase 5: New Capabilities (Weeks 9-12)
+**Goal:** Implement top priority features from product-implementation-plan.mdc
+
+1. **Unified Care Plan** (CRITICAL):
+   - Create component
+   - Integrate co-pilots
+   - Add food/supplement recommendations
+   - Add biomarker-aware logic
+
+2. **VUS Explorer** (standalone page)
+3. **Hypothesis Testing** (research acceleration)
+4. **IND Package Generation** (therapeutic design)
+
+---
+
+## 📈 SUCCESS METRICS
+
+### Engagement Metrics:
+- **Homepage bounce rate**: Target <40% (currently likely >60%)
+- **Time on site**: Target >3 minutes (currently likely <1 minute)
+- **Demo interactions**: Target >20% of visitors try a demo
+- **CTA click-through rate**: Target >10%
+
+### Product Metrics:
+- **Product page views**: Target 2x increase
+- **Solutions page views**: Target new traffic
+- **Co-pilot page engagement**: Target >50% explore multiple co-pilots
+
+### Business Metrics:
+- **Demo requests**: Target 10x increase
+- **Contact form submissions**: Target 5x increase
+- **Return visits**: Target >30%
+
+---
+
+## 🚀 IMMEDIATE ACTIONS (This Week)
+
+1. **Update Navigation** (2 hours):
+   - Add "Products" menu
+   - Add "Solutions" menu
+   - Remove "In-Silico" confusion
+   - Consolidate metrics
+
+2. **Homepage Quick Wins** (4 hours):
+   - Uncomment 3 best sections (pick: `BridgingValleyOfDeath`, `DrugDevelopmentTransformation`, `ROICalculatorSection`)
+   - Add 3 customer journey cards
+   - Add 1 interactive demo preview
+   - Delete all other commented sections
+
+3. **Remove Clutter** (1 hour):
+   - Delete `/agents/page.tsx`
+   - Delete `/poster/page.tsx`
+   - Delete `/visualization-demo/page.tsx`
+   - Delete `/desci/page.tsx`
+   - Delete `/decks/page.tsx`
+
+4. **Create Flagship Page** (8 hours):
+   - Create `/solutions/clinical-decision-support/page.tsx`
+   - Add hero with Unified Care Plan preview
+   - Link to existing co-pilots
+   - Add placeholder for full demo
+
+---
+
+## 💡 KEY TAKEAWAY
+
+**The application has all the pieces but lacks the story.**
+
+You have:
+- ✅ Strong technical foundation (SAE, Evidence, Co-Pilots, Products)
+- ✅ Excellent components (VUSResolutionDemo, DynamicOracleExplain, Kill Chain viz)
+- ✅ Comprehensive data (metrics, validation, use cases)
+
+You're missing:
+- ❌ Clear product direction (what's the #1 thing you want visitors to see?)
+- ❌ Compelling narrative (problem → solution → wow moment)
+- ❌ Customer segmentation (who are you talking to?)
+- ❌ Interactive engagement (let visitors try it!)
+
+**Next Step:**
+Decide on your #1 flagship capability from `product.mdc`:
+1. **Unified Care Plan** (for clinicians) → Most accessible, broadest appeal
+2. **In-Silico R&D** (for researchers) → Strongest tech differentiation
+3. **Therapeutic Design** (for biotech) → Highest value, narrowest audience
+
+Then build the entire homepage and navigation around that ONE story, with the other two as secondary paths.
+
+---
+
+**Recommendation:** Start with **Unified Care Plan** as the flagship. It's the most relatable, has the broadest appeal, and showcases the orchestration of all your capabilities (Oracle + Trials + Toxicity + Pathway + Food + SAE). It's also the biggest gap in your current application.
+
+---
+
+## 🚀 UPDATED STRATEGIC IMPLEMENTATION PLAN (Aligned to product.mdc)
+
+### Phase 1: Foundation & Quick Wins (Week 1-2)
+**Goal:** Align navigation and homepage with product.mdc taxonomy
+
+**1.1 Navigation Restructure (4 hours)**
+```typescript
+// Navbar.tsx updates
+Products
+  ├── Oracle (Discriminative AI)
+  ├── Forge (Generative AI)
+  ├── Boltz (Structural Validation)
+  └── Command Center (Orchestration)
+
+Solutions
+  ├── Clinical Decision Support ⭐ FLAGSHIP
+  │   ├── Unified Care Plan
+  │   ├── Will It Work For Me
+  │   ├── Clinical Trials Matching
+  │   ├── Toxicity Prevention
+  │   └── Resistance Playbook
+  ├── Research Acceleration
+  │   ├── VUS Explorer
+  │   ├── Hypothesis Testing
+  │   ├── Cohort Intelligence
+  │   └── Metastasis Assessment
+  └── Therapeutic Design
+      ├── Kill Chain
+      ├── CRISPR Guide Design
+      ├── Structural Validation
+      └── IND Package Generation
+
+Platform Intelligence (rename from "Evidence")
+  ├── SAE Intelligence ⭐ DIFFERENTIATOR
+  ├── S/P/E Fusion
+  ├── Data Lab
+  └── Evidence Framework
+```
+
+**1.2 Homepage Quick Enhancements (6 hours)**
+- **Add SAE badges to hero** - "32,768 SAE Features", "Explainable AI", "Transparent Confidence"
+- **Add 3 customer journey cards:**
+  - "For Clinicians" → Clinical Decision Support
+  - "For Researchers" → Research Acceleration
+  - "For Biotech" → Therapeutic Design
+- **Uncomment best 3 sections:**
+  - `BridgingValleyOfDeath` - Problem/solution narrative
+  - `DrugDevelopmentTransformation` - Before/after comparison
+  - `ROICalculatorSection` - Interactive value calculator
+- **Remove all other commented sections** - Clean up the noise
+
+**1.3 Page Cleanup (2 hours)**
+- **Delete redundant pages:**
+  - `/co-pilot-app/page.tsx` (merge with `/platform`)
+  - `/agents/page.tsx` (unclear value)
+  - `/poster/page.tsx` (move to resources if needed)
+  - `/visualization-demo/page.tsx` (absorb into products)
+  - `/decks/page.tsx` (move to resources if needed)
+  - `/desci/page.tsx` (unclear connection)
+- **Gate investor/partner pages:**
+  - Move `/investors/*` to separate gated section or footer
+  - Move `/partners/*` to about page or footer
+
+---
+
+### Phase 2: SAE Integration & Product Page Overhaul (Week 3-4)
+**Goal:** Surface SAE as core differentiator across all product pages
+
+**2.1 Oracle Page Enhancement (8 hours)**
+```typescript
+// /products/oracle/page.tsx
+Sections to Add:
+1. Hero: "From VUS Overwhelm to Clinical Clarity"
+2. Problem: Show VUS backlog crisis (25% of variants, 6-month delays)
+3. Solution: Zero-shot classification with SAE explainability
+4. ⭐ Interactive Demo: <VUSResolutionDemo /> (already exists!)
+5. ⭐ SAE Explainability: <DynamicOracleExplain /> (already exists!)
+6. Validation: Metrics (already has)
+7. Use Cases: BRCA, VUS, Splice (link to `/metrics/*`)
+8. CTA: "Try Oracle on your VUS backlog"
+```
+
+**2.2 Forge Page Enhancement (8 hours)**
+```typescript
+// /products/forge/page.tsx
+Sections to Add:
+1. Hero: "From Target Idea to Validated Therapeutic in Weeks"
+2. Problem: $2.6B, 15 years, 90% failure rate
+3. Solution: AI-powered guide design with safety validation
+4. ⭐ Interactive Demo: Guide designer with PAM windowing
+5. Kill Chain Link: "See full therapeutic design workflow"
+6. Structural Validation: Link to Boltz
+7. Validation: Metrics
+8. CTA: "Design your first therapeutic"
+```
+
+**2.3 Boltz Page Enhancement (6 hours)**
+```typescript
+// /products/boltz/page.tsx
+Sections to Add:
+1. Hero: "From Sequence to Structure: Validate Before Synthesis"
+2. Problem: 40% of designs fail due to poor folding
+3. Solution: AlphaFold 3-powered validation (pLDDT ≥70)
+4. ⭐ Interactive Demo: <ProteinModelViewer /> (already exists!)
+5. Before/After: Bad fold vs Good fold comparison
+6. Use Cases: TLS seeds, therapeutic proteins
+7. Validation: Metrics
+8. CTA: "Validate your next candidate"
+```
+
+**2.4 Homepage SAE Integration (4 hours)**
+```typescript
+// /app/page.tsx
+Changes:
+1. Update hero badges - Add SAE features
+2. Add SAE transparency section after metrics
+3. Link to /evidence/sae-intelligence from hero
+4. Show SAE as key differentiator in value props
+```
+
+---
+
+### Phase 3: Create Solution Hubs (Week 5-6)
+**Goal:** Build flagship "Clinical Decision Support" and other solution hubs
+
+**3.1 Clinical Decision Support Hub ⭐ (16 hours - PRIORITY 1)**
+```typescript
+// Create: /solutions/clinical-decision-support/page.tsx
+
+Structure:
+1. Hero Section
+   - Title: "Complete Care Plans in Minutes, Not Weeks"
+   - Subtitle: "Orchestrate drugs + trials + PGx + resistance monitoring in one unified workflow"
+   - Visual: Unified Care Plan preview (mockup or simplified demo)
+
+2. Problem Section
+   - Fragmented workflows (multiple systems)
+   - Manual data synthesis (hours of work)
+   - Lack of confidence (inconsistent recommendations)
+   - Treatment delays (waiting for specialist opinions)
+
+3. Solution: The Unified Care Plan
+   - Visual diagram showing 5 co-pilots working together
+   - "Therapy Fit → Clinical Trials → Toxicity → Pathway → Chemo"
+   - Real example: "From BRCA1 mutation → Complete care plan in 90 seconds"
+
+4. Interactive Demo (Phase 1: Mockup, Phase 2: Real)
+   - Input: Patient profile (gene mutations, biomarkers)
+   - Output: Unified care plan with:
+     * WIWFM drug rankings (70-85% confidence)
+     * Top 10 clinical trials (transparent eligibility)
+     * PGx toxicity flags (DPYD, TPMT, etc.)
+     * Supportive care (food/supplements)
+     * Resistance monitoring (CA-125 kinetics)
+     * ⭐ SAE explanations for each prediction
+
+5. Individual Co-Pilot Deep-Dives
+   - Cards linking to /platform/therapy-fit, /platform/clinical-trials, etc.
+   - Show how each contributes to unified plan
+
+6. Differentiators
+   - Transparent Reasoning (show WHY, not just WHAT)
+   - Action-Ready Outputs (clinician-ready dossiers)
+   - Same-Day Action (call sites today)
+   - Seamless Upgrade Path (pre-NGS → post-NGS)
+
+7. SAE Explainability Section
+   - "See the biology behind every prediction"
+   - <SAEFeatureVisualization /> component
+   - Link to /evidence/sae-intelligence
+
+8. Case Study
+   - "Dr. Smith's Story: 50 VUS resolved in 1 day"
+   - Real metrics, real outcomes
+
+9. CTA
+   - "Schedule Clinical Demo"
+   - "See Sample Care Plan"
+
+Components to Create/Reuse:
+- <UnifiedCarePlanPreview /> - New component
+- <VUSResolutionDemo /> - Existing, integrate
+- <DynamicOracleExplain /> - Existing, integrate
+- <ClinicianDossierPreview /> - New component based on `/components/dossier/`
+```
+
+**3.2 Research Acceleration Hub (8 hours)**
+```typescript
+// Create: /solutions/research-acceleration/page.tsx
+
+Structure:
+1. Hero: "From Hypothesis to Validation in Weeks, Not Years"
+2. Problem: R&D bottleneck ($2.6B, 15 years, 90% failure)
+3. Solution: In-silico validation platform
+4. Capabilities:
+   - VUS Explorer (link to standalone tool)
+   - Hypothesis Testing (demo)
+   - Cohort Intelligence (link to /cohort)
+   - Metastasis Assessment (link to /metastasis-interception)
+5. Demo: Target validation workflow (Oracle → evidence synthesis)
+6. Case Study: Multiple Myeloma (link to /use-cases/multiple-myeloma)
+7. CTA: "Start your R&D project"
+```
+
+**3.3 Therapeutic Design Hub (8 hours)**
+```typescript
+// Create: /solutions/therapeutic-design/page.tsx
+
+Structure:
+1. Hero: "From Target to IND in Months, Not Years"
+2. Problem: Therapeutic design bottleneck
+3. Solution: AI-powered design + validation + regulatory
+4. Capabilities:
+   - Kill Chain (link to /kill-chain)
+   - CRISPR Guide Design (link to /products/forge)
+   - Structural Validation (link to /products/boltz)
+   - IND Package Generation (new section on Command Center)
+5. Demo: Interactive therapeutic designer
+6. IP Monetization: 5-stage workflow visualization
+7. Case Study: RUNX1 or TLS seed therapeutic
+8. CTA: "Design your first therapeutic"
+```
+
+---
+
+### Phase 4: Standalone Tools & Demos (Week 7-8)
+**Goal:** Create standalone interactive tools for key capabilities
+
+**4.1 VUS Explorer Tool (12 hours)**
+```typescript
+// Create: /research/vus-explorer/page.tsx
+
+Interactive tool:
+- Input: VCF upload or variant entry (chr:pos:ref:alt)
+- Processing: Show Oracle API call
+- Output:
+  * Variant classification (Pathogenic/Benign/VUS)
+  * Confidence score breakdown
+  * ⭐ SAE features activated (top 10)
+  * ⭐ Biological explanation (exons, TF motifs, etc.)
+  * Evidence sources (ClinVar, COSMIC, literature)
+  * Download report
+- Integrate: <VUSResolutionDemo /> and <DynamicOracleExplain />
+```
+
+**4.2 ROI Calculator Enhancement (6 hours)**
+```typescript
+// Enhance: /components/landing/ROICalculatorSection.tsx
+
+Inputs:
+- # of VUS per month
+- # of R&D projects
+- Team size
+- Current tool costs
+
+Outputs:
+- Time saved (manual → CrisPRO)
+- Cost saved (lab work eliminated)
+- Success rate increase (90% → 10%)
+- ROI calculation with assumptions
+
+Visual: Before/after comparison chart
+```
+
+**4.3 Hypothesis Testing Tool (8 hours)**
+```typescript
+// Create: /research/hypothesis-testing/page.tsx
+
+Interactive tool:
+- Input: Compound/supplement + Disease
+- Processing: Show Oracle API calls (50+ diseases)
+- Output:
+  * Efficacy prediction
+  * Mechanism of action
+  * Supporting evidence
+  * Confidence score
+- Database: 110M compounds, 50+ diseases
+```
+
+---
+
+### Phase 5: Component Integration & Polish (Week 9-10)
+**Goal:** Integrate existing components and add polish
+
+**5.1 3D Protein Viewer on Boltz Page (4 hours)**
+- Component exists: `/components/ui/ProteinModelViewer.tsx`
+- Add to: `/products/boltz/page.tsx`
+- Show: Interactive 3D structure with pLDDT scores
+- Add: Before/after comparison (bad fold vs good fold)
+
+**5.2 SAE Components on Co-Pilot Pages (8 hours)**
+```typescript
+// Enhance: /platform/[coPilotSlug]/page.tsx
+
+For each co-pilot, add SAE explainability section:
+- therapy-fit: Show SAE features for drug efficacy
+- clinical-trials: Show eligibility reasoning
+- toxicity: Show PGx pathway features
+- pathway: Show pathway disruption features
+```
+
+**5.3 Dossier Preview on Clinical Hub (6 hours)**
+- Component exists: `/components/dossier/` directory
+- Create: <ClinicianDossierPreview /> component
+- Add to: `/solutions/clinical-decision-support/page.tsx`
+- Show: Action-ready one-pager with contacts, next steps
+
+**5.4 Kill Chain Integration (4 hours)**
+- Enhance: `/kill-chain/page.tsx` with link to therapeutic hub
+- Add: "Part of Therapeutic Design Solution" banner
+- Link: To `/solutions/therapeutic-design`
+
+---
+
+### Phase 6: New Content & Case Studies (Week 11-12)
+**Goal:** Add real customer stories and expand use cases
+
+**6.1 Customer Testimonials (8 hours)**
+- Create: <TestimonialSection /> component
+- Add to: Homepage, solution hubs, product pages
+- Content: "Dr. Smith's story", "Biotech X case study"
+
+**6.2 Expand Use Cases (12 hours)**
+- Add: BRCA use case (link to `/metrics/brca`)
+- Add: RUNX1 therapeutic design case study
+- Add: TLS seed engineering case study
+- Add: Ovarian cancer VUS resolution case study
+
+**6.3 Metrics Dashboard (8 hours)**
+- Consolidate: 6 metric pages → 1 dashboard with tabs
+- Create: `/metrics/dashboard/page.tsx`
+- Tabs: BRCA, SNV, Splice, VUS, Generative, Business
+- Redirect: Old metric URLs to dashboard with tab param
+
+---
+
+## 📊 IMPLEMENTATION PRIORITY MATRIX
+
+### 🔴 CRITICAL (Do First - Week 1-3)
+1. ⭐ **Navigation restructure** - Align with product.mdc taxonomy
+2. ⭐ **SAE integration on homepage** - Surface key differentiator
+3. ⭐ **Oracle page enhancement** - Add VUS demo + SAE explainability
+4. ⭐ **Clinical Decision Support hub** - Create flagship solution page
+5. **Page cleanup** - Remove redundant pages
+
+### 🟡 HIGH PRIORITY (Week 4-6)
+6. **Forge page enhancement** - Add guide designer demo
+7. **Boltz page enhancement** - Add 3D protein viewer
+8. **Research Acceleration hub** - Create solution page
+9. **Therapeutic Design hub** - Create solution page
+10. **VUS Explorer tool** - Standalone interactive tool
+
+### 🟢 MEDIUM PRIORITY (Week 7-10)
+11. **SAE on co-pilot pages** - Add explainability to all co-pilots
+12. **Dossier preview** - Add to clinical hub
+13. **ROI calculator enhancement** - Make more interactive
+14. **Hypothesis testing tool** - Standalone tool
+15. **Kill Chain integration** - Link to therapeutic hub
+
+### 🔵 LOW PRIORITY (Week 11-12)
+16. **Customer testimonials** - Add social proof
+17. **Expand use cases** - Add more case studies
+18. **Metrics dashboard** - Consolidate 6 pages
+19. **Documentation** - Create API/SDK docs
+20. **Blog content** - Expand content marketing
+
+---
+
+## 🎯 SUCCESS CRITERIA
+
+### Immediate (Week 1-3)
+- ✅ Navigation reflects product.mdc taxonomy
+- ✅ Homepage showcases SAE as differentiator
+- ✅ Oracle page has interactive VUS demo
+- ✅ Clinical Decision Support hub exists with unified care plan preview
+- ✅ 5+ redundant pages removed
+
+### Short-term (Week 4-6)
+- ✅ All 4 product pages (Oracle, Forge, Boltz, Command Center) have:
+  - Compelling narrative (hero + problem + solution)
+  - Interactive demo
+  - SAE explainability section
+  - Real metrics
+  - Clear CTA
+- ✅ All 3 solution hubs exist (Clinical, Research, Therapeutic)
+- ✅ VUS Explorer standalone tool launched
+
+### Medium-term (Week 7-10)
+- ✅ SAE components integrated across 8 co-pilot pages
+- ✅ Dossier preview on clinical hub
+- ✅ 3D protein viewer on Boltz page
+- ✅ ROI calculator enhanced
+- ✅ Hypothesis testing tool launched
+
+### Long-term (Week 11-12)
+- ✅ 4+ customer case studies published
+- ✅ Metrics dashboard consolidated
+- ✅ Blog content expanded (10+ posts)
+- ✅ Documentation site launched
+
+---
+
+## 🚀 IMMEDIATE NEXT STEPS (This Week)
+
+### Day 1-2: Navigation & Homepage (8 hours)
+1. Update Navbar.tsx with new taxonomy (4 hours)
+2. Add SAE badges to homepage hero (2 hours)
+3. Add 3 customer journey cards (2 hours)
+
+### Day 3-4: Oracle Page & VUS Demo (12 hours)
+1. Add hero + problem + solution sections (3 hours)
+2. Integrate <VUSResolutionDemo /> (2 hours)
+3. Integrate <DynamicOracleExplain /> (2 hours)
+4. Add SAE explainability section (2 hours)
+5. Add metrics + CTA (2 hours)
+6. Test and polish (1 hour)
+
+### Day 5: Clinical Hub Foundation (8 hours)
+1. Create /solutions/clinical-decision-support/page.tsx (2 hours)
+2. Add hero + problem sections (2 hours)
+3. Add unified care plan mockup/preview (3 hours)
+4. Add CTA (1 hour)
+
+**Total Week 1 Effort:** ~28 hours
+
+---
+
+## 💡 FINAL RECOMMENDATIONS
+
+Based on the comprehensive audit and product.mdc analysis:
+
+**1. START WITH CLINICAL DECISION SUPPORT**
+- This is your #1 capability from product.mdc
+- It's the most accessible and relatable
+- It showcases orchestration of all engines (Oracle + Forge + Boltz + Command Center)
+- It's currently 100% invisible on your website
+
+**2. SURFACE SAE EVERYWHERE**
+- SAE is your technical moat ("mechanistically interpretable AI")
+- It should be on homepage, every product page, every solution hub
+- It's the answer to "Why trust CrisPRO over competitors?"
+
+**3. DELETE AGGRESSIVELY**
+- You have 9 pages with unclear value (agents, poster, desci, etc.)
+- Remove them to reduce noise and focus visitor attention
+- Keep only pages that map to product.mdc capabilities
+
+**4. TELL STORIES, NOT SPECS**
+- Current product pages are API dumps (boring!)
+- Transform into: Problem → Solution → Demo → Case Study → CTA
+- Every page needs a compelling narrative
+
+**5. INTEGRATE EXISTING COMPONENTS**
+- You have amazing components (`VUSResolutionDemo`, `DynamicOracleExplain`, `ProteinModelViewer`)
+- They're buried or unused
+- Surface them prominently on product pages
+
+**6. ALIGN LANGUAGE WITH product.mdc**
+- Use exact terminology from product.mdc ("Clinical Decision Support", "Platform Intelligence", "WIWFM")
+- This ensures consistency between product vision and website messaging
+- Makes it easier to explain capabilities internally and externally
+
+---
+
+**The Bottom Line:**
+You have all the pieces. You just need to assemble them in a way that tells a compelling story aligned with your product doctrine. Start with the Clinical Decision Support hub, surface SAE everywhere, and ruthlessly delete anything that doesn't map to your 4 core capability groups.

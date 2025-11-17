@@ -2,81 +2,41 @@
 
 import HeroSection from '@/components/sections/HeroSection';
 import MetricsShowcase from '@/components/landing/MetricsShowcase';
+import CapabilitiesGrid from '@/components/landing/CapabilitiesGrid';
 import DrugDevelopmentTransformation from '@/components/landing/DrugDevelopmentTransformation';
-import BridgingValleyOfDeath from '@/components/landing/BridgingValleyOfDeath';
-import DrugDevelopmentComparison from '@/components/visuals/DrugDevelopmentComparison';
-import DrugDevelopmentComparisonCompact from '@/components/visuals/DrugDevelopmentComparisonCompact';
 import DiscoveryVsEngineering from '@/components/landing/DiscoveryVsEngineering';
 import InteractiveDemoSection from '@/components/landing/InteractiveDemoSection';
-import BridgingValleySimulation from '@/components/simulations/sections/BridgingValleySimulation';
-import DrugDevelopmentPlatform from '@/components/homepage/DrugDevelopmentPlatform';
-import DrugDevelopmentOrchestrator from '@/components/homepage/DrugDevelopmentOrchestrator';
 import ROICalculatorSection from '@/components/landing/ROICalculatorSection';
-import CrisproFrameworkTeaser from '@/components/landing/CrisproFrameworkTeaser';
-import FusionWorkflowTeaser from '@/components/landing/FusionWorkflowTeaser';
 import CTASection from '@/components/shared/CTASection';
-import DiscoveryRaceSimulation from '@/components/simulations/sections/DiscoveryRaceSimulation';
-// import OracleShowcase from '@/components/homepage/OracleShowcase';
-
-import DeckViewer from '@/components/decks/DeckViewer';
-import { rAndDDeckData } from '@/data/decks/r-and-d-deck';
-import AboutPreview from '@/components/homepage/AboutPreview';
 import TrustedBy from '@/components/shared/TrustedBy';
+import { extractProductCapabilityCards } from '@/data/homepage/product-capabilities-extractor';
 
-// Engine Teasers
-// import EngineTeasers from '@/components/homepage/EngineTeasers';
-// Removed broken imports - using DrugDevelopmentOrchestrator instead
-
-
-
+// Removed unnecessary imports for components not active on the homepage.
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white w-full overflow-x-hidden">
       <HeroSection />
       
-      {/* Engine Teasers */}
-      {/* <EngineTeasers /> */}
       <TrustedBy />
       
       <MetricsShowcase />
-      {/* <AboutPreview /> */}
 
-      {/* <DiscoveryVsEngineering /> */}
+      {/* 6 Capability Cards - Core Platform Capabilities from product.mdc */}
+      <CapabilitiesGrid capabilities={extractProductCapabilityCards()} />
+
+      {/* Drug Development Transformation - 3-Stage Pipeline */}
+      <DrugDevelopmentTransformation />
+
+      {/* Discovery vs Engineering - Old Way vs New Doctrine */}
+      <DiscoveryVsEngineering />
+
+      {/* Interactive Demo Section - Try It Live */}
       <InteractiveDemoSection />
-            {/* <BridgingValleyOfDeath /> */}
 
-      {/* <DrugDevelopmentComparisonCompact /> */}
-      {/* <OracleShowcase /> */}
-
-      {/* <DiscoveryVsEngineering /> */}
-      {/* <BridgingValleyOfDeath /> */}
-
-      {/* <DiscoveryRaceSimulation/> */}
-       {/* <DrugDevelopmentTransformation /> */}
-
-      {/* <DrugDevelopmentTransformation /> */}
-      {/* Drug Development Orchestrator - Main Demo Section */}
-      {/* <div id="drug-development-orchestrator">
-        <DrugDevelopmentOrchestrator />
-      </div> */}
-  
-      {/* <div id="roi-calculator">
-        <ROICalculatorSection />
-      </div> */}
-      {/* <DrugDevelopmentPlatform /> */}
-      {/* <FusionWorkflowTeaser /> */}
-      
-      {/* About Preview - Platform Overview */}
-      {/* <AboutPreview /> */}
-      
-      {/* Pitch Deck Showcase */}
-      {/* <DeckViewer 
-        slides={rAndDDeckData.slides}
-        title={rAndDDeckData.title}
-        description={rAndDDeckData.description}
-      /> */}
-      
+      {/* ROI Calculator Section - Business Impact */}
+      <ROICalculatorSection />
+        
       <CTASection
         title="Eliminate the $2.6B gamble with mathematical certainty."
         description="Join the biotech leaders who've eliminated the $2.6B gamble with mathematical certainty. Transform your R&D pipeline from gambling to engineering."

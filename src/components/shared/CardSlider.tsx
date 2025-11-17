@@ -1,195 +1,139 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-interface CardSliderProps {
-  children: React.ReactNode[];
+interface CardSliderProps<T> {
+  items: T[];
+  renderCard: (item: T, index: number) => React.ReactNode;
+  cardsToShow?: number; // Number of cards visible at once
   className?: string;
-  showDots?: boolean;
   showArrows?: boolean;
+  showDots?: boolean;
   autoPlay?: boolean;
   autoPlayInterval?: number;
-  slidesToShow?: number;
-  slidesToScroll?: number;
 }
 
-const CardSlider: React.FC<CardSliderProps> = ({
-  children,
+function CardSlider<T = any>({
+  items,
+  renderCard,
+  cardsToShow = 3,
   className = '',
-  showDots = true,
   showArrows = true,
+  showDots = true,
   autoPlay = false,
-  autoPlayInterval = 5000,
-  slidesToShow = 1,
-  slidesToScroll = 1
-}) => {
+  autoPlayInterval = 5000
+}: CardSliderProps<T>): JSX.Element {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
-
-  const totalSlides = children.length;
-  const maxIndex = Math.max(0, totalSlides - slidesToShow);
+  const maxIndex = Math.max(0, items.length - cardsToShow);
 
   const goToSlide = (index: number) => {
-    if (isTransitioning) return;
-    
-    const newIndex = Math.max(0, Math.min(index, maxIndex));
-    if (newIndex !== currentIndex) {
-      setIsTransitioning(true);
-      setCurrentIndex(newIndex);
-      setTimeout(() => setIsTransitioning(false), 500); // Increased transition time
-    }
+    setCurrentIndex(Math.max(0, Math.min(index, maxIndex)));
   };
 
-  const nextSlide = () => {
-    goToSlide(currentIndex + slidesToScroll);
+  const goToPrevious = () => {
+    goToSlide(currentIndex - 1);
   };
 
-  const prevSlide = () => {
-    goToSlide(currentIndex - slidesToScroll);
-  };
-
-  // Touch event handlers
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe) {
-      nextSlide();
-    } else if (isRightSwipe) {
-      prevSlide();
-    }
+  const goToNext = () => {
+    goToSlide(currentIndex + 1);
   };
 
   // Auto-play functionality
   useEffect(() => {
-    if (autoPlay && totalSlides > slidesToShow) {
-      autoPlayRef.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + slidesToScroll));
+    if (autoPlay && items.length > cardsToShow) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
       }, autoPlayInterval);
+      return () => clearInterval(interval);
     }
-
-    return () => {
-      if (autoPlayRef.current) {
-        clearInterval(autoPlayRef.current);
-      }
-    };
-  }, [autoPlay, autoPlayInterval, maxIndex, slidesToShow, slidesToScroll]);
-
-  // Pause auto-play on hover
-  const handleMouseEnter = () => {
-    if (autoPlayRef.current) {
-      clearInterval(autoPlayRef.current);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (autoPlay && totalSlides > slidesToShow) {
-      autoPlayRef.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + slidesToScroll));
-      }, autoPlayInterval);
-    }
-  };
+  }, [autoPlay, autoPlayInterval, items.length, cardsToShow, maxIndex]);
 
   return (
-    <div 
-      className={`relative ${className}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* Slider Container */}
-      <div 
-        className="relative overflow-hidden rounded-lg"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        <motion.div
-          ref={sliderRef}
-          className="flex transition-transform duration-500 ease-in-out"
-          animate={{
-            x: `-${currentIndex * (100 / slidesToShow)}%`
-          }}
-          transition={{
-            duration: 0.5,
-            ease: "easeInOut"
-          }}
-          style={{
-            width: `${(totalSlides * 100) / slidesToShow}%`
-          }}
-        >
-          {children.map((child, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 px-2"
-              style={{
-                width: `${100 / totalSlides}%`
-              }}
-            >
-              {child}
-            </div>
-          ))}
-        </motion.div>
-      </div>
-
+    <div className={`relative max-w-5xl mx-auto ${className}`}>
       {/* Navigation Arrows */}
-      {showArrows && totalSlides > slidesToShow && (
+      {showArrows && items.length > cardsToShow && (
         <>
           <button
-            onClick={prevSlide}
+            onClick={goToPrevious}
             disabled={currentIndex === 0}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/95 hover:bg-white shadow-lg rounded-full p-3 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200 touch-manipulation"
+            className={`absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all hover:scale-110 border border-slate-200 ${
+              currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            aria-label="Previous"
           >
-            <ChevronLeft className="w-6 h-6 text-slate-700" />
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" />
           </button>
           <button
-            onClick={nextSlide}
+            onClick={goToNext}
             disabled={currentIndex >= maxIndex}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/95 hover:bg-white shadow-lg rounded-full p-3 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200 touch-manipulation"
+            className={`absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all hover:scale-110 border border-slate-200 ${
+              currentIndex >= maxIndex ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            aria-label="Next"
           >
-            <ChevronRight className="w-6 h-6 text-slate-700" />
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" />
           </button>
         </>
       )}
 
-      {/* Dots Indicator */}
-      {showDots && totalSlides > slidesToShow && (
-        <div className="flex justify-center mt-4 space-x-2">
-          {Array.from({ length: Math.ceil(totalSlides / slidesToScroll) }).map((_, index) => {
-            const dotIndex = index * slidesToScroll;
+      {/* Slider Container - Show cards side-by-side, sliding */}
+      <div className="overflow-hidden px-2 sm:px-4">
+        <motion.div
+          className="flex gap-2 sm:gap-3"
+          animate={{
+            x: `calc(-${currentIndex} * (100% / ${cardsToShow}))`
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 40
+          }}
+          style={{
+            width: `${items.length * (100 / cardsToShow)}%`
+          }}
+        >
+          {items.map((item, index) => {
+            if (!renderCard || typeof renderCard !== 'function') {
+              console.error('renderCard is not a function');
+              return null;
+            }
             return (
-              <button
-                key={index}
-                onClick={() => goToSlide(dotIndex)}
-                className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                  currentIndex >= dotIndex && currentIndex < dotIndex + slidesToScroll
-                    ? 'bg-blue-600 w-6'
-                    : 'bg-slate-300 hover:bg-slate-400'
-                }`}
-              />
+              <div 
+                key={index} 
+                className="flex-shrink-0"
+                style={{
+                  width: `calc(100% / ${items.length} * ${cardsToShow})`,
+                  padding: cardsToShow === 1 ? '0' : '0 0.25rem'
+                }}
+              >
+                {renderCard(item, index)}
+              </div>
             );
           })}
+        </motion.div>
+      </div>
+
+      {/* Dots Indicator */}
+      {showDots && items.length > cardsToShow && (
+        <div className="flex justify-center gap-2 mt-6 sm:mt-8">
+          {Array.from({ length: items.length }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 ${
+                index === currentIndex
+                  ? 'w-8 sm:w-10 bg-blue-600'
+                  : 'w-2 sm:w-2.5 bg-slate-300 hover:bg-slate-400'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       )}
     </div>
   );
-};
+}
 
 export default CardSlider;

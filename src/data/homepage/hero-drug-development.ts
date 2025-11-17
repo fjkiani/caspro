@@ -6,7 +6,7 @@ export const HERO_DRUG_DEVELOPMENT_CONFIG = {
   crisis: {   
     titlePart1: "We Don't Discover Cures, We Help YOU Engineer Them",
     titlePart2: "",
-    subtitle: "Our In-Silico Therapeutics Platform doesn't replace experiments. It help you choose WHICH experiments to run.",
+    subtitle: "AI-powered precision medicine platform that transforms genomic data into actionable therapeutic intelligence.",
     problemStats: [
       { 
         value: "90%", 

@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import CapabilityCard from './CapabilityCard';
 import { CapabilityCard as CapabilityCardType } from '@/data/landing/landing-data';
+import CardSlider from '@/components/shared/CardSlider';
 
 interface CapabilitiesGridProps {
   capabilities: CapabilityCardType[];
@@ -25,15 +26,21 @@ const CapabilitiesGrid: React.FC<CapabilitiesGridProps> = ({ capabilities }) => 
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto">
-          {capabilities.map((capability, index) => (
+        {/* Capabilities Slider - Shows 3 cards at a time */}
+        <CardSlider
+          items={capabilities}
+          renderCard={(capability, index) => (
             <CapabilityCard
               key={capability.title}
               capability={capability}
               index={index}
             />
-          ))}
-        </div>
+          )}
+          cardsToShow={3}
+          showArrows={true}
+          showDots={true}
+          autoPlay={false}
+        />
       </div>
     </section>
   );

@@ -1,0 +1,340 @@
+# SAE Components Audit - Extraction Status
+
+## Overview
+This document catalogs all SAE (Sparse Autoencoder) components found in `crispro-monorepo` and their extraction status to `caspro`.
+
+---
+
+## 🔍 **Core SAE Components Found in crispro-monorepo**
+
+### 1. **OracleExplainTrack** ✅ (Partially Extracted)
+**Location:** `crispro-monorepo/apps/dataRoom/src/components/site/blocks/OracleExplainTrack.tsx`
+
+**Purpose:** Core SAE feature visualization component that displays:
+- Genomic sequence with SAE feature overlays
+- Feature chips showing biological concepts (exons, TF motifs, etc.)
+- Delta log-likelihood (ΔLL) disruption scores
+- Interactive feature highlighting
+
+**Status:** 
+- ✅ Found in `caspro/src/src2/components/site/blocks/` (buried in src2)
+- ❌ NOT extracted to main `caspro/src/components/` directory
+- ✅ Used in multiple places: `DynamicOracleExplain`, `TLSSAEThinkingProcess`, `VUSResolutionDemo`
+
+**Key Props:**
+```typescript
+interface Props {
+  sequence: string;
+  variant: { pos: number; ref: string; alt: string };
+  saeFeatures: Array<{ name: string; start: number; end: number; score?: number }>;
+  deltaLLSeries: Array<{ pos: number; delta: number }>;
+  className?: string;
+}
+```
+
+---
+
+### 2. **DynamicOracleExplain** ✅ (Partially Extracted)
+**Location:** `crispro-monorepo/apps/dataRoom/src/components/site/blocks/DynamicOracleExplain.tsx`
+
+**Purpose:** Interactive, multi-step SAE thinking process visualizer that shows:
+- Step-by-step Oracle reasoning
+- SAE feature activation (Layer 26)
+- Δ Likelihood computation
+- Gene essentiality context
+- Protein functional impact
+- Chromatin accessibility analysis
+
+**Status:**
+- ✅ Found in `caspro/src/src2/components/site/blocks/` (buried in src2)
+- ❌ NOT extracted to main `caspro/src/components/` directory
+- ✅ Used in `OracleProduct.tsx` page
+
+**Key Features:**
+- Progressive reveal of thinking steps
+- Component-based rendering (OracleExplainTrack, VariantDetailCard, etc.)
+- Real Evo2 paper references
+- Interactive step navigation
+
+---
+
+### 3. **VUSResolutionDemo** ✅ (Partially Extracted)
+**Location:** `crispro-monorepo/apps/dataRoom/src/components/site/blocks/VUSResolutionDemo.tsx`
+
+**Purpose:** Complete VUS (Variant of Uncertain Significance) resolution demo showing:
+- Variant input interface
+- Step-by-step SAE analysis
+- Feature activation visualization
+- Final verdict with confidence scores
+- Callback for analyzed variant data
+
+**Status:**
+- ✅ Found in `caspro/src/src2/components/site/blocks/` (buried in src2)
+- ❌ NOT extracted to main `caspro/src/components/` directory
+- ✅ Used in `OracleProduct.tsx` page (line 89)
+
+**Key Props:**
+```typescript
+interface VUSResolutionDemoProps {
+  onVariantAnalyzed?: (variant: any) => void;
+}
+```
+
+---
+
+### 4. **TLSSAEThinkingProcess** ✅ (Found)
+**Location:** `crispro-monorepo/apps/dataRoom/src/components/site/blocks/TLSSAEThinkingProcess.tsx`
+
+**Purpose:** TLS-specific SAE thinking process component showing:
+- 6-step TLS engineering analysis workflow
+- TLS-specific SAE features (CXCL13, LTBR, CD40L, etc.)
+- Component-based step rendering
+- RUO disclaimers
+- Paper references
+
+**Status:**
+- ✅ Found in monorepo
+- ❌ NOT extracted to caspro
+- ✅ Used in `UseCaseDemoPage.tsx` for TLS seed generation demo
+
+**Key Features:**
+- TLS-specific biological features
+- Research Use Only (RUO) disclaimers
+- Integration with `OracleExplainTrack` and other components
+- Configurable via `sae-thinking-adapter.ts`
+
+---
+
+### 5. **InteractiveAnalysisPipeline** ✅ (Found)
+**Location:** `crispro-monorepo/apps/dataRoom/src/components/site/blocks/InteractiveAnalysisPipeline.tsx`
+
+**Purpose:** Step-by-step analysis pipeline visualizer showing:
+- Multi-step workflow execution
+- Real-time step status (pending/running/completed)
+- Input/output data for each step
+- Processing steps and insights
+- Evidence and provenance
+
+**Status:**
+- ✅ Found in monorepo
+- ❌ NOT extracted to caspro
+- ✅ Used in `UseCaseDemoPage.tsx` for use case demos
+
+**Key Features:**
+- Animated step progression
+- Data visualization per step
+- Evidence display
+- Provenance tracking
+
+---
+
+### 6. **DemoFactory** ✅ (Found)
+**Location:** `crispro-monorepo/apps/dataRoom/src/components/site/blocks/DemoFactory.tsx`
+
+**Purpose:** Factory component for creating interactive SAE demos:
+- Multiple demo configurations
+- Step-by-step execution
+- Component orchestration
+- Interactive controls
+
+**Status:**
+- ✅ Found in monorepo
+- ❌ NOT extracted to caspro
+- ✅ Used in `OracleProduct.tsx` page
+
+---
+
+## 📊 **Supporting Data & Adapters**
+
+### 7. **sae-thinking-adapter.ts** ✅ (Found)
+**Location:** `crispro-monorepo/apps/dataRoom/src/data/adapters/sae-thinking-adapter.ts`
+
+**Purpose:** Adapter for configuring SAE thinking processes for different use cases
+
+**Status:**
+- ✅ Found in monorepo
+- ❌ NOT extracted to caspro
+
+---
+
+### 8. **tls-sae-thinking-constants.ts** ✅ (Found)
+**Location:** `crispro-monorepo/apps/dataRoom/src/data/constants/tls-sae-thinking-constants.ts`
+
+**Purpose:** TLS-specific SAE feature constants and configurations:
+- TLS_SAE_FEATURES (regulatory elements, promoters, binding sites)
+- DEFAULT_TLS_THINKING_STEPS
+- TLS variant data
+- TLS explain track data
+
+**Status:**
+- ✅ Found in monorepo
+- ❌ NOT extracted to caspro
+
+---
+
+### 9. **sae.mdc** ✅ (Found)
+**Location:** `crispro-monorepo/apps/dataRoom/src/utils/sae.mdc`
+
+**Purpose:** Comprehensive SAE doctrine document covering:
+- Technical implementation details
+- Data contracts
+- Frontend simulation approach
+- Roadmap for backend services
+- JSON schemas
+- Success criteria
+
+**Status:**
+- ✅ Found in monorepo
+- ✅ Content used in `caspro/src/data/evidence/sae-data.ts`
+- ❌ Original file NOT extracted
+
+---
+
+## 🎯 **Pages Using SAE Components**
+
+### 1. **OracleProduct.tsx** ✅
+**Location:** `crispro-monorepo/apps/dataRoom/src/components/site/OracleProduct.tsx`
+
+**SAE Components Used:**
+- `VUSResolutionDemo` (line 89)
+- `DynamicOracleExplain` (line 94)
+- `DemoFactory` (line 114)
+
+**Status:**
+- ✅ Page exists in monorepo
+- ❌ NOT extracted to caspro
+
+---
+
+### 2. **UseCaseDemoPage.tsx** ✅
+**Location:** `crispro-monorepo/apps/dataRoom/src/pages/UseCaseDemoPage.tsx`
+
+**SAE Components Used:**
+- `TLSSAEThinkingProcess` (line 143)
+- `InteractiveAnalysisPipeline` (line 164)
+
+**Status:**
+- ✅ Page exists in monorepo
+- ❌ NOT extracted to caspro
+
+---
+
+### 3. **OracleUseCasesIndex.tsx** ✅
+**Location:** `crispro-monorepo/apps/dataRoom/src/pages/OracleUseCasesIndex.tsx`
+
+**Purpose:** Index page listing all Oracle use cases with SAE capabilities
+
+**Status:**
+- ✅ Page exists in monorepo
+- ❌ NOT extracted to caspro
+
+---
+
+## 📦 **What's Already in caspro**
+
+### ✅ **Extracted Components (in src2 - needs migration):**
+1. `caspro/src/src2/components/site/blocks/OracleExplainTrack.tsx` (if exists)
+2. `caspro/src/src2/components/site/blocks/DynamicOracleExplain.tsx`
+3. `caspro/src/src2/components/site/blocks/VUSResolutionDemo.tsx`
+4. `caspro/src/src2/components/site/blocks/FactoryDemoShowcase.tsx` (uses OracleExplainTrack)
+
+### ✅ **New Components Created:**
+1. `caspro/src/components/evidence/SAEFeatureVisualization.tsx` - New SAE visualization component
+2. `caspro/src/components/evidence/SAESection.tsx` - SAE section for evidence page
+3. `caspro/src/data/evidence/sae-data.ts` - SAE data configuration
+
+---
+
+## 🚨 **Missing Components (Need Extraction)**
+
+### High Priority:
+1. ❌ **OracleExplainTrack** - Core visualization (needs migration from src2)
+2. ❌ **DynamicOracleExplain** - Step-by-step thinking (needs migration from src2)
+3. ❌ **VUSResolutionDemo** - Complete demo (needs migration from src2)
+4. ❌ **TLSSAEThinkingProcess** - TLS-specific thinking process
+5. ❌ **InteractiveAnalysisPipeline** - Pipeline visualizer
+
+### Medium Priority:
+6. ❌ **DemoFactory** - Demo factory component
+7. ❌ **sae-thinking-adapter.ts** - Configuration adapter
+8. ❌ **tls-sae-thinking-constants.ts** - TLS constants
+
+### Low Priority:
+9. ❌ **OracleProduct.tsx** - Full product page (may need adaptation)
+10. ❌ **UseCaseDemoPage.tsx** - Use case demo page (may need adaptation)
+
+---
+
+## 📋 **Extraction Plan**
+
+### Phase 1: Core Components (Immediate)
+1. Extract `OracleExplainTrack` from `src2` to `src/components/sae/`
+2. Extract `DynamicOracleExplain` from `src2` to `src/components/sae/`
+3. Extract `VUSResolutionDemo` from `src2` to `src/components/sae/`
+4. Update all imports across caspro
+
+### Phase 2: Supporting Components (Next)
+5. Extract `TLSSAEThinkingProcess` from monorepo
+6. Extract `InteractiveAnalysisPipeline` from monorepo
+7. Extract supporting adapters and constants
+
+### Phase 3: Integration (After)
+8. Create unified SAE component exports
+9. Update evidence page to use extracted components
+10. Create SAE demo page showcasing all components
+
+---
+
+## 🔗 **Component Dependencies**
+
+```
+OracleExplainTrack (core)
+  ├── Used by: DynamicOracleExplain
+  ├── Used by: TLSSAEThinkingProcess
+  ├── Used by: VUSResolutionDemo
+  └── Used by: FactoryDemoShowcase
+
+DynamicOracleExplain
+  ├── Uses: OracleExplainTrack
+  ├── Uses: VariantDetailCard
+  ├── Uses: KPIStrip
+  ├── Uses: EssentialityChart
+  └── Uses: ProteinDeltaCard
+
+VUSResolutionDemo
+  ├── Uses: OracleExplainTrack (implicitly)
+  └── Calls: onVariantAnalyzed callback
+
+TLSSAEThinkingProcess
+  ├── Uses: OracleExplainTrack
+  ├── Uses: VariantDetailCard
+  ├── Uses: KPIStrip
+  ├── Uses: EssentialityChart
+  └── Uses: ProteinDeltaCard
+```
+
+---
+
+## 📝 **Notes**
+
+1. **src2 Directory:** Many components are buried in `src2` and need migration to main `src/components/` directory
+2. **Import Paths:** All extracted components will need import path updates
+3. **TypeScript Types:** Ensure all type definitions are extracted with components
+4. **Styling:** Components use Tailwind CSS - ensure compatibility
+5. **Accessibility:** Some components use `AccessibilityContext` - may need adaptation
+
+---
+
+## ✅ **Action Items**
+
+- [ ] Extract OracleExplainTrack from src2 to src/components/sae/
+- [ ] Extract DynamicOracleExplain from src2 to src/components/sae/
+- [ ] Extract VUSResolutionDemo from src2 to src/components/sae/
+- [ ] Extract TLSSAEThinkingProcess from monorepo
+- [ ] Extract InteractiveAnalysisPipeline from monorepo
+- [ ] Extract supporting adapters and constants
+- [ ] Update all import paths
+- [ ] Create unified SAE component exports
+- [ ] Test all components in caspro environment
+- [ ] Update evidence page to use extracted components
+- [ ] Create SAE demo showcase page

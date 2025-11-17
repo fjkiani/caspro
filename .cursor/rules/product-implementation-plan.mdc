@@ -1,0 +1,733 @@
+# 🎯 PRODUCT CAPABILITIES IMPLEMENTATION PLAN
+
+**Last Updated:** January 13, 2025  
+**Status:** 📋 **PLANNING PHASE** - Comprehensive mapping of product.mdc capabilities to codebase structure
+
+---
+
+## 📊 EXECUTIVE SUMMARY
+
+This document maps the 6 capability groups defined in `product.mdc` to the current `caspro` application structure, identifies implementation gaps, and provides a strategic roadmap for integrating all product capabilities.
+
+### Current State Assessment:
+- ✅ **Strong Foundation**: Co-Pilot architecture, SAE components, Evidence framework, Oracle/Forge/Boltz products
+- ⚠️ **Partial Implementation**: Some capabilities exist but need enhancement (trial matching, toxicity prevention)
+- ❌ **Missing**: Unified care plans, food/supplement recommendations, conversational AI, enterprise features
+
+---
+
+## 🗺️ CAPABILITY GROUP 1: CLINICAL DECISION SUPPORT 🏥
+
+### Current Implementation Status
+
+#### ✅ **EXISTING COMPONENTS:**
+
+1. **Co-Pilot System** (`/app/platform`, `/components/co-pilot-detail/`)
+   - **Location**: `caspro/src/app/platform/page.tsx`, `caspro/src/components/co-pilot-detail/`
+   - **Status**: ✅ Fully implemented
+   - **Capabilities**: 
+     - Chemo Co-Pilot (`/data/copilots/chemo-data.ts`)
+     - Clinical Trials Co-Pilot (`/data/copilots/clinical-trials.ts`)
+     - Therapy Fit Co-Pilot (`/data/copilots/therapy-fit-data.ts`)
+     - Toxicity Risk Co-Pilot (`/data/copilots/toxicity-data.ts`)
+   - **Gap**: Missing unified care plan integration
+
+2. **Oracle Product** (`/app/products/oracle`)
+   - **Location**: `caspro/src/app/products/oracle/page.tsx`
+   - **Status**: ✅ Implemented
+   - **Capabilities**: Discriminative AI, variant impact prediction
+   - **Gap**: Needs SAE explainability integration (partially done)
+
+3. **Evidence Framework** (`/app/evidence`, `/components/evidence/`)
+   - **Location**: `caspro/src/app/evidence/`, `caspro/src/components/evidence/`
+   - **Status**: ✅ Implemented
+   - **Capabilities**: S/P/E fusion, SAE intelligence, Data Lab
+   - **Gap**: Needs unified care plan integration
+
+#### ⚠️ **PARTIALLY IMPLEMENTED:**
+
+1. **WIWFM (Will It Work For Me)**
+   - **Current**: Therapy Fit Co-Pilot (`/data/copilots/therapy-fit-data.ts`) provides drug ranking
+   - **Gap**: 
+     - Missing per-drug efficacy ranking with 70-85% confidence scores
+     - Missing evidence tiers (STANDARD/SUPPORTED)
+     - Missing trial-backed rationale
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/clinical-decision/WIWFM.tsx`
+     - **New Data**: `caspro/src/data/clinical-decision/wiwfm-data.ts`
+     - **Enhancement**: Extend `therapy-fit-data.ts` with confidence scoring and evidence tiers
+
+2. **Sporadic Cancer Intelligence**
+   - **Current**: Some sporadic awareness in co-pilots
+   - **Gap**: 
+     - Missing PARP rescue logic
+     - Missing IO boosts
+     - Missing confidence capping for sporadic vs germline
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/clinical-decision/SporadicCancerIntelligence.tsx`
+     - **New Data**: `caspro/src/data/clinical-decision/sporadic-cancer-logic.ts`
+     - **Enhancement**: Add sporadic flags to all co-pilot data structures
+
+3. **Treatment Line Intelligence**
+   - **Current**: Not explicitly implemented
+   - **Gap**: 
+     - Missing L1/L2/L3 sequencing guidance
+     - Missing cross-resistance analysis
+     - Missing line appropriateness scoring
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/clinical-decision/TreatmentLineIntelligence.tsx`
+     - **New Data**: `caspro/src/data/clinical-decision/treatment-line-data.ts`
+     - **Integration**: Add to Therapy Fit Co-Pilot
+
+4. **Toxicity Risk (PGx) Prevention**
+   - **Current**: Toxicity Risk Co-Pilot exists (`/data/copilots/toxicity-data.ts`)
+   - **Gap**: 
+     - Missing DPYD/TPMT/UGT1A1/CYP2D6 specific prevention
+     - Missing drug interaction checking
+     - Missing MoA-overlap risk flags
+   - **Implementation Plan**:
+     - **Enhancement**: Extend `toxicity-data.ts` with PGx gene-specific logic
+     - **New Component**: `caspro/src/components/clinical-decision/PGxPrevention.tsx`
+     - **New Data**: `caspro/src/data/clinical-decision/pgx-genes.ts`
+
+5. **Clinical Trial Matching**
+   - **Current**: Clinical Trials Co-Pilot exists (`/data/copilots/clinical-trials.ts`)
+   - **Gap**: 
+     - Missing transparent eligibility reasoning (green/yellow/red flags)
+     - Missing match percentages (96.6%)
+     - Missing trial-specific evidence
+   - **Implementation Plan**:
+     - **Enhancement**: Extend `clinical-trials.ts` with eligibility flagging
+     - **New Component**: `caspro/src/components/clinical-decision/TrialEligibilityMatrix.tsx`
+     - **New Data**: `caspro/src/data/clinical-decision/trial-eligibility-logic.ts`
+
+#### ❌ **MISSING CAPABILITIES:**
+
+1. **Proactive Resistance Detection**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/clinical-decision/ResistanceDetection.tsx`
+     - **New Data**: `caspro/src/data/clinical-decision/resistance-predictors.ts`
+     - **New Page**: `/app/clinical-decision/resistance-detection`
+     - **Integration**: Add to Therapy Fit Co-Pilot
+
+2. **CA-125 Intelligence**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/clinical-decision/CA125Intelligence.tsx`
+     - **New Data**: `caspro/src/data/clinical-decision/ca125-kinetics.ts`
+     - **New Page**: `/app/clinical-decision/ca125-monitoring`
+
+3. **SOC Recommendations**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/clinical-decision/SOCRecommendations.tsx`
+     - **New Data**: `caspro/src/data/clinical-decision/nccn-guidelines.ts`
+     - **New Page**: `/app/clinical-decision/soc-recommendations`
+
+4. **Resistance Playbook**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/clinical-decision/ResistancePlaybook.tsx`
+     - **New Data**: `caspro/src/data/clinical-decision/resistance-strategies.ts`
+     - **New Page**: `/app/clinical-decision/resistance-playbook`
+
+5. **Complete Unified Care Plan**
+   - **Status**: ❌ Not implemented (CRITICAL GAP)
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/clinical-decision/UnifiedCarePlan.tsx`
+     - **New Data**: `caspro/src/data/clinical-decision/unified-care-plan.ts`
+     - **New Page**: `/app/clinical-decision/unified-care-plan`
+     - **Integration**: Orchestrate drugs + trials + food + monitoring + PGx
+
+6. **Supportive Care Integration (Food/Supplements)**
+   - **Status**: ❌ Not implemented (CRITICAL GAP)
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/clinical-decision/SupportiveCare.tsx`
+     - **New Data**: `caspro/src/data/clinical-decision/food-supplements.ts`
+     - **New Component**: `caspro/src/components/clinical-decision/FoodValidator.tsx`
+     - **Integration**: Add to Unified Care Plan
+
+7. **Biomarker-Aware Recommendations**
+   - **Status**: ⚠️ Partially implemented (in co-pilots)
+   - **Gap**: Not shared across drugs + food recommendations
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/clinical-decision/BiomarkerAwareRecommendations.tsx`
+     - **New Data**: `caspro/src/data/clinical-decision/biomarker-mapping.ts`
+     - **Enhancement**: Create shared biomarker context across all recommendations
+
+8. **SAE Explainability**
+   - **Status**: ✅ Partially implemented (SAE components exist)
+   - **Gap**: Not integrated into clinical decision components
+   - **Implementation Plan**:
+     - **Enhancement**: Integrate existing SAE components into co-pilots
+     - **New Component**: `caspro/src/components/clinical-decision/SAEConfidenceBreakdown.tsx`
+     - **Integration**: Add SAE explainability to all drug recommendations
+
+9. **Honest Limitations**
+   - **Status**: ⚠️ Partially implemented (RUO disclaimers exist)
+   - **Gap**: Missing "Awaiting NGS" messaging
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/clinical-decision/DataAvailabilityStatus.tsx`
+     - **Enhancement**: Add to all co-pilots
+
+10. **Clinician-Ready Dossiers**
+    - **Status**: ⚠️ Partially implemented (dossier components exist)
+    - **Gap**: Missing action-ready one-pagers with contacts
+    - **Implementation Plan**:
+      - **Enhancement**: Extend `caspro/src/components/dossier/` with contact info
+      - **New Component**: `caspro/src/components/clinical-decision/ActionableDossier.tsx`
+
+11. **NGS Fast-Track**
+    - **Status**: ❌ Not implemented
+    - **Implementation Plan**:
+      - **New Component**: `caspro/src/components/clinical-decision/NGSFastTrack.tsx`
+      - **New Page**: `/app/clinical-decision/ngs-fast-track`
+
+### Implementation Priority
+
+**Tier 1 (Critical - Customer-Facing):**
+1. Unified Care Plan (integrates everything)
+2. WIWFM enhancement (per-drug confidence + evidence tiers)
+3. Supportive Care Integration (food/supplements)
+4. SAE Explainability integration
+5. Biomarker-Aware Recommendations
+
+**Tier 2 (High Value):**
+6. Proactive Resistance Detection
+7. Treatment Line Intelligence
+8. Trial Matching enhancement (eligibility flags)
+9. Toxicity Prevention enhancement (PGx genes)
+
+**Tier 3 (Nice to Have):**
+10. CA-125 Intelligence
+11. SOC Recommendations
+12. Resistance Playbook
+13. NGS Fast-Track
+
+---
+
+## 🔬 CAPABILITY GROUP 2: RESEARCH ACCELERATION
+
+### Current Implementation Status
+
+#### ✅ **EXISTING COMPONENTS:**
+
+1. **In-Silico Platform** (`/app/insilico`, `/components/insilico/`)
+   - **Location**: `caspro/src/app/insilico/page.tsx`, `caspro/src/components/insilico/`
+   - **Status**: ✅ Implemented
+   - **Capabilities**: Discriminative AI, Evidence Backbone, Fusion Workflow
+   - **Gap**: Needs universal hypothesis testing expansion
+
+2. **Use Cases** (`/app/use-cases`, `/data/use-cases/`)
+   - **Location**: `caspro/src/app/use-cases/`, `caspro/src/data/use-cases/`
+   - **Status**: ✅ Implemented
+   - **Capabilities**: Multiple myeloma use case
+   - **Gap**: Needs more use cases (50+ diseases)
+
+3. **Cohort Intelligence** (`/app/cohort`, `/components/cohort/`)
+   - **Location**: `caspro/src/app/cohort/page.tsx`, `caspro/src/components/cohort/`
+   - **Status**: ✅ Implemented
+   - **Capabilities**: Cohort extraction, labeling, benchmarking
+   - **Gap**: Needs cBioPortal/GDC integration expansion
+
+#### ⚠️ **PARTIALLY IMPLEMENTED:**
+
+1. **VUS Explorer**
+   - **Current**: VUS Resolution Demo exists (`/components/sae/VUSResolutionDemo.tsx`)
+   - **Gap**: 
+     - Missing standalone VUS Explorer page
+     - Missing "unknown → understood" workflow
+   - **Implementation Plan**:
+     - **New Page**: `/app/research/vus-explorer`
+     - **New Component**: `caspro/src/components/research/VUSExplorer.tsx`
+     - **Enhancement**: Extend VUSResolutionDemo into full explorer
+
+2. **Metastasis Assessment**
+   - **Current**: Metastasis Interception page exists (`/app/metastasis-interception`)
+   - **Gap**: 
+     - Missing 8-step cascade risk prediction
+   - **Implementation Plan**:
+     - **Enhancement**: Extend `caspro/src/components/metastasis/MetastasisInterception.tsx`
+     - **New Data**: `caspro/src/data/research/metastasis-cascade.ts`
+
+3. **Evidence Synthesis**
+   - **Current**: Evidence page exists (`/app/evidence`)
+   - **Gap**: 
+     - Missing multi-provider literature search (PubMed, OpenAlex, S2)
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/research/MultiProviderLiteratureSearch.tsx`
+     - **New Data**: `caspro/src/data/research/literature-providers.ts`
+
+#### ❌ **MISSING CAPABILITIES:**
+
+1. **Universal Hypothesis Testing**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Page**: `/app/research/hypothesis-testing`
+     - **New Component**: `caspro/src/components/research/HypothesisTesting.tsx`
+     - **New Data**: `caspro/src/data/research/hypothesis-testing.ts`
+     - **Integration**: Connect to 50+ diseases, 110M+ compounds
+
+2. **Knowledge Base Integration**
+   - **Status**: ⚠️ Partially implemented (doctrine system exists)
+   - **Gap**: Missing contextual help, coverage indicators
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/research/KnowledgeBaseIntegration.tsx`
+     - **Enhancement**: Extend doctrine system with coverage indicators
+
+### Implementation Priority
+
+**Tier 1:**
+1. Universal Hypothesis Testing (50+ diseases, 110M+ compounds)
+2. VUS Explorer (standalone page)
+3. Evidence Synthesis enhancement (multi-provider search)
+
+**Tier 2:**
+4. Metastasis Assessment enhancement (8-step cascade)
+5. Knowledge Base Integration
+
+---
+
+## ⚔️ CAPABILITY GROUP 3: THERAPEUTIC DESIGN
+
+### Current Implementation Status
+
+#### ✅ **EXISTING COMPONENTS:**
+
+1. **Forge Product** (`/app/products/forge`)
+   - **Location**: `caspro/src/app/products/forge/`, `caspro/src/data/products/forge/`
+   - **Status**: ✅ Implemented
+   - **Capabilities**: CRISPR guide generation, structural validation
+   - **Gap**: Needs IND package generation
+
+2. **Genome Editing** (`/app/genome-editing`)
+   - **Location**: `caspro/src/app/genome-editing/page.tsx`
+   - **Status**: ✅ Implemented
+   - **Capabilities**: CRISPR design tools
+   - **Gap**: Needs IP monetization workflow
+
+3. **Kill Chain** (`/app/kill-chain`, `/components/kill-chain-visualizations/`)
+   - **Location**: `caspro/src/app/kill-chain/page.tsx`, `caspro/src/components/kill-chain-visualizations/`
+   - **Status**: ✅ Implemented
+   - **Capabilities**: Design router, PAM windowing, safety checks
+   - **Gap**: Needs IND package generation
+
+#### ❌ **MISSING CAPABILITIES:**
+
+1. **IND Package Generation**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/therapeutic-design/INDPackageGenerator.tsx`
+     - **New Data**: `caspro/src/data/therapeutic-design/ind-templates.ts`
+     - **New Page**: `/app/therapeutic-design/ind-package`
+
+2. **IP Monetization**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/therapeutic-design/IPMonetization.tsx`
+     - **New Data**: `caspro/src/data/therapeutic-design/ip-workflow.ts`
+     - **New Page**: `/app/therapeutic-design/ip-monetization`
+     - **Workflow**: Victory → Fortify → Arm → Fund → Conquer
+
+### Implementation Priority
+
+**Tier 1:**
+1. IND Package Generation (FDA-grade documentation)
+2. IP Monetization workflow (5-stage)
+
+---
+
+## 🧠 CAPABILITY GROUP 4: PLATFORM INTELLIGENCE
+
+### Current Implementation Status
+
+#### ✅ **EXISTING COMPONENTS:**
+
+1. **S/P/E Framework** (`/app/evidence/spe-fusion`, `/components/evidence/`)
+   - **Location**: `caspro/src/app/evidence/spe-fusion/`, `caspro/src/components/evidence/SpeFusionSection.tsx`
+   - **Status**: ✅ Implemented
+   - **Capabilities**: Sequence + Pathway + Evidence fusion
+   - **Gap**: Needs 30/40/30 weighting visualization
+
+2. **Insights Bundle** (`/app/evidence`, `/components/evidence/`)
+   - **Location**: `caspro/src/components/evidence/SAEAttributionCard.tsx`, `SAEFeatureVisualization.tsx`
+   - **Status**: ✅ Implemented
+   - **Capabilities**: 4 chips (Functionality, Chromatin, Essentiality, Regulatory)
+   - **Gap**: Needs threshold visualization
+
+3. **Fusion Engine** (`/app/evidence/spe-fusion`)
+   - **Location**: `caspro/src/app/evidence/spe-fusion/page.tsx`
+   - **Status**: ✅ Implemented
+   - **Capabilities**: AlphaMissense integration
+   - **Gap**: Needs GRCh38 missense variant highlighting
+
+4. **Provenance Tracking** (`/components/evidence/`)
+   - **Location**: Various evidence components
+   - **Status**: ✅ Implemented
+   - **Capabilities**: Run IDs, methods, citations
+   - **Gap**: Needs complete audit trail visualization
+
+#### ⚠️ **PARTIALLY IMPLEMENTED:**
+
+1. **Calibration System**
+   - **Current**: Gene-specific data exists in metrics
+   - **Gap**: 
+     - Missing percentile conversion visualization
+     - Missing cross-gene comparison
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/platform-intelligence/CalibrationSystem.tsx`
+     - **New Data**: `caspro/src/data/platform-intelligence/calibration-snapshots.ts`
+
+2. **Confidence Modulation**
+   - **Current**: Confidence scores exist in co-pilots
+   - **Gap**: 
+     - Missing evidence gates visualization
+     - Missing insights lifts
+     - Missing sporadic cancer gates
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/platform-intelligence/ConfidenceModulation.tsx`
+     - **Enhancement**: Add to all co-pilots
+
+### Implementation Priority
+
+**Tier 1:**
+1. Calibration System (gene-specific percentile conversion)
+2. Confidence Modulation (evidence gates, insights lifts)
+
+**Tier 2:**
+3. S/P/E weighting visualization (30/40/30)
+4. Complete audit trail visualization
+
+---
+
+## 💬 CAPABILITY GROUP 5: CONVERSATIONAL AI
+
+### Current Implementation Status
+
+#### ⚠️ **PARTIALLY IMPLEMENTED:**
+
+1. **Co-Pilot System** (`/app/platform`, `/app/co-pilot-app`)
+   - **Location**: `caspro/src/app/platform/page.tsx`, `caspro/src/app/co-pilot-app/page.tsx`
+   - **Status**: ⚠️ Partially implemented
+   - **Capabilities**: Co-Pilot selection, structured interfaces
+   - **Gap**: 
+     - Missing natural language queries
+     - Missing progressive disclosure
+     - Missing unified orchestration endpoint
+
+#### ❌ **MISSING CAPABILITIES:**
+
+1. **Co-Pilot Integration (Natural Language)**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/conversational-ai/NaturalLanguageQuery.tsx`
+     - **New Data**: `caspro/src/data/conversational-ai/intent-classification.ts`
+     - **New API Route**: `/api/ayesha/query` (if backend exists)
+
+2. **Intent Classification (Q2C Router)**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/conversational-ai/IntentClassifier.ts`
+     - **New Data**: `caspro/src/data/conversational-ai/q2c-router.ts`
+
+3. **Context Awareness**
+   - **Status**: ⚠️ Partially implemented (sporadic awareness in co-pilots)
+   - **Gap**: Not integrated into conversational flow
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/conversational-ai/ContextAwareness.tsx`
+     - **Enhancement**: Add context to all conversational responses
+
+4. **Unified Orchestration**
+   - **Status**: ❌ Not implemented (CRITICAL GAP)
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/conversational-ai/UnifiedOrchestration.tsx`
+     - **New API Route**: `/api/ayesha/complete_care_v2` (if backend exists)
+     - **Integration**: Orchestrate drugs + trials + food in one response
+
+5. **Progressive Disclosure**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/conversational-ai/ProgressiveDisclosure.tsx`
+     - **Enhancement**: Add to all conversational interfaces
+
+6. **Food Validator**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/conversational-ai/FoodValidator.tsx`
+     - **New Data**: `caspro/src/data/conversational-ai/food-mechanistic-validation.ts`
+     - **Integration**: Connect to Unified Care Plan
+
+### Implementation Priority
+
+**Tier 1 (Critical):**
+1. Unified Orchestration (`/api/ayesha/complete_care_v2`)
+2. Natural Language Query interface
+3. Progressive Disclosure
+
+**Tier 2:**
+4. Intent Classification (Q2C Router)
+5. Context Awareness integration
+6. Food Validator
+
+---
+
+## 🏢 CAPABILITY GROUP 6: ENTERPRISE PLATFORM
+
+### Current Implementation Status
+
+#### ❌ **MISSING CAPABILITIES:**
+
+1. **Authentication System**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/enterprise/Authentication.tsx`
+     - **New API Routes**: `/api/auth/*` (if backend exists)
+     - **Integration**: Supabase Auth, JWT verification
+
+2. **Admin Panel**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Page**: `/app/admin`
+     - **New Component**: `caspro/src/components/enterprise/AdminPanel.tsx`
+     - **Features**: User management, analytics, activity logs
+
+3. **3-Tier Pricing**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Page**: `/app/pricing`
+     - **New Component**: `caspro/src/components/enterprise/PricingTiers.tsx`
+     - **New Data**: `caspro/src/data/enterprise/pricing-tiers.ts`
+
+4. **Database Schema**
+   - **Status**: ❌ Not implemented (backend concern)
+   - **Implementation Plan**:
+     - **Documentation**: Document 9-table schema (users, profiles, subscriptions, quotas, feature flags, sessions, analyses, logs)
+     - **Note**: This is a backend implementation
+
+5. **Feature Flags**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/enterprise/FeatureFlags.tsx`
+     - **New Data**: `caspro/src/data/enterprise/feature-flags.ts`
+
+6. **Usage Tracking**
+   - **Status**: ❌ Not implemented
+   - **Implementation Plan**:
+     - **New Component**: `caspro/src/components/enterprise/UsageTracking.tsx`
+     - **New API Routes**: `/api/analytics/*` (if backend exists)
+
+### Implementation Priority
+
+**Tier 1:**
+1. Authentication System (Supabase Auth)
+2. 3-Tier Pricing page
+3. Feature Flags
+
+**Tier 2:**
+4. Admin Panel
+5. Usage Tracking
+
+**Tier 3:**
+6. Database Schema (backend implementation)
+
+---
+
+## 📁 DIRECTORY STRUCTURE RECOMMENDATIONS
+
+### New Directories to Create:
+
+```
+caspro/src/
+├── components/
+│   ├── clinical-decision/          # NEW - Clinical Decision Support components
+│   │   ├── WIWFM.tsx
+│   │   ├── UnifiedCarePlan.tsx
+│   │   ├── SupportiveCare.tsx
+│   │   ├── ResistanceDetection.tsx
+│   │   ├── TreatmentLineIntelligence.tsx
+│   │   ├── PGxPrevention.tsx
+│   │   ├── TrialEligibilityMatrix.tsx
+│   │   ├── SAEConfidenceBreakdown.tsx
+│   │   └── ...
+│   ├── research/                  # NEW - Research Acceleration components
+│   │   ├── VUSExplorer.tsx
+│   │   ├── HypothesisTesting.tsx
+│   │   ├── MultiProviderLiteratureSearch.tsx
+│   │   └── ...
+│   ├── therapeutic-design/        # NEW - Therapeutic Design components
+│   │   ├── INDPackageGenerator.tsx
+│   │   ├── IPMonetization.tsx
+│   │   └── ...
+│   ├── platform-intelligence/     # NEW - Platform Intelligence components
+│   │   ├── CalibrationSystem.tsx
+│   │   ├── ConfidenceModulation.tsx
+│   │   └── ...
+│   ├── conversational-ai/         # NEW - Conversational AI components
+│   │   ├── NaturalLanguageQuery.tsx
+│   │   ├── UnifiedOrchestration.tsx
+│   │   ├── ProgressiveDisclosure.tsx
+│   │   ├── FoodValidator.tsx
+│   │   └── ...
+│   └── enterprise/                # NEW - Enterprise Platform components
+│       ├── Authentication.tsx
+│       ├── AdminPanel.tsx
+│       ├── PricingTiers.tsx
+│       ├── FeatureFlags.tsx
+│       └── ...
+├── app/
+│   ├── clinical-decision/         # NEW - Clinical Decision Support pages
+│   │   ├── wiwfm/
+│   │   ├── unified-care-plan/
+│   │   ├── resistance-detection/
+│   │   └── ...
+│   ├── research/                  # NEW - Research Acceleration pages
+│   │   ├── vus-explorer/
+│   │   ├── hypothesis-testing/
+│   │   └── ...
+│   ├── therapeutic-design/        # NEW - Therapeutic Design pages
+│   │   ├── ind-package/
+│   │   ├── ip-monetization/
+│   │   └── ...
+│   ├── pricing/                   # NEW - Pricing page
+│   └── admin/                     # NEW - Admin panel
+├── data/
+│   ├── clinical-decision/         # NEW - Clinical Decision Support data
+│   │   ├── wiwfm-data.ts
+│   │   ├── unified-care-plan.ts
+│   │   ├── sporadic-cancer-logic.ts
+│   │   ├── treatment-line-data.ts
+│   │   ├── pgx-genes.ts
+│   │   ├── trial-eligibility-logic.ts
+│   │   ├── food-supplements.ts
+│   │   └── ...
+│   ├── research/                  # NEW - Research Acceleration data
+│   │   ├── hypothesis-testing.ts
+│   │   ├── literature-providers.ts
+│   │   ├── metastasis-cascade.ts
+│   │   └── ...
+│   ├── therapeutic-design/        # NEW - Therapeutic Design data
+│   │   ├── ind-templates.ts
+│   │   ├── ip-workflow.ts
+│   │   └── ...
+│   ├── platform-intelligence/      # NEW - Platform Intelligence data
+│   │   ├── calibration-snapshots.ts
+│   │   └── ...
+│   ├── conversational-ai/         # NEW - Conversational AI data
+│   │   ├── intent-classification.ts
+│   │   ├── q2c-router.ts
+│   │   ├── food-mechanistic-validation.ts
+│   │   └── ...
+│   └── enterprise/                # NEW - Enterprise Platform data
+│       ├── pricing-tiers.ts
+│       ├── feature-flags.ts
+│       └── ...
+```
+
+---
+
+## 🔄 INTEGRATION POINTS
+
+### Existing Components to Enhance:
+
+1. **Co-Pilot System** (`/components/co-pilot-detail/`)
+   - Add unified care plan integration
+   - Add SAE explainability
+   - Add biomarker-aware recommendations
+   - Add sporadic cancer intelligence
+
+2. **Evidence Framework** (`/components/evidence/`)
+   - Add confidence modulation
+   - Add calibration system integration
+   - Add complete audit trail visualization
+
+3. **Oracle Product** (`/app/products/oracle`)
+   - Add SAE explainability integration
+   - Add unified care plan links
+
+4. **Forge Product** (`/app/products/forge`)
+   - Add IND package generation
+   - Add IP monetization workflow
+
+5. **Homepage** (`/app/page.tsx`)
+   - Add capability cards for all 6 groups
+   - Add unified care plan CTA
+   - Add conversational AI preview
+
+---
+
+## 📊 IMPLEMENTATION ROADMAP
+
+### Phase 1: Foundation (Weeks 1-4)
+- ✅ Complete SAE component extraction (DONE)
+- Create directory structure
+- Set up data files for all capability groups
+- Create base components for Tier 1 features
+
+### Phase 2: Clinical Decision Support (Weeks 5-8)
+- Implement Unified Care Plan
+- Enhance WIWFM with confidence + evidence tiers
+- Add Supportive Care Integration
+- Integrate SAE explainability
+- Add Biomarker-Aware Recommendations
+
+### Phase 3: Research & Design (Weeks 9-12)
+- Implement Universal Hypothesis Testing
+- Create VUS Explorer standalone page
+- Add IND Package Generation
+- Add IP Monetization workflow
+
+### Phase 4: Platform Intelligence & Conversational AI (Weeks 13-16)
+- Implement Calibration System
+- Add Confidence Modulation
+- Create Unified Orchestration endpoint
+- Add Natural Language Query interface
+- Implement Progressive Disclosure
+
+### Phase 5: Enterprise & Polish (Weeks 17-20)
+- Implement Authentication System
+- Create Admin Panel
+- Add 3-Tier Pricing
+- Add Feature Flags
+- Complete integration testing
+
+---
+
+## 🎯 SUCCESS METRICS
+
+### Capability Coverage:
+- **Target**: 100% of product.mdc capabilities implemented
+- **Current**: ~40% implemented
+- **Gap**: 60% remaining
+
+### Component Count:
+- **Current**: ~150 components
+- **Target**: ~250 components (after implementation)
+- **New**: ~100 components needed
+
+### Page Count:
+- **Current**: ~30 pages
+- **Target**: ~50 pages (after implementation)
+- **New**: ~20 pages needed
+
+---
+
+## 📝 NOTES
+
+1. **Backend Dependencies**: Some features (Unified Orchestration, Authentication) require backend API implementation. Document these separately.
+
+2. **Data Sources**: Many features require external data sources (PubMed, OpenAlex, S2, cBioPortal, GDC). Document integration requirements.
+
+3. **SAE Integration**: SAE components are already extracted and modularized. Focus on integration into clinical decision components.
+
+4. **Co-Pilot Architecture**: The existing co-pilot architecture is a strong foundation. Enhance it rather than rebuild.
+
+5. **Progressive Enhancement**: Implement features progressively, starting with Tier 1 capabilities.
+
+---
+
+**Next Steps:**
+1. Review this plan with the team
+2. Prioritize based on customer feedback
+3. Begin Phase 1 implementation
+4. Update this document as implementation progresses

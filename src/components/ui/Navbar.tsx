@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail, Users } from 'lucide-react';
 import ToggleButton from './ToggleButton';
@@ -162,7 +163,13 @@ const DropdownMenu: React.FC<{ menu: NavMenu }> = ({ menu }) => {
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -224,61 +231,124 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Nav Toggle */}
-          <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-white">
+          <div className="md:hidden relative z-[100]">
+            <button 
+              onClick={() => setIsOpen(!isOpen)} 
+              className="text-white p-2 hover:bg-slate-800 rounded transition-colors touch-manipulation"
+              aria-label="Toggle menu"
+              type="button"
+            >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Nav Menu */}
-      <AnimatePresence>
-        {isOpen && (
+      {/* Mobile Nav Menu - Render as portal to avoid z-index issues */}
+      {mounted && isOpen && createPortal(
+        <>
+          {/* Backdrop */}
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-slate-200"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+            className="fixed top-20 left-0 right-0 bottom-0 bg-black/50 z-[60] md:hidden"
+          />
+          
+          {/* Mobile Menu - Scrollable */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden fixed top-20 left-0 right-0 bottom-0 bg-white z-[70] overflow-y-auto"
           >
-            <div className="px-4 pt-2 pb-4 space-y-2">
-              {NAV_LINKS.map((link) => (
-                <div key={link.label}>
-                    <Link
-                      href={('subLinks' in link && link.subLinks) ? '#' : link.href}
-                      onClick={() => !('subLinks' in link && link.subLinks) && setIsOpen(false)}
-                      className="block py-2 text-base font-medium text-slate-700 hover:text-primary"
-                    >
-                      {link.icon} {link.label}
-                    </Link>
-                    {('subLinks' in link && link.subLinks) ? (
-                        <div className="pl-4 mt-1 space-y-1 border-l border-slate-200">
-                        {(link as any).subLinks.map((sub: any) => (
-                            <Link
-                                key={sub.href}
-                                href={sub.href}
-                                onClick={() => setIsOpen(false)}
-                                className="block py-1.5 text-sm text-slate-600 hover:text-primary"
-                            >
-                            - {sub.label}
-                            </Link>
-                        ))}
-                        </div>
-                    ) : null}
-                </div>
-              ))}
-              <div className="flex items-stretch gap-2 pt-4">
-                <div className="flex-1">
+              <div className="px-4 pt-4 pb-6">
+                {NAV_LINKS.map((link) => {
+                  const hasSubLinks = 'subLinks' in link && link.subLinks;
+                  const isExpanded = expandedItems.has(link.label);
+                  
+                  return (
+                    <div key={link.label} className="border-b border-slate-100 last:border-b-0">
+                      {hasSubLinks ? (
+                        <>
+                          {/* Expandable Item with Sub-links */}
+                          <button
+                            onClick={() => {
+                              const newExpanded = new Set(expandedItems);
+                              if (isExpanded) {
+                                newExpanded.delete(link.label);
+                              } else {
+                                newExpanded.add(link.label);
+                              }
+                              setExpandedItems(newExpanded);
+                            }}
+                            className="w-full flex items-center justify-between py-3 text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50 -mx-4 px-4 transition-colors"
+                          >
+                            <div className="flex items-center gap-2">
+                              {link.icon}
+                              <span>{link.label}</span>
+                            </div>
+                            <ChevronDown 
+                              className={`w-5 h-5 text-slate-500 transition-transform duration-200 ${
+                                isExpanded ? 'rotate-180' : ''
+                              }`} 
+                            />
+                          </button>
+                          
+                          {/* Sub-links - Collapsible */}
+                          <AnimatePresence>
+                            {isExpanded && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="overflow-hidden"
+                              >
+                                <div className="pl-6 pb-2 space-y-0.5 border-l-2 border-slate-200 ml-4">
+                                  {(link as any).subLinks.map((sub: any) => (
+                                    <Link
+                                      key={sub.href}
+                                      href={sub.href}
+                                      onClick={() => setIsOpen(false)}
+                                      className="block py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 -mx-4 px-4 rounded transition-colors"
+                                    >
+                                      {sub.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </>
+                      ) : (
+                        /* Regular Link - No Sub-links */
+                        <Link
+                          href={link.href}
+                          onClick={() => setIsOpen(false)}
+                          className="flex items-center gap-2 py-3 text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50 -mx-4 px-4 transition-colors"
+                        >
+                          {link.icon}
+                          <span>{link.label}</span>
+                        </Link>
+                      )}
+                    </div>
+                  );
+                })}
+                
+                {/* Toggle Button */}
+                <div className="pt-4 mt-4 border-t border-slate-200">
                   <ToggleButton href="/platform">
                     Research Use Only
                   </ToggleButton>
                 </div>
-              
               </div>
-            </div>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </>,
+        document.body
+      )}
     </nav>
   );
 };

@@ -26,116 +26,152 @@ const ProteinModelViewer = dynamic(
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden pt-24 pb-16 sm:pt-28 sm:pb-20 lg:py-24 bg-gradient-to-b from-white to-blue-50 dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
-      {/* Advanced background DNA elements - reduced on mobile for performance */}
-      <div className="absolute left-4 sm:left-10 top-10 w-16 sm:w-24 h-3/4 opacity-5 sm:opacity-10 dark:opacity-30 dark:sm:opacity-70 pointer-events-none">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white to-blue-50 dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
+      {/* Background DNA elements - hidden on mobile */}
+      <div className="hidden lg:block absolute left-10 top-10 w-24 h-3/4 opacity-10 dark:opacity-70 pointer-events-none">
         <DoubleDnaHelix className="w-full h-full" baseCount={8} rotationSpeed={15} />
       </div>
-      <div className="absolute right-4 sm:right-10 top-20 w-12 sm:w-20 h-3/4 opacity-5 sm:opacity-10 dark:opacity-30 dark:sm:opacity-70 pointer-events-none">
+      <div className="hidden lg:block absolute right-10 top-20 w-20 h-3/4 opacity-10 dark:opacity-70 pointer-events-none">
         <DoubleDnaHelix className="w-full h-full" baseCount={6} rotationSpeed={12} />
       </div>
       
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Content */}
+      {/* Enhanced Hero Layout - Centered & Lower */}
+      <div className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-32 lg:pt-40 pb-10 sm:pb-14 md:pb-20 lg:pb-24 relative z-10">
+        
+        {/* Mobile: Single Column, Desktop: Two Column */}
+        <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
+          
+          {/* Content Section - Centered & Captivating */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-slate-800 dark:text-white"
-            style={{ willChange: 'transform, opacity' }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center lg:text-left mb-8 lg:mb-0"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 leading-tight">
-              <span className="text-gradient block">{HERO_DRUG_DEVELOPMENT_CONFIG.crisis.titlePart1}</span>
-              <span className="text-gradient">{HERO_DRUG_DEVELOPMENT_CONFIG.crisis.titlePart2}</span>
-            </h1>
+            {/* Main Hero Headline - Bold & Visible */}
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight mb-5 sm:mb-6 md:mb-7 leading-tight"
+            >
+              <span className="block mb-2 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent">
+                {HERO_DRUG_DEVELOPMENT_CONFIG.crisis.titlePart1}
+              </span>
+              {HERO_DRUG_DEVELOPMENT_CONFIG.crisis.titlePart2 && (
+                <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
+                  {HERO_DRUG_DEVELOPMENT_CONFIG.crisis.titlePart2}
+                </span>
+              )}
+            </motion.h1>
             
-            <p className="text-base sm:text-lg text-slate-600 dark:text-blue-100/90 mb-4 sm:mb-6 max-w-xl leading-relaxed">
+            {/* Subtitle - Enhanced Visibility */}
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 dark:text-slate-200 mb-6 sm:mb-7 md:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
+            >
               {HERO_DRUG_DEVELOPMENT_CONFIG.crisis.subtitle}
-            </p>
+            </motion.p>
             
-            {/* Real Metrics Badges */}
-            <motion.div
+            {/* SAE Badges - Centered & Captivating */}
+           
+
+            {/* Call-to-Action Buttons - Centered & Enhanced */}
+            <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8"
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="space-y-4 sm:space-y-5 mb-6 sm:mb-7 flex flex-col items-center lg:items-start"
             >
-              <div className="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-                ✅ 95.7% Target Validation
-              </div>
-              <div className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                🧬 1 million token context
-              </div>
-              <div className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
-                ⚡Research-Use-Only
-              </div>
-            </motion.div>
-
-            {/* REAL IMPACT METRICS - Don't Undersell Ourselves */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border border-green-200 dark:border-green-700 rounded-xl p-6 mb-8"
-            >
-              {/* <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-2">
-                  $2.6B → $500K
-                </div>
-                <div className="text-lg text-slate-600 dark:text-slate-300 mb-1">
-                  Complete Drug Development Pipeline
-                </div>
-                <div className="text-sm text-green-600 dark:text-green-400 font-semibold">
-                  ⚡ 80% cost reduction • 15 years → 2 years • 90% success rate
-                </div>
-              </div> */}
-            </motion.div>
-
-            {/* STRONG CALL-TO-ACTION */}
-            <div className="space-y-4 mb-10">
-              <div className="flex flex-col sm:flex-row gap-4">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    const roiSection = document.querySelector('#roi-calculator');
-                    if (roiSection) {
-                      roiSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  const interactiveDemo = document.querySelector('#interactive-demo');
+                  if (interactiveDemo) {
+                    interactiveDemo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  } else {
+                    const demoSection = document.querySelector('[data-section="interactive-demo"]');
+                    if (demoSection) {
+                      demoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
-                  }}
-                  className="btn-primary flex items-center justify-center gap-3 w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 touch-manipulation"
+                  }
+                }}
+                className="w-full sm:w-auto min-w-[280px] flex items-center justify-center gap-3 text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 py-4 sm:py-4.5 md:py-5 bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 hover:from-green-600 hover:via-blue-600 hover:to-purple-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all touch-manipulation relative overflow-hidden group"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  className="text-xl sm:text-2xl relative z-10"
                 >
-                  <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  >
-                    🚀
-                  </motion.div>
-                  SEE THE $2.1B SAVINGS LIVE
-                  <ArrowRight size={20} />
-                </motion.button>
-                
-                <Link href={HERO_DRUG_DEVELOPMENT_CONFIG.cta.secondary.href}>
-                  <button className="btn-outline flex items-center justify-center gap-2 w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 touch-manipulation">
-                    {HERO_DRUG_DEVELOPMENT_CONFIG.cta.secondary.text}
-                  </button>
-                </Link>
-              </div>
+                  🚀
+                </motion.div>
+                <span className="relative z-10">SEE THE $2.1B SAVINGS LIVE</span>
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 relative z-10" />
+              </motion.button>
               
-              {/* Urgency Message */}
-              <p className="text-sm text-slate-500 dark:text-slate-400">
-                ⚡ <strong>No signup required</strong> • <strong>See results in 30 seconds</strong> • <strong>Try real genetic variants</strong>
-              </p>
-            </div>
+              <Link href={HERO_DRUG_DEVELOPMENT_CONFIG.cta.secondary.href} className="w-full sm:w-auto">
+                <motion.button 
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full sm:w-auto min-w-[280px] flex items-center justify-center gap-2 text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 py-4 sm:py-4.5 md:py-5 bg-white dark:bg-slate-800 border-2 border-slate-400 dark:border-slate-500 text-slate-800 dark:text-slate-100 font-bold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 shadow-lg hover:shadow-xl transition-all touch-manipulation"
+                >
+                  {HERO_DRUG_DEVELOPMENT_CONFIG.cta.secondary.text}
+                </motion.button>
+              </Link>
+            </motion.div>
+            
+          
+
+            {/* Root Cause Message */}
+           
+
+            {/* Customer Segments - For Clinicians/Researchers/Biotech */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.4 }}
+              className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-2xl mx-auto"
+            >
+              <Link href="/contact" className="group flex-1 min-w-[140px] max-w-[200px]">
+                <div className="bg-white dark:bg-slate-800 rounded-xl p-3 sm:p-4 border-2 border-blue-200 dark:border-blue-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer h-full">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="text-xl sm:text-2xl">🏥</span>
+                    <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">For Clinicians</h4>
+                  </div>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-tight">Unified care plans in minutes</p>
+                </div>
+              </Link>
+              <Link href="/contact" className="group flex-1 min-w-[140px] max-w-[200px]">
+                <div className="bg-white dark:bg-slate-800 rounded-xl p-3 sm:p-4 border-2 border-purple-200 dark:border-purple-700 hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-lg transition-all cursor-pointer h-full">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="text-xl sm:text-2xl">🔬</span>
+                    <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">For Researchers</h4>
+                  </div>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-tight">Validate targets in-silico</p>
+                </div>
+              </Link>
+              <Link href="/contact" className="group flex-1 min-w-[140px] max-w-[200px]">
+                <div className="bg-white dark:bg-slate-800 rounded-xl p-3 sm:p-4 border-2 border-green-200 dark:border-green-700 hover:border-green-400 dark:hover:border-green-500 hover:shadow-lg transition-all cursor-pointer h-full">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="text-xl sm:text-2xl">⚔️</span>
+                    <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">For Biotech</h4>
+                  </div>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-tight">Design therapeutics, not experiments</p>
+                </div>
+              </Link>
+            </motion.div>
           </motion.div>
 
-          {/* CRISPR Visualization Area */}
+          {/* DNA Visualization - Enhanced */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative h-[500px] lg:h-[600px] rounded-xl overflow-hidden shadow-2xl bg-gradient-to-b from-slate-100/80 to-blue-100/80 dark:from-slate-900/80 dark:to-blue-950/80 border border-black/10 dark:border-white/10"
+            className="relative h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] rounded-xl overflow-hidden shadow-2xl bg-gradient-to-b from-slate-100/80 to-blue-100/80 dark:from-slate-900/80 dark:to-blue-950/80 border border-black/10 dark:border-white/10 mt-6 sm:mt-8 lg:mt-0"
           >
             {/* Glowing border */}
             <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
@@ -145,11 +181,11 @@ const HeroSection = () => {
               <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 via-green-400 to-red-400 opacity-80 z-10"></div>
             </div>
             
-            {/* CRISPR Gene Editing Visualization */}
+            {/* CRISPR Gene Editing Visualization - Responsive */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-full h-4/5">
+              <div className="w-full h-4/5 scale-70 sm:scale-80 md:scale-90 lg:scale-100">
                 <CrisprGenomeEditor 
-                  baseCount={20} 
+                  baseCount={8} 
                   targetSequence="ATGCCTGAGCTAGTCGAA"
                   rotationSpeed={60}
                 />
@@ -160,36 +196,36 @@ const HeroSection = () => {
             <div className="absolute bottom-0 left-0 right-0 h-2/5 opacity-90 rounded-b-xl overflow-hidden">
               <Suspense fallback={
                 <div className="w-full h-full flex items-center justify-center">
-                  <div className="animate-pulse text-slate-500 dark:text-white">Loading protein model...</div>
+                  <div className="animate-pulse text-slate-500 dark:text-white text-xs">Loading...</div>
                 </div>
               }>
                 {/* <ProteinModelViewer className="w-full h-full" /> */}
               </Suspense>
               
               {/* Protein info overlay */}
-              <div className="absolute top-2 right-4 bg-white/30 dark:bg-black/30 backdrop-blur-sm p-2 rounded text-xs text-slate-700 dark:text-white font-mono">
-                Cas9 Protein • PAM: NGG • 1,368 aa
+              <div className="absolute top-1 right-2 sm:top-2 sm:right-4 bg-white/30 dark:bg-black/30 backdrop-blur-sm p-1 sm:p-2 rounded text-[8px] sm:text-[10px] md:text-xs text-slate-700 dark:text-white font-mono">
+                <span className="hidden sm:inline">Cas9 • </span>1,368 aa
               </div>
             </div>
             
-            {/* Glow effects and decorative elements */}
-            <div className="absolute bottom-1/3 left-0 right-0 h-24 bg-gradient-to-t from-blue-200/30 to-transparent dark:from-blue-500/30"></div>
+            {/* Glow effects */}
+            <div className="absolute bottom-1/3 left-0 right-0 h-16 sm:h-24 bg-gradient-to-t from-blue-200/30 to-transparent dark:from-blue-500/30"></div>
             
             {/* Floating indicators */}
             <motion.div
-              className="absolute top-6 left-6 text-xs font-mono bg-green-100 dark:bg-green-500/20 border border-green-500/30 text-green-800 dark:text-green-300 px-2 py-1 rounded-md"
+              className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-4 md:left-4 lg:top-6 lg:left-6 text-[9px] sm:text-[10px] md:text-xs font-mono bg-green-100 dark:bg-green-500/20 border border-green-500/30 text-green-800 dark:text-green-300 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md"
               animate={{ y: [0, -5, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
-              On-target score: 0.92
+              <span className="hidden sm:inline">On-target: </span>0.92
             </motion.div>
             
             <motion.div
-              className="absolute top-6 right-6 text-xs font-mono bg-red-100 dark:bg-red-500/20 border border-red-500/30 text-red-800 dark:text-red-300 px-2 py-1 rounded-md"
+              className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 lg:top-6 lg:right-6 text-[9px] md:text-xs font-mono bg-red-100 dark:bg-red-500/20 border border-red-500/30 text-red-800 dark:text-red-300 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md"
               animate={{ y: [0, -5, 0] }}
               transition={{ duration: 4, delay: 1, repeat: Infinity, ease: "easeInOut" }}
             >
-              Off-target sites: 2
+              <span className="hidden sm:inline">Off-target: </span>2
             </motion.div>
           </motion.div>
         </div>

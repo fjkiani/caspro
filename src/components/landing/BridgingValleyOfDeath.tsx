@@ -20,10 +20,11 @@ const BridgingValleyOfDeath: React.FC<BridgingValleyOfDeathProps> = ({ className
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-        
+            Bridging the Valley of Death
           </h2>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto mb-8">
-            Replacing ambiguity with a <strong>deterministic launchpad</strong> through AI-powered intelligence.
+            Replacing ambiguity with a <strong>deterministic launchpad</strong> through AI-powered intelligence. 
+            Every prediction comes with <strong className="text-purple-600">32,768 SAE features</strong> that explain exactly what the AI sees.
           </p>
         </motion.div>
 

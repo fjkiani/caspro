@@ -26,6 +26,7 @@ export interface CapabilityCard {
   }>;
   icon?: string;
   color?: 'blue' | 'teal' | 'indigo' | 'purple' | 'green' | 'red';
+  description?: string; // Added description field
 }
 
 export interface SPEItem {

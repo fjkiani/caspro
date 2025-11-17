@@ -1,0 +1,374 @@
+# 🎯 HOMEPAGE COMPONENT STRATEGIC AUDIT
+
+**Last Updated:** January 17, 2025  
+**Status:** 📊 **PHASE 1 COMPLETE** - Component audit and doctrine mapping
+
+---
+
+## 📋 EXECUTIVE SUMMARY
+
+This document provides a strategic audit of all homepage components, mapping them to the product doctrine (`product.mdc`) and identifying:
+- **Doctrine Alignment**: How well each component communicates core messages
+- **Overlaps/Redundancies**: Components that cover similar ground
+- **Gaps**: Missing doctrine messages
+- **Enhancement Priorities**: What needs SAE messaging, mobile fixes, or narrative improvements
+
+---
+
+## 🗺️ CURRENT HOMEPAGE FLOW
+
+### **Active Components (Currently Showing):**
+1. **HeroSection** - Main value prop with DNA visualization
+2. **TrustedBy** - Partner logos (AACR, UC Berkeley, Auth0)
+3. **MetricsShowcase** - 4 key metrics (ClinVar, BRCA, Generative, ROI)
+4. **CapabilitiesGrid** - Core Platform Capabilities
+5. **DrugDevelopmentTransformation** - 3-stage pipeline overview (now a responsive slider)
+6. **DiscoveryVsEngineering** - Old way vs New Doctrine (now interactive)
+7. **InteractiveDemoSection** - Try the platform live
+8. **ROICalculatorSection** - Calculate Your ROI
+9. **CTASection** - Final conversion
+
+### **Removed/Relocated/Merged Components (No Longer in `page.tsx` or Integrated):**
+- BridgingValleyOfDeath (Removed)
+- DrugDevelopmentComparisonCompact (Removed)
+- OracleShowcase (Removed)
+- BridgingValleyOfDeath (Removed - redundant)
+- DiscoveryRaceSimulation (Merged into DiscoveryVsEngineering)
+- DrugDevelopmentTransformation (Extra instances removed - redundant)
+- DrugDevelopmentOrchestrator (To be relocated to `/platform`)
+- DrugDevelopmentPlatform (To be relocated to `/platform`)
+- AboutPreview (To be relocated to `/about`)
+- FusionWorkflowTeaser (Removed)
+- CrisproFrameworkTeaser (Removed)
+- BridgingValleySimulation (Removed)
+- DeckViewer (Removed)
+
+---
+
+## 📊 COMPONENT-BY-COMPONENT ANALYSIS
+
+### **1. HeroSection** ✅ ACTIVE
+**Current State:**
+- Main headline: "Eliminate the $2.6B drug development gamble"
+- SAE badges present: "🧠 SAE Explainability ✅ 95.7% ClinVar Accuracy 🔬 Mechanistic Interpretability"
+- DNA visualization (responsive)
+- CTA buttons
+
+**Doctrine Alignment:**
+- ✅ **Problem**: "$2.6B gamble" - **ALIGNED**
+- ✅ **Solution**: "Mathematical certainty" - **ALIGNED**
+- ✅ **Differentiator**: SAE badges present - **ALIGNED**
+- ⚠️ **Customer Segments**: Not mentioned - **GAP**
+
+**Enhancement Needs:**
+- Add customer segment teasers (Clinicians/Researchers/Biotech)
+- Strengthen SAE messaging (currently just badges)
+- Mobile: ✅ Already optimized
+
+**Priority:** 🟡 Medium - Good foundation, needs customer segment clarity
+
+---
+
+### **2. TrustedBy** ✅ ACTIVE
+**Current State:**
+- 3 partners in responsive slider/grid
+- Doctrine messaging: "Trust through transparency and auditability"
+- Links to partner websites
+
+**Doctrine Alignment:**
+- ✅ **Trust/Transparency**: "Transparency and auditability" - **ALIGNED**
+- ✅ **Social Proof**: Partner logos - **ALIGNED**
+
+**Enhancement Needs:**
+- None - component is well-aligned and responsive
+
+**Priority:** 🟢 Low - Component is solid
+
+---
+
+### **3. MetricsShowcase** ✅ ACTIVE
+**Current State:**
+- 4 key metrics with explanations
+- Responsive slider (1 card mobile, 2 tablet, 4 desktop)
+- Business impact messaging
+
+**Doctrine Alignment:**
+- ✅ **Proof**: "95.7% ClinVar AUROC" - **ALIGNED**
+- ✅ **Business Value**: "80% Cost Reduction" - **ALIGNED**
+- ⚠️ **SAE**: Not mentioned in metrics - **GAP**
+
+**Enhancement Needs:**
+- Add SAE metric card (e.g., "32,768 SAE Features" or "100% Transparent AI")
+- Link metrics to SAE explainability
+
+**Priority:** 🟡 Medium - Add SAE metric card
+
+---
+
+### **4. DrugDevelopmentTransformation** ✅ ACTIVE
+**Current State:**
+- 3-stage pipeline (Target Validation, Lead Engineering, Pre-Clinical) - **Now a responsive card slider.**
+- Problem/Solution/Business Impact structure
+- Evidence protocol section
+
+**Doctrine Alignment:**
+- ✅ **3-Stage Pipeline**: Matches doctrine exactly - **ALIGNED**
+- ✅ **Problem**: "90% Failure" - **ALIGNED**
+- ✅ **Solution**: "Mathematical certainty" - **ALIGNED**
+- ⚠️ **SAE**: Not mentioned - **GAP**
+
+**Enhancement Needs:**
+- Add SAE messaging to each stage (e.g., "See exactly why each prediction works")
+- Link to SAE transparency section
+
+**Priority:** 🟡 Medium - Add SAE messaging to stages.
+
+---
+
+### **5. InteractiveDemoSection** ✅ ACTIVE
+**Current State:**
+- 3-stage demo selector (Target Validation, Lead Engineering, Pre-Clinical) - **Now a responsive card slider.**
+- Live interactive demos
+- API pipeline visualization
+
+**Doctrine Alignment:**
+- ✅ **3-Stage Pipeline**: Matches - **ALIGNED**
+- ✅ **Try It Live**: Interactive demos - **ALIGNED**
+- ⚠️ **SAE**: Not shown in demos - **GAP**
+
+**Enhancement Needs:**
+- Add SAE feature visualization to demos
+- Show "32,768 SAE features" in demo results
+- Add "See What AI Sees" toggle
+
+**Priority:** 🟡 Medium - Add SAE visualization to demos
+
+---
+
+### **6. DiscoveryVsEngineering** ✅ ACTIVE
+**Current State:**
+- Side-by-side comparison: "Old Way: Funnel" vs "New Doctrine: Factory"
+- **Interactive simulation with dynamic timeline/cost updates** (now includes functionality of DiscoveryRaceSimulation).
+- **Has SAE badge**: "🧠 With SAE Explainability: See exactly why each design works"
+
+**Doctrine Alignment:**
+- ✅ **Core Philosophy**: "We Don't Discover, We Engineer" - **ALIGNED**
+- ✅ **Transformation**: "Funnel → Factory" - **ALIGNED**
+- ✅ **SAE**: Badge present - **ALIGNED**
+- ✅ **Metrics**: Timeline/cost comparison - **ALIGNED**
+
+**Overlaps:**
+- ⚠️ **Overlaps with**: DrugDevelopmentTransformation (both show 3-stage pipeline)
+- ✅ **Merged**: Functionality of DiscoveryRaceSimulation now integrated.
+
+**Enhancement Needs:**
+- Strengthen SAE messaging (currently just a badge)
+- Mobile responsiveness check
+
+**Priority:** 🟡 Medium - Good component, interactive, some SAE enhancement still needed.
+
+---
+
+### **7. BridgingValleyOfDeath** 🔴 REMOVED
+**Reason:** Redundant with `DrugDevelopmentTransformation` and other pipeline components. Not needed on homepage.
+
+---
+
+### **8. DrugDevelopmentOrchestrator** 🔴 RELOCATED (Proposed)
+**Reason:** Comprehensive hub component better suited for a dedicated `/platform` page, not homepage hero.
+
+---
+
+### **9. ROICalculatorSection** ✅ ACTIVE
+**Current State:**
+- Interactive ROI calculator
+- Business impact metrics (90% success, 72x faster, $12M+ savings, 6x ROI)
+- Links to metrics page
+
+**Doctrine Alignment:**
+- ✅ **Business Value**: ROI calculations - **ALIGNED**
+- ✅ **Proof**: Real metrics - **ALIGNED**
+
+**Overlaps:**
+- ⚠️ **Overlaps with**: MetricsShowcase (both show business metrics)
+
+**Enhancement Needs:**
+- Consider integrating into MetricsShowcase as interactive element
+
+**Priority:** 🟡 Medium - Good value, active on homepage.
+
+---
+
+### **10. DrugDevelopmentPlatform** 🔴 RELOCATED (Proposed)
+**Reason:** 4-engine showcase better suited for a dedicated `/platform` or `/about` page, not homepage hero.
+
+---
+
+### **11. AboutPreview** 🔴 RELOCATED (Proposed)
+**Reason:** Platform overview better suited for `/about` page, not homepage.
+
+---
+
+### **12. FusionWorkflowTeaser** 🔴 REMOVED
+**Reason:** Too simple for homepage, better as internal link if needed.
+
+---
+
+### **13. CrisproFrameworkTeaser** 🔴 REMOVED
+**Reason:** Too simple and redundant with other metric/overview components.
+
+---
+
+### **14. BridgingValleySimulation** 🔴 REMOVED
+**Reason:** Redundant with `InteractiveDemoSection` and the enhanced `DiscoveryVsEngineering`.
+
+---
+
+### **15. DiscoveryRaceSimulation** 🔴 MERGED
+**Reason:** Functionality has been integrated into `DiscoveryVsEngineering`.
+
+---
+
+### **16. DrugDevelopmentComparisonCompact** 🔴 REMOVED
+**Reason:** Redundant with the enhanced `DiscoveryVsEngineering`.
+
+---
+
+## 🎯 DOCTRINE MESSAGE MAPPING
+
+### **Core Doctrine Messages (from product.mdc):**
+
+1. **Problem**: 90% clinical trial failure, $2.6B cost, <5% success rate
+2. **Root Cause**: "Failure of intelligence, not law of nature"
+3. **Solution**: "Transform gambling → engineering with SAE transparency"
+4. **3 Customer Segments**: Clinicians, Researchers, Biotechs
+5. **Key Differentiator**: SAE Explainability (32,768 features showing "what AI sees")
+6. **3-Stage Pipeline**: Target Validation → Lead Engineering → Pre-Clinical
+7. **4-Engine Platform**: Oracle + Forge + Boltz + Command Center
+8. **Business Value**: 80% cost reduction, 72x faster, 90% success rate
+
+### **Current Coverage:**
+
+| Doctrine Message | Coverage | Components |
+|-----------------|----------|------------|
+| Problem (90% failure, $2.6B) | ✅ Strong | HeroSection, DrugDevelopmentTransformation |
+| Root Cause (intelligence failure) | ⚠️ Weak | None explicitly |
+| Solution (engineering over gambling) | ✅ Strong | Multiple components |
+| SAE Explainability | ⚠️ Weak | Only badges, not prominent |
+| 3 Customer Segments | ❌ Missing | None |
+| 3-Stage Pipeline | ✅ Strong | DrugDevelopmentTransformation (now a slider), InteractiveDemoSection |
+| 4-Engine Platform | ⚠️ Weak | Only in commented components |
+| Business Value | ✅ Strong | MetricsShowcase, ROICalculatorSection |
+
+---
+
+## 🔍 KEY FINDINGS
+
+### **Strengths:**
+1. ✅ **Strong Problem/Solution Narrative**: Multiple components communicate the core message
+2. ✅ **3-Stage Pipeline Well Covered**: DrugDevelopmentTransformation (now a slider) + InteractiveDemoSection
+3. ✅ **Business Value Clear**: MetricsShowcase shows ROI
+4. ✅ **Mobile Responsiveness**: Most components are responsive
+
+### **Critical Gaps:**
+1. ❌ **SAE Explainability Buried**: Only badges, not prominent feature
+2. ❌ **Customer Segments Missing**: No "For Clinicians/Researchers/Biotech" section
+3. ❌ **Root Cause Not Explicit**: "Failure of intelligence" message missing
+4. ⚠️ **4-Engine Platform Not Shown**: Only in commented components
+
+### **Redundancies:**
+1. 🔴 **Eliminated**: Multiple 3-Stage Pipeline Components (BridgingValleyOfDeath, BridgingValleySimulation removed)
+2. ✅ **Eliminated**: Multiple Old vs New Comparisons (DiscoveryVsEngineering now enhanced and handles this)
+3. ⚠️ **Remaining**: Multiple Engine Showcases (DrugDevelopmentPlatform, AboutPreview, DrugDevelopmentOrchestrator to be relocated)
+
+---
+
+## 🎯 STRATEGIC RECOMMENDATIONS
+
+### **Phase 2: Homepage Narrative Arc**
+
+**Recommended Flow:**
+1. **Hero** - Problem + Solution + SAE Differentiator + Customer Segments
+2. **TrustedBy** - Social Proof
+3. **MetricsShowcase** - Proof + Business Value (add SAE metric card)
+4. **CapabilitiesGrid** - Core Platform Capabilities (newly added)
+5. **DrugDevelopmentTransformation** - 3-Stage Pipeline (enhanced with SAE and now a slider)
+6. **DiscoveryVsEngineering** - Old vs New (enhanced with interactive simulation)
+7. **InteractiveDemoSection** - Try It Live (add SAE visualization and now a responsive slider)
+8. **ROICalculatorSection** - Calculate Your ROI (active on homepage)
+9. **CTASection** - Final Conversion
+
+### **Components to Keep (Active & Enhanced):**
+- ✅ HeroSection (enhance with customer segments)
+- ✅ TrustedBy (keep as-is)
+- ✅ MetricsShowcase (add SAE metric card)
+- ✅ CapabilitiesGrid (newly added)
+- ✅ DrugDevelopmentTransformation (enhanced with SAE messaging and now a responsive slider)
+- ✅ DiscoveryVsEngineering (enhanced with interactive simulation)
+- ✅ InteractiveDemoSection (add SAE visualization and now a responsive slider)
+- ✅ ROICalculatorSection (active on homepage)
+- ✅ CTASection (keep as-is)
+
+### **Components to Remove/Relocate (Done or Planned):**
+- 🔴 DrugDevelopmentOrchestrator (move to `/platform` page - Planned)
+- 🔴 DrugDevelopmentPlatform (move to `/platform` page - Planned)
+- 🔴 AboutPreview (move to `/about` page - Planned)
+- 🔴 FusionWorkflowTeaser (REMOVED)
+- 🔴 CrisproFrameworkTeaser (REMOVED)
+- 🔴 BridgingValleySimulation (REMOVED)
+- 🔴 DiscoveryRaceSimulation (MERGED)
+- 🔴 DrugDevelopmentComparisonCompact (REMOVED)
+
+---
+
+## 📝 ENHANCEMENT PRIORITIES
+
+### **Priority 1: Critical Gaps (Do First)**
+1. **Add Customer Segments to HeroSection**
+   - "For Clinicians / Researchers / Biotech" teaser cards
+   - Link to relevant solutions
+
+2. **Add SAE Metric Card to MetricsShowcase**
+   - "32,768 SAE Features" or "100% Transparent AI"
+   - Link to SAE explainability
+
+3. ✅ **Enhance SAE Messaging in DrugDevelopmentTransformation**
+   - Add "See What AI Sees" badge to each stage (COMPLETE)
+   - Link to SAE transparency section (COMPLETE)
+   - **Implemented as a responsive slider (COMPLETE)**
+
+### **Priority 2: Narrative Improvements (Do Second)**
+4. **Add Root Cause Message**
+   - New section or enhance HeroSection: "This <5% success rate is not a law of nature; it is a failure of intelligence"
+
+5. ✅ **Enhance DiscoveryVsEngineering with SAE**
+   - Strengthen SAE badge to full messaging (PENDING FURTHER ENHANCEMENT)
+   - Merge with DiscoveryRaceSimulation for interactive version (COMPLETE)
+
+6. ✅ **Add SAE Visualization to InteractiveDemoSection**
+   - Show SAE features in demo results (PENDING)
+   - Add "See What AI Sees" toggle (PENDING)
+   - **Implemented as a responsive slider (COMPLETE)**
+
+### **Priority 3: Component Cleanup (Do Third)**
+7. ✅ **Merge Redundant Components**
+   - Merge DiscoveryVsEngineering + DiscoveryRaceSimulation (COMPLETE)
+   - Consider merging BridgingValleyOfDeath with DrugDevelopmentTransformation (REMOVED BridgingValleyOfDeath, so this is implicitly handled)
+
+8. **Relocate Platform Components** (PLANNED for dedicated pages)
+   - Move DrugDevelopmentOrchestrator to `/platform`
+   - Move DrugDevelopmentPlatform to `/platform`
+   - Move AboutPreview to `/about`
+
+---
+
+## ✅ NEXT STEPS
+
+1. **Review this audit with user** - Confirm priorities and approach
+2. **Phase 2: Selective Enhancement** - Start with Priority 1 items
+3. **Phase 3: Component Cleanup** - Merge/relocate redundant components
+4. **Phase 4: Final Polish** - Mobile responsiveness, animations, CTAs
+
+---
+
+**Status:** Updated to reflect homepage component changes and enhancements, ready for next steps.
