@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { adaptOracleForHomepage } from '@/data/adapters';
+import { AnnihilationOfUncertaintySlide } from '@/components/oracle/AnnihilationOfUncertaintySlide';
 
 export default function OraclePage() {
   // Use the migrated Oracle data
@@ -19,7 +20,12 @@ export default function OraclePage() {
             Transform genetic uncertainty into actionable intelligence with zero-shot variant impact prediction
           </p>
         </section>
+      </div>
 
+      {/* Annihilation of Uncertainty Slide */}
+      <AnnihilationOfUncertaintySlide />
+
+      <div className="container mx-auto px-4 pt-16 pb-16">
         {/* API Endpoints */}
         <section className="mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">Core API Endpoints</h2>

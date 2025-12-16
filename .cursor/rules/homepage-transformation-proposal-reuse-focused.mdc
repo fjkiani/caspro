@@ -1,0 +1,709 @@
+# 🏠 HOMEPAGE TRANSFORMATION PROPOSAL - REUSE FOCUSED
+## Modify Existing Components Instead of Creating New Ones
+
+**Created:** 2024-12-19  
+**Status:** ✅ READY FOR IMPLEMENTATION - Minimal New Code  
+**Strategy:** REUSE & MODIFY existing components rather than create new ones
+
+---
+
+## 📊 COMPONENT REUSE ANALYSIS
+
+### **✅ Components We Can REUSE & MODIFY:**
+
+#### **1. DrugDevelopmentPlatform.tsx → Transform to ProductsByUseCase**
+
+**Current Structure:**
+- ✅ Tab selector interface (4 engine buttons)
+- ✅ Active engine details section
+- ✅ Engine cards with icons, metrics, descriptions
+- ✅ Responsive design
+
+**What We Can Modify:**
+- **Change data structure:** From 4 engines → 3 products
+- **Change header:** From "Core AI Engines" → "Choose Your Path"
+- **Change selector:** From engine buttons → product cards (Three Doors)
+- **Change content:** From engine details → product details
+
+**Result:** Same component structure, different content = **MODIFY, NOT CREATE**
+
+---
+
+#### **2. PlatformCapabilitiesShowcase.tsx → Already Product-Level!**
+
+**Current Structure:**
+- ✅ Tabbed interface with 3 categories:
+  - "Drug Discovery" → Can rename to "CrisPRO R&D"
+  - "Clinical Oncology" → Can rename to "CrisPRO Oncology"
+  - "Research Acceleration" → Can rename to "CrisPRO Research"
+- ✅ Capability cards organized by category
+- ✅ Already matches our product structure!
+
+**What We Need to Modify:**
+- **Change tab labels:** Update category names to product names
+- **Re-tag capabilities:** Map existing capabilities to products
+- **Add "Powered By" badges:** Show which engines power each capability
+
+**Result:** Minimal changes = **MODIFY, NOT CREATE**
+
+---
+
+#### **3. Engine Room → Can Use Modified DrugDevelopmentPlatform**
+
+**Strategy:** After transforming DrugDevelopmentPlatform to show products, we can:
+- Keep the engine details structure
+- Move engine showcase to "Engine Room" section
+- Reuse the same component structure
+
+**OR:** Use existing `DrugDevelopmentPlatform` structure but:
+- Change context: "Technical Validation" not "Primary Sell"
+- Change placement: After PlatformCapabilitiesShowcase
+- Change messaging: "Powered by..." instead of "Core AI Engines"
+
+---
+
+## 🎯 PROPOSED HOMEPAGE CHANGES (Reuse-Focused)
+
+### **Current Homepage Structure:**
+
+```
+1. HeroSection
+2. TrustedBy
+3. MetricsShowcase
+4. DrugDevelopmentPlatform (4 engines) ❌
+5. PlatformCapabilitiesShowcase (3 tabs) ✅
+6. InteractiveDemoSection
+7. ROICalculatorSection
+8. CTASection
+```
+
+### **New Homepage Structure (Minimal Changes):**
+
+```
+1. HeroSection ⚠️ MODIFY (headline, CTAs)
+2. DrugDevelopmentPlatform ⚠️ MODIFY (transform to 3 products)
+   └─→ Rename/reconfigure to show CrisPRO Oncology/R&D/Research
+   └─→ Keep same tab selector interface
+   └─→ Change content from engines to products
+3. TrustedBy ✅ KEEP
+4. MetricsShowcase ⚠️ MODIFY (add product attribution)
+5. PlatformCapabilitiesShowcase ⚠️ MODIFY (rename tabs to products)
+6. DrugDevelopmentPlatform (Engines) ⚠️ REUSE (move to Engine Room section)
+   └─→ Keep showing engines but in "Engine Room" context
+   └─→ Change header to "Powered by..." 
+7. InteractiveDemoSection ⚠️ MODIFY (organize by product)
+8. ROICalculatorSection ✅ KEEP
+9. CTASection ✅ KEEP
+```
+
+---
+
+## 🔧 DETAILED MODIFICATION PLAN
+
+### **Modification 1: Transform DrugDevelopmentPlatform → ProductsByUseCase**
+
+**File:** `src/components/homepage/DrugDevelopmentPlatform.tsx`
+
+**Current:** Shows 4 engines (Oracle, Forge, Boltz, Command Center)
+
+**Modify To:** Show 3 products (CrisPRO Oncology, CrisPRO R&D, CrisPRO Research)
+
+**Changes Needed:**
+
+1. **Update Data Structure:**
+```typescript
+// BEFORE (engines):
+const engines = {
+  oracle: { name: 'Oracle', ... },
+  forge: { name: 'Forge', ... },
+  // ...
+};
+
+// AFTER (products):
+const products = {
+  oncology: {
+    id: 'oncology',
+    title: 'CrisPRO Oncology',
+    promise: 'From VUS to Validated Care Plan in Minutes',
+    targetUser: 'For Clinicians',
+    icon: Stethoscope,
+    color: 'from-blue-500 to-cyan-600',
+    capabilities: [
+      'VUS Resolution',
+      'Trial Matching',
+      'Care Plans',
+      'Resistance Prediction'
+    ],
+    poweredBy: ['Oracle', 'Command Center'],
+    link: '/products/oncology'
+  },
+  // ... R&D and Research
+};
+```
+
+2. **Update Header:**
+```typescript
+// BEFORE:
+<h2>Core AI Engines</h2>
+<p>Four AI engines powering drug development...</p>
+
+// AFTER:
+<h2>Choose Your Path</h2>
+<p>The Operating System for Precision Medicine - three products for different use cases</p>
+```
+
+3. **Update Selector UI:**
+```typescript
+// BEFORE: Engine buttons
+// AFTER: Product cards (Three Doors layout)
+// Keep same responsive design structure
+```
+
+**File Changes:** ~50 lines modified, NOT new component
+
+---
+
+### **Modification 2: Rename PlatformCapabilitiesShowcase Tabs**
+
+**File:** `src/components/landing/PlatformCapabilitiesShowcase.tsx`
+
+**Current Categories:**
+```typescript
+const CATEGORIES = [
+  { id: 'drug-discovery', label: 'Drug Discovery', ... },
+  { id: 'clinical-oncology', label: 'Clinical Oncology', ... },
+  { id: 'research', label: 'Research Acceleration', ... }
+];
+```
+
+**Modify To:**
+```typescript
+const CATEGORIES = [
+  { id: 'clinical-oncology', label: 'CrisPRO Oncology', ... },
+  { id: 'drug-discovery', label: 'CrisPRO R&D', ... },
+  { id: 'research', label: 'CrisPRO Research', ... }
+];
+```
+
+**File Changes:** ~3 lines modified (category labels)
+
+---
+
+### **Modification 3: Repurpose DrugDevelopmentPlatform for Engine Room**
+
+**Strategy:** After transforming DrugDevelopmentPlatform to show products:
+
+**Option A:** Create NEW file that reuses structure
+- Copy engine structure from old DrugDevelopmentPlatform
+- Update context to "Engine Room"
+- Change header messaging
+
+**Option B:** Extract engine data to separate component
+- Keep product version as main
+- Create `EngineRoom.tsx` that reuses same structure
+- Both share common component utilities
+
+**File Changes:** ~100 lines (reuse existing structure, new context)
+
+---
+
+### **Modification 4: Update HeroSection**
+
+**File:** `src/components/sections/HeroSection.tsx`
+
+**Current:** Uses `HERO_DRUG_DEVELOPMENT_CONFIG`
+
+**Modify To:**
+```typescript
+// Update headline in hero-drug-development.ts
+crisis: {
+  titlePart1: "The Operating System for Precision Medicine",
+  subtitle: "Solve the VUS. Design the Cure. Validate in Silico.",
+  // ...
+}
+
+// Update CTAs
+cta: {
+  primary: {
+    text: "I am treating a patient",
+    href: "/products/oncology"
+  },
+  secondary: {
+    text: "I am designing a drug",
+    href: "/products/r-d"
+  },
+  tertiary: {
+    text: "I am conducting research",
+    href: "/products/research"
+  }
+}
+```
+
+**File Changes:** ~10 lines modified (data file update)
+
+---
+
+### **Modification 5: Update MetricsShowcase**
+
+**File:** `src/components/landing/MetricsShowcase.tsx`
+
+**Add Product Attribution:**
+```typescript
+// Add product field to metric data structure
+interface Metric {
+  // ... existing fields
+  product?: string;  // NEW
+  productLink?: string;  // NEW
+}
+
+// Display product badge if present
+{metric.product && (
+  <div className="product-badge">{metric.product}</div>
+)}
+```
+
+**File Changes:** ~30 lines modified (add product badges)
+
+---
+
+### **Modification 6: Update PlatformCapabilitiesShowcase**
+
+**File:** `src/components/landing/PlatformCapabilitiesShowcase.tsx`
+
+**Add "Powered By" Badges:**
+```typescript
+// Add poweredBy field to capability data
+interface PlatformCapability {
+  // ... existing fields
+  poweredBy?: string[];  // NEW
+}
+
+// Display in capability card
+{capability.poweredBy && (
+  <div className="powered-by-badges">
+    Powered by: {capability.poweredBy.map(...)}
+  </div>
+)}
+```
+
+**File Changes:** ~20 lines modified (add powered by badges)
+
+---
+
+## 📋 SIMPLIFIED IMPLEMENTATION PLAN
+
+### **Phase 1: Core Structure (2-3 hours)**
+
+**Task 1.1:** Modify DrugDevelopmentPlatform → ProductsByUseCase
+- Change data structure: 4 engines → 3 products
+- Update header and messaging
+- Keep same tab selector interface
+- **Code Change:** ~50 lines modified
+
+**Task 1.2:** Update HeroSection
+- Update headline data
+- Update CTAs data
+- **Code Change:** ~10 lines modified
+
+**Task 1.3:** Update Homepage Structure
+- Reorder components
+- Update comments
+- **Code Change:** ~5 lines modified
+
+---
+
+### **Phase 2: Attribution (1-2 hours)**
+
+**Task 2.1:** Update PlatformCapabilitiesShowcase
+- Rename category labels
+- Add "Powered By" badges
+- **Code Change:** ~25 lines modified
+
+**Task 2.2:** Update MetricsShowcase
+- Add product attribution
+- **Code Change:** ~30 lines modified
+
+**Task 2.3:** Create Engine Room (Reuse Structure)
+- Copy/modify DrugDevelopmentPlatform structure for engines
+- Update context to "Engine Room"
+- **Code Change:** ~100 lines (reuse existing structure)
+
+---
+
+### **Phase 3: Polish (1 hour)**
+
+**Task 3.1:** Update InteractiveDemoSection
+- Organize demos by product
+- **Code Change:** ~20 lines modified
+
+**Task 3.2:** Final Testing & Refinement
+- Cross-browser testing
+- Mobile responsiveness
+- **Code Change:** Minimal
+
+---
+
+## 🎯 COMPONENT REUSE MATRIX
+
+| Component | Current Purpose | New Purpose | Change Type |
+|-----------|----------------|-------------|-------------|
+| `DrugDevelopmentPlatform.tsx` | Shows 4 engines | Shows 3 products | **MODIFY** (data structure) |
+| `PlatformCapabilitiesShowcase.tsx` | 3 tabs (use cases) | 3 tabs (products) | **MODIFY** (labels) |
+| HeroSection | Generic messaging | Product-focused | **MODIFY** (data) |
+| MetricsShowcase | Generic metrics | Product-attributed | **MODIFY** (add badges) |
+| InteractiveDemoSection | Generic demos | Product-organized | **MODIFY** (grouping) |
+| DrugDevelopmentPlatform (engines) | Current position | Engine Room | **REUSE** (move + context) |
+
+---
+
+## 📊 CODE CHANGE ESTIMATE
+
+### **New Code:**
+- ❌ `ProductsByUseCase.tsx` - **NOT NEEDED** (modify DrugDevelopmentPlatform)
+- ⚠️ `EngineRoom.tsx` - **REUSE STRUCTURE** (~100 lines, reuse existing)
+- ❌ `productsByUseCaseData.ts` - **NOT NEEDED** (modify existing data)
+
+### **Modified Code:**
+- ✅ `DrugDevelopmentPlatform.tsx` - ~50 lines modified
+- ✅ `PlatformCapabilitiesShowcase.tsx` - ~25 lines modified
+- ✅ `HeroSection.tsx` - ~10 lines modified (data file)
+- ✅ `MetricsShowcase.tsx` - ~30 lines modified
+- ✅ `InteractiveDemoSection.tsx` - ~20 lines modified
+- ✅ `page.tsx` - ~5 lines modified (reorder)
+
+**Total New Code:** ~100 lines (Engine Room, reuse structure)  
+**Total Modified Code:** ~140 lines  
+**Total:** ~240 lines of changes (vs ~500+ for new components)
+
+---
+
+## 🔄 BEFORE vs AFTER COMPARISON
+
+### **BEFORE (Create New Components Approach):**
+
+```
+New Components to Create:
+- ProductsByUseCase.tsx (~200 lines) ❌
+- EngineRoom.tsx (~150 lines) ❌
+- productsByUseCaseData.ts (~100 lines) ❌
+
+Total New Code: ~450 lines
+```
+
+### **AFTER (Reuse & Modify Approach):**
+
+```
+Components to Modify:
+- DrugDevelopmentPlatform.tsx (~50 lines modified) ✅
+- PlatformCapabilitiesShowcase.tsx (~25 lines modified) ✅
+- HeroSection.tsx (~10 lines modified) ✅
+- MetricsShowcase.tsx (~30 lines modified) ✅
+- InteractiveDemoSection.tsx (~20 lines modified) ✅
+
+Components to Reuse:
+- DrugDevelopmentPlatform structure for Engine Room (~100 lines, reuse)
+
+Total Modified Code: ~140 lines
+Total Reused Code: ~100 lines
+Total: ~240 lines of changes
+```
+
+**Savings:** ~210 lines of code (~47% reduction)
+
+---
+
+## ✅ REVISED IMPLEMENTATION CHECKLIST
+
+### **Phase 1: Core Structure (2-3 hours)**
+
+- [ ] **Task 1.1:** Modify DrugDevelopmentPlatform data structure (4 engines → 3 products)
+- [ ] **Task 1.2:** Update DrugDevelopmentPlatform header/messaging
+- [ ] **Task 1.3:** Update HeroSection headline/CTAs (data file)
+- [ ] **Task 1.4:** Reorder homepage components
+
+### **Phase 2: Attribution (1-2 hours)**
+
+- [ ] **Task 2.1:** Rename PlatformCapabilitiesShowcase tabs (3 lines)
+- [ ] **Task 2.2:** Add "Powered By" badges to PlatformCapabilitiesShowcase
+- [ ] **Task 2.3:** Add product attribution to MetricsShowcase
+- [ ] **Task 2.4:** Create Engine Room (reuse DrugDevelopmentPlatform structure)
+
+### **Phase 3: Polish (1 hour)**
+
+- [ ] **Task 3.1:** Organize InteractiveDemoSection by product
+- [ ] **Task 3.2:** Final testing and refinement
+
+---
+
+## 🎯 KEY REUSE OPPORTUNITIES
+
+### **1. DrugDevelopmentPlatform Structure → ProductsByUseCase**
+
+**Reuse:**
+- ✅ Tab selector interface
+- ✅ Active item details section
+- ✅ Responsive design
+- ✅ Animation patterns
+- ✅ Card layout structure
+
+**Modify:**
+- Data structure (engines → products)
+- Header messaging
+- Content details
+
+**Result:** Same component, different content = **MODIFY, NOT CREATE**
+
+---
+
+### **2. PlatformCapabilitiesShowcase → Already Perfect!**
+
+**Reuse:**
+- ✅ Tabbed interface
+- ✅ Category filtering
+- ✅ Capability cards
+- ✅ Already organized by use case!
+
+**Modify:**
+- Tab labels only (3 lines)
+- Add "Powered By" badges (~20 lines)
+
+**Result:** Minimal changes needed!
+
+---
+
+### **3. Engine Room → Reuse DrugDevelopmentPlatform Structure**
+
+**Strategy:**
+- After transforming DrugDevelopmentPlatform to products
+- Reuse the engine structure for Engine Room section
+- Change context and messaging
+- Same component pattern, different purpose
+
+**Result:** Reuse existing structure, new context
+
+---
+
+## 📝 DETAILED MODIFICATION STEPS
+
+### **Step 1: Transform DrugDevelopmentPlatform (Priority: HIGH)**
+
+**File:** `src/components/homepage/DrugDevelopmentPlatform.tsx`
+
+**What to Change:**
+
+1. **Rename Component (optional):**
+   - Keep file name or rename to `ProductsByUseCase.tsx`
+   - Update export name
+
+2. **Update Data Structure:**
+```typescript
+// BEFORE:
+const engines = {
+  oracle: { name: 'Oracle', ... },
+  // ...
+};
+
+// AFTER:
+const products = {
+  oncology: {
+    id: 'oncology',
+    title: 'CrisPRO Oncology',
+    promise: 'From VUS to Validated Care Plan in Minutes',
+    targetUser: 'For Clinicians',
+    icon: Stethoscope,
+    color: 'from-blue-500 to-cyan-600',
+    coreCapabilities: [
+      'VUS Resolution',
+      'Trial Matching',
+      'Care Plans',
+      'Resistance Prediction'
+    ],
+    poweredBy: ['Oracle', 'Command Center'],
+    link: '/products/oncology',
+    description: '...',
+    metrics: ['95.7% VUS Resolution', '73% Actionable']
+  },
+  'r-d': {
+    id: 'r-d',
+    title: 'CrisPRO R&D',
+    promise: 'Design the Undruggable. Validate in Silico.',
+    // ...
+  },
+  research: {
+    id: 'research',
+    title: 'CrisPRO Research',
+    promise: 'Accelerate Discovery from Years to Hours.',
+    // ...
+  }
+};
+```
+
+3. **Update Header:**
+```typescript
+// BEFORE:
+<h2>Core AI Engines</h2>
+<p>Four AI engines powering drug development...</p>
+
+// AFTER:
+<h2>Choose Your Path</h2>
+<p>The Operating System for Precision Medicine - three products for different use cases</p>
+```
+
+4. **Update Selector:**
+   - Change from engine buttons to product cards
+   - Keep same responsive structure
+   - Update styling for "Three Doors" layout
+
+**Estimated Changes:** ~50-70 lines modified
+
+---
+
+### **Step 2: Update PlatformCapabilitiesShowcase (Priority: MEDIUM)**
+
+**File:** `src/components/landing/PlatformCapabilitiesShowcase.tsx`
+
+**What to Change:**
+
+1. **Update Category Labels (3 lines):**
+```typescript
+const CATEGORIES = [
+  {
+    id: 'clinical-oncology' as const,
+    label: 'CrisPRO Oncology',  // CHANGED
+    // ...
+  },
+  {
+    id: 'drug-discovery' as const,
+    label: 'CrisPRO R&D',  // CHANGED
+    // ...
+  },
+  {
+    id: 'research' as const,
+    label: 'CrisPRO Research',  // CHANGED
+    // ...
+  }
+];
+```
+
+2. **Add "Powered By" Field to Capabilities:**
+```typescript
+interface PlatformCapability {
+  // ... existing fields
+  poweredBy?: string[];  // NEW
+}
+
+// Update capability data
+{
+  id: 'spe-framework',
+  // ... existing
+  poweredBy: ['Oracle', 'Command Center'],  // NEW
+}
+```
+
+3. **Display "Powered By" in Cards:**
+```typescript
+{capability.poweredBy && (
+  <div className="mt-2 flex flex-wrap gap-2">
+    <span className="text-xs text-slate-500">Powered by:</span>
+    {capability.poweredBy.map((engine, idx) => (
+      <span key={idx} className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs">
+        {engine}
+      </span>
+    ))}
+  </div>
+)}
+```
+
+**Estimated Changes:** ~25-30 lines modified
+
+---
+
+### **Step 3: Update HeroSection (Priority: HIGH)**
+
+**File:** `src/data/homepage/hero-drug-development.ts`
+
+**What to Change:**
+
+```typescript
+export const HERO_DRUG_DEVELOPMENT_CONFIG = {
+  crisis: {
+    titlePart1: "The Operating System for Precision Medicine",  // CHANGED
+    titlePart2: "",
+    subtitle: "Solve the VUS. Design the Cure. Validate in Silico.",  // CHANGED
+    // ...
+  },
+  cta: {
+    primary: {
+      text: "I am treating a patient",  // CHANGED
+      href: "/products/oncology",  // CHANGED
+      // ...
+    },
+    secondary: {
+      text: "I am designing a drug",  // CHANGED
+      href: "/products/r-d",  // CHANGED
+      // ...
+    },
+    tertiary: {  // NEW
+      text: "I am conducting research",
+      href: "/products/research",
+      // ...
+    }
+  }
+};
+```
+
+**Estimated Changes:** ~10-15 lines modified
+
+---
+
+### **Step 4: Create Engine Room (Priority: MEDIUM)**
+
+**Strategy:** Reuse DrugDevelopmentPlatform structure
+
+**Option A:** Create separate file reusing structure
+- Copy engine structure from current DrugDevelopmentPlatform
+- Update header: "Powered by the World's First Biological Foundation Models"
+- Update context: Technical validation, not primary sell
+
+**Option B:** Extract to shared component
+- Create shared `ProductShowcase.tsx` component
+- Use for both products and engines
+- Different data, same structure
+
+**Estimated Changes:** ~100 lines (reuse existing structure)
+
+---
+
+## ✅ FINAL REVISED PLAN SUMMARY
+
+### **Components to MODIFY (Not Create):**
+
+1. ✅ **DrugDevelopmentPlatform.tsx** → Transform to 3 products (~50-70 lines)
+2. ✅ **PlatformCapabilitiesShowcase.tsx** → Rename tabs, add badges (~25-30 lines)
+3. ✅ **HeroSection.tsx** → Update data file (~10-15 lines)
+4. ✅ **MetricsShowcase.tsx** → Add product attribution (~30 lines)
+5. ✅ **InteractiveDemoSection.tsx** → Organize by product (~20 lines)
+
+### **Components to REUSE:**
+
+1. ✅ **DrugDevelopmentPlatform structure** → For Engine Room (~100 lines, reuse)
+
+### **Total Code Changes:**
+
+- **Modified:** ~140-165 lines
+- **Reused:** ~100 lines
+- **Total:** ~240-265 lines (vs ~450+ for new components)
+
+**Savings:** ~185-210 lines (~40-47% reduction)
+
+---
+
+## 🚀 READY TO IMPLEMENT
+
+**Next Action:** Begin with **Modification 1** - Transform DrugDevelopmentPlatform to show 3 products instead of 4 engines.
+
+**Strategy:** Reuse existing structure, modify content = **Minimal new code, maximum reuse**
+
+---
+
+**STATUS:** ✅ **REUSE-FOCUSED PLAN COMPLETE** - Ready to modify existing components with minimal new code creation

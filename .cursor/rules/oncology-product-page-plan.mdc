@@ -1,0 +1,410 @@
+# 🏥 ONCOLOGY PRODUCT PAGE PLAN
+## Product-Focused Page, Not Feature-Focused
+
+**Created:** 2024-12-19  
+**Status:** 🎯 READY FOR IMPLEMENTATION  
+**Priority:** HIGH - First product page, sets template for others
+
+---
+
+## 🎯 OBJECTIVE
+
+**Problem:** Co-pilot pages like `/platform/therapy-fit` are feature-focused, showing individual capabilities (therapy-fit, chemo, etc.). They're too granular for product-level messaging.
+
+**Solution:** Create `/products/oncology` page that focuses on the **product as a whole** - CrisPRO Oncology for clinicians. Show customer value, not feature capabilities.
+
+**Structure:** Reuse the proven "Strategic Doctrine" tab structure from co-pilot pages, but adapt content for product-level messaging.
+
+---
+
+## 📐 PAGE STRUCTURE (REUSING CO-PILOT PATTERN)
+
+### **Route:** `/products/oncology/page.tsx`
+
+### **Layout:** Same as co-pilot pages
+- Hero Section (Product Title + Promise)
+- Tabbed Content (3 tabs)
+- Related Products Section (at bottom)
+
+### **Tabs:**
+1. **"Battle Plan"** → Product Capabilities Overview
+2. **"Strategic Doctrine"** → Product Value, Validation, Business Impact (THIS IS THE FOCUS)
+3. **"Live Demo"** → Interactive Unified Care Plan demo (optional)
+
+---
+
+## 🎯 CONTENT STRATEGY: PRODUCT-FOCUSED
+
+### **KEY DIFFERENCE:**
+
+**Co-Pilot Pages (Feature-Focused):**
+- "Therapy Fit: In-Silico Drug Ranking"
+- Shows: Individual capability details
+- Focus: How one feature works
+
+**Product Page (Product-Focused):**
+- "CrisPRO Oncology: From VUS to Validated Care Plan"
+- Shows: Complete product value, customer outcomes
+- Focus: How the product solves customer problems
+
+---
+
+## 📋 STRATEGIC DOCTRINE TAB CONTENT
+
+### **Structure (Reusing DesciStyleDoctrineInsights Component):**
+
+```
+1. Product Overview Section
+   - What is CrisPRO Oncology?
+   - Who is it for? (Oncologists, Pathologists, Clinical Directors)
+   - The Promise: "From VUS to Validated Care Plan in Minutes"
+
+2. Core Product Value Propositions
+   - VUS Resolution: 95.7% accuracy, 73% actionable conversion
+   - Precision Matching: Mechanism-based, not standard of care
+   - Complete Care Plans: Drugs + Trials + Safety + Nutrition
+   - Same-Day Action: Call trial sites same day with ready dossiers
+
+3. Product Capabilities (Grouped by Outcome)
+   - NOT individual features, but outcomes:
+     • Resolve Genetic Uncertainty → VUS Annihilation
+     • Match Patients to Therapies → Precision Matching + Trial Matching
+     • Prevent Toxicity → Safety Prediction (PGx)
+     • Predict Resistance → Proactive Detection
+     • Complete Care Integration → Unified Care Plan
+
+4. Validation & Evidence
+   - 95.7% ClinVar AUROC
+   - 73% VUS resolution rate
+   - 96.6% trial matching accuracy
+   - Real clinical outcomes
+
+5. Business Impact
+   - Time: 6 weeks → Same day
+   - Cost: $75K → $50 per variant
+   - Confidence: 40% VUS → 15% VUS
+   - Action: Same-day tumor board ready
+
+6. Powered By (Technical Foundation)
+   - Oracle Engine: Zero-shot variant interpretation
+   - Command Center: Patient data integration
+   - Unified Care API: Complete orchestration
+
+7. Customer Value Summary
+   - Oncologists get evidence-backed recommendations
+   - Every recommendation shows WHY, not just WHAT
+   - Action-ready packets for same-day decisions
+```
+
+---
+
+## 🏗️ IMPLEMENTATION PLAN
+
+### **Step 1: Create Data File**
+**File:** `src/data/products/oncology-data.ts`
+
+**Structure:** Similar to `CoPilotDetailContent` but product-focused:
+```typescript
+export const oncologyProductData = {
+  slug: "oncology",
+  pageTitle: "CrisPRO Oncology: From VUS to Validated Care Plan",
+  heroSubtitle: "Evidence-backed treatment recommendations with transparent confidence scores. Every recommendation shows WHY (eligibility + fit + conditions), not just WHAT. Action-ready packets mean you can call trial sites the same day.",
+  
+  vision: "Transform clinical oncology from uncertainty to precision",
+  
+  // PRODUCT-FOCUSED CAPABILITIES (not individual features)
+  keyCapabilities: [
+    {
+      title: "Resolve Genetic Uncertainty",
+      description: "Instantly resolve variants of unknown significance with 95.7% accuracy",
+      // ... technical, scientific, business aspects
+    },
+    {
+      title: "Match Patients to Therapies",
+      description: "Mechanism-based matching, not standard of care",
+      // ...
+    },
+    {
+      title: "Prevent Toxicity Before It Happens",
+      description: "100% coverage for DPYD/TPMT/UGT1A1/CYP2D6",
+      // ...
+    },
+    {
+      title: "Predict Resistance Before It Happens",
+      description: "Proactive detection, not reactive response",
+      // ...
+    },
+    {
+      title: "Complete Unified Care Plans",
+      description: "Drugs + Trials + Safety + Nutrition + Monitoring in one place",
+      // ...
+    }
+  ],
+  
+  // PRODUCT VALIDATION
+  observedOutcomes: [
+    {
+      title: "VUS Resolution Rate",
+      keyMetric: "73% actionable conversion",
+      description: "73% of uncertain variants become actionable with 95.7% accuracy"
+    },
+    {
+      title: "Decision Speed",
+      keyMetric: "6 weeks → Same day",
+      description: "Treatment selection timeline reduced from 6 weeks to same day"
+    },
+    {
+      title: "Trial Matching Accuracy",
+      keyMetric: "96.6% match accuracy",
+      description: "Transparent eligibility reasoning with green/yellow/red flags"
+    }
+  ],
+  
+  // BUSINESS VALUE
+  valuePropositionSections: [
+    {
+      audience: "For Medical Oncologists",
+      points: [
+        "Evidence-backed treatment recommendations with transparent confidence scores",
+        "Every recommendation shows WHY (eligibility + fit + conditions), not just WHAT",
+        "Action-ready packets mean you can call trial sites the same day"
+      ]
+    },
+    {
+      audience: "For Clinical Directors",
+      points: [
+        "73% VUS resolution rate reduces genetic uncertainty",
+        "Same-day tumor board ready dossiers",
+        "Complete audit trail for QA and research"
+      ]
+    }
+  ],
+  
+  // TECHNICAL FOUNDATION
+  poweredBy: {
+    oracle: "Zero-shot variant interpretation with 95.7% AUROC",
+    commandCenter: "Patient data integration (VCF/BAM ingestion)",
+    unifiedCareAPI: "Complete care orchestration"
+  },
+  
+  conclusion: "CrisPRO Oncology transforms clinical oncology from uncertainty to precision. From VUS resolution to validated care plans, every recommendation is evidence-backed, transparent, and action-ready."
+};
+```
+
+---
+
+### **Step 2: Create Page Component**
+**File:** `src/app/products/oncology/page.tsx`
+
+**Reuse:** Copy structure from `/platform/[coPilotSlug]/page.tsx`
+
+**Modifications:**
+- Import oncology data instead of co-pilot data
+- Keep tab structure (Battle Plan, Strategic Doctrine)
+- Update "Explore Other Co-Pilots" → "Explore Other Products"
+- Link to `/products/r-d` and `/products/research`
+
+---
+
+### **Step 3: Create Type Definition**
+**File:** `src/types/product-types.ts` (or extend existing)
+
+**Option A:** Reuse `CoPilotDetailContent` type (simplest)
+**Option B:** Create `ProductDetailContent` type (more explicit)
+
+**Recommendation:** Reuse for now, extend later if needed.
+
+---
+
+## 🎨 KEY MESSAGING DIFFERENCES
+
+### **Co-Pilot Page (Therapy Fit):**
+```
+Title: "Therapy Fit: In-Silico Drug Ranking"
+Focus: "Personalized drug ranking with 70-85% confidence"
+Capabilities: Individual features (S/P/E Fusion, Confidence Scoring, etc.)
+```
+
+### **Product Page (Oncology):**
+```
+Title: "CrisPRO Oncology: From VUS to Validated Care Plan"
+Focus: "Evidence-backed treatment recommendations with transparent confidence scores"
+Capabilities: Product outcomes (Resolve Uncertainty, Match Patients, Prevent Toxicity, etc.)
+```
+
+---
+
+## 📊 CONTENT MAPPING: CO-PILOT FEATURES → PRODUCT CAPABILITIES
+
+### **Therapy Fit Co-Pilot → Oncology Product:**
+- Feature: "Biology-Aware Drug Ranking"
+- Product Capability: "Match Patients to Therapies" (includes drug ranking + trial matching + mechanism-based selection)
+
+### **Clinical Trials Co-Pilot → Oncology Product:**
+- Feature: "Trial Matching with Eligibility"
+- Product Capability: "Match Patients to Therapies" (integrated into broader matching capability)
+
+### **VUS Resolution → Oncology Product:**
+- Feature: "Variant Impact Prediction"
+- Product Capability: "Resolve Genetic Uncertainty" (VUS annihilation with 95.7% accuracy)
+
+### **Toxicity Risk Co-Pilot → Oncology Product:**
+- Feature: "PGx Toxicity Prevention"
+- Product Capability: "Prevent Toxicity Before It Happens" (100% coverage, life-threatening prevention)
+
+### **Unified Care Plan → Oncology Product:**
+- Feature: "Complete Care Orchestration"
+- Product Capability: "Complete Unified Care Plans" (drugs + trials + safety + nutrition in one place)
+
+---
+
+## 🎯 STRATEGIC DOCTRINE TAB - DETAILED CONTENT
+
+### **Section 1: Product Overview**
+```
+What is CrisPRO Oncology?
+
+CrisPRO Oncology is a complete clinical intelligence platform that transforms 
+genomic uncertainty into actionable treatment recommendations. From VUS 
+resolution to validated care plans, every recommendation is evidence-backed, 
+transparent, and ready for same-day clinical decisions.
+
+The Promise: "From VUS to Validated Care Plan in Minutes"
+
+Target Users:
+• Medical Oncologists: Evidence-backed treatment recommendations
+• Pathologists: VUS resolution with 95.7% accuracy
+• Clinical Directors: Same-day tumor board ready dossiers
+```
+
+### **Section 2: Core Product Outcomes**
+```
+CrisPRO Oncology delivers five core outcomes:
+
+1. Resolve Genetic Uncertainty
+   - VUS Annihilation: 95.7% accuracy, 73% actionable conversion
+   - Zero-shot interpretation: No task-specific training required
+   - Transparent reasoning: SAE feature attribution
+
+2. Match Patients to Therapies
+   - Mechanism-based matching (not standard of care)
+   - Trial matching: 96.6% accuracy with transparent eligibility
+   - Drug ranking: 70-85% confidence with S/P/E fusion
+
+3. Prevent Toxicity Before It Happens
+   - 100% coverage: DPYD/TPMT/UGT1A1/CYP2D6
+   - Life-threatening prevention: HLA-based autoimmune forecasting
+   - Drug interaction checking: MoA-overlap risk flags
+
+4. Predict Resistance Before It Happens
+   - Proactive detection: 3-6 weeks earlier than imaging
+   - CA-125 intelligence: Kinetics forecasting
+   - Next-line strategies: Pre-planned resistance playbooks
+
+5. Complete Unified Care Plans
+   - Single output: Drugs + Trials + Safety + Nutrition + Monitoring
+   - Same-day action: Tumor board ready dossiers
+   - API endpoint: /api/complete_care/universal
+```
+
+### **Section 3: Validation & Evidence**
+```
+Validated Performance:
+
+• ClinVar AUROC: 95.7% (n=53,210 variants)
+• VUS Resolution: 73% actionable conversion
+• Trial Matching: 96.6% accuracy
+• Toxicity Prevention: 100% coverage (DPYD/TPMT/UGT1A1/CYP2D6)
+• Resistance Detection: 3-6 weeks earlier than imaging
+
+Real Clinical Outcomes:
+
+• Time Reduction: 6 weeks → Same day
+• Cost Reduction: $75K → $50 per variant
+• Confidence Increase: 40% VUS → 15% VUS
+• Action Readiness: Same-day tumor board ready
+```
+
+### **Section 4: Business Impact**
+```
+Transformation Metrics:
+
+For Medical Oncologists:
+• Faster Decisions: 50-70% reduction in treatment selection time
+• Higher Confidence: 70-85% confidence scores vs. uncertainty
+• Action-Ready: Same-day trial site calls with complete dossiers
+
+For Clinical Directors:
+• VUS Reduction: 40% uncertain → 15% uncertain (73% resolution)
+• Cost Efficiency: 99.9% cost reduction per variant ($75K → $50)
+• Quality Assurance: Complete audit trail for QA and research
+```
+
+### **Section 5: Powered By**
+```
+Technical Foundation:
+
+Oracle Engine:
+• Zero-shot variant interpretation
+• 95.7% ClinVar AUROC
+• SAE mechanistic interpretability
+
+Command Center:
+• Patient data integration (VCF/BAM ingestion)
+• Complete audit trail
+• Workflow orchestration
+
+Unified Care API:
+• Complete care orchestration
+• Multi-capability integration
+• Single output endpoint
+```
+
+---
+
+## 📁 FILE STRUCTURE
+
+```
+src/
+├── app/
+│   └── products/
+│       └── oncology/
+│           └── page.tsx                    ← NEW (copy from co-pilot structure)
+├── data/
+│   └── products/
+│       └── oncology-data.ts                ← NEW (product-focused content)
+├── types/
+│   └── product-types.ts                    ← NEW (or reuse CoPilotDetailContent)
+└── components/
+    └── co-pilot-detail/                    ← REUSE existing components
+        ├── DesciStyleDoctrineInsights.tsx  ← REUSE (works with product data)
+        └── ...
+```
+
+---
+
+## ✅ SUCCESS CRITERIA
+
+**The Oncology product page should:**
+
+1. ✅ Focus on product value, not individual features
+2. ✅ Show customer outcomes, not technical capabilities
+3. ✅ Reuse proven Strategic Doctrine tab structure
+4. ✅ Be product-focused: "CrisPRO Oncology for Clinicians"
+5. ✅ Show complete product vision, not feature details
+6. ✅ Link to related products (R&D, Research) not co-pilots
+7. ✅ Be ready for same-day navigation updates
+
+---
+
+## 🚀 IMPLEMENTATION ORDER
+
+**Step 1:** Create data file (`oncology-data.ts`) - Product-focused content  
+**Step 2:** Create page component (`/products/oncology/page.tsx`) - Reuse co-pilot structure  
+**Step 3:** Test on `/products/oncology` - Verify rendering  
+**Step 4:** Review with user - Confirm product focus  
+**Step 5:** Refine based on feedback - Adjust messaging
+
+---
+
+**READY TO IMPLEMENT?** Let's start with Step 1: Create the product-focused data file!

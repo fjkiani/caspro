@@ -50,43 +50,43 @@ const DiscoveryVsEngineering: React.FC<DiscoveryVsEngineeringProps> = ({ classNa
   }, [isPlaying]);
 
   return (
-    <section className={`py-20 bg-gradient-to-br from-purple-50 via-white to-pink-50 ${className}`}>
+    <section className={`py-8 sm:py-12 md:py-20 bg-gradient-to-br from-purple-50 via-white to-pink-50 ${className}`}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-6 sm:mb-10 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 sm:mb-4 md:mb-6">
             <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               Discovery vs. Engineering
             </span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto mb-8">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 max-w-4xl mx-auto mb-4 sm:mb-6 md:mb-8">
             The fundamental shift from a <strong>game of chance</strong> to a <strong>discipline of creation</strong>.
           </p>
           <motion.button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold py-2 px-6 sm:py-3 sm:px-8 text-sm sm:text-base rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           >
             {isPlaying ? 'Pause Simulation' : 'Run Simulation'}
           </motion.button>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-6 md:gap-12 items-stretch max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-stretch max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-white p-3 sm:p-6 md:p-8 rounded-lg sm:rounded-xl md:rounded-2xl border-2 border-slate-200 shadow-lg sm:shadow-xl text-center flex flex-col"
+            className="bg-white p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl md:rounded-2xl border-2 border-slate-200 shadow-lg sm:shadow-xl text-center flex flex-col"
           >
-            <h3 className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-bold text-slate-800 mb-2 sm:mb-3 md:mb-4">The Old Way: A Funnel</h3>
-            <p className="text-xs sm:text-sm md:text-base lg:text-xl text-slate-500 mb-3 sm:mb-4 md:mb-6 lg:mb-8">Low-probability screening</p>
+            <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-800 mb-1 sm:mb-2 md:mb-3">The Old Way: A Funnel</h3>
+            <p className="text-xs sm:text-sm text-slate-500 mb-3 sm:mb-4">Low-probability screening</p>
             
-            <div className="flex-grow flex flex-col items-center justify-center space-y-2 sm:space-y-4 md:space-y-6">
+            <div className="flex-grow flex flex-col items-center justify-center space-y-2 sm:space-y-3 md:space-y-4">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -108,7 +108,7 @@ const DiscoveryVsEngineering: React.FC<DiscoveryVsEngineeringProps> = ({ classNa
                 whileInView={{ opacity: 1, scaleY: 1 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="w-16 sm:w-24 md:w-32 lg:w-48 border-l-[10px] sm:border-l-[20px] md:border-l-[30px] lg:border-l-[40px] border-l-transparent border-r-[10px] sm:border-r-[20px] md:border-r-[30px] lg:border-r-[40px] border-r-transparent border-t-[20px] sm:border-t-[40px] md:border-t-[60px] lg:border-t-[80px] border-t-slate-300 my-2 sm:my-3 md:my-4"
+                className="w-12 sm:w-20 md:w-28 lg:w-40 border-l-[8px] sm:border-l-[16px] md:border-l-[24px] lg:border-l-[32px] border-l-transparent border-r-[8px] sm:border-r-[16px] md:border-r-[24px] lg:border-r-[32px] border-r-transparent border-t-[16px] sm:border-t-[32px] md:border-t-[48px] lg:border-t-[64px] border-t-slate-300 my-2 sm:my-3"
               ></motion.div>
 
               <motion.div
@@ -123,14 +123,14 @@ const DiscoveryVsEngineering: React.FC<DiscoveryVsEngineeringProps> = ({ classNa
               </motion.div>
             </div>
 
-            <div className="mt-3 sm:mt-4 md:mt-6 lg:mt-8 pt-3 sm:pt-4 md:pt-6 border-t border-slate-200">
-              <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm">
+            <div className="mt-3 sm:mt-4 md:mt-6 pt-3 sm:pt-4 border-t border-slate-200">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 text-xs">
                 <div>
-                  <div className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-red-600">{funnelProgress < 100 ? `${(funnelProgress / 100 * 18).toFixed(1)} months` : `18 months`}</div>
+                  <div className="text-base sm:text-lg md:text-xl font-bold text-red-600">{funnelProgress < 100 ? `${(funnelProgress / 100 * 18).toFixed(1)} months` : `18 months`}</div>
                   <div className="text-slate-500 text-[10px] sm:text-xs">Timeline</div>
                 </div>
                 <div>
-                  <div className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-red-600">{funnelProgress < 100 ? `$${(funnelProgress / 100 * 50).toFixed(1)}M` : `$50M+`}</div>
+                  <div className="text-base sm:text-lg md:text-xl font-bold text-red-600">{funnelProgress < 100 ? `$${(funnelProgress / 100 * 50).toFixed(1)}M` : `$50M+`}</div>
                   <div className="text-slate-500 text-[10px] sm:text-xs">Cost</div>
                 </div>
               </div>
@@ -142,33 +142,33 @@ const DiscoveryVsEngineering: React.FC<DiscoveryVsEngineeringProps> = ({ classNa
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-white p-3 sm:p-6 md:p-8 rounded-lg sm:rounded-xl md:rounded-2xl border-2 border-emerald-400 shadow-lg sm:shadow-xl md:shadow-2xl text-center flex flex-col"
+            className="bg-white p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl md:rounded-2xl border-2 border-emerald-400 shadow-lg sm:shadow-xl md:shadow-2xl text-center flex flex-col"
           >
-            <h3 className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-bold text-emerald-800 mb-2 sm:mb-3 md:mb-4">The New Doctrine: A Factory</h3>
-            <p className="text-xs sm:text-sm md:text-base lg:text-xl text-emerald-600 mb-2 sm:mb-3 md:mb-4">High-certainty generation</p>
-            <div className="mb-2 sm:mb-3 md:mb-4 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-3 bg-gradient-to-r from-purple-100 to-indigo-100 rounded-lg border-2 border-purple-300 shadow-sm">
-              <p className="text-[10px] sm:text-xs md:text-sm text-purple-800 font-bold mb-1 sm:mb-2">
+            <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-emerald-800 mb-1 sm:mb-2 md:mb-3">The New Doctrine: A Factory</h3>
+            <p className="text-xs sm:text-sm text-emerald-600 mb-2 sm:mb-3">High-certainty generation</p>
+            <div className="mb-3 sm:mb-4 px-2 sm:px-3 py-1.5 sm:py-2 bg-gradient-to-r from-purple-100 to-indigo-100 rounded-lg border-2 border-purple-300 shadow-sm">
+              <p className="text-xs sm:text-sm text-purple-800 font-bold mb-1">
                 🧠 SAE Explainability
               </p>
-              <p className="text-[9px] sm:text-[10px] md:text-xs text-purple-700 leading-tight sm:leading-relaxed hidden sm:block">
+              <p className="text-[10px] sm:text-xs text-purple-700 leading-tight">
                 Every design comes with <strong>32,768 learned biological features</strong> that explain exactly why it works.
               </p>
-              <Link href="/evidence/sae-intelligence" className="text-[9px] sm:text-[10px] md:text-xs text-purple-600 hover:text-purple-800 font-semibold mt-1 sm:mt-2 inline-flex items-center gap-1">
-                Explore <ArrowRight className="w-2 h-2 sm:w-3 sm:h-3" />
+              <Link href="/evidence/sae-intelligence" className="text-xs text-purple-600 hover:text-purple-800 font-semibold mt-1 inline-flex items-center gap-1">
+                Explore <ArrowRight className="w-3 h-3" />
               </Link>
             </div>
             
-            <div className="flex-grow flex flex-col items-center justify-center space-y-2 sm:space-y-4 md:space-y-6">
+            <div className="flex-grow flex flex-col items-center justify-center space-y-2 sm:space-y-3 md:space-y-4">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <DraftingCompass className="text-emerald-500 w-6 h-6 sm:w-10 sm:h-10 md:w-16 md:h-16" />
+                <DraftingCompass className="text-emerald-500 w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14" />
               </motion.div>
               
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-emerald-700">
+              <p className="text-xs sm:text-sm font-semibold text-emerald-700">
                 AI Engineering
               </p>
 
@@ -178,7 +178,7 @@ const DiscoveryVsEngineering: React.FC<DiscoveryVsEngineeringProps> = ({ classNa
                 transition={{ duration: 0.8, delay: 0.6 }}
                 viewport={{ once: true }}
               >
-                <ArrowRight className="text-emerald-400 w-4 h-4 sm:w-8 sm:h-8 md:w-12 md:h-12" />
+                <ArrowRight className="text-emerald-400 w-5 h-5 sm:w-7 sm:h-7 md:w-10 md:h-10" />
               </motion.div>
 
               <motion.div
@@ -186,28 +186,28 @@ const DiscoveryVsEngineering: React.FC<DiscoveryVsEngineeringProps> = ({ classNa
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
                 viewport={{ once: true }}
-                className="bg-emerald-100 p-2 sm:p-3 md:p-4 lg:p-6 rounded-lg border border-emerald-300"
+                className="bg-emerald-100 p-2 sm:p-3 md:p-4 rounded-lg border border-emerald-300"
               >
-                <h4 className="text-xs sm:text-sm md:text-lg lg:text-2xl font-bold text-emerald-800 mb-1 sm:mb-2 md:mb-3">
+                <h4 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold text-emerald-800 mb-1 sm:mb-2">
                   {factoryProgress < 100 ? "Engineering..." : "Portfolio of Optimized Assets"}
                 </h4>
-                <div className="flex justify-center space-x-2 sm:space-x-3 md:space-x-4">
-                  <Shield className="text-emerald-600 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8" />
-                  <Dna className="text-emerald-600 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8" />
-                  <Bot className="text-emerald-600 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8" />
+                <div className="flex justify-center space-x-2 sm:space-x-3">
+                  <Shield className="text-emerald-600 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                  <Dna className="text-emerald-600 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                  <Bot className="text-emerald-600 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                 </div>
-                <p className="text-[10px] sm:text-xs md:text-sm text-emerald-600 mt-1 sm:mt-2">Validated & Patent-Ready</p>
+                <p className="text-[10px] sm:text-xs text-emerald-600 mt-1">Validated & Patent-Ready</p>
               </motion.div>
             </div>
 
-            <div className="mt-3 sm:mt-4 md:mt-6 lg:mt-8 pt-3 sm:pt-4 md:pt-6 border-t border-emerald-200">
-              <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm">
+            <div className="mt-3 sm:mt-4 md:mt-6 pt-3 sm:pt-4 border-t border-emerald-200">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 text-xs">
                 <div>
-                  <div className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-emerald-600">{factoryProgress < 100 ? `${(factoryProgress / 100 * 6).toFixed(1)} weeks` : `6 weeks`}</div>
+                  <div className="text-base sm:text-lg md:text-xl font-bold text-emerald-600">{factoryProgress < 100 ? `${(factoryProgress / 100 * 6).toFixed(1)} weeks` : `6 weeks`}</div>
                   <div className="text-slate-500 text-[10px] sm:text-xs">Timeline</div>
                 </div>
                 <div>
-                  <div className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-emerald-600">{factoryProgress < 100 ? `$${(factoryProgress / 100 * 0.5).toFixed(2)}M` : `$500K`}</div>
+                  <div className="text-base sm:text-lg md:text-xl font-bold text-emerald-600">{factoryProgress < 100 ? `$${(factoryProgress / 100 * 0.5).toFixed(2)}M` : `$500K`}</div>
                   <div className="text-slate-500 text-[10px] sm:text-xs">Cost</div>
                 </div>
               </div>
@@ -220,13 +220,13 @@ const DiscoveryVsEngineering: React.FC<DiscoveryVsEngineeringProps> = ({ classNa
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-6 sm:mt-10 md:mt-16"
         >
-          <div className="max-w-4xl mx-auto p-8 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl border border-purple-200">
-            <h3 className="text-2xl font-bold text-slate-800 mb-4">
+          <div className="max-w-4xl mx-auto p-4 sm:p-6 md:p-8 bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl md:rounded-2xl border border-purple-200">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-800 mb-2 sm:mb-3 md:mb-4">
               The Transformation
             </h3>
-            <p className="text-xl text-slate-600 leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed">
               We've replaced the <strong className="text-red-600">needle-in-haystack</strong> approach 
               with <strong className="text-emerald-600">precision engineering</strong>. 
               Every therapeutic candidate is designed for success, not discovered by chance.

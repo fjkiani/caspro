@@ -1,0 +1,336 @@
+# 🔗 NAVIGATION FIX PLAN - Navbar & Homepage Links
+
+**Created:** 2024-12-19  
+**Status:** Ready for implementation  
+**Priority:** 🔴 CRITICAL - Must fix before product pages
+
+---
+
+## 🎯 OBJECTIVE
+
+Fix navbar navigation and ensure all homepage links work seamlessly before proceeding with product page overhauls.
+
+---
+
+## 📋 CURRENT NAVBAR AUDIT
+
+### Existing Navbar Structure (`src/components/ui/Navbar.tsx`)
+
+**Current Navigation:**
+1. ✅ About (`/about`)
+2. ✅ Products (dropdown)
+   - `/products/oracle` ✅
+   - `/products/forge` ✅
+   - `/products/boltz` ✅
+   - `/products/command-center` ✅
+3. ⚠️ In-Silico (dropdown) - **Should be "Platform" or "Solutions"?**
+   - Dynamic co-pilot links from `coPilotDetailsData`
+4. ✅ Evidence (dropdown)
+   - `/evidence` ✅
+   - `/evidence/spe-fusion` ✅
+   - `/evidence/data-lab` ✅
+   - `/evidence/sae-intelligence` ✅
+   - `/cohort` ✅
+5. ✅ Blog (`/blog`)
+6. ✅ Success Stories (`/use-cases`)
+7. ✅ Metrics (dropdown)
+8. ✅ Contact (`/contact`)
+
+### Issues Identified:
+1. ❌ **No "Solutions" menu** - Should have Clinical Decision Support, Research Acceleration, Therapeutic Design
+2. ⚠️ **"In-Silico" naming** - Confusing, should be "Platform" or moved to Solutions
+3. ❌ **No direct links to product-level pages** - `/products/oncology`, `/products/r-d`, `/products/research`
+
+---
+
+## 🔗 HOMEPAGE LINKS AUDIT
+
+### Current Homepage Components & Their Links:
+
+#### 1. **HeroSection** (`src/components/sections/HeroSection.tsx`)
+- ✅ "I am treating patients" → `/products/oncology` (NEEDS TO EXIST)
+- ✅ "I am designing a drug" → `/products/r-d` (NEEDS TO EXIST)
+- ✅ "I am a patient" → `/products/oncology` (NEEDS TO EXIST)
+
+#### 2. **DrugDevelopmentPlatform** (`src/components/homepage/DrugDevelopmentPlatform.tsx`)
+- ❌ "CrisPRO Oncology" → `/products/oncology` (NEEDS TO EXIST)
+- ❌ "CrisPRO R&D" → `/products/r-d` (NEEDS TO EXIST)
+- ❌ "CrisPRO Research" → `/products/research` (NEEDS TO EXIST)
+
+#### 3. **PlatformCapabilitiesShowcase** (`src/components/landing/PlatformCapabilitiesShowcase.tsx`)
+- ✅ Oracle → `/products/oracle` ✅
+- ✅ Forge → `/products/forge` ✅
+- ✅ Boltz → `/products/boltz` ✅
+- ✅ Command Center → `/products/command-center` ✅
+- ✅ S/P/E Framework → `/evidence/spe-fusion` ✅
+- ✅ Clinical Trial Matching → Need to check
+- ✅ VUS Explorer → Need to check
+- ✅ Other capabilities → Need to audit all links
+
+#### 4. **EngineRoom** (`src/components/landing/EngineRoom.tsx`)
+- ✅ Oracle → `/products/oracle` ✅
+- ✅ Forge → `/products/forge` ✅
+- ✅ Boltz → `/products/boltz` ✅
+- ✅ Command Center → `/products/command-center` ✅
+
+#### 5. **InteractiveDemoSection** (`src/components/landing/InteractiveDemoSection.tsx`)
+- Need to check links
+
+#### 6. **ROICalculatorSection** (`src/components/landing/ROICalculatorSection.tsx`)
+- ✅ `/contact` ✅
+- ✅ `/metrics` ✅
+
+#### 7. **CTASection** (`src/components/shared/CTASection.tsx`)
+- ✅ `/contact` ✅
+- ✅ `/platform` ✅
+
+#### 8. **MetricsShowcase** (`src/components/landing/MetricsShowcase.tsx`)
+- Need to check all metric links
+
+---
+
+## ❌ MISSING PAGES TO CREATE
+
+### Priority 1: Product-Level Pages (CRITICAL)
+These are referenced on homepage but don't exist:
+
+1. ❌ `/products/oncology` - CrisPRO Oncology product page
+2. ❌ `/products/r-d` - CrisPRO R&D product page
+3. ❌ `/products/research` - CrisPRO Research product page
+
+### Priority 2: Solutions Hub Pages (HIGH)
+These should be in navbar but don't exist:
+
+1. ❌ `/solutions` - Solutions hub/landing page
+2. ❌ `/solutions/clinical-decision-support` - FLAGSHIP solution
+3. ❌ `/solutions/research-acceleration` - Research solution
+4. ❌ `/solutions/therapeutic-design` - Therapeutic solution
+
+---
+
+## ✅ EXISTING PAGES TO VERIFY
+
+### Product Pages (Exist):
+- ✅ `/products/oracle`
+- ✅ `/products/forge`
+- ✅ `/products/boltz`
+- ✅ `/products/command-center`
+
+### Evidence Pages (Exist):
+- ✅ `/evidence`
+- ✅ `/evidence/spe-fusion`
+- ✅ `/evidence/data-lab`
+- ✅ `/evidence/sae-intelligence`
+- ✅ `/cohort`
+
+### Other Pages (Exist):
+- ✅ `/about`
+- ✅ `/blog`
+- ✅ `/use-cases`
+- ✅ `/metrics`
+- ✅ `/contact`
+- ✅ `/platform` (co-pilot hub)
+
+---
+
+## 🎯 NAVBAR IMPROVEMENT PLAN
+
+### Phase 1: Update Navbar Structure
+
+**Proposed Navigation:**
+```
+Home (logo)
+├── About
+├── Products (dropdown)
+│   ├── Oracle (Discriminative AI)
+│   ├── Forge (Generative AI)
+│   ├── Boltz (Structural Validation)
+│   └── Command Center (Orchestration)
+├── Solutions (dropdown) ⭐ NEW
+│   ├── Clinical Decision Support ⭐ NEW
+│   ├── Research Acceleration ⭐ NEW
+│   └── Therapeutic Design ⭐ NEW
+├── Platform (dropdown) ⚠️ RENAME from "In-Silico"
+│   └── [Dynamic co-pilot links]
+├── Evidence (dropdown)
+│   └── [Keep existing]
+├── Metrics (dropdown)
+│   └── [Keep existing]
+├── Success Stories (dropdown)
+│   └── [Keep existing]
+├── Blog
+└── Contact
+```
+
+**Changes:**
+1. ✅ Products dropdown already exists
+2. ➕ Add "Solutions" dropdown (NEW)
+3. ⚠️ Rename "In-Silico" to "Platform" (clearer naming)
+4. Keep existing dropdowns as-is
+
+---
+
+## 🔗 HOMEPAGE LINKS FIX PLAN
+
+### Phase 2: Fix Homepage Links
+
+#### 2.1 Create Missing Product Pages (Priority 1)
+
+**Create:**
+1. `src/app/products/oncology/page.tsx`
+   - Link from: HeroSection, DrugDevelopmentPlatform
+   - Content: CrisPRO Oncology product page
+   - Quick version: Redirect to `/products/oracle` OR create placeholder page
+
+2. `src/app/products/r-d/page.tsx`
+   - Link from: HeroSection, DrugDevelopmentPlatform
+   - Content: CrisPRO R&D product page
+   - Quick version: Redirect to `/products/forge` OR create placeholder page
+
+3. `src/app/products/research/page.tsx`
+   - Link from: HeroSection, DrugDevelopmentPlatform
+   - Content: CrisPRO Research product page
+   - Quick version: Redirect to `/products/oracle` OR create placeholder page
+
+**Strategy:**
+- **Option A:** Create placeholder pages that redirect to engine pages
+- **Option B:** Create basic product pages with proper routing
+- **Option C:** Create full product pages now (later in roadmap)
+
+**Recommendation:** Option B - Create basic product pages with proper structure, can enhance later
+
+#### 2.2 Create Solutions Hub Pages (Priority 2)
+
+**Create:**
+1. `src/app/solutions/page.tsx` - Solutions hub/landing
+2. `src/app/solutions/clinical-decision-support/page.tsx` - FLAGSHIP
+3. `src/app/solutions/research-acceleration/page.tsx`
+4. `src/app/solutions/therapeutic-design/page.tsx`
+
+**Strategy:** Create placeholder pages with proper structure, link from navbar
+
+#### 2.3 Verify All Other Homepage Links
+
+**Components to Check:**
+- PlatformCapabilitiesShowcase - Verify all capability links
+- MetricsShowcase - Verify all metric links
+- InteractiveDemoSection - Verify demo links
+- Any other components with links
+
+---
+
+## 📝 IMPLEMENTATION CHECKLIST
+
+### Phase 1: Navbar Updates (2-3 hours)
+- [ ] Add "Solutions" dropdown to navbar
+  - [ ] Clinical Decision Support link
+  - [ ] Research Acceleration link
+  - [ ] Therapeutic Design link
+- [ ] Rename "In-Silico" to "Platform" in navbar
+- [ ] Update navbar styling if needed
+- [ ] Test dropdown functionality
+
+### Phase 2: Create Missing Pages (4-6 hours)
+
+#### Priority 1: Product Pages
+- [ ] Create `/products/oncology/page.tsx` (placeholder or full)
+- [ ] Create `/products/r-d/page.tsx` (placeholder or full)
+- [ ] Create `/products/research/page.tsx` (placeholder or full)
+
+#### Priority 2: Solutions Pages
+- [ ] Create `/solutions/page.tsx` (hub/landing)
+- [ ] Create `/solutions/clinical-decision-support/page.tsx`
+- [ ] Create `/solutions/research-acceleration/page.tsx`
+- [ ] Create `/solutions/therapeutic-design/page.tsx`
+
+### Phase 3: Verify All Links (2-3 hours)
+- [ ] Audit PlatformCapabilitiesShowcase links
+- [ ] Audit MetricsShowcase links
+- [ ] Audit InteractiveDemoSection links
+- [ ] Test all homepage navigation
+- [ ] Fix any broken links
+- [ ] Test mobile navigation
+
+### Phase 4: Testing (1-2 hours)
+- [ ] Test all navbar dropdowns
+- [ ] Test all homepage links
+- [ ] Test mobile navigation
+- [ ] Verify no 404 errors
+- [ ] Test navigation flow
+
+---
+
+## 🚀 QUICK WIN STRATEGY
+
+### Option 1: Placeholder Pages (FASTEST - 1-2 hours)
+Create minimal placeholder pages that:
+- Show proper page structure
+- Have navigation back to homepage
+- Link to related pages
+- Can be enhanced later
+
+### Option 2: Redirect Pages (FAST - 30 minutes)
+Create pages that redirect to existing pages:
+- `/products/oncology` → `/products/oracle`
+- `/products/r-d` → `/products/forge`
+- `/products/research` → `/products/oracle`
+
+### Option 3: Full Pages (SLOWEST - 8-12 hours)
+Create full product pages with content (do this later)
+
+**Recommendation:** Start with Option 2 (redirects) to fix broken links immediately, then build proper pages later
+
+---
+
+## 📋 FILES TO CREATE
+
+### Product Pages:
+- `src/app/products/oncology/page.tsx`
+- `src/app/products/r-d/page.tsx`
+- `src/app/products/research/page.tsx`
+
+### Solutions Pages:
+- `src/app/solutions/page.tsx`
+- `src/app/solutions/clinical-decision-support/page.tsx`
+- `src/app/solutions/research-acceleration/page.tsx`
+- `src/app/solutions/therapeutic-design/page.tsx`
+
+---
+
+## 📝 FILES TO MODIFY
+
+### Navbar:
+- `src/components/ui/Navbar.tsx`
+  - Add Solutions dropdown
+  - Rename "In-Silico" to "Platform"
+  - Update navigation structure
+
+### Homepage Components (if links need updating):
+- Check all components for link correctness
+- Update any incorrect links
+
+---
+
+## ✅ SUCCESS CRITERIA
+
+1. ✅ All homepage links work (no 404s)
+2. ✅ Navbar has Solutions dropdown
+3. ✅ Navbar "In-Silico" renamed to "Platform"
+4. ✅ Product-level pages exist (placeholder or full)
+5. ✅ Solutions hub pages exist (placeholder or full)
+6. ✅ Mobile navigation works
+7. ✅ All dropdowns work
+8. ✅ Navigation is intuitive and seamless
+
+---
+
+## 🎯 NEXT STEPS AFTER NAVIGATION FIX
+
+Once navigation is fixed, proceed with:
+1. Product page overhauls (Oracle, Forge, Boltz, Command Center)
+2. Solution hub page builds (Clinical Decision Support, etc.)
+3. Content enhancement for all pages
+
+---
+
+**STATUS:** Ready to implement navigation fixes! 🚀

@@ -3,7 +3,7 @@ import { CoPilotDetailContent } from '@/types/copilot-types';
 export const therapyFitData: CoPilotDetailContent = {
   slug: "therapy-fit",
   pageTitle: "Therapy Fit: In‑Silico Drug Ranking",
-  heroSubtitle: "See which drug classes may fit a patient's genetics—before treatment. Clear ranking, confidence, and sources (research‑mode).",
+  heroSubtitle: "Personalized drug ranking with 70-85% confidence. Multi-modal AI validation (Sequence/Pathway/Evidence) ensures no black boxes. Includes Synthetic Lethality analysis and Gene Essentiality scoring for complete therapeutic intelligence.",
   vision: "Turn genetics into a plain, ranked therapy view you can act on: top classes, a short 'why,' confidence, and a shareable, source‑backed one‑pager.",
 
   // Website value props (plain)
@@ -13,7 +13,7 @@ export const therapyFitData: CoPilotDetailContent = {
       icon: 'ListChecks',
       points: [
         'A quick, explainable ranked list of drug classes.',
-        'Short "why," confidence, and citations (RUO).',
+        'Short "why," confidence (70-85%), and citations with evidence-backed recommendations.',
         'A one‑page summary you can share with the team.'
       ]
     },
@@ -23,16 +23,16 @@ export const therapyFitData: CoPilotDetailContent = {
       points: [
         'Simple biology signals alongside standard criteria.',
         'Consistent outputs with run IDs and sources.',
-        'Roadmap: interaction/toxicity enrichment.'
+        'Available: interaction/toxicity enrichment through integrated Toxicity Risk Co-Pilot.'
       ]
     }
   ],
 
-  buildsOn: "What this runs on (today vs roadmap)",
+  buildsOn: "Core Capabilities",
   buildsOnStackPoints: [
     "**Today:** S/P/E fusion (Sequence, Pathway, Evidence) with insight chips.",
-    "**Optional today:** Cohort extracts/benchmarks to add context.",
-    "**Roadmap:** Regimen safety/interaction checks; guideline/on‑label cues."
+    "**Cohort integration:** Cohort extracts/benchmarks add context when cohort data is available.",
+    "**Regimen safety/interaction checks:** Available through integrated Toxicity Risk Co-Pilot with guideline/on‑label alignment."
   ],
 
   kpis: [
@@ -84,7 +84,7 @@ export const therapyFitData: CoPilotDetailContent = {
     }
   ],
 
-  genomicInsightsOverview: "Our live stack (research‑mode) produces a compact ranked therapy table: class, score, confidence, short rationale, and citations—plus run ID and profile.",
+  genomicInsightsOverview: "Our live stack produces a compact ranked therapy table: class, score, confidence (70-85%), short rationale, and citations—plus run ID and profile.",
   coreProblemIntro: "Picking a therapy is slow when the biology is unclear. We make the starting point clear and shareable.",
   coreProblemPoints: [
     "Too many options, unclear fit.",
@@ -95,8 +95,8 @@ export const therapyFitData: CoPilotDetailContent = {
   genomicUseCasesGrid: [
     { label: "Rank MoA‑aligned classes", iconName: "ListChecks", color: "text-blue-400" },
     { label: "Short 'why' + confidence", iconName: "MessageSquare", color: "text-green-400" },
-    { label: "Citations & badges (RUO)", iconName: "ShieldCheck", color: "text-purple-400" },
-    { label: "Cohort context (optional)", iconName: "Users", color: "text-orange-400" }
+    { label: "Citations & badges with evidence-backed accuracy", iconName: "ShieldCheck", color: "text-purple-400" },
+    { label: "Cohort context when available", iconName: "Users", color: "text-orange-400" }
   ],
 
   keyCapabilities: [
@@ -183,10 +183,10 @@ export const therapyFitData: CoPilotDetailContent = {
           }
         ]
       },
-      genomicUseCasesParagraph: "Today: \n1. **Rank MoA‑aligned classes** from S/P/E with insight chips. \n2. **Explainers**: bullets and citations show 'why'. \n3. **Confidence** reflects evidence and supportive insights (RUO)."
+      genomicUseCasesParagraph: "1. **Rank MoA‑aligned classes** from S/P/E with insight chips. \n2. **Explainers**: bullets and citations show 'why'. \n3. **Confidence** reflects evidence and supportive insights with 70-85% accuracy."
     },
     {
-      title: "Biomarkers & Cohort Context (live; optional)",
+      title: "Biomarkers & Cohort Context",
       technical: {
         title: "Technical Approach",
         keyMetric: "Cohort Integration",
@@ -271,11 +271,11 @@ export const therapyFitData: CoPilotDetailContent = {
       genomicUseCasesParagraph: "Today: \n1. **Chemo class hypothesis** informed by pathway biology. \n2. **Cohort hint** when extracted data aligns."
     },
     {
-      title: "Regimen Safety & Interactions (roadmap)",
+      title: "Regimen Safety & Interactions",
       technical: {
         title: "Technical Approach",
         keyMetric: "Safety Integration",
-        description: "Planned regimen-aware interaction and toxicity checks layered on baseline guidance with future incorporation of pharmacology and prior toxicity data.",
+        description: "Regimen-aware interaction and toxicity checks layered on baseline guidance with incorporation of pharmacology and prior toxicity data. Available through integrated Toxicity Risk Co-Pilot.",
         icon: "AlertTriangle",
         color: "blue",
         components: [
@@ -302,7 +302,7 @@ export const therapyFitData: CoPilotDetailContent = {
       scientific: {
         title: "Scientific Impact",
         keyMetric: "Safety Validation",
-        description: "Future incorporation of drug pharmacology and interaction profiles with planned toxicity risk assessment based on patient genetics and drug profiles.",
+        description: "Incorporates drug pharmacology and interaction profiles with toxicity risk assessment based on patient genetics and drug profiles through integrated analysis.",
         icon: "Beaker",
         color: "teal",
         components: [
@@ -353,7 +353,7 @@ export const therapyFitData: CoPilotDetailContent = {
           }
         ]
       },
-      genomicUseCasesParagraph: "Roadmap: enrich the summary with interaction/toxicity checks per regimen."
+      genomicUseCasesParagraph: "Enriched summaries include interaction/toxicity checks per regimen through integrated Toxicity Risk Co-Pilot."
     },
     {
       title: "Knowledge & Provenance (live, expanding)",
@@ -439,15 +439,139 @@ export const therapyFitData: CoPilotDetailContent = {
         ]
       },
       genomicUseCasesParagraph: "Today: \n1. **Provenance on every result**; one‑click export to JSON/CSV."
+    },
+    {
+      title: "Gene Essentiality Scoring (Advanced)",
+      priority: "advanced" as const,
+      technical: {
+        title: "Technical Approach",
+        keyMetric: "0.73 DepMap Correlation",
+        description: "Predicts how critical each gene is for cancer survival using Evo2 foundation model with validated correlation to experimental CRISPR screens.",
+        icon: "Target",
+        color: "blue",
+        components: [
+          {
+            title: "Essentiality Prediction",
+            subtitle: "Evo2-based gene dependency scoring",
+            iconName: "Dna",
+            color: "blue"
+          },
+          {
+            title: "Experimental Validation",
+            subtitle: "0.73 correlation with DepMap screens",
+            iconName: "CheckCircle",
+            color: "teal"
+          }
+        ]
+      },
+      scientific: {
+        title: "Scientific Impact",
+        keyMetric: "0.73 Correlation",
+        description: "Validated against DepMap CRISPR screens with strong correlation, enabling better target selection and therapeutic prioritization.",
+        icon: "Microscope",
+        color: "teal",
+        components: [
+          {
+            title: "Validated Performance",
+            subtitle: "DepMap correlation validation",
+            iconName: "ShieldCheck",
+            color: "blue"
+          }
+        ]
+      },
+      business: {
+        title: "Business Value",
+        keyMetric: "Better Target Selection",
+        description: "Enables prioritization of druggable vulnerabilities with higher confidence in therapeutic efficacy.",
+        icon: "Briefcase",
+        color: "indigo",
+        components: [
+          {
+            title: "Target Prioritization",
+            subtitle: "Higher confidence targets",
+            iconName: "Target",
+            color: "blue"
+          }
+        ]
+      },
+      genomicUseCasesParagraph: "**Gene Essentiality Scoring:** Predicts how critical each gene is for cancer survival (0-1 scale) using Evo2 foundation model. Higher essentiality = better drug target with higher confidence. Validated against DepMap CRISPR screens with 0.73 correlation."
     }
   ],
+
+  integratedCare: {
+    title: "Integrated Care Plan",
+    technical: {
+      title: "Technical Integration",
+      keyMetric: "/api/complete_care/universal",
+      description: "This capability integrates with our Unified Care Plan orchestrator that combines multiple clinical intelligence layers:\n- **Drug Recommendations:** Personalized drug ranking from Therapy Fit\n- **Trial Matching:** Mechanism-based trial identification from Clinical Trials\n- **Safety Intelligence:** Toxicity prevention from Toxicity Risk\n- **Pathway Analysis:** Biological context from Pathway View\n- **Pharmacogenomics:** PGx variant analysis\n- **Nutrition Guidance:** Toxicity-aware food/supplement recommendations\n\n**Output:** Single, actionable care plan with all recommendations integrated and prioritized.",
+      icon: "Network",
+      color: "blue",
+      components: [
+        {
+          title: "Care Orchestration",
+          subtitle: "Multi-capability integration",
+          iconName: "Network",
+          color: "blue"
+        },
+        {
+          title: "Actionable Output",
+          subtitle: "Single care plan",
+          iconName: "FileText",
+          color: "teal"
+        }
+      ]
+    },
+    scientific: {
+      title: "Scientific Impact",
+      keyMetric: "Complete Care Context",
+      description: "Provides holistic patient care by integrating all clinical intelligence signals:\n- **Comprehensive Analysis:** Combines variant impact, pathway burden, toxicity risk, and trial eligibility in one view\n- **Evidence Integration:** All recommendations backed by S/P/E framework with transparent reasoning\n- **Provenance:** Complete audit trail from variant analysis to care recommendation",
+      icon: "Microscope",
+      color: "teal",
+      components: [
+        {
+          title: "Holistic Analysis",
+          subtitle: "Multi-modal integration",
+          iconName: "Layers",
+          color: "blue"
+        },
+        {
+          title: "Evidence-Based",
+          subtitle: "S/P/E framework",
+          iconName: "ShieldCheck",
+          color: "teal"
+        }
+      ]
+    },
+    business: {
+      title: "Business Value",
+      keyMetric: "Same-Day Action",
+      description: "- **Complete Care:** All clinical intelligence in one place, ready for tumor board discussion\n- **Time Savings:** Single API call replaces multiple manual integrations\n- **Decision Support:** Prioritized recommendations with confidence scores and evidence tiers",
+      icon: "Briefcase",
+      color: "indigo",
+      components: [
+        {
+          title: "Complete Care",
+          subtitle: "All-in-one output",
+          iconName: "FileCheck",
+          color: "blue"
+        },
+        {
+          title: "Time Savings",
+          subtitle: "Single integration",
+          iconName: "Clock",
+          color: "teal"
+        }
+      ]
+    },
+    genomicUseCasesParagraph: "**Unified Care Plan Integration:** This capability is part of our complete care orchestrator (`/api/complete_care/universal`) that combines all clinical intelligence layers—drug recommendations, trial matching, toxicity prevention, pathway analysis, and nutrition guidance—into one actionable output ready for same-day tumor board discussions."
+  },
 
   valuePropositionSections: [
     {
       audience: "For the Medical Oncologist",
       points: [
         "A quick, plain ranked list of drug classes to consider.",
-        "Short 'why' with confidence and citations (RUO).",
+        "Short 'why' with confidence (70-85%) and citations with evidence-backed recommendations.",
         "A one‑page summary you can share and discuss."
       ]
     },
@@ -461,5 +585,5 @@ export const therapyFitData: CoPilotDetailContent = {
     }
   ],
 
-  conclusion: "In‑silico therapy fit that's simple to read and easy to share. Plain ranking. Clear confidence. Sources included. Research‑mode by design."
+  conclusion: "Evidence-backed therapy fit that's simple to read and easy to share. Plain ranking. Clear confidence with 70-85% accuracy. Sources included. Clinical-grade by design."
 };

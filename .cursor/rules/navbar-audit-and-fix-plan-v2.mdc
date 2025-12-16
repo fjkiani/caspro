@@ -1,0 +1,393 @@
+# Navbar Audit & Fix Plan V2 - Updated with Recent Work
+
+**Date**: 2025-01-15  
+**Purpose**: Comprehensive navbar audit based on all recent work including agentic features, comparison pages, and MOAT capabilities  
+**Previous Audit**: 2024-12-19 (basic product pages)
+
+---
+
+## 🎯 EXECUTIVE SUMMARY
+
+### **What We've Built Since Last Audit**
+
+1. **Complete Product Pages** ✅
+   - `/products/oncology` - Full agentic cascade, 6 capability cards, continuous monitoring
+   - `/products/r-d` - Design challenges, IP monetization, capabilities
+   - `/products/research` - Research product page
+
+2. **Comparison Pages** 🆕
+   - `/comparisons/patient` - GPT vs CrisPRO with thinking process demos
+   - Two tabs: Toxicity-Aware Nutrition, VUS Resolution
+   - Interactive "See How They Think" components
+   - Real benchmarks with MOAT advantages
+
+3. **Agentic Features** 🆕
+   - Intelligence Cascade (8-agent pipeline)
+   - Full-page cascade experience
+   - Continuous monitoring dashboard
+   - Thinking process comparison components
+
+4. **MOAT Capabilities Showcased** 🆕
+   - Toxicity-Aware Nutrition
+   - Resistance Prediction (3-6 weeks early)
+   - Axis-Aware VUS Resolution
+   - Synthetic Lethality Beyond BRCA
+   - SAE Explainability (32,768 features)
+   - Continuous Agentic Intelligence
+
+---
+
+## 🔍 CURRENT NAVBAR STRUCTURE
+
+### Location: `src/components/ui/Navbar.tsx`
+
+**Current Navigation Items** (8 items):
+1. **About** → `/about` ✅
+2. **Products** (dropdown) → `/products`
+   - Main Products:
+     - Oncology → `/products/oncology` ✅
+     - R&D → `/products/r-d` ✅
+     - Research → `/products/research` ✅
+   - AI Engines:
+     - Oracle → `/products/oracle` ✅
+     - Forge → `/products/forge` ✅
+     - Boltz → `/products/boltz` ✅
+     - Command Center → `/products/command-center` ✅
+3. **Platform** (dropdown) → `/platform` ✅
+   - Dynamic co-pilot links from `coPilotDetailsData`
+4. **Evidence** (dropdown) → `/evidence` ✅
+   - Evidence Intelligence → `/evidence`
+   - S/P/E Fusion → `/evidence/spe-fusion`
+   - Data Lab → `/evidence/data-lab`
+   - SAE Intelligence → `/evidence/sae-intelligence`
+   - Cohort Context → `/cohort`
+5. **Blog** → `/blog` ✅
+6. **Success Stories** (dropdown) → `/use-cases` ✅
+   - Multiple Myeloma → `/use-cases/multiple-myeloma`
+7. **Metrics** (dropdown) → `/metrics` ✅
+   - BRCA1/2, SNV, Splice, VUS, Generative AI, Business Impact
+8. **Contact** → `/contact` ✅
+
+---
+
+## ❌ CRITICAL MISSING ITEMS
+
+### 1. **Comparison Pages** (HIGH PRIORITY) 🆕
+
+**Problem**: We built a major comparison page but it's not in the navbar!
+
+**New Page**: `/comparisons/patient`
+- **Purpose**: Showcase GPT vs CrisPRO with real benchmarks
+- **Features**:
+  - Two tabs: Toxicity-Aware Nutrition, VUS Resolution
+  - Interactive thinking process demos ("See How They Think")
+  - Real MOAT advantages (0.86 average advantage)
+  - 6 questions per scenario with detailed responses
+- **Status**: Complete page, **MISSING from navbar**
+
+**Impact**: Users can't discover this powerful comparison tool from navigation.
+
+---
+
+## 📋 UPDATED NAVBAR STRUCTURE PROPOSAL
+
+### **Recommended New Structure**:
+
+```
+1. About → /about ✅
+2. Products (dropdown) ✅
+   ├── Main Products
+   │   ├── Oncology → /products/oncology ✅
+   │   ├── R&D → /products/r-d ✅
+   │   └── Research → /products/research ✅
+   └── AI Engines
+       ├── Oracle → /products/oracle ✅
+       ├── Forge → /products/forge ✅
+       ├── Boltz → /products/boltz ✅
+       └── Command Center → /products/command-center ✅
+3. Platform (dropdown) → /platform ✅
+   └── Dynamic co-pilot links ✅
+4. Compare (dropdown) 🆕
+   └── Patient Scenarios → /comparisons/patient 🆕
+5. Evidence (dropdown) ✅
+6. Blog ✅
+7. Success Stories ✅
+8. Metrics (dropdown) ✅
+9. Contact ✅
+```
+
+---
+
+## 🔧 IMPLEMENTATION PLAN
+
+### **Phase 1: Add "Compare" Menu** (HIGH PRIORITY)
+
+**File**: `src/components/ui/Navbar.tsx`
+
+**Add new menu item after "Platform", before "Evidence"**:
+
+```tsx
+{
+  href: '/comparisons',
+  label: 'Compare',
+  icon: <GitCompare className="inline-block h-4 w-4" />, // or BarChart3, Scale
+  subLinks: [
+    { href: '/comparisons/patient', label: 'Patient Scenarios' },
+    // Future expansion:
+    // { href: '/comparisons/biotech', label: 'Biotech Scenarios' },
+    // { href: '/comparisons/clinical', label: 'Clinical Scenarios' },
+  ],
+},
+```
+
+**Icon Options**:
+- `GitCompare` (from lucide-react) - Compare/benchmark theme
+- `BarChart3` - Benchmark/analytics theme
+- `Scale` - Comparison/balance theme
+- `Zap` - Performance/power theme
+
+**Recommendation**: `GitCompare` or `BarChart3` for clear comparison meaning.
+
+---
+
+### **Phase 2: Create Comparisons Landing Page** (OPTIONAL)
+
+**Consideration**: Should `/comparisons` be a landing page or just route to `/comparisons/patient`?
+
+**Option A**: Direct link (simpler)
+- "Compare" → `/comparisons/patient` (no landing page)
+
+**Option B**: Landing page (more scalable)
+- "Compare" → `/comparisons` (landing page)
+- Lists available comparison scenarios
+- Links to `/comparisons/patient`, future scenarios
+
+**Recommendation**: **Option A** for now (direct link). Can add landing page later when more scenarios exist.
+
+---
+
+### **Phase 3: Verify All Links** (VERIFICATION)
+
+**Test these pages load correctly**:
+- ✅ `/products/oncology` - Agentic cascade, capabilities
+- ✅ `/products/r-d` - R&D capabilities
+- ✅ `/products/research` - Research page
+- ✅ `/comparisons/patient` - Comparison page with tabs
+- ✅ All engine pages (Oracle, Forge, Boltz, Command Center)
+- ✅ All platform co-pilot pages
+- ✅ All evidence pages
+
+---
+
+## 📊 DETAILED PAGE INVENTORY
+
+### **Product Pages** (Complete)
+
+| Page | Status | Features | Navbar Link |
+|------|--------|----------|-------------|
+| `/products/oncology` | ✅ Complete | Agentic cascade, 6 capabilities, continuous monitoring | ✅ Yes |
+| `/products/r-d` | ✅ Complete | Design challenges, IP monetization, capabilities | ✅ Yes |
+| `/products/research` | ✅ Exists | Research product page | ✅ Yes |
+| `/products/oracle` | ✅ Exists | Oracle engine page | ✅ Yes |
+| `/products/forge` | ✅ Exists | Forge engine page | ✅ Yes |
+| `/products/boltz` | ✅ Exists | Boltz engine page | ✅ Yes |
+| `/products/command-center` | ✅ Exists | Command Center page | ✅ Yes |
+
+### **Comparison Pages** (NEW)
+
+| Page | Status | Features | Navbar Link |
+|------|--------|----------|-------------|
+| `/comparisons/patient` | ✅ Complete | GPT vs CrisPRO, 2 tabs, thinking process demos | ❌ **MISSING** |
+
+### **Platform Pages** (Existing)
+
+| Page | Status | Features | Navbar Link |
+|------|--------|----------|-------------|
+| `/platform` | ✅ Exists | Co-pilot selection page | ✅ Yes (main link) |
+| `/platform/[coPilotSlug]` | ✅ Dynamic | Dynamic co-pilot detail pages | ✅ Yes (dropdown) |
+
+### **Evidence Pages** (Existing)
+
+| Page | Status | Navbar Link |
+|------|--------|-------------|
+| `/evidence` | ✅ Exists | ✅ Yes |
+| `/evidence/spe-fusion` | ✅ Exists | ✅ Yes |
+| `/evidence/data-lab` | ✅ Exists | ✅ Yes |
+| `/evidence/sae-intelligence` | ✅ Exists | ✅ Yes |
+| `/cohort` | ✅ Exists | ✅ Yes |
+
+---
+
+## 🎯 KEY FEATURES TO HIGHLIGHT
+
+### **Agentic Capabilities** (Oncology Page)
+
+**What's Built**:
+- Intelligence Cascade (8-agent pipeline)
+- Full-page cascade experience
+- Continuous monitoring dashboard
+- Real-time agent status visualization
+
+**Navbar Integration**: Accessible via Products → Oncology ✅
+
+### **Comparison Features** (Patient Comparison Page)
+
+**What's Built**:
+- GPT vs CrisPRO side-by-side comparison
+- Thinking process demos ("See How They Think")
+- Two scenarios: Toxicity, VUS Resolution
+- Real benchmark results with MOAT advantages
+
+**Navbar Integration**: ❌ **MISSING** - Needs "Compare" menu
+
+### **MOAT Capabilities** (Various Pages)
+
+**What's Showcased**:
+- Toxicity-Aware Nutrition (Oncology page, Comparison page)
+- Resistance Prediction (Oncology page)
+- Axis-Aware VUS Resolution (Comparison page)
+- SAE Explainability (Evidence pages)
+- Continuous Intelligence (Oncology page)
+
+**Navbar Integration**: 
+- Oncology capabilities → Products → Oncology ✅
+- VUS capabilities → Compare → Patient Scenarios (when added) ❌
+- SAE → Evidence → SAE Intelligence ✅
+
+---
+
+## 📝 MENU NAMING CONSIDERATIONS
+
+### **Current Menu Labels**:
+
+1. **"Products"** ✅ - Clear, standard
+2. **"Platform"** ✅ - Renamed from "In-Silico", clearer
+3. **"Evidence"** ✅ - Clear, scientific
+4. **"Success Stories"** - Could be "Use Cases" for consistency
+5. **"Compare"** 🆕 - Proposed new menu
+
+### **Alternative Names for "Compare"**:
+
+- "Compare" - Simple, direct
+- "Benchmarks" - More technical
+- "See the Difference" - More marketing-focused
+- "VS" - Too casual
+- "Comparisons" - Plural, more formal
+
+**Recommendation**: **"Compare"** - Simple, clear, professional.
+
+---
+
+## 🔍 USER FLOW ANALYSIS
+
+### **Current User Journey**:
+
+1. **Homepage** → Links to `/products/oncology`, `/products/r-d`, `/comparisons/patient`
+2. **Navbar** → Can access Products, but **cannot access Comparisons**
+3. **Disconnect**: Homepage promotes comparisons, but navbar doesn't support navigation
+
+### **Proposed User Journey**:
+
+1. **Homepage** → Links to products and comparisons ✅
+2. **Navbar** → Can access both Products and Compare ✅
+3. **Cohesive**: Navbar supports all homepage-promoted features
+
+---
+
+## ✅ ACTION ITEMS
+
+### **Immediate (HIGH PRIORITY)**
+
+1. [ ] **Add "Compare" dropdown menu to Navbar**
+   - Icon: `GitCompare` or `BarChart3`
+   - Link: `/comparisons/patient`
+   - Placement: After "Platform", before "Evidence"
+   - Label: "Compare" or "Benchmarks"
+
+2. [ ] **Test comparison page loads correctly**
+   - Verify `/comparisons/patient` renders
+   - Test tab switching (Toxicity ↔ VUS)
+   - Test "See How They Think" modals
+   - Verify GPT API integration works
+
+### **Verification (MEDIUM PRIORITY)**
+
+3. [ ] **Test all product page links**
+   - Verify `/products/oncology` loads with agentic cascade
+   - Verify `/products/r-d` loads with capabilities
+   - Verify `/products/research` loads correctly
+   - Test all engine pages
+
+4. [ ] **Test platform co-pilot links**
+   - Verify dynamic links from `coPilotDetailsData`
+   - Test co-pilot detail pages load
+
+### **Future Considerations (LOW PRIORITY)**
+
+5. [ ] **Consider comparisons landing page**
+   - If we add more comparison scenarios (biotech, clinical)
+   - Create `/comparisons` landing page
+   - List all available comparison types
+
+6. [ ] **Review menu ordering**
+   - Is current order optimal?
+   - Consider user journey from homepage
+   - Test on mobile devices
+
+---
+
+## 📊 SUMMARY
+
+### **Current State**:
+- **Total Nav Items**: 8
+- **Complete Product Pages**: 3 (Oncology, R&D, Research) ✅
+- **Comparison Pages**: 1 (Patient) - **MISSING from navbar** ❌
+- **Agentic Features**: Fully implemented ✅
+- **MOAT Capabilities**: Showcased across pages ✅
+
+### **Missing Critical Links**:
+1. ❌ `/comparisons/patient` - **HIGH PRIORITY**
+
+### **All Other Links**: ✅ Working
+
+### **Priority Fixes**:
+1. 🔴 **HIGH**: Add "Compare" menu with Patient Scenarios link
+2. 🟡 **MEDIUM**: Verify all product pages load correctly
+3. 🟢 **LOW**: Future expansion (more comparison scenarios)
+
+---
+
+## 🎯 FINAL NAVBAR STRUCTURE (PROPOSED)
+
+```
+1. About → /about ✅
+2. Products (dropdown) ✅
+   ├── Main Products: Oncology, R&D, Research ✅
+   └── AI Engines: Oracle, Forge, Boltz, Command Center ✅
+3. Platform (dropdown) → /platform ✅
+   └── Dynamic co-pilot links ✅
+4. Compare (dropdown) 🆕
+   └── Patient Scenarios → /comparisons/patient 🆕
+5. Evidence (dropdown) ✅
+6. Blog ✅
+7. Success Stories ✅
+8. Metrics (dropdown) ✅
+9. Contact ✅
+```
+
+**Total Nav Items**: 9 (was 8)
+
+---
+
+## 📚 RELATED DOCUMENTATION
+
+- **Comparison Page**: `.cursor/rules/patient-comparison-scaffold-summary.mdc`
+- **VUS Benchmark**: `.cursor/rules/MOAT/GPT-Benchmarks/VUS.mdc`
+- **MOAT Benchmarks**: `.cursor/rules/MOAT/moat-benchmarks.mdc`
+- **Oncology MOAT**: `.cursor/rules/Oncology-MOAT.md`
+- **Agentic Features**: Oncology page with Intelligence Cascade
+
+---
+
+**Last Updated**: 2025-01-15  
+**Status**: Ready for implementation

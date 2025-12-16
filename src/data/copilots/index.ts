@@ -1,7 +1,10 @@
 // Centralized co-pilot data exports
 import { CoPilotDetailContent } from '../../types/copilot-types';
 import { chemoData } from './chemo-data';
-// import { agenticEmrData } from './agentic-emr-data';
+import { agenticEmrData } from './agentic-emr-data';
+import { oracleIntelligenceData } from './oracle-intelligence-data';
+import { forgeIntelligenceData } from './forge-intelligence-data';
+import { scribeIntelligenceData } from './scribe-intelligence-data';
 import { crisprIntelligenceData } from './crispr-intelligence-data';
 import { clinicalTrialsData } from './clinical-trials';
 import { pathwayData } from './pathway-data';
@@ -10,7 +13,10 @@ import { toxicityData } from './toxicity-data';
 
 export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
   "chemo": chemoData,
-  // "agentic-emr": agenticEmrData,
+  "agentic-emr": agenticEmrData,
+  "oracle-intelligence": oracleIntelligenceData,
+  "forge-intelligence": forgeIntelligenceData,
+  "scribe-intelligence": scribeIntelligenceData,
   "crispr-intelligence": crisprIntelligenceData,
   "clinical-trials": clinicalTrialsData,
   "pathway": pathwayData,
@@ -19,7 +25,7 @@ export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
 };
 
 // Export individual co-pilot data for direct imports
-export { chemoData, crisprIntelligenceData, clinicalTrialsData, pathwayData, therapyFitData, toxicityData };
+export { chemoData, agenticEmrData, oracleIntelligenceData, forgeIntelligenceData, scribeIntelligenceData, crisprIntelligenceData, clinicalTrialsData, pathwayData, therapyFitData, toxicityData };
 
 // Export types
 export type { 

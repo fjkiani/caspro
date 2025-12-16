@@ -1,0 +1,695 @@
+# 🔍 HOMEPAGE CORE PRODUCTS AUDIT
+## What Are We Missing? Where Are Oracle, Forge, Boltz, Command Center?
+
+**Created:** 2024-12-19  
+**Status:** 🔴 CRITICAL FINDING - Core products not properly showcased  
+**Priority:** HIGH - Must fix before users understand what we actually sell
+
+---
+
+## ❌ THE PROBLEM: CORE PRODUCTS ARE INVISIBLE
+
+### Current Homepage Flow:
+
+```
+1. HeroSection
+   └─→ Mentions "$2.6B gamble" + SAE badges
+   └─→ NO mention of Oracle, Forge, Boltz, Command Center
+
+2. SAETransparencySection
+   └─→ Explains SAE explainability
+   └─→ NO mention of which product uses SAE (Oracle)
+
+3. VUSComparisonSection
+   └─→ Shows Oracle score
+   └─→ Mentions "Oracle" but doesn't explain WHAT Oracle IS
+
+4. TrustedBy
+   └─→ Partner logos
+   └─→ NO product mention
+
+5. MetricsShowcase
+   └─→ Shows metrics (95.7% AUROC, etc.)
+   └─→ NO mention of which products deliver these metrics
+
+6. MOATShowcase
+   └─→ Shows 6 MOAT capabilities
+   └─→ NO mention of which products power each MOAT
+   └─→ NO explanation of Oracle/Forge/Boltz/Command Center
+
+7. SaeIntelligenceTeaser
+   └─→ Explains SAE features
+   └─→ NO mention of Oracle (the product that uses SAE)
+
+8. DrugDevelopmentTransformation
+   └─→ Shows 3-stage pipeline
+   └─→ Mentions APIs but NOT which products provide them
+   └─→ NO clear "Oracle does Stage 1, Forge does Stage 2, etc."
+
+9. DiscoveryVsEngineering
+   └─→ Old way vs new way comparison
+   └─→ NO mention of products
+
+10. InteractiveDemoSection
+    └─→ Shows API demos
+    └─→ NO clear "These APIs come from Oracle, Forge, etc."
+
+11. ROICalculatorSection
+    └─→ Business impact calculator
+    └─→ NO mention of products
+
+12. CTASection
+    └─→ Call to action
+    └─→ Links to "/platform" but doesn't explain what products are there
+```
+
+### Critical Gap Analysis:
+
+| What We Show | What We DON'T Explain | Impact |
+|--------------|----------------------|--------|
+| ✅ "95.7% AUROC" | ❌ Which product delivers this? | **Users don't know Oracle exists** |
+| ✅ "3-stage pipeline" | ❌ Which product handles each stage? | **Users don't understand our architecture** |
+| ✅ "SAE explainability" | ❌ Which product has SAE? | **Users don't know Oracle = SAE** |
+| ✅ "VUS resolution" | ❌ Which product does this? | **Users don't know it's Oracle** |
+| ✅ "MOAT capabilities" | ❌ Which products power each MOAT? | **Users don't understand product integration** |
+| ✅ "Interactive demos" | ❌ Which product APIs are being demoed? | **Users can't connect demos to products** |
+
+---
+
+## 🔍 CURRENT HOMEPAGE COMPONENTS AUDIT
+
+### Active Components on Homepage:
+
+1. **HeroSection**
+   - Shows: Problem ($2.6B gamble) + SAE badges
+   - Missing: What Oracle is, what Forge is, what Boltz is, what Command Center is
+   - Gap: No product introduction
+
+2. **SAETransparencySection**
+   - Shows: SAE explainability benefits
+   - Missing: "Oracle uses SAE" connection
+   - Gap: SAE appears disconnected from products
+
+3. **VUSComparisonSection**
+   - Shows: Oracle score comparison
+   - Missing: Clear explanation "Oracle is our discriminative AI engine"
+   - Gap: Mentions "Oracle" but doesn't define it
+
+4. **MOATShowcase**
+   - Shows: 6 competitive advantages
+   - Missing: "Powered by Oracle/Forge/Boltz/Command Center" badges
+   - Gap: MOATs appear as standalone features, not product applications
+
+5. **DrugDevelopmentTransformation**
+   - Shows: 3-stage pipeline (Target Validation, Lead Engineering, Pre-Clinical)
+   - Missing: "Stage 1 = Oracle, Stage 2 = Forge, Stage 3 = Boltz"
+   - Gap: Pipeline doesn't map to products
+
+6. **InteractiveDemoSection**
+   - Shows: API demos
+   - Missing: Product attribution (which APIs come from which products)
+   - Gap: Demos don't explain product architecture
+
+---
+
+## 🚨 EXISTING COMPONENTS WE'RE NOT USING
+
+### Components That Exist But Are NOT on Homepage:
+
+1. **`DrugDevelopmentPlatform.tsx`** ✅ EXISTS
+   - **What it does:** Interactive showcase of all 4 engines (Oracle, Forge, Boltz, Command Center)
+   - **Features:**
+     - Engine selector with tabs
+     - Product descriptions for each engine
+     - Key metrics per product
+     - Links to product pages
+     - Business transformation impact
+   - **Status:** NOT imported on homepage
+   - **Location:** `src/components/homepage/DrugDevelopmentPlatform.tsx`
+
+2. **`AboutPreview.tsx`** ✅ EXISTS
+   - **What it does:** Shows platform overview with engine cards
+   - **Features:** Engine icons, descriptions, links
+   - **Status:** NOT imported on homepage
+   - **Location:** `src/components/homepage/AboutPreview.tsx`
+
+3. **`OracleShowcase.tsx`** ✅ EXISTS
+   - **What it does:** Oracle-specific showcase
+   - **Status:** NOT imported on homepage
+   - **Location:** `src/components/homepage/OracleShowcase.tsx`
+
+4. **`ForgeShowcase.tsx`** ✅ EXISTS
+   - **What it does:** Forge-specific showcase
+   - **Status:** NOT imported on homepage
+   - **Location:** `src/components/homepage/ForgeShowcase.tsx`
+
+---
+
+## 📊 WHAT VISITORS SEE vs WHAT THEY NEED TO SEE
+
+### What Visitors Currently See:
+
+```
+HOME PAGE VISITOR EXPERIENCE:
+1. "Eliminate the $2.6B gamble" ✅ (Problem clear)
+2. "SAE explainability" ✅ (Feature mentioned)
+3. "95.7% AUROC" ✅ (Metric shown)
+4. "MOAT capabilities" ✅ (Competitive advantages shown)
+5. "3-stage pipeline" ✅ (Process shown)
+
+BUT:
+❌ "What IS Oracle?" → NO ANSWER
+❌ "What IS Forge?" → NO ANSWER
+❌ "What IS Boltz?" → NO ANSWER
+❌ "What IS Command Center?" → NO ANSWER
+❌ "Which product gives me 95.7% AUROC?" → NO ANSWER
+❌ "Which products power the MOATs?" → NO ANSWER
+❌ "What's the difference between Oracle and Forge?" → NO ANSWER
+```
+
+### What Visitors NEED to See:
+
+```
+HOME PAGE VISITOR NEEDS:
+1. "We have 4 core AI engines:" ✅ NEED THIS
+   - Oracle (Discriminative AI) - 95.7% AUROC
+   - Forge (Generative AI) - 70% functional
+   - Boltz (Structural Validation) - 95.8% confidence
+   - Command Center (Orchestration) - Complete workflows
+
+2. "Oracle does X, Forge does Y, Boltz does Z, Command Center does W" ✅ NEED THIS
+
+3. "MOAT capabilities are applications of these products" ✅ NEED THIS
+
+4. "3-stage pipeline = Oracle → Forge → Boltz" ✅ NEED THIS
+
+5. "Interactive demos = Try Oracle APIs live" ✅ NEED THIS
+```
+
+---
+
+## 🎯 PRODUCT VISIBILITY GAP ANALYSIS
+
+### Oracle (Discriminative AI Engine):
+
+**Current Visibility:**
+- ❌ Not mentioned by name in HeroSection
+- ⚠️ Mentioned in VUSComparisonSection but not explained
+- ❌ Not connected to "95.7% AUROC" metric
+- ❌ Not connected to SAE explainability (it's Oracle that uses SAE!)
+- ❌ Not shown as Stage 1 of pipeline
+
+**What's Missing:**
+- Clear product introduction: "Oracle: Discriminative AI Engine"
+- Clear explanation: "Oracle predicts variant impact with 95.7% accuracy"
+- Clear connection: "Oracle uses SAE for explainability"
+- Clear mapping: "Stage 1 (Target Validation) = Oracle"
+
+**Where It Should Appear:**
+1. HeroSection - Product introduction
+2. After MetricsShowcase - "These metrics come from Oracle"
+3. In DrugDevelopmentTransformation - "Stage 1 = Oracle"
+4. In MOATShowcase - "S/P/E Framework powered by Oracle"
+
+---
+
+### Forge (Generative AI Engine):
+
+**Current Visibility:**
+- ❌ Not mentioned anywhere on homepage
+- ❌ Not connected to "Lead Engineering" stage
+- ❌ Not shown as generating therapeutics
+- ❌ Not explained as different from Oracle
+
+**What's Missing:**
+- Clear product introduction: "Forge: Generative AI Engine"
+- Clear explanation: "Forge designs therapeutics from first principles"
+- Clear mapping: "Stage 2 (Lead Engineering) = Forge"
+- Clear differentiation: "Oracle predicts, Forge generates"
+
+**Where It Should Appear:**
+1. HeroSection - Product introduction
+2. In DrugDevelopmentTransformation - "Stage 2 = Forge"
+3. After Oracle introduction - "Forge builds on Oracle predictions"
+4. In MOATShowcase - "Therapeutic design powered by Forge"
+
+---
+
+### Boltz (Structural Validation Engine):
+
+**Current Visibility:**
+- ❌ Not mentioned anywhere on homepage
+- ❌ Not connected to "Pre-Clinical Confirmation" stage
+- ❌ Not shown as validating structures
+- ❌ Not explained as 3D validation
+
+**What's Missing:**
+- Clear product introduction: "Boltz: Structural Validation Engine"
+- Clear explanation: "Boltz validates 3D structures with 95.8% confidence"
+- Clear mapping: "Stage 3 (Pre-Clinical Confirmation) = Boltz"
+- Clear value: "Validate therapeutics before synthesis"
+
+**Where It Should Appear:**
+1. HeroSection - Product introduction
+2. In DrugDevelopmentTransformation - "Stage 3 = Boltz"
+3. After Forge introduction - "Boltz validates Forge designs"
+4. Show 3D structure visualization
+
+---
+
+### Command Center (Orchestration Engine):
+
+**Current Visibility:**
+- ❌ Not mentioned anywhere on homepage
+- ❌ Not shown as orchestrating workflows
+- ❌ Not connected to MOAT capabilities
+- ❌ Not explained as the glue that connects everything
+
+**What's Missing:**
+- Clear product introduction: "Command Center: Orchestration Engine"
+- Clear explanation: "Command Center orchestrates Oracle + Forge + Boltz"
+- Clear mapping: "Command Center powers MOAT capabilities"
+- Clear value: "Complete workflows with audit trails"
+
+**Where It Should Appear:**
+1. HeroSection - Product introduction
+2. After other products - "Command Center orchestrates everything"
+3. In MOATShowcase - "Command Center powers orchestration"
+4. Show workflow visualization
+
+---
+
+## 🏗️ PROPOSED SOLUTION: ADD PRODUCT SHOWCASE SECTION
+
+### Option 1: Use Existing `DrugDevelopmentPlatform` Component
+
+**Component:** `src/components/homepage/DrugDevelopmentPlatform.tsx` (243 lines)
+
+**What It Includes:**
+- ✅ All 4 engines with descriptions
+- ✅ Interactive engine selector
+- ✅ Key metrics per product
+- ✅ Links to product pages
+- ✅ Business transformation impact
+- ✅ Product-specific colors and icons
+
+**Placement:** After MetricsShowcase, before MOATShowcase
+
+**Why This Works:**
+- Already built and ready to use
+- Shows all 4 products clearly
+- Interactive and engaging
+- Links to product pages
+- Shows business impact
+
+**Current Status:** Component exists but NOT imported on homepage
+
+---
+
+### Option 2: Create New "Core Products" Section
+
+**Structure:**
+```
+┌─────────────────────────────────────────────────────────┐
+│  CORE AI ENGINES SECTION                                │
+│  "Four AI Engines Powering Drug Development"            │
+│                                                          │
+│  ┌──────────┬──────────┬──────────┬──────────────┐     │
+│  │ Oracle   │ Forge    │ Boltz    │ Command      │     │
+│  │          │          │          │ Center       │     │
+│  │ Discrimin│ Generative│ Structural│ Orchestration│     │
+│  │          │          │          │              │     │
+│  │ 95.7%    │ 70%      │ 95.8%    │ Complete     │     │
+│  │ AUROC    │ Functional│ Confidence│ Workflows    │     │
+│  │          │          │          │              │     │
+│  │ [Explore]│ [Explore]│ [Explore]│ [Explore]    │     │
+│  └──────────┴──────────┴──────────┴──────────────┘     │
+│                                                          │
+│  "How They Work Together:"                              │
+│  Oracle (Predict) → Forge (Design) → Boltz (Validate)  │
+│  Command Center (Orchestrate Everything)                │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📋 RECOMMENDED HOMEPAGE RESTRUCTURE
+
+### Current Homepage Order:
+
+```
+1. HeroSection
+2. SAETransparencySection
+3. VUSComparisonSection
+4. TrustedBy
+5. MetricsShowcase
+6. MOATShowcase
+7. SaeIntelligenceTeaser
+8. DrugDevelopmentTransformation
+9. DiscoveryVsEngineering
+10. InteractiveDemoSection
+11. ROICalculatorSection
+12. CTASection
+```
+
+### Proposed Homepage Order:
+
+```
+1. HeroSection
+   └─→ Add: "Powered by 4 AI Engines: Oracle, Forge, Boltz, Command Center"
+
+2. SAETransparencySection
+   └─→ Add: "Oracle uses SAE for explainability"
+
+3. VUSComparisonSection
+   └─→ Add: "Oracle: Discriminative AI Engine" subtitle
+
+4. TrustedBy
+
+5. MetricsShowcase
+   └─→ Add product attribution: "Oracle: 95.7% AUROC"
+
+6. **CORE PRODUCTS SHOWCASE** ⚠️ NEW SECTION
+   └─→ Import DrugDevelopmentPlatform component
+   └─→ Shows all 4 engines with interactive selector
+   └─→ Explains what each product does
+   └─→ Links to product pages
+
+7. MOATShowcase
+   └─→ Add: "Powered by Oracle/Forge/Boltz/Command Center" badges
+
+8. SaeIntelligenceTeaser
+   └─→ Add: "Oracle's SAE Intelligence" connection
+
+9. DrugDevelopmentTransformation
+   └─→ Add: "Stage 1 = Oracle, Stage 2 = Forge, Stage 3 = Boltz"
+   └─→ Add product icons to each stage
+
+10. DiscoveryVsEngineering
+    └─→ Add: "Oracle + Forge = Engineering approach"
+
+11. InteractiveDemoSection
+    └─→ Add: Product attribution for each demo
+    └─→ "Try Oracle APIs" vs "Try Forge APIs"
+
+12. ROICalculatorSection
+
+13. CTASection
+```
+
+---
+
+## 🔗 PRODUCT-CAPABILITY MAPPING ON HOMEPAGE
+
+### How to Connect Products to Current Homepage Sections:
+
+#### 1. HeroSection Enhancements:
+
+**Current:**
+```
+"Eliminate the $2.6B drug development gamble"
++ SAE badges
+```
+
+**Enhanced:**
+```
+"Eliminate the $2.6B drug development gamble"
++ "Powered by 4 AI Engines:"
+  - Oracle (Predict) | Forge (Design) | Boltz (Validate) | Command Center (Orchestrate)
++ SAE badges with "Oracle's SAE Intelligence" label
+```
+
+#### 2. MetricsShowcase Enhancements:
+
+**Current:**
+```
+Metric Card: "95.7% ClinVar AUROC"
+```
+
+**Enhanced:**
+```
+Metric Card: "95.7% ClinVar AUROC"
++ Badge: "Oracle"
++ Link: "Explore Oracle →"
+```
+
+#### 3. DrugDevelopmentTransformation Enhancements:
+
+**Current:**
+```
+Stage 1: Target Validation
+- API: /predict_variant_impact
+```
+
+**Enhanced:**
+```
+Stage 1: Target Validation
+- Product: Oracle (Discriminative AI)
+- API: /predict_variant_impact
+- Badge: [Oracle Logo] "Oracle predicts variant impact"
+- Link: "Explore Oracle →"
+```
+
+#### 4. MOATShowcase Enhancements:
+
+**Current:**
+```
+S/P/E Framework MOAT Card
+- Description, metrics, link
+```
+
+**Enhanced:**
+```
+S/P/E Framework MOAT Card
+- Description, metrics, link
+- Powered By: [Oracle Badge] [Command Center Badge]
+- "Oracle provides Sequence + Pathway analysis"
+- "Command Center orchestrates S/P/E fusion"
+```
+
+#### 5. InteractiveDemoSection Enhancements:
+
+**Current:**
+```
+Demo: Variant Impact Prediction
+- Shows API call
+```
+
+**Enhanced:**
+```
+Demo: Variant Impact Prediction
+- Product: Oracle
+- API: /predict_variant_impact
+- Shows API call with Oracle branding
+- Link: "Explore Oracle Product Page →"
+```
+
+---
+
+## 🎯 SPECIFIC FIXES NEEDED
+
+### Fix 1: Add Product Introduction Section
+
+**Component to Use:** `DrugDevelopmentPlatform.tsx` (already exists!)
+
+**Placement:** After MetricsShowcase, before MOATShowcase
+
+**Why:** Visitors need to understand the 4 core products before seeing MOAT capabilities (which are applications of these products)
+
+**Content:**
+- "Four AI Engines Powering Drug Development"
+- Interactive showcase of Oracle, Forge, Boltz, Command Center
+- Clear explanations of what each does
+- Links to product pages
+
+---
+
+### Fix 2: Add Product Attribution Throughout
+
+**Where to Add:**
+1. MetricsShowcase - Add product badges to each metric
+2. DrugDevelopmentTransformation - Add product icons to each stage
+3. MOATShowcase - Add "Powered By" badges to each MOAT
+4. InteractiveDemoSection - Add product labels to each demo
+5. VUSComparisonSection - Add "Oracle: Discriminative AI Engine" subtitle
+
+**How:**
+- Small product badges/icons
+- "Powered by Oracle" labels
+- Links to product pages
+
+---
+
+### Fix 3: Connect SAE to Oracle
+
+**Current Problem:** SAE is shown as standalone feature
+
+**Fix:**
+- Add "Oracle's SAE Intelligence" labels
+- Connect SAETransparencySection to Oracle product
+- Add link: "Explore Oracle's SAE Features →"
+
+---
+
+### Fix 4: Map Pipeline to Products
+
+**Current Problem:** 3-stage pipeline doesn't map to products
+
+**Fix:**
+- Stage 1 Card: Add "Oracle" badge + "Discriminative AI Engine"
+- Stage 2 Card: Add "Forge" badge + "Generative AI Engine"
+- Stage 3 Card: Add "Boltz" badge + "Structural Validation Engine"
+- Add workflow arrow showing Oracle → Forge → Boltz
+- Add "Command Center orchestrates all stages"
+
+---
+
+## 📊 BEFORE vs AFTER COMPARISON
+
+### BEFORE (Current State):
+
+```
+Visitor Experience:
+1. Sees "$2.6B gamble" problem ✅
+2. Sees "95.7% AUROC" metric ✅
+3. Sees "MOAT capabilities" ✅
+4. Sees "3-stage pipeline" ✅
+5. Sees "Interactive demos" ✅
+
+But:
+❌ Doesn't know what Oracle is
+❌ Doesn't know what Forge is
+❌ Doesn't know what Boltz is
+❌ Doesn't know what Command Center is
+❌ Doesn't understand which product does what
+❌ Can't connect metrics to products
+❌ Can't connect MOATs to products
+❌ Can't connect demos to products
+
+Result: Visitor is confused, doesn't understand our product architecture
+```
+
+### AFTER (With Fixes):
+
+```
+Visitor Experience:
+1. Sees "$2.6B gamble" problem ✅
+2. Sees "4 AI Engines: Oracle, Forge, Boltz, Command Center" ✅ NEW
+3. Understands: "Oracle predicts, Forge designs, Boltz validates" ✅ NEW
+4. Sees "95.7% AUROC" → Knows "This is Oracle" ✅ NEW
+5. Sees "MOAT capabilities" → Knows "These use Oracle/Forge/Boltz/Command Center" ✅ NEW
+6. Sees "3-stage pipeline" → Knows "Oracle → Forge → Boltz" ✅ NEW
+7. Sees "Interactive demos" → Knows "These are Oracle/Forge APIs" ✅ NEW
+
+Result: Visitor understands our product architecture and can navigate to specific products
+```
+
+---
+
+## ✅ RECOMMENDED ACTION PLAN
+
+### Immediate Fix (30 minutes):
+
+1. **Import DrugDevelopmentPlatform component**
+   - File: `src/app/page.tsx`
+   - Add: `import DrugDevelopmentPlatform from '@/components/homepage/DrugDevelopmentPlatform';`
+   - Place after MetricsShowcase, before MOATShowcase
+
+2. **Add product attribution to MetricsShowcase**
+   - Add product badges: "Oracle: 95.7% AUROC"
+   - Add links to product pages
+
+3. **Add product badges to DrugDevelopmentTransformation**
+   - Stage 1: Oracle badge
+   - Stage 2: Forge badge
+   - Stage 3: Boltz badge
+
+### Short-Term Fix (2 hours):
+
+4. **Enhance MOATShowcase with product badges**
+   - Add "Powered By" section to each MOAT card
+   - Show which products power each MOAT
+
+5. **Connect SAE to Oracle**
+   - Update SAETransparencySection to mention "Oracle's SAE Intelligence"
+   - Add link to Oracle product page
+
+6. **Add product labels to InteractiveDemoSection**
+   - Label each demo with product name
+   - "Oracle Demo: Variant Impact Prediction"
+
+### Long-Term Enhancement (4 hours):
+
+7. **Create dedicated "Core Products" section**
+   - More detailed than DrugDevelopmentPlatform
+   - Interactive product selector
+   - Deep-dive into each product
+   - Show how products work together
+
+---
+
+## 🔍 KEY FINDINGS SUMMARY
+
+### Critical Gaps Identified:
+
+1. **❌ Core products not introduced** - Visitors don't know Oracle, Forge, Boltz, Command Center exist
+2. **❌ Metrics not attributed** - "95.7% AUROC" doesn't say "Oracle"
+3. **❌ Pipeline not mapped** - 3-stage pipeline doesn't show which products handle each stage
+4. **❌ MOATs disconnected** - Competitive advantages don't show which products power them
+5. **❌ SAE disconnected** - SAE explainability doesn't say "Oracle uses SAE"
+6. **❌ Demos not attributed** - Interactive demos don't show which product APIs are being demoed
+
+### Existing Components We're Not Using:
+
+1. **✅ `DrugDevelopmentPlatform.tsx`** - Perfect for homepage, shows all 4 products, NOT imported
+2. **✅ `AboutPreview.tsx`** - Shows platform overview, NOT imported
+3. **✅ Product adapters exist** - Platform data ready to use
+
+### Solution:
+
+1. **Import DrugDevelopmentPlatform** - Quick win, already built
+2. **Add product attribution throughout** - Connect existing sections to products
+3. **Create product mapping** - Show how products connect to capabilities
+
+---
+
+## 📝 RECOMMENDATION
+
+**IMMEDIATE ACTION:**
+1. Import `DrugDevelopmentPlatform` component to homepage
+2. Place it after MetricsShowcase, before MOATShowcase
+3. This single change introduces all 4 products clearly
+
+**WHY THIS MATTERS:**
+- Visitors currently don't understand our product architecture
+- We show capabilities but not the products that deliver them
+- MOATs appear disconnected from core products
+- Users can't navigate to product pages because they don't know products exist
+
+**EXPECTED IMPACT:**
+- ✅ Visitors understand: "We have 4 AI engines"
+- ✅ Visitors can navigate: "I want to learn about Oracle"
+- ✅ Visitors can connect: "MOATs are applications of these products"
+- ✅ Clear product architecture understanding
+
+---
+
+**STATUS:** 🔴 **CRITICAL GAP IDENTIFIED** - Core products are invisible on homepage. We show everything EXCEPT what our actual products are.
+
+---
+
+## ✅ SOLUTION PLAN
+
+**See:** `.cursor/rules/homepage-core-products-audit-solution-plan.mdc`
+
+**Complete solution plan created** with:
+1. ✅ Product-level organization (Oncology, Drug Discovery, Research)
+2. ✅ Core Products Showcase integration plan
+3. ✅ Product attribution throughout homepage
+4. ✅ Use case mapping (which products for which customers)
+5. ✅ Implementation roadmap
+
+**Key Insight:** 
+- `PlatformCapabilitiesShowcase` is ALREADY organized by product-level use cases! ✅
+- Just needs product attribution ("Powered By" badges)
+- Need to add Core Products Showcase section to introduce Oracle, Forge, Boltz, Command Center clearly

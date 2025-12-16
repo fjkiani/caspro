@@ -1,0 +1,697 @@
+# Homepage Primary Focus Improvement Plan - Detailed Component Specification
+
+## Current State Analysis
+
+### What We're Currently Showing
+
+**Hero Section (`src/components/sections/HeroSection.tsx`):**
+- Rotating words: "Precision Oncology" → "Drug Discovery" → "Curing Cancer" → "Therapeutic Engineering"
+- Rotating sentences about drug development
+- SAE badges (technical)
+- 3 CTA buttons: "I am treating patients", "I am designing a drug", "I am a patient"
+- **MISSING**: Clear statement of primary focus as "AI-powered precision oncology and therapeutic development platform"
+
+**Current Page Structure (`src/app/page.tsx`):**
+1. HeroSection
+2. PlatformCapabilitiesShowcase
+3. TrustedBy
+4. MetricsShowcase
+5. InteractiveDemoSection
+6. ROICalculatorSection
+7. CTASection
+
+**Gap Analysis:**
+- ❌ No explicit statement: "CrisPRO.ai is an AI-powered precision oncology and therapeutic development platform"
+- ❌ Doesn't clearly communicate "transforms drug development from high-risk discovery into deterministic engineering"
+- ❌ Doesn't explicitly mention "continuous agentic intelligence"
+- ❌ Doesn't clearly state who we serve: "biotech companies, pharmaceutical researchers, and clinical oncologists"
+
+---
+
+## Detailed Component Implementation Plan
+
+### Phase 1: Hero Section Enhancement (HIGH PRIORITY)
+
+#### 1.1 Modify: `src/data/homepage/hero-drug-development.ts`
+
+**Add new fields to `HERO_DRUG_DEVELOPMENT_CONFIG`:**
+
+```typescript
+export const HERO_DRUG_DEVELOPMENT_CONFIG = {
+  // NEW: Primary Focus Statement
+  primaryFocus: {
+    badge: "AI-Powered Precision Oncology & Therapeutic Development Platform",
+    shortDescription: "Transform drug development from high-risk discovery into deterministic engineering through continuous agentic intelligence.",
+    fullDescription: "We enable biotech companies, pharmaceutical researchers, and clinical oncologists to make evidence-backed treatment decisions using validated AI models for variant interpretation, therapeutic design, and real-time patient monitoring."
+  },
+  
+  // MODIFY: Enhance subtitle to include focus
+  crisis: {
+    // ... existing fields ...
+    subtitle: "Transform drug development from high-risk discovery into deterministic engineering. Solve the VUS. Design the Cure. Validate in Silico.",
+    // Add primary focus to captivating sentences
+    captivatingSentences: [
+      "AI-powered precision oncology platform that transforms drug development into deterministic engineering.",
+      "Transform $2.6B drug failures into mathematical certainty through continuous agentic intelligence.",
+      // ... existing sentences ...
+    ]
+  },
+  
+  // NEW: Audience indicators
+  audiences: [
+    {
+      id: 'biotech',
+      label: 'For Biotech Companies',
+      description: 'De-risk R&D pipelines with validated AI',
+      icon: '🧬',
+      color: 'bg-blue-100 text-blue-700 border-blue-300'
+    },
+    {
+      id: 'pharma',
+      label: 'For Pharma Researchers',
+      description: 'Accelerate discovery from years to hours',
+      icon: '🔬',
+      color: 'bg-purple-100 text-purple-700 border-purple-300'
+    },
+    {
+      id: 'oncologists',
+      label: 'For Clinical Oncologists',
+      description: 'Make evidence-backed treatment decisions',
+      icon: '🏥',
+      color: 'bg-green-100 text-green-700 border-green-300'
+    }
+  ],
+  
+  // ... rest of existing config ...
+};
+```
+
+**Files Modified:**
+- `src/data/homepage/hero-drug-development.ts` (ADD primaryFocus, audiences)
+
+---
+
+#### 1.2 Modify: `src/components/sections/HeroSection.tsx`
+
+**Changes at specific lines:**
+
+**Line ~58-62 (After config declaration):**
+```typescript
+const HeroSection = () => {
+  const config = HERO_DRUG_DEVELOPMENT_CONFIG;
+  const rotatingWords = config.crisis.rotatingWords || [];
+  const captivatingSentences = config.crisis.captivatingSentences || [];
+  const primaryFocus = config.primaryFocus; // NEW
+  const audiences = config.audiences || []; // NEW
+```
+
+**Line ~80-85 (Content Section Start):**
+```typescript
+<motion.div className="text-center lg:text-left mb-8 lg:mb-0">
+  {/* NEW: Primary Focus Badge - Add above headline */}
+  {primaryFocus && (
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 via-purple-100 to-indigo-100 text-slate-800 rounded-full text-sm font-bold mb-6 border border-blue-300"
+    >
+      <span className="text-lg">🎯</span>
+      {primaryFocus.badge}
+    </motion.div>
+  )}
+  
+  {/* Existing headline code continues... */}
+```
+
+**Line ~112-124 (After headline, before subtitle):**
+```typescript
+{/* NEW: Enhanced subtitle with primary focus */}
+<motion.p 
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.4 }}
+  className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 dark:text-slate-200 mb-6 sm:mb-7 md:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
+>
+  {primaryFocus?.shortDescription || config.crisis.subtitle}
+</motion.p>
+
+{/* NEW: Audience Indicators - Add after subtitle */}
+{audiences.length > 0 && (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8, delay: 0.6 }}
+    className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6"
+  >
+    {audiences.map((audience, idx) => (
+      <div
+        key={audience.id}
+        className={`px-4 py-2 rounded-lg text-sm font-semibold border-2 ${audience.color}`}
+      >
+        <span className="mr-2">{audience.icon}</span>
+        <span className="font-bold">{audience.label}</span>
+        <span className="ml-2 text-xs opacity-75">• {audience.description}</span>
+      </div>
+    ))}
+  </motion.div>
+)}
+```
+
+**Files Modified:**
+- `src/components/sections/HeroSection.tsx` (ADD primary focus badge, enhance subtitle, ADD audience indicators)
+
+---
+
+#### 1.3 Create: `src/components/landing/PrimaryFocusBadge.tsx` (OPTIONAL - if we want reusable component)
+
+```typescript
+'use client';
+
+import { motion } from 'framer-motion';
+
+interface PrimaryFocusBadgeProps {
+  text: string;
+  icon?: string;
+  className?: string;
+}
+
+export default function PrimaryFocusBadge({ 
+  text, 
+  icon = '🎯',
+  className = '' 
+}: PrimaryFocusBadgeProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 via-purple-100 to-indigo-100 text-slate-800 rounded-full text-sm font-bold border border-blue-300 ${className}`}
+    >
+      <span className="text-lg">{icon}</span>
+      {text}
+    </motion.div>
+  );
+}
+```
+
+**Files Created:**
+- `src/components/landing/PrimaryFocusBadge.tsx` (OPTIONAL - reusable component)
+
+---
+
+### Phase 2: Add "What We Do" Section (NEW)
+
+#### 2.1 Create: `src/data/homepage/what-we-do-content.ts`
+
+```typescript
+export interface WhatWeDoItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  gradient: string;
+  capabilities: string[];
+  link: string;
+  metrics?: string[];
+}
+
+export const WHAT_WE_DO_CONTENT: WhatWeDoItem[] = [
+  {
+    id: 'precision-oncology',
+    title: 'Precision Oncology',
+    description: 'Complete clinical intelligence platform for evidence-backed treatment decisions',
+    icon: '🏥',
+    gradient: 'from-purple-500 to-indigo-600',
+    capabilities: [
+      'Variant interpretation with 95.7% AUROC',
+      'Clinical decision support with transparent reasoning',
+      'Continuous patient monitoring (CA-125, ctDNA)',
+      'Resistance detection 3-6 weeks early'
+    ],
+    link: '/products/oncology',
+    metrics: ['73% VUS Resolution', '96.6% Trial Match', 'Same-Day Decisions']
+  },
+  {
+    id: 'therapeutic-development',
+    title: 'Therapeutic Development',
+    description: 'AI-powered engines for target validation, lead design, and in-silico validation',
+    icon: '🧬',
+    gradient: 'from-blue-500 to-cyan-600',
+    capabilities: [
+      'Target validation: 18 months → 1 week (72x faster)',
+      'Therapeutic design with synthetic lethality detection',
+      'Structural validation with AlphaFold 3 integration',
+      'IND package generation with IP monetization'
+    ],
+    link: '/products/r-d',
+    metrics: ['99.8% Cost Reduction', '6x Success Rate', 'Validated AI']
+  },
+  {
+    id: 'ai-foundation',
+    title: 'AI Foundation',
+    description: 'Biological foundation models enabling continuous agentic intelligence',
+    icon: '🤖',
+    gradient: 'from-teal-500 to-emerald-600',
+    capabilities: [
+      'Evo2 foundation model (40B parameters, 1M context)',
+      'Continuous agentic intelligence (never stops working)',
+      'Evidence-backed predictions with transparent reasoning',
+      'Zero-shot capability (no task-specific training)'
+    ],
+    link: '/platform',
+    metrics: ['95.7% AUROC', '32,768 SAE Features', 'Zero-Shot']
+  }
+];
+```
+
+**Files Created:**
+- `src/data/homepage/what-we-do-content.ts`
+
+---
+
+#### 2.2 Create: `src/components/landing/WhatWeDoSection.tsx`
+
+```typescript
+'use client';
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { WHAT_WE_DO_CONTENT } from '@/data/homepage/what-we-do-content';
+
+export default function WhatWeDoSection() {
+  return (
+    <section className="py-16 sm:py-20 bg-gradient-to-b from-white to-slate-50">
+      <div className="container mx-auto px-4 sm:px-6">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+            What <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">CrisPRO.ai</span> Does
+          </h2>
+          <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto mb-4">
+            CrisPRO.ai is an AI-powered precision oncology and therapeutic development platform that transforms drug development from high-risk discovery into deterministic engineering through continuous agentic intelligence.
+          </p>
+          <p className="text-base text-slate-600 max-w-3xl mx-auto">
+            We enable biotech companies, pharmaceutical researchers, and clinical oncologists to make evidence-backed treatment decisions using validated AI models.
+          </p>
+        </motion.div>
+
+        {/* Three-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {WHAT_WE_DO_CONTENT.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="group"
+            >
+              <Link href={item.link} className="block h-full">
+                <div className="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-blue-400 shadow-lg hover:shadow-xl transition-all h-full flex flex-col">
+                  {/* Icon */}
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-6 text-3xl group-hover:scale-110 transition-transform`}>
+                    {item.icon}
+                  </div>
+                  
+                  {/* Title & Description */}
+                  <h3 className={`text-2xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r ${item.gradient}`}>
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-600 mb-6 flex-grow">
+                    {item.description}
+                  </p>
+                  
+                  {/* Capabilities List */}
+                  <ul className="space-y-2 mb-6">
+                    {item.capabilities.map((capability, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
+                        <span className="text-blue-600 mt-1">•</span>
+                        <span>{capability}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  {/* Metrics */}
+                  {item.metrics && (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {item.metrics.map((metric, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-semibold"
+                        >
+                          {metric}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  
+                  {/* Link */}
+                  <div className="flex items-center gap-2 text-blue-600 font-semibold mt-auto">
+                    <span>Learn more</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+**Files Created:**
+- `src/components/landing/WhatWeDoSection.tsx`
+
+---
+
+#### 2.3 Modify: `src/app/page.tsx`
+
+**Add new section after HeroSection:**
+
+```typescript
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-white w-full overflow-x-hidden">
+      <HeroSection />
+      
+      {/* NEW: What We Do Section */}
+      <WhatWeDoSection />
+      
+      <PlatformCapabilitiesShowcase />
+      {/* ... rest of sections ... */}
+    </main>
+  );
+}
+```
+
+**Files Modified:**
+- `src/app/page.tsx` (ADD import and section)
+
+---
+
+### Phase 3: Add "How It Works" Section (NEW)
+
+#### 3.1 Create: `src/data/homepage/how-it-works-content.ts`
+
+```typescript
+export interface HowItWorksStep {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+  details: string[];
+}
+
+export const HOW_IT_WORKS_STEPS: HowItWorksStep[] = [
+  {
+    id: 'upload',
+    title: 'Upload Once',
+    description: 'Genomic reports, clinical notes, lab results, imaging data',
+    icon: '📤',
+    color: 'blue',
+    details: [
+      'NGS reports (VCF, MAF, PDF)',
+      'Clinical notes and pathology reports',
+      'Lab results and imaging data',
+      'Complete patient context'
+    ]
+  },
+  {
+    id: 'orchestrate',
+    title: 'Agents Orchestrate',
+    description: '8-agent pipeline extracts, analyzes, and generates insights automatically',
+    icon: '🤖',
+    color: 'purple',
+    details: [
+      'Data Extraction Agent: Parses and validates data',
+      'Biomarker Agent: Calculates TMB, MSI, HRD',
+      'Synthetic Lethality Agent: Evo2-powered essentiality scoring',
+      'Drug Ranking Agent: S/P/E framework (96.6% accuracy)',
+      'Trial Matching Agent: Mechanism-based matching',
+      'Nutrition Agent: Toxicity-aware recommendations',
+      'Resistance Agent: Early detection predictions',
+      'Monitoring Agent: Continuous intelligence'
+    ]
+  },
+  {
+    id: 'track',
+    title: 'Track Forever',
+    description: 'Continuous monitoring never stops—alerts, updates, new insights',
+    icon: '♾️',
+    color: 'green',
+    details: [
+      'CA-125 kinetics tracking (plateau detection)',
+      'ctDNA mutation monitoring (KRAS G12D at 0.8% VAF)',
+      'New trial auto-matching (instant notifications)',
+      'Resistance alerts 3-6 weeks before imaging',
+      'Drug rankings updated as research emerges',
+      'Real-time dashboard with actionable insights'
+    ]
+  }
+];
+```
+
+**Files Created:**
+- `src/data/homepage/how-it-works-content.ts`
+
+---
+
+#### 3.2 Create: `src/components/landing/HowItWorksSection.tsx`
+
+```typescript
+'use client';
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import { HOW_IT_WORKS_STEPS } from '@/data/homepage/how-it-works-content';
+
+const colorClasses = {
+  blue: {
+    bg: 'bg-blue-100',
+    text: 'text-blue-700',
+    border: 'border-blue-300',
+    gradient: 'from-blue-500 to-cyan-600'
+  },
+  purple: {
+    bg: 'bg-purple-100',
+    text: 'text-purple-700',
+    border: 'border-purple-300',
+    gradient: 'from-purple-500 to-indigo-600'
+  },
+  green: {
+    bg: 'bg-green-100',
+    text: 'text-green-700',
+    border: 'border-green-300',
+    gradient: 'from-green-500 to-emerald-600'
+  }
+};
+
+export default function HowItWorksSection() {
+  return (
+    <section className="py-16 sm:py-20 bg-gradient-to-b from-slate-50 to-white">
+      <div className="container mx-auto px-4 sm:px-6">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+            Transform Drug Development with <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Continuous Agentic Intelligence</span>
+          </h2>
+          <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto">
+            From upload to Month 18+, our agents never stop working—tracking, analyzing, and alerting you to critical changes automatically.
+          </p>
+        </motion.div>
+
+        {/* Steps Flow */}
+        <div className="max-w-6xl mx-auto">
+          {/* Visual Flow: Upload → Orchestrate → Track */}
+          <div className="flex flex-col md:flex-row items-center gap-6 mb-12">
+            {HOW_IT_WORKS_STEPS.map((step, index) => {
+              const colors = colorClasses[step.color as keyof typeof colorClasses];
+              const isLast = index === HOW_IT_WORKS_STEPS.length - 1;
+              
+              return (
+                <React.Fragment key={step.id}>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                    whileHover={{ y: -8, scale: 1.05 }}
+                    className="flex-1 w-full"
+                  >
+                    <div className={`bg-white rounded-2xl p-8 border-2 ${colors.border} shadow-lg hover:shadow-xl transition-all h-full`}>
+                      {/* Icon */}
+                      <div className={`w-16 h-16 rounded-2xl ${colors.bg} flex items-center justify-center mb-6 text-3xl`}>
+                        {step.icon}
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className={`text-2xl font-bold mb-3 ${colors.text}`}>
+                        {step.title}
+                      </h3>
+                      
+                      {/* Description */}
+                      <p className="text-slate-600 mb-6">
+                        {step.description}
+                      </p>
+                      
+                      {/* Details */}
+                      <ul className="space-y-2">
+                        {step.details.map((detail, idx) => (
+                          <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
+                            <span className={`${colors.text} mt-1`}>•</span>
+                            <span>{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Arrow between steps */}
+                  {!isLast && (
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
+                      className="hidden md:block"
+                    >
+                      <ArrowRight className="w-8 h-8 text-slate-400" />
+                    </motion.div>
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+**Files Created:**
+- `src/components/landing/HowItWorksSection.tsx`
+
+---
+
+#### 3.3 Modify: `src/app/page.tsx`
+
+**Add new section after MetricsShowcase:**
+
+```typescript
+<MetricsShowcase />
+
+{/* NEW: How It Works Section */}
+<HowItWorksSection />
+
+<InteractiveDemoSection />
+```
+
+**Files Modified:**
+- `src/app/page.tsx` (ADD import and section)
+
+---
+
+### Phase 4: Enhance Existing Sections
+
+#### 4.1 Modify: `src/components/landing/PlatformCapabilitiesShowcase.tsx`
+
+**Line ~48-61 (Header Section):**
+```typescript
+{/* MODIFY: Enhanced header with transformation focus */}
+<motion.div className="text-center mb-12">
+  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+    How We <span className="text-blue-600">Transform Drug Development</span>
+  </h2>
+  <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto mb-4">
+    Through continuous agentic intelligence, we enable complete end-to-end platforms that transform genomic data into actionable therapeutic intelligence.
+  </p>
+  <p className="text-base text-slate-600 max-w-3xl mx-auto">
+    Three integrated products: Precision Oncology for clinical decision support, R&D for therapeutic design, and Research for discovery acceleration.
+  </p>
+</motion.div>
+```
+
+**Files Modified:**
+- `src/components/landing/PlatformCapabilitiesShowcase.tsx` (MODIFY header section)
+
+---
+
+## Summary: Files to Create/Modify
+
+### Files to CREATE (New Components):
+
+1. `src/components/landing/PrimaryFocusBadge.tsx` (OPTIONAL - reusable badge)
+2. `src/components/landing/WhatWeDoSection.tsx` (NEW - three-column section)
+3. `src/components/landing/HowItWorksSection.tsx` (NEW - step-by-step flow)
+
+### Files to CREATE (New Data):
+
+4. `src/data/homepage/what-we-do-content.ts` (What We Do section data)
+5. `src/data/homepage/how-it-works-content.ts` (How It Works section data)
+
+### Files to MODIFY:
+
+6. `src/data/homepage/hero-drug-development.ts` (ADD primaryFocus, audiences)
+7. `src/components/sections/HeroSection.tsx` (ADD primary focus badge, enhance subtitle, ADD audience indicators)
+8. `src/app/page.tsx` (ADD WhatWeDoSection, ADD HowItWorksSection)
+9. `src/components/landing/PlatformCapabilitiesShowcase.tsx` (MODIFY header to include transformation focus)
+
+---
+
+## Implementation Order
+
+### Step 1: Hero Enhancement (30 min)
+1. Modify `hero-drug-development.ts` (add primaryFocus, audiences)
+2. Modify `HeroSection.tsx` (add badge, enhance subtitle, add audience indicators)
+3. Test hero section
+
+### Step 2: What We Do Section (45 min)
+1. Create `what-we-do-content.ts`
+2. Create `WhatWeDoSection.tsx`
+3. Modify `page.tsx` (add section)
+4. Test new section
+
+### Step 3: How It Works Section (45 min)
+1. Create `how-it-works-content.ts`
+2. Create `HowItWorksSection.tsx`
+3. Modify `page.tsx` (add section)
+4. Test new section
+
+### Step 4: Enhance Existing (15 min)
+1. Modify `PlatformCapabilitiesShowcase.tsx` (enhance header)
+2. Test all sections together
+
+---
+
+## Expected Outcome
+
+**Before:**
+- Hero: Generic rotating words, unclear what CrisPRO.ai does
+- No "What We Do" section
+- No "How It Works" section
+- Generic product showcase
+
+**After:**
+- Hero: Clear primary focus badge, enhanced subtitle with transformation message, audience indicators
+- "What We Do" section: Three columns explaining Precision Oncology, Therapeutic Development, AI Foundation
+- "How It Works" section: Visual flow showing Upload → Orchestrate → Track Forever
+- Enhanced product showcase with transformation focus
+
+**Total Time Estimate:** ~2.5 hours

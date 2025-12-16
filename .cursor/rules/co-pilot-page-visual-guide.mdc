@@ -1,0 +1,307 @@
+# 📍 CO-PILOT PAGE VISUAL GUIDE
+## Where You'll See the New Components
+
+**Created:** 2024-12-19  
+**Purpose:** Visual guide showing exactly where new components appear on co-pilot pages
+
+---
+
+## 🗺️ PAGE STRUCTURE OVERVIEW
+
+### **Co-Pilot Page Route:**
+```
+/platform/[coPilotSlug]/
+
+Examples:
+- /platform/therapy-fit
+- /platform/chemo
+- /platform/clinical-trials
+- /platform/pathway
+- /platform/toxicity-risk
+- /platform/crispr-intelligence
+```
+
+---
+
+## 📐 COMPLETE PAGE LAYOUT
+
+### **Top Level: Hero Section**
+```
+┌─────────────────────────────────────────┐
+│  [Co-Pilot Page Title]                  │
+│  [Hero Subtitle - Updated in Phase 1]   │
+└─────────────────────────────────────────┘
+```
+
+### **Tab Navigation (3 tabs)**
+```
+┌─────────────────────────────────────────┐
+│  [Battle Plan]  [War Stories*]  [Strategic Doctrine] ← Default Tab
+└─────────────────────────────────────────┘
+```
+*War Stories only shows if co-pilot has journey data
+
+---
+
+## 🎯 WHERE NEW COMPONENTS APPEAR
+
+### **Inside "Strategic Doctrine" Tab** (Default Tab)
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  STRATEGIC DOCTRINE TAB                                  │
+│                                                          │
+│  1. In-Silico Overview Section                          │
+│     (Existing - Overview concepts, value props)         │
+│                                                          │
+│  2. Observed Outcomes Section                           │
+│     (Existing - If outcomes data exists)                │
+│                                                          │
+│  3. ⭐ PRIMARY CAPABILITIES (Tabbed Interface)          │
+│     ┌─────────────────────────────────────────┐        │
+│     │  [Capability 1] [Capability 2] [Cap 3]  │  ← Tabs │
+│     │                                           │        │
+│     │  [Selected Capability Display]           │        │
+│     │  - Technical / Scientific / Business     │        │
+│     └─────────────────────────────────────────┘        │
+│                                                          │
+│  4. ⭐ ADVANCED FEATURES (Collapsible Section)          │
+│     ┌─────────────────────────────────────────┐        │
+│     │  🔮 Advanced Features    [2]    ▼       │  ← NEW │
+│     │    2 additional capabilities...          │        │
+│     │                                           │        │
+│     │  [When Expanded:]                        │        │
+│     │  • Gene Essentiality Scoring             │        │
+│     │  • (Other advanced capabilities)         │        │
+│     └─────────────────────────────────────────┘        │
+│                                                          │
+│  5. ⭐ INTEGRATED CARE PLAN (Prominent Section)         │
+│     ┌─────────────────────────────────────────┐        │
+│     │  🌐 Integrated Care Plan    [FLAGSHIP]  │  ← NEW │
+│     │  All capabilities unified in one...     │        │
+│     │                                           │        │
+│     │  [Full Capability Display]               │        │
+│     │  API Endpoint: /api/complete_care/...    │        │
+│     │  [Learn More →]                          │        │
+│     └─────────────────────────────────────────┘        │
+│                                                          │
+│  6. Value Proposition Flywheel                          │
+│     (Existing - Audience-specific value props)          │
+│                                                          │
+│  7. In-Silico Workflow Section                          │
+│     (Existing - If workflow data exists)                │
+│                                                          │
+│  8. Strategic Conclusion                                │
+│     (Existing - Final summary)                          │
+│                                                          │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📍 SPECIFIC LOCATION BREAKDOWN
+
+### **1. Primary Capabilities Section**
+- **Where:** Strategic Doctrine tab, after Observed Outcomes
+- **Component:** `TacticalCapabilityMatrix`
+- **What you see:**
+  - Header: "Core Capabilities" with count
+  - Tabs: 3-4 capability buttons (primary only)
+  - Display: Selected capability with Technical/Scientific/Business cards
+- **Note:** Only shows capabilities with `priority: "primary"` or no priority (defaults to primary)
+
+---
+
+### **2. Advanced Features Section** ⭐ NEW
+- **Where:** Strategic Doctrine tab, after Primary Capabilities
+- **Component:** `AdvancedFeaturesSection`
+- **What you see:**
+  - Collapsible card with gradient background (slate-blue)
+  - Header: "Advanced Features" with sparkles icon
+  - Badge: Count of advanced capabilities (e.g., "2")
+  - State: **Collapsed by default** (shows count)
+  - When expanded: Shows full capability cards for each advanced feature
+- **Note:** Only shows if capabilities have `priority: "advanced"`
+
+---
+
+### **3. Integrated Care Plan Section** ⭐ NEW
+- **Where:** Strategic Doctrine tab, after Advanced Features
+- **Component:** `IntegratedCareSection`
+- **What you see:**
+  - **Prominent card** with blue/teal gradient header
+  - Header: "Integrated Care Plan" with network icon
+  - Badge: "FLAGSHIP" badge
+  - Full capability display (Technical/Scientific/Business)
+  - Footer: API endpoint link + "Learn More" button
+- **Note:** Only shows if `integratedCare` field exists in co-pilot data
+
+---
+
+## 🎨 VISUAL HIERARCHY
+
+### **Section Order (Top to Bottom):**
+1. **In-Silico Overview** (Existing)
+2. **Observed Outcomes** (Existing - conditional)
+3. **Primary Capabilities** (Tabbed - Always Visible)
+4. **Advanced Features** (Collapsible - NEW) ⭐
+5. **Integrated Care Plan** (Prominent - NEW) ⭐
+6. **Value Proposition Flywheel** (Existing)
+7. **In-Silico Workflow** (Existing - conditional)
+8. **Strategic Conclusion** (Existing)
+
+### **Visual Emphasis:**
+- **Primary Capabilities:** Standard tabbed interface (clean, professional)
+- **Advanced Features:** Collapsed card (discoverable but not overwhelming)
+- **Integrated Care:** **Prominent gradient card** (highlights integration value)
+
+---
+
+## 📱 WHERE TO VIEW
+
+### **Live URLs (when data is added):**
+```
+http://localhost:3000/platform/therapy-fit
+  → Click "Strategic Doctrine" tab
+  → Scroll down to see:
+     1. Primary Capabilities (tabs)
+     2. Advanced Features (collapsible) ← NEW
+     3. Integrated Care Plan (prominent) ← NEW
+
+http://localhost:3000/platform/pathway
+  → Same structure, but will show:
+     - Gene Essentiality in Advanced Features
+     - Synthetic Lethality in Primary Capabilities
+
+http://localhost:3000/platform/chemo
+  → Will show:
+     - Gene Essentiality in Advanced Features
+     - Integrated Care Plan section
+```
+
+---
+
+## 🔍 CURRENT STATE
+
+### **What's Visible NOW:**
+- ✅ Primary Capabilities (existing capabilities work as-is)
+- ✅ All other existing sections
+
+### **What's Hidden NOW (until data is added):**
+- ⏳ Advanced Features Section (only shows if advanced capabilities exist)
+- ⏳ Integrated Care Section (only shows if `integratedCare` field exists)
+
+### **When They'll Appear:**
+- **After Step 3:** When we add test data to `therapy-fit-data.ts`
+- **After Step 4:** When we roll out to all 6 co-pilot files
+
+---
+
+## 🎯 EXAMPLE: Therapy Fit Co-Pilot Page
+
+### **Before Phase 2 (Current):**
+```
+/platform/therapy-fit
+  └─ Strategic Doctrine Tab
+      ├─ In-Silico Overview
+      ├─ Observed Outcomes
+      ├─ Primary Capabilities (3 tabs):
+      │   ├─ Biology-Aware Drug Ranking
+      │   ├─ Biomarkers & Cohort Context
+      │   └─ [Other capabilities]
+      ├─ Value Proposition Flywheel
+      └─ Strategic Conclusion
+```
+
+### **After Phase 2 (With New Components):**
+```
+/platform/therapy-fit
+  └─ Strategic Doctrine Tab
+      ├─ In-Silico Overview
+      ├─ Observed Outcomes
+      ├─ Primary Capabilities (4 tabs):
+      │   ├─ Biology-Aware Drug Ranking
+      │   ├─ Biomarkers & Cohort Context
+      │   ├─ Synthetic Lethality Analysis ← NEW
+      │   └─ [Other capabilities]
+      ├─ ⭐ Advanced Features (Collapsed):
+      │   └─ [No advanced capabilities for therapy-fit]
+      ├─ ⭐ Integrated Care Plan (Prominent):
+      │   └─ Full capability display with API link ← NEW
+      ├─ Value Proposition Flywheel
+      └─ Strategic Conclusion
+```
+
+---
+
+## 🎯 EXAMPLE: Pathway Co-Pilot Page
+
+### **After Phase 2:**
+```
+/platform/pathway
+  └─ Strategic Doctrine Tab
+      ├─ Primary Capabilities (3-4 tabs):
+      │   ├─ Pathway-to-Drug Intelligence
+      │   └─ Synthetic Lethality Analysis ← NEW
+      ├─ ⭐ Advanced Features (Collapsed):
+      │   └─ Gene Essentiality Scoring ← NEW (when expanded)
+      ├─ ⭐ Integrated Care Plan ← NEW
+      └─ [Other sections...]
+```
+
+---
+
+## 📊 VISUAL COMPARISON
+
+### **Current State:**
+```
+Primary Capabilities: [Tab 1] [Tab 2] [Tab 3] [Tab 4] [Tab 5] [Tab 6]
+                      ↑ Too many tabs = cluttered
+```
+
+### **After Phase 2:**
+```
+Primary Capabilities: [Tab 1] [Tab 2] [Tab 3] [Tab 4]
+                      ↑ Clean - 3-4 tabs max
+
+Advanced Features: 🔮 Advanced Features [2] ▼
+                   ↑ Collapsed - not overwhelming
+
+Integrated Care: 🌐 Integrated Care Plan [FLAGSHIP]
+                 ↑ Prominent but at bottom
+```
+
+---
+
+## 🚀 HOW TO SEE IT NOW
+
+### **Option 1: View Existing Co-Pilot Page**
+1. Go to: `http://localhost:3000/platform/therapy-fit`
+2. Click: "Strategic Doctrine" tab (default)
+3. See: Primary Capabilities section (existing)
+4. Note: Advanced Features and Integrated Care won't show yet (no data)
+
+### **Option 2: Wait for Step 3**
+- After we add test data to `therapy-fit-data.ts`, the new sections will appear automatically
+
+---
+
+## ✅ SUMMARY
+
+**Where to see new components:**
+- **Route:** `/platform/[coPilotSlug]` (any co-pilot page)
+- **Tab:** "Strategic Doctrine" (default tab)
+- **Location:** After Primary Capabilities section
+- **Order:**
+  1. Primary Capabilities (tabs) ← Existing, now filtered
+  2. Advanced Features (collapsible) ← NEW
+  3. Integrated Care Plan (prominent) ← NEW
+
+**Visual hierarchy:**
+- Primary = Standard tabs (always visible)
+- Advanced = Collapsed card (discoverable)
+- Integrated = Prominent gradient card (highlights integration)
+
+---
+
+**BOTTOM LINE:** Navigate to any co-pilot page (`/platform/therapy-fit`, `/platform/chemo`, etc.), click the "Strategic Doctrine" tab (it's the default), and scroll down. You'll see the new sections appear automatically once we add the data in Step 3!

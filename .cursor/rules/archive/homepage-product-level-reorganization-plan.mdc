@@ -1,0 +1,339 @@
+# 🎯 HOMEPAGE PRODUCT-LEVEL REORGANIZATION PLAN
+## Complete Integration: Audit + Solution + Component Usage
+
+**Created:** 2024-12-19  
+**Status:** ✅ COMPLETE PLAN - Ready for implementation  
+**Priority:** HIGH - Addresses user request for product-level focus (Oncology, Drug Discovery)
+
+---
+
+## 📋 EXECUTIVE SUMMARY
+
+### User Request:
+1. ✅ Complete homepage core products audit based on what we have
+2. ✅ Focus on **product-level** (oncology, drug discovery) rather than **feature capability**
+
+### Key Insight:
+**`PlatformCapabilitiesShowcase` is ALREADY product-level organized!**
+- ✅ Drug Discovery → For biotech researchers
+- ✅ Clinical Oncology → For oncologists
+- ✅ Research Acceleration → For researchers
+
+**What's Missing:**
+- Core products (Oracle, Forge, Boltz, Command Center) not clearly introduced
+- Product attribution missing (which products power each capability)
+- No clear product-level hero section
+
+---
+
+## 🎯 PRODUCT-LEVEL ORGANIZATION STRUCTURE
+
+### **By Customer/Use Case (Product-Level):**
+
+#### **1. Oncology Clinicians** 🏥
+
+**Core Products:**
+- **Oracle** → VUS resolution, variant impact prediction
+- **Command Center** → Clinical dossier generation, workflow orchestration
+
+**Capabilities (Product-Level):**
+- S/P/E Framework (Oracle + Command Center)
+- Clinical Trial Matching (Oracle + Command Center)
+- Toxicity-Aware Nutrition (Oracle)
+- Resistance Prediction (Oracle)
+- Universal Platform (Command Center)
+- Clinical Dossier (Command Center)
+
+**Homepage Sections:**
+- PlatformCapabilitiesShowcase → "Clinical Oncology" tab ✅
+- Core Products Showcase → Oracle, Command Center highlighted ⚠️ NEEDED
+
+---
+
+#### **2. Drug Discovery Researchers** 🔬
+
+**Core Products:**
+- **Oracle** → Target validation, variant impact prediction
+- **Forge** → Therapeutic design, guide RNA generation
+- **Boltz** → Structural validation, binding affinity prediction
+- **Command Center** → Workflow orchestration, evidence aggregation
+
+**Capabilities (Product-Level):**
+- Target Validation (Oracle)
+- Lead Engineering (Forge)
+- Pre-Clinical Confirmation (Boltz)
+- Complete Workflow (Command Center)
+
+**Homepage Sections:**
+- PlatformCapabilitiesShowcase → "Drug Discovery" tab ✅
+- Core Products Showcase → All 4 products highlighted ⚠️ NEEDED
+- DrugDevelopmentPlatform → Shows full pipeline ⚠️ NEEDED
+
+---
+
+#### **3. Research Scientists** 🧪
+
+**Core Products:**
+- **Oracle** → VUS resolution, hypothesis testing
+- **Command Center** → Evidence synthesis, cohort intelligence
+
+**Capabilities (Product-Level):**
+- VUS Explorer (Oracle)
+- Universal Hypothesis Testing (Oracle)
+- Cohort Intelligence (Command Center)
+- Evidence Synthesis (Command Center)
+
+**Homepage Sections:**
+- PlatformCapabilitiesShowcase → "Research Acceleration" tab ✅
+- Core Products Showcase → Oracle, Command Center highlighted ⚠️ NEEDED
+
+---
+
+## 🏗️ COMPLETE SOLUTION ARCHITECTURE
+
+### **Solution 1: Add Core Products Showcase**
+
+**Component:** `DrugDevelopmentPlatform.tsx` (already exists!)
+
+**Placement:** After MetricsShowcase, before PlatformCapabilitiesShowcase
+
+**What It Shows:**
+- All 4 core products (Oracle, Forge, Boltz, Command Center)
+- Product descriptions by use case
+- Key metrics per product
+- Links to product pages
+
+**Enhancements Needed:**
+- Add use case tags (Oncology, Drug Discovery, Research)
+- Update descriptions for product-level messaging
+- Ensure white background (remove gradients)
+
+---
+
+### **Solution 2: Add Product Attribution**
+
+**Where to Add:**
+1. **MetricsShowcase** → Product badges ("Oracle: 95.7% AUROC")
+2. **PlatformCapabilitiesShowcase** → "Powered By" badges
+3. **InteractiveDemoSection** → Product labels ("Oracle Demo: Variant Prediction")
+
+**How:**
+- Small product badges/icons
+- "Powered By Oracle" labels
+- Links to product pages
+
+---
+
+### **Solution 3: Enhance HeroSection**
+
+**Current:** Shows problem ($2.6B gamble) but no product introduction
+
+**Enhancement:**
+- Add product-level introduction
+- "For Oncologists", "For Drug Discovery", "For Researchers"
+- Link to PlatformCapabilitiesShowcase sections
+
+---
+
+### **Solution 4: Create Product-Capability Mapping**
+
+**Data File:** `src/data/productCapabilityMapping.ts`
+
+**Structure:**
+```typescript
+interface ProductCapabilityMapping {
+  capabilityId: string;
+  products: string[];  // ['oracle', 'command-center']
+  useCases: string[];  // ['oncology', 'drug-discovery']
+  customerSegment: string;  // 'oncologists' | 'biotech' | 'researchers'
+}
+```
+
+**Integration:**
+- Use in PlatformCapabilitiesShowcase to show "Powered By" badges
+- Use to filter capabilities by use case
+- Use to show which products power each capability
+
+---
+
+## 📊 COMPONENT USAGE BY PRODUCT-LEVEL USE CASE
+
+### **Homepage Components for Product-Level Organization:**
+
+#### **1. HeroSection**
+**Enhancement:** Add product-level introduction
+- "For Oncologists: Personalized treatment recommendations"
+- "For Drug Discovery: AI-powered target validation"
+- "For Researchers: Universal hypothesis testing"
+- Link to PlatformCapabilitiesShowcase sections
+
+#### **2. Core Products Showcase** ⚠️ NEW
+**Component:** `DrugDevelopmentPlatform.tsx`
+- Shows all 4 products
+- Organized by use case (Oncology, Drug Discovery, Research)
+- Links to product pages
+
+#### **3. PlatformCapabilitiesShowcase** ✅ EXISTING
+**Status:** Already product-level organized!
+**Enhancement:** Add product attribution
+- Add "Powered By" badges to each capability
+- Show which products power each capability
+- Map capabilities to use cases
+
+#### **4. MetricsShowcase**
+**Enhancement:** Add product attribution
+- "Oracle: 95.7% AUROC"
+- "Forge: 70% Functional"
+- Links to product pages
+
+#### **5. InteractiveDemoSection**
+**Enhancement:** Add product labels
+- "Oracle Demo: Variant Impact Prediction"
+- "Forge Demo: Guide RNA Design"
+- Product badges
+
+---
+
+## 🔄 BEFORE vs AFTER COMPARISON
+
+### **BEFORE (Feature-Level Focus):**
+
+```
+Homepage Organization:
+- Shows capabilities (VUS resolution, Guide design, etc.)
+- Shows metrics (95.7% AUROC, etc.)
+- Shows MOATs (S/P/E Framework, etc.)
+- BUT: Doesn't show which products deliver these
+- BUT: Doesn't organize by use case (Oncology, Drug Discovery)
+
+Visitor Experience:
+❌ Sees features but doesn't know which products provide them
+❌ Doesn't understand: "I'm an oncologist, what do I use?"
+❌ Can't connect capabilities to products
+❌ Confused about product architecture
+```
+
+### **AFTER (Product-Level Focus):**
+
+```
+Homepage Organization:
+- Shows products organized by use case ✅
+  - Oncology Clinicians → Oracle + Command Center
+  - Drug Discovery Researchers → Oracle + Forge + Boltz + Command Center
+  - Research Scientists → Oracle + Command Center
+- Shows capabilities with product attribution ✅
+  - "S/P/E Framework powered by Oracle + Command Center"
+  - "Target Validation powered by Oracle"
+- Shows metrics with product attribution ✅
+  - "Oracle: 95.7% AUROC"
+  - "Forge: 70% Functional"
+
+Visitor Experience:
+✅ Sees products organized by use case
+✅ Understands: "I'm an oncologist → Clinical Oncology tab → Oracle/Command Center"
+✅ Can connect capabilities to products
+✅ Clear product architecture understanding
+✅ Can navigate to specific products for their use case
+```
+
+---
+
+## 📋 IMPLEMENTATION CHECKLIST
+
+### **Phase 1: Core Products Introduction (30 min)**
+
+- [ ] Import `DrugDevelopmentPlatform.tsx` to homepage
+- [ ] Place after MetricsShowcase, before PlatformCapabilitiesShowcase
+- [ ] Add use case tags (Oncology, Drug Discovery, Research)
+- [ ] Update descriptions for product-level messaging
+- [ ] Ensure white background (remove gradients)
+
+### **Phase 2: Product Attribution (1 hour)**
+
+- [ ] Add product badges to MetricsShowcase
+- [ ] Add "Powered By" badges to PlatformCapabilitiesShowcase
+- [ ] Add product labels to InteractiveDemoSection
+- [ ] Create product-capability mapping data file
+
+### **Phase 3: Hero Enhancement (30 min)**
+
+- [ ] Add product-level introduction to HeroSection
+- [ ] Add "For Oncologists", "For Drug Discovery", "For Researchers" tags
+- [ ] Link to PlatformCapabilitiesShowcase sections
+
+### **Phase 4: Product Mapping (1 hour)**
+
+- [ ] Create `src/data/productCapabilityMapping.ts`
+- [ ] Map each capability to products that power it
+- [ ] Map each capability to use cases
+- [ ] Integrate into PlatformCapabilitiesShowcase
+
+---
+
+## 🎯 SUCCESS METRICS
+
+### **Before Implementation:**
+- ❌ Core products not visible on homepage
+- ❌ Capabilities not attributed to products
+- ❌ No product-level organization
+- ❌ Visitors don't understand product architecture
+
+### **After Implementation:**
+- ✅ Core products clearly introduced
+- ✅ Capabilities attributed to products
+- ✅ Product-level organization by use case
+- ✅ Visitors understand: "I'm an oncologist → Oracle + Command Center"
+- ✅ Clear product architecture understanding
+- ✅ Easy navigation to products for specific use cases
+
+---
+
+## 📝 KEY FILES TO MODIFY
+
+### **1. Homepage (`src/app/page.tsx`)**
+- Add import: `DrugDevelopmentPlatform`
+- Place component after MetricsShowcase
+
+### **2. MetricsShowcase (`src/components/landing/MetricsShowcase.tsx`)**
+- Add product badges to each metric card
+- Add links to product pages
+
+### **3. PlatformCapabilitiesShowcase (`src/components/landing/PlatformCapabilitiesShowcase.tsx`)**
+- Add "Powered By" badges to each capability card
+- Add use case tags
+- Show which products power each capability
+
+### **4. InteractiveDemoSection (`src/components/landing/InteractiveDemoSection.tsx`)**
+- Add product labels to each demo
+- Add product badges
+
+### **5. HeroSection (`src/components/sections/HeroSection.tsx`)**
+- Add product-level introduction
+- Add use case tags and links
+
+### **6. New Data File (`src/data/productCapabilityMapping.ts`)**
+- Create product-capability mapping
+- Map capabilities to products and use cases
+
+---
+
+## 🚀 NEXT STEPS
+
+### **Immediate (Today):**
+1. Import `DrugDevelopmentPlatform` to homepage
+2. Add product badges to MetricsShowcase
+3. Add "Powered By" badges to PlatformCapabilitiesShowcase
+
+### **Short-Term (This Week):**
+4. Enhance HeroSection with product-level introduction
+5. Create product-capability mapping data file
+6. Integrate mapping into all sections
+
+### **Long-Term (Next Sprint):**
+7. Create dedicated product pages for each use case
+8. Add product-level filtering to PlatformCapabilitiesShowcase
+9. Create product comparison page
+
+---
+
+**STATUS:** ✅ **COMPLETE PLAN READY** - All solutions defined, components identified, implementation checklist created. Ready to reorganize homepage by product-level use cases (Oncology, Drug Discovery, Research) with clear product attribution throughout.

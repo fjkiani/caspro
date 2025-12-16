@@ -1,0 +1,251 @@
+# Homepage Links Audit & Fix Plan
+
+**Date**: 2024-12-19
+**Purpose**: Audit all links on homepage, verify routes exist, fix broken links
+
+---
+
+## 📋 LINK INVENTORY BY COMPONENT
+
+### 1. HeroSection (`src/components/sections/HeroSection.tsx`)
+
+**Links Found**:
+- `/products/oncology` (Primary CTA: "I am treating patients") ✅ EXISTS
+- `/products/r-d` (Secondary CTA: "I am designing a drug") ✅ EXISTS  
+- `/products/oncology` (Tertiary CTA: "I am a patient") ✅ EXISTS
+
+**Status**: ✅ All working
+
+---
+
+### 2. WhatWeDoSection (`src/components/landing/WhatWeDoSection.tsx`)
+
+**Links Found** (from `src/data/homepage/what-we-do-content.ts`):
+- `/products/oncology` (Precision Oncology card) ✅ EXISTS
+- `/products/r-d` (Therapeutic Development card) ✅ EXISTS
+- `/platform` (AI Foundation card) ✅ EXISTS
+
+**Status**: ✅ All working
+
+---
+
+### 3. PlatformCapabilitiesShowcase (`src/components/landing/PlatformCapabilitiesShowcase.tsx`)
+
+**Links Found**:
+- `/products/oncology` (CrisPRO Oncology card) ✅ EXISTS
+- `/products/r-d` (CrisPRO R&D card) ✅ EXISTS
+- `/products/research` (CrisPRO Research card) ✅ EXISTS
+
+**Status**: ✅ All working
+
+---
+
+### 4. MetricsShowcase (`src/components/landing/MetricsShowcase.tsx`)
+
+**Links Found**:
+- `/evidence/sae-intelligence` (SAE Explainability card) ✅ EXISTS
+- `/platform` (product link) ✅ EXISTS
+- `/metrics#clinvar-coverage` (ClinVar Validation card) ⚠️ NEEDS CHECK
+- `/products/oncology` (product link) ✅ EXISTS
+- `/metrics#brca` (BRCA1/2 Precision card) ⚠️ NEEDS CHECK
+- `/metrics#generative` (Therapeutic Design card) ⚠️ NEEDS CHECK
+- `/products/r-d` (product link) ✅ EXISTS
+- `/metrics#business` (ROI for Biotechs card) ⚠️ NEEDS CHECK
+- `/metrics` (Bottom CTA: "Complete Metrics Dashboard") ✅ EXISTS
+- `/evidence` (Bottom CTA: "Interactive Evidence") ✅ EXISTS
+
+**Status**: ⚠️ Anchor links (#clinvar-coverage, #brca, #generative, #business) need verification on `/metrics` page
+
+---
+
+### 5. InteractiveDemoSection (`src/components/landing/InteractiveDemoSection.tsx`)
+
+**Links Found**:
+- `/evidence/sae-intelligence` (SAE Features link) ✅ EXISTS
+
+**Status**: ✅ All working
+
+---
+
+### 6. ROICalculatorSection (`src/components/landing/ROICalculatorSection.tsx`)
+
+**Links Found**:
+- `/contact` (CTA: "Schedule Executive Demo") ✅ EXISTS
+- `/metrics` (CTA: "See All Metrics") ✅ EXISTS
+
+**Status**: ✅ All working
+
+---
+
+### 7. CTASection (`src/components/shared/CTASection.tsx`)
+
+**Links Found** (from `src/app/page.tsx`):
+- `/contact` (Primary: "Schedule Executive Demo") ✅ EXISTS
+- `/platform` (Secondary: "See Platform Overview") ✅ EXISTS
+
+**Status**: ✅ All working
+
+---
+
+### 8. TrustedBy (`src/components/shared/TrustedBy.tsx`)
+
+**Links Found**:
+- `/contact` (CTA: "Partner With Us") ✅ EXISTS
+- External links (AACR, UC Berkeley, Auth0) - External, verify separately
+
+**Status**: ✅ Internal link working (external links need manual verification)
+
+---
+
+## 🔍 VERIFICATION NEEDED
+
+### Anchor Links on `/metrics` Page
+
+**Anchor links found in MetricsShowcase**:
+- `/metrics#clinvar-coverage` ⚠️ **NOT FOUND** - Tab is `snv` (SNV Prediction), not `clinvar-coverage`
+- `/metrics#brca` ✅ **EXISTS** - Tab ID is `brca`
+- `/metrics#generative` ✅ **EXISTS** - Tab ID is `generative`
+- `/metrics#business` ✅ **EXISTS** - Tab ID is `business`
+
+**Issue**: The `/metrics` page uses `TabbedInterface` with tab IDs, but the link uses `#clinvar-coverage` which doesn't match any tab ID.
+
+**Tab IDs in `/metrics/page.tsx`**:
+- `overview` - Metrics Overview
+- `brca` - BRCA1/2 ✅
+- `snv` - SNV Prediction (this should be `clinvar-coverage`)
+- `splice` - Splice Variants
+- `vus` - VUS Resolution
+- `generative` - Generative AI ✅
+- `business` - Patient Impact ✅
+
+**Action**: Update `/metrics#clinvar-coverage` to `/metrics#snv` in `MetricsShowcase.tsx`
+
+**Note**: `TabbedInterface` component DOES support hash navigation (lines 96-109), so anchor links will work once the IDs match.
+
+---
+
+### Routes That Don't Exist Yet (from other components)
+
+**Potential broken links** (not currently on homepage but in codebase):
+- `/solutions/clinical-decision-support` ❌ NEEDS CREATION
+- `/platform/toxicity-risk` ⚠️ CHECK DYNAMIC ROUTE
+- `/platform/clinical-trials` ⚠️ CHECK DYNAMIC ROUTE
+- `/platform/oracle-intelligence` ✅ EXISTS
+- `/insilico` ✅ EXISTS
+- `/evidence/spe-fusion` ✅ EXISTS
+- `/evidence/data-lab` ✅ EXISTS
+- `/use-cases` ✅ EXISTS
+- `/use-cases/multiple-myeloma` ⚠️ CHECK DYNAMIC ROUTE
+
+---
+
+## ✅ CONFIRMED WORKING LINKS
+
+### Product Pages:
+- ✅ `/products/oncology`
+- ✅ `/products/r-d`
+- ✅ `/products/research`
+- ✅ `/products/oracle`
+- ✅ `/products/forge`
+- ✅ `/products/boltz`
+- ✅ `/products/command-center`
+
+### Platform Pages:
+- ✅ `/platform`
+- ✅ `/platform/[coPilotSlug]` (dynamic)
+
+### Other Pages:
+- ✅ `/contact`
+- ✅ `/metrics`
+- ✅ `/evidence`
+- ✅ `/evidence/sae-intelligence`
+- ✅ `/insilico`
+
+---
+
+## 📝 FIX PLAN
+
+### Phase 1: Fix Broken Anchor Link (HIGH PRIORITY) ✅ READY TO FIX
+
+**Task**: Fix `/metrics#clinvar-coverage` to match actual tab ID
+
+**File to modify**: `src/components/landing/MetricsShowcase.tsx`
+
+**Line 40**: Change:
+```tsx
+link: '/metrics#clinvar-coverage',
+```
+
+**To**:
+```tsx
+link: '/metrics#snv',
+```
+
+**Reason**: The `/metrics` page uses `TabbedInterface` with tab ID `snv` for SNV Prediction, not `clinvar-coverage`. The component supports hash navigation, so once the ID matches, the link will work.
+
+### Phase 2: Verify Dynamic Routes (MEDIUM PRIORITY)
+
+**Task**: Check if dynamic routes handle expected slugs (not on homepage currently)
+
+**Routes to check**:
+- `/platform/[coPilotSlug]` - Should handle: `toxicity-risk`, `clinical-trials`
+- `/use-cases/[slug]` - Should handle: `multiple-myeloma`
+
+**Action**: These routes are NOT currently linked from homepage, but should be verified if they're referenced elsewhere in codebase (e.g., `MOATShowcase.tsx`).
+
+---
+
+## 🎯 IMPLEMENTATION CHECKLIST
+
+### Immediate Actions:
+1. [x] ✅ Audit all homepage links
+2. [ ] Fix `/metrics#clinvar-coverage` → `/metrics#snv` in MetricsShowcase.tsx
+3. [ ] Test fixed anchor link in browser
+4. [ ] Manually test all homepage links to confirm
+
+### Optional Actions:
+- [ ] Verify external partner links (AACR, UC Berkeley, Auth0)
+- [ ] Check dynamic routes for non-homepage links
+
+---
+
+## 📊 SUMMARY
+
+**Total Links Audited**: 20+ internal links
+**Working Links**: 19 ✅
+**Broken Links**: 1 ❌ (`/metrics#clinvar-coverage` - wrong anchor ID)
+**External Links**: 3 (manual verification recommended)
+
+**Overall Status**: ✅ **EXCELLENT** - 95% working, only 1 quick fix needed
+
+**Breakdown by Component**:
+- HeroSection: 3/3 ✅
+- WhatWeDoSection: 3/3 ✅
+- PlatformCapabilitiesShowcase: 3/3 ✅
+- MetricsShowcase: 9/10 ⚠️ (1 broken anchor)
+- InteractiveDemoSection: 1/1 ✅
+- ROICalculatorSection: 2/2 ✅
+- CTASection: 2/2 ✅
+- TrustedBy: 1/1 ✅
+
+---
+
+## 🔧 QUICK FIXES
+
+### If `/metrics` page missing anchors:
+
+**Option 1**: Add anchor IDs to sections in metrics page
+```tsx
+<section id="clinvar-coverage">
+  {/* ClinVar content */}
+</section>
+```
+
+**Option 2**: Update links to point to top of metrics page
+```tsx
+href="/metrics" // instead of "/metrics#clinvar-coverage"
+```
+
+---
+
+**Next Step**: Verify `/metrics` page anchor IDs exist

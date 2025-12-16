@@ -1,15 +1,17 @@
 'use client';
 
 import HeroSection from '@/components/sections/HeroSection';
+import WhatWeDoSection from '@/components/landing/WhatWeDoSection';
+import HowItWorksSection from '@/components/landing/HowItWorksSection';
 import MetricsShowcase from '@/components/landing/MetricsShowcase';
-import CapabilitiesGrid from '@/components/landing/CapabilitiesGrid';
-import DrugDevelopmentTransformation from '@/components/landing/DrugDevelopmentTransformation';
-import DiscoveryVsEngineering from '@/components/landing/DiscoveryVsEngineering';
+import DrugDevelopmentPlatform from '@/components/homepage/DrugDevelopmentPlatform';
+import FeaturedDemosSection from '@/components/landing/FeaturedDemosSection';
+import PlatformCapabilitiesShowcase from '@/components/landing/PlatformCapabilitiesShowcase';
+import EngineRoom from '@/components/landing/EngineRoom';
 import InteractiveDemoSection from '@/components/landing/InteractiveDemoSection';
 import ROICalculatorSection from '@/components/landing/ROICalculatorSection';
 import CTASection from '@/components/shared/CTASection';
 import TrustedBy from '@/components/shared/TrustedBy';
-import { extractProductCapabilityCards } from '@/data/homepage/product-capabilities-extractor';
 
 // Removed unnecessary imports for components not active on the homepage.
 
@@ -18,18 +20,28 @@ export default function Home() {
     <main className="min-h-screen bg-white w-full overflow-x-hidden">
       <HeroSection />
       
+      {/* What We Do Section */}
+      {/* <WhatWeDoSection /> */}
+      
+      <PlatformCapabilitiesShowcase />
+
       <TrustedBy />
       
       <MetricsShowcase />
+      
+      {/* How It Works Section */}
+      <HowItWorksSection />
 
-      {/* 6 Capability Cards - Core Platform Capabilities from product.mdc */}
-      <CapabilitiesGrid capabilities={extractProductCapabilityCards()} />
+      {/* Choose Your Path - Three Products (Oncology, R&D, Research) */}
+      {/* <DrugDevelopmentPlatform /> */}
 
-      {/* Drug Development Transformation - 3-Stage Pipeline */}
-      <DrugDevelopmentTransformation />
+      {/* Featured AI Demonstrations - Experience Our Products Live */}
+      {/* <FeaturedDemosSection /> */}
 
-      {/* Discovery vs Engineering - Old Way vs New Doctrine */}
-      <DiscoveryVsEngineering />
+      {/* Platform Capabilities Showcase - End-to-End Platform */}
+
+      {/* Engine Room - Technical Validation */}
+      {/* <EngineRoom /> */}
 
       {/* Interactive Demo Section - Try It Live */}
       <InteractiveDemoSection />

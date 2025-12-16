@@ -1,0 +1,396 @@
+# Oncology Card-Based Dossier Integration Plan
+## Bringing Homepage Interactive Demo Pattern to Product Pages
+
+**Last Updated:** 2024-12-19  
+**Status:** PLANNING → READY FOR IMPLEMENTATION
+
+---
+
+## 🎯 OBJECTIVE
+
+Transform the `/products/oncology` page to use the **card-based dossier pattern** from the homepage's `InteractiveDemoSection`, where:
+
+1. **Top Section**: Capability cards (3-5 cards in a row)
+2. **Bottom Section**: Expanded dossier with full interactive animations when a card is clicked
+3. **Reuse Existing Components**: Leverage `VUSResolutionDemo`, `SPEFusionPlayground`, `DataLabExplorer`, and dossier components
+4. **Keep Cascade Modal**: Maintain the existing `IntelligenceCascadeModal` and `CompletedCascadeView` as-is
+
+---
+
+## 📐 ARCHITECTURE PATTERN
+
+### Homepage Pattern (Reference)
+```
+┌─────────────────────────────────────────────────┐
+│  Card 1: Target Validation  [Active]           │
+│  Card 2: Lead Engineering                       │
+│  Card 3: Pre-Clinical Confirmation              │
+└─────────────────────────────────────────────────┘
+              ↓ Click Card
+┌─────────────────────────────────────────────────┐
+│  📋 EXPANDED DOSSIER                            │
+│  ┌───────────────────────────────────────────┐ │
+│  │ Header: Gradient bg + Icon + Title + Badge│ │
+│  │ Performance Metrics + API Pipeline        │ │
+│  ├───────────────────────────────────────────┤ │
+│  │ Interactive Demo Component                │ │
+│  │ (BRCAMutationSimulator / SPEFusion...)    │ │
+│  ├───────────────────────────────────────────┤ │
+│  │ SAE Features Visualization                │ │
+│  └───────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────┘
+```
+
+### Oncology Page Pattern (Target)
+```
+┌─────────────────────────────────────────────────┐
+│  🚀 Generate Care Plan Button                   │
+└─────────────────────────────────────────────────┘
+              ↓ Click
+┌─────────────────────────────────────────────────┐
+│  Intelligence Cascade Modal (keep as-is)        │
+└─────────────────────────────────────────────────┘
+              ↓ Scroll to
+┌─────────────────────────────────────────────────┐
+│  CAPABILITY CARDS (NEW SECTION)                 │
+│  ┌──────┐  ┌──────┐  ┌──────┐  ┌──────┐  ┌───┐│
+│  │ Match│  │ Tox. │  │Resist│  │ VUS  │  │Trial││
+│  │Patients│ │Predict│ │ Detect│ │ Res. │  │Match││
+│  └──────┘  └──────┘  └──────┘  └──────┘  └───┘│
+└─────────────────────────────────────────────────┘
+              ↓ Click Card
+┌─────────────────────────────────────────────────┐
+│  📋 EXPANDED CAPABILITY DOSSIER                 │
+│  (Same pattern as homepage - full animations)   │
+└─────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────┐
+│  Completed Cascade View (keep as-is)            │
+└─────────────────────────────────────────────────┘
+```
+
+---
+
+## 🎴 CAPABILITY CARDS DEFINITION
+
+### 5 Core Oncology Capabilities
+
+#### 1. **Match Patients to Therapies**
+- **Title**: "Match Patients to Therapies"
+- **Subtitle**: "Mechanism-Based Drug Ranking"
+- **Description**: "S/P/E fusion (Sequence/Pathway/Evidence) matches patients to therapies with 96.6% trial match accuracy"
+- **Icon**: `Target`
+- **Color**: `from-green-500 to-emerald-600`
+- **Badge**: "AI Engineering"
+- **Metrics**: "96.6% Trial Match Accuracy"
+- **Time**: "45 seconds"
+- **Business Impact**: "Same-day actionable drug recommendations"
+- **APIs**: 
+  - `/predict_variant_impact`
+  - `/predict_gene_essentiality`
+  - `/generate_therapeutic_protein`
+- **Interactive Component**: `SPEFusionPlayground`
+- **Seed Data**: `{ gene: 'BRCA1', contextA: 'Ovarian Cancer', contextB: 'Breast Cancer' }`
+
+#### 2. **Toxicity Prediction**
+- **Title**: "Prevent Toxicity Before It Happens"
+- **Subtitle**: "100% PGx Coverage"
+- **Description**: "100% toxicity prevention coverage for DPYD/TPMT/UGT1A1/CYP2D6. Life-threatening prevention with drug interaction checking"
+- **Icon**: `Shield`
+- **Color**: `from-red-500 to-pink-600`
+- **Badge**: "Clinical Proof"
+- **Metrics**: "100% Coverage"
+- **Time**: "30 seconds"
+- **Business Impact**: "Prevent life-threatening adverse events"
+- **APIs**:
+  - `/predict_variant_impact` (PGx variants)
+  - `/predict_protein_functionality_change`
+- **Interactive Component**: `BRCAMutationSimulator` (adapted for PGx)
+- **Seed Data**: `{ gene: 'DPYD', variant: 'c.1905+1G>A', pos: 'chr1:97915614' }`
+
+#### 3. **Resistance Detection**
+- **Title**: "Predict Resistance Before It Happens"
+- **Subtitle**: "3-6 Weeks Early Detection"
+- **Description**: "Proactive resistance detection 3-6 weeks faster than imaging. CA-125 intelligence with kinetics forecasting"
+- **Icon**: `Activity`
+- **Color**: `from-orange-500 to-red-600`
+- **Badge**: "Predictive Intelligence"
+- **Metrics**: "3-6 Weeks Earlier"
+- **Time**: "60 seconds"
+- **Business Impact**: "Early intervention prevents treatment failures"
+- **APIs**:
+  - `/predict_gene_essentiality`
+  - `/predict_chromatin_accessibility`
+  - `/predict_protein_functionality_change`
+- **Interactive Component**: `DataLabExplorer`
+- **Seed Data**: `{ gene: 'KRAS', variant: 'G12D', contextA: 'Before Treatment', contextB: 'After Treatment' }`
+
+#### 4. **VUS Resolution**
+- **Title**: "Resolve Genetic Uncertainty"
+- **Subtitle**: "Zero-Shot Variant Interpretation"
+- **Description**: "Zero-shot variant interpretation with Evo2 foundation model. Instantly resolves variants of unknown significance"
+- **Icon**: `Search`
+- **Color**: `from-blue-500 to-cyan-600`
+- **Badge**: "Mathematical Proof"
+- **Metrics**: "95.7% AUROC, 73% VUS Resolution"
+- **Time**: "30 seconds"
+- **Business Impact**: "Same-day clinical decisions"
+- **APIs**:
+  - `/predict_variant_impact`
+  - `/predict_protein_functionality_change`
+  - `/predict_chromatin_accessibility`
+- **Interactive Component**: `VUSResolutionDemo`
+- **Seed Data**: Pre-defined VUS variants from `VUSResolutionDemo`
+
+#### 5. **Clinical Trial Matching**
+- **Title**: "Match Patients to Clinical Trials"
+- **Subtitle**: "96.6% Match Accuracy"
+- **Description**: "Transparent eligibility reasoning with green/yellow/red flags per criterion. Same-day trial site calls"
+- **Icon**: `Users`
+- **Color**: `from-purple-500 to-violet-600`
+- **Badge**: "Clinical Intelligence"
+- **Metrics**: "96.6% Accuracy"
+- **Time**: "45 seconds"
+- **Business Impact**: "Same-day actionable trial matches"
+- **APIs**:
+  - `/predict_variant_impact`
+  - `/predict_gene_essentiality`
+  - ClinicalTrials.gov API integration
+- **Interactive Component**: `SPEFusionPlayground` (adapted for trial matching)
+- **Seed Data**: `{ patientProfile: 'Ovarian Cancer, BRCA1/2 wild-type, HRD-positive' }`
+
+---
+
+## 🧩 COMPONENT ARCHITECTURE
+
+### New Component: `OncologyCapabilityDossiers.tsx`
+
+**Purpose**: Main orchestration component for capability cards and dossier expansion
+
+**Structure**:
+```typescript
+interface OncologyCapabilityDossiersProps {
+  className?: string;
+}
+
+interface CapabilityCard {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  icon: React.ComponentType;
+  color: string; // Tailwind gradient
+  badge: string;
+  metrics: string;
+  time: string;
+  businessImpact: string;
+  apis: string[];
+  component: React.ComponentType<any>;
+  seedData: any;
+}
+
+const ONCOLOGY_CAPABILITIES: CapabilityCard[] = [
+  // 5 capabilities defined above
+];
+
+export default function OncologyCapabilityDossiers() {
+  const [activeCapability, setActiveCapability] = useState<string | null>(null);
+  const [demoStarted, setDemoStarted] = useState(false);
+
+  return (
+    <section>
+      {/* Capability Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {ONCOLOGY_CAPABILITIES.map((cap) => (
+          <CapabilityCard
+            key={cap.id}
+            capability={cap}
+            isActive={activeCapability === cap.id}
+            onClick={() => setActiveCapability(cap.id)}
+          />
+        ))}
+      </div>
+
+      {/* Expanded Dossier (only show when capability selected) */}
+      {activeCapability && (
+        <CapabilityDossier
+          capability={ONCOLOGY_CAPABILITIES.find(c => c.id === activeCapability)}
+          onStartDemo={() => setDemoStarted(true)}
+          demoStarted={demoStarted}
+        />
+      )}
+    </section>
+  );
+}
+```
+
+### Component: `CapabilityCard.tsx`
+
+**Purpose**: Individual capability card (clickable)
+
+**Features**:
+- Hover effects
+- Active state styling
+- Icon, title, subtitle, metrics preview
+- Badge indicator
+
+### Component: `CapabilityDossier.tsx`
+
+**Purpose**: Expanded dossier view (matches homepage pattern)
+
+**Features**:
+- Gradient header with icon, title, subtitle, badge
+- Performance metrics + API pipeline display
+- Interactive demo component rendering
+- SAE features visualization
+- "Start Demo" button → triggers animation
+
+---
+
+## 🔄 INTEGRATION WITH EXISTING COMPONENTS
+
+### Keep As-Is:
+1. ✅ **`IntelligenceCascadeModal`** - Full-screen cascade experience
+2. ✅ **`CompletedCascadeView`** - Static completed cascade view
+3. ✅ **`GenerateCarePlanButton`** - Hero CTA button
+
+### New Section Placement:
+```
+/products/oncology/page.tsx structure:
+
+1. Hero Section
+   - Generate Care Plan Button
+   - Intelligence Cascade Modal (triggered by button)
+
+2. NEW: Capability Cards & Dossiers Section
+   - 5 capability cards
+   - Expanded dossier when card clicked
+
+3. Experience Live Intelligence
+   - Completed Cascade View (existing)
+
+4. Related Products (existing)
+```
+
+---
+
+## 📦 REUSABLE COMPONENTS FROM HOMEPAGE
+
+### Direct Reuse:
+1. ✅ **`BRCAMutationSimulator`** - For VUS Resolution + Toxicity Prediction
+2. ✅ **`VUSResolutionDemo`** - For VUS Resolution capability
+3. ✅ **`SPEFusionPlayground`** - For Match Patients + Trial Matching
+4. ✅ **`DataLabExplorer`** - For Resistance Detection
+
+### Pattern Reuse:
+1. ✅ **Card Selection Pattern** - From `InteractiveDemoSection.tsx`
+2. ✅ **Dossier Expansion Pattern** - From `InteractiveDemoSection.tsx`
+3. ✅ **SAE Features Visualization** - From `InteractiveDemoSection.tsx`
+4. ✅ **Animation Triggers** - From `InteractiveDemoSection.tsx`
+
+---
+
+## 🎨 UI/UX DESIGN
+
+### Card Design (Matches Homepage):
+- **Layout**: Horizontal grid (3-5 cards)
+- **Active State**: Blue border, blue background tint, checkmark indicator
+- **Hover**: Scale up, shadow increase
+- **Icons**: Large icon with gradient background (when active)
+- **Metrics Preview**: Key metric displayed on card
+
+### Dossier Design (Matches Homepage):
+- **Header**: Full-width gradient background (matches capability color)
+- **Content**: White background, rounded corners
+- **Animation**: Slide in from bottom, fade in
+- **Responsive**: Mobile-first, collapsible on small screens
+
+---
+
+## 📝 IMPLEMENTATION STEPS
+
+### Phase 1: Create Component Structure
+1. [ ] Create `OncologyCapabilityDossiers.tsx` (main component)
+2. [ ] Create `CapabilityCard.tsx` (individual card)
+3. [ ] Create `CapabilityDossier.tsx` (expanded dossier)
+4. [ ] Define capability data structure in `oncology-data.ts`
+
+### Phase 2: Integrate Reusable Components
+1. [ ] Import and integrate `VUSResolutionDemo` for VUS Resolution
+2. [ ] Import and integrate `SPEFusionPlayground` for Match Patients
+3. [ ] Import and integrate `BRCAMutationSimulator` for Toxicity
+4. [ ] Import and integrate `DataLabExplorer` for Resistance
+5. [ ] Adapt components for Clinical Trial Matching
+
+### Phase 3: Add to Oncology Page
+1. [ ] Add `OncologyCapabilityDossiers` to `/products/oncology/page.tsx`
+2. [ ] Place between Hero and Completed Cascade View
+3. [ ] Test card selection and dossier expansion
+4. [ ] Verify animations work correctly
+
+### Phase 4: Polish & Testing
+1. [ ] Mobile responsiveness testing
+2. [ ] Animation timing adjustments
+3. [ ] Content accuracy verification
+4. [ ] Link all capability cards to detailed co-pilot pages
+
+---
+
+## 🎯 SUCCESS CRITERIA
+
+### User Experience:
+- ✅ User can click any capability card
+- ✅ Dossier expands smoothly with animations
+- ✅ Interactive demo components run correctly
+- ✅ SAE features visualization displays
+- ✅ Mobile experience is smooth and responsive
+
+### Technical:
+- ✅ All reusable components properly integrated
+- ✅ No duplicate code (reuse homepage patterns)
+- ✅ Cascade modal still works independently
+- ✅ Page load performance maintained
+- ✅ No TypeScript errors
+
+### Content:
+- ✅ All 5 capabilities accurately represented
+- ✅ Metrics and business impact clearly displayed
+- ✅ API endpoints correctly listed
+- ✅ Links to detailed co-pilot pages work
+
+---
+
+## 📂 FILE STRUCTURE
+
+```
+src/components/products/oncology/
+├── OncologyCapabilityDossiers.tsx    [NEW] Main orchestration
+├── CapabilityCard.tsx                 [NEW] Individual card
+├── CapabilityDossier.tsx              [NEW] Expanded dossier
+├── IntelligenceCascadeModal.tsx       [EXISTING] Keep as-is
+├── CompletedCascadeView.tsx           [EXISTING] Keep as-is
+├── GenerateCarePlanButton.tsx         [EXISTING] Keep as-is
+└── ...
+
+src/data/products/
+└── oncology-data.ts                   [UPDATE] Add capability definitions
+
+src/app/products/oncology/
+└── page.tsx                           [UPDATE] Add new section
+```
+
+---
+
+## 🔗 RELATED DOCUMENTS
+
+- `InteractiveDemoSection.tsx` - Homepage pattern reference
+- `oncology-data.ts` - Capability data definitions
+- `Oncology-MOAT.md` - Complete MOAT blueprint
+- `copilot-product-integration-brainstorm.mdc` - Hierarchical navigation strategy
+
+---
+
+## 🚀 READY TO IMPLEMENT
+
+This plan provides a clear roadmap for bringing the homepage's interactive card-based dossier pattern to the oncology product page, reusing existing components and maintaining the cascade modal experience.
+
+**Next Step**: Begin Phase 1 - Create component structure

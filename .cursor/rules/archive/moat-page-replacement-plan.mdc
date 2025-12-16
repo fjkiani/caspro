@@ -1,0 +1,282 @@
+# 🏆 MOAT PAGE REPLACEMENT PLAN
+## Replace Legacy Co-Pilot Pages with MOAT Product Pages
+
+**Created:** 2024-12-19  
+**Status:** 🔴 CRITICAL - MOATs are on homepage but no dedicated pages exist  
+**Priority:** MUST CREATE before continuing navigation fixes
+
+---
+
+## ❌ THE PROBLEM
+
+### Current State:
+1. **Homepage has MOATShowcase** ✅ - Shows 6 MOAT capabilities
+2. **MOATs link to pages** ❌ - But these pages either:
+   - Don't exist (404 errors)
+   - Are legacy co-pilot pages (not MOAT content)
+   - Don't showcase MOAT capabilities properly
+
+### The 6 MOAT Capabilities (from MOATShowcase.tsx):
+
+| MOAT | Current Link | Status | Issue |
+|------|-------------|--------|-------|
+| **S/P/E Framework** | `/evidence/spe-fusion` | ✅ EXISTS | But needs MOAT-specific content |
+| **Universal Platform** | `/platform` | ✅ EXISTS | But shows legacy co-pilots, not MOAT |
+| **Toxicity-Aware Nutrition** | `/platform/toxicity-risk` | ❌ **404** | Page doesn't exist |
+| **Resistance Prediction** | `/solutions/clinical-decision-support` | ❌ **404** | Directory doesn't exist |
+| **Clinical Dossier** | `/solutions/clinical-decision-support` | ❌ **404** | Same as above |
+| **Trial Matching** | `/platform/clinical-trials` | ❌ **404** | Page doesn't exist |
+
+---
+
+## ✅ THE SOLUTION: REPLACE CO-PILOT STRUCTURE WITH MOAT PAGES
+
+### Strategy:
+**Keep the co-pilot page structure (it's good!) but replace content with MOAT data.**
+
+### Co-Pilot Page Structure (from `/app/platform/[coPilotSlug]/page.tsx`):
+```
+├── Hero Section (pageTitle, heroSubtitle)
+├── Tabbed Content:
+│   ├── Battle Plan tab → InteractiveContentAnalysis
+│   ├── War Stories tab → CapabilityJourneySection (if journey exists)
+│   └── Strategic Doctrine tab → DesciStyleDoctrineInsights
+└── Inter-linking Section (other co-pilots)
+```
+
+### What We'll Do:
+1. **Keep the structure** - Same tabs, same layout, same components
+2. **Create MOAT data files** - Similar to co-pilot data structure
+3. **Create MOAT pages** - Use same page template but for MOATs
+4. **Update navigation** - Point to MOAT pages instead of co-pilots
+
+---
+
+## 🗺️ MOAT PAGE STRUCTURE
+
+### Proposed Routes:
+
+| MOAT | Route | File Structure |
+|------|-------|----------------|
+| **S/P/E Framework** | `/moat/spe-framework` | `/app/moat/spe-framework/page.tsx` |
+| **Universal Platform** | `/moat/universal-platform` | `/app/moat/universal-platform/page.tsx` |
+| **Toxicity-Aware Nutrition** | `/moat/toxicity-nutrition` | `/app/moat/toxicity-nutrition/page.tsx` |
+| **Resistance Prediction** | `/moat/resistance-prediction` | `/app/moat/resistance-prediction/page.tsx` |
+| **Clinical Dossier** | `/moat/clinical-dossier` | `/app/moat/clinical-dossier/page.tsx` |
+| **Trial Matching** | `/moat/trial-matching` | `/app/moat/trial-matching/page.tsx` |
+
+### Data Structure (Similar to Co-Pilots):
+
+```
+src/data/moats/
+├── index.ts                    # Centralized MOAT exports
+├── spe-framework-data.ts       # S/P/E Framework MOAT content
+├── universal-platform-data.ts  # Universal Platform MOAT content
+├── toxicity-nutrition-data.ts  # Toxicity-Aware Nutrition MOAT content
+├── resistance-prediction-data.ts # Resistance Prediction MOAT content
+├── clinical-dossier-data.ts    # Clinical Dossier MOAT content
+└── trial-matching-data.ts      # Trial Matching MOAT content
+```
+
+---
+
+## 📋 MOAT DATA STRUCTURE
+
+### Based on Co-Pilot Structure but MOAT-Focused:
+
+```typescript
+interface MOATDetailContent {
+  slug: string;
+  pageTitle: string;
+  heroSubtitle: string;
+  vision: string;
+  
+  // MOAT-Specific Fields
+  moatType: 'validated' | 'complete' | 'in-progress';
+  validatedMetric: string;  // e.g., "17/17 patients", "469 TCGA patients"
+  validatedDate?: string;
+  
+  // Core Content (same as co-pilots)
+  valueProps: ValuePropositionSection[];
+  kpis: KPI[];
+  observedOutcomes: ObservedOutcome[];
+  
+  // Technical Details
+  keyCapabilities: KeyCapability[];
+  
+  // Product Integration (NEW - from co-pilot-product-integration-plan.mdc)
+  productIntegration?: {
+    engines: {
+      oracle?: { apis: string[], capabilities: string[] };
+      forge?: { apis: string[], capabilities: string[] };
+      boltz?: { apis: string[], capabilities: string[] };
+      commandCenter?: { capabilities: string[] };
+    };
+    workflow: Array<{
+      step: number;
+      title: string;
+      engine: "oracle" | "forge" | "boltz" | "commandCenter";
+      api?: string;
+      description: string;
+    }>;
+  };
+  
+  // Source Material
+  sourceFiles: string[];  // Links to MOAT doctrine files
+}
+```
+
+---
+
+## 📚 MOAT CONTENT SOURCES
+
+### 1. S/P/E Framework MOAT
+**Source:** `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_CLINICAL_DOSSIER.mdc`
+- Validated: 100% Top-5 Drug Ranking (17/17 patients)
+- Key Metrics: DDR Pathway 1.0, TP53 Pathway 0.8
+- Product: Oracle (Sequence), Oracle (Pathway), Command Center (Evidence)
+
+### 2. Universal Platform MOAT
+**Source:** `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_UNIVERSAL.md`
+- Complete: Works for ANY cancer type
+- Key Metrics: 50+ diseases, Multi-disease SOC
+- Product: Command Center (Universal Orchestrator)
+
+### 3. Toxicity-Aware Nutrition MOAT
+**Source:** `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_TOXCITY.md`
+- Complete: Drug→Pathway→Food connections
+- Key Metrics: 3 pathway categories, personalized timing
+- Product: Oracle (Pathway analysis), Command Center (Food validation)
+
+### 4. Resistance Prediction MOAT
+**Source:** `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_RESISTANCE_PREDICTION.md`
+- Validated: MAPK/NF1 = 2x platinum resistance risk
+- Key Metrics: 469 TCGA patients, RR = 1.97-2.10
+- Product: Oracle (Pathway analysis), Command Center (Risk calculation)
+
+### 5. Clinical Dossier MOAT
+**Source:** `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_CLINICAL_DOSSIER.mdc`
+- Complete: Exportable clinical dossiers
+- Key Metrics: Variant cards, drug recommendations, audit trails
+- Product: Command Center (Dossier generation), Oracle (Variant analysis)
+
+### 6. Mechanism-Based Trial Matching MOAT
+**Source:** `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_MECHANISM_TRIAL_MATCHING.md`
+- Complete: Pathway burden → Trial alignment
+- Key Metrics: 7D pathway vector, mechanism fit scoring
+- Product: Oracle (Pathway analysis), Command Center (Trial matching)
+
+---
+
+## 🎯 IMPLEMENTATION PLAN
+
+### Phase 1: Data Structure (2 hours)
+
+**1.1 Create MOAT Types**
+- File: `src/types/moat-types.ts`
+- Copy from `copilot-types.ts` but add MOAT-specific fields
+
+**1.2 Create MOAT Data Files**
+- Create `src/data/moats/` directory
+- Create 6 MOAT data files based on doctrine documents
+- Extract key content from MOAT doctrine files
+
+**1.3 Create MOAT Index**
+- File: `src/data/moats/index.ts`
+- Centralized exports (similar to co-pilots)
+
+### Phase 2: Page Structure (2 hours)
+
+**2.1 Create MOAT Page Template**
+- File: `src/app/moat/[moatSlug]/page.tsx`
+- Copy from `/app/platform/[coPilotSlug]/page.tsx`
+- Modify to use MOAT data instead of co-pilot data
+
+**2.2 Update Components**
+- Keep existing components (InteractiveContentAnalysis, etc.)
+- Ensure they work with MOAT data structure
+- Add product integration section if needed
+
+### Phase 3: Content Population (4 hours)
+
+**3.1 Populate Each MOAT Data File**
+- Extract content from MOAT doctrine files
+- Format according to MOATDetailContent structure
+- Add product integration details
+- Add KPIs, observed outcomes, etc.
+
+**3.2 Create Journey Data (Optional)**
+- If "War Stories" tab is useful for MOATs
+- Create capability journeys for each MOAT
+
+### Phase 4: Navigation Updates (1 hour)
+
+**4.1 Update MOATShowcase Links**
+- File: `src/components/landing/MOATShowcase.tsx`
+- Change links from legacy routes to `/moat/[slug]`
+
+**4.2 Update Navigation**
+- Add MOAT pages to navigation if needed
+- Update broken links
+
+### Phase 5: Legacy Cleanup (1 hour)
+
+**5.1 Archive Co-Pilot Pages**
+- Move co-pilot pages to `/archive/platform/` or similar
+- Or keep but redirect to MOAT pages
+- Update any remaining references
+
+---
+
+## 📊 SUCCESS CRITERIA
+
+### Before (Current State):
+- ❌ MOATs on homepage link to 404s or legacy pages
+- ❌ No dedicated MOAT pages
+- ❌ Users can't dive deep into MOAT capabilities
+- ❌ Legacy co-pilot pages confuse navigation
+
+### After (Target State):
+- ✅ Each MOAT has dedicated page at `/moat/[slug]`
+- ✅ Pages use co-pilot structure (proven UX)
+- ✅ MOAT content from doctrine files properly formatted
+- ✅ Product integration shown (which engines power each MOAT)
+- ✅ Navigation clear: MOATs are our product, co-pilots are legacy
+
+---
+
+## 🔗 INTEGRATION WITH EXISTING PLANS
+
+### Navigation Audit Plan:
+- Fixes broken links (4 of 6 MOAT links return 404)
+- Creates `/solutions/` directory structure
+- This plan replaces that with `/moat/` structure
+
+### Co-Pilot Product Integration Plan:
+- Shows how to connect co-pilots to products
+- This plan REPLACES co-pilots with MOATs
+- MOATs should have product integration from the start
+
+---
+
+## 🚀 NEXT STEPS
+
+1. **Review this plan** - Confirm MOAT routes and structure
+2. **Start Phase 1** - Create data structure
+3. **Populate first MOAT** - Start with S/P/E Framework (most validated)
+4. **Create first MOAT page** - Test structure works
+5. **Iterate** - Create remaining MOAT pages
+
+---
+
+## 📝 NOTES
+
+- **Keep co-pilot structure** - It's proven UX, just replace content
+- **MOATs are product** - These are our competitive advantages
+- **Doctrine files are source** - Extract content from MOAT doctrine files
+- **Product integration** - Show which engines power each MOAT
+- **Navigation clarity** - Clear separation: MOATs = product, co-pilots = legacy
+
+---
+
+**CRITICAL INSIGHT:** MOATs are our REAL product offering. They're already on the homepage. We just need to create the dedicated pages so users can learn about each competitive advantage in depth.

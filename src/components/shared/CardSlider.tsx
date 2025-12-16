@@ -83,7 +83,7 @@ function CardSlider<T = any>({
         <motion.div
           className="flex gap-2 sm:gap-3"
           animate={{
-            x: `calc(-${currentIndex} * (100% / ${cardsToShow}))`
+            x: `-${currentIndex * (100 / items.length)}%`
           }}
           transition={{
             type: "spring",
@@ -91,7 +91,7 @@ function CardSlider<T = any>({
             damping: 40
           }}
           style={{
-            width: `${items.length * (100 / cardsToShow)}%`
+            width: `${(items.length / cardsToShow) * 100}%`
           }}
         >
           {items.map((item, index) => {
@@ -104,8 +104,7 @@ function CardSlider<T = any>({
                 key={index} 
                 className="flex-shrink-0"
                 style={{
-                  width: `calc(100% / ${items.length} * ${cardsToShow})`,
-                  padding: cardsToShow === 1 ? '0' : '0 0.25rem'
+                  width: `${(100 / items.length) * cardsToShow}%`
                 }}
               >
                 {renderCard(item, index)}
@@ -118,7 +117,7 @@ function CardSlider<T = any>({
       {/* Dots Indicator */}
       {showDots && items.length > cardsToShow && (
         <div className="flex justify-center gap-2 mt-6 sm:mt-8">
-          {Array.from({ length: items.length }).map((_, index) => (
+          {Array.from({ length: maxIndex + 1 }).map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}

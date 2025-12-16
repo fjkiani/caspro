@@ -1,0 +1,325 @@
+# 🗺️ NAVIGATION AUDIT & PLAN
+## Fix Broken Routes Before Building More
+
+**Created:** 2024-12-19  
+**Status:** 🔴 CRITICAL - All MOAT pages return 404  
+**Priority:** MUST FIX before Sprint 2
+
+---
+
+## ❌ BROKEN ROUTES IDENTIFIED
+
+### From MOATShowcase Component:
+
+| MOAT Capability | Referenced Link | Status | Issue |
+|----------------|-----------------|--------|-------|
+| S/P/E Framework | `/evidence/spe-fusion` | ✅ EXISTS | OK |
+| Universal Platform | `/platform` | ✅ EXISTS | OK |
+| Toxicity-Aware Nutrition | `/platform/toxicity-risk` | ❌ **404** | Route doesn't exist |
+| Resistance Prediction | `/solutions/clinical-decision-support` | ❌ **404** | `/solutions/` directory doesn't exist |
+| Clinical Dossier | `/solutions/clinical-decision-support` | ❌ **404** | `/solutions/` directory doesn't exist |
+| Trial Matching | `/platform/clinical-trials` | ❌ **404** | Route doesn't exist |
+
+**Summary:** 4 out of 6 MOAT links are broken (67% failure rate)
+
+---
+
+## 📍 CURRENT ROUTE STRUCTURE
+
+### ✅ Existing Routes (Working):
+
+```
+/app/
+├── / (homepage) ✅
+├── /about ✅
+├── /products/
+│   ├── /oracle ✅
+│   ├── /forge ✅
+│   ├── /boltz ✅
+│   └── /command-center ✅
+├── /platform ✅
+├── /platform/[coPilotSlug]/ ✅ (dynamic)
+├── /evidence ✅
+├── /evidence/spe-fusion ✅
+├── /evidence/sae-intelligence ✅
+├── /evidence/data-lab ✅
+├── /metrics ✅
+├── /use-cases ✅
+└── /contact ✅
+```
+
+### ❌ Missing Routes (Referenced but don't exist):
+
+```
+/app/
+├── /solutions/ ❌ (ENTIRE DIRECTORY MISSING)
+│   ├── /clinical-decision-support ❌
+│   ├── /research-acceleration ❌
+│   └── /therapeutic-design ❌
+├── /platform/
+│   ├── /toxicity-risk ❌
+│   └── /clinical-trials ❌
+└── /research/ ❌ (ENTIRE DIRECTORY MISSING)
+    └── /vus-explorer ❌
+```
+
+---
+
+## 🎯 NAVIGATION ARCHITECTURE PLAN
+
+### Primary Navigation Structure:
+
+```
+HOMEPAGE (/)
+  ├─→ Products (/products/)
+  │   ├─→ Oracle (/products/oracle)
+  │   ├─→ Forge (/products/forge)
+  │   ├─→ Boltz (/products/boltz)
+  │   └─→ Command Center (/products/command-center)
+  │
+  ├─→ Solutions (/solutions/) ⚠️ NEEDS TO BE CREATED
+  │   ├─→ Clinical Decision Support (/solutions/clinical-decision-support)
+  │   ├─→ Research Acceleration (/solutions/research-acceleration)
+  │   └─→ Therapeutic Design (/solutions/therapeutic-design)
+  │
+  ├─→ Platform (/platform/)
+  │   ├─→ Co-Pilot Hub (/platform)
+  │   ├─→ Toxicity Risk (/platform/toxicity-risk) ⚠️ NEEDS TO BE CREATED
+  │   └─→ Clinical Trials (/platform/clinical-trials) ⚠️ NEEDS TO BE CREATED
+  │
+  ├─→ Evidence (/evidence/)
+  │   ├─→ Evidence Intelligence (/evidence)
+  │   ├─→ S/P/E Fusion (/evidence/spe-fusion) ✅
+  │   ├─→ SAE Intelligence (/evidence/sae-intelligence) ✅
+  │   └─→ Data Lab (/evidence/data-lab) ✅
+  │
+  ├─→ Metrics (/metrics/) ✅
+  ├─→ Use Cases (/use-cases/) ✅
+  └─→ About (/about/) ✅
+```
+
+---
+
+## 🔄 HOMEPAGE → PAGE TRANSITIONS
+
+### Current Homepage Sections & Their Destinations:
+
+| Homepage Section | Primary Destination | Secondary Destinations | Status |
+|-----------------|---------------------|------------------------|--------|
+| **HeroSection** | `/contact` (CTAs) | `/platform`, `/products` | ✅ Working |
+| **SAETransparencySection** | `/evidence/sae-intelligence` | - | ✅ Working |
+| **VUSComparisonSection** | `/products/oracle` | `/evidence/sae-intelligence` | ✅ Working |
+| **MOATShowcase** | **4/6 links broken** | See broken routes above | ❌ **67% broken** |
+| **MetricsShowcase** | `/metrics`, `/evidence` | `/evidence/sae-intelligence` | ✅ Working |
+| **InteractiveDemoSection** | `/products/oracle` | - | ✅ Working |
+| **ROICalculatorSection** | `/contact` | `/metrics` | ✅ Working |
+| **DrugDevelopmentTransformation** | `/products/oracle` | `/products/forge` | ✅ Working |
+
+**Critical Issue:** MOATShowcase is prominently featured but has broken links
+
+---
+
+## 🏗️ REQUIRED PAGE CREATION PLAN
+
+### Priority 1: Create Missing Routes (Fix Broken MOAT Links)
+
+#### 1. `/solutions/` Directory Structure
+```
+/app/solutions/
+├── page.tsx (Solutions hub/index)
+├── clinical-decision-support/
+│   └── page.tsx (FLAGSHIP - Resistance Prediction + Clinical Dossier)
+├── research-acceleration/
+│   └── page.tsx (Research workflows)
+└── therapeutic-design/
+    └── page.tsx (Therapeutic design workflows)
+```
+
+#### 2. `/platform/` Sub-routes
+```
+/app/platform/
+├── toxicity-risk/
+│   └── page.tsx (Toxicity-Aware Nutrition MOAT)
+└── clinical-trials/
+    └── page.tsx (Mechanism-Based Trial Matching MOAT)
+```
+
+#### 3. `/research/` Directory (Optional - for future)
+```
+/app/research/
+└── vus-explorer/
+    └── page.tsx (Advanced VUS exploration tool)
+```
+
+---
+
+## 📋 NAVIGATION RESTRUCTURE PROPOSAL
+
+### Current Navigation (Navbar.tsx):
+```
+- About
+- Products (dropdown)
+  - Oracle
+  - Forge
+  - Boltz
+  - Command Center
+- In-Silico (dropdown)
+  - Co-pilot links
+- Evidence (dropdown)
+  - Evidence Intelligence
+  - S/P/E Fusion
+  - Data Lab
+  - SAE Intelligence
+  - Cohort Context
+- Blog
+- Success Stories (dropdown)
+- Metrics (dropdown)
+- Contact
+```
+
+### Proposed Navigation (Enhanced):
+```
+- About
+- Products (dropdown)
+  - Oracle
+  - Forge
+  - Boltz
+  - Command Center
+- Solutions (dropdown) ⚠️ NEW
+  - Clinical Decision Support ⚠️ NEW
+  - Research Acceleration ⚠️ NEW
+  - Therapeutic Design ⚠️ NEW
+- Platform (dropdown) ⚠️ RENAME from "In-Silico"
+  - Co-Pilot Hub
+  - Toxicity Risk ⚠️ NEW
+  - Clinical Trials ⚠️ NEW
+  - [Dynamic co-pilot links]
+- Evidence (dropdown)
+  - [Keep existing]
+- Metrics (dropdown)
+  - [Keep existing]
+- Success Stories (dropdown)
+  - [Keep existing]
+- Blog
+- Contact
+```
+
+**Key Changes:**
+1. Add "Solutions" dropdown (new top-level navigation)
+2. Rename "In-Silico" → "Platform" (clearer naming)
+3. Add Toxicity Risk and Clinical Trials to Platform dropdown
+
+---
+
+## 🔗 HOMEPAGE TRANSITION FLOW
+
+### User Journey Mapping:
+
+```
+HOME (/)
+  │
+  ├─→ HERO SECTION
+  │   ├─→ CTA: "Schedule Demo" → /contact
+  │   └─→ CTA: "See Platform" → /platform
+  │
+  ├─→ MOAT SHOWCASE (Interactive Grid)
+  │   ├─→ S/P/E Framework → /evidence/spe-fusion ✅
+  │   ├─→ Universal Platform → /platform ✅
+  │   ├─→ Toxicity-Aware Nutrition → /platform/toxicity-risk ❌
+  │   ├─→ Resistance Prediction → /solutions/clinical-decision-support ❌
+  │   ├─→ Clinical Dossier → /solutions/clinical-decision-support ❌
+  │   └─→ Trial Matching → /platform/clinical-trials ❌
+  │
+  ├─→ VUS COMPARISON
+  │   └─→ "Explore Oracle" → /products/oracle ✅
+  │
+  ├─→ INTERACTIVE DEMO
+  │   └─→ "Try Live Demo" → /products/oracle ✅
+  │
+  ├─→ ROI CALCULATOR
+  │   └─→ "Schedule Demo" → /contact ✅
+  │
+  └─→ CTA SECTION
+      ├─→ "Schedule Executive Demo" → /contact ✅
+      └─→ "See Platform Overview" → /platform ✅
+```
+
+**Critical Path:** MOAT Showcase → 4 broken routes need immediate fixes
+
+---
+
+## ✅ IMMEDIATE ACTION PLAN
+
+### Phase 1: Fix Broken MOAT Links (Priority 1)
+
+#### Task 1.1: Create `/solutions/` Directory
+- [ ] Create `/app/solutions/page.tsx` (Solutions hub)
+- [ ] Create `/app/solutions/clinical-decision-support/page.tsx`
+  - **Content:** Resistance Prediction + Clinical Dossier MOAT showcase
+  - **Components:** Use TherapyRankingCard, ClinicalTrialsMatcher from src2
+- [ ] Create `/app/solutions/research-acceleration/page.tsx`
+  - **Content:** Research workflows and acceleration
+- [ ] Create `/app/solutions/therapeutic-design/page.tsx`
+  - **Content:** Therapeutic design workflows
+
+#### Task 1.2: Create Missing Platform Routes
+- [ ] Create `/app/platform/toxicity-risk/page.tsx`
+  - **Content:** Toxicity-Aware Nutrition MOAT showcase
+- [ ] Create `/app/platform/clinical-trials/page.tsx`
+  - **Content:** Mechanism-Based Trial Matching MOAT showcase
+  - **Components:** Use ClinicalTrialsMatcher from src2
+
+#### Task 1.3: Update Navigation
+- [ ] Add "Solutions" dropdown to Navbar.tsx
+- [ ] Rename "In-Silico" → "Platform" in Navbar.tsx
+- [ ] Add new routes to navigation dropdowns
+
+---
+
+## 📊 ROUTE STATUS SUMMARY
+
+| Route Category | Total Routes | Working | Broken | Broken % |
+|---------------|--------------|---------|--------|----------|
+| Products | 4 | 4 | 0 | 0% ✅ |
+| Platform | ~10 | 8 | 2 | 20% ⚠️ |
+| Evidence | 5 | 5 | 0 | 0% ✅ |
+| Solutions | 3 | 0 | 3 | 100% ❌ |
+| MOAT Links | 6 | 2 | 4 | 67% ❌ |
+| **TOTAL** | **28+** | **19** | **9** | **32%** |
+
+**Critical:** 32% of referenced routes are broken!
+
+---
+
+## 🎯 EXECUTION PRIORITY
+
+### Sprint 0.5: Navigation Fix (IMMEDIATE - Before Sprint 2)
+
+**Goal:** Fix all broken MOAT links so homepage navigation works
+
+**Tasks:**
+1. ✅ Audit all routes (DONE)
+2. ⏳ Create `/solutions/` directory structure
+3. ⏳ Create missing `/platform/` sub-routes
+4. ⏳ Update navigation menu
+5. ⏳ Test all homepage → page transitions
+
+**Time Estimate:** 4-6 hours
+
+**Blocking:** This must be done before Sprint 2 (Product Pages) because:
+- Users clicking MOAT capabilities get 404 errors
+- Homepage credibility is damaged by broken links
+- User experience is broken at the most critical interaction points
+
+---
+
+## 📝 NOTES
+
+- MOAT capabilities are prominently featured but have broken navigation
+- Solutions pages are planned in Sprint 3 but routes are already referenced
+- Platform sub-routes need to be created for toxicity-risk and clinical-trials
+- Navigation naming should be clearer ("In-Silico" → "Platform")
+
+---
+
+**STATUS:** 🔴 BLOCKED - Cannot proceed with Sprint 2 until navigation is fixed

@@ -1,0 +1,446 @@
+# 🛡️ PAGE PRESERVATION & REUSE PLAN
+## Map Existing Pages → Plan Reuse Before Navigation Changes
+
+**Created:** 2024-12-19  
+**Status:** 🔴 CRITICAL - Must preserve valuable existing pages  
+**Priority:** PLAN FIRST, then execute navigation changes
+
+---
+
+## 📋 EXECUTIVE SUMMARY
+
+**The Problem:**
+- Homepage links to `/products/oncology`, `/products/r-d`, `/products/research` → **404 errors**
+- MOAT links are broken (4 out of 6)
+- We have valuable existing pages (co-pilots) that we must preserve
+- We have excellent page structure we can reuse
+
+**The Solution:**
+- **PRESERVE** all existing valuable pages (co-pilots, platform, evidence)
+- **REUSE** co-pilot page structure for MOATs and new product pages
+- **CREATE** missing pages using existing patterns
+- **THEN** update navigation once all pages exist
+
+---
+
+## 🗺️ COMPLETE PAGE INVENTORY
+
+### ✅ Existing Pages We Must Preserve
+
+#### **Product Pages (4) - Already Built:**
+```
+/products/oracle/page.tsx         ✅ EXISTS - Needs enhancement
+/products/forge/page.tsx          ✅ EXISTS - Needs enhancement
+/products/boltz/page.tsx          ✅ EXISTS - Needs enhancement
+/products/command-center/page.tsx ✅ EXISTS - Needs enhancement
+```
+
+#### **Co-Pilot Pages (6) - Valuable Structure to Reuse:**
+```
+/platform/[coPilotSlug]/page.tsx  ✅ DYNAMIC ROUTE EXISTS
+  - Uses: /data/copilots/index.ts
+  - Structure: Hero → Tabs (Battle Plan, War Stories, Strategic Doctrine)
+  - Components: InteractiveContentAnalysis, DesciStyleDoctrineInsights
+
+Co-Pilots Available:
+  ✅ chemo                    → /platform/chemo
+  ✅ clinical-trials          → /platform/clinical-trials
+  ✅ therapy-fit              → /platform/therapy-fit
+  ✅ toxicity-risk            → /platform/toxicity-risk
+  ✅ pathway                  → /platform/pathway
+  ✅ crispr-intelligence      → /platform/crispr-intelligence
+```
+
+#### **Platform Hub:**
+```
+/platform/page.tsx               ✅ EXISTS
+  - Shows 3 co-pilot cards (AgenticEMR, CRISPR Intel, PrecisionRad)
+  - Uses: /platform/data.ts
+```
+
+#### **Evidence Pages:**
+```
+/evidence/page.tsx               ✅ EXISTS
+/evidence/spe-fusion/page.tsx    ✅ EXISTS (S/P/E Framework)
+/evidence/sae-intelligence/page.tsx ✅ EXISTS
+/evidence/data-lab/page.tsx      ✅ EXISTS
+```
+
+---
+
+## 🔗 HOMEPAGE LINKS AUDIT
+
+### Homepage Links That Are Broken:
+
+| Homepage Link | Target Route | Status | Action Needed |
+|--------------|--------------|--------|---------------|
+| "I am treating patients" | `/products/oncology` | ❌ **404** | **CREATE** |
+| "I am designing a drug" | `/products/r-d` | ❌ **404** | **CREATE** |
+| "I am a patient" | `/products/oncology` | ❌ **404** | **CREATE** |
+| CrisPRO Oncology CTA | `/products/oncology` | ❌ **404** | **CREATE** |
+| CrisPRO R&D CTA | `/products/r-d` | ❌ **404** | **CREATE** |
+| CrisPRO Research CTA | `/products/research` | ❌ **404** | **CREATE** |
+
+### Homepage Links That Work:
+
+| Homepage Link | Target Route | Status |
+|--------------|--------------|--------|
+| Engine Room → Oracle | `/products/oracle` | ✅ Works |
+| Engine Room → Forge | `/products/forge` | ✅ Works |
+| Engine Room → Boltz | `/products/boltz` | ✅ Works |
+| Engine Room → Command Center | `/products/command-center` | ✅ Works |
+
+---
+
+## 🎯 REUSE STRATEGY: CO-PILOT PAGE STRUCTURE
+
+### What Makes Co-Pilot Pages Excellent:
+
+**Structure:**
+```typescript
+/platform/[coPilotSlug]/page.tsx
+├── Hero Section (pageTitle, heroSubtitle)
+├── Tabbed Content:
+│   ├── Battle Plan tab → InteractiveContentAnalysis
+│   ├── War Stories tab → CapabilityJourneySection (if journey exists)
+│   └── Strategic Doctrine tab → DesciStyleDoctrineInsights
+└── Inter-linking Section (other co-pilots)
+```
+
+**Components Used:**
+- `InteractiveContentAnalysis` - Renders all content sections dynamically
+- `DesciStyleDoctrineInsights` - Elegant flowing layout
+- `CapabilityJourneySection` - War stories/journeys
+- `TabbedContent` - Reusable tab component
+
+**Data Structure:**
+- `CoPilotDetailContent` interface in `/types/copilot-types.ts`
+- Data files in `/data/copilots/`
+- Dynamic generation via `generateStaticParams()`
+
+---
+
+## 📐 REUSE PLAN: HOW TO REPURPOSE
+
+### Strategy 1: Reuse Co-Pilot Structure for MOATs
+
+**We Can:**
+1. Copy `/platform/[coPilotSlug]/page.tsx` → `/moat/[moatSlug]/page.tsx`
+2. Create MOAT data files similar to co-pilot data structure
+3. Use same tabbed structure (Battle Plan, Live Demo, Strategic Doctrine)
+4. Reuse all components (InteractiveContentAnalysis, etc.)
+
+**Benefits:**
+- Zero new page template code needed
+- Proven structure that works
+- Consistent UX across MOATs and co-pilots
+
+**MOATs to Create:**
+- `/moat/spe-framework` (reuse structure, MOAT-specific data)
+- `/moat/universal-platform` (reuse structure, MOAT-specific data)
+- `/moat/toxicity-nutrition` (reuse structure, MOAT-specific data)
+- `/moat/resistance-prediction` (reuse structure, MOAT-specific data)
+- `/moat/clinical-dossier` (reuse structure, MOAT-specific data)
+- `/moat/trial-matching` (reuse structure, MOAT-specific data)
+
+### Strategy 2: Create Product Pages Using Product Structure
+
+**We Can:**
+1. Use existing `/products/oracle/page.tsx` as template
+2. Create `/products/oncology/page.tsx` with similar structure
+3. Create `/products/r-d/page.tsx` with similar structure
+4. Create `/products/research/page.tsx` with similar structure
+
+**OR Better:**
+1. Use co-pilot structure (tabs) for product-level pages
+2. Create product data files similar to co-pilot data
+3. Reuse tabbed interface for consistent UX
+
+---
+
+## 🏗️ PAGE CREATION PLAN
+
+### Phase 1: Create Missing Product Pages (Priority 1)
+
+**Goal:** Fix all 404 errors from homepage
+
+#### **1. Create `/products/oncology/page.tsx`**
+
+**Reuse Strategy:**
+- **Option A:** Copy co-pilot page structure (`/platform/[coPilotSlug]/page.tsx`)
+- **Option B:** Enhance existing product page structure (`/products/oracle/page.tsx`)
+
+**Recommended:** Option A (co-pilot structure) because:
+- Better UX with tabs
+- Already proven structure
+- Consistent with platform pages
+
+**Data Structure:**
+```typescript
+// Create: /data/products/oncology-data.ts
+export const oncologyProductData: ProductDetailContent = {
+  pageTitle: "CrisPRO Oncology: From VUS to Validated Care Plan",
+  heroSubtitle: "Complete care plans in minutes, not weeks",
+  vision: "Transform clinical oncology from uncertainty to precision",
+  // ... use similar structure to CoPilotDetailContent
+};
+```
+
+**Content to Include:**
+- Hero: "From VUS to Validated Care Plan in Minutes"
+- Tab 1 (Battle Plan): Core capabilities (VUS Resolution, Precision Matching, Safety Prediction, Automated Dossiers)
+- Tab 2 (Live Demo): Interactive Unified Care Plan demo
+- Tab 3 (Strategic Doctrine): Validation metrics, business value
+
+**Time Estimate:** 4-6 hours
+
+---
+
+#### **2. Create `/products/r-d/page.tsx`**
+
+**Reuse Strategy:** Same as oncology (co-pilot structure)
+
+**Content to Include:**
+- Hero: "Design the Undruggable. Validate in Silico."
+- Tab 1 (Battle Plan): Core capabilities (Target Discovery, Lead Engineering, Pre-Clinical Confirmation)
+- Tab 2 (Live Demo): Interactive therapeutic design demo
+- Tab 3 (Strategic Doctrine): Validation metrics, ROI
+
+**Time Estimate:** 4-6 hours
+
+---
+
+#### **3. Create `/products/research/page.tsx`**
+
+**Reuse Strategy:** Same as oncology (co-pilot structure)
+
+**Content to Include:**
+- Hero: "Accelerate Discovery from Years to Hours"
+- Tab 1 (Battle Plan): Core capabilities (VUS Explorer, Hypothesis Testing, Cohort Intelligence)
+- Tab 2 (Live Demo): Interactive research tools demo
+- Tab 3 (Strategic Doctrine): Validation metrics, use cases
+
+**Time Estimate:** 4-6 hours
+
+---
+
+### Phase 2: Create Missing MOAT Pages (Priority 2)
+
+**Goal:** Fix MOAT link 404s
+
+**Strategy:** Reuse co-pilot page structure exactly
+
+#### **MOAT Pages to Create:**
+
+1. **`/moat/toxicity-nutrition/page.tsx`**
+   - Reuse: `/platform/[coPilotSlug]/page.tsx` structure
+   - Data: Create `/data/moats/toxicity-nutrition-data.ts`
+   - Link from: Homepage MOATShowcase (currently 404)
+
+2. **`/moat/resistance-prediction/page.tsx`**
+   - Reuse: `/platform/[coPilotSlug]/page.tsx` structure
+   - Data: Create `/data/moats/resistance-prediction-data.ts`
+   - Link from: Homepage MOATShowcase (currently 404)
+
+3. **`/moat/clinical-dossier/page.tsx`**
+   - Reuse: `/platform/[coPilotSlug]/page.tsx` structure
+   - Data: Create `/data/moats/clinical-dossier-data.ts`
+   - Link from: Homepage MOATShowcase (currently 404)
+
+4. **`/moat/trial-matching/page.tsx`**
+   - Reuse: `/platform/[coPilotSlug]/page.tsx` structure
+   - Data: Create `/data/moats/trial-matching-data.ts`
+   - Link from: Homepage MOATShowcase (currently 404)
+
+**Time Estimate:** 6-8 hours per MOAT page (4 pages = 24-32 hours)
+
+---
+
+### Phase 3: Enhance Existing MOAT Pages (Priority 3)
+
+**Pages That Already Exist But Need MOAT-Specific Content:**
+
+1. **`/evidence/spe-fusion/page.tsx`** ✅ EXISTS
+   - Currently: Evidence page structure
+   - Enhance: Add MOAT-specific content (product integration, workflow)
+   - Link from: Homepage MOATShowcase (currently works)
+
+2. **`/platform/page.tsx`** ✅ EXISTS
+   - Currently: Shows legacy co-pilots
+   - Enhance: Add "Universal Platform" MOAT content
+   - Link from: Homepage MOATShowcase (currently works)
+
+---
+
+## 📊 PAGE REUSE MATRIX
+
+### What We're Reusing:
+
+| Existing Page | Structure to Reuse | New Pages Using It |
+|--------------|-------------------|-------------------|
+| `/platform/[coPilotSlug]/page.tsx` | Tabbed structure with Hero | `/products/oncology`<br>`/products/r-d`<br>`/products/research`<br>`/moat/toxicity-nutrition`<br>`/moat/resistance-prediction`<br>`/moat/clinical-dossier`<br>`/moat/trial-matching` |
+| `/products/oracle/page.tsx` | Product page structure | `/products/oncology` (alternative) |
+| `/data/copilots/index.ts` | Data file pattern | `/data/products/oncology-data.ts`<br>`/data/moats/toxicity-nutrition-data.ts` |
+
+### Components We're Reusing:
+
+| Component | Used In | New Pages |
+|-----------|---------|-----------|
+| `InteractiveContentAnalysis` | Co-pilot pages | Product pages, MOAT pages |
+| `DesciStyleDoctrineInsights` | Co-pilot pages | Product pages, MOAT pages |
+| `CapabilityJourneySection` | Co-pilot pages | Product pages (if journey exists) |
+| `TabbedContent` | Co-pilot pages | All new pages |
+
+---
+
+## 🚀 EXECUTION PLAN
+
+### Step 1: Create Missing Product Pages (CRITICAL - Fix 404s)
+
+**Files to Create:**
+1. `/app/products/oncology/page.tsx` - Copy from `/platform/[coPilotSlug]/page.tsx`
+2. `/app/products/r-d/page.tsx` - Copy from `/platform/[coPilotSlug]/page.tsx`
+3. `/app/products/research/page.tsx` - Copy from `/platform/[coPilotSlug]/page.tsx`
+
+**Data Files to Create:**
+1. `/data/products/oncology-data.ts` - Create product content
+2. `/data/products/r-d-data.ts` - Create product content
+3. `/data/products/research-data.ts` - Create product content
+
+**Type Files (if needed):**
+1. `/types/product-types.ts` - Extend or reuse `CoPilotDetailContent` type
+
+**Time:** 12-18 hours (4-6 hours per page)
+
+---
+
+### Step 2: Create Missing MOAT Pages
+
+**Files to Create:**
+1. `/app/moat/toxicity-nutrition/page.tsx` - Copy from `/platform/[coPilotSlug]/page.tsx`
+2. `/app/moat/resistance-prediction/page.tsx` - Copy from `/platform/[coPilotSlug]/page.tsx`
+3. `/app/moat/clinical-dossier/page.tsx` - Copy from `/platform/[coPilotSlug]/page.tsx`
+4. `/app/moat/trial-matching/page.tsx` - Copy from `/platform/[coPilotSlug]/page.tsx`
+
+**Data Files to Create:**
+1. `/data/moats/toxicity-nutrition-data.ts`
+2. `/data/moats/resistance-prediction-data.ts`
+3. `/data/moats/clinical-dossier-data.ts`
+4. `/data/moats/trial-matching-data.ts`
+
+**Time:** 24-32 hours (6-8 hours per page)
+
+---
+
+### Step 3: Update Navigation (ONLY AFTER PAGES EXIST)
+
+**Files to Modify:**
+1. `/components/ui/Navbar.tsx` - Add Products dropdown, Solutions dropdown
+
+**Time:** 2-3 hours
+
+---
+
+## 📝 DETAILED IMPLEMENTATION: Product Pages
+
+### Template: `/app/products/oncology/page.tsx`
+
+```typescript
+import React from 'react';
+import { Metadata } from 'next';
+import { oncologyProductData } from '@/data/products/oncology-data';
+import InteractiveContentAnalysis from '@/components/co-pilot-detail/InteractiveContentAnalysis';
+import DesciStyleDoctrineInsights from '@/components/co-pilot-detail/DesciStyleDoctrineInsights';
+import TabbedContent, { Tab } from '@/components/ui/TabbedContent';
+import { Layers, Zap, BookOpen } from 'lucide-react';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: oncologyProductData.pageTitle,
+    description: oncologyProductData.heroSubtitle,
+  };
+}
+
+export default async function OncologyProductPage() {
+  const content = oncologyProductData;
+
+  const tabs: Tab[] = [
+    {
+      id: 'battle-plan',
+      label: 'Battle Plan',
+      iconName: 'Layers',
+      content: <InteractiveContentAnalysis content={content} />,
+    },
+    {
+      id: 'live-demo',
+      label: 'Live Demo',
+      iconName: 'Zap',
+      content: <LiveDemoTab />, // New component
+    },
+    {
+      id: 'strategic-doctrine',
+      label: 'Strategic Doctrine',
+      iconName: 'BookOpen',
+      content: <DesciStyleDoctrineInsights content={content} />,
+    },
+  ];
+
+  return (
+    <main className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white text-slate-800 pt-20 pb-12 px-4 md:px-8">
+      <div className="container mx-auto max-w-7xl">
+        {/* Hero Section */}
+        <section className="text-center mb-16 md:mb-24 pt-10">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary via-sky-400 to-indigo-400">
+            {content.pageTitle}
+          </h1>
+          {content.heroSubtitle && (
+            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+              {content.heroSubtitle}
+            </p>
+          )}
+        </section>
+        
+        {/* Tabbed Content */}
+        <div className="container mx-auto px-4 py-8">
+          <TabbedContent tabs={tabs} initialTab="strategic-doctrine" />
+        </div>
+      </div>
+    </main>
+  );
+}
+```
+
+---
+
+## ✅ SUCCESS CRITERIA
+
+### Before Navigation Changes:
+- [ ] All homepage product links work (no 404s)
+- [ ] All MOAT links work (no 404s)
+- [ ] All pages use consistent structure (reused from co-pilots)
+- [ ] All pages have proper content and demos
+
+### After Navigation Changes:
+- [ ] Navbar has Products dropdown
+- [ ] Navbar has Solutions dropdown
+- [ ] All navigation links work
+- [ ] User can navigate seamlessly from homepage to any page
+
+---
+
+## 🎯 NEXT IMMEDIATE ACTION
+
+**START HERE:** Create `/products/oncology/page.tsx`
+
+**Steps:**
+1. Copy `/platform/[coPilotSlug]/page.tsx` → `/products/oncology/page.tsx`
+2. Create `/data/products/oncology-data.ts` with product content
+3. Modify page to use oncology data instead of co-pilot data
+4. Test: Visit `/products/oncology` - should work!
+5. Repeat for `/products/r-d` and `/products/research`
+
+**ONCE ALL PRODUCT PAGES EXIST:** Then update navigation
+
+---
+
+**CRITICAL RULE:** Never modify navigation until all pages exist. Preserve existing valuable pages. Reuse proven structures.

@@ -1,0 +1,601 @@
+# 🎯 CO-PILOT PAGES: OUTCOME-FOCUSED REFACTOR PLAN
+## From Feature Dumps to Outcome-Focused Pages
+
+**Created:** 2024-12-19  
+**Status:** 🟢 READY - Surgical Transformation Plan  
+**Problem:** Co-pilot pages are feature/functionality focused, dumping too much technical detail  
+**Solution:** Transform to outcome-focused pages using product page pattern
+
+---
+
+## 📊 CURRENT STATE ANALYSIS
+
+### **What Co-Pilot Pages Currently Show (Feature Dump):**
+
+**Current Structure:**
+```
+/platform/[coPilotSlug]
+├── Hero Section
+│
+├── Tabbed Interface (initialTab="strategic-doctrine")
+│   │
+│   ├── Battle Plan Tab (HIDDEN by default)
+│   │   └── InteractiveContentAnalysis
+│   │       ├── Technology Foundation Section
+│   │       ├── Core Capabilities Section
+│   │       ├── Problem Solution Matrix (commented out)
+│   │       ├── Value Proposition Section
+│   │       ├── In-Silico Workflow
+│   │       └── Demo Request Form
+│   │
+│   ├── Strategic Doctrine Tab (DEFAULT - shown first)
+│   │   └── DesciStyleDoctrineInsights
+│   │       ├── In-Silico Overview (technical details)
+│   │       ├── Observed Outcomes (buried, collapsed)
+│   │       ├── Core Capabilities (TacticalCapabilityMatrix - feature dump)
+│   │       ├── Advanced Features (collapsed)
+│   │       ├── Integrated Care
+│   │       ├── Value Proposition Flywheel (collapsed)
+│   │       ├── In-Silico Workflow (technical)
+│   │       └── Strategic Conclusion
+│   │
+│   └── War Stories Tab (optional, only if journey exists)
+│       └── CapabilityJourneySection
+```
+
+**Critical Observation:**
+- ⚠️ **Battle Plan tab EXISTS but is HIDDEN** - `initialTab="strategic-doctrine"` means users never see it by default
+- ⚠️ **Battle Plan contains feature-heavy content** - Technology Foundation, Core Capabilities, etc.
+- ⚠️ **Strategic Doctrine is DEFAULT but also feature-heavy** - Users see technical details first
+
+**Problems:**
+- ❌ **Tabbed interface adds complexity** - Users must discover Battle Plan tab exists
+- ❌ **Too much technical detail** - Users see S/P/E fusion, components, features before understanding WHY
+- ❌ **Feature-focused** - "Biology-Aware Drug Ranking" with Technical/Scientific/Business breakdowns
+- ❌ **Information overload** - 8+ sections, all expanded, overwhelming
+- ❌ **Outcomes buried** - Observed outcomes exist but are buried under features, collapsed by default
+- ❌ **No clear problem/solution** - Jumps straight to capabilities
+- ❌ **Battle Plan hidden** - Valuable content exists but users don't see it
+
+### **What Product Pages Show (Outcome-Focused):**
+
+**Product Page Structure:**
+```
+/products/oncology
+├── Hero (outcome-focused headline)
+├── Problem Section (3 simple cards)
+├── Solution Section (3 simple cards)
+├── Outcomes (monitoring dashboard, cascade)
+├── Interactive Demos
+└── Related Products
+```
+
+**Success Factors:**
+- ✅ **Outcome-first** - "Upload Once. Track Forever. Never Miss a Signal"
+- ✅ **Problem → Solution** - Clear narrative flow
+- ✅ **Simple cards** - 3 cards max, easy to scan
+- ✅ **Outcomes prominent** - Monitoring dashboard, cascade experience
+- ✅ **Technical details hidden** - Only shown when needed
+
+---
+
+## 🎯 TRANSFORMATION STRATEGY
+
+### **New Co-Pilot Page Structure (NO TABS):**
+
+```
+/platform/[coPilotSlug]
+├── Hero Section (ProductHeroSection)
+│   ├── Outcome-focused headline
+│   ├── Simple description
+│   └── CTA to demo
+│
+├── Problem Section (ProblemSolutionSection)
+│   ├── What problem does this solve?
+│   └── 3 simple cards
+│
+├── Solution Section (ProblemSolutionSection)
+│   ├── How does this solve it?
+│   └── 3 simple cards
+│
+├── Outcomes Section (NEW - Simplified, PROMINENT)
+│   ├── Key metrics (from observedOutcomes)
+│   ├── Real-world results
+│   └── Visual proof
+│
+├── Interactive Demo (NEW - Simplified)
+│   └── Live capability showcase
+│
+└── Technical Details (Collapsed by default)
+    ├── Technology Foundation (from Battle Plan tab)
+    ├── Core Capabilities (from Strategic Doctrine)
+    ├── Advanced Features (collapsed)
+    ├── In-Silico Workflow (collapsed)
+    └── Value Proposition (collapsed)
+```
+
+**Key Changes:**
+- ✅ **Remove tabbed interface** - Single page flow, no tabs
+- ✅ **Battle Plan content repurposed** - Move Technology Foundation to collapsed Technical Details
+- ✅ **Strategic Doctrine content repurposed** - Core Capabilities, Advanced Features → collapsed Technical Details
+- ✅ **Outcomes PROMINENT** - Move from buried/collapsed to main page flow
+- ✅ **Problem → Solution → Outcomes** - Clear narrative flow before technical details
+
+---
+
+## 🔧 IMPLEMENTATION PLAN
+
+### **Phase 0: Battle Plan Tab Analysis**
+
+**Current State:**
+- Battle Plan tab exists but is hidden (`initialTab="strategic-doctrine"`)
+- Contains `InteractiveContentAnalysis` with feature-heavy content
+- Users never see it unless they click the tab
+
+**Decision: Remove Tabbed Interface Entirely**
+
+**Rationale:**
+1. Battle Plan tab is hidden by default - users don't discover it
+2. Both tabs (Battle Plan + Strategic Doctrine) are feature-heavy
+3. Tabbed interface adds complexity without value
+4. Product pages don't use tabs - single page flow works better
+
+**Content Repurposing Strategy:**
+- **Technology Foundation** (from Battle Plan) → Move to collapsed Technical Details
+- **Core Capabilities** (from both tabs) → Move to collapsed Technical Details
+- **Problem Solution Matrix** (commented out) → Delete (replaced by Problem/Solution sections)
+- **Value Proposition** (from both tabs) → Move to collapsed Technical Details
+- **In-Silico Workflow** (from both tabs) → Move to collapsed Technical Details
+- **Demo Request Form** (from Battle Plan) → Keep at bottom of page (after Technical Details)
+
+**War Stories Tab:**
+- Optional tab, only shows if co-pilot has journey data
+- **Decision:** Keep as separate section (not tab) at bottom of page
+- Link to journey section from hero CTA if journey exists
+
+---
+
+### **Phase 1: Create Outcome-Focused Co-Pilot Template**
+
+**File:** `src/components/co-pilot-detail/OutcomeFocusedCoPilotPage.tsx`
+
+**Structure:**
+```typescript
+interface OutcomeFocusedCoPilotPageProps {
+  content: CoPilotDetailContent;
+}
+
+export default function OutcomeFocusedCoPilotPage({ content }: Props) {
+  const hasJourney = Object.keys(allCapabilityJourneys).includes(content.slug);
+  
+  return (
+    <>
+      {/* Hero - Outcome-focused */}
+      <ProductHeroSection content={transformToHeroContent(content)} />
+      
+      {/* Problem - What problem does this solve? */}
+      <ProblemSolutionSection content={transformToProblemContent(content)} />
+      
+      {/* Solution - How does this solve it? */}
+      <ProblemSolutionSection content={transformToSolutionContent(content)} />
+      
+      {/* Outcomes - Key results (PROMINENT, not buried) */}
+      <SimplifiedOutcomesSection outcomes={content.observedOutcomes} kpis={content.kpis} />
+      
+      {/* Interactive Demo */}
+      <CoPilotDemoSection content={content} />
+      
+      {/* Technical Details - Collapsed (repurposed from Battle Plan + Strategic Doctrine) */}
+      <CollapsibleTechnicalDetails content={content} />
+      
+      {/* War Stories - Optional, only if journey exists */}
+      {hasJourney && (
+        <section className="mb-16">
+          <CapabilityJourneySection capabilityType={content.slug} />
+        </section>
+      )}
+      
+      {/* Demo Request Form - From Battle Plan tab */}
+      <section className="mb-16">
+        <DemoRequestForm />
+      </section>
+    </>
+  );
+}
+```
+
+**Key Transformations:**
+
+1. **Hero Content Transformation:**
+   ```typescript
+   function transformToHeroContent(content: CoPilotDetailContent): ProductHeroContent {
+     return {
+       badge: {
+         text: content.pageTitle.split(':')[0] || 'CAPABILITY',
+         emoji: getCoPilotEmoji(content.slug),
+       },
+       mainHeadline: extractOutcomeHeadline(content), // "Prevent Toxicity Before It Happens"
+       subtitle: content.vision, // "Transform toxicity prediction..."
+       description: extractOutcomeDescription(content), // Focus on outcomes, not features
+       ctas: [
+         { label: 'Try Live Demo →', href: '#demo', variant: 'primary' },
+         { label: 'Learn More', href: '#technical', variant: 'secondary' }
+       ]
+     };
+   }
+   ```
+
+2. **Problem Content Transformation:**
+   ```typescript
+   function transformToProblemContent(content: CoPilotDetailContent): ProblemSolutionContent {
+     return {
+       type: 'problem',
+       title: `The Problem: ${extractProblemTitle(content)}`,
+       description: content.coreProblemIntro || "Traditional approaches fall short...",
+       cards: content.coreProblemPoints.slice(0, 3).map(point => ({
+         title: extractTitle(point),
+         description: extractDescription(point),
+         icon: getProblemIcon(point),
+         highlight: extractHighlight(point)
+       }))
+     };
+   }
+   ```
+
+3. **Solution Content Transformation:**
+   ```typescript
+   function transformToSolutionContent(content: CoPilotDetailContent): ProblemSolutionContent {
+     return {
+       type: 'solution',
+       title: `The Solution: ${extractSolutionTitle(content)}`,
+       description: extractSolutionDescription(content),
+       cards: content.observedOutcomes.slice(0, 3).map(outcome => ({
+         title: outcome.title,
+         description: outcome.description,
+         icon: mapOutcomeToIcon(outcome.icon),
+         highlight: outcome.keyMetric
+       }))
+     };
+   }
+   ```
+
+### **Phase 2: Create Simplified Outcomes Section**
+
+**File:** `src/components/co-pilot-detail/sections/SimplifiedOutcomesSection.tsx`
+
+**Structure:**
+```typescript
+interface SimplifiedOutcomesSectionProps {
+  outcomes: ObservedOutcome[];
+  kpis?: KPIMetric[];
+}
+
+export default function SimplifiedOutcomesSection({ outcomes, kpis }: Props) {
+  return (
+    <section className="mb-16">
+      <SectionHeader
+        title="Real-World Results"
+        description="Measurable outcomes from using this capability"
+      />
+      
+      {/* Key Metrics Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {outcomes.slice(0, 3).map(outcome => (
+          <OutcomeCard key={outcome.title} outcome={outcome} />
+        ))}
+      </div>
+      
+      {/* KPI Strip */}
+      {kpis && <KPIGrid kpis={kpis.slice(0, 6)} />}
+    </section>
+  );
+}
+```
+
+### **Phase 3: Create Collapsible Technical Details**
+
+**File:** `src/components/co-pilot-detail/CollapsibleTechnicalDetails.tsx`
+
+**Structure:**
+```typescript
+export default function CollapsibleTechnicalDetails({ content }: Props) {
+  const [expanded, setExpanded] = useState(false);
+  
+  return (
+    <section className="mb-16">
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="w-full text-left p-6 bg-slate-50 rounded-lg border border-slate-200 hover:bg-slate-100 transition-colors"
+      >
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl font-bold text-slate-800">
+            Technical Details & Advanced Features
+          </h3>
+          <ChevronDown className={`w-5 h-5 text-slate-600 transition-transform ${expanded ? 'rotate-180' : ''}`} />
+        </div>
+        <p className="text-sm text-slate-600 mt-2">
+          Deep dive into capabilities, technical approach, and advanced features
+        </p>
+      </button>
+      
+      {expanded && (
+        <div className="mt-6 space-y-8">
+          {/* Core Capabilities */}
+          <TacticalCapabilityMatrix keyCapabilities={content.keyCapabilities.filter(c => !c.priority || c.priority === 'primary')} />
+          
+          {/* Advanced Features */}
+          {content.keyCapabilities.filter(c => c.priority === 'advanced').length > 0 && (
+            <AdvancedFeaturesSection capabilities={content.keyCapabilities.filter(c => c.priority === 'advanced')} />
+          )}
+          
+          {/* In-Silico Workflow */}
+          {content.inSilicoWorkflow && (
+            <InSilicoWorkflowSection workflow={content.inSilicoWorkflow} />
+          )}
+          
+          {/* Value Proposition */}
+          {content.valuePropositionSections && (
+            <ValuePropositionFlywheel valuePropositionSections={content.valuePropositionSections} />
+          )}
+        </div>
+      )}
+    </section>
+  );
+}
+```
+
+### **Phase 4: Create Simplified Demo Section**
+
+**File:** `src/components/co-pilot-detail/CoPilotDemoSection.tsx`
+
+**Structure:**
+```typescript
+export default function CoPilotDemoSection({ content }: Props) {
+  return (
+    <section id="demo" className="mb-16">
+      <SectionHeader
+        title="See It In Action"
+        description="Interactive demonstration of this capability"
+      />
+      
+      {/* Simple demo based on co-pilot slug */}
+      {content.slug === 'toxicity-risk' && <ToxicityDemo />}
+      {content.slug === 'clinical-trials' && <TrialMatchingDemo />}
+      {content.slug === 'chemo' && <ChemoRankingDemo />}
+      {/* ... other co-pilots */}
+    </section>
+  );
+}
+```
+
+---
+
+### **Phase 5: Update Page Route (Remove TabbedContent)**
+
+**File:** `src/app/platform/[coPilotSlug]/page.tsx`
+
+**Changes:**
+```typescript
+// BEFORE (with tabs):
+const tabs: Tab[] = [
+  { id: 'battle-plan', label: 'Battle Plan', content: <InteractiveContentAnalysis /> },
+  { id: 'strategic-doctrine', label: 'Strategic Doctrine', content: <DesciStyleDoctrineInsights /> },
+];
+<TabbedContent tabs={tabs} initialTab="strategic-doctrine" />
+
+// AFTER (no tabs, single flow):
+<OutcomeFocusedCoPilotPage content={content} />
+```
+
+**Remove:**
+- `TabbedContent` import and usage
+- `Tab` interface usage
+- Battle Plan tab definition
+- Strategic Doctrine tab definition
+- `initialTab` prop
+
+**Keep:**
+- Hero section (but use ProductHeroSection)
+- War Stories section (if journey exists, but not as tab)
+
+---
+
+## 📋 CONTENT TRANSFORMATION RULES
+
+### **Hero Headline Rules:**
+
+**❌ BAD (Feature-focused):**
+- "Biology-Aware Drug Ranking"
+- "S/P/E Fusion Capability"
+- "Advanced Variant Analysis"
+
+**✅ GOOD (Outcome-focused):**
+- "Prevent Toxicity Before It Happens"
+- "Match Patients to Perfect Trials"
+- "Rank Drugs by Biological Fit"
+
+### **Problem Cards Rules:**
+
+**Extract from `coreProblemPoints`:**
+- Max 3 cards
+- Simple title + description
+- Focus on pain points, not technical details
+
+**Example Transformation:**
+```
+Before: "Too many options, little clarity on fit to tumor biology."
+After: {
+  title: "Too Many Options",
+  description: "Little clarity on which drugs fit tumor biology",
+  icon: "search",
+  highlight: "Unclear"
+}
+```
+
+### **Solution Cards Rules:**
+
+**Extract from `observedOutcomes`:**
+- Max 3 cards
+- Use outcome title + description
+- Highlight key metric
+
+**Example:**
+```
+{
+  title: "VUS Resolution",
+  description: "73% of uncertain variants become actionable",
+  icon: "target",
+  highlight: "73% actionable"
+}
+```
+
+---
+
+## 🗂️ FILE STRUCTURE
+
+### **New Files to Create:**
+
+```
+src/components/co-pilot-detail/
+├── OutcomeFocusedCoPilotPage.tsx          # NEW - Main template
+├── CollapsibleTechnicalDetails.tsx         # NEW - Collapsed technical section
+├── CoPilotDemoSection.tsx                  # NEW - Simplified demo
+└── sections/
+    ├── SimplifiedOutcomesSection.tsx      # NEW - Outcomes-focused
+    └── ContentTransformers.ts              # NEW - Helper functions
+```
+
+### **Files to Modify:**
+
+```
+src/app/platform/[coPilotSlug]/page.tsx
+└── Replace DesciStyleDoctrineInsights with OutcomeFocusedCoPilotPage
+
+src/data/copilots/
+└── Add outcome-focused fields to data files (if needed)
+```
+
+---
+
+## 🎨 VISUAL COMPARISON
+
+### **Before (Feature Dump):**
+```
+┌─────────────────────────────────────┐
+│ Battle Plan Tab                     │
+│ ├── Technology Foundation           │
+│ ├── Core Capabilities (8 items)     │
+│ ├── Problem Solution Matrix         │
+│ └── Value Proposition                │
+│                                      │
+│ Strategic Doctrine Tab              │
+│ ├── In-Silico Overview              │
+│ ├── Observed Outcomes (collapsed)    │
+│ ├── Core Capabilities (expanded)     │
+│ ├── Advanced Features (expanded)     │
+│ ├── Integrated Care                 │
+│ ├── Value Proposition Flywheel      │
+│ ├── In-Silico Workflow              │
+│ └── Strategic Conclusion             │
+└─────────────────────────────────────┘
+```
+
+### **After (Outcome-Focused):**
+```
+┌─────────────────────────────────────┐
+│ Hero: "Prevent Toxicity Before..."  │
+│                                      │
+│ Problem: 3 simple cards             │
+│                                      │
+│ Solution: 3 simple cards            │
+│                                      │
+│ Outcomes: Key metrics + results      │
+│                                      │
+│ Demo: Interactive showcase           │
+│                                      │
+│ [▼] Technical Details (collapsed)   │
+└─────────────────────────────────────┘
+```
+
+---
+
+## ✅ SUCCESS METRICS
+
+### **Before → After:**
+
+**Information Density:**
+- Before: 8+ sections, all visible
+- After: 5 sections visible, technical details collapsed
+
+**Outcome Focus:**
+- Before: Features shown first
+- After: Outcomes shown first
+
+**User Journey:**
+- Before: Technical details → Outcomes
+- After: Problem → Solution → Outcomes → Technical (optional)
+
+**Time to Value:**
+- Before: 5+ minutes to understand value
+- After: 30 seconds to understand value
+
+---
+
+## 🚀 IMPLEMENTATION PHASES
+
+### **Sprint 1 (Week 1-2): Foundation**
+1. ✅ Create `OutcomeFocusedCoPilotPage.tsx` template
+2. ✅ Create `ContentTransformers.ts` helper functions
+3. ✅ Create `SimplifiedOutcomesSection.tsx`
+4. ✅ Test with 1 co-pilot (e.g., `toxicity-risk`)
+
+### **Sprint 2 (Week 3-4): Complete Transformation**
+1. ✅ Create `CollapsibleTechnicalDetails.tsx`
+2. ✅ Create `CoPilotDemoSection.tsx`
+3. ✅ Update all 11 co-pilot pages
+4. ✅ Test all pages
+
+### **Sprint 3 (Week 5-6): Polish & Optimization**
+1. ✅ Refine content transformations
+2. ✅ Add animations/transitions
+3. ✅ Mobile optimization
+4. ✅ Performance optimization
+
+---
+
+## 🔍 VALIDATION CHECKLIST
+
+### **For Each Co-Pilot Page:**
+
+- [ ] Hero headline is outcome-focused (not feature-focused)
+- [ ] Problem section has max 3 simple cards
+- [ ] Solution section has max 3 simple cards
+- [ ] Outcomes section shows key metrics prominently
+- [ ] Technical details are collapsed by default
+- [ ] Demo section is interactive and simple
+- [ ] Page loads in <2 seconds
+- [ ] Mobile responsive
+- [ ] Clear CTAs
+
+---
+
+## 📝 NOTES
+
+### **Reusability:**
+- Reuse `ProductHeroSection` from product pages
+- Reuse `ProblemSolutionSection` from product pages
+- Create new simplified components for co-pilots
+
+### **Content Strategy:**
+- Extract outcome-focused content from existing data
+- Transform feature descriptions to outcome descriptions
+- Use `observedOutcomes` as primary source for solution cards
+
+### **Migration Path:**
+- Keep old components for backward compatibility
+- Gradually migrate co-pilots one by one
+- Test each migration before proceeding
+
+---
+
+**CRITICAL SUCCESS FACTOR:** Co-pilot pages should feel like product pages - outcome-focused, problem/solution narrative, outcomes prominent, technical details optional. Users should understand VALUE in 30 seconds, not 5 minutes.

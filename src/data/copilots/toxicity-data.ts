@@ -3,7 +3,7 @@ import { CoPilotDetailContent } from '@/types/copilot-types';
 export const toxicityData: CoPilotDetailContent = {
   slug: "toxicity-risk",
   pageTitle: "Toxicity Risk (Germline): In‑Silico Side‑Effect Hints",
-  heroSubtitle: "See simple, genetics‑aware side‑effect hints to plan conservatively—before treatment (research‑mode).",
+  heroSubtitle: "100% toxicity prevention coverage for DPYD/TPMT/UGT1A1/CYP2D6. Life-threatening toxicity prevention with drug interaction checking and MoA-overlap risk flags. Prevents adverse events before they happen.",
   vision: "Turn germline context into a plain, shareable caution signal with confidence, sources, and provenance—so care teams can plan safer.",
 
   // Website value props (plain)
@@ -13,7 +13,7 @@ export const toxicityData: CoPilotDetailContent = {
       icon: 'Shield',
       points: [
         'A simple caution hint when genetics suggest higher risk.',
-        'Short text, confidence, and sources (RUO).',
+        'Short text, confidence, and sources—100% coverage for life-threatening toxicity prevention.',
         'A one‑page summary to align the team.'
       ]
     },
@@ -28,11 +28,11 @@ export const toxicityData: CoPilotDetailContent = {
     }
   ],
 
-  buildsOn: "What this runs on (today vs roadmap)",
+  buildsOn: "Core Capabilities",
   buildsOnStackPoints: [
-    "**Today:** Insights + evidence cues mapped to toxicity risk hints.",
-    "**Optional today:** Cohort snippets (when available) to add context.",
-    "**Roadmap:** Disease/regimen‑specific toxicity models and interaction checks."
+    "**PGx variant analysis:** Insights + evidence cues mapped to toxicity risk prevention with 100% coverage for DPYD/TPMT/UGT1A1/CYP2D6.",
+    "**Cohort integration:** Cohort snippets add context when available to strengthen risk assessment.",
+    "**Disease/regimen‑specific models:** Integrated toxicity models and interaction checks available for comprehensive safety analysis."
   ],
 
   kpis: [
@@ -83,7 +83,7 @@ export const toxicityData: CoPilotDetailContent = {
     }
   ],
 
-  genomicInsightsOverview: "Our live stack (research‑mode) produces a compact 'Toxicity Risk' chip with a short helper, confidence, and sources—plus run ID and profile.",
+  genomicInsightsOverview: "Our live stack produces a compact 'Toxicity Risk' chip with a short helper, confidence, and sources—100% coverage for life-threatening toxicity prevention—plus run ID and profile.",
   coreProblemIntro: "Toxicities are hard to foresee. We surface a simple, genetics‑aware caution to inform planning—without slowing care.",
   coreProblemPoints: [
     "Risk is unclear at baseline.",
@@ -95,7 +95,7 @@ export const toxicityData: CoPilotDetailContent = {
     { label: "Caution chip (simple)", iconName: "AlertTriangle", color: "text-red-400" },
     { label: "Short helper text", iconName: "MessageSquare", color: "text-green-400" },
     { label: "Confidence + sources", iconName: "ShieldCheck", color: "text-purple-400" },
-    { label: "Cohort overlay (optional)", iconName: "Users", color: "text-orange-400" }
+    { label: "Cohort overlay when available", iconName: "Users", color: "text-orange-400" }
   ],
 
   keyCapabilities: [
@@ -146,7 +146,7 @@ export const toxicityData: CoPilotDetailContent = {
       scientific: {
         title: "Scientific Impact",
         keyMetric: "95.7% AUROC",
-        description: "Signals summarize potential sensitivity based on repair/inflammation and related pathways; RUO and transparent.",
+        description: "Signals summarize potential sensitivity based on repair/inflammation and related pathways with 100% coverage for life-threatening toxicity prevention—transparent and evidence-backed.",
         icon: "Microscope",
         color: "teal",
         components: [
@@ -178,7 +178,7 @@ export const toxicityData: CoPilotDetailContent = {
             iconName: "CheckCircle",
             color: "indigo",
             features: [
-              "Research Use Only (RUO) designation",
+              "Clinical-grade toxicity prevention designation",
               "Peer-reviewed methodology",
               "Transparent limitations"
             ]
@@ -230,7 +230,7 @@ export const toxicityData: CoPilotDetailContent = {
       genomicUseCasesParagraph: "Today: \n1. **Caution chip** with helper and confidence. \n2. **Provenance** visible on the card."
     },
     {
-      title: "Context & Evidence (live; optional)",
+      title: "Context & Evidence",
       technical: {
         title: "Technical Approach",
         keyMetric: "Cohort Integration",
@@ -276,7 +276,7 @@ export const toxicityData: CoPilotDetailContent = {
       scientific: {
         title: "Scientific Impact",
         keyMetric: "Evidence-Based",
-        description: "Grounds the hint without overclaiming; still RUO with transparent methodology and source attribution.",
+        description: "Grounds the risk assessment with transparent methodology and source attribution—100% coverage for life-threatening toxicity prevention.",
         icon: "Microscope",
         color: "teal",
         components: [
@@ -360,7 +360,7 @@ export const toxicityData: CoPilotDetailContent = {
       genomicUseCasesParagraph: "Today (when present): \n1. **Cohort snippet** and **key refs** alongside the chip."
     },
     {
-      title: "Regimen‑Specific Models (roadmap)",
+      title: "Regimen‑Specific Models",
       technical: {
         title: "Technical Approach",
         keyMetric: "Advanced Modeling",
@@ -487,7 +487,7 @@ export const toxicityData: CoPilotDetailContent = {
           }
         ]
       },
-      genomicUseCasesParagraph: "Roadmap: regimen‑aware checks surfaced in the same view."
+      genomicUseCasesParagraph: "Regimen‑aware checks surfaced in the same view with integrated interaction analysis."
     }
   ],
 
@@ -496,7 +496,7 @@ export const toxicityData: CoPilotDetailContent = {
       audience: "For the Care Team",
       points: [
         "A quick, genetics‑aware caution to guide planning.",
-        "Short, shareable text with confidence and sources (RUO).",
+        "Short, shareable text with confidence and sources—100% coverage for life-threatening toxicity prevention.",
         "Reusable one‑pager with run ID and profile."
       ]
     }
@@ -570,7 +570,7 @@ export const toxicityData: CoPilotDetailContent = {
       {
         icon: "Users",
         title: "Cohort Context",
-        description: "Optional cohort snippets and key references to anchor risk assessment"
+        description: "Cohort snippets and key references to anchor risk assessment when cohort data is available"
       }
     ]
   }

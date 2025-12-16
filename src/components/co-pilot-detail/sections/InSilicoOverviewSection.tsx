@@ -225,30 +225,21 @@ const InSilicoOverviewSection: React.FC<InSilicoOverviewSectionProps> = ({ conte
       initial="hidden"
       animate="visible"
     >
-      {/* Header Section */}
-      <motion.div variants={itemVariants} className="text-center mb-20">
-        <div className="relative">
-          {/* Background decoration */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-50 via-teal-50 to-indigo-50 rounded-3xl transform rotate-1 scale-105 opacity-50"></div>
-          <div className="relative bg-white rounded-3xl p-12 shadow-xl border border-gray-100">
-            <div className="inline-flex items-center gap-4 mb-8">
-              <div className="p-4 bg-gradient-to-r from-blue-500 to-teal-500 rounded-2xl shadow-lg">
-                <Microscope className="w-10 h-10 text-white" />
-              </div>
-              <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-teal-600 to-indigo-600 bg-clip-text text-transparent">
+      {/* Header Section - Compact Product Overview */}
+      <motion.div variants={itemVariants} className="mb-8 md:mb-12">
+        <div className="bg-white rounded-xl md:rounded-2xl p-6 md:p-8 shadow-lg border border-slate-200">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
+            <div className="p-3 md:p-4 bg-gradient-to-r from-blue-500 to-teal-500 rounded-xl md:rounded-2xl shadow-lg flex-shrink-0">
+              <Microscope className="w-6 h-6 md:w-8 md:h-8 text-white" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 via-teal-600 to-indigo-600 bg-clip-text text-transparent mb-2 md:mb-3">
                 {content.pageTitle}
               </h2>
-            </div>
-            <div className="max-w-5xl mx-auto">
-              <p className="text-2xl text-gray-700 leading-relaxed mb-6">
-                <strong className="text-blue-600">In-silico</strong> means "in silicon" - referring to computer-based analysis that simulates and predicts biological processes.
-              </p>
               {content.heroSubtitle && (
-                <div className="bg-gradient-to-r from-blue-50 to-teal-50 rounded-2xl p-6 border border-blue-100">
-                  <p className="text-xl font-medium text-gray-800 leading-relaxed">
-                    {content.heroSubtitle}
-                  </p>
-                </div>
+                <p className="text-base md:text-lg text-slate-700 leading-relaxed">
+                  {content.heroSubtitle}
+                </p>
               )}
             </div>
           </div>

@@ -1,0 +1,645 @@
+# 🎯 HOMEPAGE PRODUCTS BY USE CASE - FINAL STRATEGY
+## Products First, Engines Second
+
+**Created:** 2024-12-19  
+**Last Updated:** 2024-12-19  
+**Status:** ✅ APPROVED & LOCKED - Ready for implementation  
+**Priority:** HIGH - Critical business alignment shift
+
+---
+
+## 🧠 CORE PHILOSOPHY: "PRODUCTS FIRST, ENGINES SECOND"
+
+**Status:** ✅ APPROVED & LOCKED
+
+**Objective:** Shift from selling "tech components" (Oracle/Forge) to selling "solutions" (Oncology/R&D/Research).
+
+**Key Change:** Homepage should sell **customer solutions first**, show **engines second** (as technical validation).
+
+---
+
+## 🏗️ THE NEW PRODUCT ARCHITECTURE
+
+We are restructuring the entire platform into three distinct products tailored to specific buyer personas.
+
+### **1. CrisPRO Oncology (For Clinicians)** 🏥
+
+**The Promise:** "From VUS to Validated Care Plan in Minutes."
+
+**Target User:** Oncologists, Pathologists, Clinical Directors.
+
+**Core Capabilities:**
+- **VUS Annihilation:** Instantly resolve variants of unknown significance (e.g., MBD4, PDGFRA) with 95.7% accuracy
+- **Precision Matching:** Match patients to therapies based on mechanism (e.g., "High-TMB + MBD4 loss = Checkpoint Inhibitor"), not just standard of care
+- **Safety Prediction:** HLA-based autoimmune toxicity forecasting (The "Saad Protocol")
+- **Automated Dossiers:** Generate AACR-grade clinical evidence reports
+- **Synthetic Lethality Analysis:** Identify drug-gene dependencies (e.g., MBD4 deficiency vulnerabilities)
+- **Clinical Trial Matching:** Top 10 trials with transparent eligibility reasoning
+- **Resistance Prediction:** Proactive resistance detection BEFORE it happens
+- **Complete Unified Care Plan:** Single output integrating drugs + trials + food/supplements + monitoring
+
+**Powered By:**
+- **Oracle Engine:** For zero-shot variant interpretation
+- **Command Center:** For patient data integration (VCF/BAM ingestion)
+
+**Customer Value:** Oncologists get evidence-backed treatment recommendations with transparent confidence scores. Every recommendation shows WHY (eligibility + fit + conditions), not just WHAT. Action-ready packets mean oncologists can call trial sites the same day.
+
+---
+
+### **2. CrisPRO R&D (For Pharma/Biotech)** 🔬
+
+**The Promise:** "Design the Undruggable. Validate in Silico."
+
+**Target User:** Drug Hunters, Computational Biologists, Biotech Founders.
+
+**Core Capabilities:**
+- **Target Discovery:** Identify novel synthetic lethal pairs (e.g., MBD4 deficiency vulnerabilities)
+- **Generative Forge:** Design novel proteins/CRISPR guides to fix or kill specific targets (e.g., refolding p53)
+- **In Silico Trials:** Simulate drug binding and efficacy on a "Digital Twin" before wet lab testing
+- **Mechanism Analysis:** SAE (Sparse Autoencoder) interpretability to explain why a drug works
+- **Target Validation:** 95.7% AUROC for variant impact prediction
+- **Lead Engineering:** 70% functional coherence for generated therapeutics
+- **Pre-Clinical Confirmation:** 95.8% structural confidence validation
+
+**Powered By:**
+- **Forge Engine:** For generative protein/sequence design
+- **Boltz Engine:** For structural validation (3D folding)
+- **Oracle Engine:** For pathogenicity scoring
+
+**Customer Value:** Drug hunters de-risk development with in-silico validation before spending millions on wet lab work. Every design is validated with structural confidence and mechanistic explanations.
+
+---
+
+### **3. CrisPRO Research (For Academics/Institutes)** 🧪
+
+**The Promise:** "Accelerate Discovery from Years to Hours."
+
+**Target User:** Principal Investigators, PhD Candidates, Research Institutes (e.g., Broad, Crick).
+
+**Core Capabilities:**
+- **Hypothesis Testing:** Rapidly test gene-disease associations across 50+ diseases
+- **Cohort Intelligence:** Analyze massive datasets (TCGA, cBioPortal) for patterns
+- **Literature Synthesis:** AI agents that scour PubMed/AACR to find supporting evidence
+- **Grant-Ready Data:** Generate charts, p-values, and structural models for grant applications
+- **VUS Explorer:** Turn "unknown" variants into "understood and actionable" insights
+- **Universal Hypothesis Testing:** Test compounds/supplements against 50+ diseases
+- **Evidence Synthesis:** Multi-provider literature search (PubMed, OpenAlex, S2)
+
+**Powered By:**
+- **Oracle Engine:** For large-scale variant scoring
+- **Command Center:** For knowledge graph and literature retrieval
+
+**Customer Value:** Researchers validate hypotheses in hours, not months. Every insight is traceable to source data with complete audit trails.
+
+---
+
+## 🔄 REVISED HOMEPAGE LAYOUT
+
+This is the new flow for the user experience.
+
+### **1. Hero Section:**
+
+**Headline:** "The Operating System for Precision Medicine."
+
+**Subheadline:** "Solve the VUS. Design the Cure. Validate in Silico."
+
+**CTA Options:**
+- "Analyze Your Cohort" (Research)
+- "Request Demo" (Clinical)
+- "Explore R&D Tools" (Biotech)
+
+---
+
+### **2. The "Three Doors" (Product Selection)** ⚠️ NEW COMPONENT
+
+A specialized section where the user self-selects their use case:
+
+**Component Name:** `ProductsByUseCase.tsx` (TO BE CREATED)
+
+**Structure:**
+```
+┌─────────────────────────────────────────────────────────────┐
+│ Choose Your Path:                                          │
+│                                                             │
+│ ┌──────────────────┬──────────────────┬──────────────────┐ │
+│ │ CrisPRO Oncology │ CrisPRO R&D      │ CrisPRO Research │ │
+│ │                  │                  │                  │ │
+│ │ "I am treating   │ "I am designing  │ "I am conducting │ │
+│ │  a patient"      │  a drug"         │  research"       │ │
+│ │                  │                  │                  │ │
+│ │ 🏥 For Clinicians│ 🔬 For Biotech   │ 🧪 For Academics │ │
+│ │                  │                  │                  │ │
+│ │ • VUS Resolution │ • Target Discovery│ • Hypothesis Test│ │
+│ │ • Trial Matching │ • Drug Design    │ • Cohort Analysis│ │
+│ │ • Care Plans     │ • In Silico Val  │ • Literature     │ │
+│ │                  │                  │                  │ │
+│ │ [Explore →]      │ [Explore →]      │ [Explore →]      │ │
+│ └──────────────────┴──────────────────┴──────────────────┘ │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Behavior:**
+- Clicking a door routes to product-specific landing page
+- Shows core capabilities for each product
+- Clear call-to-action per product
+
+---
+
+### **3. The "Engine Room" (Technical Validation)**
+
+**Headline:** "Powered by the World's First Biological Foundation Models."
+
+**Purpose:** Showcase Oracle (Accuracy), Forge (Creativity), and Boltz (Physics) as the underlying tech, NOT the product itself.
+
+**Placement:** After "Three Doors", before social proof
+
+**Structure:**
+```
+┌─────────────────────────────────────────────────────────────┐
+│ Powered by the World's First Biological Foundation Models  │
+│                                                             │
+│ ┌──────────┬──────────┬──────────┬──────────────┐         │
+│ │ Oracle   │ Forge    │ Boltz    │ Command      │         │
+│ │          │          │          │ Center       │         │
+│ │ Accuracy │ Creativity│ Physics  │ Orchestration│         │
+│ │          │          │          │              │         │
+│ │ 95.7%    │ 70%      │ 95.8%    │ Complete     │         │
+│ │ AUROC    │ Functional│ Confidence│ Workflows    │         │
+│ │          │          │          │              │         │
+│ │ [Learn]  │ [Learn]  │ [Learn]  │ [Learn]      │         │
+│ └──────────┴──────────┴──────────┴──────────────┘         │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Key Message:** These are the engines that power our products - technical validation, not the main sell.
+
+---
+
+### **4. Social Proof / Impact:**
+
+**Sections:**
+- **AACR Abstract:** Showcase research validation
+- **MBD4 Case Study:** Anonymized Ayesha story (real-world impact)
+- **Partner Logos:** Ambry, etc. (aspirational or real)
+- **TrustedBy Section:** Existing component, keep
+
+---
+
+## 📋 CURRENT HOMEPAGE AUDIT
+
+### **What Needs to Change:**
+
+#### ❌ **REMOVE/DEPRECATE:**
+
+1. **`DrugDevelopmentPlatform.tsx`** - Too generic and engine-focused
+   - **Action:** Remove from homepage
+   - **Reason:** Focuses on engines (Oracle/Forge/Boltz) instead of customer solutions
+   - **Status:** Currently on homepage, needs removal
+
+2. **Engine-first messaging** - Any section that leads with "Oracle does X"
+   - **Action:** Move engines to "Engine Room" section (technical validation)
+   - **Reason:** Customers buy solutions, not engines
+
+#### ✅ **KEEP/ENHANCE:**
+
+1. **`PlatformCapabilitiesShowcase.tsx`** - Already organized by use case!
+   - **Status:** Keep but re-tag to align with three product buckets
+   - **Enhancement:** Map capabilities to CrisPRO Oncology/R&D/Research
+
+2. **Social Proof Sections:**
+   - TrustedBy ✅
+   - MetricsShowcase ✅ (but attribute to products, not engines)
+   - Case studies ✅
+
+3. **Problem/Solution Sections:**
+   - HeroSection ✅ (needs update with new headline)
+   - SAETransparencySection ✅ (attribute to Oracle in Engine Room)
+   - VUSComparisonSection ✅ (perfect for CrisPRO Oncology)
+
+---
+
+## 🎯 REVISED HOMEPAGE STRUCTURE
+
+### **New Homepage Flow:**
+
+```
+1. HeroSection
+   └─→ NEW: "The Operating System for Precision Medicine"
+   └─→ NEW: "Solve the VUS. Design the Cure. Validate in Silico."
+   └─→ NEW: CTAs by use case
+
+2. ProductsByUseCase ⚠️ NEW COMPONENT
+   └─→ "Three Doors" product selection
+   └─→ CrisPRO Oncology / R&D / Research
+   └─→ Clear value propositions per product
+
+3. TrustedBy
+   └─→ Partner logos (keep existing)
+
+4. MetricsShowcase
+   └─→ KEEP but attribute to PRODUCTS, not engines
+   └─→ "CrisPRO Oncology: 95.7% VUS Resolution"
+   └─→ "CrisPRO R&D: 70% Functional Coherence"
+
+5. PlatformCapabilitiesShowcase
+   └─→ KEEP but re-tag to three products
+   └─→ "CrisPRO Oncology Capabilities"
+   └─→ "CrisPRO R&D Capabilities"
+   └─→ "CrisPRO Research Capabilities"
+
+6. Engine Room ⚠️ NEW SECTION
+   └─→ "Powered by the World's First Biological Foundation Models"
+   └─→ Show Oracle, Forge, Boltz, Command Center
+   └─→ Technical validation, not primary sell
+
+7. Social Proof
+   └─→ AACR Abstract showcase
+   └─→ MBD4 Case Study (anonymized Ayesha)
+   └─→ Partner logos
+
+8. InteractiveDemoSection
+   └─→ KEEP but organize by product
+   └─→ "Try CrisPRO Oncology"
+   └─→ "Try CrisPRO R&D"
+   └─→ "Try CrisPRO Research"
+
+9. ROICalculatorSection
+   └─→ KEEP (business impact)
+
+10. CTASection
+    └─→ KEEP (final conversion)
+```
+
+---
+
+## 📝 ACTION ITEMS FOR DEV TEAM
+
+### **Phase 1: Navigation & Structure (Priority: HIGH)**
+
+#### **Task 1.1:** Refactor Navigation
+- **File:** `src/components/shared/Navbar.tsx`
+- **Change:** Replace "Platform" link with "Products" dropdown
+- **Dropdown Options:**
+  - CrisPRO Oncology → `/products/oncology`
+  - CrisPRO R&D → `/products/r-d`
+  - CrisPRO Research → `/products/research`
+- **Status:** ⚠️ PENDING
+
+#### **Task 1.2:** Build ProductsByUseCase Component
+- **File:** `src/components/landing/ProductsByUseCase.tsx` (NEW)
+- **Features:**
+  - Three product cards (Oncology, R&D, Research)
+  - Clear value propositions per product
+  - Core capabilities list per product
+  - CTA buttons linking to product pages
+  - Responsive design (mobile-friendly)
+- **Status:** ⚠️ PENDING
+
+#### **Task 1.3:** Update HeroSection
+- **File:** `src/components/sections/HeroSection.tsx`
+- **Changes:**
+  - Update headline: "The Operating System for Precision Medicine"
+  - Update subheadline: "Solve the VUS. Design the Cure. Validate in Silico."
+  - Update CTAs: Add use case-specific CTAs
+- **Status:** ⚠️ PENDING
+
+---
+
+### **Phase 2: Content Reorganization (Priority: HIGH)**
+
+#### **Task 2.1:** Update PlatformCapabilitiesShowcase
+- **File:** `src/components/landing/PlatformCapabilitiesShowcase.tsx`
+- **Changes:**
+  - Re-tag existing capabilities to align with three product buckets
+  - Update tab names: "CrisPRO Oncology" / "CrisPRO R&D" / "CrisPRO Research"
+  - Map capabilities to products:
+    - Oncology: VUS Resolution, Trial Matching, Care Plans, Resistance Prediction
+    - R&D: Target Discovery, Drug Design, In Silico Validation
+    - Research: Hypothesis Testing, Cohort Intelligence, Literature Synthesis
+- **Status:** ⚠️ PENDING
+
+#### **Task 2.2:** Create Engine Room Section
+- **File:** `src/components/landing/EngineRoom.tsx` (NEW)
+- **Features:**
+  - Headline: "Powered by the World's First Biological Foundation Models"
+  - Show Oracle, Forge, Boltz, Command Center as technical validation
+  - Metrics per engine (95.7% AUROC, 70% Functional, etc.)
+  - Links to technical documentation
+- **Status:** ⚠️ PENDING
+
+#### **Task 2.3:** Remove DrugDevelopmentPlatform from Homepage
+- **File:** `src/app/page.tsx`
+- **Action:** Remove import and component placement
+- **Reason:** Too engine-focused, not customer-solution focused
+- **Status:** ⚠️ PENDING
+
+---
+
+### **Phase 3: Product Attribution (Priority: MEDIUM)**
+
+#### **Task 3.1:** Update MetricsShowcase
+- **File:** `src/components/landing/MetricsShowcase.tsx`
+- **Changes:**
+  - Attribute metrics to PRODUCTS, not engines
+  - "CrisPRO Oncology: 95.7% VUS Resolution"
+  - "CrisPRO R&D: 70% Functional Coherence"
+  - "CrisPRO Research: 50+ Diseases Supported"
+- **Status:** ⚠️ PENDING
+
+#### **Task 3.2:** Update InteractiveDemoSection
+- **File:** `src/components/landing/InteractiveDemoSection.tsx`
+- **Changes:**
+  - Organize demos by product
+  - "Try CrisPRO Oncology: VUS Resolution Demo"
+  - "Try CrisPRO R&D: Drug Design Demo"
+  - "Try CrisPRO Research: Hypothesis Testing Demo"
+- **Status:** ⚠️ PENDING
+
+---
+
+### **Phase 4: Social Proof Enhancement (Priority: MEDIUM)**
+
+#### **Task 4.1:** Add AACR Abstract Showcase
+- **File:** `src/components/landing/AACRShowcase.tsx` (NEW)
+- **Features:**
+  - AACR abstract display
+  - Research validation messaging
+  - Link to full paper/documentation
+- **Status:** ⚠️ PENDING
+
+#### **Task 4.2:** Add MBD4 Case Study
+- **File:** `src/components/landing/CaseStudyShowcase.tsx` (NEW)
+- **Features:**
+  - Anonymized Ayesha story
+  - Real-world impact demonstration
+  - "From VUS to Validated Care Plan" narrative
+- **Status:** ⚠️ PENDING
+
+---
+
+## 🔄 BEFORE vs AFTER COMPARISON
+
+### **BEFORE (Engine-First Approach):**
+
+```
+Homepage Flow:
+1. HeroSection → Problem ($2.6B gamble) ✅
+2. DrugDevelopmentPlatform → Shows 4 engines (Oracle, Forge, Boltz, Command Center) ❌
+3. PlatformCapabilitiesShowcase → Organized by use case but engines not clear ✅
+4. MetricsShowcase → Metrics without product attribution ❌
+
+Visitor Experience:
+❌ Sees engines (Oracle, Forge, Boltz) first
+❌ Doesn't understand: "I'm an oncologist, which product do I use?"
+❌ Confused about product vs. engine distinction
+❌ Can't self-select their use case
+
+Result: ❌ Technical focus, not customer-solution focus
+```
+
+### **AFTER (Product-First Approach):**
+
+```
+Homepage Flow:
+1. HeroSection → "Operating System for Precision Medicine" ✅ NEW
+2. ProductsByUseCase → "Three Doors" product selection ✅ NEW
+3. PlatformCapabilitiesShowcase → Organized by three products ✅ ENHANCED
+4. Engine Room → Technical validation (engines second) ✅ NEW
+5. MetricsShowcase → Metrics attributed to products ✅ ENHANCED
+
+Visitor Experience:
+✅ Sees products first (Oncology, R&D, Research)
+✅ Understands: "I'm an oncologist → CrisPRO Oncology"
+✅ Can self-select their use case immediately
+✅ Engines shown as technical validation, not primary sell
+✅ Clear product architecture understanding
+
+Result: ✅ Customer-solution focus, engines as validation
+```
+
+---
+
+## 🎯 PRODUCT-CAPABILITY MAPPING
+
+### **CrisPRO Oncology Capabilities:**
+
+**From PlatformCapabilitiesShowcase (re-tag existing):**
+- VUS Resolution → CrisPRO Oncology
+- Clinical Trial Matching → CrisPRO Oncology
+- S/P/E Framework → CrisPRO Oncology
+- Toxicity-Aware Nutrition → CrisPRO Oncology
+- Resistance Prediction → CrisPRO Oncology
+- Universal Platform → CrisPRO Oncology (via Command Center)
+- Clinical Dossier → CrisPRO Oncology
+
+**New Capabilities to Add:**
+- Synthetic Lethality Analysis
+- Gene Essentiality Scoring
+- Automated Care Plans
+
+---
+
+### **CrisPRO R&D Capabilities:**
+
+**From PlatformCapabilitiesShowcase (re-tag existing):**
+- Target Validation → CrisPRO R&D
+- Lead Engineering → CrisPRO R&D
+- Pre-Clinical Confirmation → CrisPRO R&D
+- Complete Workflow → CrisPRO R&D
+
+**New Capabilities to Add:**
+- In Silico Trials
+- Mechanism Analysis (SAE)
+- Structural Validation
+
+---
+
+### **CrisPRO Research Capabilities:**
+
+**From PlatformCapabilitiesShowcase (re-tag existing):**
+- VUS Explorer → CrisPRO Research
+- Universal Hypothesis Testing → CrisPRO Research
+- Cohort Intelligence → CrisPRO Research
+- Evidence Synthesis → CrisPRO Research
+
+**New Capabilities to Add:**
+- Literature Synthesis
+- Grant-Ready Data Generation
+- Multi-Disease Analysis
+
+---
+
+## 📊 SUCCESS METRICS
+
+### **Before Implementation:**
+- ❌ Engines shown first (Oracle, Forge, Boltz)
+- ❌ No clear product selection
+- ❌ Generic "Platform" messaging
+- ❌ Visitors confused about which product to use
+
+### **After Implementation:**
+- ✅ Products shown first (Oncology, R&D, Research)
+- ✅ Clear "Three Doors" product selection
+- ✅ Customer-solution focused messaging
+- ✅ Visitors can self-select their use case
+- ✅ Engines shown as technical validation (second)
+
+---
+
+## 📝 KEY FILES TO MODIFY/CREATE
+
+### **NEW Components to Create:**
+
+1. **`ProductsByUseCase.tsx`** ⚠️ NEW
+   - Location: `src/components/landing/ProductsByUseCase.tsx`
+   - Purpose: "Three Doors" product selection interface
+
+2. **`EngineRoom.tsx`** ⚠️ NEW
+   - Location: `src/components/landing/EngineRoom.tsx`
+   - Purpose: Technical validation section showing engines
+
+3. **`AACRShowcase.tsx`** ⚠️ NEW
+   - Location: `src/components/landing/AACRShowcase.tsx`
+   - Purpose: AACR abstract showcase
+
+4. **`CaseStudyShowcase.tsx`** ⚠️ NEW
+   - Location: `src/components/landing/CaseStudyShowcase.tsx`
+   - Purpose: MBD4 case study (anonymized Ayesha)
+
+---
+
+### **Existing Components to Modify:**
+
+1. **`Navbar.tsx`** ⚠️ MODIFY
+   - Change "Platform" to "Products" dropdown
+
+2. **`HeroSection.tsx`** ⚠️ MODIFY
+   - Update headline and subheadline
+   - Update CTAs
+
+3. **`PlatformCapabilitiesShowcase.tsx`** ⚠️ MODIFY
+   - Re-tag capabilities to three products
+   - Update tab names
+
+4. **`MetricsShowcase.tsx`** ⚠️ MODIFY
+   - Attribute metrics to products, not engines
+
+5. **`InteractiveDemoSection.tsx`** ⚠️ MODIFY
+   - Organize demos by product
+
+6. **`page.tsx`** ⚠️ MODIFY
+   - Remove DrugDevelopmentPlatform
+   - Add ProductsByUseCase
+   - Add EngineRoom
+
+---
+
+### **New Data Files to Create:**
+
+1. **`productsByUseCaseData.ts`** ⚠️ NEW
+   - Location: `src/data/productsByUseCaseData.ts`
+   - Purpose: Product definitions, capabilities, value props
+
+2. **`productCapabilityMapping.ts`** ⚠️ NEW
+   - Location: `src/data/productCapabilityMapping.ts`
+   - Purpose: Map capabilities to products (Oncology, R&D, Research)
+
+---
+
+## 🚀 IMPLEMENTATION ROADMAP
+
+### **Sprint 1: Core Structure (Week 1)**
+
+**Day 1-2: Navigation & Hero**
+- ✅ Task 1.1: Refactor Navigation (Products dropdown)
+- ✅ Task 1.3: Update HeroSection (new headline, CTAs)
+
+**Day 3-4: Product Selection**
+- ✅ Task 1.2: Build ProductsByUseCase component
+- ✅ Create productsByUseCaseData.ts
+
+**Day 5: Integration**
+- ✅ Add ProductsByUseCase to homepage
+- ✅ Remove DrugDevelopmentPlatform from homepage
+
+---
+
+### **Sprint 2: Content Reorganization (Week 2)**
+
+**Day 1-2: PlatformCapabilitiesShowcase**
+- ✅ Task 2.1: Re-tag capabilities to three products
+- ✅ Update tab names and organization
+
+**Day 3-4: Engine Room**
+- ✅ Task 2.2: Create EngineRoom component
+- ✅ Add to homepage after ProductsByUseCase
+
+**Day 5: Testing & Refinement**
+- ✅ Test product selection flow
+- ✅ Verify navigation works correctly
+
+---
+
+### **Sprint 3: Attribution & Social Proof (Week 3)**
+
+**Day 1-2: Metrics & Demos**
+- ✅ Task 3.1: Update MetricsShowcase (product attribution)
+- ✅ Task 3.2: Update InteractiveDemoSection (product organization)
+
+**Day 3-4: Social Proof**
+- ✅ Task 4.1: Create AACRShowcase component
+- ✅ Task 4.2: Create CaseStudyShowcase component
+
+**Day 5: Integration**
+- ✅ Add social proof sections to homepage
+- ✅ Final testing and polish
+
+---
+
+## 🔍 KEY FINDINGS SUMMARY
+
+### **Critical Shift Required:**
+
+1. **❌ Engine-First Approach (Current)** → **✅ Product-First Approach (Target)**
+   - Currently: Shows Oracle/Forge/Boltz as products
+   - Target: Shows Oncology/R&D/Research as products
+
+2. **❌ Generic Platform Messaging** → **✅ Customer-Solution Messaging**
+   - Currently: "Platform for Drug Development"
+   - Target: "Operating System for Precision Medicine"
+
+3. **❌ No Product Selection** → **✅ Three Doors Selection**
+   - Currently: Visitors must figure out which product
+   - Target: Clear self-selection interface
+
+4. **❌ Engines as Primary Sell** → **✅ Engines as Technical Validation**
+   - Currently: Engines front and center
+   - Target: Engines in "Engine Room" (validation section)
+
+---
+
+## ✅ SOLUTION SUMMARY
+
+### **What We're Doing:**
+
+1. **Creating ProductsByUseCase Component** → "Three Doors" product selection
+2. **Reorganizing Homepage** → Products first, engines second
+3. **Updating Navigation** → "Products" dropdown instead of "Platform"
+4. **Re-tagging Capabilities** → Align with three product buckets
+5. **Creating Engine Room** → Technical validation section
+6. **Deprecating DrugDevelopmentPlatform** → Too engine-focused
+
+### **Expected Impact:**
+
+- ✅ Visitors understand: "We have 3 products for different use cases"
+- ✅ Visitors can self-select: "I'm an oncologist → CrisPRO Oncology"
+- ✅ Clear product architecture: "Products = Solutions, Engines = Validation"
+- ✅ Customer-solution focus throughout homepage
+
+---
+
+**STATUS:** 
+- ✅ **STRATEGY APPROVED & LOCKED** - "Products First, Engines Second"
+- ⚠️ **IMPLEMENTATION PENDING** - All phases need execution
+
+**Next Priority:** Sprint 1 - Build ProductsByUseCase component and update navigation/hero section

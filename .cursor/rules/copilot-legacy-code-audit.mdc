@@ -1,0 +1,294 @@
+# 🔍 CO-PILOT LEGACY CODE AUDIT
+## Comprehensive Review of `src/data/copilots/` Directory
+
+**Created:** 2024-12-19  
+**Status:** 🔴 CRITICAL ISSUES FOUND  
+**Purpose:** Identify legacy code, duplicates, inconsistencies, and alignment issues
+
+---
+
+## 📋 EXECUTIVE SUMMARY
+
+### Critical Findings:
+1. **🟠 LEGACY DUPLICATES** - 2 old files (`pathway.tsx`, `therapy-fit.ts`) should be deleted
+2. **🟡 COMMENTED OUT CODE** - `agentic-emr-data.ts` exists but is commented in index.ts
+3. **🔴 HEDGING LANGUAGE** - 74 instances of "research-mode", "RUO", "optional", "hints"
+4. **🟡 STRUCTURE INCONSISTENCY** - Old vs new data structure patterns
+5. **🟢 GOOD STRUCTURE** - New `-data.ts` files are well-organized
+
+---
+
+## 🗂️ FILE INVENTORY
+
+### ✅ ACTIVE FILES (6 co-pilots):
+1. **`chemo-data.ts`** (335 lines) - ✅ Active, imported in index.ts
+2. **`clinical-trials.ts`** (294 lines) - ✅ Active, imported in index.ts
+3. **`pathway-data.ts`** (452 lines) - ✅ Active, imported in index.ts
+4. **`therapy-fit-data.ts`** (465 lines) - ✅ Active, imported in index.ts
+5. **`toxicity-data.ts`** (577 lines) - ✅ Active, imported in index.ts
+6. **`crispr-intelligence-data.ts`** (139 lines) - ✅ Active, imported in index.ts
+
+### ⚠️ COMMENTED OUT FILE:
+7. **`agentic-emr-data.ts`** (117 lines) - ⚠️ EXISTS but COMMENTED in index.ts
+   - **Status:** File exists with complete data structure
+   - **Index.ts:** Line 4 commented: `// import { agenticEmrData } from './agentic-emr-data';`
+   - **Index.ts:** Line 13 commented: `// "agentic-emr": agenticEmrData,`
+   - **Used Elsewhere:** Yes! Found in `/platform/data.ts` and `/co-pilot-app/page.tsx`
+   - **Decision Needed:** Should this be active?
+
+### 🗑️ LEGACY DUPLICATES (SHOULD BE DELETED):
+8. **`pathway.tsx`** (212 lines) - 🗑️ **LEGACY VERSION - DELETE**
+   - **Reason:** Duplicate of `pathway-data.ts`
+   - **Structure:** Uses old inline object structure
+   - **Status:** NOT imported in index.ts (only `pathway-data.ts` is)
+   - **Action:** DELETE THIS FILE
+
+9. **`therapy-fit.ts`** (212 lines) - 🗑️ **LEGACY VERSION - DELETE**
+   - **Reason:** Duplicate of `therapy-fit-data.ts`
+   - **Structure:** Uses old inline object structure
+   - **Status:** NOT imported in index.ts (only `therapy-fit-data.ts` is)
+   - **Action:** DELETE THIS FILE
+
+### 📁 SUPPORTING FILES:
+10. **`index.ts`** (37 lines) - ✅ Centralized exports - **KEEP BUT UPDATE**
+
+---
+
+## 🔴 CRITICAL ISSUES
+
+### 1. LEGACY DUPLICATE FILES
+**Problem:** Two old files use outdated structure and duplicate newer files:
+- `pathway.tsx` → Should use `pathway-data.ts` instead
+- `therapy-fit.ts` → Should use `therapy-fit-data.ts` instead
+
+**Evidence:**
+- Both legacy files use inline object definition: `export const coPilotDetailsData: Record<string, CoPilotDetailContent> = { "pathway": { ... } }`
+- New files use clean export: `export const pathwayData: CoPilotDetailContent = { ... }`
+- Legacy files NOT imported in index.ts
+
+**Action Required:**
+```bash
+# DELETE these legacy files:
+rm src/data/copilots/pathway.tsx
+rm src/data/copilots/therapy-fit.ts
+```
+
+---
+
+### 2. COMMENTED OUT CO-PILOT
+**Problem:** `agentic-emr-data.ts` exists with complete structure but is commented out in index.ts
+
+**Evidence:**
+- File exists with 117 lines of complete data
+- Commented in index.ts line 4 and 13
+- BUT it's referenced in:
+  - `src/app/platform/data.ts` (line 6-16)
+  - `src/app/co-pilot-app/page.tsx` (line 10-20)
+
+**Decision Points:**
+1. **Is AgenticEMR active?** It appears in platform pages as "active"
+2. **Why commented in index.ts?** Possibly intentional if it uses different routing
+3. **Should we uncomment?** Need to verify routing structure
+
+**Action Required:**
+- [ ] Verify if AgenticEMR should be in coPilotDetailsData registry
+- [ ] Check routing differences between `/platform/agentic-emr` vs `/platform/[coPilotSlug]`
+- [ ] Either uncomment in index.ts OR remove from platform pages
+
+---
+
+### 3. HEDGING LANGUAGE PROLIFERATION
+**Problem:** Found **74 instances** of hedging language across all files:
+- "research-mode" / "research‑mode"
+- "RUO" (Research Use Only)
+- "optional" / "Optional"
+- "hints" / "hints"
+- "may fit" / "may"
+
+**Examples:**
+```typescript
+// chemo-data.ts line 6:
+heroSubtitle: "In‑silico chemotherapy insight: see which drug classes may fit a patient's genetics—before you treat. Clear signals, confidence, and sources (research‑mode)."
+
+// clinical-trials.ts line 7:
+heroSubtitle: "Find matching trials in minutes. Clear eligibility and a shareable one‑pager (research‑mode)."
+
+// toxicity-data.ts line 6:
+heroSubtitle: "See simple, genetics‑aware side‑effect hints to plan conservatively—before treatment (research‑mode)."
+```
+
+**Impact:**
+- Weakens product positioning
+- Contradicts product.mdc's confident language
+- Makes capabilities sound experimental
+
+**Action Required:**
+- [ ] Remove all "(research‑mode)" labels
+- [ ] Remove all "RUO" mentions
+- [ ] Replace "hints" with "signals" or "predictions"
+- [ ] Replace "may fit" with "fits" or "matches"
+- [ ] Replace "optional" with specific conditions
+
+---
+
+## 🟡 MEDIUM PRIORITY ISSUES
+
+### 4. STRUCTURE INCONSISTENCIES
+
+**Old Structure (Legacy files):**
+```typescript
+export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
+  "pathway": {
+    slug: "pathway",
+    // ... all data inline
+  }
+};
+```
+
+**New Structure (Active files):**
+```typescript
+export const pathwayData: CoPilotDetailContent = {
+  slug: "pathway",
+  // ... all data here
+};
+
+// Then in index.ts:
+export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
+  "pathway": pathwayData,
+};
+```
+
+**Status:** ✅ New structure is cleaner - legacy files should be deleted
+
+---
+
+### 5. MISSING PRODUCT ALIGNMENT
+
+**All co-pilots lack:**
+- Product mapping (Oncology, R&D, Research)
+- Customer value propositions from product.mdc
+- Flagship capability references (Unified Care Plan, Synthetic Lethality)
+- Production-ready language
+
+**Action Required:** See `copilot-product-alignment-audit.mdc` for full remediation plan
+
+---
+
+## ✅ POSITIVE FINDINGS
+
+### 1. Clean New Structure
+- All `-data.ts` files use consistent export pattern
+- Clean separation of concerns
+- Easy to import individually
+
+### 2. Comprehensive Data
+- All files include:
+  - `valueProps` for different audiences
+  - `keyCapabilities` with technical/scientific/business breakdown
+  - `kpis` and `observedOutcomes`
+  - `genomicUseCasesGrid`
+  - `valuePropositionSections`
+
+### 3. Type Safety
+- All files properly typed with `CoPilotDetailContent`
+- Centralized type exports in index.ts
+
+---
+
+## 📊 STATISTICS
+
+### File Sizes:
+- **Largest:** `toxicity-data.ts` (577 lines)
+- **Smallest:** `crispr-intelligence-data.ts` (139 lines)
+- **Average:** ~310 lines per file
+
+### Hedging Language Count:
+- **Total instances:** 74
+- **"research-mode":** ~15 instances
+- **"RUO":** ~12 instances
+- **"optional":** ~20 instances
+- **"hints":** ~10 instances
+- **"may":** ~17 instances
+
+---
+
+## 🎯 RECOMMENDED ACTIONS
+
+### IMMEDIATE (Delete Legacy):
+1. ✅ **DELETE** `src/data/copilots/pathway.tsx`
+2. ✅ **DELETE** `src/data/copilots/therapy-fit.ts`
+
+### SHORT-TERM (Clean Up):
+3. ⚠️ **DECIDE** on `agentic-emr-data.ts` status - uncomment or remove from platform
+4. 🔴 **REMOVE** all hedging language (74 instances)
+5. 🔴 **ALIGN** with product.mdc positioning
+
+### MEDIUM-TERM (Product Alignment):
+6. 🔴 **MAP** co-pilots to 3 products (Oncology, R&D, Research)
+7. 🔴 **ADD** flagship capabilities (Unified Care Plan, Synthetic Lethality)
+8. 🔴 **UPDATE** language to production-ready from research-mode
+
+---
+
+## 📝 DETAILED FILE ANALYSIS
+
+### `chemo-data.ts` (335 lines)
+**Status:** ✅ Active, well-structured
+**Issues:**
+- Line 6: "(research‑mode)" in heroSubtitle
+- Line 16: "(RUO)" mention
+- Multiple "optional" references
+
+### `clinical-trials.ts` (294 lines)
+**Status:** ✅ Active, well-structured
+**Issues:**
+- Line 7: "(research‑mode)" in heroSubtitle
+- Line 18: "(RUO)" mention
+- Line 293: "(RUO)" in conclusion
+
+### `pathway-data.ts` (452 lines)
+**Status:** ✅ Active, well-structured
+**Issues:**
+- Line 6: "(research‑mode)" in heroSubtitle
+- Multiple "optional" references
+- "hints" language throughout
+
+### `therapy-fit-data.ts` (465 lines)
+**Status:** ✅ Active, well-structured
+**Issues:**
+- Line 6: "(research‑mode)" in heroSubtitle
+- Multiple "(RUO)" mentions
+- "optional" references
+
+### `toxicity-data.ts` (577 lines)
+**Status:** ✅ Active, well-structured
+**Issues:**
+- Line 6: "(research‑mode)" in heroSubtitle
+- Line 6: "hints" language
+- Multiple "RUO" mentions
+
+### `crispr-intelligence-data.ts` (139 lines)
+**Status:** ✅ Active, well-structured
+**Issues:**
+- Cleaner language than others
+- More production-ready positioning
+- Could benefit from product mapping
+
+### `agentic-emr-data.ts` (117 lines)
+**Status:** ⚠️ Commented out but referenced elsewhere
+**Issues:**
+- More confident language (good!)
+- No hedging language
+- But commented in index.ts
+
+---
+
+## 🔗 RELATED DOCUMENTS
+
+- **Product Alignment:** See `copilot-product-alignment-audit.mdc`
+- **Integration Plan:** See `co-pilot-product-integration-plan.mdc`
+- **Product Doctrine:** See `product.mdc`
+
+---
+
+**NEXT STEP:** Delete legacy files and decide on agentic-emr status, then proceed with hedging language removal.

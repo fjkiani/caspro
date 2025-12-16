@@ -6,6 +6,8 @@ export { default as ValuePropositionSection } from './ValuePropositionSection';
 export { default as TacticalCapabilityMatrix } from './TacticalCapabilityMatrix';
 export { default as ValuePropositionFlywheel } from './ValuePropositionFlywheel';
 export { default as StrategicConclusion } from './StrategicConclusion';
+export { default as AdvancedFeaturesSection } from './AdvancedFeaturesSection';
+export { default as IntegratedCareSection } from './IntegratedCareSection';
 
 // Export shared components
 export * from './shared';

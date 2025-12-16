@@ -1,0 +1,515 @@
+# GPT vs CrisPRO & Competitor Comparison Component Plan
+
+**Date**: 2024-12-19
+**Purpose**: Create interactive comparison component for homepage showing GPT vs CrisPRO, with ability to add competitors
+
+---
+
+## 🎯 OBJECTIVE
+
+Create an interactive, scenario-based comparison component that demonstrates CrisPRO's unique MOAT capabilities:
+1. **GPT vs CrisPRO** - Primary comparison (scenario-based)
+2. **Competitor Selection** - Checkbox-based to add competitors to comparison
+3. **Multiple Scenarios** - Patient-focused initially, expandable to others
+
+---
+
+## 📋 CORE CONCEPT
+
+### Interactive Comparison Component
+
+**Structure**:
+- **Scenario Selector**: Dropdown/tabs to select different use case scenarios
+- **Competitor Checkboxes**: Allow users to select which competitors to compare
+- **Side-by-Side Comparison Cards**: Show what each can/cannot do
+- **MOAT Highlights**: Emphasize CrisPRO's unique capabilities
+
+---
+
+## 🏗️ COMPONENT ARCHITECTURE
+
+### File Structure
+```
+src/components/landing/
+├── ComparisonShowcase.tsx          # Main component (homepage)
+├── ComparisonScenario.tsx          # Scenario-based comparison
+└── scenarios/
+    ├── patient-scenarios.ts        # Patient-focused scenarios
+    ├── biotech-scenarios.ts        # Biotech R&D scenarios
+    └── clinical-scenarios.ts       # Clinical decision scenarios
+
+src/data/comparisons/
+├── gpt-comparison-data.ts          # GPT comparison data
+├── competitor-capabilities.ts      # Competitor capability mapping
+└── scenario-definitions.ts         # Scenario definitions
+```
+
+---
+
+## 📊 SCENARIO DATA STRUCTURE
+
+### Patient Scenario Example (from user's MOAT examples)
+
+```typescript
+interface ComparisonScenario {
+  id: string;
+  title: string;
+  description: string;
+  useCase: 'patient' | 'biotech' | 'clinical' | 'research';
+  patientProfile?: {
+    name: string;
+    condition: string;
+    genotype?: string;
+    mutations?: string[];
+  };
+  questions: ScenarioQuestion[];
+}
+
+interface ScenarioQuestion {
+  id: string;
+  category: 'toxicity' | 'synthetic-lethality' | 'immunotherapy' | 'timing';
+  question: string;
+  gptResponse: string;
+  crisproResponse: string;
+  moatPoint: string; // What makes CrisPRO unique
+  competitors?: {
+    [competitorName: string]: string; // Competitor-specific responses
+  };
+}
+```
+
+---
+
+## 🎨 UI/UX DESIGN
+
+### Component Layout
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  🏆 GPT vs CrisPRO: See the Difference                      │
+│  [Scenario: Patient Care ▼]  [☑ GPT  ☑ CrisPRO  ☐ Tempus]  │
+├─────────────────────────────────────────────────────────────┤
+│                                                               │
+│  Question: Genotype-Informed Toxicity Prediction            │
+│                                                               │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │    GPT       │  │   CrisPRO    │  │   Tempus     │      │
+│  ├──────────────┤  ├──────────────┤  ├──────────────┤      │
+│  │ "Carboplatin │  │ YOUR MBD4    │  │ [Response]   │      │
+│  │  can cause   │  │ deficiency   │  │              │      │
+│  │  nephrotox..."│  │ means BER... │  │              │      │
+│  │              │  │              │  │              │      │
+│  │ ❌ Generic   │  │ ✅ Specific  │  │ ⚠️ Limited   │      │
+│  │    advice    │  │    to YOU    │  │    depth     │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘      │
+│                                                               │
+│  💎 THE MOAT: [Expandable explanation]                       │
+│                                                               │
+├─────────────────────────────────────────────────────────────┤
+│  Next Question: Synthetic Lethality →                        │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📝 SCENARIO DEFINITIONS
+
+### Scenario 1: Patient Care - MBD4 Deficiency (from user example)
+
+```typescript
+const patientMBD4Scenario: ComparisonScenario = {
+  id: 'patient-mbd4',
+  title: 'Patient Care: MBD4 Deficiency & Treatment Optimization',
+  description: 'Optimizing treatment for a patient with MBD4 deficiency requiring platinum-based chemotherapy',
+  useCase: 'patient',
+  patientProfile: {
+    name: 'Patient AK',
+    condition: 'Ovarian Cancer',
+    genotype: 'MBD4 homozygous loss',
+    mutations: ['MBD4 loss']
+  },
+  questions: [
+    {
+      id: 'toxicity-prediction',
+      category: 'toxicity',
+      question: 'Genotype-Informed Toxicity Prediction',
+      gptResponse: 'Carboplatin can cause nephrotoxicity. Monitor kidney function and stay hydrated.',
+      crisproResponse: `YOUR MBD4 deficiency means BER pathway is impaired. This affects how you repair platinum-induced DNA damage. Specific recommendation: NAC post-infusion to support glutathione synthesis and compensate for BER deficiency.`,
+      moatPoint: 'CrisPRO provides genotype-specific toxicity predictions based on functional pathway analysis, not generic warnings',
+      competitors: {
+        'Foundation Medicine': 'Reports MBD4 mutation but no functional toxicity prediction',
+        'Tempus': 'General toxicity information, not genotype-specific',
+        'Guardant Health': 'Detects mutations but lacks functional pathway analysis'
+      }
+    },
+    {
+      id: 'synthetic-lethality',
+      category: 'synthetic-lethality',
+      question: 'Synthetic Lethality Identification',
+      gptResponse: 'PARP inhibitors work for BRCA mutant cancers. Your BRCA status is negative.',
+      crisproResponse: `Even though you are BRCA-negative, your homozygous MBD4 loss creates functional BER deficiency. Literature shows MBD4-deficient tumors may respond to PARP inhibitors via synthetic lethality - same mechanism, different gene.`,
+      moatPoint: 'CrisPRO identifies synthetic lethality beyond standard biomarkers using functional pathway analysis',
+      competitors: {
+        'Foundation Medicine': 'Matches to standard biomarkers only (BRCA status)',
+        'Caris Life Sciences': 'Pattern matching, no mechanistic synthetic lethality prediction'
+      }
+    },
+    {
+      id: 'immunotherapy',
+      category: 'immunotherapy',
+      question: 'Immunotherapy Eligibility Prediction',
+      gptResponse: 'High TMB patients respond to pembrolizumab. Check your TMB status.',
+      crisproResponse: `Your MBD4 loss causes hypermutator phenotype. We predict TMB will be HIGH. Request testing - if confirmed, you qualify for pembrolizumab per FDA approval.`,
+      moatPoint: 'CrisPRO predicts TMB based on mutational mechanisms, enabling proactive therapy selection',
+      competitors: {
+        'Foundation Medicine': 'Requires actual TMB testing, cannot predict from genotype',
+        'Guardant Health': 'Can detect TMB from ctDNA but requires sample',
+        'Tempus': 'Reports historical TMB patterns, not predictive'
+      }
+    },
+    {
+      id: 'timing-protocol',
+      category: 'timing',
+      question: 'Precision Timing Protocols',
+      gptResponse: 'Avoid antioxidants during chemotherapy as they may interfere with treatment.',
+      crisproResponse: `Stop NAC 24h before infusion, resume 24h after. Continue Vitamin D throughout. This timing protects chemotherapy efficacy while supporting recovery based on your BER pathway status.`,
+      moatPoint: 'CrisPRO provides precise timing protocols based on genotype-informed pharmacokinetics',
+      competitors: {
+        'Foundation Medicine': 'No timing protocol recommendations',
+        'Tempus': 'General timing guidelines, not personalized',
+      }
+    }
+  ]
+};
+```
+
+---
+
+## 🔄 COMPETITOR INTEGRATION
+
+### Competitor Selection Component
+
+```typescript
+interface CompetitorOption {
+  id: string;
+  name: string;
+  available: boolean; // Some scenarios may not have competitor data
+  category: 'genomics' | 'ai-platform' | 'ehr' | 'llm';
+}
+
+const availableCompetitors: CompetitorOption[] = [
+  { id: 'gpt', name: 'GPT/ChatGPT', available: true, category: 'llm' },
+  { id: 'foundation-medicine', name: 'Foundation Medicine', available: true, category: 'genomics' },
+  { id: 'tempus', name: 'Tempus', available: true, category: 'ai-platform' },
+  { id: 'guardant', name: 'Guardant Health', available: true, category: 'genomics' },
+  { id: 'caris', name: 'Caris Life Sciences', available: true, category: 'genomics' },
+  { id: 'flatiron', name: 'Flatiron Health', available: false, category: 'ehr' }, // Not applicable for patient scenarios
+];
+```
+
+### Competitor Response Mapping
+
+Use existing competitor analysis data structure from `CompetitorTabs.tsx` and enhance with capability-specific responses.
+
+---
+
+## 🎯 IMPLEMENTATION PHASES
+
+### Phase 1: Core Comparison Component (Week 1)
+
+**Tasks**:
+1. [ ] Create `ComparisonShowcase.tsx` component
+2. [ ] Create data structure for scenarios
+3. [ ] Implement Patient MBD4 scenario (from user example)
+4. [ ] Basic GPT vs CrisPRO side-by-side comparison
+5. [ ] Add to homepage
+
+**Files to Create**:
+- `src/components/landing/ComparisonShowcase.tsx`
+- `src/data/comparisons/patient-scenarios.ts`
+- `src/data/comparisons/gpt-comparison-data.ts`
+
+---
+
+### Phase 2: Competitor Selection (Week 1-2)
+
+**Tasks**:
+1. [ ] Add competitor checkbox selection UI
+2. [ ] Map competitor responses to scenarios
+3. [ ] Integrate with existing competitor data
+4. [ ] Dynamic column rendering based on selections
+
+**Files to Modify/Create**:
+- `src/components/landing/ComparisonShowcase.tsx` (enhance)
+- `src/data/comparisons/competitor-capabilities.ts` (new)
+- Use existing: `src/components/competitor-analysis/CompetitorTabs.tsx` (for data)
+
+---
+
+### Phase 3: Additional Scenarios (Week 2-3)
+
+**Tasks**:
+1. [ ] Add Biotech R&D scenario
+2. [ ] Add Clinical Decision Support scenario
+3. [ ] Add Research scenario
+4. [ ] Scenario selector UI
+
+**Files to Create**:
+- `src/data/comparisons/biotech-scenarios.ts`
+- `src/data/comparisons/clinical-scenarios.ts`
+- `src/data/comparisons/research-scenarios.ts`
+
+---
+
+### Phase 4: Enhanced UI/UX (Week 3)
+
+**Tasks**:
+1. [ ] Add animations and transitions
+2. [ ] MOAT highlight cards
+3. [ ] Question navigation (previous/next)
+4. [ ] Expandable MOAT explanations
+5. [ ] Mobile optimization
+
+---
+
+## 🎨 COMPONENT FEATURES
+
+### 1. Scenario Selector
+```tsx
+<select>
+  <option value="patient-mbd4">Patient Care: MBD4 Deficiency</option>
+  <option value="biotech-target-validation">Biotech: Target Validation</option>
+  <option value="clinical-vus-resolution">Clinical: VUS Resolution</option>
+</select>
+```
+
+### 2. Competitor Checkboxes
+```tsx
+<div className="flex flex-wrap gap-4">
+  <label><input type="checkbox" checked /> GPT/ChatGPT</label>
+  <label><input type="checkbox" /> Foundation Medicine</label>
+  <label><input type="checkbox" /> Tempus</label>
+  <label><input type="checkbox" /> Guardant Health</label>
+  <label><input type="checkbox" /> Caris Life Sciences</label>
+</div>
+```
+
+### 3. Comparison Cards
+- Side-by-side layout (responsive: stacked on mobile)
+- Color coding: GPT (gray), CrisPRO (blue/green), Competitors (orange/yellow)
+- Icons: ✅ Capable, ❌ Limited, ⚠️ Partial
+
+### 4. MOAT Highlight
+- Expandable section explaining why CrisPRO's approach is unique
+- Links to relevant product pages or evidence
+
+---
+
+## 📍 HOMEPAGE INTEGRATION
+
+### Placement Options
+
+**Option A: After "What We Do" Section** (RECOMMENDED)
+- Good flow: Explain what we do → Show why we're different
+- Before PlatformCapabilitiesShowcase
+
+**Option B: After PlatformCapabilitiesShowcase**
+- After showing capabilities, demonstrate superiority
+- Good for visitors who want to understand competitive advantage
+
+**Option C: Replace/Enhance MetricsShowcase**
+- Combine metrics with comparison
+- More comprehensive but might be overwhelming
+
+**Recommendation**: **Option A** - Place after WhatWeDoSection, before PlatformCapabilitiesShowcase
+
+---
+
+## 🔗 INTEGRATION WITH EXISTING COMPETITOR ANALYSIS
+
+### Reuse Existing Data
+
+**From `CompetitorTabs.tsx`**:
+- Competitor names and basic info
+- Threat assessments
+- Capabilities/weaknesses (for mapping to scenario responses)
+
+**Enhancement Strategy**:
+- Extract competitor capability data
+- Map to scenario-specific responses
+- Add response data where missing
+
+### Competitor Analysis Page
+
+**Current**: `/investors/market-landscape` page uses competitor components
+**Enhancement**: Add link from comparison component to full competitor analysis
+
+---
+
+## 📊 DATA STRUCTURE DETAILS
+
+### Full Scenario Type Definition
+
+```typescript
+interface ComparisonScenario {
+  id: string;
+  title: string;
+  description: string;
+  useCase: 'patient' | 'biotech' | 'clinical' | 'research';
+  patientProfile?: {
+    name?: string;
+    condition?: string;
+    genotype?: string;
+    mutations?: string[];
+  };
+  questions: ScenarioQuestion[];
+  metadata: {
+    difficulty: 'basic' | 'intermediate' | 'advanced';
+    estimatedTime: string;
+    relevantProducts: string[]; // ['oncology', 'r-d']
+  };
+}
+
+interface ScenarioQuestion {
+  id: string;
+  category: 'toxicity' | 'synthetic-lethality' | 'immunotherapy' | 'timing' | 'target-validation' | 'vus-resolution';
+  question: string;
+  context?: string; // Additional context for the question
+  responses: {
+    gpt: ComparisonResponse;
+    crispro: ComparisonResponse;
+    [competitorId: string]: ComparisonResponse; // Dynamic competitor responses
+  };
+  moatPoint: {
+    title: string;
+    explanation: string;
+    evidence?: string; // Link to evidence/metric
+  };
+}
+
+interface ComparisonResponse {
+  text: string;
+  capability: 'full' | 'partial' | 'none';
+  limitations: string[];
+  icon: 'check' | 'warning' | 'x';
+}
+```
+
+---
+
+## 🎯 SUCCESS METRICS
+
+### User Engagement
+- Time spent on comparison component
+- Number of scenarios viewed
+- Competitors selected for comparison
+
+### Business Impact
+- Demo requests from comparison page
+- Conversion rate from homepage to product pages
+- Shares/social proof (if we add sharing)
+
+---
+
+## 🔧 TECHNICAL CONSIDERATIONS
+
+### Performance
+- Lazy load competitor data
+- Cache scenario responses
+- Optimize for mobile (stacked layout)
+
+### Accessibility
+- Keyboard navigation for checkboxes
+- Screen reader friendly comparisons
+- High contrast mode support
+
+### SEO
+- Structured data for comparisons
+- Meta descriptions for scenarios
+- Internal linking to product pages
+
+---
+
+## 📝 NEXT STEPS
+
+### Immediate (This Sprint)
+1. [ ] Create basic `ComparisonShowcase.tsx` component
+2. [ ] Implement Patient MBD4 scenario (from user example)
+3. [ ] GPT vs CrisPRO comparison only (no competitors yet)
+4. [ ] Add to homepage after WhatWeDoSection
+
+### Short-term (Next Sprint)
+1. [ ] Add competitor checkbox selection
+2. [ ] Map 2-3 competitors to Patient scenario
+3. [ ] Add one additional scenario (Biotech or Clinical)
+
+### Medium-term
+1. [ ] Complete all competitor mappings
+2. [ ] Add remaining scenarios
+3. [ ] Enhanced UI/animations
+4. [ ] Link to full competitor analysis page
+
+---
+
+## 🔗 RELATED COMPONENTS
+
+### Existing Components to Reference
+- `CompetitorTabs.tsx` - Competitor data structure
+- `StrategicMatrix.tsx` - Competitive positioning visualization
+- `WhatWeDoSection.tsx` - Homepage section structure
+- `MetricsShowcase.tsx` - Homepage showcase pattern
+
+### Potential Reuse
+- Card layouts from `MetricsShowcase`
+- Tab/selector patterns from `CompetitorTabs`
+- Comparison patterns from `StrategicMatrix`
+
+---
+
+**Status**: ✅ API Key tested and verified. Ready for Phase 1 implementation with real GPT benchmarks.
+
+---
+
+## ✅ REAL BENCHMARK SETUP (COMPLETED)
+
+### API Key Verification
+- ✅ API key tested and working
+- ✅ Test script created: `tools/test_openai_api.py`
+- ✅ Server-side API route created: `/api/gpt/compare`
+- ✅ Client-side wrapper: `src/lib/api/gpt-comparison.ts`
+- ✅ Environment variable setup: `.env.local`
+
+### Integration Points
+1. **Server-Side API Route**: `/app/api/gpt/compare/route.ts`
+   - Securely handles API key
+   - Accepts comparison queries
+   - Returns GPT responses
+
+2. **Client-Side Wrapper**: `src/lib/api/gpt-comparison.ts`
+   - `queryGPTComparison()` - General purpose query
+   - `queryGPTForScenario()` - Scenario-specific queries
+   - Handles errors gracefully
+
+3. **Usage in Components**:
+   ```tsx
+   import { queryGPTForScenario } from '@/lib/api/gpt-comparison';
+   
+   const gptResponse = await queryGPTForScenario(
+     "What toxicity concerns for MBD4-deficient patient on carboplatin?",
+     context,
+     { condition: "Ovarian Cancer", genotype: "MBD4 homozygous loss" }
+   );
+   ```
+
+### Next Steps for Real Benchmarks
+1. [ ] Create component that fetches real GPT responses
+2. [ ] Cache responses to avoid repeated API calls (localStorage or server-side cache)
+3. [ ] Add loading states while fetching
+4. [ ] Compare real GPT responses with CrisPRO responses
+5. [ ] Store benchmark results for analysis
+
+### Environment Setup Note
+**Important**: The API key is currently hardcoded in the API route. For production:
+1. Set `OPENAI_API_KEY` in your hosting environment variables
+2. Remove hardcoded key from `src/app/api/gpt/compare/route.ts`
+3. Update to: `process.env.OPENAI_API_KEY` only

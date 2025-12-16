@@ -24,7 +24,9 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
       color: 'from-purple-500 to-indigo-600',
       icon: Shield,
       link: '/evidence/sae-intelligence',
-      badge: 'Key Differentiator'
+      badge: 'Key Differentiator',
+      product: 'All Products',
+      productLink: '/platform'
     },
     {
       id: 'clinvar-performance',
@@ -35,8 +37,10 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
       details: '53,210 variants validated',
       color: 'from-green-500 to-emerald-600',
       icon: Target,
-      link: '/metrics#clinvar-coverage',
-      badge: 'SOTA'
+      link: '/metrics#snv',
+      badge: 'SOTA',
+      product: 'CrisPRO Oncology',
+      productLink: '/products/oncology'
     },
     {
       id: 'brca-accuracy',
@@ -48,7 +52,9 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
       color: 'from-blue-500 to-cyan-600',
       icon: Shield,
       link: '/metrics#brca',
-      badge: 'Clinical Grade'
+      badge: 'Clinical Grade',
+      product: 'CrisPRO Oncology',
+      productLink: '/products/oncology'
     },
     {
       id: 'generative-quality',
@@ -60,7 +66,9 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
       color: 'from-purple-500 to-violet-600',
       icon: Zap,
       link: '/metrics#generative',
-      badge: '4x Better'
+      badge: '4x Better',
+      product: 'CrisPRO R&D',
+      productLink: '/products/r-d'
     },
     {
       id: 'business-impact',
@@ -72,7 +80,9 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
       color: 'from-orange-500 to-red-600',
       icon: TrendingUp,
       link: '/metrics#business',
-      badge: 'Contract Ready'
+      badge: 'Contract Ready',
+      product: 'CrisPRO R&D',
+      productLink: '/products/r-d'
     }
   ];
 
@@ -138,6 +148,18 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
                       {metric.details}
                     </div>
                   </div>
+                  
+                  {/* Product Attribution */}
+                  {metric.product && (
+                    <div className="mb-3">
+                      <Link href={metric.productLink || '#'}>
+                        <div className="inline-flex items-center gap-1.5 px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs font-semibold border border-blue-200 hover:bg-blue-100 transition-colors">
+                          <span>{metric.product}</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </div>
+                      </Link>
+                    </div>
+                  )}
                   
                   {/* CTA */}
                   <Link href={metric.link}>

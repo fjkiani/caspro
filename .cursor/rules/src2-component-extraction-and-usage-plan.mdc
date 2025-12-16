@@ -1,0 +1,574 @@
+# src2 Component Extraction & Usage Plan
+## Complete Component Inventory & Strategic Deployment
+
+**Created:** 2024-12-19  
+**Purpose:** Comprehensive guide for extracting and using all src2 components across the platform  
+**Status:** EXTRACTION IN PROGRESS
+
+---
+
+## 📦 COMPLETE EXTRACTION INVENTORY
+
+### ✅ Already Extracted (5 Components + 3 Data Files)
+
+1. ✅ **VisualCapabilityGrid.tsx** - Interactive capability cards with demos
+2. ✅ **DiscriminativeAIShowcase.tsx** - Complete Oracle API showcase  
+3. ✅ **AIEnginesGrid.tsx** - Simple 4-engine grid
+4. ✅ **APIEnhancedValueProp.tsx** - API endpoints with comparisons
+5. ✅ **IndustryProblemShowcase.tsx** - Industry problem metrics
+6. ✅ **oracleCapabilities.ts** - Oracle capability data
+7. ✅ **discriminativeAIContent.ts** - Complete Oracle endpoint definitions
+8. ✅ **forgeCapabilities.ts** - Forge generation capabilities
+
+### ⚠️ Extracting Now (10 Components + 3 Data Files)
+
+#### Additional Showcase Components:
+9. ⚠️ **CompactDiscriminativeShowcase.tsx** - Compact version with live demos
+10. ⚠️ **DiscriminativeAICardShowcase.tsx** - Most detailed with technical specs
+11. ⚠️ **DetailedAPIExplorer.tsx** - Developer-focused tabbed explorer
+12. ⚠️ **ForgeCapabilityGrid.tsx** - Forge-specific capabilities grid
+13. ⚠️ **ProductPageLayout.tsx** - Reusable product page layout wrapper
+
+#### Dependency Components:
+14. ⚠️ **VariantImpactLandscape.tsx** - Variant impact landscape visualization
+15. ⚠️ **CrisprEfficacyCard.tsx** - CRISPR guide efficacy card
+
+#### Data Files:
+16. ⚠️ **boltzContent.ts** - Boltz simulation data ✅ EXTRACTED
+17. ⚠️ **commandCenterContent.ts** - Command Center pipeline data ✅ EXTRACTED
+18. ⚠️ **discriminativeAISampleData.ts** - Sample data for demos ✅ EXTRACTED
+
+### 📚 Reference Pages (Not Extracted - Use as Guides)
+
+- `ProductOracle.tsx` - Oracle page composition guide
+- `ProductForge.tsx` - Forge page composition guide
+- `ProductCommandCenter.tsx` - Command Center page composition guide
+- `BiotechTransformation.tsx` - Multi-modal capabilities showcase
+- `ClinicalTransformation.tsx` - Clinical use cases showcase
+
+---
+
+## 🎯 STRATEGIC USAGE PLAN
+
+### Component Usage by Page Type
+
+#### **1. Homepage (`/app/page.tsx`)**
+
+**Current State:** 12 active sections  
+**Target Components:**
+
+- ✅ **MOATShowcase** - Already integrated (replaced CapabilitiesGrid)
+- ✅ **PlatformCapabilitiesShowcase** - Already integrated (interactive tabs)
+- ⚠️ **VisualCapabilityGrid** - Use for "Platform Capabilities" section (alternative to PlatformCapabilitiesShowcase)
+- ⚠️ **DiscriminativeAIShowcase** - Use for "Oracle APIs" section
+- ⚠️ **IndustryProblemShowcase** - Use for "Industry Problems" section
+- ⚠️ **APIEnhancedValueProp** - Use for "API Value" comparison section
+
+**Usage Priority:**
+1. Keep existing `PlatformCapabilitiesShowcase` (already optimized)
+2. Consider replacing with `VisualCapabilityGrid` if more interactive demo needed
+3. Add `DiscriminativeAIShowcase` as dedicated Oracle section
+4. Add `IndustryProblemShowcase` for problem framing
+
+---
+
+#### **2. Oracle Product Page (`/products/oracle/page.tsx`)**
+
+**Current State:** Basic data dump  
+**Target Transformation:** Interactive, narrative-driven product page
+
+**Components to Integrate:**
+
+- ⚠️ **DiscriminativeAIShowcase** - Main API showcase
+- ⚠️ **DetailedAPIExplorer** - Developer-focused tabbed explorer (Use Cases / Capabilities / Technical tabs)
+- ⚠️ **DiscriminativeAICardShowcase** - Detailed technical specs with embedded visualizations
+- ⚠️ **CompactDiscriminativeShowcase** - Compact version for mobile/sidebars
+- ⚠️ **VariantImpactLandscape** - Variant analysis visualization
+- ⚠️ **ProductPageLayout** - Page layout wrapper (ProductHero, ProductSection)
+
+**Component Hierarchy:**
+```
+ProductPageLayout
+├── ProductHero
+│   ├── Title: "Oracle: Mechanistically Interpretable AI"
+│   ├── Subtitle: "Zero-shot variant impact prediction with 32,768 SAE features"
+│   └── Metrics: [95.7% AUROC, 73% VUS Resolution, etc.]
+├── ProductSection: "API Overview"
+│   └── DiscriminativeAIShowcase (expandable cards)
+├── ProductSection: "Detailed API Explorer"
+│   └── DetailedAPIExplorer (tabbed interface)
+├── ProductSection: "Interactive Demos"
+│   └── CompactDiscriminativeShowcase (compact with live demos)
+├── ProductSection: "Technical Deep Dive"
+│   └── DiscriminativeAICardShowcase (detailed specs)
+└── ProductSection: "Variant Analysis"
+    └── VariantImpactLandscape (interactive visualization)
+```
+
+**Usage Notes:**
+- Use `DetailedAPIExplorer` for developer-focused technical documentation
+- Use `DiscriminativeAICardShowcase` for comprehensive API capabilities
+- Use `CompactDiscriminativeShowcase` for quick overview or mobile view
+- Use `VariantImpactLandscape` for interactive variant analysis demos
+
+---
+
+#### **3. Forge Product Page (`/products/forge/page.tsx`)**
+
+**Current State:** Basic data dump  
+**Target Transformation:** Interactive generative AI showcase
+
+**Components to Integrate:**
+
+- ⚠️ **ForgeCapabilityGrid** - Forge design capabilities grid
+- ⚠️ **ProductPageLayout** - Page layout wrapper
+- ⚠️ **APIEnhancedValueProp** - API value comparison
+
+**Component Hierarchy:**
+```
+ProductPageLayout
+├── ProductHero
+│   ├── Title: "Forge: Generative AI for Therapeutic Design"
+│   └── Metrics: [70% Pfam-hit rate, etc.]
+├── ProductSection: "Design Capabilities"
+│   └── ForgeCapabilityGrid (featured + additional capabilities)
+├── ProductSection: "API Value Proposition"
+│   └── APIEnhancedValueProp (comparison with traditional)
+└── ProductSection: "Interactive Design Interface"
+    └── [Design interface components]
+```
+
+---
+
+#### **4. Boltz Product Page (`/products/boltz/page.tsx`)**
+
+**Current State:** Basic data dump  
+**Target Transformation:** 3D structure validation showcase
+
+**Components to Integrate:**
+
+- ⚠️ **ProductPageLayout** - Page layout wrapper
+- ⚠️ **boltzContent.ts** - Simulation run data
+- ✅ **ProteinModelViewer** (already exists) - 3D structure viewer
+
+**Data Integration:**
+- Use `boltzContent` for simulation run examples
+- Display confidence scores and validation metrics
+- Show before/after structure comparisons
+
+---
+
+#### **5. Command Center Product Page (`/products/command-center/page.tsx`)**
+
+**Current State:** Basic data dump  
+**Target Transformation:** Pipeline orchestration showcase
+
+**Components to Integrate:**
+
+- ⚠️ **ProductPageLayout** - Page layout wrapper
+- ⚠️ **commandCenterContent.ts** - Pipeline data
+- [Pipeline visualization components from src2]
+
+**Data Integration:**
+- Use `commandCenterContent` for pipeline examples
+- Display real-time run logs
+- Show evidence aggregation
+
+---
+
+#### **6. Solution Hub Pages**
+
+**Clinical Decision Support (`/solutions/clinical-decision-support/page.tsx`):**
+
+- ⚠️ **DiscriminativeAIShowcase** - Oracle APIs for clinical use
+- ⚠️ **IndustryProblemShowcase** - Clinical problem framing
+- ⚠️ **DetailedAPIExplorer** - Technical API details
+
+**Research Acceleration (`/solutions/research-acceleration/page.tsx`):**
+
+- ⚠️ **CompactDiscriminativeShowcase** - Quick API overview
+- ⚠️ **VariantImpactLandscape** - VUS explorer visualization
+- ⚠️ **DiscriminativeAICardShowcase** - Research use cases
+
+**Therapeutic Design (`/solutions/therapeutic-design/page.tsx`):**
+
+- ⚠️ **ForgeCapabilityGrid** - Forge capabilities
+- ⚠️ **APIEnhancedValueProp** - Value proposition
+- [Kill Chain visualization - already exists]
+
+---
+
+## 🔧 COMPONENT ADAPTATION REQUIREMENTS
+
+### Standard Adaptations for All Components:
+
+1. **Accessibility Context:**
+   - Replace: `useAccessibility()` from `src2/contexts/AccessibilityContext`
+   - With: `useAccessibilityFallback()` from `src/hooks/useAccessibilityFallback`
+
+2. **Routing:**
+   - Replace: React Router `Link`, `useNavigate`
+   - With: Next.js `Link` from `next/link`, `useRouter` from `next/navigation`
+
+3. **Styling:**
+   - Update: Dark theme (`bg-slate-800`, `text-slate-200`) → Light theme
+   - Keep: Responsive classes (`sm:`, `md:`, `lg:`)
+
+4. **Directives:**
+   - Add: `'use client'` directive for client components
+
+5. **Imports:**
+   - Update: Path aliases from `@/` structure
+   - Fix: Component import paths to match src structure
+
+---
+
+## 📊 COMPONENT DEPENDENCIES
+
+### Dependency Mapping:
+
+```
+CompactDiscriminativeShowcase
+├── VariantImpactLandscape ✅ (needs extraction)
+├── CrisprEfficacyCard ✅ (needs extraction)
+├── EssentialityChart ✅ (already exists in src/components/sae/components)
+├── ProteinDeltaCard ✅ (already exists in src/components/sae/components)
+├── AccessibilityTrack ✅ (already exists in src/components/sae/components)
+└── discriminativeAISampleData ✅ (extracted)
+
+DiscriminativeAICardShowcase
+├── [Same dependencies as CompactDiscriminativeShowcase]
+└── discriminativeAIContent ✅ (already extracted)
+
+DetailedAPIExplorer
+└── discriminativeAIContent ✅ (already extracted)
+
+ForgeCapabilityGrid
+└── forgeCapabilities ✅ (already extracted)
+
+ProductPageLayout
+└── [No dependencies - standalone layout wrapper]
+```
+
+---
+
+## 🎨 COMPONENT THEME ADAPTATION
+
+### Light Theme Conversion:
+
+**Dark Theme → Light Theme Mapping:**
+- `bg-slate-800` → `bg-white`
+- `bg-slate-700` → `bg-slate-50`
+- `text-slate-200` → `text-slate-900`
+- `text-slate-300` → `text-slate-700`
+- `text-slate-400` → `text-slate-600`
+- `border-slate-600` → `border-slate-200`
+- `border-slate-700` → `border-slate-300`
+
+**Keep Gradient Backgrounds:**
+- ProductHero backgrounds can keep gradients for visual interest
+- Card backgrounds: White with subtle shadows
+- Interactive elements: Keep color coding (blue, purple, green, etc.)
+
+---
+
+## 🚀 EXTRACTION PRIORITY
+
+### Phase 1: Critical Components (Oracle Page Enhancement)
+1. **DiscriminativeAIShowcase** - Main API showcase
+2. **DetailedAPIExplorer** - Developer-focused explorer
+3. **ProductPageLayout** - Page structure
+4. **VariantImpactLandscape** - Interactive visualization
+5. **CrisprEfficacyCard** - Dependency component
+
+### Phase 2: Enhanced Showcases (Alternative Views)
+6. **DiscriminativeAICardShowcase** - Detailed technical view
+7. **CompactDiscriminativeShowcase** - Compact mobile view
+
+### Phase 3: Forge Components (Forge Page)
+8. **ForgeCapabilityGrid** - Forge capabilities showcase
+
+### Phase 4: Supporting Components (Additional Pages)
+9. **IndustryProblemShowcase** - Problem framing
+10. **APIEnhancedValueProp** - Value comparison
+
+---
+
+## 📝 USAGE EXAMPLES
+
+### Example 1: Oracle Page with DetailedAPIExplorer
+
+```tsx
+// /products/oracle/page.tsx
+import { ProductPageLayout, ProductHero, ProductSection } from '@/components/landing/ProductPageLayout';
+import DetailedAPIExplorer from '@/components/landing/DetailedAPIExplorer';
+
+export default function OraclePage() {
+  return (
+    <ProductPageLayout>
+      <ProductHero
+        title="Oracle: Mechanistically Interpretable AI"
+        subtitle="Zero-shot variant impact prediction with 32,768 SAE features"
+        metrics={[
+          { value: '95.7%', label: 'ClinVar AUROC', description: 'Gold standard validation' },
+          { value: '73%', label: 'VUS Resolution', description: 'Uncertainty to action' },
+        ]}
+      />
+      
+      <ProductSection title="API Explorer" subtitle="Explore Oracle's capabilities">
+        <DetailedAPIExplorer 
+          selectedEndpoint="variantImpact"
+          onEndpointChange={(key) => console.log('Selected:', key)}
+        />
+      </ProductSection>
+    </ProductPageLayout>
+  );
+}
+```
+
+### Example 2: Homepage with DiscriminativeAIShowcase
+
+```tsx
+// /app/page.tsx
+import DiscriminativeAIShowcase from '@/components/landing/DiscriminativeAIShowcase';
+
+export default function HomePage() {
+  return (
+    <>
+      {/* ... existing sections ... */}
+      
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">
+            Oracle API Capabilities
+          </h2>
+          <DiscriminativeAIShowcase 
+            selectedEndpoint="variantImpact"
+            showUseCases={true}
+            interactive={true}
+          />
+        </div>
+      </section>
+    </>
+  );
+}
+```
+
+---
+
+## ✅ EXTRACTION CHECKLIST
+
+### Data Files:
+- [x] boltzContent.ts
+- [x] commandCenterContent.ts
+- [x] discriminativeAISampleData.ts
+- [x] oracleCapabilities.ts (already done)
+- [x] discriminativeAIContent.ts (already done)
+- [x] forgeCapabilities.ts (already done)
+
+### Core Components:
+- [ ] CompactDiscriminativeShowcase.tsx
+- [ ] DiscriminativeAICardShowcase.tsx
+- [ ] DetailedAPIExplorer.tsx
+- [ ] ForgeCapabilityGrid.tsx
+- [ ] ProductPageLayout.tsx
+
+### Dependency Components:
+- [ ] VariantImpactLandscape.tsx
+- [ ] CrisprEfficacyCard.tsx
+
+### Supporting Components:
+- [x] VisualCapabilityGrid.tsx (already done)
+- [x] DiscriminativeAIShowcase.tsx (already done)
+- [x] IndustryProblemShowcase.tsx (already done)
+- [x] APIEnhancedValueProp.tsx (already done)
+
+---
+
+## 🎯 NEXT STEPS
+
+1. **Complete Component Extraction** - Extract all remaining components with adaptations
+2. **Test Component Integration** - Verify components work with Next.js routing
+3. **Update Product Pages** - Integrate components into Oracle, Forge, Boltz, Command Center pages
+4. **Create Solution Hubs** - Build solution pages using extracted components
+5. **Homepage Enhancement** - Add additional showcase components as needed
+
+---
+
+**Last Updated:** 2024-12-19  
+**Status:** EXTRACTION IN PROGRESS - 3 data files extracted, 10 components remaining
+
+---
+
+## 📋 COMPREHENSIVE COMPONENT USAGE BY PAGE
+
+### **Homepage (`/app/page.tsx`)**
+
+**Current Components:**
+- PlatformCapabilitiesShowcase (interactive tabs)
+- ROICalculatorSection
+- MetricsShowcase
+
+**Additional Components to Consider:**
+- **DiscriminativeAIShowcase** - Add as "Oracle APIs in Action" section
+- **IndustryProblemShowcase** - Add for problem framing
+- **VisualCapabilityGrid** - Alternative to PlatformCapabilitiesShowcase if needed
+
+---
+
+### **Oracle Page (`/products/oracle/page.tsx`)**
+
+**Recommended Component Stack:**
+
+1. **ProductPageLayout** (wrapper)
+   - ProductHero with metrics
+   - ProductSection containers
+
+2. **DetailedAPIExplorer** (main showcase)
+   - Tabbed interface: Use Cases / Capabilities / Technical
+   - Deep dive for developers
+
+3. **DiscriminativeAIShowcase** (overview)
+   - Expandable endpoint cards
+   - Quick API overview
+
+4. **VariantImpactLandscape** (interactive demo)
+   - Variant analysis visualization
+   - Click-to-analyze variants
+
+5. **CompactDiscriminativeShowcase** (mobile/compact)
+   - Compact version for mobile view
+   - Sidebar or secondary section
+
+**Usage Strategy:**
+- Use `DetailedAPIExplorer` as main content (comprehensive)
+- Use `DiscriminativeAIShowcase` for quick overview above
+- Use `VariantImpactLandscape` for interactive demo section
+- Use `CompactDiscriminativeShowcase` for mobile/responsive view
+
+---
+
+### **Forge Page (`/products/forge/page.tsx`)**
+
+**Recommended Component Stack:**
+
+1. **ProductPageLayout** (wrapper)
+2. **ForgeCapabilityGrid** (main showcase)
+   - Featured capabilities (Guide RNA, HDR Templates, Therapeutic Proteins)
+   - Additional capabilities
+3. **APIEnhancedValueProp** (value comparison)
+   - Traditional vs AI-powered comparison
+
+---
+
+### **Boltz Page (`/products/boltz/page.tsx`)**
+
+**Recommended Component Stack:**
+
+1. **ProductPageLayout** (wrapper)
+2. **boltzContent.ts** (simulation data)
+   - Display simulation runs
+   - Show confidence scores
+3. **ProteinModelViewer** (already exists)
+   - 3D structure visualization
+
+---
+
+### **Command Center Page (`/products/command-center/page.tsx`)**
+
+**Recommended Component Stack:**
+
+1. **ProductPageLayout** (wrapper)
+2. **commandCenterContent.ts** (pipeline data)
+   - Pipeline steps visualization
+   - Run logs display
+   - Evidence aggregation
+   - KPIs dashboard
+
+---
+
+### **Solution Hubs**
+
+**Clinical Decision Support:**
+- DiscriminativeAIShowcase (Oracle APIs)
+- IndustryProblemShowcase (clinical problems)
+- [Clinical dossier components - already exist]
+
+**Research Acceleration:**
+- CompactDiscriminativeShowcase (quick overview)
+- VariantImpactLandscape (VUS explorer)
+- DiscriminativeAICardShowcase (research use cases)
+
+**Therapeutic Design:**
+- ForgeCapabilityGrid (design capabilities)
+- APIEnhancedValueProp (value proposition)
+- [Kill Chain visualization - already exists]
+
+---
+
+## 🎨 COMPONENT VARIATION GUIDE
+
+### **When to Use Each Discriminative AI Showcase:**
+
+1. **DiscriminativeAIShowcase** (expandable cards)
+   - ✅ Best for: Overview sections, homepage
+   - ✅ Use when: Need quick API overview with expandable details
+   - ✅ Features: Expandable cards, top metrics, component previews
+
+2. **DiscriminativeAICardShowcase** (detailed technical)
+   - ✅ Best for: Technical documentation, developer pages
+   - ✅ Use when: Need comprehensive technical details
+   - ✅ Features: Use case selector, technical implementation, API capabilities
+
+3. **DetailedAPIExplorer** (tabbed explorer)
+   - ✅ Best for: Developer-focused pages, API documentation
+   - ✅ Use when: Need organized tabbed interface
+   - ✅ Features: Use Cases / Capabilities / Technical tabs
+
+4. **CompactDiscriminativeShowcase** (compact version)
+   - ✅ Best for: Mobile views, sidebars, quick references
+   - ✅ Use when: Space is limited or need compact view
+   - ✅ Features: Compact cards with live demo components
+
+---
+
+## 📊 COMPONENT INTEGRATION MATRIX
+
+| Component | Homepage | Oracle | Forge | Boltz | Command | Solutions |
+|-----------|----------|--------|-------|-------|---------|-----------|
+| DiscriminativeAIShowcase | ✅ | ✅ | ❌ | ❌ | ❌ | ✅ Clinical |
+| DetailedAPIExplorer | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
+| DiscriminativeAICardShowcase | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ Research |
+| CompactDiscriminativeShowcase | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ Research |
+| ForgeCapabilityGrid | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ Therapeutic |
+| VariantImpactLandscape | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ Research |
+| ProductPageLayout | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| IndustryProblemShowcase | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ Clinical |
+| APIEnhancedValueProp | ✅ | ❌ | ✅ | ❌ | ❌ | ✅ Therapeutic |
+| VisualCapabilityGrid | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+
+---
+
+## 🚀 EXTRACTION COMPLETION STATUS
+
+### ✅ Completed (8/18):
+- [x] boltzContent.ts
+- [x] commandCenterContent.ts
+- [x] discriminativeAISampleData.ts
+- [x] oracleCapabilities.ts
+- [x] discriminativeAIContent.ts
+- [x] forgeCapabilities.ts
+- [x] VisualCapabilityGrid.tsx
+- [x] DiscriminativeAIShowcase.tsx
+
+### 🔄 In Progress (10/18):
+- [ ] CompactDiscriminativeShowcase.tsx
+- [ ] DiscriminativeAICardShowcase.tsx
+- [ ] DetailedAPIExplorer.tsx
+- [ ] ForgeCapabilityGrid.tsx
+- [ ] ProductPageLayout.tsx
+- [ ] VariantImpactLandscape.tsx
+- [ ] CrisprEfficacyCard.tsx
+- [ ] AIEnginesGrid.tsx (verify)
+- [ ] APIEnhancedValueProp.tsx (verify)
+- [ ] IndustryProblemShowcase.tsx (verify)

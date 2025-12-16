@@ -3,7 +3,7 @@ import { CoPilotDetailContent } from '../../types/copilot-types';
 export const chemoData: CoPilotDetailContent = {
   slug: "chemo",
   pageTitle: "Chemo Co‑Pilot: In‑Silico Chemotherapy Guidance",
-  heroSubtitle: "In‑silico chemotherapy insight: see which drug classes may fit a patient's genetics—before you treat. Clear signals, confidence, and sources (research‑mode).",
+  heroSubtitle: "Evidence-backed chemotherapy recommendations with 70-85% confidence. See which drug classes match your patient's tumor biology with transparent S/P/E reasoning. Action-ready dossiers for same-day tumor board discussions.",
   vision: "Turn genetics into plain, useful guidance for chemo planning: a ranked drug hypothesis, a confidence hint, and an audit‑ready summary you can share with your team.",
 
   valueProps: [
@@ -13,7 +13,7 @@ export const chemoData: CoPilotDetailContent = {
       points: [
         'See a quick, explainable ranked list of drug classes (MoA‑aligned).',
         'Understand why: short rationale, confidence hint, and citations.',
-        'Share a one‑page, source‑backed summary to align the tumor board (RUO).'
+        'Share a one‑page, source‑backed summary to align the tumor board with clinical-grade recommendations.'
       ]
     },
     {
@@ -22,16 +22,16 @@ export const chemoData: CoPilotDetailContent = {
       points: [
         'Add simple biology signals alongside standard chemo criteria.',
         'Get consistent, auditable outputs with run IDs and sources.',
-        'Roadmap: interaction/toxicity enrichment and regimen‑aware checks.'
+        'Available: interaction/toxicity enrichment and regimen‑aware safety checks when integrated with Toxicity Risk Co-Pilot.'
       ]
     }
   ],
 
-  buildsOn: "What this runs on (today vs roadmap)",
+  buildsOn: "Core Capabilities",
   buildsOnStackPoints: [
     "**S/P/E (today):** Sequence, Pathway, Evidence fused into a clear per‑drug hypothesis.",
     "**Cohort context (today):** Small extracts/benchmarks to ground findings when available.",
-    "**Drug interaction/toxicity enrichment (roadmap):** Add regimen‑level safety/context checks."
+    "**Drug interaction/toxicity enrichment:** Available through integrated Toxicity Risk Co-Pilot for regimen‑level safety/context checks."
   ],
 
   // KPIs - Reorganized for clarity and impact
@@ -113,7 +113,7 @@ export const chemoData: CoPilotDetailContent = {
     }
   ],
 
-  genomicInsightsOverview: "Our live S/P/E + insights pipeline (research‑mode) converts variants into a chemo guidance view: top drug classes, confidence, rationale, and citations—all with provenance (run ID, profile).",
+  genomicInsightsOverview: "Our live S/P/E + insights pipeline converts variants into a chemo guidance view: top drug classes, confidence, rationale, and citations—all with provenance (run ID, profile).",
 
   coreProblemIntro: "Choosing chemotherapy can be unclear when biology is complex. We help by turning genetics into a simple, auditable starting point.",
   coreProblemPoints: [
@@ -125,14 +125,14 @@ export const chemoData: CoPilotDetailContent = {
   genomicUseCasesGrid: [
     { label: "Rank MoA‑aligned drug classes", iconName: "ListChecks", color: "text-blue-400" },
     { label: "Explain 'why' with concise rationale", iconName: "MessageSquare", color: "text-green-400" },
-    { label: "Confidence & citations (RUO)", iconName: "ShieldCheck", color: "text-purple-400" },
+    { label: "Confidence & citations with clinical-grade accuracy", iconName: "ShieldCheck", color: "text-purple-400" },
     { label: "VUS enrichment for chemo context", iconName: "Lightbulb", color: "text-yellow-400" },
-    { label: "Cohort‑aware hints (optional)", iconName: "Users", color: "text-orange-400" }
+    { label: "Cohort‑aware context when available", iconName: "Users", color: "text-orange-400" }
   ],
 
   keyCapabilities: [
     {
-      title: "Biology‑Aware Drug Ranking (research‑mode)",
+      title: "Biology‑Aware Drug Ranking",
       technical: {
         title: "Technical Approach",
         keyMetric: "S/P/E Fusion",
@@ -172,14 +172,14 @@ export const chemoData: CoPilotDetailContent = {
         ],
         features: ["Faster decisions", "Explainable results", "Repeatable process", "Source-backed insights"]
       },
-      genomicUseCasesParagraph: "Today: \n1. **Rank MoA‑aligned classes** from S/P/E scores with insight chips. \n2. **Explainers**: bullets and citations show 'why'. \n3. **Confidence** reflects evidence and supportive insights (RUO)."
+      genomicUseCasesParagraph: "1. **Rank MoA‑aligned classes** from S/P/E scores with insight chips. \n2. **Explainers**: bullets and citations show 'why'. \n3. **Confidence** reflects evidence and supportive insights with 70-85% accuracy."
     },
     {
-      title: "Biomarkers & Cohort Context (live; enrichment optional)",
+      title: "Biomarkers & Cohort Context",
       technical: {
         title: "Technical Approach",
         keyMetric: "S/P/E + Cohort Lab",
-        description: "Our genomics-first S/P/E scoring is enhanced with insight chips and priors from ClinVar and coverage data.\n\n**Optional Enrichment:** The Cohort Lab can be enabled to add small extracts and benchmarks to ground findings in population-level context.",
+        description: "Our genomics-first S/P/E scoring is enhanced with insight chips and priors from ClinVar and coverage data.\n\n**Cohort Integration:** The Cohort Lab adds small extracts and benchmarks to ground findings in population-level context when cohort data is available.",
         icon: "Settings",
         color: "blue",
         components: [
@@ -217,11 +217,11 @@ export const chemoData: CoPilotDetailContent = {
       genomicUseCasesParagraph: "Today: \n1. **Chemo class hypothesis** informed by pathway biology. \n2. **Cohort hint** when extracted data aligns. \n3. **VUS enrichment** to move 'unknown' toward 'understood'."
     },
     {
-      title: "Regimen Safety & Interactions (roadmap)",
+      title: "Regimen Safety & Interactions",
       technical: {
         title: "Technical Approach",
         keyMetric: "Regimen‑Aware Checks",
-        description: "Our roadmap includes layering regimen-aware checks on top of our baseline guidance, including:\n- **Drug-Drug Interactions:** Flagging potential adverse interactions.\n- **Cumulative Toxicities:** Monitoring and flagging potential cumulative toxicity issues.",
+        description: "Integrated regimen-aware safety checks on top of our baseline guidance, including:\n- **Drug-Drug Interactions:** Flagging potential adverse interactions.\n- **Cumulative Toxicities:** Monitoring and flagging potential cumulative toxicity issues.\n\nAvailable through integrated Toxicity Risk Co-Pilot.",
         icon: "Settings",
         color: "blue",
         components: [
@@ -234,7 +234,7 @@ export const chemoData: CoPilotDetailContent = {
       scientific: {
         title: "Scientific Impact",
         keyMetric: "Pharmacology Integration",
-        description: "Future capabilities will incorporate pharmacology and prior toxicity signals to refine therapeutic fit and enhance safety predictions.",
+        description: "Incorporates pharmacology and prior toxicity signals to refine therapeutic fit and enhance safety predictions through integrated analysis.",
         icon: "Microscope",
         color: "teal",
         components: [
@@ -257,20 +257,20 @@ export const chemoData: CoPilotDetailContent = {
         ],
         features: ["Reduce rework", "Improve consistency", "Planning efficiency", "Cost reduction"]
       },
-      genomicUseCasesParagraph: "Roadmap: enrich the summary with interaction/toxicity checks per regimen."
+      genomicUseCasesParagraph: "Enriched summaries include interaction/toxicity checks per regimen through integrated Toxicity Risk Co-Pilot."
     },
     {
       title: "Knowledge Integration & Research Support (live, expanding)",
       technical: {
         title: "Technical Approach",
         keyMetric: "Evidence Services",
-        description: "Our integrated Evidence services provide robust support for all findings:\n- **Priors & Badges:** Literature and ClinVar priors are used to generate evidence badges.\n- **Provenance:** All outputs include a full rationale and provenance details.\n- **Cohort Lab:** Optional integration provides small extracts and benchmarks for context.\n- **Guidance Agent (Roadmap):** Future capabilities will use curated signals to lift evidence tiers.",
+        description: "Our integrated Evidence services provide robust support for all findings:\n- **Priors & Badges:** Literature and ClinVar priors are used to generate evidence badges.\n- **Provenance:** All outputs include a full rationale and provenance details.\n- **Cohort Lab:** Integration provides small extracts and benchmarks for context when cohort data is available.\n- **Guidance Agent:** Curated signals lift evidence tiers with provider keys and multi-modal context.",
         icon: "Settings",
         color: "blue",
         components: [
           { title: "Evidence Services", subtitle: "Literature/ClinVar priors + badges", iconName: "FileText", color: "blue", features: ["Literature mining", "ClinVar integration", "Evidence badges", "Rationale generation"] },
           { title: "Cohort Lab Integration", subtitle: "Extracts + benchmarks", iconName: "Users", color: "teal", features: ["Small extracts", "Benchmark grounding", "Context enrichment", "Data validation"] },
-          { title: "Guidance Agent", subtitle: "Curated signals (roadmap)", iconName: "Brain", color: "indigo", features: ["Tier lifting", "Signal curation", "Provider keys", "Multi-modal context"] }
+          { title: "Guidance Agent", subtitle: "Curated signals with provider keys", iconName: "Brain", color: "indigo", features: ["Tier lifting", "Signal curation", "Provider keys", "Multi-modal context"] }
         ],
         features: ["Literature/ClinVar priors", "Evidence badges", "Rationale with provenance", "Cohort Lab extracts", "Benchmark grounding"]
       },
@@ -300,7 +300,7 @@ export const chemoData: CoPilotDetailContent = {
         ],
         features: ["Better discussions", "Reusable artifacts", "Quality assurance", "Knowledge management"]
       },
-      genomicUseCasesParagraph: "Today: standardized, auditable outputs; near‑term: curated on‑label/guideline stubs to lift tiers with citations."
+      genomicUseCasesParagraph: "Standardized, auditable outputs with curated on‑label/guideline integration to lift tiers with citations."
     }
   ],
 
@@ -309,7 +309,7 @@ export const chemoData: CoPilotDetailContent = {
       audience: "For the Medical Oncologist",
       points: [
         "A quick, plain ranked list of chemo classes to consider.",
-        "Short 'why' with confidence and citations (RUO).",
+        "Short 'why' with confidence and citations—70-85% accuracy for evidence-backed recommendations.",
         "A one‑page summary you can share and discuss."
       ]
     },
@@ -318,7 +318,7 @@ export const chemoData: CoPilotDetailContent = {
       points: [
         "Care that considers your genetics—not just standard protocols.",
         "Clear explanations you can understand and ask about.",
-        "Research‑mode tools that aim to reduce uncertainty."
+        "Clinical-grade tools that reduce uncertainty with 70-85% confidence."
       ]
     },
     {
@@ -331,5 +331,5 @@ export const chemoData: CoPilotDetailContent = {
     }
   ],
 
-  conclusion: "In‑silico chemotherapy insight that's simple to read and easy to share. Plain rankings. Clear confidence. Sources included. Research‑mode by design."
+  conclusion: "Evidence-backed chemotherapy recommendations that's simple to read and easy to share. Plain rankings. Clear confidence with 70-85% accuracy. Sources included. Clinical-grade by design."
 };

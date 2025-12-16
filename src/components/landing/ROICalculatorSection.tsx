@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calculator, TrendingUp, DollarSign, ArrowRight } from 'lucide-react';
+import { Calculator, TrendingUp, DollarSign, ArrowRight, Clock } from 'lucide-react';
 import BiotechROICalculator from './BiotechROICalculator';
 
 interface ROICalculatorSectionProps {
@@ -37,24 +37,44 @@ const ROICalculatorSection: React.FC<ROICalculatorSectionProps> = ({ className =
             <strong>Real ROI calculations for biotech executives.</strong>
           </p>
 
-          {/* Quick ROI Impact Props */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
-            <div className="p-4 bg-white rounded-xl border border-green-200 shadow-sm">
-              <div className="text-2xl font-bold text-green-600">90%</div>
-              <div className="text-sm text-slate-600">Success Rate</div>
-            </div>
-            <div className="p-4 bg-white rounded-xl border border-blue-200 shadow-sm">
-              <div className="text-2xl font-bold text-blue-600">72x</div>
-              <div className="text-sm text-slate-600">Faster Validation</div>
-            </div>
-            <div className="p-4 bg-white rounded-xl border border-purple-200 shadow-sm">
-              <div className="text-2xl font-bold text-purple-600">$12M+</div>
-              <div className="text-sm text-slate-600">Annual Savings</div>
-            </div>
-            <div className="p-4 bg-white rounded-xl border border-orange-200 shadow-sm">
-              <div className="text-2xl font-bold text-orange-600">6x</div>
-              <div className="text-sm text-slate-600">ROI Multiple</div>
-            </div>
+          {/* Business Transformation Impact Metrics */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200 shadow-sm"
+            >
+              <DollarSign className="w-8 h-8 text-green-600 mx-auto mb-3" />
+              <div className="text-3xl font-bold text-green-600 mb-2">99.8%</div>
+              <div className="text-sm font-semibold text-slate-700 mb-1">Cost Reduction</div>
+              <div className="text-xs text-green-600">$2.1M saved per program</div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl border border-blue-200 shadow-sm"
+            >
+              <Clock className="w-8 h-8 text-blue-600 mx-auto mb-3" />
+              <div className="text-3xl font-bold text-blue-600 mb-2">72x</div>
+              <div className="text-sm font-semibold text-slate-700 mb-1">Time Acceleration</div>
+              <div className="text-xs text-blue-600">18 months → 1 week</div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="p-6 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl border border-purple-200 shadow-sm"
+            >
+              <TrendingUp className="w-8 h-8 text-purple-600 mx-auto mb-3" />
+              <div className="text-3xl font-bold text-purple-600 mb-2">6x</div>
+              <div className="text-sm font-semibold text-slate-700 mb-1">Success Rate</div>
+              <div className="text-xs text-purple-600">15% → 90% success</div>
+            </motion.div>
           </div>
         </motion.div>
 

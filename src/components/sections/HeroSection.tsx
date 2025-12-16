@@ -1,14 +1,15 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import DoubleDnaHelix from '../ui/DoubleDnaHelix';
 import CrisprGenomeEditor from '../ui/CrisprGenomeEditor';
 import DnaBasePairStrip from '../ui/DnaBasePairStrip';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { HERO_DRUG_DEVELOPMENT_CONFIG } from '@/data/homepage/hero-drug-development';
+import { RotatingText } from '../shared/RotatingText';
 
 // Dynamically import ProteinModelViewer with SSR turned off
 const ProteinModelViewer = dynamic(
@@ -23,8 +24,44 @@ const ProteinModelViewer = dynamic(
   }
 );
 
+// Reusable Rotating Sentence Component
+const RotatingSentence = ({ sentences, interval = 3500 }: { sentences: string[]; interval?: number }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (sentences.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % sentences.length);
+    }, interval);
+    return () => clearInterval(timer);
+  }, [sentences.length, interval]);
+
+  if (sentences.length === 1) return <>{sentences[0]}</>;
+
+  return (
+    <span className="relative inline-block">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={currentIndex}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+        >
+          {sentences[currentIndex]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+};
 
 const HeroSection = () => {
+  const config = HERO_DRUG_DEVELOPMENT_CONFIG;
+  const rotatingWords = config.crisis.rotatingWords || [];
+  const captivatingSentences = config.crisis.captivatingSentences || [];
+  const primaryFocus = config.primaryFocus;
+  const audiences = config.audiences || [];
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white to-blue-50 dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
       {/* Background DNA elements - hidden on mobile */}
@@ -48,7 +85,20 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center lg:text-left mb-8 lg:mb-0"
           >
-            {/* Main Hero Headline - Bold & Visible */}
+            {/* Primary Focus Badge */}
+            {primaryFocus && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 via-purple-100 to-indigo-100 dark:from-blue-900/40 dark:via-purple-900/40 dark:to-indigo-900/40 text-slate-800 dark:text-slate-200 rounded-full text-sm font-bold mb-6 border border-blue-300 dark:border-blue-700"
+              >
+                <span className="text-lg">🎯</span>
+                {primaryFocus.badge}
+              </motion.div>
+            )}
+            
+            {/* Main Hero Headline - With Rotating Words */}
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -56,112 +106,127 @@ const HeroSection = () => {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight mb-5 sm:mb-6 md:mb-7 leading-tight"
             >
               <span className="block mb-2 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent">
-                {HERO_DRUG_DEVELOPMENT_CONFIG.crisis.titlePart1}
+                {config.crisis.titlePart1}
               </span>
-              {HERO_DRUG_DEVELOPMENT_CONFIG.crisis.titlePart2 && (
+              {rotatingWords.length > 0 && (
                 <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
-                  {HERO_DRUG_DEVELOPMENT_CONFIG.crisis.titlePart2}
+                  <RotatingText 
+                    texts={rotatingWords} 
+                    interval={2500}
+                    gradient="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent"
+                  />
+                </span>
+              )}
+              {config.crisis.titlePart2 && (
+                <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
+                  {config.crisis.titlePart2}
                 </span>
               )}
             </motion.h1>
             
-            {/* Subtitle - Enhanced Visibility */}
+            {/* Enhanced Subtitle with Primary Focus */}
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 dark:text-slate-200 mb-6 sm:mb-7 md:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 dark:text-slate-200 mb-4 sm:mb-5 md:mb-6 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
             >
-              {HERO_DRUG_DEVELOPMENT_CONFIG.crisis.subtitle}
+              {primaryFocus?.shortDescription || config.crisis.subtitle}
             </motion.p>
             
+            {/* Full Description (Optional - can be shown on hover or as expandable) */}
+            {primaryFocus?.fullDescription && (
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 mb-6 sm:mb-7 md:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              >
+                {primaryFocus.fullDescription}
+              </motion.p>
+            )}
+            
+            {/* Audience Indicators */}
+            {audiences.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6 sm:mb-7"
+              >
+                {audiences.map((audience) => (
+                  <div
+                    key={audience.id}
+                    className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border-2 ${audience.color} dark:border-opacity-50`}
+                  >
+                    <span className="mr-2">{audience.icon}</span>
+                    <span className="font-bold">{audience.label}</span>
+                    <span className="hidden sm:inline ml-2 text-xs opacity-75">• {audience.description}</span>
+                  </div>
+                ))}
+              </motion.div>
+            )}
+            
             {/* SAE Badges - Centered & Captivating */}
-           
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="mt-6 sm:mt-8 flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mb-6 sm:mb-7"
+            >
+              <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-200 rounded-full text-xs sm:text-sm md:text-base font-semibold border border-purple-300 dark:border-purple-700">
+                🧠 32,768 SAE Features
+              </div>
+              <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-800 dark:text-indigo-200 rounded-full text-xs sm:text-sm md:text-base font-semibold border border-indigo-300 dark:border-indigo-700">
+                🔍 100% Explainable
+              </div>
+              <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-200 rounded-full text-xs sm:text-sm md:text-base font-semibold border border-green-300 dark:border-green-700">
+                ✅ FDA-Ready Evidence
+              </div>
+            </motion.div>
 
-            {/* Call-to-Action Buttons - Centered & Enhanced */}
+            {/* Consolidated CTA Buttons - 3 buttons */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="space-y-4 sm:space-y-5 mb-6 sm:mb-7 flex flex-col items-center lg:items-start"
+              className="space-y-3 sm:space-y-4 mb-6 sm:mb-7 flex flex-col items-center lg:items-start"
             >
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => {
-                  const interactiveDemo = document.querySelector('#interactive-demo');
-                  if (interactiveDemo) {
-                    interactiveDemo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  } else {
-                    const demoSection = document.querySelector('[data-section="interactive-demo"]');
-                    if (demoSection) {
-                      demoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  }
-                }}
-                className="w-full sm:w-auto min-w-[280px] flex items-center justify-center gap-3 text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 py-4 sm:py-4.5 md:py-5 bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 hover:from-green-600 hover:via-blue-600 hover:to-purple-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all touch-manipulation relative overflow-hidden group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                <motion.div
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  className="text-xl sm:text-2xl relative z-10"
+              {/* Primary: I am treating patients */}
+              <Link href={config.cta.primary.href} className="w-full sm:w-auto">
+                <motion.button
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full sm:w-auto min-w-[280px] flex items-center justify-center gap-2 text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 py-4 sm:py-4.5 md:py-5 bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 hover:from-green-600 hover:via-blue-600 hover:to-purple-600 text-white font-bold rounded-xl shadow-2xl hover:shadow-3xl transition-all touch-manipulation relative overflow-hidden group"
                 >
-                  🚀
-                </motion.div>
-                <span className="relative z-10">SEE THE $2.1B SAVINGS LIVE</span>
-                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 relative z-10" />
-              </motion.button>
-              
-              <Link href={HERO_DRUG_DEVELOPMENT_CONFIG.cta.secondary.href} className="w-full sm:w-auto">
+                  <span className="text-xl sm:text-2xl">{config.cta.primary.icon}</span>
+                  <span>{config.cta.primary.text}</span>
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                </motion.button>
+              </Link>
+
+              {/* Secondary: I am designing a drug */}
+              <Link href={config.cta.secondary.href} className="w-full sm:w-auto">
                 <motion.button 
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full sm:w-auto min-w-[280px] flex items-center justify-center gap-2 text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 py-4 sm:py-4.5 md:py-5 bg-white dark:bg-slate-800 border-2 border-slate-400 dark:border-slate-500 text-slate-800 dark:text-slate-100 font-bold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 shadow-lg hover:shadow-xl transition-all touch-manipulation"
                 >
-                  {HERO_DRUG_DEVELOPMENT_CONFIG.cta.secondary.text}
+                  <span className="text-xl sm:text-2xl">{config.cta.secondary.icon}</span>
+                  <span>{config.cta.secondary.text}</span>
                 </motion.button>
               </Link>
-            </motion.div>
-            
-          
 
-            {/* Root Cause Message */}
-           
-
-            {/* Customer Segments - For Clinicians/Researchers/Biotech */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
-              className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-2xl mx-auto"
-            >
-              <Link href="/contact" className="group flex-1 min-w-[140px] max-w-[200px]">
-                <div className="bg-white dark:bg-slate-800 rounded-xl p-3 sm:p-4 border-2 border-blue-200 dark:border-blue-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer h-full">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-xl sm:text-2xl">🏥</span>
-                    <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">For Clinicians</h4>
-                  </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-tight">Unified care plans in minutes</p>
-                </div>
-              </Link>
-              <Link href="/contact" className="group flex-1 min-w-[140px] max-w-[200px]">
-                <div className="bg-white dark:bg-slate-800 rounded-xl p-3 sm:p-4 border-2 border-purple-200 dark:border-purple-700 hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-lg transition-all cursor-pointer h-full">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-xl sm:text-2xl">🔬</span>
-                    <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">For Researchers</h4>
-                  </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-tight">Validate targets in-silico</p>
-                </div>
-              </Link>
-              <Link href="/contact" className="group flex-1 min-w-[140px] max-w-[200px]">
-                <div className="bg-white dark:bg-slate-800 rounded-xl p-3 sm:p-4 border-2 border-green-200 dark:border-green-700 hover:border-green-400 dark:hover:border-green-500 hover:shadow-lg transition-all cursor-pointer h-full">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-xl sm:text-2xl">⚔️</span>
-                    <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">For Biotech</h4>
-                  </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-tight">Design therapeutics, not experiments</p>
-                </div>
+              {/* Tertiary: I am a patient */}
+              <Link href={config.cta.tertiary.href} className="w-full sm:w-auto">
+                <motion.button 
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full sm:w-auto min-w-[280px] flex items-center justify-center gap-2 text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 py-4 sm:py-4.5 md:py-5 bg-slate-100 dark:bg-slate-700 border-2 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-100 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-600 shadow-md hover:shadow-lg transition-all touch-manipulation"
+                >
+                  <span className="text-xl sm:text-2xl">{config.cta.tertiary.icon}</span>
+                  <span>{config.cta.tertiary.text}</span>
+                </motion.button>
               </Link>
             </motion.div>
           </motion.div>
@@ -229,73 +294,9 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
         </div>
-        
-        {/* Co-Pilots Showcase Section (Integrated) */}
-        <motion.div
-          id="co-pilots-showcase"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          className="mt-24"
-        >
-          {/* <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {HERO_CONFIG.keyFeatures.map((feature) => (
-              <Link href={feature.link} key={feature.id} className="block group">
-                <div className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-2xl p-6 h-full transition-all duration-300 hover:bg-white dark:hover:bg-slate-800 hover:border-primary/50 dark:hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10">
-                  <div className="flex items-center gap-4 mb-3">
-                    <div className="w-10 h-10 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center text-primary">
-                      <feature.icon size={22} />
-                    </div>
-                    <h3 className="font-bold text-lg text-slate-800 dark:text-white">{feature.name}</h3>
-                  </div>
-                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{feature.description}</p>
-                </div>
-              </Link>
-            ))}
-          </div> */}
-        </motion.div>
       </div>
     </section>
   );
 };
 
 export default HeroSection;
-
-// Added to globals.css or a new animation.css for these keyframes:
-/*
-@keyframes pulse {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0.2; transform: scale(1.05); }
-}
-.animate-pulse {
-  animation: pulse 4s infinite ease-in-out;
-}
-
-@keyframes blob {
-  0% {
-    transform: scale(1) translateY(0px) translateX(0px) rotate(0deg);
-  }
-  25% {
-    transform: scale(1.1) translateY(-10px) translateX(10px) rotate(10deg);
-  }
-  50% {
-    transform: scale(1) translateY(0px) translateX(0px) rotate(0deg);
-  }
-  75% {
-    transform: scale(0.9) translateY(10px) translateX(-10px) rotate(-10deg);
-  }
-  100% {
-    transform: scale(1) translateY(0px) translateX(0px) rotate(0deg);
-  }
-}
-.animate-blob {
-  animation: blob 15s infinite ease-in-out;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-.animation-delay-4000 {
-  animation-delay: 4s;
-}
-*/ 

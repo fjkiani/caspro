@@ -1,0 +1,376 @@
+# 🔗 CO-PILOT PRODUCT INTEGRATION PLAN
+## Making Co-Pilots "Product-Aware" - Connect to Oracle/Forge/Boltz/Command Center
+
+**Created:** 2024-12-19  
+**Status:** 🔴 CRITICAL - Co-pilots are "blind" from products  
+**Priority:** MUST FIX before continuing Sprint 2
+
+---
+
+## ❌ THE PROBLEM: "BLIND" CO-PILOT PAGES
+
+### Current State:
+Co-pilot pages (Chemo, Clinical Trials, Therapy Fit, etc.) have good structure but are **"blind" from our products**:
+
+**What They DO Have:**
+- ✅ Good structure (Battle Plan, War Stories, Strategic Doctrine tabs)
+- ✅ Mentions "S/P/E Framework" in text
+- ✅ Shows capabilities and KPIs
+- ✅ Explains what the co-pilot does
+
+**What They DON'T Have:**
+- ❌ **No product badges** - Don't show "Powered by Oracle" or "Built with Forge"
+- ❌ **No product links** - No links to `/products/oracle` or `/products/forge`
+- ❌ **No engine visualization** - Don't show which product powers which capability
+- ❌ **No technical stack clarity** - Mentions "S/P/E" but doesn't explain:
+  - **Sequence** = Oracle's Evo2
+  - **Pathway** = Oracle's pathway analysis
+  - **Evidence** = Oracle + Command Center orchestration
+- ❌ **No product integration narrative** - Doesn't explain how products work together
+
+---
+
+## 🎯 WHAT THE DOCTRINE SAYS
+
+### From `application-audit-and-strategic-plan.mdc`:
+
+**Problem #5: No Demos on Co-Pilot Pages**
+> "Each co-pilot page is text-heavy, no interactive demos. Should integrate SAE components (DynamicOracleExplain, VUSResolutionDemo, DemoFactory)"
+
+**Problem #2: Lack of Unified "Clinical Decision Support" Hub**
+> "No unified entry point showcasing the 'Unified Care Plan'. No page showing how they work together."
+
+**Problem #3: Missing Customer Journey**
+> "Clinician lands on platform → sees 3 cards → clicks one → sees detailed page. But where's the 'I want to solve X problem' → 'Use these 3 co-pilots together' flow?"
+
+### From `product.mdc` - Capability Group 1: Clinical Decision Support:
+
+**What It Includes:**
+- **S/P/E Framework**: Sequence (Evo2) + Pathway (weighted aggregation) + Evidence (literature/ClinVar)
+- **SAE Explainability**: Transparent confidence breakdown with provenance tracking
+- **Platform Intelligence**: Multi-modal AI validation with transparent confidence
+
+**Key Insight:**
+> "Every prediction is transparent, auditable, and reproducible. No black boxes - see exactly how we calculated confidence."
+
+### From Co-Pilot Data Structure (chemo-data.ts):
+
+**Current Text:**
+```
+buildsOn: "What this runs on (today vs roadmap)"
+buildsOnStackPoints: [
+  "**S/P/E (today):** Sequence, Pathway, Evidence fused into a clear per‑drug hypothesis.",
+  "**Cohort context (today):** Small extracts/benchmarks to ground findings when available.",
+  "**Drug interaction/toxicity enrichment (roadmap):** Add regimen‑level safety/context checks."
+]
+```
+
+**Problem:** 
+- Says "S/P/E" but doesn't explain:
+  - **Sequence** = Oracle's `/predict_variant_impact` API
+  - **Pathway** = Oracle's `/predict_gene_essentiality` API
+  - **Evidence** = Command Center orchestration + Evidence services
+
+---
+
+## ✅ THE SOLUTION: PRODUCT-INTEGRATED CO-PILOT PAGES
+
+### Architecture Changes:
+
+#### 1. **Add "Powered By" Section to Each Co-Pilot Page**
+
+**New Section Structure:**
+```typescript
+interface ProductIntegration {
+  engines: {
+    oracle: {
+      apis: string[];           // e.g., ["/predict_variant_impact", "/predict_gene_essentiality"]
+      capabilities: string[];   // e.g., ["Sequence analysis", "Pathway mapping"]
+      link: "/products/oracle";
+    };
+    forge?: {
+      apis: string[];
+      capabilities: string[];
+      link: "/products/forge";
+    };
+    boltz?: {
+      apis: string[];
+      capabilities: string[];
+      link: "/products/boltz";
+    };
+    commandCenter?: {
+      capabilities: string[];
+      link: "/products/command-center";
+    };
+  };
+  workflow: {
+    steps: Array<{
+      step: number;
+      title: string;
+      engine: "oracle" | "forge" | "boltz" | "commandCenter";
+      api?: string;
+      description: string;
+    }>;
+  };
+}
+```
+
+#### 2. **Update Co-Pilot Data Structure**
+
+**New Field in `CoPilotDetailContent`:**
+```typescript
+productIntegration?: {
+  engines: ProductIntegration['engines'];
+  workflow: ProductIntegration['workflow'];
+  saeEnabled: boolean;           // Does this use SAE explainability?
+  speFramework: {
+    sequence: {
+      engine: "oracle";
+      api: "/predict_variant_impact";
+      description: string;
+    };
+    pathway: {
+      engine: "oracle";
+      api: "/predict_gene_essentiality";
+      description: string;
+    };
+    evidence: {
+      engine: "commandCenter";
+      services: string[];
+      description: string;
+    };
+  };
+}
+```
+
+#### 3. **Create Product Integration Component**
+
+**New Component: `ProductIntegrationSection.tsx`**
+
+**Features:**
+- Shows product badges (Oracle, Forge, Boltz, Command Center)
+- Visual workflow diagram showing which product powers which step
+- Links to product pages
+- Shows API endpoints used
+- Explains S/P/E framework with product mapping
+
+---
+
+## 🗺️ CO-PILOT → PRODUCT MAPPING
+
+### Chemo Co-Pilot → Products:
+
+| Capability | Product | API/Component |
+|------------|---------|---------------|
+| Sequence Analysis | **Oracle** | `/predict_variant_impact` |
+| Pathway Mapping | **Oracle** | `/predict_gene_essentiality` |
+| Evidence Integration | **Command Center** | Evidence services orchestration |
+| S/P/E Fusion | **Oracle + Command Center** | Multi-modal fusion |
+| SAE Explainability | **Oracle** | SAE feature visualization |
+| Cohort Context | **Command Center** | Data Lab integration |
+
+**Workflow:**
+1. Variant input → **Oracle** analyzes sequence
+2. Pathway analysis → **Oracle** maps to biological pathways
+3. Evidence lookup → **Command Center** orchestrates evidence services
+4. Fusion → **Oracle** + **Command Center** combine S/P/E signals
+5. Output → Ranked drug classes with SAE explanations
+
+### Clinical Trials Co-Pilot → Products:
+
+| Capability | Product | API/Component |
+|------------|---------|---------------|
+| Variant Classification | **Oracle** | `/predict_variant_impact` |
+| Biomarker Matching | **Oracle** | `/predict_gene_essentiality` |
+| Trial Search | **Command Center** | Trial matching orchestration |
+| Eligibility Reasoning | **Command Center** | Rule-based eligibility engine |
+| Match Scoring | **Oracle + Command Center** | Multi-modal confidence scoring |
+
+### Therapy Fit Co-Pilot → Products:
+
+| Capability | Product | API/Component |
+|------------|---------|---------------|
+| Drug Efficacy Prediction | **Oracle** | `/predict_variant_impact` + S/P/E fusion |
+| Resistance Prediction | **Oracle** | `/predict_protein_functionality_change` |
+| Treatment Line Intelligence | **Oracle** | Pathway-based sequencing |
+| SAE Explainability | **Oracle** | SAE feature visualization |
+
+### Toxicity Risk Co-Pilot → Products:
+
+| Capability | Product | API/Component |
+|------------|---------|---------------|
+| PGx Variant Analysis | **Oracle** | `/predict_variant_impact` |
+| Drug Interaction Checking | **Command Center** | Interaction database |
+| Toxicity Risk Scoring | **Oracle** | Pathway-based risk prediction |
+
+### CRISPR Intelligence Co-Pilot → Products:
+
+| Capability | Product | API/Component |
+|------------|---------|---------------|
+| Guide RNA Design | **Forge** | `/generate_optimized_guide_rna` |
+| Off-Target Analysis | **Oracle** | `/predict_crispr_spacer_efficacy` |
+| Structural Validation | **Boltz** | AlphaFold 3 integration |
+| HDR Template Design | **Forge** | `/generate_repair_template` |
+| Pipeline Orchestration | **Command Center** | End-to-end workflow |
+
+---
+
+## 🎨 VISUAL DESIGN
+
+### Product Integration Section Layout:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  🔧 Powered By CrisPRO.ai Products                      │
+├─────────────────────────────────────────────────────────┤
+│                                                          │
+│  [Oracle Badge]  [Forge Badge]  [Boltz Badge]          │
+│                                                          │
+│  ┌───────────────────────────────────────────────────┐  │
+│  │ Workflow:                                        │  │
+│  │                                                    │  │
+│  │  1. Variant Input                                 │  │
+│  │       ↓                                           │  │
+│  │  2. [Oracle] Sequence Analysis                    │  │
+│  │       ↓                                           │  │
+│  │  3. [Oracle] Pathway Mapping                      │  │
+│  │       ↓                                           │  │
+│  │  4. [Command Center] Evidence Lookup              │  │
+│  │       ↓                                           │  │
+│  │  5. [Oracle] S/P/E Fusion                         │  │
+│  │       ↓                                           │  │
+│  │  6. Ranked Drug Classes                           │  │
+│  │                                                    │  │
+│  └───────────────────────────────────────────────────┘  │
+│                                                          │
+│  📚 S/P/E Framework Breakdown:                          │
+│                                                          │
+│  • Sequence → [Oracle] Evo2-powered variant analysis    │
+│  • Pathway → [Oracle] Gene essentiality mapping         │
+│  • Evidence → [Command Center] Literature + ClinVar     │
+│                                                          │
+│  🔍 SAE Explainability: Enabled                         │
+│  See exactly why each recommendation (32,768 features)  │
+│  [Learn More → /products/oracle]                        │
+│                                                          │
+│  [Explore Oracle →]  [Explore Forge →]  [Explore Boltz →]│
+│                                                          │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📋 IMPLEMENTATION PLAN
+
+### Phase 1: Data Structure Updates (2 hours)
+
+**1.1 Update Co-Pilot Data Types**
+- File: `src/types/copilot-types.ts`
+- Add: `ProductIntegration` interface
+- Add: `productIntegration` field to `CoPilotDetailContent`
+
+**1.2 Add Product Integration Data**
+- File: `src/data/copilots/chemo-data.ts`
+- Add: `productIntegration` section mapping capabilities to products
+
+**1.3 Repeat for All Co-Pilots**
+- Clinical Trials
+- Therapy Fit
+- Toxicity Risk
+- Pathway
+- CRISPR Intelligence
+
+### Phase 2: Component Creation (4 hours)
+
+**2.1 Create ProductIntegrationSection Component**
+- File: `src/components/co-pilot-detail/ProductIntegrationSection.tsx`
+- Features:
+  - Product badges with links
+  - Workflow visualization
+  - S/P/E framework breakdown
+  - API endpoint listing
+  - SAE explainability indicator
+
+**2.2 Create ProductBadge Component**
+- File: `src/components/ui/ProductBadge.tsx`
+- Shows Oracle/Forge/Boltz/Command Center badges
+- Links to product pages
+
+**2.3 Create WorkflowVisualization Component**
+- File: `src/components/co-pilot-detail/WorkflowVisualization.tsx`
+- Shows step-by-step workflow with product badges
+
+### Phase 3: Integration (2 hours)
+
+**3.1 Add to Co-Pilot Detail Page**
+- File: `src/app/platform/[coPilotSlug]/page.tsx`
+- Add: ProductIntegrationSection after hero, before tabs
+- Or: Add as new tab "Technical Stack"
+
+**3.2 Update InteractiveContentAnalysis**
+- File: `src/components/co-pilot-detail/InteractiveContentAnalysis.tsx`
+- Ensure productIntegration data is rendered
+
+### Phase 4: Product Page Cross-Links (1 hour)
+
+**4.1 Add Co-Pilot Links to Product Pages**
+- Oracle page → "See Oracle in action: Chemo Co-Pilot"
+- Forge page → "See Forge in action: CRISPR Intelligence"
+- Boltz page → "See Boltz in action: CRISPR Intelligence"
+- Command Center → "See Command Center: All Co-Pilots"
+
+---
+
+## 🎯 SUCCESS CRITERIA
+
+### Before (Current State):
+- ❌ User reads Chemo Co-Pilot page
+- ❌ Sees "S/P/E Framework" mentioned
+- ❌ Doesn't know what products power it
+- ❌ No way to explore Oracle/Forge/Boltz
+- ❌ No understanding of technical stack
+
+### After (Target State):
+- ✅ User reads Chemo Co-Pilot page
+- ✅ Sees "Powered by Oracle + Command Center" badges
+- ✅ Understands: Sequence = Oracle, Pathway = Oracle, Evidence = Command Center
+- ✅ Can click "Explore Oracle" to learn more
+- ✅ Sees workflow diagram showing product integration
+- ✅ Understands SAE explainability comes from Oracle
+
+---
+
+## 📊 DOCTRINE ALIGNMENT
+
+### From `product.mdc` - Capability Group 1:
+
+> "**Platform Intelligence**: Multi-modal AI validation with transparent confidence"
+
+**Action:** Co-pilot pages should showcase this by:
+- Showing which product provides which intelligence layer
+- Linking to product pages for deeper dive
+- Explaining S/P/E framework with product mapping
+
+### From `application-audit-and-strategic-plan.mdc`:
+
+> "**Missing Customer Journey**: No clear path from 'I have this problem' → 'CrisPRO solves it' → 'See it in action' → 'Get started'"
+
+**Action:** Product integration sections provide:
+- Clear path: Problem → Co-Pilot → Products → Learn More
+- Cross-links: Co-Pilot → Product pages → Back to Co-Pilot
+- Technical transparency: Show HOW products solve the problem
+
+---
+
+## 🚀 NEXT STEPS
+
+1. **Review this plan** with stakeholders
+2. **Prioritize co-pilots** (start with Chemo, Clinical Trials, Therapy Fit)
+3. **Create data structure** for product integration
+4. **Build components** (ProductIntegrationSection, ProductBadge, WorkflowVisualization)
+5. **Integrate into pages** (add to co-pilot detail pages)
+6. **Test user journey** (Co-Pilot → Product → Back to Co-Pilot)
+
+---
+
+**CRITICAL INSIGHT:** Co-pilots are the **application layer** that uses our products. They should be **proudly showcasing** which products power them, not hiding behind generic "S/P/E Framework" text. This integration makes the entire platform more discoverable and transparent.

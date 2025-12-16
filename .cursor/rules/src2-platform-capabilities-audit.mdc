@@ -1,0 +1,417 @@
+# src2 Platform Capabilities Components Audit
+
+## Overview
+This document identifies the best components from `src2` for showcasing **full platform capabilities** (what the platform can DO) rather than just listing features.
+
+## 📊 EXECUTIVE SUMMARY
+
+**Total Components Found**: 10 capability-showcase components  
+**Already Extracted**: 5 core components + 3 data files ✅  
+**Available for Extraction**: 5 additional components + 2 data files ⚠️  
+**Complete Product Pages**: 5 reference pages showing component composition
+
+**Key Finding**: `src2` contains a comprehensive library of platform capability components, with multiple variations for different use cases (compact, detailed, developer-focused, product-specific).
+
+---
+
+## 🎯 KEY COMPONENTS FOR PLATFORM CAPABILITIES
+
+### 1. **VisualCapabilityGrid** ⭐ RECOMMENDED
+**Location**: `src/src2/components/site/blocks/VisualCapabilityGrid.tsx`
+
+**What It Does**:
+- Shows capabilities with **interactive expandable cards**
+- Displays **metrics** (AUROC, accuracy, etc.)
+- Includes **live demo components** embedded in cards
+- Shows **key features** for each capability
+- Click-to-expand for more details
+
+**Perfect For**: 
+- Multi-modal predictions showcase
+- Oracle capabilities with live demos
+- Interactive capability exploration
+
+**Data Structure**:
+```typescript
+interface Capability {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  metrics: Array<{
+    value: string;
+    label: string;
+    color: string;
+  }>;
+  keyFeatures: string[];
+  demoComponent?: React.ReactNode; // LIVE DEMO EMBEDDED
+}
+```
+
+**Example Usage** (from OracleProduct.tsx):
+```typescript
+<VisualCapabilityGrid
+  capabilities={oracleCapabilities.multiModalPredictions}
+  title="Multi-Modal Biological Predictions"
+  subtitle="Oracle's comprehensive biological insights across multiple modalities."
+/>
+```
+
+**Key Advantages**:
+- ✅ Shows WHAT the platform can DO (not just features)
+- ✅ Interactive with embedded demos
+- ✅ Metrics-driven (real performance data)
+- ✅ Expandable for details
+
+---
+
+### 2. **DiscriminativeAIShowcase** ⭐ RECOMMENDED
+**Location**: `src/src2/components/site/blocks/DiscriminativeAIShowcase.tsx`
+
+**What It Does**:
+- Shows ALL discriminative AI endpoints (Oracle's 5 core APIs)
+- Each endpoint card shows:
+  - Performance metrics (AUROC, correlation)
+  - API outputs
+  - Use cases & applications
+  - Expandable details
+- Interactive endpoint selection
+- Use case filtering
+
+**Perfect For**:
+- Complete Oracle API showcase
+- Endpoint-by-endpoint capability breakdown
+- Use case exploration
+
+**Data Structure**:
+Uses `discriminativeAIContent.ts` with endpoints:
+- `predict_variant_impact`
+- `predict_gene_essentiality`
+- `predict_protein_functionality_change`
+- `predict_chromatin_accessibility`
+- `predict_crispr_spacer_efficacy`
+
+**Key Advantages**:
+- ✅ Complete API coverage
+- ✅ Real metrics for each endpoint
+- ✅ Use cases linked to each endpoint
+- ✅ Interactive exploration
+
+---
+
+### 3. **AIEnginesGrid** 
+**Location**: `src/src2/components/site/AIEnginesGrid.tsx`
+
+**What It Does**:
+- Simple grid showing all AI engines
+- Shows engine name and feature list
+- Clean, minimal design
+
+**Perfect For**:
+- Quick overview of all 4 engines
+- Homepage summary
+- Simple engine comparison
+
+**Limitations**:
+- ❌ No interactivity
+- ❌ No metrics
+- ❌ Just feature lists (not capabilities)
+
+---
+
+### 4. **FactoryDemoShowcase** / **InteractiveDemoShowcase**
+**Location**: `src/src2/components/site/blocks/FactoryDemoShowcase.tsx` / `InteractiveDemoShowcase.tsx`
+
+**What It Does**:
+- Step-by-step interactive demos
+- Shows API execution flow
+- Real-time simulation
+- Oracle thinking process visualization
+
+**Perfect For**:
+- Live demonstrations
+- Workflow visualization
+- Use case walkthroughs
+
+**Limitations**:
+- More demo-focused than capability showcase
+- Better for specific scenarios than full platform overview
+
+---
+
+## 📊 DATA STRUCTURES FOR CAPABILITIES
+
+### Oracle Capabilities
+**Location**: `src/src2/data/oracleCapabilities.ts`
+
+**Structure**:
+- `multiModalPredictions`: Gene essentiality, protein function, chromatin accessibility
+- `scientificValidation`: ClinVar, BRCA, splice variants
+
+**Example**:
+```typescript
+{
+  id: 'gene-essentiality',
+  icon: '🧬',
+  title: 'Gene Essentiality by Context',
+  description: 'Context-dependent gene essentiality predictions...',
+  metrics: [
+    { value: '0.82-0.99', label: 'AUROC Range', color: 'text-green-400' },
+    { value: '8 Species', label: 'Cross-Species', color: 'text-blue-400' }
+  ],
+  keyFeatures: [...],
+  demoComponent: React.createElement(EssentialityChart, {...})
+}
+```
+
+### Forge Capabilities
+**Location**: `src/src2/data/forgeCapabilities.ts`
+
+**Structure**:
+- `multiModalGeneration`: Guide RNA design, repair templates, therapeutic proteins
+
+### Discriminative AI Content
+**Location**: `src/src2/data/discriminativeAIContent.ts`
+
+**Structure**:
+- All 5 Oracle endpoints with full details
+- Metrics, outputs, use cases, applications
+
+---
+
+## 🎯 RECOMMENDED APPROACH
+
+### For Full Platform Capabilities Showcase:
+
+1. **Use VisualCapabilityGrid** for interactive capability cards
+   - Shows WHAT the platform can do
+   - Includes live demos
+   - Metrics-driven
+
+2. **Use DiscriminativeAIShowcase** for complete API coverage
+   - All Oracle endpoints
+   - Use case exploration
+   - Performance metrics
+
+3. **Combine both** for comprehensive platform view:
+   - VisualCapabilityGrid for high-level capabilities
+   - DiscriminativeAIShowcase for detailed API breakdown
+
+---
+
+## 📋 ADDITIONAL COMPONENTS DISCOVERED
+
+### 5. **CompactDiscriminativeShowcase**
+**Location**: `src/src2/components/site/blocks/CompactDiscriminativeShowcase.tsx`
+
+**What It Does**:
+- More compact version of DiscriminativeAIShowcase
+- Click-to-expand cards with embedded live demo components
+- Shows component preview before expansion
+- Interactive endpoint selection
+
+**Perfect For**:
+- Space-constrained layouts
+- Quick endpoint previews
+- Embedded in other components
+
+**Status**: ⚠️ NOT YET EXTRACTED - Similar to DiscriminativeAIShowcase but more compact
+
+---
+
+### 6. **DiscriminativeAICardShowcase**
+**Location**: `src/src2/components/site/blocks/DiscriminativeAICardShowcase.tsx`
+
+**What It Does**:
+- Card-based layout with endpoint selector buttons
+- Two-column layout: visualization + detailed info
+- Shows:
+  - Live demo components
+  - Performance metrics grid
+  - API capabilities breakdown
+  - Technical implementation details
+  - Use cases with filtering
+
+**Perfect For**:
+- Detailed API exploration
+- Technical deep-dives
+- Comprehensive endpoint documentation
+
+**Status**: ⚠️ NOT YET EXTRACTED - Most detailed version with technical specs
+
+---
+
+### 7. **DetailedAPIExplorer**
+**Location**: `src/src2/components/site/blocks/DetailedAPIExplorer.tsx`
+
+**What It Does**:
+- Tabbed interface (Use Cases, Technical, Capabilities)
+- Endpoint selector at top
+- Comprehensive API documentation
+- Technical implementation details
+- Use case scenarios
+
+**Perfect For**:
+- Developer documentation pages
+- Technical API reference
+- Deep technical exploration
+
+**Status**: ⚠️ NOT YET EXTRACTED - Most comprehensive, developer-focused
+
+---
+
+### 8. **ForgeCapabilityGrid**
+**Location**: `src/src2/components/site/forge/ForgeCapabilityGrid.tsx`
+
+**What It Does**:
+- Forge-specific capability grid
+- Shows 5 Forge capabilities:
+  - Guide RNA Design
+  - HDR Repair Templates
+  - Therapeutic Proteins
+  - Regulatory Elements
+  - Epigenome Optimization
+- Featured vs additional capabilities
+- Quick demo buttons
+
+**Perfect For**:
+- Forge product page
+- Generative AI capabilities showcase
+- Design-focused demos
+
+**Status**: ⚠️ NOT YET EXTRACTED - Forge-specific
+
+---
+
+### 9. **ExpandableDiscriminativeCards**
+**Location**: `src/src2/components/site/blocks/ExpandableDiscriminativeCards.tsx`
+
+**Status**: ⚠️ FILE APPEARS EMPTY - May be deprecated or placeholder
+
+---
+
+### 10. **ProductPageLayout**
+**Location**: `src/src2/components/site/ProductPageLayout.tsx`
+
+**What It Does**:
+- Reusable layout for product pages
+- Includes `ProductHero` and `ProductSection` components
+- Standardized product page structure
+
+**Perfect For**:
+- Oracle, Forge, Boltz, Command Center product pages
+- Consistent page structure
+
+**Status**: ⚠️ NOT YET EXTRACTED - Layout wrapper component
+
+---
+
+## 📦 FILES TO EXTRACT/MODIFY
+
+### Components (Already Extracted ✅):
+- ✅ `VisualCapabilityGrid.tsx` → `src/components/landing/VisualCapabilityGrid.tsx`
+- ✅ `DiscriminativeAIShowcase.tsx` → `src/components/landing/DiscriminativeAIShowcase.tsx`
+- ✅ `AIEnginesGrid.tsx` → `src/components/landing/AIEnginesGrid.tsx`
+- ✅ `APIEnhancedValueProp.tsx` → `src/components/landing/APIEnhancedValueProp.tsx`
+- ✅ `IndustryProblemShowcase.tsx` → `src/components/landing/IndustryProblemShowcase.tsx`
+
+### Components (Optional - More Variations):
+- ⚠️ `CompactDiscriminativeShowcase.tsx` - Compact version with live demos
+- ⚠️ `DiscriminativeAICardShowcase.tsx` - Most detailed with technical specs
+- ⚠️ `DetailedAPIExplorer.tsx` - Developer-focused tabbed explorer
+- ⚠️ `ForgeCapabilityGrid.tsx` - Forge-specific capabilities
+- ⚠️ `ProductPageLayout.tsx` - Reusable product page layout
+
+### Data (Already Extracted ✅):
+- ✅ `oracleCapabilities.ts` → `src/data/oracleCapabilities.ts`
+- ✅ `discriminativeAIContent.ts` → `src/data/discriminativeAIContent.ts`
+- ✅ `forgeCapabilities.ts` → `src/data/forgeCapabilities.ts`
+
+### Data (Additional Found):
+- ⚠️ `boltzContent.ts` - Simple Boltz data (simulation runs, KPIs)
+- ⚠️ `commandCenterContent.ts` - Command Center data (pipeline, runs, logs, KPIs, provenance)
+
+### Dependencies:
+- ✅ `EssentialityChart`, `ProteinDeltaCard`, `AccessibilityTrack` (already exist in `src/components/sae/components/`)
+- ✅ `useAccessibilityFallback` hook (created fallback for Next.js compatibility)
+
+---
+
+## 🚀 IMPLEMENTATION STEPS
+
+1. **Extract VisualCapabilityGrid**
+   - Adapt for Next.js
+   - Remove AccessibilityContext dependency
+   - Update styling for homepage theme
+
+2. **Create Platform Capabilities Data**
+   - Combine Oracle + Forge + Boltz capabilities
+   - Structure by category (Drug Discovery, Clinical Oncology, Research)
+   - Include metrics and demo components
+
+3. **Replace Current PlatformCapabilitiesShowcase**
+   - Use VisualCapabilityGrid instead of feature cards
+   - Show capabilities, not features
+   - Add interactive demos
+
+4. **Add DiscriminativeAIShowcase**
+   - Show complete Oracle API coverage
+   - Link to each endpoint's capabilities
+   - Include use cases
+
+---
+
+## 💡 KEY INSIGHT
+
+**The difference**:
+- **Features** = "We have variant prediction" (WHAT we have)
+- **Capabilities** = "Predict variant impact with 95.7% AUROC across all variant types" (WHAT we can DO)
+
+**VisualCapabilityGrid** shows CAPABILITIES with:
+- Real metrics
+- Live demonstrations
+- Use case examples
+- Interactive exploration
+
+This aligns perfectly with showing "full platform capabilities - not based on features."
+
+---
+
+## ✅ EXTRACTION STATUS SUMMARY
+
+### **Already Extracted & Ready** (5 components + 3 data files):
+1. ✅ VisualCapabilityGrid - Interactive capability cards with demos
+2. ✅ DiscriminativeAIShowcase - Complete Oracle API showcase
+3. ✅ AIEnginesGrid - Simple 4-engine grid
+4. ✅ APIEnhancedValueProp - API endpoints with comparisons
+5. ✅ IndustryProblemShowcase - Industry problem metrics
+6. ✅ oracleCapabilities.ts - Oracle capability data
+7. ✅ discriminativeAIContent.ts - Complete Oracle endpoint definitions
+8. ✅ forgeCapabilities.ts - Forge generation capabilities
+
+### **Available for Future Extraction** (5 components + 2 data files):
+1. ⚠️ CompactDiscriminativeShowcase - Compact version
+2. ⚠️ DiscriminativeAICardShowcase - Most detailed version
+3. ⚠️ DetailedAPIExplorer - Developer-focused explorer
+4. ⚠️ ForgeCapabilityGrid - Forge-specific grid
+5. ⚠️ ProductPageLayout - Reusable layout wrapper
+6. ⚠️ boltzContent.ts - Boltz data
+7. ⚠️ commandCenterContent.ts - Command Center data
+
+### **Complete Product Pages (Reference Only)**:
+- `ProductOracle.tsx` - Shows how components are combined for Oracle
+- `ProductForge.tsx` - Shows how components are combined for Forge
+- `ProductCommandCenter.tsx` - Shows Command Center component usage
+- `BiotechTransformation.tsx` - Shows multi-modal capabilities in context
+- `ClinicalTransformation.tsx` - Shows clinical use cases
+
+**Note**: These product pages use React Router, but serve as excellent references for how to combine extracted components.
+
+---
+
+## 🎯 NEXT STEPS
+
+1. ✅ **DONE**: Extract core capability components (5 components + 3 data files)
+2. **NEXT**: Integrate extracted components into homepage/platform pages
+3. **FUTURE**: Extract optional components as needed for specific use cases
+4. **REFERENCE**: Use complete product pages as guides for component composition

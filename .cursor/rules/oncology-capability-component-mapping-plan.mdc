@@ -1,0 +1,222 @@
+# Oncology Capability Component Mapping Plan
+
+## Problem
+All capability cards are showing the same demo content (BRCA Mutation Classifier) instead of content aligned with each specific capability.
+
+## Solution: Create Capability-Specific Demo Wrappers
+
+Each capability needs:
+1. ✅ Correct component mapping
+2. ✅ Capability-specific seedData
+3. ✅ Customized content/messaging
+
+---
+
+## Component Mapping Strategy
+
+### 1. **Match Patients to Therapies** → `SPEFusionPlayground` ✅ (Correct)
+- **Component**: `SPEFusionPlayground` from `@/components/evidence/interactive`
+- **Alternative**: Use `TherapyRankingCard` from `src2` if we want drug rankings
+- **SeedData**: Already configured correctly
+- **Action**: Keep as is, but enhance seedData if needed
+
+### 2. **Prevent Toxicity Before It Happens** → ❌ Currently using `BRCAMutationSimulator` (WRONG)
+- **Needed**: Toxicity prediction demo for DPYD/TPMT/UGT1A1/CYP2D6
+- **Options**:
+  - **A.** Create `ToxicityPredictionDemo.tsx` component (NEW)
+  - **B.** Adapt `VUSResolutionDemo` to show PGx variants (QUICK)
+  - **C.** Use dossier component `ClinicalTrial` with toxicity context
+- **SeedData**: DPYD variants, drug interactions, protective nutrition
+- **Action**: Create new `ToxicityPredictionDemo` component
+
+### 3. **Predict Resistance Before It Happens** → ❌ Currently using `DataLabExplorer` (WRONG)
+- **Needed**: Resistance prediction demo with CA-125 kinetics, pathway analysis
+- **Options**:
+  - **A.** Create `ResistanceDetectionDemo.tsx` component (NEW)
+  - **B.** Use `PathwayAnalysis` component if exists
+  - **C.** Adapt existing components to show resistance signals
+- **SeedData**: MAPK/NF1 mutations, CA-125 trends, pathway disruptions
+- **Action**: Create new `ResistanceDetectionDemo` component
+
+### 4. **Resolve Genetic Uncertainty** → ✅ Currently using `VUSResolutionDemo` (CORRECT)
+- **Component**: `VUSResolutionDemo` from `@/components/sae`
+- **Action**: Keep as is, verify seedData
+
+### 5. **Match Patients to Clinical Trials** → ❌ Currently using `SPEFusionPlayground` (WRONG)
+- **Needed**: Clinical trial matching demo
+- **Component**: `ClinicalTrialsMatcher` from `src2/components/site/blocks`
+- **Action**: Import and use `ClinicalTrialsMatcher` component
+- **SeedData**: Trial matches, eligibility criteria, green/yellow/red flags
+
+---
+
+## Implementation Plan
+
+### Phase 1: Create Missing Demo Components
+
+#### A. ToxicityPredictionDemo.tsx
+**Location**: `src/components/products/oncology/demos/ToxicityPredictionDemo.tsx`
+
+**Features**:
+- Display 4 PGx genes: DPYD, TPMT, UGT1A1, CYP2D6
+- Show variant detection results
+- Drug interaction warnings
+- Protective nutrition recommendations
+- Dose adjustment recommendations
+
+**Reuses**:
+- Can leverage `VUSResolutionDemo` pattern for variant display
+- Can use `ClinicalTrial` pattern for drug recommendations
+
+#### B. ResistanceDetectionDemo.tsx
+**Location**: `src/components/products/oncology/demos/ResistanceDetectionDemo.tsx`
+
+**Features**:
+- Pathway analysis (MAPK/NF1)
+- CA-125 kinetics visualization
+- Resistance risk scoring
+- Early detection timeline (3-6 weeks)
+- Proactive intervention recommendations
+
+**Reuses**:
+- Can leverage `DataLabExplorer` patterns
+- Pathway visualization components
+
+### Phase 2: Update Component Imports
+
+#### Update `oncology-capabilities-data.ts`:
+
+```typescript
+// Import new components
+import ToxicityPredictionDemo from '@/components/products/oncology/demos/ToxicityPredictionDemo';
+import ResistanceDetectionDemo from '@/components/products/oncology/demos/ResistanceDetectionDemo';
+import ClinicalTrialsMatcher from '@/src2/components/site/blocks/ClinicalTrialsMatcher';
+import TherapyRankingCard from '@/src2/components/site/blocks/TherapyRankingCard';
+
+// Update mappings:
+TOXICITY_PREDICTION_CAPABILITY: {
+  component: ToxicityPredictionDemo,
+  seedData: {
+    genes: ['DPYD', 'TPMT', 'UGT1A1', 'CYP2D6'],
+    drugs: ['5-FU', 'Thiopurines', 'Irinotecan', 'Tamoxifen'],
+    // ... toxicity-specific data
+  }
+}
+
+RESISTANCE_DETECTION_CAPABILITY: {
+  component: ResistanceDetectionDemo,
+  seedData: {
+    pathways: ['MAPK', 'NF1', 'PI3K'],
+    ca125Data: [...],
+    // ... resistance-specific data
+  }
+}
+
+CLINICAL_TRIAL_MATCHING_CAPABILITY: {
+  component: ClinicalTrialsMatcher,
+  seedData: {
+    output: {
+      likely: [...],
+      potential: [...],
+      unlikely: [...]
+    }
+  }
+}
+
+MATCH_PATIENTS_CAPABILITY: {
+  // Option 1: Keep SPEFusionPlayground
+  // Option 2: Switch to TherapyRankingCard
+  component: TherapyRankingCard, // Better for drug ranking
+  seedData: {
+    rankedTherapies: [...]
+  }
+}
+```
+
+### Phase 3: Component Wrapper Pattern (DRY)
+
+Create a generic wrapper that:
+1. Accepts capability ID
+2. Maps to correct component
+3. Passes appropriate seedData
+4. Customizes intro/outro messaging
+
+```typescript
+// CapabilityDemoWrapper.tsx
+interface CapabilityDemoWrapperProps {
+  capabilityId: string;
+  seedData?: any;
+}
+
+const CapabilityDemoWrapper: React.FC<CapabilityDemoWrapperProps> = ({ 
+  capabilityId, 
+  seedData 
+}) => {
+  const componentMap = {
+    'match-patients': SPEFusionPlayground,
+    'toxicity-prediction': ToxicityPredictionDemo,
+    'resistance-detection': ResistanceDetectionDemo,
+    'vus-resolution': VUSResolutionDemo,
+    'clinical-trial-matching': ClinicalTrialsMatcher,
+  };
+  
+  const Component = componentMap[capabilityId];
+  return <Component {...seedData} />;
+};
+```
+
+---
+
+## File Structure
+
+```
+src/components/products/oncology/demos/
+├── ToxicityPredictionDemo.tsx       # NEW - DPYD/TPMT/UGT1A1/CYP2D6
+├── ResistanceDetectionDemo.tsx      # NEW - CA-125, pathway analysis
+└── CapabilityDemoWrapper.tsx        # NEW - Generic wrapper (optional)
+```
+
+---
+
+## Content Alignment Checklist
+
+Each demo should show:
+
+### Match Patients to Therapies
+- ✅ Mechanism-based drug ranking (S/P/E fusion)
+- ✅ Trial match accuracy (96.6%)
+- ✅ Transparent reasoning
+
+### Prevent Toxicity
+- ✅ PGx variant screening (4 genes)
+- ✅ Drug interaction warnings
+- ✅ Protective nutrition recommendations
+- ✅ Dose adjustments
+
+### Predict Resistance
+- ✅ Pathway analysis (MAPK/NF1)
+- ✅ CA-125 kinetics
+- ✅ 3-6 weeks early detection
+- ✅ Proactive intervention
+
+### VUS Resolution
+- ✅ Zero-shot classification
+- ✅ 95.7% AUROC
+- ✅ Transparent biological reasoning
+
+### Clinical Trial Matching
+- ✅ Eligibility criteria (green/yellow/red)
+- ✅ 96.6% match accuracy
+- ✅ Trial site contacts
+- ✅ Action-ready packets
+
+---
+
+## Next Steps
+
+1. ✅ Create `ToxicityPredictionDemo.tsx`
+2. ✅ Create `ResistanceDetectionDemo.tsx`
+3. ✅ Import `ClinicalTrialsMatcher` from src2
+4. ✅ Update `oncology-capabilities-data.ts` with correct mappings
+5. ✅ Test each capability shows correct content
+6. ✅ Verify seedData customizes components properly

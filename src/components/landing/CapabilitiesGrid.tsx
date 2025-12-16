@@ -12,17 +12,19 @@ interface CapabilitiesGridProps {
 
 const CapabilitiesGrid: React.FC<CapabilitiesGridProps> = ({ capabilities }) => {
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+    <section className="py-12 sm:py-16 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="container mx-auto px-4 sm:px-6">
         <motion.div
-          className="text-center mb-8 sm:mb-12 lg:mb-16"
+          className="text-center mb-8 sm:mb-10"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">Our Capabilities</h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto px-4">
-            Comprehensive in-silico tools for research oncology, from variant analysis to therapeutic guidance
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-3 sm:mb-4">
+            Transform Drug Development from <span className="text-red-600">Gambling</span> to <span className="text-green-600">Engineering</span>
+          </h2>
+          <p className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto">
+            Six core capabilities that eliminate the $2.6B gamble: from clinical decision support to therapeutic design, all powered by transparent AI with complete audit trails.
           </p>
         </motion.div>
 

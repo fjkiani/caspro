@@ -1,0 +1,815 @@
+# Intelligent Documentation Platform - Build Plan
+## CrisPRO.ai AI-Powered Documentation Experience
+
+**Vision:** Create a next-generation documentation platform that goes beyond traditional docs - an intelligent, interactive, beautiful experience powered by AI agents that can understand context, answer questions, and guide users through our platform capabilities.
+
+---
+
+## 🎯 CORE PHILOSOPHY
+
+### What We're NOT Building
+- ❌ Traditional sidebar + markdown docs
+- ❌ Static content pages
+- ❌ Boring technical documentation
+- ❌ Simple search functionality
+
+### What We ARE Building
+- ✅ **Intelligent Knowledge Experience** - AI understands context and guides users
+- ✅ **Interactive API Explorer** - Live, visual API testing with real-time results
+- ✅ **Conversational Documentation** - Ask questions, get intelligent answers
+- ✅ **Dynamic Content from CMS** - Hygraph-powered, always up-to-date
+- ✅ **Beautiful, Immersive UI** - Not docs, an experience
+- ✅ **Modular Architecture** - Reusable components, easy to extend
+
+---
+
+## 🏗️ ARCHITECTURE OVERVIEW
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     USER INTERFACE LAYER                        │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────────────────┐ │
+│  │ Knowledge    │ │ API          │ │ AI Assistant             │ │
+│  │ Explorer     │ │ Playground   │ │ (Chat + Context)         │ │
+│  └──────────────┘ └──────────────┘ └──────────────────────────┘ │
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────────────────┐ │
+│  │ Visual       │ │ Use Case     │ │ Interactive              │ │
+│  │ Guides       │ │ Journeys     │ │ Code Examples            │ │
+│  └──────────────┘ └──────────────┘ └──────────────────────────┘ │
+├─────────────────────────────────────────────────────────────────┤
+│                     INTELLIGENCE LAYER                          │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────────────────┐ │
+│  │ RAG Engine   │ │ Context      │ │ LLM Integration          │ │
+│  │ (Vector DB)  │ │ Manager      │ │ (Claude/GPT)             │ │
+│  └──────────────┘ └──────────────┘ └──────────────────────────┘ │
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────────────────┐ │
+│  │ Knowledge    │ │ Query        │ │ Response                 │ │
+│  │ Graph        │ │ Understanding│ │ Generation               │ │
+│  └──────────────┘ └──────────────┘ └──────────────────────────┘ │
+├─────────────────────────────────────────────────────────────────┤
+│                     CONTENT LAYER                               │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────────────────┐ │
+│  │ Hygraph CMS  │ │ API Specs    │ │ Code Examples            │ │
+│  │ (GraphQL)    │ │ (OpenAPI)    │ │ Repository               │ │
+│  └──────────────┘ └──────────────┘ └──────────────────────────┘ │
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────────────────┐ │
+│  │ Use Cases    │ │ Tutorials    │ │ FAQ Knowledge            │ │
+│  │ Library      │ │ & Guides     │ │ Base                     │ │
+│  └──────────────┘ └──────────────┘ └──────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📁 FILE STRUCTURE
+
+```
+src/
+├── app/
+│   └── docs/
+│       ├── page.tsx                    # Docs homepage - beautiful landing
+│       ├── layout.tsx                  # Docs layout with AI sidebar
+│       ├── [category]/
+│       │   ├── page.tsx                # Category overview
+│       │   └── [slug]/
+│       │       └── page.tsx            # Dynamic content page
+│       ├── api-explorer/
+│       │   └── page.tsx                # Interactive API playground
+│       ├── ask/
+│       │   └── page.tsx                # AI Q&A interface
+│       └── journey/
+│           └── [useCase]/
+│               └── page.tsx            # Guided use case journeys
+│
+├── components/
+│   └── docs/
+│       ├── layout/
+│       │   ├── DocsLayout.tsx          # Main docs layout
+│       │   ├── DocsHeader.tsx          # Docs header with search
+│       │   ├── DocsSidebar.tsx         # Intelligent sidebar
+│       │   └── DocsFooter.tsx          # Docs footer
+│       │
+│       ├── navigation/
+│       │   ├── KnowledgeTree.tsx       # Visual knowledge tree navigation
+│       │   ├── BreadcrumbTrail.tsx     # Smart breadcrumbs
+│       │   ├── QuickNav.tsx            # Quick navigation cards
+│       │   └── RelatedContent.tsx      # AI-suggested related content
+│       │
+│       ├── content/
+│       │   ├── ContentRenderer.tsx     # Renders Hygraph content
+│       │   ├── CodeBlock.tsx           # Syntax highlighted code
+│       │   ├── InteractiveExample.tsx  # Live code examples
+│       │   ├── APIEndpointCard.tsx     # Beautiful API endpoint display
+│       │   ├── ParameterTable.tsx      # Interactive parameter tables
+│       │   └── ResponseViewer.tsx      # JSON response visualization
+│       │
+│       ├── ai/
+│       │   ├── AIAssistant.tsx         # Main AI chat interface
+│       │   ├── ContextualHelp.tsx      # Page-aware help widget
+│       │   ├── SmartSearch.tsx         # AI-powered search
+│       │   ├── QuerySuggestions.tsx    # Intelligent query suggestions
+│       │   └── AnswerCard.tsx          # AI answer display component
+│       │
+│       ├── playground/
+│       │   ├── APIPlayground.tsx       # Full API testing playground
+│       │   ├── RequestBuilder.tsx      # Visual request builder
+│       │   ├── ResponsePanel.tsx       # Response visualization
+│       │   ├── CodeGenerator.tsx       # Multi-language code gen
+│       │   └── SavedRequests.tsx       # User's saved requests
+│       │
+│       ├── visualizations/
+│       │   ├── WorkflowDiagram.tsx     # Interactive workflow diagrams
+│       │   ├── DataFlowVisual.tsx      # Data flow animations
+│       │   ├── ConceptMap.tsx          # Visual concept relationships
+│       │   └── TimelineView.tsx        # API call timeline
+│       │
+│       ├── journey/
+│       │   ├── JourneyPlayer.tsx       # Step-by-step journey player
+│       │   ├── ProgressTracker.tsx     # User progress tracking
+│       │   ├── CheckpointCard.tsx      # Journey checkpoint
+│       │   └── CompletionBadge.tsx     # Achievement badges
+│       │
+│       └── shared/
+│           ├── Callout.tsx             # Info/warning/tip callouts
+│           ├── TabGroup.tsx            # Tabbed content
+│           ├── Accordion.tsx           # Expandable sections
+│           └── CopyButton.tsx          # Copy to clipboard
+│
+├── lib/
+│   └── docs/
+│       ├── hygraph/
+│       │   ├── client.ts               # Hygraph GraphQL client
+│       │   ├── queries.ts              # GraphQL queries
+│       │   └── types.ts                # Hygraph content types
+│       │
+│       ├── ai/
+│       │   ├── rag-engine.ts           # RAG implementation
+│       │   ├── embeddings.ts           # Text embeddings
+│       │   ├── knowledge-base.ts       # Knowledge base manager
+│       │   ├── context-builder.ts      # Context assembly
+│       │   └── llm-client.ts           # LLM API client
+│       │
+│       ├── search/
+│       │   ├── vector-search.ts        # Vector similarity search
+│       │   ├── semantic-search.ts      # Semantic search engine
+│       │   └── index-manager.ts        # Search index management
+│       │
+│       └── utils/
+│           ├── code-highlighter.ts     # Syntax highlighting
+│           ├── markdown-parser.ts      # Enhanced markdown parsing
+│           └── slug-generator.ts       # URL slug utilities
+│
+└── data/
+    └── docs/
+        ├── endpoints/                  # API endpoint definitions
+        │   ├── oracle-apis.ts
+        │   └── forge-apis.ts
+        ├── knowledge/                  # Knowledge base content
+        │   ├── concepts.ts
+        │   └── faq.ts
+        └── journeys/                   # Use case journey definitions
+            ├── hereditary-cancer.ts
+            └── drug-development.ts
+```
+
+---
+
+## 🎨 UI/UX DESIGN PRINCIPLES
+
+### Visual Language
+```typescript
+interface DocsDesignSystem {
+  // Dark mode first - scientific/technical feel
+  theme: 'dark-scientific';
+  
+  // Color palette
+  colors: {
+    primary: '#2563EB',      // Blue - trust, technology
+    secondary: '#8B5CF6',    // Purple - AI, intelligence
+    accent: '#10B981',       // Green - success, biology
+    surface: '#0F172A',      // Dark slate - background
+    text: '#F1F5F9',         // Light - readability
+  };
+  
+  // Typography
+  fonts: {
+    heading: 'Space Grotesk',    // Modern, technical
+    body: 'Inter',               // Clean, readable
+    code: 'JetBrains Mono',      // Monospace for code
+  };
+  
+  // Interactions
+  animations: {
+    duration: '200-500ms',
+    easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    microInteractions: true,
+  };
+}
+```
+
+### Key UI Components
+
+#### 1. Knowledge Explorer (Homepage)
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    CrisPRO.ai Documentation                     │
+│                                                                 │
+│    ┌─────────────────────────────────────────────────────┐      │
+│    │  🔍 What would you like to learn about?             │      │
+│    │     Ask anything or explore our guides...           │      │
+│    └─────────────────────────────────────────────────────┘      │
+│                                                                 │
+│    🧬 Products          🔌 API Reference       🎯 Use Cases     │
+│    ┌──────────┐         ┌──────────┐          ┌──────────┐     │
+│    │ Oracle   │         │ Predict  │          │ Cancer   │     │
+│    │ Forge    │         │ Generate │          │ Newborn  │     │
+│    │ Boltz    │         │ Validate │          │ Therapy  │     │
+│    └──────────┘         └──────────┘          └──────────┘     │
+│                                                                 │
+│    💡 Popular Questions                                         │
+│    • How do I predict variant impact?                          │
+│    • What's the difference between Oracle and Forge?           │
+│    • How to design optimized guide RNA?                        │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+#### 2. AI Assistant Panel
+```
+┌──────────────────────────────────────┐
+│ 🤖 CrisPRO Assistant                 │
+├──────────────────────────────────────┤
+│                                      │
+│ Based on the page you're viewing:    │
+│ /api/oracle/predict-variant-impact   │
+│                                      │
+│ ┌────────────────────────────────┐   │
+│ │ "How do I interpret the delta │   │
+│ │  likelihood score?"           │   │
+│ └────────────────────────────────┘   │
+│                                      │
+│ The delta likelihood score indicates │
+│ functional disruption magnitude...   │
+│                                      │
+│ 📚 Related:                          │
+│ • Understanding pathogenicity        │
+│ • ClinVar validation metrics         │
+│ • SAE feature interpretation         │
+│                                      │
+│ ┌────────────────────────────────┐   │
+│ │ Type your question...          │   │
+│ └────────────────────────────────┘   │
+└──────────────────────────────────────┘
+```
+
+#### 3. API Playground
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  API Playground: /predict_variant_impact                        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌─── Request ────────────────────┐ ┌─── Response ───────────┐  │
+│  │ Method: POST                   │ │ Status: 200 OK         │  │
+│  │                                │ │                        │  │
+│  │ Headers:                       │ │ {                      │  │
+│  │ Authorization: Bearer ***      │ │   "pathogenicity": 0.89│  │
+│  │                                │ │   "confidence": 0.94,  │  │
+│  │ Body:                          │ │   "classification":    │  │
+│  │ {                              │ │     "Likely Pathogenic"│  │
+│  │   "variant": "chr17:43044295", │ │   "deltaLikelihood":   │  │
+│  │   "gene": "BRCA1"              │ │     -2.34              │  │
+│  │ }                              │ │ }                      │  │
+│  │                                │ │                        │  │
+│  │ [▶ Execute]  [📋 Copy cURL]    │ │ [📋 Copy] [📊 Visualize]│  │
+│  └────────────────────────────────┘ └────────────────────────┘  │
+│                                                                 │
+│  📝 Code Examples: [Python] [JavaScript] [cURL] [Go]            │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🔧 HYGRAPH CMS SCHEMA
+
+### Content Models
+
+```graphql
+# Hygraph Schema Definition
+
+type DocCategory {
+  id: ID!
+  title: String!
+  slug: String!
+  description: RichText
+  icon: String
+  order: Int
+  articles: [DocArticle!]! @relation
+  parentCategory: DocCategory @relation
+  childCategories: [DocCategory!]! @relation
+}
+
+type DocArticle {
+  id: ID!
+  title: String!
+  slug: String!
+  excerpt: String
+  content: RichText!
+  category: DocCategory! @relation
+  tags: [String!]
+  relatedArticles: [DocArticle!]! @relation
+  apiEndpoints: [APIEndpoint!]! @relation
+  codeExamples: [CodeExample!]!
+  lastUpdated: DateTime!
+  author: Author @relation
+  seoMetadata: SEOMetadata
+  difficulty: Difficulty
+  estimatedReadTime: Int
+}
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+type APIEndpoint {
+  id: ID!
+  name: String!
+  path: String!
+  method: HTTPMethod!
+  description: RichText!
+  category: APICategory!
+  parameters: [APIParameter!]!
+  requestBody: Json
+  responseSchema: Json
+  codeExamples: [CodeExample!]!
+  relatedEndpoints: [APIEndpoint!]! @relation
+  useCases: [UseCase!]! @relation
+  performanceMetrics: PerformanceMetrics
+}
+
+enum HTTPMethod {
+  GET
+  POST
+  PUT
+  PATCH
+  DELETE
+}
+
+enum APICategory {
+  ORACLE_DISCRIMINATIVE
+  FORGE_GENERATIVE
+  BOLTZ_STRUCTURAL
+  COMMAND_CENTER
+}
+
+type APIParameter {
+  name: String!
+  type: String!
+  required: Boolean!
+  description: String!
+  defaultValue: String
+  example: String
+  constraints: [String!]
+}
+
+type CodeExample {
+  id: ID!
+  title: String!
+  language: ProgrammingLanguage!
+  code: String!
+  description: String
+  runnable: Boolean
+  expectedOutput: String
+}
+
+enum ProgrammingLanguage {
+  PYTHON
+  JAVASCRIPT
+  TYPESCRIPT
+  CURL
+  GO
+  JAVA
+  RUBY
+}
+
+type UseCase {
+  id: ID!
+  title: String!
+  slug: String!
+  description: RichText!
+  industry: Industry
+  difficulty: Difficulty!
+  estimatedTime: String
+  steps: [UseCaseStep!]!
+  outcomes: [String!]!
+  relatedAPIs: [APIEndpoint!]! @relation
+  prerequisites: [String!]
+  thumbnail: Asset
+}
+
+enum Industry {
+  BIOTECH
+  CLINICAL
+  RESEARCH
+  PHARMA
+}
+
+type UseCaseStep {
+  order: Int!
+  title: String!
+  description: RichText!
+  codeExample: CodeExample
+  tips: [String!]
+  apiEndpoint: APIEndpoint @relation
+}
+
+type FAQ {
+  id: ID!
+  question: String!
+  answer: RichText!
+  category: String
+  relatedArticles: [DocArticle!]! @relation
+  helpful: Int
+  notHelpful: Int
+}
+
+type KnowledgeEntry {
+  id: ID!
+  concept: String!
+  definition: RichText!
+  relatedConcepts: [KnowledgeEntry!]! @relation
+  examples: [String!]
+  category: String
+  embeddings: Json  # For vector search
+}
+
+type PerformanceMetrics {
+  auroc: Float
+  samples: Int
+  benchmark: String
+  source: String
+}
+
+type SEOMetadata {
+  metaTitle: String
+  metaDescription: String
+  keywords: [String!]
+  canonicalUrl: String
+}
+
+type Author {
+  id: ID!
+  name: String!
+  avatar: Asset
+  bio: String
+}
+```
+
+---
+
+## 🤖 AI/LLM INTEGRATION
+
+### RAG (Retrieval Augmented Generation) Architecture
+
+```typescript
+// lib/docs/ai/rag-engine.ts
+
+interface RAGEngine {
+  // Index content for retrieval
+  indexContent(content: ContentChunk[]): Promise<void>;
+  
+  // Query the knowledge base
+  query(query: string, context?: PageContext): Promise<RAGResponse>;
+  
+  // Get contextual suggestions
+  getSuggestions(pageId: string): Promise<Suggestion[]>;
+  
+  // Generate answer with citations
+  generateAnswer(query: string, retrievedDocs: Document[]): Promise<Answer>;
+}
+
+interface ContentChunk {
+  id: string;
+  content: string;
+  metadata: {
+    source: string;
+    category: string;
+    type: 'article' | 'api' | 'faq' | 'concept';
+    pageUrl: string;
+  };
+}
+
+interface RAGResponse {
+  answer: string;
+  confidence: number;
+  sources: Source[];
+  relatedQuestions: string[];
+  suggestedActions: Action[];
+}
+
+interface Source {
+  title: string;
+  url: string;
+  excerpt: string;
+  relevance: number;
+}
+```
+
+### Knowledge Base Structure
+
+```typescript
+// Knowledge base categories for indexing
+
+const KNOWLEDGE_CATEGORIES = {
+  // Product knowledge
+  products: {
+    oracle: { /* Oracle capabilities, use cases, limitations */ },
+    forge: { /* Forge generative capabilities */ },
+    boltz: { /* Structural validation */ },
+    commandCenter: { /* Workflow orchestration */ },
+  },
+  
+  // API knowledge
+  apis: {
+    discriminative: { /* All Oracle endpoints */ },
+    generative: { /* All Forge endpoints */ },
+    authentication: { /* Auth flows */ },
+    errors: { /* Error handling */ },
+  },
+  
+  // Concepts
+  concepts: {
+    genomics: { /* Variant types, genes, etc. */ },
+    ai: { /* SAE, Evo2, embeddings */ },
+    clinical: { /* VUS, pathogenicity, etc. */ },
+  },
+  
+  // Use cases
+  useCases: {
+    hereditaryCancer: { /* BRCA, screening */ },
+    drugDevelopment: { /* Target validation */ },
+    clinicalOncology: { /* Treatment selection */ },
+  },
+};
+```
+
+### LLM Integration
+
+```typescript
+// lib/docs/ai/llm-client.ts
+
+interface LLMClient {
+  // Generate response with context
+  generate(params: GenerateParams): Promise<GenerateResponse>;
+  
+  // Stream response for real-time chat
+  stream(params: GenerateParams): AsyncGenerator<string>;
+  
+  // Generate embeddings for search
+  embed(texts: string[]): Promise<number[][]>;
+}
+
+interface GenerateParams {
+  query: string;
+  context: string[];        // Retrieved documents
+  pageContext?: string;     // Current page user is on
+  conversationHistory?: Message[];
+  systemPrompt?: string;
+  maxTokens?: number;
+}
+
+// System prompt for docs assistant
+const DOCS_SYSTEM_PROMPT = `
+You are CrisPRO.ai's intelligent documentation assistant. You help users understand
+our AI-powered therapeutic development platform.
+
+Key responsibilities:
+1. Answer questions about Oracle (discriminative AI), Forge (generative AI), 
+   Boltz (structural validation), and Command Center (orchestration)
+2. Explain API endpoints with examples
+3. Guide users through use cases
+4. Provide accurate performance metrics (95.7% ClinVar AUROC, etc.)
+5. Suggest relevant documentation and next steps
+
+Always:
+- Be accurate and cite sources
+- Provide code examples when relevant
+- Acknowledge limitations (Research Use Only)
+- Guide users to human support when needed
+`;
+```
+
+---
+
+## 🚀 IMPLEMENTATION PHASES
+
+### Phase 1: Foundation (Week 1-2)
+**Goal:** Core infrastructure and basic docs pages
+
+#### Tasks:
+1. [ ] Set up docs route structure in Next.js
+2. [ ] Create Hygraph project and content models
+3. [ ] Implement Hygraph GraphQL client
+4. [ ] Build basic layout components (DocsLayout, DocsSidebar, DocsHeader)
+5. [ ] Create content renderer for Hygraph rich text
+6. [ ] Implement basic navigation (KnowledgeTree, BreadcrumbTrail)
+7. [ ] Style with dark theme design system
+8. [ ] Add basic search functionality
+
+**Deliverables:**
+- `/docs` route working
+- Content fetched from Hygraph
+- Basic navigation functional
+- Dark theme applied
+
+### Phase 2: Content & API Explorer (Week 3-4)
+**Goal:** Rich content display and interactive API playground
+
+#### Tasks:
+1. [ ] Build API endpoint cards with parameters
+2. [ ] Create interactive API playground
+3. [ ] Implement multi-language code generator
+4. [ ] Add code syntax highlighting
+5. [ ] Build response visualization
+6. [ ] Create parameter tables with validation
+7. [ ] Import all API endpoint content to Hygraph
+8. [ ] Add use case journey pages
+
+**Deliverables:**
+- Beautiful API documentation pages
+- Working API playground
+- Code examples in Python, JavaScript, cURL
+- Use case journey flows
+
+### Phase 3: AI Intelligence (Week 5-6)
+**Goal:** Add AI-powered Q&A and smart features
+
+#### Tasks:
+1. [ ] Set up vector database (Supabase pgvector or Pinecone)
+2. [ ] Implement content indexing pipeline
+3. [ ] Build RAG engine
+4. [ ] Create AI assistant chat interface
+5. [ ] Implement contextual help widget
+6. [ ] Add smart search with semantic understanding
+7. [ ] Build query suggestions system
+8. [ ] Create answer cards with citations
+
+**Deliverables:**
+- AI chat assistant
+- Contextual help on every page
+- Smart semantic search
+- Auto-suggestions
+
+### Phase 4: Polish & Enhancement (Week 7-8)
+**Goal:** Make it next-level beautiful and performant
+
+#### Tasks:
+1. [ ] Add micro-animations and transitions
+2. [ ] Implement workflow diagrams
+3. [ ] Create visual concept maps
+4. [ ] Add progress tracking for journeys
+5. [ ] Build achievement/badge system
+6. [ ] Optimize performance (ISR, caching)
+7. [ ] Add analytics and feedback collection
+8. [ ] Mobile responsiveness refinement
+
+**Deliverables:**
+- Polished UI with animations
+- Interactive visualizations
+- Progress tracking
+- Production-ready performance
+
+---
+
+## 📊 SUCCESS METRICS
+
+```typescript
+interface DocsMetrics {
+  // Engagement
+  averageTimeOnPage: number;      // Target: 3+ minutes
+  pagesPerSession: number;        // Target: 5+ pages
+  returnVisitorRate: number;      // Target: 40%+
+  
+  // AI Assistant
+  questionsAsked: number;
+  answerSatisfactionRate: number; // Target: 85%+
+  escalationToHuman: number;      // Target: <10%
+  
+  // Conversions
+  apiPlaygroundUsage: number;
+  signupFromDocs: number;
+  demoRequestFromDocs: number;
+  
+  // Content
+  searchSuccessRate: number;      // Target: 90%+
+  contentHelpfulRate: number;     // Target: 80%+
+}
+```
+
+---
+
+## 🔑 KEY COMPONENTS TO BUILD FIRST
+
+### Priority 1: Must Have
+1. **DocsLayout.tsx** - Main layout with sidebar and AI panel
+2. **ContentRenderer.tsx** - Hygraph rich text rendering
+3. **APIEndpointCard.tsx** - Beautiful API display
+4. **AIAssistant.tsx** - Chat interface
+5. **SmartSearch.tsx** - Semantic search
+
+### Priority 2: Should Have
+1. **APIPlayground.tsx** - Interactive testing
+2. **CodeGenerator.tsx** - Multi-language examples
+3. **JourneyPlayer.tsx** - Use case walkthroughs
+4. **ContextualHelp.tsx** - Page-aware assistance
+
+### Priority 3: Nice to Have
+1. **WorkflowDiagram.tsx** - Visual workflows
+2. **ConceptMap.tsx** - Knowledge visualization
+3. **ProgressTracker.tsx** - User progress
+4. **CompletionBadge.tsx** - Gamification
+
+---
+
+## 🧪 TECHNICAL REQUIREMENTS
+
+### Dependencies to Add
+```json
+{
+  "dependencies": {
+    "@hygraph/management-sdk": "^1.x",
+    "graphql-request": "^7.x",
+    "@pinecone-database/pinecone": "^2.x",
+    "openai": "^4.x",
+    "ai": "^3.x",
+    "shiki": "^1.x",
+    "react-syntax-highlighter": "^15.x",
+    "react-flow": "^11.x",
+    "framer-motion": "^11.x"
+  }
+}
+```
+
+### Environment Variables
+```env
+# Hygraph
+HYGRAPH_ENDPOINT=https://api-<region>.hygraph.com/v2/<project>/master
+HYGRAPH_TOKEN=<your-token>
+
+# AI/LLM
+OPENAI_API_KEY=<your-key>
+# or
+ANTHROPIC_API_KEY=<your-key>
+
+# Vector Database
+PINECONE_API_KEY=<your-key>
+PINECONE_INDEX=crispro-docs
+# or use Supabase pgvector
+
+# Analytics
+POSTHOG_KEY=<your-key>
+```
+
+---
+
+## 📋 AGENT INSTRUCTIONS
+
+### For Building Components:
+1. Follow the file structure exactly
+2. Use TypeScript with strict types
+3. Make components fully modular and reusable
+4. Use Tailwind CSS with the dark theme design system
+5. Add Framer Motion animations for polish
+6. Include loading and error states
+7. Make all content dynamic from Hygraph
+
+### For AI Integration:
+1. Use RAG pattern for accurate answers
+2. Always include source citations
+3. Build for streaming responses
+4. Include fallback to human support
+5. Log all queries for improvement
+
+### For Hygraph Content:
+1. Create content models matching the schema
+2. Populate with all API endpoint documentation
+3. Add rich examples and code snippets
+4. Include performance metrics and validation data
+5. Create use case journeys
+
+---
+
+## 🎯 IMMEDIATE NEXT STEPS
+
+1. **Agent 1 (Infrastructure):** Set up docs routes and Hygraph client
+2. **Agent 2 (Components):** Build layout and navigation components
+3. **Agent 3 (Content):** Create Hygraph models and import content
+4. **Agent 4 (AI):** Set up vector DB and RAG engine
+5. **Agent 5 (UI Polish):** Design system and animations
+
+This plan provides everything needed to build a next-generation documentation platform that goes far beyond traditional docs - an intelligent, beautiful, interactive experience.

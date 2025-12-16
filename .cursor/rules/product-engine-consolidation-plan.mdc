@@ -1,0 +1,191 @@
+# 🔗 Product-Engine Consolidation Plan
+## Connecting Orphaned Engine Pages to Product Structure
+
+**Created:** 2024-12-19  
+**Status:** 🎯 PLANNING - Ready for implementation
+
+---
+
+## 🎯 PROBLEM STATEMENT
+
+**Current State:**
+- ✅ Built `/products/oncology` with capability showcase
+- ✅ Built `/products/r-d` with capability showcase  
+- ✅ Built `/products/research` (presumably)
+- ❌ Separate orphaned engine pages: `/products/oracle`, `/products/forge`, `/products/boltz`, `/products/command-center`
+- ❌ `EngineRoom` component on homepage links to individual engine pages
+- ❌ No clear connection between products and engines
+
+**User Request:**
+- Consolidate engines into product structure
+- Connect engines to R&D product page (since engines power R&D)
+- Update EngineRoom to route to R&D page instead of individual pages
+- Maintain individual engine pages but make them accessible from R&D page
+
+---
+
+## 🏗️ PROPOSED ARCHITECTURE
+
+### **Hierarchical Structure:**
+```
+PRODUCTS (Customer-Facing)
+├── /products/oncology
+│   └── Powered by: Oracle, Command Center
+├── /products/r-d
+│   ├── Capabilities (Target Discovery, Therapeutic Design, etc.)
+│   └── AI ENGINES SECTION (NEW)
+│       ├── Oracle Engine → /products/r-d/engines/oracle
+│       ├── Forge Engine → /products/r-d/engines/forge
+│       ├── Boltz Engine → /products/r-d/engines/boltz
+│       └── Command Center → /products/r-d/engines/command-center
+└── /products/research
+    └── Powered by: Oracle, Command Center
+```
+
+### **Option 1: Engines as Sub-Sections on R&D Page (RECOMMENDED)**
+- Add "AI Engines" tab/section to `/products/r-d`
+- Show 4 engine cards with metrics
+- Each card links to detailed engine page
+- EngineRoom component links to `/products/r-d#engines`
+
+### **Option 2: Engines as Sub-Routes**
+- Create `/products/r-d/engines/[engineSlug]` routes
+- Keep existing engine pages but move them under R&D
+- EngineRoom links to `/products/r-d/engines/oracle` etc.
+
+### **Option 3: Engines as Tabs on R&D Page**
+- Add engines as additional tabs alongside existing RDTabs
+- Each tab shows full engine details inline
+- No separate pages needed
+
+---
+
+## 📋 IMPLEMENTATION PLAN
+
+### **Phase 1: Add Engines Section to R&D Page**
+
+**File:** `src/app/products/r-d/page.tsx`
+
+**Changes:**
+1. Add "AI Engines" section after capability showcase
+2. Import EngineRoom component (or create RDEnginesSection)
+3. Pass R&D-specific engine data
+4. Update links to point to `/products/r-d/engines/[slug]` or keep `/products/[slug]`
+
+**Component Structure:**
+```typescript
+<RDCapabilityShowcase />
+<RDEnginesSection />  // NEW - Shows 4 engines
+<RDTabs />
+<RelatedProducts />
+```
+
+### **Phase 2: Create RDEnginesSection Component**
+
+**File:** `src/components/products/r-d/RDEnginesSection.tsx` (NEW)
+
+**Features:**
+- 2x2 grid of engine cards (matching EngineRoom design)
+- Each card shows:
+  - Engine name & icon
+  - Key metrics (95.7% AUROC, 70% coherence, etc.)
+  - Core capabilities (2 per engine)
+  - Link to detailed engine page
+- Matches EngineRoom visual style but R&D-specific
+
+### **Phase 3: Update EngineRoom Component**
+
+**File:** `src/components/landing/EngineRoom.tsx`
+
+**Changes:**
+1. Update all engine links to point to `/products/r-d#engines` OR `/products/r-d/engines/[slug]`
+2. Add note: "Part of CrisPRO R&D - Learn More →" with link to `/products/r-d`
+3. Keep same visual design
+
+### **Phase 4: Update Navigation**
+
+**File:** `src/components/shared/Navbar.tsx`
+
+**Changes:**
+- Remove "Engines" from navigation (if exists)
+- Engines accessible via R&D product page
+- Or add "Engines" dropdown under "Products" → "R&D" → "Engines"
+
+---
+
+## 🎨 VISUAL DESIGN
+
+### **R&D Page with Engines Section:**
+```
+┌─────────────────────────────────────────┐
+│ Hero: "Design the Undruggable..."      │
+├─────────────────────────────────────────┤
+│ Capability Showcase (5 cards)           │
+├─────────────────────────────────────────┤
+│ AI Engines Section (NEW)                │
+│ ┌──────┬──────┬──────┬──────────────┐  │
+│ │Oracle│Forge │Boltz │Command Center│  │
+│ │95.7% │70%   │95.8% │5-Stage       │  │
+│ │AUROC │Func  │Conf  │Pipeline      │  │
+│ └──────┴──────┴──────┴──────────────┘  │
+├─────────────────────────────────────────┤
+│ RDTabs (Existing tabbed content)        │
+├─────────────────────────────────────────┤
+│ Related Products                         │
+└─────────────────────────────────────────┘
+```
+
+---
+
+## 📁 FILES TO CREATE/MODIFY
+
+### **Create:**
+- `src/components/products/r-d/RDEnginesSection.tsx` - Engine showcase for R&D page
+
+### **Modify:**
+- `src/app/products/r-d/page.tsx` - Add RDEnginesSection
+- `src/components/landing/EngineRoom.tsx` - Update links to R&D page
+- `src/components/shared/Navbar.tsx` - Update navigation (if needed)
+
+---
+
+## 🔄 MIGRATION STRATEGY
+
+### **Option A: Keep Individual Pages (RECOMMENDED)**
+- Keep `/products/oracle`, `/products/forge`, etc. as-is
+- Add RDEnginesSection that links to these pages
+- EngineRoom links to `/products/r-d#engines` (scrolls to engines section)
+- Users can still access engines directly via URL
+
+### **Option B: Move to Sub-Routes**
+- Move engine pages to `/products/r-d/engines/[slug]`
+- Redirect old URLs to new locations
+- More structured but requires more migration work
+
+---
+
+## ✅ SUCCESS CRITERIA
+
+1. ✅ Engines visible on R&D product page
+2. ✅ EngineRoom links to R&D page (not individual pages)
+3. ✅ Individual engine pages still accessible
+4. ✅ Clear hierarchy: Products → Engines
+5. ✅ Consistent navigation and routing
+6. ✅ No broken links
+
+---
+
+## 🚀 RECOMMENDED APPROACH
+
+**Choose Option 1 (Engines as Sub-Sections):**
+- Simplest implementation
+- Keeps existing engine pages
+- Clear visual connection
+- Easy to maintain
+- Users can still bookmark individual engine pages
+
+**Implementation Order:**
+1. Create `RDEnginesSection.tsx` component
+2. Add to `/products/r-d/page.tsx`
+3. Update `EngineRoom.tsx` links
+4. Test navigation flow

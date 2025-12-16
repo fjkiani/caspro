@@ -35,24 +35,23 @@ export default function ValuePropositionSection({
       viewport={{ once: true, amount: 0.2 }}
       className="mb-16"
     >
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-white mb-4">Value Proposition</h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-blue-500 mx-auto mb-6"></div>
-        <p className="text-slate-300 max-w-2xl mx-auto">
+      <div className="text-center mb-8 md:mb-12">
+        <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-3 md:mb-4">Value Proposition</h2>
+        <p className="text-sm md:text-base text-slate-600 max-w-2xl mx-auto">
           Tailored benefits for different stakeholders in the precision medicine ecosystem
         </p>
       </div>
 
       {/* Value Proposition Tabs */}
-      <div className="flex flex-wrap justify-center gap-2 mb-8">
+      <div className="flex flex-wrap justify-center gap-2 mb-6 md:mb-8">
         {valuePropositionSections.map((section, index) => (
           <button
             key={index}
             onClick={() => setActiveValueTab(index)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               activeValueTab === index
-                ? 'bg-primary text-white shadow-lg'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300'
             }`}
           >
             {section.audience}
@@ -61,7 +60,7 @@ export default function ValuePropositionSection({
       </div>
 
       {/* Active Value Proposition Display */}
-      <div className="bg-gradient-to-br from-slate-800/80 to-slate-700/80 rounded-2xl p-8 border border-slate-600">
+      <div className="bg-white rounded-xl md:rounded-2xl p-6 md:p-8 border border-slate-200 shadow-lg">
         <ValuePropositionItem 
           valueProposition={valuePropositionSections[activeValueTab]}
         />

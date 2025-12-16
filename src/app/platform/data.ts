@@ -1,4 +1,4 @@
-import { UsersIcon, TestTube2Icon, RadiationIcon } from 'lucide-react';
+import { UsersIcon, TestTube2Icon, RadiationIcon, BrainCircuitIcon, WrenchIcon, MessageSquareIcon } from 'lucide-react';
 import { CoPilotOption } from './CoPilotOptionCard';
 
 export const coPilotOptions: CoPilotOption[] = [
@@ -13,6 +13,36 @@ export const coPilotOptions: CoPilotOption[] = [
     link: '/platform/agentic-emr',
     // The CTA is a command.
     linkText: 'Launch Terminal',
+    status: 'active'
+  },
+  {
+    id: 'oracle-intelligence',
+    title: 'Oracle Intelligence Platform',
+    icon: 'BrainCircuitIcon',
+    userDescription: 'For Clinicians & Researchers: Genetic Counselors, Lab Directors, Biotech Teams',
+    mainDescription: "Experience the S/P/E framework where Sequence, Pathway, and Evidence combine for transparent, auditable variant predictions. Eliminate VUS uncertainty with four biological insight components and gene-specific calibration. The only AI you can trust for clinical decisions.",
+    link: '/platform/oracle-intelligence',
+    linkText: 'Experience S/P/E',
+    status: 'active'
+  },
+  {
+    id: 'forge-intelligence',
+    title: 'Forge Intelligence Platform',
+    icon: 'WrenchIcon',
+    userDescription: 'For Biotech Founders & Drug Hunters: Therapeutic Design Teams',
+    mainDescription: "Experience the generative AI that designs precision therapeutics from first principles. CRISPR guides, protein inhibitors, and HDR templates engineered for maximum efficacy with 100% AlphaFold 3 structural validation. Every therapeutic is engineered, not discovered.",
+    link: '/platform/forge-intelligence',
+    linkText: 'Access the Forge',
+    status: 'active'
+  },
+  {
+    id: 'scribe-intelligence',
+    title: 'Scribe Intelligence Platform',
+    icon: 'MessageSquareIcon',
+    userDescription: 'For Clinicians, Patients & Researchers: Natural Language AI Co-Pilot',
+    mainDescription: "Ask questions naturally, get evidence-backed answers. Progressive disclosure means you get exactly the level of detail you need - start simple ('What drugs?') and drill down ('Complete care plan?') when ready. Audience-appropriate explanations for everyone.",
+    link: '/platform/scribe-intelligence',
+    linkText: 'Try Co-Pilot',
     status: 'active'
   },
   {

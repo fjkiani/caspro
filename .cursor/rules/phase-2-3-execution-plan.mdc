@@ -1,0 +1,1185 @@
+# 📋 PHASE 2 & 3 EXECUTION PLAN
+## Adding Missing Capabilities & Creating Product Bundle Pages
+
+**Created:** 2024-12-19  
+**Status:** 🟡 READY FOR EXECUTION  
+**Prerequisites:** ✅ Phase 1 Complete (All co-pilot files cleaned)
+
+---
+
+## 🎯 OVERVIEW
+
+### **Phase 2: Add Missing Capabilities** (Week 2)
+- Add "Integrated Care" section to all 5 clinical co-pilots
+- Add "Synthetic Lethality" to therapy-fit & pathway
+- Add "Gene Essentiality" to pathway & chemo
+- Add IND Package & IP Monetization to CRISPR
+
+### **Phase 3: Create Product Bundle Pages** (Week 3)
+- Create `/products/oncology/page.tsx`
+- Create `/products/r-d/page.tsx`
+- Create `/products/research/page.tsx`
+
+---
+
+## 📐 DATA STRUCTURE ANALYSIS
+
+### **Understanding KeyCapability Structure**
+
+Each `KeyCapability` follows this structure:
+```typescript
+{
+  title: string;
+  technical: CapabilityAspect;
+  scientific: CapabilityAspect;
+  business: CapabilityAspect;
+  genomicUseCasesParagraph?: string;
+}
+```
+
+Where `CapabilityAspect` includes:
+```typescript
+{
+  title: string;
+  keyMetric: string;
+  description: string;
+  icon: string; // Lucide icon name
+  color: 'blue' | 'teal' | 'indigo';
+  components?: CapabilityComponent[]; // Optional sub-components
+  features?: string[]; // Optional feature list
+  bullets?: { title: string; description: string }[]; // Optional bullet points
+}
+```
+
+---
+
+## 🚀 PHASE 2: ADD MISSING CAPABILITIES
+
+### **2.1 Integrated Care Section** (All Clinical Co-Pilots)
+
+**Target Files:**
+- `src/data/copilots/chemo-data.ts`
+- `src/data/copilots/clinical-trials.ts`
+- `src/data/copilots/therapy-fit-data.ts`
+- `src/data/copilots/toxicity-data.ts`
+- `src/data/copilots/pathway-data.ts`
+
+**Implementation Strategy:**
+
+Add as a NEW `KeyCapability` object to the `keyCapabilities` array. Position it as the LAST capability (or before conclusion section) to emphasize integration.
+
+**Data Structure:**
+```typescript
+{
+  title: "Integrated Care Plan",
+  technical: {
+    title: "Technical Integration",
+    keyMetric: "/api/complete_care/universal",
+    description: "This capability integrates with our Unified Care Plan orchestrator that combines multiple clinical intelligence layers:\n- **Drug Recommendations:** Personalized drug ranking from Therapy Fit\n- **Trial Matching:** Mechanism-based trial identification from Clinical Trials\n- **Safety Intelligence:** Toxicity prevention from Toxicity Risk\n- **Pathway Analysis:** Biological context from Pathway View\n- **Pharmacogenomics:** PGx variant analysis\n- **Nutrition Guidance:** Toxicity-aware food/supplement recommendations\n\n**Output:** Single, actionable care plan with all recommendations integrated and prioritized.",
+    icon: "Network",
+    color: "blue",
+    components: [
+      {
+        title: "Care Orchestration",
+        subtitle: "Multi-capability integration",
+        iconName: "Network",
+        color: "blue",
+        features: [
+          "Unified endpoint",
+          "Multi-modal analysis",
+          "Priority ranking"
+        ]
+      },
+      {
+        title: "Actionable Output",
+        subtitle: "Single care plan",
+        iconName: "FileText",
+        color: "teal",
+        features: [
+          "Drug + trial + safety",
+          "Nutrition guidance",
+          "Monitoring recommendations"
+        ]
+      }
+    ],
+    features: [
+      "Unified API endpoint",
+      "Multi-capability orchestration",
+      "Priority-based ranking",
+      "Complete care context"
+    ]
+  },
+  scientific: {
+    title: "Scientific Impact",
+    keyMetric: "Complete Care Context",
+    description: "Provides holistic patient care by integrating all clinical intelligence signals:\n- **Comprehensive Analysis:** Combines variant impact, pathway burden, toxicity risk, and trial eligibility in one view\n- **Evidence Integration:** All recommendations backed by S/P/E framework with transparent reasoning\n- **Provenance:** Complete audit trail from variant analysis to care recommendation",
+    icon: "Microscope",
+    color: "teal",
+    components: [
+      {
+        title: "Holistic Analysis",
+        subtitle: "Multi-modal integration",
+        iconName: "Layers",
+        color: "blue",
+        features: [
+          "Variant impact + pathway",
+          "Toxicity + trial matching",
+          "Complete context"
+        ]
+      },
+      {
+        title: "Evidence-Based",
+        subtitle: "S/P/E framework",
+        iconName: "ShieldCheck",
+        color: "teal",
+        features: [
+          "Transparent reasoning",
+          "Clinical evidence",
+          "Audit trail"
+        ]
+      }
+    ],
+    features: [
+      "Holistic patient view",
+      "Evidence-based recommendations",
+      "Complete audit trail",
+      "Transparent reasoning"
+    ]
+  },
+  business: {
+    title: "Business Value",
+    keyMetric: "Same-Day Action",
+    description: "- **Complete Care:** All clinical intelligence in one place, ready for tumor board discussion\n- **Time Savings:** Single API call replaces multiple manual integrations\n- **Decision Support:** Prioritized recommendations with confidence scores and evidence tiers",
+    icon: "Briefcase",
+    color: "indigo",
+    components: [
+      {
+        title: "Complete Care",
+        subtitle: "All-in-one output",
+        iconName: "FileCheck",
+        color: "blue",
+        features: [
+          "Drug + trial + safety",
+          "Tumor board ready",
+          "Same-day action"
+        ]
+      },
+      {
+        title: "Time Savings",
+        subtitle: "Single integration",
+        iconName: "Clock",
+        color: "teal",
+        features: [
+          "One API call",
+          "No manual stitching",
+          "Faster decisions"
+        ]
+      }
+    ],
+    features: [
+      "Complete care plan",
+      "Time savings",
+      "Same-day actionable",
+      "Tumor board ready"
+    ]
+  },
+  genomicUseCasesParagraph: "**Unified Care Plan Integration:** This capability is part of our complete care orchestrator (`/api/complete_care/universal`) that combines all clinical intelligence layers—drug recommendations, trial matching, toxicity prevention, pathway analysis, and nutrition guidance—into one actionable output ready for same-day tumor board discussions."
+}
+```
+
+**Implementation Steps:**
+1. Read each clinical co-pilot file
+2. Locate the `keyCapabilities` array
+3. Append the new "Integrated Care Plan" capability
+4. Ensure proper formatting and indentation
+
+---
+
+### **2.2 Synthetic Lethality Section** (Therapy Fit & Pathway)
+
+**Target Files:**
+- `src/data/copilots/therapy-fit-data.ts`
+- `src/data/copilots/pathway-data.ts`
+
+**Data Structure:**
+```typescript
+{
+  title: "Synthetic Lethality Analysis",
+  technical: {
+    title: "Technical Approach",
+    keyMetric: "Double-Hit Vulnerability",
+    description: "Identifies therapeutic vulnerabilities when cancer loses one gene by analyzing which backup pathways it depends on:\n- **Gene Loss Detection:** Identifies genes with pathogenic variants or deletions\n- **Dependency Mapping:** Maps lost genes to backup pathways using pathway networks\n- **Vulnerability Scoring:** Calculates dependency scores for backup pathways (0-1 scale)\n- **Target Identification:** Ranks backup pathways by vulnerability for precision drug targeting\n\n**Output:** Ranked list of vulnerable pathways with dependency scores and recommended precision drugs.",
+    icon: "Target",
+    color: "blue",
+    components: [
+      {
+        title: "Gene Loss Detection",
+        subtitle: "Variant + deletion analysis",
+        iconName: "Dna",
+        color: "blue",
+        features: [
+          "Pathogenic variant detection",
+          "Copy number analysis",
+          "Loss-of-function identification"
+        ]
+      },
+      {
+        title: "Dependency Mapping",
+        subtitle: "Backup pathway identification",
+        iconName: "Network",
+        color: "teal",
+        features: [
+          "Pathway network analysis",
+          "Backup pathway discovery",
+          "Dependency scoring"
+        ]
+      },
+      {
+        title: "Vulnerability Scoring",
+        subtitle: "0-1 dependency scale",
+        iconName: "TrendingUp",
+        color: "indigo",
+        features: [
+          "Quantitative scoring",
+          "Target ranking",
+          "Drug alignment"
+        ]
+      }
+    ],
+    features: [
+      "Double-hit vulnerability identification",
+      "Backup pathway mapping",
+      "Dependency scoring",
+      "Precision drug targeting"
+    ]
+  },
+  scientific: {
+    title: "Scientific Impact",
+    keyMetric: "85% Market Coverage",
+    description: "Synthetic lethality exploits a fundamental principle: when cancer loses one gene, it becomes dependent on backup pathways:\n- **Sporadic Cancer Focus:** 85% of cancers (sporadic, non-hereditary) have acquired gene losses\n- **Precision Targeting:** Identifies druggable vulnerabilities unique to cancer cells\n- **Validated Approach:** 50% drug match rate in 10-case pilot study",
+    icon: "Microscope",
+    color: "teal",
+    components: [
+      {
+        title: "Sporadic Cancer Intelligence",
+        subtitle: "85% market coverage",
+        iconName: "PieChart",
+        color: "blue",
+        features: [
+          "Acquired gene loss",
+          "Backup dependency",
+          "Precision targeting"
+        ]
+      },
+      {
+        title: "Validated Performance",
+        subtitle: "50% drug match rate",
+        iconName: "CheckCircle",
+        color: "teal",
+        features: [
+          "10-case pilot",
+          "Clinical validation",
+          "Real-world outcomes"
+        ]
+      }
+    ],
+    features: [
+      "85% market coverage",
+      "50% drug match rate",
+      "Validated approach",
+      "Precision targeting"
+    ]
+  },
+  business: {
+    title: "Business Value",
+    keyMetric: "Novel Therapeutic Targets",
+    description: "- **Expanded Target Space:** Identifies druggable vulnerabilities missed by single-gene analysis\n- **Higher Success Rate:** 50% drug match rate vs. standard approaches\n- **Market Coverage:** Addresses 85% of cancers (sporadic) with unique therapeutic angles",
+    icon: "Briefcase",
+    color: "indigo",
+    components: [
+      {
+        title: "Expanded Targets",
+        subtitle: "Novel vulnerabilities",
+        iconName: "Target",
+        color: "blue",
+        features: [
+          "Backup pathway targets",
+          "Unique to cancer cells",
+          "Druggable opportunities"
+        ]
+      },
+      {
+        title: "Higher Success",
+        subtitle: "50% match rate",
+        iconName: "TrendingUp",
+        color: "teal",
+        features: [
+          "Validated approach",
+          "Real-world outcomes",
+          "Better targeting"
+        ]
+      }
+    ],
+    features: [
+      "Novel therapeutic targets",
+      "50% drug match rate",
+      "85% market coverage",
+      "Higher success rate"
+    ]
+  },
+  genomicUseCasesParagraph: "**Synthetic Lethality Analysis:** When cancer loses one gene (e.g., MBD4 deletion), we identify which backup pathways it depends on and target those with precision drugs. This approach addresses 85% of cancers (sporadic) with a 50% drug match rate validated in clinical pilots."
+}
+```
+
+**Implementation Steps:**
+1. Read `therapy-fit-data.ts` and `pathway-data.ts`
+2. Locate `keyCapabilities` array
+3. Insert "Synthetic Lethality Analysis" capability (position strategically - perhaps after main ranking/analysis capability)
+4. Ensure consistency between both files
+
+---
+
+### **2.3 Gene Essentiality Section** (Pathway & Chemo)
+
+**Target Files:**
+- `src/data/copilots/pathway-data.ts`
+- `src/data/copilots/chemo-data.ts`
+
+**Data Structure:**
+```typescript
+{
+  title: "Gene Essentiality Scoring",
+  technical: {
+    title: "Technical Approach",
+    keyMetric: "0-1 Essentiality Scale",
+    description: "Predicts how critical each gene is for cancer survival using Evo2 foundation model:\n- **Essentiality Prediction:** 0-1 scale where higher values = more critical for survival\n- **Context-Aware:** Considers tissue type, mutation context, and cancer type\n- **DepMap Correlation:** Validated against experimental CRISPR screens (0.73 correlation)\n- **Target Prioritization:** Higher essentiality = better drug target with higher confidence\n\n**Output:** Essentiality scores for all genes in the pathway/analysis with confidence metrics.",
+    icon: "Activity",
+    color: "blue",
+    components: [
+      {
+        title: "Evo2 Prediction",
+        subtitle: "Foundation model",
+        iconName: "Brain",
+        color: "blue",
+        features: [
+          "Zero-shot prediction",
+          "Context-aware scoring",
+          "Cross-species validation"
+        ]
+      },
+      {
+        title: "DepMap Validation",
+        subtitle: "0.73 correlation",
+        iconName: "CheckCircle",
+        color: "teal",
+        features: [
+          "Experimental validation",
+          "CRISPR screen correlation",
+          "Real-world confirmation"
+        ]
+      },
+      {
+        title: "Target Prioritization",
+        subtitle: "Drug target ranking",
+        iconName: "Target",
+        color: "indigo",
+        features: [
+          "Essentiality-based ranking",
+          "Higher confidence targets",
+          "Therapeutic alignment"
+        ]
+      }
+    ],
+    features: [
+      "0-1 essentiality scoring",
+      "Context-aware prediction",
+      "DepMap validation",
+      "Target prioritization"
+    ]
+  },
+  scientific: {
+    title: "Scientific Impact",
+    keyMetric: "DepMap Correlation: 0.73",
+    description: "Gene essentiality predicts therapeutic vulnerability by measuring cancer dependency:\n- **Achilles' Heel Identification:** Higher essentiality genes are better drug targets\n- **Experimental Validation:** 0.73 correlation with DepMap CRISPR screens\n- **Cross-Species:** Validated across multiple cancer cell lines and tissue types",
+    icon: "Microscope",
+    color: "teal",
+    components: [
+      {
+        title: "Achilles' Heel",
+        subtitle: "Vulnerability identification",
+        iconName: "Target",
+        color: "blue",
+        features: [
+          "Cancer dependency",
+          "Drug target prioritization",
+          "Therapeutic windows"
+        ]
+      },
+      {
+        title: "Validated Approach",
+        subtitle: "Experimental correlation",
+        iconName: "CheckCircle",
+        color: "teal",
+        features: [
+          "DepMap validation",
+          "CRISPR screen correlation",
+          "Real-world confirmation"
+        ]
+      }
+    ],
+    features: [
+      "Achilles' heel identification",
+      "0.73 DepMap correlation",
+      "Cross-species validation",
+      "Therapeutic targeting"
+    ]
+  },
+  business: {
+    title: "Business Value",
+    keyMetric: "Higher Confidence Targets",
+    description: "- **Better Target Selection:** Essentiality scores prioritize druggable vulnerabilities\n- **Reduced Risk:** Higher essentiality = higher confidence in therapeutic efficacy\n- **Portfolio Optimization:** Focus R&D on high-essentiality targets with validated dependency",
+    icon: "Briefcase",
+    color: "indigo",
+    components: [
+      {
+        title: "Better Selection",
+        subtitle: "Prioritized targets",
+        iconName: "Target",
+        color: "blue",
+        features: [
+          "Essentiality-based ranking",
+          "Higher confidence",
+          "Reduced risk"
+        ]
+      },
+      {
+        title: "Portfolio Optimization",
+        subtitle: "R&D focus",
+        iconName: "TrendingUp",
+        color: "teal",
+        features: [
+          "Validated targets",
+          "Higher success probability",
+          "Resource efficiency"
+        ]
+      }
+    ],
+    features: [
+      "Better target selection",
+      "Higher confidence",
+      "Portfolio optimization",
+      "Reduced risk"
+    ]
+  },
+  genomicUseCasesParagraph: "**Gene Essentiality Scoring:** Predicts how critical each gene is for cancer survival (0-1 scale) using Evo2 foundation model. Higher essentiality = better drug target with higher confidence. Validated against DepMap CRISPR screens with 0.73 correlation."
+}
+```
+
+**Implementation Steps:**
+1. Read `pathway-data.ts` and `chemo-data.ts`
+2. Locate `keyCapabilities` array
+3. Insert "Gene Essentiality Scoring" capability
+4. Ensure consistency between both files
+
+---
+
+### **2.4 IND Package & IP Monetization** (CRISPR Intelligence)
+
+**Target File:**
+- `src/data/copilots/crispr-intelligence-data.ts`
+
+**Implementation Strategy:**
+
+Add TWO new `KeyCapability` objects:
+1. **IND Package Generation**
+2. **IP Monetization Workflow**
+
+**Data Structure for IND Package:**
+```typescript
+{
+  title: "IND Package Generation",
+  technical: {
+    title: "Technical Approach",
+    keyMetric: "FDA-Grade Documentation",
+    description: "Generates complete Investigational New Drug (IND) application packages for FDA submission:\n- **Regulatory Documentation:** Comprehensive IND application with all required sections\n- **Preclinical Data:** Structural validation, efficacy predictions, safety profiles\n- **Manufacturing Information:** Production specifications and quality control\n- **Clinical Protocol:** Phase 1 trial design and patient selection criteria\n\n**Output:** Complete IND package ready for FDA submission with all required documentation.",
+    icon: "FileText",
+    color: "blue",
+    components: [
+      {
+        title: "Regulatory Compliance",
+        subtitle: "FDA requirements",
+        iconName: "ShieldCheck",
+        color: "blue",
+        features: [
+          "Complete IND application",
+          "All required sections",
+          "Regulatory formatting"
+        ]
+      },
+      {
+        title: "Preclinical Data",
+        subtitle: "Validation + safety",
+        iconName: "FileCheck",
+        color: "teal",
+        features: [
+          "Structural validation",
+          "Efficacy predictions",
+          "Safety profiles"
+        ]
+      },
+      {
+        title: "Clinical Protocol",
+        subtitle: "Trial design",
+        iconName: "Users",
+        color: "indigo",
+        features: [
+          "Phase 1 protocol",
+          "Patient selection",
+          "Endpoints definition"
+        ]
+      }
+    ],
+    features: [
+      "FDA-grade documentation",
+      "Complete IND package",
+      "Regulatory compliance",
+      "Trial protocol design"
+    ]
+  },
+  scientific: {
+    title: "Scientific Impact",
+    keyMetric: "Complete Regulatory Package",
+    description: "Accelerates therapeutic development by providing complete regulatory documentation:\n- **In-Silico Validation:** Structural validation (AlphaFold 3) and efficacy predictions reduce preclinical time\n- **Comprehensive Dossier:** All required IND sections with supporting data\n- **Risk Mitigation:** Early identification of regulatory challenges",
+    icon: "Microscope",
+    color: "teal",
+    components: [
+      {
+        title: "In-Silico Validation",
+        subtitle: "Preclinical acceleration",
+        iconName: "Zap",
+        color: "blue",
+        features: [
+          "Structural validation",
+          "Efficacy predictions",
+          "Time savings"
+        ]
+      },
+      {
+        title: "Risk Mitigation",
+        subtitle: "Early identification",
+        iconName: "AlertTriangle",
+        color: "teal",
+        features: [
+          "Regulatory challenges",
+          "Early resolution",
+          "Faster approval"
+        ]
+      }
+    ],
+    features: [
+      "Complete regulatory package",
+      "In-silico acceleration",
+      "Risk mitigation",
+      "Faster development"
+    ]
+  },
+  business: {
+    title: "Business Value",
+    keyMetric: "Faster IND Submission",
+    description: "- **Time Savings:** Complete IND package generated in days vs. months\n- **Cost Reduction:** Reduced regulatory consulting costs\n- **Accelerated Development:** Faster path to Phase 1 trials",
+    icon: "Briefcase",
+    color: "indigo",
+    components: [
+      {
+        title: "Time Savings",
+        subtitle: "Days vs. months",
+        iconName: "Clock",
+        color: "blue",
+        features: [
+          "Rapid generation",
+          "Automated documentation",
+          "Faster submission"
+        ]
+      },
+      {
+        title: "Cost Reduction",
+        subtitle: "Reduced consulting",
+        iconName: "DollarSign",
+        color: "teal",
+        features: [
+          "Lower regulatory costs",
+          "In-house capability",
+          "Portfolio scalability"
+        ]
+      }
+    ],
+    features: [
+      "Faster IND submission",
+      "Cost reduction",
+      "Accelerated development",
+      "Portfolio scalability"
+    ]
+  },
+  genomicUseCasesParagraph: "**IND Package Generation:** Complete FDA-grade regulatory documentation for Investigational New Drug (IND) applications. Includes preclinical data, structural validation, safety profiles, manufacturing information, and Phase 1 clinical protocol design. Accelerates path to Phase 1 trials with complete regulatory package."
+}
+```
+
+**Data Structure for IP Monetization:**
+```typescript
+{
+  title: "IP Monetization Workflow",
+  technical: {
+    title: "Technical Approach",
+    keyMetric: "5-Stage Workflow",
+    description: "Complete intellectual property monetization workflow for therapeutic designs:\n- **Stage 1 - Victory:** Design validation and proof-of-concept\n- **Stage 2 - Fortify:** Patent filing and IP protection\n- **Stage 3 - Arm:** Portfolio expansion and defensive patents\n- **Stage 4 - Fund:** Licensing and partnership development\n- **Stage 5 - Conquer:** Market entry and revenue generation\n\n**Output:** Complete IP strategy and monetization roadmap for therapeutic assets.",
+    icon: "DollarSign",
+    color: "blue",
+    components: [
+      {
+        title: "Victory",
+        subtitle: "Design validation",
+        iconName: "CheckCircle",
+        color: "blue",
+        features: [
+          "Proof-of-concept",
+          "Design validation",
+          "Therapeutic efficacy"
+        ]
+      },
+      {
+        title: "Fortify",
+        subtitle: "Patent filing",
+        iconName: "Shield",
+        color: "teal",
+        features: [
+          "IP protection",
+          "Patent applications",
+          "Legal documentation"
+        ]
+      },
+      {
+        title: "Arm",
+        subtitle: "Portfolio expansion",
+        iconName: "Layers",
+        color: "indigo",
+        features: [
+          "Defensive patents",
+          "Portfolio building",
+          "Market protection"
+        ]
+      },
+      {
+        title: "Fund",
+        subtitle: "Licensing",
+        iconName: "DollarSign",
+        color: "blue",
+        features: [
+          "Partnership development",
+          "Licensing agreements",
+          "Revenue streams"
+        ]
+      },
+      {
+        title: "Conquer",
+        subtitle: "Market entry",
+        iconName: "TrendingUp",
+        color: "teal",
+        features: [
+          "Market entry",
+          "Revenue generation",
+          "Strategic positioning"
+        ]
+      }
+    ],
+    features: [
+      "5-stage workflow",
+      "Complete IP strategy",
+      "Monetization roadmap",
+      "Revenue generation"
+    ]
+  },
+  scientific: {
+    title: "Scientific Impact",
+    keyMetric: "Patent-Worthy Designs",
+    description: "Transforms therapeutic designs into valuable intellectual property:\n- **Novel Designs:** Evo2-generated sequences are unique and patent-worthy\n- **Structural Validation:** AlphaFold 3 confirmation provides strong patent support\n- **Comprehensive Coverage:** Complete IP portfolio protects therapeutic innovation",
+    icon: "Microscope",
+    color: "teal",
+    components: [
+      {
+        title: "Novel Designs",
+        subtitle: "Patent-worthy sequences",
+        iconName: "Sparkles",
+        color: "blue",
+        features: [
+          "Unique sequences",
+          "Novel structures",
+          "Patent eligibility"
+        ]
+      },
+      {
+        title: "Strong Validation",
+        subtitle: "AlphaFold 3 confirmation",
+        iconName: "CheckCircle",
+        color: "teal",
+        features: [
+          "Structural proof",
+          "Patent support",
+          "Innovation validation"
+        ]
+      }
+    ],
+    features: [
+      "Patent-worthy designs",
+      "Strong validation",
+      "Comprehensive IP coverage",
+      "Innovation protection"
+    ]
+  },
+  business: {
+    title: "Business Value",
+    keyMetric: "Revenue Generation",
+    description: "- **Asset Value:** Transform designs into monetizable IP assets\n- **Portfolio Building:** Systematic approach to IP portfolio development\n- **Revenue Streams:** Multiple monetization paths (licensing, partnerships, direct development)",
+    icon: "Briefcase",
+    color: "indigo",
+    components: [
+      {
+        title: "Asset Value",
+        subtitle: "Monetizable IP",
+        iconName: "DollarSign",
+        color: "blue",
+        features: [
+          "IP asset creation",
+          "Revenue potential",
+          "Portfolio value"
+        ]
+      },
+      {
+        title: "Multiple Paths",
+        subtitle: "Revenue streams",
+        iconName: "TrendingUp",
+        color: "teal",
+        features: [
+          "Licensing",
+          "Partnerships",
+          "Direct development"
+        ]
+      }
+    ],
+    features: [
+      "Revenue generation",
+      "Asset value creation",
+      "Portfolio building",
+      "Multiple revenue streams"
+    ]
+  },
+  genomicUseCasesParagraph: "**IP Monetization Workflow:** Complete 5-stage intellectual property monetization strategy (Victory → Fortify → Arm → Fund → Conquer) for therapeutic designs. Transforms Evo2-generated sequences into patent-worthy IP assets with structured monetization roadmap for licensing, partnerships, and direct development."
+}
+```
+
+**Also add to hero subtitle (already done in Phase 1):**
+The hero subtitle already mentions "IND package generation and IP monetization workflow included" - this section will provide detailed capability documentation.
+
+**Implementation Steps:**
+1. Read `crispr-intelligence-data.ts`
+2. Locate `keyCapabilities` array
+3. Append both new capabilities (IND Package, then IP Monetization)
+4. Ensure consistency with existing CRISPR capabilities
+
+---
+
+## 📋 PHASE 3: CREATE PRODUCT BUNDLE PAGES
+
+### **3.1 Create `/products/oncology/page.tsx`**
+
+**File Structure:**
+```
+src/app/products/oncology/
+├── page.tsx (main page)
+└── components/
+    ├── OncologyHero.tsx
+    ├── OncologyCapabilities.tsx
+    ├── OncologyDifferentiators.tsx
+    └── OncologyMetrics.tsx
+```
+
+**Page Structure:**
+```typescript
+// src/app/products/oncology/page.tsx
+import { OncologyHero } from './components/OncologyHero';
+import { OncologyCapabilities } from './components/OncologyCapabilities';
+import { OncologyDifferentiators } from './components/OncologyDifferentiators';
+import { OncologyMetrics } from './components/OncologyMetrics';
+import CTASection from '@/components/landing/CTASection';
+
+export default function OncologyProductPage() {
+  return (
+    <div className="min-h-screen bg-white">
+      <OncologyHero />
+      <OncologyCapabilities />
+      <OncologyDifferentiators />
+      <OncologyMetrics />
+      <CTASection />
+    </div>
+  );
+}
+```
+
+**Data File:**
+Create `src/data/products/oncology-data.ts`:
+```typescript
+export interface OncologyCapability {
+  title: string;
+  description: string;
+  link: string; // Links to co-pilot page
+  icon: string;
+  metrics?: {
+    label: string;
+    value: string;
+  }[];
+}
+
+export const oncologyCapabilities: OncologyCapability[] = [
+  {
+    title: "Drug Ranking",
+    description: "Personalized drug ranking with 70-85% confidence. Multi-modal AI validation (Sequence/Pathway/Evidence) ensures no black boxes.",
+    link: "/platform/therapy-fit",
+    icon: "Pill",
+    metrics: [
+      { label: "Confidence", value: "70-85%" },
+      { label: "Framework", value: "S/P/E Fusion" }
+    ]
+  },
+  {
+    title: "Chemo Guidance",
+    description: "Evidence-backed chemotherapy recommendations with 70-85% confidence. See which drug classes match your patient's tumor biology.",
+    link: "/platform/chemo",
+    icon: "Syringe",
+    metrics: [
+      { label: "Confidence", value: "70-85%" },
+      { label: "Coverage", value: "All drug classes" }
+    ]
+  },
+  {
+    title: "Trial Matching",
+    description: "Match patients to trials with 96.6% accuracy. Transparent eligibility reasoning with green/yellow/red flags per criterion.",
+    link: "/platform/clinical-trials",
+    icon: "Activity",
+    metrics: [
+      { label: "Accuracy", value: "96.6%" },
+      { label: "Speed", value: "Same day" }
+    ]
+  },
+  {
+    title: "Toxicity Prevention",
+    description: "100% toxicity prevention coverage for DPYD/TPMT/UGT1A1/CYP2D6. Life-threatening toxicity prevention with drug interaction checking.",
+    link: "/platform/toxicity-risk",
+    icon: "Shield",
+    metrics: [
+      { label: "Coverage", value: "100%" },
+      { label: "Focus", value: "Life-threatening" }
+    ]
+  },
+  {
+    title: "Pathway Analysis",
+    description: "Pathway-to-drug intelligence in minutes. Top 3 pathways with contribution bars and therapy alignment.",
+    link: "/platform/pathway",
+    icon: "Network",
+    metrics: [
+      { label: "Speed", value: "Minutes" },
+      { label: "Output", value: "Top 3 pathways" }
+    ]
+  },
+  {
+    title: "Unified Care Plan",
+    description: "Complete care orchestrator that combines drugs + trials + food/supplements + monitoring + pharmacogenomics in one actionable output.",
+    link: "/platform/unified-care", // Or API endpoint
+    icon: "FileText",
+    metrics: [
+      { label: "Integration", value: "All capabilities" },
+      { label: "Output", value: "Single care plan" }
+    ]
+  }
+];
+
+export const oncologyDifferentiators = [
+  {
+    title: "Synthetic Lethality Analysis",
+    description: "When cancer loses one gene, we identify which backup pathways it depends on and target those with precision drugs. 85% of cancers (sporadic) benefit from this approach.",
+    metric: "50% drug match rate"
+  },
+  {
+    title: "Gene Essentiality Scoring",
+    description: "Predict how critical each gene is for cancer survival (0-1 scale). Higher essentiality = better drug target with higher confidence.",
+    metric: "0.73 DepMap correlation"
+  },
+  {
+    title: "Proactive Resistance Detection",
+    description: "Predict resistance BEFORE it happens by analyzing evolutionary pathways and escape mechanisms.",
+    metric: "6 months early detection"
+  },
+  {
+    title: "S/P/E Framework",
+    description: "Transparent AI that explains every prediction with biological reasoning: Sequence, Pathway, Evidence.",
+    metric: "No black boxes"
+  }
+];
+
+export const oncologyMetrics = [
+  { label: "Drug Efficacy Confidence", value: "70-85%" },
+  { label: "Trial Matching Accuracy", value: "96.6%" },
+  { label: "Toxicity Prevention Coverage", value: "100%" },
+  { label: "Variant Classification (ClinVar)", value: "95.7% AUROC" },
+  { label: "VUS Resolution Rate", value: "73%" }
+];
+```
+
+**Implementation Steps:**
+1. Create directory: `src/app/products/oncology/`
+2. Create data file: `src/data/products/oncology-data.ts`
+3. Create page component: `src/app/products/oncology/page.tsx`
+4. Create sub-components (Hero, Capabilities, Differentiators, Metrics)
+5. Style with Tailwind CSS, match existing design system
+6. Add responsive design for mobile
+
+---
+
+### **3.2 Create `/products/r-d/page.tsx`**
+
+**Similar structure to oncology page**
+
+**Data File:**
+Create `src/data/products/r-d-data.ts`:
+```typescript
+export const rdCapabilities = [
+  {
+    title: "CRISPR Intelligence",
+    description: "Evo2-powered guide RNA design with AlphaFold 3 structural validation (pLDDT ≥70). 100% pass rate on validation benchmarks.",
+    link: "/platform/crispr-intelligence",
+    icon: "Dna",
+    metrics: [
+      { label: "Validation", value: "pLDDT ≥70" },
+      { label: "Pass Rate", value: "100%" }
+    ]
+  },
+  {
+    title: "Target Discovery",
+    description: "Identify novel synthetic lethal pairs and druggable vulnerabilities using Oracle variant analysis.",
+    link: "/products/oracle", // Link to Oracle page
+    icon: "Target",
+    metrics: [
+      { label: "Coverage", value: "All genes" },
+      { label: "Method", value: "Zero-shot" }
+    ]
+  },
+  {
+    title: "Therapeutic Design",
+    description: "Generate novel proteins, guide RNAs, and therapeutic sequences with Forge generative AI.",
+    link: "/products/forge", // Link to Forge page
+    icon: "Sparkles",
+    metrics: [
+      { label: "Validation", value: "70% Pfam-hit" },
+      { label: "Method", value: "Evo2 + AF3" }
+    ]
+  },
+  {
+    title: "Structural Validation",
+    description: "Validate therapeutic designs with AlphaFold 3 structural confirmation and binding affinity prediction.",
+    link: "/products/boltz", // Link to Boltz page
+    icon: "Box",
+    metrics: [
+      { label: "Confidence", value: "pLDDT ≥70" },
+      { label: "Method", value: "AlphaFold 3" }
+    ]
+  }
+];
+
+export const rdDifferentiators = [
+  {
+    title: "IND Package Generation",
+    description: "FDA-grade regulatory documentation for IND applications. Complete package with preclinical data, safety profiles, and clinical protocols.",
+    metric: "Days vs. months"
+  },
+  {
+    title: "IP Monetization Workflow",
+    description: "5-stage workflow (Victory → Fortify → Arm → Fund → Conquer) for transforming designs into patent-worthy IP assets.",
+    metric: "Complete IP strategy"
+  },
+  {
+    title: "70% Pfam-hit Rate",
+    description: "Generated minimal genomes achieve ~70% Pfam-hit rate vs. ~18% for previous models, confirming biological coherence.",
+    metric: "State-of-the-art"
+  }
+];
+
+export const rdMetrics = [
+  { label: "Structural Validation", value: "pLDDT ≥70" },
+  { label: "Pfam-hit Rate", value: "70%" },
+  { label: "Validation Pass Rate", value: "100%" },
+  { label: "Design Quality", value: "90% AUROC" }
+];
+```
+
+---
+
+### **3.3 Create `/products/research/page.tsx`**
+
+**Similar structure to oncology page**
+
+**Data File:**
+Create `src/data/products/research-data.ts`:
+```typescript
+export const researchCapabilities = [
+  {
+    title: "VUS Explorer",
+    description: "Universal VUS analysis across all genes and variant types. Resolve variants of unknown significance with 95.7% AUROC.",
+    link: "/research/vus-explorer", // To be created
+    icon: "Search",
+    metrics: [
+      { label: "Accuracy", value: "95.7% AUROC" },
+      { label: "Coverage", value: "All variant types" }
+    ]
+  },
+  {
+    title: "Hypothesis Testing",
+    description: "Test gene-disease associations across 50+ diseases. Rapid hypothesis validation with complete evidence synthesis.",
+    link: "/research/hypothesis-testing", // To be created
+    icon: "Flask",
+    metrics: [
+      { label: "Diseases", value: "50+" },
+      { label: "Speed", value: "Hours" }
+    ]
+  },
+  {
+    title: "Cohort Intelligence",
+    description: "Analyze massive datasets (TCGA, cBioPortal, GDC) for patterns and associations. Complete cohort analysis with provenance.",
+    link: "/research/cohort", // May exist
+    icon: "Users",
+    metrics: [
+      { label: "Datasets", value: "TCGA, cBioPortal, GDC" },
+      { label: "Provenance", value: "Complete" }
+    ]
+  },
+  {
+    title: "Evidence Synthesis",
+    description: "AI agents that scour PubMed/OpenAlex/S2 to find supporting evidence. Complete literature synthesis with citations.",
+    link: "/research/evidence", // May exist
+    icon: "FileText",
+    metrics: [
+      { label: "Sources", value: "PubMed, OpenAlex, S2" },
+      { label: "Coverage", value: "Complete" }
+    ]
+  }
+];
+
+export const researchDifferentiators = [
+  {
+    title: "110M+ Compounds Queryable",
+    description: "Query massive compound libraries for drug discovery and repurposing opportunities.",
+    metric: "Unprecedented scale"
+  },
+  {
+    title: "Complete Provenance Tracking",
+    description: "Every analysis includes complete audit trail with run IDs, citations, and methodology.",
+    metric: "Reproducible science"
+  },
+  {
+    title: "Multi-Provider Literature Search",
+    description: "Search across PubMed, OpenAlex, and Semantic Scholar for comprehensive evidence synthesis.",
+    metric: "Complete coverage"
+  }
+];
+
+export const researchMetrics = [
+  { label: "Disease Coverage", value: "50+ diseases" },
+  { label: "Variant Classification", value: "95.7% AUROC" },
+  { label: "Compounds Queryable", value: "110M+" },
+  { label: "Provenance", value: "Complete audit trail" }
+];
+```
+
+---
+
+## ✅ IMPLEMENTATION CHECKLIST
+
+### **Phase 2 Checklist:**
+
+**2.1 Integrated Care:**
+- [ ] Add to `chemo-data.ts`
+- [ ] Add to `clinical-trials.ts`
+- [ ] Add to `therapy-fit-data.ts`
+- [ ] Add to `toxicity-data.ts`
+- [ ] Add to `pathway-data.ts`
+
+**2.2 Synthetic Lethality:**
+- [ ] Add to `therapy-fit-data.ts`
+- [ ] Add to `pathway-data.ts`
+
+**2.3 Gene Essentiality:**
+- [ ] Add to `pathway-data.ts`
+- [ ] Add to `chemo-data.ts`
+
+**2.4 IND Package & IP Monetization:**
+- [ ] Add IND Package to `crispr-intelligence-data.ts`
+- [ ] Add IP Monetization to `crispr-intelligence-data.ts`
+
+### **Phase 3 Checklist:**
+
+**3.1 Oncology Product Page:**
+- [ ] Create directory structure
+- [ ] Create `oncology-data.ts`
+- [ ] Create `page.tsx`
+- [ ] Create `OncologyHero.tsx`
+- [ ] Create `OncologyCapabilities.tsx`
+- [ ] Create `OncologyDifferentiators.tsx`
+- [ ] Create `OncologyMetrics.tsx`
+- [ ] Add responsive design
+- [ ] Test all links
+
+**3.2 R&D Product Page:**
+- [ ] Create directory structure
+- [ ] Create `r-d-data.ts`
+- [ ] Create `page.tsx`
+- [ ] Create sub-components
+- [ ] Add responsive design
+- [ ] Test all links
+
+**3.3 Research Product Page:**
+- [ ] Create directory structure
+- [ ] Create `research-data.ts`
+- [ ] Create `page.tsx`
+- [ ] Create sub-components
+- [ ] Add responsive design
+- [ ] Test all links
+
+---
+
+## 🎯 SUCCESS CRITERIA
+
+### **Phase 2 Success:**
+- ✅ All 5 clinical co-pilots have "Integrated Care" section
+- ✅ Therapy Fit & Pathway have "Synthetic Lethality" section
+- ✅ Pathway & Chemo have "Gene Essentiality" section
+- ✅ CRISPR has both IND Package & IP Monetization sections
+- ✅ All sections follow consistent data structure
+- ✅ All sections use customer-value language (no hedging)
+
+### **Phase 3 Success:**
+- ✅ All 3 product pages exist and are accessible
+- ✅ All capability links work (route to correct co-pilot pages)
+- ✅ All pages use consistent design system
+- ✅ All pages are mobile-responsive
+- ✅ All pages include CTAs
+- ✅ All pages showcase correct metrics
+
+---
+
+## 📝 NEXT STEPS
+
+1. **Review this plan** - Confirm approach and data structures
+2. **Begin Phase 2.1** - Start with Integrated Care section
+3. **Test incrementally** - Test each section as it's added
+4. **Move to Phase 3** - Begin product page creation after Phase 2 complete
+
+---
+
+**BOTTOM LINE:** This plan provides detailed data structures and implementation steps for Phase 2 (adding missing capabilities) and Phase 3 (creating product bundle pages). All sections follow existing co-pilot data structure patterns and use customer-value language aligned with product.mdc.

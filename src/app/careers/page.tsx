@@ -4,8 +4,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
+import { getActiveJobs } from '@/data/careers/jobs';
+import JobCard from '@/components/careers/JobCard';
 
 export default function CareersPage() {
+  const activeJobs = getActiveJobs();
+
   return (
     <>
       <main className="pt-24 pb-16">
@@ -14,7 +18,7 @@ export default function CareersPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto"
+            className="max-w-6xl mx-auto"
           >
             <div className="mb-12 text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Join Our Team</h1>
@@ -23,18 +27,29 @@ export default function CareersPage() {
               </p>
             </div>
 
-            <div className="bg-slate-50 p-8 rounded-xl mb-12 text-center">
-              <h2 className="text-2xl font-semibold text-slate-800 mb-4">We're Growing!</h2>
-              <p className="text-slate-700 mb-6">
-                We're currently building our team and will be posting open positions soon.
-                Please check back later or contact us to express your interest.
-              </p>
-              <Link
-                href={ROUTES.CONTACT}
-                className="inline-block bg-primary text-white px-6 py-3 rounded-md hover:bg-primary-dark transition-colors"
-              >
-                Contact Us
-              </Link>
+            <div className="mb-12">
+              <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Open Positions</h2>
+              {activeJobs.length === 0 ? (
+                <div className="bg-slate-50 p-8 rounded-xl text-center">
+                  <h3 className="text-2xl font-semibold text-slate-800 mb-4">We're Growing!</h3>
+                  <p className="text-slate-700 mb-6">
+                    We're currently building our team and will be posting open positions soon.
+                    Please check back later or contact us to express your interest.
+                  </p>
+                  <Link
+                    href={ROUTES.CONTACT}
+                    className="inline-block bg-primary text-white px-6 py-3 rounded-md hover:bg-primary-dark transition-colors"
+                  >
+                    Contact Us
+                  </Link>
+                </div>
+              ) : (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {activeJobs.map((job, index) => (
+                    <JobCard key={job.id} job={job} index={index} />
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="mb-12">

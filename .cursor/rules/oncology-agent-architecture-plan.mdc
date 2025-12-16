@@ -1,0 +1,124 @@
+# Oncology Agent Architecture - Interconnected System
+
+## Problem
+Current components are siloed:
+- `AgentSwarmDashboard` has its own agent state simulation
+- `CompletedCascadeView` has its own tab system and data
+- `OncologyIntelligenceCascadeModal` populates data separately
+- Capability showcase is disconnected
+- Each component manages its own state independently
+
+## Solution: Centralized Agent-Controlled Architecture
+
+### Core Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│           OncologyAgentContext (Single Source of Truth)      │
+├─────────────────────────────────────────────────────────────┤
+│ • Agent States (idle/processing/complete)                   │
+│ • Unified Data Store (molecular/therapeutic/trials/carePlan)│
+│ • Cascade Control (phase/progress/time)                     │
+│ • Event Emission (phase completion → data updates)          │
+└─────────────────────────────────────────────────────────────┘
+                           ↓
+        ┌──────────────────┼──────────────────┐
+        ↓                  ↓                  ↓
+┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+│ Intelligence │  │   Completed  │  │  Capability  │
+│   Cascade    │  │   Cascade    │  │  Showcase    │
+│    Modal     │  │     View     │  │              │
+└──────────────┘  └──────────────┘  └──────────────┘
+        ↓                  ↓                  ↓
+        └──────────────────┼──────────────────┘
+                           ↓
+              ┌──────────────────────┐
+              │  Dossier Components  │
+              │  (Read-only from     │
+              │   data store)        │
+              └──────────────────────┘
+```
+
+### Data Flow
+
+1. **Agent Orchestration** (IntelligenceCascadeModal)
+   - Triggers cascade execution
+   - Calls `completePhase(phaseIndex, outputData)` for each phase
+   - Context updates agent states + data store
+
+2. **Progressive Data Population**
+   - Phase 1 (data-extraction) → populates `dataStore.molecular.variants`
+   - Phase 2 (biomarker-calculation) → populates `dataStore.molecular.biomarkers`
+   - Phase 3 (drug-ranking) → populates `dataStore.therapeutic.drugRankings`
+   - Phase 4 (trial-matching) → populates `dataStore.trials.matches`
+   - Phase 5 (care-plan-generation) → populates `dataStore.carePlan`
+
+3. **Reactive Components**
+   - `CompletedCascadeView` reads from `dataStore` via `getDataForTab()`
+   - `AgentSwarmDashboard` reads agent states via `getAgentStatus()`
+   - `CapabilityShowcase` reads from `dataStore` for demo data
+   - All dossier components receive data from `dataStore`
+
+### Implementation Steps
+
+#### Step 1: Create Agent Context ✅
+- [x] `OncologyAgentContext.tsx` - Centralized state management
+- [x] `transformPhaseToData()` - Data transformation layer
+- [x] Agent state management (idle/processing/complete)
+- [x] Unified data store with progressive population
+
+#### Step 2: Update IntelligenceCascadeModal
+- [ ] Make it use `OncologyAgentContext`
+- [ ] Remove local state management
+- [ ] Call `completePhase()` when phases complete
+- [ ] Read agent states from context
+
+#### Step 3: Update CompletedCascadeView
+- [ ] Remove local data structures
+- [ ] Read from `dataStore` via `getDataForTab()`
+- [ ] Subscribe to agent state changes
+- [ ] Show progressive data population
+
+#### Step 4: Update AgentSwarmDashboard
+- [ ] Remove local agent simulation
+- [ ] Read agent states from context
+- [ ] Display real-time agent status
+- [ ] Show live insights from `dataStore.insights`
+
+#### Step 5: Update CapabilityShowcase
+- [ ] Use `dataStore` for demo seedData
+- [ ] Progressive enhancement as agents complete
+- [ ] Connect capability demos to agent outputs
+
+#### Step 6: Integration Points
+- [ ] Wrap oncology page with `OncologyAgentProvider`
+- [ ] Ensure cascade triggers populate all components
+- [ ] Test progressive data flow across all components
+
+### Component Responsibilities
+
+| Component | Before | After |
+|-----------|--------|-------|
+| `IntelligenceCascadeModal` | Own state + data | Orchestrator - calls context methods |
+| `CompletedCascadeView` | Own data structure | Reads from context data store |
+| `AgentSwarmDashboard` | Own simulation | Reads agent states from context |
+| `CapabilityShowcase` | Static seedData | Reads from context data store |
+| Dossier Components | Receive props | Receive from context via parent |
+
+### Benefits
+
+1. **Single Source of Truth**: All data flows from one context
+2. **Progressive Population**: Data builds up as agents complete
+3. **Real-time Sync**: All components reflect same agent state
+4. **Event-Driven**: Phase completion triggers data updates everywhere
+5. **Testable**: Centralized logic easier to test
+6. **Maintainable**: One place to update data transformations
+
+### Migration Strategy
+
+1. Create context (DONE ✅)
+2. Update `OncologyIntelligenceCascadeModal` to use context
+3. Wrap oncology page with provider
+4. Migrate components one by one
+5. Remove duplicate state management
+6. Test end-to-end data flow

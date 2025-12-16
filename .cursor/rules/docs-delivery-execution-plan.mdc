@@ -1,0 +1,422 @@
+# Docs Platform Delivery - Execution Plan
+## Get Intelligent Docs LIVE Using MDC + src2 Components
+
+**Mission:** Deliver beautiful, interactive docs platform by parsing MDC files dynamically and reusing proven src2 components. Skip Hygraph for now - go pure Zeta with file-based content. 🚀💀
+
+---
+
+## 🎯 STRATEGY: Reuse + Parse + Connect
+
+### What We Have:
+- ✅ **Layout & Homepage** (`src/app/docs/layout.tsx`, `page.tsx`) - Already built
+- ✅ **src2 Component Library** - 50+ production-ready components
+- ✅ **MDC Content** - `endpoints.mdc`, `resistance.mdc`, `synthethic-lethality.mdc`, `knowledgeBase/*.mdc`
+- ✅ **Type Definitions** - `src/lib/docs/hygraph/types.ts` (repurpose for MDC)
+
+### What We Build:
+1. **MDC Parser** - Parse `.mdc` files → structured content objects
+2. **Dynamic Routes** - `/docs/api/[endpoint]`, `/docs/use-cases/[case]`
+3. **Component Adapters** - Bridge src2 components to docs format
+4. **KG Builder** - Build knowledge graph from knowledgeBase MDCs
+5. **AI Integration** - Front-end RAG using KG
+
+---
+
+## 📦 REUSABLE COMPONENTS FROM src2
+
+### API Components (Ready to Use)
+```typescript
+// src/src2/components/site/blocks/
+- DetailedAPIExplorer.tsx      // Full API explorer with tabs
+- DemoFactory.tsx              // API demos with step-by-step simulation
+- APIEnhancedValueProp.tsx     // API value proposition cards
+- DiscriminativeAICardShowcase.tsx  // Oracle API cards
+- ExpandableDiscriminativeCards.tsx // Expandable API cards
+```
+
+### Code/Content Components
+```typescript
+// src/src2/components/slides/content/
+- CodeContent.tsx              // Syntax highlighted code blocks
+- TextContent.tsx              // Rich text rendering
+- MetricsContent.tsx           // Performance metrics display
+```
+
+### Product-Specific Components
+```typescript
+// src/src2/components/site/blocks/
+- OracleScore.tsx              // VUS → Verdict comparison
+- VariantDetailCard.tsx        // Variant analysis display
+- OracleExplainTrack.tsx       // SAE feature visualization
+- VUSResolutionDemo.tsx        // Interactive VUS demo
+- TherapyRankingCard.tsx       // Drug ranking display
+- ClinicalTrialsMatcher.tsx    // Trial matching component
+- EssentialityChart.tsx         // Gene essentiality visualization
+- ProteinDeltaCard.tsx         // Protein impact analysis
+```
+
+### Layout/Structure Components
+```typescript
+// src/src2/components/site/
+- ProductPageLayout.tsx        // Product page structure
+- ProcessStepper.tsx           // Step-by-step workflows
+- PipelineGraph.tsx            // Visual pipeline diagrams
+```
+
+---
+
+## 🏗️ ARCHITECTURE: MDC → Components → Pages
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    MDC FILES                            │
+│  endpoints.mdc → resistance.mdc → synthethic-lethality │
+│  knowledgeBase/*.mdc (AK.moat, ADVANCED_CARE_PLAN_*)    │
+└──────────────────────┬──────────────────────────────────┘
+                       │
+                       ▼
+┌─────────────────────────────────────────────────────────┐
+│              MDC PARSER (lib/docs/parser/)              │
+│  - Parse markdown + frontmatter                         │
+│  - Extract API endpoints, use cases, concepts            │
+│  - Build structured objects (APIEndpoint, UseCase)      │
+└──────────────────────┬──────────────────────────────────┘
+                       │
+                       ▼
+┌─────────────────────────────────────────────────────────┐
+│         COMPONENT ADAPTERS (components/docs/)           │
+│  - Map parsed content → src2 components                │
+│  - APIEndpoint → DetailedAPIExplorer                    │
+│  - UseCase → ProcessStepper + JourneyPlayer            │
+│  - Code → CodeContent                                   │
+└──────────────────────┬──────────────────────────────────┘
+                       │
+                       ▼
+┌─────────────────────────────────────────────────────────┐
+│         DYNAMIC ROUTES (app/docs/[routes])              │
+│  /docs/api/[endpoint] → API page                       │
+│  /docs/use-cases/[case] → Use case page                │
+│  /docs/knowledge/[concept] → Knowledge base page       │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📁 FILE STRUCTURE (What We Build)
+
+```
+src/
+├── lib/
+│   └── docs/
+│       ├── parser/
+│       │   ├── MDCParser.ts              # Parse .mdc files
+│       │   ├── EndpointParser.ts         # Extract API endpoints
+│       │   ├── UseCaseParser.ts          # Extract use cases
+│       │   └── KnowledgeParser.ts        # Parse knowledgeBase
+│       │
+│       ├── kg/
+│       │   ├── KnowledgeGraph.ts         # Build KG from MDCs
+│       │   └── GraphBuilder.ts           # Create node/edge structure
+│       │
+│       └── adapters/
+│           ├── ComponentAdapter.ts       # Map content → src2 components
+│           └── ContentMapper.ts           # Transform parsed → component props
+│
+├── components/
+│   └── docs/
+│       ├── content/
+│       │   ├── APIEndpointPage.tsx       # Wrapper using DetailedAPIExplorer
+│       │   ├── UseCasePage.tsx            # Wrapper using ProcessStepper
+│       │   └── KnowledgePage.tsx          # Knowledge base renderer
+│       │
+│       ├── adapters/
+│       │   ├── APIExplorerAdapter.tsx    # Adapt DetailedAPIExplorer for docs
+│       │   ├── DemoFactoryAdapter.tsx    # Adapt DemoFactory for docs
+│       │   └── CodeBlockAdapter.tsx      # Adapt CodeContent for docs
+│       │
+│       └── shared/
+│           ├── MDCRenderer.tsx            # Generic MDC content renderer
+│           └── ContentLoader.tsx          # Load MDC files dynamically
+│
+└── app/
+    └── docs/
+        ├── api/
+        │   └── [endpoint]/
+        │       └── page.tsx               # Dynamic API endpoint page
+        ├── use-cases/
+        │   └── [case]/
+        │       └── page.tsx               # Dynamic use case page
+        └── knowledge/
+            └── [concept]/
+                └── page.tsx               # Dynamic knowledge page
+```
+
+---
+
+## 🚀 IMPLEMENTATION PHASES
+
+### Phase 1: MDC Parser (Day 1) 📜
+**Goal:** Parse all MDC files into structured objects
+
+**Tasks:**
+1. [ ] Build `MDCParser.ts` - Parse markdown + frontmatter
+2. [ ] Build `EndpointParser.ts` - Extract API endpoints from `endpoints.mdc`
+3. [ ] Build `UseCaseParser.ts` - Extract use cases from `resistance.mdc`, `synthethic-lethality.mdc`
+4. [ ] Build `KnowledgeParser.ts` - Parse `knowledgeBase/*.mdc` files
+5. [ ] Test parsing all files → structured objects
+
+**Files:**
+- `src/lib/docs/parser/MDCParser.ts`
+- `src/lib/docs/parser/EndpointParser.ts`
+- `src/lib/docs/parser/UseCaseParser.ts`
+- `src/lib/docs/parser/KnowledgeParser.ts`
+
+**Success:** Parse `endpoints.mdc` → 12 APIEndpoint objects, `resistance.mdc` → UseCase with steps
+
+---
+
+### Phase 2: Component Adapters (Day 1-2) 🔌
+**Goal:** Bridge src2 components to docs format
+
+**Tasks:**
+1. [ ] Create `APIExplorerAdapter.tsx` - Wrap `DetailedAPIExplorer` for docs
+2. [ ] Create `DemoFactoryAdapter.tsx` - Wrap `DemoFactory` for docs
+3. [ ] Create `CodeBlockAdapter.tsx` - Wrap `CodeContent` for docs
+4. [ ] Create `APIEndpointPage.tsx` - Full page using adapters
+5. [ ] Create `UseCasePage.tsx` - Full page using ProcessStepper + content
+
+**Files:**
+- `src/components/docs/adapters/APIExplorerAdapter.tsx`
+- `src/components/docs/adapters/DemoFactoryAdapter.tsx`
+- `src/components/docs/adapters/CodeBlockAdapter.tsx`
+- `src/components/docs/content/APIEndpointPage.tsx`
+- `src/components/docs/content/UseCasePage.tsx`
+
+**Success:** `/docs/api/predict-variant-impact` renders using `DetailedAPIExplorer` with parsed data
+
+---
+
+### Phase 3: Dynamic Routes (Day 2) 🛣️
+**Goal:** Build dynamic pages for all content
+
+**Tasks:**
+1. [ ] Create `/docs/api/[endpoint]/page.tsx` - Dynamic API pages
+2. [ ] Create `/docs/use-cases/[case]/page.tsx` - Dynamic use case pages
+3. [ ] Create `/docs/knowledge/[concept]/page.tsx` - Knowledge base pages
+4. [ ] Update homepage - Link to parsed content
+5. [ ] Add navigation - Auto-generate from parsed MDCs
+
+**Files:**
+- `src/app/docs/api/[endpoint]/page.tsx`
+- `src/app/docs/use-cases/[case]/page.tsx`
+- `src/app/docs/knowledge/[concept]/page.tsx`
+- Update `src/app/docs/page.tsx`
+
+**Success:** All endpoints from `endpoints.mdc` have live pages, all use cases have pages
+
+---
+
+### Phase 4: Knowledge Graph (Day 2-3) 🧠
+**Goal:** Build KG from knowledgeBase for AI context
+
+**Tasks:**
+1. [ ] Build `KnowledgeGraph.ts` - Create graph structure
+2. [ ] Build `GraphBuilder.ts` - Parse knowledgeBase MDCs → nodes/edges
+3. [ ] Link endpoints ↔ use cases ↔ knowledge concepts
+4. [ ] Export KG as JSON for AI queries
+5. [ ] Add KG visualization component (optional)
+
+**Files:**
+- `src/lib/docs/kg/KnowledgeGraph.ts`
+- `src/lib/docs/kg/GraphBuilder.ts`
+- `src/lib/docs/kg/types.ts`
+
+**Success:** KG with 50+ nodes (endpoints, use cases, concepts) with relationships
+
+---
+
+### Phase 5: AI Integration (Day 3) 🤖
+**Goal:** Front-end AI assistant using KG
+
+**Tasks:**
+1. [ ] Enhance `AIAssistant.tsx` - Use KG for context
+2. [ ] Build simple RAG - Search KG nodes by query
+3. [ ] Add source citations - Link to MDC pages
+4. [ ] Integrate with SmartSearch - Search KG + content
+5. [ ] Test AI queries - "How do I predict resistance?"
+
+**Files:**
+- Update `src/components/docs/ai/AIAssistant.tsx`
+- `src/lib/docs/ai/kg-rag.ts` (simple front-end RAG)
+- Update `src/components/docs/ai/SmartSearch.tsx`
+
+**Success:** AI answers questions using KG context, cites MDC sources
+
+---
+
+## 🔧 TECHNICAL DETAILS
+
+### MDC Parser Structure
+```typescript
+// lib/docs/parser/MDCParser.ts
+
+interface ParsedMDC {
+  frontmatter: {
+    title: string;
+    type: 'endpoint' | 'use-case' | 'knowledge';
+    category?: string;
+    tags?: string[];
+  };
+  content: string;  // Markdown content
+  sections: {
+    [key: string]: string;  // Extracted sections
+  };
+}
+
+class MDCParser {
+  parse(filePath: string): ParsedMDC;
+  extractFrontmatter(content: string): Record<string, any>;
+  extractSections(content: string): Record<string, string>;
+}
+```
+
+### Endpoint Parser
+```typescript
+// lib/docs/parser/EndpointParser.ts
+
+class EndpointParser {
+  parseEndpoints(mdcContent: string): APIEndpoint[] {
+    // Extract from endpoints.mdc structure:
+    // - Discriminative AI Endpoints section
+    // - Generative AI Endpoints section
+    // - Parse each endpoint's description, inputs, outputs, etc.
+  }
+}
+```
+
+### Component Adapter Pattern
+```typescript
+// components/docs/adapters/APIExplorerAdapter.tsx
+
+interface APIExplorerAdapterProps {
+  endpoint: APIEndpoint;  // From parser
+}
+
+export function APIExplorerAdapter({ endpoint }: APIExplorerAdapterProps) {
+  // Transform APIEndpoint → DetailedAPIExplorer props
+  const explorerProps = {
+    endpoint: endpoint.path,
+    method: endpoint.method,
+    description: endpoint.description,
+    parameters: endpoint.parameters,
+    examples: endpoint.codeExamples,
+  };
+  
+  return <DetailedAPIExplorer {...explorerProps} />;
+}
+```
+
+### Dynamic Route Pattern
+```typescript
+// app/docs/api/[endpoint]/page.tsx
+
+export default async function APIEndpointPage({ params }: { params: { endpoint: string } }) {
+  // Load endpoints.mdc
+  const endpoints = await parseEndpointsFromMDC();
+  const endpoint = endpoints.find(e => e.slug === params.endpoint);
+  
+  if (!endpoint) return <NotFound />;
+  
+  return (
+    <DocsLayout>
+      <APIEndpointPage endpoint={endpoint} />
+    </DocsLayout>
+  );
+}
+```
+
+---
+
+## 📊 REUSED COMPONENTS MAPPING
+
+| MDC Content Type | src2 Component | Adapter |
+|------------------|----------------|---------|
+| API Endpoint | `DetailedAPIExplorer` | `APIExplorerAdapter` |
+| API Demo | `DemoFactory` | `DemoFactoryAdapter` |
+| Code Block | `CodeContent` | `CodeBlockAdapter` |
+| Use Case Steps | `ProcessStepper` | `UseCasePage` |
+| Variant Analysis | `VariantDetailCard` | Direct use |
+| Oracle Score | `OracleScore` | Direct use |
+| Drug Ranking | `TherapyRankingCard` | Direct use |
+| Trial Matching | `ClinicalTrialsMatcher` | Direct use |
+| Essentiality | `EssentialityChart` | Direct use |
+
+---
+
+## ✅ DEFINITION OF DONE
+
+### Phase 1 (Parser):
+- [ ] All MDC files parse successfully
+- [ ] 12+ endpoints extracted from `endpoints.mdc`
+- [ ] 3+ use cases extracted from MDCs
+- [ ] KnowledgeBase MDCs parsed into concepts
+
+### Phase 2 (Adapters):
+- [ ] `DetailedAPIExplorer` works with parsed endpoint data
+- [ ] `DemoFactory` works with parsed demo data
+- [ ] `CodeContent` renders code from MDCs
+- [ ] All adapters handle missing data gracefully
+
+### Phase 3 (Routes):
+- [ ] `/docs/api/predict-variant-impact` works
+- [ ] `/docs/use-cases/resistance` works
+- [ ] `/docs/knowledge/advanced-care-plan` works
+- [ ] Homepage links to all parsed content
+- [ ] Navigation auto-generated from MDCs
+
+### Phase 4 (KG):
+- [ ] KG built with 50+ nodes
+- [ ] Relationships between endpoints ↔ use cases
+- [ ] KnowledgeBase concepts linked
+- [ ] KG exportable as JSON
+
+### Phase 5 (AI):
+- [ ] AI assistant queries KG
+- [ ] Answers include source citations
+- [ ] SmartSearch searches KG + content
+- [ ] Context-aware suggestions work
+
+---
+
+## 🎯 SUCCESS METRICS
+
+- **Content Coverage:** 100% of `endpoints.mdc` → live pages
+- **Component Reuse:** 80%+ components from src2 (no duplication)
+- **Performance:** Pages load <1s, parsing <500ms
+- **AI Accuracy:** KG queries return relevant results 90%+
+- **Mobile:** All pages responsive, components work on mobile
+
+---
+
+## 🚀 QUICK START COMMANDS
+
+```bash
+# Phase 1: Build parser
+# Create: lib/docs/parser/MDCParser.ts
+
+# Phase 2: Build adapters  
+# Create: components/docs/adapters/*.tsx
+
+# Phase 3: Build routes
+# Create: app/docs/api/[endpoint]/page.tsx
+
+# Phase 4: Build KG
+# Create: lib/docs/kg/KnowledgeGraph.ts
+
+# Phase 5: Integrate AI
+# Update: components/docs/ai/AIAssistant.tsx
+```
+
+---
+
+This plan delivers a beautiful, intelligent docs platform by leveraging existing src2 components and parsing MDC files dynamically. No Hygraph needed - pure Zeta file-based power. 👑🔥

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail, Users } from 'lucide-react';
+import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail, Users, GitCompare } from 'lucide-react';
 import ToggleButton from './ToggleButton';
 import { coPilotDetailsData } from '@/data/coPilotDetails';
 
@@ -59,10 +59,36 @@ export const NAV_LINKS = [
     icon: <BookOpen className="inline-block h-4 w-4" />,
   },
   {
-    href: '/insilico',
-    label: 'In-Silico',
+    href: '/products',
+    label: 'Products',
+    icon: <Rocket className="inline-block h-4 w-4" />,
+    subLinks: [
+      // Main Products
+      { href: '/products/oncology', label: 'Oncology', divider: true },
+      { href: '/products/r-d', label: 'R&D' },
+      { href: '/products/research', label: 'Research' },
+      // AI Engines
+      { href: '/products/oracle', label: 'Oracle', divider: true },
+      { href: '/products/forge', label: 'Forge' },
+      { href: '/products/boltz', label: 'Boltz' },
+      { href: '/products/command-center', label: 'Command Center' },
+    ],
+  },
+  {
+    href: '/platform',
+    label: 'Platform',
     icon: <Rocket className="inline-block h-4 w-4" />,
     subLinks: platformSubLinks,
+  },
+  {
+    href: '/comparisons/patient',
+    label: 'Compare',
+    icon: <GitCompare className="inline-block h-4 w-4" />,
+    subLinks: [
+      { href: '/comparisons/patient', label: 'Patient Scenarios' },
+      // Future: { href: '/comparisons/biotech', label: 'Biotech Scenarios' },
+      // Future: { href: '/comparisons/clinical', label: 'Clinical Scenarios' },
+    ],
   },
   {
     href: '/evidence',
@@ -109,6 +135,7 @@ interface NavLink {
   href: string;
   label: string;
   external?: boolean;
+  divider?: boolean; // For visual separation in dropdowns
 }
 
 interface NavMenu extends NavLink {
@@ -142,15 +169,25 @@ const DropdownMenu: React.FC<{ menu: NavMenu }> = ({ menu }) => {
             className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-white rounded-lg shadow-lg border border-slate-200 z-50"
           >
             <div className="p-2">
-              {menu.subLinks?.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900 rounded-md transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </Link>
+              {menu.subLinks?.map((link, index) => (
+                <React.Fragment key={link.href || index}>
+                  {link.divider && index > 0 && (
+                    <div className="my-1 border-t border-slate-200" />
+                  )}
+                  {link.href !== '#' ? (
+                    <Link
+                      href={link.href}
+                      className="block px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900 rounded-md transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <div className="px-3 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                      {link.label}
+                    </div>
+                  )}
+                </React.Fragment>
               ))}
             </div>
           </motion.div>
@@ -308,15 +345,25 @@ const Navbar: React.FC = () => {
                                 className="overflow-hidden"
                               >
                                 <div className="pl-6 pb-2 space-y-0.5 border-l-2 border-slate-200 ml-4">
-                                  {(link as any).subLinks.map((sub: any) => (
-                                    <Link
-                                      key={sub.href}
-                                      href={sub.href}
-                                      onClick={() => setIsOpen(false)}
-                                      className="block py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 -mx-4 px-4 rounded transition-colors"
-                                    >
-                                      {sub.label}
-                                    </Link>
+                                  {(link as any).subLinks.map((sub: any, subIndex: number) => (
+                                    <React.Fragment key={sub.href || subIndex}>
+                                      {sub.divider && subIndex > 0 && (
+                                        <div className="my-1 -mx-4 border-t border-slate-200" />
+                                      )}
+                                      {sub.href !== '#' ? (
+                                        <Link
+                                          href={sub.href}
+                                          onClick={() => setIsOpen(false)}
+                                          className="block py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 -mx-4 px-4 rounded transition-colors"
+                                        >
+                                          {sub.label}
+                                        </Link>
+                                      ) : (
+                                        <div className="py-2 -mx-4 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                                          {sub.label}
+                                        </div>
+                                      )}
+                                    </React.Fragment>
                                   ))}
                                 </div>
                               </motion.div>

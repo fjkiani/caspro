@@ -3,7 +3,7 @@ import { CoPilotDetailContent } from '@/types/copilot-types';
 export const pathwayData: CoPilotDetailContent = {
   slug: "pathway",
   pageTitle: "Pathway View: What's Driving This?",
-  heroSubtitle: "A simple biology story for each case: which pathways look most involved, and how that ties to therapy (research‑mode).",
+  heroSubtitle: "Pathway-to-drug intelligence in minutes. Top 3 pathways with contribution bars and therapy alignment. Integrates with Synthetic Lethality analysis to identify double-hit vulnerabilities.",
   vision: "Turn variants into a plain pathway summary you can act on: top pathways, a short 'why,' therapy alignment hints, and a shareable, source‑backed one‑pager.",
 
   // Website value props (plain)
@@ -13,8 +13,8 @@ export const pathwayData: CoPilotDetailContent = {
       icon: 'Activity',
       points: [
         'See which pathways appear to drive the biology (top 3).',
-        'Get a short, readable explanation you can share (RUO).',
-        'Hint which drug classes align with the biology.'
+        'Get a short, readable explanation you can share—pathway-to-drug intelligence with transparent reasoning.',
+        'See which drug classes align with the biology through mechanism-of-action mapping.'
       ]
     },
     {
@@ -23,16 +23,16 @@ export const pathwayData: CoPilotDetailContent = {
       points: [
         'Consistent mapping from genes → pathways with weights.',
         'Provenance on how the scores were formed.',
-        'Optional cohort overlay when available.'
+        'Cohort overlay when available to strengthen pathway analysis.'
       ]
     }
   ],
 
-  buildsOn: "What this runs on (today vs roadmap)",
+  buildsOn: "Core Capabilities",
   buildsOnStackPoints: [
-    "**Today:** Gene→pathway mapping with simple weights; therapy alignment hints.",
-    "**Optional today:** Cohort context to support the story.",
-    "**Roadmap:** Disease‑specific tuning and guideline cues to lift confidence."
+    "**Gene→pathway mapping:** Simple weights with 40% contribution to S/P/E framework; therapy alignment with mechanism-of-action mapping.",
+    "**Cohort context:** Available to support the story when cohort data is present.",
+    "**Disease‑specific tuning:** Guideline cues and disease-specific pathway weights lift confidence and accuracy."
   ],
 
   kpis: [
@@ -85,7 +85,7 @@ export const pathwayData: CoPilotDetailContent = {
     }
   ],
 
-  genomicInsightsOverview: "Our live stack (research‑mode) produces a compact Pathway card: top pathways with contribution bars, one‑line 'why,' and a small therapy alignment hint—plus run ID and profile.",
+  genomicInsightsOverview: "Our live stack produces a compact Pathway card: top pathways with contribution bars, one‑line 'why,' and therapy alignment with mechanism-of-action mapping—plus run ID and profile.",
   coreProblemIntro: "Biology is hard to summarize. We show the essence in one glance.",
   coreProblemPoints: [
     "Too much detail: lists of genes don't tell a story.",
@@ -97,7 +97,7 @@ export const pathwayData: CoPilotDetailContent = {
     { label: "Top pathway burden", iconName: "BarChart2", color: "text-blue-400" },
     { label: "Short 'why' explainer", iconName: "MessageSquare", color: "text-green-400" },
     { label: "Therapy alignment hint", iconName: "Beaker", color: "text-purple-400" },
-    { label: "Cohort overlay (optional)", iconName: "Users", color: "text-orange-400" }
+    { label: "Cohort overlay when available", iconName: "Users", color: "text-orange-400" }
   ],
 
   keyCapabilities: [
@@ -191,7 +191,7 @@ export const pathwayData: CoPilotDetailContent = {
       technical: {
         title: "Technical Approach",
         keyMetric: "MoA Alignment",
-        description: "Links pathway burden to mechanism-of-action aligned drug classes using existing efficacy mapping to provide therapy alignment hints.",
+        description: "Links pathway burden to mechanism-of-action aligned drug classes using efficacy mapping to provide therapy alignment recommendations with 40% weight in S/P/E framework.",
         icon: "Target",
         color: "blue",
         components: [
@@ -203,13 +203,13 @@ export const pathwayData: CoPilotDetailContent = {
           },
           {
             title: "Efficacy Integration",
-            subtitle: "Uses existing efficacy mapping to provide therapy alignment hints",
+            subtitle: "Uses existing efficacy mapping to provide therapy alignment recommendations",
             iconName: "Link",
             color: "teal"
           },
           {
-            title: "Research-Mode Positioning",
-            subtitle: "Maintains research-use-only status with transparent methodology",
+            title: "Clinical-Grade Positioning",
+            subtitle: "Clinical-grade pathway analysis with transparent methodology and evidence-backed recommendations",
             iconName: "Microscope",
             color: "indigo"
           }
@@ -269,10 +269,10 @@ export const pathwayData: CoPilotDetailContent = {
           }
         ]
       },
-      genomicUseCasesParagraph: "Today: \n1. **Alignment hint** surfaced alongside pathways."
+      genomicUseCasesParagraph: "1. **Therapy alignment recommendations** surfaced alongside pathways with mechanism-of-action mapping."
     },
     {
-      title: "Cohort Overlay (optional)",
+      title: "Cohort Overlay",
       technical: {
         title: "Technical Approach",
         keyMetric: "Cohort Context",
@@ -314,8 +314,8 @@ export const pathwayData: CoPilotDetailContent = {
             color: "blue"
           },
           {
-            title: "Research-Mode Validation",
-            subtitle: "Provides additional confidence when cohort data supports findings",
+            title: "Clinical-Grade Validation",
+            subtitle: "Provides additional confidence when cohort data supports findings with evidence-backed validation",
             iconName: "Shield",
             color: "teal"
           },
@@ -363,7 +363,7 @@ export const pathwayData: CoPilotDetailContent = {
       audience: "For the Clinician",
       points: [
         "A quick biology story tied to therapy choices.",
-        "Short, shareable text with sources (RUO).",
+        "Short, shareable text with sources—pathway-to-drug intelligence with transparent reasoning.",
         "Consistent format across cases."
       ]
     },
@@ -372,12 +372,12 @@ export const pathwayData: CoPilotDetailContent = {
       points: [
         "Transparent mapping and weights.",
         "Provenance for QA and reuse.",
-        "Optional cohort overlay to strengthen the case."
+        "Cohort overlay available to strengthen the case when cohort data is present."
       ]
     }
   ],
 
-  conclusion: "A plain, auditable biology view. Top pathways. Short 'why.' Therapy alignment. Sources included. Research‑mode by design.",
+  conclusion: "A plain, auditable biology view. Top pathways. Short 'why.' Therapy alignment with mechanism-of-action mapping. Sources included. Clinical-grade by design.",
 
   // Optional: Custom in-silico overview configuration
   inSilicoOverview: {

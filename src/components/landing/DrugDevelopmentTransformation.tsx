@@ -67,14 +67,14 @@ const DrugDevelopmentTransformation = () => {
                 </div>
                 </div>
 
-                {/* Problem vs Solution */}
-                <div className="space-y-4 mb-6">
+                {/* Problem vs Solution - Consolidated */}
+                <div className="grid md:grid-cols-2 gap-4 mb-6">
                   <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                     <div className="text-xs font-semibold text-red-700 mb-2">❌ The Problem</div>
                     <div className="text-sm text-slate-700 mb-2">
                       <strong>{stage.problem.title}</strong>
                     </div>
-                    <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className="space-y-1 text-xs">
                       <div>
                         <span className="text-slate-500">Cost:</span>{' '}
                         <span className="font-semibold text-red-600">{stage.problem.cost}</span>
@@ -82,60 +82,46 @@ const DrugDevelopmentTransformation = () => {
                       <div>
                         <span className="text-slate-500">Time:</span>{' '}
                         <span className="font-semibold text-red-600">{stage.problem.timeframe}</span>
-                    </div>
-                      <div className="col-span-2">
-                        <span className="text-slate-500">Failure Rate:</span>{' '}
+                      </div>
+                      <div>
+                        <span className="text-slate-500">Failure:</span>{' '}
                         <span className="font-semibold text-red-600">{stage.problem.failureRate}</span>
+                      </div>
                     </div>
-                    </div>
-            </div>
+                  </div>
 
                   <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                     <div className="text-xs font-semibold text-green-700 mb-2">✅ Our Solution</div>
                     <div className="text-sm text-slate-700 mb-2">
                       <strong>{stage.solution.title}</strong>
                     </div>
-                    <p className="text-xs text-slate-600">{stage.solution.approach}</p>
-                  </div>
-                </div>
-
-                {/* Business Impact */}
-                <div className="border-t border-slate-200 pt-4">
-                  <div className="text-xs font-semibold text-slate-500 mb-3">Business Impact</div>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="flex items-center gap-2">
-                      <DollarSign className="w-4 h-4 text-green-600" />
-                    <div>
-                        <div className="text-xs text-slate-500">Cost Reduction</div>
-                        <div className="text-sm font-bold text-green-600">{stage.businessImpact.costReduction}</div>
+                    <p className="text-xs text-slate-600 mb-3">{stage.solution.approach}</p>
+                    
+                    {/* Business Impact - Moved up into Solution box */}
+                    <div className="border-t border-green-300 pt-3 mt-3">
+                      <div className="grid grid-cols-2 gap-2">
+                        <div>
+                          <div className="text-xs text-slate-500">Cost Reduction</div>
+                          <div className="text-xs font-bold text-green-600">{stage.businessImpact.costReduction}</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-slate-500">Time Reduction</div>
+                          <div className="text-xs font-bold text-blue-600">{stage.businessImpact.timeReduction}</div>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-blue-600" />
-                      <div>
-                        <div className="text-xs text-slate-500">Time Reduction</div>
-                        <div className="text-sm font-bold text-blue-600">{stage.businessImpact.timeReduction}</div>
-                  </div>
-                    </div>
-                    <div className="col-span-2 flex items-center gap-2">
-                      <TrendingUp className="w-4 h-4 text-purple-600" />
-                    <div>
-                        <div className="text-xs text-slate-500">Success Rate</div>
-                        <div className="text-sm font-bold text-purple-600">{stage.businessImpact.successRate}</div>
-                    </div>
                   </div>
                 </div>
-              </div>
 
                 {/* Evidence Metrics */}
-                <div className="mt-4 pt-4 border-t border-slate-200">
+                <div className="border-t border-slate-200 pt-4">
                   <div className="text-xs font-semibold text-slate-500 mb-2">Validated Performance</div>
                   <div className="space-y-1">
                     {stage.evidence.slice(0, 2).map((evidence, idx) => (
                       <div key={idx} className="flex items-center justify-between text-xs">
                         <span className="text-slate-600">{evidence.metric}</span>
                         <span className="font-bold text-green-600">{evidence.value}</span>
-                  </div>
+                      </div>
                     ))}
                   </div>
                 </div>

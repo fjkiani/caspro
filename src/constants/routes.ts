@@ -19,6 +19,7 @@ export const ROUTES = {
   SPE_FUSION: '/evidence/spe-fusion',
   DATA_LAB: '/evidence/data-lab',
   SAE_INTELLIGENCE: '/evidence/sae-intelligence',
+  DOCS: '/docs',
   
   // Anchor links on main page
   FEATURES: '#features',

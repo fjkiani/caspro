@@ -1,0 +1,987 @@
+# 🏆 MOAT PAGE REPLACEMENT PLAN V2
+## Complete Product Integration + Interactive Demonstrations
+
+**Created:** 2024-12-19  
+**Updated:** 2024-12-19 (V2 - Added Product Integration & Interactive Components)  
+**Status:** 🔴 CRITICAL - MOATs need dedicated pages with product demonstrations  
+**Priority:** MUST CREATE before continuing navigation fixes
+
+---
+
+## 🎯 CORE INSIGHT: MOATs ARE PRODUCT APPLICATIONS
+
+### The Key Understanding:
+
+**MOATs are NOT separate products** - they are **applications of our core products** (Oracle, Forge, Boltz, Command Center).
+
+**Each MOAT demonstrates:**
+1. **Which products power it** (Oracle APIs, Forge generation, Boltz validation, Command Center orchestration)
+2. **How products work together** (workflow visualization)
+3. **Interactive demonstrations** (live API calls, real results)
+4. **Validated performance** (real metrics from validation studies)
+
+---
+
+## 🔗 PRODUCT-MOAT INTEGRATION MATRIX
+
+### How Each MOAT Uses Our Products:
+
+| MOAT | Oracle | Forge | Boltz | Command Center | Key APIs/Components |
+|------|--------|-------|-------|----------------|-------------------|
+| **S/P/E Framework** | ✅ Primary | ❌ | ❌ | ✅ Orchestration | `/predict_variant_impact`<br>`/predict_gene_essentiality`<br>SAE Features<br>S/P/E Fusion |
+| **Universal Platform** | ✅ | ❌ | ❌ | ✅ **PRIMARY** | Universal Orchestrator<br>Profile Adapter<br>Multi-disease SOC |
+| **Toxicity-Aware Nutrition** | ✅ Pathway Analysis | ❌ | ❌ | ✅ Food Validation | `/predict_variant_impact` (PGx)<br>Pathway→Food Mapping<br>Drug Interaction Checking |
+| **Resistance Prediction** | ✅ Pathway Analysis | ❌ | ❌ | ✅ Risk Calculation | `/predict_gene_essentiality`<br>MAPK/NF1 Detection<br>Risk Scoring |
+| **Clinical Dossier** | ✅ Variant Analysis | ❌ | ❌ | ✅ **PRIMARY** | Dossier Generation<br>Variant Cards<br>Drug Recommendations |
+| **Trial Matching** | ✅ Pathway Analysis | ❌ | ❌ | ✅ **PRIMARY** | 7D Pathway Vector<br>Mechanism Fit Scoring<br>Trial Ranking |
+
+---
+
+## 📋 DETAILED MOAT-PRODUCT MAPPING
+
+### 1. S/P/E Framework MOAT
+
+**What It Does:**
+- Pathway-based drug ranking validated on 17 patients (100% Top-5 accuracy)
+- Combines Sequence + Pathway + Evidence scoring
+
+**Products Used:**
+- **Oracle** (Primary):
+  - `/predict_variant_impact` → Sequence (S) scores
+  - `/predict_gene_essentiality` → Pathway (P) burden calculation
+  - SAE Features → Explainability (32,768 features)
+- **Command Center** (Orchestration):
+  - S/P/E Fusion engine
+  - Evidence services (ClinVar, literature)
+  - Confidence modulation
+
+**Interactive Components to Showcase:**
+1. **VUSResolutionDemo** (from src2) - Show variant analysis
+2. **DynamicOracleExplain** (from src2) - Show Oracle thinking process
+3. **TherapyRankingCard** (from src2) - Show S/P/E drug ranking
+4. **OracleExplainTrack** (from src2) - Show SAE feature visualization
+5. **VariantImpactLandscape** (from src2) - Show variant impact analysis
+6. **DemoFactory** (from src2) - Interactive API demonstrations
+
+**Workflow Visualization:**
+```
+1. Variant Input
+   ↓
+2. [Oracle] /predict_variant_impact → Sequence Score
+   ↓
+3. [Oracle] /predict_gene_essentiality → Pathway Burden
+   ↓
+4. [Command Center] Evidence Services → Literature/ClinVar
+   ↓
+5. [Command Center] S/P/E Fusion → Combined Score
+   ↓
+6. [Oracle] SAE Features → Explainability
+   ↓
+7. Drug Ranking (Top 5 with mechanism alignment)
+```
+
+**Source Content:**
+- `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_CLINICAL_DOSSIER.mdc`
+- Validated metrics: 17/17 patients, DDR 1.0, TP53 0.8
+
+---
+
+### 2. Universal Platform MOAT
+
+**What It Does:**
+- Works for ANY cancer type (50+ diseases)
+- One API call → Complete care plan
+- Multi-disease Standard of Care
+
+**Products Used:**
+- **Command Center** (Primary):
+  - Universal Complete Care Orchestrator
+  - Profile Adapter (simple/full profiles)
+  - Multi-disease SOC routing
+- **Oracle** (Supporting):
+  - Universal biomarker intelligence (CA-125, PSA, CEA, AFP, hCG)
+  - Cross-disease variant analysis
+
+**Interactive Components to Showcase:**
+1. **ClinicalWorkflow** (from src2) - Show universal workflow
+2. **PipelineGraph** (from src2) - Show orchestration flow
+3. **EnhancedDossierSummary** (from src2) - Show care plan output
+4. **ProcessStepper** (from src2) - Show multi-disease routing
+
+**Workflow Visualization:**
+```
+1. Patient Profile Input (any cancer type)
+   ↓
+2. [Command Center] Profile Adapter → Normalize input
+   ↓
+3. [Command Center] Disease Router → Route to appropriate SOC
+   ↓
+4. [Oracle] Biomarker Intelligence → Disease-specific biomarkers
+   ↓
+5. [Command Center] Universal Orchestrator → Complete care plan
+   ↓
+6. Output: Drugs + Trials + Food + Monitoring (all in one)
+```
+
+**Source Content:**
+- `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_UNIVERSAL.md`
+- Metrics: 50+ diseases, Multi-disease SOC
+
+---
+
+### 3. Toxicity-Aware Nutrition MOAT
+
+**What It Does:**
+- Connects toxicity pathways to protective foods
+- Drug-specific recommendations with personalized timing
+- First-in-class patient MOAT
+
+**Products Used:**
+- **Oracle** (Primary):
+  - `/predict_variant_impact` → PGx variant analysis (DPYD, TPMT, UGT1A1, CYP2D6)
+  - Pathway analysis → Toxicity pathway identification
+- **Command Center** (Orchestration):
+  - Drug→Pathway→Food mapping
+  - Timing logic ("Take post-chemo, not during")
+  - Drug interaction checking
+
+**Interactive Components to Showcase:**
+1. **VariantDetailCard** (from src2) - Show PGx variants
+2. **EssentialityChart** (from src2) - Show pathway analysis
+3. **ProteinDeltaCard** (from src2) - Show toxicity impact
+4. **ProcessStepper** (from src2) - Show Drug→Pathway→Food flow
+
+**Workflow Visualization:**
+```
+1. Drug Input (e.g., Carboplatin)
+   ↓
+2. [Oracle] Pathway Analysis → DNA repair stress pathway
+   ↓
+3. [Oracle] PGx Analysis → DPYD/TPMT/UGT1A1 variants
+   ↓
+4. [Command Center] Pathway→Food Mapping → NAC (supports DNA repair)
+   ↓
+5. [Command Center] Timing Logic → "Take post-chemo, not during"
+   ↓
+6. Output: Personalized nutrition recommendation with timing
+```
+
+**Source Content:**
+- `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_TOXCITY.md`
+- Metrics: 3 pathway categories, personalized timing validated
+
+---
+
+### 4. Resistance Prediction MOAT
+
+**What It Does:**
+- Predicts platinum resistance BEFORE it happens
+- MAPK/NF1 mutations = 2x platinum resistance risk
+- Validated on 469 TCGA patients
+
+**Products Used:**
+- **Oracle** (Primary):
+  - `/predict_gene_essentiality` → MAPK pathway detection
+  - Pathway analysis → Resistance pathway identification
+- **Command Center** (Risk Calculation):
+  - Relative Risk calculation (RR = 1.97-2.10)
+  - Risk stratification (HIGH vs BASELINE)
+  - Treatment modification recommendations
+
+**Interactive Components to Showcase:**
+1. **EssentialityChart** (from src2) - Show MAPK pathway analysis
+2. **VariantImpactLandscape** (from src2) - Show mutation impact
+3. **TherapyRankingCard** (from src2) - Show alternative drug recommendations
+4. **ProcessStepper** (from src2) - Show resistance prediction flow
+
+**Workflow Visualization:**
+```
+1. Mutation Profile Input
+   ↓
+2. [Oracle] /predict_gene_essentiality → Check MAPK pathway genes
+   ↓
+3. [Command Center] Mutation Detection → KRAS/NRAS/BRAF/NF1
+   ↓
+4. [Command Center] Risk Calculation → RR = 1.97 (2x risk)
+   ↓
+5. [Command Center] Treatment Modification → Early PARP switch recommendations
+   ↓
+6. Output: Resistance risk + Action plan
+```
+
+**Source Content:**
+- `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_RESISTANCE_PREDICTION.md`
+- Validated metrics: 469 TCGA patients, RR = 1.97-2.10, p < 0.05
+
+---
+
+### 5. Clinical Dossier MOAT
+
+**What It Does:**
+- Exportable clinical dossiers for tumor boards
+- Variant impact cards, drug recommendations, audit trails
+- Complete mechanism rationale
+
+**Products Used:**
+- **Oracle** (Variant Analysis):
+  - `/predict_variant_impact` → Variant classification
+  - SAE Features → Variant explainability
+- **Command Center** (Primary):
+  - Dossier generation engine
+  - Variant card formatting
+  - Drug recommendation aggregation
+  - Export functionality
+
+**Interactive Components to Showcase:**
+1. **EnhancedDossierSummary** (from src2) - Show complete dossier
+2. **VariantDetailCard** (from src2) - Show variant cards
+3. **TherapyRankingCard** (from src2) - Show drug recommendations
+4. **OracleExplainTrack** (from src2) - Show SAE explainability
+5. **ProvenancePanel** (from src2) - Show audit trail
+
+**Workflow Visualization:**
+```
+1. Patient Profile Input
+   ↓
+2. [Oracle] Variant Analysis → All variants classified
+   ↓
+3. [Oracle] SAE Features → Explainability for each variant
+   ↓
+4. [Command Center] Drug Aggregation → Top 5 recommendations
+   ↓
+5. [Command Center] Dossier Generation → Format cards + recommendations
+   ↓
+6. [Command Center] Export → PDF/tumor board format
+```
+
+**Source Content:**
+- `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_CLINICAL_DOSSIER.mdc`
+- Status: Sprint 2 Complete
+
+---
+
+### 6. Mechanism-Based Trial Matching MOAT
+
+**What It Does:**
+- Pathway burden → Trial alignment
+- 7D pathway vector matching
+- Not keyword search - actual mechanism alignment
+
+**Products Used:**
+- **Oracle** (Pathway Analysis):
+  - `/predict_gene_essentiality` → 7D pathway vector computation
+  - Pathway burden calculation
+- **Command Center** (Primary):
+  - Mechanism fit ranker (cosine similarity)
+  - Trial database integration
+  - Combined scoring (0.7×eligibility + 0.3×mechanism_fit)
+
+**Interactive Components to Showcase:**
+1. **ClinicalTrialsMatcher** (from src2) - Show trial matching
+2. **EssentialityChart** (from src2) - Show 7D pathway vector
+3. **TherapyRankingCard** (from src2) - Show ranked trials
+4. **ProcessStepper** (from src2) - Show matching workflow
+5. **PipelineGraph** (from src2) - Show mechanism fit pipeline
+
+**Workflow Visualization:**
+```
+1. Patient Pathway Analysis
+   ↓
+2. [Oracle] 7D Pathway Vector → [DDR, MAPK, PI3K, VEGF, HER2, IO, Efflux]
+   ↓
+3. [Command Center] Trial Database → Query matching trials
+   ↓
+4. [Command Center] Mechanism Fit → Cosine similarity with trial MoA vectors
+   ↓
+5. [Command Center] Combined Scoring → (0.7×eligibility) + (0.3×mechanism_fit)
+   ↓
+6. Output: Ranked trials with mechanism alignment scores
+```
+
+**Source Content:**
+- `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_MECHANISM_TRIAL_MATCHING.md`
+- Metrics: 7D pathway vector, mechanism fit scoring validated
+
+---
+
+## 🎨 INTERACTIVE COMPONENT INVENTORY
+
+### Available Components from src2 (46 components):
+
+#### Oracle Components (10):
+1. **VUSResolutionDemo** - Complete VUS resolution demo
+2. **DynamicOracleExplain** - Oracle thinking process
+3. **OracleExplainTrack** - SAE feature visualization
+4. **VariantDetailCard** - Variant classification results
+5. **VariantImpactLandscape** - Variant impact visualization
+6. **EssentialityChart** - Gene essentiality analysis
+7. **ProteinDeltaCard** - Protein functional impact
+8. **VEPMetrics** - Performance metrics by variant class
+9. **OracleScore** - Before/after VUS comparison
+10. **DemoFactory** - API simulation orchestration
+
+#### Command Center Components (8):
+1. **PipelineGraph** - Workflow visualization
+2. **ProcessStepper** - Step-by-step processes
+3. **ProvenancePanel** - Audit trail display
+4. **RunLogPanel** - Execution logs
+5. **CommandInterface** - Command interface
+6. **ClinicalWorkflow** - Clinical workflow visualization
+7. **EnhancedDossierSummary** - Complete dossier display
+8. **InSilicoValidation** - Validation pipeline
+
+#### Forge Components (6):
+1. **ForgeAssets** - Generated therapeutic assets
+2. **GuidedDesignPanel** - Design interface
+3. **DesignResultSummary** - Design results
+4. **SequencePeaksViewer** - Sequence visualization
+5. **QCBadges** - Quality control badges
+6. **ForgeDesignChallenges** - Design challenges
+
+#### Boltz Components (2):
+1. **BoltzConfidence** - Structural confidence scores
+2. **ProteinDeltaCard** - Structural impact analysis
+
+#### MOAT-Specific Components (5):
+1. **TherapyRankingCard** - S/P/E drug ranking (S/P/E Framework MOAT)
+2. **ClinicalTrialsMatcher** - Trial matching (Trial Matching MOAT)
+3. **BusinessTransformation** - Business impact (all MOATs)
+4. **KPIStrip** - Key metrics (all MOATs)
+5. **IndustryProblemShowcase** - Problem context (all MOATs)
+
+#### General Components (15):
+1. **DiscriminativeAIShowcase** - Oracle capabilities overview
+2. **VisualCapabilityGrid** - Multi-modal capabilities
+3. **DetailedAPIExplorer** - API documentation
+4. **CompactDiscriminativeShowcase** - Compact Oracle view
+5. **ExpandableDiscriminativeCards** - Expandable cards
+6. **InteractiveDemoShowcase** - Demo selector
+7. **FactoryDemoShowcase** - End-to-end demos
+8. **EnhancedComparison** - Before/after comparisons
+9. **DigitalSynapseBackground** - Background effects
+10. **AccessibilityTrack** - Accessibility features
+11. **APIEnhancedValueProp** - Value proposition
+12. **DossierSummary** - Dossier summary
+13. **CrisprEfficacyCard** - CRISPR guide efficacy
+14. **InteractiveAnalysisPipeline** - Analysis pipeline
+15. **DiscriminativeAICardShowcase** - Card-based showcase
+
+---
+
+## 🏗️ MOAT PAGE STRUCTURE WITH INTERACTIVE COMPONENTS
+
+### Page Layout (Reusing Co-Pilot Structure):
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  HERO SECTION                                           │
+│  - MOAT Title & Subtitle                                │
+│  - Validated Badge (VALIDATED/COMPLETE)                 │
+│  - Key Metric (e.g., "17/17 patients", "469 TCGA")      │
+└─────────────────────────────────────────────────────────┘
+                         ↓
+┌─────────────────────────────────────────────────────────┐
+│  PRODUCT INTEGRATION SECTION (NEW)                      │
+│  - Powered By badges (Oracle/Forge/Boltz/Command)       │
+│  - Workflow visualization (ProcessStepper)              │
+│  - API endpoints used                                   │
+│  - Link to product pages                                │
+└─────────────────────────────────────────────────────────┘
+                         ↓
+┌─────────────────────────────────────────────────────────┐
+│  TABBED CONTENT:                                        │
+│  ┌───────────┬───────────┬──────────────┐              │
+│  │ Battle    │ Live Demo │ Strategic    │              │
+│  │ Plan      │           │ Doctrine     │              │
+│  └───────────┴───────────┴──────────────┘              │
+│                                                          │
+│  BATTLE PLAN TAB:                                       │
+│  - InteractiveContentAnalysis (from co-pilots)          │
+│  - Key capabilities breakdown                           │
+│  - Technical approach                                   │
+│                                                          │
+│  LIVE DEMO TAB (NEW):                                   │
+│  - Interactive demo component (MOAT-specific)           │
+│  - DemoFactory integration                              │
+│  - Real API calls with results                          │
+│  - Workflow visualization                               │
+│                                                          │
+│  STRATEGIC DOCTRINE TAB:                                │
+│  - DesciStyleDoctrineInsights (from co-pilots)          │
+│  - Validation metrics                                   │
+│  - Business value                                       │
+└─────────────────────────────────────────────────────────┘
+                         ↓
+┌─────────────────────────────────────────────────────────┐
+│  INTER-LINKING SECTION                                  │
+│  - Other MOAT capabilities                              │
+│  - Related products                                     │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📋 DETAILED MOAT PAGE SPECIFICATIONS
+
+### MOAT 1: S/P/E Framework
+
+**Route:** `/moat/spe-framework`
+
+**Hero:**
+- Title: "S/P/E Framework: Pathway-Based Drug Ranking"
+- Subtitle: "100% Top-5 Drug Ranking Accuracy (17/17 patients validated)"
+- Badge: VALIDATED
+- Metric: "17/17 patients - Correct drug in top 5 every time"
+
+**Product Integration Section:**
+```
+Powered By: [Oracle Badge] [Command Center Badge]
+
+Workflow:
+1. Variant Input → [Oracle] /predict_variant_impact → Sequence Score
+2. Pathway Analysis → [Oracle] /predict_gene_essentiality → Pathway Burden
+3. Evidence Lookup → [Command Center] Evidence Services
+4. Fusion → [Command Center] S/P/E Fusion Engine
+5. Drug Ranking → Top 5 with mechanism alignment
+
+APIs Used:
+- Oracle: /predict_variant_impact, /predict_gene_essentiality
+- Command Center: S/P/E Fusion, Evidence Services
+
+[Explore Oracle →] [Explore Command Center →]
+```
+
+**Battle Plan Tab:**
+- Key capabilities breakdown
+- Technical approach (Sequence + Pathway + Evidence)
+- Scientific impact
+- Business value
+
+**Live Demo Tab:**
+- **TherapyRankingCard** - Show S/P/E drug ranking with real data
+- **VUSResolutionDemo** - Show variant input → drug output flow
+- **DynamicOracleExplain** - Show Oracle thinking for pathway analysis
+- **OracleExplainTrack** - Show SAE features explaining pathway disruption
+
+**Strategic Doctrine Tab:**
+- Validation metrics (17/17 patients)
+- Performance data (DDR 1.0, TP53 0.8)
+- Use cases (MBD4+TP53 example)
+- Honest framing (mechanism alignment ≠ outcome prediction)
+
+**Interactive Components:**
+1. TherapyRankingCard (primary demo)
+2. VUSResolutionDemo (variant analysis)
+3. DynamicOracleExplain (thinking process)
+4. OracleExplainTrack (SAE features)
+5. DemoFactory (API demonstrations)
+
+---
+
+### MOAT 2: Universal Platform
+
+**Route:** `/moat/universal-platform`
+
+**Hero:**
+- Title: "Universal Platform: Works for ANY Cancer Type"
+- Subtitle: "One API call → Complete care plan for 50+ diseases"
+- Badge: COMPLETE
+- Metric: "50+ diseases, Multi-disease SOC"
+
+**Product Integration Section:**
+```
+Powered By: [Command Center Badge] [Oracle Badge]
+
+Workflow:
+1. Patient Profile (any cancer type) → [Command Center] Profile Adapter
+2. Disease Routing → [Command Center] Universal Orchestrator
+3. Biomarker Intelligence → [Oracle] Universal biomarker analysis
+4. Complete Care Plan → Drugs + Trials + Food + Monitoring
+
+APIs Used:
+- Command Center: /api/complete_care/universal
+- Oracle: Universal biomarker intelligence
+
+[Explore Command Center →] [Explore Oracle →]
+```
+
+**Battle Plan Tab:**
+- Multi-disease SOC support
+- Profile adapter capabilities
+- Universal biomarker intelligence
+
+**Live Demo Tab:**
+- **ClinicalWorkflow** - Show universal workflow for different cancer types
+- **PipelineGraph** - Show orchestration flow
+- **EnhancedDossierSummary** - Show complete care plan output
+- **ProcessStepper** - Show multi-disease routing steps
+
+**Strategic Doctrine Tab:**
+- Universalization strategy
+- Multi-disease configuration
+- Business value (one platform for all cancers)
+
+**Interactive Components:**
+1. ClinicalWorkflow (primary demo)
+2. PipelineGraph (orchestration)
+3. EnhancedDossierSummary (output)
+4. ProcessStepper (workflow steps)
+
+---
+
+### MOAT 3: Toxicity-Aware Nutrition
+
+**Route:** `/moat/toxicity-nutrition`
+
+**Hero:**
+- Title: "Toxicity-Aware Nutrition: First-in-Class Patient MOAT"
+- Subtitle: "Connects toxicity pathways to protective foods with personalized timing"
+- Badge: COMPLETE
+- Metric: "3 pathway categories, Drug→Pathway→Food connections"
+
+**Product Integration Section:**
+```
+Powered By: [Oracle Badge] [Command Center Badge]
+
+Workflow:
+1. Drug Input (e.g., Carboplatin) → [Oracle] Pathway Analysis
+2. Toxicity Pathway Detection → DNA repair stress
+3. [Oracle] PGx Analysis → DPYD/TPMT/UGT1A1 variants
+4. [Command Center] Pathway→Food Mapping → NAC (supports DNA repair)
+5. [Command Center] Timing Logic → "Take post-chemo, not during"
+
+APIs Used:
+- Oracle: /predict_variant_impact (PGx), Pathway analysis
+- Command Center: Food validation, Timing logic
+
+[Explore Oracle →] [Explore Command Center →]
+```
+
+**Battle Plan Tab:**
+- Drug→Pathway→Food connections
+- Personalized timing logic
+- 3 pathway categories (DNA Repair, Inflammation, Cardiometabolic)
+
+**Live Demo Tab:**
+- **VariantDetailCard** - Show PGx variants (DPYD, TPMT, UGT1A1, CYP2D6)
+- **EssentialityChart** - Show pathway analysis (DNA repair stress)
+- **ProcessStepper** - Show Drug→Pathway→Food flow
+- **EnhancedDossierSummary** - Show nutrition recommendations with timing
+
+**Strategic Doctrine Tab:**
+- First-in-class capability
+- Validation results
+- Patient impact (answers "What should I eat?")
+
+**Interactive Components:**
+1. VariantDetailCard (PGx variants)
+2. EssentialityChart (pathway analysis)
+3. ProcessStepper (workflow)
+4. EnhancedDossierSummary (recommendations)
+
+---
+
+### MOAT 4: Resistance Prediction
+
+**Route:** `/moat/resistance-prediction`
+
+**Hero:**
+- Title: "Resistance Prediction: Predict Before It Happens"
+- Subtitle: "MAPK/NF1 mutations = 2x platinum resistance risk (validated)"
+- Badge: VALIDATED
+- Metric: "469 TCGA patients, RR = 1.97-2.10, p < 0.05"
+
+**Product Integration Section:**
+```
+Powered By: [Oracle Badge] [Command Center Badge]
+
+Workflow:
+1. Mutation Profile → [Oracle] /predict_gene_essentiality
+2. MAPK Pathway Detection → KRAS/NRAS/BRAF/NF1
+3. [Command Center] Risk Calculation → RR = 1.97 (2x risk)
+4. [Command Center] Treatment Modification → Early PARP switch
+
+APIs Used:
+- Oracle: /predict_gene_essentiality (MAPK pathway)
+- Command Center: Risk calculation, Treatment recommendations
+
+[Explore Oracle →] [Explore Command Center →]
+```
+
+**Battle Plan Tab:**
+- MAPK/NF1 resistance prediction
+- Validation methodology (469 TCGA patients)
+- Treatment modification strategies
+
+**Live Demo Tab:**
+- **EssentialityChart** - Show MAPK pathway analysis
+- **VariantImpactLandscape** - Show mutation impact on resistance
+- **TherapyRankingCard** - Show alternative drug recommendations
+- **ProcessStepper** - Show resistance prediction → action plan flow
+
+**Strategic Doctrine Tab:**
+- Validation results (469 TCGA patients)
+- Statistical significance (p < 0.05)
+- Clinical actionability
+- Business value (predict before it happens)
+
+**Interactive Components:**
+1. EssentialityChart (MAPK pathway)
+2. VariantImpactLandscape (mutation impact)
+3. TherapyRankingCard (alternatives)
+4. ProcessStepper (prediction flow)
+
+---
+
+### MOAT 5: Clinical Dossier
+
+**Route:** `/moat/clinical-dossier`
+
+**Hero:**
+- Title: "Clinical Dossier: Exportable for Tumor Boards"
+- Subtitle: "Complete mechanism rationale with variant cards and drug recommendations"
+- Badge: SPRINT 2 COMPLETE
+- Metric: "Exportable dossiers, Variant cards, Audit trails"
+
+**Product Integration Section:**
+```
+Powered By: [Command Center Badge] [Oracle Badge]
+
+Workflow:
+1. Patient Profile → [Oracle] Variant Analysis
+2. [Oracle] SAE Features → Explainability
+3. [Command Center] Drug Aggregation → Top 5 recommendations
+4. [Command Center] Dossier Generation → Format cards
+5. [Command Center] Export → PDF/tumor board format
+
+APIs Used:
+- Oracle: /predict_variant_impact, SAE Features
+- Command Center: Dossier generation, Export
+
+[Explore Command Center →] [Explore Oracle →]
+```
+
+**Battle Plan Tab:**
+- Variant impact cards
+- Drug recommendations with alignment scores
+- Export functionality
+- Tumor board readiness
+
+**Live Demo Tab:**
+- **EnhancedDossierSummary** - Show complete dossier
+- **VariantDetailCard** - Show variant cards with classification
+- **TherapyRankingCard** - Show drug recommendations
+- **OracleExplainTrack** - Show SAE explainability
+- **ProvenancePanel** - Show audit trail
+
+**Strategic Doctrine Tab:**
+- Sprint 2 completion status
+- Feature set (variant cards, drug recommendations)
+- Export capabilities
+- Business value (tumor board ready)
+
+**Interactive Components:**
+1. EnhancedDossierSummary (primary demo)
+2. VariantDetailCard (variant cards)
+3. TherapyRankingCard (drug recommendations)
+4. OracleExplainTrack (SAE explainability)
+5. ProvenancePanel (audit trail)
+
+---
+
+### MOAT 6: Mechanism-Based Trial Matching
+
+**Route:** `/moat/trial-matching`
+
+**Hero:**
+- Title: "Mechanism-Based Trial Matching: Pathway Burden → Trial Alignment"
+- Subtitle: "Not keyword search - actual mechanism alignment with 7D pathway vector"
+- Badge: COMPLETE
+- Metric: "7D pathway vector, Mechanism fit scoring validated"
+
+**Product Integration Section:**
+```
+Powered By: [Command Center Badge] [Oracle Badge]
+
+Workflow:
+1. Patient Pathway Analysis → [Oracle] 7D Pathway Vector
+2. Trial Database Query → [Command Center] Trial search
+3. Mechanism Fit Calculation → [Command Center] Cosine similarity
+4. Combined Scoring → (0.7×eligibility) + (0.3×mechanism_fit)
+5. Ranked Trials → Mechanism alignment scores
+
+APIs Used:
+- Oracle: /predict_gene_essentiality (7D pathway vector)
+- Command Center: /api/trials/advanced-query, Mechanism fit ranker
+
+[Explore Command Center →] [Explore Oracle →]
+```
+
+**Battle Plan Tab:**
+- 7D pathway vector (DDR, MAPK, PI3K, VEGF, HER2, IO, Efflux)
+- Mechanism fit ranking
+- Combined scoring formula
+- Universal dossier generation
+
+**Live Demo Tab:**
+- **ClinicalTrialsMatcher** - Show trial matching interface
+- **EssentialityChart** - Show 7D pathway vector visualization
+- **TherapyRankingCard** - Show ranked trials with mechanism fit scores
+- **ProcessStepper** - Show matching workflow
+- **PipelineGraph** - Show mechanism fit pipeline
+
+**Strategic Doctrine Tab:**
+- Mechanism-based vs keyword matching
+- Validation results
+- Business value (find trials that target YOUR vulnerabilities)
+
+**Interactive Components:**
+1. ClinicalTrialsMatcher (primary demo)
+2. EssentialityChart (pathway vector)
+3. TherapyRankingCard (ranked trials)
+4. ProcessStepper (workflow)
+5. PipelineGraph (pipeline)
+
+---
+
+## 🎬 DEMO FACTORY INTEGRATION
+
+### DemoFactory Component (from src2):
+
+**Purpose:** Interactive API simulation orchestration
+
+**Available Demos:**
+1. `/predict_variant_impact` - Variant analysis
+2. `/predict_gene_essentiality` - Gene essentiality
+3. `/predict_protein_functionality_change` - Protein impact
+4. `/predict_chromatin_accessibility` - Chromatin analysis
+5. `/predict_crispr_spacer_efficacy` - CRISPR guide design
+
+**Integration Strategy:**
+
+**For Each MOAT Page:**
+- Add "Live Demo" tab (new tab in tabbed content)
+- Use DemoFactory to show relevant API calls
+- Show step-by-step API execution with results
+- Link to EnhancedDossierSummary for complete outputs
+
+**Example: S/P/E Framework MOAT Demo:**
+```
+Live Demo Tab:
+├── DemoFactory
+│   ├── API 1: /predict_variant_impact
+│   │   └── Input: BRCA1 variant
+│   │   └── Output: Sequence Score (S)
+│   │
+│   ├── API 2: /predict_gene_essentiality
+│   │   └── Input: Pathway genes
+│   │   └── Output: Pathway Burden (P)
+│   │
+│   └── API 3: Evidence Services
+│       └── Input: Variant
+│       └── Output: Evidence Score (E)
+│
+└── TherapyRankingCard
+    └── Final Output: Top 5 drugs with S/P/E scores
+```
+
+---
+
+## 📊 DATA STRUCTURE ENHANCEMENT
+
+### Enhanced MOATDetailContent Interface:
+
+```typescript
+interface MOATDetailContent {
+  slug: string;
+  pageTitle: string;
+  heroSubtitle: string;
+  vision: string;
+  
+  // MOAT-Specific Fields
+  moatType: 'validated' | 'complete' | 'in-progress';
+  validatedMetric: string;
+  validatedDate?: string;
+  
+  // Product Integration (NEW - DETAILED)
+  productIntegration: {
+    engines: {
+      oracle?: {
+        apis: string[];
+        capabilities: string[];
+        components: string[];  // Which src2 components to show
+      };
+      forge?: {
+        apis: string[];
+        capabilities: string[];
+        components: string[];
+      };
+      boltz?: {
+        apis: string[];
+        capabilities: string[];
+        components: string[];
+      };
+      commandCenter?: {
+        services: string[];
+        capabilities: string[];
+        components: string[];
+      };
+    };
+    workflow: Array<{
+      step: number;
+      title: string;
+      engine: "oracle" | "forge" | "boltz" | "commandCenter";
+      api?: string;
+      component?: string;  // Which component shows this step
+      description: string;
+    }>;
+  };
+  
+  // Interactive Demos (NEW)
+  interactiveDemos: {
+    primary: {
+      component: string;  // e.g., "TherapyRankingCard"
+      title: string;
+      description: string;
+      dataSource: string;  // Which data file to use
+    };
+    secondary: Array<{
+      component: string;
+      title: string;
+      description: string;
+      dataSource: string;
+    }>;
+    demoFactory: {
+      apis: string[];  // Which APIs to demonstrate
+      workflow: string;  // Workflow description
+    };
+  };
+  
+  // Core Content (same as co-pilots)
+  valueProps: ValuePropositionSection[];
+  kpis: KPI[];
+  observedOutcomes: ObservedOutcome[];
+  keyCapabilities: KeyCapability[];
+  
+  // Source Material
+  sourceFiles: string[];
+}
+```
+
+---
+
+## 🚀 UPDATED IMPLEMENTATION PLAN
+
+### Phase 1: Enhanced Data Structure (3 hours)
+
+**1.1 Create Enhanced MOAT Types**
+- File: `src/types/moat-types.ts`
+- Add productIntegration with detailed engine mappings
+- Add interactiveDemos section
+- Add component references
+
+**1.2 Map Products to MOATs**
+- Create product-MOAT mapping document
+- Identify which APIs each MOAT uses
+- Identify which components showcase each capability
+
+**1.3 Create MOAT Data Files**
+- Create `src/data/moats/` directory
+- Create 6 MOAT data files with product integration details
+- Extract content from MOAT doctrine files
+- Add component references to src2 components
+
+### Phase 2: Enhanced Page Structure (3 hours)
+
+**2.1 Create MOAT Page Template**
+- File: `src/app/moat/[moatSlug]/page.tsx`
+- Add Product Integration Section (new)
+- Add Live Demo Tab (new)
+- Keep Battle Plan and Strategic Doctrine tabs
+
+**2.2 Create Product Integration Component**
+- File: `src/components/moat/ProductIntegrationSection.tsx`
+- Shows Powered By badges
+- Shows workflow visualization (ProcessStepper)
+- Shows API endpoints used
+- Links to product pages
+
+**2.3 Create Live Demo Tab Component**
+- File: `src/components/moat/LiveDemoTab.tsx`
+- Integrates DemoFactory
+- Shows primary interactive component
+- Shows secondary components
+- Shows workflow visualization
+
+### Phase 3: Component Integration (4 hours)
+
+**3.1 Import src2 Components**
+- Import all needed components from src2
+- Adapt for Next.js (useAccessibilityFallback hook)
+- Create wrapper components if needed
+
+**3.2 Create Demo Data Files**
+- Create MOAT-specific demo data
+- Map to src2 component props
+- Ensure real validation metrics
+
+**3.3 Integrate DemoFactory**
+- Add DemoFactory to each MOAT page
+- Configure API demos per MOAT
+- Link to EnhancedDossierSummary outputs
+
+### Phase 4: Content Population (4 hours)
+
+**4.1 Populate Each MOAT Data File**
+- Extract content from MOAT doctrine files
+- Add product integration details
+- Add interactive demo configurations
+- Add component references
+
+**4.2 Create Demo Configurations**
+- Configure DemoFactory for each MOAT
+- Set up workflow visualizations
+- Link components to data sources
+
+### Phase 5: Navigation Updates (1 hour)
+
+**5.1 Update MOATShowcase Links**
+- Change links to `/moat/[slug]` routes
+- Test all links work
+
+**5.2 Add MOAT Navigation**
+- Add MOAT section to navigation (optional)
+- Update breadcrumbs
+
+---
+
+## ✅ SUCCESS CRITERIA
+
+### Before (Current State):
+- ❌ MOATs link to 404s or legacy pages
+- ❌ No product integration shown
+- ❌ No interactive demonstrations
+- ❌ Can't see how Oracle/Forge/Boltz/Command Center power MOATs
+
+### After (Target State):
+- ✅ Each MOAT has dedicated page at `/moat/[slug]`
+- ✅ Product Integration Section shows which engines power each MOAT
+- ✅ Workflow visualization shows how products work together
+- ✅ Live Demo Tab with interactive components
+- ✅ DemoFactory shows real API calls
+- ✅ Components from src2 showcase capabilities
+- ✅ Clear understanding: MOATs = applications of our products
+
+---
+
+## 📝 KEY INSIGHTS
+
+1. **MOATs are NOT separate products** - They're applications of Oracle/Forge/Boltz/Command Center
+2. **Product integration is CRITICAL** - Show which engines power each MOAT
+3. **Interactive demos are ESSENTIAL** - Use src2 components to showcase capabilities
+4. **DemoFactory connects everything** - Shows how APIs power MOATs
+5. **Workflow visualization shows the big picture** - How products work together
+
+---
+
+**CRITICAL INSIGHT:** MOATs demonstrate HOW our products solve real problems. Each MOAT page should show: (1) Which products power it, (2) How they work together, (3) Interactive demonstrations, (4) Validated performance metrics.

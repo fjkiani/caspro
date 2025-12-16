@@ -1,0 +1,612 @@
+# 🏠 HOMEPAGE TRANSFORMATION PROPOSAL
+## Products First, Engines Second - Complete Implementation Plan
+
+**Created:** 2024-12-19  
+**Status:** 🚀 READY FOR IMPLEMENTATION  
+**Priority:** HIGH - Critical business alignment
+
+---
+
+## 📊 CURRENT HOMEPAGE STRUCTURE
+
+### **Current Homepage (`src/app/page.tsx`):**
+
+```typescript
+1. HeroSection
+   └─→ Current: "$2.6B gamble" messaging
+   └─→ Status: ⚠️ NEEDS UPDATE
+
+2. TrustedBy
+   └─→ Partner logos
+   └─→ Status: ✅ KEEP AS-IS
+
+3. MetricsShowcase
+   └─→ Shows metrics without product attribution
+   └─→ Status: ⚠️ NEEDS PRODUCT ATTRIBUTION
+
+4. DrugDevelopmentPlatform ❌ REMOVE
+   └─→ Shows 4 engines (Oracle, Forge, Boltz, Command Center)
+   └─→ Status: ❌ TOO ENGINE-FOCUSED - REMOVE
+
+5. PlatformCapabilitiesShowcase
+   └─→ Already organized by use case (Drug Discovery, Clinical Oncology, Research)
+   └─→ Status: ⚠️ RE-TAG TO THREE PRODUCTS
+
+6. InteractiveDemoSection
+   └─→ Shows demos without product labels
+   └─→ Status: ⚠️ ORGANIZE BY PRODUCT
+
+7. ROICalculatorSection
+   └─→ Business impact calculator
+   └─→ Status: ✅ KEEP AS-IS
+
+8. CTASection
+   └─→ Final conversion
+   └─→ Status: ✅ KEEP AS-IS
+```
+
+---
+
+## 🎯 PROPOSED NEW HOMEPAGE STRUCTURE
+
+### **New Homepage Flow:**
+
+```typescript
+1. HeroSection ⚠️ UPDATE
+   └─→ NEW: "The Operating System for Precision Medicine"
+   └─→ NEW: "Solve the VUS. Design the Cure. Validate in Silico."
+   └─→ NEW: Use case-specific CTAs
+
+2. ProductsByUseCase ⚠️ NEW COMPONENT
+   └─→ "Three Doors" product selection
+   └─→ CrisPRO Oncology / R&D / Research
+   └─→ Clear value propositions
+
+3. TrustedBy ✅ KEEP
+   └─→ Partner logos (no changes)
+
+4. MetricsShowcase ⚠️ UPDATE
+   └─→ Attribute metrics to PRODUCTS, not engines
+   └─→ "CrisPRO Oncology: 95.7% VUS Resolution"
+
+5. PlatformCapabilitiesShowcase ⚠️ UPDATE
+   └─→ Re-tag to three products
+   └─→ "CrisPRO Oncology Capabilities" tab
+
+6. Engine Room ⚠️ NEW COMPONENT
+   └─→ Technical validation section
+   └─→ Show engines (Oracle, Forge, Boltz, Command Center) second
+
+7. InteractiveDemoSection ⚠️ UPDATE
+   └─→ Organize demos by product
+   └─→ "Try CrisPRO Oncology" / "Try CrisPRO R&D"
+
+8. ROICalculatorSection ✅ KEEP
+   └─→ Business impact (no changes)
+
+9. CTASection ✅ KEEP
+   └─→ Final conversion (no changes)
+```
+
+---
+
+## 📝 DETAILED CHANGES REQUIRED
+
+### **1. HeroSection (`src/components/sections/HeroSection.tsx`)**
+
+#### **Current State:**
+- Headline: Generic drug development messaging
+- CTAs: Generic "Schedule Demo"
+
+#### **Proposed Changes:**
+
+**NEW Headline:**
+```
+"The Operating System for Precision Medicine"
+```
+
+**NEW Subheadline:**
+```
+"Solve the VUS. Design the Cure. Validate in Silico."
+```
+
+**NEW CTAs (Use Case-Specific):**
+```
+Primary: "I am treating a patient" → Links to CrisPRO Oncology
+Secondary: "I am designing a drug" → Links to CrisPRO R&D
+Tertiary: "I am conducting research" → Links to CrisPRO Research
+```
+
+**Status:** ⚠️ UPDATE REQUIRED
+
+---
+
+### **2. ProductsByUseCase (`src/components/landing/ProductsByUseCase.tsx`)** ⚠️ NEW
+
+#### **Component to Create:**
+
+**Structure:**
+```typescript
+interface ProductCard {
+  id: 'oncology' | 'r-d' | 'research';
+  title: string;
+  promise: string;
+  targetUser: string;
+  coreCapabilities: string[];
+  ctaText: string;
+  ctaLink: string;
+  icon: string;
+  color: string;
+}
+```
+
+**Visual Design:**
+```
+┌─────────────────────────────────────────────────────────────┐
+│ Choose Your Path:                                          │
+│                                                             │
+│ ┌──────────────────┬──────────────────┬──────────────────┐ │
+│ │ CrisPRO Oncology │ CrisPRO R&D      │ CrisPRO Research │ │
+│ │                  │                  │                  │ │
+│ │ "I am treating   │ "I am designing  │ "I am conducting │ │
+│ │  a patient"      │  a drug"         │  research"       │ │
+│ │                  │                  │                  │ │
+│ │ 🏥 For Clinicians│ 🔬 For Biotech   │ 🧪 For Academics │ │
+│ │                  │                  │                  │ │
+│ │ • VUS Resolution │ • Target Discovery│ • Hypothesis Test│ │
+│ │ • Trial Matching │ • Drug Design    │ • Cohort Analysis│ │
+│ │ • Care Plans     │ • In Silico Val  │ • Literature     │ │
+│ │                  │                  │                  │ │
+│ │ [Explore →]      │ [Explore →]      │ [Explore →]      │ │
+│ └──────────────────┴──────────────────┴──────────────────┘ │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Placement:** After HeroSection, before TrustedBy
+
+**Status:** ⚠️ CREATE NEW COMPONENT
+
+---
+
+### **3. TrustedBy (`src/components/shared/TrustedBy.tsx`)**
+
+**Status:** ✅ NO CHANGES - Keep as-is
+
+---
+
+### **4. MetricsShowcase (`src/components/landing/MetricsShowcase.tsx`)**
+
+#### **Current State:**
+- Shows metrics without product attribution
+- Example: "95.7% ClinVar AUROC" (no product mentioned)
+
+#### **Proposed Changes:**
+
+**Add Product Attribution:**
+```typescript
+// Before:
+{ label: "95.7%", description: "ClinVar AUROC" }
+
+// After:
+{ 
+  label: "95.7%", 
+  description: "VUS Resolution Accuracy",
+  product: "CrisPRO Oncology",  // NEW
+  link: "/products/oncology"     // NEW
+}
+```
+
+**Status:** ⚠️ UPDATE REQUIRED - Add product badges/attribution
+
+---
+
+### **5. PlatformCapabilitiesShowcase (`src/components/landing/PlatformCapabilitiesShowcase.tsx`)**
+
+#### **Current State:**
+- Already organized by use case tabs:
+  - "Drug Discovery"
+  - "Clinical Oncology"
+  - "Research Acceleration"
+
+#### **Proposed Changes:**
+
+**Re-tag Tabs to Product Names:**
+```typescript
+// Before:
+tabs = ["Drug Discovery", "Clinical Oncology", "Research Acceleration"]
+
+// After:
+tabs = ["CrisPRO Oncology", "CrisPRO R&D", "CrisPRO Research"]
+```
+
+**Map Capabilities to Products:**
+
+**CrisPRO Oncology:**
+- VUS Resolution
+- Clinical Trial Matching
+- S/P/E Framework
+- Toxicity-Aware Nutrition
+- Resistance Prediction
+- Clinical Dossier
+
+**CrisPRO R&D:**
+- Target Discovery
+- Lead Engineering
+- Pre-Clinical Confirmation
+- In Silico Validation
+
+**CrisPRO Research:**
+- VUS Explorer
+- Universal Hypothesis Testing
+- Cohort Intelligence
+- Evidence Synthesis
+
+**Status:** ⚠️ UPDATE REQUIRED - Re-tag capabilities to products
+
+---
+
+### **6. Engine Room (`src/components/landing/EngineRoom.tsx`)** ⚠️ NEW
+
+#### **Component to Create:**
+
+**Purpose:** Show engines as technical validation (not primary sell)
+
+**Structure:**
+```typescript
+interface EngineCard {
+  id: 'oracle' | 'forge' | 'boltz' | 'command-center';
+  name: string;
+  tagline: string;
+  metric: string;
+  description: string;
+  link: string;
+}
+```
+
+**Visual Design:**
+```
+┌─────────────────────────────────────────────────────────────┐
+│ Powered by the World's First Biological Foundation Models  │
+│                                                             │
+│ ┌──────────┬──────────┬──────────┬──────────────┐         │
+│ │ Oracle   │ Forge    │ Boltz    │ Command      │         │
+│ │          │          │          │ Center       │         │
+│ │ Accuracy │ Creativity│ Physics  │ Orchestration│         │
+│ │          │          │          │              │         │
+│ │ 95.7%    │ 70%      │ 95.8%    │ Complete     │         │
+│ │ AUROC    │ Functional│ Confidence│ Workflows    │         │
+│ │          │          │          │              │         │
+│ │ [Learn]  │ [Learn]  │ [Learn]  │ [Learn]      │         │
+│ └──────────┴──────────┴──────────┴──────────────┘         │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Placement:** After PlatformCapabilitiesShowcase, before InteractiveDemoSection
+
+**Status:** ⚠️ CREATE NEW COMPONENT
+
+---
+
+### **7. InteractiveDemoSection (`src/components/landing/InteractiveDemoSection.tsx`)**
+
+#### **Current State:**
+- Shows demos without product labels
+- Generic demo titles
+
+#### **Proposed Changes:**
+
+**Organize by Product:**
+```typescript
+// Before:
+<DemoCard title="Variant Impact Prediction" ... />
+
+// After:
+<ProductDemoSection product="CrisPRO Oncology">
+  <DemoCard title="VUS Resolution Demo" ... />
+  <DemoCard title="Trial Matching Demo" ... />
+</ProductDemoSection>
+
+<ProductDemoSection product="CrisPRO R&D">
+  <DemoCard title="Target Discovery Demo" ... />
+  <DemoCard title="Drug Design Demo" ... />
+</ProductDemoSection>
+```
+
+**Status:** ⚠️ UPDATE REQUIRED - Organize by product
+
+---
+
+### **8. ROICalculatorSection (`src/components/landing/ROICalculatorSection.tsx`)**
+
+**Status:** ✅ NO CHANGES - Keep as-is
+
+---
+
+### **9. CTASection (`src/components/shared/CTASection.tsx`)**
+
+**Status:** ✅ NO CHANGES - Keep as-is (maybe update copy to reflect products)
+
+---
+
+## 🗂️ FILES TO CREATE/MODIFY
+
+### **NEW Files to Create:**
+
+1. **`src/components/landing/ProductsByUseCase.tsx`** ⚠️ NEW
+   - Three product cards (Oncology, R&D, Research)
+   - Responsive design
+   - Product selection interface
+
+2. **`src/components/landing/EngineRoom.tsx`** ⚠️ NEW
+   - Four engine cards (Oracle, Forge, Boltz, Command Center)
+   - Technical validation messaging
+   - Links to engine documentation
+
+3. **`src/data/productsByUseCaseData.ts`** ⚠️ NEW
+   - Product definitions
+   - Capabilities per product
+   - Value propositions
+
+---
+
+### **Files to Modify:**
+
+1. **`src/app/page.tsx`** ⚠️ MODIFY
+   - Remove: `DrugDevelopmentPlatform` import and component
+   - Add: `ProductsByUseCase` import and component
+   - Add: `EngineRoom` import and component
+   - Reorder: New structure as defined above
+
+2. **`src/components/sections/HeroSection.tsx`** ⚠️ MODIFY
+   - Update headline
+   - Update subheadline
+   - Update CTAs (use case-specific)
+
+3. **`src/components/landing/MetricsShowcase.tsx`** ⚠️ MODIFY
+   - Add product attribution to metrics
+   - Add product badges
+   - Add links to product pages
+
+4. **`src/components/landing/PlatformCapabilitiesShowcase.tsx`** ⚠️ MODIFY
+   - Re-tag tabs to product names
+   - Map capabilities to products
+   - Update tab labels
+
+5. **`src/components/landing/InteractiveDemoSection.tsx`** ⚠️ MODIFY
+   - Organize demos by product
+   - Add product labels
+   - Group demos by product
+
+---
+
+## 📋 STEP-BY-STEP IMPLEMENTATION
+
+### **Step 1: Create ProductsByUseCase Component** (Priority: HIGH)
+
+**File:** `src/components/landing/ProductsByUseCase.tsx`
+
+**Requirements:**
+- Three product cards side-by-side (responsive)
+- Clear value propositions per product
+- Core capabilities list
+- CTA buttons
+- Product icons/colors
+
+**Data Structure:**
+```typescript
+const products = [
+  {
+    id: 'oncology',
+    title: 'CrisPRO Oncology',
+    promise: 'From VUS to Validated Care Plan in Minutes',
+    targetUser: 'For Clinicians',
+    capabilities: [
+      'VUS Resolution',
+      'Trial Matching',
+      'Care Plans',
+      'Resistance Prediction'
+    ],
+    ctaText: 'Explore Oncology',
+    ctaLink: '/products/oncology',
+    icon: '🏥',
+    color: 'blue'
+  },
+  // ... R&D and Research
+];
+```
+
+---
+
+### **Step 2: Update HeroSection** (Priority: HIGH)
+
+**File:** `src/components/sections/HeroSection.tsx`
+
+**Changes:**
+```typescript
+// Update headline
+const headline = "The Operating System for Precision Medicine";
+
+// Update subheadline
+const subheadline = "Solve the VUS. Design the Cure. Validate in Silico.";
+
+// Update CTAs
+const ctas = [
+  { text: "I am treating a patient", link: "/products/oncology" },
+  { text: "I am designing a drug", link: "/products/r-d" },
+  { text: "I am conducting research", link: "/products/research" }
+];
+```
+
+---
+
+### **Step 3: Create Engine Room Component** (Priority: MEDIUM)
+
+**File:** `src/components/landing/EngineRoom.tsx`
+
+**Requirements:**
+- Four engine cards
+- Technical validation messaging
+- Metrics per engine
+- Links to technical docs
+
+---
+
+### **Step 4: Update Homepage Structure** (Priority: HIGH)
+
+**File:** `src/app/page.tsx`
+
+**Changes:**
+```typescript
+// REMOVE:
+import DrugDevelopmentPlatform from '@/components/homepage/DrugDevelopmentPlatform';
+<DrugDevelopmentPlatform />
+
+// ADD:
+import ProductsByUseCase from '@/components/landing/ProductsByUseCase';
+import EngineRoom from '@/components/landing/EngineRoom';
+
+// NEW ORDER:
+<HeroSection />
+<ProductsByUseCase />  // NEW - after Hero
+<TrustedBy />
+<MetricsShowcase />
+<PlatformCapabilitiesShowcase />
+<EngineRoom />  // NEW - after PlatformCapabilities
+<InteractiveDemoSection />
+<ROICalculatorSection />
+<CTASection />
+```
+
+---
+
+### **Step 5: Update MetricsShowcase** (Priority: MEDIUM)
+
+**File:** `src/components/landing/MetricsShowcase.tsx`
+
+**Add product attribution:**
+- Product badges on each metric card
+- Links to product pages
+- Product labels
+
+---
+
+### **Step 6: Update PlatformCapabilitiesShowcase** (Priority: MEDIUM)
+
+**File:** `src/components/landing/PlatformCapabilitiesShowcase.tsx`
+
+**Re-tag capabilities:**
+- Update tab names to product names
+- Map capabilities to products
+- Update capability descriptions
+
+---
+
+### **Step 7: Update InteractiveDemoSection** (Priority: LOW)
+
+**File:** `src/components/landing/InteractiveDemoSection.tsx`
+
+**Organize by product:**
+- Group demos by product
+- Add product labels
+- Update demo descriptions
+
+---
+
+## ✅ IMPLEMENTATION CHECKLIST
+
+### **Phase 1: Core Structure (Week 1)**
+
+- [ ] **Task 1.1:** Create ProductsByUseCase component
+- [ ] **Task 1.2:** Update HeroSection (headline, subheadline, CTAs)
+- [ ] **Task 1.3:** Update homepage structure (remove DrugDevelopmentPlatform, add ProductsByUseCase)
+
+### **Phase 2: Content Reorganization (Week 2)**
+
+- [ ] **Task 2.1:** Create EngineRoom component
+- [ ] **Task 2.2:** Update PlatformCapabilitiesShowcase (re-tag to products)
+- [ ] **Task 2.3:** Update MetricsShowcase (product attribution)
+
+### **Phase 3: Polish & Attribution (Week 3)**
+
+- [ ] **Task 3.1:** Update InteractiveDemoSection (organize by product)
+- [ ] **Task 3.2:** Update CTASection copy (reflect products)
+- [ ] **Task 3.3:** Final testing and refinement
+
+---
+
+## 🎯 SUCCESS CRITERIA
+
+### **Before Implementation:**
+- ❌ Engines shown first (Oracle, Forge, Boltz)
+- ❌ No clear product selection
+- ❌ Generic "Platform" messaging
+- ❌ Visitors confused about which product to use
+
+### **After Implementation:**
+- ✅ Products shown first (Oncology, R&D, Research)
+- ✅ Clear "Three Doors" product selection
+- ✅ Customer-solution focused messaging
+- ✅ Visitors can self-select their use case
+- ✅ Engines shown as technical validation (second)
+
+---
+
+## 📊 VISUAL COMPARISON
+
+### **BEFORE (Current Homepage):**
+
+```
+HeroSection ($2.6B gamble)
+  ↓
+TrustedBy
+  ↓
+MetricsShowcase (no product attribution)
+  ↓
+DrugDevelopmentPlatform ❌ (engines first)
+  ↓
+PlatformCapabilitiesShowcase (use case tabs)
+  ↓
+InteractiveDemoSection (generic demos)
+  ↓
+ROICalculatorSection
+  ↓
+CTASection
+```
+
+### **AFTER (Proposed Homepage):**
+
+```
+HeroSection ("Operating System for Precision Medicine") ✅
+  ↓
+ProductsByUseCase ⚠️ NEW ("Three Doors" selection)
+  ↓
+TrustedBy ✅
+  ↓
+MetricsShowcase (with product attribution) ✅
+  ↓
+PlatformCapabilitiesShowcase (product tabs) ✅
+  ↓
+EngineRoom ⚠️ NEW (technical validation, engines second)
+  ↓
+InteractiveDemoSection (organized by product) ✅
+  ↓
+ROICalculatorSection ✅
+  ↓
+CTASection ✅
+```
+
+---
+
+## 🚀 READY TO START
+
+**Next Action:** Begin with **Step 1** - Create ProductsByUseCase component
+
+**Estimated Time:** 
+- Step 1-3: 2-3 hours (Core structure)
+- Step 4-7: 3-4 hours (Updates and polish)
+
+**Total:** ~5-7 hours for complete homepage transformation
+
+---
+
+**STATUS:** ✅ **PROPOSAL COMPLETE** - Ready for implementation approval and execution

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Calculator, 
   TrendingUp, 
@@ -66,8 +66,8 @@ interface BiotechROI {
 }
 
 const BiotechROICalculator: React.FC = () => {
-  // Mode toggle
-  const [mode, setMode] = useState<'auto' | 'custom'>('auto');
+  // Mode toggle - start with no mode selected (content hidden)
+  const [mode, setMode] = useState<'auto' | 'custom' | null>(null);
   
   // Industry standard inputs
   const industryStandards = {
@@ -95,7 +95,7 @@ const BiotechROICalculator: React.FC = () => {
     programsDeRisked: 0
   });
 
-  const [isCalculating, setIsCalculating] = useState(true);
+  const [isCalculating, setIsCalculating] = useState(false);
   const [simulationStep, setSimulationStep] = useState(0);
 
   // Calculate ROI based on current inputs (auto or custom)
@@ -197,20 +197,7 @@ const BiotechROICalculator: React.FC = () => {
       viewport={{ once: true }}
       className="bg-white rounded-2xl p-4 sm:p-8 shadow-2xl border border-slate-200"
     >
-      {/* Header */}
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">
-          <Calculator className="w-4 h-4" />
-          Biotech ROI Calculator
-        </div>
-        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
-          Calculate Your R&D ROI Improvement
-        </h3>
-        <p className="text-sm sm:text-base text-slate-600 mb-6 px-4">
-          See exactly how CrisPRO's AI reduces failure costs and accelerates your pipeline
-        </p>
-
-        {/* Mode Toggle */}
+      {/* Mode Toggle - Header removed (already in ROICalculatorSection wrapper) */}
         <div className="flex justify-center mb-6">
           <div className="bg-slate-100 p-1 rounded-lg w-full max-w-sm">
             <button
@@ -240,17 +227,30 @@ const BiotechROICalculator: React.FC = () => {
           </div>
         </div>
 
-        <p className="text-xs sm:text-sm text-slate-500 px-4">
+      {mode && (
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-xs sm:text-sm text-slate-500 text-center mb-6"
+        >
           {mode === 'auto' 
             ? '🚀 Watch live simulation with industry data' 
             : '🎯 Adjust parameters to match your R&D program'
           }
-        </p>
-      </div>
+        </motion.p>
+      )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
+      <AnimatePresence>
+        {mode && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-2 gap-2 sm:gap-4 md:gap-6"
+          >
         {/* Left Side - Mode Dependent */}
-        <div className="space-y-6">
+            <div className="space-y-3 sm:space-y-4 md:space-y-6 min-w-0">
           {mode === 'auto' ? (
             /* Auto Simulation Display */
             <div className="p-6 bg-slate-50 rounded-xl">
@@ -476,7 +476,7 @@ const BiotechROICalculator: React.FC = () => {
         </div>
 
         {/* ROI Results */}
-        <div className="space-y-6">
+            <div className="space-y-3 sm:space-y-4 md:space-y-6 min-w-0">
           <div className="p-6 bg-gradient-to-br from-green-50 to-blue-50 rounded-xl border border-green-200">
             <h4 className="font-semibold text-slate-900 mb-4 flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-green-500" />
@@ -581,7 +581,9 @@ const BiotechROICalculator: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+        </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Bottom CTA */}
      

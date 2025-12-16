@@ -1,0 +1,934 @@
+# Intelligent Docs - Component Specifications
+## Detailed Implementation Guide for Building Agents
+
+---
+
+## 🎨 DESIGN SYSTEM
+
+### Color Tokens (Tailwind)
+```typescript
+// tailwind.config.ts additions
+const docsColors = {
+  docs: {
+    bg: {
+      primary: '#0A0F1E',      // Main background
+      secondary: '#111827',    // Card background
+      tertiary: '#1F2937',     // Hover states
+      code: '#0D1117',         // Code block bg
+    },
+    text: {
+      primary: '#F9FAFB',      // Main text
+      secondary: '#9CA3AF',    // Muted text
+      tertiary: '#6B7280',     // Very muted
+      accent: '#60A5FA',       // Links, highlights
+    },
+    border: {
+      primary: '#374151',      // Main borders
+      secondary: '#1F2937',    // Subtle borders
+      accent: '#3B82F6',       // Focus states
+    },
+    accent: {
+      blue: '#3B82F6',
+      purple: '#8B5CF6',
+      green: '#10B981',
+      amber: '#F59E0B',
+      red: '#EF4444',
+    },
+  },
+};
+```
+
+### Typography Scale
+```typescript
+const docsTypography = {
+  h1: 'text-4xl font-bold tracking-tight',
+  h2: 'text-3xl font-semibold tracking-tight',
+  h3: 'text-2xl font-semibold',
+  h4: 'text-xl font-medium',
+  body: 'text-base leading-7',
+  small: 'text-sm leading-6',
+  code: 'font-mono text-sm',
+};
+```
+
+---
+
+## 📦 COMPONENT SPECIFICATIONS
+
+### 1. DocsLayout.tsx
+**Purpose:** Main layout wrapper for all docs pages
+
+```typescript
+// src/components/docs/layout/DocsLayout.tsx
+
+interface DocsLayoutProps {
+  children: React.ReactNode;
+  showSidebar?: boolean;
+  showAIAssistant?: boolean;
+  breadcrumbs?: Breadcrumb[];
+  pageContext?: PageContext;
+}
+
+interface PageContext {
+  category: string;
+  title: string;
+  path: string;
+  relatedPages: string[];
+}
+
+// Features:
+// - Responsive sidebar (collapsible on mobile)
+// - AI Assistant panel (right side, toggleable)
+// - Breadcrumb navigation
+// - Keyboard shortcuts (Cmd+K for search, etc.)
+// - Scroll progress indicator
+// - Table of contents extraction
+
+// Layout structure:
+// ┌─────────────────────────────────────────────────────────┐
+// │                     Header                              │
+// ├─────────┬───────────────────────────────┬──────────────┤
+// │         │                               │              │
+// │ Sidebar │         Content               │ AI Assistant │
+// │ (240px) │        (flexible)             │   (320px)    │
+// │         │                               │              │
+// └─────────┴───────────────────────────────┴──────────────┘
+```
+
+### 2. DocsSidebar.tsx
+**Purpose:** Navigation sidebar with knowledge tree
+
+```typescript
+// src/components/docs/layout/DocsSidebar.tsx
+
+interface SidebarProps {
+  categories: Category[];
+  currentPath: string;
+  onNavigate: (path: string) => void;
+}
+
+interface Category {
+  id: string;
+  title: string;
+  icon: LucideIcon;
+  items: SidebarItem[];
+  badge?: string; // e.g., "NEW", "BETA"
+}
+
+interface SidebarItem {
+  title: string;
+  href: string;
+  items?: SidebarItem[]; // Nested items
+  badge?: string;
+  external?: boolean;
+}
+
+// Features:
+// - Collapsible sections with smooth animations
+// - Active state highlighting with accent bar
+// - Nested navigation support
+// - Quick filter/search within sidebar
+// - Keyboard navigation
+// - Badges for new/updated content
+```
+
+### 3. ContentRenderer.tsx
+**Purpose:** Renders Hygraph rich text with custom components
+
+```typescript
+// src/components/docs/content/ContentRenderer.tsx
+
+interface ContentRendererProps {
+  content: HygraphRichText;
+  components?: CustomComponents;
+}
+
+interface CustomComponents {
+  code?: React.ComponentType<CodeBlockProps>;
+  callout?: React.ComponentType<CalloutProps>;
+  table?: React.ComponentType<TableProps>;
+  image?: React.ComponentType<ImageProps>;
+  apiEndpoint?: React.ComponentType<APIEndpointProps>;
+  interactiveExample?: React.ComponentType<InteractiveExampleProps>;
+}
+
+// Custom embeds to support:
+// - Code blocks with syntax highlighting
+// - API endpoint cards
+// - Interactive examples
+// - Callouts (info, warning, tip, danger)
+// - Tables with sorting
+// - Images with zoom
+// - Video embeds
+// - Mermaid diagrams
+```
+
+### 4. AIAssistant.tsx
+**Purpose:** Main AI chat interface panel
+
+```typescript
+// src/components/docs/ai/AIAssistant.tsx
+
+interface AIAssistantProps {
+  pageContext?: PageContext;
+  initialMessage?: string;
+  onClose?: () => void;
+  position?: 'sidebar' | 'modal' | 'floating';
+}
+
+interface Message {
+  id: string;
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+  timestamp: Date;
+  sources?: Source[];
+  actions?: SuggestedAction[];
+  isStreaming?: boolean;
+}
+
+interface Source {
+  title: string;
+  url: string;
+  excerpt: string;
+  type: 'article' | 'api' | 'example';
+}
+
+interface SuggestedAction {
+  label: string;
+  type: 'navigate' | 'search' | 'code' | 'contact';
+  payload: string;
+}
+
+// Features:
+// - Streaming responses with typing animation
+// - Source citations with links
+// - Suggested follow-up questions
+// - Context-aware (knows current page)
+// - Code block rendering in responses
+// - Copy response button
+// - Thumbs up/down feedback
+// - Clear conversation
+// - Export conversation
+```
+
+### 5. APIEndpointCard.tsx
+**Purpose:** Beautiful API endpoint documentation display
+
+```typescript
+// src/components/docs/content/APIEndpointCard.tsx
+
+interface APIEndpointCardProps {
+  endpoint: APIEndpoint;
+  variant?: 'compact' | 'detailed';
+  showPlayground?: boolean;
+}
+
+interface APIEndpoint {
+  id: string;
+  name: string;
+  path: string;
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  description: string;
+  category: 'oracle' | 'forge' | 'boltz' | 'command';
+  parameters: Parameter[];
+  requestBody?: JSONSchema;
+  responses: Response[];
+  examples: CodeExample[];
+  performance?: PerformanceMetrics;
+}
+
+interface Parameter {
+  name: string;
+  type: string;
+  required: boolean;
+  description: string;
+  default?: string;
+  example?: string;
+  enum?: string[];
+}
+
+// Visual design:
+// ┌─────────────────────────────────────────────────────────┐
+// │  POST  /predict_variant_impact              🟢 Oracle   │
+// ├─────────────────────────────────────────────────────────┤
+// │                                                         │
+// │  Predict pathogenicity of genetic variants using        │
+// │  zero-shot variant effect prediction                    │
+// │                                                         │
+// │  📊 Performance: 95.7% AUROC (ClinVar)                  │
+// │                                                         │
+// ├─────────────────────────────────────────────────────────┤
+// │  Parameters                                             │
+// │  ┌─────────────────────────────────────────────────┐    │
+// │  │ variant* │ string │ Genomic variant identifier  │    │
+// │  │ gene     │ string │ Gene symbol (optional)      │    │
+// │  │ context  │ object │ Analysis context            │    │
+// │  └─────────────────────────────────────────────────┘    │
+// │                                                         │
+// │  [▶ Try it] [📋 Copy cURL] [Python] [JavaScript]        │
+// └─────────────────────────────────────────────────────────┘
+```
+
+### 6. APIPlayground.tsx
+**Purpose:** Interactive API testing interface
+
+```typescript
+// src/components/docs/playground/APIPlayground.tsx
+
+interface APIPlaygroundProps {
+  endpoint: APIEndpoint;
+  defaultValues?: Record<string, any>;
+  onExecute?: (request: Request, response: Response) => void;
+}
+
+interface PlaygroundState {
+  request: {
+    headers: Record<string, string>;
+    body: Record<string, any>;
+    params: Record<string, any>;
+  };
+  response: {
+    status: number;
+    data: any;
+    duration: number;
+    headers: Record<string, string>;
+  } | null;
+  isLoading: boolean;
+  error: string | null;
+}
+
+// Features:
+// - Visual request builder with validation
+// - Real-time JSON editing with schema hints
+// - Parameter autocomplete
+// - Response syntax highlighting
+// - Response time indicator
+// - Save/load request presets
+// - Generate code from request (Python, JS, cURL, etc.)
+// - Copy response
+// - View as table for array responses
+// - Diff with previous response
+```
+
+### 7. SmartSearch.tsx
+**Purpose:** AI-powered semantic search
+
+```typescript
+// src/components/docs/ai/SmartSearch.tsx
+
+interface SmartSearchProps {
+  onSelect: (result: SearchResult) => void;
+  placeholder?: string;
+  hotkey?: string; // Default: 'k' for Cmd+K
+}
+
+interface SearchResult {
+  id: string;
+  title: string;
+  description: string;
+  type: 'article' | 'api' | 'faq' | 'concept' | 'example';
+  url: string;
+  category: string;
+  relevance: number;
+  highlights: string[]; // Matching text snippets
+}
+
+interface SearchState {
+  query: string;
+  results: SearchResult[];
+  suggestions: string[];
+  isLoading: boolean;
+  recentSearches: string[];
+}
+
+// Features:
+// - Semantic search (not just keyword matching)
+// - Category filters
+// - Keyboard navigation
+// - Recent searches
+// - AI-suggested queries
+// - Instant results as you type
+// - Highlighted matching text
+// - Type indicators (article, API, FAQ, etc.)
+```
+
+### 8. CodeBlock.tsx
+**Purpose:** Syntax highlighted code with extras
+
+```typescript
+// src/components/docs/content/CodeBlock.tsx
+
+interface CodeBlockProps {
+  code: string;
+  language: string;
+  filename?: string;
+  showLineNumbers?: boolean;
+  highlightLines?: number[];
+  runnable?: boolean;
+  onRun?: (code: string) => void;
+}
+
+// Features:
+// - Syntax highlighting (Shiki or Prism)
+// - Line numbers
+// - Line highlighting
+// - Copy button
+// - Filename header
+// - Expand/collapse for long code
+// - Runnable examples (for supported languages)
+// - Diff view mode
+// - Multiple tabs for different languages
+```
+
+### 9. JourneyPlayer.tsx
+**Purpose:** Step-by-step guided experience
+
+```typescript
+// src/components/docs/journey/JourneyPlayer.tsx
+
+interface JourneyPlayerProps {
+  journey: UseCase;
+  onComplete?: () => void;
+  onProgress?: (step: number, total: number) => void;
+}
+
+interface UseCase {
+  id: string;
+  title: string;
+  description: string;
+  steps: JourneyStep[];
+  estimatedTime: number;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  prerequisites: string[];
+}
+
+interface JourneyStep {
+  id: string;
+  title: string;
+  content: RichText;
+  type: 'learn' | 'code' | 'api' | 'quiz';
+  apiEndpoint?: APIEndpoint;
+  codeExample?: CodeExample;
+  quiz?: Quiz;
+  checkpoint?: boolean;
+}
+
+// Features:
+// - Progress bar
+// - Step navigation (next/prev)
+// - Interactive code exercises
+// - API try-it sections
+// - Knowledge checks/quizzes
+// - Completion badges
+// - Save progress
+// - Share progress
+```
+
+### 10. ContextualHelp.tsx
+**Purpose:** Page-aware help widget
+
+```typescript
+// src/components/docs/ai/ContextualHelp.tsx
+
+interface ContextualHelpProps {
+  pageContext: PageContext;
+  position?: 'bottom-right' | 'bottom-left';
+}
+
+interface ContextualHelpState {
+  isExpanded: boolean;
+  suggestions: HelpSuggestion[];
+  popularQuestions: string[];
+}
+
+interface HelpSuggestion {
+  question: string;
+  answer: string;
+  type: 'quick' | 'detailed';
+}
+
+// Features:
+// - Floating button with pulse animation
+// - Quick tips based on current page
+// - Popular questions for this section
+// - One-click to open full AI assistant
+// - Dismissable tips
+// - Learning mode (auto-show tips for new users)
+```
+
+---
+
+## 🔌 HYGRAPH INTEGRATION
+
+### GraphQL Client Setup
+```typescript
+// src/lib/docs/hygraph/client.ts
+
+import { GraphQLClient } from 'graphql-request';
+
+const HYGRAPH_ENDPOINT = process.env.HYGRAPH_ENDPOINT!;
+const HYGRAPH_TOKEN = process.env.HYGRAPH_TOKEN!;
+
+export const hygraphClient = new GraphQLClient(HYGRAPH_ENDPOINT, {
+  headers: {
+    Authorization: `Bearer ${HYGRAPH_TOKEN}`,
+  },
+});
+
+// With caching for production
+export async function fetchWithCache<T>(
+  query: string,
+  variables?: Record<string, any>,
+  revalidate = 3600 // 1 hour default
+): Promise<T> {
+  const cacheKey = JSON.stringify({ query, variables });
+  
+  // Use Next.js fetch cache or Redis
+  return hygraphClient.request<T>(query, variables);
+}
+```
+
+### Core Queries
+```typescript
+// src/lib/docs/hygraph/queries.ts
+
+export const GET_ALL_CATEGORIES = `
+  query GetAllCategories {
+    docCategories(orderBy: order_ASC) {
+      id
+      title
+      slug
+      description {
+        html
+      }
+      icon
+      articles {
+        id
+        title
+        slug
+      }
+    }
+  }
+`;
+
+export const GET_ARTICLE_BY_SLUG = `
+  query GetArticleBySlug($slug: String!) {
+    docArticle(where: { slug: $slug }) {
+      id
+      title
+      slug
+      excerpt
+      content {
+        html
+        raw
+      }
+      category {
+        title
+        slug
+      }
+      tags
+      relatedArticles {
+        id
+        title
+        slug
+      }
+      apiEndpoints {
+        id
+        name
+        path
+        method
+      }
+      codeExamples {
+        title
+        language
+        code
+      }
+      lastUpdated
+      difficulty
+      estimatedReadTime
+    }
+  }
+`;
+
+export const GET_API_ENDPOINT = `
+  query GetAPIEndpoint($path: String!) {
+    apiEndpoint(where: { path: $path }) {
+      id
+      name
+      path
+      method
+      description {
+        html
+      }
+      category
+      parameters
+      requestBody
+      responseSchema
+      codeExamples {
+        title
+        language
+        code
+      }
+      performanceMetrics {
+        auroc
+        samples
+        benchmark
+        source
+      }
+    }
+  }
+`;
+
+export const SEARCH_CONTENT = `
+  query SearchContent($query: String!) {
+    docArticles(where: { _search: $query }, first: 10) {
+      id
+      title
+      slug
+      excerpt
+      category {
+        title
+        slug
+      }
+    }
+    apiEndpoints(where: { _search: $query }, first: 5) {
+      id
+      name
+      path
+      description {
+        text
+      }
+    }
+    faqs(where: { _search: $query }, first: 5) {
+      id
+      question
+      answer {
+        text
+      }
+    }
+  }
+`;
+```
+
+---
+
+## 🤖 AI/RAG IMPLEMENTATION
+
+### Vector Database Setup (Supabase pgvector)
+```sql
+-- Create extensions and tables
+CREATE EXTENSION IF NOT EXISTS vector;
+
+CREATE TABLE docs_embeddings (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  content_id TEXT NOT NULL,
+  content_type TEXT NOT NULL, -- 'article', 'api', 'faq', 'concept'
+  chunk_text TEXT NOT NULL,
+  chunk_index INT NOT NULL,
+  embedding vector(1536), -- OpenAI ada-002 dimension
+  metadata JSONB,
+  created_at TIMESTAMP DEFAULT NOW(),
+  UNIQUE(content_id, chunk_index)
+);
+
+CREATE INDEX ON docs_embeddings USING ivfflat (embedding vector_cosine_ops);
+```
+
+### RAG Engine Implementation
+```typescript
+// src/lib/docs/ai/rag-engine.ts
+
+import { createClient } from '@supabase/supabase-js';
+import OpenAI from 'openai';
+
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_KEY!
+);
+
+const openai = new OpenAI();
+
+export class RAGEngine {
+  // Generate embeddings for text
+  async embed(text: string): Promise<number[]> {
+    const response = await openai.embeddings.create({
+      model: 'text-embedding-ada-002',
+      input: text,
+    });
+    return response.data[0].embedding;
+  }
+  
+  // Search for relevant documents
+  async search(query: string, limit = 5): Promise<SearchResult[]> {
+    const queryEmbedding = await this.embed(query);
+    
+    const { data, error } = await supabase.rpc('match_documents', {
+      query_embedding: queryEmbedding,
+      match_threshold: 0.7,
+      match_count: limit,
+    });
+    
+    if (error) throw error;
+    return data;
+  }
+  
+  // Generate answer with context
+  async generateAnswer(
+    query: string,
+    context: SearchResult[],
+    pageContext?: PageContext
+  ): Promise<RAGResponse> {
+    const contextText = context
+      .map(r => `[${r.content_type}] ${r.chunk_text}`)
+      .join('\n\n');
+    
+    const systemPrompt = `
+      You are CrisPRO.ai's documentation assistant.
+      
+      Context from our docs:
+      ${contextText}
+      
+      ${pageContext ? `User is currently viewing: ${pageContext.title}` : ''}
+      
+      Answer the user's question based on the context above.
+      Always cite sources. If unsure, say so.
+    `;
+    
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4-turbo-preview',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: query },
+      ],
+      temperature: 0.7,
+      max_tokens: 1000,
+    });
+    
+    return {
+      answer: response.choices[0].message.content!,
+      sources: context.map(r => ({
+        title: r.metadata.title,
+        url: r.metadata.url,
+        excerpt: r.chunk_text.slice(0, 200),
+        relevance: r.similarity,
+      })),
+      confidence: this.calculateConfidence(context),
+    };
+  }
+  
+  private calculateConfidence(results: SearchResult[]): number {
+    if (results.length === 0) return 0;
+    const avgSimilarity = results.reduce((a, b) => a + b.similarity, 0) / results.length;
+    return Math.round(avgSimilarity * 100);
+  }
+}
+```
+
+### Content Indexing Pipeline
+```typescript
+// src/lib/docs/ai/index-manager.ts
+
+export class IndexManager {
+  private rag: RAGEngine;
+  
+  constructor() {
+    this.rag = new RAGEngine();
+  }
+  
+  // Index all Hygraph content
+  async indexAllContent(): Promise<void> {
+    // Fetch all articles
+    const articles = await hygraphClient.request(GET_ALL_ARTICLES);
+    for (const article of articles.docArticles) {
+      await this.indexArticle(article);
+    }
+    
+    // Fetch all API endpoints
+    const endpoints = await hygraphClient.request(GET_ALL_ENDPOINTS);
+    for (const endpoint of endpoints.apiEndpoints) {
+      await this.indexEndpoint(endpoint);
+    }
+    
+    // Fetch all FAQs
+    const faqs = await hygraphClient.request(GET_ALL_FAQS);
+    for (const faq of faqs.faqs) {
+      await this.indexFAQ(faq);
+    }
+  }
+  
+  // Index a single article (chunk and embed)
+  async indexArticle(article: DocArticle): Promise<void> {
+    const chunks = this.chunkContent(article.content.text, 500);
+    
+    for (let i = 0; i < chunks.length; i++) {
+      const embedding = await this.rag.embed(chunks[i]);
+      
+      await supabase.from('docs_embeddings').upsert({
+        content_id: article.id,
+        content_type: 'article',
+        chunk_text: chunks[i],
+        chunk_index: i,
+        embedding,
+        metadata: {
+          title: article.title,
+          url: `/docs/${article.category.slug}/${article.slug}`,
+          category: article.category.title,
+        },
+      });
+    }
+  }
+  
+  // Smart chunking that respects semantic boundaries
+  private chunkContent(text: string, maxChunkSize: number): string[] {
+    // Split by paragraphs first, then merge to max size
+    const paragraphs = text.split('\n\n');
+    const chunks: string[] = [];
+    let currentChunk = '';
+    
+    for (const para of paragraphs) {
+      if ((currentChunk + para).length > maxChunkSize && currentChunk) {
+        chunks.push(currentChunk.trim());
+        currentChunk = para;
+      } else {
+        currentChunk += (currentChunk ? '\n\n' : '') + para;
+      }
+    }
+    
+    if (currentChunk) {
+      chunks.push(currentChunk.trim());
+    }
+    
+    return chunks;
+  }
+}
+```
+
+---
+
+## 🎯 AGENT TASK BREAKDOWN
+
+### Agent 1: Infrastructure Setup
+```
+Tasks:
+1. Create /docs route structure (app/docs/...)
+2. Set up Hygraph project and create content models
+3. Implement hygraph client with caching
+4. Create type definitions for all content types
+5. Set up environment variables
+
+Files to create:
+- src/app/docs/layout.tsx
+- src/app/docs/page.tsx
+- src/app/docs/[category]/page.tsx
+- src/app/docs/[category]/[slug]/page.tsx
+- src/lib/docs/hygraph/client.ts
+- src/lib/docs/hygraph/queries.ts
+- src/lib/docs/hygraph/types.ts
+```
+
+### Agent 2: Core UI Components
+```
+Tasks:
+1. Build DocsLayout with responsive sidebar
+2. Create DocsSidebar with navigation
+3. Build DocsHeader with search trigger
+4. Create ContentRenderer for Hygraph content
+5. Implement CodeBlock with syntax highlighting
+6. Build shared components (Callout, TabGroup, etc.)
+
+Files to create:
+- src/components/docs/layout/DocsLayout.tsx
+- src/components/docs/layout/DocsSidebar.tsx
+- src/components/docs/layout/DocsHeader.tsx
+- src/components/docs/content/ContentRenderer.tsx
+- src/components/docs/content/CodeBlock.tsx
+- src/components/docs/shared/*
+```
+
+### Agent 3: API Documentation Components
+```
+Tasks:
+1. Build APIEndpointCard component
+2. Create ParameterTable with validation hints
+3. Build ResponseViewer with JSON formatting
+4. Implement CodeGenerator (multi-language)
+5. Create APIPlayground for interactive testing
+
+Files to create:
+- src/components/docs/content/APIEndpointCard.tsx
+- src/components/docs/content/ParameterTable.tsx
+- src/components/docs/content/ResponseViewer.tsx
+- src/components/docs/playground/APIPlayground.tsx
+- src/components/docs/playground/CodeGenerator.tsx
+- src/components/docs/playground/RequestBuilder.tsx
+```
+
+### Agent 4: AI Integration
+```
+Tasks:
+1. Set up vector database (Supabase pgvector)
+2. Implement RAG engine
+3. Create content indexing pipeline
+4. Build AIAssistant chat component
+5. Implement SmartSearch with semantic search
+6. Create ContextualHelp widget
+
+Files to create:
+- src/lib/docs/ai/rag-engine.ts
+- src/lib/docs/ai/embeddings.ts
+- src/lib/docs/ai/index-manager.ts
+- src/lib/docs/ai/llm-client.ts
+- src/components/docs/ai/AIAssistant.tsx
+- src/components/docs/ai/SmartSearch.tsx
+- src/components/docs/ai/ContextualHelp.tsx
+- src/app/api/docs/chat/route.ts
+- src/app/api/docs/search/route.ts
+```
+
+### Agent 5: Content & Journeys
+```
+Tasks:
+1. Migrate all API endpoint content to Hygraph
+2. Create use case journeys in Hygraph
+3. Build JourneyPlayer component
+4. Create progress tracking system
+5. Add FAQ content and knowledge base entries
+
+Files to create:
+- src/components/docs/journey/JourneyPlayer.tsx
+- src/components/docs/journey/ProgressTracker.tsx
+- src/components/docs/journey/CheckpointCard.tsx
+- src/data/docs/api-content/* (for seeding Hygraph)
+- src/data/docs/journeys/*
+```
+
+---
+
+## ✅ DEFINITION OF DONE
+
+### For Each Component:
+- [ ] TypeScript with strict types
+- [ ] Responsive design (mobile/tablet/desktop)
+- [ ] Dark theme styled
+- [ ] Loading states
+- [ ] Error boundaries
+- [ ] Keyboard accessible
+- [ ] Unit tests (optional but preferred)
+
+### For AI Features:
+- [ ] Streaming responses working
+- [ ] Source citations included
+- [ ] Fallback for errors
+- [ ] Rate limiting implemented
+- [ ] Analytics events tracked
+
+### For Content:
+- [ ] All API endpoints documented in Hygraph
+- [ ] Code examples in Python, JavaScript, cURL
+- [ ] Performance metrics included
+- [ ] Use cases with step-by-step guides
+- [ ] FAQ populated with common questions
+
+---
+
+This specification provides everything needed for multiple agents to work in parallel on building the intelligent documentation platform.

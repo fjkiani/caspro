@@ -1,0 +1,459 @@
+# 🗺️ COMPREHENSIVE NAVIGATION RESTRUCTURE PLAN
+## From Orphaned Co-Pilots to Product-Capability Hierarchy
+
+**Created:** 2024-12-19  
+**Status:** 🟢 READY - Complete Navigation Restructure  
+**Problem:** Co-pilots are orphaned at `/platform/[coPilotSlug]`, not connected to products or capabilities  
+**Solution:** Hierarchical structure: Products → Capabilities → Co-Pilots
+
+---
+
+## 📊 CURRENT STATE ANALYSIS
+
+### **Current Structure (ORPHANED):**
+```
+/products/oncology          → Product page
+/products/r-d              → Product page
+/products/research          → Product page
+
+/platform/chemo            → Orphaned co-pilot
+/platform/clinical-trials  → Orphaned co-pilot
+/platform/therapy-fit      → Orphaned co-pilot
+/platform/toxicity-risk    → Orphaned co-pilot
+/platform/pathway          → Orphaned co-pilot
+/platform/crispr-intelligence → Orphaned co-pilot
+```
+
+### **Problems:**
+- ❌ Co-pilots not connected to products
+- ❌ No clear capability grouping
+- ❌ Users get lost navigating 400+ orphaned pages
+- ❌ No clear hierarchy: Product → Capability → Co-Pilot
+
+---
+
+## 🎯 DESIRED STRUCTURE
+
+### **New Hierarchical Structure:**
+```
+/products/
+├── oncology/
+│   ├── index.tsx                    → Product page
+│   ├── [capabilitySlug]/
+│   │   ├── index.tsx                → Capability page
+│   │   └── [coPilotSlug]/
+│   │       └── page.tsx             → Co-pilot detail page
+│   │
+│   ├── match-patients-to-therapies/
+│   │   ├── index.tsx                → Capability: Match Patients to Therapies
+│   │   ├── chemo/
+│   │   │   └── page.tsx              → Chemo co-pilot
+│   │   ├── clinical-trials/
+│   │   │   └── page.tsx             → Clinical Trials co-pilot
+│   │   └── therapy-fit/
+│   │       └── page.tsx             → Therapy Fit co-pilot
+│   │
+│   ├── prevent-toxicity/
+│   │   ├── index.tsx                → Capability: Prevent Toxicity
+│   │   └── toxicity-risk/
+│   │       └── page.tsx             → Toxicity Risk co-pilot
+│   │
+│   ├── resolve-genetic-uncertainty/
+│   │   ├── index.tsx                → Capability: VUS Resolution
+│   │   └── vus-resolution/
+│   │       └── page.tsx             → VUS Resolution co-pilot
+│   │
+│   └── predict-resistance/
+│       ├── index.tsx                → Capability: Resistance Detection
+│       └── resistance-detection/
+│           └── page.tsx             → Resistance Detection co-pilot
+│
+├── r-d/
+│   ├── index.tsx                    → Product page
+│   ├── [capabilitySlug]/
+│   │   └── [coPilotSlug]/
+│   │       └── page.tsx
+│   │
+│   ├── therapeutic-design/
+│   │   ├── index.tsx                → Capability: Therapeutic Design
+│   │   └── crispr-intelligence/
+│   │       └── page.tsx              → CRISPR Intelligence co-pilot
+│   │
+│   └── target-validation/
+│       ├── index.tsx                → Capability: Target Validation
+│       └── pathway/
+│           └── page.tsx             → Pathway co-pilot
+│
+└── research/
+    ├── index.tsx                    → Product page
+    └── [capabilitySlug]/
+        └── [coPilotSlug]/
+            └── page.tsx
+```
+
+---
+
+## 🗺️ CO-PILOT → PRODUCT → CAPABILITY MAPPING
+
+### **Mapping Definition:**
+
+```typescript
+interface CoPilotMapping {
+  coPilotSlug: string;
+  productSlug: 'oncology' | 'r-d' | 'research';
+  capabilitySlug: string;
+  capabilityTitle: string;
+  priority: 'primary' | 'secondary';
+}
+
+export const CO_PILOT_MAPPINGS: CoPilotMapping[] = [
+  // ONCOLOGY PRODUCT
+  {
+    coPilotSlug: 'chemo',
+    productSlug: 'oncology',
+    capabilitySlug: 'match-patients-to-therapies',
+    capabilityTitle: 'Match Patients to Therapies',
+    priority: 'primary'
+  },
+  {
+    coPilotSlug: 'clinical-trials',
+    productSlug: 'oncology',
+    capabilitySlug: 'match-patients-to-therapies',
+    capabilityTitle: 'Match Patients to Therapies',
+    priority: 'primary'
+  },
+  {
+    coPilotSlug: 'therapy-fit',
+    productSlug: 'oncology',
+    capabilitySlug: 'match-patients-to-therapies',
+    capabilityTitle: 'Match Patients to Therapies',
+    priority: 'primary'
+  },
+  {
+    coPilotSlug: 'toxicity-risk',
+    productSlug: 'oncology',
+    capabilitySlug: 'prevent-toxicity',
+    capabilityTitle: 'Prevent Toxicity Before It Happens',
+    priority: 'primary'
+  },
+  {
+    coPilotSlug: 'vus-resolution', // NEW - needs to be created
+    productSlug: 'oncology',
+    capabilitySlug: 'resolve-genetic-uncertainty',
+    capabilityTitle: 'Resolve Genetic Uncertainty',
+    priority: 'primary'
+  },
+  {
+    coPilotSlug: 'resistance-detection', // NEW - needs to be created
+    productSlug: 'oncology',
+    capabilitySlug: 'predict-resistance',
+    capabilityTitle: 'Predict Resistance Before It Happens',
+    priority: 'primary'
+  },
+  
+  // R&D PRODUCT
+  {
+    coPilotSlug: 'crispr-intelligence',
+    productSlug: 'r-d',
+    capabilitySlug: 'therapeutic-design',
+    capabilityTitle: 'Therapeutic Design',
+    priority: 'primary'
+  },
+  {
+    coPilotSlug: 'pathway',
+    productSlug: 'r-d',
+    capabilitySlug: 'target-validation',
+    capabilityTitle: 'Target Validation',
+    priority: 'secondary'
+  },
+  
+  // RESEARCH PRODUCT
+  {
+    coPilotSlug: 'oracle-intelligence',
+    productSlug: 'research',
+    capabilitySlug: 'variant-analysis',
+    capabilityTitle: 'Variant Analysis',
+    priority: 'primary'
+  },
+  {
+    coPilotSlug: 'forge-intelligence',
+    productSlug: 'research',
+    capabilitySlug: 'therapeutic-design',
+    capabilityTitle: 'Therapeutic Design',
+    priority: 'primary'
+  },
+];
+```
+
+---
+
+## 📋 IMPLEMENTATION PLAN
+
+### **Phase 1: Create Mapping Infrastructure (2 hours)**
+
+**Tasks:**
+- [ ] Create `src/data/navigation/co-pilot-mappings.ts` with mapping definitions
+- [ ] Create `src/data/navigation/product-capabilities.ts` with capability definitions
+- [ ] Create helper functions:
+  - `getCoPilotMapping(coPilotSlug)` → Returns product + capability
+  - `getCapabilityCoPilots(productSlug, capabilitySlug)` → Returns all co-pilots for capability
+  - `getProductCapabilities(productSlug)` → Returns all capabilities for product
+
+**Files:**
+```
+src/data/navigation/
+├── co-pilot-mappings.ts      # Co-pilot → Product → Capability mapping
+├── product-capabilities.ts    # Product capability definitions
+└── navigation-helpers.ts      # Helper functions
+```
+
+---
+
+### **Phase 2: Create Capability Pages (4 hours)**
+
+**Structure:**
+```
+/products/[productSlug]/[capabilitySlug]/page.tsx
+```
+
+**Tasks:**
+- [ ] Create capability page template
+- [ ] Show capability overview (from `oncology-capabilities-data.ts`)
+- [ ] List all co-pilots under this capability
+- [ ] Link to co-pilot detail pages
+- [ ] Show capability metrics and outcomes
+
+**Example: `/products/oncology/match-patients-to-therapies/page.tsx`**
+- Shows "Match Patients to Therapies" capability overview
+- Lists: Chemo, Clinical Trials, Therapy Fit co-pilots
+- Links to: `/products/oncology/match-patients-to-therapies/chemo/`
+
+---
+
+### **Phase 3: Move Co-Pilot Pages (3 hours)**
+
+**Tasks:**
+- [ ] Create new route structure: `/products/[productSlug]/[capabilitySlug]/[coPilotSlug]/page.tsx`
+- [ ] Move existing co-pilot page component to new location
+- [ ] Update `generateStaticParams()` to use new mapping
+- [ ] Add redirects from old routes (`/platform/[coPilotSlug]` → new route)
+
+**Files:**
+```
+src/app/products/
+├── [productSlug]/
+│   └── [capabilitySlug]/
+│       └── [coPilotSlug]/
+│           └── page.tsx      # Co-pilot detail page (reuse OutcomeFocusedCoPilotPage)
+```
+
+---
+
+### **Phase 4: Update Product Pages (2 hours)**
+
+**Tasks:**
+- [ ] Update `/products/oncology/page.tsx`:
+  - Link capabilities to capability pages: `/products/oncology/match-patients-to-therapies/`
+  - Show capability cards with co-pilot counts
+- [ ] Update `/products/r-d/page.tsx`:
+  - Link capabilities to capability pages
+- [ ] Update `/products/research/page.tsx`:
+  - Link capabilities to capability pages
+
+**Example Capability Card:**
+```tsx
+<Link href="/products/oncology/match-patients-to-therapies">
+  <CapabilityCard
+    title="Match Patients to Therapies"
+    description="Mechanism-based drug ranking with 96.6% accuracy"
+    coPilotCount={3}  // Chemo, Clinical Trials, Therapy Fit
+    metrics="96.6% Trial Match Accuracy"
+  />
+</Link>
+```
+
+---
+
+### **Phase 5: Update Navigation & Links (2 hours)**
+
+**Tasks:**
+- [ ] Update Navbar to show Products → Capabilities structure
+- [ ] Update all internal links to use new routes
+- [ ] Add breadcrumbs: `Products > Oncology > Match Patients to Therapies > Chemo`
+- [ ] Update sitemap and metadata
+
+**Breadcrumb Component:**
+```tsx
+<Breadcrumb>
+  <Link href="/products">Products</Link>
+  <Link href="/products/oncology">Oncology</Link>
+  <Link href="/products/oncology/match-patients-to-therapies">Match Patients to Therapies</Link>
+  <span>Chemo</span>
+</Breadcrumb>
+```
+
+---
+
+### **Phase 6: Redirects & Cleanup (1 hour)**
+
+**Tasks:**
+- [ ] Add Next.js redirects from old routes:
+  - `/platform/chemo` → `/products/oncology/match-patients-to-therapies/chemo`
+  - `/platform/clinical-trials` → `/products/oncology/match-patients-to-therapies/clinical-trials`
+  - `/platform/toxicity-risk` → `/products/oncology/prevent-toxicity/toxicity-risk`
+  - etc.
+- [ ] Update all internal links
+- [ ] Remove old `/platform/[coPilotSlug]` route (or keep as redirect)
+
+---
+
+## 🎯 URL STRUCTURE EXAMPLES
+
+### **Before (Orphaned):**
+```
+❌ /platform/chemo
+❌ /platform/clinical-trials
+❌ /platform/toxicity-risk
+```
+
+### **After (Hierarchical):**
+```
+✅ /products/oncology/match-patients-to-therapies/chemo
+✅ /products/oncology/match-patients-to-therapies/clinical-trials
+✅ /products/oncology/prevent-toxicity/toxicity-risk
+```
+
+### **Capability Pages:**
+```
+✅ /products/oncology/match-patients-to-therapies
+   → Shows overview + links to Chemo, Clinical Trials, Therapy Fit
+
+✅ /products/oncology/prevent-toxicity
+   → Shows overview + links to Toxicity Risk co-pilot
+```
+
+---
+
+## 📊 CAPABILITY MAPPING TABLE
+
+| Product | Capability | Co-Pilots | URL Slug |
+|---------|-----------|-----------|----------|
+| **Oncology** | Match Patients to Therapies | Chemo, Clinical Trials, Therapy Fit | `match-patients-to-therapies` |
+| **Oncology** | Prevent Toxicity | Toxicity Risk | `prevent-toxicity` |
+| **Oncology** | Resolve Genetic Uncertainty | VUS Resolution | `resolve-genetic-uncertainty` |
+| **Oncology** | Predict Resistance | Resistance Detection | `predict-resistance` |
+| **R&D** | Therapeutic Design | CRISPR Intelligence | `therapeutic-design` |
+| **R&D** | Target Validation | Pathway | `target-validation` |
+| **Research** | Variant Analysis | Oracle Intelligence | `variant-analysis` |
+| **Research** | Therapeutic Design | Forge Intelligence | `therapeutic-design` |
+
+---
+
+## 🔧 TECHNICAL IMPLEMENTATION
+
+### **1. Dynamic Route Structure:**
+
+```typescript
+// src/app/products/[productSlug]/[capabilitySlug]/[coPilotSlug]/page.tsx
+export async function generateStaticParams() {
+  const params: Array<{ productSlug: string; capabilitySlug: string; coPilotSlug: string }> = [];
+  
+  CO_PILOT_MAPPINGS.forEach(mapping => {
+    params.push({
+      productSlug: mapping.productSlug,
+      capabilitySlug: mapping.capabilitySlug,
+      coPilotSlug: mapping.coPilotSlug,
+    });
+  });
+  
+  return params;
+}
+```
+
+### **2. Capability Page:**
+
+```typescript
+// src/app/products/[productSlug]/[capabilitySlug]/page.tsx
+export default async function CapabilityPage({ params }: { params: { productSlug: string; capabilitySlug: string } }) {
+  const capability = getCapability(params.productSlug, params.capabilitySlug);
+  const coPilots = getCapabilityCoPilots(params.productSlug, params.capabilitySlug);
+  
+  return (
+    <>
+      <CapabilityHero capability={capability} />
+      <CoPilotList coPilots={coPilots} productSlug={params.productSlug} capabilitySlug={params.capabilitySlug} />
+    </>
+  );
+}
+```
+
+### **3. Redirects (next.config.js):**
+
+```javascript
+async redirects() {
+  return [
+    {
+      source: '/platform/chemo',
+      destination: '/products/oncology/match-patients-to-therapies/chemo',
+      permanent: true,
+    },
+    {
+      source: '/platform/clinical-trials',
+      destination: '/products/oncology/match-patients-to-therapies/clinical-trials',
+      permanent: true,
+    },
+    // ... more redirects
+  ];
+}
+```
+
+---
+
+## ✅ SUCCESS METRICS
+
+### **Before:**
+- ❌ 10 orphaned co-pilot pages
+- ❌ No clear product → capability → co-pilot hierarchy
+- ❌ Users get lost navigating
+
+### **After:**
+- ✅ Clear hierarchy: Products → Capabilities → Co-Pilots
+- ✅ All co-pilots mapped to products and capabilities
+- ✅ Capability pages group related co-pilots
+- ✅ Breadcrumbs show full navigation path
+- ✅ Old routes redirect to new structure
+
+---
+
+## 🚀 IMPLEMENTATION TIMELINE
+
+**Total Time:** 14 hours (1.75 days)
+
+- **Phase 1:** Mapping Infrastructure (2h)
+- **Phase 2:** Capability Pages (4h)
+- **Phase 3:** Move Co-Pilot Pages (3h)
+- **Phase 4:** Update Product Pages (2h)
+- **Phase 5:** Update Navigation (2h)
+- **Phase 6:** Redirects & Cleanup (1h)
+
+---
+
+## 📝 NOTES
+
+### **Capability Slug Format:**
+- Use kebab-case: `match-patients-to-therapies`
+- Match capability titles from `oncology-capabilities-data.ts`
+- Keep consistent across products
+
+### **Co-Pilot Slug Format:**
+- Keep existing slugs: `chemo`, `clinical-trials`, `toxicity-risk`
+- No changes needed to co-pilot data files
+
+### **Backward Compatibility:**
+- Keep `/platform/[coPilotSlug]` routes as redirects
+- Update all internal links gradually
+- Maintain old routes for 3-6 months before removal
+
+---
+
+**CRITICAL SUCCESS FACTOR:** Users should never see orphaned co-pilots. Every co-pilot must be accessible through: Product → Capability → Co-Pilot hierarchy.

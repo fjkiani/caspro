@@ -22,6 +22,7 @@ export interface CapabilityAspect {
 
 export interface KeyCapability {
   title: string;
+  priority?: 'primary' | 'advanced'; // NEW: For organizing capabilities (default: 'primary')
   technical: CapabilityAspect | string;
   scientific: CapabilityAspect | string;
   business: CapabilityAspect | string;
@@ -113,6 +114,7 @@ export interface CoPilotDetailContent {
   buildsOnStackPoints?: string[];
   genomicUseCasesGrid?: GenomicUseCaseGridItem[];
   keyCapabilities: KeyCapability[];
+  integratedCare?: KeyCapability; // NEW: Separate section for Integrated Care Plan (clinical co-pilots only)
   valuePropositionIntro?: string;
   valuePropositionSections: ValuePropositionSection[];
   inSilicoWorkflow?: InSilicoWorkflow;
@@ -120,5 +122,24 @@ export interface CoPilotDetailContent {
   kpiNarratives?: KPINarrative[];
   observedOutcomes?: ObservedOutcome[];
   inSilicoOverview?: InSilicoOverviewConfig;
+
+  // Product-specific additions for oncology product page
+  unifiedCarePlan?: {
+    title: string;
+    subtitle: string;
+    description: string;
+    apiEndpoint: string;
+    capabilities: string[];
+    outputs: string[];
+  };
+  detailedCapabilities?: {
+    title: string;
+    description: string;
+    link: string;
+    icon: string;
+    metrics?: string[];
+    color: string;
+  }[];
+
   conclusion: string;
 }

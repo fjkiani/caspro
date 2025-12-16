@@ -1,0 +1,793 @@
+# 🎯 SURGICAL SPRINT PLAN 2024-2025
+## Strategic, Code-Aware Implementation Roadmap
+
+**Created:** 2024-12-19  
+**Status:** 🟢 READY - Based on Comprehensive Codebase Audit  
+**Last Updated:** 2024-12-19  
+**Approach:** Surgical fixes leveraging existing infrastructure
+
+---
+
+## 📊 CODEBASE AUDIT FINDINGS
+
+### ✅ **WHAT EXISTS (Can Reuse):**
+
+**Infrastructure:**
+- ✅ Dynamic routing pattern: `/app/platform/[coPilotSlug]/page.tsx` with `generateStaticParams()`
+- ✅ Co-pilot data structure: 11 co-pilot data files in `src/data/copilots/`
+- ✅ Type system: `CoPilotDetailContent` with `integratedCare` field
+- ✅ Priority system: `KeyCapability` interface HAS `priority?: 'primary' | 'advanced'` field
+- ✅ Components: `AdvancedFeaturesSection`, `IntegratedCareSection`, `TacticalCapabilityMatrix` all exist
+- ✅ Product pages: Oracle, Forge, Boltz, Command Center, Oncology, R&D, Research
+- ✅ Evidence pages: `/evidence/spe-fusion` exists and works
+- ✅ Oncology page pattern: Uses `OncologyPageClient` wrapper pattern
+
+**Co-Pilot Pages:**
+- ✅ `/platform/toxicity-risk` → EXISTS (`toxicity-risk` slug in `coPilotDetailsData`)
+- ✅ `/platform/clinical-trials` → EXISTS (`clinical-trials` slug in `coPilotDetailsData`)
+- ✅ `/platform/chemo` → EXISTS
+- ✅ `/platform/therapy-fit` → EXISTS
+- ✅ `/platform/pathway` → EXISTS
+- ✅ `/platform/crispr-intelligence` → EXISTS
+
+### ❌ **WHAT'S MISSING (Must Create):**
+
+**Critical Gaps:**
+1. ❌ `/app/moat/` directory - NO MOAT pages exist
+2. ❌ `/app/solutions/` directory - NO solutions hubs exist
+3. ❌ `ProductIntegrationSection` component - Doesn't exist
+4. ❌ `ProductBadge` component - Doesn't exist
+5. ❌ `WorkflowVisualization` component - Doesn't exist
+6. ❌ `productIntegration` field in `CoPilotDetailContent` type
+7. ❌ `/solutions/clinical-decision-support` route (2 MOATs point here)
+
+**Broken Links Analysis:**
+- `/platform/toxicity-risk` → ✅ **WORKS** (co-pilot exists)
+- `/platform/clinical-trials` → ✅ **WORKS** (co-pilot exists)
+- `/solutions/clinical-decision-support` → ❌ **BROKEN** (route doesn't exist - 2 MOATs affected)
+- `/evidence/spe-fusion` → ✅ **WORKS** (page exists)
+- `/platform` → ✅ **WORKS** (page exists)
+
+**Actual Broken Links:** 1 out of 6 (17% failure rate, not 67%!)
+
+---
+
+## 🎯 SURGICAL STRATEGY
+
+### **Core Insight:**
+Most infrastructure exists. We need to:
+1. **Fix 1 broken link** (create solutions hub)
+2. **Create MOAT pages** (reuse co-pilot pattern)
+3. **Add product integration** (3 components + type update)
+4. **Enhance existing pages** (SAE emphasis, product badges)
+
+### **Reuse Strategy:**
+- **MOAT Pages:** Reuse `/app/platform/[coPilotSlug]/page.tsx` pattern → `/app/moat/[moatSlug]/page.tsx`
+- **Solutions Hubs:** Reuse `/app/products/oncology/page.tsx` pattern → `/app/solutions/[solutionSlug]/page.tsx`
+- **Product Integration:** Create 3 reusable components, add to existing co-pilot pages
+- **Type System:** Add `productIntegration` field to existing `CoPilotDetailContent` interface
+
+---
+
+## 🗺️ SURGICAL SPRINT ROADMAP
+
+### **SPRINT 0.5: CO-PILOT REFOCUS (CRITICAL - Week 1)**
+**Theme:** Transform Co-Pilot Pages from Feature Dumps to Outcome-Focused  
+**Time:** 20 hours (2.5 days)  
+**Priority:** 🔴 **HIGHEST** - Blocks user understanding
+
+**Problem:** Co-pilot pages dump too much technical detail, burying outcomes. Users can't understand value.
+
+**Current State:**
+- **Battle Plan Tab** (`InteractiveContentAnalysis`): EXISTS but HIDDEN by default (`initialTab="strategic-doctrine"`)
+  - Contains: Technology Foundation, Core Capabilities, Problem Solution Matrix, Value Proposition, In-Silico Workflow
+  - Very feature-heavy, technical detail dump
+- **Strategic Doctrine Tab** (`DesciStyleDoctrineInsights`): DEFAULT tab, also feature-heavy
+  - Contains: In-Silico Overview, Observed Outcomes (buried), Core Capabilities, Advanced Features, etc.
+- **War Stories Tab**: Optional, only for co-pilots with journeys
+
+**Solution:** Remove tabbed interface entirely. Refactor to product page pattern (hero → problem → solution → outcomes → technical details collapsed)
+
+**Reference:** See `co-pilot-outcome-refocus-plan.mdc` for detailed implementation guide
+
+**Tasks:**
+- [ ] **Remove Battle Plan tab** - Delete `InteractiveContentAnalysis` usage (or repurpose for technical details section)
+- [ ] **Remove Strategic Doctrine tab** - Replace `DesciStyleDoctrineInsights` with outcome-focused structure
+- [ ] Create `OutcomeFocusedCoPilotPage.tsx` template (no tabs, single page flow)
+- [ ] Create `ContentTransformers.ts` helper functions
+- [ ] Create `SimplifiedOutcomesSection.tsx`
+- [ ] Create `CollapsibleTechnicalDetails.tsx` (reuse Battle Plan content here if valuable)
+- [ ] Create `CoPilotDemoSection.tsx`
+- [ ] Test with 1 co-pilot (`toxicity-risk`)
+- [ ] Migrate all 11 co-pilot pages
+- [ ] Update `/app/platform/[coPilotSlug]/page.tsx` to use new template (remove TabbedContent)
+
+**Deliverables:**
+- Co-pilot pages transformed to outcome-focused (no tabs)
+- Battle Plan tab removed (or repurposed as collapsed technical section)
+- Strategic Doctrine tab removed (replaced with outcome-focused flow)
+- Technical details collapsed by default
+- Problem → Solution → Outcomes narrative flow
+- Users understand value in 30 seconds (not 5 minutes)
+
+**Success Criteria:**
+- ✅ No tabbed interface (single page flow)
+- ✅ Hero headline is outcome-focused (not feature-focused)
+- ✅ Problem section has max 3 simple cards
+- ✅ Solution section has max 3 simple cards
+- ✅ Outcomes section shows key metrics prominently
+- ✅ Technical details collapsed by default (Battle Plan content repurposed here)
+- ✅ Page loads in <2 seconds
+
+---
+
+### **SPRINT 1: CRITICAL FIXES (Week 2)**
+**Theme:** Fix Broken Links + Foundation Components  
+**Time:** 12 hours (1.5 days)
+
+#### **1.1 Fix Broken Solutions Link (2 hours)**
+**Priority:** 🔴 **CRITICAL**
+
+**Problem:** `/solutions/clinical-decision-support` doesn't exist (2 MOATs point here)
+
+**Solution:** Create solutions hub page
+
+**Tasks:**
+- [ ] Create `/app/solutions/clinical-decision-support/page.tsx`
+- [ ] Create `ClinicalDecisionSupportHub.tsx` component
+- [ ] Showcase 5 clinical MOATs (S/P/E, Toxicity, Resistance, Dossier, Trial Matching)
+- [ ] Link to existing co-pilot pages and evidence pages
+- [ ] Update MOATShowcase.tsx:
+  - `/solutions/clinical-decision-support` → Keep (now works!)
+  - Add anchor links: `#resistance-prediction`, `#clinical-dossier`
+
+**Deliverables:**
+- Solutions hub page created
+- 2 broken MOAT links fixed (0% broken)
+- Unified entry point for clinical MOATs
+
+**Success Criteria:**
+- ✅ `/solutions/clinical-decision-support` loads
+- ✅ All MOAT links work (0% broken)
+- ✅ Links to co-pilots and evidence pages work
+
+---
+
+#### **1.2 Create Product Integration Components (4 hours)**
+**Priority:** 🔴 **HIGH**
+
+**Problem:** Co-pilot pages don't show which products power them
+
+**Solution:** Create 3 reusable components
+
+**Tasks:**
+- [ ] Create `src/components/co-pilot-detail/ProductIntegrationSection.tsx`
+  - Shows "Powered By" badges
+  - Displays workflow visualization
+  - Lists API endpoints
+  - Links to product pages
+- [ ] Create `src/components/ui/ProductBadge.tsx`
+  - Oracle/Forge/Boltz/Command Center badges
+  - Links to product pages
+  - Reusable across pages
+- [ ] Create `src/components/co-pilot-detail/WorkflowVisualization.tsx`
+  - Step-by-step workflow display
+  - Product badges at each step
+  - Visual flow diagram
+
+**Deliverables:**
+- 3 reusable components created
+- Components render correctly
+- Links to product pages work
+
+**Success Criteria:**
+- ✅ Components render without errors
+- ✅ Product badges display correctly
+- ✅ Workflow visualization shows steps
+- ✅ Links to product pages work
+
+---
+
+#### **1.3 Update Type System (1 hour)**
+**Priority:** 🔴 **HIGH**
+
+**Problem:** `CoPilotDetailContent` doesn't have `productIntegration` field
+
+**Solution:** Add field to existing type
+
+**Tasks:**
+- [ ] Update `src/types/copilot-types.ts`:
+  - Add `productIntegration?: ProductIntegration` field to `CoPilotDetailContent`
+  - Create `ProductIntegration` interface:
+    ```typescript
+    interface ProductIntegration {
+      engines: {
+        oracle?: { apis: string[]; capabilities: string[]; link: string };
+        forge?: { apis: string[]; capabilities: string[]; link: string };
+        boltz?: { apis: string[]; capabilities: string[]; link: string };
+        commandCenter?: { capabilities: string[]; link: string };
+      };
+      workflow: Array<{
+        step: number;
+        title: string;
+        engine: "oracle" | "forge" | "boltz" | "commandCenter";
+        api?: string;
+        description: string;
+      }>;
+    }
+    ```
+
+**Deliverables:**
+- Type system updated
+- Type-safe product integration data
+
+**Success Criteria:**
+- ✅ TypeScript compiles without errors
+- ✅ Type definitions complete
+
+---
+
+#### **1.4 Add Product Integration to One Co-Pilot (2 hours)**
+**Priority:** 🔴 **HIGH**
+
+**Problem:** Need proof-of-concept before rolling out
+
+**Solution:** Add to Chemo co-pilot (pilot)
+
+**Tasks:**
+- [ ] Update `src/data/copilots/chemo-data.ts`:
+  - Add `productIntegration` field
+  - Map capabilities to products:
+    - Sequence Analysis → Oracle (`/predict_variant_impact`)
+    - Pathway Mapping → Oracle (`/predict_gene_essentiality`)
+    - Evidence Integration → Command Center (Evidence services)
+    - S/P/E Fusion → Oracle + Command Center
+- [ ] Update `/app/platform/[coPilotSlug]/page.tsx`:
+  - Add ProductIntegrationSection after hero, before tabs
+  - Pass `content.productIntegration` to component
+- [ ] Test Chemo co-pilot page renders correctly
+
+**Deliverables:**
+- One co-pilot page with product integration
+- Proof-of-concept working
+
+**Success Criteria:**
+- ✅ Chemo co-pilot page shows "Powered By" section
+- ✅ Product badges display
+- ✅ Workflow visualization shows
+- ✅ Links to product pages work
+
+---
+
+#### **1.5 Enhance Oracle Page with SAE (3 hours)**
+**Priority:** 🔴 **HIGH**
+
+**Problem:** Oracle page doesn't emphasize SAE (core differentiator)
+
+**Solution:** Add SAE hero section and feature visualization
+
+**Tasks:**
+- [ ] Update `/app/products/oracle/page.tsx`:
+  - Change hero title to "Oracle: Mechanistically Interpretable AI"
+  - Add subtitle: "...with 32,768 learned biological features"
+  - Add SAE badges section
+- [ ] Add "What the AI Learned" section:
+  - Showcase 32,768 SAE features
+  - Link to `/evidence/sae-intelligence`
+  - Integrate `DynamicOracleExplain` component (if available)
+- [ ] Add SAE mention to Forge page hero
+
+**Deliverables:**
+- Oracle page emphasizes SAE
+- Forge page mentions SAE
+- Links to SAE Intelligence page
+
+**Success Criteria:**
+- ✅ Oracle hero emphasizes SAE
+- ✅ SAE feature count visible
+- ✅ Links to SAE Intelligence page work
+
+---
+
+**Sprint 1 Total:** 12 hours (1.5 days)
+
+---
+
+### **SPRINT 2: MOAT PAGES (Week 2)**
+**Theme:** Create MOAT Pages Using Existing Patterns  
+**Time:** 16 hours (2 days)
+
+#### **2.1 Create MOAT Type System (2 hours)**
+**Priority:** 🟡 **MEDIUM-HIGH**
+
+**Tasks:**
+- [ ] Create `src/types/moat-types.ts`:
+  - `MOATDetailContent` interface (similar to `CoPilotDetailContent`)
+  - Extend with MOAT-specific fields:
+    - `moatType: 'validated' | 'complete' | 'in-progress'`
+    - `validatedMetric: string`
+    - `productIntegration: ProductIntegration` (reuse from Sprint 1)
+- [ ] Create `src/data/moats/index.ts`:
+  - Centralized MOAT data exports
+  - Similar to `coPilotDetailsData` pattern
+
+**Deliverables:**
+- MOAT type system created
+- Centralized data registry
+
+**Success Criteria:**
+- ✅ TypeScript compiles
+- ✅ Types match co-pilot pattern
+
+---
+
+#### **2.2 Create MOAT Page Template (4 hours)**
+**Priority:** 🟡 **MEDIUM-HIGH**
+
+**Tasks:**
+- [ ] Create `/app/moat/[moatSlug]/page.tsx`:
+  - Copy pattern from `/app/platform/[coPilotSlug]/page.tsx`
+  - Use `generateStaticParams()` for dynamic routing
+  - Load MOAT data from `moatsRegistry`
+- [ ] Create `MOATPageClient.tsx` component:
+  - Similar to co-pilot page structure
+  - Hero section with MOAT badge
+  - ProductIntegrationSection (from Sprint 1)
+  - Tabbed interface:
+    - Battle Plan tab
+    - Live Demo tab (NEW)
+    - Strategic Doctrine tab
+- [ ] Integrate ProductIntegrationSection (reuse from Sprint 1)
+
+**Deliverables:**
+- Reusable MOAT page template
+- Dynamic routing working
+- Product integration visible
+
+**Success Criteria:**
+- ✅ MOAT pages load dynamically
+- ✅ Product integration displays
+- ✅ Tabbed interface works
+
+---
+
+#### **2.3 Create MOAT Data Files (6 hours)**
+**Priority:** 🟡 **MEDIUM-HIGH**
+
+**Tasks:**
+- [ ] Create 4 MOAT data files (for broken links):
+  - `src/data/moats/toxicity-nutrition-data.ts`
+  - `src/data/moats/resistance-prediction-data.ts`
+  - `src/data/moats/clinical-dossier-data.ts`
+  - `src/data/moats/trial-matching-data.ts`
+- [ ] Extract content from MOAT doctrine files:
+  - `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_TOXCITY.md`
+  - `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_RESISTANCE_PREDICTION.md`
+  - `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_CLINICAL_DOSSIER.mdc`
+  - `.cursor/rules/MOAT/ADVANCED_CARE_PLAN_MECHANISM_TRIAL_MATCHING.md`
+- [ ] Add product integration mappings:
+  - Map each MOAT to products (Oracle/Forge/Boltz/Command Center)
+  - Define workflow steps
+  - List API endpoints used
+- [ ] Add to `src/data/moats/index.ts` registry
+
+**Deliverables:**
+- 4 MOAT data files created
+- Product integration mapped
+- Content extracted from doctrine files
+
+**Success Criteria:**
+- ✅ All MOAT data structured consistently
+- ✅ Product integration fields populated
+- ✅ Workflow steps defined
+
+---
+
+#### **2.4 Update MOATShowcase Links (1 hour)**
+**Priority:** 🟡 **MEDIUM-HIGH**
+
+**Tasks:**
+- [ ] Update `src/components/landing/MOATShowcase.tsx`:
+  - `/platform/toxicity-risk` → `/moat/toxicity-nutrition` (NEW)
+  - `/solutions/clinical-decision-support` → `/solutions/clinical-decision-support#resistance-prediction` (anchor)
+  - `/solutions/clinical-decision-support` → `/solutions/clinical-decision-support#clinical-dossier` (anchor)
+  - `/platform/clinical-trials` → `/moat/trial-matching` (NEW)
+- [ ] Test all links work
+
+**Deliverables:**
+- All MOAT links updated
+- 0% broken links
+
+**Success Criteria:**
+- ✅ All 6 MOAT links work
+- ✅ Links route correctly
+
+---
+
+#### **2.5 Add Basic Interactive Components (3 hours)**
+**Priority:** 🟡 **MEDIUM**
+
+**Tasks:**
+- [ ] Import src2 components for each MOAT:
+  - Toxicity Nutrition: `VariantDetailCard`, `EssentialityChart`
+  - Resistance Prediction: `EssentialityChart`, `VariantImpactLandscape`
+  - Clinical Dossier: `EnhancedDossierSummary`, `VariantDetailCard`
+  - Trial Matching: `ClinicalTrialsMatcher`, `EssentialityChart`
+- [ ] Create placeholder demo data
+- [ ] Add to Live Demo tab
+
+**Deliverables:**
+- Interactive components integrated
+- Demo data created
+
+**Success Criteria:**
+- ✅ Components render correctly
+- ✅ Demo tab functional
+
+---
+
+**Sprint 2 Total:** 16 hours (2 days)
+
+---
+
+### **SPRINT 3: CO-PILOT PRODUCT INTEGRATION (Week 3)**
+**Theme:** Make All Co-Pilots Product-Aware  
+**Time:** 14 hours (1.75 days)
+
+#### **3.1 Add Product Integration to All Co-Pilots (8 hours)**
+**Priority:** 🟡 **MEDIUM**
+
+**Tasks:**
+- [ ] Update all 6 co-pilot data files:
+  - `chemo-data.ts` (already done in Sprint 1)
+  - `clinical-trials-data.ts`
+  - `therapy-fit-data.ts`
+  - `toxicity-data.ts`
+  - `pathway-data.ts`
+  - `crispr-intelligence-data.ts`
+- [ ] Map capabilities to products:
+  - Use product-MOAT mapping from doctrine files
+  - Define workflow steps
+  - List API endpoints
+- [ ] Test all co-pilot pages render correctly
+
+**Deliverables:**
+- All co-pilot data updated
+- Product integration visible on all pages
+
+**Success Criteria:**
+- ✅ All co-pilot pages show "Powered By" section
+- ✅ Product badges display
+- ✅ Workflow visualizations show
+- ✅ Links to product pages work
+
+---
+
+#### **3.2 Add Priority to Capabilities (3 hours)**
+**Priority:** 🟡 **MEDIUM**
+
+**Tasks:**
+- [ ] Review all co-pilot capabilities
+- [ ] Assign `priority: 'primary'` to 3-4 core capabilities per co-pilot
+- [ ] Assign `priority: 'advanced'` to remaining capabilities
+- [ ] Verify `TacticalCapabilityMatrix` filters correctly:
+  - Primary capabilities → Main tabs
+  - Advanced capabilities → Collapsible section
+
+**Deliverables:**
+- All capabilities prioritized
+- Organization working correctly
+
+**Success Criteria:**
+- ✅ Primary capabilities show in tabs (3-4 max)
+- ✅ Advanced features in collapsible section
+- ✅ Page organization improved
+
+---
+
+#### **3.3 Add Cross-Links (3 hours)**
+**Priority:** 🟡 **MEDIUM**
+
+**Tasks:**
+- [ ] Add co-pilot links to product pages:
+  - Oracle page → "See Oracle in action: Chemo Co-Pilot"
+  - Forge page → "See Forge in action: CRISPR Intelligence"
+  - Boltz page → "See Boltz in action: CRISPR Intelligence"
+  - Command Center → "See Command Center: All Co-Pilots"
+- [ ] Add product links to co-pilot pages:
+  - Co-pilot pages → Product pages (via ProductIntegrationSection)
+- [ ] Test all cross-links work
+
+**Deliverables:**
+- Cross-linking between co-pilots and products
+- Improved navigation
+
+**Success Criteria:**
+- ✅ Product pages link to co-pilots
+- ✅ Co-pilot pages link to products
+- ✅ All links work
+
+---
+
+**Sprint 3 Total:** 14 hours (1.75 days)
+
+---
+
+### **SPRINT 4: SOLUTIONS HUBS (Week 4)**
+**Theme:** Create Unified Entry Points  
+**Time:** 10 hours (1.25 days)
+
+#### **4.1 Complete Clinical Decision Support Hub (4 hours)**
+**Priority:** 🟡 **MEDIUM**
+
+**Tasks:**
+- [ ] Enhance `/app/solutions/clinical-decision-support/page.tsx`:
+  - Add anchor sections for each MOAT
+  - Link to MOAT pages
+  - Link to co-pilot pages
+  - Add "Unified Care Plan" section
+- [ ] Create `ClinicalDecisionSupportHub.tsx` component:
+  - Showcase all 5 clinical MOATs
+  - Link to relevant co-pilots
+  - Link to MOAT pages
+  - Show integration value
+
+**Deliverables:**
+- Complete solutions hub page
+- Unified MOAT showcase
+
+**Success Criteria:**
+- ✅ Hub page showcases all MOATs
+- ✅ Links to co-pilots and MOATs work
+- ✅ Unified Care Plan prominently displayed
+
+---
+
+#### **4.2 Create Research Acceleration Hub (3 hours)**
+**Priority:** 🟢 **LOW-MEDIUM**
+
+**Tasks:**
+- [ ] Create `/app/solutions/research-acceleration/page.tsx`
+- [ ] Create `ResearchAccelerationHub.tsx` component
+- [ ] Showcase research capabilities:
+  - Universal Hypothesis Testing
+  - Cohort Intelligence
+  - VUS Explorer
+  - Literature Synthesis
+- [ ] Link to Research product page
+- [ ] Link to relevant co-pilots
+
+**Deliverables:**
+- Research Acceleration hub page
+
+**Success Criteria:**
+- ✅ Hub page loads correctly
+- ✅ Research capabilities showcased
+- ✅ Links work
+
+---
+
+#### **4.3 Create Therapeutic Design Hub (3 hours)**
+**Priority:** 🟢 **LOW-MEDIUM**
+
+**Tasks:**
+- [ ] Create `/app/solutions/therapeutic-design/page.tsx`
+- [ ] Create `TherapeuticDesignHub.tsx` component
+- [ ] Showcase R&D capabilities:
+  - Target Validation
+  - Therapeutic Design
+  - Structural Validation
+  - IND Package Generation
+- [ ] Link to R&D product page
+- [ ] Link to CRISPR Intelligence co-pilot
+
+**Deliverables:**
+- Therapeutic Design hub page
+
+**Success Criteria:**
+- ✅ Hub page loads correctly
+- ✅ R&D capabilities showcased
+- ✅ Links work
+
+---
+
+**Sprint 4 Total:** 10 hours (1.25 days)
+
+---
+
+## 📊 SURGICAL PLAN SUMMARY
+
+| Sprint | Theme | Duration | Priority | Total Hours | Key Strategy |
+|--------|-------|----------|----------|-------------|-------------|
+| **Sprint 1** | Critical Fixes | Week 1 | 🔴 HIGHEST | 12h | Fix 1 broken link, create 3 components, enhance Oracle |
+| **Sprint 2** | MOAT Pages | Week 2 | 🟡 MEDIUM-HIGH | 16h | Reuse co-pilot pattern, create 4 MOAT pages |
+| **Sprint 3** | Co-Pilot Integration | Week 3 | 🟡 MEDIUM | 14h | Add product integration to all co-pilots |
+| **Sprint 4** | Solutions Hubs | Week 4 | 🟡 MEDIUM | 10h | Complete solutions hubs |
+
+**Total:** 52 hours (6.5 days = ~1.3 weeks full-time)
+
+**Time Savings vs Original Plan:** 74 hours saved (59% reduction)
+
+---
+
+## 🎯 KEY STRATEGIC DECISIONS
+
+### **1. Reuse Existing Patterns**
+- ✅ MOAT pages reuse co-pilot page pattern
+- ✅ Solutions hubs reuse product page pattern
+- ✅ Product integration components reusable
+- ✅ Type system extends existing interfaces
+
+### **2. Fix Actual Broken Links**
+- ✅ Only 1 truly broken link (`/solutions/clinical-decision-support`)
+- ✅ 2 "broken" links actually work (`/platform/toxicity-risk`, `/platform/clinical-trials`)
+- ✅ Fix the real problem, not perceived problems
+
+### **3. Incremental Rollout**
+- ✅ Sprint 1: Foundation + 1 co-pilot proof-of-concept
+- ✅ Sprint 2: MOAT pages (reuse pattern)
+- ✅ Sprint 3: Roll out to all co-pilots
+- ✅ Sprint 4: Complete solutions hubs
+
+### **4. Leverage Existing Infrastructure**
+- ✅ `AdvancedFeaturesSection` exists → Use it
+- ✅ `IntegratedCareSection` exists → Use it
+- ✅ `TacticalCapabilityMatrix` exists → Use it
+- ✅ Priority field exists → Use it
+- ✅ Dynamic routing pattern exists → Reuse it
+
+---
+
+## 🚨 CRITICAL INSIGHTS FROM CODE AUDIT
+
+### **What We Learned:**
+
+1. **Most Infrastructure Exists:**
+   - Co-pilot pages work perfectly
+   - Type system supports priorities
+   - Components exist for organization
+   - Dynamic routing pattern proven
+
+2. **Actual Broken Links:**
+   - Only 1 truly broken link (17% failure, not 67%)
+   - 2 "broken" links actually work (co-pilots exist)
+   - Need to verify links before assuming they're broken
+
+3. **Reusability Opportunities:**
+   - MOAT pages can reuse co-pilot pattern (90% code reuse)
+   - Solutions hubs can reuse product page pattern
+   - Product integration components reusable across all pages
+
+4. **Strategic Approach:**
+   - Create foundation components first (Sprint 1)
+   - Reuse patterns for new pages (Sprint 2)
+   - Roll out incrementally (Sprint 3)
+   - Complete with solutions hubs (Sprint 4)
+
+---
+
+## 📋 IMPLEMENTATION CHECKLIST
+
+### **Sprint 1 Checklist:**
+- [ ] Create `/app/solutions/clinical-decision-support/page.tsx`
+- [ ] Create `ProductIntegrationSection.tsx` component
+- [ ] Create `ProductBadge.tsx` component
+- [ ] Create `WorkflowVisualization.tsx` component
+- [ ] Update `CoPilotDetailContent` type
+- [ ] Add product integration to `chemo-data.ts`
+- [ ] Enhance Oracle page with SAE
+- [ ] Enhance Forge page with SAE mention
+
+### **Sprint 2 Checklist:**
+- [ ] Create `moat-types.ts`
+- [ ] Create `moats/index.ts` registry
+- [ ] Create `/app/moat/[moatSlug]/page.tsx` template
+- [ ] Create `MOATPageClient.tsx` component
+- [ ] Create 4 MOAT data files
+- [ ] Update MOATShowcase links
+- [ ] Add interactive components
+
+### **Sprint 3 Checklist:**
+- [ ] Add product integration to all 6 co-pilot data files
+- [ ] Assign priorities to all capabilities
+- [ ] Add cross-links to product pages
+- [ ] Test all co-pilot pages
+
+### **Sprint 4 Checklist:**
+- [ ] Complete Clinical Decision Support hub
+- [ ] Create Research Acceleration hub
+- [ ] Create Therapeutic Design hub
+- [ ] Test all links
+
+---
+
+## 🎯 SUCCESS METRICS
+
+### **Sprint 1 Success:**
+- ✅ 0% broken links (down from 17%)
+- ✅ Product integration components created
+- ✅ One co-pilot page product-aware
+- ✅ Oracle page emphasizes SAE
+
+### **Sprint 2 Success:**
+- ✅ 4 MOAT pages created
+- ✅ Product integration visible
+- ✅ All MOAT links work
+
+### **Sprint 3 Success:**
+- ✅ All 6 co-pilot pages product-aware
+- ✅ Capabilities organized (primary/advanced)
+- ✅ Cross-links working
+
+### **Sprint 4 Success:**
+- ✅ 3 solution hub pages created
+- ✅ Unified entry points for MOATs
+- ✅ Clear navigation structure
+
+---
+
+## 🔗 DEPENDENCIES
+
+### **Sprint 1 Prerequisites:**
+- ✅ Sprint 0 complete (DONE)
+- ✅ Co-pilot pages exist (DONE)
+- ✅ Product pages exist (DONE)
+
+### **Sprint 2 Prerequisites:**
+- ✅ Sprint 1 complete (product integration components)
+- ✅ MOAT type system (from Sprint 2.1)
+
+### **Sprint 3 Prerequisites:**
+- ✅ Sprint 1 complete (product integration components)
+- ✅ Co-pilot pages exist (DONE)
+
+### **Sprint 4 Prerequisites:**
+- ✅ Sprint 1 complete (solutions hub created)
+- ✅ Sprint 2 complete (MOAT pages)
+
+---
+
+## 🚨 RISK MITIGATION
+
+### **Risk 1: Component Complexity**
+**Mitigation:** Reuse existing patterns, create generic reusable components
+**Status:** 🟡 **MITIGATED**
+
+### **Risk 2: Type System Changes**
+**Mitigation:** Extend existing interfaces, incremental updates
+**Status:** 🟡 **MITIGATED**
+
+### **Risk 3: Broken Links Assumption**
+**Mitigation:** Verified actual broken links (only 1, not 4)
+**Status:** ✅ **MITIGATED**
+
+### **Risk 4: Time Overestimation**
+**Mitigation:** Reduced from 126h to 52h by reusing patterns
+**Status:** ✅ **MITIGATED**
+
+---
+
+## 📝 KEY DIFFERENCES FROM ORIGINAL PLAN
+
+### **Original Plan Issues:**
+1. ❌ Assumed 4 broken links (actually only 1)
+2. ❌ Didn't leverage existing components
+3. ❌ Created duplicate patterns instead of reusing
+4. ❌ Overestimated time (126h vs 52h actual)
+
+### **Surgical Plan Improvements:**
+1. ✅ Verified actual broken links (only 1)
+2. ✅ Leverages existing components (`AdvancedFeaturesSection`, etc.)
+3. ✅ Reuses proven patterns (co-pilot page → MOAT page)
+4. ✅ Realistic time estimates (52h vs 126h)
+
+---
+
+**Document Status:** ✅ SURGICAL PLAN COMPLETE - Based on Code Audit  
+**Ready for Execution:** ✅ YES - Begin Sprint 1 immediately  
+**Estimated Completion:** 4 weeks (1 month) from Sprint 1 start  
+**Time Savings:** 74 hours (59% reduction) vs original plan
+
+---
+
+**CRITICAL NEXT ACTION:** Begin Sprint 1.1 - Create Solutions Hub (2 hours)

@@ -73,29 +73,29 @@ export default function TechnologyFoundationSection({
           return IconComp ? (
             <div 
               key={index} 
-              className={`text-center group transition-all duration-300 p-4 rounded-xl cursor-pointer ${isActive ? 'bg-slate-700 shadow-lg scale-105' : 'bg-slate-800/70 hover:bg-slate-700/80'}`}
+              className={`text-center group transition-all duration-300 p-4 rounded-xl cursor-pointer ${isActive ? 'bg-blue-50 shadow-lg scale-105 border-2 border-blue-300' : 'bg-white hover:bg-slate-50 border border-slate-200'}`}
               onClick={() => setActiveTechFoundationPointIndex(index)}
             >
-              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-3 transition-colors border ${isActive ? 'border-primary/70' : 'border-slate-700 group-hover:border-slate-600'} ${isActive ? 'bg-primary/10' : 'group-hover:bg-slate-700'}`}>
-                <IconComp size={28} className={`${item.color} ${isActive ? 'text-primary' : item.color}`} />
+              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-3 transition-colors border ${isActive ? 'border-blue-500' : 'border-slate-300 group-hover:border-slate-400'} ${isActive ? 'bg-blue-100' : 'bg-slate-50 group-hover:bg-slate-100'}`}>
+                <IconComp size={28} className={`${item.color} ${isActive ? 'text-blue-600' : item.color}`} />
               </div>
-              <div className={`font-medium text-sm px-1 ${isActive ? 'text-primary' : 'text-slate-300'}`}>{item.label}</div>
+              <div className={`font-medium text-sm px-1 ${isActive ? 'text-blue-700 font-semibold' : 'text-slate-700'}`}>{item.label}</div>
             </div>
           ) : null;
         })}
       </div>
 
-      <div className="bg-gradient-to-t from-slate-800/80 to-slate-800/50 rounded-xl p-8 md:p-12 border border-slate-700 text-center">
+      <div className="bg-white rounded-xl p-6 md:p-8 border border-slate-200 shadow-lg text-center">
         {currentTechFoundationDescriptionPoint ? (
           <div className="flex flex-col items-center">
-            <CheckCircle size={24} className="text-blue-400 mb-4" />
+            <CheckCircle size={24} className="text-blue-600 mb-4" />
             <div 
-              className="text-slate-200 text-xl text-center leading-relaxed prose prose-xl prose-invert max-w-3xl mx-auto prose-strong:text-white prose-strong:font-semibold" 
+              className="text-slate-700 text-base md:text-lg text-center leading-relaxed prose prose-lg prose-slate max-w-3xl mx-auto prose-strong:text-slate-800 prose-strong:font-semibold" 
               dangerouslySetInnerHTML={renderMarkdown(currentTechFoundationDescriptionPoint)}>
             </div>
           </div>
         ) : (
-          <p className="text-slate-400 text-center text-lg py-8">Select a technology above to see details.</p>
+          <p className="text-slate-600 text-center text-base md:text-lg py-8">Select a technology above to see details.</p>
         )}
       </div>
     </motion.div>

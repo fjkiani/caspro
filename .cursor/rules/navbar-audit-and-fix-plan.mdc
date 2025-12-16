@@ -1,0 +1,526 @@
+# Navbar Audit & Fix Plan
+
+**Date**: 2024-12-19
+**Purpose**: Audit and fix navbar to align with recent product page structure and homepage improvements
+
+---
+
+## 🔍 CURRENT NAVBAR STRUCTURE
+
+### Location: `src/components/ui/Navbar.tsx`
+
+**Current Navigation Items**:
+1. **About** → `/about` ✅
+2. **Products** (dropdown) → `/products`
+   - Oracle (Discriminative AI) → `/products/oracle` ✅
+   - Forge (Generative AI) → `/products/forge` ✅
+   - Boltz (Structural Validation) → `/products/boltz` ✅
+   - Command Center (Orchestration) → `/products/command-center` ✅
+3. **In-Silico** (dropdown) → `/insilico`
+   - Dynamic co-pilot links from `coPilotDetailsData`
+4. **Evidence** (dropdown) → `/evidence`
+   - Evidence Intelligence → `/evidence` ✅
+   - S/P/E Fusion → `/evidence/spe-fusion` ✅
+   - Data Lab → `/evidence/data-lab` ✅
+   - SAE Intelligence → `/evidence/sae-intelligence` ✅
+   - Cohort Context → `/cohort` ✅
+5. **Blog** → `/blog` ✅
+6. **Success Stories** (dropdown) → `/use-cases`
+   - Multiple Myeloma → `/use-cases/multiple-myeloma` ⚠️
+7. **Metrics** (dropdown) → `/metrics`
+   - BRCA1/2 → `/metrics/brca` ✅
+   - SNV Prediction → `/metrics/snv` ✅
+   - Splice Variants → `/metrics/splice` ✅
+   - VUS Resolution → `/metrics/vus` ✅
+   - Generative AI → `/metrics/generative` ✅
+   - Business Impact → `/metrics/business` ✅
+8. **Contact** → `/contact` ✅
+
+---
+
+## ❌ ISSUES IDENTIFIED
+
+### 1. **Missing Main Product Pages** (CRITICAL)
+
+**Problem**: Navbar shows engine-level products (Oracle, Forge, Boltz, Command Center) but NOT the main product pages that homepage links to:
+
+- ❌ `/products/oncology` - **MISSING** (linked from homepage Hero, WhatWeDo, PlatformCapabilities)
+- ❌ `/products/r-d` - **MISSING** (linked from homepage Hero, WhatWeDo, PlatformCapabilities)
+- ❌ `/products/research` - **MISSING** (linked from homepage Hero, WhatWeDo, PlatformCapabilities)
+
+**Impact**: Users can't navigate to main product pages from navbar, creating disconnect with homepage.
+
+---
+
+### 2. **Confusing "In-Silico" Menu** (MEDIUM)
+
+**Problem**: 
+- "In-Silico" is vague and doesn't clearly indicate it's about platform/co-pilots
+- Should be renamed to "Platform" to match homepage messaging
+- Links to `/insilico` page which may not align with `/platform` page
+
+**Current**: `/insilico` → Dynamic co-pilot links
+**Homepage**: Links to `/platform` for "AI Foundation"
+
+---
+
+### 3. **Products Menu Structure** (MEDIUM)
+
+**Problem**: Products dropdown shows engines, but homepage emphasizes 3 main products:
+1. Precision Oncology → `/products/oncology`
+2. Therapeutic Development (R&D) → `/products/r-d`
+3. Research → `/products/research`
+
+**Recommendation**: Restructure Products menu to show:
+- Main Products (Oncology, R&D, Research)
+- Engines (Oracle, Forge, Boltz, Command Center) as sub-items or separate section
+
+---
+
+### 4. **Inconsistent Naming** (LOW)
+
+**Problem**:
+- Navbar: "Success Stories"
+- Could be clearer: "Use Cases" matches route `/use-cases`
+
+---
+
+## ✅ CONFIRMED WORKING LINKS
+
+All existing navbar links point to valid routes:
+- ✅ `/about`
+- ✅ `/products/oracle`, `/products/forge`, `/products/boltz`, `/products/command-center`
+- ✅ `/insilico` (but see issue #2)
+- ✅ `/evidence` and all sub-links
+- ✅ `/blog`
+- ✅ `/use-cases`
+- ✅ `/metrics` and all sub-links
+- ✅ `/contact`
+
+---
+
+## 📝 RECOMMENDED NAVBAR STRUCTURE
+
+### Option A: Two-Level Products Menu (RECOMMENDED)
+
+```
+Products (dropdown)
+├── Main Products
+│   ├── Oncology → /products/oncology
+│   ├── R&D → /products/r-d
+│   └── Research → /products/research
+└── AI Engines
+    ├── Oracle → /products/oracle
+    ├── Forge → /products/forge
+    ├── Boltz → /products/boltz
+    └── Command Center → /products/command-center
+```
+
+### Option B: Separate "Products" and "Engines" Menus
+
+```
+Products (dropdown)
+├── Oncology → /products/oncology
+├── R&D → /products/r-d
+└── Research → /products/research
+
+AI Engines (dropdown)
+├── Oracle → /products/oracle
+├── Forge → /products/forge
+├── Boltz → /products/boltz
+└── Command Center → /products/command-center
+```
+
+**Recommendation**: **Option A** - Groups related items together, maintains hierarchy.
+
+---
+
+## 🔧 IMPLEMENTATION PLAN
+
+### Phase 1: Add Main Product Pages to Products Menu (HIGH PRIORITY)
+
+**File**: `src/components/ui/Navbar.tsx`
+
+**Current Structure** (lines 62-71):
+```tsx
+{
+  href: '/products',
+  label: 'Products',
+  icon: <Rocket className="inline-block h-4 w-4" />,
+  subLinks: [
+    { href: '/products/oracle', label: 'Oracle (Discriminative AI)' },
+    { href: '/products/forge', label: 'Forge (Generative AI)' },
+    { href: '/products/boltz', label: 'Boltz (Structural Validation)' },
+    { href: '/products/command-center', label: 'Command Center (Orchestration)' },
+  ],
+},
+```
+
+**New Structure**:
+```tsx
+{
+  href: '/products',
+  label: 'Products',
+  icon: <Rocket className="inline-block h-4 w-4" />,
+  subLinks: [
+    // Main Products
+    { href: '/products/oncology', label: 'Oncology', divider: true }, // divider for visual separation
+    { href: '/products/r-d', label: 'R&D' },
+    { href: '/products/research', label: 'Research' },
+    // AI Engines
+    { href: '/products/oracle', label: 'Oracle', divider: true },
+    { href: '/products/forge', label: 'Forge' },
+    { href: '/products/boltz', label: 'Boltz' },
+    { href: '/products/command-center', label: 'Command Center' },
+  ],
+},
+```
+
+**Note**: May need to update `DropdownMenu` component to support dividers.
+
+---
+
+### Phase 2: Rename "In-Silico" to "Platform" (MEDIUM PRIORITY)
+
+**Current** (line 73):
+```tsx
+{
+  href: '/insilico',
+  label: 'In-Silico',
+  ...
+}
+```
+
+**New**:
+```tsx
+{
+  href: '/platform',
+  label: 'Platform',
+  ...
+}
+```
+
+**Decision Needed**: 
+- Keep `/insilico` route and redirect to `/platform`?
+- Or update all references from `/insilico` to `/platform`?
+
+---
+
+### Phase 3: Update DropdownMenu Component (IF NEEDED)
+
+**Check**: Does `DropdownMenu` component support dividers?
+
+**If not**, either:
+1. Add divider support to `DropdownMenu`
+2. Or use a separator item: `{ href: '#', label: '---', separator: true }`
+
+---
+
+### Phase 4: Consistency Updates (LOW PRIORITY)
+
+- Consider renaming "Success Stories" to "Use Cases" for consistency
+- Ensure all menu labels match homepage terminology
+
+---
+
+## 📊 SUMMARY
+
+**Total Nav Items**: 8
+**Working Links**: 8/8 ✅
+**Missing Critical Links**: 3 ❌ (`/products/oncology`, `/products/r-d`, `/products/research`)
+**Confusing Items**: 1 ⚠️ ("In-Silico" should be "Platform")
+
+**Priority Fixes**:
+1. 🔴 **HIGH**: Add main product pages to Products menu
+2. 🟡 **MEDIUM**: Rename "In-Silico" to "Platform"
+3. 🟢 **LOW**: Consistency improvements
+
+---
+
+## 🎯 NEXT STEPS
+
+1. [x] ✅ Update Products menu to include main product pages
+2. [x] ✅ Added divider support to DropdownMenu component
+3. [x] ✅ Renamed "In-Silico" to "Platform"
+4. [ ] Test all navbar links in browser
+5. [x] ✅ Updated audit document
+
+---
+
+## ✅ COMPLETED FIXES (2024-12-19)
+
+### 1. Products Menu Updated ✅
+
+**Added main product pages**:
+- Oncology → `/products/oncology`
+- R&D → `/products/r-d`
+- Research → `/products/research`
+
+**Products menu now shows**:
+- Main Products (with divider)
+  - Oncology
+  - R&D
+  - Research
+- AI Engines (with divider)
+  - Oracle
+  - Forge
+  - Boltz
+  - Command Center
+
+### 2. Platform Menu Renamed ✅
+
+**Changed**:
+- Label: "In-Silico" → "Platform"
+- Href: `/insilico` → `/platform`
+
+### 3. DropdownMenu Component Enhanced ✅
+
+**Added divider support**:
+- Added `divider?: boolean` to `NavLink` interface
+- Updated dropdown rendering to show dividers between sections
+- Works in both desktop and mobile views
+
+---
+
+## 📊 CURRENT STATUS (Updated: 2025-01-15)
+
+**Navbar Structure** (Current):
+1. About → `/about` ✅
+2. Products (dropdown) ✅
+   - Main Products: Oncology, R&D, Research ✅
+   - AI Engines: Oracle, Forge, Boltz, Command Center ✅
+3. Platform (dropdown) → `/platform` ✅ (renamed from "In-Silico")
+4. Evidence (dropdown) ✅
+5. Blog ✅
+6. Success Stories ✅
+7. Metrics (dropdown) ✅
+8. Contact ✅
+
+---
+
+## 🆕 NEW PAGES BUILT SINCE LAST AUDIT
+
+### **Major New Pages** (Need Navbar Integration):
+
+1. **`/comparisons/patient`** - ⚠️ **MISSING FROM NAVBAR**
+   - Patient comparison page (GPT vs CrisPRO)
+   - Tabs: Toxicity-Aware Nutrition, VUS Resolution
+   - Interactive thinking process demos
+   - Real benchmarks with MOAT advantages
+   - **Status**: Complete page, not in navbar
+   - **Recommendation**: Add to navbar (see below)
+
+2. **`/products/oncology`** - ✅ In navbar
+   - Complete agentic cascade experience
+   - Full-page cascade with 8-agent pipeline
+   - Capability showcases (6 cards)
+   - Continuous monitoring dashboard
+   - **Status**: Linked from Products menu ✅
+
+3. **`/products/r-d`** - ✅ In navbar
+   - R&D product page with capabilities
+   - Design challenges demo
+   - IP monetization
+   - **Status**: Linked from Products menu ✅
+
+4. **`/products/research`** - ✅ In navbar
+   - Research product page
+   - **Status**: Linked from Products menu ✅
+
+---
+
+## 🎯 UPDATED NAVBAR RECOMMENDATIONS
+
+### **Priority 1: Add Comparison Pages** (NEW - HIGH PRIORITY)
+
+**New Major Feature**: Patient comparison page showcasing GPT vs CrisPRO
+
+**Recommendation**: Add "Compare" or "Benchmarks" menu
+
+**Option A: Add as dropdown menu**
+```
+Compare (dropdown)
+├── Patient Scenarios → /comparisons/patient
+└── [Future: Biotech Scenarios, Clinical Scenarios]
+```
+
+**Option B: Add as single link under Evidence or Products**
+- Could go under Evidence menu as "Benchmarks"
+- Or as a top-level link if we expect more comparison pages
+
+**Option C: Add to Platform menu**
+- Could be "Platform" → "Benchmarks" → "Patient Comparison"
+
+**Recommendation**: **Option A** - Create new "Compare" dropdown for future expansion (biotech, clinical, research comparisons)
+
+---
+
+### **Priority 2: Review Platform Menu Structure** (MEDIUM)
+
+**Current Platform Menu**:
+- Shows dynamic co-pilot links from `coPilotDetailsData`
+
+**Available Platform Pages**:
+- `/platform` - Main platform page (co-pilot selection)
+- `/platform/[coPilotSlug]` - Dynamic co-pilot detail pages:
+  - `/platform/agentic-emr`
+  - `/platform/crispr-intelligence`
+  - `/platform/precision-rad`
+- `/platform/oracle-intelligence`
+- `/platform/forge-intelligence`
+- `/platform/scribe-intelligence`
+
+**Status**: ✅ Working, shows dynamic links correctly
+
+---
+
+### **Priority 3: Products Menu - Verify Links Work** (LOW)
+
+**Main Products**:
+- ✅ `/products/oncology` - Complete with agentic cascade, capabilities
+- ✅ `/products/r-d` - Complete with R&D capabilities
+- ✅ `/products/research` - Exists
+
+**AI Engines**:
+- ✅ `/products/oracle` - Exists
+- ✅ `/products/forge` - Exists
+- ✅ `/products/boltz` - Exists
+- ✅ `/products/command-center` - Exists
+
+**Status**: All links verified to exist ✅
+
+---
+
+## 📋 UPDATED NAVBAR STRUCTURE PROPOSAL
+
+### **Recommended New Structure**:
+
+```
+1. About → /about ✅
+2. Products (dropdown)
+   ├── Main Products
+   │   ├── Oncology → /products/oncology ✅
+   │   ├── R&D → /products/r-d ✅
+   │   └── Research → /products/research ✅
+   └── AI Engines
+       ├── Oracle → /products/oracle ✅
+       ├── Forge → /products/forge ✅
+       ├── Boltz → /products/boltz ✅
+       └── Command Center → /products/command-center ✅
+3. Platform (dropdown) → /platform ✅
+   └── Dynamic co-pilot links ✅
+4. Compare (dropdown) 🆕
+   └── Patient Scenarios → /comparisons/patient 🆕
+5. Evidence (dropdown) ✅
+6. Blog ✅
+7. Success Stories ✅
+8. Metrics (dropdown) ✅
+9. Contact ✅
+```
+
+---
+
+## 🔧 IMPLEMENTATION TASKS
+
+### **Task 1: Add "Compare" Menu** (NEW - HIGH PRIORITY)
+
+**File**: `src/components/ui/Navbar.tsx`
+
+**Add new menu item**:
+```tsx
+{
+  href: '/comparisons',
+  label: 'Compare',
+  icon: <Scale className="inline-block h-4 w-4" />, // or BarChart3, GitCompare, etc.
+  subLinks: [
+    { href: '/comparisons/patient', label: 'Patient Scenarios' },
+    // Future: { href: '/comparisons/biotech', label: 'Biotech Scenarios' },
+    // Future: { href: '/comparisons/clinical', label: 'Clinical Scenarios' },
+  ],
+},
+```
+
+**Placement**: After "Platform", before "Evidence"
+
+---
+
+### **Task 2: Verify All Product Links Work** (VERIFICATION)
+
+- ✅ Test `/products/oncology` loads correctly
+- ✅ Test `/products/r-d` loads correctly  
+- ✅ Test `/products/research` loads correctly
+- ✅ Test all engine pages load correctly
+
+---
+
+### **Task 3: Consider Menu Ordering** (OPTIONAL)
+
+**Current order**:
+1. About
+2. Products
+3. Platform
+4. Evidence
+5. Blog
+6. Success Stories
+7. Metrics
+8. Contact
+
+**With new "Compare" menu**:
+1. About
+2. Products
+3. Platform
+4. Compare 🆕
+5. Evidence
+6. Blog
+7. Success Stories
+8. Metrics
+9. Contact
+
+**Alternative**: Could move "Compare" after "Evidence" or integrate into "Evidence" as "Benchmarks"
+
+---
+
+## 📊 SUMMARY OF CHANGES NEEDED
+
+**New Additions**:
+- 🆕 Add "Compare" dropdown menu → `/comparisons/patient`
+
+**Already Complete**:
+- ✅ Products menu includes main products (Oncology, R&D, Research)
+- ✅ Platform menu renamed from "In-Silico"
+- ✅ All existing links verified working
+
+**Future Considerations**:
+- Consider adding more comparison scenarios (biotech, clinical)
+- Consider integrating comparison into Evidence menu
+- Review menu order for optimal UX
+
+---
+
+## ✅ ACTION ITEMS
+
+1. [ ] **HIGH**: Add "Compare" dropdown menu with Patient Scenarios link
+2. [ ] **MEDIUM**: Test all product page links in browser
+3. [ ] **LOW**: Review menu ordering and user flow
+4. [ ] **FUTURE**: Add more comparison scenarios as they're built
+
+---
+
+## 🎯 FINAL NAVBAR STRUCTURE (PROPOSED)
+
+**After adding Compare menu**:
+1. About → `/about` ✅
+2. Products (dropdown) ✅
+   - Main Products: Oncology, R&D, Research ✅
+   - AI Engines: Oracle, Forge, Boltz, Command Center ✅
+3. Platform (dropdown) → `/platform` ✅
+   - Dynamic co-pilot links ✅
+4. Compare (dropdown) 🆕
+   - Patient Scenarios → `/comparisons/patient` 🆕
+5. Evidence (dropdown) ✅
+6. Blog ✅
+7. Success Stories ✅
+8. Metrics (dropdown) ✅
+9. Contact ✅
+
+**Total Nav Items**: 9 (was 8)

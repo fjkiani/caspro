@@ -1,206 +1,336 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { adaptCompletePlatformForHomepage } from '@/data/adapters/platform-adapter';
 import { 
-  Target, 
-  Zap, 
-  Shield, 
-  Network,
-  TrendingUp,
-  Clock,
-  DollarSign,
-  Award,
   ChevronRight,
-  Play
+  Play,
+  Stethoscope,
+  FlaskConical,
+  Microscope
 } from 'lucide-react';
 
 export default function DrugDevelopmentPlatform() {
-  const platformData = useMemo(() => adaptCompletePlatformForHomepage(), []);
-  const [activeEngine, setActiveEngine] = useState<'oracle' | 'forge' | 'boltz' | 'commandCenter'>('oracle');
+  const [activeProduct, setActiveProduct] = useState<'oncology' | 'r-d' | 'research'>('oncology');
 
-  const engines = {
-    oracle: {
-      name: 'Oracle',
-      subtitle: 'Discriminative AI Engine',
-      icon: Target,
-      color: 'from-cyan-500 to-blue-600',
-      description: 'Transform genetic uncertainty into actionable intelligence',
-      keyMetric: '95.7% AUROC',
-      data: platformData.oracle
+  const products = {
+    oncology: {
+      id: 'oncology',
+      title: 'CrisPRO Oncology',
+      promise: 'From VUS to Validated Care Plan in Minutes',
+      targetUser: 'For Clinicians',
+      icon: Stethoscope,
+      color: 'from-blue-500 to-cyan-600',
+      description: 'Transform variants of unknown significance into actionable treatment decisions. Instantly resolve VUS cases with 95.7% accuracy and match patients to mechanism-aligned clinical trials.',
+      keyMetric: '95.7% VUS Resolution',
+      coreCapabilities: [
+        'VUS Resolution',
+        'Clinical Trial Matching',
+        'S/P/E Framework',
+        'Resistance Prediction',
+        'Clinical Dossier',
+        'Toxicity-Aware Nutrition'
+      ],
+      poweredBy: ['Oracle', 'Command Center'],
+      link: '/products/oncology',
+      interactiveTeasers: [
+        {
+          title: 'Try VUS Resolution Live',
+          description: 'See how we resolve variants in real-time',
+          link: '/products/oncology',
+          cta: 'Resolve VUS Now'
+        },
+        {
+          title: 'Experience Agent Swarm',
+          description: 'Watch autonomous agents orchestrate care',
+          link: '/products/oncology',
+          cta: 'See Agent Swarm'
+        },
+        {
+          title: 'Intelligence Cascade Demo',
+          description: 'Full end-to-end processing pipeline',
+          link: '/products/oncology',
+          cta: 'View Cascade'
+        }
+      ]
     },
-    forge: {
-      name: 'Forge', 
-      subtitle: 'Generative AI Engine',
-      icon: Zap,
+    'r-d': {
+      id: 'r-d',
+      title: 'CrisPRO R&D',
+      promise: 'Design the Undruggable. Validate in Silico.',
+      targetUser: 'For Biotech',
+      icon: FlaskConical,
       color: 'from-orange-500 to-red-600',
-      description: 'Engineer precision therapeutics from first principles',
-      keyMetric: '70% Functional',
-      data: platformData.forge
+      description: 'Engineer precision therapeutics from first principles. Identify novel targets, design therapeutic proteins, and validate in-silico before wet-lab investment.',
+      keyMetric: '70% Functional Coherence',
+      coreCapabilities: [
+        'Target Discovery',
+        'Lead Engineering',
+        'Pre-Clinical Confirmation',
+        'In Silico Validation',
+        'Protein Design',
+        'CRISPR Guide Optimization'
+      ],
+      poweredBy: ['Oracle', 'Forge', 'Boltz'],
+      link: '/products/r-d',
+      interactiveTeasers: [
+        {
+          title: 'Design CRISPR Guides',
+          description: 'Optimize therapeutic guides with AI',
+          link: '/products/r-d',
+          cta: 'Design Guides'
+        },
+        {
+          title: 'Protein Engineering',
+          description: 'Generate novel therapeutic proteins',
+          link: '/products/r-d',
+          cta: 'Engineer Proteins'
+        },
+        {
+          title: 'Structural Validation',
+          description: 'Validate 3D integrity before experiments',
+          link: '/products/r-d',
+          cta: 'Validate Structure'
+        }
+      ]
     },
-    boltz: {
-      name: 'Boltz',
-      subtitle: 'Structural Validation Engine', 
-      icon: Shield,
-      color: 'from-green-500 to-emerald-600',
-      description: '3D structural validation with AlphaFold 3 integration',
-      keyMetric: '95.8% Confidence',
-      data: platformData.boltz
-    },
-    commandCenter: {
-      name: 'Command Center',
-      subtitle: 'Orchestration Engine',
-      icon: Network, 
-      color: 'from-purple-500 to-indigo-600',
-      description: 'End-to-end workflow orchestration and evidence aggregation',
-      keyMetric: 'Complete Audit',
-      data: platformData.commandCenter
+    research: {
+      id: 'research',
+      title: 'CrisPRO Research',
+      promise: 'Accelerate Discovery from Years to Hours',
+      targetUser: 'For Academics',
+      icon: Microscope,
+      color: 'from-teal-500 to-emerald-600',
+      description: 'Test hypotheses across 50+ diseases instantly. Extract patterns from massive datasets, synthesize evidence from literature, and generate grant-ready data.',
+      keyMetric: '50+ Diseases Supported',
+      coreCapabilities: [
+        'VUS Explorer',
+        'Universal Hypothesis Testing',
+        'Cohort Intelligence',
+        'Evidence Synthesis',
+        'Literature Search',
+        'Grant-Ready Data'
+      ],
+      poweredBy: ['Oracle', 'Command Center'],
+      link: '/products/research',
+      interactiveTeasers: [
+        {
+          title: 'Test Hypotheses Live',
+          description: 'Validate research questions instantly',
+          link: '/products/research#hypothesis-testing',
+          cta: 'Test Hypothesis'
+        },
+        {
+          title: 'Explore Research Tools',
+          description: 'Interactive tools for discovery',
+          link: '/products/research#interactive-tools',
+          cta: 'Explore Tools'
+        },
+        {
+          title: 'VUS Resolution Demo',
+          description: 'Turn unknowns into actionables',
+          link: '/products/research#interactive-tools',
+          cta: 'Resolve VUS'
+        }
+      ]
     }
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-400 bg-clip-text text-transparent">
-            The Complete AI Engine for Therapeutic Development
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-slate-900">
+            Choose Your <span className="text-blue-600">Path</span>
           </h2>
-          <p className="text-2xl text-slate-300 max-w-5xl mx-auto mb-8">
-            Preditive AI + Generative AI + Protien Engineering + Command Center = Transform drug development from a $2.6B gamble into deterministic engineering
+          <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto mb-8">
+            The Operating System for Precision Medicine - three products for different use cases
           </p>
-          
-          {/* Platform Metrics */}
-          <div className="grid md:grid-cols-4 gap-6 mb-12">
-            <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl border border-cyan-500/30">
-              <TrendingUp className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-white">{platformData.platformMetrics.discriminativeAccuracy}</div>
-              <div className="text-sm text-slate-400">Oracle Precision</div>
-            </div>
-            <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl border border-orange-500/30">
-              <Award className="w-8 h-8 text-orange-400 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-white">{platformData.platformMetrics.generativeSuccess}</div>
-              <div className="text-sm text-slate-400">Forge Success</div>
-            </div>
-            <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl border border-green-500/30">
-              <Shield className="w-8 h-8 text-green-400 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-white">{platformData.platformMetrics.structuralValidation}</div>
-              <div className="text-sm text-slate-400">Boltz Validation</div>
-            </div>
-            <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl border border-purple-500/30">
-              <Clock className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-white">{platformData.platformMetrics.timeAcceleration}</div>
-              <div className="text-sm text-slate-400">Speed Increase</div>
-            </div>
-          </div>
         </motion.div>
 
-        {/* Engine Selector */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {Object.entries(engines).map(([key, engine]) => {
-            const IconComponent = engine.icon;
-            const isActive = activeEngine === key;
+        {/* Product Selector - Three Doors Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-12">
+          {Object.entries(products).map(([key, product]) => {
+            const IconComponent = product.icon;
+            const isActive = activeProduct === key;
             return (
               <motion.button
                 key={key}
-                onClick={() => setActiveEngine(key as any)}
-                className={`flex items-center gap-3 px-6 py-3 rounded-xl border transition-all duration-300 ${
+                onClick={() => setActiveProduct(key as any)}
+                className={`relative p-6 rounded-2xl border-2 transition-all duration-300 text-left ${
                   isActive 
-                    ? `bg-gradient-to-r ${engine.color} text-white border-transparent shadow-lg`
-                    : 'bg-slate-800/50 text-slate-300 border-slate-700 hover:border-slate-600'
+                    ? `border-blue-600 bg-blue-50 shadow-lg`
+                    : 'border-slate-200 bg-white hover:border-blue-300 hover:shadow-md'
                 }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <IconComponent className="w-5 h-5" />
-                <div className="text-left">
-                  <div className="font-bold">{engine.name}</div>
-                  <div className="text-xs opacity-80">{engine.keyMetric}</div>
+                {/* Icon */}
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
+                  isActive 
+                    ? `bg-gradient-to-br ${product.color}` 
+                    : 'bg-slate-100'
+                }`}>
+                  <IconComponent className={`w-6 h-6 ${isActive ? 'text-white' : 'text-slate-600'}`} />
                 </div>
+                
+                {/* Title */}
+                <h3 className={`text-xl font-bold mb-2 ${isActive ? 'text-blue-900' : 'text-slate-900'}`}>
+                  {product.title}
+                </h3>
+                
+                {/* Promise */}
+                <p className={`text-sm mb-3 ${isActive ? 'text-blue-700' : 'text-slate-600'}`}>
+                  {product.promise}
+                </p>
+                
+                {/* Target User */}
+                <div className={`text-xs font-semibold mb-3 ${isActive ? 'text-blue-600' : 'text-slate-500'}`}>
+                  {product.targetUser}
+                </div>
+                
+                {/* Key Metric */}
+                <div className={`text-xs ${isActive ? 'text-blue-600' : 'text-slate-500'}`}>
+                  {product.keyMetric}
+                </div>
+                
+                {/* Active Indicator */}
+                {isActive && (
+                  <div className="absolute top-4 right-4 w-3 h-3 bg-blue-600 rounded-full"></div>
+                )}
               </motion.button>
             );
           })}
         </div>
 
-        {/* Active Engine Details */}
+        {/* Active Product Details */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeEngine}
+            key={activeProduct}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="bg-slate-800/30 backdrop-blur-sm rounded-2xl border border-slate-700/50 p-8"
+            className="bg-white rounded-2xl border-2 border-slate-200 shadow-lg p-8"
           >
             {(() => {
-              const engine = engines[activeEngine];
-              const IconComponent = engine.icon;
+              const product = products[activeProduct];
+              const IconComponent = product.icon;
               
               return (
-                <div className="grid lg:grid-cols-2 gap-8">
-                  {/* Engine Info */}
-                  <div>
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${engine.color} flex items-center justify-center`}>
+                <div className="grid lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-12 items-start">
+                  {/* Left Column: Icon, Title, Description */}
+                  <div className="space-y-6">
+                    {/* Header: Icon + Title + Promise */}
+                    <div className="flex items-start gap-4">
+                      <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${product.color} flex items-center justify-center flex-shrink-0`}>
                         <IconComponent className="w-8 h-8 text-white" />
                       </div>
-                      <div>
-                        <h3 className="text-3xl font-bold text-white">{engine.name}</h3>
-                        <p className="text-lg text-slate-300">{engine.subtitle}</p>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-3xl font-bold text-slate-900 mb-1">{product.title}</h3>
+                        <p className="text-lg text-slate-600 font-semibold">{product.promise}</p>
                       </div>
                     </div>
                     
-                    <p className="text-xl text-slate-300 mb-6">{engine.description}</p>
+                    {/* Target User Tag */}
+                    <div className="flex flex-wrap gap-2">
+                      <div className="flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold">
+                        <IconComponent className="w-4 h-4" />
+                        <span>{product.targetUser}</span>
+                      </div>
+                    </div>
                     
-                    {/* Key Features */}
-                    <div className="space-y-3">
-                      <h4 className="text-lg font-bold text-white">Key Capabilities:</h4>
-                      {(('keyFeatures' in engine.data ? engine.data.keyFeatures : null) || ('capabilities' in engine.data ? engine.data.capabilities?.map((cap: any) => cap.title) : null) || []).slice(0, 4).map((feature: string, idx: number) => (
-                        <div key={idx} className="flex items-center gap-3">
-                          <ChevronRight className="w-4 h-4 text-cyan-400" />
-                          <span className="text-slate-300">{feature}</span>
+                    {/* Description */}
+                    <p className="text-lg text-slate-700 leading-relaxed">{product.description}</p>
+                    
+                    {/* Interactive Teasers */}
+                    {product.interactiveTeasers && (
+                      <div className="space-y-3">
+                        <h4 className="text-lg font-semibold text-slate-800">Try Live Demos:</h4>
+                        <div className="grid grid-cols-1 gap-3">
+                          {product.interactiveTeasers.map((teaser, idx) => (
+                            <motion.a
+                              key={idx}
+                              href={teaser.link}
+                              className="group flex items-center justify-between p-3 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition-all duration-200"
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                            >
+                              <div className="flex-1">
+                                <div className="font-medium text-slate-800 group-hover:text-blue-600 transition-colors">
+                                  {teaser.title}
+                                </div>
+                                <div className="text-sm text-slate-600">
+                                  {teaser.description}
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2 text-blue-600 group-hover:text-blue-700 transition-colors">
+                                <span className="text-sm font-medium">{teaser.cta}</span>
+                                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                              </div>
+                            </motion.a>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Engine Metrics */}
-                  <div>
-                    <h4 className="text-lg font-bold text-white mb-4">Validated Performance:</h4>
-                    <div className="space-y-4">
-                      {Object.entries(('metrics' in engine.data ? engine.data.metrics : null) || {}).slice(0, 4).map(([key, value]) => (
-                        <div key={key} className="bg-slate-700/50 p-4 rounded-lg">
-                          <div className="flex justify-between items-center">
-                            <span className="text-slate-400 capitalize">
-                              {key.replace(/([A-Z])/g, ' $1').toLowerCase()}
-                            </span>
-                            <span className="text-cyan-400 font-mono font-bold">
-                              {typeof value === 'object' && value !== null ? 
-                                (value as any).auroc ? `${((value as any).auroc * 100).toFixed(1)}%` : 'Validated' :
-                                String(value)
-                              }
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                      </div>
+                    )}
 
                     {/* Action Button */}
                     <motion.a
-                      href={`/products/${activeEngine === 'commandCenter' ? 'command-center' : activeEngine}`}
-                      className={`w-full mt-6 bg-gradient-to-r ${engine.color} text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:shadow-lg transition-all duration-300 block`}
+                      href={product.link}
+                      className={`w-full bg-gradient-to-r ${product.color} text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:shadow-lg transition-all duration-300 block`}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
                       <Play className="w-4 h-4" />
-                      Experience {engine.name} Live
+                      Explore {product.title}
                     </motion.a>
+                  </div>
+
+                  {/* Right Column: Core Capabilities and Powered By */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Core Capabilities */}
+                    <div>
+                      <h4 className="text-lg font-bold text-slate-900 mb-4">Core Capabilities:</h4>
+                      <div className="space-y-3">
+                        {product.coreCapabilities.map((capability: string, idx: number) => (
+                          <div key={idx} className="flex items-start gap-3">
+                            <ChevronRight className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                            <span className="text-slate-700 text-sm">{capability}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Powered By */}
+                    <div>
+                      <h4 className="text-lg font-bold text-slate-900 mb-4">Powered By:</h4>
+                      <div className="space-y-3">
+                        {product.poweredBy.map((engine: string, idx: number) => (
+                          <div key={idx} className="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            <div className="flex items-center gap-2">
+                              <span className="text-blue-600 font-semibold text-sm">{engine}</span>
+                              <span className="text-slate-500 text-xs">Engine</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Key Metric */}
+                      <div className="mt-4 bg-blue-50 p-3 rounded-lg border border-blue-200">
+                        <div className="flex justify-between items-center gap-2">
+                          <span className="text-slate-600 text-xs">Key Metric</span>
+                          <span className="text-blue-600 font-mono font-bold text-sm whitespace-nowrap">
+                            {product.keyMetric}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               );
@@ -208,35 +338,6 @@ export default function DrugDevelopmentPlatform() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Business Impact */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-16 text-center"
-        >
-          <h3 className="text-3xl font-bold text-white mb-8">Business Transformation Impact</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 p-6 rounded-xl border border-green-500/30">
-              <DollarSign className="w-8 h-8 text-green-400 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-white mb-2">{platformData.platformMetrics.costReduction}</div>
-              <div className="text-sm text-slate-300">Cost Reduction</div>
-              <div className="text-xs text-green-400 mt-2">$2.1M saved per program</div>
-            </div>
-            <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 p-6 rounded-xl border border-blue-500/30">
-              <Clock className="w-8 h-8 text-blue-400 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-white mb-2">{platformData.platformMetrics.timeAcceleration}</div>
-              <div className="text-sm text-slate-300">Time Acceleration</div>
-              <div className="text-xs text-blue-400 mt-2">18 months → 1 week</div>
-            </div>
-            <div className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-6 rounded-xl border border-purple-500/30">
-              <TrendingUp className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-white mb-2">{platformData.platformMetrics.successRateImprovement}</div>
-              <div className="text-sm text-slate-300">Success Rate</div>
-              <div className="text-xs text-purple-400 mt-2">15% → 90% success</div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
