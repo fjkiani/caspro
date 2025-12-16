@@ -1,12 +1,13 @@
 'use client';
 
-
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, ArrowRight, CheckCircle, LucideIcon } from 'lucide-react';
 
 export interface CapabilityCardData {
   id: string;
+  capabilitySlug?: string; // For navigation to capability page
   title: string;
   subtitle: string;
   description?: string;
@@ -30,6 +31,7 @@ export interface CapabilityShowcaseProps {
   defaultCapabilityId?: string;
   headerEmoji?: string;
   headerGradient?: string;
+  productSlug?: 'oncology' | 'r-d' | 'research'; // For navigation links
 }
 
 export default function CapabilityShowcase({
@@ -40,7 +42,8 @@ export default function CapabilityShowcase({
   capabilities,
   defaultCapabilityId,
   headerEmoji = '🎯',
-  headerGradient = 'from-green-600 via-emerald-600 to-teal-600'
+  headerGradient = 'from-green-600 via-emerald-600 to-teal-600',
+  productSlug = 'oncology' // Default to oncology
 }: CapabilityShowcaseProps) {
   const defaultId = defaultCapabilityId || capabilities[0]?.id;
   const [activeCapability, setActiveCapability] = useState<string | null>(defaultId);
@@ -86,68 +89,112 @@ export default function CapabilityShowcase({
             const isActive = activeCapability === capability.id;
             
             return (
-              <motion.button
+              <motion.div
                 key={capability.id}
-                onClick={() => {
-                  setActiveCapability(capability.id);
-                  setDemoStarted(false);
-                }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className={`text-left p-6 rounded-2xl border-2 transition-all duration-300 ${
-                  isActive
-                    ? `border-${capability.color.split('-')[1]}-500 shadow-xl scale-105 bg-gradient-to-br ${capability.color} text-white`
-                    : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-lg text-slate-800'
-                }`}
               >
-                <div className="flex flex-col items-start gap-3 w-full">
-                  {/* Icon */}
-                  <div className={`p-3 rounded-xl ${
-                    isActive 
-                      ? 'bg-white/20' 
-                      : `bg-gradient-to-br ${capability.color}`
-                  }`}>
-                    <Icon className={`w-6 h-6 ${isActive ? 'text-white' : 'text-white'}`} />
-                  </div>
+                {capability.capabilitySlug ? (
+                  <Link
+                    href={`/products/${productSlug}/${capability.capabilitySlug}`}
+                    className="block text-left p-6 rounded-2xl border-2 border-slate-200 bg-white hover:border-slate-300 hover:shadow-lg text-slate-800 transition-all duration-300"
+                  >
+                    <div className="flex flex-col items-start gap-3 w-full">
+                      {/* Icon */}
+                      <div className={`p-3 rounded-xl bg-gradient-to-br ${capability.color}`}>
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
 
-                  {/* Content */}
-                  <div className="mb-4 w-full">
-                    <h3 className={`font-bold text-lg md:text-xl mb-1 ${
-                      isActive ? 'text-white' : 'text-slate-900 group-hover:text-green-600'
-                    } transition-colors`}>
-                      {capability.title}
-                    </h3>
-                    <div className={`text-sm mb-2 ${isActive ? 'text-white/90' : 'text-slate-500'}`}>
-                      {capability.subtitle}
+                      {/* Content */}
+                      <div className="mb-4 w-full">
+                        <h3 className="font-bold text-lg md:text-xl mb-1 text-slate-900 group-hover:text-green-600 transition-colors">
+                          {capability.title}
+                        </h3>
+                        <div className="text-sm mb-2 text-slate-500">
+                          {capability.subtitle}
+                        </div>
+                        {capability.description && (
+                          <p className="text-sm leading-relaxed text-slate-600">
+                            {capability.description}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Metrics Preview */}
+                      <div className="flex items-center gap-4 text-xs mb-4 text-slate-500">
+                        <span>⚡ {capability.metrics}</span>
+                        <span>🕒 {capability.time}</span>
+                      </div>
+
+                      {/* Link Indicator */}
+                      <div className="flex items-center gap-2 mt-4 pt-4 border-t border-slate-200 w-full">
+                        <ArrowRight className="w-4 h-4 text-blue-600" />
+                        <span className="text-sm text-blue-600 font-semibold">View Details →</span>
+                      </div>
                     </div>
-                    {capability.description && (
-                      <p className={`text-sm leading-relaxed ${isActive ? 'text-white/80' : 'text-slate-600'}`}>
-                        {capability.description}
-                      </p>
-                    )}
-                  </div>
+                  </Link>
+                ) : (
+                  <motion.button
+                    onClick={() => {
+                      setActiveCapability(capability.id);
+                      setDemoStarted(false);
+                    }}
+                    className={`text-left p-6 rounded-2xl border-2 transition-all duration-300 w-full ${
+                      isActive
+                        ? `border-${capability.color.split('-')[1]}-500 shadow-xl scale-105 bg-gradient-to-br ${capability.color} text-white`
+                        : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-lg text-slate-800'
+                    }`}
+                  >
+                    <div className="flex flex-col items-start gap-3 w-full">
+                      {/* Icon */}
+                      <div className={`p-3 rounded-xl ${
+                        isActive 
+                          ? 'bg-white/20' 
+                          : `bg-gradient-to-br ${capability.color}`
+                      }`}>
+                        <Icon className={`w-6 h-6 ${isActive ? 'text-white' : 'text-white'}`} />
+                      </div>
 
-                  {/* Metrics Preview */}
-                  <div className={`flex items-center gap-4 text-xs mb-4 ${
-                    isActive ? 'text-white/90' : 'text-slate-500'
-                  }`}>
-                    <span>⚡ {capability.metrics}</span>
-                    <span>🕒 {capability.time}</span>
-                  </div>
+                      {/* Content */}
+                      <div className="mb-4 w-full">
+                        <h3 className={`font-bold text-lg md:text-xl mb-1 ${
+                          isActive ? 'text-white' : 'text-slate-900 group-hover:text-green-600'
+                        } transition-colors`}>
+                          {capability.title}
+                        </h3>
+                        <div className={`text-sm mb-2 ${isActive ? 'text-white/90' : 'text-slate-500'}`}>
+                          {capability.subtitle}
+                        </div>
+                        {capability.description && (
+                          <p className={`text-sm leading-relaxed ${isActive ? 'text-white/80' : 'text-slate-600'}`}>
+                            {capability.description}
+                          </p>
+                        )}
+                      </div>
 
-                  {/* Active Indicator */}
-                  {isActive && (
-                    <div className="flex items-center gap-2 mt-4 pt-4 border-t border-white/20 w-full">
-                      <CheckCircle className="w-4 h-4 text-white" />
-                      <span className="text-sm text-white font-semibold">Selected for Demo</span>
+                      {/* Metrics Preview */}
+                      <div className={`flex items-center gap-4 text-xs mb-4 ${
+                        isActive ? 'text-white/90' : 'text-slate-500'
+                      }`}>
+                        <span>⚡ {capability.metrics}</span>
+                        <span>🕒 {capability.time}</span>
+                      </div>
+
+                      {/* Active Indicator */}
+                      {isActive && (
+                        <div className="flex items-center gap-2 mt-4 pt-4 border-t border-white/20 w-full">
+                          <CheckCircle className="w-4 h-4 text-white" />
+                          <span className="text-sm text-white font-semibold">Selected for Demo</span>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              </motion.button>
+                  </motion.button>
+                )}
+              </motion.div>
             );
           })}
         </div>

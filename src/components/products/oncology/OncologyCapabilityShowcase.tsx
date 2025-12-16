@@ -24,6 +24,7 @@ export default function OncologyCapabilityShowcase({ className = '' }: OncologyC
       defaultCapabilityId={ONCOLOGY_CAPABILITIES[0].id}
       headerEmoji="🎯"
       headerGradient="from-green-600 via-emerald-600 to-teal-600"
+      productSlug="oncology"
     />
   );
 }

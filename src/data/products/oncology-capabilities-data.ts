@@ -9,6 +9,7 @@ import ClinicalTrialMatchingDemo from '@/components/products/oncology/demos/Clin
 // Match Patients to Therapies
 export const MATCH_PATIENTS_CAPABILITY: CapabilityCardData = {
   id: 'match-patients',
+  capabilitySlug: 'match-patients-to-therapies', // For navigation
   title: 'Match Patients to Therapies',
   subtitle: 'Mechanism-Based Drug Ranking',
   description: 'S/P/E fusion (Sequence/Pathway/Evidence) matches patients to therapies with 96.6% trial match accuracy. Mechanism-based matching, not just standard of care.',
@@ -50,6 +51,7 @@ export const MATCH_PATIENTS_CAPABILITY: CapabilityCardData = {
 // Prevent Toxicity Before It Happens
 export const TOXICITY_PREDICTION_CAPABILITY: CapabilityCardData = {
   id: 'toxicity-prediction',
+  capabilitySlug: 'prevent-toxicity',
   title: 'Prevent Toxicity Before It Happens',
   subtitle: '100% PGx Coverage',
   description: '100% toxicity prevention coverage for DPYD/TPMT/UGT1A1/CYP2D6. Life-threatening prevention with drug interaction checking and protective nutrition recommendations.',
@@ -67,6 +69,7 @@ export const TOXICITY_PREDICTION_CAPABILITY: CapabilityCardData = {
 // Predict Resistance Before It Happens
 export const RESISTANCE_DETECTION_CAPABILITY: CapabilityCardData = {
   id: 'resistance-detection',
+  capabilitySlug: 'predict-resistance',
   title: 'Predict Resistance Before It Happens',
   subtitle: '3-6 Weeks Early Detection',
   description: 'Proactive resistance detection 3-6 weeks faster than imaging. CA-125 intelligence with kinetics forecasting enables early intervention before treatment failure.',
@@ -84,6 +87,7 @@ export const RESISTANCE_DETECTION_CAPABILITY: CapabilityCardData = {
 // Resolve Genetic Uncertainty
 export const VUS_RESOLUTION_CAPABILITY: CapabilityCardData = {
   id: 'vus-resolution',
+  capabilitySlug: 'resolve-genetic-uncertainty',
   title: 'Resolve Genetic Uncertainty',
   subtitle: 'Zero-Shot Variant Interpretation',
   description: 'Zero-shot variant interpretation with Evo2 foundation model. Instantly resolves variants of unknown significance with 95.7% AUROC accuracy and transparent biological reasoning.',
@@ -101,6 +105,7 @@ export const VUS_RESOLUTION_CAPABILITY: CapabilityCardData = {
 // Match Patients to Clinical Trials
 export const CLINICAL_TRIAL_MATCHING_CAPABILITY: CapabilityCardData = {
   id: 'clinical-trial-matching',
+  capabilitySlug: 'match-patients-to-therapies', // Same capability as Match Patients
   title: 'Match Patients to Clinical Trials',
   subtitle: '96.6% Match Accuracy',
   description: 'Transparent eligibility reasoning with green/yellow/red flags per criterion. Same-day trial site calls with action-ready packets.',
