@@ -3,7 +3,7 @@ import { biotechTransformationContent } from '@/data/industry/biotech-transforma
 import BusinessTransformation from '@/components/industry/BusinessTransformation';
 import { TwoHitDiagram, RiskMap, Arsenal } from '@/components/industry/runx1';
 import { runx1Content } from '@/data/industry/runx1-content';
-import { VisualCapabilityGrid } from '@/components/industry/VisualCapabilityGrid';
+import VisualCapabilityGrid from '@/components/industry/VisualCapabilityGrid';
 import { biotechDiscriminativeCapabilities } from '@/data/industry/biotech-capabilities';
 
 export async function generateMetadata(): Promise<Metadata> {
