@@ -29,7 +29,17 @@ const doctrineSubLinks = [
 ];
 
 const useCasesSubLinks = [
-  { href: '/use-cases/multiple-myeloma', label: 'Multiple Myeloma' },
+  // Discriminative Use Cases
+  { href: '/use-cases/hereditary_breast_cancer', label: 'Hereditary Breast Cancer', divider: true },
+  { href: '/use-cases/oncogene_activation', label: 'Oncogene Activation' },
+  { href: '/use-cases/therapeutic_targeting', label: 'Therapeutic Targeting' },
+  // Generative Use Cases
+  { href: '/use-cases/crispr_therapy_design', label: 'CRISPR Therapy Design', divider: true },
+  { href: '/use-cases/protein_therapy_design', label: 'Protein Therapy Design' },
+  { href: '/use-cases/gene_therapy_vector_design', label: 'Gene Therapy Vector' },
+  { href: '/use-cases/personalized_cancer_therapy', label: 'Personalized Cancer Therapy' },
+  // Legacy
+  { href: '/use-cases/multiple-myeloma', label: 'Multiple Myeloma', divider: true },
 ];
 
 const metricsSubLinks = [
