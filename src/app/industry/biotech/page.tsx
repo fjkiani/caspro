@@ -40,7 +40,6 @@ export default function BiotechPage() {
         <div className="max-w-6xl mx-auto">
           <BusinessTransformation
             productName="Oracle"
-            industryProblem={biotechTransformationContent.industryProblem}
             valuePropositions={biotechTransformationContent.valuePropositions}
             summary={biotechTransformationContent.summary}
           />
