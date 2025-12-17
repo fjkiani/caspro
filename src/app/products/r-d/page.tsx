@@ -3,9 +3,12 @@ import { Metadata } from 'next';
 import { rDProductData } from '@/data/products/r-d-data';
 import Link from 'next/link';
 import RDTabs from './RDTabs';
+import RDHeroSection from '@/components/products/r-d/RDHeroSection';
+import RDTransformationMetrics from '@/components/products/r-d/RDTransformationMetrics';
+import RDInteractiveShowcase from '@/components/products/r-d/RDInteractiveShowcase';
+import RDCapabilityTesting from '@/components/products/r-d/RDCapabilityTesting';
 import RDCapabilityShowcase from '@/components/products/r-d/RDCapabilityShowcase';
 import RDEnginesSection from '@/components/products/r-d/RDEnginesSection';
-import GenerateDesignButton from '@/components/products/r-d/GenerateDesignButton';
 import RelatedIndustrySection from '@/components/products/shared/RelatedIndustrySection';
 
 // Generate metadata for the R&D product page
@@ -35,32 +38,23 @@ export default async function RDProductPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white text-slate-800 pt-20 pb-12 px-4 md:px-8">
-      <div className="container mx-auto max-w-7xl">
-        {/* Hero Section */}
-        <section className="text-center mb-16 md:mb-24 pt-10">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
-            {content.pageTitle}
-          </h1>
-          {content.heroSubtitle && (
-            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-              {content.heroSubtitle}
-            </p>
-          )}
+    <main className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white text-slate-800">
+      {/* Hero Section */}
+      <RDHeroSection />
 
-          {/* Hero CTA */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <GenerateDesignButton />
-            <Link
-              href="#interactive-showcase"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold px-6 py-3 rounded-lg transition-colors"
-            >
-              Experience Live Demos →
-            </Link>
-          </div>
-        </section>
-        
-        {/* Capability Showcase */}
+      {/* R&D Transformation Metrics */}
+      <div id="rd-metrics">
+        <RDTransformationMetrics />
+      </div>
+
+      {/* Interactive R&D Showcase */}
+      <RDInteractiveShowcase />
+
+      {/* R&D Capability Testing */}
+      <RDCapabilityTesting />
+
+      {/* Original Capability Showcase (for backward compatibility) */}
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <RDCapabilityShowcase className="mb-16" />
 
         {/* AI Engines Section - Connects orphaned engine pages */}
@@ -70,6 +64,7 @@ export default async function RDProductPage() {
         <div className="container mx-auto px-4 py-8">
           <RDTabs content={content} />
         </div>
+      </div>
 
         {/* Related Products Section */}
         <section className="mt-24">

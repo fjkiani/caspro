@@ -2,52 +2,51 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, Clock, Target, Search, Dna, Shield, TestTube } from 'lucide-react';
-import { clinicalCarePlanContent } from '@/data/industry/clinical-care-plan-content';
-import VUSResolutionDemo from '@/components/sae/VUSResolutionDemo';
-import SPEFusionPlayground from '@/components/evidence/interactive/SPEFusionPlayground';
-import ResistanceDetectionDemo from '@/components/products/oncology/demos/ResistanceDetectionDemo';
-import ToxicityPredictionDemo from '@/components/products/oncology/demos/ToxicityPredictionDemo';
-import ClinicalTrialMatchingDemo from '@/components/products/oncology/demos/ClinicalTrialMatchingDemo';
-import SyntheticLethalityDemo from '@/components/products/oncology/demos/SyntheticLethalityDemo';
-
-const demoComponentMap: Record<string, React.ComponentType<any>> = {
-  'VUSResolutionDemo': VUSResolutionDemo,
-  'SPEFusionPlayground': SPEFusionPlayground,
-  'ResistanceDetectionDemo': ResistanceDetectionDemo,
-  'ToxicityPredictionDemo': ToxicityPredictionDemo,
-  'ClinicalTrialsMatcher': ClinicalTrialMatchingDemo,
-  'SyntheticLethalityDemo': SyntheticLethalityDemo,
-};
+import { CheckCircle, Clock, Target, Zap, Shield, FileText, Award, TestTube } from 'lucide-react';
+import { rDProductData } from '@/data/products/r-d-data';
 
 const iconMap: Record<number, React.ComponentType<any>> = {
-  0: CheckCircle,
-  1: Target,
-  2: Clock,
-  3: Shield,
-  4: Search,
-  5: Dna,
+  0: Target,
+  1: Zap,
+  2: Shield,
+  3: FileText,
+  4: Award,
 };
 
-export default function MOATCapabilityShowcase() {
+export default function RDCapabilityTesting() {
   const [activeCapability, setActiveCapability] = useState<string | null>(null);
   const [isTesting, setIsTesting] = useState(false);
   const [testResults, setTestResults] = useState<any>(null);
 
-  const moatCapabilities = clinicalCarePlanContent.moatCapabilities.map((cap, idx) => ({
-    ...cap,
-    icon: iconMap[idx] || CheckCircle,
-    confidence: typeof cap.metrics.auroc === 'number' ? Math.round(cap.metrics.auroc * 100) :
-                typeof cap.metrics.top5Accuracy === 'number' ? Math.round(cap.metrics.top5Accuracy * 100) :
-                typeof cap.metrics.matchAccuracy === 'number' ? Math.round(cap.metrics.matchAccuracy * 100) :
-                typeof cap.metrics.pgxCoverage === 'number' ? Math.round(cap.metrics.pgxCoverage * 100) :
-                typeof cap.metrics.drugMatchAccuracy === 'number' ? Math.round(cap.metrics.drugMatchAccuracy * 100) :
-                95, // Default confidence
-    time: '2-5 seconds',
-    evidence: Object.entries(cap.metrics).map(([k, v]) => 
-      `${k}: ${typeof v === 'number' ? (v * 100).toFixed(1) + '%' : v}`
-    ).join(', '),
-  }));
+  const rdCapabilities = rDProductData.keyCapabilities.map((cap, idx) => {
+    const confidence = cap.technical.keyMetric.includes('%') 
+      ? parseFloat(cap.technical.keyMetric.replace('%', ''))
+      : cap.technical.keyMetric.includes('AUROC')
+      ? 95.7
+      : cap.technical.keyMetric.includes('coherence')
+      ? 70
+      : cap.technical.keyMetric.includes('confidence')
+      ? 95.8
+      : 90;
+
+    return {
+      id: cap.title.toLowerCase().replace(/\s+/g, '-'),
+      title: cap.title,
+      problem: cap.technical.description.split('\n\n')[0],
+      solution: cap.technical.keyMetric,
+      outcome: cap.business.keyMetric,
+      icon: iconMap[idx] || Target,
+      confidence: confidence,
+      time: '2-5 seconds',
+      evidence: `${cap.technical.keyMetric} - ${cap.scientific.keyMetric}`,
+      metrics: {
+        technical: cap.technical.keyMetric,
+        scientific: cap.scientific.keyMetric,
+        business: cap.business.keyMetric,
+      },
+      description: cap.technical.description,
+    };
+  });
 
   const handleCapabilityTest = async (capabilityId: string) => {
     setIsTesting(true);
@@ -56,23 +55,23 @@ export default function MOATCapabilityShowcase() {
     // Simulate testing delay
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    const capability = moatCapabilities.find(c => c.id === capabilityId);
+    const capability = rdCapabilities.find(c => c.id === capabilityId);
     setTestResults(capability);
     setIsTesting(false);
   };
 
   return (
-    <section id="moat-capability-testing" className="py-16 md:py-24 bg-gradient-to-br from-purple-50 via-white to-blue-50">
+    <section id="rd-capability-testing" className="py-16 md:py-24 bg-gradient-to-br from-indigo-50 via-white to-blue-50">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold mb-6"
+            className="inline-flex items-center gap-2 bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-semibold mb-6"
           >
             <TestTube className="w-4 h-4" />
-            MOAT CAPABILITY TESTING
+            R&D CAPABILITY TESTING
           </motion.div>
 
           <motion.h2
@@ -81,7 +80,7 @@ export default function MOATCapabilityShowcase() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl md:text-4xl font-bold text-slate-800 mb-4"
           >
-            Test MOAT Capabilities Live
+            Test R&D Capabilities Live
           </motion.h2>
 
           <motion.p
@@ -90,7 +89,7 @@ export default function MOATCapabilityShowcase() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-slate-600 max-w-3xl mx-auto"
           >
-            Click on any MOAT capability to see how it transforms clinical decision-making 
+            Click on any R&D capability to see how it transforms therapeutic development 
             with validated performance metrics and real-time demonstrations.
           </motion.p>
         </div>
@@ -105,12 +104,12 @@ export default function MOATCapabilityShowcase() {
           >
             <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center">
               <Target className="w-5 h-5 mr-3 text-blue-600" />
-              MOAT Capability Testing Engine
+              R&D Capability Testing Engine
             </h3>
 
             {/* Capability Cards */}
             <div className="space-y-4">
-              {moatCapabilities.map((capability, index) => {
+              {rdCapabilities.map((capability, index) => {
                 const Icon = capability.icon;
                 const isActive = activeCapability === capability.id;
                 const hasResults = testResults?.id === capability.id;
@@ -123,27 +122,27 @@ export default function MOATCapabilityShowcase() {
                     transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
                     className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer ${
                       isActive
-                        ? 'border-purple-500 bg-purple-50 shadow-lg'
-                        : 'border-slate-200 bg-slate-50 hover:border-purple-300 hover:bg-purple-25'
+                        ? 'border-indigo-500 bg-indigo-50 shadow-lg'
+                        : 'border-slate-200 bg-slate-50 hover:border-indigo-300 hover:bg-indigo-25'
                     }`}
                     onClick={() => handleCapabilityTest(capability.id)}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
-                          <Icon className="w-5 h-5 text-purple-600" />
+                          <Icon className="w-5 h-5 text-indigo-600" />
                           <h4 className="font-semibold text-slate-800">
                             {capability.title}
                           </h4>
                         </div>
                         <p className="text-sm text-slate-600 mb-2">{capability.solution}</p>
                         <div className="flex items-center gap-4 text-xs text-slate-500">
-                          <span>Problem: {capability.problem}</span>
+                          <span>Outcome: {capability.outcome}</span>
                         </div>
                       </div>
                       <div className="flex items-center">
                         {isTesting && isActive && (
-                          <div className="w-6 h-6 border-2 border-purple-600 border-t-transparent rounded-full animate-spin mr-3"></div>
+                          <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin mr-3"></div>
                         )}
                         <div className={`px-3 py-1 rounded-full text-sm font-medium ${
                           hasResults
@@ -220,16 +219,16 @@ export default function MOATCapabilityShowcase() {
                 {/* Results Details */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div className="bg-slate-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-slate-800 mb-2">Problem</h4>
-                    <p className="text-slate-700 text-sm">{testResults.problem}</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Technical Metric</h4>
+                    <p className="text-slate-700 text-sm">{testResults.metrics.technical}</p>
                   </div>
                   <div className="bg-slate-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-slate-800 mb-2">Solution</h4>
-                    <p className="text-slate-700 text-sm">{testResults.solution}</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Scientific Metric</h4>
+                    <p className="text-slate-700 text-sm">{testResults.metrics.scientific}</p>
                   </div>
                   <div className="bg-slate-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-slate-800 mb-2">Outcome</h4>
-                    <p className="text-slate-700 text-sm">{testResults.outcome}</p>
+                    <h4 className="font-semibold text-slate-800 mb-2">Business Outcome</h4>
+                    <p className="text-slate-700 text-sm">{testResults.metrics.business}</p>
                   </div>
                   <div className="bg-slate-50 p-4 rounded-lg">
                     <h4 className="font-semibold text-slate-800 mb-2">Evidence</h4>
@@ -237,18 +236,11 @@ export default function MOATCapabilityShowcase() {
                   </div>
                 </div>
 
-                {/* Interactive Demo */}
-                {(() => {
-                  const DemoComponent = demoComponentMap[testResults.demo];
-                  if (!DemoComponent) return null;
-
-                  return (
-                    <div className="bg-blue-50 p-6 rounded-lg border border-blue-200 mb-6">
-                      <h4 className="font-semibold text-blue-800 mb-3">Interactive Demo</h4>
-                      <DemoComponent />
-                    </div>
-                  );
-                })()}
+                {/* Description */}
+                <div className="bg-blue-50 p-6 rounded-lg border border-blue-200 mb-6">
+                  <h4 className="font-semibold text-blue-800 mb-3">Capability Overview</h4>
+                  <p className="text-blue-700 leading-relaxed text-sm">{testResults.description.split('\n\n')[0]}</p>
+                </div>
 
                 {/* Actions */}
                 <div className="flex flex-col sm:flex-row gap-4 mt-6 pt-6 border-t border-slate-200">
