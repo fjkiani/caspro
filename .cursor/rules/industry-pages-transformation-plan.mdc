@@ -1,0 +1,752 @@
+# Industry Pages Transformation Plan
+## Aligning Content with MOAT Capabilities & Outcomes
+
+**Created:** 2025-01-28  
+**Status:** Planning Phase  
+**Priority:** HIGH - Content misalignment with actual capabilities
+
+---
+
+## 🎯 EXECUTIVE SUMMARY
+
+### Current Problems Identified
+
+1. **Generic/Confusing Content**
+   - "Design Quality Controls with Forge Integration" - What does this even mean?
+   - "Repair Template Safety" using `/predict_variant_impact` - Wrong API
+   - "Target Site Accessibility" using `/predict_chromatin_accessibility` - Wrong API
+
+2. **Wrong API References**
+   - Resistance prediction using wrong endpoints
+   - Immunotherapy design APIs not correct
+   - Not aligned with actual MOAT implementations
+
+3. **Repetitive Content**
+   - Same "Resolve VUS Ambiguity" across healthcare and genetic-testing
+   - Generic "Traditional vs Oracle Approach" everywhere
+   - Not differentiated by industry needs
+
+4. **Missing MOAT Story**
+   - Healthcare page shows API demos, not the complete care plan story
+   - Doctors don't care about APIs - they care about patient outcomes
+   - Need to tell the full story from `ADVANCED_CARE_PLAN_UNIVERSAL.md`
+
+5. **Demo Factory Misalignment**
+   - All demos are generic biotech R&D scenarios
+   - Not aligned with actual capability pages (prevent-toxicity, match-patients, etc.)
+   - Need capability-specific demos
+
+---
+
+## 📋 TRANSFORMATION STRATEGY
+
+### Core Principle: **Outcomes Over APIs**
+
+**Before:** "Here's an API endpoint that does X"  
+**After:** "Here's how we solve your problem and improve patient outcomes"
+
+### Alignment Framework
+
+```
+Industry Page → Core Problem → MOAT Solution → Patient Outcome → Demo
+```
+
+**Example:**
+- **Problem:** "40% VUS rate paralyzes clinical decisions"
+- **MOAT:** "Resolve Genetic Uncertainty" (73% VUS resolution)
+- **Outcome:** "Same-day clinical decisions vs 6 weeks"
+- **Demo:** VUSResolutionDemo (already exists ✅)
+
+---
+
+## 🏥 HEALTHCARE PAGE TRANSFORMATION PLAN
+
+### Current State Analysis
+
+**File:** `src/app/industry/healthcare/page.tsx`  
+**Content Source:** `src/data/industry/clinical-transformation-content.ts`
+
+**Current Sections:**
+1. Hero - Generic "Clinical Oncology Transformation"
+2. BusinessTransformation - 3 value propositions with generic demos
+3. ClinicalWorkflow - Patient journey (good, keep)
+4. RUNX1 Case Study - Good, keep
+5. Immunotherapy Personalization - Wrong APIs, needs replacement
+
+**Issues:**
+- ❌ Value propositions are too API-focused
+- ❌ Demos don't match actual capabilities
+- ❌ Missing the complete care plan story
+- ❌ "Design Personalized Cancer Immunotherapies" - APIs wrong, should use Synthetic Lethality
+
+---
+
+### Target State: Complete Care Plan Story
+
+**New Structure (Based on ADVANCED_CARE_PLAN_UNIVERSAL.md):**
+
+```
+1. Hero: "From VUS Uncertainty to Complete Care Plans"
+   - Focus: Complete patient journey, not just APIs
+   - Message: "One system that handles everything from variant interpretation to treatment monitoring"
+
+2. The Complete Care Plan Vision
+   - What we're building: A GPS navigation system for cancer treatment
+   - Not just APIs - a complete adaptive system
+   - Reference: ADVANCED_CARE_PLAN_UNIVERSAL.md (lines 201-230)
+
+3. Core MOAT Capabilities (Outcome-Focused)
+   a. Resolve Genetic Uncertainty ✅
+      - Problem: 40% VUS rate
+      - Solution: 73% VUS resolution
+      - Outcome: Same-day decisions
+      - Demo: VUSResolutionDemo (already exists)
+   
+   b. Match Patients to Therapies ✅
+      - Problem: No guidelines for rare combinations
+      - Solution: S/P/E Framework (100% Top-5 accuracy)
+      - Outcome: Pathway-based drug ranking
+      - Demo: SPEFusionPlayground or TherapyRankingCard
+   
+   c. Predict Resistance Before It Happens ✅
+      - Problem: React to resistance after it develops
+      - Solution: MAPK/NF1 = 2x resistance risk (validated)
+      - Outcome: 6 months early detection
+      - Demo: Need to create ResistancePredictionDemo
+      - Reference: ADVANCED_CARE_PLAN_RESISTANCE_PREDICTION.md
+   
+   d. Prevent Toxicity Before It Happens ✅
+      - Problem: Life-threatening drug reactions
+      - Solution: Toxicity-aware nutrition (THE PATIENT MOAT)
+      - Outcome: "Your carboplatin + BRCA1 = NAC helps"
+      - Demo: Need to create ToxicityPredictionDemo
+      - Reference: ADVANCED_CARE_PLAN_TOXCITY.md
+   
+   e. Match Patients to Clinical Trials ✅
+      - Problem: Generic trial search
+      - Solution: Mechanism-based trial matching
+      - Outcome: "Your DDR burden (0.88) + these PARP+ATR trials (0.92 fit)"
+      - Demo: ClinicalTrialsMatcher (from src2)
+      - Reference: ADVANCED_CARE_PLAN_MECHANISM_TRIAL_MATCHING.md
+   
+   f. Synthetic Lethality Analysis ✅ (REPLACE Immunotherapy)
+      - Problem: Don't know which drugs target vulnerabilities
+      - Solution: Identify double-hit vulnerabilities
+      - Outcome: "HR pathway loss → depends on PARP"
+      - Demo: Need to create SyntheticLethalityDemo
+      - Reference: synthethic-lethality.mdc
+
+4. The Universal Platform
+   - Works for ANY cancer type (not just ovarian)
+   - Multi-disease standard of care
+   - Universal biomarker intelligence
+   - Reference: ADVANCED_CARE_PLAN_UNIVERSAL.md (lines 30-86)
+
+5. Patient Journey Transformation
+   - Keep existing ClinicalWorkflow component
+   - Enhance with MOAT-specific outcomes
+
+6. Clinical Dossier (Exportable Intelligence)
+   - Not just recommendations - complete clinical dossier
+   - Exportable for tumor boards
+   - Reference: ADVANCED_CARE_PLAN_CLINICAL_DOSSIER.mdc
+
+7. Honest Framing
+   - Mechanism alignment ≠ outcome prediction
+   - What's validated vs what's not
+   - Reference: ADVANCED_CARE_PLAN_UNIVERSAL.md (lines 164-197)
+```
+
+---
+
+## 🔧 SPECIFIC FIXES REQUIRED
+
+### Fix 1: Replace "Design Personalized Cancer Immunotherapies"
+
+**Current:**
+- Title: "Design Personalized Cancer Immunotherapies"
+- Description: "Generate patient-specific neoantigens, CAR-T designs..."
+- APIs: Wrong endpoints
+- Status: Comment out, replace with Synthetic Lethality
+
+**Replace With:**
+- Title: "Identify Synthetic Lethality Vulnerabilities"
+- Description: "Find double-hit vulnerabilities where cancer depends on backup pathways. When HR pathway is lost, cancer depends on PARP - we identify these dependencies and recommend precision drugs."
+- Reference: `synthethic-lethality.mdc`
+- Demo: Create `SyntheticLethalityDemo` component
+- APIs: `/api/agents/synthetic_lethality` (correct endpoint)
+
+---
+
+### Fix 2: Fix "Predict Tumor Evolution and Resistance Patterns"
+
+**Current:**
+- APIs: Wrong endpoints listed
+- Description: Generic
+
+**Correct Implementation:**
+- Reference: `ADVANCED_CARE_PLAN_RESISTANCE_PREDICTION.md`
+- Validated: MAPK/NF1 mutations = 2x platinum resistance risk (RR = 1.97)
+- Dataset: 469 TCGA ovarian cancer patients
+- APIs: Not individual endpoints - it's pathway analysis + resistance prediction service
+- Demo: Create `ResistancePredictionDemo` showing:
+  - MAPK mutation detection
+  - Resistance risk calculation (2x baseline)
+  - Early intervention recommendations
+  - Monitoring schedule intensification
+
+---
+
+### Fix 3: Align "Resolve VUS Ambiguity" Demo
+
+**Current:**
+- Uses generic `variantTriaging` demo
+- Not aligned with actual VUS resolution capability
+
+**Fix:**
+- Use existing `VUSResolutionDemo` component ✅
+- Align with `/products/oncology/resolve-genetic-uncertainty/` page
+- Show actual VUS → Verdict transformation
+- Reference: OracleScore component from src2
+
+---
+
+### Fix 4: Remove Generic "Design Quality Controls"
+
+**Location:** Genetic Testing page  
+**Issue:** "Design Quality Controls with Forge Integration" - confusing, not relevant
+
+**Action:** Remove or replace with:
+- "Automated Variant Classification" (more relevant)
+- Or remove entirely if not core capability
+
+---
+
+### Fix 5: Fix Wrong API References
+
+**Current Wrong Mappings:**
+- "Repair Template Safety" → `/predict_variant_impact` ❌
+- "Target Site Accessibility" → `/predict_chromatin_accessibility` ❌
+
+**Correct Mappings:**
+- Resistance Prediction → Pathway analysis service (not individual APIs)
+- Synthetic Lethality → `/api/agents/synthetic_lethality` ✅
+- VUS Resolution → `/predict_variant_impact` ✅ (this one is correct)
+- Trial Matching → `/api/trials/advanced-query` ✅
+
+---
+
+## 📊 CONTENT STRUCTURE: HEALTHCARE PAGE
+
+### Section 1: Hero - Complete Care Plan Vision
+
+```typescript
+{
+  title: "From VUS Uncertainty to Complete Care Plans",
+  subtitle: "One system that handles everything: variant interpretation, drug ranking, resistance prediction, toxicity prevention, and trial matching",
+  metrics: [
+    { value: "73%", label: "VUS Resolution", subtitle: "Uncertain → Actionable" },
+    { value: "100%", label: "Top-5 Drug Accuracy", subtitle: "Validated on 17 patients" },
+    { value: "6 months", label: "Early Resistance Detection", subtitle: "Before imaging" },
+    { value: "Universal", label: "Any Cancer Type", subtitle: "Not just ovarian" }
+  ]
+}
+```
+
+### Section 2: The Complete Care Plan Story
+
+**Content from:** `ADVANCED_CARE_PLAN_UNIVERSAL.md` (lines 201-230)
+
+**Key Message:**
+> "We're building a GPS navigation system for cancer treatment - it doesn't just tell you where to go, it predicts traffic (resistance), suggests alternate routes (combinations), warns about road hazards (toxicity), and recalculates when you take a wrong turn (progression)."
+
+**Components:**
+- Problem statement: What's missing in current care
+- Solution vision: Complete adaptive system
+- MOAT capabilities overview
+
+### Section 3: Core MOAT Capabilities (6 Cards)
+
+**Card 1: Resolve Genetic Uncertainty** ✅
+- **Problem:** 40% VUS rate paralyzes decisions
+- **Solution:** 73% VUS resolution with zero-shot prediction
+- **Outcome:** Same-day clinical decisions
+- **Demo:** `VUSResolutionDemo` (existing)
+- **Metrics:** 95.7% AUROC, 73% VUS resolution
+
+**Card 2: Match Patients to Therapies** ✅
+- **Problem:** No guidelines for rare combinations
+- **Solution:** S/P/E Framework (100% Top-5 accuracy)
+- **Outcome:** Pathway-based drug ranking
+- **Demo:** `SPEFusionPlayground` or `TherapyRankingCard`
+- **Metrics:** 100% Top-5 accuracy (17/17 patients)
+
+**Card 3: Predict Resistance Before It Happens** ✅
+- **Problem:** React to resistance after it develops
+- **Solution:** MAPK/NF1 = 2x resistance risk (validated)
+- **Outcome:** 6 months early detection
+- **Demo:** `ResistancePredictionDemo` (NEW - needs creation)
+- **Metrics:** RR = 1.97 (validated on 469 patients)
+- **Reference:** `ADVANCED_CARE_PLAN_RESISTANCE_PREDICTION.md`
+
+**Card 4: Prevent Toxicity Before It Happens** ✅
+- **Problem:** Life-threatening drug reactions
+- **Solution:** Toxicity-aware nutrition (THE PATIENT MOAT)
+- **Outcome:** "Your carboplatin + BRCA1 = NAC helps"
+- **Demo:** `ToxicityPredictionDemo` (NEW - needs creation)
+- **Metrics:** 100% PGx coverage (DPYD/TPMT/UGT1A1/CYP2D6)
+- **Reference:** `ADVANCED_CARE_PLAN_TOXCITY.md`
+
+**Card 5: Match Patients to Clinical Trials** ✅
+- **Problem:** Generic trial search returns 50-100 trials
+- **Solution:** Mechanism-based trial matching
+- **Outcome:** "Your DDR burden (0.88) + these PARP+ATR trials (0.92 fit)"
+- **Demo:** `ClinicalTrialsMatcher` (from src2)
+- **Metrics:** 96.6% trial match accuracy
+- **Reference:** `ADVANCED_CARE_PLAN_MECHANISM_TRIAL_MATCHING.md`
+
+**Card 6: Identify Synthetic Lethality Vulnerabilities** ✅ (REPLACE Immunotherapy)
+- **Problem:** Don't know which drugs target vulnerabilities
+- **Solution:** Identify double-hit vulnerabilities
+- **Outcome:** "HR pathway loss → depends on PARP → PARP inhibitors"
+- **Demo:** `SyntheticLethalityDemo` (NEW - needs creation)
+- **Metrics:** 50% drug match accuracy (pilot benchmark)
+- **Reference:** `synthethic-lethality.mdc`
+
+### Section 4: The Universal Platform
+
+**Content from:** `ADVANCED_CARE_PLAN_UNIVERSAL.md` (lines 30-86)
+
+**Key Points:**
+- Works for ANY cancer type (not just ovarian)
+- Multi-disease standard of care (ovarian, breast, colorectal, melanoma, MM)
+- Universal biomarker intelligence (CA-125, PSA, CEA, AFP, hCG)
+- Profile adapter (simple or full profiles)
+
+**Visual:** Show multi-disease capability grid
+
+### Section 5: Patient Journey Transformation
+
+**Keep:** Existing `ClinicalWorkflow` component  
+**Enhance:** Add MOAT-specific outcomes to each step
+
+### Section 6: Clinical Dossier (Exportable Intelligence)
+
+**Content from:** `ADVANCED_CARE_PLAN_CLINICAL_DOSSIER.mdc`
+
+**Key Points:**
+- Not just recommendations - complete clinical dossier
+- Exportable for tumor boards
+- Variant impact cards
+- Therapeutic recommendations with alignment scores
+- Honest framing: "Mechanism alignment ≠ outcome prediction"
+
+### Section 7: Honest Framing
+
+**Content from:** `ADVANCED_CARE_PLAN_UNIVERSAL.md` (lines 164-197)
+
+**Key Message:**
+```
+MECHANISM ALIGNMENT ASSESSMENT, NOT OUTCOME PREDICTION
+
+✓ Drug ranking accuracy: 100% Top-5 (validated)
+✓ Resistance prediction: 2x risk (validated on 469 patients)
+⚠ Outcome prediction: NOT VALIDATED (r=0.037 with PFS)
+```
+
+---
+
+## 🔄 COMPONENTS TO REUSE (DRY PRINCIPLE)
+
+### ✅ Already Created & Ready to Use
+
+#### 1. Demo Components (EXISTING)
+- **`ToxicityPredictionDemo.tsx`** ✅
+  - **Location:** `src/components/products/oncology/demos/ToxicityPredictionDemo.tsx`
+  - **Status:** Fully implemented with DPYD/TPMT/UGT1A1/CYP2D6 coverage
+  - **Reuse:** Direct import for toxicity capability
+  - **Enhancement Needed:** Add nutrition recommendations (NAC, Vitamin D, etc.)
+
+- **`ResistanceDetectionDemo.tsx`** ✅
+  - **Location:** `src/components/products/oncology/demos/ResistanceDetectionDemo.tsx`
+  - **Status:** Fully implemented with CA-125 kinetics, MAPK pathway detection
+  - **Reuse:** Direct import for resistance capability
+  - **Enhancement Needed:** Add MAPK/NF1 validation data (469 TCGA patients, RR=1.97)
+
+- **`ClinicalTrialMatchingDemo.tsx`** ✅
+  - **Location:** `src/components/products/oncology/demos/ClinicalTrialMatchingDemo.tsx`
+  - **Status:** Wraps `ClinicalTrialsMatcher` from src2
+  - **Reuse:** Direct import for trial matching capability
+  - **Note:** Already uses correct component from src2
+
+- **`VUSResolutionDemo.tsx`** ✅
+  - **Location:** `src/components/sae/VUSResolutionDemo.tsx` (or from src2)
+  - **Status:** Fully implemented
+  - **Reuse:** Direct import for VUS resolution capability
+
+#### 2. Components from src2 (EXTRACT & REUSE)
+- **`ClinicalTrialsMatcher.tsx`** ✅
+  - **Location:** `src/src2/components/site/blocks/ClinicalTrialsMatcher.tsx`
+  - **Status:** Already extracted and used in `ClinicalTrialMatchingDemo`
+  - **Reuse:** Already in use ✅
+
+- **`TherapyRankingCard.tsx`** ⚠️
+  - **Location:** `src/src2/components/site/blocks/TherapyRankingCard.tsx`
+  - **Status:** Available in src2, needs extraction
+  - **Reuse:** Extract for drug ranking (alternative to SPEFusionPlayground)
+  - **Action:** Extract to `src/components/demos/TherapyRankingCard.tsx`
+
+- **`SPEFusionPlayground.tsx`** ✅
+  - **Location:** `src/components/evidence/interactive/SPEFusionPlayground.tsx`
+  - **Status:** Already extracted and available
+  - **Reuse:** Direct import for S/P/E framework drug ranking
+
+#### 3. Reusable Layout Components (EXISTING)
+- **`CapabilityShowcase.tsx`** ✅
+  - **Location:** `src/components/products/shared/CapabilityShowcase.tsx`
+  - **Status:** Fully implemented with card grid + expandable dossier
+  - **Reuse:** Perfect for displaying 6 MOAT capabilities as cards
+  - **Features:** 
+    - Card grid layout
+    - Click to expand dossier
+    - Interactive demo integration
+    - Metrics display
+    - API pipeline visualization
+
+- **`MOATShowcase.tsx`** ✅
+  - **Location:** `src/components/landing/MOATShowcase.tsx`
+  - **Status:** Fully implemented with MOAT capability cards
+  - **Reuse:** Can adapt for industry page MOAT section
+  - **Features:**
+    - Card slider
+    - Detailed view on click
+    - Validated badges
+    - Metrics display
+
+- **`ProblemSolutionSection.tsx`** ✅
+  - **Location:** `src/components/products/shared/ProblemSolutionSection.tsx`
+  - **Status:** Fully implemented with side-by-side cards
+  - **Reuse:** For problem/solution comparisons
+  - **Features:**
+    - Problem vs Solution cards
+    - Side-by-side layout
+    - Icon support
+    - Gradient themes
+
+- **`ProductHeroSection.tsx`** ✅
+  - **Location:** `src/components/products/shared/ProductHeroSection.tsx`
+  - **Status:** Fully implemented
+  - **Reuse:** For hero sections on all industry pages
+  - **Features:**
+    - Badge support
+    - Gradient headlines
+    - CTA buttons
+    - Responsive design
+
+- **`SectionHeader.tsx`** ✅
+  - **Location:** `src/components/products/shared/SectionHeader.tsx`
+  - **Status:** Fully implemented
+  - **Reuse:** For section titles throughout pages
+
+- **`ClinicalWorkflow.tsx`** ✅
+  - **Location:** `src/components/industry/ClinicalWorkflow.tsx`
+  - **Status:** Fully implemented
+  - **Reuse:** For patient journey transformation visualization
+  - **Features:**
+    - Traditional vs Oracle comparison
+    - Timeline visualization
+    - Status badges
+
+#### 4. Supporting Components (EXISTING)
+- **`EnhancedComparison.tsx`** ✅
+  - **Location:** `src/components/demos/EnhancedComparison.tsx`
+  - **Status:** Extracted from src2
+  - **Reuse:** For "Traditional vs Oracle" comparisons
+
+- **`FactoryDemoShowcase.tsx`** ✅
+  - **Location:** `src/components/demos/FactoryDemoShowcase.tsx`
+  - **Status:** Extracted from src2
+  - **Reuse:** For step-by-step demo orchestration
+
+- **`VisualCapabilityGrid.tsx`** ✅
+  - **Location:** `src/components/industry/VisualCapabilityGrid.tsx`
+  - **Status:** Extracted from src2
+  - **Reuse:** For multi-modal capability showcase
+
+---
+
+### ❌ Components That Need to Be Created
+
+#### 1. SyntheticLethalityDemo.tsx (NEW)
+**Purpose:** Show synthetic lethality vulnerability identification  
+**Location:** `src/components/products/oncology/demos/SyntheticLethalityDemo.tsx`  
+**Reference:** `synthethic-lethality.mdc`
+
+**Features:**
+- Input: Patient mutations (e.g., BRCA1, MBD4)
+- Analysis: Pathway mapping → Essentiality scoring → SL detection
+- Output: Double-hit vulnerabilities + drug recommendations
+- Example: "HR pathway loss → depends on PARP → PARP inhibitors"
+- Validation: 50% drug match accuracy (pilot benchmark)
+
+**Reuse Pattern:**
+- Similar structure to `ResistanceDetectionDemo.tsx`
+- Can reuse card layout from `ToxicityPredictionDemo.tsx`
+- Use same dark theme as other demo components
+
+**Data Source:**
+- Known SL relationships: HR deficient → PARP, BER deficient → HR, etc.
+- Drug recommendations: PARP inhibitors, ATR/CHK1 inhibitors
+- API: `/api/agents/synthetic_lethality`
+
+**Estimated Time:** 2-3 hours
+
+---
+
+### 🔧 Components That Need Enhancement
+
+#### 1. ToxicityPredictionDemo.tsx (ENHANCE)
+**Current:** Shows PGx variants and drug interactions  
+**Needed:** Add nutrition recommendations section
+- Show mitigating foods (NAC, Vitamin D, Folate, etc.)
+- Add timing guidance ("Take post-chemo, not during")
+- Add pathway connections (DNA Repair, Inflammation, Cardiometabolic)
+
+**Estimated Time:** 1 hour
+
+#### 2. ResistanceDetectionDemo.tsx (ENHANCE)
+**Current:** Shows CA-125 kinetics and pathway detection  
+**Needed:** Add validation data display
+- Show 469 TCGA patient validation
+- Display relative risk (RR = 1.97)
+- Add resistance rates (28.6% mutated vs 14.5% wildtype)
+
+**Estimated Time:** 1 hour
+
+---
+
+## 🧬 DEMO COMPONENT MAPPING
+
+### MOAT Capability → Demo Component Mapping
+
+| MOAT Capability | Demo Component | Status | Location |
+|----------------|----------------|--------|----------|
+| Resolve Genetic Uncertainty | `VUSResolutionDemo` | ✅ Ready | `src/components/sae/` |
+| Match Patients to Therapies | `SPEFusionPlayground` or `TherapyRankingCard` | ✅ Ready | `src/components/evidence/interactive/` or extract from src2 |
+| Predict Resistance | `ResistanceDetectionDemo` | ⚠️ Enhance | `src/components/products/oncology/demos/` |
+| Prevent Toxicity | `ToxicityPredictionDemo` | ⚠️ Enhance | `src/components/products/oncology/demos/` |
+| Match Clinical Trials | `ClinicalTrialMatchingDemo` | ✅ Ready | `src/components/products/oncology/demos/` |
+| Synthetic Lethality | `SyntheticLethalityDemo` | ❌ Create | `src/components/products/oncology/demos/` (NEW) |
+
+---
+
+## 📝 CONTENT DATA STRUCTURE
+
+### New Content File: `clinical-care-plan-content.ts`
+
+```typescript
+export const clinicalCarePlanContent = {
+  hero: {
+    title: "From VUS Uncertainty to Complete Care Plans",
+    subtitle: "One system that handles everything: variant interpretation, drug ranking, resistance prediction, toxicity prevention, and trial matching",
+    metrics: [...]
+  },
+  
+  completeCarePlanVision: {
+    title: "The Complete Care Plan Vision",
+    description: "We're building a GPS navigation system for cancer treatment...",
+    components: [
+      "Anticipates resistance",
+      "Recommends combinations",
+      "Monitors continuously",
+      "Prevents toxicity",
+      "Adapts to progression"
+    ]
+  },
+  
+  moatCapabilities: [
+    {
+      id: 'resolve-genetic-uncertainty',
+      title: 'Resolve Genetic Uncertainty',
+      problem: '40% VUS rate paralyzes clinical decisions',
+      solution: '73% VUS resolution with zero-shot prediction',
+      outcome: 'Same-day clinical decisions vs 6 weeks',
+      demo: 'VUSResolutionDemo',
+      metrics: { auroc: 0.957, vusResolution: 0.73 }
+    },
+    {
+      id: 'match-patients-to-therapies',
+      title: 'Match Patients to Therapies',
+      problem: 'No guidelines for rare genetic combinations',
+      solution: 'S/P/E Framework (100% Top-5 accuracy)',
+      outcome: 'Pathway-based drug ranking',
+      demo: 'SPEFusionPlayground',
+      metrics: { top5Accuracy: 1.0, validatedPatients: 17 }
+    },
+    {
+      id: 'predict-resistance',
+      title: 'Predict Resistance Before It Happens',
+      problem: 'React to resistance after it develops',
+      solution: 'MAPK/NF1 = 2x resistance risk (validated)',
+      outcome: '6 months early detection',
+      demo: 'ResistancePredictionDemo',
+      metrics: { relativeRisk: 1.97, validatedPatients: 469 }
+    },
+    {
+      id: 'prevent-toxicity',
+      title: 'Prevent Toxicity Before It Happens',
+      problem: 'Life-threatening drug reactions',
+      solution: 'Toxicity-aware nutrition (THE PATIENT MOAT)',
+      outcome: 'Your carboplatin + BRCA1 = NAC helps',
+      demo: 'ToxicityPredictionDemo',
+      metrics: { pgxCoverage: 1.0 }
+    },
+    {
+      id: 'match-trials',
+      title: 'Match Patients to Clinical Trials',
+      problem: 'Generic trial search returns 50-100 trials',
+      solution: 'Mechanism-based trial matching',
+      outcome: 'Your DDR burden (0.88) + these PARP+ATR trials (0.92 fit)',
+      demo: 'ClinicalTrialsMatcher',
+      metrics: { matchAccuracy: 0.966 }
+    },
+    {
+      id: 'synthetic-lethality',
+      title: 'Identify Synthetic Lethality Vulnerabilities',
+      problem: 'Don\'t know which drugs target vulnerabilities',
+      solution: 'Identify double-hit vulnerabilities',
+      outcome: 'HR pathway loss → depends on PARP → PARP inhibitors',
+      demo: 'SyntheticLethalityDemo',
+      metrics: { drugMatchAccuracy: 0.50 }
+    }
+  ],
+  
+  universalPlatform: {
+    title: 'The Universal Platform',
+    description: 'Works for ANY cancer type, not just ovarian',
+    cancerTypes: ['Ovarian', 'Breast', 'Colorectal', 'Melanoma', 'Multiple Myeloma'],
+    biomarkers: ['CA-125', 'PSA', 'CEA', 'AFP', 'hCG']
+  },
+  
+  honestFraming: {
+    title: 'Honest Framing: What We Can and Cannot Do',
+    validated: [
+      'Drug ranking accuracy: 100% Top-5 (validated)',
+      'Resistance prediction: 2x risk (validated on 469 patients)',
+      'VUS resolution: 73% (validated)'
+    ],
+    notValidated: [
+      'Outcome prediction: NOT VALIDATED (r=0.037 with PFS)',
+      'Response rate prediction: Mechanism alignment ≠ clinical response'
+    ]
+  }
+};
+```
+
+---
+
+## 🔄 IMPLEMENTATION PHASES
+
+### Phase 1: Content Restructure (2-3 hours)
+1. Create `clinical-care-plan-content.ts` with new structure
+2. Update `clinical-transformation-content.ts` to remove wrong content
+3. Remove "Design Personalized Cancer Immunotherapies" section
+4. Add "Synthetic Lethality" section
+
+### Phase 2: Demo Component Creation & Enhancement (3-4 hours)
+1. ✅ **SKIP** - `ResistanceDetectionDemo.tsx` already exists (just enhance)
+2. ✅ **SKIP** - `ToxicityPredictionDemo.tsx` already exists (just enhance)
+3. ❌ **CREATE** - `SyntheticLethalityDemo.tsx` (NEW - 2-3 hours)
+4. ⚠️ **ENHANCE** - Add nutrition recommendations to `ToxicityPredictionDemo` (1 hour)
+5. ⚠️ **ENHANCE** - Add validation data to `ResistanceDetectionDemo` (1 hour)
+6. ⚠️ **EXTRACT** - `TherapyRankingCard.tsx` from src2 (30 min)
+7. Extract seed data from MOAT docs
+
+### Phase 3: Page Transformation (2-3 hours)
+1. Update `healthcare/page.tsx` with new structure
+2. **REUSE** `CapabilityShowcase.tsx` for MOAT capability cards (instead of BusinessTransformation)
+3. **REUSE** `ProductHeroSection.tsx` for hero section
+4. **REUSE** `ProblemSolutionSection.tsx` for "Complete Care Plan Vision"
+5. **REUSE** `SectionHeader.tsx` for section headers
+6. **REUSE** `ClinicalWorkflow.tsx` for patient journey (already in use)
+7. Add "Universal Platform" section (new content, reuse layout patterns)
+8. Add "Honest Framing" section (new content, reuse card layout)
+9. Map demos to correct components using existing demo components
+
+### Phase 4: Demo Factory Alignment (1-2 hours)
+1. Update `BusinessTransformation.tsx` to map capabilities to correct demos
+2. Fix demo mappings for each MOAT capability
+3. Remove generic biotech R&D demos from healthcare page
+
+### Phase 5: Genetic Testing & Biotech Pages (2-3 hours)
+1. Apply same transformation principles
+2. Remove repetitive content
+3. Align with industry-specific needs
+4. Fix wrong API references
+
+---
+
+## 📊 SUCCESS METRICS
+
+### Content Quality
+- ✅ All MOAT capabilities accurately represented
+- ✅ All API references correct
+- ✅ All demos aligned with actual capabilities
+- ✅ No generic/confusing content
+
+### User Experience
+- ✅ Doctors understand outcomes, not just APIs
+- ✅ Complete care plan story is clear
+- ✅ Each capability has relevant demo
+- ✅ Honest framing is prominent
+
+### Technical
+- ✅ All demo components exist and work
+- ✅ All API endpoints are correct
+- ✅ Content is DRY (no repetition)
+- ✅ Industry pages are differentiated
+
+---
+
+## 🚀 NEXT STEPS
+
+1. **Review this plan** with user
+2. **Start with Phase 1** - Content restructure
+3. **Create demo components** in Phase 2
+4. **Transform healthcare page** in Phase 3
+5. **Apply to other pages** in Phase 5
+
+---
+
+**Status:** Ready for implementation  
+**Priority:** HIGH - Content misalignment is confusing users  
+**Estimated Time:** 8-12 hours total (reduced from 12-17 hours due to component reuse)
+
+---
+
+## 📦 COMPONENT REUSE SUMMARY
+
+### ✅ Ready to Use (No Work Needed)
+- `ToxicityPredictionDemo.tsx` - Just needs nutrition enhancement
+- `ResistanceDetectionDemo.tsx` - Just needs validation data
+- `ClinicalTrialMatchingDemo.tsx` - Fully ready
+- `VUSResolutionDemo.tsx` - Fully ready
+- `SPEFusionPlayground.tsx` - Fully ready
+- `CapabilityShowcase.tsx` - Perfect for MOAT cards
+- `ProductHeroSection.tsx` - Reusable hero
+- `ProblemSolutionSection.tsx` - Reusable problem/solution
+- `SectionHeader.tsx` - Reusable headers
+- `ClinicalWorkflow.tsx` - Reusable patient journey
+
+### ⚠️ Needs Extraction/Enhancement (1-2 hours each)
+- `TherapyRankingCard.tsx` - Extract from src2
+- `ToxicityPredictionDemo.tsx` - Add nutrition section
+- `ResistanceDetectionDemo.tsx` - Add validation data
+
+### ❌ Needs Creation (2-3 hours)
+- `SyntheticLethalityDemo.tsx` - New component
+
+### 💰 Time Savings
+- **Original Estimate:** 12-17 hours
+- **With Reuse:** 8-12 hours
+- **Savings:** 4-5 hours (33-40% reduction)
