@@ -7,30 +7,25 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail, Users, GitCompare } from 'lucide-react';
 import ToggleButton from './ToggleButton';
-import { coPilotDetailsData } from '@/data/coPilotDetails';
 
 const NAV_CONFIG = {
   brandEmoji: "🧬",
   brandName: "CrisPRO",
-  brandSubtitle: "Oncology Co-Pilot",
-};
-
-// --- DYNAMIC SUB-LINK GENERATION ---
-const generatePlatformSubLinks = () => {
-  return Object.entries(coPilotDetailsData).map(([slug, data]) => ({
-    href: `/platform/${slug}`,
-    label: data.pageTitle || data.slug
-  }));
+  brandSubtitle: "AI-Powered Precision Oncology",
 };
 
 // --- SUB-LINK DEFINITIONS ---
-const platformSubLinks = generatePlatformSubLinks();
+const industrySubLinks = [
+  { href: '/industry/healthcare', label: 'Healthcare & Clinical Oncology' },
+  { href: '/industry/biotech', label: 'Biotech & Pharma R&D' },
+  { href: '/industry/research', label: 'Research Institutions' },
+  { href: '/industry/genetic-testing', label: 'Genetic Testing Labs' },
+];
 
 const doctrineSubLinks = [
   { href: '/doctrine/vus-annihilation', label: 'VUS Annihilation' },
   { href: '/doctrine/metastasis-prevention', label: 'Metastasis Prevention' },
   { href: '/doctrine/de-sci-and-ip-nfts', label: 'DeSci & IP-NFTs' },
-  { href: '/kill-chain', label: 'The \'In Silico\' Kill Chain' },
 ];
 
 const useCasesSubLinks = [
@@ -75,10 +70,10 @@ export const NAV_LINKS = [
     ],
   },
   {
-    href: '/platform',
-    label: 'Platform',
-    icon: <Rocket className="inline-block h-4 w-4" />,
-    subLinks: platformSubLinks,
+    href: '/industry',
+    label: 'Industry',
+    icon: <Briefcase className="inline-block h-4 w-4" />,
+    subLinks: industrySubLinks,
   },
   {
     href: '/comparisons/patient',
