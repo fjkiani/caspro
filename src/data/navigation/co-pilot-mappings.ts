@@ -10,9 +10,11 @@ export type CapabilitySlug =
   | 'resolve-genetic-uncertainty'
   | 'predict-resistance'
   | 'clinical-trials'
+  | 'clinical-data-management'
   | 'therapeutic-design'
   | 'target-validation'
-  | 'variant-analysis';
+  | 'variant-analysis'
+  | 'conversational-ai';
 
 export interface CoPilotMapping {
   coPilotSlug: string;
@@ -97,6 +99,16 @@ export const CO_PILOT_MAPPINGS: CoPilotMapping[] = [
     description: '3-6 weeks early detection with CA-125 intelligence'
   },
   
+  // Clinical Data Management - Standalone Capability
+  {
+    coPilotSlug: 'agentic-emr',
+    productSlug: 'oncology',
+    capabilitySlug: 'clinical-data-management',
+    capabilityTitle: 'Clinical Data Management',
+    priority: 'primary',
+    description: 'Autonomous AI agents for EMR data integration and clinical intelligence'
+  },
+  
   // ============================================
   // R&D PRODUCT
   // ============================================
@@ -143,6 +155,16 @@ export const CO_PILOT_MAPPINGS: CoPilotMapping[] = [
     capabilityTitle: 'Therapeutic Design',
     priority: 'primary',
     description: 'Generative therapeutic design with structural validation'
+  },
+  
+  // Conversational AI - Standalone Capability (Research)
+  {
+    coPilotSlug: 'scribe-intelligence',
+    productSlug: 'research',
+    capabilitySlug: 'conversational-ai',
+    capabilityTitle: 'Conversational AI',
+    priority: 'primary',
+    description: 'Natural language access to all CrisPRO capabilities with progressive disclosure'
   },
 ];
 

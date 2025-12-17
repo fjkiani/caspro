@@ -87,6 +87,19 @@ export const ONCOLOGY_CAPABILITY_DEFINITIONS: Partial<Record<CapabilitySlug, Cap
     time: '45 seconds',
     businessImpact: 'Same-day actionable trial matches with transparent eligibility reasoning',
     apis: ['predict_variant_impact', 'predict_gene_essentiality']
+  },
+  'clinical-data-management': {
+    slug: 'clinical-data-management',
+    title: 'Clinical Data Management',
+    subtitle: 'Intelligent EMR Integration',
+    description: 'Autonomous AI agents convert unstructured EMR data into actionable clinical insights. Unified, queryable intelligence platform for clinical and research operations.',
+    icon: 'Database',
+    color: 'from-indigo-500 to-blue-600',
+    badge: 'AI Agents',
+    metrics: 'Real-time Processing',
+    time: 'Seconds',
+    businessImpact: 'Unified patient view in seconds, accelerated trial recruitment, streamlined workflows',
+    apis: ['predict_variant_impact', 'predict_gene_essentiality']
   }
 };
 
