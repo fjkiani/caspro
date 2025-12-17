@@ -111,5 +111,17 @@ export const immunotherapyData: CoPilotDetailContent = {
     ]
   },
 
+  valuePropositionSections: [
+    {
+      audience: "For Medical Oncologists",
+      points: [
+        "Comprehensive biomarker analysis: TMB, MSI, PD-L1, tumor microenvironment",
+        "Response prediction with confidence scores",
+        "Action-ready immunotherapy recommendations"
+      ]
+    }
+  ],
+
+  conclusion: "Immunotherapy matching provides comprehensive biomarker analysis and response prediction for precision immunotherapy selection."
 };
 
