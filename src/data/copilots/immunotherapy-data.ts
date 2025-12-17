@@ -111,25 +111,5 @@ export const immunotherapyData: CoPilotDetailContent = {
     ]
   },
 
-  valuePropositionFlywheel: {
-    title: "Immunotherapy Matching Flywheel",
-    stages: [
-      {
-        stage: "Analyze",
-        description: "Comprehensive biomarker analysis",
-        icon: "Search"
-      },
-      {
-        stage: "Predict",
-        description: "Response prediction with confidence",
-        icon: "TrendingUp"
-      },
-      {
-        stage: "Match",
-        description: "Precise immunotherapy selection",
-        icon: "Target"
-      }
-    ]
-  }
 };
 
