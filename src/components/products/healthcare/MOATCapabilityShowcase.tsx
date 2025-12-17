@@ -62,14 +62,15 @@ export default function MOATCapabilityShowcase() {
   };
 
   return (
-    <section id="moat-capability-testing" className="py-16 md:py-24 bg-gradient-to-br from-purple-50 via-white to-blue-50">
+    <section id="moat-capability-testing" className="py-12 md:py-16 bg-gradient-to-br from-purple-50 via-white to-blue-50">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-        <div className="text-center mb-16">
+        {/* Compact Header */}
+        <div className="text-center mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold mb-6"
+            className="inline-flex items-center gap-2 bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold mb-4"
           >
             <TestTube className="w-4 h-4" />
             MOAT CAPABILITY TESTING
@@ -79,7 +80,7 @@ export default function MOATCapabilityShowcase() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold text-slate-800 mb-4"
+            className="text-2xl md:text-3xl font-bold text-slate-800 mb-2"
           >
             Test MOAT Capabilities Live
           </motion.h2>
@@ -88,92 +89,164 @@ export default function MOATCapabilityShowcase() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-slate-600 max-w-3xl mx-auto"
+            className="text-sm md:text-base text-slate-600 max-w-2xl mx-auto"
           >
-            Click on any MOAT capability to see how it transforms clinical decision-making 
-            with validated performance metrics and real-time demonstrations.
+            Click any capability to see results instantly
           </motion.p>
         </div>
 
-        {/* Capability Testing Interface */}
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-white rounded-2xl shadow-xl border border-slate-200 p-8 mb-8"
-          >
-            <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center">
-              <Target className="w-5 h-5 mr-3 text-blue-600" />
-              MOAT Capability Testing Engine
-            </h3>
+        {/* Compact Grid Layout with Inline Results */}
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {moatCapabilities.map((capability, index) => {
+              const Icon = capability.icon;
+              const isActive = activeCapability === capability.id;
+              const hasResults = testResults?.id === capability.id;
+              const DemoComponent = demoComponentMap[capability.demo];
 
-            {/* Capability Cards */}
-            <div className="space-y-4">
-              {moatCapabilities.map((capability, index) => {
-                const Icon = capability.icon;
-                const isActive = activeCapability === capability.id;
-                const hasResults = testResults?.id === capability.id;
-
-                return (
+              return (
+                <div key={capability.id} className="flex flex-col">
+                  {/* Capability Card */}
                   <motion.div
-                    key={capability.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                    className={`p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer ${
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    className={`bg-white rounded-xl border-2 transition-all duration-300 cursor-pointer ${
                       isActive
                         ? 'border-purple-500 bg-purple-50 shadow-lg'
                         : 'border-slate-200 bg-slate-50 hover:border-purple-300 hover:bg-purple-25'
                     }`}
                     onClick={() => handleCapabilityTest(capability.id)}
                   >
-                    <div className="flex items-center justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
+                    <div className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
                           <Icon className="w-5 h-5 text-purple-600" />
-                          <h4 className="font-semibold text-slate-800">
+                          <h4 className="font-semibold text-slate-800 text-sm md:text-base">
                             {capability.title}
                           </h4>
                         </div>
-                        <p className="text-sm text-slate-600 mb-2">{capability.solution}</p>
-                        <div className="flex items-center gap-4 text-xs text-slate-500">
-                          <span>Problem: {capability.problem}</span>
+                        <div className="flex items-center gap-2">
+                          {isTesting && isActive && (
+                            <div className="w-5 h-5 border-2 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
+                          )}
+                          <div className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            hasResults
+                              ? capability.confidence >= 80 ? 'bg-green-100 text-green-700' :
+                                capability.confidence >= 70 ? 'bg-yellow-100 text-yellow-700' :
+                                'bg-red-100 text-red-700'
+                              : 'bg-slate-100 text-slate-600'
+                          }`}>
+                            {hasResults ? `${capability.confidence}%` : 'Test'}
+                          </div>
                         </div>
                       </div>
-                      <div className="flex items-center">
-                        {isTesting && isActive && (
-                          <div className="w-6 h-6 border-2 border-purple-600 border-t-transparent rounded-full animate-spin mr-3"></div>
-                        )}
-                        <div className={`px-3 py-1 rounded-full text-sm font-medium ${
-                          hasResults
-                            ? capability.confidence >= 80 ? 'bg-green-100 text-green-700' :
-                              capability.confidence >= 70 ? 'bg-yellow-100 text-yellow-700' :
-                              'bg-red-100 text-red-700'
-                            : 'bg-slate-100 text-slate-600'
-                        }`}>
-                          {hasResults
-                            ? `${capability.confidence}%`
-                            : 'Test'
-                          }
-                        </div>
-                      </div>
+                      <p className="text-xs text-slate-600 mb-1 line-clamp-2">{capability.solution}</p>
                     </div>
                   </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
 
-          {/* Test Results */}
-          <AnimatePresence>
-            {testResults && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-white rounded-2xl shadow-xl border border-slate-200 p-8"
-              >
+                  {/* Inline Results - Expands below card */}
+                  <AnimatePresence>
+                    {hasResults && testResults && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="mt-2 bg-white rounded-xl border border-slate-200 shadow-lg overflow-hidden"
+                      >
+                        <div className="p-4 space-y-4">
+                          {/* Compact Header */}
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                                testResults.confidence >= 80 ? 'bg-green-100' :
+                                testResults.confidence >= 70 ? 'bg-yellow-100' : 'bg-red-100'
+                              }`}>
+                                <CheckCircle className={`w-4 h-4 ${
+                                  testResults.confidence >= 80 ? 'text-green-600' :
+                                  testResults.confidence >= 70 ? 'text-yellow-600' : 'text-red-600'
+                                }`} />
+                              </div>
+                              <div>
+                                <h5 className="font-semibold text-slate-800 text-sm">{testResults.title}</h5>
+                                <div className="flex items-center text-xs text-slate-600">
+                                  <Clock className="w-3 h-3 mr-1" />
+                                  {testResults.time}
+                                </div>
+                              </div>
+                            </div>
+                            <span className={`text-lg font-bold ${
+                              testResults.confidence >= 80 ? 'text-green-600' :
+                              testResults.confidence >= 70 ? 'text-yellow-600' : 'text-red-600'
+                            }`}>
+                              {testResults.confidence}%
+                            </span>
+                          </div>
+
+                          {/* Compact Progress Bar */}
+                          <div className="w-full bg-slate-200 rounded-full h-2">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: `${testResults.confidence}%` }}
+                              transition={{ duration: 0.8 }}
+                              className={`h-2 rounded-full ${
+                                testResults.confidence >= 80 ? 'bg-green-500' :
+                                testResults.confidence >= 70 ? 'bg-yellow-500' : 'bg-red-500'
+                              }`}
+                            />
+                          </div>
+
+                          {/* Compact Metrics Grid */}
+                          <div className="grid grid-cols-2 gap-2 text-xs">
+                            <div className="bg-slate-50 p-2 rounded">
+                              <div className="font-medium text-slate-600 mb-1">Outcome</div>
+                              <div className="text-slate-800 line-clamp-2">{testResults.outcome}</div>
+                            </div>
+                            <div className="bg-slate-50 p-2 rounded">
+                              <div className="font-medium text-slate-600 mb-1">Evidence</div>
+                              <div className="text-slate-800 line-clamp-2">{testResults.evidence}</div>
+                            </div>
+                          </div>
+
+                          {/* Compact Demo */}
+                          {DemoComponent && (
+                            <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                              <h6 className="font-semibold text-blue-800 text-xs mb-2">Interactive Demo</h6>
+                              <div className="scale-90 origin-top-left">
+                                <DemoComponent />
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Compact Actions */}
+                          <div className="flex gap-2 pt-2 border-t border-slate-200">
+                            <button 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setTestResults(null);
+                                setActiveCapability(null);
+                              }}
+                              className="flex-1 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded text-xs font-medium transition-colors"
+                            >
+                              Close
+                            </button>
+                            <button className="flex-1 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs font-medium transition-colors">
+                              View Details
+                            </button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
                 <div className="flex items-center mb-6">
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center mr-4 ${
                     testResults.confidence >= 80 ? 'bg-green-100' :
@@ -193,87 +266,5 @@ export default function MOATCapabilityShowcase() {
                   </div>
                 </div>
 
-                {/* Confidence Score */}
-                <div className="mb-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-lg font-semibold text-slate-800">Performance Score</span>
-                    <span className={`text-2xl font-bold ${
-                      testResults.confidence >= 80 ? 'text-green-600' :
-                      testResults.confidence >= 70 ? 'text-yellow-600' : 'text-red-600'
-                    }`}>
-                      {testResults.confidence}%
-                    </span>
-                  </div>
-                  <div className="w-full bg-slate-200 rounded-full h-3">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${testResults.confidence}%` }}
-                      transition={{ duration: 1, delay: 0.5 }}
-                      className={`h-3 rounded-full ${
-                        testResults.confidence >= 80 ? 'bg-green-500' :
-                        testResults.confidence >= 70 ? 'bg-yellow-500' : 'bg-red-500'
-                      }`}
-                    />
-                  </div>
-                </div>
-
-                {/* Results Details */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div className="bg-slate-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-slate-800 mb-2">Problem</h4>
-                    <p className="text-slate-700 text-sm">{testResults.problem}</p>
-                  </div>
-                  <div className="bg-slate-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-slate-800 mb-2">Solution</h4>
-                    <p className="text-slate-700 text-sm">{testResults.solution}</p>
-                  </div>
-                  <div className="bg-slate-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-slate-800 mb-2">Outcome</h4>
-                    <p className="text-slate-700 text-sm">{testResults.outcome}</p>
-                  </div>
-                  <div className="bg-slate-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-slate-800 mb-2">Evidence</h4>
-                    <p className="text-slate-700 text-sm">{testResults.evidence}</p>
-                  </div>
-                </div>
-
-                {/* Interactive Demo */}
-                {(() => {
-                  const DemoComponent = demoComponentMap[testResults.demo];
-                  if (!DemoComponent) return null;
-
-                  return (
-                    <div className="bg-blue-50 p-6 rounded-lg border border-blue-200 mb-6">
-                      <h4 className="font-semibold text-blue-800 mb-3">Interactive Demo</h4>
-                      <DemoComponent />
-                    </div>
-                  );
-                })()}
-
-                {/* Actions */}
-                <div className="flex flex-col sm:flex-row gap-4 mt-6 pt-6 border-t border-slate-200">
-                  <button className="flex-1 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors">
-                    View Full Capability Details
-                  </button>
-                  <button className="flex-1 px-6 py-3 bg-slate-600 hover:bg-slate-700 text-white rounded-lg font-semibold transition-colors">
-                    Export Results
-                  </button>
-                  <button 
-                    onClick={() => {
-                      setTestResults(null);
-                      setActiveCapability(null);
-                    }}
-                    className="px-6 py-3 bg-white border border-slate-300 text-slate-700 rounded-lg font-semibold hover:bg-slate-50 transition-colors"
-                  >
-                    Test Another
-                  </button>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-    </section>
-  );
 }
 
