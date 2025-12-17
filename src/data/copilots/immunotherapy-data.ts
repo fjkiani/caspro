@@ -77,7 +77,14 @@ export const immunotherapyData: CoPilotDetailContent = {
         keyMetric: "92% Eligibility Accuracy",
         description: "Precise immunotherapy patient selection with transparent biomarker reasoning",
         icon: "Target",
-        color: "green"
+        color: "teal"
+      },
+      scientific: {
+        title: "Scientific Foundation",
+        keyMetric: "Validated Biomarkers",
+        description: "Evidence-based biomarker analysis using validated clinical markers for immunotherapy eligibility",
+        icon: "Microscope",
+        color: "indigo"
       }
     }
   ],
