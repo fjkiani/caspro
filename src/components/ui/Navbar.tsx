@@ -15,13 +15,12 @@ const NAV_CONFIG = {
 };
 
 // --- SUB-LINK DEFINITIONS ---
-// Industry pages temporarily removed - will be re-added after full extraction
-// const industrySubLinks = [
-//   { href: '/industry/healthcare', label: 'Healthcare & Clinical Oncology' },
-//   { href: '/industry/biotech', label: 'Biotech & Pharma R&D' },
-//   { href: '/industry/research', label: 'Research Institutions' },
-//   { href: '/industry/genetic-testing', label: 'Genetic Testing Labs' },
-// ];
+const industrySubLinks = [
+  { href: '/industry/healthcare', label: 'Healthcare & Clinical Oncology' },
+  { href: '/industry/biotech', label: 'Biotech & Pharma R&D' },
+  { href: '/industry/research', label: 'Research Institutions' },
+  { href: '/industry/genetic-testing', label: 'Genetic Testing Labs' },
+];
 
 const doctrineSubLinks = [
   { href: '/doctrine/vus-annihilation', label: 'VUS Annihilation' },
@@ -83,6 +82,12 @@ export const NAV_LINKS = [
       { href: '/products/oracle', label: 'Oracle (Discriminative AI)' },
       { href: '/products/forge', label: 'Forge (Generative AI)' },
     ],
+  },
+  {
+    href: '/industry',
+    label: 'Industry',
+    icon: <Briefcase className="inline-block h-4 w-4" />,
+    subLinks: industrySubLinks,
   },
   {
     href: '/comparisons/patient',
