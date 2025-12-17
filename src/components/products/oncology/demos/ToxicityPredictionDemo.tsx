@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { AlertTriangle, Shield, CheckCircle } from 'lucide-react';
+import { AlertTriangle, Shield, CheckCircle, Apple, Clock } from 'lucide-react';
 
 interface ToxicityPredictionDemoProps {
   seedData?: any;
@@ -10,12 +10,32 @@ interface ToxicityPredictionDemoProps {
 const ToxicityPredictionDemo: React.FC<ToxicityPredictionDemoProps> = ({ seedData }) => {
   const defaultPredictions = seedData?.predictions || [
     {
+      drug: 'Carboplatin',
+      gene: 'BRCA1',
+      variant: 'p.C61G',
+      risk: 'Moderate',
+      recommendation: 'DNA repair stress detected. Consider NAC supplementation.',
+      evidence: 'BRCA1 mutation + platinum = DNA repair pathway stress',
+      nutrition: {
+        foods: ['NAC (N-Acetylcysteine)', 'Vitamin D', 'Folate'],
+        pathway: 'DNA Repair',
+        timing: 'Take post-chemo, not during',
+        rationale: 'NAC supports DNA repair pathways stressed by carboplatin + BRCA1 deficiency'
+      }
+    },
+    {
       drug: '5-FU',
       gene: 'DPYD',
       variant: 'c.1905+1G>A',
       risk: 'High',
       recommendation: 'Reduce dose by 50% or avoid. DPYD deficiency causes severe toxicity.',
-      evidence: 'FDA label warning - life-threatening toxicity risk'
+      evidence: 'FDA label warning - life-threatening toxicity risk',
+      nutrition: {
+        foods: ['Folate', 'Vitamin B12'],
+        pathway: 'Metabolism',
+        timing: 'Pre-treatment supplementation',
+        rationale: 'DPYD deficiency affects folate metabolism - supplementation may help'
+      }
     },
     {
       drug: 'Mercaptopurine',
@@ -23,7 +43,13 @@ const ToxicityPredictionDemo: React.FC<ToxicityPredictionDemoProps> = ({ seedDat
       variant: 'c.719A>G',
       risk: 'High',
       recommendation: 'Reduce dose by 50-90%. TPMT deficiency increases myelosuppression risk.',
-      evidence: 'CPIC guidelines - dose adjustment required'
+      evidence: 'CPIC guidelines - dose adjustment required',
+      nutrition: {
+        foods: ['Folate', 'Vitamin D'],
+        pathway: 'Inflammation',
+        timing: 'Continuous supplementation',
+        rationale: 'TPMT deficiency increases inflammation - anti-inflammatory nutrients help'
+      }
     },
     {
       drug: 'Irinotecan',
@@ -31,7 +57,13 @@ const ToxicityPredictionDemo: React.FC<ToxicityPredictionDemoProps> = ({ seedDat
       variant: '*28/*28',
       risk: 'Moderate',
       recommendation: 'Monitor closely. Increased risk of neutropenia and diarrhea.',
-      evidence: 'FDA label - UGT1A1 poor metabolizer'
+      evidence: 'FDA label - UGT1A1 poor metabolizer',
+      nutrition: {
+        foods: ['Curcumin', 'Omega-3', 'Probiotics'],
+        pathway: 'Inflammation',
+        timing: 'During and post-treatment',
+        rationale: 'UGT1A1 deficiency increases inflammation - anti-inflammatory foods help'
+      }
     }
   ];
 
@@ -66,7 +98,35 @@ const ToxicityPredictionDemo: React.FC<ToxicityPredictionDemoProps> = ({ seedDat
                   <span className="text-xs px-2 py-1 bg-slate-200 rounded">{prediction.variant}</span>
                 </div>
                 <p className="text-sm font-semibold text-slate-900 mb-1">{prediction.recommendation}</p>
-                <p className="text-xs text-slate-600">{prediction.evidence}</p>
+                <p className="text-xs text-slate-600 mb-3">{prediction.evidence}</p>
+                
+                {/* Nutrition Recommendations */}
+                {prediction.nutrition && (
+                  <div className="mt-3 pt-3 border-t border-slate-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Apple className="w-4 h-4 text-green-600" />
+                      <span className="text-xs font-semibold text-green-700">Protective Nutrition (THE PATIENT MOAT)</span>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex flex-wrap gap-1.5 mb-2">
+                        {prediction.nutrition.foods.map((food: string, foodIdx: number) => (
+                          <span key={foodIdx} className="text-xs px-2 py-1 bg-green-100 text-green-800 rounded">
+                            {food}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex items-center gap-2 text-xs text-slate-600">
+                        <span className="font-medium">Pathway:</span>
+                        <span>{prediction.nutrition.pathway}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs text-slate-600">
+                        <Clock className="w-3 h-3" />
+                        <span className="font-medium">{prediction.nutrition.timing}</span>
+                      </div>
+                      <p className="text-xs text-slate-700 italic">{prediction.nutrition.rationale}</p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

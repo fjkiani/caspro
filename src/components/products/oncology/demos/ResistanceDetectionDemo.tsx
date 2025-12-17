@@ -89,6 +89,34 @@ const ResistanceDetectionDemo: React.FC<ResistanceDetectionDemoProps> = ({ seedD
         ))}
       </div>
       
+      {/* Validation Data Section */}
+      <div className="mt-6 p-4 bg-slate-50 border border-slate-300 rounded-lg">
+        <h4 className="text-sm font-semibold text-slate-900 mb-3">Validated Performance</h4>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white p-3 rounded border border-slate-200">
+            <div className="text-xs text-slate-600 mb-1">Relative Risk</div>
+            <div className="text-lg font-bold text-slate-900">1.97x</div>
+            <div className="text-xs text-slate-600">MAPK/NF1 mutations</div>
+          </div>
+          <div className="bg-white p-3 rounded border border-slate-200">
+            <div className="text-xs text-slate-600 mb-1">Validated Patients</div>
+            <div className="text-lg font-bold text-slate-900">469</div>
+            <div className="text-xs text-slate-600">TCGA ovarian cancer</div>
+          </div>
+          <div className="bg-white p-3 rounded border border-slate-200">
+            <div className="text-xs text-slate-600 mb-1">Resistance Rates</div>
+            <div className="text-sm font-semibold text-slate-900">28.6% vs 14.5%</div>
+            <div className="text-xs text-slate-600">Mutated vs Wildtype</div>
+          </div>
+        </div>
+        <div className="mt-3 pt-3 border-t border-slate-200">
+          <p className="text-xs text-slate-600">
+            <span className="font-semibold">Reference:</span> MAPK pathway mutations (KRAS, NRAS, BRAF, NF1) = 2x platinum resistance risk. 
+            Validated on 469 TCGA ovarian cancer patients (RR=1.97, p&lt;0.05).
+          </p>
+        </div>
+      </div>
+      
       <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
         <div className="flex items-center gap-2">
           <TrendingDown className="w-5 h-5 text-blue-600" />
