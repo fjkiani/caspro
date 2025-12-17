@@ -90,14 +90,6 @@ export const immunotherapyData: CoPilotDetailContent = {
   ],
 
 
-  advancedFeatures: [
-    {
-      title: "Response Prediction",
-      description: "Predict immunotherapy response probability before treatment",
-      icon: "TrendingUp"
-    }
-  ],
-
   inSilicoWorkflow: {
     title: "Immunotherapy Matching Workflow",
     steps: [
