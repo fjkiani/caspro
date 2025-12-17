@@ -102,8 +102,8 @@ export default function ProblemSolutionSection({
           </p>
         </motion.div>
 
-        {/* Cards Grid */}
-        <div className={`grid grid-cols-1 ${content.cards.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-6`}>
+        {/* Cards Grid - Force 2 columns for side-by-side display */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
           {content.cards.map((card, idx) => {
             const IconComponent = card.icon ? iconMap[card.icon] : null;
             
