@@ -22,6 +22,20 @@ const BusinessTransformation: React.FC<BusinessTransformationProps> = ({
   const getDemoForVP = (title: string): { type: 'factory' | 'legacy'; category?: string; scenario?: string; demo?: string } => {
     const isForge = productName.toLowerCase() === 'forge';
 
+    // Clinical-specific mappings
+    if (title.toLowerCase().includes('vus') || title.toLowerCase().includes('resolve') || title.toLowerCase().includes('ambiguity') || title.toLowerCase().includes('interpretation')) {
+      return { type: 'factory' as const, category: 'biotechRnD', scenario: 'variantTriaging' };
+    }
+    if (title.toLowerCase().includes('resistance') || title.toLowerCase().includes('evolution') || title.toLowerCase().includes('prediction')) {
+      return { type: 'factory' as const, category: 'biotechRnD', scenario: 'constructPrioritization' };
+    }
+    if (title.toLowerCase().includes('immunotherapy') || title.toLowerCase().includes('personalized') || title.toLowerCase().includes('neoantigen') || title.toLowerCase().includes('car-t')) {
+      if (isForge) {
+        return { type: 'factory' as const, category: 'biotechRnD', scenario: 'guidedSequenceGeneration' };
+      }
+      return { type: 'factory' as const, category: 'biotechRnD', scenario: 'variantTriaging' };
+    }
+
     // Biotech-specific mappings  
     if (title.toLowerCase().includes('triage') || title.toLowerCase().includes('variants') || title.toLowerCase().includes('wet-lab')) {
       return { type: 'factory' as const, category: 'biotechRnD', scenario: 'variantTriaging' };
@@ -29,11 +43,14 @@ const BusinessTransformation: React.FC<BusinessTransformationProps> = ({
     if (title.toLowerCase().includes('evidence') || title.toLowerCase().includes('constructs') || title.toLowerCase().includes('explain') || title.toLowerCase().includes('prioritize')) {
       return { type: 'factory' as const, category: 'biotechRnD', scenario: 'constructPrioritization' };
     }
-    if (title.toLowerCase().includes('guide') || title.toLowerCase().includes('design') || title.toLowerCase().includes('scaling')) {
+    if (title.toLowerCase().includes('guide') || title.toLowerCase().includes('design') || title.toLowerCase().includes('scaling') || title.toLowerCase().includes('quality control')) {
       if (isForge) {
         return { type: 'factory' as const, category: 'biotechRnD', scenario: 'guidedSequenceGeneration' };
       }
       return { type: 'factory' as const, category: 'biotechRnD', scenario: 'guidedSequenceGeneration' };
+    }
+    if (title.toLowerCase().includes('complex loci') || title.toLowerCase().includes('long-context')) {
+      return { type: 'factory' as const, category: 'biotechRnD', scenario: 'constructPrioritization' };
     }
 
     // Default to variant triaging
