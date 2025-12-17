@@ -1,6 +1,12 @@
 import { Metadata } from 'next';
 import { clinicalTransformationContent } from '@/data/industry/clinical-transformation-content';
-import BusinessTransformation from '@/components/industry/BusinessTransformation';
+import HealthcareHeroSection from '@/components/products/healthcare/HealthcareHeroSection';
+import HealthcareMOATMetrics from '@/components/products/healthcare/HealthcareMOATMetrics';
+import MOATInteractiveShowcase from '@/components/products/healthcare/MOATInteractiveShowcase';
+import MOATCapabilityShowcase from '@/components/products/healthcare/MOATCapabilityShowcase';
+import CompleteCarePlanVision from '@/components/products/healthcare/CompleteCarePlanVision';
+import UniversalPlatformSection from '@/components/products/healthcare/UniversalPlatformSection';
+import HonestFramingSection from '@/components/products/healthcare/HonestFramingSection';
 import ClinicalWorkflow from '@/components/industry/ClinicalWorkflow';
 import { TwoHitDiagram, RiskMap, Arsenal } from '@/components/industry/runx1';
 import { runx1Content } from '@/data/industry/runx1-content';
@@ -86,39 +92,29 @@ const clinicalWorkflowData = {
 
 export default function HealthcarePage() {
   return (
-    <main className="min-h-screen bg-slate-900 text-slate-100">
+    <main className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white text-slate-800">
       {/* Hero Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto text-center space-y-6">
-          <h1 className="text-5xl font-bold text-white">
-            Clinical Oncology Transformation
-          </h1>
-          <p className="text-xl text-slate-300 max-w-4xl mx-auto">
-            From VUS uncertainty to precision medicine: How Oracle revolutionizes clinical decision-making
-          </p>
-          <div className="flex flex-wrap justify-center gap-3 mt-8">
-            {['long-context embeddings', 'SAE interpretability', 'zero-shot prediction', 'multi-modal analysis'].map((badge, i) => (
-              <span key={i} className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-sm text-slate-300">
-                {badge}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HealthcareHeroSection />
 
-      {/* Main Transformation Content */}
-      <section className="py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <BusinessTransformation
-            productName="Oracle"
-            valuePropositions={clinicalTransformationContent.valuePropositions}
-            summary={clinicalTransformationContent.summary}
-          />
-        </div>
-      </section>
+      {/* MOAT Metrics */}
+      <div id="moat-metrics">
+        <HealthcareMOATMetrics />
+      </div>
 
-      {/* Clinical Workflow Enhancement */}
-      <section className="py-16 px-6 bg-slate-800/50">
+      {/* Complete Care Plan Vision */}
+      <CompleteCarePlanVision />
+
+      {/* Interactive MOAT Showcase */}
+      <MOATInteractiveShowcase />
+
+      {/* MOAT Capability Testing */}
+      <MOATCapabilityShowcase />
+
+      {/* Universal Platform */}
+      <UniversalPlatformSection />
+
+      {/* Patient Journey Transformation */}
+      <section className="py-16 px-6 bg-slate-50">
         <div className="max-w-6xl mx-auto space-y-12">
           <ClinicalWorkflow
             title="Patient Journey Transformation"
@@ -207,19 +203,22 @@ export default function HealthcarePage() {
         </div>
       </section>
 
+      {/* Honest Framing */}
+      <HonestFramingSection />
+
       {/* CTA Section */}
-      <section className="py-16 px-6">
+      <section className="py-16 px-6 bg-gradient-to-br from-blue-600 to-purple-600">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <h2 className="text-3xl font-semibold text-white">Ready to Transform Patient Care?</h2>
-          <p className="text-lg text-slate-300">
-            Join leading cancer centers using Oracle to resolve VUS uncertainty and improve patient outcomes by 40%
+          <p className="text-lg text-white/90">
+            Join leading cancer centers using CrisPRO to resolve VUS uncertainty and improve patient outcomes with complete care plans
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold transition-colors">
+            <button className="px-8 py-3 bg-white hover:bg-slate-100 text-blue-600 rounded-lg font-semibold transition-colors">
               Request Clinical Demo
             </button>
-            <button className="px-8 py-3 border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white rounded-lg font-semibold transition-colors">
-              View Oracle Platform
+            <button className="px-8 py-3 border-2 border-white hover:bg-white/10 text-white rounded-lg font-semibold transition-colors">
+              View Complete Care Plan
             </button>
           </div>
         </div>
