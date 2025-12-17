@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { notFound } from 'next/navigation';
 import { multipleMyelomaUseCase, multipleMyelomaCapabilities } from '@/data/use-cases/multiple-myeloma';
 import { formatMetricValue } from '@/data/metrics';
 import { 
@@ -13,28 +12,11 @@ import {
   TechnicalPipeline
 } from '@/components/use-cases';
 
-interface UseCasePageProps {
-  params: {
-    slug: string;
-  };
-}
-
-const useCaseData = {
-  'multiple-myeloma': {
+export default function MultipleMyelomaUseCasePage() {
+  const { useCase, capabilities } = {
     useCase: multipleMyelomaUseCase,
     capabilities: multipleMyelomaCapabilities
-  }
-};
-
-export default function UseCasePage({ params }: UseCasePageProps) {
-  const { slug } = params;
-  const data = useCaseData[slug as keyof typeof useCaseData];
-
-  if (!data) {
-    notFound();
-  }
-
-  const { useCase, capabilities } = data;
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -158,3 +140,4 @@ export default function UseCasePage({ params }: UseCasePageProps) {
     </div>
   );
 }
+
