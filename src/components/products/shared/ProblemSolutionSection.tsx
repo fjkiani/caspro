@@ -109,7 +109,7 @@ export default function ProblemSolutionSection({
             
             return (
               <motion.div
-                key={idx}
+                key={`${content.type}-card-${idx}-${card.title}`}
                 initial={{ opacity: 0, y: 40, scale: 0.95 }}
                 animate={isInView ? { 
                   opacity: 1, 
