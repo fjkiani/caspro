@@ -662,16 +662,25 @@ export const clinicalCarePlanContent = {
 6. ⚠️ **EXTRACT** - `TherapyRankingCard.tsx` from src2 (30 min)
 7. Extract seed data from MOAT docs
 
-### Phase 3: Page Transformation (2-3 hours)
+### Phase 3: Page Transformation (3-4 hours) - **ENHANCED WITH RESEARCH COMPONENTS**
 1. Update `healthcare/page.tsx` with new structure
-2. **REUSE** `CapabilityShowcase.tsx` for MOAT capability cards (instead of BusinessTransformation)
-3. **REUSE** `ProductHeroSection.tsx` for hero section
-4. **REUSE** `ProblemSolutionSection.tsx` for "Complete Care Plan Vision"
-5. **REUSE** `SectionHeader.tsx` for section headers
-6. **REUSE** `ClinicalWorkflow.tsx` for patient journey (already in use)
-7. Add "Universal Platform" section (new content, reuse layout patterns)
-8. Add "Honest Framing" section (new content, reuse card layout)
-9. Map demos to correct components using existing demo components
+2. **NEW:** Extract & adapt `ResearchAccelerationMetrics` → `HealthcareMOATMetrics` (metrics grid with badges)
+3. **NEW:** Extract & adapt `HypothesisTestingSection` → `MOATCapabilityShowcase` (interactive capability testing)
+4. **NEW:** Extract & adapt `ResearchInteractiveShowcase` → `MOATInteractiveShowcase` (clickable capability cards)
+5. **NEW:** Extract & adapt `ResearchHeroSection` → `HealthcareHeroSection` (gradient hero with badges)
+6. **REUSE** `ProblemSolutionSection.tsx` for "Complete Care Plan Vision"
+7. **REUSE** `SectionHeader.tsx` for section headers
+8. **REUSE** `ClinicalWorkflow.tsx` for patient journey (already in use)
+9. Add "Universal Platform" section (new content, reuse layout patterns)
+10. Add "Honest Framing" section (new content, reuse card layout)
+11. Map demos to correct components using existing demo components
+
+**Research Component Integration:**
+- Badge headers with icons (purple-100 bg, purple-800 text)
+- Interactive card grids (click to expand demos)
+- Animated results reveal (confidence scores, progress bars)
+- Gradient backgrounds (purple-50 via white to blue-50)
+- Color-coded confidence scores (green ≥80%, yellow ≥70%, red <70%)
 
 ### Phase 4: Demo Factory Alignment (1-2 hours)
 1. Update `BusinessTransformation.tsx` to map capabilities to correct demos
@@ -720,7 +729,39 @@ export const clinicalCarePlanContent = {
 
 **Status:** Ready for implementation  
 **Priority:** HIGH - Content misalignment is confusing users  
-**Estimated Time:** 8-12 hours total (reduced from 12-17 hours due to component reuse)
+**Estimated Time:** 10-14 hours total (increased from 8-12 hours due to research component integration)
+
+---
+
+## 🎨 RESEARCH COMPONENT INTEGRATION (NEW)
+
+### Components to Extract & Adapt
+
+1. **ResearchAccelerationMetrics** → **HealthcareMOATMetrics**
+   - Badge header pattern
+   - 3-column metric grid
+   - Progress bars for applicable metrics
+   - CTA section
+
+2. **HypothesisTestingSection** → **MOATCapabilityShowcase**
+   - Interactive capability cards
+   - Click to expand results
+   - Confidence score visualization
+   - Progress bars
+
+3. **ResearchInteractiveShowcase** → **MOATInteractiveShowcase**
+   - Clickable capability cards
+   - Expandable demo sections
+   - Color-coded by capability type
+
+4. **ResearchHeroSection** → **HealthcareHeroSection**
+   - Badge header
+   - Gradient text title
+   - Inline metrics
+   - CTA buttons
+   - Capability preview cards
+
+**Reference:** See `.cursor/rules/research-components-integration-plan.mdc` for detailed integration strategy.
 
 ---
 
