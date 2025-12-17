@@ -161,13 +161,15 @@ const DropdownMenu: React.FC<{ menu: NavMenu }> = ({ menu }) => {
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      <Link
-        href={menu.href}
-        className="flex items-center gap-1.5 text-sm font-medium text-slate-300 hover:text-white transition-colors py-2 px-1"
-      >
-        {menu.label}
-        <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
-      </Link>
+      <div className="flex items-center py-2 px-2 -mx-2">
+        <Link
+          href={menu.href}
+          className="flex items-center gap-1.5 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+        >
+          {menu.label}
+        </Link>
+        <ChevronDown className={`h-4 w-4 text-slate-300 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''} ml-1`} />
+      </div>
       <AnimatePresence>
         {isOpen && (
           <motion.div

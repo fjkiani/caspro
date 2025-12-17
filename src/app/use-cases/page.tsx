@@ -1,7 +1,12 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { allUseCases } from '@/data/use-cases';
 import { ArrowRight, PlayCircle, Dna, FlaskConical } from 'lucide-react';
+
+// Import use cases directly to avoid potential circular dependency issues
+import { discriminativeUseCases } from '@/data/use-cases/discriminative';
+import { generativeUseCases } from '@/data/use-cases/generative';
+
+const allUseCases = [...discriminativeUseCases, ...generativeUseCases];
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
