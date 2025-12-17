@@ -157,13 +157,13 @@ const DropdownMenu: React.FC<{ menu: NavMenu }> = ({ menu }) => {
 
   return (
     <div 
-      className="relative"
+      className="relative group"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
       <Link
         href={menu.href}
-        className="flex items-center gap-1.5 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+        className="flex items-center gap-1.5 text-sm font-medium text-slate-300 hover:text-white transition-colors py-2 px-1"
       >
         {menu.label}
         <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
@@ -175,7 +175,9 @@ const DropdownMenu: React.FC<{ menu: NavMenu }> = ({ menu }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-white rounded-lg shadow-lg border border-slate-200 z-50"
+            className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-56 bg-white rounded-lg shadow-lg border border-slate-200 z-50"
+            onMouseEnter={() => setIsOpen(true)}
+            onMouseLeave={() => setIsOpen(false)}
           >
             <div className="p-2">
               {menu.subLinks?.map((link, index) => (

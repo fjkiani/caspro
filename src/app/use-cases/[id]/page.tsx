@@ -1,7 +1,12 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { allUseCases } from '@/data/use-cases';
 import UseCaseDemoClient from '@/components/use-cases/UseCaseDemoClient';
+
+// Import use cases directly to avoid potential circular dependency issues
+import { discriminativeUseCases } from '@/data/use-cases/discriminative';
+import { generativeUseCases } from '@/data/use-cases/generative';
+
+const allUseCases = [...discriminativeUseCases, ...generativeUseCases];
 
 type PageProps = {
   params: { id: string };
