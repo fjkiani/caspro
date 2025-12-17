@@ -5,6 +5,7 @@ import { TwoHitDiagram, RiskMap, Arsenal } from '@/components/industry/runx1';
 import { runx1Content } from '@/data/industry/runx1-content';
 import VisualCapabilityGrid from '@/components/industry/VisualCapabilityGrid';
 import { biotechDiscriminativeCapabilities } from '@/data/industry/biotech-capabilities';
+import RelatedProductsSection from '@/components/industry/RelatedProductsSection';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -222,6 +223,23 @@ export default function BiotechPage() {
           </div>
         </div>
       </section>
+
+      {/* Related Products Section */}
+      <RelatedProductsSection
+        products={[
+          {
+            slug: 'r-d',
+            title: 'CrisPRO R&D',
+            subtitle: 'Design the Undruggable. Validate in Silico. Complete therapeutic development platform.',
+          },
+          {
+            slug: 'research',
+            title: 'CrisPRO Research',
+            subtitle: 'Accelerate Discovery from Years to Hours. Multi-modal AI analysis for research institutions.',
+          }
+        ]}
+        title="Explore CrisPRO Products for R&D"
+      />
     </main>
   );
 }

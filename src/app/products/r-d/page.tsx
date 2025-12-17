@@ -6,6 +6,7 @@ import RDTabs from './RDTabs';
 import RDCapabilityShowcase from '@/components/products/r-d/RDCapabilityShowcase';
 import RDEnginesSection from '@/components/products/r-d/RDEnginesSection';
 import GenerateDesignButton from '@/components/products/r-d/GenerateDesignButton';
+import RelatedIndustrySection from '@/components/products/shared/RelatedIndustrySection';
 
 // Generate metadata for the R&D product page
 export async function generateMetadata(): Promise<Metadata> {
@@ -85,6 +86,25 @@ export default async function RDProductPage() {
             ))}
           </div>
         </section>
+
+        {/* Related Industry Section */}
+        <RelatedIndustrySection
+          industries={[
+            {
+              slug: 'biotech',
+              title: 'Biotech & Pharma R&D',
+              subtitle: 'From 90% failure to predictable success with AI-powered target validation',
+              icon: '🧬'
+            },
+            {
+              slug: 'research',
+              title: 'Research Institutions',
+              subtitle: 'Accelerate discovery from years to hours with multi-modal AI analysis',
+              icon: '🔬'
+            }
+          ]}
+          title="See How R&D Teams Use CrisPRO"
+        />
       </div>
     </main>
   );

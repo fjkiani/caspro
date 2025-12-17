@@ -13,6 +13,7 @@ import ProductHeroSection from '@/components/products/shared/ProductHeroSection'
 import ProblemSolutionSection from '@/components/products/shared/ProblemSolutionSection';
 import SectionHeader from '@/components/products/shared/SectionHeader';
 import RelatedProductsSection from '@/components/products/shared/RelatedProductsSection';
+import RelatedIndustrySection from '@/components/products/shared/RelatedIndustrySection';
 
 // Content
 import {
@@ -88,6 +89,25 @@ export default function OncologyPageClient({ content }: { content: typeof oncolo
 
           {/* Related Products Section */}
           <RelatedProductsSection products={oncologyRelatedProducts} />
+
+          {/* Related Industry Section */}
+          <RelatedIndustrySection
+            industries={[
+              {
+                slug: 'healthcare',
+                title: 'Healthcare & Clinical Oncology',
+                subtitle: 'From VUS uncertainty to precision medicine with AI-powered clinical decision support',
+                icon: '🏥'
+              },
+              {
+                slug: 'genetic-testing',
+                title: 'Genetic Testing Labs',
+                subtitle: 'Transform from VUS crisis to precision diagnostics with automated workflows',
+                icon: '🧬'
+              }
+            ]}
+            title="See How Healthcare Uses CrisPRO"
+          />
         </div>
       </main>
     </OncologyAgentProvider>

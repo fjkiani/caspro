@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { GraduationCap, Search, Sparkles, TrendingUp } from 'lucide-react';
+import RelatedProductsSection from '@/components/industry/RelatedProductsSection';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -126,6 +127,23 @@ export default function ResearchPage() {
             Request Research Access
           </Link>
         </section>
+
+        {/* Related Products Section */}
+        <RelatedProductsSection
+          products={[
+            {
+              slug: 'research',
+              title: 'CrisPRO Research',
+              subtitle: 'Accelerate Discovery from Years to Hours. Complete research acceleration platform.',
+            },
+            {
+              slug: 'r-d',
+              title: 'CrisPRO R&D',
+              subtitle: 'Design the Undruggable. Validate in Silico. Therapeutic development platform.',
+            }
+          ]}
+          title="Explore CrisPRO Products for Research"
+        />
       </div>
     </main>
   );

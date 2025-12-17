@@ -4,6 +4,7 @@ import BusinessTransformation from '@/components/industry/BusinessTransformation
 import ClinicalWorkflow from '@/components/industry/ClinicalWorkflow';
 import { TwoHitDiagram, RiskMap, Arsenal } from '@/components/industry/runx1';
 import { runx1Content } from '@/data/industry/runx1-content';
+import RelatedProductsSection from '@/components/industry/RelatedProductsSection';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -223,6 +224,23 @@ export default function HealthcarePage() {
           </div>
         </div>
       </section>
+
+      {/* Related Products Section */}
+      <RelatedProductsSection
+        products={[
+          {
+            slug: 'oncology',
+            title: 'CrisPRO Oncology',
+            subtitle: 'From VUS to Validated Care Plan in Minutes. Complete clinical decision support platform.',
+          },
+          {
+            slug: 'r-d',
+            title: 'CrisPRO R&D',
+            subtitle: 'Design the Undruggable. Validate in Silico. Therapeutic development platform.',
+          }
+        ]}
+        title="Explore CrisPRO Products for Healthcare"
+      />
     </main>
   );
 }

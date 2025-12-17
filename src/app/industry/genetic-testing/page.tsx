@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { geneticTestingTransformationContent } from '@/data/industry/genetic-testing-transformation-content';
 import BusinessTransformation from '@/components/industry/BusinessTransformation';
+import RelatedProductsSection from '@/components/industry/RelatedProductsSection';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -280,6 +281,23 @@ export default function GeneticTestingPage() {
             </a>
           </div>
         </section>
+
+        {/* Related Products Section */}
+        <RelatedProductsSection
+          products={[
+            {
+              slug: 'oncology',
+              title: 'CrisPRO Oncology',
+              subtitle: 'From VUS to Validated Care Plan. Clinical decision support for genetic testing results.',
+            },
+            {
+              slug: 'research',
+              title: 'CrisPRO Research',
+              subtitle: 'Accelerate Discovery. Multi-modal AI analysis for research institutions.',
+            }
+          ]}
+          title="Explore CrisPRO Products for Labs"
+        />
       </div>
     </main>
   );

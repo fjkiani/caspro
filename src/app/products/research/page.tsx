@@ -7,6 +7,7 @@ import ResearchHeroSection from '@/components/products/research/ResearchHeroSect
 import ResearchInteractiveShowcase from '@/components/products/research/ResearchInteractiveShowcase';
 import ResearchAccelerationMetrics from '@/components/products/research/ResearchAccelerationMetrics';
 import HypothesisTestingSection from '@/components/products/research/HypothesisTestingSection';
+import RelatedIndustrySection from '@/components/products/shared/RelatedIndustrySection';
 
 // Generate metadata for the Research product page
 export async function generateMetadata(): Promise<Metadata> {
@@ -86,6 +87,25 @@ export default async function ResearchProductPage() {
           </div>
         </div>
       </section>
+
+      {/* Related Industry Section */}
+      <RelatedIndustrySection
+        industries={[
+          {
+            slug: 'research',
+            title: 'Research Institutions',
+            subtitle: 'Accelerate discovery with multi-modal AI analysis and hypothesis testing',
+            icon: '🔬'
+          },
+          {
+            slug: 'genetic-testing',
+            title: 'Genetic Testing Labs',
+            subtitle: 'Transform from VUS crisis to precision diagnostics with automated workflows',
+            icon: '🧬'
+          }
+        ]}
+        title="See How Research Teams Use CrisPRO"
+      />
     </main>
   );
 }
