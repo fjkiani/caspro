@@ -74,6 +74,19 @@ export const ONCOLOGY_CAPABILITY_DEFINITIONS: Partial<Record<CapabilitySlug, Cap
     time: '60 seconds',
     businessImpact: 'Early intervention prevents treatment failures and preserves therapeutic windows',
     apis: ['predict_gene_essentiality', 'predict_chromatin_accessibility', 'predict_protein_functionality_change']
+  },
+  'clinical-trials': {
+    slug: 'clinical-trials',
+    title: 'Clinical Trial Matching',
+    subtitle: '96.6% Match Accuracy',
+    description: 'Transparent eligibility reasoning with green/yellow/red flags per criterion. Same-day trial site calls with action-ready packets.',
+    icon: 'Users',
+    color: 'from-purple-500 to-violet-600',
+    badge: 'Clinical Intelligence',
+    metrics: '96.6% Accuracy',
+    time: '45 seconds',
+    businessImpact: 'Same-day actionable trial matches with transparent eligibility reasoning',
+    apis: ['predict_variant_impact', 'predict_gene_essentiality']
   }
 };
 

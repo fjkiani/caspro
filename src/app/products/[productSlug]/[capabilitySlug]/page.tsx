@@ -1,10 +1,11 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { ProductSlug, CapabilitySlug } from '@/data/navigation/co-pilot-mappings';
+import { ProductSlug, CapabilitySlug, getCapabilityCoPilots } from '@/data/navigation/co-pilot-mappings';
 import { getCapabilityDefinition, getProductCapabilityDefinitions } from '@/data/navigation/product-capabilities';
 import { generateCapabilityStaticParams } from '@/data/navigation/navigation-helpers';
-import CapabilityPage from '@/components/products/shared/CapabilityPage';
+import TabbedCapabilityPage from '@/components/products/shared/TabbedCapabilityPage';
+import DirectCapabilityPage from '@/components/products/shared/DirectCapabilityPage';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
@@ -52,6 +53,10 @@ export default async function CapabilityDetailPage({
     notFound();
   }
   
+  // Determine if this capability has multiple co-pilots (tabs) or single co-pilot (direct)
+  const coPilotMappings = getCapabilityCoPilots(productSlug, capabilitySlug);
+  const hasMultipleCoPilots = coPilotMappings.length > 1;
+  
   return (
     <main className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white text-slate-800 pt-20 pb-12 px-4 md:px-8">
       <div className="container mx-auto max-w-7xl">
@@ -82,8 +87,12 @@ export default async function CapabilityDetailPage({
           <span>Back to {productSlug === 'oncology' ? 'Oncology' : productSlug === 'r-d' ? 'R&D' : 'Research'}</span>
         </Link>
         
-        {/* Capability Page Content */}
-        <CapabilityPage productSlug={productSlug} capabilitySlug={capabilitySlug} />
+        {/* Capability Page Content - Tabbed for multiple co-pilots, Direct for single */}
+        {hasMultipleCoPilots ? (
+          <TabbedCapabilityPage productSlug={productSlug} capabilitySlug={capabilitySlug} />
+        ) : (
+          <DirectCapabilityPage productSlug={productSlug} capabilitySlug={capabilitySlug} />
+        )}
       </div>
     </main>
   );

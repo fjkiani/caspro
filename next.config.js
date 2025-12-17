@@ -20,7 +20,33 @@ const nextConfig = {
       },
       {
         source: '/platform/clinical-trials',
-        destination: '/products/oncology/match-patients-to-therapies/clinical-trials',
+        destination: '/products/oncology/clinical-trials',
+        permanent: true,
+      },
+      // Redirect old co-pilot routes to capability pages (co-pilots are now tabs or direct content)
+      {
+        source: '/products/oncology/match-patients-to-therapies/chemo',
+        destination: '/products/oncology/match-patients-to-therapies',
+        permanent: true,
+      },
+      {
+        source: '/products/oncology/match-patients-to-therapies/therapy-fit',
+        destination: '/products/oncology/match-patients-to-therapies',
+        permanent: true,
+      },
+      {
+        source: '/products/oncology/match-patients-to-therapies/immunotherapy',
+        destination: '/products/oncology/match-patients-to-therapies',
+        permanent: true,
+      },
+      {
+        source: '/products/oncology/prevent-toxicity/toxicity-risk',
+        destination: '/products/oncology/prevent-toxicity',
+        permanent: true,
+      },
+      {
+        source: '/products/r-d/target-validation/pathway',
+        destination: '/products/r-d/target-validation',
         permanent: true,
       },
       {

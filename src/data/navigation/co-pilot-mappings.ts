@@ -9,6 +9,7 @@ export type CapabilitySlug =
   | 'prevent-toxicity'
   | 'resolve-genetic-uncertainty'
   | 'predict-resistance'
+  | 'clinical-trials'
   | 'therapeutic-design'
   | 'target-validation'
   | 'variant-analysis';
@@ -30,7 +31,7 @@ export const CO_PILOT_MAPPINGS: CoPilotMapping[] = [
   // ONCOLOGY PRODUCT
   // ============================================
   
-  // Match Patients to Therapies Capability
+  // Match Patients to Therapies Capability (Multi-co-pilot - uses tabs)
   {
     coPilotSlug: 'chemo',
     productSlug: 'oncology',
@@ -40,20 +41,30 @@ export const CO_PILOT_MAPPINGS: CoPilotMapping[] = [
     description: 'Mechanism-based drug ranking with S/P/E fusion'
   },
   {
-    coPilotSlug: 'clinical-trials',
-    productSlug: 'oncology',
-    capabilitySlug: 'match-patients-to-therapies',
-    capabilityTitle: 'Match Patients to Therapies',
-    priority: 'primary',
-    description: '96.6% trial match accuracy with transparent eligibility reasoning'
-  },
-  {
     coPilotSlug: 'therapy-fit',
     productSlug: 'oncology',
     capabilitySlug: 'match-patients-to-therapies',
     capabilityTitle: 'Match Patients to Therapies',
     priority: 'primary',
     description: 'Personalized drug ranking with 70-85% confidence'
+  },
+  {
+    coPilotSlug: 'immunotherapy',
+    productSlug: 'oncology',
+    capabilitySlug: 'match-patients-to-therapies',
+    capabilityTitle: 'Match Patients to Therapies',
+    priority: 'primary',
+    description: 'Immunotherapy eligibility and response prediction'
+  },
+  
+  // Clinical Trials - Standalone Capability
+  {
+    coPilotSlug: 'clinical-trials',
+    productSlug: 'oncology',
+    capabilitySlug: 'clinical-trials',
+    capabilityTitle: 'Clinical Trial Matching',
+    priority: 'primary',
+    description: '96.6% trial match accuracy with transparent eligibility reasoning'
   },
   
   // Prevent Toxicity Capability
