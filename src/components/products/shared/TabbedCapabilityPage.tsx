@@ -62,79 +62,76 @@ export default function TabbedCapabilityPage({
       {/* Hero Section */}
       <ProductHeroSection content={heroContent} />
       
-      {/* Capability Overview */}
+      {/* Capability Cards (Act as Tabs) */}
       <section className="mb-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-blue-200">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
-                <IconComponent className="w-6 h-6 text-blue-600" />
-              </div>
-              <div>
-                <div className="text-sm text-slate-600">Metrics</div>
-                <div className="text-2xl font-bold text-blue-600">{capabilityDef.metrics}</div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border-2 border-green-200">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
-                <span className="text-2xl">⚡</span>
-              </div>
-              <div>
-                <div className="text-sm text-slate-600">Time</div>
-                <div className="text-2xl font-bold text-green-600">{capabilityDef.time}</div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border-2 border-purple-200">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
-                <span className="text-2xl">🎯</span>
-              </div>
-              <div>
-                <div className="text-sm text-slate-600">Impact</div>
-                <div className="text-sm font-semibold text-purple-600">{capabilityDef.businessImpact}</div>
-              </div>
-            </div>
-          </div>
+          {coPilotMappings.map((mapping, idx) => {
+            const coPilotData = coPilotDetailsData[mapping.coPilotSlug];
+            if (!coPilotData) return null;
+            
+            const isActive = activeTab === mapping.coPilotSlug;
+            // Extract short title: "Chemo Co‑Pilot: ..." -> "Chemo Co‑Pilot"
+            let cardTitle = coPilotData.pageTitle.split(':')[0] || coPilotData.pageTitle;
+            // Handle "Therapy Fit: ..." -> "Therapy Fit"
+            if (cardTitle.includes('Therapy Fit')) {
+              cardTitle = 'Therapy Fit';
+            } else if (cardTitle.includes('Chemo Co‑Pilot')) {
+              cardTitle = 'Chemo Co‑Pilot';
+            } else if (cardTitle.includes('Immunotherapy Matching')) {
+              cardTitle = 'Immunotherapy Matching';
+            }
+            
+            // Color schemes for each card
+            const colorSchemes = [
+              { bg: 'from-blue-50 to-indigo-50', border: 'border-blue-200', iconBg: 'bg-blue-100', text: 'text-blue-600' },
+              { bg: 'from-green-50 to-emerald-50', border: 'border-green-200', iconBg: 'bg-green-100', text: 'text-green-600' },
+              { bg: 'from-purple-50 to-pink-50', border: 'border-purple-200', iconBg: 'bg-purple-100', text: 'text-purple-600' },
+            ];
+            const colors = colorSchemes[idx % colorSchemes.length];
+            
+            return (
+              <motion.button
+                key={mapping.coPilotSlug}
+                onClick={() => setActiveTab(mapping.coPilotSlug)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className={`
+                  bg-gradient-to-br ${colors.bg} rounded-2xl p-6 border-2 transition-all duration-300 text-left
+                  ${isActive 
+                    ? `${colors.border} shadow-xl ring-2 ring-offset-2 ring-blue-500` 
+                    : `${colors.border} hover:shadow-lg cursor-pointer`
+                  }
+                `}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`w-12 h-12 rounded-xl ${colors.iconBg} flex items-center justify-center flex-shrink-0`}>
+                    <IconComponent className={`w-6 h-6 ${colors.text}`} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className={`text-sm ${isActive ? 'font-semibold' : ''} text-slate-600 mb-1`}>
+                      {mapping.description || 'Capability'}
+                    </div>
+                    <div className={`text-xl font-bold ${colors.text} line-clamp-2`}>
+                      {cardTitle}
+                    </div>
+                  </div>
+                </div>
+                {isActive && (
+                  <div className="mt-4 pt-4 border-t border-slate-200">
+                    <div className="flex items-center gap-2 text-sm text-blue-600 font-semibold">
+                      <span>✓</span>
+                      <span>Active</span>
+                    </div>
+                  </div>
+                )}
+              </motion.button>
+            );
+          })}
         </div>
       </section>
-      
-      {/* Tabs */}
-      {coPilotMappings.length > 1 && (
-        <section className="mb-8">
-          <div className="border-b border-slate-200">
-            <nav className="flex space-x-8 overflow-x-auto">
-              {coPilotMappings.map((mapping) => {
-                const coPilotData = coPilotDetailsData[mapping.coPilotSlug];
-                if (!coPilotData) return null;
-                
-                const isActive = activeTab === mapping.coPilotSlug;
-                const tabTitle = coPilotData.pageTitle.split(':')[0] || coPilotData.pageTitle;
-                
-                return (
-                  <button
-                    key={mapping.coPilotSlug}
-                    onClick={() => setActiveTab(mapping.coPilotSlug)}
-                    className={`
-                      py-4 px-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap
-                      ${isActive 
-                        ? 'border-blue-600 text-blue-600' 
-                        : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
-                      }
-                    `}
-                  >
-                    {tabTitle}
-                  </button>
-                );
-              })}
-            </nav>
-          </div>
-        </section>
-      )}
       
       {/* Active Tab Content */}
       {activeCoPilotData ? (

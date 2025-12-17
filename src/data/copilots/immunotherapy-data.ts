@@ -119,22 +119,19 @@ export const immunotherapyData: CoPilotDetailContent = {
     title: "Immunotherapy Matching Workflow",
     steps: [
       {
-        step: 1,
         title: "Biomarker Analysis",
         description: "Analyze TMB, MSI, PD-L1, and tumor microenvironment",
-        duration: "30 seconds"
+        iconName: "Dna"
       },
       {
-        step: 2,
         title: "Eligibility Assessment",
         description: "Determine immunotherapy eligibility with confidence scores",
-        duration: "15 seconds"
+        iconName: "Target"
       },
       {
-        step: 3,
         title: "Response Prediction",
         description: "Predict immunotherapy response probability",
-        duration: "20 seconds"
+        iconName: "TrendingUp"
       }
     ]
   },
