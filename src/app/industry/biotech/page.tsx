@@ -1,7 +1,10 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
-import { FlaskConical, Target, Zap, TrendingUp, AlertTriangle, CheckCircle2 } from 'lucide-react';
-import ProblemSolutionSection, { ProblemSolutionContent } from '@/components/products/shared/ProblemSolutionSection';
+import { biotechTransformationContent } from '@/data/industry/biotech-transformation-content';
+import BusinessTransformation from '@/components/industry/BusinessTransformation';
+import { TwoHitDiagram, RiskMap, Arsenal } from '@/components/industry/runx1';
+import { runx1Content } from '@/data/industry/runx1-content';
+import { VisualCapabilityGrid } from '@/components/industry/VisualCapabilityGrid';
+import { biotechDiscriminativeCapabilities } from '@/data/industry/biotech-capabilities';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -11,325 +14,214 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function BiotechPage() {
-  // Problem content extracted from src2
-  const problemContent: ProblemSolutionContent = {
-    type: 'problem',
-    title: 'Traditional Way: 90% Failure Crisis',
-    description: 'Biotech R&D struggles with high failure rates, expensive validation, and unpredictable outcomes.',
-    cards: [
-      {
-        title: '90% Clinical Trial Failure',
-        description: 'Phase I-III combined failure rate. Most targets fail in preclinical validation, wasting $2.6B per approved drug.',
-        icon: 'document',
-        highlight: '90% failure'
-      },
-      {
-        title: 'Expensive Target Validation',
-        description: '$2.5M per target validation, taking 18 months. 85% of targets fail, creating massive waste.',
-        icon: 'clock',
-        highlight: '18 months'
-      },
-      {
-        title: 'Random Target Selection',
-        description: 'No systematic prioritization. Teams rely on limited functional data and intuition rather than prediction.',
-        icon: 'search',
-        highlight: 'Random selection'
-      }
-    ]
-  };
-
-  // Solution content extracted from src2
-  const solutionContent: ProblemSolutionContent = {
-    type: 'solution',
-    title: 'In-Silico Way: Predictable Success',
-    description: 'Oracle transforms biotech R&D with zero-shot target validation, precision therapeutic design, and systematic prioritization.',
-    cards: [
-      {
-        title: '72x Faster Target Validation',
-        description: '18 months → 1 week validation time. Multi-endpoint AI analysis replaces expensive wet-lab validation.',
-        icon: 'zap',
-        highlight: '72x faster'
-      },
-      {
-        title: '99.8% Cost Reduction',
-        description: '$2.5M → $3K per target. Variant impact + essentiality + protein function analysis replaces $2.5M validation.',
-        icon: 'check',
-        highlight: '99.8% reduction'
-      },
-      {
-        title: '6x Success Rate Improvement',
-        description: '15% → 90% validated targets. Systematic prediction replaces random selection with 90% success rate.',
-        icon: 'infinity',
-        highlight: '6x improvement'
-      }
-    ]
-  };
-
   return (
-    <main className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white text-slate-800 pt-20 pb-12 px-4 md:px-8">
-      <div className="container mx-auto max-w-7xl">
-        {/* Hero Section - Extracted from src2 */}
-        <section className="text-center mb-16 md:mb-24 pt-10">
-          <div className="flex justify-center mb-6">
-            <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center">
-              <FlaskConical className="w-10 h-10 text-white" />
-            </div>
-          </div>
-          <div className="inline-flex items-center gap-3 px-4 py-2 bg-purple-100 border border-purple-300 rounded-full mb-6">
+    <main className="min-h-screen bg-slate-900 text-slate-100">
+      {/* Enhanced Hero Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto text-center space-y-8">
+          <div className="inline-flex items-center gap-3 px-4 py-2 bg-cyan-900/30 border border-cyan-700/50 rounded-full">
             <span className="text-2xl">🧬</span>
-            <span className="text-purple-700 font-medium">Biotech R&D</span>
+            <span className="text-cyan-300 font-medium">Biotech R&D</span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600">
+          
+          <h1 className="font-bold text-white text-5xl">
             From 90% Failure to{' '}
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
               Predictable Success
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8">
+          
+          <p className="text-slate-300 max-w-4xl mx-auto leading-relaxed text-xl">
             Transform biotech R&D with <strong>Discriminative AI</strong>. Validate targets, design therapeutics, and predict outcomes 
             using Oracle's 5 core endpoints—eliminating guesswork and accelerating discovery.
           </p>
-
-          {/* Key Transformation Metrics Preview - Extracted from src2 */}
+          
+          {/* Key Transformation Metrics Preview */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto mt-12">
-            <div className="text-center p-4 bg-white border border-purple-200 rounded-xl shadow-sm">
-              <div className="text-3xl font-black text-purple-600 mb-2">72x</div>
-              <div className="text-purple-700 font-medium text-sm">Target Validation</div>
-              <div className="text-xs text-slate-500 mt-1">18 months → 1 week</div>
+            <div className="text-center p-4 bg-slate-800/50 border border-slate-600 rounded-xl">
+              <div className="font-bold text-cyan-400 text-2xl">
+                72x
+              </div>
+              <div className="text-slate-300 font-medium text-sm">
+                Target Validation
+              </div>
+              <div className="text-slate-400 text-xs">
+                18 months → 1 week
+              </div>
             </div>
-            <div className="text-center p-4 bg-white border border-purple-200 rounded-xl shadow-sm">
-              <div className="text-3xl font-black text-purple-600 mb-2">99.8%</div>
-              <div className="text-purple-700 font-medium text-sm">Cost Reduction</div>
-              <div className="text-xs text-slate-500 mt-1">$2.5M → $3K per target</div>
+            
+            <div className="text-center p-4 bg-slate-800/50 border border-slate-600 rounded-xl">
+              <div className="font-bold text-green-400 text-2xl">
+                99.8%
+              </div>
+              <div className="text-slate-300 font-medium text-sm">
+                Cost Reduction
+              </div>
+              <div className="text-slate-400 text-xs">
+                $2.5M → $3K per target
+              </div>
             </div>
-            <div className="text-center p-4 bg-white border border-purple-200 rounded-xl shadow-sm">
-              <div className="text-3xl font-black text-purple-600 mb-2">6x</div>
-              <div className="text-purple-700 font-medium text-sm">Success Rate</div>
-              <div className="text-xs text-slate-500 mt-1">15% → 90% validated</div>
+            
+            <div className="text-center p-4 bg-slate-800/50 border border-slate-600 rounded-xl">
+              <div className="font-bold text-purple-400 text-2xl">
+                6x
+              </div>
+              <div className="text-slate-300 font-medium text-sm">
+                Success Rate
+              </div>
+              <div className="text-slate-400 text-xs">
+                15% → 90% validated
+              </div>
             </div>
-            <div className="text-center p-4 bg-white border border-purple-200 rounded-xl shadow-sm">
-              <div className="text-3xl font-black text-purple-600 mb-2">88%</div>
-              <div className="text-purple-700 font-medium text-sm">False Discovery</div>
-              <div className="text-xs text-slate-500 mt-1">85% → 10% reduction</div>
+            
+            <div className="text-center p-4 bg-slate-800/50 border border-slate-600 rounded-xl">
+              <div className="font-bold text-orange-400 text-2xl">
+                88%
+              </div>
+              <div className="text-slate-300 font-medium text-sm">
+                False Discovery
+              </div>
+              <div className="text-slate-400 text-xs">
+                85% → 10% reduction
+              </div>
             </div>
           </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
-            <Link
-              href="/products/r-d"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold px-8 py-4 rounded-xl hover:shadow-lg transition-all"
-            >
-              Explore R&D Platform →
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 font-semibold px-8 py-4 rounded-xl border-2 border-purple-600 hover:bg-purple-50 transition-all"
-            >
-              Schedule Demo
-            </Link>
+          
+          <div className="flex flex-wrap justify-center gap-3 mt-8">
+            {['long-context embeddings', 'SAE interpretability', 'zero-shot prediction', 'multi-modal analysis'].map((badge, i) => (
+              <span key={i} className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-full text-slate-300 text-sm">
+                {badge}
+              </span>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Problem/Solution Comparison */}
-        <ProblemSolutionSection content={problemContent} />
-        <ProblemSolutionSection content={solutionContent} />
+      {/* Main Transformation Content */}
+      <section className="py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <BusinessTransformation
+            productName="Oracle"
+            valuePropositions={biotechTransformationContent.valuePropositions}
+            summary={biotechTransformationContent.summary}
+          />
+        </div>
+      </section>
 
-        {/* Research Case Study: RUNX1 Discovery Pipeline - Extracted from src2 */}
-        <section className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              Research Case Study: RUNX1 Discovery Pipeline
-            </h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+      {/* RUNX1 Research Case Study */}
+      <section className="py-16 px-6 bg-slate-800/50">
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-semibold text-white">Research Case Study: RUNX1 Discovery Pipeline</h2>
+            <p className="text-lg text-slate-300 max-w-4xl mx-auto">
               From variant discovery to therapeutic design: Complete biotech research transformation
             </p>
           </div>
 
-          <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl p-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Traditional Drug Discovery */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-red-700 flex items-center gap-2">
-                  <AlertTriangle className="w-6 h-6" />
-                  Traditional Drug Discovery
-                </h3>
-                <div className="space-y-4">
-                  {[
-                    { title: 'Variant Characterization', desc: '18 months to characterize variants and understand functional impact' },
-                    { title: 'Random Target Selection', desc: 'No systematic prioritization, leading to poor target choices' },
-                    { title: 'High Design Failure Rate', desc: '85% of designs fail in preclinical validation' },
-                    { title: 'Expensive Candidates', desc: '$8M per successful candidate after accounting for failures' }
-                  ].map((item, i) => (
-                    <div key={i} className="bg-red-50 border border-red-200 rounded-lg p-4">
-                      <div className="font-semibold text-red-700 mb-2">{item.title}</div>
-                      <div className="text-sm text-red-600">{item.desc}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+          <TwoHitDiagram steps={runx1Content.twoHit.steps} />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <RiskMap {...runx1Content.riskMap} />
+            <Arsenal 
+              input={runx1Content.arsenal.input}
+              processTitle={runx1Content.arsenal.processTitle}
+              outputs={[...runx1Content.arsenal.outputs]}
+            />
+          </div>
 
-              {/* Oracle-Powered Discovery */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-green-700 flex items-center gap-2">
-                  <CheckCircle2 className="w-6 h-6" />
-                  Oracle-Powered Discovery
-                </h3>
-                <div className="space-y-4">
-                  {[
-                    { title: 'Rapid Pipeline', desc: '2 weeks variant-to-target pipeline with AI-powered analysis' },
-                    { title: 'Systematic Prioritization', desc: 'Target prioritization based on essentiality and functional impact' },
-                    { title: 'High Success Prediction', desc: '90% design success prediction before wet-lab validation' },
-                    { title: 'Cost-Effective Portfolio', desc: '$300K per validated portfolio with multiple candidate families' }
-                  ].map((item, i) => (
-                    <div key={i} className="bg-green-50 border border-green-200 rounded-lg p-4">
-                      <div className="font-semibold text-green-700 mb-2">{item.title}</div>
-                      <div className="text-sm text-green-600">{item.desc}</div>
-                    </div>
-                  ))}
-                </div>
+          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
+            <h4 className="text-lg font-semibold text-white mb-4">Biotech Research Impact</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <h5 className="font-medium text-slate-200">Traditional Drug Discovery</h5>
+                <ul className="text-sm text-red-300 space-y-1">
+                  <li>• 18 months variant characterization</li>
+                  <li>• Random target selection</li>
+                  <li>• 85% design failure rate</li>
+                  <li>• $8M per successful candidate</li>
+                </ul>
+              </div>
+              <div className="space-y-3">
+                <h5 className="font-medium text-slate-200">Oracle-Powered Discovery</h5>
+                <ul className="text-sm text-green-300 space-y-1">
+                  <li>• 2 weeks variant-to-target pipeline</li>
+                  <li>• Systematic target prioritization</li>
+                  <li>• 90% design success prediction</li>
+                  <li>• $300K per validated portfolio</li>
+                </ul>
               </div>
             </div>
+          </div>
 
-            {/* Research Pipeline Metrics */}
-            <div className="mt-8 pt-8 border-t border-purple-300">
-              <div className="text-center space-y-6">
-                <h4 className="text-xl font-bold text-purple-700">Complete Research Transformation</h4>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                  {[
-                    { value: '36x', label: 'Faster Discovery', desc: '18 months → 2 weeks' },
-                    { value: '96%', label: 'Cost Reduction', desc: '$8M → $300K per program' },
-                    { value: '90%', label: 'Success Prediction', desc: 'vs 15% random chance' },
-                    { value: '10x', label: 'Portfolio Diversity', desc: 'Multiple families per target' }
-                  ].map((metric, idx) => (
-                    <div key={idx} className="text-center">
-                      <div className="text-3xl font-black text-purple-600 mb-2">{metric.value}</div>
-                      <div className="text-purple-700 font-medium mb-1">{metric.label}</div>
-                      <div className="text-xs text-slate-600">{metric.desc}</div>
-                    </div>
-                  ))}
+          {/* Research Pipeline Metrics */}
+          <div className="bg-gradient-to-r from-blue-900/20 to-blue-800/20 border border-blue-700/50 rounded-xl p-8">
+            <div className="text-center space-y-6">
+              <h4 className="text-xl font-bold text-blue-300">Complete Research Transformation</h4>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                <div>
+                  <div className="text-2xl font-black text-blue-400">36x</div>
+                  <div className="text-blue-300">Faster discovery</div>
+                  <div className="text-xs text-blue-400 mt-1">18 months → 2 weeks</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-black text-blue-400">96%</div>
+                  <div className="text-blue-300">Cost reduction</div>
+                  <div className="text-xs text-blue-400 mt-1">$8M → $300K per program</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-black text-blue-400">90%</div>
+                  <div className="text-blue-300">Success prediction</div>
+                  <div className="text-xs text-blue-400 mt-1">vs 15% random chance</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-black text-blue-400">10x</div>
+                  <div className="text-blue-300">Portfolio diversity</div>
+                  <div className="text-xs text-blue-400 mt-1">Multiple families per target</div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Multi-Modal Biological Capabilities - Extracted from src2 */}
-        <section className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              Multi-Modal Biological Capabilities
+      {/* Discriminative AI Arsenal Enhancement */}
+      <section className="py-16 px-6 bg-slate-800/30">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <div className="text-center space-y-6">
+            <h2 className="font-bold text-white text-4xl">
+              🎯 Complete Discriminative AI Arsenal
             </h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              See how Oracle's multi-modal predictions transform biotech R&D workflows with context-specific insights
+            <p className="text-slate-300 max-w-4xl mx-auto leading-relaxed text-lg">
+              Five core AI endpoints that power every biotech transformation. Each capability includes live demos 
+              showing real biotech R&D applications with factual performance metrics.
             </p>
           </div>
+          
+          <VisualCapabilityGrid
+            capabilities={biotechDiscriminativeCapabilities}
+            title=""
+            subtitle=""
+          />
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Target,
-                title: 'Gene Essentiality for Target Prioritization',
-                description: 'Context-dependent essentiality scoring to identify targets with optimal therapeutic windows',
-                metrics: '0.82-0.99 AUROC Range',
-                color: 'from-purple-500 to-purple-600'
-              },
-              {
-                icon: Zap,
-                title: 'Protein Function for Drug Design',
-                description: 'Predict how variants affect protein stability, binding, and function for structure-based drug design',
-                metrics: 'Strong DMS Correlation',
-                color: 'from-pink-500 to-pink-600'
-              },
-              {
-                icon: FlaskConical,
-                title: 'CRISPR Efficacy for Therapeutic Design',
-                description: 'Predict guide RNA cutting efficiency and specificity for precision gene editing therapeutics',
-                metrics: '92% Efficacy Prediction',
-                color: 'from-rose-500 to-rose-600'
-              },
-              {
-                icon: TrendingUp,
-                title: 'Chromatin Accessibility for Enhancer Design',
-                description: 'Predict regulatory element accessibility and TF binding for enhancer-based therapeutics',
-                metrics: 'SAE TF Motif Features',
-                color: 'from-indigo-500 to-indigo-600'
-              },
-              {
-                icon: Target,
-                title: 'Variant Impact for Target Validation',
-                description: 'Zero-shot pathogenicity prediction for oncogene/tumor suppressor validation',
-                metrics: '95.7% ClinVar AUROC',
-                color: 'from-purple-500 to-purple-600'
-              },
-              {
-                icon: Zap,
-                title: 'Safety Profiling',
-                description: 'Essentiality analysis for off-target effects and safety assessment',
-                metrics: '20x Therapeutic Window',
-                color: 'from-pink-500 to-pink-600'
-              }
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-lg hover:shadow-xl transition-all"
-              >
-                <div className={`w-12 h-12 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center mb-4`}>
-                  <item.icon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-600 mb-3">{item.description}</p>
-                <div className="text-xs font-semibold text-purple-600">{item.metrics}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Business Impact */}
-        <section className="mb-16 bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-12 border-2 border-purple-200">
-          <h2 className="text-3xl font-bold text-center text-slate-800 mb-8">
-            Business Impact
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {[
-              { label: 'Cost Reduction', value: '99.8%', description: '$2.5M → $3K per target' },
-              { label: 'Time Acceleration', value: '72x', description: '18 months → 1 week' },
-              { label: 'Success Rate', value: '6x', description: '15% → 90% validation' },
-            ].map((metric, idx) => (
-              <div key={idx} className="text-center">
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-2">
-                  {metric.value}
-                </div>
-                <div className="text-lg font-semibold text-slate-900 mb-1">{metric.label}</div>
-                <div className="text-sm text-slate-600">{metric.description}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="text-center bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-12 text-white">
-          <h2 className="text-3xl font-bold mb-4">
-            Ready to Transform Your Pipeline?
-          </h2>
-          <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-            Join leading biotech and pharma companies using CrisPRO to de-risk drug development and accelerate discovery.
+      {/* CTA Section */}
+      <section className="py-16 px-6">
+        <div className="max-w-4xl mx-auto text-center space-y-6">
+          <h2 className="text-3xl font-semibold text-white">Ready to Transform Your R&D Pipeline?</h2>
+          <p className="text-lg text-slate-300">
+            Join leading biotechs using Oracle to accelerate discovery and reduce development costs by 96%
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-purple-600 font-semibold px-8 py-4 rounded-xl hover:shadow-lg transition-all"
-            >
-              Schedule a Demo
-            </Link>
-            <Link
-              href="/products/r-d"
-              className="inline-flex items-center gap-2 border-2 border-white text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-all"
-            >
-              Explore R&D Platform
-            </Link>
+            <button className="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold transition-colors">
+              Request Demo
+            </button>
+            <button className="px-8 py-3 border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white rounded-lg font-semibold transition-colors">
+              View Oracle Platform
+            </button>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
   );
 }
