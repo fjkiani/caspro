@@ -1,0 +1,369 @@
+# Biotech Transformation Page - Complete Audit & Extraction Plan
+
+**Created:** 2024-12-19  
+**Status:** 🔴 CRITICAL - Missing 80%+ of content from src2  
+**Priority:** Extract ALL interactive demos, UI/UX components, and data
+
+---
+
+## 📋 EXECUTIVE SUMMARY
+
+**The Problem:**
+- Current `/industry/biotech` page is **half-empty** - only has basic ProblemSolutionSection
+- Missing ALL interactive demos (FactoryDemoShowcase, Variant Triaging Pipeline)
+- Missing ALL multi-modal capability showcases (renderContextualComponent)
+- Missing ALL visual components (OracleExplainTrack, EssentialityChart, etc.)
+- Missing ALL data structures (oracleContent.transformation, biotechDiscriminativeCapabilities)
+
+**The Solution:**
+- Extract COMPLETE BiotechTransformation page from src2
+- Extract ALL supporting components and data
+- Create comprehensive Next.js implementation with full interactivity
+
+---
+
+## 🔍 COMPLETE CONTENT AUDIT
+
+### ✅ What We HAVE Extracted:
+1. ✅ Basic BusinessTransformation component (simplified version)
+2. ✅ VisualCapabilityGrid component (basic version)
+3. ✅ RUNX1 case study components (TwoHitDiagram, RiskMap, Arsenal)
+4. ✅ Basic data structures
+
+### ❌ What We're MISSING (80%+ of content):
+
+#### **1. Interactive Demo Components (CRITICAL)**
+- ❌ **FactoryDemoShowcase** - The main interactive demo system
+  - Location: `src/src2/components/site/blocks/FactoryDemoShowcase.tsx`
+  - Purpose: Step-by-step API pipeline execution with "Run Demo" button
+  - Features:
+    - Variant Triaging Pipeline demo (CFTR:c.1521_1523delCTT)
+    - Oracle's Thinking Process visualization
+    - Multi-step API execution with progress tracking
+    - Reset functionality
+    - Contextual data generation
+
+- ❌ **EnhancedComparison** - Traditional vs Oracle comparison
+  - Location: `src/src2/components/site/blocks/EnhancedComparison.tsx`
+  - Purpose: Side-by-side cost/time comparison with impact metrics
+
+- ❌ **InteractiveDemoShowcase** - Legacy demo system
+  - Location: `src/src2/components/site/blocks/InteractiveDemoShowcase.tsx`
+  - Purpose: Alternative demo interface
+
+#### **2. Value Proposition Demos (MISSING)**
+From `BusinessTransformation.tsx`, each value proposition includes:
+
+**Value Prop 1: "Reduce Wet-Lab Iterations by Triaging Variants"**
+- ❌ FactoryDemoShowcase with `variantTriaging` scenario
+- ❌ Demo shows: "CFTR:c.1521_1523delCTT" variant triaging
+- ❌ Text: "🧬 Oracle Annihilation of Uncertainty"
+- ❌ Text: "Click 'Run Demo' to see Oracle solve this problem step-by-step"
+- ❌ Variant Triaging Pipeline with "▶ Run Demo" and "🔄 Reset" buttons
+- ❌ Oracle's Thinking Process section with:
+  - OracleExplainTrack component
+  - VariantDetailCard component
+  - ProteinDeltaCard component
+  - EssentialityChart component
+
+**Value Prop 2: "Prioritize Constructs Using Explainable Evidence"**
+- ❌ FactoryDemoShowcase with `constructPrioritization` scenario
+- ❌ SAE-derived features visualization
+- ❌ Exon/intron boundaries, TF motifs display
+
+**Value Prop 3: (Additional value props from oracleContent.transformation)**
+
+#### **3. Multi-Modal Capability Showcases (MISSING)**
+From `BiotechTransformation.tsx` lines 215-258:
+
+- ❌ **Gene Essentiality for Target Prioritization**
+  - Uses: `renderContextualComponent({ type: 'geneEssentiality', context: 'biotech', story: 'target-prioritization' })`
+  - Should show EssentialityChart with cancer vs normal tissue comparison
+
+- ❌ **Protein Functional Change for Therapeutic Optimization**
+  - Uses: `renderContextualComponent({ type: 'proteinFunctionalChange', context: 'biotech', story: 'therapeutic-optimization' })`
+  - Should show ProteinDeltaCard with function/stability impact
+
+- ❌ **Chromatin Accessibility for Enhancer Design**
+  - Uses: `renderContextualComponent({ type: 'chromatinAccessibility', context: 'biotech', story: 'enhancer-design' })`
+  - Should show AccessibilityTrack with regulatory element visualization
+
+- ❌ **Safety Profiling**
+  - Uses: `renderContextualComponent({ type: 'geneEssentiality', context: 'biotech', story: 'safety-profiling' })`
+
+#### **4. Visual Components (MISSING)**
+- ❌ **OracleExplainTrack** - SAE feature visualization
+  - Shows: Exon/intron boundaries, TF motifs, delta likelihood
+  - Location: `src/src2/components/site/blocks/OracleExplainTrack.tsx`
+
+- ❌ **VariantDetailCard** - Individual variant analysis
+  - Shows: Variant ID, zero-shot score, verdict, confidence
+  - Location: `src/src2/components/site/blocks/VariantDetailCard.tsx`
+
+- ❌ **ProteinDeltaCard** - Protein functional impact
+  - Shows: Function change, stability, folding impact
+  - Location: `src/src2/components/site/blocks/ProteinDeltaCard.tsx`
+
+- ❌ **EssentialityChart** - Gene essentiality visualization
+  - Shows: Context-dependent essentiality scores
+  - Location: `src/src2/components/site/blocks/EssentialityChart.tsx`
+
+- ❌ **AccessibilityTrack** - Chromatin accessibility
+  - Shows: Regulatory element accessibility scores
+  - Location: `src/src2/components/site/blocks/AccessibilityTrack.tsx`
+
+#### **5. Data Structures (MISSING)**
+- ❌ **oracleContent.transformation** - Complete transformation data
+  - Location: `src/src2/data/oracleContent.ts` (lines 149-417)
+  - Contains: industryProblem, valuePropositions, summary
+  - Each valueProposition has: comparison, impact, components
+
+- ❌ **discriminativeAISampleData.demoFactory.biotechRnD** - Demo factory data
+  - Location: `src/src2/data/discriminativeAISampleData.ts` (lines 271-400+)
+  - Contains: variantTriaging, constructPrioritization scenarios
+  - Each scenario has: title, variant, description, problem, solution, steps
+
+- ❌ **biotechDiscriminativeCapabilities** - Complete capability definitions
+  - Location: `src/src2/data/biotechDiscriminativeContent.ts`
+  - Contains: 5 capabilities with demoComponent React elements
+
+- ❌ **biotechTransformationMetrics** - Transformation metrics
+  - Location: `src/src2/data/biotechDiscriminativeContent.ts` (lines 137-211)
+
+#### **6. Utility Functions (MISSING)**
+- ❌ **renderContextualComponent** - Component renderer
+  - Location: `src/src2/utils/componentRenderer.tsx`
+  - Purpose: Dynamically renders contextual components based on type/context/story
+
+- ❌ **useAccessibility** - Accessibility context hook
+  - Location: `src/src2/contexts/AccessibilityContext.tsx`
+  - Purpose: Text size adjustments for accessibility
+
+#### **7. UI/UX Elements (MISSING)**
+- ❌ Hero section with gradient text and metrics preview
+- ❌ Evo2 context badges (long-context embeddings, SAE interpretability)
+- ❌ Enhanced comparison cards with cost/time breakdowns
+- ❌ Research pipeline metrics section
+- ❌ Complete discriminative AI arsenal section
+- ❌ CTA section with proper styling
+
+---
+
+## 🎯 EXTRACTION PLAN
+
+### **Phase 1: Core Demo System (Priority 1)**
+
+#### **1.1 Extract FactoryDemoShowcase Component**
+**File:** `src/src2/components/site/blocks/FactoryDemoShowcase.tsx`  
+**Extract to:** `src/components/demos/FactoryDemoShowcase.tsx`
+
+**Dependencies to extract:**
+- InteractiveDemoShowcase (for legacy demos)
+- VariantDetailCard
+- ProteinDeltaCard
+- EssentialityChart
+- AccessibilityTrack
+- OracleExplainTrack
+- EnhancedDossierSummary
+
+**Data dependencies:**
+- discriminativeAISampleData.demoFactory
+
+**Key Features:**
+- Step-by-step API execution
+- Progress tracking with visual indicators
+- Oracle thinking process visualization
+- Reset functionality
+- Contextual data generation
+
+#### **1.2 Extract Demo Factory Data**
+**File:** `src/src2/data/discriminativeAISampleData.ts`  
+**Extract to:** `src/data/demos/biotech-demo-factory.ts`
+
+**Key Data Structures:**
+```typescript
+demoFactory: {
+  biotechRnD: {
+    variantTriaging: {
+      title: 'Variant Triaging Pipeline',
+      variant: 'CFTR:c.1521_1523delCTT',
+      description: 'Pre-screen 1,000+ variants before expensive wet-lab validation',
+      problem: 'Screen 1,000 variants → $500K cost → 5% hit rate',
+      solution: 'AI pre-screening → Test top 200 → 73% hit rate',
+      steps: [
+        { endpoint: 'predict_variant_impact', ... },
+        { endpoint: 'predict_gene_essentiality', ... },
+        { endpoint: 'predict_protein_functionality_change', ... }
+      ],
+      summary: { verdict: 'High-Priority', confidence: 0.957 }
+    },
+    constructPrioritization: { ... }
+  }
+}
+```
+
+### **Phase 2: Visual Components (Priority 2)**
+
+#### **2.1 Extract Oracle Thinking Components**
+- OracleExplainTrack → `src/components/demos/OracleExplainTrack.tsx`
+- VariantDetailCard → `src/components/demos/VariantDetailCard.tsx`
+- ProteinDeltaCard → `src/components/demos/ProteinDeltaCard.tsx`
+- EssentialityChart → `src/components/demos/EssentialityChart.tsx`
+- AccessibilityTrack → `src/components/demos/AccessibilityTrack.tsx`
+
+#### **2.2 Extract EnhancedComparison Component**
+**File:** `src/src2/components/site/blocks/EnhancedComparison.tsx`  
+**Extract to:** `src/components/industry/EnhancedComparison.tsx`
+
+**Features:**
+- Traditional vs Oracle side-by-side comparison
+- Cost/time breakdown cards
+- Impact metrics display
+
+### **Phase 3: Data Structures (Priority 3)**
+
+#### **3.1 Extract oracleContent.transformation**
+**File:** `src/src2/data/oracleContent.ts` (lines 149-417)  
+**Extract to:** `src/data/industry/biotech-transformation-content.ts`
+
+**Structure:**
+```typescript
+export const biotechTransformationContent = {
+  industryProblem: {
+    title: 'The $2.6B Problem',
+    metrics: [...],
+    description: '...'
+  },
+  valuePropositions: [
+    {
+      title: 'Reduce Wet-Lab Iterations by Triaging Variants',
+      description: '...',
+      comparison: { traditional: [...], oracle: [...] },
+      impact: [...],
+      components: { primary: {...} }
+    },
+    // ... more value props
+  ],
+  summary: {
+    title: '...',
+    metrics: [...],
+    description: '...'
+  }
+}
+```
+
+#### **3.2 Extract biotechDiscriminativeCapabilities**
+**File:** `src/src2/data/biotechDiscriminativeContent.ts`  
+**Extract to:** `src/data/industry/biotech-capabilities.ts`
+
+**Note:** Convert React.createElement() calls to component references or data structures
+
+### **Phase 4: Utility Functions (Priority 4)**
+
+#### **4.1 Extract renderContextualComponent**
+**File:** `src/src2/utils/componentRenderer.tsx`  
+**Extract to:** `src/utils/componentRenderer.tsx`
+
+**Purpose:** Dynamically render contextual components based on:
+- type: 'geneEssentiality' | 'proteinFunctionalChange' | 'chromatinAccessibility'
+- context: 'biotech' | 'clinical' | 'genetic-testing'
+- story: 'target-prioritization' | 'therapeutic-optimization' | etc.
+
+#### **4.2 Extract useAccessibility Hook**
+**File:** `src/src2/contexts/AccessibilityContext.tsx`  
+**Extract to:** `src/contexts/AccessibilityContext.tsx`
+
+**Purpose:** Text size adjustments for accessibility
+
+### **Phase 5: Complete Page Implementation (Priority 5)**
+
+#### **5.1 Create Complete BiotechTransformation Page**
+**File:** `src/app/industry/biotech/page.tsx`
+
+**Sections to implement:**
+1. ✅ Hero Section (with metrics preview)
+2. ✅ BusinessTransformation (with FactoryDemoShowcase)
+3. ✅ RUNX1 Case Study (already extracted)
+4. ❌ Multi-Modal Capabilities (using renderContextualComponent)
+5. ❌ VisualCapabilityGrid (with biotechDiscriminativeCapabilities)
+6. ✅ CTA Section
+
+#### **5.2 Update BusinessTransformation Component**
+**File:** `src/components/industry/BusinessTransformation.tsx`
+
+**Add:**
+- FactoryDemoShowcase integration
+- EnhancedComparison integration
+- Proper value proposition rendering with demos
+
+---
+
+## 📊 EXTRACTION CHECKLIST
+
+### **Components to Extract:**
+- [ ] FactoryDemoShowcase.tsx
+- [ ] EnhancedComparison.tsx
+- [ ] InteractiveDemoShowcase.tsx
+- [ ] OracleExplainTrack.tsx
+- [ ] VariantDetailCard.tsx
+- [ ] ProteinDeltaCard.tsx
+- [ ] EssentialityChart.tsx
+- [ ] AccessibilityTrack.tsx
+- [ ] EnhancedDossierSummary.tsx (if not already extracted)
+
+### **Data Files to Extract:**
+- [ ] oracleContent.transformation → biotech-transformation-content.ts
+- [ ] discriminativeAISampleData.demoFactory → biotech-demo-factory.ts
+- [ ] biotechDiscriminativeCapabilities → biotech-capabilities.ts
+- [ ] biotechTransformationMetrics → (already in biotech-capabilities.ts)
+
+### **Utilities to Extract:**
+- [ ] componentRenderer.tsx
+- [ ] AccessibilityContext.tsx
+
+### **Page Implementation:**
+- [ ] Complete /industry/biotech/page.tsx
+- [ ] Update BusinessTransformation component
+- [ ] Integrate all demos and visualizations
+
+---
+
+## 🚀 IMPLEMENTATION ORDER
+
+1. **Extract FactoryDemoShowcase** (enables all interactive demos)
+2. **Extract demo factory data** (provides demo scenarios)
+3. **Extract visual components** (OracleExplainTrack, etc.)
+4. **Extract data structures** (oracleContent, capabilities)
+5. **Extract utilities** (componentRenderer, AccessibilityContext)
+6. **Build complete page** (integrate everything)
+
+---
+
+## 📝 NOTES
+
+- **Demo Factory System:** The FactoryDemoShowcase uses a factory pattern where demos are defined in data files and rendered dynamically. This is the KEY missing piece.
+
+- **Component Dependencies:** Many components depend on each other. Extract in dependency order.
+
+- **React.createElement():** biotechDiscriminativeCapabilities uses React.createElement() for demoComponent. Need to convert to component references or data structures.
+
+- **Accessibility:** The src2 version uses useAccessibility hook for text sizing. We can simplify or extract the context.
+
+- **Next.js vs React Router:** src2 uses React Router, we need to adapt to Next.js App Router patterns.
+
+---
+
+## ✅ SUCCESS CRITERIA
+
+The biotech-transformation page is complete when:
+1. ✅ All interactive demos work (Run Demo buttons functional)
+2. ✅ All value propositions show FactoryDemoShowcase
+3. ✅ All multi-modal capabilities render correctly
+4. ✅ VisualCapabilityGrid shows all 5 capabilities with demos
+5. ✅ Page matches src2 functionality and UI/UX
+6. ✅ All data structures are properly typed
+7. ✅ No missing components or broken imports
+
+---
+
+**NEXT STEP:** Start with Phase 1 - Extract FactoryDemoShowcase and demo factory data.

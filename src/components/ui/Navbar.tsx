@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail, Users, GitCompare, Heart } from 'lucide-react';
+import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail, Users, GitCompare, Heart, Zap } from 'lucide-react';
 import ToggleButton from './ToggleButton';
 
 const NAV_CONFIG = {
@@ -15,12 +15,13 @@ const NAV_CONFIG = {
 };
 
 // --- SUB-LINK DEFINITIONS ---
-const industrySubLinks = [
-  { href: '/industry/healthcare', label: 'Healthcare & Clinical Oncology' },
-  { href: '/industry/biotech', label: 'Biotech & Pharma R&D' },
-  { href: '/industry/research', label: 'Research Institutions' },
-  { href: '/industry/genetic-testing', label: 'Genetic Testing Labs' },
-];
+// Industry pages temporarily removed - will be re-added after full extraction
+// const industrySubLinks = [
+//   { href: '/industry/healthcare', label: 'Healthcare & Clinical Oncology' },
+//   { href: '/industry/biotech', label: 'Biotech & Pharma R&D' },
+//   { href: '/industry/research', label: 'Research Institutions' },
+//   { href: '/industry/genetic-testing', label: 'Genetic Testing Labs' },
+// ];
 
 const doctrineSubLinks = [
   { href: '/doctrine/vus-annihilation', label: 'VUS Annihilation' },
@@ -59,11 +60,6 @@ const investorSubLinks = [
 // --- PRIMARY NAVIGATION: THE BATTLE PLAN ---
 export const NAV_LINKS = [
   {
-    href: '/patients',
-    label: 'For Patients',
-    icon: <Heart className="inline-block h-4 w-4" />,
-  },
-  {
     href: '/about',
     label: 'About',
     icon: <BookOpen className="inline-block h-4 w-4" />,
@@ -73,22 +69,20 @@ export const NAV_LINKS = [
     label: 'Products',
     icon: <Rocket className="inline-block h-4 w-4" />,
     subLinks: [
-      // Main Products
       { href: '/products/oncology', label: 'Oncology', divider: true },
       { href: '/products/r-d', label: 'R&D' },
       { href: '/products/research', label: 'Research' },
-      // AI Engines
-      { href: '/products/oracle', label: 'Oracle', divider: true },
-      { href: '/products/forge', label: 'Forge' },
-      { href: '/products/boltz', label: 'Boltz' },
-      { href: '/products/command-center', label: 'Command Center' },
+      { href: '/products/patient', label: 'For Patients' },
     ],
   },
   {
-    href: '/industry',
-    label: 'Industry',
-    icon: <Briefcase className="inline-block h-4 w-4" />,
-    subLinks: industrySubLinks,
+    href: '/ai-engines',
+    label: 'AI Engines',
+    icon: <Zap className="inline-block h-4 w-4" />,
+    subLinks: [
+      { href: '/products/oracle', label: 'Oracle (Discriminative AI)' },
+      { href: '/products/forge', label: 'Forge (Generative AI)' },
+    ],
   },
   {
     href: '/comparisons/patient',
