@@ -89,23 +89,6 @@ export const immunotherapyData: CoPilotDetailContent = {
     }
   ],
 
-  tacticalCapabilityMatrix: {
-    rows: [
-      {
-        capability: "TMB Analysis",
-        technical: "Tumor mutational burden calculation from genomic data",
-        business: "High TMB patients identified for immunotherapy eligibility",
-        clinical: "Action-ready TMB scores with confidence intervals"
-      },
-      {
-        capability: "MSI Status",
-        technical: "Microsatellite instability detection from sequencing data",
-        technicalDetails: "MSI-H patients are immunotherapy candidates",
-        business: "MSI status determination for immunotherapy selection",
-        clinical: "MSI-H status with supporting evidence"
-      }
-    ]
-  },
 
   advancedFeatures: [
     {
