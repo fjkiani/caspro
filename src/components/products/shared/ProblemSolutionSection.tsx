@@ -102,65 +102,54 @@ export default function ProblemSolutionSection({
           </p>
         </motion.div>
 
-        {/* Cards Grid - Force 2 columns for side-by-side display */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+        {/* Cards Grid - Show all 3 cards at once, compact */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {content.cards.map((card, idx) => {
             const IconComponent = card.icon ? iconMap[card.icon] : null;
             
             return (
               <motion.div
                 key={`${content.type}-card-${idx}-${card.title}`}
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { 
                   opacity: 1, 
-                  y: 0, 
-                  scale: 1,
+                  y: 0,
                   transition: {
-                    duration: 0.6,
-                    delay: 0.2 + (idx * 0.15),
+                    duration: 0.5,
+                    delay: idx * 0.1,
                     ease: "easeOut"
                   }
-                } : { opacity: 0, y: 40, scale: 0.95 }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className={`relative overflow-hidden bg-gradient-to-br ${theme.cardBg} rounded-2xl p-6 border-2 ${theme.borderColor} shadow-lg hover:shadow-xl transition-all duration-300 group`}
+                } : { opacity: 0, y: 20 }}
+                whileHover={{ y: -2, transition: { duration: 0.2 } }}
+                className={`relative overflow-hidden bg-gradient-to-br ${theme.cardBg} rounded-xl p-4 border ${theme.borderColor} shadow-md hover:shadow-lg transition-all duration-300 group`}
               >
                 {/* Decorative corner */}
-                <div className={`absolute top-0 right-0 w-20 h-20 ${theme.accent} opacity-5 rounded-bl-3xl`}></div>
+                <div className={`absolute top-0 right-0 w-12 h-12 ${theme.accent} opacity-5 rounded-bl-xl`}></div>
                 
                 {/* Icon/Emoji */}
-                <div className="mb-4">
+                <div className="mb-3">
                   {IconComponent ? (
-                    <motion.div 
-                      className={`w-14 h-14 rounded-xl ${theme.iconBg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-                      initial={{ scale: 0, rotate: -180 }}
-                      animate={isInView ? { 
-                        scale: 1, 
-                        rotate: 0,
-                        transition: {
-                          duration: 0.6,
-                          delay: 0.4 + (idx * 0.15),
-                          ease: "backOut"
-                        }
-                      } : { scale: 0, rotate: -180 }}
+                    <div 
+                      className={`w-10 h-10 rounded-lg ${theme.iconBg} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}
                     >
-                      <IconComponent className={`w-7 h-7 ${theme.iconColor}`} />
-                    </motion.div>
+                      <IconComponent className={`w-5 h-5 ${theme.iconColor}`} />
+                    </div>
                   ) : card.emoji ? (
-                    <div className="text-5xl mb-4">{card.emoji}</div>
+                    <div className="text-3xl mb-3">{card.emoji}</div>
                   ) : null}
                 </div>
                 
                 {/* Content */}
                 <div className="relative z-10">
                   {card.highlight && (
-                    <span className={`inline-block px-3 py-1 ${theme.iconBg} ${theme.iconColor} rounded-full text-xs font-semibold mb-3`}>
+                    <span className={`inline-block px-2 py-0.5 ${theme.iconBg} ${theme.iconColor} rounded-full text-xs font-semibold mb-2`}>
                       {card.highlight}
                     </span>
                   )}
-                  <h3 className={`text-xl font-bold ${theme.titleColor} mb-3 group-hover:text-slate-900 transition-colors`}>
+                  <h3 className={`text-base font-bold ${theme.titleColor} mb-2 group-hover:text-slate-900 transition-colors`}>
                     {card.title}
                   </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">
+                  <p className="text-slate-600 text-xs leading-relaxed">
                     {card.description}
                   </p>
                 </div>

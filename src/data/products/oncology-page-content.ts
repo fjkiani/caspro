@@ -83,7 +83,7 @@ export const oncologySolutionContent: ProblemSolutionContent = {
 
 export const oncologySectionHeaders = {
   monitoringDashboard: {
-    title: 'Live Monitoring: Patient AK Journey',
+    title: 'Live Monitoring: Patient X s Journey',
     description: 'See how continuous intelligence tracks CA-125 kinetics, detects resistance mutations, matches new trials, and alerts oncologists to critical changes—automatically.'
   },
   cascadeExperience: {
