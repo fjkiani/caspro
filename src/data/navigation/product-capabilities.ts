@@ -4,7 +4,6 @@
  */
 
 import { ProductSlug, CapabilitySlug } from './co-pilot-mappings';
-import { ONCOLOGY_CAPABILITIES } from '@/data/products/oncology-capabilities-data';
 
 export interface CapabilityDefinition {
   slug: CapabilitySlug;
