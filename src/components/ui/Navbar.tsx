@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail, Users, GitCompare } from 'lucide-react';
+import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail, Users, GitCompare, Heart } from 'lucide-react';
 import ToggleButton from './ToggleButton';
 
 const NAV_CONFIG = {
@@ -58,6 +58,11 @@ const investorSubLinks = [
 
 // --- PRIMARY NAVIGATION: THE BATTLE PLAN ---
 export const NAV_LINKS = [
+  {
+    href: '/patients',
+    label: 'For Patients',
+    icon: <Heart className="inline-block h-4 w-4" />,
+  },
   {
     href: '/about',
     label: 'About',
