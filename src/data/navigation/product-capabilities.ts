@@ -164,6 +164,19 @@ export const RESEARCH_CAPABILITY_DEFINITIONS: Partial<Record<CapabilitySlug, Cap
     time: '2-5 minutes',
     businessImpact: 'Test hypotheses faster with validated generative design',
     apis: ['generate_therapeutic_protein', 'generate_optimized_guide_rna']
+  },
+  'conversational-ai': {
+    slug: 'conversational-ai',
+    title: 'Conversational AI',
+    subtitle: 'Natural Language Interface',
+    description: 'Ask questions naturally, get evidence-backed answers. Progressive disclosure with audience-appropriate explanations. Natural language access to all CrisPRO capabilities.',
+    icon: 'MessageSquare',
+    color: 'from-teal-500 to-cyan-600',
+    badge: 'Conversational',
+    metrics: 'Multi-Intent Handling',
+    time: 'Real-time',
+    businessImpact: 'Eliminate technical barriers - access all capabilities through natural conversation',
+    apis: ['predict_variant_impact', 'predict_gene_essentiality', 'generate_therapeutic_protein']
   }
 };
 
