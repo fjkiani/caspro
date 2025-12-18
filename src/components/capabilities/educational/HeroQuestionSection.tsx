@@ -60,7 +60,7 @@ export default function HeroQuestionSection({ data, className = '' }: HeroQuesti
                 <div className="w-8 h-8 rounded-full bg-slate-400 flex items-center justify-center">
                   <span className="text-white text-sm">❌</span>
                 </div>
-                <h3 className="font-semibold text-slate-700">Generic Answer</h3>
+                <h3 className="font-semibold text-slate-700">Traditional Approach</h3>
               </div>
               <p className="text-slate-600 leading-relaxed">
                 {data.genericAnswer}

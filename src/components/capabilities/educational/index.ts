@@ -15,4 +15,10 @@ export { default as ExampleShowcase } from './ExampleShowcase';
 export { default as InfographicSection } from './InfographicSection';
 export { default as EducationalPageLayout } from './EducationalPageLayout';
 export { default as ProgressiveDisclosureSection } from './ProgressiveDisclosureSection';
+export { default as EducationalCapabilityPage } from './EducationalCapabilityPage';
+export { default as ToxicitySolutionInteractive } from './ToxicitySolutionInteractive';
+export { default as TherapyFitSolutionInteractive } from './TherapyFitSolutionInteractive';
+export { default as ValuePropsSection } from './ValuePropsSection';
+export { default as ObservedOutcomesSection } from './ObservedOutcomesSection';
+export { default as KeyCapabilitiesSection } from './KeyCapabilitiesSection';
 
