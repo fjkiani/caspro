@@ -2,14 +2,22 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Dna, Activity, Apple, BookOpen, Microscope, Shield, Target, Pill, Map, Flame, Heart, Clock, CheckCircle, MessageSquare } from 'lucide-react';
+import { Dna, Activity, Apple, BookOpen, Microscope, Shield, Target, Pill, Map, Flame, Heart, Clock, CheckCircle, MessageSquare, BarChart3, Database, Link, Calculator, Gauge, Plus, Settings, AlertCircle } from 'lucide-react';
 import { toxicityData } from '@/data/copilots/toxicity-data';
+import { pathwayData } from '@/data/copilots/pathway-data';
 
-export default function KeyCapabilitiesSection() {
+interface KeyCapabilitiesSectionProps {
+  dataSource?: 'toxicity' | 'pathway';
+}
+
+export default function KeyCapabilitiesSection({ dataSource = 'toxicity' }: KeyCapabilitiesSectionProps) {
   const [expandedCapability, setExpandedCapability] = useState<string | null>(null);
+  
+  const data = dataSource === 'pathway' ? pathwayData : toxicityData;
+  const title = dataSource === 'pathway' ? 'Pathway Analysis' : 'Toxicity Risk Assessment';
 
   const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-    Dna, Activity, Apple, BookOpen, Microscope, Shield, Target, Pill, Map, Flame, Heart, Clock, CheckCircle, MessageSquare, Gauge: Activity,
+    Dna, Activity, Apple, BookOpen, Microscope, Shield, Target, Pill, Map, Flame, Heart, Clock, CheckCircle, MessageSquare, BarChart3, Database, Link, Calculator, Gauge, Plus, Settings, AlertCircle,
   };
 
   return (
@@ -31,7 +39,7 @@ export default function KeyCapabilitiesSection() {
         </motion.div>
 
         <div className="space-y-6">
-          {toxicityData.keyCapabilities.map((capability, idx) => {
+          {data.keyCapabilities.map((capability, idx) => {
             const isExpanded = expandedCapability === capability.title;
             
             return (

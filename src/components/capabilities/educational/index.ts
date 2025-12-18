@@ -18,6 +18,7 @@ export { default as ProgressiveDisclosureSection } from './ProgressiveDisclosure
 export { default as EducationalCapabilityPage } from './EducationalCapabilityPage';
 export { default as ToxicitySolutionInteractive } from './ToxicitySolutionInteractive';
 export { default as TherapyFitSolutionInteractive } from './TherapyFitSolutionInteractive';
+export { default as PathwaySolutionInteractive } from './PathwaySolutionInteractive';
 export { default as ValuePropsSection } from './ValuePropsSection';
 export { default as ObservedOutcomesSection } from './ObservedOutcomesSection';
 export { default as KeyCapabilitiesSection } from './KeyCapabilitiesSection';

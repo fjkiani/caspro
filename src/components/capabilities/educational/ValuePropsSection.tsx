@@ -2,15 +2,25 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, FileText, Users, CheckCircle } from 'lucide-react';
+import { Shield, FileText, Users, CheckCircle, Activity, Compass } from 'lucide-react';
 import { toxicityData } from '@/data/copilots/toxicity-data';
+import { pathwayData } from '@/data/copilots/pathway-data';
 
-export default function ValuePropsSection() {
+interface ValuePropsSectionProps {
+  dataSource?: 'toxicity' | 'pathway';
+}
+
+export default function ValuePropsSection({ dataSource = 'toxicity' }: ValuePropsSectionProps) {
   const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
     Shield,
     FileText,
     Users,
+    Activity,
+    Compass,
   };
+
+  const data = dataSource === 'pathway' ? pathwayData : toxicityData;
+  const title = dataSource === 'pathway' ? 'Pathway Analysis' : 'Toxicity Risk Assessment';
 
   return (
     <section className="py-16 px-4 md:px-8 bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -26,12 +36,12 @@ export default function ValuePropsSection() {
             Value Propositions
           </h2>
           <p className="text-lg text-slate-700 max-w-3xl mx-auto">
-            How Toxicity Risk Assessment helps different audiences
+            How {title} helps different audiences
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {toxicityData.valueProps.map((prop, idx) => {
+          {data.valueProps.map((prop, idx) => {
             const Icon = iconMap[prop.icon] || Shield;
             return (
               <motion.div

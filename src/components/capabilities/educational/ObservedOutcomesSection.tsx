@@ -2,16 +2,28 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Dna, Activity, Apple, MessageSquare } from 'lucide-react';
+import { Dna, Activity, Apple, MessageSquare, BarChart3, Map, Database, Link } from 'lucide-react';
 import { toxicityData } from '@/data/copilots/toxicity-data';
+import { pathwayData } from '@/data/copilots/pathway-data';
 
-export default function ObservedOutcomesSection() {
+interface ObservedOutcomesSectionProps {
+  dataSource?: 'toxicity' | 'pathway';
+}
+
+export default function ObservedOutcomesSection({ dataSource = 'toxicity' }: ObservedOutcomesSectionProps) {
   const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
     Dna,
     Activity,
     Apple,
     MessageSquare,
+    BarChart3,
+    Map,
+    Database,
+    Link,
   };
+
+  const data = dataSource === 'pathway' ? pathwayData : toxicityData;
+  const title = dataSource === 'pathway' ? 'Pathway Analysis' : 'Toxicity Risk Assessment';
 
   const colorMap: Record<string, string> = {
     blue: 'bg-blue-100 text-blue-600 border-blue-200',
@@ -34,12 +46,12 @@ export default function ObservedOutcomesSection() {
             Observed Outcomes
           </h2>
           <p className="text-lg text-slate-700 max-w-3xl mx-auto">
-            Real capabilities and metrics from our toxicity risk assessment system
+            Real capabilities and metrics from our {title.toLowerCase()} system
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {toxicityData.observedOutcomes.map((outcome, idx) => {
+          {data.observedOutcomes.map((outcome, idx) => {
             const Icon = iconMap[outcome.icon] || Dna;
             const colorClass = colorMap[outcome.color] || colorMap.blue;
             

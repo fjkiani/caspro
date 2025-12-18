@@ -4,13 +4,16 @@
  */
 
 export { toxicityEducationalData } from './toxicity-educational';
+export { pathwayEducationalData } from './pathway-educational';
 
 // Direct imports for educational data (synchronous for now)
 import { toxicityEducationalData } from './toxicity-educational';
+import { pathwayEducationalData } from './pathway-educational';
 
 // Map capability slugs to their educational data
 const educationalCapabilityDataMap: Record<string, any> = {
   'prevent-toxicity': toxicityEducationalData,
+  'pathway-analysis': pathwayEducationalData,
   // Add more capabilities as they're transformed
 };
 
