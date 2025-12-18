@@ -1,0 +1,711 @@
+# Capability Page Educational Transformation Plan
+
+## 🎯 MISSION
+Transform capability pages from "card dumps" into **educational, narrative-driven experiences** that help users truly understand how each capability works, why it matters, and how it fits into the complete care system.
+
+**Target Example:** `/products/oncology/prevent-toxicity/`
+
+---
+
+## 📊 CURRENT STATE ANALYSIS
+
+### **Problem: Card Dump Syndrome**
+- Pages show capabilities as isolated cards
+- No narrative flow or educational progression
+- Users don't understand **how** it works or **why** it matters
+- Missing the story from MOAT documentation
+- Data exists but isn't presented educationally
+
+### **Available Assets:**
+1. **Rich Data:** `toxicity-data.ts` with comprehensive capability information
+2. **Narrative:** `ADVANCED_CARE_PLAN_TOXCITY.md` with complete story
+3. **Reusable Components:** Learn & Docs components for educational patterns
+4. **Journey Data:** Capability journey data (old way vs new way)
+
+### **Reusable Components Identified:**
+- `InteractiveCard` - Flip/expand cards for concepts
+- `ConceptCard` - Simple concept explanations  
+- `InteractiveTimeline` - Progressive narratives
+- `SectionHeader` - Section headers with color coding
+- `ProcessSteps` - Step-by-step process visualization
+- `MetastasisCascade` - Multi-step flow visualization
+- `CapabilityJourneySlider` - Old vs new way comparison (already built)
+
+---
+
+## 🏗️ ARCHITECTURE: SCALABLE & DRY
+
+### **Core Principle: Data-Driven Educational Narratives**
+
+```typescript
+interface EducationalCapabilityPage {
+  // Narrative Structure
+  narrative: {
+    hero: HeroSection;           // The question nobody was answering
+    problem: ProblemSection;     // Why this matters
+    solution: SolutionSection;   // How we solve it
+    howItWorks: HowItWorksSection; // Step-by-step explanation
+    value: ValueSection;         // Why this is different
+    integration: IntegrationSection; // How it fits in care plan
+  };
+  
+  // Educational Components
+  educational: {
+    concepts: ConceptCard[];     // Key concepts explained
+    processes: ProcessStep[];    // Step-by-step workflows
+    comparisons: ComparisonCard[]; // Before/after comparisons
+    examples: ExampleCard[];     // Real-world examples
+    visualizations: Visualization[]; // Interactive diagrams
+  };
+  
+  // Data Source
+  data: CoPilotDetailContent;   // From copilot data files
+  narrative: MOATDocument;       // From MOAT .md files
+}
+```
+
+---
+
+## 🎨 COMPONENT LIBRARY: REUSABLE EDUCATIONAL COMPONENTS
+
+### **1. Narrative Components (New)**
+
+#### **A. HeroQuestionSection**
+**Purpose:** Start with the question nobody was answering
+**Pattern:** From `ADVANCED_CARE_PLAN_TOXCITY.md` - "The Question Nobody Was Answering"
+
+```typescript
+interface HeroQuestionSectionProps {
+  question: string;              // "What can I do to help myself during treatment?"
+  genericAnswer: string;         // "Eat healthy. Stay hydrated."
+  ourAnswer: string;             // "Your carboplatin + BRCA1 = DNA repair stress. NAC helps."
+  visualComparison?: {
+    before: string;
+    after: string;
+  };
+}
+```
+
+**Reusable:** ✅ Yes - Works for all capabilities
+
+#### **B. ProblemNarrativeSection**
+**Purpose:** Explain the problem in narrative form (not just bullet points)
+**Pattern:** From MOAT docs - "The Problem: Fragmented Care"
+
+```typescript
+interface ProblemNarrativeSectionProps {
+  title: string;                 // "The Problem: Fragmented Care"
+  narrative: string;             // Full narrative text
+  visualMetaphor?: string;       // "Like navigating a maze blindfolded"
+  painPoints: {
+    title: string;
+    description: string;
+    icon: string;
+  }[];
+}
+```
+
+**Reusable:** ✅ Yes - All capabilities have problems
+
+#### **C. SolutionNarrativeSection**
+**Purpose:** Explain the solution as a story
+**Pattern:** From MOAT docs - "The Solution: A Connected System"
+
+```typescript
+interface SolutionNarrativeSectionProps {
+  title: string;                 // "The Solution: A Connected System"
+  narrative: string;             // Full narrative text
+  keyFeatures: {
+    title: string;
+    description: string;
+    icon: string;
+    status: 'implemented' | 'planned';
+  }[];
+  visualFlow?: ProcessStep[];   // How it works visually
+}
+```
+
+**Reusable:** ✅ Yes - All capabilities have solutions
+
+#### **D. HowItWorksSection**
+**Purpose:** Step-by-step explanation with interactive elements
+**Pattern:** From MOAT docs - "How Toxicity Detection Works (Four Steps)"
+
+```typescript
+interface HowItWorksSectionProps {
+  title: string;                 // "How Toxicity Detection Works"
+  steps: {
+    number: number;
+    title: string;
+    description: string;
+    visual?: React.ReactNode;    // Interactive diagram
+    details?: {
+      label: string;
+      value: string;
+    }[];
+  }[];
+  interactive?: boolean;         // Allow step-by-step reveal
+}
+```
+
+**Reusable:** ✅ Yes - All capabilities have workflows
+
+#### **E. ValuePropositionSection**
+**Purpose:** Explain why this is different (THE MOAT)
+**Pattern:** From MOAT docs - "The MOAT: What No Competitor Has"
+
+```typescript
+interface ValuePropositionSectionProps {
+  title: string;                 // "The MOAT: What No Competitor Has"
+  question: string;              // "What should I eat during carboplatin?"
+  genericResponse: string;       // Generic AI response
+  ourResponse: string;           // Our system's response
+  comparison: {
+    feature: string;
+    generic: string;
+    ourSystem: string;
+  }[];
+  infographic?: ComparisonTable; // Visual comparison
+}
+```
+
+**Reusable:** ✅ Yes - All capabilities have MOAT
+
+#### **F. IntegrationSection**
+**Purpose:** Show how this fits into complete care plan
+**Pattern:** From MOAT docs - "How It All Connects"
+
+```typescript
+interface IntegrationSectionProps {
+  title: string;                 // "How This Fits Into Complete Care"
+  connections: {
+    from: string;                // "Toxicity Detection"
+    to: string;                  // "Food Validation"
+    relationship: string;        // "Connects toxicity pathways to protective foods"
+    visual?: React.ReactNode;
+  }[];
+  carePlanContext: {
+    step: number;
+    component: string;
+    howThisHelps: string;
+  }[];
+}
+```
+
+**Reusable:** ✅ Yes - All capabilities integrate
+
+---
+
+### **2. Educational Components (Adapt from Learn)**
+
+#### **A. ConceptExplainer**
+**Purpose:** Explain key concepts with progressive disclosure
+**Pattern:** From `ConceptCard` + `InteractiveCard`
+
+```typescript
+interface ConceptExplainerProps {
+  concepts: {
+    term: string;
+    definition: string;
+    example?: string;
+    visual?: React.ReactNode;
+    related?: string[];          // Related concepts
+  }[];
+  layout: 'grid' | 'accordion' | 'timeline';
+  interactive?: boolean;         // Flip cards or expand
+}
+```
+
+**Reusable:** ✅ Yes - All capabilities have concepts
+
+#### **B. ProcessVisualizer**
+**Purpose:** Visualize step-by-step processes
+**Pattern:** From `ProcessSteps` + `MetastasisCascade`
+
+```typescript
+interface ProcessVisualizerProps {
+  title: string;
+  steps: {
+    number: number;
+    title: string;
+    description: string;
+    visual?: React.ReactNode;
+    details?: string[];
+  }[];
+  layout: 'horizontal' | 'vertical' | 'cascade' | 'timeline';
+  interactive?: boolean;         // Click to reveal details
+}
+```
+
+**Reusable:** ✅ Yes - All capabilities have processes
+
+#### **C. ComparisonVisualizer**
+**Purpose:** Show before/after or generic vs. our system
+**Pattern:** From `CapabilityJourneySlider` (already built)
+
+```typescript
+interface ComparisonVisualizerProps {
+  title: string;
+  comparison: {
+    type: 'before-after' | 'generic-vs-ours' | 'old-way-new-way';
+    left: {
+      title: string;
+      items: string[];
+      visual?: React.ReactNode;
+    };
+    right: {
+      title: string;
+      items: string[];
+      visual?: React.ReactNode;
+    };
+  };
+  interactive?: boolean;         // Slider or side-by-side
+}
+```
+
+**Reusable:** ✅ Yes - Already built as `CapabilityJourneySlider`
+
+#### **D. ExampleShowcase**
+**Purpose:** Real-world examples with patient stories
+**Pattern:** From MOAT docs - "A Real Patient Story: Ayesha"
+
+```typescript
+interface ExampleShowcaseProps {
+  title: string;                 // "A Real Patient Story"
+  patient: {
+    name: string;
+    profile: string[];
+    question: string;
+  };
+  solution: {
+    step: number;
+    title: string;
+    description: string;
+    result: string;
+  }[];
+  outcome: {
+    metric: string;
+    value: string;
+    impact: string;
+  }[];
+}
+```
+
+**Reusable:** ✅ Yes - All capabilities have examples
+
+#### **E. InfographicSection**
+**Purpose:** Visual data tables and comparisons
+**Pattern:** From MOAT docs - "INFOGRAPHIC-READY DATA"
+
+```typescript
+interface InfographicSectionProps {
+  title: string;
+  type: 'table' | 'comparison' | 'metrics' | 'flow';
+  data: any;                     // Structured data
+  visual?: React.ReactNode;      // Custom visualization
+}
+```
+
+**Reusable:** ✅ Yes - All capabilities have data
+
+---
+
+### **3. Layout Components (Adapt from Docs/Learn)**
+
+#### **A. EducationalPageLayout**
+**Purpose:** Sidebar navigation + main content + progress tracking
+**Pattern:** From `LearnLayout` + `DocsLayout`
+
+```typescript
+interface EducationalPageLayoutProps {
+  sidebar: {
+    sections: {
+      id: string;
+      title: string;
+      subsections?: string[];
+    }[];
+  };
+  content: React.ReactNode;
+  progress?: {
+    current: number;
+    total: number;
+    readingTime?: number;
+  };
+}
+```
+
+**Reusable:** ✅ Yes - All capability pages
+
+#### **B. ProgressiveDisclosureSection**
+**Purpose:** Collapsible sections for detailed information
+**Pattern:** From Learn components - expand/collapse
+
+```typescript
+interface ProgressiveDisclosureSectionProps {
+  title: string;
+  summary: string;               // Always visible
+  details: React.ReactNode;      // Collapsed by default
+  defaultExpanded?: boolean;
+}
+```
+
+**Reusable:** ✅ Yes - All capabilities have details
+
+---
+
+## 📐 PAGE STRUCTURE: TOXICITY EXAMPLE
+
+### **Proposed Structure for `/products/oncology/prevent-toxicity/`**
+
+```
+1. HeroQuestionSection
+   - "The Question Nobody Was Answering"
+   - "What can I do to help myself during carboplatin treatment?"
+   - Before/After comparison (generic vs. precision)
+
+2. ProblemNarrativeSection
+   - "The Problem: Fragmented Care"
+   - Narrative from MOAT doc
+   - Pain points (reactive, scattered, communication challenges)
+
+3. SolutionNarrativeSection
+   - "The Solution: Toxicity-Aware Nutrition"
+   - Narrative from MOAT doc
+   - Key features (pathway detection, food mapping, timing)
+
+4. HowItWorksSection
+   - "How Toxicity Detection Works (Four Steps)"
+   - Step 1: Screen for Pharmacogene Variants
+   - Step 2: Predict Toxicity Risk
+   - Step 3: Recommend Actions
+   - Step 4: Recommend Mitigating Foods (THE MOAT)
+   - Interactive step-by-step reveal
+
+5. ConceptExplainer
+   - Key Concepts:
+     * Pharmacogene Detection
+     * Pathway Overlap Analysis
+     * Mitigating Foods
+     * Timing & Dosage
+   - Interactive cards (flip for details)
+
+6. ProcessVisualizer
+   - "The Complete Toxicity Assessment Flow"
+   - Visual process diagram
+   - Click to see details at each step
+
+7. ValuePropositionSection
+   - "THE MOAT: What No Competitor Has"
+   - Question: "What should I eat during carboplatin?"
+   - Comparison table (Generic AI vs. Our System)
+   - Infographic-ready data
+
+8. ExampleShowcase
+   - "A Real Patient Story: Ayesha on Carboplatin"
+   - Patient profile
+   - Step-by-step solution
+   - Outcome metrics
+
+9. IntegrationSection
+   - "How This Fits Into Complete Care Plan"
+   - Connections to other capabilities
+   - Care plan context (step 6: Risks/Toxicity)
+
+10. CapabilityJourneySlider (Already Built)
+    - Old Way vs. New Way
+    - Interactive slider with tabs
+
+11. TechnicalDetailsSection (Progressive Disclosure)
+    - "Under the Hood" (collapsed by default)
+    - Technical implementation
+    - API endpoints
+    - Data structures
+
+12. RelatedCapabilitiesSection
+    - Links to related capabilities
+    - How they work together
+```
+
+---
+
+## 🔧 IMPLEMENTATION STRATEGY
+
+### **Phase 1: Create Generic Educational Components (Week 1)**
+
+**Goal:** Build reusable components that work for all capabilities
+
+**Components to Create:**
+1. `HeroQuestionSection.tsx` - Generic hero with question
+2. `ProblemNarrativeSection.tsx` - Problem narrative
+3. `SolutionNarrativeSection.tsx` - Solution narrative
+4. `HowItWorksSection.tsx` - Step-by-step explanation
+5. `ValuePropositionSection.tsx` - MOAT showcase
+6. `IntegrationSection.tsx` - Care plan integration
+7. `ConceptExplainer.tsx` - Concept cards (adapt from Learn)
+8. `ProcessVisualizer.tsx` - Process diagrams (adapt from Learn)
+9. `ExampleShowcase.tsx` - Patient stories
+10. `InfographicSection.tsx` - Data visualizations
+11. `EducationalPageLayout.tsx` - Page layout (adapt from Learn/Docs)
+12. `ProgressiveDisclosureSection.tsx` - Collapsible sections
+
+**Location:** `src/components/capabilities/educational/`
+
+---
+
+### **Phase 2: Create Data Adapters (Week 1)**
+
+**Goal:** Transform copilot data + MOAT docs into educational structure
+
+**Adapters to Create:**
+1. `capability-narrative-adapter.ts` - Extract narrative from MOAT docs
+2. `capability-educational-adapter.ts` - Transform copilot data to educational format
+3. `capability-example-adapter.ts` - Extract examples from MOAT docs
+
+**Location:** `src/data/adapters/capabilities/`
+
+**Example:**
+```typescript
+// src/data/adapters/capabilities/toxicity-educational-adapter.ts
+export const transformToxicityToEducational = (
+  toxicityData: CoPilotDetailContent,
+  moatDoc: MOATDocument
+): EducationalCapabilityPage => {
+  return {
+    hero: {
+      question: moatDoc.heroQuestion,
+      genericAnswer: moatDoc.genericAnswer,
+      ourAnswer: moatDoc.ourAnswer,
+    },
+    problem: {
+      title: moatDoc.problemTitle,
+      narrative: moatDoc.problemNarrative,
+      painPoints: toxicityData.coreProblemPoints.map(...),
+    },
+    solution: {
+      title: moatDoc.solutionTitle,
+      narrative: moatDoc.solutionNarrative,
+      keyFeatures: toxicityData.keyCapabilities.map(...),
+    },
+    // ... etc
+  };
+};
+```
+
+---
+
+### **Phase 3: Transform Toxicity Page (Week 2)**
+
+**Goal:** Implement full educational experience for toxicity page
+
+**Steps:**
+1. Create `src/app/products/oncology/prevent-toxicity/page.tsx`
+2. Use `EducationalPageLayout` with sidebar navigation
+3. Integrate all educational components
+4. Use adapters to transform data
+5. Add interactive elements (step-by-step reveals, flip cards)
+6. Add progress tracking
+
+**Result:** Fully educational toxicity page that tells the complete story
+
+---
+
+### **Phase 4: Create Generic Capability Page Template (Week 2)**
+
+**Goal:** Make it easy to create educational pages for other capabilities
+
+**Template Structure:**
+```typescript
+// src/app/products/[productSlug]/[capabilitySlug]/page.tsx
+export default async function CapabilityPage({ params }) {
+  const capabilityData = getCapabilityData(params.capabilitySlug);
+  const moatDoc = getMOATDocument(params.capabilitySlug);
+  const educationalData = transformToEducational(capabilityData, moatDoc);
+  
+  return (
+    <EducationalPageLayout
+      sidebar={educationalData.sidebar}
+      progress={educationalData.progress}
+    >
+      <HeroQuestionSection {...educationalData.hero} />
+      <ProblemNarrativeSection {...educationalData.problem} />
+      <SolutionNarrativeSection {...educationalData.solution} />
+      <HowItWorksSection {...educationalData.howItWorks} />
+      <ConceptExplainer {...educationalData.concepts} />
+      <ProcessVisualizer {...educationalData.process} />
+      <ValuePropositionSection {...educationalData.value} />
+      <ExampleShowcase {...educationalData.example} />
+      <IntegrationSection {...educationalData.integration} />
+      <CapabilityJourneySlider journeyType={params.capabilitySlug} />
+      <ProgressiveDisclosureSection title="Technical Details">
+        {/* Technical details collapsed by default */}
+      </ProgressiveDisclosureSection>
+    </EducationalPageLayout>
+  );
+}
+```
+
+---
+
+### **Phase 5: Scale to All Capabilities (Week 3-4)**
+
+**Goal:** Apply same pattern to all capability pages
+
+**Capabilities to Transform:**
+1. ✅ Toxicity (pilot)
+2. Chemotherapy
+3. Clinical Trials
+4. Therapy Fit
+5. Pathway
+6. Resistance Prediction
+7. VUS Resolution
+8. Synthetic Lethality
+
+**Process:**
+1. Extract MOAT doc for each capability
+2. Use adapter to transform data
+3. Create page using template
+4. Customize visuals/examples as needed
+
+---
+
+## 📦 FILE STRUCTURE
+
+```
+src/
+├── components/
+│   └── capabilities/
+│       └── educational/
+│           ├── HeroQuestionSection.tsx
+│           ├── ProblemNarrativeSection.tsx
+│           ├── SolutionNarrativeSection.tsx
+│           ├── HowItWorksSection.tsx
+│           ├── ValuePropositionSection.tsx
+│           ├── IntegrationSection.tsx
+│           ├── ConceptExplainer.tsx
+│           ├── ProcessVisualizer.tsx
+│           ├── ExampleShowcase.tsx
+│           ├── InfographicSection.tsx
+│           ├── EducationalPageLayout.tsx
+│           └── ProgressiveDisclosureSection.tsx
+│
+├── data/
+│   └── adapters/
+│       └── capabilities/
+│           ├── capability-narrative-adapter.ts
+│           ├── capability-educational-adapter.ts
+│           ├── capability-example-adapter.ts
+│           └── index.ts
+│
+├── data/
+│   └── capabilities/
+│       └── educational/
+│           ├── toxicity-educational.ts (transformed data)
+│           ├── chemo-educational.ts
+│           └── index.ts
+│
+└── app/
+    └── products/
+        └── [productSlug]/
+            └── [capabilitySlug]/
+                └── page.tsx (uses template)
+```
+
+---
+
+## 🎯 KEY DESIGN PRINCIPLES
+
+### **1. Progressive Disclosure**
+- **Summary first:** Always show high-level overview
+- **Details on demand:** Technical details collapsed by default
+- **Interactive reveals:** Click to see more, step-by-step animations
+
+### **2. Narrative Flow**
+- **Story-driven:** Not just features, but why they matter
+- **Question-first:** Start with the question nobody was answering
+- **Outcome-focused:** End with real-world impact
+
+### **3. Visual Learning**
+- **Diagrams over text:** Process flows, comparisons, timelines
+- **Interactive elements:** Flip cards, expandable sections, step-by-step reveals
+- **Infographics:** Data tables, comparison charts, metrics
+
+### **4. Educational Progression**
+- **Concepts → Process → Value → Integration**
+- **Simple → Complex:** Start simple, add detail progressively
+- **Examples throughout:** Real-world examples at each stage
+
+### **5. Reusability**
+- **Generic components:** Work for all capabilities
+- **Data-driven:** Content comes from data files, not hard-coded
+- **Template-based:** Easy to create new capability pages
+
+---
+
+## 📊 SUCCESS METRICS
+
+### **User Engagement**
+- **Time on page:** 3x increase (users actually reading)
+- **Scroll depth:** 80%+ reach bottom (complete narrative)
+- **Interaction rate:** 60%+ interact with educational elements
+
+### **Understanding**
+- **Concept comprehension:** Users understand how it works
+- **Value clarity:** Users understand why it's different
+- **Integration awareness:** Users see how it fits in care plan
+
+### **Conversion**
+- **Demo requests:** 2x increase from capability pages
+- **Feature adoption:** Higher usage of capabilities after reading
+- **Referrals:** Users share educational pages
+
+---
+
+## 🚀 IMPLEMENTATION PRIORITIES
+
+### **Sprint 1: Foundation (Week 1)**
+1. ✅ Create generic educational components (12 components)
+2. ✅ Create data adapters (3 adapters)
+3. ✅ Extract narrative structure from MOAT docs
+
+### **Sprint 2: Pilot (Week 2)**
+1. ✅ Transform toxicity page (full educational experience)
+2. ✅ Create generic capability page template
+3. ✅ Test with real users
+
+### **Sprint 3: Scale (Week 3-4)**
+1. ✅ Apply to all capability pages
+2. ✅ Refine based on feedback
+3. ✅ Document patterns for future capabilities
+
+---
+
+## 🔄 REUSABILITY MATRIX
+
+| Component | Toxicity | Chemo | Trials | Therapy Fit | Pathway | Resistance | VUS | Synthetic Lethality |
+|-----------|----------|-------|--------|------------|---------|------------|-----|---------------------|
+| HeroQuestionSection | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| ProblemNarrativeSection | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| SolutionNarrativeSection | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| HowItWorksSection | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| ConceptExplainer | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| ProcessVisualizer | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| ValuePropositionSection | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| ExampleShowcase | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| IntegrationSection | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| CapabilityJourneySlider | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+**Result:** 100% component reuse across all capabilities
+
+---
+
+## 📝 NEXT STEPS
+
+1. **Review this plan** - Confirm approach and priorities
+2. **Create component library** - Build 12 generic educational components
+3. **Create data adapters** - Transform copilot data + MOAT docs
+4. **Pilot with toxicity** - Full implementation for toxicity page
+5. **Scale to all** - Apply pattern to remaining capabilities
+
+---
+
+**This plan transforms capability pages from card dumps into educational experiences that truly help users understand how each capability works, why it matters, and how it fits into the complete care system.**

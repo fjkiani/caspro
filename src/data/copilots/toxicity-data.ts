@@ -2,575 +2,379 @@ import { CoPilotDetailContent } from '@/types/copilot-types';
 
 export const toxicityData: CoPilotDetailContent = {
   slug: "toxicity-risk",
-  pageTitle: "Toxicity Risk (Germline): In‑Silico Side‑Effect Hints",
-  heroSubtitle: "100% toxicity prevention coverage for DPYD/TPMT/UGT1A1/CYP2D6. Life-threatening toxicity prevention with drug interaction checking and MoA-overlap risk flags. Prevents adverse events before they happen.",
-  vision: "Turn germline context into a plain, shareable caution signal with confidence, sources, and provenance—so care teams can plan safer.",
+  pageTitle: "Toxicity Risk Assessment",
+  heroSubtitle: "Identifies pharmacogene variants and pathway overlap risks. Recommends mitigating foods with personalized explanations.",
+  vision: "Prevent drug toxicity by identifying germline risks and recommending protective foods.",
 
-  // Website value props (plain)
   valueProps: [
     {
-      audience: 'For Radiation/Medical Oncology',
+      audience: 'For Clinicians',
       icon: 'Shield',
       points: [
-        'A simple caution hint when genetics suggest higher risk.',
-        'Short text, confidence, and sources—100% coverage for life-threatening toxicity prevention.',
-        'A one‑page summary to align the team.'
+        'Flags pharmacogene variants (DPYD, TPMT, UGT1A1, CYP2D6) that affect drug metabolism.',
+        'Identifies pathway overlap between patient germline variants and drug toxic pathways.',
+        'Recommends pathway-specific foods (NAC, Omega-3, CoQ10) with timing and dosage.'
       ]
     },
     {
-      audience: 'For Institutions',
+      audience: 'For Researchers',
       icon: 'FileText',
       points: [
-        'Consistent, auditable outputs with run IDs.',
-        'Reusable artifacts for QA and research.',
-        'Safe path to deeper models when available.'
+        'Transparent pathway-based risk assessment (DNA repair, inflammation, cardiometabolic).',
+        'Mechanism-based food recommendations with LLM-enhanced explanations.',
+        'Conservative approach: Better to flag potential risks than miss them.'
       ]
     }
   ],
 
   buildsOn: "Core Capabilities",
   buildsOnStackPoints: [
-    "**PGx variant analysis:** Insights + evidence cues mapped to toxicity risk prevention with 100% coverage for DPYD/TPMT/UGT1A1/CYP2D6.",
-    "**Cohort integration:** Cohort snippets add context when available to strengthen risk assessment.",
-    "**Disease/regimen‑specific models:** Integrated toxicity models and interaction checks available for comprehensive safety analysis."
+    "**Pharmacogene detection:** 20+ drug-metabolizing enzymes (DPYD, TPMT, UGT1A1, CYP2D6).",
+    "**Pathway overlap:** Maps drug MoA to toxic pathways and computes overlap with patient variants.",
+    "**Mitigating foods:** Pathway-specific recommendations (NAC for DNA repair, Omega-3 for inflammation, CoQ10 for cardiometabolic)."
   ],
 
   kpis: [
-    { label: 'ClinVar AUROC (total n=53,210)', value: '0.957' },
-    { label: 'Coding SNVs (n=14,319)', value: '0.957' },
-    { label: 'Non‑coding SNVs (n=34,761)', value: '0.958 (SOTA)' },
-    { label: 'Coding non‑SNVs (n=1,236)', value: '0.939 (SOTA)' },
-    { label: 'Non‑coding non‑SNVs (n=3,894)', value: '0.918' },
-    { label: 'SpliceVarDB AUROC (n=4,950)', value: '0.825–0.826' },
-    { label: 'Target VUS 40% → 15%', value: '≈$2.1M saved/program' }
+    { label: 'Pharmacogenes', value: '20+ genes' },
+    { label: 'Toxicity Pathways', value: '3 pathways' },
+    { label: 'Drug MoAs', value: '15+ mechanisms' },
+    { label: 'Mitigating Foods', value: '9 compounds' }
   ],
 
   observedOutcomes: [
     {
-      title: "Reduced Missed Risk Flags",
-      keyMetric: "20-30% reduction",
-      description: "Missed risk flags reduced by ~20–30% vs baseline reviews (supported by ClinVar AUROC 0.957 and splice AUROC ~0.826)",
-      icon: "AlertTriangle",
-      color: "red"
-    },
-    {
-      title: "Reduced False Positives",
-      keyMetric: "10-15% reduction",
-      description: "False positives reduced by ~10–15%, fewer unnecessary regimen holds",
-      icon: "CheckCircle",
-      color: "green"
-    },
-    {
-      title: "Improved Confidence Scores",
-      keyMetric: "+0.05-0.10 lift",
-      description: "Confidence +0.05–0.10 median lift on flagged cases; ~15–25% promoted to 'Consider' when priors/literature present",
-      icon: "TrendingUp",
+      title: "Pharmacogene Detection",
+      keyMetric: "20+ genes",
+      description: "Identifies variants in DPYD, TPMT, UGT1A1, CYP2D6, and other drug-metabolizing enzymes.",
+      icon: "Dna",
       color: "blue"
     },
     {
-      title: "Faster Safety Decisions",
-      keyMetric: "30-50% faster",
-      description: "Time‑to‑safety decision reduced by ~30–50% with a shareable one‑pager",
-      icon: "Clock",
+      title: "Pathway Overlap Analysis",
+      keyMetric: "3 pathways",
+      description: "Computes overlap between patient germline variants and drug MoA toxic pathways.",
+      icon: "Activity",
+      color: "green"
+    },
+    {
+      title: "Mitigating Foods",
+      keyMetric: "9 compounds",
+      description: "Recommends pathway-specific foods (NAC, Vitamin D, Omega-3, CoQ10) with timing and dosage.",
+      icon: "Apple",
       color: "purple"
     },
     {
-      title: "Enhanced Patient Communication",
-      keyMetric: "Increased trust",
-      description: "Cohort snippet (when present) increases trust and actionability; clearer patient communication",
-      icon: "Users",
-      color: "teal"
+      title: "LLM Explanations",
+      keyMetric: "✅ Built",
+      description: "Personalized explanations for why foods mitigate toxicity, with patient-friendly summaries.",
+      icon: "MessageSquare",
+      color: "orange"
     }
   ],
 
-  genomicInsightsOverview: "Our live stack produces a compact 'Toxicity Risk' chip with a short helper, confidence, and sources—100% coverage for life-threatening toxicity prevention—plus run ID and profile.",
-  coreProblemIntro: "Toxicities are hard to foresee. We surface a simple, genetics‑aware caution to inform planning—without slowing care.",
+  genomicInsightsOverview: "Identifies pharmacogene variants and pathway overlap risks. Recommends mitigating foods with personalized LLM explanations.",
+  coreProblemIntro: "Germline variants can cause severe drug toxicity. We identify risks and recommend protective foods.",
   coreProblemPoints: [
-    "Risk is unclear at baseline.",
-    "Signals are scattered across sources.",
-    "Hard to share a concise, trusted summary."
+    "Pharmacogene variants affect drug breakdown (DPYD, TPMT, UGT1A1).",
+    "Drug MoA overlaps with patient's germline pathway vulnerabilities.",
+    "Need mechanism-based food recommendations."
   ],
 
   genomicUseCasesGrid: [
-    { label: "Caution chip (simple)", iconName: "AlertTriangle", color: "text-red-400" },
-    { label: "Short helper text", iconName: "MessageSquare", color: "text-green-400" },
-    { label: "Confidence + sources", iconName: "ShieldCheck", color: "text-purple-400" },
-    { label: "Cohort overlay when available", iconName: "Users", color: "text-orange-400" }
+    { label: "Pharmacogene detection", iconName: "Dna", color: "text-blue-400" },
+    { label: "Pathway overlap", iconName: "Activity", color: "text-green-400" },
+    { label: "Mitigating foods", iconName: "Apple", color: "text-purple-400" },
+    { label: "LLM explanations", iconName: "MessageSquare", color: "text-orange-400" }
   ],
 
   keyCapabilities: [
     {
-      title: "Caution Signal (live)",
+      title: "Pharmacogene Detection",
       technical: {
-        title: "Technical Approach",
-        keyMetric: "Real-time Risk Mapping",
-        description: "We map germline context and evidence to a plain caution chip with a short helper. Output includes confidence, sources, and provenance (run ID, profile).",
-        icon: "AlertTriangle",
+        title: "Implementation",
+        keyMetric: "20+ genes",
+        description: "Detects variants in drug-metabolizing enzymes. High-impact genes (DPYD, TPMT, UGT1A1) get risk weight 0.4.",
+        icon: "Dna",
         color: "blue",
         components: [
           {
-            title: "Risk Signal Detection",
-            subtitle: "Germline variant analysis with pathway mapping",
-            iconName: "AlertTriangle",
-            color: "blue",
-            features: [
-              "Repair/inflammation pathway analysis",
-              "Conservative risk assessment",
-              "Real-time processing"
-            ]
-          },
-          {
-            title: "Confidence Scoring",
-            subtitle: "Transparent confidence metrics with evidence tiers",
-            iconName: "ShieldCheck",
-            color: "teal",
-            features: [
-              "Evidence-based confidence scores",
-              "Source attribution",
-              "Provenance tracking"
-            ]
-          },
-          {
-            title: "Output Generation",
-            subtitle: "Plain-language caution chips with helper text",
-            iconName: "MessageSquare",
-            color: "indigo",
-            features: [
-              "One-sentence helper text",
-              "Shareable format",
-              "Run ID and profile tracking"
-            ]
-          }
-        ]
-      },
-      scientific: {
-        title: "Scientific Impact",
-        keyMetric: "95.7% AUROC",
-        description: "Signals summarize potential sensitivity based on repair/inflammation and related pathways with 100% coverage for life-threatening toxicity prevention—transparent and evidence-backed.",
-        icon: "Microscope",
-        color: "teal",
-        components: [
-          {
-            title: "Pathway Analysis",
-            subtitle: "Repair and inflammation pathway assessment",
-            iconName: "Activity",
-            color: "blue",
-            features: [
-              "Germline variant burden analysis",
-              "Pathway-specific risk scoring",
-              "Conservative signal generation"
-            ]
-          },
-          {
-            title: "Evidence Integration",
-            subtitle: "Literature and database evidence synthesis",
-            iconName: "Database",
-            color: "teal",
-            features: [
-              "ClinVar integration (53,210 variants)",
-              "Literature evidence mapping",
-              "Transparent methodology"
-            ]
-          },
-          {
-            title: "Research Validation",
-            subtitle: "Research-grade validation with peer review standards",
-            iconName: "CheckCircle",
-            color: "indigo",
-            features: [
-              "Clinical-grade toxicity prevention designation",
-              "Peer-reviewed methodology",
-              "Transparent limitations"
-            ]
-          }
-        ]
-      },
-      business: {
-        title: "Business Value",
-        keyMetric: "≈$2.1M saved/program",
-        description: "Plan safer with simple hints that are easy to act on, backed by confidence and sources in a shareable one‑pager.",
-        icon: "Briefcase",
-        color: "indigo",
-        components: [
-          {
-            title: "Risk Mitigation",
-            subtitle: "Proactive toxicity risk identification",
-            iconName: "Shield",
-            color: "blue",
-            features: [
-              "Early risk identification",
-              "Conservative planning support",
-              "Reduced adverse events"
-            ]
-          },
-          {
-            title: "Team Alignment",
-            subtitle: "Shareable documentation for care coordination",
-            iconName: "Users",
-            color: "teal",
-            features: [
-              "One-page summary format",
-              "Cross-disciplinary communication",
-              "Standardized safety discussion"
-            ]
-          },
-          {
-            title: "Cost Efficiency",
-            subtitle: "Reduced VUS burden and improved outcomes",
-            iconName: "TrendingUp",
-            color: "indigo",
-            features: [
-              "VUS reduction (40% → 15%)",
-              "Faster decision making",
-              "Improved patient outcomes"
-            ]
-          }
-        ]
-      },
-      genomicUseCasesParagraph: "Today: \n1. **Caution chip** with helper and confidence. \n2. **Provenance** visible on the card."
-    },
-    {
-      title: "Context & Evidence",
-      technical: {
-        title: "Technical Approach",
-        keyMetric: "Cohort Integration",
-        description: "When extracted, we show a small cohort snippet and citations/badges to anchor the signal.",
-        icon: "Database",
-        color: "blue",
-        components: [
-          {
-            title: "Cohort Snippet Generation",
-            subtitle: "Contextual patient cohort information",
-            iconName: "Users",
-            color: "blue",
-            features: [
-              "Similar patient profiles",
-              "Outcome correlation data",
-              "Contextual risk factors"
-            ]
-          },
-          {
-            title: "Citation Management",
-            subtitle: "Source attribution and reference tracking",
-            iconName: "FileText",
-            color: "teal",
-            features: [
-              "Key reference identification",
-              "Source credibility scoring",
-              "Literature integration"
-            ]
-          },
-          {
-            title: "Evidence Anchoring",
-            subtitle: "Grounding signals in established evidence",
-            iconName: "Anchor",
-            color: "indigo",
-            features: [
-              "Evidence tier classification",
-              "Transparent methodology",
-              "Research-grade validation"
-            ]
-          }
-        ]
-      },
-      scientific: {
-        title: "Scientific Impact",
-        keyMetric: "Evidence-Based",
-        description: "Grounds the risk assessment with transparent methodology and source attribution—100% coverage for life-threatening toxicity prevention.",
-        icon: "Microscope",
-        color: "teal",
-        components: [
-          {
-            title: "Literature Integration",
-            subtitle: "Peer-reviewed evidence synthesis",
-            iconName: "BookOpen",
-            color: "blue",
-            features: [
-              "PubMed integration",
-              "Evidence quality assessment",
-              "Transparent limitations"
-            ]
-          },
-          {
-            title: "Cohort Validation",
-            subtitle: "Population-based risk assessment",
-            iconName: "BarChart3",
-            color: "teal",
-            features: [
-              "Population statistics",
-              "Risk stratification",
-              "Outcome correlation"
-            ]
-          },
-          {
-            title: "Methodology Transparency",
-            subtitle: "Clear explanation of approach and limitations",
-            iconName: "Eye",
-            color: "indigo",
-            features: [
-              "Method explanation",
-              "Limitation disclosure",
-              "Research-grade standards"
-            ]
-          }
-        ]
-      },
-      business: {
-        title: "Business Value",
-        keyMetric: "Context-Driven Decisions",
-        description: "Helps teams calibrate decisions with additional context and evidence, improving confidence in risk assessment.",
-        icon: "Briefcase",
-        color: "indigo",
-        components: [
-          {
-            title: "Decision Support",
-            subtitle: "Enhanced decision-making with context",
-            iconName: "Target",
-            color: "blue",
-            features: [
-              "Contextual risk assessment",
-              "Evidence-based recommendations",
-              "Improved decision confidence"
-            ]
-          },
-          {
-            title: "Team Confidence",
-            subtitle: "Increased trust through transparency",
-            iconName: "ShieldCheck",
-            color: "teal",
-            features: [
-              "Transparent methodology",
-              "Source attribution",
-              "Clear limitations"
-            ]
-          },
-          {
-            title: "Research Integration",
-            subtitle: "Seamless integration with research workflows",
-            iconName: "Layers",
-            color: "indigo",
-            features: [
-              "Research-grade outputs",
-              "Auditable processes",
-              "Future model integration"
-            ]
-          }
-        ]
-      },
-      genomicUseCasesParagraph: "Today (when present): \n1. **Cohort snippet** and **key refs** alongside the chip."
-    },
-    {
-      title: "Regimen‑Specific Models",
-      technical: {
-        title: "Technical Approach",
-        keyMetric: "Advanced Modeling",
-        description: "Planned: regimen/dose‑aware toxicity models and interaction checks layered on top of the basic hint.",
-        icon: "Cpu",
-        color: "blue",
-        components: [
-          {
-            title: "Regimen-Specific Models",
-            subtitle: "Drug and dose-specific toxicity prediction",
-            iconName: "Pill",
-            color: "blue",
-            features: [
-              "Drug-specific risk models",
-              "Dose-response relationships",
-              "Interaction detection"
-            ]
-          },
-          {
-            title: "Advanced Analytics",
-            subtitle: "Machine learning-enhanced risk assessment",
-            iconName: "Brain",
-            color: "teal",
-            features: [
-              "ML-enhanced predictions",
-              "Pattern recognition",
-              "Continuous learning"
-            ]
-          },
-          {
-            title: "Integration Layer",
-            subtitle: "Seamless integration with existing workflows",
-            iconName: "Workflow",
-            color: "indigo",
-            features: [
-              "API integration",
-              "Workflow automation",
-              "Real-time updates"
-            ]
-          }
-        ]
-      },
-      scientific: {
-        title: "Scientific Impact",
-        keyMetric: "Precision Medicine",
-        description: "Future: combine pharmacology and outcomes to refine risk assessment with regimen-specific precision.",
-        icon: "Microscope",
-        color: "teal",
-        components: [
-          {
-            title: "Pharmacogenomics",
-            subtitle: "Drug metabolism and response prediction",
+            title: "Gene List",
+            subtitle: "DPYD, TPMT, UGT1A1, CYP2D6, CYP2C19, ABCB1, SLCO1B1, and 13+ more",
             iconName: "Dna",
-            color: "blue",
-            features: [
-              "Metabolism pathway analysis",
-              "Drug response prediction",
-              "Personalized dosing"
-            ]
+            color: "blue"
           },
           {
-            title: "Outcome Integration",
-            subtitle: "Real-world outcome data integration",
-            iconName: "TrendingUp",
-            color: "teal",
-            features: [
-              "Outcome correlation analysis",
-              "Risk refinement",
-              "Evidence accumulation"
-            ]
+            title: "Risk Weighting",
+            subtitle: "High-impact (0.4), CYP enzymes (0.3), others (0.2)",
+            iconName: "Gauge",
+            color: "teal"
+          }
+        ]
+      },
+      scientific: {
+        title: "Foundation",
+        keyMetric: "Mechanism-Based",
+        description: "DPYD variants cause 5-FU toxicity. TPMT variants cause thiopurine toxicity. UGT1A1*28 causes irinotecan toxicity.",
+        icon: "BookOpen",
+        color: "teal",
+        components: [
+          {
+            title: "High-Impact",
+            subtitle: "DPYD (5-FU), TPMT (thiopurines), UGT1A1 (irinotecan), G6PD, NUDT15",
+            iconName: "AlertTriangle",
+            color: "blue"
           },
           {
-            title: "Precision Targeting",
-            subtitle: "Patient-specific risk stratification",
-            iconName: "Target",
-            color: "indigo",
-            features: [
-              "Individual risk profiles",
-              "Precision recommendations",
-              "Optimized outcomes"
-            ]
+            title: "CYP Enzymes",
+            subtitle: "CYP2D6, CYP2C19, CYP2C9, CYP3A4, CYP3A5",
+            iconName: "Activity",
+            color: "teal"
           }
         ]
       },
       business: {
-        title: "Business Value",
-        keyMetric: "Standardized Safety",
-        description: "Make safety checks a standard step in treatment planning with consistent, automated risk assessment.",
-        icon: "Briefcase",
+        title: "Value",
+        keyMetric: "Risk Prevention",
+        description: "Flags patients at risk before prescribing. Enables dose adjustments or alternative drugs.",
+        icon: "Shield",
         color: "indigo",
         components: [
           {
-            title: "Process Standardization",
-            subtitle: "Consistent safety evaluation across all cases",
-            iconName: "CheckCircle",
-            color: "blue",
-            features: [
-              "Standardized protocols",
-              "Automated risk assessment",
-              "Quality assurance"
-            ]
-          },
-          {
-            title: "Operational Efficiency",
-            subtitle: "Streamlined safety evaluation workflow",
-            iconName: "Zap",
-            color: "teal",
-            features: [
-              "Automated processing",
-              "Reduced manual review",
-              "Faster decision making"
-            ]
-          },
-          {
-            title: "Risk Management",
-            subtitle: "Comprehensive risk identification and mitigation",
+            title: "Proactive Screening",
+            subtitle: "Flags variants before drug administration",
             iconName: "Shield",
-            color: "indigo",
-            features: [
-              "Proactive risk identification",
-              "Mitigation strategies",
-              "Outcome optimization"
-            ]
+            color: "blue"
+          },
+          {
+            title: "Dose Guidance",
+            subtitle: "High-risk → avoid drug or reduce dose 50-90%",
+            iconName: "Pill",
+            color: "teal"
           }
         ]
       },
-      genomicUseCasesParagraph: "Regimen‑aware checks surfaced in the same view with integrated interaction analysis."
+      genomicUseCasesParagraph: "**Built:** 20+ pharmacogenes detected with risk weighting. Integrated with safety service and food validation."
+    },
+    {
+      title: "Pathway Overlap Analysis",
+      technical: {
+        title: "Implementation",
+        keyMetric: "3 pathways",
+        description: "Maps drug MoA to toxic pathways and computes overlap with patient germline variants.",
+        icon: "Activity",
+        color: "blue",
+        components: [
+          {
+            title: "MoA Mapping",
+            subtitle: "15+ drug MoAs → toxic pathways (platinum → DNA repair: 0.9, anthracycline → cardiometabolic: 0.9)",
+            iconName: "Map",
+            color: "blue"
+          },
+          {
+            title: "Pathway Genes",
+            subtitle: "DNA repair (BRCA1/2, MBD4, TP53), inflammation (TNF, IL6, NFKB), cardiometabolic (APOB, MTOR)",
+            iconName: "Dna",
+            color: "teal"
+          }
+        ]
+      },
+      scientific: {
+        title: "Foundation",
+        keyMetric: "Mechanism-Based",
+        description: "Platinum agents damage DNA. Anthracyclines cause cardiotoxicity. Checkpoint inhibitors cause iRAEs.",
+        icon: "Microscope",
+        color: "teal",
+        components: [
+          {
+            title: "DNA Repair",
+            subtitle: "Platinum, PARP inhibitors, alkylating agents → DNA damage",
+            iconName: "Shield",
+            color: "blue"
+          },
+          {
+            title: "Inflammation",
+            subtitle: "Checkpoint inhibitors, CAR-T, IMiDs → Immune activation",
+            iconName: "Flame",
+            color: "teal"
+          },
+          {
+            title: "Cardiometabolic",
+            subtitle: "Anthracyclines, BRAF/MEK inhibitors → Cardiac toxicity",
+            iconName: "Heart",
+            color: "indigo"
+          }
+        ]
+      },
+      business: {
+        title: "Value",
+        keyMetric: "Mechanism-Based Risk",
+        description: "Identifies which toxicity pathway is at risk. Enables targeted food recommendations.",
+        icon: "Target",
+        color: "indigo",
+        components: [
+          {
+            title: "Pathway-Specific",
+            subtitle: "Identifies DNA repair, inflammation, or cardiometabolic risk",
+            iconName: "Target",
+            color: "blue"
+          },
+          {
+            title: "Food Mapping",
+            subtitle: "Pathway → specific foods (NAC, Omega-3, CoQ10)",
+            iconName: "Apple",
+            color: "teal"
+          }
+        ]
+      },
+      genomicUseCasesParagraph: "**Built:** 3 toxic pathways, 15+ drug MoAs mapped. Overlap computation with patient variants."
+    },
+    {
+      title: "Mitigating Foods",
+      technical: {
+        title: "Implementation",
+        keyMetric: "9 compounds",
+        description: "Maps pathway overlap to mitigating foods with timing, dosage, and LLM explanations.",
+        icon: "Apple",
+        color: "blue",
+        components: [
+          {
+            title: "Pathway Mapping",
+            subtitle: "DNA repair → NAC, Vitamin D, Folate; Inflammation → Omega-3, Curcumin, EGCG; Cardiometabolic → CoQ10, L-Carnitine, Magnesium",
+            iconName: "Apple",
+            color: "blue"
+          },
+          {
+            title: "Timing & Dosage",
+            subtitle: "Post-infusion (NAC), continuous (Vitamin D), between meals (Curcumin), with fatty meal (CoQ10)",
+            iconName: "Clock",
+            color: "teal"
+          }
+        ]
+      },
+      scientific: {
+        title: "Foundation",
+        keyMetric: "Evidence-Based",
+        description: "NAC (glutathione for DNA repair), Omega-3 (resolvin for inflammation), CoQ10 (mitochondrial support for cardiotoxicity).",
+        icon: "BookOpen",
+        color: "teal",
+        components: [
+          {
+            title: "DNA Repair",
+            subtitle: "NAC (glutathione), Vitamin D (VDR-mediated), Folate (DNA synthesis)",
+            iconName: "Shield",
+            color: "blue"
+          },
+          {
+            title: "Anti-Inflammatory",
+            subtitle: "Omega-3 (NF-κB), Curcumin (COX-2), EGCG (STAT3)",
+            iconName: "Flame",
+            color: "teal"
+          },
+          {
+            title: "Cardioprotective",
+            subtitle: "CoQ10 (mitochondrial), L-Carnitine (fatty acids), Magnesium (QT)",
+            iconName: "Heart",
+            color: "indigo"
+          }
+        ]
+      },
+      business: {
+        title: "Value",
+        keyMetric: "THE MOAT",
+        description: "Connects toxicity assessment to actionable food recommendations. LLM explanations improve adherence.",
+        icon: "Target",
+        color: "indigo",
+        components: [
+          {
+            title: "Actionable",
+            subtitle: "Specific foods, doses, timing for each pathway",
+            iconName: "CheckCircle",
+            color: "blue"
+          },
+          {
+            title: "Personalized",
+            subtitle: "LLM-generated explanations for patient's specific context",
+            iconName: "MessageSquare",
+            color: "teal"
+          }
+        ]
+      },
+      genomicUseCasesParagraph: "**Built:** 9 compounds with pathway mapping, timing, dosage. LLM enhancement for personalized explanations."
     }
   ],
 
   valuePropositionSections: [
     {
-      audience: "For the Care Team",
+      audience: "For Clinicians",
       points: [
-        "A quick, genetics‑aware caution to guide planning.",
-        "Short, shareable text with confidence and sources—100% coverage for life-threatening toxicity prevention.",
-        "Reusable one‑pager with run ID and profile."
+        "Identifies pharmacogene variants that affect drug metabolism.",
+        "Computes pathway overlap between patient variants and drug toxic pathways.",
+        "Recommends mitigating foods with personalized explanations."
       ]
     }
   ],
 
-  conclusion: "In‑silico toxicity risk that's simple to read and easy to share. A plain caution chip. Clear confidence. Sources included. Research‑mode by design.",
+  conclusion: "Toxicity risk assessment identifies pharmacogene variants and pathway overlap risks. Recommends pathway-specific mitigating foods with personalized LLM explanations.",
 
-  // Custom in-silico overview configuration
   inSilicoOverview: {
     coreConcepts: [
       {
-        icon: "Shield",
-        title: "Germline Risk Assessment",
-        description: "Built on ClinVar foundations with 95.7% AUROC across 53,210 variants, providing research-grade toxicity risk assessment.",
+        icon: "Dna",
+        title: "Pharmacogene Detection",
+        description: "20+ drug-metabolizing enzymes (DPYD, TPMT, UGT1A1, CYP2D6) with risk weighting.",
         color: "blue"
       },
       {
-        icon: "AlertTriangle",
-        title: "Caution Signal Generation",
-        description: "Maps germline context to conservative caution signals with transparent confidence scores and evidence tiers.",
+        icon: "Activity",
+        title: "Pathway Overlap",
+        description: "Computes overlap between patient germline variants and drug MoA toxic pathways.",
         color: "teal"
       },
       {
-        icon: "FileText",
-        title: "Shareable Documentation",
-        description: "One-page summaries with run IDs, sources, and provenance for team alignment and research compliance.",
+        icon: "Apple",
+        title: "Mitigating Foods",
+        description: "Pathway-specific foods (NAC, Omega-3, CoQ10) with timing, dosage, and LLM explanations.",
         color: "purple"
       }
     ],
     valuePropositions: [
       {
         icon: "Shield",
-        title: "Proactive Risk Identification",
-        description: "Identify potential toxicity risks before treatment begins, enabling safer planning",
-        metric: "20-30% fewer missed flags",
+        title: "Risk Prevention",
+        description: "Identifies patients at risk before prescribing",
+        metric: "20+ pharmacogenes",
         color: "blue"
       },
       {
-        icon: "CheckCircle",
-        title: "Reduced False Positives",
-        description: "Fewer unnecessary regimen holds with more accurate risk assessment",
-        metric: "10-15% reduction",
+        icon: "Activity",
+        title: "Mechanism-Based",
+        description: "Pathway overlap identifies which toxicity pathway is at risk",
+        metric: "3 pathways",
         color: "teal"
       },
       {
-        icon: "TrendingUp",
-        title: "Improved Confidence",
-        description: "Enhanced confidence scores and better decision support for flagged cases",
-        metric: "+0.05-0.10 lift",
+        icon: "Apple",
+        title: "Actionable Foods",
+        description: "Pathway-specific foods with timing, dosage, and explanations",
+        metric: "9 compounds",
         color: "indigo"
-      },
-      {
-        icon: "Clock",
-        title: "Faster Decisions",
-        description: "Shareable one-pagers accelerate safety decision-making processes",
-        metric: "30-50% faster",
-        color: "purple"
       }
     ],
     deliverables: [
       {
-        icon: "AlertTriangle",
-        title: "Toxicity Risk Chip",
-        description: "Simple caution signal with helper text, confidence score, and evidence sources"
+        icon: "Dna",
+        title: "Pharmacogene Detection",
+        description: "Variants in drug-metabolizing enzymes with risk weighting"
       },
       {
-        icon: "FileText",
-        title: "One-Page Summary",
-        description: "Shareable documentation with run ID, sources, and transparent methodology"
+        icon: "Activity",
+        title: "Pathway Overlap",
+        description: "Overlap between patient variants and drug toxic pathways"
       },
       {
-        icon: "Users",
-        title: "Cohort Context",
-        description: "Cohort snippets and key references to anchor risk assessment when cohort data is available"
+        icon: "Apple",
+        title: "Mitigating Foods",
+        description: "Pathway-specific foods with timing, dosage, and LLM explanations"
       }
     ]
   }

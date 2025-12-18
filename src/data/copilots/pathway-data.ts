@@ -2,359 +2,347 @@ import { CoPilotDetailContent } from '@/types/copilot-types';
 
 export const pathwayData: CoPilotDetailContent = {
   slug: "pathway",
-  pageTitle: "Pathway View: What's Driving This?",
-  heroSubtitle: "Pathway-to-drug intelligence in minutes. Top 3 pathways with contribution bars and therapy alignment. Integrates with Synthetic Lethality analysis to identify double-hit vulnerabilities.",
-  vision: "Turn variants into a plain pathway summary you can act on: top pathways, a short 'why,' therapy alignment hints, and a shareable, source‑backed one‑pager.",
+  pageTitle: "Pathway Analysis: Gene-to-Pathway Mapping",
+  heroSubtitle: "Aggregates sequence disruption scores into pathway-level signals. Integrates with S/P/E framework (40% weight) and Synthetic Lethality analysis.",
+  vision: "Transform variant-level sequence scores into pathway-level biological insights for drug efficacy prediction.",
 
-  // Website value props (plain)
+  // Website value props (actual capabilities)
   valueProps: [
     {
       audience: 'For Clinicians',
       icon: 'Activity',
       points: [
-        'See which pathways appear to drive the biology (top 3).',
-        'Get a short, readable explanation you can share—pathway-to-drug intelligence with transparent reasoning.',
-        'See which drug classes align with the biology through mechanism-of-action mapping.'
+        'Pathway disruption scores inform drug efficacy predictions (40% of S/P/E framework).',
+        'Gene-to-pathway mapping identifies which biological pathways are affected by mutations.',
+        'Drug-to-pathway alignment enables mechanism-based therapy selection.'
       ]
     },
     {
       audience: 'For Researchers',
       icon: 'Compass',
       points: [
-        'Consistent mapping from genes → pathways with weights.',
-        'Provenance on how the scores were formed.',
-        'Cohort overlay when available to strengthen pathway analysis.'
+        'Transparent gene-to-pathway mapping with weighted aggregation.',
+        'Disease-specific drug panels (MM, Ovarian, Melanoma) with pathway weights.',
+        'Integration with Synthetic Lethality analysis for double-hit vulnerability detection.'
       ]
     }
   ],
 
   buildsOn: "Core Capabilities",
   buildsOnStackPoints: [
-    "**Gene→pathway mapping:** Simple weights with 40% contribution to S/P/E framework; therapy alignment with mechanism-of-action mapping.",
-    "**Cohort context:** Available to support the story when cohort data is present.",
-    "**Disease‑specific tuning:** Guideline cues and disease-specific pathway weights lift confidence and accuracy."
+    "**Gene→pathway mapping:** Maps variants to pathways (DDR, MAPK, TP53, PI3K, VEGF) using transparent weights.",
+    "**Pathway aggregation:** Aggregates sequence disruption scores by pathway with weighted averaging.",
+    "**S/P/E integration:** Pathway component contributes 40% weight to drug efficacy scoring."
   ],
 
   kpis: [
-    { label: 'ClinVar AUROC (total n=53,210)', value: '0.957' },
-    { label: 'Coding SNVs (n=14,319)', value: '0.957' },
-    { label: 'Non‑coding SNVs (n=34,761)', value: '0.958 (SOTA)' },
-    { label: 'Coding non‑SNVs (n=1,236)', value: '0.939 (SOTA)' },
-    { label: 'Non‑coding non‑SNVs (n=3,894)', value: '0.918' },
-    { label: 'SpliceVarDB AUROC (n=4,950)', value: '0.825–0.826' },
-    { label: 'Target VUS 40% → 15%', value: '≈$2.1M saved/program' },
-    { label: 'Time‑to‑pathway story', value: 'minutes (not days)' },
-    { label: 'Confidence lift with cohort overlay', value: '+0.05–0.12' }
+    { label: 'Pathway Component Weight', value: '40%' },
+    { label: 'Supported Pathways', value: '5 pathways' },
+    { label: 'Disease Panels', value: '3 (MM, Ovarian, Melanoma)' },
+    { label: 'Integration Status', value: '✅ S/P/E + Synthetic Lethality' }
   ],
 
   observedOutcomes: [
     {
-      title: "Stable Pathway Rankings",
-      keyMetric: "95% consistency",
-      description: "Top‑3 pathways stabilize across re‑runs with fewer rank flips, providing reliable biological insights for clinical decision-making.",
+      title: "Pathway Aggregation Working",
+      keyMetric: "100% integration",
+      description: "Pathway aggregation successfully integrated into S/P/E framework, contributing 40% weight to drug efficacy scores.",
       icon: "BarChart3",
       color: "blue"
     },
     {
-      title: "Reduced Discussion Time",
-      keyMetric: "60% faster",
-      description: "Clear therapy alignment hints reduce board discussion time and guide WIWFM inputs, streamlining clinical workflows.",
-      icon: "Clock",
+      title: "Gene-to-Pathway Mapping",
+      keyMetric: "5 pathways",
+      description: "Maps key cancer genes (BRCA1/2, BRAF/KRAS, TP53, PIK3CA, VEGFA) to biological pathways with transparent weights.",
+      icon: "Map",
       color: "green"
     },
     {
-      title: "Confidence Improvement",
-      keyMetric: "+0.07 median",
-      description: "Confidence improves when supportive chips and cohort overlays are present, enhancing decision-making reliability.",
-      icon: "TrendingUp",
+      title: "Disease-Specific Panels",
+      keyMetric: "3 panels",
+      description: "Pre-configured drug panels for Multiple Myeloma, Ovarian Cancer, and Melanoma with pathway weight mappings.",
+      icon: "Database",
       color: "purple"
     },
     {
-      title: "Evidence Tier Promotions",
-      keyMetric: "40% increase",
-      description: "Evidence tier promotions occur when pathways and priors/literature align, strengthening research foundations.",
-      icon: "Award",
+      title: "Synthetic Lethality Integration",
+      keyMetric: "✅ Complete",
+      description: "Pathway disruption data feeds into Synthetic Lethality analysis for double-hit vulnerability detection.",
+      icon: "Link",
       color: "orange"
-    },
-    {
-      title: "Standardized Review",
-      keyMetric: "100% audit trail",
-      description: "Shareable one‑pager with run ID/profile standardizes review processes and ensures complete provenance tracking.",
-      icon: "FileText",
-      color: "teal"
     }
   ],
 
-  genomicInsightsOverview: "Our live stack produces a compact Pathway card: top pathways with contribution bars, one‑line 'why,' and therapy alignment with mechanism-of-action mapping—plus run ID and profile.",
-  coreProblemIntro: "Biology is hard to summarize. We show the essence in one glance.",
+  genomicInsightsOverview: "Pathway service aggregates sequence disruption scores into pathway-level signals. Gene-to-pathway mapping identifies affected biological pathways, which inform drug efficacy predictions through the S/P/E framework.",
+  coreProblemIntro: "Sequence scores are variant-level. We need pathway-level aggregation for drug mechanism alignment.",
   coreProblemPoints: [
-    "Too much detail: lists of genes don't tell a story.",
-    "Unclear fit: hard to connect biology to therapy.",
-    "No provenance: difficult to reuse and discuss."
+    "Variant-level scores don't show pathway burden.",
+    "Drugs target pathways, not individual variants.",
+    "Need pathway aggregation for mechanism-based therapy selection."
   ],
 
   genomicUseCasesGrid: [
-    { label: "Top pathway burden", iconName: "BarChart2", color: "text-blue-400" },
-    { label: "Short 'why' explainer", iconName: "MessageSquare", color: "text-green-400" },
-    { label: "Therapy alignment hint", iconName: "Beaker", color: "text-purple-400" },
-    { label: "Cohort overlay when available", iconName: "Users", color: "text-orange-400" }
+    { label: "Pathway aggregation", iconName: "BarChart2", color: "text-blue-400" },
+    { label: "Gene-to-pathway mapping", iconName: "Map", color: "text-green-400" },
+    { label: "Drug-to-pathway alignment", iconName: "Target", color: "text-purple-400" },
+    { label: "S/P/E integration", iconName: "Activity", color: "text-orange-400" }
   ],
 
   keyCapabilities: [
     {
-      title: "Biology Summary Card (live)",
+      title: "Pathway Aggregation (Built)",
       technical: {
-        title: "Technical Approach",
-        keyMetric: "Pathway Mapping",
-        description: "We map variants to pathways using transparent weights and gene burden calculations, displaying top 3 pathways with contribution bars and one-line explanations.",
-        icon: "Map",
+        title: "Technical Implementation",
+        keyMetric: "Weighted Averaging",
+        description: "Aggregates sequence disruption scores by pathway using weighted gene-to-pathway mappings. Formula: pathway_score = sum(sequence_disruption × weight) / count.",
+        icon: "BarChart3",
         color: "blue",
         components: [
           {
-            title: "Pathway Mapping Engine",
-            subtitle: "Maps variants to pathways using transparent weights and gene burden calculations",
-            iconName: "Map",
+            title: "Aggregation Algorithm",
+            subtitle: "Weighted averaging of sequence scores by pathway",
+            iconName: "Calculator",
             color: "blue"
           },
           {
-            title: "Contribution Visualization",
-            subtitle: "Displays top 3 pathways with contribution bars and one-line explanations",
-            iconName: "BarChart3",
+            title: "Gene-to-Pathway Mapping",
+            subtitle: "Maps genes to pathways (DDR, MAPK, TP53, PI3K, VEGF) with weights",
+            iconName: "Map",
             color: "teal"
           },
           {
-            title: "Provenance Tracking",
-            subtitle: "Includes run ID and profile on every card for complete auditability",
-            iconName: "Fingerprint",
+            title: "Integration Point",
+            subtitle: "Called from efficacy orchestrator during S/P/E pipeline",
+            iconName: "Link",
             color: "indigo"
           }
         ]
       },
       scientific: {
-        title: "Scientific Impact",
-        keyMetric: "95.7% AUROC",
-        description: "Summarizes likely driver pathways using variant burden and biological context, designed to be clinically interpretable with transparent methodology.",
+        title: "Scientific Foundation",
+        keyMetric: "40% S/P/E Weight",
+        description: "Pathway component contributes 40% weight to drug efficacy scoring, combining with Sequence (30%) and Evidence (30%) for comprehensive prediction.",
         icon: "Dna",
         color: "teal",
         components: [
           {
-            title: "Gene Burden Analysis",
-            subtitle: "Summarizes likely driver pathways using variant burden and biological context",
+            title: "Biological Rationale",
+            subtitle: "Drugs target pathways, not individual variants - pathway aggregation enables mechanism-based prediction",
             iconName: "Dna",
             color: "blue"
           },
           {
-            title: "Readable Summaries",
-            subtitle: "Designed to be clinically interpretable with transparent methodology",
-            iconName: "BookOpen",
+            title: "S/P/E Framework",
+            subtitle: "Pathway (P) = 40% weight, integrates with Sequence (S) and Evidence (E)",
+            iconName: "Activity",
             color: "teal"
           },
           {
-            title: "Research-Grade Validation",
-            subtitle: "Built on ClinVar foundations with 95.7% AUROC across 53,210 variants",
-            iconName: "Shield",
+            title: "Transparent Methodology",
+            subtitle: "Clear gene-to-pathway mappings with documented weights",
+            iconName: "BookOpen",
             color: "indigo"
           }
         ]
       },
       business: {
         title: "Business Value",
-        keyMetric: "≈$2.1M saved/program",
-        description: "Delivers actionable biology story in minutes, not days, with repeatable results and cost efficiency through VUS reduction.",
-        icon: "DollarSign",
+        keyMetric: "Core S/P/E Component",
+        description: "Essential component of drug efficacy prediction framework, enabling mechanism-based therapy selection.",
+        icon: "Target",
         color: "indigo",
         components: [
           {
-            title: "Rapid Clarity",
-            subtitle: "Delivers actionable biology story in minutes, not days",
-            iconName: "Zap",
-            color: "blue"
-          },
-          {
-            title: "Repeatable Results",
-            subtitle: "Same inputs produce consistent outputs with full provenance",
-            iconName: "Repeat",
-            color: "teal"
-          },
-          {
-            title: "Cost Efficiency",
-            subtitle: "Reduces VUS from 40% to 15%, saving ≈$2.1M per program",
-            iconName: "DollarSign",
-            color: "indigo"
-          }
-        ]
-      },
-      genomicUseCasesParagraph: "Today: \n1. **Top 3 pathways** with bars and short explainer. \n2. **Run ID/profile** on every card."
-    },
-    {
-      title: "Therapy Alignment (live)",
-      technical: {
-        title: "Technical Approach",
-        keyMetric: "MoA Alignment",
-        description: "Links pathway burden to mechanism-of-action aligned drug classes using efficacy mapping to provide therapy alignment recommendations with 40% weight in S/P/E framework.",
-        icon: "Target",
-        color: "blue",
-        components: [
-          {
-            title: "MoA Mapping",
-            subtitle: "Links pathway burden to mechanism-of-action aligned drug classes",
+            title: "Efficacy Prediction",
+            subtitle: "40% contribution to drug efficacy scores",
             iconName: "Target",
             color: "blue"
           },
           {
-            title: "Efficacy Integration",
-            subtitle: "Uses existing efficacy mapping to provide therapy alignment recommendations",
+            title: "Mechanism Alignment",
+            subtitle: "Enables drug-to-pathway mechanism matching",
             iconName: "Link",
             color: "teal"
           },
           {
-            title: "Clinical-Grade Positioning",
-            subtitle: "Clinical-grade pathway analysis with transparent methodology and evidence-backed recommendations",
-            iconName: "Microscope",
+            title: "Disease-Specific",
+            subtitle: "Pre-configured panels for MM, Ovarian, Melanoma",
+            iconName: "Database",
             color: "indigo"
           }
         ]
       },
-      scientific: {
-        title: "Scientific Impact",
-        keyMetric: "60-65% reduction",
-        description: "Provides gentle connection from observed biology to plausible treatments with transparent source citations and confidence scoring.",
-        icon: "Bridge",
-        color: "teal",
+      genomicUseCasesParagraph: "**Current Implementation:** \n1. **Pathway aggregation** from sequence scores. \n2. **Gene-to-pathway mapping** (5 pathways: DDR, MAPK, TP53, PI3K, VEGF). \n3. **Integration** with S/P/E framework (40% weight)."
+    },
+    {
+      title: "Gene-to-Pathway Mapping (Built)",
+      technical: {
+        title: "Technical Implementation",
+        keyMetric: "5 Pathways",
+        description: "Maps cancer genes to biological pathways using transparent weights. Supports DDR, MAPK, TP53, PI3K, and VEGF pathways.",
+        icon: "Map",
+        color: "blue",
         components: [
           {
-            title: "Biology-Therapy Bridge",
-            subtitle: "Provides gentle connection from observed biology to plausible treatments",
-            iconName: "Bridge",
+            title: "Pathway Definitions",
+            subtitle: "DDR (DNA Damage Response), MAPK (RAS/MAPK), TP53 (Tumor Suppressor), PI3K (PI3K/AKT), VEGF (Angiogenesis)",
+            iconName: "Map",
             color: "blue"
           },
           {
-            title: "Source-Backed Insights",
-            subtitle: "All recommendations include transparent source citations and reasoning",
-            iconName: "FileText",
+            title: "Gene Mappings",
+            subtitle: "BRCA1/2→DDR, BRAF/KRAS→MAPK, TP53→TP53, PIK3CA→PI3K, VEGFA→VEGF",
+            iconName: "Dna",
             color: "teal"
           },
           {
-            title: "Confidence Scoring",
-            subtitle: "Provides confidence levels for therapy alignment recommendations",
+            title: "Weight System",
+            subtitle: "Binary weights (1.0) for primary pathway, extensible for multi-pathway genes",
             iconName: "Gauge",
             color: "indigo"
           }
         ]
       },
-      business: {
-        title: "Business Value",
-        keyMetric: "60-65% faster",
-        description: "Helps clinical teams focus on most plausible drug classes, reducing uncertainty and accelerating treatment planning.",
-        icon: "Users",
-        color: "indigo",
+      scientific: {
+        title: "Scientific Foundation",
+        keyMetric: "Transparent Mapping",
+        description: "Clear gene-to-pathway relationships based on established cancer biology. Includes key cancer genes: BRCA1/2, BRAF/KRAS, TP53, PIK3CA, VEGFA.",
+        icon: "BookOpen",
+        color: "teal",
         components: [
           {
-            title: "Focused Discussions",
-            subtitle: "Helps clinical teams focus on most plausible drug classes",
-            iconName: "Users",
+            title: "DDR Pathway",
+            subtitle: "BRCA1, BRCA2, ATR, CHEK1, RAD51, PALB2, MBD4 (DNA repair genes)",
+            iconName: "Shield",
             color: "blue"
           },
           {
-            title: "Reduced Uncertainty",
-            subtitle: "Decreases therapy selection confusion by 60-65%",
-            iconName: "CheckCircle",
+            title: "MAPK Pathway",
+            subtitle: "BRAF, KRAS, NRAS, MEK1, MEK2 (RAS/MAPK signaling)",
+            iconName: "Activity",
             color: "teal"
           },
           {
-            title: "Faster Decision Making",
-            subtitle: "Accelerates treatment planning and reduces board discussion time",
-            iconName: "Clock",
+            title: "TP53 Pathway",
+            subtitle: "TP53, MDM2, CHEK2 (Tumor suppressor and checkpoint)",
+            iconName: "AlertCircle",
             color: "indigo"
           }
         ]
       },
-      genomicUseCasesParagraph: "1. **Therapy alignment recommendations** surfaced alongside pathways with mechanism-of-action mapping."
-    },
-    {
-      title: "Cohort Overlay",
-      technical: {
-        title: "Technical Approach",
-        keyMetric: "Cohort Context",
-        description: "Shows context snippets when cohort extracts are available, displaying baseline metrics and prevalence data for context.",
-        icon: "Users",
-        color: "blue",
+      business: {
+        title: "Business Value",
+        keyMetric: "Mechanism-Based Selection",
+        description: "Enables drug selection based on pathway disruption rather than individual variant matching.",
+        icon: "Target",
+        color: "indigo",
         components: [
           {
-            title: "Cohort Integration",
-            subtitle: "Shows context snippets when cohort extracts are available",
-            iconName: "Users",
+            title: "Drug Alignment",
+            subtitle: "Maps drugs to pathways for mechanism-based matching",
+            iconName: "Target",
             color: "blue"
           },
           {
-            title: "Prevalence Metrics",
-            subtitle: "Displays baseline metrics and prevalence data for context",
-            iconName: "BarChart",
+            title: "Extensible Design",
+            subtitle: "Easy addition of new genes and pathways",
+            iconName: "Plus",
             color: "teal"
           },
           {
-            title: "Provenance Tracking",
-            subtitle: "Maintains full audit trail for cohort overlay sources",
-            iconName: "Fingerprint",
+            title: "Disease Context",
+            subtitle: "Disease-specific pathway weights in drug panels",
+            iconName: "Database",
+            color: "indigo"
+          }
+        ]
+      },
+      genomicUseCasesParagraph: "**Current Implementation:** \n1. **5 pathway types** (DDR, MAPK, TP53, PI3K, VEGF). \n2. **Gene mappings** for key cancer genes. \n3. **Extensible** for new pathways and genes."
+    },
+    {
+      title: "Drug-to-Pathway Mapping (Built)",
+      technical: {
+        title: "Technical Implementation",
+        keyMetric: "Disease-Specific Panels",
+        description: "Pre-configured drug panels for Multiple Myeloma, Ovarian Cancer, and Melanoma with pathway weight mappings and mechanism-of-action annotations.",
+        icon: "Database",
+        color: "blue",
+        components: [
+          {
+            title: "MM Panel",
+            subtitle: "BRAF inhibitor, MEK inhibitor, IMiD, Proteasome inhibitor, Anti-CD38",
+            iconName: "Database",
+            color: "blue"
+          },
+          {
+            title: "Ovarian Panel",
+            subtitle: "PARP inhibitors, Platinum agents, Checkpoint inhibitors",
+            iconName: "Database",
+            color: "teal"
+          },
+          {
+            title: "Melanoma Panel",
+            subtitle: "BRAF inhibitors, MEK inhibitors, PD-1 inhibitors",
+            iconName: "Database",
             color: "indigo"
           }
         ]
       },
       scientific: {
-        title: "Scientific Impact",
-        keyMetric: "+0.05-0.12 lift",
-        description: "Grounds pathway findings in actual patient population data, providing additional confidence when cohort data supports findings.",
-        icon: "Globe",
+        title: "Scientific Foundation",
+        keyMetric: "Mechanism-of-Action",
+        description: "Each drug includes MoA annotation and pathway weights indicating which pathways the drug targets.",
+        icon: "Target",
         color: "teal",
         components: [
           {
-            title: "Real-World Context",
-            subtitle: "Grounds pathway findings in actual patient population data",
-            iconName: "Globe",
+            title: "Pathway Weights",
+            subtitle: "Drug-specific pathway relevance weights (e.g., PARP inhibitor → DDR: 0.9)",
+            iconName: "Gauge",
             color: "blue"
           },
           {
-            title: "Clinical-Grade Validation",
-            subtitle: "Provides additional confidence when cohort data supports findings with evidence-backed validation",
-            iconName: "Shield",
+            title: "MoA Integration",
+            subtitle: "Mechanism-of-action annotations for each drug",
+            iconName: "Target",
             color: "teal"
           },
           {
-            title: "Confidence Enhancement",
-            subtitle: "Lifts confidence by +0.05-0.12 when cohort overlays align",
-            iconName: "TrendingUp",
+            title: "Disease Context",
+            subtitle: "Disease-specific panels with appropriate drug selections",
+            iconName: "Database",
             color: "indigo"
           }
         ]
       },
       business: {
         title: "Business Value",
-        keyMetric: "Enhanced Confidence",
-        description: "Helps teams prioritize findings with population-level context, providing additional validation layer for clinical decisions.",
-        icon: "Target",
+        keyMetric: "Ready-to-Use Panels",
+        description: "Pre-configured drug panels eliminate manual configuration and ensure consistent pathway mappings across disease types.",
+        icon: "CheckCircle",
         color: "indigo",
         components: [
           {
-            title: "Enhanced Prioritization",
-            subtitle: "Helps teams prioritize findings with population-level context",
-            iconName: "Target",
+            title: "Consistency",
+            subtitle: "Standardized pathway weights across disease panels",
+            iconName: "CheckCircle",
             color: "blue"
           },
           {
-            title: "Reduced Risk",
-            subtitle: "Provides additional validation layer for clinical decisions",
-            iconName: "Shield",
+            title: "Extensibility",
+            subtitle: "Easy addition of new drugs and pathway weights",
+            iconName: "Plus",
             color: "teal"
           },
           {
-            title: "Improved Confidence",
-            subtitle: "Increases team confidence in pathway interpretations",
-            iconName: "CheckCircle",
+            title: "Maintainability",
+            subtitle: "Centralized panel configuration management",
+            iconName: "Settings",
             color: "indigo"
           }
         ]
       },
-      genomicUseCasesParagraph: "Today (when present): \n1. **Cohort snippet** shown with provenance."
+      genomicUseCasesParagraph: "**Current Implementation:** \n1. **3 disease panels** (MM, Ovarian, Melanoma). \n2. **Pathway weights** for each drug. \n3. **MoA annotations** for mechanism tracking."
     }
   ],
 
@@ -362,90 +350,90 @@ export const pathwayData: CoPilotDetailContent = {
     {
       audience: "For the Clinician",
       points: [
-        "A quick biology story tied to therapy choices.",
-        "Short, shareable text with sources—pathway-to-drug intelligence with transparent reasoning.",
-        "Consistent format across cases."
+        "Pathway disruption scores inform drug efficacy predictions (40% of S/P/E framework).",
+        "Mechanism-based therapy selection through drug-to-pathway alignment.",
+        "Integration with Synthetic Lethality analysis for double-hit vulnerability detection."
       ]
     },
     {
       audience: "For the Research Team",
       points: [
-        "Transparent mapping and weights.",
-        "Provenance for QA and reuse.",
-        "Cohort overlay available to strengthen the case when cohort data is present."
+        "Transparent gene-to-pathway mappings with documented weights.",
+        "Extensible design for adding new pathways and genes.",
+        "Integration with S/P/E framework and Synthetic Lethality analysis."
       ]
     }
   ],
 
-  conclusion: "A plain, auditable biology view. Top pathways. Short 'why.' Therapy alignment with mechanism-of-action mapping. Sources included. Clinical-grade by design.",
+  conclusion: "Pathway aggregation service transforms variant-level sequence scores into pathway-level biological insights. Integrated into S/P/E framework (40% weight) and Synthetic Lethality analysis. Transparent gene-to-pathway and drug-to-pathway mappings with disease-specific panels.",
 
-  // Optional: Custom in-silico overview configuration
+  // In-silico overview configuration
   inSilicoOverview: {
     coreConcepts: [
       {
-        icon: "Microscope",
-        title: "Research-Grade AI",
-        description: "Built on ClinVar foundations with 95.7% AUROC across 53,210 variants, ensuring scientific rigor and peer-reviewed validation.",
+        icon: "Activity",
+        title: "Pathway Aggregation",
+        description: "Aggregates sequence disruption scores by pathway using weighted gene-to-pathway mappings for mechanism-based drug selection.",
         color: "blue"
       },
       {
-        icon: "Activity",
-        title: "Pathway Mapping",
-        description: "Maps variants to pathways using transparent weights and gene burden calculations for clear biological stories.",
+        icon: "Map",
+        title: "Gene-to-Pathway Mapping",
+        description: "Maps cancer genes to biological pathways (DDR, MAPK, TP53, PI3K, VEGF) with transparent weights.",
         color: "teal"
       },
       {
-        icon: "Shield",
-        title: "Auditable Provenance",
-        description: "Complete audit trail with run IDs, source citations, and transparent methodology for research compliance and reproducibility.",
+        icon: "Link",
+        title: "S/P/E Integration",
+        description: "Pathway component contributes 40% weight to drug efficacy scoring in the S/P/E framework.",
         color: "purple"
       }
     ],
     valuePropositions: [
       {
-        icon: "Clock",
-        title: "Minutes, Not Days",
-        description: "Transform weeks of manual analysis into actionable insights in minutes",
-        metric: "60-70% faster",
+        icon: "Target",
+        title: "Mechanism-Based Selection",
+        description: "Enables drug selection based on pathway disruption rather than individual variant matching",
+        metric: "40% S/P/E weight",
         color: "blue"
       },
       {
-        icon: "CheckCircle",
-        title: "Confidence & Clarity",
-        description: "Clear confidence scores and evidence tiers reduce decision uncertainty",
-        metric: "80% less confusion",
+        icon: "Database",
+        title: "Disease-Specific Panels",
+        description: "Pre-configured drug panels for MM, Ovarian, and Melanoma with pathway weight mappings",
+        metric: "3 panels",
         color: "teal"
       },
       {
-        icon: "Activity",
-        title: "Clear Biology Story",
-        description: "Top 3 pathways with contribution bars and one-line explanations for immediate understanding",
-        metric: "95% consistency",
+        icon: "Link",
+        title: "Synthetic Lethality Integration",
+        description: "Pathway disruption data feeds into Synthetic Lethality analysis for double-hit detection",
+        metric: "✅ Integrated",
         color: "indigo"
       },
       {
-        icon: "Users",
-        title: "Team Alignment",
-        description: "Shareable one-pagers with transparent rationale improve collaboration",
-        metric: "50% faster decisions",
+        icon: "Activity",
+        title: "Transparent Methodology",
+        description: "Clear gene-to-pathway mappings with documented weights and extensible design",
+        metric: "5 pathways",
         color: "purple"
       }
     ],
     deliverables: [
       {
-        icon: "Activity",
-        title: "Pathway Summary",
-        description: "Top 3 pathways with contribution bars, one-line explanations, and therapy alignment hints"
+        icon: "BarChart3",
+        title: "Pathway Scores",
+        description: "Aggregated pathway disruption scores from sequence disruption data"
       },
       {
-        icon: "FileText",
-        title: "Explainable Rationale",
-        description: "Transparent 'why' explanations with source citations and evidence tiers"
+        icon: "Map",
+        title: "Gene-to-Pathway Mappings",
+        description: "Transparent mappings of cancer genes to biological pathways"
       },
       {
-        icon: "Lightbulb",
-        title: "Actionable Insights",
-        description: "Ready-to-use summaries for tumor boards, research planning, and clinical decisions"
+        icon: "Target",
+        title: "Drug-to-Pathway Alignment",
+        description: "Mechanism-based drug selection through pathway weight matching"
       }
     ]
   }
