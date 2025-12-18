@@ -374,8 +374,6 @@ export const toxicityEducationalData: EducationalCapabilityPageData = {
   // Layout - Aligned with toxicity-data.ts structure
   layout: {
     sidebar: {
-      title: "Toxicity Risk Assessment",
-      subtitle: "Learn how this capability works",
       sections: [
         { id: 'hero', title: 'The Question', subsections: [] },
         { id: 'problem', title: 'The Problem', subsections: [] },
@@ -403,8 +401,9 @@ export const toxicityEducationalData: EducationalCapabilityPageData = {
       ],
     },
     progress: {
-      showProgress: true,
-      currentSection: 'hero',
+      current: 1,
+      total: 11,
+      readingTime: 15,
     },
   },
 

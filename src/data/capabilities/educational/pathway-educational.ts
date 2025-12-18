@@ -349,8 +349,6 @@ export const pathwayEducationalData: EducationalCapabilityPageData = {
   // Layout - Aligned with pathway-data.ts structure
   layout: {
     sidebar: {
-      title: "Pathway Analysis",
-      subtitle: "Learn how this capability works",
       sections: [
         { id: 'hero', title: 'The Question', subsections: [] },
         { id: 'problem', title: 'The Problem', subsections: [] },
@@ -378,8 +376,9 @@ export const pathwayEducationalData: EducationalCapabilityPageData = {
       ],
     },
     progress: {
-      showProgress: true,
-      currentSection: 'hero',
+      current: 1,
+      total: 11,
+      readingTime: 15,
     },
   },
 
