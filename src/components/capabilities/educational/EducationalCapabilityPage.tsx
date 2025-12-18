@@ -16,6 +16,9 @@ import {
   EducationalPageLayout,
 } from './index';
 import ToxicitySolutionInteractive from './ToxicitySolutionInteractive';
+import ValuePropsSection from './ValuePropsSection';
+import ObservedOutcomesSection from './ObservedOutcomesSection';
+import KeyCapabilitiesSection from './KeyCapabilitiesSection';
 import CapabilityJourneySlider from '@/components/products/healthcare/CapabilityJourneySlider';
 
 interface EducationalCapabilityPageProps {
@@ -52,9 +55,24 @@ export default function EducationalCapabilityPage({
         <ToxicitySolutionInteractive data={data.solution} />
       </section>
 
+      {/* Value Propositions Section */}
+      <section id="value-props" className="scroll-mt-24">
+        <ValuePropsSection />
+      </section>
+
       {/* How It Works Section */}
       <section id="how-it-works" className="scroll-mt-24">
         <HowItWorksSection data={data.howItWorks} />
+      </section>
+
+      {/* Observed Outcomes Section */}
+      <section id="observed-outcomes" className="scroll-mt-24">
+        <ObservedOutcomesSection />
+      </section>
+
+      {/* Key Capabilities Section */}
+      <section id="key-capabilities" className="scroll-mt-24">
+        <KeyCapabilitiesSection />
       </section>
 
       {/* Process Visualizer Section */}

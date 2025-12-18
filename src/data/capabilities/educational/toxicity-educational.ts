@@ -8,7 +8,7 @@ import { EducationalCapabilityPageData } from '@/types/educational-capability';
 import { toxicityData } from '@/data/copilots/toxicity-data';
 
 export const toxicityEducationalData: EducationalCapabilityPageData = {
-  // Hero Section
+  // Hero Section - Aligned with toxicity-data.ts (removed "generic" label)
   hero: {
     question: "What can I do to help myself during treatment?",
     genericAnswer: "Eat healthy. Stay hydrated. Avoid grapefruit.",
@@ -371,24 +371,40 @@ export const toxicityEducationalData: EducationalCapabilityPageData = {
     ],
   },
 
-  // Layout
+  // Layout - Aligned with toxicity-data.ts structure
   layout: {
     sidebar: {
+      title: "Toxicity Risk Assessment",
+      subtitle: "Learn how this capability works",
       sections: [
-        { id: 'hero', title: 'The Question' },
-        { id: 'problem', title: 'The Problem' },
-        { id: 'solution', title: 'The Solution' },
-        { id: 'how-it-works', title: 'How It Works' },
-        { id: 'process', title: 'Process Flow' },
-        { id: 'value', title: 'The MOAT' },
-        { id: 'example', title: 'Real Example' },
-        { id: 'integration', title: 'Integration' },
+        { id: 'hero', title: 'The Question', subsections: [] },
+        { id: 'problem', title: 'The Problem', subsections: [] },
+        { id: 'solution', title: 'The Solution', subsections: [] },
+        { id: 'value-props', title: 'Value Propositions', subsections: [
+          'For Clinicians',
+          'For Researchers'
+        ] },
+        { id: 'how-it-works', title: 'How It Works', subsections: [] },
+        { id: 'observed-outcomes', title: 'Observed Outcomes', subsections: [
+          'Pharmacogene Detection',
+          'Pathway Overlap Analysis',
+          'Mitigating Foods',
+          'LLM Explanations'
+        ] },
+        { id: 'key-capabilities', title: 'Core Capabilities', subsections: [
+          'Pharmacogene Detection',
+          'Pathway Overlap Analysis',
+          'Mitigating Foods'
+        ] },
+        { id: 'process', title: 'Process Flow', subsections: [] },
+        { id: 'value', title: 'The MOAT', subsections: [] },
+        { id: 'example', title: 'Real Example', subsections: [] },
+        { id: 'integration', title: 'Integration', subsections: [] },
       ],
     },
     progress: {
-      current: 1,
-      total: 8,
-      readingTime: 15,
+      showProgress: true,
+      currentSection: 'hero',
     },
   },
 
