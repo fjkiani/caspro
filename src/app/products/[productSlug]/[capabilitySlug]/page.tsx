@@ -6,6 +6,8 @@ import { getCapabilityDefinition, getProductCapabilityDefinitions } from '@/data
 import { generateCapabilityStaticParams } from '@/data/navigation/navigation-helpers';
 import TabbedCapabilityPage from '@/components/products/shared/TabbedCapabilityPage';
 import DirectCapabilityPage from '@/components/products/shared/DirectCapabilityPage';
+import EducationalDirectCapabilityPage from '@/components/products/shared/EducationalDirectCapabilityPage';
+import { getEducationalCapabilityData } from '@/data/capabilities/educational';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
@@ -56,7 +58,22 @@ export default async function CapabilityDetailPage({
   // Determine if this capability has multiple co-pilots (tabs) or single co-pilot (direct)
   const coPilotMappings = getCapabilityCoPilots(productSlug, capabilitySlug);
   const hasMultipleCoPilots = coPilotMappings.length > 1;
+
+  // Check if educational data exists for this capability
+  const educationalData = await getEducationalCapabilityData(capabilitySlug);
+
+  // If educational data exists and single co-pilot, use educational page
+  if (educationalData && !hasMultipleCoPilots) {
+    return (
+      <EducationalDirectCapabilityPage
+        productSlug={productSlug}
+        capabilitySlug={capabilitySlug}
+        educationalData={educationalData}
+      />
+    );
+  }
   
+  // Standard page rendering (existing logic)
   return (
     <main className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white text-slate-800 pt-20 pb-12 px-4 md:px-8">
       <div className="container mx-auto max-w-7xl">
