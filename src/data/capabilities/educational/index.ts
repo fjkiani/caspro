@@ -11,9 +11,10 @@ import { toxicityEducationalData } from './toxicity-educational';
 import { pathwayEducationalData } from './pathway-educational';
 
 // Map capability slugs to their educational data
+// Note: pathway co-pilot is under 'target-validation' capability in R&D product
 const educationalCapabilityDataMap: Record<string, any> = {
   'prevent-toxicity': toxicityEducationalData,
-  'pathway-analysis': pathwayEducationalData,
+  'target-validation': pathwayEducationalData, // Pathway co-pilot is under target-validation
   // Add more capabilities as they're transformed
 };
 

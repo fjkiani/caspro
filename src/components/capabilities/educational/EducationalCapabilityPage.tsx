@@ -52,7 +52,7 @@ export default function EducationalCapabilityPage({
 
       {/* Solution Interactive Section */}
       <section id="solution" className="scroll-mt-24">
-        {capabilitySlug === 'pathway-analysis' ? (
+        {capabilitySlug === 'target-validation' ? (
           <PathwaySolutionInteractive data={data.solution} />
         ) : (
           <ToxicitySolutionInteractive data={data.solution} />
@@ -61,7 +61,7 @@ export default function EducationalCapabilityPage({
 
       {/* Value Propositions Section */}
       <section id="value-props" className="scroll-mt-24">
-        <ValuePropsSection dataSource={capabilitySlug === 'pathway-analysis' ? 'pathway' : 'toxicity'} />
+        <ValuePropsSection dataSource={capabilitySlug === 'target-validation' ? 'pathway' : 'toxicity'} />
       </section>
 
       {/* How It Works Section */}
@@ -71,12 +71,12 @@ export default function EducationalCapabilityPage({
 
       {/* Observed Outcomes Section */}
       <section id="observed-outcomes" className="scroll-mt-24">
-        <ObservedOutcomesSection dataSource={capabilitySlug === 'pathway-analysis' ? 'pathway' : 'toxicity'} />
+        <ObservedOutcomesSection dataSource={capabilitySlug === 'target-validation' ? 'pathway' : 'toxicity'} />
       </section>
 
       {/* Key Capabilities Section */}
       <section id="key-capabilities" className="scroll-mt-24">
-        <KeyCapabilitiesSection dataSource={capabilitySlug === 'pathway-analysis' ? 'pathway' : 'toxicity'} />
+        <KeyCapabilitiesSection dataSource={capabilitySlug === 'target-validation' ? 'pathway' : 'toxicity'} />
       </section>
 
       {/* Process Visualizer Section */}
