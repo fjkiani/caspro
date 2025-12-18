@@ -86,8 +86,8 @@ export default function EducationalPageLayout({
       )}
       
       <div className="flex max-w-7xl mx-auto pt-16">
-        {/* Sidebar Navigation */}
-        <aside className="hidden lg:block w-80 bg-white shadow-lg border-r border-slate-200 h-[calc(100vh-8rem)] sticky top-32 overflow-y-auto z-30">
+        {/* Sidebar Navigation - Sticky and Always Visible */}
+        <aside className="hidden lg:block w-80 bg-white/90 backdrop-blur-xl shadow-2xl border-r border-slate-200/50 h-[calc(100vh-8rem)] sticky top-32 overflow-y-auto z-30 rounded-r-2xl">
           <div className="p-6 border-b border-slate-200">
             {productSlug && capabilitySlug && (
               <Link 

@@ -15,6 +15,7 @@ import {
   ProgressiveDisclosureSection,
   EducationalPageLayout,
 } from './index';
+import ToxicitySolutionInteractive from './ToxicitySolutionInteractive';
 import CapabilityJourneySlider from '@/components/products/healthcare/CapabilityJourneySlider';
 
 interface EducationalCapabilityPageProps {
@@ -46,9 +47,9 @@ export default function EducationalCapabilityPage({
         <ProblemNarrativeSection data={data.problem} />
       </section>
 
-      {/* Solution Narrative Section */}
+      {/* Solution Interactive Section */}
       <section id="solution" className="scroll-mt-24">
-        <SolutionNarrativeSection data={data.solution} />
+        <ToxicitySolutionInteractive data={data.solution} />
       </section>
 
       {/* How It Works Section */}
