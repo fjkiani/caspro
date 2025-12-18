@@ -9,7 +9,6 @@ import {
   HowItWorksSection,
   ValuePropositionSection,
   IntegrationSection,
-  ConceptExplainer,
   ProcessVisualizer,
   ExampleShowcase,
   InfographicSection,
@@ -55,11 +54,6 @@ export default function EducationalCapabilityPage({
       {/* How It Works Section */}
       <section id="how-it-works" className="scroll-mt-24">
         <HowItWorksSection data={data.howItWorks} />
-      </section>
-
-      {/* Concept Explainer Section */}
-      <section id="concepts" className="scroll-mt-24">
-        <ConceptExplainer data={data.concepts} />
       </section>
 
       {/* Process Visualizer Section */}

@@ -21,37 +21,38 @@ export const toxicityEducationalData: EducationalCapabilityPageData = {
 
   // Problem Section
   problem: {
-    title: "The Problem: Fragmented Care in a Complex World",
-    narrative: `Cancer treatment today is like navigating a maze blindfolded. You have:
+    title: "The Problem: Germline Variants Cause Severe Drug Toxicity",
+    narrative: `Germline variants can cause severe drug toxicity. Patients with pharmacogene variants face life-threatening reactions when prescribed certain drugs.
 
-- **Drug recommendations** that tell you what might work
-- **Clinical trial matching** that finds studies you might qualify for
-- **Food validation** that checks if supplements are safe
+**The core challenges:**
 
-But these systems don't talk to each other. They're isolated islands of information.
+- **Pharmacogene variants affect drug breakdown** - Variants in DPYD, TPMT, UGT1A1, and other drug-metabolizing enzymes can cause drugs to accumulate to toxic levels. For example, DPYD variants cause 5-10% mortality risk with 5-FU if not detected.
 
-**The critical gap:** When a patient asks *"What should I eat during carboplatin treatment?"*, the system can't connect:
-- The drug's mechanism of action (how it works)
-- The patient's genetic profile (how they metabolize drugs)
-- The toxicity pathways (what gets stressed)
-- The protective foods (what actually helps)
+- **Drug MoA overlaps with patient's germline pathway vulnerabilities** - When a drug's mechanism of action (like platinum agents damaging DNA) overlaps with a patient's germline pathway vulnerabilities (like BRCA1 mutations affecting DNA repair), the toxicity risk multiplies.
+
+- **Need mechanism-based food recommendations** - Generic "eat healthy" advice doesn't help. Patients need specific foods that support the exact pathways their drugs stress. For example, NAC (N-acetylcysteine) specifically supports DNA repair pathways stressed by platinum agents.
+
+**Until now, there was no system that could:**
+- Screen for pharmacogene variants before prescribing
+- Compute pathway overlap between drug MoA and patient variants
+- Recommend pathway-specific mitigating foods with timing and dosage
 
 **Until now.**`,
-    visualMetaphor: "Like navigating a maze blindfolded",
+    visualMetaphor: "Like prescribing drugs without knowing if the patient can metabolize them",
     painPoints: [
       {
-        title: "Isolated Systems",
-        description: "Drug recommendations, trial matching, and food validation don't communicate",
+        title: "Pharmacogene Variants Undetected",
+        description: "DPYD, TPMT, UGT1A1 variants cause severe toxicity but aren't routinely screened",
         icon: "AlertTriangle",
       },
       {
-        title: "Generic Advice",
-        description: "Patients get generic 'eat healthy' advice instead of personalized nutrition",
+        title: "Pathway Overlap Unknown",
+        description: "Drug MoA overlaps with patient's germline vulnerabilities, multiplying risk",
         icon: "X",
       },
       {
-        title: "Reactive Approach",
-        description: "Toxicity is managed after it happens, not prevented before",
+        title: "Generic Nutrition Advice",
+        description: "Patients get generic 'eat healthy' instead of pathway-specific foods",
         icon: "AlertTriangle",
       },
     ],
@@ -59,14 +60,21 @@ But these systems don't talk to each other. They're isolated islands of informat
 
   // Solution Section
   solution: {
-    title: "The Solution: A Connected, Adaptive Care System",
-    narrative: `We're building what we call a "GPS navigation system for cancer treatment." It doesn't just tell you where to go—it:
+    title: "The Solution: Toxicity-Aware Nutrition",
+    narrative: `We've built the first system that prevents drug toxicity by identifying germline risks and recommending protective foods.
 
-1. **Anticipates resistance** - Predicts what might go wrong and prepares backup plans
-2. **Recommends combinations** - Not just single drugs, but smart drug pairs that attack cancer from multiple angles
-3. **Monitors continuously** - Tells doctors when to test, re-biopsy, switch therapies
-4. **Prevents toxicity** - Flags genetic variants that cause severe drug reactions BEFORE prescribing
-5. **Adapts to progression** - Generates new plans when cancer evolves
+**How it works:**
+
+1. **Pharmacogene Detection** - Screens 20+ drug-metabolizing enzymes (DPYD, TPMT, UGT1A1, CYP2D6) for variants that affect drug breakdown. High-impact genes get risk weight 0.4.
+
+2. **Pathway Overlap Analysis** - Maps drug MoA to toxic pathways (DNA repair, inflammation, cardiometabolic) and computes overlap with patient's germline variants. For example, platinum → DNA repair: 0.9 overlap.
+
+3. **Mitigating Foods Mapping** - Connects pathway overlap to specific foods:
+   - DNA repair → NAC, Vitamin D, Folate (post-chemo)
+   - Inflammation → Omega-3, Curcumin, EGCG (post-infusion)
+   - Cardiometabolic → CoQ10, L-Carnitine, Magnesium (continuous)
+
+4. **Personalized Timing & Dosage** - Recommends when to take supplements (post-infusion for NAC, continuous for Vitamin D, between meals for Curcumin) with specific dosages.
 
 **The Patient MOAT (What We Just Built):**
 - ✅ Toxicity pathway detection → Knows which biological pathways your drug stresses
@@ -371,7 +379,6 @@ But these systems don't talk to each other. They're isolated islands of informat
         { id: 'problem', title: 'The Problem' },
         { id: 'solution', title: 'The Solution' },
         { id: 'how-it-works', title: 'How It Works' },
-        { id: 'concepts', title: 'Key Concepts' },
         { id: 'process', title: 'Process Flow' },
         { id: 'value', title: 'The MOAT' },
         { id: 'example', title: 'Real Example' },
@@ -380,7 +387,7 @@ But these systems don't talk to each other. They're isolated islands of informat
     },
     progress: {
       current: 1,
-      total: 9,
+      total: 8,
       readingTime: 15,
     },
   },
