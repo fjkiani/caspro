@@ -7,6 +7,7 @@ import MOATCapabilityShowcase from '@/components/products/healthcare/MOATCapabil
 import CompleteCarePlanVision from '@/components/products/healthcare/CompleteCarePlanVision';
 import UniversalPlatformSection from '@/components/products/healthcare/UniversalPlatformSection';
 import HonestFramingSection from '@/components/products/healthcare/HonestFramingSection';
+import CapabilityJourneySlider from '@/components/products/healthcare/CapabilityJourneySlider';
 import ClinicalWorkflow from '@/components/industry/ClinicalWorkflow';
 import { TwoHitDiagram, RiskMap, Arsenal } from '@/components/industry/runx1';
 import { runx1Content } from '@/data/industry/runx1-content';
@@ -112,6 +113,9 @@ export default function HealthcarePage() {
 
       {/* Universal Platform */}
       <UniversalPlatformSection />
+
+      {/* Capability Journey Slider */}
+      <CapabilityJourneySlider />
 
       {/* Patient Journey Transformation */}
       <section className="py-16 px-6 bg-slate-50">
