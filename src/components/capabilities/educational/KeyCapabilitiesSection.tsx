@@ -2,19 +2,24 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Dna, Activity, Apple, BookOpen, Microscope, Shield, Target, Pill, Map, Flame, Heart, Clock, CheckCircle, MessageSquare, BarChart3, Database, Link, Calculator, Gauge, Plus, Settings, AlertCircle } from 'lucide-react';
+import { Dna, Activity, Apple, BookOpen, Microscope, Shield, Target, Pill, Map, Flame, Heart, Clock, CheckCircle, MessageSquare, BarChart3, Database, Link, Calculator, Gauge, Plus, Settings, AlertCircle, Eye, Layers, XCircle, Award } from 'lucide-react';
 import { toxicityData } from '@/data/copilots/toxicity-data';
 import { pathwayData } from '@/data/copilots/pathway-data';
+import { therapyFitData } from '@/data/copilots/therapy-fit-data';
 
 interface KeyCapabilitiesSectionProps {
-  dataSource?: 'toxicity' | 'pathway';
+  dataSource?: 'toxicity' | 'pathway' | 'therapy-fit';
 }
 
 export default function KeyCapabilitiesSection({ dataSource = 'toxicity' }: KeyCapabilitiesSectionProps) {
   const [expandedCapability, setExpandedCapability] = useState<string | null>(null);
   
-  const data = dataSource === 'pathway' ? pathwayData : toxicityData;
-  const title = dataSource === 'pathway' ? 'Pathway Analysis' : 'Toxicity Risk Assessment';
+  const data = dataSource === 'pathway' ? pathwayData : 
+               dataSource === 'therapy-fit' ? therapyFitData : 
+               toxicityData;
+  const title = dataSource === 'pathway' ? 'Pathway Analysis' : 
+                dataSource === 'therapy-fit' ? 'Therapy Fit' : 
+                'Toxicity Risk Assessment';
 
   const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
     Dna, Activity, Apple, BookOpen, Microscope, Shield, Target, Pill, Map, Flame, Heart, Clock, CheckCircle, MessageSquare, BarChart3, Database, Link, Calculator, Gauge, Plus, Settings, AlertCircle,

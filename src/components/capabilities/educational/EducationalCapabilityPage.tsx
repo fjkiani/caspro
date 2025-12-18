@@ -54,6 +54,8 @@ export default function EducationalCapabilityPage({
       <section id="solution" className="scroll-mt-24">
         {capabilitySlug === 'target-validation' ? (
           <PathwaySolutionInteractive data={data.solution} />
+        ) : capabilitySlug === 'match-patients-to-therapies' ? (
+          <TherapyFitSolutionInteractive data={data.solution} />
         ) : (
           <ToxicitySolutionInteractive data={data.solution} />
         )}
@@ -61,7 +63,11 @@ export default function EducationalCapabilityPage({
 
       {/* Value Propositions Section */}
       <section id="value-props" className="scroll-mt-24">
-        <ValuePropsSection dataSource={capabilitySlug === 'target-validation' ? 'pathway' : 'toxicity'} />
+        <ValuePropsSection dataSource={
+          capabilitySlug === 'target-validation' ? 'pathway' : 
+          capabilitySlug === 'match-patients-to-therapies' ? 'therapy-fit' : 
+          'toxicity'
+        } />
       </section>
 
       {/* How It Works Section */}
@@ -71,12 +77,20 @@ export default function EducationalCapabilityPage({
 
       {/* Observed Outcomes Section */}
       <section id="observed-outcomes" className="scroll-mt-24">
-        <ObservedOutcomesSection dataSource={capabilitySlug === 'target-validation' ? 'pathway' : 'toxicity'} />
+        <ObservedOutcomesSection dataSource={
+          capabilitySlug === 'target-validation' ? 'pathway' : 
+          capabilitySlug === 'match-patients-to-therapies' ? 'therapy-fit' : 
+          'toxicity'
+        } />
       </section>
 
       {/* Key Capabilities Section */}
       <section id="key-capabilities" className="scroll-mt-24">
-        <KeyCapabilitiesSection dataSource={capabilitySlug === 'target-validation' ? 'pathway' : 'toxicity'} />
+        <KeyCapabilitiesSection dataSource={
+          capabilitySlug === 'target-validation' ? 'pathway' : 
+          capabilitySlug === 'match-patients-to-therapies' ? 'therapy-fit' : 
+          'toxicity'
+        } />
       </section>
 
       {/* Process Visualizer Section */}

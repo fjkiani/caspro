@@ -2,12 +2,13 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, FileText, Users, CheckCircle, Activity, Compass } from 'lucide-react';
+import { Shield, FileText, Users, CheckCircle, Activity, Compass, ListChecks, Beaker } from 'lucide-react';
 import { toxicityData } from '@/data/copilots/toxicity-data';
 import { pathwayData } from '@/data/copilots/pathway-data';
+import { therapyFitData } from '@/data/copilots/therapy-fit-data';
 
 interface ValuePropsSectionProps {
-  dataSource?: 'toxicity' | 'pathway';
+  dataSource?: 'toxicity' | 'pathway' | 'therapy-fit';
 }
 
 export default function ValuePropsSection({ dataSource = 'toxicity' }: ValuePropsSectionProps) {
@@ -17,10 +18,16 @@ export default function ValuePropsSection({ dataSource = 'toxicity' }: ValueProp
     Users,
     Activity,
     Compass,
+    ListChecks,
+    Beaker,
   };
 
-  const data = dataSource === 'pathway' ? pathwayData : toxicityData;
-  const title = dataSource === 'pathway' ? 'Pathway Analysis' : 'Toxicity Risk Assessment';
+  const data = dataSource === 'pathway' ? pathwayData : 
+               dataSource === 'therapy-fit' ? therapyFitData : 
+               toxicityData;
+  const title = dataSource === 'pathway' ? 'Pathway Analysis' : 
+                dataSource === 'therapy-fit' ? 'Therapy Fit' : 
+                'Toxicity Risk Assessment';
 
   return (
     <section className="py-16 px-4 md:px-8 bg-gradient-to-br from-slate-50 via-white to-blue-50">

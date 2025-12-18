@@ -2,12 +2,13 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Dna, Activity, Apple, MessageSquare, BarChart3, Map, Database, Link } from 'lucide-react';
+import { Dna, Activity, Apple, MessageSquare, BarChart3, Map, Database, Link, ListChecks, TrendingUp, Fingerprint } from 'lucide-react';
 import { toxicityData } from '@/data/copilots/toxicity-data';
 import { pathwayData } from '@/data/copilots/pathway-data';
+import { therapyFitData } from '@/data/copilots/therapy-fit-data';
 
 interface ObservedOutcomesSectionProps {
-  dataSource?: 'toxicity' | 'pathway';
+  dataSource?: 'toxicity' | 'pathway' | 'therapy-fit';
 }
 
 export default function ObservedOutcomesSection({ dataSource = 'toxicity' }: ObservedOutcomesSectionProps) {
@@ -20,10 +21,17 @@ export default function ObservedOutcomesSection({ dataSource = 'toxicity' }: Obs
     Map,
     Database,
     Link,
+    ListChecks,
+    TrendingUp,
+    Fingerprint,
   };
 
-  const data = dataSource === 'pathway' ? pathwayData : toxicityData;
-  const title = dataSource === 'pathway' ? 'Pathway Analysis' : 'Toxicity Risk Assessment';
+  const data = dataSource === 'pathway' ? pathwayData : 
+               dataSource === 'therapy-fit' ? therapyFitData : 
+               toxicityData;
+  const title = dataSource === 'pathway' ? 'Pathway Analysis' : 
+                dataSource === 'therapy-fit' ? 'Therapy Fit' : 
+                'Toxicity Risk Assessment';
 
   const colorMap: Record<string, string> = {
     blue: 'bg-blue-100 text-blue-600 border-blue-200',
