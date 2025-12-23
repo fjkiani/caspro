@@ -48,7 +48,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         keyMetric: "Pathway alignment",
         description: "Your tumor's pathway burden (DDR, MAPK, PI3K) matched to trial drug mechanisms. DDR-high patients see PARP+ATR trials ranked first.",
         icon: "Target",
-        color: "purple"
+        color: "indigo"
       },
       {
         title: "Shortlist Compression",
@@ -89,9 +89,9 @@ export const clinicalTrialsData: CoPilotDetailContent = {
           keyMetric: "Pathway Burden → Mechanism Fit",
           description: "Compute 7D mechanism vector from patient mutations (DDR, MAPK, PI3K, VEGF, HER2, IO, Efflux). Match to trial drug mechanisms via cosine similarity. Rank by 0.7×eligibility + 0.3×mechanism_fit.",
           icon: "Settings",
-          color: "purple",
+          color: "indigo",
           components: [
-            { title: "Pathway Analysis", subtitle: "7D mechanism vector", iconName: "Activity", color: "purple", features: ["DDR pathway burden", "MAPK/PI3K/VEGF scores", "IO eligibility", "Efflux detection"] },
+            { title: "Pathway Analysis", subtitle: "7D mechanism vector", iconName: "Activity", color: "indigo", features: ["DDR pathway burden", "MAPK/PI3K/VEGF scores", "IO eligibility", "Efflux detection"] },
             { title: "Mechanism Matching", subtitle: "Cosine similarity", iconName: "Target", color: "indigo", features: ["Trial MoA vectors", "Pathway alignment", "Mechanism fit scores", "Combined ranking"] }
           ],
           features: ["Pathway analysis", "Mechanism matching", "Combined ranking"]
@@ -103,7 +103,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
           icon: "Microscope",
           color: "teal",
           components: [
-            { title: "Pathway-Based Ranking", subtitle: "Target vulnerabilities", iconName: "Target", color: "purple", features: ["DDR-high → PARP trials", "MAPK-driven → MEK/RAF trials", "IO-eligible → Checkpoint inhibitors"] },
+            { title: "Pathway-Based Ranking", subtitle: "Target vulnerabilities", iconName: "Target", color: "indigo", features: ["DDR-high → PARP trials", "MAPK-driven → MEK/RAF trials", "IO-eligible → Checkpoint inhibitors"] },
             { title: "Combined Scoring", subtitle: "Eligibility + mechanism", iconName: "BarChart", color: "indigo", features: ["0.7×eligibility + 0.3×mechanism_fit", "Minimum thresholds", "SOC preservation"] }
           ],
           features: ["Pathway-based ranking", "Combined scoring", "Clinical actionability"]
@@ -115,7 +115,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
           icon: "Briefcase",
           color: "indigo",
           components: [
-            { title: "Competitive Advantage", subtitle: "Unique capability", iconName: "Award", color: "purple", features: ["Mechanism-based ranking", "Pathway alignment", "Precision oncology"] },
+            { title: "Competitive Advantage", subtitle: "Unique capability", iconName: "Award", color: "indigo", features: ["Mechanism-based ranking", "Pathway alignment", "Precision oncology"] },
             { title: "Better Outcomes", subtitle: "Targeted matching", iconName: "TrendingUp", color: "indigo", features: ["Higher response rates", "Faster enrollment", "Better patient fit"] }
           ],
           features: ["Competitive advantage", "Better outcomes", "Clinical trust"]

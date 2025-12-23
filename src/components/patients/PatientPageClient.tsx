@@ -152,7 +152,7 @@ const PatientPageClient: React.FC = () => {
                 cyan: 'from-cyan-900/20 to-cyan-800/20 border-cyan-700/50 text-cyan-300',
                 green: 'from-green-900/20 to-green-800/20 border-green-700/50 text-green-300',
                 orange: 'from-orange-900/20 to-orange-800/20 border-orange-700/50 text-orange-300',
-              }[benefit.color];
+              }[benefit.color] || 'from-blue-900/20 to-blue-800/20 border-blue-700/50 text-blue-300';
 
               return (
                 <motion.div

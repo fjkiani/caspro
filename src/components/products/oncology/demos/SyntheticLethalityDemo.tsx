@@ -239,3 +239,4 @@ const SyntheticLethalityDemo: React.FC<SyntheticLethalityDemoProps> = ({ seedDat
 
 export default SyntheticLethalityDemo;
 
+

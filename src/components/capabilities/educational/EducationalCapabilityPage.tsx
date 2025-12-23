@@ -16,6 +16,9 @@ import {
   EducationalPageLayout,
 } from './index';
 import ToxicitySolutionInteractive from './ToxicitySolutionInteractive';
+import PathwaySolutionInteractive from './PathwaySolutionInteractive';
+import TherapyFitSolutionInteractive from './TherapyFitSolutionInteractive';
+import ClinicalTrialsSolutionInteractive from './ClinicalTrialsSolutionInteractive';
 import ValuePropsSection from './ValuePropsSection';
 import ObservedOutcomesSection from './ObservedOutcomesSection';
 import KeyCapabilitiesSection from './KeyCapabilitiesSection';
@@ -56,6 +59,8 @@ export default function EducationalCapabilityPage({
           <PathwaySolutionInteractive data={data.solution} />
         ) : capabilitySlug === 'match-patients-to-therapies' ? (
           <TherapyFitSolutionInteractive data={data.solution} />
+        ) : capabilitySlug === 'clinical-trials' ? (
+          <ClinicalTrialsSolutionInteractive data={data.solution} />
         ) : (
           <ToxicitySolutionInteractive data={data.solution} />
         )}
@@ -85,13 +90,15 @@ export default function EducationalCapabilityPage({
       </section>
 
       {/* Key Capabilities Section */}
-      <section id="key-capabilities" className="scroll-mt-24">
-        <KeyCapabilitiesSection dataSource={
-          capabilitySlug === 'target-validation' ? 'pathway' : 
-          capabilitySlug === 'match-patients-to-therapies' ? 'therapy-fit' : 
-          'toxicity'
-        } />
-      </section>
+      {data.sourceData?.keyCapabilities && data.sourceData.keyCapabilities.length > 0 && (
+        <section id="key-capabilities" className="scroll-mt-24">
+          <KeyCapabilitiesSection 
+            data={data.sourceData}
+            title="Core Capabilities"
+            description="Deep dive into each capability: technical implementation, scientific foundation, and business value"
+          />
+        </section>
+      )}
 
       {/* Process Visualizer Section */}
       <section id="process" className="scroll-mt-24">
@@ -138,7 +145,7 @@ export default function EducationalCapabilityPage({
                   <ul className="space-y-2">
                     {data.sourceData.keyCapabilities?.map((cap, idx) => (
                       <li key={idx} className="text-slate-700">
-                        <strong>{cap.title}:</strong> {cap.technical?.description}
+                        <strong>{cap.title}:</strong> {typeof cap.technical === 'object' ? cap.technical.description : cap.technical}
                       </li>
                     ))}
                   </ul>

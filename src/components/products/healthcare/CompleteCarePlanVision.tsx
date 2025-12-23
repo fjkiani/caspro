@@ -11,9 +11,9 @@ export default function CompleteCarePlanVision() {
     title: clinicalCarePlanContent.completeCarePlanVision.title,
     description: clinicalCarePlanContent.completeCarePlanVision.description,
     cards: clinicalCarePlanContent.completeCarePlanVision.components.map((component, idx) => {
-      const icons: Array<'navigation' | 'trendingUp' | 'activity' | 'shield' | 'check'> = ['navigation', 'trendingUp', 'activity', 'shield', 'check'];
+      const icons: Array<'document' | 'clock' | 'search' | 'zap' | 'infinity' | 'check'> = ['zap', 'infinity', 'search', 'document', 'check'];
       return {
-        icon: icons[idx] || 'navigation',
+        icon: icons[idx] || 'zap',
         title: component,
         description: getComponentDescription(component),
       };

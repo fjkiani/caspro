@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Dna, Activity, Apple, Clock, CheckCircle, ArrowRight, Shield } from 'lucide-react';
+import { Dna, Activity, Apple, Clock, CheckCircle, ArrowRight, Shield, Target, Search, FileText, Layers, BarChart3, Map, Link } from 'lucide-react';
 import { SolutionNarrativeSectionData } from '@/types/educational-capability';
 
 interface ToxicitySolutionInteractiveProps {
@@ -27,80 +27,49 @@ interface SolutionStep {
   }[];
 }
 
-const solutionSteps: SolutionStep[] = [
-  {
-    id: 'pharmacogene',
-    number: 1,
-    title: 'Pharmacogene Detection',
-    description: 'Screens 20+ drug-metabolizing enzymes for variants that affect drug breakdown',
-    icon: Dna,
-    color: 'blue',
-    details: [
-      { label: 'Genes Screened', value: '20+ pharmacogenes' },
-      { label: 'High-Impact', value: 'DPYD, TPMT, UGT1A1, CYP2D6' },
-      { label: 'Risk Weight', value: '0.4 for high-impact genes' },
-    ],
-    metrics: [
-      { label: 'Coverage', value: '100% PGx' },
-      { label: 'Genes', value: '20+' },
-    ],
-  },
-  {
-    id: 'pathway-overlap',
-    number: 2,
-    title: 'Pathway Overlap Analysis',
-    description: 'Maps drug MoA to toxic pathways and computes overlap with patient germline variants',
-    icon: Activity,
-    color: 'green',
-    details: [
-      { label: 'Pathways', value: 'DNA repair, Inflammation, Cardiometabolic' },
-      { label: 'Drug MoAs', value: '15+ mechanisms mapped' },
-      { label: 'Example', value: 'Platinum → DNA repair: 0.9 overlap' },
-    ],
-    metrics: [
-      { label: 'Pathways', value: '3' },
-      { label: 'MoAs', value: '15+' },
-    ],
-  },
-  {
-    id: 'mitigating-foods',
-    number: 3,
-    title: 'Mitigating Foods Mapping',
-    description: 'Connects pathway overlap to specific foods with timing and dosage',
-    icon: Apple,
-    color: 'purple',
-    details: [
-      { label: 'DNA Repair', value: 'NAC, Vitamin D, Folate (post-chemo)' },
-      { label: 'Inflammation', value: 'Omega-3, Curcumin, EGCG (post-infusion)' },
-      { label: 'Cardiometabolic', value: 'CoQ10, L-Carnitine, Magnesium (continuous)' },
-    ],
-    metrics: [
-      { label: 'Compounds', value: '9' },
-      { label: 'Pathways', value: '3' },
-    ],
-  },
-  {
-    id: 'timing-dosage',
-    number: 4,
-    title: 'Personalized Timing & Dosage',
-    description: 'Recommends when to take supplements with specific dosages',
-    icon: Clock,
-    color: 'orange',
-    details: [
-      { label: 'Post-Infusion', value: 'NAC (600mg twice daily)' },
-      { label: 'Continuous', value: 'Vitamin D, CoQ10' },
-      { label: 'Between Meals', value: 'Curcumin' },
-    ],
-    metrics: [
-      { label: 'Timing Types', value: '3' },
-      { label: 'Personalized', value: '100%' },
-    ],
-  },
-];
+// Icon mapping for data-driven icons
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Dna, Activity, Apple, Clock, Shield, Target, Search, FileText, Layers, BarChart3, Map, Link,
+};
 
 export default function ToxicitySolutionInteractive({ data, className = '' }: ToxicitySolutionInteractiveProps) {
-  const [activeStep, setActiveStep] = useState<string>('pharmacogene');
+  // Transform data.visualFlow into solution steps
+  const solutionSteps: SolutionStep[] = useMemo(() => {
+    if (!data.visualFlow || data.visualFlow.length === 0) {
+      // Fallback to empty array if no visualFlow data
+      return [];
+    }
+
+    return data.visualFlow.map((step, idx) => {
+      // Get icon from step.icon or keyFeatures[idx].icon, fallback to Dna
+      const iconName = step.icon || data.keyFeatures?.[idx]?.icon || 'Dna';
+      const IconComponent = iconMap[iconName] || Dna;
+      
+      // Get color from step.color or default sequence
+      const colors: ('blue' | 'green' | 'purple' | 'orange')[] = ['blue', 'green', 'purple', 'orange'];
+      const color = step.color || colors[idx % colors.length];
+      
+      return {
+        id: `step-${step.number}`,
+        number: step.number,
+        title: step.title,
+        description: step.description,
+        icon: IconComponent,
+        color,
+        details: step.details || [],
+        metrics: step.metrics || [],
+      };
+    });
+  }, [data.visualFlow, data.keyFeatures]);
+
+  // Default to first step if available
+  const [activeStep, setActiveStep] = useState<string>(solutionSteps[0]?.id || '');
   const selectedStep = solutionSteps.find(s => s.id === activeStep) || solutionSteps[0];
+
+  // Early return if no steps
+  if (solutionSteps.length === 0) {
+    return null;
+  }
 
   return (
     <section className={`py-16 px-4 md:px-8 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 ${className}`}>
@@ -290,36 +259,39 @@ export default function ToxicitySolutionInteractive({ data, className = '' }: To
           </motion.div>
         </AnimatePresence>
 
-        {/* MOAT Badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-8 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border-2 border-green-200"
-        >
-          <h3 className="text-xl font-semibold text-slate-900 mb-4 text-center">
-            The Patient MOAT (What We Just Built)
-          </h3>
-          <div className="grid md:grid-cols-3 gap-4">
-            {[
-              { icon: Activity, label: 'Toxicity pathway detection', value: 'Knows which pathways your drug stresses' },
-              { icon: Apple, label: 'Mitigating foods mapping', value: 'Knows which foods support those pathways' },
-              { icon: Clock, label: 'Personalized timing', value: 'Knows when to take supplements' },
-            ].map((moat, idx) => {
-              const MoatIcon = moat.icon;
-              return (
-                <div key={idx} className="bg-white rounded-xl p-4 border-2 border-green-200">
-                  <div className="flex items-center gap-3 mb-2">
-                    <MoatIcon className="w-5 h-5 text-green-600" />
-                    <span className="font-semibold text-slate-900 text-sm">{moat.label}</span>
+        {/* MOAT Badges - Data-driven from keyFeatures */}
+        {data.keyFeatures && data.keyFeatures.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-8 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border-2 border-green-200"
+          >
+            <h3 className="text-xl font-semibold text-slate-900 mb-4 text-center">
+              The Patient MOAT (What We Just Built)
+            </h3>
+            <div className={`grid gap-4 ${
+              data.keyFeatures.length === 1 ? 'md:grid-cols-1' :
+              data.keyFeatures.length === 2 ? 'md:grid-cols-2' :
+              data.keyFeatures.length === 3 ? 'md:grid-cols-3' :
+              'md:grid-cols-4'
+            }`}>
+              {data.keyFeatures.map((feature, idx) => {
+                const FeatureIcon = iconMap[feature.icon] || Activity;
+                return (
+                  <div key={idx} className="bg-white rounded-xl p-4 border-2 border-green-200">
+                    <div className="flex items-center gap-3 mb-2">
+                      <FeatureIcon className="w-5 h-5 text-green-600" />
+                      <span className="font-semibold text-slate-900 text-sm">{feature.title}</span>
+                    </div>
+                    <p className="text-sm text-slate-600">{feature.description}</p>
                   </div>
-                  <p className="text-sm text-slate-600">{moat.value}</p>
-                </div>
-              );
-            })}
-          </div>
-        </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
 
         {/* Closing Statement */}
         <motion.p

@@ -59,7 +59,7 @@ export default function ObservedOutcomesSection({ dataSource = 'toxicity' }: Obs
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {data.observedOutcomes.map((outcome, idx) => {
+          {data.observedOutcomes?.map((outcome, idx) => {
             const Icon = iconMap[outcome.icon] || Dna;
             const colorClass = colorMap[outcome.color] || colorMap.blue;
             

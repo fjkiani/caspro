@@ -64,7 +64,6 @@ export default async function RDProductPage() {
         <div className="container mx-auto px-4 py-8">
           <RDTabs content={content} />
         </div>
-      </div>
 
         {/* Related Products Section */}
         <section className="mt-24">

@@ -2,27 +2,34 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Dna, Activity, Apple, BookOpen, Microscope, Shield, Target, Pill, Map, Flame, Heart, Clock, CheckCircle, MessageSquare, BarChart3, Database, Link, Calculator, Gauge, Plus, Settings, AlertCircle, Eye, Layers, XCircle, Award } from 'lucide-react';
-import { toxicityData } from '@/data/copilots/toxicity-data';
-import { pathwayData } from '@/data/copilots/pathway-data';
-import { therapyFitData } from '@/data/copilots/therapy-fit-data';
+import { Dna, Activity, Apple, BookOpen, Microscope, Shield, Target, Pill, Map, Flame, Heart, Clock, CheckCircle, MessageSquare, BarChart3, Database, Link, Calculator, Gauge, Plus, Settings, AlertCircle, Eye, Layers, XCircle, Award, ChevronDown } from 'lucide-react';
+import { CoPilotDetailContent } from '@/types/copilot-types';
 
 interface KeyCapabilitiesSectionProps {
-  dataSource?: 'toxicity' | 'pathway' | 'therapy-fit';
+  data?: CoPilotDetailContent;
+  title?: string;
+  description?: string;
 }
 
-export default function KeyCapabilitiesSection({ dataSource = 'toxicity' }: KeyCapabilitiesSectionProps) {
+export default function KeyCapabilitiesSection({ 
+  data,
+  title = 'Core Capabilities',
+  description = 'Deep dive into each capability: technical implementation, scientific foundation, and business value'
+}: KeyCapabilitiesSectionProps) {
   const [expandedCapability, setExpandedCapability] = useState<string | null>(null);
   
-  const data = dataSource === 'pathway' ? pathwayData : 
-               dataSource === 'therapy-fit' ? therapyFitData : 
-               toxicityData;
-  const title = dataSource === 'pathway' ? 'Pathway Analysis' : 
-                dataSource === 'therapy-fit' ? 'Therapy Fit' : 
-                'Toxicity Risk Assessment';
+  // Early return if no data
+  if (!data || !data.keyCapabilities || data.keyCapabilities.length === 0) {
+    return null;
+  }
 
   const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-    Dna, Activity, Apple, BookOpen, Microscope, Shield, Target, Pill, Map, Flame, Heart, Clock, CheckCircle, MessageSquare, BarChart3, Database, Link, Calculator, Gauge, Plus, Settings, AlertCircle,
+    Dna, Activity, Apple, BookOpen, Microscope, Shield, Target, Pill, Map, Flame, Heart, Clock, CheckCircle, MessageSquare, BarChart3, Database, Link, Calculator, Gauge, Plus, Settings, AlertCircle, Eye, Layers, XCircle, Award,
+  };
+  
+  // Helper to get icon with fallback
+  const getIcon = (iconName: string): React.ComponentType<{ className?: string }> => {
+    return iconMap[iconName] || Dna; // Fallback to Dna if icon not found
   };
 
   return (
@@ -36,10 +43,10 @@ export default function KeyCapabilitiesSection({ dataSource = 'toxicity' }: KeyC
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-            Core Capabilities
+            {title}
           </h2>
           <p className="text-lg text-slate-700 max-w-3xl mx-auto">
-            Deep dive into each capability: technical implementation, scientific foundation, and business value
+            {description}
           </p>
         </motion.div>
 
@@ -74,7 +81,7 @@ export default function KeyCapabilitiesSection({ dataSource = 'toxicity' }: KeyC
                     animate={{ rotate: isExpanded ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <CheckCircle className="w-6 h-6 text-slate-400" />
+                    <ChevronDown className="w-6 h-6 text-slate-400" />
                   </motion.div>
                 </button>
 
@@ -91,6 +98,7 @@ export default function KeyCapabilitiesSection({ dataSource = 'toxicity' }: KeyC
                       <div className="p-6 pt-0 border-t border-slate-200">
                         <div className="grid md:grid-cols-3 gap-6">
                           {/* Technical */}
+                          {typeof capability.technical === 'object' && (
                           <div className="bg-blue-50 rounded-xl p-4 border-2 border-blue-200">
                             <div className="flex items-center gap-2 mb-3">
                               <Target className="w-5 h-5 text-blue-600" />
@@ -101,8 +109,8 @@ export default function KeyCapabilitiesSection({ dataSource = 'toxicity' }: KeyC
                             </div>
                             <p className="text-sm text-slate-700 mb-4">{capability.technical.description}</p>
                             <div className="space-y-2">
-                              {capability.technical.components.map((comp, compIdx) => {
-                                const CompIcon = iconMap[comp.iconName] || Dna;
+                              {capability.technical.components?.map((comp, compIdx) => {
+                                const CompIcon = getIcon(comp.iconName);
                                 return (
                                   <div key={compIdx} className="flex items-start gap-2 text-sm">
                                     <CompIcon className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
@@ -115,8 +123,10 @@ export default function KeyCapabilitiesSection({ dataSource = 'toxicity' }: KeyC
                               })}
                             </div>
                           </div>
+                          )}
 
                           {/* Scientific */}
+                          {typeof capability.scientific === 'object' && (
                           <div className="bg-green-50 rounded-xl p-4 border-2 border-green-200">
                             <div className="flex items-center gap-2 mb-3">
                               <BookOpen className="w-5 h-5 text-green-600" />
@@ -127,8 +137,8 @@ export default function KeyCapabilitiesSection({ dataSource = 'toxicity' }: KeyC
                             </div>
                             <p className="text-sm text-slate-700 mb-4">{capability.scientific.description}</p>
                             <div className="space-y-2">
-                              {capability.scientific.components.map((comp, compIdx) => {
-                                const CompIcon = iconMap[comp.iconName] || BookOpen;
+                              {capability.scientific.components?.map((comp, compIdx) => {
+                                const CompIcon = getIcon(comp.iconName);
                                 return (
                                   <div key={compIdx} className="flex items-start gap-2 text-sm">
                                     <CompIcon className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
@@ -141,8 +151,10 @@ export default function KeyCapabilitiesSection({ dataSource = 'toxicity' }: KeyC
                               })}
                             </div>
                           </div>
+                          )}
 
                           {/* Business */}
+                          {typeof capability.business === 'object' && (
                           <div className="bg-purple-50 rounded-xl p-4 border-2 border-purple-200">
                             <div className="flex items-center gap-2 mb-3">
                               <Shield className="w-5 h-5 text-purple-600" />
@@ -153,8 +165,8 @@ export default function KeyCapabilitiesSection({ dataSource = 'toxicity' }: KeyC
                             </div>
                             <p className="text-sm text-slate-700 mb-4">{capability.business.description}</p>
                             <div className="space-y-2">
-                              {capability.business.components.map((comp, compIdx) => {
-                                const CompIcon = iconMap[comp.iconName] || Shield;
+                              {capability.business.components?.map((comp, compIdx) => {
+                                const CompIcon = getIcon(comp.iconName);
                                 return (
                                   <div key={compIdx} className="flex items-start gap-2 text-sm">
                                     <CompIcon className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
@@ -167,6 +179,7 @@ export default function KeyCapabilitiesSection({ dataSource = 'toxicity' }: KeyC
                               })}
                             </div>
                           </div>
+                          )}
                         </div>
                       </div>
                     </motion.div>

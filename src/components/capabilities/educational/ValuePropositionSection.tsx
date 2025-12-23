@@ -152,8 +152,33 @@ export default function ValuePropositionSection({ data, className = '' }: ValueP
             transition={{ duration: 0.5, delay: 0.6 }}
             className="mt-8"
           >
-            {/* Render infographic based on type */}
-            {data.infographic}
+            {/* Render infographic table */}
+            {data.infographic && (
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-slate-200">
+                  <thead>
+                    <tr>
+                      {data.infographic.headers.map((header, idx) => (
+                        <th key={idx} className="px-4 py-3 text-left text-sm font-semibold text-slate-900 bg-slate-50">
+                          {header}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-slate-200">
+                    {data.infographic.rows.map((row, rowIdx) => (
+                      <tr key={rowIdx}>
+                        {data.infographic!.headers.map((header, colIdx) => (
+                          <td key={colIdx} className="px-4 py-3 text-sm text-slate-700">
+                            {row[header] || '-'}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </motion.div>
         )}
 

@@ -107,7 +107,7 @@ export default function ProcessVisualizer({ data, className = '' }: ProcessVisua
                 }`}
               >
                 <div className="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-sm mx-auto mb-3">
-                  {step.stepNumber || step.number}
+                  {step.number}
                 </div>
                 <h5 className="font-bold text-teal-700 mb-2">{step.title}</h5>
                 <p className="text-xs text-slate-600 mb-2">{step.description}</p>

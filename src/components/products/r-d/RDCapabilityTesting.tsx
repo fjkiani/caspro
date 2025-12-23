@@ -19,32 +19,41 @@ export default function RDCapabilityTesting() {
   const [testResults, setTestResults] = useState<any>(null);
 
   const rdCapabilities = rDProductData.keyCapabilities.map((cap, idx) => {
-    const confidence = cap.technical.keyMetric.includes('%') 
-      ? parseFloat(cap.technical.keyMetric.replace('%', ''))
-      : cap.technical.keyMetric.includes('AUROC')
+    const technical = typeof cap.technical === 'object' ? cap.technical : null;
+    const scientific = typeof cap.scientific === 'object' ? cap.scientific : null;
+    const business = typeof cap.business === 'object' ? cap.business : null;
+    
+    const technicalKeyMetric = technical?.keyMetric || '';
+    const scientificKeyMetric = scientific?.keyMetric || '';
+    const businessKeyMetric = business?.keyMetric || '';
+    const technicalDescription = technical?.description || '';
+    
+    const confidence = technicalKeyMetric.includes('%') 
+      ? parseFloat(technicalKeyMetric.replace('%', ''))
+      : technicalKeyMetric.includes('AUROC')
       ? 95.7
-      : cap.technical.keyMetric.includes('coherence')
+      : technicalKeyMetric.includes('coherence')
       ? 70
-      : cap.technical.keyMetric.includes('confidence')
+      : technicalKeyMetric.includes('confidence')
       ? 95.8
       : 90;
 
     return {
       id: cap.title.toLowerCase().replace(/\s+/g, '-'),
       title: cap.title,
-      problem: cap.technical.description.split('\n\n')[0],
-      solution: cap.technical.keyMetric,
-      outcome: cap.business.keyMetric,
+      problem: technicalDescription.split('\n\n')[0] || '',
+      solution: technicalKeyMetric,
+      outcome: businessKeyMetric,
       icon: iconMap[idx] || Target,
       confidence: confidence,
       time: '2-5 seconds',
-      evidence: `${cap.technical.keyMetric} - ${cap.scientific.keyMetric}`,
+      evidence: `${technicalKeyMetric} - ${scientificKeyMetric}`,
       metrics: {
-        technical: cap.technical.keyMetric,
-        scientific: cap.scientific.keyMetric,
-        business: cap.business.keyMetric,
+        technical: technicalKeyMetric,
+        scientific: scientificKeyMetric,
+        business: businessKeyMetric,
       },
-      description: cap.technical.description,
+      description: technicalDescription,
     };
   });
 
@@ -268,4 +277,5 @@ export default function RDCapabilityTesting() {
     </section>
   );
 }
+
 

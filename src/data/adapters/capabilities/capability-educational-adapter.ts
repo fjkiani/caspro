@@ -105,12 +105,16 @@ function transformSolution(
   return {
     title: moatDoc.solution?.title || 'The Solution',
     narrative: moatDoc.solution?.narrative || copilotData.vision || '',
-    keyFeatures: copilotData.keyCapabilities?.map(cap => ({
-      title: cap.title,
-      description: cap.business?.description || cap.technical?.description || '',
-      icon: cap.technical?.icon || 'CheckCircle',
-      status: 'implemented' as const,
-    })) || [],
+    keyFeatures: copilotData.keyCapabilities?.map(cap => {
+      const business = typeof cap.business === 'object' ? cap.business : null;
+      const technical = typeof cap.technical === 'object' ? cap.technical : null;
+      return {
+        title: cap.title,
+        description: business?.description || technical?.description || '',
+        icon: technical?.icon || 'CheckCircle',
+        status: 'implemented' as const,
+      };
+    }) || [],
     visualFlow: moatDoc.howItWorks?.steps.map(step => ({
       number: step.number,
       title: step.title,
@@ -127,11 +131,11 @@ function transformHowItWorks(
   const steps = moatDoc.howItWorks?.steps || copilotData.keyCapabilities?.map((cap, idx) => ({
     number: idx + 1,
     title: cap.title,
-    description: cap.technical?.description || cap.scientific?.description || '',
+    description: (typeof cap.technical === 'object' ? cap.technical?.description : null) || (typeof cap.scientific === 'object' ? cap.scientific?.description : null) || '',
     details: [
-      { label: 'Technical', value: cap.technical?.keyMetric || '' },
-      { label: 'Scientific', value: cap.scientific?.keyMetric || '' },
-      { label: 'Business', value: cap.business?.keyMetric || '' },
+      { label: 'Technical', value: typeof cap.technical === 'object' ? cap.technical?.keyMetric || '' : '' },
+      { label: 'Scientific', value: typeof cap.scientific === 'object' ? cap.scientific?.keyMetric || '' : '' },
+      { label: 'Business', value: typeof cap.business === 'object' ? cap.business?.keyMetric || '' : '' },
     ].filter(d => d.value),
   })) || [];
 
@@ -178,14 +182,19 @@ function transformIntegration(
 }
 
 function transformConcepts(copilotData: CoPilotDetailContent): ConceptExplainerData {
-  const concepts = copilotData.keyCapabilities?.map(cap => ({
-    term: cap.title,
-    definition: cap.technical?.description || cap.scientific?.description || '',
-    example: cap.business?.description,
-    related: copilotData.keyCapabilities
-      ?.filter(c => c.title !== cap.title)
-      .map(c => c.title) || [],
-  })) || [];
+  const concepts = copilotData.keyCapabilities?.map(cap => {
+    const technical = typeof cap.technical === 'object' ? cap.technical : null;
+    const scientific = typeof cap.scientific === 'object' ? cap.scientific : null;
+    const business = typeof cap.business === 'object' ? cap.business : null;
+    return {
+      term: cap.title,
+      definition: technical?.description || scientific?.description || '',
+      example: business?.description,
+      related: copilotData.keyCapabilities
+        ?.filter(c => c.title !== cap.title)
+        .map(c => c.title) || [],
+    };
+  }) || [];
 
   return {
     concepts,
@@ -201,7 +210,7 @@ function transformProcess(
   const steps = moatDoc.howItWorks?.steps || copilotData.keyCapabilities?.map((cap, idx) => ({
     number: idx + 1,
     title: cap.title,
-    description: cap.technical?.description || '',
+    description: typeof cap.technical === 'object' ? cap.technical?.description || '' : '',
   })) || [];
 
   return {
@@ -233,12 +242,16 @@ function transformExample(
       profile: ['Patient profile information'],
       question: 'How can this capability help me?',
     },
-    solution: copilotData.keyCapabilities?.map((cap, idx) => ({
-      step: idx + 1,
-      title: cap.title,
-      description: cap.technical?.description || '',
-      result: cap.business?.keyMetric || 'Improved outcome',
-    })) || [],
+    solution: copilotData.keyCapabilities?.map((cap, idx) => {
+      const technical = typeof cap.technical === 'object' ? cap.technical : null;
+      const business = typeof cap.business === 'object' ? cap.business : null;
+      return {
+        step: idx + 1,
+        title: cap.title,
+        description: technical?.description || '',
+        result: business?.keyMetric || 'Improved outcome',
+      };
+    }) || [],
     outcome: copilotData.kpis?.map(kpi => ({
       metric: kpi.label,
       value: kpi.value,

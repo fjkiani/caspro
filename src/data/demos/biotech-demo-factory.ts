@@ -237,3 +237,4 @@ export const biotechDemoFactory: { biotechRnD: DemoCategory } = {
   }
 };
 
+

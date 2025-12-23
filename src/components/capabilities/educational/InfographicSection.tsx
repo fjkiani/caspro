@@ -78,7 +78,7 @@ export default function InfographicSection({ data, className = '' }: Infographic
           <div className="bg-slate-100 rounded-xl p-6 border-2 border-slate-300">
             <h4 className="font-semibold text-slate-900 mb-4">{data.data.left.title}</h4>
             <ul className="space-y-2">
-              {data.data.left.items?.map((item, idx) => (
+              {data.data.left.items?.map((item: string, idx: number) => (
                 <li key={idx} className="flex items-start gap-2 text-slate-700">
                   <span className="text-red-500">❌</span>
                   <span>{item}</span>
@@ -91,7 +91,7 @@ export default function InfographicSection({ data, className = '' }: Infographic
           <div className="bg-green-50 rounded-xl p-6 border-2 border-green-400">
             <h4 className="font-semibold text-green-900 mb-4">{data.data.right.title}</h4>
             <ul className="space-y-2">
-              {data.data.right.items?.map((item, idx) => (
+              {data.data.right.items?.map((item: string, idx: number) => (
                 <li key={idx} className="flex items-start gap-2 text-green-800">
                   <span className="text-green-600">✅</span>
                   <span>{item}</span>
@@ -140,7 +140,7 @@ export default function InfographicSection({ data, className = '' }: Infographic
     
     return (
       <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-        {data.data.steps?.map((step, idx) => (
+        {data.data.steps?.map((step: { number?: number; title: string; description: string }, idx: number) => (
           <React.Fragment key={idx}>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}

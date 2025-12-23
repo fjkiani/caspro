@@ -264,3 +264,4 @@ function mapOutcomeToIcon(icon: string): 'document' | 'clock' | 'search' | 'zap'
   return iconMap[icon] || 'check';
 }
 
+

@@ -180,3 +180,4 @@ const ClinicalWorkflow: React.FC<ClinicalWorkflowProps> = ({
 
 export default ClinicalWorkflow;
 
+

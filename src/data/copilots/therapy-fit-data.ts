@@ -290,7 +290,7 @@ export const therapyFitData: CoPilotDetailContent = {
             title: "Regulatory Chip",
             subtitle: "Splicing and non-coding impact (threshold: 0.6, lift: +0.02)",
             iconName: "Settings",
-            color: "purple"
+            color: "indigo"
           }
         ]
       },

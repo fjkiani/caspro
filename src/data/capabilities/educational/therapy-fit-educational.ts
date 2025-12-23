@@ -303,9 +303,8 @@ export const therapyFitEducationalData: EducationalCapabilityPageData = {
     title: "Real Example: Melanoma with BRAF V600E Mutation",
     patient: {
       name: "Patient MEL-001",
-      diagnosis: "Metastatic melanoma",
-      keyMutations: ["BRAF:c.1799T>A (V600E)"],
-      pathwayDisruptions: ["MAPK: 0.85"],
+      profile: ["Metastatic melanoma", "BRAF:c.1799T>A (V600E)", "MAPK: 0.85"],
+      question: "Which drug should I prescribe for this BRAF V600E patient?",
     },
     solution: [
       {
@@ -350,6 +349,12 @@ export const therapyFitEducationalData: EducationalCapabilityPageData = {
         impact: "Strong evidence with PathwayAligned badge",
       },
     ],
+  },
+
+  // Concepts Section (required by type)
+  concepts: {
+    layout: 'accordion' as const,
+    concepts: [],
   },
 
   // Layout - Aligned with therapy-fit-data.ts structure

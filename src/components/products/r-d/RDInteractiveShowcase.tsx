@@ -33,17 +33,17 @@ export default function RDInteractiveShowcase() {
     return {
       id: cap.title.toLowerCase().replace(/\s+/g, '-'),
       title: cap.title,
-      description: cap.technical.description.split('\n\n')[0],
-      solution: cap.technical.keyMetric,
-      outcome: cap.business.keyMetric,
+      description: typeof cap.technical === 'object' ? (cap.technical.description || '').split('\n\n')[0] : '',
+      solution: typeof cap.technical === 'object' ? cap.technical.keyMetric : '',
+      outcome: typeof cap.business === 'object' ? cap.business.keyMetric : '',
       color: colorMap[idx] || 'blue',
       icon: iconMap[idx] || Target,
       metrics: {
-        technical: cap.technical.keyMetric,
-        scientific: cap.scientific.keyMetric,
-        business: cap.business.keyMetric,
+        technical: typeof cap.technical === 'object' ? cap.technical.keyMetric : '',
+        scientific: typeof cap.scientific === 'object' ? cap.scientific.keyMetric : '',
+        business: typeof cap.business === 'object' ? cap.business.keyMetric : '',
       },
-      features: cap.technical.components?.map(c => c.title) || [],
+      features: typeof cap.technical === 'object' && cap.technical.components ? cap.technical.components.map(c => c.title) : [],
     };
   });
 
@@ -192,18 +192,18 @@ export default function RDInteractiveShowcase() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <div>
                             <h4 className="font-semibold text-slate-800 mb-2">Technical</h4>
-                            <p className="text-sm text-slate-700">{fullCapability.technical.keyMetric}</p>
-                            <p className="text-xs text-slate-600 mt-1">{fullCapability.technical.description.split('\n\n')[0]}</p>
+                            <p className="text-sm text-slate-700">{typeof fullCapability.technical === 'object' ? fullCapability.technical.keyMetric : ''}</p>
+                            <p className="text-xs text-slate-600 mt-1">{typeof fullCapability.technical === 'object' ? (fullCapability.technical.description || '').split('\n\n')[0] : ''}</p>
                           </div>
                           <div>
                             <h4 className="font-semibold text-slate-800 mb-2">Scientific</h4>
-                            <p className="text-sm text-slate-700">{fullCapability.scientific.keyMetric}</p>
-                            <p className="text-xs text-slate-600 mt-1">{fullCapability.scientific.description.split('.')[0]}</p>
+                            <p className="text-sm text-slate-700">{typeof fullCapability.scientific === 'object' ? fullCapability.scientific.keyMetric : ''}</p>
+                            <p className="text-xs text-slate-600 mt-1">{typeof fullCapability.scientific === 'object' ? (fullCapability.scientific.description || '').split('.')[0] : ''}</p>
                           </div>
                           <div>
                             <h4 className="font-semibold text-slate-800 mb-2">Business</h4>
-                            <p className="text-sm text-slate-700">{fullCapability.business.keyMetric}</p>
-                            <p className="text-xs text-slate-600 mt-1">{fullCapability.business.description.split('.')[0]}</p>
+                            <p className="text-sm text-slate-700">{typeof fullCapability.business === 'object' ? fullCapability.business.keyMetric : ''}</p>
+                            <p className="text-xs text-slate-600 mt-1">{typeof fullCapability.business === 'object' ? (fullCapability.business.description || '').split('.')[0] : ''}</p>
                           </div>
                         </div>
                       </div>
@@ -237,4 +237,5 @@ export default function RDInteractiveShowcase() {
     </section>
   );
 }
+
 

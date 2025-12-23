@@ -58,6 +58,12 @@ export interface ProcessStepData {
     label: string;
     value: string;
   }[];
+  icon?: string;              // Icon name (e.g., "Activity", "Target")
+  color?: 'blue' | 'green' | 'purple' | 'orange' | 'teal' | 'indigo'; // Step color
+  metrics?: {                 // Key metrics for this step
+    label: string;
+    value: string;
+  }[];
 }
 
 export interface ValuePropositionSectionData {

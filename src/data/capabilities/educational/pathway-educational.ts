@@ -297,9 +297,8 @@ export const pathwayEducationalData: EducationalCapabilityPageData = {
     title: "Real Example: Ovarian Cancer with BRCA1 Mutations",
     patient: {
       name: "Patient OV-001",
-      diagnosis: "High-grade serous ovarian cancer",
-      keyMutations: ["BRCA1:c.5266dupC", "BRCA1:c.3113G>A"],
-      pathwayDisruptions: ["DDR: 0.85", "TP53: 0.42"],
+      profile: ["High-grade serous ovarian cancer", "BRCA1:c.5266dupC", "BRCA1:c.3113G>A", "DDR: 0.85", "TP53: 0.42"],
+      question: "Which drugs target the DDR pathway disruption?",
     },
     solution: [
       {
@@ -344,6 +343,12 @@ export const pathwayEducationalData: EducationalCapabilityPageData = {
         impact: "40% contribution from pathway component",
       },
     ],
+  },
+
+  // Concepts Section (required by type)
+  concepts: {
+    layout: 'accordion' as const,
+    concepts: [],
   },
 
   // Layout - Aligned with pathway-data.ts structure
