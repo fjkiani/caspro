@@ -116,10 +116,15 @@ export const NAV_LINKS = [
   //   label: 'Cancer 101',
   //   icon: <BookOpen className="inline-block h-4 w-4" />,
   // },
+  // {
+  //   href: '/blog',
+  //   label: 'Blog',
+  //   icon: <PenTool className="inline-block h-4 w-4" />,
+  // },
   {
-    href: '/blog',
-    label: 'Blog',
-    icon: <PenTool className="inline-block h-4 w-4" />,
+    href: '/docs',
+    label: 'Docs',
+    icon: <BookOpen className="inline-block h-4 w-4" />,
   },
   {
     href: '/use-cases',

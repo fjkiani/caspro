@@ -1,4 +1,6 @@
-import { Metadata } from 'next';
+'use client';
+
+import { use } from 'react';
 import { notFound } from 'next/navigation';
 import UseCaseDemoClient from '@/components/use-cases/UseCaseDemoClient';
 
@@ -9,30 +11,12 @@ import { generativeUseCases } from '@/data/use-cases/generative';
 const allUseCases = [...discriminativeUseCases, ...generativeUseCases];
 
 type PageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
-export async function generateStaticParams() {
-  return allUseCases.map((uc) => ({
-    id: uc.id,
-  }));
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const useCase = allUseCases.find(uc => uc.id === params.id);
-  
-  if (!useCase) {
-    return { title: 'Use Case Not Found | CrisPRO' };
-  }
-
-  return {
-    title: `${useCase.name} | CrisPRO Use Cases`,
-    description: useCase.summary,
-  };
-}
-
 export default function UseCaseDetailPage({ params }: PageProps) {
-  const useCase = allUseCases.find(uc => uc.id === params.id);
+  const { id } = use(params);
+  const useCase = allUseCases.find(uc => uc.id === id);
 
   if (!useCase) {
     notFound();
