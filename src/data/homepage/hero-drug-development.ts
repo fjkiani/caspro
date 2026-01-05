@@ -127,7 +127,7 @@ export const HERO_DRUG_DEVELOPMENT_CONFIG = {
     },
     tertiary: {
       text: "I am a patient",
-      href: "/products/oncology",
+      href: "/products/patient",
       icon: "👤"
     }
   },

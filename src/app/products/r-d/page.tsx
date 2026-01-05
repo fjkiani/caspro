@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { rDProductData } from '@/data/products/r-d-data';
 import Link from 'next/link';
-import RDTabs from './RDTabs';
+import dynamic from 'next/dynamic';
 import RDHeroSection from '@/components/products/r-d/RDHeroSection';
 import RDTransformationMetrics from '@/components/products/r-d/RDTransformationMetrics';
 import RDInteractiveShowcase from '@/components/products/r-d/RDInteractiveShowcase';
@@ -10,6 +10,12 @@ import RDCapabilityTesting from '@/components/products/r-d/RDCapabilityTesting';
 import RDCapabilityShowcase from '@/components/products/r-d/RDCapabilityShowcase';
 import RDEnginesSection from '@/components/products/r-d/RDEnginesSection';
 import RelatedIndustrySection from '@/components/products/shared/RelatedIndustrySection';
+
+// Dynamically import RDTabs to avoid chunk loading issues
+const RDTabs = dynamic(() => import('./RDTabs'), {
+  ssr: true,
+  loading: () => <div className="min-h-[400px] flex items-center justify-center"><div className="text-slate-600">Loading content...</div></div>
+});
 
 // Generate metadata for the R&D product page
 export async function generateMetadata(): Promise<Metadata> {

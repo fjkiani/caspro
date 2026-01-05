@@ -48,7 +48,7 @@ export default function AboutPage() {
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 sm:mb-6">Fusion Workflow</h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto">
-              Complete RUO workflow combining discriminative and generative AI for therapeutic discovery
+              Complete workflow combining discriminative and generative AI for therapeutic discovery
             </p>
           </div>
           <TherapeuticPipeline />

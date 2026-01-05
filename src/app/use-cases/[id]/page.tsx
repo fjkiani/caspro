@@ -11,11 +11,13 @@ import { generativeUseCases } from '@/data/use-cases/generative';
 const allUseCases = [...discriminativeUseCases, ...generativeUseCases];
 
 type PageProps = {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string }> | { id: string };
 };
 
 export default function UseCaseDetailPage({ params }: PageProps) {
-  const { id } = use(params);
+  // Handle both Promise and plain object cases for Next.js compatibility
+  const resolvedParams = params instanceof Promise ? use(params) : params;
+  const { id } = resolvedParams;
   const useCase = allUseCases.find(uc => uc.id === id);
 
   if (!useCase) {

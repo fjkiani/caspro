@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, TrendingUp, Target } from 'lucide-react';
+import { CheckCircle, TrendingUp } from 'lucide-react';
 
 interface AboutSectionProps {
   section: {
@@ -97,17 +97,6 @@ const AboutSection: React.FC<AboutSectionProps> = ({ section, index }) => {
                   <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">{section.businessImpact}</p>
                 </div>
               )}
-
-              {/* Additional visual element */}
-              <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-white rounded-xl shadow-sm border border-gray-200">
-                <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                  <Target className="w-4 h-4 sm:w-5 sm:h-5 text-teal-600" />
-                  <h4 className="text-base sm:text-lg font-semibold text-gray-800">Research Use Only</h4>
-                </div>
-                <p className="text-gray-600 text-xs sm:text-sm">
-                  All capabilities are designed for research purposes. Not intended for diagnostic or therapeutic decision-making without independent validation and regulatory review.
-                </p>
-              </div>
             </motion.div>
           </div>
         </motion.div>
