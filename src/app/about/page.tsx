@@ -9,7 +9,7 @@ import CapabilitiesGrid from '@/components/landing/CapabilitiesGrid';
 
 export const metadata: Metadata = {
   title: 'About CrisPRO.ai - In-Silico Research Framework',
-  description: 'Learn about CrisPRO.ai, our in-silico research framework that accelerates drug discovery through AI fusion of discriminative and generative capabilities.',
+    description: 'Learn about CrisPRO.ai, our in-silico research framework for drug discovery through AI fusion of discriminative and generative capabilities.',
 };
 
 export default function AboutPage() {

@@ -62,7 +62,7 @@ const PatientPageClient: React.FC = () => {
             >
               Transform uncertainty into action. Get personalized treatment insights, 
               resolve genetic variants, and access the latest clinical trials—all powered 
-              by breakthrough AI technology.
+              by AI technology.
             </motion.p>
 
             <motion.div
@@ -132,7 +132,7 @@ const PatientPageClient: React.FC = () => {
               {
                 icon: FileText,
                 title: 'Access Clinical Trials',
-                description: 'Find and match to cutting-edge clinical trials you qualify for.',
+                description: 'Find and match to clinical trials you qualify for.',
                 color: 'green',
                 stat: '1000+ Trials Analyzed'
               },
@@ -220,7 +220,7 @@ const PatientPageClient: React.FC = () => {
               {
                 step: '5',
                 title: 'Access Clinical Trials',
-                description: 'Discover cutting-edge trials you qualify for based on your molecular profile.',
+                description: 'Discover trials you qualify for based on your molecular profile.',
                 icon: Users,
                 color: 'orange'
               },
@@ -289,7 +289,7 @@ const PatientPageClient: React.FC = () => {
                 benchmark: 'ClinVar Gold Standard',
                 performance: '95.7% AUROC',
                 samples: '53,210 validated variants',
-                description: 'State-of-the-art accuracy for both coding and noncoding variants',
+                description: 'High accuracy for both coding and noncoding variants',
                 color: 'blue'
               },
               {
@@ -441,7 +441,7 @@ const PatientPageClient: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <div className="bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 border border-blue-700/50 rounded-3xl p-12 text-center space-y-6">
             <h2 className="text-4xl md:text-5xl font-bold text-white">
-              Ready to Transform Your Cancer Care?
+              Get Started with CrisPRO
             </h2>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto">
               Talk to your oncologist about CrisPRO, or connect with our patient support team to learn more.

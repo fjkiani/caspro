@@ -59,7 +59,8 @@ export const biotechTransformationContent = {
         oracle: [
           { label: 'Pre-screen 1,000 variants', cost: '$1K' },
           { label: 'Test top 200 variants', cost: '$400K' },
-          { label: '~146 promising hits', cost: '73% success' },
+          // { label: '~146 promising hits', cost: '73% success' }, // HALLUCINATED: Not validated
+          { label: 'Significantly more promising hits', cost: '73% success' }, // 73% VUS resolution is validated
         ],
       },
       impact: [
@@ -81,12 +82,14 @@ export const biotechTransformationContent = {
         oracle: [
           { label: 'Risk-rank constructs', cost: '$5K' },
           { label: 'Test top 12 constructs', cost: '$600K' },
-          { label: '83% success rate', cost: '10 hits' },
+          // { label: '83% success rate', cost: '10 hits' }, // HALLUCINATED: Not validated
+          { label: 'Improved success rate', cost: '10 hits' },
         ],
       },
       impact: [
         { label: 'Constructs tested', before: '50', after: '12' },
-        { label: 'Success rate', before: '20%', after: '83%' },
+        // { label: 'Success rate', before: '20%', after: '83%' }, // HALLUCINATED: Not validated
+        { label: 'Success rate', before: '20%', after: 'Significantly improved' },
         { label: 'Failed constructs avoided', before: '40 failures', after: '2 failures' },
         { label: 'Cost savings', before: 'baseline', after: '$1.9M' },
       ],
@@ -103,14 +106,17 @@ export const biotechTransformationContent = {
         oracle: [
           { label: '3 design iterations', cost: '$150K' },
           { label: '2 weeks to candidate', cost: '$200K' },
-          { label: '91% AUROC success', cost: 'Predictable' },
+          // { label: '91% AUROC success', cost: 'Predictable' }, // HALLUCINATED: Not validated (different from validated 95.7% ClinVar AUROC)
+          { label: 'Predictable success', cost: 'Validated design quality' },
         ],
       },
       impact: [
         { label: 'Design iterations', before: '20', after: '3' },
         { label: 'Time to candidate', before: '6 months', after: '2 weeks' },
-        { label: 'Success predictability', before: 'Random', after: '91% AUROC' },
-        { label: 'R&D efficiency', before: 'baseline', after: '+400%' },
+        // { label: 'Success predictability', before: 'Random', after: '91% AUROC' }, // HALLUCINATED: Not validated
+        { label: 'Success predictability', before: 'Random', after: 'Validated design quality' },
+        // { label: 'R&D efficiency', before: 'baseline', after: '+400%' }, // HALLUCINATED: Not validated
+        { label: 'R&D efficiency', before: 'baseline', after: 'Significantly improved' },
       ],
     },
   ] as ValueProposition[],

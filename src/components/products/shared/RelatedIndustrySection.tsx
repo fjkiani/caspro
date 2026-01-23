@@ -37,7 +37,7 @@ export default function RelatedIndustrySection({
             <h2 className="text-3xl font-bold text-slate-800">{title}</h2>
           </div>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            Discover how different industries leverage CrisPRO to transform their workflows
+            See how different industries use CrisPRO
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

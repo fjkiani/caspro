@@ -372,7 +372,7 @@ const BiotechRDChallenges: React.FC<BiotechRDChallengesProps> = ({ className = '
           className="text-center"
         >
           <p className="text-lg text-slate-600 mb-6">
-            Ready to transform your R&D from gambling to engineering?
+            See how CrisPRO supports R&D workflows with in-silico validation.
           </p>
           
           <motion.button

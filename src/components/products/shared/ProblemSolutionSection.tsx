@@ -102,17 +102,17 @@ export default function ProblemSolutionSection({
           </p>
         </motion.div>
 
-        {/* Cards Grid - Show all 3 cards at once, compact */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Cards Grid - 3 columns on both mobile and desktop */}
+        <div className="grid grid-cols-3 gap-3 md:gap-4">
           {content.cards.map((card, idx) => {
             const IconComponent = card.icon ? iconMap[card.icon] : null;
-            
+
             return (
               <motion.div
                 key={`${content.type}-card-${idx}-${card.title}`}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { 
-                  opacity: 1, 
+                animate={isInView ? {
+                  opacity: 1,
                   y: 0,
                   transition: {
                     duration: 0.5,
@@ -121,37 +121,76 @@ export default function ProblemSolutionSection({
                   }
                 } : { opacity: 0, y: 20 }}
                 whileHover={{ y: -2, transition: { duration: 0.2 } }}
-                className={`relative overflow-hidden bg-gradient-to-br ${theme.cardBg} rounded-xl p-4 border ${theme.borderColor} shadow-md hover:shadow-lg transition-all duration-300 group`}
+                className={`relative overflow-hidden bg-gradient-to-br ${theme.cardBg} rounded-xl p-3 md:p-4 border ${theme.borderColor} shadow-md hover:shadow-lg transition-all duration-300 group flex flex-col`}
               >
                 {/* Decorative corner */}
                 <div className={`absolute top-0 right-0 w-12 h-12 ${theme.accent} opacity-5 rounded-bl-xl`}></div>
-                
-                {/* Icon/Emoji */}
-                <div className="mb-3">
-                  {IconComponent ? (
-                    <div 
-                      className={`w-10 h-10 rounded-lg ${theme.iconBg} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <IconComponent className={`w-5 h-5 ${theme.iconColor}`} />
-                    </div>
-                  ) : card.emoji ? (
-                    <div className="text-3xl mb-3">{card.emoji}</div>
-                  ) : null}
-                </div>
-                
-                {/* Content */}
-                <div className="relative z-10">
+
+                {/* Top section: Icon + Highlight badge */}
+                <div className="flex items-start justify-between gap-2 mb-2 md:mb-3">
+                  {/* Icon/Emoji */}
+                  <div className="flex-shrink-0">
+                    {IconComponent ? (
+                      <div
+                        className={`w-7 h-7 md:w-9 md:h-9 rounded-lg ${theme.iconBg} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
+                      >
+                        <IconComponent className={`w-4 h-4 md:w-5 md:h-5 ${theme.iconColor}`} />
+                      </div>
+                    ) : card.emoji ? (
+                      <div className="text-xl md:text-2xl">{card.emoji}</div>
+                    ) : null}
+                  </div>
+                  
+                  {/* Highlight badge - Top right */}
                   {card.highlight && (
-                    <span className={`inline-block px-2 py-0.5 ${theme.iconBg} ${theme.iconColor} rounded-full text-xs font-semibold mb-2`}>
+                    <span className={`inline-block px-2 py-0.5 md:px-2.5 md:py-1 ${theme.iconBg} ${theme.iconColor} rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-tight flex-shrink-0`}>
                       {card.highlight}
                     </span>
                   )}
-                  <h3 className={`text-base font-bold ${theme.titleColor} mb-2 group-hover:text-slate-900 transition-colors`}>
+                </div>
+
+                {/* Content - Compact and organized */}
+                <div className="relative z-10 flex-1 flex flex-col">
+                  {/* Title - Prominent */}
+                  <h3 className={`text-xs md:text-sm font-bold ${theme.titleColor} mb-1.5 md:mb-2 group-hover:text-slate-900 transition-colors leading-tight`}>
                     {card.title}
                   </h3>
-                  <p className="text-slate-600 text-xs leading-relaxed">
-                    {card.description}
-                  </p>
+                  
+                  {/* Description - Condensed with bullet points for key info */}
+                  <div className="text-[10px] md:text-xs text-slate-600 leading-snug flex-1">
+                    {card.description.includes('→') ? (
+                      // For descriptions with arrows, show as bullet points
+                      <ul className="space-y-0.5 md:space-y-1">
+                        {card.description
+                          .split('→')
+                          .filter(phrase => phrase.trim().length > 0)
+                          .slice(0, 3) // Show max 3 steps
+                          .map((phrase, phraseIdx) => (
+                            <li key={phraseIdx} className="flex items-start gap-1.5">
+                              <span className={`w-1 h-1 rounded-full ${theme.accent} mt-1.5 flex-shrink-0`}></span>
+                              <span className="flex-1">{phrase.trim()}</span>
+                            </li>
+                          ))}
+                      </ul>
+                    ) : card.description.includes(': ') ? (
+                      // For descriptions with colons, show as key-value pairs
+                      <ul className="space-y-0.5 md:space-y-1">
+                        {card.description
+                          .split(': ')
+                          .filter(phrase => phrase.trim().length > 0)
+                          .slice(0, 2)
+                          .map((phrase, phraseIdx) => (
+                            <li key={phraseIdx} className="flex items-start gap-1.5">
+                              <span className={`w-1 h-1 rounded-full ${theme.accent} mt-1.5 flex-shrink-0`}></span>
+                              <span className="flex-1">{phrase.trim()}</span>
+                            </li>
+                          ))}
+                      </ul>
+                    ) : (
+                      // Regular description - truncated to 2 lines
+                      <p className="line-clamp-2 leading-snug">{card.description}</p>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             );

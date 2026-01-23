@@ -14,13 +14,14 @@ export default function HealthcareMOATMetrics() {
       color: 'green',
       progress: { value: 73, max: 100 }
     },
-    {
-      icon: Target,
-      value: '100%',
-      label: 'Top-5 Drug Accuracy',
-      description: 'Validated on 17 patients',
-      color: 'blue'
-    },
+    // HALLUCINATED: Not validated - Commented out per user request
+    // {
+    //   icon: Target,
+    //   value: '100%',
+    //   label: 'Top-5 Drug Accuracy',
+    //   description: 'Validated on 17 patients',
+    //   color: 'blue'
+    // },
     {
       icon: Clock,
       value: '6 months',
@@ -28,13 +29,14 @@ export default function HealthcareMOATMetrics() {
       description: 'Before imaging confirmation',
       color: 'orange'
     },
-    {
-      icon: Shield,
-      value: '100%',
-      label: 'PGx Coverage',
-      description: 'DPYD/TPMT/UGT1A1/CYP2D6',
-      color: 'purple'
-    },
+    // HALLUCINATED: Not validated - Commented out per user request
+    // {
+    //   icon: Shield,
+    //   value: '100%',
+    //   label: 'PGx Coverage',
+    //   description: 'DPYD/TPMT/UGT1A1/CYP2D6',
+    //   color: 'purple'
+    // },
     {
       icon: Search,
       value: '96.6%',

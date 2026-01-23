@@ -21,26 +21,26 @@ export const immunotherapyData: CoPilotDetailContent = {
   buildsOn: "Core Capabilities",
   buildsOnStackPoints: [
     "**Biomarker analysis:** TMB, MSI, PD-L1 expression, and tumor microenvironment assessment",
-    "**Response prediction:** AI-powered immunotherapy response forecasting",
+    "**Response prediction:** Mechanism-based immunotherapy response analysis",
     "**Eligibility matching:** Transparent eligibility criteria with confidence scores"
   ],
 
   kpis: [
-    { label: 'Eligibility Accuracy', value: '92%' },
+    { label: 'Eligibility Analysis', value: 'Biomarker-based' },
     { label: 'Response Prediction', value: '85%' },
   ],
 
   observedOutcomes: [
     {
       title: "Improved Immunotherapy Selection",
-      keyMetric: "92% accuracy",
+      keyMetric: "Biomarker-based eligibility",
       description: "Precise immunotherapy eligibility determination with comprehensive biomarker analysis",
       icon: "Target",
       color: "blue"
     },
     {
       title: "Response Prediction",
-      keyMetric: "85% accuracy",
+      keyMetric: "Mechanism-based prediction",
       description: "Predict immunotherapy response before treatment initiation",
       icon: "TrendingUp",
       color: "teal"

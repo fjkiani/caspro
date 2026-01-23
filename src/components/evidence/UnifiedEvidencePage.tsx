@@ -5,18 +5,14 @@ import TabbedInterface, { type TabItem } from '@/components/shared/TabbedInterfa
 import { 
   Shield, 
   Layers, 
-  Database, 
   Brain, 
-  Users, 
   BookOpen
 } from 'lucide-react';
 
 // Import all interactive components - THESE ARE CRITICAL!
 import {
   EvidenceIntelligenceSimulator,
-  SPEFusionPlayground,
-  DataLabExplorer,
-  CohortContextSimulator
+  SPEFusionPlayground
 } from './interactive';
 
 // Import existing SAE components
@@ -61,26 +57,12 @@ const UnifiedEvidencePage: React.FC = () => {
       icon: Layers,
       content: <EvidenceSectionRenderer data={evidenceSectionsRegistry['spe-fusion']} />
     },
-    // Data Lab tab
-    {
-      id: 'data-lab',
-      label: 'Data Lab',
-      icon: Database,
-      content: <EvidenceSectionRenderer data={evidenceSectionsRegistry['data-lab']} />
-    },
     // SAE Intelligence tab
     {
       id: 'sae-intelligence',
       label: 'SAE Intelligence',
       icon: Brain,
       content: <EvidenceSectionRenderer data={evidenceSectionsRegistry['sae-intelligence']} />
-    },
-    // Cohort Context tab
-    {
-      id: 'cohort-context',
-      label: 'Cohort Context',
-      icon: Users,
-      content: <EvidenceSectionRenderer data={evidenceSectionsRegistry['cohort-context']} />
     }
   ];
 

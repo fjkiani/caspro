@@ -6,7 +6,6 @@ import {
   EvidenceSection, 
   EvidenceBadge, 
   EvidenceTier, 
-  StudyBrowser,
   SAEFeatureVisualization,
   SAEAttributionCard,
   SAESafetyChecker,
@@ -19,7 +18,6 @@ import ValuePropositionCard from '@/components/shared/ValuePropositionCard';
 import { 
   BookOpen, 
   Layers, 
-  Database, 
   Brain, 
   Shield, 
   Target,
@@ -31,7 +29,6 @@ import {
 const iconMap = {
   BookOpen,
   Layers,
-  Database,
   Brain,
   Shield,
   Target,
@@ -62,16 +59,6 @@ const evidenceCapabilities = [
     color: "text-green-400"
   },
   {
-    title: "Data Lab",
-    status: "live" as const,
-    technical: "Interactive study browser with real-time data access and therapeutic pipeline visualization.",
-    scientific: "Enables rapid hypothesis testing and data exploration across multiple research datasets.",
-    business: "Accelerates research workflows with instant access to curated datasets and analysis tools.",
-    genomicUseCases: "Browse and analyze genomic datasets with integrated therapeutic pipeline insights.",
-    icon: "Database",
-    color: "text-purple-400"
-  },
-  {
     title: "SAE Intelligence",
     status: "live" as const,
     technical: "Interpretable AI features with disruption scoring and activation steering capabilities.",
@@ -91,16 +78,10 @@ const interconnectedFeatures = [
     color: "bg-blue-100 text-blue-600"
   },
   {
-    title: "S/P/E Fusion → Data Lab",
-    description: "Fusion results feed into Data Lab for comprehensive study analysis and validation",
+    title: "S/P/E Fusion → SAE Intelligence",
+    description: "Fusion results inform SAE feature attribution and disruption scoring",
     icon: <ArrowRight className="w-5 h-5" />,
     color: "bg-green-100 text-green-600"
-  },
-  {
-    title: "Data Lab → SAE Intelligence",
-    description: "Data Lab findings inform SAE feature attribution and disruption scoring",
-    icon: <ArrowRight className="w-5 h-5" />,
-    color: "bg-purple-100 text-purple-600"
   },
   {
     title: "SAE Intelligence → Evidence",
@@ -167,14 +148,6 @@ export const EvidencePageContent: React.FC = () => {
             </div>
           </div>
 
-          {/* Data Lab Demo */}
-          <div className="mt-12 mb-16">
-            <h3 className="text-2xl font-semibold text-slate-900 mb-6 flex items-center gap-3">
-              <Database className="w-6 h-6 text-purple-600" />
-              Data Lab
-            </h3>
-            <StudyBrowser />
-          </div>
         </div>
       </section>
 
@@ -183,7 +156,7 @@ export const EvidencePageContent: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             title="Why Evidence Intelligence Matters"
-            subtitle="Transform your research workflow with interconnected AI capabilities"
+            subtitle="Interconnected AI capabilities for research"
           />
           <div className="mt-12">
             <ValuePropositionCard
@@ -207,7 +180,7 @@ export const EvidencePageContent: React.FC = () => {
             title="Explore Evidence Intelligence"
             subtitle="Dive deeper into each component"
           />
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+          <div className="grid md:grid-cols-2 gap-6 mt-12">
             <a
               href="/evidence/spe-fusion"
               className="group bg-white rounded-xl p-6 shadow-lg border border-slate-200 hover:border-green-300 transition-all hover:shadow-xl"
@@ -222,24 +195,6 @@ export const EvidencePageContent: React.FC = () => {
                 Integrate Structure, Phenotype, and Expression data for comprehensive variant analysis.
               </p>
               <div className="flex items-center text-green-600 text-sm font-medium">
-                Explore <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </a>
-
-            <a
-              href="/evidence/data-lab"
-              className="group bg-white rounded-xl p-6 shadow-lg border border-slate-200 hover:border-purple-300 transition-all hover:shadow-xl"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-purple-100 rounded-lg group-hover:bg-purple-200 transition-colors">
-                  <Database className="w-5 h-5 text-purple-600" />
-                </div>
-                <h3 className="font-semibold text-slate-900">Data Lab</h3>
-              </div>
-              <p className="text-sm text-slate-600 mb-4">
-                Interactive study browser with real-time data access and therapeutic insights.
-              </p>
-              <div className="flex items-center text-purple-600 text-sm font-medium">
                 Explore <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
               </div>
             </a>
@@ -261,39 +216,21 @@ export const EvidencePageContent: React.FC = () => {
                 Explore <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
               </div>
             </a>
-
-            <a
-              href="/cohort"
-              className="group bg-white rounded-xl p-6 shadow-lg border border-slate-200 hover:border-blue-300 transition-all hover:shadow-xl"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
-                  <Target className="w-5 h-5 text-blue-600" />
-                </div>
-                <h3 className="font-semibold text-slate-900">Cohort Context</h3>
-              </div>
-              <p className="text-sm text-slate-600 mb-4">
-                Population-level insights and cohort-specific evidence analysis.
-              </p>
-              <div className="flex items-center text-blue-600 text-sm font-medium">
-                Explore <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </a>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <CTASection
-        title="Ready to Transform Your Research?"
-        description="Experience the power of interconnected Evidence Intelligence"
+        title="Get Started with Evidence Intelligence"
+        description="Explore interconnected Evidence Intelligence capabilities"
         primaryButton={{
           text: "Start with S/P/E Fusion",
           href: "/evidence/spe-fusion"
         }}
         secondaryButton={{
-          text: "Explore Data Lab",
-          href: "/evidence/data-lab"
+          text: "Explore SAE Intelligence",
+          href: "/evidence/sae-intelligence"
         }}
       />
     </div>

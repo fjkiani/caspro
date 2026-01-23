@@ -1,12 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { ProductSlug, CapabilitySlug, getCapabilityCoPilots } from '@/data/navigation/co-pilot-mappings';
 import { getCapabilityDefinition } from '@/data/navigation/product-capabilities';
 import { coPilotDetailsData } from '@/data/coPilotDetails';
 import ProductHeroSection, { ProductHeroContent } from './ProductHeroSection';
 import OutcomeFocusedCoPilotPage from '@/components/co-pilot-detail/OutcomeFocusedCoPilotPage';
-import { Target, Shield, Activity, Search, Dna } from 'lucide-react';
+import { Target, Shield, Activity, Search, Dna, Clock, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface TabbedCapabilityPageProps {
@@ -32,8 +33,16 @@ export default function TabbedCapabilityPage({
   const coPilotMappings = getCapabilityCoPilots(productSlug, capabilitySlug);
   
   // Determine default tab: use defaultTab param, or first co-pilot, or first mapping
-  const defaultCoPilotSlug = defaultTab || coPilotMappings[0]?.coPilotSlug;
+  // For match-patients-to-therapies, default to therapy-fit
+  const defaultCoPilotSlug = defaultTab || (capabilitySlug === 'match-patients-to-therapies' 
+    ? coPilotMappings.find(m => m.coPilotSlug === 'therapy-fit')?.coPilotSlug 
+    : coPilotMappings[0]?.coPilotSlug);
   const [activeTab, setActiveTab] = useState<string>(defaultCoPilotSlug || '');
+  
+  // For match-patients-to-therapies, only show Therapy Fit (filter out other co-pilots)
+  const displayMappings = capabilitySlug === 'match-patients-to-therapies'
+    ? coPilotMappings.filter(m => m.coPilotSlug === 'therapy-fit')
+    : coPilotMappings;
   
   if (!capabilityDef) {
     return <div>Capability not found</div>;
@@ -62,17 +71,159 @@ export default function TabbedCapabilityPage({
       {/* Hero Section */}
       <ProductHeroSection content={heroContent} />
       
-      {/* Capability Cards (Act as Tabs) */}
+      {/* Show Therapy Fit card + Related Capabilities for match-patients-to-therapies */}
+      {capabilitySlug === 'match-patients-to-therapies' ? (
+        <section className="mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {/* Therapy Fit Card (Active) */}
+            {displayMappings.map((mapping, idx) => {
+              const coPilotData = coPilotDetailsData[mapping.coPilotSlug];
+              if (!coPilotData) return null;
+              
+              const isActive = activeTab === mapping.coPilotSlug;
+              let cardTitle = 'Therapy Fit';
+              
+              const colors = { bg: 'from-green-50 to-emerald-50', border: 'border-green-200', iconBg: 'bg-green-100', text: 'text-green-600' };
+              
+              return (
+                <motion.div
+                  key={mapping.coPilotSlug}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  className={`
+                    bg-gradient-to-br ${colors.bg} rounded-2xl p-6 border-2 transition-all duration-300
+                    ${colors.border} shadow-xl ring-2 ring-offset-2 ring-blue-500
+                  `}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`w-12 h-12 rounded-xl ${colors.iconBg} flex items-center justify-center flex-shrink-0`}>
+                      <IconComponent className={`w-6 h-6 ${colors.text}`} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm font-semibold text-slate-600 mb-1">
+                        Personalized drug ranking with 70-85% confidence
+                      </div>
+                      <div className={`text-xl font-bold ${colors.text} line-clamp-2`}>
+                        {cardTitle}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-slate-200">
+                    <div className="flex items-center gap-2 text-sm text-blue-600 font-semibold">
+                      <span>✓</span>
+                      <span>Active</span>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+            
+            {/* Related Capability Cards */}
+            {[
+              {
+                title: 'Prevent Toxicity Before It Happens',
+                subtitle: '100% PGx Coverage',
+                description: '100% toxicity prevention coverage for DPYD/TPMT/UGT1A1/CYP2D6. Life-threatening prevention with drug interaction checking and protective nutrition recommendations.',
+                metric: '100% Coverage',
+                time: '30 seconds',
+                href: '/products/oncology/prevent-toxicity',
+                icon: Shield,
+                colors: { bg: 'from-red-50 to-pink-50', border: 'border-red-200', iconBg: 'bg-red-100', text: 'text-red-600' }
+              },
+              {
+                title: 'Predict Resistance Before It Happens',
+                subtitle: '3-6 Weeks Early Detection',
+                description: 'Proactive resistance detection 3-6 weeks faster than imaging. CA-125 intelligence with kinetics forecasting enables early intervention before treatment failure.',
+                metric: '3-6 Weeks Earlier',
+                time: '60 seconds',
+                href: '/products/oncology/predict-resistance',
+                icon: Activity,
+                colors: { bg: 'from-orange-50 to-amber-50', border: 'border-orange-200', iconBg: 'bg-orange-100', text: 'text-orange-600' }
+              },
+              {
+                title: 'Resolve Genetic Uncertainty',
+                subtitle: 'Zero-Shot Variant Interpretation',
+                description: 'Zero-shot variant interpretation with Evo2 foundation model. Instantly resolves variants of unknown significance with 95.7% AUROC accuracy and transparent biological reasoning.',
+                metric: '95.7% AUROC, 73% VUS Resolution',
+                time: '30 seconds',
+                href: '/products/oncology/resolve-genetic-uncertainty',
+                icon: Search,
+                colors: { bg: 'from-blue-50 to-cyan-50', border: 'border-blue-200', iconBg: 'bg-blue-100', text: 'text-blue-600' }
+              },
+              {
+                title: 'Match Patients to Clinical Trials',
+                subtitle: '96.6% Match Accuracy',
+                description: 'Transparent eligibility reasoning with green/yellow/red flags per criterion. Same-day trial site calls with action-ready packets.',
+                metric: '96.6% Accuracy',
+                time: '45 seconds',
+                href: '/products/oncology/clinical-trials',
+                icon: Target,
+                colors: { bg: 'from-purple-50 to-violet-50', border: 'border-purple-200', iconBg: 'bg-purple-100', text: 'text-purple-600' }
+              }
+            ].map((capability, idx) => {
+              const IconComp = capability.icon;
+              return (
+                <Link key={capability.href} href={capability.href}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: (displayMappings.length + idx) * 0.1 }}
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    className={`
+                      bg-gradient-to-br ${capability.colors.bg} rounded-2xl p-6 border-2 transition-all duration-300 cursor-pointer
+                      ${capability.colors.border} hover:shadow-lg
+                    `}
+                  >
+                    <div className="flex items-start gap-3 mb-4">
+                      <div className={`w-12 h-12 rounded-xl ${capability.colors.iconBg} flex items-center justify-center flex-shrink-0`}>
+                        <IconComp className={`w-6 h-6 ${capability.colors.text}`} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm text-slate-600 mb-1">
+                          {capability.subtitle}
+                        </div>
+                        <div className={`text-xl font-bold ${capability.colors.text} line-clamp-2 mb-2`}>
+                          {capability.title}
+                        </div>
+                        <p className="text-sm text-slate-600 line-clamp-3">
+                          {capability.description}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-200">
+                      <div className="flex items-center gap-4 text-xs text-slate-600">
+                        <span className="flex items-center gap-1">
+                          <Zap className="w-4 h-4" />
+                          {capability.metric}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-4 h-4" />
+                          {capability.time}
+                        </span>
+                      </div>
+                      <span className="text-sm font-semibold text-blue-600">
+                        View Details →
+                      </span>
+                    </div>
+                  </motion.div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      ) : (
+        /* Original behavior for other capabilities */
+        displayMappings.length > 0 && (
       <section className="mb-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {coPilotMappings.map((mapping, idx) => {
+              {displayMappings.map((mapping, idx) => {
             const coPilotData = coPilotDetailsData[mapping.coPilotSlug];
             if (!coPilotData) return null;
             
             const isActive = activeTab === mapping.coPilotSlug;
-            // Extract short title: "Chemo Co‑Pilot: ..." -> "Chemo Co‑Pilot"
+                
             let cardTitle = coPilotData.pageTitle.split(':')[0] || coPilotData.pageTitle;
-            // Handle "Therapy Fit: ..." -> "Therapy Fit"
             if (cardTitle.includes('Therapy Fit')) {
               cardTitle = 'Therapy Fit';
             } else if (cardTitle.includes('Chemo Co‑Pilot')) {
@@ -81,7 +232,6 @@ export default function TabbedCapabilityPage({
               cardTitle = 'Immunotherapy Matching';
             }
             
-            // Color schemes for each card
             const colorSchemes = [
               { bg: 'from-blue-50 to-indigo-50', border: 'border-blue-200', iconBg: 'bg-blue-100', text: 'text-blue-600' },
               { bg: 'from-green-50 to-emerald-50', border: 'border-green-200', iconBg: 'bg-green-100', text: 'text-green-600' },
@@ -132,6 +282,8 @@ export default function TabbedCapabilityPage({
           })}
         </div>
       </section>
+        )
+      )}
       
       {/* Active Tab Content */}
       {activeCoPilotData ? (

@@ -84,7 +84,8 @@ export default function BiotechPage() {
                   <ul className="text-sm text-green-600 space-y-1">
                   <li>• 2 weeks variant-to-target pipeline</li>
                   <li>• Systematic target prioritization</li>
-                  <li>• 90% design success prediction</li>
+                  {/* <li>• 90% design success prediction</li> */} {/* HALLUCINATED: Not validated */}
+                  <li>• Improved design success prediction</li>
                   <li>• $300K per validated portfolio</li>
                 </ul>
               </div>
@@ -96,23 +97,43 @@ export default function BiotechPage() {
             <div className="text-center space-y-6">
               <h4 className="text-xl font-bold text-blue-800">Complete Research Transformation</h4>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-                <div>
+                {/* <div>
                   <div className="text-2xl font-black text-blue-600">36x</div>
                   <div className="text-blue-700">Faster discovery</div>
                   <div className="text-xs text-blue-600 mt-1">18 months → 2 weeks</div>
-                </div>
+                </div> */} {/* HALLUCINATED: Not validated */}
                 <div>
+                  <div className="text-2xl font-black text-blue-600">Significantly</div>
+                  <div className="text-blue-700">Faster discovery</div>
+                  <div className="text-xs text-blue-600 mt-1">18 months → 2 weeks</div>
+                </div>
+                {/* <div>
                   <div className="text-2xl font-black text-blue-600">96%</div>
                   <div className="text-blue-700">Cost reduction</div>
                   <div className="text-xs text-blue-600 mt-1">$8M → $300K per program</div>
-                </div>
+                </div> */} {/* HALLUCINATED: Not validated */}
                 <div>
+                  <div className="text-2xl font-black text-blue-600">Major</div>
+                  <div className="text-blue-700">Cost reduction</div>
+                  <div className="text-xs text-blue-600 mt-1">$8M → $300K per program</div>
+                </div>
+                {/* <div>
                   <div className="text-2xl font-black text-blue-600">90%</div>
                   <div className="text-blue-700">Success prediction</div>
                   <div className="text-xs text-blue-600 mt-1">vs 15% random chance</div>
-                </div>
+                </div> */} {/* HALLUCINATED: Not validated */}
                 <div>
+                  <div className="text-2xl font-black text-blue-600">Improved</div>
+                  <div className="text-blue-700">Success prediction</div>
+                  <div className="text-xs text-blue-600 mt-1">vs 15% random chance</div>
+                </div>
+                {/* <div>
                   <div className="text-2xl font-black text-blue-600">10x</div>
+                  <div className="text-blue-700">Portfolio diversity</div>
+                  <div className="text-xs text-blue-600 mt-1">Multiple families per target</div>
+                </div> */} {/* HALLUCINATED: Not validated */}
+                <div>
+                  <div className="text-2xl font-black text-blue-600">Enhanced</div>
                   <div className="text-blue-700">Portfolio diversity</div>
                   <div className="text-xs text-blue-600 mt-1">Multiple families per target</div>
                 </div>
@@ -146,9 +167,9 @@ export default function BiotechPage() {
       {/* CTA Section */}
       <section className="py-16 px-6 bg-gradient-to-br from-cyan-600 to-blue-600">
         <div className="max-w-4xl mx-auto text-center space-y-6">
-          <h2 className="text-3xl font-semibold text-white">Ready to Transform Your R&D Pipeline?</h2>
+          <h2 className="text-3xl font-semibold text-white">Get Started with CrisPRO</h2>
           <p className="text-lg text-white/90">
-            Join leading biotechs using CrisPRO to accelerate discovery and reduce development costs by 96%
+            See how CrisPRO supports R&D workflows with AI-powered target validation
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="px-8 py-3 bg-white hover:bg-slate-100 text-cyan-600 rounded-lg font-semibold transition-colors">
@@ -172,7 +193,7 @@ export default function BiotechPage() {
           {
             slug: 'research',
             title: 'CrisPRO Research',
-            subtitle: 'Accelerate Discovery from Years to Hours. Multi-modal AI analysis for research institutions.',
+            subtitle: 'Multi-modal AI analysis for research institutions.',
           }
         ]}
         title="Explore CrisPRO Products for R&D"

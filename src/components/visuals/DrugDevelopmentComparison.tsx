@@ -456,9 +456,9 @@ const DrugDevelopmentComparison = () => {
             className="mt-12 text-center"
           >
             <div className="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-2xl border border-slate-200">
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">Ready to Transform Your Drug Development?</h3>
+              <h3 className="text-2xl font-bold text-slate-800 mb-4">Get Started with CrisPRO</h3>
               <p className="text-lg text-slate-600 mb-6">
-                Join the biotech leaders who've eliminated the $2.6B gamble with mathematical certainty.
+                See how CrisPRO supports drug development with in-silico validation.
               </p>
               <div className="flex justify-center space-x-4">
                 <button className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">

@@ -116,18 +116,6 @@ const Footer = () => {
                 </Link>
                 <p className="text-xs text-slate-400 mt-1">Serious adverse events</p>
               </li>
-              <li>
-                <Link href="/evidence/data-lab" className="hover:text-primary transition-colors text-sm">
-                  Data Lab
-                </Link>
-                <p className="text-xs text-slate-400 mt-1">Research data management</p>
-              </li>
-              <li>
-                <Link href="/cohort" className="hover:text-primary transition-colors text-sm">
-                  Cohort Context
-                </Link>
-                <p className="text-xs text-slate-400 mt-1">Population insights</p>
-              </li>
             </ul>
           </div>
 

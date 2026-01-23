@@ -57,50 +57,50 @@ export const crisprIntelligenceJourney: CapabilityJourneyData = {
   newWaySteps: [
     {
       number: 1,
-      title: 'AI-Powered Target Validation',
-      description: 'CrisPRO\'s Oracle engine analyzes targets with 95.7% AUROC accuracy, de-risking the entire pipeline from day one.',
+      title: 'Biological Target Validation',
+      description: 'CrisPRO analyzes potential CRISPR targets to understand variant impact and functional consequences before guide design.',
       icon: BrainCircuit,
       solutions: [
-        '95.7% AUROC ClinVar validation for target impact prediction',
-        'Comprehensive variant analysis across 53,210 validated variants',
-        'De-risked pipeline with high confidence target validation',
-        'Accelerated discovery from hypothesis to validated target in hours'
+        'Variant impact analysis predicts how edits will affect gene function',
+        'Biological reasoning explains which targets are most likely to have therapeutic effect',
+        'Functional analysis identifies targets with clear disease-driving mechanisms',
+        'De-risked pipeline by validating biological rationale before experimental work'
       ]
     },
     {
       number: 2,
-      title: 'Intelligent Guide RNA Design',
-      description: 'Advanced AI algorithms design optimal guide RNA sequences with comprehensive off-target analysis and efficacy prediction.',
+      title: 'Biology-Informed Guide RNA Design',
+      description: 'CrisPRO designs guide RNAs considering sequence context, chromatin accessibility, and off-target potential.',
       icon: BrainCircuit,
       solutions: [
-        'Advanced off-target prediction with 90% accuracy',
-        'Efficacy prediction models reduce guide RNA failure rate by 60%',
-        'Context-aware design considering chromatin accessibility',
-        'Automated optimization process completed in minutes'
+        'Sequence analysis identifies optimal cutting sites within target regions',
+        'Chromatin accessibility analysis predicts which guides can access their targets',
+        'Off-target prediction identifies potential unintended editing sites',
+        'Biological context informs guide selection for therapeutic outcomes'
       ]
     },
     {
       number: 3,
-      title: 'Predictive Experiment Design',
-      description: 'AI models predict experimental outcomes, reducing the need for extensive trial-and-error validation.',
+      title: 'Mechanism-Based Experiment Design',
+      description: 'CrisPRO helps design experiments by predicting biological outcomes based on editing mechanisms and repair pathways.',
       icon: BrainCircuit,
       solutions: [
-        'Predictive models reduce experimental validation by 70%',
-        'Resource optimization with 85% experimental success rate',
-        'Accelerated project timelines by 3-4 weeks per target',
-        'Scalable validation for multiple targets simultaneously'
+        'Repair pathway analysis predicts how cells will respond to DNA breaks',
+        'Editing efficiency predictions based on sequence context and chromatin state',
+        'Biological reasoning guides experimental design for therapeutic goals',
+        'Mechanism-based predictions inform which experiments are most informative'
       ]
     },
     {
       number: 4,
-      title: 'Predictable Therapeutic Outcomes',
-      description: 'Comprehensive AI models ensure predictable CRISPR outcomes, enabling reliable therapeutic development.',
+      title: 'Biology-Driven Therapeutic Design',
+      description: 'CrisPRO connects editing outcomes to therapeutic mechanisms, enabling more predictable therapeutic development.',
       icon: BrainCircuit,
       solutions: [
-        'Predictable editing efficiency across cell types with 90% accuracy',
-        'Minimized off-target effects through advanced prediction models',
-        'Optimized repair pathway preferences for therapeutic outcomes',
-        'Therapeutic development accelerated by 6-8 months with predictable results'
+        'Biological analysis predicts how edits will affect disease pathways',
+        'Mechanism-based reasoning explains therapeutic rationale',
+        'Repair pathway preferences inform editing strategy for desired outcomes',
+        'Therapeutic development guided by understanding of biological mechanisms'
       ]
     }
   ]

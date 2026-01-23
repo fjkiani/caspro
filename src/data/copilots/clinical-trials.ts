@@ -38,8 +38,8 @@ export const clinicalTrialsData: CoPilotDetailContent = {
 
     kpis: [
       { label: 'Shortlist Compression', value: '50+ → 5-12 trials' },
-      { label: 'Mechanism Fit', value: '0.92 avg (DDR-high patients)' },
-      { label: 'Time-to-First-Trial', value: '↓ 60-65%' },
+      { label: 'Mechanism Fit', value: 'Pathway alignment scoring' },
+      { label: 'Time-to-First-Trial', value: 'Faster enrollment' },
     ],
 
     observedOutcomes: [
@@ -59,8 +59,8 @@ export const clinicalTrialsData: CoPilotDetailContent = {
       },
       {
         title: "Time-to-First-Trial",
-        keyMetric: "↓ 60–65%",
-        description: "Faster patient enrollment and time-to-treatment decisions.",
+        keyMetric: "Faster enrollment",
+        description: "Mechanism-based matching helps identify relevant trials more efficiently.",
         icon: "TrendingUp",
         color: "teal"
       }

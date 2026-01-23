@@ -3,7 +3,7 @@ import { CoPilotDetailContent } from '../../types/copilot-types';
 export const oracleIntelligenceData: CoPilotDetailContent = {
   slug: "oracle-intelligence",
   pageTitle: "Oracle Intelligence: Multi-Modal AI Validation Platform",
-  heroSubtitle: "Experience the S/P/E framework - where Sequence, Pathway, and Evidence combine for transparent, auditable variant predictions with 70-85% accuracy.",
+  heroSubtitle: "The S/P/E framework - where Sequence, Pathway, and Evidence combine for transparent, auditable variant predictions.",
 
   vision: "Our vision is to solve the AI reliability problem in genomics. We deploy a three-signal validation framework that combines genomic sequence analysis with biological pathway mapping and evidence synthesis, ensuring every prediction is transparent, auditable, and clinically actionable. We provide confidence scores that clinicians can trust for life-changing decisions.",
 
@@ -13,7 +13,7 @@ export const oracleIntelligenceData: CoPilotDetailContent = {
       icon: 'Users',
       points: [
         'Get variant predictions with confidence scores you can trust for clinical decisions.',
-        'See exactly how we calculated pathogenicity - no black boxes.',
+        'Transparent pathogenicity calculations - no black boxes.',
         'Access four interpretable insight components: Functionality, Chromatin, Essentiality, Regulatory.'
       ]
     },
@@ -23,14 +23,14 @@ export const oracleIntelligenceData: CoPilotDetailContent = {
       points: [
         'Reduce VUS rates from 40% to 15% with our validated S/P/E framework.',
         'Provide complete audit trails for regulatory compliance.',
-        'Scale interpretation capacity without sacrificing accuracy.'
+        'Scale interpretation capacity with consistent biological reasoning.'
       ]
     },
     {
       audience: 'For Biotech R&D',
       icon: 'BrainCircuit',
       points: [
-        'Identify therapeutic targets with 95.7% ClinVar AUROC validation.',
+        'Identify therapeutic targets through variant impact analysis and pathway mapping.',
         'Connect variants to druggable pathways automatically.',
         'Validate predictions against experimental evidence before lab investment.'
       ]
@@ -75,10 +75,10 @@ export const oracleIntelligenceData: CoPilotDetailContent = {
 
   buildsOn: "Oracle Intelligence is built on our validated Evo2 foundation model, delivering state-of-the-art performance across all genomic contexts:",
   buildsOnStackPoints: [
-    "**ClinVar Gold Standard:** 95.7% AUROC for coding SNVs, 95.8% for noncoding variants - best in class performance.",
-    "**BRCA1/2 Clinical Validation:** 94% supervised AUROC, 89.1% zero-shot AUROC - validated on hereditary cancer variants.",
-    "**Cross-Species Generalization:** 0.82-0.99 AUROC range across 8 species - works on any organism.",
-    "**Splice Variant Prediction:** 82.6% AUROC on experimentally validated splice sites.",
+    "**ClinVar Validation:** Variant impact prediction validated on ClinVar benchmark dataset.",
+    "**BRCA1/2 Clinical Validation:** Zero-shot variant interpretation validated on hereditary cancer variants.",
+    "**Cross-Species Generalization:** Works across multiple species through biological sequence analysis.",
+    "**Splice Variant Prediction:** Splice variant analysis on experimentally validated splice sites.",
     "**Protein Function Correlation:** Strong correlation with Deep Mutational Scanning fitness data.",
     "**Regulatory Element Analysis:** Context-aware chromatin accessibility and transcription factor binding prediction."
   ],
@@ -114,7 +114,7 @@ export const oracleIntelligenceData: CoPilotDetailContent = {
     {
       audience: "For Biotech & Pharma R&D",
       points: [
-        "Identify therapeutic targets with 95.7% accuracy validation.",
+        "Identify therapeutic targets through biological variant analysis.",
         "Connect genetic variants to druggable pathways automatically.",
         "Validate predictions against experimental evidence before lab work.",
         "Generate regulatory-grade documentation for IND submissions."
@@ -122,5 +122,5 @@ export const oracleIntelligenceData: CoPilotDetailContent = {
     }
   ],
 
-  conclusion: "Oracle Intelligence represents the future of AI-assisted genomics: transparent, auditable, and clinically actionable. By combining three independent validation signals with interpretable biological insights, we eliminate the black box problem while delivering performance that exceeds traditional methods. Every prediction comes with the confidence and documentation needed for life-changing clinical decisions."
+  conclusion: "Oracle Intelligence provides transparent, auditable, and clinically actionable AI-assisted genomics. By combining three independent validation signals with interpretable biological insights, we address the black box problem while delivering performance that exceeds traditional methods. Every prediction comes with the confidence and documentation needed for clinical decisions."
 };

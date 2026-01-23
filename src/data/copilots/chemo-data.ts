@@ -4,7 +4,7 @@ export const chemoData: CoPilotDetailContent = {
   slug: "chemo",
   pageTitle: "Chemo Co‑Pilot: In‑Silico Chemotherapy Guidance",
   heroSubtitle: "Evidence-backed chemotherapy recommendations with 70-85% confidence. See which drug classes match your patient's tumor biology with transparent S/P/E reasoning. Action-ready dossiers for same-day tumor board discussions.",
-  vision: "Turn genetics into plain, useful guidance for chemo planning: a ranked drug hypothesis, a confidence hint, and an audit‑ready summary you can share with your team.",
+  vision: "Genetics-based guidance for chemo planning: ranked drug recommendations, confidence scores, and audit-ready summaries.",
 
   valueProps: [
     {
@@ -34,93 +34,81 @@ export const chemoData: CoPilotDetailContent = {
     "**Drug interaction/toxicity enrichment:** Available through integrated Toxicity Risk Co-Pilot for regimen‑level safety/context checks."
   ],
 
-  // KPIs - Reorganized for clarity and impact
+  // KPIs - Biological capabilities
   kpis: [
-    // --- ClinVar Foundation ---
-    { label: 'Overall ClinVar AUROC', value: '0.957 (n=53,210)' },
-    { label: 'Coding SNVs AUROC', value: '0.957 (n=14,319)' },
-    { label: 'Non-coding SNVs AUROC', value: '0.958 (SOTA, n=34,761)' },
-    { label: 'Coding non-SNVs AUROC', value: '0.939 (SOTA, n=1,236)' },
-    { label: 'Non-coding non-SNVs AUROC', value: '0.918 (n=3,894)' },
-    // --- Oncology-Specific ---
-    { label: 'BRCA1 Supervised AUROC/AUPRC', value: '0.95 / 0.86 (all SNVs)' },
-    { label: 'BRCA1 Zero-Shot AUROC', value: '0.891 (from 0.793)' },
-    { label: 'BRCA2 Zero-Shot AUROC', value: '0.901' },
-    // --- Specialized Performance ---
-    { label: 'SpliceVarDB AUROC', value: '0.826 (n=4,950)' },
-    { label: 'VUS Rate Reduction', value: '40% → 15%' },
-    // --- Foundation Model ---
-    { label: 'CrisPRO.ai Context Window', value: '1M Tokens' },
-    { label: 'Est. Cost Savings', value: '≈$2.1M / program' },
+    { label: 'Variant Types Supported', value: 'All variant types' },
+    { label: 'Genes Analyzed', value: 'Comprehensive coverage' },
+    { label: 'Pathway Analysis', value: 'Multi-pathway mapping' },
+    { label: 'Evidence Integration', value: 'Literature + ClinVar' },
   ],
 
   observedOutcomes: [
     {
       title: 'Uncertainty Reduction',
       keyMetric: '40% → 16-18% VUS rate',
-      description: 'Dramatically reduced variant uncertainty in chemotherapy applications through advanced AI classification',
+      description: 'Reduced variant uncertainty in chemotherapy applications through AI classification',
       icon: 'ShieldCheck',
       color: 'blue'
     },
     {
       title: 'Classification Improvement',
       keyMetric: '38% insufficient → consider',
-      description: 'Enhanced variant classification accuracy with 14% consider → supported upgrades',
+      description: 'Improved variant classification through biological reasoning and evidence integration',
       icon: 'TrendingUp',
       color: 'teal'
     },
     {
       title: 'Confidence Enhancement',
       keyMetric: '+0.08 median improvement',
-      description: 'Consistent confidence boost across all variants (range +0.05 to +0.12)',
+      description: 'Confidence scoring reflects strength of biological evidence',
       icon: 'Target',
       color: 'indigo'
     },
     {
       title: 'Quality Assurance',
       keyMetric: '58% pathway-aligned',
-      description: 'High-quality results with 18% ClinVar-validated outcomes and full provenance',
+      description: 'Biological reasoning with evidence-backed outcomes and full provenance',
       icon: 'Activity',
       color: 'blue'
     },
     {
       title: 'Trial Streamlining',
       keyMetric: '50+ → 7 candidates',
-      description: '63% faster candidate identification with median reduction from 50+ to 7 candidates',
+      description: 'Candidate identification with median reduction from 50+ to 7 candidates',
       icon: 'Layers',
       color: 'teal'
     },
     {
       title: 'Cohort Insights',
       keyMetric: '+0.09 confidence boost',
-      description: 'Enhanced confidence when aligned with cohort data, 22% tier upgrades',
+      description: 'Confidence improvement when aligned with cohort data, 22% tier upgrades',
       icon: 'Users',
       color: 'indigo'
     },
     {
       title: 'Fusion Benefits',
       keyMetric: '41% missense processed',
-      description: 'Advanced processing of missense variants with +0.05 confidence boost',
+      description: 'Processing of missense variants with +0.05 confidence improvement',
       icon: 'FileText',
       color: 'blue'
     },
     {
       title: 'Safety Optimization',
       keyMetric: '11% filtered candidates',
-      description: 'Proactive safety filtering using splice/regulatory flags for risk mitigation',
+      description: 'Safety filtering using splice/regulatory flags for risk mitigation',
       icon: 'AlertTriangle',
       color: 'teal'
     }
   ],
 
-  genomicInsightsOverview: "Our live S/P/E + insights pipeline converts variants into a chemo guidance view: top drug classes, confidence, rationale, and citations—all with provenance (run ID, profile).",
+  // genomicInsightsOverview: "Our live S/P/E + insights pipeline converts variants into a chemo guidance view: top drug classes, confidence, rationale, and citations—all with provenance (run ID, profile).",
 
-  coreProblemIntro: "Choosing chemotherapy can be unclear when biology is complex. We help by turning genetics into a simple, auditable starting point.",
-  coreProblemPoints: [
-    "Too many options, little clarity on fit to tumor biology.",
-    "Confidence is hard to communicate without sources and a simple story.",
-    "Data is scattered; assembling a shareable summary takes time."
-  ],
+  // coreProblemIntro: "Choosing chemotherapy can be unclear when biology is complex. We help by turning genetics into a simple, auditable starting point.",
+  // coreProblemPoints: [
+  //   "Too many options, little clarity on fit to tumor biology.",
+  //   "Confidence is hard to communicate without sources and a simple story.",
+  //   "Data is scattered; assembling a shareable summary takes time."
+  // ],
 
   genomicUseCasesGrid: [
     { label: "Rank MoA‑aligned drug classes", iconName: "ListChecks", color: "text-blue-400" },
@@ -172,14 +160,14 @@ export const chemoData: CoPilotDetailContent = {
         ],
         features: ["Faster decisions", "Explainable results", "Repeatable process", "Source-backed insights"]
       },
-      genomicUseCasesParagraph: "1. **Rank MoA‑aligned classes** from S/P/E scores with insight chips. \n2. **Explainers**: bullets and citations show 'why'. \n3. **Confidence** reflects evidence and supportive insights with 70-85% accuracy."
+      genomicUseCasesParagraph: "1. **Rank MoA‑aligned classes** from S/P/E scores with insight chips. \n2. **Explainers**: bullets and citations show 'why'. \n3. **Confidence** reflects evidence and supportive insights."
     },
     {
       title: "Biomarkers & Cohort Context",
       technical: {
         title: "Technical Approach",
         keyMetric: "S/P/E + Cohort Lab",
-        description: "Our genomics-first S/P/E scoring is enhanced with insight chips and priors from ClinVar and coverage data.\n\n**Cohort Integration:** The Cohort Lab adds small extracts and benchmarks to ground findings in population-level context when cohort data is available.",
+        description: "Our genomics-first S/P/E scoring uses insight chips and priors from ClinVar and coverage data.\n\n**Cohort Integration:** The Cohort Lab adds small extracts and benchmarks to ground findings in population-level context when cohort data is available.",
         icon: "Settings",
         color: "blue",
         components: [
@@ -227,7 +215,7 @@ export const chemoData: CoPilotDetailContent = {
         components: [
           { title: "Interaction Mapping", subtitle: "Drug-drug interaction analysis", iconName: "AlertTriangle", color: "blue", features: ["Drug interaction database", "Contraindication flags", "Synergy analysis", "Risk assessment"] },
           { title: "Cumulative Toxicity", subtitle: "Cumulative toxicity tracking", iconName: "ShieldCheck", color: "teal", features: ["Toxicity accumulation", "Dose optimization", "Safety thresholds", "Monitoring alerts"] },
-          { title: "Safety Flags", subtitle: "Proactive safety warnings", iconName: "Activity", color: "indigo", features: ["Early warning system", "Risk stratification", "Safety protocols", "Alert management"] }
+          { title: "Safety Flags", subtitle: "Safety warnings", iconName: "Activity", color: "indigo", features: ["Early warning system", "Risk stratification", "Safety protocols", "Alert management"] }
         ],
         features: ["Regimen-aware checks", "Cumulative toxicity analysis", "Interaction mapping", "Safety flags"]
       },
@@ -251,7 +239,7 @@ export const chemoData: CoPilotDetailContent = {
         icon: "Briefcase",
         color: "indigo",
         components: [
-          { title: "Reduce Rework", subtitle: "Early safety flags", iconName: "Zap", color: "blue", features: ["Early warning system", "Proactive planning", "Risk mitigation", "Cost reduction"] },
+          { title: "Reduce Rework", subtitle: "Early safety flags", iconName: "Zap", color: "blue", features: ["Early warning system", "Planning", "Risk mitigation", "Cost reduction"] },
           { title: "Improve Consistency", subtitle: "Shared checks", iconName: "RefreshCw", color: "teal", features: ["Standardized processes", "Quality assurance", "Workflow integration", "Consistent outcomes"] },
           { title: "Planning Efficiency", subtitle: "Streamlined workflow", iconName: "TrendingUp", color: "indigo", features: ["Workflow optimization", "Time savings", "Resource efficiency", "Process improvement"] }
         ],
@@ -309,7 +297,7 @@ export const chemoData: CoPilotDetailContent = {
       audience: "For the Medical Oncologist",
       points: [
         "A quick, plain ranked list of chemo classes to consider.",
-        "Short 'why' with confidence and citations—70-85% accuracy for evidence-backed recommendations.",
+        "Short 'why' with confidence and citations for evidence-backed recommendations.",
         "A one‑page summary you can share and discuss."
       ]
     },
@@ -331,5 +319,5 @@ export const chemoData: CoPilotDetailContent = {
     }
   ],
 
-  conclusion: "Evidence-backed chemotherapy recommendations that's simple to read and easy to share. Plain rankings. Clear confidence with 70-85% accuracy. Sources included. Clinical-grade by design."
+  conclusion: "Evidence-backed chemotherapy recommendations that's simple to read and easy to share. Plain rankings. Clear confidence scoring. Sources included. Clinical-grade by design."
 };

@@ -517,7 +517,7 @@ export const UnifiedEvidencePageContent: React.FC = () => {
                             </span>
                             {benchmark.isStateOfTheArt && (
                               <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded">
-                                Industry Leading
+                                High Performance
                               </span>
                             )}
                             {benchmark.sampleSize && (
@@ -613,8 +613,8 @@ export const UnifiedEvidencePageContent: React.FC = () => {
       <section className="py-20 bg-gradient-to-br from-blue-600 to-indigo-600">
         <div className="container mx-auto px-6">
           <CTASection
-            title="Ready to Transform Your Evidence Workflow?"
-            description="Start with evidence intelligence, explore S/P/E fusion, or dive into the data lab for comprehensive evidence-driven research."
+            title="Get Started with Evidence Intelligence"
+            description="Explore evidence intelligence, S/P/E fusion, or the data lab for evidence-driven research."
             primaryButton={{
               text: "Explore Evidence Intelligence",
               href: "/evidence",

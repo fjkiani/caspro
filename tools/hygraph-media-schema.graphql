@@ -1,0 +1,53 @@
+# HyGraph Media Schema
+# 
+# Import this schema into HyGraph using:
+# 1. HyGraph CLI: hygraph schema:create --file tools/hygraph-media-schema.graphql
+# 2. Or copy-paste into HyGraph UI → Schema → Import
+
+# MediaType Enum
+enum MediaType {
+  PDF
+  VIDEO
+  DECK
+}
+
+# MediaCategory Model
+type MediaCategory {
+  id: ID!
+  title: String!
+  slug: String! @unique
+  description: RichText
+  order: Int
+  mediaItems: [MediaItem!]! @relation(name: "CategoryMediaItems")
+}
+
+# MediaItem Model
+type MediaItem {
+  id: ID!
+  title: String!
+  slug: String! @unique
+  description: RichText
+  excerpt: String
+  type: MediaType!
+  category: MediaCategory @relation(name: "CategoryMediaItems")
+  tags: [String!]
+  
+  # PDF-specific
+  pdfFile: Asset
+  
+  # Video-specific
+  videoUrl: String
+  videoFile: Asset
+  thumbnail: Asset
+  
+  # Deck-specific
+  deckId: String
+  deckSlug: String
+  
+  # Common fields
+  featuredImage: Asset
+  publishedAt: DateTime!
+  updatedAt: DateTime!
+  order: Int
+  isPublished: Boolean! @default(value: false)
+}

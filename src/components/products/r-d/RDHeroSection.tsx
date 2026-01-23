@@ -56,19 +56,25 @@ export default function RDHeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600"
           >
-            Design the Undruggable
-            <br />
-            <span className="text-slate-800">Validate in Silico</span>
+            Pharma-Integrated Drug Development Platform
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto mb-8 leading-relaxed"
+            className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto mb-4 leading-relaxed font-semibold"
           >
-            De-risk development with in-silico validation before spending millions on wet lab work. 
-            Every design is validated with structural confidence and mechanistic explanations.
+            Supporting mechanism-aligned patient selection and proactive pharmacovigilance
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="text-lg md:text-xl text-slate-600 max-w-4xl mx-auto mb-8 leading-relaxed"
+          >
+            AI pharmacogenetics for cancer. We match patients to trials by molecular mechanism—not just histology—and provide genotype-guided dosing to prevent toxicity and optimize efficacy.
           </motion.p>
 
           {/* Key Metrics */}

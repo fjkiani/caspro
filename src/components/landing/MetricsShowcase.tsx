@@ -80,7 +80,7 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
       color: 'from-orange-500 to-red-600',
       icon: TrendingUp,
       link: '/metrics#business',
-      badge: 'Contract Ready',
+      badge: 'Available',
       product: 'CrisPRO R&D',
       productLink: '/products/r-d'
     }
@@ -321,7 +321,7 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
           </div>
           
           <p className="mt-4 text-sm text-slate-500">
-            🔬 <strong>Peer-reviewed validation</strong> • 📊 <strong>Real-world benchmarks</strong> • 💼 <strong>Contract-ready analysis</strong>
+            🔬 <strong>Peer-reviewed validation</strong> • 📊 <strong>Real-world benchmarks</strong> • 💼 <strong>ROI analysis</strong>
           </p>
         </motion.div>
       </div>

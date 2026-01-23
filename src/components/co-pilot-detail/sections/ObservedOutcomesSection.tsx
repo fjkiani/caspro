@@ -294,7 +294,7 @@ export default function ObservedOutcomesSection({ observedOutcomes }: ObservedOu
           </div>
           <h3 className="text-4xl font-bold text-slate-800 mb-6">Observed Outcomes</h3>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            Real-world transformation stories showing how our platform revolutionizes research workflows and decision-making
+            Real-world outcomes showing how our platform supports research workflows
           </p>
         </motion.div>
       </div>

@@ -174,77 +174,77 @@ export const toxicityEducationalData: EducationalCapabilityPageData = {
     interactive: true,
   },
 
-  // Value Proposition Section
-  value: {
-    title: "THE MOAT: What No Competitor Has",
-    question: "What should I eat during carboplatin treatment?",
-    genericResponse: `"Eat healthy. Stay hydrated. Avoid grapefruit."`,
-    ourResponse: `"You're on carboplatin (DNA repair stress) with BRCA1 (sensitive).
- NAC specifically helps - it boosts glutathione which supports DNA repair.
- Take 600mg twice daily AFTER infusion, not during.
- Here's why this matters for YOU."`,
-    comparison: [
-      {
-        feature: "Toxicity Detection",
-        generic: "❌ None",
-        ourSystem: "✅ DPYD/TPMT/UGT1A1/CYP2D6 screening",
-      },
-      {
-        feature: "Drug-Specific Nutrition",
-        generic: "❌ Generic",
-        ourSystem: "✅ 'NAC for carboplatin + BRCA1'",
-      },
-      {
-        feature: "Timing Guidance",
-        generic: "❌ None",
-        ourSystem: "✅ 'Post-chemo, not during'",
-      },
-      {
-        feature: "Mechanism Explanation",
-        generic: "❌ None",
-        ourSystem: "✅ 'Glutathione supports DNA repair'",
-      },
-      {
-        feature: "Germline Awareness",
-        generic: "❌ None",
-        ourSystem: "✅ 'Your BRCA1 increases stress'",
-      },
-    ],
-  },
+  // Value Proposition Section - REMOVED per user request
+  // value: {
+  //   title: "THE MOAT: What No Competitor Has",
+  //   question: "What should I eat during carboplatin treatment?",
+  //   genericResponse: `"Eat healthy. Stay hydrated. Avoid grapefruit."`,
+  //   ourResponse: `"You're on carboplatin (DNA repair stress) with BRCA1 (sensitive).
+  //  NAC specifically helps - it boosts glutathione which supports DNA repair.
+  //  Take 600mg twice daily AFTER infusion, not during.
+  //  Here's why this matters for YOU."`,
+  //   comparison: [
+  //     {
+  //       feature: "Toxicity Detection",
+  //       generic: "❌ None",
+  //       ourSystem: "✅ DPYD/TPMT/UGT1A1/CYP2D6 screening",
+  //     },
+  //     {
+  //       feature: "Drug-Specific Nutrition",
+  //       generic: "❌ Generic",
+  //       ourSystem: "✅ 'NAC for carboplatin + BRCA1'",
+  //     },
+  //     {
+  //       feature: "Timing Guidance",
+  //       generic: "❌ None",
+  //       ourSystem: "✅ 'Post-chemo, not during'",
+  //     },
+  //     {
+  //       feature: "Mechanism Explanation",
+  //       generic: "❌ None",
+  //       ourSystem: "✅ 'Glutathione supports DNA repair'",
+  //     },
+  //     {
+  //       feature: "Germline Awareness",
+  //       generic: "❌ None",
+  //       ourSystem: "✅ 'Your BRCA1 increases stress'",
+  //     },
+  //   ],
+  // },
 
-  // Integration Section
-  integration: {
-    title: "How This Fits Into Complete Care Plan",
-    connections: [
-      {
-        from: "Toxicity Detection",
-        to: "Food Validation",
-        relationship: "Connects toxicity pathways to protective foods",
-      },
-      {
-        from: "Pharmacogene Screening",
-        to: "Drug Recommendations",
-        relationship: "Flags variants before prescribing to prevent toxicity",
-      },
-      {
-        from: "Pathway Overlap Analysis",
-        to: "Mitigating Foods",
-        relationship: "Maps drug MoA to toxic pathways and recommends pathway-specific foods",
-      },
-    ],
-    carePlanContext: [
-      {
-        step: 6,
-        component: "Risks/Toxicity",
-        howThisHelps: "Screens for pharmacogene variants and drug interactions before prescribing",
-      },
-      {
-        step: 7,
-        component: "Food Validation",
-        howThisHelps: "Validates foods with drug and germline context, recommends timing",
-      },
-    ],
-  },
+  // Integration Section - REMOVED per user request
+  // integration: {
+  //   title: "How This Fits Into Complete Care Plan",
+  //   connections: [
+  //     {
+  //       from: "Toxicity Detection",
+  //       to: "Food Validation",
+  //       relationship: "Connects toxicity pathways to protective foods",
+  //     },
+  //     {
+  //       from: "Pharmacogene Screening",
+  //       to: "Drug Recommendations",
+  //       relationship: "Flags variants before prescribing to prevent toxicity",
+  //     },
+  //     {
+  //       from: "Pathway Overlap Analysis",
+  //       to: "Mitigating Foods",
+  //       relationship: "Maps drug MoA to toxic pathways and recommends pathway-specific foods",
+  //     },
+  //   ],
+  //   carePlanContext: [
+  //     {
+  //       step: 6,
+  //       component: "Risks/Toxicity",
+  //       howThisHelps: "Screens for pharmacogene variants and drug interactions before prescribing",
+  //     },
+  //     {
+  //       step: 7,
+  //       component: "Food Validation",
+  //       howThisHelps: "Validates foods with drug and germline context, recommends timing",
+  //     },
+  //   ],
+  // },
 
   // Concepts
   concepts: {
@@ -278,98 +278,98 @@ export const toxicityEducationalData: EducationalCapabilityPageData = {
     interactive: true,
   },
 
-  // Process
-  process: {
-    title: "The Complete Toxicity Assessment Flow",
-    steps: [
-      {
-        number: 1,
-        title: "Pharmacogene Screening",
-        description: "Screen 20+ drug-metabolizing enzymes for variants",
-      },
-      {
-        number: 2,
-        title: "Pathway Overlap Computation",
-        description: "Map drug MoA to toxic pathways and compute overlap with patient variants",
-      },
-      {
-        number: 3,
-        title: "Risk Assessment",
-        description: "Calculate toxicity risk based on pharmacogene variants and pathway overlap",
-      },
-      {
-        number: 4,
-        title: "Food Mapping",
-        description: "Map pathway overlap to mitigating foods with timing and dosage",
-      },
-      {
-        number: 5,
-        title: "LLM Explanation",
-        description: "Generate personalized explanations for why foods mitigate toxicity",
-      },
-    ],
-    layout: "horizontal",
-    interactive: true,
-  },
+  // Process - REMOVED per user request
+  // process: {
+  //   title: "The Complete Toxicity Assessment Flow",
+  //   steps: [
+  //     {
+  //       number: 1,
+  //       title: "Pharmacogene Screening",
+  //       description: "Screen 20+ drug-metabolizing enzymes for variants",
+  //     },
+  //     {
+  //       number: 2,
+  //       title: "Pathway Overlap Computation",
+  //       description: "Map drug MoA to toxic pathways and compute overlap with patient variants",
+  //     },
+  //     {
+  //       number: 3,
+  //       title: "Risk Assessment",
+  //       description: "Calculate toxicity risk based on pharmacogene variants and pathway overlap",
+  //     },
+  //     {
+  //       number: 4,
+  //       title: "Food Mapping",
+  //       description: "Map pathway overlap to mitigating foods with timing and dosage",
+  //     },
+  //     {
+  //       number: 5,
+  //       title: "LLM Explanation",
+  //       description: "Generate personalized explanations for why foods mitigate toxicity",
+  //     },
+  //   ],
+  //   layout: "horizontal",
+  //   interactive: true,
+  // },
 
-  // Example
-  example: {
-    title: "A Real Patient Story: Ayesha on Carboplatin",
-    patient: {
-      name: "Ayesha",
-      profile: [
-        "Stage IVB Ovarian Cancer",
-        "HRD-high (somatic): Score 52 → PARP approved",
-        "MSI-H: Eligible for IO combos",
-        "Germline-negative: Sporadic pathway activated",
-        "On carboplatin treatment",
-      ],
-      question: "What can I eat to help myself during carboplatin treatment?",
-    },
-    solution: [
-      {
-        step: 1,
-        title: "Pharmacogene Screening",
-        description: "Screened for DPYD, TPMT, UGT1A1 variants. No high-risk variants detected.",
-        result: "Safe to proceed with carboplatin",
-      },
-      {
-        step: 2,
-        title: "Pathway Overlap Analysis",
-        description: "Carboplatin → DNA repair pathway stressed (score: 1.0). BRCA1 germline variant increases DNA repair pathway stress.",
-        result: "DNA repair pathway identified as at-risk",
-      },
-      {
-        step: 3,
-        title: "Mitigating Foods Recommendation",
-        description: "NAC (glutathione precursor) specifically helps - supports DNA repair enzymes. Vitamin D and Folate also recommended.",
-        result: "NAC, Vitamin D, Folate recommended",
-      },
-      {
-        step: 4,
-        title: "Timing Guidance",
-        description: "Take NAC post-chemo (not during infusion). Continuous Vitamin D supplementation.",
-        result: "Personalized timing provided",
-      },
-    ],
-    outcome: [
-      {
-        metric: "Toxicity Prevention",
-        value: "100%",
-        impact: "No severe toxicity events",
-      },
-      {
-        metric: "Personalization",
-        value: "Drug + Germline specific",
-        impact: "100% personalized recommendations",
-      },
-      {
-        metric: "Patient Adherence",
-        value: "Improved",
-        impact: "Clear mechanism explanation improves adherence",
-      },
-    ],
-  },
+  // Example - REMOVED per user request
+  // example: {
+  //   title: "A Real Patient Story: Ayesha on Carboplatin",
+  //   patient: {
+  //     name: "Ayesha",
+  //     profile: [
+  //       "Stage IVB Ovarian Cancer",
+  //       "HRD-high (somatic): Score 52 → PARP approved",
+  //       "MSI-H: Eligible for IO combos",
+  //       "Germline-negative: Sporadic pathway activated",
+  //       "On carboplatin treatment",
+  //     ],
+  //     question: "What can I eat to help myself during carboplatin treatment?",
+  //   },
+  //   solution: [
+  //     {
+  //       step: 1,
+  //       title: "Pharmacogene Screening",
+  //       description: "Screened for DPYD, TPMT, UGT1A1 variants. No high-risk variants detected.",
+  //       result: "Safe to proceed with carboplatin",
+  //     },
+  //     {
+  //       step: 2,
+  //       title: "Pathway Overlap Analysis",
+  //       description: "Carboplatin → DNA repair pathway stressed (score: 1.0). BRCA1 germline variant increases DNA repair pathway stress.",
+  //       result: "DNA repair pathway identified as at-risk",
+  //     },
+  //     {
+  //       step: 3,
+  //       title: "Mitigating Foods Recommendation",
+  //       description: "NAC (glutathione precursor) specifically helps - supports DNA repair enzymes. Vitamin D and Folate also recommended.",
+  //       result: "NAC, Vitamin D, Folate recommended",
+  //     },
+  //     {
+  //       step: 4,
+  //       title: "Timing Guidance",
+  //       description: "Take NAC post-chemo (not during infusion). Continuous Vitamin D supplementation.",
+  //       result: "Personalized timing provided",
+  //     },
+  //   ],
+  //   outcome: [
+  //     {
+  //       metric: "Toxicity Prevention",
+  //       value: "100%",
+  //       impact: "No severe toxicity events",
+  //     },
+  //     {
+  //       metric: "Personalization",
+  //       value: "Drug + Germline specific",
+  //       impact: "100% personalized recommendations",
+  //     },
+  //     {
+  //       metric: "Patient Adherence",
+  //       value: "Improved",
+  //       impact: "Clear mechanism explanation improves adherence",
+  //     },
+  //   ],
+  // },
 
   // Layout - Aligned with toxicity-data.ts structure
   layout: {
@@ -394,16 +394,16 @@ export const toxicityEducationalData: EducationalCapabilityPageData = {
           'Pathway Overlap Analysis',
           'Mitigating Foods'
         ] },
-        { id: 'process', title: 'Process Flow', subsections: [] },
-        { id: 'value', title: 'The MOAT', subsections: [] },
-        { id: 'example', title: 'Real Example', subsections: [] },
-        { id: 'integration', title: 'Integration', subsections: [] },
+        // { id: 'process', title: 'Process Flow', subsections: [] }, // REMOVED
+        // { id: 'value', title: 'The MOAT', subsections: [] }, // REMOVED
+        // { id: 'example', title: 'Real Example', subsections: [] }, // REMOVED per user request
+        // { id: 'integration', title: 'Integration', subsections: [] }, // REMOVED per user request
       ],
     },
     progress: {
       current: 1,
-      total: 11,
-      readingTime: 15,
+      total: 9, // Reduced from 11 (removed process and value sections)
+      readingTime: 12, // Reduced from 15
     },
   },
 

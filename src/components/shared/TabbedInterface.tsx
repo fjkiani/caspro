@@ -136,11 +136,37 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
 
   return (
     <div className={`bg-gradient-to-br from-slate-50 via-white to-blue-50 relative ${className}`}>
-      {/* Mobile Menu Button - Only show if sidebar is enabled */}
+      {/* Mobile Tab Bar - Horizontal scrollable tabs at top */}
+      <div className="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
+        <div className="overflow-x-auto scrollbar-hide">
+          <div className="flex items-center gap-2 px-4 py-3 min-w-max">
+            {tabs.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeSection === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => handleNavClick(tab.id)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
+                    isActive
+                      ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-md'
+                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  }`}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Button - Only show if sidebar is enabled (for desktop sidebar toggle) */}
       {showSidebar && (
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="fixed top-4 left-4 z-50 lg:hidden bg-white rounded-full p-3 shadow-lg border border-slate-200 hover:shadow-xl transition-all"
+          className="hidden lg:block fixed top-4 left-4 z-50 bg-white rounded-full p-3 shadow-lg border border-slate-200 hover:shadow-xl transition-all"
         >
           {sidebarOpen ? <X className="w-6 h-6 text-slate-700" /> : <Menu className="w-6 h-6 text-slate-700" />}
         </button>
@@ -240,7 +266,7 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
 
       {/* Main Content */}
       <div className="w-full">
-        <div className={`w-full px-4 sm:px-6 lg:px-8 py-12 lg:py-24 ${showSidebar ? 'lg:pl-80' : ''}`}>
+        <div className={`w-full px-4 sm:px-6 lg:px-8 py-6 lg:py-24 ${showSidebar ? 'lg:pl-80' : ''}`}>
           <div className="max-w-5xl mx-auto">
             {renderContent()}
           </div>

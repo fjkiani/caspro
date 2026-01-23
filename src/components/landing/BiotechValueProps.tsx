@@ -53,7 +53,7 @@ const BiotechValueProps: React.FC<BiotechValuePropsProps> = ({ className = '' })
           </h2>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto mb-8">
             The only platform that transforms drug development from gambling to engineering. 
-            <strong>Real results, validated metrics, contract-ready ROI.</strong>
+            <strong>Real results, validated metrics, ROI analysis.</strong>
           </p>
           
           {/* Crisis vs Solution Comparison */}
@@ -196,10 +196,10 @@ const BiotechValueProps: React.FC<BiotechValuePropsProps> = ({ className = '' })
           className="text-center p-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl text-white"
         >
           <h3 className="text-3xl font-bold mb-4">
-            Ready to Transform Your R&D Pipeline?
+            Get Started with CrisPRO
           </h3>
           <p className="text-xl mb-8 opacity-90">
-            Join the biotech leaders who've eliminated the $2.6B gamble with mathematical certainty.
+            See how CrisPRO supports R&D workflows with AI-powered validation.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -231,7 +231,7 @@ const BiotechValueProps: React.FC<BiotechValuePropsProps> = ({ className = '' })
           </div>
           
           <p className="mt-4 text-sm opacity-75">
-            ⚡ <strong>No commitment required</strong> • <strong>See real results in 30 seconds</strong> • <strong>Contract-ready ROI analysis</strong>
+            ⚡ <strong>No commitment required</strong> • <strong>See results quickly</strong> • <strong>ROI analysis available</strong>
           </p>
         </motion.div>
       </div>

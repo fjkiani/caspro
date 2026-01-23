@@ -92,10 +92,10 @@ const ROICalculatorSection: React.FC<ROICalculatorSectionProps> = ({ className =
             {/* Call to Action */}
             <div className="mt-8 p-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white text-center">
               <h4 className="text-xl font-bold mb-3">
-                Ready to Transform Your Numbers?
+                Calculate Your ROI
               </h4>
               <p className="mb-6 opacity-90">
-                Schedule a demo to see how these savings apply to your specific programs
+                Schedule a demo to see how these metrics apply to your programs
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -52,7 +52,7 @@ const DrugDevelopmentOrchestrator: React.FC<DrugDevelopmentOrchestratorProps> = 
       subtitle: 'High-level 3-stage transformation',
       icon: Target,
       color: 'from-red-500 to-pink-600',
-      description: 'See how we transform the $2.6B drug development gamble into mathematical certainty'
+      description: 'See how CrisPRO supports drug development workflows with in-silico validation'
     },
     simulations: {
       id: 'simulations', 
@@ -96,7 +96,7 @@ const DrugDevelopmentOrchestrator: React.FC<DrugDevelopmentOrchestratorProps> = 
             Drug Development Transformation
           </h2>
           <p className="text-2xl text-slate-600 max-w-5xl mx-auto mb-8">
-            From a $2.6B gamble to mathematical certainty through AI-powered intelligence
+            AI-powered tools for drug development workflows
           </p>
         </motion.div>
 
@@ -177,7 +177,7 @@ const DrugDevelopmentOrchestrator: React.FC<DrugDevelopmentOrchestratorProps> = 
                 {/* Our Solution */}
                 <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl shadow-xl p-8">
                   <div className="text-center mb-8">
-                    <h3 className="text-3xl font-bold mb-4">Our Solution: AI-Powered Intelligence</h3>
+                    <h3 className="text-3xl font-bold mb-4">Our Solution: AI-Powered Tools</h3>
                     <p className="text-xl opacity-90 max-w-4xl mx-auto">
                       Replace gambling with mathematical certainty through our 4-engine AI platform
                     </p>
@@ -245,9 +245,9 @@ const DrugDevelopmentOrchestrator: React.FC<DrugDevelopmentOrchestratorProps> = 
           className="mt-16 text-center"
         >
           <div className="bg-gradient-to-r from-slate-800 to-blue-800 text-white rounded-2xl p-8">
-            <h3 className="text-2xl font-bold mb-4">Ready to Transform Your R&D?</h3>
+            <h3 className="text-2xl font-bold mb-4">Get Started with CrisPRO R&D</h3>
             <p className="text-slate-200 mb-6 max-w-2xl mx-auto">
-              Join biotech leaders who've eliminated the $2.6B gamble with mathematical certainty
+              See how CrisPRO supports R&D workflows with in-silico validation
             </p>
             <div className="flex gap-4 justify-center">
               <button className="bg-white text-slate-800 px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-colors">

@@ -69,7 +69,7 @@ const CoreCapabilitiesTab: React.FC = () => (
   <div className="space-y-8">
     <div className="text-center mb-8">
       <h3 className="text-2xl font-bold text-gray-900 mb-4">5 Advanced AI-Powered Capabilities</h3>
-      <p className="text-lg text-gray-600">Designed to transform your oncology workflow</p>
+      <p className="text-lg text-gray-600">Oncology capabilities for clinical workflows</p>
     </div>
 
     <div className="space-y-6">
@@ -354,7 +354,7 @@ const OncologyMainCascade: React.FC = () => {
       id: 'core-capabilities',
       label: 'Core Capabilities',
       icon: Zap,
-      description: 'Agentic AI-powered capabilities transforming oncology workflows',
+      description: 'Agentic AI-powered capabilities for oncology',
       component: CoreCapabilitiesTab,
       props: {}
     }
@@ -387,7 +387,7 @@ const OncologyMainCascade: React.FC = () => {
           </div>
         </div>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-          From molecular profiling to unified care plans - experience the full spectrum of AI-powered oncology intelligence
+          From molecular profiling to unified care plans - AI-powered oncology capabilities
         </p>
       </div>
 

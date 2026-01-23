@@ -398,7 +398,7 @@ const DiscoveryRaceSimulation: React.FC<DiscoveryRaceSimulationProps> = ({
             </span>
           </h2>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto">
-            Watch traditional screening get demolished by AI generation in real-time
+            Compare traditional screening with AI generation
           </p>
         </motion.div>
 
@@ -456,14 +456,14 @@ const DiscoveryRaceSimulation: React.FC<DiscoveryRaceSimulationProps> = ({
             >
               <div className="max-w-4xl mx-auto p-8 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl border border-purple-200">
                 <h3 className="text-3xl font-bold text-purple-800 mb-4">
-                  🎯 The Verdict: Engineering Dominates Discovery
+                  🎯 The Verdict: Engineering vs Discovery
                 </h3>
                 <p className="text-xl text-purple-700 leading-relaxed">
                   In the time it takes traditional screening to complete just one cycle, 
                   AI has already <strong>engineered, validated, and optimized</strong> multiple therapeutic candidates.
                   <br />
                   <span className="font-bold text-purple-800">
-                    This isn't just an improvement—it's a complete paradigm shift.
+                    This represents a significant improvement in drug development efficiency.
                   </span>
                 </p>
               </div>

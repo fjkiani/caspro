@@ -85,91 +85,118 @@ export default function EducationalPageLayout({
         </div>
       )}
       
-      <div className="flex max-w-7xl mx-auto pt-16">
-        {/* Sidebar Navigation - Sticky and Always Visible */}
-        <aside className="hidden lg:block w-80 bg-white/90 backdrop-blur-xl shadow-2xl border-r border-slate-200/50 h-[calc(100vh-8rem)] sticky top-32 overflow-y-auto z-30 rounded-r-2xl">
-          <div className="p-6 border-b border-slate-200">
-            {productSlug && capabilitySlug && (
+      {/* Conditional Layout: Grid for prevent-toxicity, Sidebar for others */}
+      {capabilitySlug === 'prevent-toxicity' ? (
+        // Grid Layout - No Sidebar (for prevent-toxicity)
+        <div className="max-w-7xl mx-auto pt-16">
+          {/* Back Button - Top */}
+          {productSlug && capabilitySlug && (
+            <div className="mb-8">
               <Link 
                 href={`/products/${productSlug}`} 
-                className="text-sm text-blue-600 hover:text-blue-800 mb-2 block"
+                className="text-sm text-blue-600 hover:text-blue-800 inline-flex items-center gap-2"
               >
-                ← Back to {productSlug === 'oncology' ? 'Oncology' : productSlug === 'r-d' ? 'R&D' : 'Research'}
+                <span>←</span>
+                <span>Back to {productSlug === 'oncology' ? 'Oncology' : productSlug === 'r-d' ? 'R&D' : 'Research'}</span>
               </Link>
-            )}
-            <h2 className="text-xl font-bold text-slate-900 mb-2">
-              {capabilitySlug ? capabilitySlug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Capability'}
-            </h2>
-            <p className="text-sm text-slate-600">
-              Learn how this capability works and why it matters
-            </p>
-          </div>
-          
-          <nav className="p-4">
-            <h3 className="text-sm font-semibold text-slate-700 mb-3 uppercase tracking-wide">
-              Sections
-            </h3>
-            <ul className="space-y-1">
-              {data.sidebar.sections.map((section) => {
-                const isActive = activeSection === section.id;
-                return (
-                  <li key={section.id}>
-                    <button
-                      onClick={() => scrollToSection(section.id)}
-                      className={`w-full block px-3 py-2 rounded-lg text-sm transition-colors text-left ${
-                        isActive
-                          ? 'bg-blue-100 text-blue-800 font-medium'
-                          : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span>{section.title}</span>
-                        {isActive && (
-                          <ChevronRight className="w-4 h-4" />
-                        )}
-                      </div>
-                      {section.subsections && section.subsections.length > 0 && (
-                        <ul className="mt-2 ml-4 space-y-1">
-                          {section.subsections.map((subsection, idx) => (
-                            <li key={idx}>
-                              <span className="text-xs text-slate-500">{subsection}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-        </aside>
+            </div>
+          )}
 
-        {/* Main Content */}
-        <main className="flex-1 bg-slate-50 min-h-screen">
-          {/* Mobile Navigation */}
-          <div className="lg:hidden bg-white border-b border-slate-200 p-4 mt-16">
-            {productSlug && capabilitySlug && (
-              <Link 
-                href={`/products/${productSlug}`} 
-                className="text-sm text-blue-600 hover:text-blue-800 mb-2 block"
-              >
-                ← Back to {productSlug === 'oncology' ? 'Oncology' : productSlug === 'r-d' ? 'R&D' : 'Research'}
-              </Link>
-            )}
-            <h2 className="text-lg font-bold text-slate-900 mb-1">
-              {capabilitySlug ? capabilitySlug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Capability'}
-            </h2>
-            <p className="text-sm text-slate-600">
-              Learn how this capability works and why it matters
-            </p>
-          </div>
-          
-          <div className="p-4 lg:p-8 max-w-none">
-            {children}
-          </div>
-        </main>
-      </div>
+          {/* Main Content - Grid Layout */}
+          <main className="bg-slate-50 min-h-screen">
+            <div className="p-4 lg:p-8">
+              {children}
+            </div>
+          </main>
+        </div>
+      ) : (
+        // Sidebar Layout (for other capabilities)
+        <div className="flex max-w-7xl mx-auto pt-16">
+          {/* Sidebar Navigation - Sticky and Always Visible */}
+          <aside className="hidden lg:block w-80 bg-white/90 backdrop-blur-xl shadow-2xl border-r border-slate-200/50 h-[calc(100vh-8rem)] sticky top-32 overflow-y-auto z-30 rounded-r-2xl">
+            <div className="p-6 border-b border-slate-200">
+              {productSlug && capabilitySlug && (
+                <Link 
+                  href={`/products/${productSlug}`} 
+                  className="text-sm text-blue-600 hover:text-blue-800 mb-2 block"
+                >
+                  ← Back to {productSlug === 'oncology' ? 'Oncology' : productSlug === 'r-d' ? 'R&D' : 'Research'}
+                </Link>
+              )}
+              <h2 className="text-xl font-bold text-slate-900 mb-2">
+                {capabilitySlug ? capabilitySlug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Capability'}
+              </h2>
+              <p className="text-sm text-slate-600">
+                Learn how this capability works and why it matters
+              </p>
+            </div>
+            
+            <nav className="p-4">
+              <h3 className="text-sm font-semibold text-slate-700 mb-3 uppercase tracking-wide">
+                Sections
+              </h3>
+              <ul className="space-y-1">
+                {data.sidebar.sections.map((section) => {
+                  const isActive = activeSection === section.id;
+                  return (
+                    <li key={section.id}>
+                      <button
+                        onClick={() => scrollToSection(section.id)}
+                        className={`w-full block px-3 py-2 rounded-lg text-sm transition-colors text-left ${
+                          isActive
+                            ? 'bg-blue-100 text-blue-800 font-medium'
+                            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span>{section.title}</span>
+                          {isActive && (
+                            <ChevronRight className="w-4 h-4" />
+                          )}
+                        </div>
+                        {section.subsections && section.subsections.length > 0 && (
+                          <ul className="mt-2 ml-4 space-y-1">
+                            {section.subsections.map((subsection, idx) => (
+                              <li key={idx}>
+                                <span className="text-xs text-slate-500">{subsection}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+          </aside>
+
+          {/* Main Content */}
+          <main className="flex-1 bg-slate-50 min-h-screen">
+            {/* Mobile Navigation */}
+            <div className="lg:hidden bg-white border-b border-slate-200 p-4 mt-16">
+              {productSlug && capabilitySlug && (
+                <Link 
+                  href={`/products/${productSlug}`} 
+                  className="text-sm text-blue-600 hover:text-blue-800 mb-2 block"
+                >
+                  ← Back to {productSlug === 'oncology' ? 'Oncology' : productSlug === 'r-d' ? 'R&D' : 'Research'}
+                </Link>
+              )}
+              <h2 className="text-lg font-bold text-slate-900 mb-1">
+                {capabilitySlug ? capabilitySlug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Capability'}
+              </h2>
+              <p className="text-sm text-slate-600">
+                Learn how this capability works and why it matters
+              </p>
+            </div>
+            
+            <div className="p-4 lg:p-8 max-w-none">
+              {children}
+            </div>
+          </main>
+        </div>
+      )}
     </div>
   );
 }

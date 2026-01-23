@@ -40,7 +40,7 @@ export default function CoreCapabilitiesSection({
       <div className="text-center mb-8 md:mb-12">
         <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-3 md:mb-4">Core Capabilities</h2>
         <p className="text-sm md:text-base text-slate-600 max-w-2xl mx-auto">
-          {totalCapabilities} advanced AI-powered capabilities designed to transform your workflow
+          {totalCapabilities} AI-powered capabilities
         </p>
       </div>
       

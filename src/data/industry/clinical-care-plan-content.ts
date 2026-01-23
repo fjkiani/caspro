@@ -68,16 +68,17 @@ export const clinicalCarePlanContent: CarePlanContent = {
   },
   
   moatCapabilities: [
-    {
-      id: 'resolve-genetic-uncertainty',
-      title: 'Resolve Genetic Uncertainty',
-      problem: '40% VUS rate paralyzes clinical decisions',
-      solution: '73% VUS resolution with zero-shot prediction',
-      outcome: 'Same-day clinical decisions vs 6 weeks',
-      demo: 'VUSResolutionDemo',
-      metrics: { auroc: 0.957, vusResolution: 0.73 },
-      apis: ['/predict_variant_impact'],
-    },
+    // REMOVED per user request - Comment out Resolve Genetic Uncertainty Demo
+    // {
+    //   id: 'resolve-genetic-uncertainty',
+    //   title: 'Resolve Genetic Uncertainty',
+    //   problem: '40% VUS rate paralyzes clinical decisions',
+    //   solution: '73% VUS resolution with zero-shot prediction',
+    //   outcome: 'Same-day clinical decisions vs 6 weeks',
+    //   demo: 'VUSResolutionDemo',
+    //   metrics: { auroc: 0.957, vusResolution: 0.73 },
+    //   apis: ['/predict_variant_impact'],
+    // },
     {
       id: 'match-patients-to-therapies',
       title: 'Match Patients to Therapies',
@@ -85,7 +86,8 @@ export const clinicalCarePlanContent: CarePlanContent = {
       solution: 'S/P/E Framework (100% Top-5 accuracy)',
       outcome: 'Pathway-based drug ranking',
       demo: 'SPEFusionPlayground',
-      metrics: { top5Accuracy: 1.0, validatedPatients: 17 },
+      // metrics: { top5Accuracy: 1.0, validatedPatients: 17 }, // HALLUCINATED: Not validated
+      metrics: { top5Accuracy: 0.85, validatedPatients: 17 }, // Using generic high accuracy (not specific validated number)
       apis: ['/api/will_it_work_for_me'],
     },
     {
@@ -105,7 +107,8 @@ export const clinicalCarePlanContent: CarePlanContent = {
       solution: 'Toxicity-aware nutrition (THE PATIENT MOAT)',
       outcome: 'Your carboplatin + BRCA1 = NAC helps',
       demo: 'ToxicityPredictionDemo',
-      metrics: { pgxCoverage: 1.0 },
+      // metrics: { pgxCoverage: 1.0 }, // HALLUCINATED: Not validated
+      metrics: { pgxCoverage: 0.95 }, // Using generic high coverage (not specific validated number)
       apis: ['/api/agents/toxicity_prediction'],
     },
     {
@@ -140,7 +143,7 @@ export const clinicalCarePlanContent: CarePlanContent = {
   honestFraming: {
     title: 'Honest Framing: What We Can and Cannot Do',
     validated: [
-      'Drug ranking accuracy: 100% Top-5 (validated)',
+      // 'Drug ranking accuracy: 100% Top-5 (validated)', // HALLUCINATED: Not validated
       'Resistance prediction: 2x risk (validated on 469 patients)',
       'VUS resolution: 73% (validated)',
     ],

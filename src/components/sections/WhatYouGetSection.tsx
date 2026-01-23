@@ -136,7 +136,7 @@ const WhatYouGetSection: React.FC = () => {
               <div className="max-w-5xl mx-auto">
                 <div className="bg-gradient-to-r from-blue-50 to-teal-50 rounded-2xl p-6 border border-blue-100">
                   <p className="text-xl font-medium text-gray-800 leading-relaxed">
-                    Core capabilities that transform your research workflow. These aren't separate tools - they're integrated AI-powered capabilities designed to work together seamlessly.
+                    Core integrated capabilities. These aren't separate tools - they're integrated AI-powered capabilities designed to work together.
                   </p>
                 </div>
               </div>
@@ -185,7 +185,7 @@ const WhatYouGetSection: React.FC = () => {
           <div className="mb-24">
             <div className="text-center mb-16">
               <h3 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-teal-600 to-indigo-600 bg-clip-text text-transparent mb-6">Key Outcomes</h3>
-              <p className="text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed">Transform your research workflow with measurable improvements in speed, accuracy, and collaboration</p>
+              <p className="text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed">Research capabilities with improvements in speed, accuracy, and collaboration</p>
             </div>
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-100 via-teal-100 to-indigo-100 rounded-3xl transform rotate-1 scale-105 opacity-30"></div>

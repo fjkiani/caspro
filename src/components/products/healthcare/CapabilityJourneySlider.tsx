@@ -200,7 +200,7 @@ export default function CapabilityJourneySlider() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-slate-600 max-w-3xl mx-auto"
           >
-            Explore how CrisPRO transforms healthcare workflows across different capabilities
+            Explore CrisPRO capabilities for healthcare
           </motion.p>
         </div>
 

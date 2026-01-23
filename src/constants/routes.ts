@@ -20,6 +20,7 @@ export const ROUTES = {
   DATA_LAB: '/evidence/data-lab',
   SAE_INTELLIGENCE: '/evidence/sae-intelligence',
   DOCS: '/docs',
+  MEDIA: '/media',
   
   // Anchor links on main page
   FEATURES: '#features',

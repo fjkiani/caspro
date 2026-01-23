@@ -71,50 +71,50 @@ export const clinicalTrialsJourney: CapabilityJourneyData = {
   newWaySteps: [
     {
       number: 1,
-      title: "Smart Trial Search",
-      description: "AI-powered vector search understands patient context, biomarkers, and trial requirements with intelligent synonym mapping.",
+      title: "Biology-Aware Trial Search",
+      description: "CrisPRO searches trials by understanding patient biomarkers and connecting them to trial eligibility criteria through biological reasoning.",
       icon: Zap,
       solutions: [
-        "Vector search with patient-aware query understanding achieves 95% accuracy",
-        "Biomarker synonym mapping reduces false negatives by 85%",
-        "Real-time trial database integration with live refresh from 15+ sources",
-        "Smart search compresses 50+ trials to 5-12 relevant options in under 2 minutes"
+        "Biomarker analysis identifies patient's genetic and molecular profile",
+        "Biological matching connects patient biomarkers to trial drug mechanisms",
+        "Synonym mapping recognizes different names for the same biomarkers",
+        "Trial database integration searches across multiple sources simultaneously"
       ]
     },
     {
       number: 2,
       title: "Clear Eligibility Assessment",
-      description: "Structured eligibility analysis with Likely/Potential/Unlikely labels and transparent reasoning for each criterion.",
+      description: "Structured eligibility analysis with biological reasoning explaining why patients meet or don't meet each criterion.",
       icon: Shield,
       solutions: [
-        "Structured met/unmet/unclear criteria assessment with 90% confidence scoring",
-        "Clear Likely/Potential/Unlikely eligibility labels reduce uncertainty by 80%",
-        "Transparent reasoning with 2-3 sentence explanations and source citations",
-        "Reduced eligibility confusion by 60-65% compared to manual assessment"
+        "Biological analysis evaluates how patient genetics align with trial requirements",
+        "Clear Likely/Potential/Unlikely labels with biological explanations",
+        "Transparent reasoning shows the biological basis for each eligibility determination",
+        "Mechanism-based matching connects patient pathways to trial drug targets"
       ]
     },
     {
       number: 3,
-      title: "Rapid Trial Shortlisting",
-      description: "AI generates comprehensive trial shortlists in minutes instead of days, with clear provenance and export capabilities.",
+      title: "Efficient Trial Shortlisting",
+      description: "CrisPRO generates trial shortlists by matching patient biology to trial mechanisms, with clear provenance and export capabilities.",
       icon: Activity,
       solutions: [
-        "Time-to-first-trial reduced by 60-65% from days to minutes",
-        "One-pager export with run ID and profile accelerates tumor board prep by 75%",
-        "Shareable results for tumor board preparation reduce meeting time by 50%",
-        "JSON/CSV export for tracking and documentation with 100% audit trail"
+        "Biology-based ranking prioritizes trials that target patient's pathway vulnerabilities",
+        "One-pager export includes biological rationale for trial relevance",
+        "Shareable results help care teams understand why trials are good matches",
+        "Export capabilities enable tracking and documentation of matching logic"
       ]
     },
     {
       number: 4,
-      title: "Research-Grade Trial Matching",
-      description: "Validated trial matching with 95.7% AUROC ClinVar foundations and auditable provenance for research use.",
+      title: "Transparent Trial Matching",
+      description: "Research-grade methodology with biological reasoning and auditable provenance for clinical decision support.",
       icon: CheckCircle,
       solutions: [
-        "95.7% AUROC ClinVar validation for variant-based eligibility across 53,210 variants",
-        "Splice AUROC ~82.5-82.6 for noncoding/splicing criteria improves accuracy by 40%",
-        "Auditable provenance with run ID and profile tracking ensures 100% transparency",
-        "Research-use-only positioning with transparent methodology and peer-reviewed validation"
+        "Biological reasoning explains how patient biomarkers connect to trial eligibility",
+        "Variant impact analysis informs eligibility for biomarker-driven trials",
+        "Auditable provenance documents the biological logic behind each match",
+        "Research-use-only positioning with transparent methodology"
       ]
     }
   ]

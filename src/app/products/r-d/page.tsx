@@ -4,13 +4,12 @@ import { rDProductData } from '@/data/products/r-d-data';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import RDHeroSection from '@/components/products/r-d/RDHeroSection';
-import RDTransformationMetrics from '@/components/products/r-d/RDTransformationMetrics';
 import RDInteractiveShowcase from '@/components/products/r-d/RDInteractiveShowcase';
 import RDCapabilityTesting from '@/components/products/r-d/RDCapabilityTesting';
 import RDCapabilityShowcase from '@/components/products/r-d/RDCapabilityShowcase';
 import RDEnginesSection from '@/components/products/r-d/RDEnginesSection';
 import RelatedIndustrySection from '@/components/products/shared/RelatedIndustrySection';
-
+import InteractiveDemoSection from '@/components/landing/InteractiveDemoSection';
 // Dynamically import RDTabs to avoid chunk loading issues
 const RDTabs = dynamic(() => import('./RDTabs'), {
   ssr: true,
@@ -48,10 +47,8 @@ export default async function RDProductPage() {
       {/* Hero Section */}
       <RDHeroSection />
 
-      {/* R&D Transformation Metrics */}
-      <div id="rd-metrics">
-        <RDTransformationMetrics />
-      </div>
+      {/* Interactive Demo Section - Moved from Homepage */}
+      <InteractiveDemoSection />
 
       {/* Interactive R&D Showcase */}
       <RDInteractiveShowcase />

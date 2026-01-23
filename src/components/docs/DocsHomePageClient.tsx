@@ -125,7 +125,7 @@ export default function DocsHomePageClient({
             </span>
           </h1>
           <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-            Everything you need to transform therapeutic development with AI-powered intelligence
+            Everything you need for therapeutic development with AI-powered tools
           </p>
         </motion.div>
 
@@ -502,10 +502,10 @@ export default function DocsHomePageClient({
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.1),transparent_50%)]" />
         <div className="relative p-8 md:p-12 text-center space-y-4">
           <h2 className="text-2xl md:text-3xl font-bold">
-            Ready to transform therapeutic development?
+            Get Started with CrisPRO APIs
           </h2>
           <p className="text-slate-400 max-w-xl mx-auto">
-            Start building with CrisPRO.ai APIs and experience the future of AI-powered drug discovery
+            Start building with CrisPRO.ai APIs for AI-powered drug discovery
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             {oracleEndpoints.length > 0 && (

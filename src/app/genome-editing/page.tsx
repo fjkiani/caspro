@@ -260,7 +260,7 @@ export default function GenomeEditingPage() {
             <div>
               <h3 className="text-2xl font-bold mb-2">Ready to Engineer Real Therapies?</h3>
               <p className="text-blue-100/90 max-w-2xl">
-                Take your CRISPR designs to the next level with our full platform. Design, validate, and test gene edits with precision.
+                Use our full platform for CRISPR designs. Design, validate, and test gene edits with precision.
               </p>
             </div>
             <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 min-w-40 rounded-lg transition-colors whitespace-nowrap">

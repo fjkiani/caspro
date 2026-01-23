@@ -157,9 +157,9 @@ export default function UseCasesIndexPage() {
 
         {/* Footer CTA */}
         <div className="text-center space-y-6 pt-8">
-          <h3 className="text-2xl font-bold text-white">Ready to Build Your Own Workflow?</h3>
+          <h3 className="text-2xl font-bold text-white">Build Custom Workflows</h3>
           <p className="text-slate-300 max-w-2xl mx-auto">
-            Explore our API documentation to combine these endpoints in custom workflows tailored to your research needs.
+            Explore our API documentation to combine endpoints for your research needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 

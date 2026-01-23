@@ -66,7 +66,7 @@ export default function GenomicUseCasesSection({
       <div className="text-center mb-12">
         <h3 className="text-3xl font-bold text-slate-800 mb-4">Core Capabilities</h3>
         <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-          {buildsOnStackIntro || "Advanced AI-powered capabilities designed to transform your workflow"}
+          {buildsOnStackIntro || "AI-powered capabilities"}
         </p>
       </div>
 
@@ -200,7 +200,7 @@ export default function GenomicUseCasesSection({
               <CheckCircle size={24} className="text-slate-400" />
             </div>
             <p className="text-slate-500 text-lg">Select a capability above to explore its impact</p>
-            <p className="text-slate-400 text-sm mt-2">Each capability transforms your research workflow</p>
+            <p className="text-slate-400 text-sm mt-2">Research capabilities</p>
           </div>
         )}
       </motion.div>

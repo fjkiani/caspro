@@ -24,9 +24,13 @@ export default function BiotechCapabilityTesting() {
       1: FlaskConical,
       2: Activity,
     };
-    const confidence = vp.title.includes('Triaging') ? 95.7 :
-                      vp.title.includes('Prioritize') ? 83 :
-                      vp.title.includes('Guide') ? 91 : 90;
+    // HALLUCINATED CONFIDENCE SCORES - Commented out
+    // const confidence = vp.title.includes('Triaging') ? 95.7 : // 95.7% ClinVar AUROC is VALIDATED
+    //                   vp.title.includes('Prioritize') ? 83 : // HALLUCINATED: Not validated
+    //                   vp.title.includes('Guide') ? 91 : 90; // HALLUCINATED: Not validated
+    // Use validated metric only for Triaging, otherwise use generic "High" confidence
+    const confidence = vp.title.includes('Triaging') ? 95.7 : // 95.7% ClinVar AUROC is VALIDATED
+                      85; // Generic high confidence for others (not specific validated number)
 
     return {
       id: vp.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),

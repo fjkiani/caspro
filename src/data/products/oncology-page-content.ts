@@ -77,6 +77,12 @@ export const oncologySolutionContent: ProblemSolutionContent = {
       title: 'Month 18+: Never Stops',
       description: 'Continuous monitoring: CA-125 kinetics, ctDNA mutations, trial matching, resistance alerts 3-6 weeks early.',
       highlight: 'Always On'
+    },
+    {
+      icon: 'check',
+      title: '8-Agent Pipeline',
+      description: 'Orchestrated intelligence: data extraction, biomarker calculation, resistance prediction, drug ranking, trial matching, and more.',
+      highlight: 'Complete'
     }
   ]
 };
@@ -88,7 +94,7 @@ export const oncologySectionHeaders = {
   },
   cascadeExperience: {
     title: 'The 8-Agent Pipeline: From Upload to Care Plan',
-    description: 'Experience how our agent swarm orchestrates data extraction, biomarker calculation, resistance prediction, synthetic lethality detection, drug ranking, trial matching, nutrition planning, and continuous monitoring—all in one seamless cascade.'
+    description: 'Our system orchestrates data extraction, biomarker calculation, resistance prediction, synthetic lethality detection, drug ranking, trial matching, nutrition planning, and continuous monitoring in an integrated workflow.'
   }
 };
 

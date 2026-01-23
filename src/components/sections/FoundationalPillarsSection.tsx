@@ -12,14 +12,14 @@ const PILLARS_CONFIG = {
     {
       name: 'AlphaFold 3',
       origin: 'DeepMind by Google',
-      description: 'Unparalleled predictive power in structural biology.',
+      description: 'Predictive power in structural biology.',
       icon: Code,
       link: 'https://alphafoldserver.com/welcome'
     },
     {
       name: 'Evo',
       origin: 'Arc Institute',
-      description: 'Deep DNA understanding and powerful generative capabilities.',
+      description: 'Deep DNA understanding and generative capabilities.',
       icon: Database,
       link: 'https://arcinstitute.org/tools/evo'
     },
@@ -91,14 +91,14 @@ const FoundationalPillarsSection: React.FC = () => {
             </h3>
             <p className="text-lg max-w-3xl mx-auto text-slate-300">
               The true power of CrisPRO stems from the unique synergy of our team's deep technical AI knowledge 
-              and critical firsthand clinical insight. This combination is the engine driving our innovative solutions.
+              and critical firsthand clinical insight. This combination drives our solutions.
             </p>
           </div>
 
           {/* Foundation Statement */}
           <div className="bg-gradient-to-r from-teal-600/20 via-green-600/20 to-cyan-600/20 p-8 md:p-12 text-center relative overflow-hidden">
             <p className="text-xl font-light max-w-3xl mx-auto relative z-10 text-slate-200">
-              Our Oncology Co-Pilot is proudly built upon the groundbreaking work and open-source contributions 
+              Our Oncology Co-Pilot is built upon the work and open-source contributions 
               from world-leading institutions and researchers in biological AI and gene editing.
             </p>
           </div>
@@ -135,7 +135,7 @@ const FoundationalPillarsSection: React.FC = () => {
             <p className="text-lg text-slate-300 max-w-3xl mx-auto">
               By ethically and responsibly integrating these powerful open-source tools, 
               CrisPRO is dedicated to accelerating discovery and personalizing design in 
-              the future of precision oncology.
+              precision oncology.
             </p>
           </div>
         </motion.div>

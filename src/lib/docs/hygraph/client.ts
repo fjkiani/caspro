@@ -37,7 +37,7 @@ const cache = new Map<string, { data: any; timestamp: number }>();
 /**
  * Fetch with caching support
  */
-async function fetchWithCache<T>(
+export async function fetchWithCache<T>(
   query: string,
   variables?: Record<string, any>,
   revalidate = CACHE_TTL

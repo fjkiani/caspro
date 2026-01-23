@@ -248,7 +248,7 @@ export const CAREER_JOBS: JobListing[] = [
       'Health, dental, and vision insurance',
       'Flexible work arrangements',
       'Research publication support',
-      'Access to cutting-edge AI models and datasets'
+      'Access to advanced AI models and datasets'
     ],
     postedDate: '2024-12-19',
     active: true,

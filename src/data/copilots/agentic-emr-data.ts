@@ -3,8 +3,8 @@ import { CoPilotDetailContent } from '../../types/copilot-types';
 export const agenticEmrData: CoPilotDetailContent = {
   slug: "agentic-emr",
   pageTitle: "AgenticEMR™: Intelligent Clinical Data Management",
-  heroSubtitle: "Transform clinical data management with autonomous AI agents that convert unstructured EMR data into actionable clinical insights.",
-  vision: "Our vision is to solve the clinical data complexity challenge. We deploy specialized AI agents that process unstructured notes, labs, and genomic reports, integrating them into a unified, queryable intelligence platform. We streamline workflows and create an intelligent system for clinical and research operations.",
+  heroSubtitle: "Transform clinical data management by converting unstructured EMR data into structured, actionable clinical insights.",
+  vision: "Our vision is to solve the clinical data complexity challenge. We process unstructured notes, labs, and genomic reports, integrating them into a unified, queryable intelligence platform. We streamline workflows and create an intelligent system for clinical and research operations.",
   
   valueProps: [
     {
@@ -45,7 +45,7 @@ export const agenticEmrData: CoPilotDetailContent = {
     },
     {
       title: "Intelligent Clinical Trial Matching",
-      technical: "Deploys AI agents that use multi-stage processes: high-speed vector search to identify candidate trials, followed by detailed eligibility analysis.",
+      technical: "Uses multi-stage processes: high-speed search to identify candidate trials, followed by detailed eligibility analysis.",
       scientific: "Leverages advanced natural language processing to understand the biological intent of eligibility criteria, going beyond simple keyword matching.",
       business: "Significantly reduce trial recruitment timelines. Increase patient access to novel therapies and accelerate research."
     },
@@ -56,29 +56,29 @@ export const agenticEmrData: CoPilotDetailContent = {
       business: "Create direct connections between clinical findings and potential therapeutic strategies, enabling comprehensive precision medicine workflows."
     },
     {
-      title: "AI-Powered Collaboration & Workflow Automation",
+      title: "Structured Data Extraction & Workflow Automation",
       technical: "Real-time collaboration platform where clinicians can invoke specialized AI agents for on-demand analysis directly within their workflow.",
-      scientific: "Advances human-computer interaction by integrating AI agents as persistent, proactive members of the clinical team.",
-      business: "Enhance care team efficiency with AI that actively supports clinical decision-making. Automate routine analysis and provide intelligent decision support."
+      scientific: "Advances clinical workflow by integrating structured data analysis as part of the clinical decision-making process.",
+      business: "Enhance care team efficiency with structured data analysis that supports clinical decision-making. Automate routine analysis and provide decision support."
     }
   ],
 
-  buildsOn: "AgenticEMR™ Dominance is built on a sophisticated AI agent architecture. Specialized agents collaborate to provide deep, contextual insights, moving beyond simple data retrieval to execute complex analysis and workflow automation:",
+  buildsOn: "Clinical Data Management is built on structured data processing. Specialized analysis modules provide deep, contextual insights, moving beyond simple data retrieval to execute complex analysis and workflow automation:",
   buildsOnStackPoints: [
-    "**`Deep Variant Interpretation`:** We don't just list mutations; our `GenomicAnalystAgent` assesses their functional impact, providing immediate clinical context.",
-    "**`Automated Eligibility Screening`:** The `EligibilityDeepDiveAgent` autonomously scans patient records against complex trial criteria, extracting key data points from unstructured notes to confirm eligibility.",
+    "**`Deep Variant Interpretation`:** We don't just list mutations; our analysis assesses their functional impact, providing immediate clinical context.",
+    "**`Automated Eligibility Screening`:** Automated screening scans patient records against complex trial criteria, extracting key data points from unstructured notes to confirm eligibility.",
     "**`From Analysis to Action`:** We connect genomic findings to therapeutic possibilities, offering workflows to translate a high-impact variant into a potential gene-editing research strategy.",
-    "**`Contextual Decision Support`:** Clinicians can invoke specialized agents to ask complex questions and receive AI-generated summaries and therapeutic comparisons directly within their workflow.",
-    "**`Proactive Patient Management`:** Build custom agents to automate time-consuming research tasks, such as monitoring new publications related to specific patient cohorts.",
-    "**`Holistic Patient Summarization`:** Our `DataAnalysisAgent` generates a 'deep dive' summary, pulling not just the latest lab values but also conceptual insights to provide a truly holistic patient overview."
+    "**`Contextual Decision Support`:** Clinicians can ask complex questions and receive structured summaries and therapeutic comparisons directly within their workflow.",
+    "**`Proactive Patient Management`:** Automate time-consuming research tasks, such as monitoring new publications related to specific patient cohorts.",
+    "**`Holistic Patient Summarization`:** Generate comprehensive summaries, pulling not just the latest lab values but also conceptual insights to provide a truly holistic patient overview."
   ],
   
   genomicUseCasesGrid: [
-     { "label": "Annihilate VUS (`GenomicAnalystAgent`)", "iconName": "Beaker", "color": "text-purple-400" },
-     { "label": "Automate Trial Conquest (`EligibilityDeepDiveAgent`)", "iconName": "Users", "color": "text-blue-400" },
+     { "label": "Variant Interpretation", "iconName": "Beaker", "color": "text-purple-400" },
+     { "label": "Automated Trial Screening", "iconName": "Users", "color": "text-blue-400" },
      { "label": "Forge Therapeutics from Insights", "iconName": "Layers", "color": "text-green-400" },
      { "label": "Deploy In-Consult Intelligence", "iconName": "Lightbulb", "color": "text-yellow-400" },
-     { "label": "Launch Autonomous Research Agents", "iconName": "Activity", "color": "text-orange-400" },
+     { "label": "Launch Research Analysis", "iconName": "Activity", "color": "text-orange-400" },
      { "label": "Generate Pre-Encounter Dossiers", "iconName": "Shield", "color": "text-red-400" }
    ],
 

@@ -8,7 +8,7 @@ import DrugDevelopmentPlatform from '@/components/homepage/DrugDevelopmentPlatfo
 import FeaturedDemosSection from '@/components/landing/FeaturedDemosSection';
 import PlatformCapabilitiesShowcase from '@/components/landing/PlatformCapabilitiesShowcase';
 import EngineRoom from '@/components/landing/EngineRoom';
-import InteractiveDemoSection from '@/components/landing/InteractiveDemoSection';
+// import InteractiveDemoSection from '@/components/landing/InteractiveDemoSection'; // Moved to R&D page
 import ROICalculatorSection from '@/components/landing/ROICalculatorSection';
 import CTASection from '@/components/shared/CTASection';
 import TrustedBy from '@/components/shared/TrustedBy';
@@ -27,10 +27,10 @@ export default function Home() {
 
       <TrustedBy />
       
-      <MetricsShowcase />
+      {/* <MetricsShowcase /> */}
       
       {/* How It Works Section */}
-      <HowItWorksSection />
+      {/* <HowItWorksSection /> */}
 
       {/* Choose Your Path - Three Products (Oncology, R&D, Research) */}
       {/* <DrugDevelopmentPlatform /> */}
@@ -43,28 +43,13 @@ export default function Home() {
       {/* Engine Room - Technical Validation */}
       {/* <EngineRoom /> */}
 
-      {/* Interactive Demo Section - Try It Live */}
-      <InteractiveDemoSection />
+      {/* Interactive Demo Section - Moved to R&D page */}
+      {/* <InteractiveDemoSection /> */}
 
       {/* ROI Calculator Section - Business Impact */}
-      <ROICalculatorSection />
+      {/* <ROICalculatorSection /> */}
         
-      <CTASection
-        title="Eliminate the $2.6B gamble with mathematical certainty."
-        description="Join the biotech leaders who've eliminated the $2.6B gamble with mathematical certainty. Transform your R&D pipeline from gambling to engineering."
-        primaryButton={{
-          text: "Schedule Executive Demo",
-          href: "/contact",
-          color: "blue"
-        }}
-        secondaryButton={{
-          text: "See Platform Overview",
-          href: "/platform",
-          color: "blue"
-        }}
-        backgroundColor="blue"
-        className="py-20"
-      />
+      
     </main>
   );
 }

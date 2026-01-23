@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 import { clinicalTransformationContent } from '@/data/industry/clinical-transformation-content';
 import HealthcareHeroSection from '@/components/products/healthcare/HealthcareHeroSection';
-import HealthcareMOATMetrics from '@/components/products/healthcare/HealthcareMOATMetrics';
+// import HealthcareMOATMetrics from '@/components/products/healthcare/HealthcareMOATMetrics';
 import MOATInteractiveShowcase from '@/components/products/healthcare/MOATInteractiveShowcase';
-import MOATCapabilityShowcase from '@/components/products/healthcare/MOATCapabilityShowcase';
-import CompleteCarePlanVision from '@/components/products/healthcare/CompleteCarePlanVision';
-import UniversalPlatformSection from '@/components/products/healthcare/UniversalPlatformSection';
+// import MOATCapabilityShowcase from '@/components/products/healthcare/MOATCapabilityShowcase';
+// import CompleteCarePlanVision from '@/components/products/healthcare/CompleteCarePlanVision';
+// import UniversalPlatformSection from '@/components/products/healthcare/UniversalPlatformSection';
 import HonestFramingSection from '@/components/products/healthcare/HonestFramingSection';
 import CapabilityJourneySlider from '@/components/products/healthcare/CapabilityJourneySlider';
 import ClinicalWorkflow from '@/components/industry/ClinicalWorkflow';
@@ -97,22 +97,22 @@ export default function HealthcarePage() {
       {/* Hero Section */}
       <HealthcareHeroSection />
 
-      {/* MOAT Metrics */}
-      <div id="moat-metrics">
+      {/* MOAT Metrics - Removed */}
+      {/* <div id="moat-metrics">
         <HealthcareMOATMetrics />
-      </div>
+      </div> */}
 
-      {/* Complete Care Plan Vision */}
-      <CompleteCarePlanVision />
+      {/* Complete Care Plan Vision - Removed */}
+      {/* <CompleteCarePlanVision /> */}
 
       {/* Interactive MOAT Showcase */}
       <MOATInteractiveShowcase />
 
-      {/* MOAT Capability Testing */}
-      <MOATCapabilityShowcase />
+      {/* MOAT Capability Testing - Removed */}
+      {/* <MOATCapabilityShowcase /> */}
 
-      {/* Universal Platform */}
-      <UniversalPlatformSection />
+      {/* Universal Platform - Removed */}
+      {/* <UniversalPlatformSection /> */}
 
       {/* Capability Journey Slider */}
       <CapabilityJourneySlider />
@@ -213,9 +213,9 @@ export default function HealthcarePage() {
       {/* CTA Section */}
       <section className="py-16 px-6 bg-gradient-to-br from-blue-600 to-purple-600">
         <div className="max-w-4xl mx-auto text-center space-y-6">
-          <h2 className="text-3xl font-semibold text-white">Ready to Transform Patient Care?</h2>
+          <h2 className="text-3xl font-semibold text-white">Get Started with CrisPRO</h2>
           <p className="text-lg text-white/90">
-            Join leading cancer centers using CrisPRO to resolve VUS uncertainty and improve patient outcomes with complete care plans
+            See how CrisPRO helps resolve VUS uncertainty and improve patient outcomes
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="px-8 py-3 bg-white hover:bg-slate-100 text-blue-600 rounded-lg font-semibold transition-colors">

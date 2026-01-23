@@ -257,10 +257,9 @@ export default function GeneticTestingPage() {
         {/* Call to Action */}
         <section className="text-center space-y-8">
           <div className="space-y-4">
-            <h2 className="text-4xl font-bold text-white">Ready to Transform Your Lab?</h2>
+            <h2 className="text-4xl font-bold text-white">Get Started with CrisPRO</h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Join the genetic testing revolution. Reduce VUS rates, accelerate turnaround times, 
-              and improve patient outcomes with Oracle's zero-shot variant interpretation.
+              Reduce VUS rates and improve turnaround times with Oracle's zero-shot variant interpretation.
             </p>
           </div>
           
@@ -293,7 +292,7 @@ export default function GeneticTestingPage() {
             {
               slug: 'research',
               title: 'CrisPRO Research',
-              subtitle: 'Accelerate Discovery. Multi-modal AI analysis for research institutions.',
+              subtitle: 'Multi-modal AI analysis for research institutions.',
             }
           ]}
           title="Explore CrisPRO Products for Labs"

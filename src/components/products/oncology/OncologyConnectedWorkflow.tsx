@@ -69,7 +69,7 @@ export default function OncologyConnectedWorkflow() {
             Connected <span className="text-blue-600">Intelligence</span>
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            See how all capabilities work together seamlessly in a unified oncology workflow
+            See how all capabilities work together in a unified oncology workflow
           </p>
         </div>
 

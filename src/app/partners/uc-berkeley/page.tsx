@@ -6,13 +6,12 @@ export const metadata: Metadata = {
   title: 'UC Berkeley - CrisPRO.ai Partner',
   description: 'Learn about our partnership with UC Berkeley, a premier public research university driving innovation in biotechnology and genomics.',
 };
-
 const ucBerkeleyData = {
   id: 'uc-berkeley',
   name: 'UC Berkeley',
   logo: '/images/partners/events/UCBerkeley.png',
   description: 'Premier public research university driving innovation in biotechnology and genomics',
-  website: 'https://www.berkeley.edu',
+  website: 'https://rdi.berkeley.edu/agentx/',
   color: 'text-yellow-600',
   bgColor: 'bg-yellow-50',
   fullDescription: 'The University of California, Berkeley is a public land-grant research university in Berkeley, California. Established in 1868, UC Berkeley is the flagship institution of the University of California system and is known for its academic excellence and research innovation.',

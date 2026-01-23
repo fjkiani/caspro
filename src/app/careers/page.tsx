@@ -23,7 +23,7 @@ export default function CareersPage() {
             <div className="mb-12 text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Join Our Team</h1>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                Help us revolutionize cancer treatment with AI-powered precision oncology tools.
+                Join our team building AI-powered precision oncology tools.
               </p>
             </div>
 
@@ -62,7 +62,7 @@ export default function CareersPage() {
                   </p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
-                  <h3 className="text-lg font-semibold text-slate-800 mb-3">Cutting-Edge Tech</h3>
+                  <h3 className="text-lg font-semibold text-slate-800 mb-3">Advanced Technology</h3>
                   <p className="text-slate-700">
                     Work with the latest AI technologies and computational biology tools.
                   </p>

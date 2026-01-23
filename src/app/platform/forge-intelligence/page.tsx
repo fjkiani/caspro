@@ -19,7 +19,7 @@ const ForgeIntelligencePage: React.FC = () => {
     },
     {
       title: "Protein Therapeutic Engineering",
-      description: "Generate novel biologics with superior binding affinity and stability",
+      description: "Generate novel biologics with optimized binding affinity and stability",
       icon: TestTube2,
       color: "text-green-400",
       metrics: ["70% Pfam coherence", "Optimized PK/PD", "Patent-ready designs"]

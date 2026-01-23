@@ -189,13 +189,13 @@ export interface EducationalCapabilityPageData {
   problem: ProblemNarrativeSectionData;
   solution: SolutionNarrativeSectionData;
   howItWorks: HowItWorksSectionData;
-  value: ValuePropositionSectionData;
-  integration: IntegrationSectionData;
+  value?: ValuePropositionSectionData;
+  integration?: IntegrationSectionData;
   
   // Educational Components
   concepts: ConceptExplainerData;
-  process: ProcessVisualizerData;
-  example: ExampleShowcaseData;
+  process?: ProcessVisualizerData;
+  example?: ExampleShowcaseData;
   infographic?: InfographicSectionData;
   
   // Layout

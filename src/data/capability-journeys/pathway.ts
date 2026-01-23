@@ -76,50 +76,50 @@ export const pathwayJourney: CapabilityJourneyData = {
   newWaySteps: [
     {
       number: 1,
-      title: "AI-Powered Pathway Mapping",
-      description: "Intelligent gene-to-pathway mapping with transparent weights and contribution analysis for clear biological stories.",
+      title: "Biological Pathway Mapping",
+      description: "CrisPRO maps genes to biological pathways, showing how variants disrupt key cellular processes.",
       icon: Zap,
       solutions: [
-        "Automated pathway mapping with 95.7% AUROC ClinVar validation across 53,210 variants",
-        "Transparent gene burden calculations reduce pathway confusion by 85%",
-        "Top 3 pathway ranking with contribution bars provides clear biological narrative",
-        "Research-grade methodology with published weights ensures consistent interpretation"
+        "Gene-to-pathway mapping identifies which biological processes are affected",
+        "Variant impact analysis explains how mutations disrupt pathway function",
+        "Pathway burden calculations show the extent of disruption in each pathway",
+        "Biological narrative emerges from understanding pathway contributions"
       ]
     },
     {
       number: 2,
-      title: "Clear Pathway Prioritization",
-      description: "Systematic pathway ranking with confidence scoring and biological context for reliable prioritization.",
+      title: "Pathway Prioritization",
+      description: "Systematic pathway ranking based on biological evidence and functional impact.",
       icon: Shield,
       solutions: [
-        "Structured pathway ranking with confidence scores reduces uncertainty by 80%",
-        "Consistent methodology across all cases ensures reproducible results",
-        "Biological context integration improves pathway relevance by 70%",
-        "Time-to-pathway story reduced from days to minutes with 95% accuracy"
+        "Biological analysis prioritizes pathways with strongest evidence of disruption",
+        "Consistent methodology ensures reproducible pathway interpretation",
+        "Biological context helps explain why certain pathways are most relevant",
+        "Clear pathway stories emerge from systematic biological analysis"
       ]
     },
     {
       number: 3,
-      title: "Therapy Alignment Integration",
-      description: "Seamless connection from pathway biology to mechanism-of-action aligned drug classes with confidence scoring.",
+      title: "Therapy Alignment",
+      description: "Connection from pathway biology to drug mechanisms, showing which therapies target disrupted pathways.",
       icon: Activity,
       solutions: [
-        "MoA-aligned therapy hints reduce therapy selection time by 60-65%",
-        "Clear pathway-to-drug mapping improves treatment relevance by 75%",
-        "Confidence scoring for therapy alignment reduces decision uncertainty by 70%",
-        "Research-mode positioning with transparent methodology ensures RUO compliance"
+        "Mechanism-of-action alignment identifies drugs that target disrupted pathways",
+        "Pathway-to-drug mapping explains biological rationale for therapy selection",
+        "Biological reasoning shows why certain drugs are relevant to pathway disruptions",
+        "Research-mode positioning with transparent biological methodology"
       ]
     },
     {
       number: 4,
-      title: "Research-Grade Provenance",
-      description: "Complete audit trail with run IDs, profiles, and source citations for full reproducibility and validation.",
+      title: "Transparent Provenance",
+      description: "Complete audit trail with biological reasoning, source citations, and methodology documentation.",
       icon: CheckCircle,
       solutions: [
-        "100% audit trail with run ID and profile tracking ensures complete reproducibility",
-        "Source-backed methodology with transparent citations builds research trust",
-        "Standardized one-pager format improves review consistency by 90%",
-        "Research-use-only positioning with peer-reviewed validation ensures scientific rigor"
+        "Audit trail documents the biological logic behind pathway analysis",
+        "Source citations show where pathway and gene information comes from",
+        "Standardized format ensures consistent biological interpretation",
+        "Research-use-only positioning with transparent methodology"
       ]
     }
   ]

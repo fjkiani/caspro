@@ -27,6 +27,15 @@ import {
   Target
 } from 'lucide-react';
 
+// Helper function to render markdown properly
+const renderMarkdown = (text: string): string => {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-slate-900">$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
+    .replace(/`(.*?)`/g, '<code class="bg-slate-100 text-slate-800 rounded px-1.5 py-0.5 text-sm font-mono">$1</code>')
+    .replace(/\n/g, '<br/>');
+};
+
 const iconMap = {
   Lightbulb,
   Settings,
@@ -90,7 +99,7 @@ export const SAESection: React.FC = () => {
                     {prop.points.map((point, pointIndex) => (
                       <li key={pointIndex} className="flex items-start gap-3">
                         <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-slate-700" dangerouslySetInnerHTML={{ __html: point }} />
+                        <span className="text-slate-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: renderMarkdown(point) }} />
                       </li>
                     ))}
                   </ul>
@@ -108,25 +117,32 @@ export const SAESection: React.FC = () => {
             title={saeData.buildsOn.title}
             subtitle="Current implementation details and technical foundation"
           />
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
-            {saeData.buildsOn.points.map((point, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-xl p-6 shadow-md border border-slate-200"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <Code className="w-5 h-5 text-green-600" />
+          <div className="grid md:grid-cols-3 gap-6 mt-12">
+            {saeData.buildsOn.points.map((point, index) => {
+              // Extract component name from markdown
+              const componentMatch = point.match(/\*\*`([^`]+)`\*\*/);
+              const componentName = componentMatch ? componentMatch[1] : `Component ${index + 1}`;
+              const description = point.replace(/\*\*`[^`]+`\*\*:\s*/, '');
+              
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-xl p-6 shadow-md border border-slate-200 hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 bg-green-100 rounded-lg flex-shrink-0">
+                      <Code className="w-5 h-5 text-green-600" />
+                    </div>
+                    <h4 className="font-semibold text-slate-900 text-lg">{componentName}</h4>
                   </div>
-                  <h4 className="font-semibold text-slate-900">Component {index + 1}</h4>
-                </div>
-                <p className="text-slate-700" dangerouslySetInnerHTML={{ __html: point }} />
-              </motion.div>
-            ))}
+                  <p className="text-slate-700 leading-relaxed text-sm" dangerouslySetInnerHTML={{ __html: renderMarkdown(description) }} />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -138,7 +154,7 @@ export const SAESection: React.FC = () => {
             title="Core Capabilities"
             subtitle="From feature attribution to activation steering"
           />
-          <div className="grid lg:grid-cols-3 gap-8 mt-12">
+          <div className="grid lg:grid-cols-3 gap-6 mt-12">
             {saeData.capabilities.map((capability, index) => {
               const IconComponent = iconMap[capability.icon as keyof typeof iconMap];
               return (
@@ -148,15 +164,15 @@ export const SAESection: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-white rounded-xl p-8 shadow-lg border border-slate-200"
+                  className="bg-white rounded-xl p-6 shadow-lg border border-slate-200 hover:shadow-xl transition-shadow flex flex-col"
                 >
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className={`p-3 rounded-xl ${capability.color.replace('text-', 'bg-').replace('-400', '-100')}`}>
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className={`p-3 rounded-xl flex-shrink-0 ${capability.color.replace('text-', 'bg-').replace('-400', '-100')}`}>
                       <IconComponent className={`w-6 h-6 ${capability.color}`} />
                     </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-slate-900">{capability.title}</h3>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg font-semibold text-slate-900 mb-2">{capability.title}</h3>
+                      <span className={`inline-block px-2.5 py-1 rounded-full text-xs font-semibold ${
                         capability.status === 'live' 
                           ? 'bg-green-100 text-green-700' 
                           : 'bg-orange-100 text-orange-700'
@@ -166,22 +182,39 @@ export const SAESection: React.FC = () => {
                     </div>
                   </div>
                   
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="font-medium text-slate-900 mb-2">Technical</h4>
-                      <p className="text-slate-700 text-sm">{capability.technical}</p>
+                  <div className="space-y-4 flex-1">
+                    <div className="pb-3 border-b border-slate-100">
+                      <h4 className="font-semibold text-slate-900 mb-2 text-xs uppercase tracking-wider text-slate-500">Technical</h4>
+                      <p className="text-slate-700 text-sm leading-relaxed">{capability.technical}</p>
+                    </div>
+                    <div className="pb-3 border-b border-slate-100">
+                      <h4 className="font-semibold text-slate-900 mb-2 text-xs uppercase tracking-wider text-slate-500">Scientific</h4>
+                      <p className="text-slate-700 text-sm leading-relaxed">{capability.scientific}</p>
+                    </div>
+                    <div className="pb-3 border-b border-slate-100">
+                      <h4 className="font-semibold text-slate-900 mb-2 text-xs uppercase tracking-wider text-slate-500">Business</h4>
+                      <div className="text-slate-700 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: renderMarkdown(capability.business) }} />
                     </div>
                     <div>
-                      <h4 className="font-medium text-slate-900 mb-2">Scientific</h4>
-                      <p className="text-slate-700 text-sm">{capability.scientific}</p>
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-slate-900 mb-2">Business</h4>
-                      <p className="text-slate-700 text-sm" dangerouslySetInnerHTML={{ __html: capability.business }} />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-slate-900 mb-2">Use Cases</h4>
-                      <p className="text-slate-700 text-sm" dangerouslySetInnerHTML={{ __html: capability.genomicUseCases.replace(/\n/g, '<br/>') }} />
+                      <h4 className="font-semibold text-slate-900 mb-2 text-xs uppercase tracking-wider text-slate-500">Use Cases</h4>
+                      <div className="text-slate-700 text-sm leading-relaxed space-y-2" dangerouslySetInnerHTML={{ 
+                        __html: capability.genomicUseCases
+                          .split('\n')
+                          .filter(line => line.trim())
+                          .map(line => {
+                            // Handle numbered list items
+                            const numberedMatch = line.match(/^(\d+)\.\s+(.+)$/);
+                            if (numberedMatch) {
+                              return `<div class="flex gap-2"><span class="font-semibold text-slate-900 flex-shrink-0">${numberedMatch[1]}.</span><span>${renderMarkdown(numberedMatch[2])}</span></div>`;
+                            }
+                            // Handle bold text at start (like "Today:" or "Roadmap:")
+                            if (line.match(/^(\*\*[^*]+\*\*):/)) {
+                              return `<div class="font-semibold text-slate-900 mb-1 mt-2 first:mt-0">${renderMarkdown(line)}</div>`;
+                            }
+                            return `<div>${renderMarkdown(line)}</div>`;
+                          })
+                          .join('')
+                      }} />
                     </div>
                   </div>
                 </motion.div>

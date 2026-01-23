@@ -11,9 +11,9 @@ export const crisprIntelligenceData: CoPilotDetailContent = {
       audience: 'For R&D Scientists',
       icon: 'Beaker',
       points: [
-        'Design guide RNAs with industry-leading predictive accuracy.',
+        'Design guide RNAs with biological sequence analysis and off-target prediction.',
         'Validate off-target effects in-silico, saving months of lab work.',
-        'Access a unified platform for the entire therapeutic design lifecycle.'
+        'Access a platform for the entire therapeutic design lifecycle.'
       ]
     },
     {
@@ -99,10 +99,10 @@ export const crisprIntelligenceData: CoPilotDetailContent = {
 
   buildsOn: "CrisPRO accelerates therapeutic discovery with validated AI research engines.",
   buildsOnStackPoints: [
-    "**Oracle (Discriminative AI)**: Predicts variant impact with 95.7% accuracy on ClinVar (53,210 samples). Validates therapeutic targets before experiments.",
+    "**Oracle (Discriminative AI)**: Predicts variant impact through biological sequence analysis. Validates therapeutic targets before experiments.",
     "**Forge (Generative AI)**: Designs therapeutic candidates with 1M token context window. Generates guide RNAs, repair templates, and protein sequences.",
     "**Research Validation Pipeline**: Combines Oracle and Forge to simulate R&D campaigns, reducing experimental costs and accelerating discovery.",
-    "**Unified Research Platform**: End-to-end workflow from target identification to validated therapeutic candidates with transparent methodology.",
+    "**Research Platform**: End-to-end workflow from target identification to validated therapeutic candidates with transparent methodology.",
     "**Long-Context Generation**: Forge's 1M token window enables generation of multi-kilobase sequences for complex therapeutic designs.",
     "**Patient Stratification**: Oracle analyzes patient variants to stratify trials by predicted impact, improving success rates and signal clarity."      
   ],
@@ -119,8 +119,8 @@ export const crisprIntelligenceData: CoPilotDetailContent = {
     {
       audience: "For Scientists & Research Labs",
       points: [
-        "Design with Unprecedented Confidence: Leverage best-in-class AI to design highly potent and specific guide RNAs from the start, dramatically increasing the success rate of your editing experiments and minimizing costly validation cycles.",
-        "Go from Raw Data to Actionable Insight, Faster: Let our AI Co-Pilot handle the heavy lifting of complex NGS data analysis and therapeutic contextualization, transforming your experimental results into clear, decision-ready insights in a fraction of the time.",
+        "Design with confidence: Use AI to design potent and specific guide RNAs, increasing the success rate of editing experiments and reducing validation cycles.",
+        "Process raw data to actionable insights: Our AI Co-Pilot handles complex NGS data analysis and therapeutic contextualization, converting experimental results into clear, decision-ready insights.",
         "Democratize Advanced Computational Biology: Access a suite of sophisticated AI tools for variant effect prediction, off-target analysis, and experimental design, without needing a dedicated bioinformatics team. Focus on your science, not on building analysis pipelines.",
         "Produce High-Impact, Publishable Results: Generate higher quality, more reproducible data with AI-guided experimental design and analysis, strengthening your publications, grant applications, and contributions to the field."
       ]

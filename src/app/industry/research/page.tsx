@@ -6,7 +6,7 @@ import RelatedProductsSection from '@/components/industry/RelatedProductsSection
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Research Institutions | CrisPRO',
-    description: 'Accelerate discovery from years to hours with AI-powered research tools. Hypothesis testing, VUS exploration, and pathway analysis.',
+    description: 'AI-powered research tools for hypothesis testing, VUS exploration, and pathway analysis.',
   };
 }
 
@@ -25,7 +25,7 @@ export default function ResearchPage() {
             Research Institutions
           </h1>
           <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-            Accelerate discovery from years to hours. Test hypotheses at scale, explore genomic variants, and unlock insights with AI-powered research tools.
+            Test hypotheses at scale, explore genomic variants, and analyze pathways with AI-powered research tools.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -115,10 +115,10 @@ export default function ResearchPage() {
         {/* CTA Section */}
         <section className="text-center bg-gradient-to-r from-indigo-600 to-blue-600 rounded-3xl p-12 text-white">
           <h2 className="text-3xl font-bold mb-4">
-            Ready to Accelerate Your Research?
+            Get Started with CrisPRO Research
           </h2>
           <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-            Join leading research institutions using CrisPRO to unlock genomic insights.
+            See how research institutions use CrisPRO for genomic analysis.
           </p>
           <Link
             href="/contact"
@@ -134,7 +134,7 @@ export default function ResearchPage() {
             {
               slug: 'research',
               title: 'CrisPRO Research',
-              subtitle: 'Accelerate Discovery from Years to Hours. Complete research acceleration platform.',
+              subtitle: 'Complete research platform for hypothesis testing and variant analysis.',
             },
             {
               slug: 'r-d',

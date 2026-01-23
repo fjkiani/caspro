@@ -64,45 +64,45 @@ export const chemotherapyJourney: CapabilityJourneyData = {
     {
       number: 1,
       title: "Biology-Aware Drug Ranking",
-      description: "CrisPRO's Oracle Engine provides MoA-aligned drug class ranking with 95.7% AUROC ClinVar validation and transparent explanations.",
+      description: "CrisPRO analyzes patient genetics and tumor biology to rank chemotherapy options based on mechanism-of-action alignment.",
       icon: Zap,
       solutions: [
-        "95.7% AUROC ClinVar validation for variant impact prediction",
-        "S/P/E fusion: Sequence, Pathway, Evidence for drug ranking",
-        "Real-time drug class recommendations with confidence scores"
+        "Sequence analysis identifies functional disruptions in key genes",
+        "Pathway analysis maps tumor vulnerabilities to drug mechanisms",
+        "Evidence integration combines variant impact with literature support"
       ]
     },
     {
       number: 2,
-      title: "Validated Pharmacogenomic Insights",
-      description: "Oracle delivers peer-reviewed variant impact prediction with CrisPRO.ai embeddings and BRCA1 supervised AUROC ≈ 0.95 for drug-gene interactions.",
+      title: "Biological Variant Interpretation",
+      description: "Oracle analyzes pharmacogenomic variants to understand how patient genetics affect drug metabolism and response pathways.",
       icon: Shield,
       solutions: [
-        "BRCA1 supervised AUROC ≈ 0.95 with CrisPRO.ai 40B block-20 embeddings",
-        "Cross-species generalization for drug response pathways",
-        "Transparent explanations with auditable provenance"
+        "Variant impact analysis identifies drug-metabolizing enzyme variants (DPYD, TPMT, UGT1A1)",
+        "Biological reasoning explains how variants affect drug breakdown and clearance",
+        "Transparent explanations show which pathways are disrupted and why"
       ]
     },
     {
       number: 3,
-      title: "Precision Chemo Design",
-      description: "Forge Engine generates personalized chemotherapy strategies with 1M token context window and guided epigenomic design.",
+      title: "Mechanism-Based Drug Selection",
+      description: "CrisPRO connects patient biology to drug mechanisms of action, identifying which chemotherapy classes align with tumor vulnerabilities.",
       icon: Target,
       solutions: [
-        "1M token context window for comprehensive genomic analysis",
-        "Guided epigenomic design with Enformer+Borzoi scoring",
-        "Configurable beam width for inference-time scaling (beam width ↔ AUROC)"
+        "Pathway analysis identifies which biological processes are disrupted in the tumor",
+        "Drug mechanism mapping shows which chemotherapy classes target those pathways",
+        "Biological rationale explains why certain drugs are more likely to be effective"
       ]
     },
     {
       number: 4,
-      title: "Research-Validated Chemo Outcomes",
-      description: "End-to-end chemotherapy workflow with validated performance metrics and transparent methodology.",
+      title: "Transparent Chemotherapy Guidance",
+      description: "Research-grade methodology with clear biological explanations and complete audit trail for clinical decision support.",
       icon: CheckCircle,
       solutions: [
-        "Research-use-only positioning with transparent methodology",
-        "Validated performance metrics with peer-reviewed benchmarks",
-        "Auditable results with complete provenance and run IDs"
+        "Research-use-only positioning with transparent biological reasoning",
+        "Clear explanations of how patient genetics inform drug selection",
+        "Auditable results with complete provenance showing the biological logic"
       ]
     }
   ]

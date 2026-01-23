@@ -1,0 +1,141 @@
+[
+  {
+    "clinic_name": "Cancer Center for Healing",
+    "website": "cancercenterforhealing.com",
+    "scraped_emails": [
+      "patients@cfnmedicine.com"
+    ],
+    "scraped_phones": [
+      "(949) 581-4673",
+      "(949) 680-1880"
+    ],
+    "contact_page_url": "https://cancercenterforhealing.com/contact/",
+    "leadership_page_url": "https://cancercenterforhealing.com/team/",
+    "technology_mentions": [
+      "NGS",
+      "AI",
+      "personalized medicine"
+    ],
+    "research_mentions": [],
+    "pubmed_results": [
+      {
+        "pmid": "41173063"
+      },
+      {
+        "pmid": "40523206"
+      },
+      {
+        "pmid": "39083112"
+      },
+      {
+        "pmid": "38111517"
+      },
+      {
+        "pmid": "37582242"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "clinic_name": "Hope4Cancer Treatment Centers",
+    "website": "hope4cancer.com",
+    "scraped_emails": [],
+    "scraped_phones": [
+      "619.669.6511",
+      "888-544-5993",
+      "888.544.5993"
+    ],
+    "contact_page_url": "https://hope4cancer.com/locations/",
+    "leadership_page_url": "https://hope4cancer.com/the-experience/",
+    "technology_mentions": [
+      "NGS",
+      "AI"
+    ],
+    "research_mentions": [
+      "research",
+      "study"
+    ],
+    "pubmed_results": [],
+    "errors": []
+  },
+  {
+    "clinic_name": "An Oasis of Healing",
+    "website": "anoasisofhealing.com",
+    "scraped_emails": [],
+    "scraped_phones": [
+      "480-834-5414",
+      "480-912-3414"
+    ],
+    "contact_page_url": "https://www.anoasisofhealing.com/contact-an-oasis-of-healing/",
+    "leadership_page_url": "https://www.anoasisofhealing.com/about-an-oasis-of-healing/our-medical-team/",
+    "technology_mentions": [
+      "NGS",
+      "AI"
+    ],
+    "research_mentions": [
+      "research"
+    ],
+    "pubmed_results": [],
+    "errors": []
+  },
+  {
+    "clinic_name": "Brio-Medical Cancer Clinic",
+    "website": "brio-medical.com",
+    "scraped_emails": [],
+    "scraped_phones": [
+      "866-379-8381",
+      "480-613-8807"
+    ],
+    "contact_page_url": "https://brio-medical.com/contact/",
+    "leadership_page_url": "https://brio-medical.com/team/",
+    "technology_mentions": [
+      "immunotherapy",
+      "AI",
+      "personalized medicine"
+    ],
+    "research_mentions": [],
+    "pubmed_results": [],
+    "errors": []
+  },
+  {
+    "clinic_name": "Envita Medical Centers",
+    "website": "envita.com",
+    "scraped_emails": [],
+    "scraped_phones": [
+      "866-830-4576",
+      "602-569-4144"
+    ],
+    "contact_page_url": "https://envita.com/contact",
+    "leadership_page_url": "https://envita.com/about",
+    "technology_mentions": [
+      "genomic",
+      "immunotherapy",
+      "NGS",
+      "AI",
+      "personalized medicine"
+    ],
+    "research_mentions": [
+      "research",
+      "publication[s]?",
+      "study"
+    ],
+    "pubmed_results": [
+      {
+        "pmid": "41568530"
+      },
+      {
+        "pmid": "40949177"
+      },
+      {
+        "pmid": "41386363"
+      },
+      {
+        "pmid": "41551568"
+      },
+      {
+        "pmid": "41429136"
+      }
+    ],
+    "errors": []
+  }
+]

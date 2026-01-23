@@ -45,7 +45,7 @@ const PlatformCapabilitiesShowcase: React.FC = () => {
     <section className="py-16 sm:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         {/* Header */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -53,7 +53,7 @@ const PlatformCapabilitiesShowcase: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-            How We <span className="text-blue-600">Transform Drug Development</span>
+            <span className="text-blue-600">Transform Drug Development</span>
           </h2>
           <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto mb-4">
             Through continuous agentic intelligence, we enable complete end-to-end platforms that transform genomic data into actionable therapeutic intelligence.
@@ -61,7 +61,7 @@ const PlatformCapabilitiesShowcase: React.FC = () => {
           <p className="text-base text-slate-600 max-w-3xl mx-auto">
             Three integrated products: Precision Oncology for clinical decision support, R&D for therapeutic design, and Research for discovery acceleration.
           </p>
-        </motion.div>
+        </motion.div> */}
 
         {/* Product Cards - 3 Products */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">

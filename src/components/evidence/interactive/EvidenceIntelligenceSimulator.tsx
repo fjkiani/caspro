@@ -134,18 +134,18 @@ const EvidenceIntelligenceSimulator: React.FC<EvidenceSimulatorProps> = ({
     accentColor: 'blue'
   };
 
-  const educationalContent = {
-    title: "What This Demonstrates:",
-    points: [
-      "How raw research findings are automatically tiered by confidence and evidence strength",
-      "The difference between clinical, preclinical, and computational evidence types",
-      "How citation count and study quality affect overall confidence scoring",
-      "Why transparent evidence assessment accelerates research decision-making"
-    ]
-  };
+  // const educationalContent = {
+  //   title: "What This Demonstrates:",
+  //   points: [
+  //     "How raw research findings are automatically tiered by confidence and evidence strength",
+  //     "The difference between clinical, preclinical, and computational evidence types",
+  //     "How citation count and study quality affect overall confidence scoring",
+  //     "Why transparent evidence assessment accelerates research decision-making"
+  //   ]
+  // };
 
   return (
-    <BaseInteractiveDemo config={demoConfig} educationalContent={educationalContent}>
+    <BaseInteractiveDemo config={demoConfig}>
       {/* Filter Tabs */}
       <div className="flex bg-slate-100 rounded-lg p-1 mb-6">
         {(['all', 'clinical', 'preclinical', 'computational'] as const).map((filter) => (
@@ -356,15 +356,7 @@ const EvidenceIntelligenceSimulator: React.FC<EvidenceSimulatorProps> = ({
               )}
             </AnimatePresence>
 
-            {/* AI Advantage */}
-            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-              <h5 className="font-medium text-blue-900 mb-2">AI-Powered Evidence Processing</h5>
-              <p className="text-sm text-blue-800">
-                Our system processes <strong>10,000+ research papers per day</strong>, automatically extracting 
-                confidence indicators and cross-referencing citations. This reduces evidence assessment time 
-                from <strong>weeks to minutes</strong> while maintaining 95% accuracy in tier classification.
-              </p>
-            </div>
+            {/* AI Advantage - Removed */}
           </motion.div>
         )}
       </AnimatePresence>

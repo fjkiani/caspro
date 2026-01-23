@@ -100,25 +100,29 @@ export default function EducationalCapabilityPage({
         </section>
       )}
 
-      {/* Process Visualizer Section */}
-      <section id="process" className="scroll-mt-24">
+      {/* Process Visualizer Section - REMOVED per user request */}
+      {/* <section id="process" className="scroll-mt-24">
         <ProcessVisualizer data={data.process} />
-      </section>
+      </section> */}
 
-      {/* Value Proposition Section */}
-      <section id="value" className="scroll-mt-24">
+      {/* Value Proposition Section - REMOVED per user request */}
+      {/* <section id="value" className="scroll-mt-24">
         <ValuePropositionSection data={data.value} />
-      </section>
+      </section> */}
 
       {/* Example Showcase Section */}
-      <section id="example" className="scroll-mt-24">
-        <ExampleShowcase data={data.example} />
-      </section>
+      {data.example && (
+        <section id="example" className="scroll-mt-24">
+          <ExampleShowcase data={data.example} />
+        </section>
+      )}
 
       {/* Integration Section */}
-      <section id="integration" className="scroll-mt-24">
-        <IntegrationSection data={data.integration} />
-      </section>
+      {data.integration && (
+        <section id="integration" className="scroll-mt-24">
+          <IntegrationSection data={data.integration} />
+        </section>
+      )}
 
       {/* Capability Journey Slider */}
       <section className="scroll-mt-24">

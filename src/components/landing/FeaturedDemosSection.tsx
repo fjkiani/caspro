@@ -159,8 +159,7 @@ export default function FeaturedDemosSection() {
           className="text-center mt-16"
         >
           <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
-            Ready to transform your workflow with AI-powered precision medicine?
-            Explore our complete product suite designed for different user needs.
+            Explore our product suite designed for different user needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/products">

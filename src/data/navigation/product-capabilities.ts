@@ -27,13 +27,13 @@ export const ONCOLOGY_CAPABILITY_DEFINITIONS: Partial<Record<CapabilitySlug, Cap
     slug: 'match-patients-to-therapies',
     title: 'Match Patients to Therapies',
     subtitle: 'Mechanism-Based Drug Ranking',
-    description: 'S/P/E fusion (Sequence/Pathway/Evidence) matches patients to therapies with 96.6% trial match accuracy. Mechanism-based matching, not just standard of care.',
+    description: 'S/P/E fusion (Sequence/Pathway/Evidence) for drug ranking.',
     icon: 'Target',
     color: 'from-green-500 to-emerald-600',
-    badge: 'AI Engineering',
-    metrics: '96.6% Trial Match Accuracy',
+    badge: 'Mechanism-Based',
+    metrics: 'S/P/E Framework',
     time: '45 seconds',
-    businessImpact: 'Same-day actionable drug recommendations with transparent reasoning',
+    businessImpact: 'Drug recommendations with transparent reasoning',
     apis: ['predict_variant_impact', 'predict_gene_essentiality', 'generate_therapeutic_protein']
   },
   'prevent-toxicity': {
@@ -53,11 +53,11 @@ export const ONCOLOGY_CAPABILITY_DEFINITIONS: Partial<Record<CapabilitySlug, Cap
     slug: 'resolve-genetic-uncertainty',
     title: 'Resolve Genetic Uncertainty',
     subtitle: 'Zero-Shot Variant Interpretation',
-    description: 'Zero-shot variant interpretation with Evo2 foundation model. Instantly resolves variants of unknown significance with 95.7% AUROC accuracy and transparent biological reasoning.',
+    description: 'Zero-shot variant interpretation with Evo2 foundation model. Instantly resolves variants of unknown significance with transparent biological reasoning.',
     icon: 'Search',
     color: 'from-blue-500 to-cyan-600',
-    badge: 'Mathematical Proof',
-    metrics: '95.7% AUROC, 73% VUS Resolution',
+    badge: 'Zero-Shot',
+    metrics: 'Biological Reasoning',
     time: '30 seconds',
     businessImpact: 'Same-day clinical decisions with transparent variant classification',
     apis: ['predict_variant_impact', 'predict_protein_functionality_change', 'predict_chromatin_accessibility']
@@ -78,12 +78,12 @@ export const ONCOLOGY_CAPABILITY_DEFINITIONS: Partial<Record<CapabilitySlug, Cap
   'clinical-trials': {
     slug: 'clinical-trials',
     title: 'Clinical Trial Matching',
-    subtitle: '96.6% Match Accuracy',
-    description: 'Transparent eligibility reasoning with green/yellow/red flags per criterion. Same-day trial site calls with action-ready packets.',
+    subtitle: 'Mechanism-Based Matching',
+    description: 'Transparent eligibility reasoning with green/yellow/red flags per criterion. Mechanism-based matching connects patient pathways to trial drug mechanisms.',
     icon: 'Users',
     color: 'from-purple-500 to-violet-600',
     badge: 'Clinical Intelligence',
-    metrics: '96.6% Accuracy',
+    metrics: 'Mechanism-Based Matching',
     time: '45 seconds',
     businessImpact: 'Same-day actionable trial matches with transparent eligibility reasoning',
     apis: ['predict_variant_impact', 'predict_gene_essentiality']
@@ -98,7 +98,7 @@ export const ONCOLOGY_CAPABILITY_DEFINITIONS: Partial<Record<CapabilitySlug, Cap
     badge: 'AI Agents',
     metrics: 'Real-time Processing',
     time: 'Seconds',
-    businessImpact: 'Unified patient view in seconds, accelerated trial recruitment, streamlined workflows',
+    businessImpact: 'Unified patient view, trial recruitment support, streamlined workflows',
     apis: ['predict_variant_impact', 'predict_gene_essentiality']
   }
 };

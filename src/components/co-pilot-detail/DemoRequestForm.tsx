@@ -44,12 +44,12 @@ const DemoRequestForm = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className="bg-gradient-to-r from-sky-500/10 via-primary/10 to-fuchsia-500/10 p-8 md:p-12 rounded-2xl shadow-2xl border border-slate-700 max-w-4xl mx-auto"
+      className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 p-8 md:p-12 rounded-2xl shadow-2xl border border-slate-700 max-w-4xl mx-auto"
     >
       <div className="text-center mb-8">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Request a Personalized Demo</h2>
         <p className="text-slate-300 max-w-2xl mx-auto">
-          See how our AI Co-Pilots can transform your workflow. Fill out the form below, and we'll be in touch.
+          See how our AI Co-Pilots can support your workflow. Fill out the form below, and we'll be in touch.
         </p>
       </div>
       <form onSubmit={handleSubmit} className="space-y-6">

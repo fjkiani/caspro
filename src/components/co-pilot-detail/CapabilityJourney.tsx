@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   AlertTriangle, 
@@ -181,6 +181,32 @@ export const CapabilityJourney: React.FC<CapabilityJourneyProps> = ({
   comparisonMetrics
 }) => {
   const [activeView, setActiveView] = useState<'comparison' | 'old' | 'new'>('comparison');
+  const leftScrollRef = useRef<HTMLDivElement>(null);
+  const rightScrollRef = useRef<HTMLDivElement>(null);
+  const isScrollingRef = useRef(false);
+
+  // Synchronized scrolling
+  const handleLeftScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    if (isScrollingRef.current) return;
+    isScrollingRef.current = true;
+    if (rightScrollRef.current) {
+      rightScrollRef.current.scrollTop = e.currentTarget.scrollTop;
+    }
+    setTimeout(() => {
+      isScrollingRef.current = false;
+    }, 50);
+  };
+
+  const handleRightScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    if (isScrollingRef.current) return;
+    isScrollingRef.current = true;
+    if (leftScrollRef.current) {
+      leftScrollRef.current.scrollTop = e.currentTarget.scrollTop;
+    }
+    setTimeout(() => {
+      isScrollingRef.current = false;
+    }, 50);
+  };
 
   return (
     <section className="mb-20">
@@ -228,38 +254,55 @@ export const CapabilityJourney: React.FC<CapabilityJourneyProps> = ({
       {/* {comparisonMetrics && <ComparisonMetrics comparisonMetrics={comparisonMetrics} />} */}
       
       {activeView === 'comparison' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
-            <div className="text-center mb-8">
-              <h4 className="text-xl font-bold text-red-400 mb-2">Traditional Approach</h4>
-              <p className="text-gray-400">Current limitations and challenges</p>
+        <div className="relative">
+          {/* Side-by-Side Comparison Container with Synchronized Scrolling */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Traditional Approach - Left Side */}
+            <div className="relative">
+              <div className="sticky top-4">
+                <div className="text-center mb-8">
+                  <h4 className="text-xl font-bold text-red-400 mb-2">Traditional Approach</h4>
+                  <p className="text-gray-400">Current limitations and challenges</p>
+                </div>
+                <div 
+                  ref={leftScrollRef}
+                  onScroll={handleLeftScroll}
+                  className="space-y-8 max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 pr-2"
+                >
+                  {oldWaySteps.map((step, index) => (
+                    <JourneyStep 
+                      key={index}
+                      {...step}
+                      variant="old"
+                      isLast={index === oldWaySteps.length - 1}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="space-y-8">
-              {oldWaySteps.map((step, index) => (
-                <JourneyStep 
-                  key={index}
-                  {...step}
-                  variant="old"
-                  isLast={index === oldWaySteps.length - 1}
-                />
-              ))}
-            </div>
-          </div>
-          
-          <div>
-            <div className="text-center mb-8">
-              <h4 className="text-xl font-bold text-green-400 mb-2">In-Silico Approach</h4>
-              <p className="text-gray-400">How we transform the process</p>
-            </div>
-            <div className="space-y-8">
-              {newWaySteps.map((step, index) => (
-                <JourneyStep 
-                  key={index}
-                  {...step}
-                  variant="new"
-                  isLast={index === newWaySteps.length - 1}
-                />
-              ))}
+            
+            {/* In-Silico Approach - Right Side */}
+            <div className="relative">
+              <div className="sticky top-4">
+                <div className="text-center mb-8">
+                  <h4 className="text-xl font-bold text-green-400 mb-2">In-Silico Approach</h4>
+                  <p className="text-gray-400">How we transform the process</p>
+                </div>
+                <div 
+                  ref={rightScrollRef}
+                  onScroll={handleRightScroll}
+                  className="space-y-8 max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 pr-2"
+                >
+                  {newWaySteps.map((step, index) => (
+                    <JourneyStep 
+                      key={index}
+                      {...step}
+                      variant="new"
+                      isLast={index === newWaySteps.length - 1}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

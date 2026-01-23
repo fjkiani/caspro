@@ -110,19 +110,19 @@ export default function EngineRoom() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-xl border-2 border-slate-200 hover:border-slate-300 transition-all duration-300 hover:shadow-xl flex flex-col h-full"
+                className="group relative overflow-hidden rounded-xl border-2 border-slate-200 hover:border-slate-300 transition-all duration-300 hover:shadow-xl flex flex-col h-full bg-white"
               >
                 {/* Hero Section Preview */}
-                <div className={`bg-gradient-to-br ${engine.bgGradient} p-5 pb-4 flex-shrink-0`}>
+                <div className={`bg-gradient-to-br from-slate-50 via-white to-slate-100 p-5 pb-4 flex-shrink-0 border-b border-slate-200`}>
                   <div className="flex items-start gap-3 mb-3">
                     <div className={`w-10 h-10 rounded-lg bg-gradient-to-r ${engine.gradient} flex items-center justify-center flex-shrink-0 shadow-lg`}>
                       <Icon className="w-5 h-5 text-white" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className={`text-lg font-bold mb-1 bg-gradient-to-r ${engine.gradient} bg-clip-text text-transparent line-clamp-2`}>
+                      <h3 className={`text-xl font-bold mb-2 text-slate-900 line-clamp-2`}>
                         {engine.heroTitle}
                       </h3>
-                      <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
+                      <p className="text-slate-600 text-sm leading-relaxed line-clamp-2">
                         {engine.description}
                       </p>
                     </div>
@@ -130,30 +130,30 @@ export default function EngineRoom() {
                 </div>
 
                 {/* Capabilities Preview */}
-                <div className="px-5 pt-4 pb-5 bg-slate-900 flex-1 flex flex-col">
-                  <h4 className="text-xs font-semibold text-slate-400 mb-3 uppercase tracking-wide">
+                <div className="px-5 pt-4 pb-5 bg-white flex-1 flex flex-col">
+                  <h4 className="text-sm font-semibold text-slate-700 mb-4 uppercase tracking-wide">
                     Core Capabilities
                   </h4>
                   <div className="space-y-3 mb-4 flex-1">
                     {engine.capabilities.map((capability: any, idx: number) => (
                       <div 
                         key={idx} 
-                        className="bg-slate-800 p-3 rounded-lg border border-slate-700"
+                        className="bg-slate-50 p-4 rounded-lg border border-slate-200"
                       >
-                        <h5 className="text-sm font-bold text-white mb-1">
+                        <h5 className="text-base font-bold text-slate-900 mb-2">
                           {capability.title}
                         </h5>
-                        <p className="text-slate-300 text-xs mb-2 line-clamp-1">
+                        <p className="text-slate-600 text-sm mb-3 line-clamp-2">
                           {capability.description}
                         </p>
                         {capability.metrics && (
-                          <div className="grid grid-cols-2 gap-2">
+                          <div className="grid grid-cols-2 gap-3">
                             {capability.metrics.slice(0, 2).map((metric: any, metricIdx: number) => (
                               <div key={metricIdx} className="text-center">
-                                <div className={`text-base font-bold ${metric.color || 'text-green-400'} mb-0.5`}>
+                                <div className={`text-lg font-bold ${metric.color?.replace('text-green-400', 'text-blue-600').replace('text-cyan-400', 'text-cyan-600').replace('text-purple-400', 'text-purple-600') || 'text-blue-600'} mb-1`}>
                                   {metric.value}
                                 </div>
-                                <div className="text-xs text-slate-400 line-clamp-1">
+                                <div className="text-sm text-slate-600 line-clamp-1">
                                   {metric.label}
                                 </div>
                               </div>
@@ -167,7 +167,7 @@ export default function EngineRoom() {
                   {/* CTA - Always at bottom */}
                   <Link href={engine.link} className="mt-auto">
                     <motion.div
-                      className={`inline-flex items-center gap-2 px-3 py-2 bg-gradient-to-r ${engine.gradient} text-white rounded-lg font-semibold text-xs hover:shadow-lg transition-all duration-300 group/cta w-full justify-center`}
+                      className={`inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-r ${engine.gradient} text-white rounded-lg font-semibold text-sm hover:shadow-lg transition-all duration-300 group/cta w-full justify-center`}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -178,7 +178,7 @@ export default function EngineRoom() {
                   {/* Secondary link to R&D page */}
                   <Link 
                     href="/products/r-d#engines" 
-                    className="mt-2 text-center text-xs text-slate-400 hover:text-slate-300 transition-colors"
+                    className="mt-2 text-center text-sm text-slate-600 hover:text-slate-800 transition-colors"
                   >
                     Part of CrisPRO R&D →
                   </Link>

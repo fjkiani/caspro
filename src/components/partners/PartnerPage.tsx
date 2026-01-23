@@ -267,7 +267,7 @@ const PartnerPage: React.FC<PartnerPageProps> = ({ data }) => {
               Interested in Partnering with CrisPRO.ai?
             </h2>
             <p className="text-lg text-slate-600 mb-8">
-              Join leading organizations in advancing AI-powered drug development and precision medicine.
+              See how organizations use CrisPRO for AI-powered drug development and precision medicine.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

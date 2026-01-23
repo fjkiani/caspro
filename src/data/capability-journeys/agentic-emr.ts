@@ -57,50 +57,50 @@ export const agenticEmrJourney: CapabilityJourneyData = {
   newWaySteps: [
     {
       number: 1,
-      title: 'Autonomous Data Analysis',
-      description: 'CrisPRO\'s AI agents autonomously structure and analyze EMR data, serving up actionable insights for clinical trials and patient care in seconds.',
+      title: 'Structured Data Extraction',
+      description: 'CrisPRO extracts and structures clinical data from unstructured EMR text, identifying key biomarkers and clinical findings.',
       icon: Database,
       solutions: [
-        'Radical efficiency with 95% reduction in data extraction time',
-        'Automated data processing completed in under 30 seconds per patient',
-        'Consistent data interpretation with 98% accuracy across all cases',
-        'Scalable analysis for thousands of patients simultaneously'
+        'Automated extraction of genetic variants, biomarkers, and clinical history',
+        'Structured data format enables systematic analysis and querying',
+        'Consistent data interpretation across different EMR systems and formats',
+        'Scalable processing enables analysis of large patient cohorts'
       ]
     },
     {
       number: 2,
-      title: 'Unified Data Integration',
-      description: 'AI agents seamlessly integrate data from multiple EMR systems, creating a unified, standardized patient profile.',
+      title: 'Unified Patient Profiles',
+      description: 'CrisPRO integrates data from multiple EMR systems, creating comprehensive patient profiles with standardized structure.',
       icon: Database,
       solutions: [
-        'Unified data integration from 12+ EMR systems in real-time',
-        'Standardized data structure with 99% completeness rate',
-        'Automated data quality validation and error correction',
-        'Real-time data integration completed in minutes, not days'
+        'Data integration from multiple EMR systems into unified format',
+        'Standardized structure enables consistent analysis across patients',
+        'Data quality validation identifies missing or inconsistent information',
+        'Comprehensive patient profiles support clinical decision-making'
       ]
     },
     {
       number: 3,
-      title: 'Intelligent Pattern Recognition',
-      description: 'Advanced AI algorithms identify complex clinical patterns and correlations that would be impossible to detect manually.',
+      title: 'Biological Pattern Analysis',
+      description: 'CrisPRO identifies patterns in patient data by connecting clinical findings to biological pathways and mechanisms.',
       icon: Database,
       solutions: [
-        'Intelligent pattern recognition with 90% accuracy',
-        'Automated analysis completed in hours instead of weeks',
-        'Cross-population pattern identification across millions of patients',
-        'Real-time clinical decision support with instant insights'
+        'Biological analysis connects clinical data to pathway disruptions',
+        'Pattern recognition identifies patients with similar biological profiles',
+        'Cross-patient analysis reveals common biological themes',
+        'Biological reasoning helps interpret clinical patterns'
       ]
     },
     {
       number: 4,
-      title: 'Predictive Clinical Intelligence',
-      description: 'AI-powered predictive models provide actionable clinical insights, improving patient outcomes and trial efficiency.',
+      title: 'Biology-Informed Clinical Intelligence',
+      description: 'CrisPRO provides clinical insights by connecting patient data to biological mechanisms and therapeutic implications.',
       icon: Database,
       solutions: [
-        'Predictive models with 85% accuracy for patient outcomes',
-        'Optimized treatment decisions based on comprehensive data analysis',
-        'Enhanced clinical trial efficiency with 70% better patient stratification',
-        'Improved patient outcomes through data-driven clinical insights'
+        'Biological analysis informs treatment recommendations based on patient profile',
+        'Mechanism-based reasoning explains why certain treatments may be relevant',
+        'Patient stratification based on biological pathway disruptions',
+        'Clinical insights grounded in understanding of disease mechanisms'
       ]
     }
   ]

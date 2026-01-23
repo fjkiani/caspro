@@ -9,7 +9,7 @@ const products = [
     slug: 'oncology',
     title: 'CrisPRO Oncology',
     subtitle: 'From VUS to Validated Care Plan in Minutes',
-    description: 'Complete clinical decision support platform for precision oncology. Resolve VUS uncertainty, match patients to therapies, and predict resistance with AI-powered intelligence.',
+    description: 'Clinical decision support platform for precision oncology. Resolve VUS uncertainty, match patients to therapies, and predict resistance.',
     icon: Heart,
     gradient: 'from-red-500 to-pink-600',
     features: [
@@ -38,8 +38,8 @@ const products = [
   {
     slug: 'research',
     title: 'CrisPRO Research',
-    subtitle: 'Accelerate Discovery from Years to Hours',
-    description: 'Complete research acceleration platform. Test hypotheses at scale, explore genomic variants, and unlock insights with multi-modal AI analysis.',
+    subtitle: 'Research platform for hypothesis testing and variant analysis',
+    description: 'Research platform. Test hypotheses at scale, explore genomic variants, and analyze data with multi-modal AI analysis.',
     icon: Microscope,
     gradient: 'from-purple-500 to-cyan-600',
     features: [
@@ -118,10 +118,10 @@ export default function ProductsPage() {
         {/* CTA Section */}
         <section className="text-center bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl p-12 text-white">
           <h2 className="text-3xl font-bold mb-4">
-            Ready to Transform Your Workflow?
+            Get Started with CrisPRO
           </h2>
           <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-            Discover how CrisPRO products can accelerate your research, improve patient outcomes, and reduce development costs.
+            Explore our products and see how they can support your research and clinical workflows.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

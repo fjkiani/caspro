@@ -106,7 +106,11 @@ export default async function CapabilityDetailPage({
         
         {/* Capability Page Content - Tabbed for multiple co-pilots, Direct for single */}
         {hasMultipleCoPilots ? (
-          <TabbedCapabilityPage productSlug={productSlug} capabilitySlug={capabilitySlug} />
+          <TabbedCapabilityPage 
+            productSlug={productSlug} 
+            capabilitySlug={capabilitySlug}
+            defaultTab={capabilitySlug === 'match-patients-to-therapies' ? 'therapy-fit' : undefined}
+          />
         ) : (
           <DirectCapabilityPage productSlug={productSlug} capabilitySlug={capabilitySlug} />
         )}

@@ -80,50 +80,50 @@ export const therapyFitJourney: CapabilityJourneyData = {
   newWaySteps: [
     {
       number: 1,
-      title: "AI-Powered Drug Ranking",
-      description: "Intelligent S/P/E fusion (Sequence, Pathway, Evidence) with confidence scoring and clear biological rationale for each therapy option.",
+      title: "Biology-Informed Drug Ranking",
+      description: "CrisPRO combines sequence analysis, pathway biology, and evidence to rank therapies with clear biological rationale.",
       icon: Zap,
       solutions: [
-        "Automated drug ranking with 95.7% AUROC ClinVar validation across 53,210 variants",
-        "S/P/E fusion provides clear biological rationale for each therapy recommendation",
-        "Confidence scoring reduces therapy selection uncertainty by 80%",
-        "Time-to-therapy recommendation reduced from days to minutes with 95% accuracy"
+        "Sequence analysis identifies how variants affect protein function and drug targets",
+        "Pathway analysis connects tumor biology to drug mechanisms of action",
+        "Evidence integration synthesizes variant impact with clinical literature",
+        "Confidence scoring reflects the strength of biological evidence"
       ]
     },
     {
       number: 2,
       title: "Biology-Therapy Alignment",
-      description: "Systematic connection between patient genetics, pathway biology, and drug mechanisms of action with transparent mapping.",
+      description: "Systematic connection between patient genetics, pathway biology, and drug mechanisms with transparent biological mapping.",
       icon: Shield,
       solutions: [
-        "MoA-aligned therapy ranking reduces missed opportunities by 85%",
-        "Clear pathway-drug mapping improves therapy relevance by 75%",
-        "Systematic biology-therapy connection reduces selection time by 60-65%",
-        "Consistent therapy recommendations across similar genetic profiles"
+        "Mechanism-of-action alignment shows which drugs target disrupted pathways",
+        "Pathway-drug mapping explains why certain therapies are biologically relevant",
+        "Biological context helps clinicians understand the rationale for recommendations",
+        "Consistent methodology ensures similar cases receive similar biological analysis"
       ]
     },
     {
       number: 3,
       title: "Integrated Evidence Synthesis",
-      description: "Comprehensive evidence integration from ClinVar, literature, and clinical data with transparent badges and tiering.",
+      description: "Comprehensive evidence integration from variant databases, literature, and clinical data with transparent source attribution.",
       icon: Activity,
       solutions: [
-        "Integrated evidence synthesis reduces incomplete assessments by 90%",
-        "Systematic evidence integration captures 95% of relevant data",
-        "Transparent badges and tiering improve evidence interpretation by 70%",
-        "Comprehensive safety and efficacy signal detection reduces risk by 60%"
+        "Evidence synthesis combines variant impact predictions with published literature",
+        "Systematic evidence review captures variant-disease-drug relationships",
+        "Transparent evidence tiers show the strength and source of supporting data",
+        "Safety and efficacy signals identified through biological pathway analysis"
       ]
     },
     {
       number: 4,
-      title: "Research-Grade Documentation",
-      description: "Complete audit trail with run IDs, citations, and provenance tracking for full reproducibility and validation.",
+      title: "Transparent Documentation",
+      description: "Complete audit trail with biological reasoning, source citations, and provenance tracking for reproducibility.",
       icon: CheckCircle,
       solutions: [
-        "100% audit trail with run ID and profile tracking ensures complete reproducibility",
-        "Standardized documentation improves decision review and validation by 90%",
-        "Complete provenance information enables quality assurance and continuous learning",
-        "Consistent methodology across all therapy selections ensures research-grade standards"
+        "Audit trail documents the biological logic behind each recommendation",
+        "Source citations show where variant and drug information comes from",
+        "Provenance tracking enables review of the biological reasoning process",
+        "Research-grade methodology ensures transparent and reproducible analysis"
       ]
     }
   ]

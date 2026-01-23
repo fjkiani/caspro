@@ -27,17 +27,17 @@ export default function OutcomeFocusedCoPilotPage({ content }: OutcomeFocusedCoP
       {/* Hero - Outcome-focused */}
       <ProductHeroSection content={heroContent} />
       
-      {/* Problem - What problem does this solve? */}
-      <ProblemSolutionSection content={problemContent} />
+      {/* Problem - What problem does this solve? - Removed (AI slop) */}
+      {/* <ProblemSolutionSection content={problemContent} /> */}
       
-      {/* Solution - How does this solve it? */}
-      <ProblemSolutionSection content={solutionContent} />
+      {/* Solution - How does this solve it? - Removed (AI slop) */}
+      {/* <ProblemSolutionSection content={solutionContent} /> */}
       
-      {/* Outcomes - Key results (PROMINENT, not buried) */}
-      <SimplifiedOutcomesSection outcomes={content.observedOutcomes || []} kpis={content.kpis} />
+      {/* Outcomes - Key results (PROMINENT, not buried) - Removed (AI slop) */}
+      {/* <SimplifiedOutcomesSection outcomes={content.observedOutcomes || []} kpis={content.kpis} /> */}
       
-      {/* Interactive Demo */}
-      <CoPilotDemoSection content={content} />
+      {/* Interactive Demo - Removed (AI slop) */}
+      {/* <CoPilotDemoSection content={content} /> */}
       
       {/* Technical Details - Collapsed (repurposed from Battle Plan + Strategic Doctrine) */}
       <CollapsibleTechnicalDetails content={content} />

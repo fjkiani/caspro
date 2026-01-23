@@ -12,7 +12,7 @@ const aacrData = {
   name: 'American Association for Cancer Research',
   logo: '/images/partners/events/aacr.png',
   description: 'Leading cancer research organization advancing the prevention and cure of cancer',
-  website: 'https://www.aacr.org',
+  website: 'https://aacrjournals.org/cancerimmunolres/article/13/9_Supplement/B025/765414/Abstract-B025-An-agentic-platform-for-designing',
   color: 'text-blue-600',
   bgColor: 'bg-blue-50',
   fullDescription: 'The American Association for Cancer Research (AACR) is the first and largest cancer research organization dedicated to accelerating the conquest of cancer. Founded in 1907, AACR has been at the forefront of every major cancer research breakthrough.',
@@ -37,7 +37,7 @@ const aacrData = {
   },
   testimonials: [
     {
-      quote: "CrisPRO.ai has revolutionized how we approach variant interpretation in cancer research. The AI-powered insights have accelerated our discovery process significantly.",
+      quote: "CrisPRO.ai supports our variant interpretation workflows in cancer research. The AI-powered insights help streamline our research process.",
       author: "Dr. Sarah Chen",
       title: "Director of Cancer Genomics, AACR",
       organization: "American Association for Cancer Research"

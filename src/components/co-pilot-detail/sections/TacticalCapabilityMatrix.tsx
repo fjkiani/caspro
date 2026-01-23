@@ -37,7 +37,7 @@ export default function TacticalCapabilityMatrix({ keyCapabilities }: TacticalCa
       <div className="text-center mb-6 md:mb-8">
         <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2 md:mb-4">Core Capabilities</h3>
         <p className="text-sm md:text-lg text-slate-600 max-w-3xl mx-auto">
-          {keyCapabilities.length} advanced AI-powered capabilities designed to transform your workflow
+          {keyCapabilities.length} capabilities
         </p>
       </div>
 
@@ -102,13 +102,14 @@ export default function TacticalCapabilityMatrix({ keyCapabilities }: TacticalCa
                 {/* Expand Indicator */}
                 <div className="flex items-center justify-between pt-3 border-t border-slate-200">
                   <span className="text-xs md:text-sm text-blue-600 font-semibold">
-                    {isExpanded ? 'Show less' : 'View details'}
+                    {isExpanded ? 'Hide details' : 'View details'}
                   </span>
-                  {isExpanded ? (
-                    <ChevronUp className="w-4 h-4 text-blue-600" />
-                  ) : (
+                  <motion.div
+                    animate={{ rotate: isExpanded ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     <ChevronDown className="w-4 h-4 text-blue-600" />
-                  )}
+                  </motion.div>
                 </div>
               </button>
 
@@ -123,7 +124,7 @@ export default function TacticalCapabilityMatrix({ keyCapabilities }: TacticalCa
                     className="overflow-hidden border-t border-slate-200"
                   >
                     <div className="p-4 md:p-6 bg-slate-50">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="space-y-4">
                         {[capability.technical, capability.scientific, capability.business].map((aspect, index) => {
                           if (typeof aspect !== 'object' || !aspect) return null;
                           const aspectData = normalizeAspect(aspect, index);
@@ -131,20 +132,24 @@ export default function TacticalCapabilityMatrix({ keyCapabilities }: TacticalCa
                           const aspectTypes = ['Technical', 'Scientific', 'Business'];
                           
                           return (
-                            <div key={index} className="bg-white p-4 rounded-lg border border-slate-200">
-                              <div className="flex items-center gap-2 mb-2">
-                                <IconComp className="w-4 h-4 text-blue-600" />
-                                <h5 className="text-sm font-semibold text-slate-800">{aspectTypes[index]}</h5>
+                            <div key={index} className="bg-white p-5 rounded-lg border border-slate-200">
+                              <div className="flex items-center gap-3 mb-3">
+                                <IconComp className="w-5 h-5 text-blue-600" />
+                                <h5 className="text-base font-semibold text-slate-800">{aspectTypes[index]}</h5>
                               </div>
-                              <p className="text-xs text-slate-600 mb-2">{aspectData.keyMetric}</p>
-                              <p className="text-xs text-slate-700 leading-relaxed">{aspectData.description?.substring(0, 150)}...</p>
-                                </div>
+                              {aspectData.keyMetric && (
+                                <p className="text-sm font-medium text-slate-700 mb-3">{aspectData.keyMetric}</p>
+                              )}
+                              <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line">
+                                {aspectData.description}
+                              </p>
+                            </div>
                           );
                         })}
-            </div>
-          </div>
-        </motion.div>
-      )}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
               </AnimatePresence>
             </motion.div>
           );

@@ -129,7 +129,7 @@ export const InSilicoTeaser: React.FC = () => {
             className="text-xl text-slate-300 max-w-3xl mx-auto mb-8"
           >
             AI-powered co-pilots that accelerate every stage of therapeutic development. 
-            From variant analysis to therapeutic design, our in-silico platform transforms research workflows.
+            From variant analysis to therapeutic design, our in-silico platform supports research workflows.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -261,7 +261,7 @@ export const InSilicoTeaser: React.FC = () => {
           className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20"
         >
           <h3 className="text-2xl font-semibold mb-6 text-center">
-            Unified Research Platform
+            Research Platform
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
@@ -288,7 +288,7 @@ export const InSilicoTeaser: React.FC = () => {
               </div>
               <h4 className="font-semibold mb-2">Integrated Workflows</h4>
               <p className="text-sm text-slate-300">
-                Seamless integration between co-pilots creates powerful research synergies
+                Integration between co-pilots supports research workflows
               </p>
             </div>
           </div>

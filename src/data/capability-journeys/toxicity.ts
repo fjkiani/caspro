@@ -1,4 +1,13 @@
 import { CapabilityJourneyData } from './types';
+import { 
+  AlertTriangle, 
+  Search, 
+  MessageSquare, 
+  Shield, 
+  Database, 
+  FileText, 
+  Target 
+} from 'lucide-react';
 
 export const toxicityJourney: CapabilityJourneyData = {
   title: "Toxicity Risk Assessment Journey",
@@ -9,7 +18,7 @@ export const toxicityJourney: CapabilityJourneyData = {
       number: 1,
       title: "Reactive Toxicity Management",
       description: "Toxicities discovered only after treatment begins, often too late to prevent serious adverse events",
-      icon: "AlertTriangle",
+      icon: AlertTriangle,
       problems: [
         "Toxicities surface during treatment, causing delays and complications",
         "No early warning system for high-risk patients",
@@ -21,7 +30,7 @@ export const toxicityJourney: CapabilityJourneyData = {
       number: 2,
       title: "Scattered Risk Information",
       description: "Risk signals scattered across multiple sources, making comprehensive assessment difficult",
-      icon: "Search",
+      icon: Search,
       problems: [
         "Germline variants not systematically evaluated for toxicity risk",
         "Literature scattered across multiple databases and journals",
@@ -33,7 +42,7 @@ export const toxicityJourney: CapabilityJourneyData = {
       number: 3,
       title: "Communication Challenges",
       description: "Difficulty sharing risk information in a clear, actionable format across care teams",
-      icon: "MessageSquare",
+      icon: MessageSquare,
       problems: [
         "Complex risk information hard to communicate to patients",
         "Inconsistent documentation across team members",
@@ -45,7 +54,7 @@ export const toxicityJourney: CapabilityJourneyData = {
       number: 4,
       title: "Limited Prevention Strategies",
       description: "Few tools available to proactively identify and mitigate toxicity risks before treatment",
-      icon: "Shield",
+      icon: Shield,
       problems: [
         "Generic toxicity management without personalization",
         "No genetics-informed risk stratification",
@@ -59,49 +68,49 @@ export const toxicityJourney: CapabilityJourneyData = {
     {
       number: 1,
       title: "Proactive Risk Identification",
-      description: "AI-powered germline analysis identifies toxicity risks before treatment begins",
-      icon: "Shield",
+      description: "CrisPRO analyzes germline variants in drug-metabolizing enzymes to identify patients at risk for toxicity before treatment begins",
+      icon: Shield,
       solutions: [
-        "Real-time germline variant analysis with 95.7% AUROC accuracy",
-        "Early identification of high-risk patients before treatment",
-        "Proactive risk mitigation strategies",
-        "Preventive approach to patient safety"
+        "Pharmacogenomic variant analysis identifies variants in DPYD, TPMT, UGT1A1, CYP2D6",
+        "Biological reasoning explains how variants affect drug metabolism and clearance",
+        "Early identification allows proactive dose adjustment or alternative drug selection",
+        "Preventive approach based on understanding drug-gene interactions"
       ]
     },
     {
       number: 2,
-      title: "Centralized Risk Assessment",
-      description: "Comprehensive risk evaluation using ClinVar database and evidence synthesis",
-      icon: "Database",
+      title: "Pathway-Based Risk Assessment",
+      description: "Comprehensive risk evaluation connecting drug mechanisms to patient pathway vulnerabilities",
+      icon: Database,
       solutions: [
-        "Systematic evaluation of 53,210 variants from ClinVar database",
-        "Centralized risk assessment protocol",
-        "Evidence-based risk scoring with confidence metrics",
-        "Consistent evaluation across all patients"
+        "Pathway overlap analysis identifies when drug MoA stresses patient's vulnerable pathways",
+        "Biological reasoning explains why certain drug-pathway combinations increase risk",
+        "Evidence-based risk assessment uses variant impact predictions and literature",
+        "Consistent methodology ensures all patients receive thorough biological analysis"
       ]
     },
     {
       number: 3,
-      title: "Clear Communication Tools",
-      description: "Plain-language caution chips with confidence scores and shareable documentation",
-      icon: "FileText",
+      title: "Clear Biological Communication",
+      description: "Plain-language explanations of toxicity mechanisms with biological rationale and shareable documentation",
+      icon: FileText,
       solutions: [
-        "One-sentence helper text in plain language",
-        "Confidence scores and evidence tiers for transparency",
-        "Shareable one-page summaries with run IDs",
-        "Standardized format for team communication"
+        "Biological explanations describe how variants affect drug metabolism pathways",
+        "Mechanism-based reasoning shows why certain drugs pose higher risk",
+        "Shareable documentation includes biological rationale and source citations",
+        "Standardized format helps care teams understand the biological basis for recommendations"
       ]
     },
     {
       number: 4,
-      title: "Personalized Prevention",
-      description: "Genetics-informed risk stratification with actionable mitigation strategies",
-      icon: "Target",
+      title: "Biology-Informed Prevention",
+      description: "Genetics-informed risk stratification with pathway-specific mitigation strategies",
+      icon: Target,
       solutions: [
-        "Personalized risk profiles based on germline variants",
-        "Repair/inflammation pathway analysis for targeted risk assessment",
-        "Actionable recommendations for treatment modification",
-        "Research-grade validation with transparent methodology"
+        "Personalized risk profiles based on how patient genetics interact with drug mechanisms",
+        "Pathway analysis identifies which biological processes are at risk",
+        "Mitigation strategies target specific pathways (e.g., DNA repair, inflammation)",
+        "Research-grade methodology with transparent biological reasoning"
       ]
     }
   ]

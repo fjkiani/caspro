@@ -45,7 +45,12 @@ interface EvidenceSectionRendererProps {
 }
 
 const EvidenceSectionRenderer: React.FC<EvidenceSectionRendererProps> = ({ data }) => {
-  // Handle special case for overview
+  // Handle special case for overview - if capabilities are removed, return empty
+  if (data.featureConnections && !data.capabilities) {
+    return <div className="w-full evidence-page-content"></div>;
+  }
+  
+  // Handle special case for overview with capabilities (legacy)
   if (data.capabilities && data.featureConnections) {
     return (
       <div className="space-y-16 w-full evidence-page-content"> {/* Full width with proper constraints */}
@@ -122,26 +127,28 @@ const EvidenceSectionRenderer: React.FC<EvidenceSectionRendererProps> = ({ data 
 
   return (
     <div className="space-y-16 w-full evidence-page-content"> {/* Full width with proper constraints */}
-      {/* Hero Section */}
-      <div className="text-center space-y-8">
-        <div className="space-y-4">
-          <h2 className="text-4xl font-bold text-slate-900">{data.hero?.title || data.title}</h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            {data.hero?.description || data.description}
-          </p>
-        </div>
-        
-        {/* Badges */}
-        {data.hero?.badges && (
-          <div className="flex flex-wrap justify-center gap-4">
-            {data.hero.badges.map((badge: any, index: number) => (
-              <div key={index} className={`px-4 py-2 rounded-full text-sm font-medium ${badge.color}`}>
-                {badge.text}
-              </div>
-            ))}
+      {/* Hero Section - Only show if not overview */}
+      {!data.featureConnections && (
+        <div className="text-center space-y-8">
+          <div className="space-y-4">
+            <h2 className="text-4xl font-bold text-slate-900">{data.hero?.title || data.title}</h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              {data.hero?.description || data.description}
+            </p>
           </div>
-        )}
-      </div>
+          
+          {/* Badges */}
+          {data.hero?.badges && (
+            <div className="flex flex-wrap justify-center gap-4">
+              {data.hero.badges.map((badge: any, index: number) => (
+                <div key={index} className={`px-4 py-2 rounded-full text-sm font-medium ${badge.color}`}>
+                  {badge.text}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       
 

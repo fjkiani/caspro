@@ -91,7 +91,7 @@ export default function UnifiedCarePlanSection({
             Unified Care Plan - The FLAGSHIP Capability
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            5 advanced AI-powered capabilities designed to transform your workflow
+            5 AI-powered capabilities for clinical workflows
           </p>
         </motion.div>
 

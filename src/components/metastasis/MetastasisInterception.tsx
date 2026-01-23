@@ -331,7 +331,7 @@ const MetastasisInterception: React.FC = () => {
           <div className="container mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-[#0052CC] mb-4">The AI Leap</h2>
-              <p className="text-lg text-slate-600 mb-12">We replaced outdated, rule-based guesses with predictions from 9.3T-token genomic foundation models. The results are a paradigm shift in accuracy and biological relevance.</p>
+              <p className="text-lg text-slate-600 mb-12">We use predictions from 9.3T-token genomic foundation models. The results show improved accuracy and biological relevance.</p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {[
@@ -499,7 +499,7 @@ const MetastasisInterception: React.FC = () => {
         {/* Timeline Section */}
         <div className="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6">
           <h2 className="text-3xl font-bold text-center text-[#003f5c] mb-8">From In Silico Design to Clinical Reality</h2>
-          <p className="text-lg text-center max-w-4xl mx-auto mb-10">Our platform is the critical first step in a proven pipeline, massively de-risking and accelerating the journey from a promising idea to a life-saving therapeutic.</p>
+          <p className="text-lg text-center max-w-4xl mx-auto mb-10">Our platform supports the pipeline from idea to therapeutic development with in-silico validation.</p>
           <div className="max-w-3xl mx-auto">
             {[
               { title: 'Phase 1: Computational Design (Our Platform)', timeline: '5 Minutes', desc: 'We deliver a "Target Dossier" with ranked, pre-validated guides, ready for synthesis.' },

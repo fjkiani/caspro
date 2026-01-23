@@ -56,33 +56,29 @@ export default function CollapsibleTechnicalDetails({ content }: CollapsibleTech
             transition={{ duration: 0.3 }}
             className="mt-4 space-y-8 overflow-hidden"
           >
-            {/* Technology Foundation (from Battle Plan tab) */}
-            {content.genomicUseCasesGrid && content.genomicUseCasesGrid.length > 0 && content.buildsOnStackPoints && content.buildsOnStackPoints.length > 0 && (
-              <div className="bg-white rounded-xl p-6 border border-slate-200">
-                <TechnologyFoundationSection 
-                  genomicUseCasesGrid={content.genomicUseCasesGrid}
-                  buildsOnStackPoints={content.buildsOnStackPoints}
-                  buildsOnStackIntro={content.buildsOnStackIntro}
-                />
-              </div>
-            )}
-            
-            {/* Core Capabilities (from Strategic Doctrine tab) */}
-            {primaryCapabilities.length > 0 && (
-              <div className="bg-white rounded-xl p-6 border border-slate-200">
-                <TacticalCapabilityMatrix keyCapabilities={primaryCapabilities} />
-              </div>
-            )}
-            
-            {/* Core Capabilities Section (from Battle Plan tab) */}
-            {content.keyCapabilities.length > 0 && (
-              <div className="bg-white rounded-xl p-6 border border-slate-200">
-                <CoreCapabilitiesSection 
-                  keyCapabilities={content.keyCapabilities}
-                  totalCapabilities={content.keyCapabilities.length}
-                />
-              </div>
-            )}
+            {/* Combined: Technology Foundation + Core Capabilities in one section */}
+            <div className="bg-white rounded-xl p-6 border border-slate-200" id="core-capabilities-section">
+              {/* Genomic Use Cases Grid (from Technology Foundation) */}
+              {content.genomicUseCasesGrid && content.genomicUseCasesGrid.length > 0 && content.buildsOnStackPoints && content.buildsOnStackPoints.length > 0 && (
+                <div className="mb-8">
+                  <TechnologyFoundationSection 
+                    genomicUseCasesGrid={content.genomicUseCasesGrid}
+                    buildsOnStackPoints={content.buildsOnStackPoints}
+                    buildsOnStackIntro={content.buildsOnStackIntro}
+                  />
+                </div>
+              )}
+              
+              {/* Core Capabilities (from CoreCapabilitiesSection) */}
+              {content.keyCapabilities.length > 0 && (
+                <div className="mt-8 pt-8 border-t border-slate-200">
+                  <CoreCapabilitiesSection 
+                    keyCapabilities={content.keyCapabilities}
+                    totalCapabilities={content.keyCapabilities.length}
+                  />
+                </div>
+              )}
+            </div>
             
             {/* Advanced Features */}
             {advancedCapabilities.length > 0 && (

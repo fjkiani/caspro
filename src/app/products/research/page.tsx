@@ -2,12 +2,10 @@ import React from 'react';
 import { Metadata } from 'next';
 import { researchProductData } from '@/data/products/research-data';
 import Link from 'next/link';
-import ResearchTabs from './ResearchTabs';
 import ResearchHeroSection from '@/components/products/research/ResearchHeroSection';
-import ResearchInteractiveShowcase from '@/components/products/research/ResearchInteractiveShowcase';
-import ResearchAccelerationMetrics from '@/components/products/research/ResearchAccelerationMetrics';
 import HypothesisTestingSection from '@/components/products/research/HypothesisTestingSection';
-import RelatedIndustrySection from '@/components/products/shared/RelatedIndustrySection';
+import EvidenceSectionRenderer from '@/components/evidence/EvidenceSectionRenderer';
+import { evidenceSectionsRegistry } from '@/data/evidence/registry';
 
 // Generate metadata for the Research product page
 export async function generateMetadata(): Promise<Metadata> {
@@ -40,27 +38,20 @@ export default async function ResearchProductPage() {
       {/* Enhanced Hero Section */}
       <ResearchHeroSection />
 
-      {/* Research Acceleration Metrics */}
-      <ResearchAccelerationMetrics />
-
-      {/* Interactive Research Tools Showcase */}
-      <ResearchInteractiveShowcase />
-
       {/* Hypothesis Testing Section */}
       <HypothesisTestingSection />
 
-      {/* Original Tabbed Content (Detailed Technical Info) */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      {/* In-Silico Data Lab - Moved from /evidence/#data-lab */}
+      <section id="data-lab" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
-              Research Acceleration Platform
-            </h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Complete toolkit for accelerating discovery from years to hours
-            </p>
-          </div>
-          <ResearchTabs content={content} />
+          <EvidenceSectionRenderer data={evidenceSectionsRegistry['data-lab']} />
+        </div>
+      </section>
+
+      {/* Cohort Context - Moved from /evidence */}
+      <section id="cohort" className="py-16 md:py-24 bg-slate-50">
+        <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+          <EvidenceSectionRenderer data={evidenceSectionsRegistry['cohort-context']} />
         </div>
       </section>
 
@@ -87,27 +78,6 @@ export default async function ResearchProductPage() {
           </div>
         </div>
       </section>
-
-      {/* Related Industry Section */}
-      <RelatedIndustrySection
-        industries={[
-          {
-            slug: 'research',
-            title: 'Research Institutions',
-            subtitle: 'Accelerate discovery with multi-modal AI analysis and hypothesis testing',
-            icon: '🔬'
-          },
-          {
-            slug: 'genetic-testing',
-            title: 'Genetic Testing Labs',
-            subtitle: 'Transform from VUS crisis to precision diagnostics with automated workflows',
-            icon: '🧬'
-          }
-        ]}
-        title="See How Research Teams Use CrisPRO"
-      />
     </main>
   );
 }
-
-

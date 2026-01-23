@@ -142,7 +142,7 @@ const EvidenceSection: React.FC = () => {
         {/* CTA */}
         <CTASection
           title="Ready to Experience Evidence Intelligence?"
-          description="Explore our evidence capabilities and see how confidence, tiers, badges, and citations can transform your research workflow."
+          description="Explore evidence capabilities with confidence scoring, tiers, badges, and citations."
           primaryButton={{
             text: "Explore In-Silico Platform",
             href: "/insilico",

@@ -20,8 +20,8 @@ const partners: Partner[] = [
     id: 'aacr',
     name: 'American Association for Cancer Research',
     logo: '/images/partners/events/aacr.png',
-    description: 'Leading cancer research organization advancing the prevention and cure of cancer',
-    website: 'https://www.aacr.org',
+    description: '5+ manuscripts submitted to AACR journals',
+    website: 'https://aacrjournals.org/cancerimmunolres/article/13/9_Supplement/B025/765414/Abstract-B025-An-agentic-platform-for-designing',
     color: 'text-blue-600',
     bgColor: 'bg-blue-50'
   },
@@ -29,8 +29,8 @@ const partners: Partner[] = [
     id: 'uc-berkeley',
     name: 'UC Berkeley',
     logo: '/images/partners/events/UCBerkeley.png',
-    description: 'Premier public research university driving innovation in biotechnology and genomics',
-    website: 'https://www.berkeley.edu',
+    description: '🥈 2nd place Winner of AgentX competition - Auth0 Prize (Entrepreneurship Track)',
+    website: 'https://rdi.berkeley.edu/agentx/',
     color: 'text-yellow-600',
     bgColor: 'bg-yellow-50'
   },
@@ -39,7 +39,7 @@ const partners: Partner[] = [
     name: 'Auth0',
     logo: '/images/partners/events/auth0.png',
     description: 'Identity platform providing secure authentication and authorization solutions',
-    website: 'https://auth0.com',
+    website: 'https://rdi.berkeley.edu/agentx/',
     color: 'text-purple-600',
     bgColor: 'bg-purple-50'
   }
@@ -135,16 +135,7 @@ const TrustedBy: React.FC = () => {
           >
             Trusted By Leading Organizations
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto"
-          >
-            CrisPRO.ai builds trust through transparency and auditability. World-class research institutions 
-            and technology leaders trust us to accelerate breakthrough discoveries with honest limitations 
-            and evidence-backed recommendations.
-          </motion.p>
+     
         </div>
 
         {/* Partners Container - Grid on Desktop, Slider on Mobile/Tablet */}
