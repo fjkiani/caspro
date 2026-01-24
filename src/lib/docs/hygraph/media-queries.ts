@@ -5,7 +5,11 @@
 import { hygraphClient, fetchWithCache } from './client';
 import type { MediaItem, MediaCategory, MediaItemWithContent } from './media-types';
 
-const isHygraphConfigured = !!process.env.HYGRAPH_ENDPOINT || !!process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
+const isHygraphConfigured = !!(
+  process.env.HYGRAPH_ENDPOINT || 
+  process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT ||
+  process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT
+);
 
 // =====================================================
 // GraphQL Queries
@@ -23,56 +27,15 @@ const GET_ALL_MEDIA = `
       }
       excerpt
       type
-      category {
-        id
-        title
-        slug
-      }
       tags
-      pdfFile {
-        id
-        url
-        fileName
-        mimeType
-      }
       videoUrl
-      videoFile {
-        id
-        url
-        fileName
-        mimeType
-      }
-      thumbnail {
-        id
-        url
-        fileName
-        width
-        height
-      }
       deckId
       deckSlug
-      featuredImage {
-        id
-        url
-        fileName
-        width
-        height
-      }
-      publishedAt
-      updatedAt
-      author {
-        name
-        avatar {
-          url
-        }
-      }
-      seoMetadata {
-        metaTitle
-        metaDescription
-        keywords
-      }
       order
       isPublished
+      publishedAt
+      updatedAt
+      createdAt
     }
   }
 `;
@@ -89,56 +52,15 @@ const GET_MEDIA_BY_SLUG = `
       }
       excerpt
       type
-      category {
-        id
-        title
-        slug
-      }
       tags
-      pdfFile {
-        id
-        url
-        fileName
-        mimeType
-      }
       videoUrl
-      videoFile {
-        id
-        url
-        fileName
-        mimeType
-      }
-      thumbnail {
-        id
-        url
-        fileName
-        width
-        height
-      }
       deckId
       deckSlug
-      featuredImage {
-        id
-        url
-        fileName
-        width
-        height
-      }
-      publishedAt
-      updatedAt
-      author {
-        name
-        avatar {
-          url
-        }
-      }
-      seoMetadata {
-        metaTitle
-        metaDescription
-        keywords
-      }
       order
       isPublished
+      publishedAt
+      updatedAt
+      createdAt
     }
   }
 `;
@@ -217,9 +139,12 @@ export async function getAllMedia(
     tags?: string[];
     search?: string;
   },
-  orderBy: 'order_ASC' | 'order_DESC' | 'publishedAt_DESC' | 'title_ASC' = 'order_ASC'
+  orderBy: 'order_ASC' | 'order_DESC' | 'publishedAt_DESC' | 'title_ASC' = 'publishedAt_DESC'
 ): Promise<MediaItem[]> {
-  if (!isHygraphConfigured) return [];
+  if (!isHygraphConfigured) {
+    console.log('[getAllMedia] HyGraph not configured');
+    return [];
+  }
   
   const where: any = { isPublished: true };
   
@@ -239,12 +164,73 @@ export async function getAllMedia(
     where._search = filter.search;
   }
   
-  const { mediaItems } = await fetchWithCache<{ mediaItems: MediaItem[] }>(
-    GET_ALL_MEDIA,
-    { where, orderBy }
-  );
-  
-  return mediaItems || [];
+  try {
+    // Build query dynamically based on filters
+    let whereClause = '{ isPublished: true';
+    if (filter?.type) {
+      whereClause += `, type: ${filter.type}`;
+    }
+    if (filter?.tags && filter.tags.length > 0) {
+      whereClause += `, tags_contains_some: [${filter.tags.map(t => `"${t}"`).join(', ')}]`;
+    }
+    whereClause += ' }';
+    
+    const query = `
+      query GetAllMedia {
+        mediaItems(where: ${whereClause}, orderBy: ${orderBy}) {
+          id
+          title
+          slug
+          description {
+            html
+            text
+          }
+          excerpt
+          type
+          tags
+          videoUrl
+          videoFile {
+            id
+            url
+            fileName
+            mimeType
+          }
+          pdfFile {
+            id
+            url
+            fileName
+            mimeType
+          }
+          thumbnail {
+            id
+            url
+            fileName
+          }
+          category {
+            id
+            title
+            slug
+          }
+          deckId
+          deckSlug
+          order
+          isPublished
+          publishedAt
+          updatedAt
+          createdAt
+        }
+      }
+    `;
+    
+    const { mediaItems } = await fetchWithCache<{ mediaItems: MediaItem[] }>(
+      query
+    );
+    console.log('[getAllMedia] Fetched', mediaItems?.length || 0, 'items');
+    return mediaItems || [];
+  } catch (error) {
+    console.error('[getAllMedia] Error:', error);
+    return [];
+  }
 }
 
 /**
@@ -253,12 +239,64 @@ export async function getAllMedia(
 export async function getMediaBySlug(slug: string): Promise<MediaItem | null> {
   if (!isHygraphConfigured) return null;
   
-  const { mediaItem } = await fetchWithCache<{ mediaItem: MediaItem | null }>(
-    GET_MEDIA_BY_SLUG,
-    { slug }
-  );
-  
-  return mediaItem;
+  try {
+    // Build query directly without variables to avoid schema issues
+    const query = `
+      query GetMediaBySlug {
+        mediaItem(where: { slug: "${slug}" }) {
+          id
+          title
+          slug
+          description {
+            html
+            text
+          }
+          excerpt
+          type
+          tags
+          videoUrl
+          videoFile {
+            id
+            url
+            fileName
+            mimeType
+          }
+          pdfFile {
+            id
+            url
+            fileName
+            mimeType
+          }
+          thumbnail {
+            id
+            url
+            fileName
+          }
+          category {
+            id
+            title
+            slug
+          }
+          deckId
+          deckSlug
+          order
+          isPublished
+          publishedAt
+          updatedAt
+          createdAt
+        }
+      }
+    `;
+    
+    const { mediaItem } = await fetchWithCache<{ mediaItem: MediaItem | null }>(
+      query
+    );
+    
+    return mediaItem;
+  } catch (error) {
+    console.error('[getMediaBySlug] Error:', error);
+    return null;
+  }
 }
 
 /**
@@ -308,6 +346,13 @@ function convertToEmbedUrl(url: string): string {
     }
   }
   
+  // Google Video (googlevideo.com) - use as direct video source
+  // These URLs are typically direct video file URLs, not embeddable
+  if (url.includes('googlevideo.com')) {
+    // Return as-is for direct video playback
+    return url;
+  }
+  
   // Return original if not recognized
   return url;
 }
@@ -324,8 +369,14 @@ export function resolveMediaContent(media: MediaItem): MediaItemWithContent {
   
   if (media.type === 'VIDEO') {
     if (media.videoUrl) {
-      // Convert YouTube/Vimeo URLs to embed format
-      content.videoEmbedUrl = convertToEmbedUrl(media.videoUrl);
+      const convertedUrl = convertToEmbedUrl(media.videoUrl);
+      // Check if it's an embeddable URL (YouTube/Vimeo) or a direct video file
+      if (convertedUrl.includes('youtube.com/embed') || convertedUrl.includes('vimeo.com/video')) {
+        content.videoEmbedUrl = convertedUrl;
+      } else {
+        // Direct video file URL (Google Video, direct MP4, etc.)
+        content.videoFileUrl = convertedUrl;
+      }
     } else if (media.videoFile) {
       content.videoFileUrl = media.videoFile.url;
     }

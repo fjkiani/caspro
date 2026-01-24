@@ -17,7 +17,10 @@ import type {
 } from './types';
 
 // Environment variables
-const HYGRAPH_ENDPOINT = process.env.HYGRAPH_ENDPOINT || process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
+const HYGRAPH_ENDPOINT = 
+  process.env.HYGRAPH_ENDPOINT || 
+  process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT ||
+  process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 const HYGRAPH_TOKEN = process.env.HYGRAPH_TOKEN;
 
 // Check if Hygraph is configured

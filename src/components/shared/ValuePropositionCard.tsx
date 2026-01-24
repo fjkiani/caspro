@@ -30,7 +30,9 @@ const ValuePropositionCard: React.FC<ValuePropositionCardProps> = ({
   index = 0,
   className = ''
 }) => {
-  const theme = colorVariants[color];
+  // Safety check: ensure color is valid, fallback to 'blue' if invalid
+  const validColor = color && colorVariants[color] ? color : 'blue';
+  const theme = colorVariants[validColor];
 
   return (
     <motion.div

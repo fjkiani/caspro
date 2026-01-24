@@ -8,7 +8,7 @@ import CrisprGenomeEditor from '../ui/CrisprGenomeEditor';
 import DnaBasePairStrip from '../ui/DnaBasePairStrip';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { HERO_DRUG_DEVELOPMENT_CONFIG } from '@/data/homepage/hero-drug-development';
+import { FOCUSED_HERO_CONFIG } from '@/data/homepage/hero-focused-claim';
 import { RotatingText } from '../shared/RotatingText';
 
 // Dynamically import ProteinModelViewer with SSR turned off
@@ -56,11 +56,12 @@ const RotatingSentence = ({ sentences, interval = 3500 }: { sentences: string[];
 };
 
 const HeroSection = () => {
-  const config = HERO_DRUG_DEVELOPMENT_CONFIG;
-  const rotatingWords = config.crisis.rotatingWords || [];
-  const captivatingSentences = config.crisis.captivatingSentences || [];
-  const primaryFocus = config.primaryFocus;
-  const audiences = config.audiences || [];
+  const config = FOCUSED_HERO_CONFIG;
+  const problem = config.problem;
+  const product = config.product;
+  const primaryClaim = config.primaryClaim;
+  const primaryUseCase = config.primaryUseCase;
+  const moat = config.moat;
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white to-blue-50 dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
@@ -85,20 +86,18 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center lg:text-left mb-8 lg:mb-0"
           >
-            {/* Primary Focus Badge */}
-            {primaryFocus && (
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 via-purple-100 to-indigo-100 dark:from-blue-900/40 dark:via-purple-900/40 dark:to-indigo-900/40 text-slate-800 dark:text-slate-200 rounded-full text-sm font-bold mb-6 border border-blue-300 dark:border-blue-700"
-              >
-                <span className="text-lg">🎯</span>
-                {primaryFocus.badge}
-              </motion.div>
-            )}
+            {/* Product Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 via-purple-100 to-indigo-100 dark:from-blue-900/40 dark:via-purple-900/40 dark:to-indigo-900/40 text-slate-800 dark:text-slate-200 rounded-full text-sm font-bold mb-6 border border-blue-300 dark:border-blue-700"
+            >
+              <span className="text-lg">📊</span>
+              {product.name}
+            </motion.div>
             
-            {/* Main Hero Headline - With Rotating Words */}
+            {/* Main Hero Headline - ONE Problem */}
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -106,93 +105,69 @@ const HeroSection = () => {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight mb-5 sm:mb-6 md:mb-7 leading-tight"
             >
               <span className="block mb-2 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent">
-                {config.crisis.titlePart1}
+                {problem.headline}
               </span>
-              {rotatingWords.length > 0 && (
-                <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
-                  <RotatingText 
-                    texts={rotatingWords} 
-                    interval={2500}
-                    gradient="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent"
-                  />
-                </span>
-              )}
-              {config.crisis.titlePart2 && (
-                <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
-                  {config.crisis.titlePart2}
-                </span>
-              )}
             </motion.h1>
             
-            {/* Enhanced Subtitle with Primary Focus */}
+            {/* Subtitle - ONE Claim */}
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 dark:text-slate-200 mb-4 sm:mb-5 md:mb-6 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
             >
-              {primaryFocus?.shortDescription || config.crisis.subtitle}
+              {primaryClaim.headline}
             </motion.p>
             
-            {/* Full Description (Optional - can be shown on hover or as expandable) */}
-            {primaryFocus?.fullDescription && (
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 mb-6 sm:mb-7 md:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
-              >
-                {primaryFocus.fullDescription}
-              </motion.p>
-            )}
+            {/* Description - Product Tagline */}
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 mb-6 sm:mb-7 md:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+            >
+              {product.tagline}
+            </motion.p>
             
-            {/* Audience Indicators */}
-            {audiences.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6 sm:mb-7"
-              >
-                {audiences.map((audience) => (
-                  <div
-                    key={audience.id}
-                    className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border-2 ${audience.color} dark:border-opacity-50`}
-                  >
-                    <span className="mr-2">{audience.icon}</span>
-                    <span className="font-bold">{audience.label}</span>
-                    <span className="hidden sm:inline ml-2 text-xs opacity-75">• {audience.description}</span>
-                  </div>
-                ))}
-              </motion.div>
-            )}
+            {/* Validation Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6 sm:mb-7"
+            >
+              <div className="px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-green-100 text-green-700 border-2 border-green-300">
+                <span className="mr-2">✅</span>
+                <span className="font-bold">Validated: {primaryClaim.metric}</span>
+              </div>
+            </motion.div>
             
-            {/* SAE Badges - Centered & Captivating */}
+            {/* Moat Badge - ONE Advantage */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
               className="mt-6 sm:mt-8 flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mb-6 sm:mb-7"
             >
-              <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-200 rounded-full text-xs sm:text-sm md:text-base font-semibold border border-purple-300 dark:border-purple-700">
-                🧠 32,768 SAE Features
+              <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-full text-xs sm:text-sm md:text-base font-semibold border border-blue-300 dark:border-blue-700">
+                🔬 Multimodal Integration
               </div>
-              <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-800 dark:text-indigo-200 rounded-full text-xs sm:text-sm md:text-base font-semibold border border-indigo-300 dark:border-indigo-700">
-                🔍 100% Explainable
+              <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-200 rounded-full text-xs sm:text-sm md:text-base font-semibold border border-purple-300 dark:border-purple-700">
+                ⏱️ Continuous Updates
               </div>
               <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-200 rounded-full text-xs sm:text-sm md:text-base font-semibold border border-green-300 dark:border-green-700">
-                ✅ FDA-Ready Evidence
+                ✅ TOPACIO Validated
               </div>
             </motion.div>
 
-            {/* Consolidated CTA Buttons - 3 buttons */}
+            {/* Focused CTA Buttons - 2 buttons (ONE use case) */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
               className="space-y-3 sm:space-y-4 mb-6 sm:mb-7 flex flex-col items-center lg:items-start"
             >
-              {/* Primary: I am treating patients */}
+              {/* Primary: Calculate CSI */}
               <Link href={config.cta.primary.href} className="w-full sm:w-auto">
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
@@ -205,7 +180,7 @@ const HeroSection = () => {
                 </motion.button>
               </Link>
 
-              {/* Secondary: I am designing a drug */}
+              {/* Secondary: View Validation */}
               <Link href={config.cta.secondary.href} className="w-full sm:w-auto">
                 <motion.button 
                   whileHover={{ scale: 1.05, y: -2 }}
@@ -214,18 +189,6 @@ const HeroSection = () => {
                 >
                   <span className="text-xl sm:text-2xl">{config.cta.secondary.icon}</span>
                   <span>{config.cta.secondary.text}</span>
-                </motion.button>
-              </Link>
-
-              {/* Tertiary: I am a patient */}
-              <Link href={config.cta.tertiary.href} className="w-full sm:w-auto">
-                <motion.button 
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full sm:w-auto min-w-[280px] flex items-center justify-center gap-2 text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 py-4 sm:py-4.5 md:py-5 bg-slate-100 dark:bg-slate-700 border-2 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-100 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-600 shadow-md hover:shadow-lg transition-all touch-manipulation"
-                >
-                  <span className="text-xl sm:text-2xl">{config.cta.tertiary.icon}</span>
-                  <span>{config.cta.tertiary.text}</span>
                 </motion.button>
               </Link>
             </motion.div>

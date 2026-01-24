@@ -2,19 +2,19 @@ import React from 'react';
 import { Metadata } from 'next';
 import { rDProductData } from '@/data/products/r-d-data';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import RDHeroSection from '@/components/products/r-d/RDHeroSection';
-import RDInteractiveShowcase from '@/components/products/r-d/RDInteractiveShowcase';
-import RDCapabilityTesting from '@/components/products/r-d/RDCapabilityTesting';
-import RDCapabilityShowcase from '@/components/products/r-d/RDCapabilityShowcase';
+import RDChallengeSection from '@/components/products/r-d/RDChallengeSection';
+import RDPlatformArchitecture from '@/components/products/r-d/RDPlatformArchitecture';
+import RDCapabilityCardsGrid from '@/components/products/r-d/RDCapabilityCardsGrid';
+import RDValidationMetrics from '@/components/products/r-d/RDValidationMetrics';
+import RDExampleUseCase from '@/components/products/r-d/RDExampleUseCase';
+import RDIntegratedJourney from '@/components/products/r-d/RDIntegratedJourney';
+import RDPlatformCapabilitiesTabs from '@/components/products/r-d/RDPlatformCapabilitiesTabs';
+import RDValueProposition from '@/components/products/r-d/RDValueProposition';
 import RDEnginesSection from '@/components/products/r-d/RDEnginesSection';
 import RelatedIndustrySection from '@/components/products/shared/RelatedIndustrySection';
+import CTASection from '@/components/shared/CTASection';
 import InteractiveDemoSection from '@/components/landing/InteractiveDemoSection';
-// Dynamically import RDTabs to avoid chunk loading issues
-const RDTabs = dynamic(() => import('./RDTabs'), {
-  ssr: true,
-  loading: () => <div className="min-h-[400px] flex items-center justify-center"><div className="text-slate-600">Loading content...</div></div>
-});
 
 // Generate metadata for the R&D product page
 export async function generateMetadata(): Promise<Metadata> {
@@ -44,32 +44,41 @@ export default async function RDProductPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white text-slate-800">
-      {/* Hero Section */}
+      {/* 1. Hero Section */}
       <RDHeroSection />
 
-      {/* Interactive Demo Section - Moved from Homepage */}
-      <InteractiveDemoSection />
+      {/* 2. The Challenge Section */}
+      <RDChallengeSection />
 
-      {/* Interactive R&D Showcase */}
-      <RDInteractiveShowcase />
+      {/* 3. Integrated Platform Architecture */}
+      <RDPlatformArchitecture />
 
-      {/* R&D Capability Testing */}
-      <RDCapabilityTesting />
+      {/* 4. Capability Cards Grid */}
+      <RDCapabilityCardsGrid />
 
-      {/* Original Capability Showcase (for backward compatibility) */}
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-        <RDCapabilityShowcase className="mb-16" />
+      {/* 5. Validation Metrics Showcase */}
+      <RDValidationMetrics />
 
-        {/* AI Engines Section - Connects orphaned engine pages */}
+      {/* 6. Example Use Case: MBD4 + TP53 Patient */}
+      <RDExampleUseCase />
+
+      {/* 7. Integrated Patient Journey */}
+      <RDIntegratedJourney />
+
+      {/* 8. Platform Capabilities (6 Groups) */}
+      <RDPlatformCapabilitiesTabs />
+
+      {/* 9. Value Proposition */}
+      <RDValueProposition />
+
+      {/* AI Engines Section - Moved to bottom */}
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl py-16">
         <RDEnginesSection className="mb-16" />
+      </div>
 
-        {/* Tabbed Content */}
-        <div className="container mx-auto px-4 py-8">
-          <RDTabs content={content} />
-        </div>
-
-        {/* Related Products Section */}
-        <section className="mt-24">
+      {/* Related Products Section */}
+      <section className="py-16 px-4 bg-slate-50">
+        <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-slate-800 mb-12">Explore Other Products</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {relatedProducts.map(product => (
@@ -82,9 +91,11 @@ export default async function RDProductPage() {
               </Link>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Related Industry Section */}
+      {/* Related Industry Section */}
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl py-16">
         <RelatedIndustrySection
           industries={[
             {
@@ -103,6 +114,20 @@ export default async function RDProductPage() {
           title="See How R&D Teams Use CrisPRO"
         />
       </div>
+
+      {/* 10. CTA Section */}
+      <CTASection
+        title="Ready to Transform Drug Development?"
+        description="Explore how mechanism-aligned patient selection and proactive pharmacovigilance can improve clinical trial outcomes"
+        primaryButton={{
+          text: "Request a Demo",
+          href: "/contact"
+        }}
+        secondaryButton={{
+          text: "View Platform Capabilities",
+          href: "#platform-capabilities"
+        }}
+      />
     </main>
   );
 }
