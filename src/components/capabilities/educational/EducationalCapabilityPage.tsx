@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { EducationalCapabilityPageData } from '@/types/educational-capability';
+import TabbedEducationalPage from './TabbedEducationalPage';
 import {
   HeroQuestionSection,
   ProblemNarrativeSection,
@@ -37,6 +38,22 @@ export default function EducationalCapabilityPage({
   capabilitySlug,
   className = '',
 }: EducationalCapabilityPageProps) {
+  // Use tabbed layout for CSI journey levels (no long scrolling)
+  const csiJourneyLevels = ['match-patients-to-therapies', 'predict-resistance', 'prevent-toxicity'];
+  const useTabbedLayout = capabilitySlug && csiJourneyLevels.includes(capabilitySlug);
+
+  if (useTabbedLayout) {
+    return (
+      <TabbedEducationalPage
+        data={data}
+        productSlug={productSlug}
+        capabilitySlug={capabilitySlug}
+        className={className}
+      />
+    );
+  }
+
+  // Original scrolling layout for other capabilities
   return (
     <EducationalPageLayout
       data={data.layout}
@@ -59,6 +76,8 @@ export default function EducationalCapabilityPage({
           <PathwaySolutionInteractive data={data.solution} />
         ) : capabilitySlug === 'match-patients-to-therapies' ? (
           <TherapyFitSolutionInteractive data={data.solution} />
+        ) : capabilitySlug === 'predict-resistance' ? (
+          <ToxicitySolutionInteractive data={data.solution} /> // TODO: Create ResistancePredictionSolutionInteractive
         ) : capabilitySlug === 'clinical-trials' ? (
           <ClinicalTrialsSolutionInteractive data={data.solution} />
         ) : (
@@ -85,6 +104,7 @@ export default function EducationalCapabilityPage({
         <ObservedOutcomesSection dataSource={
           capabilitySlug === 'target-validation' ? 'pathway' : 
           capabilitySlug === 'match-patients-to-therapies' ? 'therapy-fit' : 
+          capabilitySlug === 'predict-resistance' ? 'therapy-fit' : // TODO: Add resistance-specific data
           'toxicity'
         } />
       </section>

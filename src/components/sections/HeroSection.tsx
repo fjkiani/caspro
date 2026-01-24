@@ -87,15 +87,15 @@ const HeroSection = () => {
             className="text-center lg:text-left mb-8 lg:mb-0"
           >
             {/* Product Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 via-purple-100 to-indigo-100 dark:from-blue-900/40 dark:via-purple-900/40 dark:to-indigo-900/40 text-slate-800 dark:text-slate-200 rounded-full text-sm font-bold mb-6 border border-blue-300 dark:border-blue-700"
-            >
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 via-purple-100 to-indigo-100 dark:from-blue-900/40 dark:via-purple-900/40 dark:to-indigo-900/40 text-slate-800 dark:text-slate-200 rounded-full text-sm font-bold mb-6 border border-blue-300 dark:border-blue-700"
+              >
               <span className="text-lg">📊</span>
               {product.name}
-            </motion.div>
+              </motion.div>
             
             {/* Main Hero Headline - ONE Problem */}
             <motion.h1 
@@ -120,27 +120,27 @@ const HeroSection = () => {
             </motion.p>
             
             {/* Description - Product Tagline */}
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 mb-6 sm:mb-7 md:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
-            >
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 mb-6 sm:mb-7 md:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              >
               {product.tagline}
-            </motion.p>
+              </motion.p>
             
             {/* Validation Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6 sm:mb-7"
-            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6 sm:mb-7"
+              >
               <div className="px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-green-100 text-green-700 border-2 border-green-300">
                 <span className="mr-2">✅</span>
                 <span className="font-bold">Validated: {primaryClaim.metric}</span>
-              </div>
-            </motion.div>
+                  </div>
+              </motion.div>
             
             {/* Moat Badge - ONE Advantage */}
             <motion.div

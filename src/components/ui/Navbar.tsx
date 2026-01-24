@@ -58,21 +58,8 @@ const investorSubLinks = [
 ];
 
 // Use Cases - Oncology Capabilities
-const useCasesSubLinks = [
-  // Oncology Capabilities
-  { href: '/products/oncology/prevent-toxicity', label: 'Prevent Toxicity', divider: true },
-  { href: '/products/oncology/match-patients-to-therapies', label: 'Match Patients to Therapies' },
-  { href: '/products/oncology/predict-resistance', label: 'Predict Resistance', badge: 'Coming Soon' },
-  { href: '/products/oncology/resolve-genetic-uncertainty', label: 'Resolve Genetic Uncertainty', badge: 'Coming Soon' },
-  // Capability Journeys
-  { href: '/capability-journeys/chemo', label: 'Chemotherapy Treatment', divider: true },
-  { href: '/capability-journeys/crispr-intelligence', label: 'CRISPR Intelligence' },
-  { href: '/capability-journeys/agentic-emr', label: 'Agentic EMR' },
-  { href: '/capability-journeys/clinical-trials', label: 'Clinical Trial Matching' },
-  { href: '/capability-journeys/pathway', label: 'Pathway Discovery' },
-  { href: '/capability-journeys/therapy-fit', label: 'Therapy Selection' },
-  { href: '/capability-journeys/toxicity-risk', label: 'Toxicity Risk Assessment' },
-];
+// Removed useCasesSubLinks as per Alpha's command. 💥
+const useCasesSubLinks: NavLink[] = [];
 
 // --- PRIMARY NAVIGATION: THE BATTLE PLAN ---
 export const NAV_LINKS = [
@@ -84,22 +71,12 @@ export const NAV_LINKS = [
   
   {
     href: '/products',
-    label: 'Platform',
+    label: 'Products',
     icon: <Rocket className="inline-block h-4 w-4" />,
     subLinks: [
-      { href: '/products/oncology/match-patients-to-therapies', label: 'Therapy Selection' },
-      { href: '/products/research', label: 'Hypothesis Validator' },
-      { href: '/products/r-d/therapeutic-design/crispr-intelligence', label: 'CRISPR Intelligence' },
-      { href: '/products/r-d', label: 'Drug Discovery' },
-    ],
-  },
-  {
-    href: '/ai-engines',
-    label: 'AI Engines',
-    icon: <Zap className="inline-block h-4 w-4" />,
-    subLinks: [
-      { href: '/products/oracle', label: 'Oracle (Discriminative AI)' },
-      { href: '/products/forge', label: 'Forge (Generative AI)' },
+      { href: '/products/oncology', label: 'CSI for Oncology' },
+      { href: '/products/research', label: 'Research' },
+      { href: '/products/r-d', label: 'R&D' },
     ],
   },
   // {
@@ -118,12 +95,7 @@ export const NAV_LINKS = [
   //     // Future: { href: '/comparisons/clinical', label: 'Clinical Scenarios' },
   //   ],
   // },
-  {
-    href: '/use-cases',
-    label: 'Use Cases',
-    icon: <Briefcase className="inline-block h-4 w-4" />,
-    subLinks: useCasesSubLinks,
-  },
+// Removed "Use Cases" from NAV_LINKS as per Alpha's command. 🚀
   {
     href: '/evidence',
     label: 'Evidence',

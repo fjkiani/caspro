@@ -7,7 +7,7 @@ import { FileText, Clock, Search, Zap, Infinity, CheckCircle2, AlertTriangle, Ar
 
 export interface ProblemSolutionCard {
   emoji?: string;
-  icon?: 'document' | 'clock' | 'search' | 'zap' | 'infinity' | 'check';
+  icon?: 'document' | 'clock' | 'search' | 'zap' | 'infinity' | 'check' | 'alert';
   title: string;
   description: string;
   highlight?: string;
@@ -34,6 +34,7 @@ const iconMap = {
   zap: Zap,
   infinity: Infinity,
   check: CheckCircle2,
+  alert: AlertTriangle,
 };
 
 const colorThemes = {
@@ -97,9 +98,11 @@ export default function ProblemSolutionSection({
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
             {content.title}
           </h2>
-          <p className="text-lg md:text-xl text-slate-700 max-w-3xl mx-auto leading-relaxed">
-            {content.description}
-          </p>
+          {content.description && (
+            <p className="text-sm md:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed mb-2">
+              {content.description.split('.')[0].substring(0, 80) + (content.description.split('.')[0].length > 80 ? '...' : '')}
+            </p>
+          )}
         </motion.div>
 
         {/* Cards Grid - 3 columns on both mobile and desktop */}

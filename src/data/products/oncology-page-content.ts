@@ -9,27 +9,24 @@ import { RelatedProduct } from '@/components/products/shared/RelatedProductsSect
 
 export const oncologyHeroContent: ProductHeroContent = {
   badge: {
-    text: 'ONCOLOGY INTELLIGENCE PLATFORM',
-    emoji: '🏥',
+    text: 'CHEMOSENSITIVITY INDEX (CSI)',
+    emoji: '📊',
     bgColor: 'bg-blue-100',
     textColor: 'text-blue-800'
   },
-  mainHeadline: 'Upload Once. Track Forever. Never Miss a Signal.',
+  mainHeadline: 'How Chemosensitive Is This Tumor Right Now?',
   headlineGradient: 'from-blue-600 via-purple-600 to-indigo-600',
-  subtitle: 'CrisPRO Oncology: From VUS to Validated Care Plan',
-  description: 'Replace static genomic reports with continuous agentic intelligence. From initial analysis to Month 18+, our agents never stop working—tracking CA-125 kinetics, monitoring ctDNA mutations, matching new trials, and alerting you to resistance 3-6 weeks before imaging confirms it.',
+  subtitle: 'CSI predicts 6-month PFS probability for next DDR-targeted therapy',
+  description: 'A single, calibrated score (0-100) that fuses DDR biology, treatment timing history, and early kinetics into a unified chemosensitivity prediction. Validated in TOPACIO trial (AUROC 0.714, p=0.023).',
   ctas: [
     {
-      label: '🚀 Generate Care Plan',
+      label: 'Calculate CSI for Your Patient',
       variant: 'primary',
-      onClick: () => {
-        // This will be handled by GenerateCarePlanButton component
-        // We'll pass a ref or callback
-      }
+      href: '#csi-score'
     },
     {
-      label: 'Experience Live Demos →',
-      href: '#interactive-showcase',
+      label: 'View TOPACIO Validation →',
+      href: '/evidence/csi-validation',
       variant: 'secondary'
     }
   ]
@@ -37,64 +34,72 @@ export const oncologyHeroContent: ProductHeroContent = {
 
 export const oncologyProblemContent: ProblemSolutionContent = {
   type: 'problem',
-  title: 'The Problem: Genomic Testing is Stuck in 2015',
-  description: 'Static reports are point-in-time snapshots that capture mutations once, generate recommendations once, then sit untouched.',
+  title: 'The Problem: Chemosensitivity Uncertainty',
+  description: 'For patients with advanced, heavily pretreated cancer, clinicians don\'t know: Will platinum, PARPi, or DDR-targeted therapy work again? For how long? When does PFI/PTFI no longer predict response?',
   cards: [
     {
-      icon: 'document',
-      title: 'One-Time Analysis',
-      description: 'Report generated once, then forgotten. No updates, no continuous monitoring.',
-      highlight: 'Static'
+      icon: 'clock',
+      title: 'Unknown Response Duration',
+      description: 'Will chemo work? For how long? When should we stop?',
+      highlight: 'Uncertainty'
     },
     {
-      icon: 'clock',
-      title: 'Resistance Detected Late',
-      description: '3-6 months after it starts. Window to intervene is gone.',
-      highlight: 'Too Late'
+      icon: 'alert',
+      title: 'PFI/PTFI No Longer Predicts',
+      description: 'Treatment intervals become unreliable after multiple lines. Need new prediction method.',
+      highlight: 'Outdated'
     },
     {
       icon: 'search',
-      title: 'Trials Missed',
-      description: "Can't manually track 20,000+ active studies. Perfect matches slip through.",
-      highlight: 'Manual'
+      title: 'No Unified Score',
+      description: 'DDR biology, timing history, and kinetics are siloed. No single chemosensitivity prediction.',
+      highlight: 'Fragmented'
     }
   ]
 };
 
 export const oncologySolutionContent: ProblemSolutionContent = {
   type: 'solution',
-  title: 'The Solution: Continuous Agentic Intelligence',
-  description: 'What if your genomic report was alive? Upload once, and our 8-agent pipeline orchestrates everything—from Day 1 to Month 18+. The agents never stop working.',
+  title: 'The Solution: CSI (ChemoSensitivity Index)',
+  description: 'One score that fuses DDR biology, treatment timing history, and early kinetics into a unified chemosensitivity prediction. Validated in TOPACIO trial (AUROC 0.714, p=0.023).',
   cards: [
     {
       icon: 'zap',
-      title: 'Day 1: Instant Analysis',
-      description: 'Upload report → 30 seconds → Complete care plan with biomarkers, drug rankings, trials, nutrition.',
-      highlight: '30 seconds'
-    },
-    {
-      icon: 'infinity',
-      title: 'Month 18+: Never Stops',
-      description: 'Continuous monitoring: CA-125 kinetics, ctDNA mutations, trial matching, resistance alerts 3-6 weeks early.',
-      highlight: 'Always On'
+      title: 'One Score (0-100)',
+      description: 'CSI predicts 6-month PFS probability for next DDR-targeted therapy',
+      highlight: 'AUROC 0.714'
     },
     {
       icon: 'check',
-      title: '8-Agent Pipeline',
-      description: 'Orchestrated intelligence: data extraction, biomarker calculation, resistance prediction, drug ranking, trial matching, and more.',
-      highlight: 'Complete'
+      title: 'Multimodal Integration',
+      description: 'DDR biology + timing history (PFI/PTPI/TFI) + early kinetics (KELIM/CA-125)',
+      highlight: 'Unified'
+    },
+    {
+      icon: 'infinity',
+      title: 'Continuous Updates',
+      description: 'CSI recalculates as tumor evolves. Track chemosensitivity across treatment lines.',
+      highlight: 'Dynamic'
     }
   ]
 };
 
 export const oncologySectionHeaders = {
-  monitoringDashboard: {
-    title: 'Live Monitoring: Patient X s Journey',
-    description: 'See how continuous intelligence tracks CA-125 kinetics, detects resistance mutations, matches new trials, and alerts oncologists to critical changes—automatically.'
+  csiScore: {
+    title: 'The CSI Score: One Number, Clear Answer',
+    description: 'CSI (0-100) predicts how well chemo will work for this specific patient, right now. See how the score guides treatment decisions.'
   },
-  cascadeExperience: {
-    title: 'The 8-Agent Pipeline: From Upload to Care Plan',
-    description: 'Our system orchestrates data extraction, biomarker calculation, resistance prediction, synthetic lethality detection, drug ranking, trial matching, nutrition planning, and continuous monitoring in an integrated workflow.'
+  journeyLevels: {
+    title: 'One Score. Complete Care Journey.',
+    description: 'CSI is just the beginning. As you add more data, we unlock more capabilities to guide the entire treatment journey.'
+  },
+  monitoringDashboard: {
+    title: 'CSI in Action: Continuous Monitoring',
+    description: 'See how CSI updates automatically as tumor evolves. Track chemosensitivity across treatment lines with real-time alerts when CSI drops below threshold.'
+  },
+  validation: {
+    title: 'TOPACIO Trial Validation',
+    description: 'CSI demonstrates significant predictive power for DDR-targeted therapies in advanced ovarian cancer (AUROC 0.714, p=0.023).'
   }
 };
 

@@ -8,21 +8,21 @@ import { EducationalCapabilityPageData } from '@/types/educational-capability';
 import { toxicityData } from '@/data/copilots/toxicity-data';
 
 export const toxicityEducationalData: EducationalCapabilityPageData = {
-  // Hero Section - Aligned with toxicity-data.ts (removed "generic" label)
+  // Hero Section - CSI Level 4 Focused
   hero: {
-    question: "What can I do to help myself during treatment?",
-    genericAnswer: "Eat healthy. Stay hydrated. Avoid grapefruit.",
-    ourAnswer: "Your carboplatin + BRCA1 = DNA repair stress. NAC helps. Here's when.",
+    question: "How can we prevent dangerous side effects before they happen?",
+    genericAnswer: "Monitor for side effects during treatment. Adjust dose if toxicity occurs.",
+    ourAnswer: "100% PGx coverage prevents life-threatening toxicity before treatment starts. Personalized dosing with 83.1% toxicity reduction (PREPARE trial).",
     visualComparison: {
-      before: "Eat healthy. Stay hydrated.",
-      after: "Your carboplatin + BRCA1 = DNA repair stress. NAC helps. Here's when.",
+      before: "Side effects discovered during treatment → Too late to prevent",
+      after: "PGx screening before treatment → Prevent toxicity → Personalized dosing → 83.1% reduction",
     },
   },
 
-  // Problem Section
+  // Problem Section - CSI Level 4 Focused
   problem: {
-    title: "The Problem: Germline Variants Cause Severe Drug Toxicity",
-    narrative: `Germline variants can cause severe drug toxicity. Patients with pharmacogene variants face life-threatening reactions when prescribed certain drugs.
+    title: "The Problem: Life-Threatening Toxicity Discovered Too Late",
+    narrative: `For patients with advanced, heavily pretreated cancer, clinicians need to know: **How can we prevent dangerous side effects before they happen?** But toxicity is discovered too late - after treatment starts, when it's too late to prevent.
 
 **The core challenges:**
 
@@ -126,48 +126,48 @@ export const toxicityEducationalData: EducationalCapabilityPageData = {
     ],
   },
 
-  // How It Works Section
+  // How It Works Section - CSI Level 4 Focused
   howItWorks: {
-    title: "How Toxicity Detection Works (Four Steps)",
+    title: "How Safety & Dosing Works (Four Steps)",
     steps: [
       {
         number: 1,
-        title: "Screen for Pharmacogene Variants",
-        description: "Test patient's genetics for variants in drug-metabolizing enzymes. Check: DPYD, TPMT, NUDT15, UGT1A1, CYP2D6",
+        title: "Take CSI Score, Drug Selection, and Resistance Prediction from Levels 1-3",
+        description: "Start with CSI score from Level 1, drug selection from Level 2, and resistance prediction from Level 3. Add genetic safety screening (germline variants).",
         details: [
-          { label: "Genes Screened", value: "20+ pharmacogenes" },
-          { label: "High-Impact", value: "DPYD, TPMT, UGT1A1" },
-          { label: "Risk Weight", value: "0.4 for high-impact genes" },
+          { label: "Input", value: "CSI score + Drug selection + Resistance prediction + Germline variants" },
+          { label: "Genetic Screening", value: "Germline variants in drug-metabolizing enzymes" },
+          { label: "Output", value: "Complete treatment context ready for toxicity prevention" },
         ],
       },
       {
         number: 2,
-        title: "Predict Toxicity Risk",
-        description: "Assess risk level based on variant type and drug combination",
+        title: "Add Genetic Safety Screening (PGx)",
+        description: "Screen for pharmacogene variants (DPYD, TPMT, UGT1A1, CYP2D6) that affect drug metabolism. 100% PGx coverage prevents life-threatening toxicity.",
         details: [
-          { label: "DPYD variant + 5-FU", value: "HIGH (5-10% mortality)" },
-          { label: "TPMT variant + Thiopurines", value: "HIGH (severe toxicity)" },
-          { label: "UGT1A1*28 + Irinotecan", value: "MODERATE (diarrhea)" },
+          { label: "Input", value: "Genetic safety screening (germline variants)" },
+          { label: "Genes Screened", value: "20+ pharmacogenes (DPYD, TPMT, UGT1A1, CYP2D6)" },
+          { label: "Output", value: "Pharmacogene variant analysis complete" },
         ],
       },
       {
         number: 3,
-        title: "Recommend Actions",
-        description: "Provide specific guidance based on risk level",
+        title: "Predict Toxicity Risk and Pathway Overlap",
+        description: "Assess toxicity risk based on variant type and drug combination. Compute pathway overlap between drug MoA and patient germline vulnerabilities.",
         details: [
-          { label: "High Risk", value: "Avoid drug entirely, use alternative" },
-          { label: "Moderate Risk", value: "Reduce dose by 50-90%" },
-          { label: "Low Risk", value: "Proceed with standard dose" },
+          { label: "Method", value: "Pathway overlap analysis (DNA repair, inflammation, cardiometabolic)" },
+          { label: "Validation", value: "83.1% toxicity reduction (PREPARE trial)" },
+          { label: "Output", value: "Toxicity risk assessment + Pathway overlap scores" },
         ],
       },
       {
         number: 4,
-        title: "Recommend Mitigating Foods (THE MOAT)",
-        description: "Connect toxicity pathways to protective foods with personalized timing",
+        title: "Personalized Dosing and Protective Nutrition",
+        description: "Recommend dose adjustments or alternative drugs. Connect toxicity pathways to protective foods (NAC, Omega-3, CoQ10) with personalized timing.",
         details: [
-          { label: "Platinum → DNA Repair", value: "NAC, Vitamin D, Folate (post-chemo)" },
-          { label: "Anthracycline → Cardiotoxicity", value: "CoQ10, L-Carnitine, Magnesium (continuous)" },
-          { label: "Checkpoint Inhibitor → Inflammation", value: "Omega-3, Curcumin, EGCG (post-infusion)" },
+          { label: "Dosing", value: "Personalized dosing recommendations (reduce dose 50-90% or avoid drug)" },
+          { label: "Nutrition", value: "Pathway-specific foods with timing (post-chemo, continuous, post-infusion)" },
+          { label: "Output", value: "100% toxicity prevention coverage + Personalized care plan" },
         ],
       },
     ],

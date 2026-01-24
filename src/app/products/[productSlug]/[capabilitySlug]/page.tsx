@@ -62,8 +62,17 @@ export default async function CapabilityDetailPage({
   // Check if educational data exists for this capability
   const educationalData = await getEducationalCapabilityData(capabilitySlug);
 
-  // If educational data exists and single co-pilot, use educational page
-  if (educationalData && !hasMultipleCoPilots) {
+  // CSI Journey Levels: Use educational layout even with multiple co-pilots
+  // These are: match-patients-to-therapies (Level 2), predict-resistance (Level 3), prevent-toxicity (Level 4)
+  const csiJourneyLevels: CapabilitySlug[] = [
+    'match-patients-to-therapies', // Level 2
+    'predict-resistance', // Level 3
+    'prevent-toxicity', // Level 4
+  ];
+  const isCSIJourneyLevel = csiJourneyLevels.includes(capabilitySlug);
+
+  // If educational data exists and (single co-pilot OR CSI journey level), use educational page
+  if (educationalData && (!hasMultipleCoPilots || isCSIJourneyLevel)) {
     return (
       <EducationalDirectCapabilityPage
         productSlug={productSlug}

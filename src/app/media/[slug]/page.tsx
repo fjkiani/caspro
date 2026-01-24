@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getMediaBySlug, getAllMedia } from '@/lib/docs/hygraph/media-queries';
-import MediaLearningHub from '@/components/media/MediaLearningHub';
+import MultiContentMediaViewer from '@/components/media/MultiContentMediaViewer';
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const media = await getMediaBySlug(params.slug);
@@ -41,5 +41,5 @@ export default async function MediaDetailPage({ params }: { params: { slug: stri
     )
     .slice(0, 6); // Limit to 6 related items
   
-  return <MediaLearningHub media={media} relatedMedia={relatedMedia} />;
+  return <MultiContentMediaViewer media={media} />;
 }

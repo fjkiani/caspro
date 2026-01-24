@@ -85,8 +85,10 @@ export default function EducationalPageLayout({
         </div>
       )}
       
-      {/* Conditional Layout: Grid for prevent-toxicity, Sidebar for others */}
-      {capabilitySlug === 'prevent-toxicity' ? (
+      {/* Conditional Layout: Grid for CSI journey levels (no sidebar), Sidebar for others */}
+      {capabilitySlug === 'prevent-toxicity' || 
+       capabilitySlug === 'match-patients-to-therapies' || 
+       capabilitySlug === 'predict-resistance' ? (
         // Grid Layout - No Sidebar (for prevent-toxicity)
         <div className="max-w-7xl mx-auto pt-16">
           {/* Back Button - Top */}

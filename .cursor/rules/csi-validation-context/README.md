@@ -8,6 +8,9 @@
 
 ## 📁 File Organization
 
+### **🚨 EXECUTION PLAN (START HERE):**
+1. **`HOMEPAGE_COMPONENT_ARCHITECTURE_PLAN.md`** - **CRITICAL** - Data-driven component architecture plan with folder structure, reusable components audit, and implementation steps
+
 ### **Core Validation Context:**
 1. **`HOLISTIC_SCORE_VALIDATION_CONTEXT.md`** - TOPACIO trial validation, two variants (trial matching + patient-regimen)
 2. **`PLATFORM_CAPABILITY_SUMMARY.md`** - Static → Real-Time → Evolution platform journey
@@ -45,4 +48,6 @@ Lead with **ONE product (CSI)**, **ONE use case (next-line DDR therapy)**, **ONE
 ---
 
 **Last Updated:** 2025-01-29  
-**Status:** ✅ **ORGANIZED**
+**Status:** ✅ **ORGANIZED** + ✅ **ARCHITECTURE PLAN COMPLETE**
+
+**🚨 NEXT STEP:** Execute `HOMEPAGE_COMPONENT_ARCHITECTURE_PLAN.md`

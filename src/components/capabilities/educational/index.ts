@@ -14,6 +14,7 @@ export { default as ProcessVisualizer } from './ProcessVisualizer';
 export { default as ExampleShowcase } from './ExampleShowcase';
 export { default as InfographicSection } from './InfographicSection';
 export { default as EducationalPageLayout } from './EducationalPageLayout';
+export { default as TabbedEducationalPage } from './TabbedEducationalPage';
 export { default as ProgressiveDisclosureSection } from './ProgressiveDisclosureSection';
 export { default as EducationalCapabilityPage } from './EducationalCapabilityPage';
 export { default as ToxicitySolutionInteractive } from './ToxicitySolutionInteractive';

@@ -8,82 +8,84 @@ import { EducationalCapabilityPageData } from '@/types/educational-capability';
 import { therapyFitData } from '@/data/copilots/therapy-fit-data';
 
 export const therapyFitEducationalData: EducationalCapabilityPageData = {
-  // Hero Section - Aligned with therapy-fit-data.ts
+  // Hero Section - CSI Level 2 Focused
   hero: {
-    question: "Which drug should I prescribe for this patient?",
-    genericAnswer: "Review standard of care guidelines. Consider patient's mutation profile manually.",
-    ourAnswer: "Your patient's BRAF V600E → MAPK pathway disruption (0.85). BRAF inhibitors match MAPK (0.9). Efficacy score: 0.87 (30% sequence, 40% pathway, 30% evidence).",
+    question: "What platinum/PARPi/DDR therapy should we give next?",
+    genericAnswer: "Generic drug ranking based on mutation lists. No mechanism understanding. No transparent reasoning.",
+    ourAnswer: "Top 5 drug recommendations ranked by S/P/E framework. Mechanism-based matching with transparent scoring. Validated AUROC 0.70 (n=149).",
     visualComparison: {
-      before: "Manual drug review. No systematic ranking.",
-      after: "BRAF V600E → MAPK (0.85). BRAF inhibitors → MAPK (0.9). Ranked #1 with 0.87 efficacy.",
+      before: "Mutation list → Generic drug suggestions",
+      after: "CSI score + Genomic profile → S/P/E scoring → Ranked drug recommendations with mechanism explanation",
     },
   },
 
-  // Problem Section
+  // Problem Section - CSI Level 2 Focused
   problem: {
-    title: "The Problem: Multiple Drugs, Unclear Fit",
-    narrative: `Need mechanism-based drug ranking with transparent scoring and confidence assessment.
+    title: "The Problem: Generic Drug Ranking for DDR-Targeted Therapy",
+    narrative: `For patients with advanced, heavily pretreated cancer, clinicians need to know: **What platinum/PARPi/DDR therapy should we give next?** But generic drug ranking fails for DDR-targeted treatments.
 
 **The core challenges:**
 
-- **Multiple drugs to consider, unclear which fit patient's biology** - Oncologists face 20+ drug options with no clear ranking or biological rationale. Subjective therapy selection leads to 60% variability in treatment decisions.
+- **No mechanism understanding** - Generic mutation lists don't explain why a drug fits. For DDR-targeted therapy, you need pathway-level understanding of DNA repair mechanisms.
 
-- **Need transparent scoring methodology** - Without clear scoring, it's impossible to understand why one drug is recommended over another. Manual literature review takes 2-3 days per case to understand drug mechanisms.
+- **No transparent reasoning** - Without clear scoring, it's impossible to understand why PARPi ranks higher than platinum for a specific patient. Manual literature review takes 2-3 days per case.
 
-- **Require confidence assessment and evidence backing** - No confidence scoring creates uncertainty about therapy fit and patient response. Evidence signals scattered across multiple sources make comprehensive assessment difficult.
+- **No clinical trial matching** - Missing mechanism-based trial matching means patients miss opportunities for DDR-targeted combination therapies.
+
+- **No pathway analysis** - DDR biology requires understanding of HRD status, BRCA pathway, and DNA repair mechanisms. Generic ranking misses this.
 
 **The impact:**
-- 70% of relevant therapies missed because pathway-level signals aren't visible
+- 70% of relevant DDR-targeted therapies missed because pathway-level signals aren't visible
 - 60% variability in treatment decisions across different oncologists
 - 2-3 days per case for manual drug mechanism review
-- No systematic connection between patient biology and drug mechanisms`,
-    visualMetaphor: "Like trying to choose the right key from a pile of 20 keys without knowing which lock you're opening",
+- No systematic connection between CSI score, genomic profile, and DDR-targeted drug mechanisms`,
+    visualMetaphor: "Like trying to choose the right DDR-targeted therapy from a pile of options without understanding DNA repair mechanisms",
     painPoints: [
       {
-        title: "No Clear Ranking",
-        description: "Multiple drugs to consider with no systematic ranking or biological rationale",
+        title: "No Mechanism Understanding",
+        description: "Generic mutation lists don't explain why a DDR-targeted drug fits. Need pathway-level understanding.",
         icon: "AlertTriangle",
       },
       {
-        title: "Unclear Methodology",
-        description: "No transparent scoring to understand why one drug is recommended over another",
+        title: "No Transparent Reasoning",
+        description: "No clear scoring to understand why PARPi ranks higher than platinum for a specific patient",
         icon: "Target",
       },
       {
-        title: "Missing Confidence",
-        description: "No confidence scoring creates uncertainty about therapy fit and patient response",
+        title: "No Clinical Trial Matching",
+        description: "Missing mechanism-based trial matching means patients miss DDR-targeted combination opportunities",
         icon: "Clock",
       },
       {
-        title: "Scattered Evidence",
-        description: "Evidence signals scattered across multiple sources, making comprehensive assessment difficult",
+        title: "No Pathway Analysis",
+        description: "DDR biology requires HRD status, BRCA pathway understanding. Generic ranking misses this.",
         icon: "AlertCircle",
       },
     ],
   },
 
-  // Solution Section
+  // Solution Section - CSI Level 2 Focused
   solution: {
-    title: "The Solution: S/P/E Drug Ranking with Transparent Scoring",
-    narrative: `We've built the first system that ranks drugs by efficacy using Sequence/Pathway/Evidence scoring with transparent rationale.
+    title: "The Solution: CSI-Powered Drug Recommendations with S/P/E Framework",
+    narrative: `Once you have CSI score, unlock drug recommendations and clinical trial matching. S/P/E framework (validated AUROC 0.70, n=149) ranks therapies by mechanism fit for DDR-targeted treatments.
 
 **How it works:**
 
-1. **S/P/E Framework** - Ranks drugs using Sequence (Evo2 disruption, 30% weight), Pathway (gene-to-pathway alignment, 40% weight), and Evidence (literature + ClinVar, 30% weight). Formula: efficacy_score = 0.3×S + 0.4×P + 0.3×E + ClinVar_prior.
+1. **CSI Integration** - Start with CSI score from Level 1. Add genomic test results (NGS) to unlock drug recommendations.
 
-2. **Confidence & Evidence Tiers** - Confidence computed from evidence tier, badges, and insights lifts. Tiers: Supported (≥0.6), Consider (≥0.3), Insufficient (<0.3). Badges: RCT, Guideline, ClinVar-Strong, PathwayAligned.
+2. **S/P/E Framework** - Ranks DDR-targeted drugs using Sequence (Evo2 disruption, 30% weight), Pathway (gene-to-pathway alignment, 40% weight), and Evidence (literature + ClinVar, 30% weight). Formula: efficacy_score = 0.3×S + 0.4×P + 0.3×E + ClinVar_prior.
 
-3. **Insights Integration** - Functionality, chromatin, essentiality, regulatory chips provide confidence lifts when thresholds exceeded. Lifts: +0.05 (functionality≥0.6), +0.04 (chromatin≥0.5), +0.07 (essentiality≥0.7), +0.02 (regulatory≥0.6).
+3. **DDR-Targeted Ranking** - Top 5 drug recommendations ranked by match score. Mechanism-based matching with transparent S/P/E scoring for platinum, PARPi, and DDR-targeted therapies.
 
-4. **Provenance Tracking** - Complete audit trail with run ID, profile, methods, flags, and confidence breakdown for full reproducibility.
+4. **Clinical Trial Matching** - Clinical trials you qualify for based on mechanism fit. Same-day trial site calls with action-ready packets.
 
-**The Therapy Fit MOAT (What We Just Built):**
-- ✅ S/P/E Framework → Knows how sequence, pathway, and evidence contribute to drug efficacy
-- ✅ Confidence & Tiers → Knows prediction reliability and evidence strength
-- ✅ Insights Integration → Knows when biological signals align for additional confidence
-- ✅ Provenance Tracking → Knows complete methodology for reproducibility
+**The CSI Level 2 MOAT (What We Just Built):**
+- ✅ CSI-Powered → Uses CSI score to inform drug recommendations
+- ✅ S/P/E Framework → Knows how sequence, pathway, and evidence contribute to DDR-targeted drug efficacy
+- ✅ Mechanism-Based Matching → Understands DNA repair mechanisms (HRD, BRCA pathway)
+- ✅ Clinical Trial Integration → Matches patients to DDR-targeted combination trials
 
-**This is the first system that transforms patient mutations into ranked drug recommendations with transparent S/P/E scoring.**`,
+**This is the first system that transforms CSI score + genomic profile into ranked DDR-targeted drug recommendations with transparent S/P/E scoring.**`,
     keyFeatures: [
       {
         title: "S/P/E Framework",
@@ -113,69 +115,69 @@ export const therapyFitEducationalData: EducationalCapabilityPageData = {
     visualFlow: [
       {
         number: 1,
-        title: "Sequence Scoring",
-        description: "Evo2 adaptive multi-window scoring measures variant impact (30% weight)",
+        title: "CSI Score Input",
+        description: "Start with CSI score from Level 1. Add genomic test results (NGS) to unlock drug recommendations",
       },
       {
         number: 2,
-        title: "Pathway Alignment",
-        description: "Gene-to-pathway mapping with drug-pathway alignment (40% weight)",
+        title: "S/P/E Calculation",
+        description: "Sequence (30%) + Pathway (40%) + Evidence (30%) for DDR-targeted therapy ranking",
       },
       {
         number: 3,
-        title: "Evidence Synthesis",
-        description: "Literature search + ClinVar classification (30% weight)",
+        title: "Drug Ranking",
+        description: "Top 5 drugs ranked by match score. Mechanism-based matching for platinum, PARPi, DDR-targeted therapies",
       },
       {
         number: 4,
-        title: "Ranked Drug List",
-        description: "Drugs sorted by confidence with efficacy scores, tiers, badges, and rationale",
+        title: "Trial Matching",
+        description: "Clinical trials you qualify for based on mechanism fit. Same-day trial site calls",
       },
     ],
   },
 
-  // How It Works Section
+  // How It Works Section - CSI Level 2 Focused
   howItWorks: {
-    title: "How Therapy Fit Works (Four Steps)",
+    title: "How CSI-Powered Drug Recommendations Work (Four Steps)",
     steps: [
       {
         number: 1,
-        title: "Sequence Scoring (S)",
-        description: "Evo2 adaptive multi-window scoring with gene-specific calibration. Measures variant impact on protein function (30% weight).",
+        title: "Take CSI Score from Level 1",
+        description: "Start with CSI score (0-100) that predicts 6-month PFS probability for next DDR-targeted therapy. Validated AUROC 0.714 (TOPACIO trial).",
         details: [
-          { label: "Method", value: "Evo2 adaptive multi-window scoring" },
-          { label: "Weight", value: "30% of S/P/E framework" },
-          { label: "Output", value: "Sequence disruption scores" },
+          { label: "Input", value: "CSI score from Level 1" },
+          { label: "Validation", value: "AUROC 0.714 (TOPACIO trial, p=0.023)" },
+          { label: "Output", value: "CSI score (0-100) with 6-month PFS probability" },
         ],
       },
       {
         number: 2,
-        title: "Pathway Alignment (P)",
-        description: "Gene-to-pathway mapping with drug-pathway alignment. Matches drug mechanisms to patient's pathway disruptions (40% weight).",
+        title: "Add Genomic Test Results (NGS)",
+        description: "Add genomic test results (NGS) to unlock drug recommendations. Genomic profile includes mutations, HRD status, BRCA pathway status.",
         details: [
-          { label: "Method", value: "Gene-to-pathway mapping with drug alignment" },
-          { label: "Weight", value: "40% of S/P/E framework" },
-          { label: "Output", value: "Pathway disruption scores" },
+          { label: "Input", value: "Genomic test results (NGS)" },
+          { label: "Includes", value: "Mutations, HRD status, BRCA pathway" },
+          { label: "Output", value: "Genomic profile ready for S/P/E calculation" },
         ],
       },
       {
         number: 3,
-        title: "Evidence Synthesis (E)",
-        description: "Literature search (PubMed/OpenAlex/S2) + ClinVar classification. Synthesizes RCTs, guidelines, and clinical evidence (30% weight).",
+        title: "Calculate S/P/E Scores",
+        description: "Sequence (30%) + Pathway (40%) + Evidence (30%) for DDR-targeted therapy ranking. Mechanism-based matching with transparent scoring.",
         details: [
-          { label: "Method", value: "Literature search + ClinVar classification" },
-          { label: "Weight", value: "30% of S/P/E framework" },
-          { label: "Output", value: "Evidence strength scores" },
+          { label: "Method", value: "S/P/E framework: 30% Sequence, 40% Pathway, 30% Evidence" },
+          { label: "Validation", value: "AUROC 0.70 (n=149)" },
+          { label: "Output", value: "S/P/E scores for each DDR-targeted drug" },
         ],
       },
       {
         number: 4,
-        title: "Ranked Drug List",
-        description: "Drugs sorted by confidence with efficacy scores, evidence tiers, badges, and transparent S/P/E breakdown.",
+        title: "Rank Drugs and Match Clinical Trials",
+        description: "Top 5 drugs ranked by match score. Clinical trials you qualify for based on mechanism fit. Same-day trial site calls.",
         details: [
           { label: "Formula", value: "efficacy_score = 0.3×S + 0.4×P + 0.3×E + ClinVar_prior" },
-          { label: "Output", value: "Ranked drug list with confidence and rationale" },
-          { label: "Provenance", value: "Complete audit trail with run ID" },
+          { label: "Output", value: "Ranked drug list + Clinical trial matches" },
+          { label: "Validation", value: "Retrospective-tested (n=149)" },
         ],
       },
     ],
@@ -256,97 +258,97 @@ export const therapyFitEducationalData: EducationalCapabilityPageData = {
     ],
   },
 
-  // Integration Section
+  // Integration Section - CSI Level 2 Focused
   integration: {
-    title: "How Therapy Fit Fits Into Complete Care",
+    title: "How Level 2 Unlocks Level 3: Resistance Prediction",
     connections: [
       {
-        from: "Therapy Fit",
-        to: "Pathway Analysis",
-        relationship: "Pathway component (40% weight) uses pathway aggregation service",
+        from: "Level 1: CSI Score",
+        to: "Level 2: Drug Recommendations",
+        relationship: "CSI score (0-100) informs drug recommendations. Add genomic data to unlock S/P/E ranking.",
         visual: null,
       },
       {
-        from: "Therapy Fit",
-        to: "Evidence Intelligence",
-        relationship: "Evidence component (30% weight) uses literature and ClinVar data",
+        from: "Level 2: Drug Recommendations",
+        to: "Level 3: Resistance Prediction",
+        relationship: "Once you have drug recommendations, add treatment history to unlock resistance prediction",
         visual: null,
       },
       {
-        from: "Therapy Fit",
-        to: "Toxicity Risk",
-        relationship: "Drug recommendations can be enriched with toxicity risk assessment",
+        from: "Level 2: S/P/E Framework",
+        to: "Level 3: Post-Treatment Profiling",
+        relationship: "S/P/E framework enables post-treatment pathway profiling for resistance prediction",
         visual: null,
       },
     ],
     carePlanContext: [
       {
         step: 1,
-        component: "Molecular Profile",
-        howThisHelps: "Sequence and pathway scores identify affected biological pathways",
+        component: "Level 1: CSI Score",
+        howThisHelps: "CSI score (0-100) predicts 6-month PFS probability for next DDR-targeted therapy",
       },
       {
         step: 2,
-        component: "Therapeutic Options",
-        howThisHelps: "Ranked drug list with transparent S/P/E scoring enables mechanism-based selection",
+        component: "Level 2: Drug Recommendations",
+        howThisHelps: "S/P/E framework ranks DDR-targeted drugs by mechanism fit. Clinical trial matching.",
       },
       {
         step: 3,
-        component: "Clinical Trials",
-        howThisHelps: "Drug rankings inform clinical trial matching with mechanism-based rationale",
+        component: "Level 3: Resistance Prediction",
+        howThisHelps: "Add treatment history to predict when chemo might stop working. Early intervention.",
       },
     ],
   },
 
-  // Example Section
+  // Example Section - CSI Level 2 Focused
   example: {
-    title: "Real Example: Melanoma with BRAF V600E Mutation",
+    title: "Real Example: Sarah, 58, Ovarian Cancer - Level 2 Unlock",
     patient: {
-      name: "Patient MEL-001",
-      profile: ["Metastatic melanoma", "BRAF:c.1799T>A (V600E)", "MAPK: 0.85"],
-      question: "Which drug should I prescribe for this BRAF V600E patient?",
+      name: "Sarah",
+      profile: ["58 years old", "Ovarian cancer, 2nd-line", "CSI: 72/100 (from Level 1)", "BRCA1 mutation, HRD+"],
+      question: "What platinum/PARPi/DDR therapy should we give next?",
     },
     solution: [
       {
         step: 1,
-        title: "Sequence Scoring",
-        description: "BRAF V600E → Evo2 sequence disruption score: 0.82 (30% weight)",
-        result: "Sequence component: 0.82 × 0.3 = 0.246",
+        title: "CSI Score Input",
+        description: "CSI: 72/100 (from Level 1). Predicts 6-month PFS probability for next DDR-targeted therapy.",
+        result: "CSI score: 72/100 → High probability of 6-month PFS",
       },
       {
         step: 2,
-        title: "Pathway Alignment",
-        description: "BRAF → MAPK pathway disruption: 0.85. BRAF inhibitors → MAPK: 0.9 (40% weight)",
-        result: "Pathway component: 0.85 × 0.4 = 0.34",
+        title: "Genomic Profile",
+        description: "BRCA1 mutation, HRD+ → DNA repair pathway disruption. Genomic test results added.",
+        result: "Genomic profile: BRCA1 mutation, HRD+ → Ready for S/P/E calculation",
       },
       {
         step: 3,
-        title: "Evidence Synthesis",
-        description: "Literature evidence: 0.88. ClinVar-Strong classification (30% weight)",
-        result: "Evidence component: 0.88 × 0.3 = 0.264",
+        title: "S/P/E Calculation",
+        description: "Sequence: 0.82 (BRCA1 disruption). Pathway: 0.85 (HRD+ → PARPi match). Evidence: 0.88 (ClinVar-Strong).",
+        result: "S/P/E score: 0.3×0.82 + 0.4×0.85 + 0.3×0.88 = 0.85",
       },
       {
         step: 4,
-        title: "Efficacy Scoring",
-        description: "efficacy_score = 0.246 + 0.34 + 0.264 + 0.02 (ClinVar prior) = 0.87",
-        result: "BRAF inhibitors ranked #1 with 0.87 efficacy, 0.85 confidence (Supported tier)",
+        title: "Drug Ranking",
+        description: "PARPi ranked #1 with 0.85 efficacy. Top 5 drugs ranked by match score. Clinical trials: 3 matches.",
+        result: "PARPi ranked #1 with 0.85 efficacy, 0.85 confidence (Supported tier). 3 clinical trial matches.",
       },
     ],
     outcome: [
       {
         metric: "Drug Ranking",
-        value: "BRAF inhibitors #1",
-        impact: "Clear mechanism-based recommendation",
+        value: "PARPi #1",
+        impact: "Clear mechanism-based recommendation for DDR-targeted therapy",
       },
       {
         metric: "Efficacy Score",
-        value: "0.87 (High confidence)",
+        value: "0.85 (High confidence)",
         impact: "30% sequence, 40% pathway, 30% evidence",
       },
       {
-        metric: "Evidence Tier",
-        value: "Supported",
-        impact: "Strong evidence with PathwayAligned badge",
+        metric: "Clinical Trials",
+        value: "3 matches",
+        impact: "Mechanism-based trial matching for DDR-targeted combinations",
       },
     ],
   },
@@ -357,39 +359,15 @@ export const therapyFitEducationalData: EducationalCapabilityPageData = {
     concepts: [],
   },
 
-  // Layout - Aligned with therapy-fit-data.ts structure
+  // Layout - Grid layout without sidebar (like prevent-toxicity)
   layout: {
     sidebar: {
-      sections: [
-        { id: 'hero', title: 'The Question', subsections: [] },
-        { id: 'problem', title: 'The Problem', subsections: [] },
-        { id: 'solution', title: 'The Solution', subsections: [] },
-        { id: 'value-props', title: 'Value Propositions', subsections: [
-          'For Medical Oncologists',
-          'For Researchers'
-        ] },
-        { id: 'how-it-works', title: 'How It Works', subsections: [] },
-        { id: 'observed-outcomes', title: 'Observed Outcomes', subsections: [
-          'S/P/E Framework',
-          'Drug Ranking',
-          'Insights Integration',
-          'Provenance Tracking'
-        ] },
-        { id: 'key-capabilities', title: 'Core Capabilities', subsections: [
-          'S/P/E Drug Ranking',
-          'Confidence & Evidence Tiers',
-          'Insights Integration'
-        ] },
-        { id: 'process', title: 'Process Flow', subsections: [] },
-        { id: 'value', title: 'The MOAT', subsections: [] },
-        { id: 'example', title: 'Real Example', subsections: [] },
-        { id: 'integration', title: 'Integration', subsections: [] },
-      ],
+      sections: [], // Empty sections = no sidebar, use grid layout
     },
     progress: {
       current: 1,
-      total: 11,
-      readingTime: 15,
+      total: 9,
+      readingTime: 12,
     },
   },
 

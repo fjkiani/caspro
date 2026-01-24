@@ -92,6 +92,32 @@ export const getDeckById = (id: string): DeckMetadata | undefined => {
   return deckRegistry.find(deck => deck.id === id);
 };
 
+// Get deck by slug (normalize slug to match ID)
+export const getDeckBySlug = (slug: string): DeckMetadata | undefined => {
+  // Try exact match first
+  let deck = deckRegistry.find(deck => deck.id === slug);
+  
+  // Try normalized match (replace hyphens, handle variations)
+  if (!deck) {
+    const normalizedSlug = slug.toLowerCase().replace(/-/g, '-');
+    deck = deckRegistry.find(deck => 
+      deck.id.toLowerCase() === normalizedSlug ||
+      deck.id.toLowerCase().replace(/-/g, '-') === normalizedSlug
+    );
+  }
+  
+  // Try partial match on title
+  if (!deck) {
+    const searchTerm = slug.toLowerCase().replace(/-/g, ' ');
+    deck = deckRegistry.find(deck => 
+      deck.title.toLowerCase().includes(searchTerm) ||
+      deck.id.toLowerCase().includes(searchTerm)
+    );
+  }
+  
+  return deck;
+};
+
 // Get decks by category
 export const getDecksByCategory = (category: string): DeckMetadata[] => {
   return deckRegistry.filter(deck => deck.category === category);

@@ -25,28 +25,28 @@ export interface CapabilityDefinition {
 export const ONCOLOGY_CAPABILITY_DEFINITIONS: Partial<Record<CapabilitySlug, CapabilityDefinition>> = {
   'match-patients-to-therapies': {
     slug: 'match-patients-to-therapies',
-    title: 'Match Patients to Therapies',
-    subtitle: 'Mechanism-Based Drug Ranking',
-    description: 'S/P/E fusion (Sequence/Pathway/Evidence) for drug ranking.',
+    title: 'Therapies & Trials: Level 2 of CSI Journey',
+    subtitle: 'Drug Recommendations Powered by CSI',
+    description: 'Once you have CSI score, unlock drug recommendations and clinical trial matching. S/P/E framework (validated AUROC 0.70, n=149) ranks therapies by mechanism fit for DDR-targeted treatments.',
     icon: 'Target',
     color: 'from-green-500 to-emerald-600',
-    badge: 'Mechanism-Based',
-    metrics: 'S/P/E Framework',
+    badge: 'CSI Level 2',
+    metrics: 'AUROC 0.70 (Validated)',
     time: '45 seconds',
-    businessImpact: 'Drug recommendations with transparent reasoning',
-    apis: ['predict_variant_impact', 'predict_gene_essentiality', 'generate_therapeutic_protein']
+    businessImpact: 'Rank drugs by mechanism fit for DDR-targeted therapy using validated S/P/E methodology',
+    apis: ['predict_variant_impact', 'predict_gene_essentiality']
   },
   'prevent-toxicity': {
     slug: 'prevent-toxicity',
-    title: 'Prevent Toxicity Before It Happens',
-    subtitle: '100% PGx Coverage',
-    description: '100% toxicity prevention coverage for DPYD/TPMT/UGT1A1/CYP2D6. Life-threatening prevention with drug interaction checking and protective nutrition recommendations.',
+    title: 'Safety & Dosing: Level 4 of CSI Journey',
+    subtitle: 'Prevent Dangerous Side Effects Before They Happen',
+    description: 'Once you have CSI score and genetic safety screening, unlock personalized dosing. PGx-guided therapy selection (validated 83.1% toxicity reduction, PREPARE trial) prevents life-threatening adverse events.',
     icon: 'Shield',
     color: 'from-red-500 to-pink-600',
-    badge: 'Clinical Proof',
-    metrics: '100% Coverage',
+    badge: 'CSI Level 4',
+    metrics: '83.1% Toxicity Reduction',
     time: '30 seconds',
-    businessImpact: 'Prevent life-threatening adverse events before they happen',
+    businessImpact: 'Prevent life-threatening adverse events before they happen. PGx screening (DPYD/TPMT/UGT1A1/CYP2D6) with drug interaction checking.',
     apis: ['predict_variant_impact', 'predict_protein_functionality_change']
   },
   'resolve-genetic-uncertainty': {
@@ -64,15 +64,15 @@ export const ONCOLOGY_CAPABILITY_DEFINITIONS: Partial<Record<CapabilitySlug, Cap
   },
   'predict-resistance': {
     slug: 'predict-resistance',
-    title: 'Predict Resistance Before It Happens',
-    subtitle: '3-6 Weeks Early Detection',
-    description: 'Proactive resistance detection 3-6 weeks faster than imaging. CA-125 intelligence with kinetics forecasting enables early intervention before treatment failure.',
+    title: 'Resistance Prediction: Level 3 of CSI Journey',
+    subtitle: 'Predict When Chemo Might Stop Working',
+    description: 'Once you have CSI score and treatment history, unlock resistance prediction. Post-treatment pathway profiling (validated AUROC 0.714-0.750, n=11) captures tumor evolution and predicts when to retest CSI.',
     icon: 'Activity',
     color: 'from-orange-500 to-red-600',
-    badge: 'Predictive Intelligence',
-    metrics: '3-6 Weeks Earlier',
+    badge: 'CSI Level 3',
+    metrics: 'AUROC 0.714-0.750',
     time: '60 seconds',
-    businessImpact: 'Early intervention prevents treatment failures and preserves therapeutic windows',
+    businessImpact: 'Early intervention prevents treatment failures and preserves therapeutic windows. Predict resistance 3-6 weeks before imaging confirms it.',
     apis: ['predict_gene_essentiality', 'predict_chromatin_accessibility', 'predict_protein_functionality_change']
   },
   'clinical-trials': {

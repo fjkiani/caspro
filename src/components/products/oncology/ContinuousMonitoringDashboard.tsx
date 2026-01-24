@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { TrendingUp, TrendingDown, AlertTriangle, CheckCircle, Activity, Dna, FileText, Calendar } from 'lucide-react';
+import { TrendingUp, TrendingDown, AlertTriangle, CheckCircle, Activity, Dna, FileText, Calendar, BarChart3 } from 'lucide-react';
 
 interface MonitoringMetric {
   id: string;
@@ -28,6 +28,17 @@ interface MonitoringAlert {
 
 export default function ContinuousMonitoringDashboard({ patientId = 'AK' }: { patientId?: string }) {
   const [metrics, setMetrics] = useState<MonitoringMetric[]>([
+    {
+      id: 'csi',
+      name: 'CSI Score',
+      icon: BarChart3,
+      value: 72,
+      trend: 'down',
+      trendLabel: 'Decreased from 78',
+      lastUpdate: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), // 1 day ago
+      status: 'warning',
+      description: 'CSI dropped from 78 to 72. Still above threshold (≥70), but monitor closely. CA-125 plateau may indicate early resistance.'
+    },
     {
       id: 'ca125',
       name: 'CA-125',
@@ -75,6 +86,15 @@ export default function ContinuousMonitoringDashboard({ patientId = 'AK' }: { pa
   ]);
 
   const [alerts, setAlerts] = useState<MonitoringAlert[]>([
+    {
+      id: 'csi-drop',
+      type: 'kinetics',
+      severity: 'high',
+      title: 'CSI Score Decreased: 78 → 72',
+      description: 'CSI dropped 6 points over 6 months. Still above threshold (≥70), but declining trend suggests early resistance. CA-125 plateau correlates with CSI decrease.',
+      timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+      action: 'Monitor closely. If CSI drops below 70, consider alternative therapy. Current CSI (72) still indicates likely benefit, but trend is concerning.'
+    },
     {
       id: 'ca125-plateau',
       type: 'kinetics',
@@ -138,9 +158,9 @@ export default function ContinuousMonitoringDashboard({ patientId = 'AK' }: { pa
       <div className="bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 text-white p-6">
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-2">Continuous Monitoring Dashboard</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-2">CSI Continuous Monitoring</h2>
             <p className="text-white/90 text-sm md:text-base">
-              Upload Once. Track Forever. Never Miss a Signal. • Patient {patientId}
+              Track CSI score updates as tumor evolves. Never miss a chemosensitivity change. • Patient {patientId}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -152,7 +172,7 @@ export default function ContinuousMonitoringDashboard({ patientId = 'AK' }: { pa
 
       {/* Key Metrics Grid */}
       <div className="p-6 bg-slate-50 border-b border-slate-200">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           {metrics.map((metric) => {
             const Icon = metric.icon;
             const TrendIcon = getTrendIcon(metric.trend);
@@ -176,7 +196,9 @@ export default function ContinuousMonitoringDashboard({ patientId = 'AK' }: { pa
                     <AlertTriangle className="w-4 h-4 text-red-600" />
                   )}
                 </div>
-                <div className="text-2xl font-bold text-slate-900 mb-1">{metric.value}</div>
+                <div className="text-2xl font-bold text-slate-900 mb-1">
+                  {metric.id === 'csi' ? `${metric.value}/100` : metric.value}
+                </div>
                 <div className="flex items-center gap-2 text-xs">
                   <TrendIcon className={`w-4 h-4 ${getTrendColor(metric.trend)}`} />
                   <span className={getTrendColor(metric.trend)}>{metric.trendLabel}</span>
@@ -244,13 +266,13 @@ export default function ContinuousMonitoringDashboard({ patientId = 'AK' }: { pa
         <div className="relative">
           <div className="flex items-center gap-4 overflow-x-auto pb-4">
             {[
-              { label: 'Day 1', event: 'Upload & Initial Analysis', status: 'complete' },
-              { label: 'Month 1', event: 'CA-125: 2,842 (baseline)', status: 'complete' },
-              { label: 'Month 3', event: 'CA-125: 1,500 (↓47%)', status: 'complete' },
-              { label: 'Month 6', event: '🚨 Plateau Alert', status: 'alert' },
-              { label: 'Month 9', event: 'New Trial Match', status: 'complete' },
-              { label: 'Month 12', event: '🚨 KRAS G12D Detected', status: 'alert' },
-              { label: 'Ongoing', event: 'Continuous Monitoring...', status: 'active' }
+              { label: 'Day 1', event: 'CSI: 78/100 (Initial)', status: 'complete' },
+              { label: 'Month 1', event: 'CSI: 78, CA-125: 2,842', status: 'complete' },
+              { label: 'Month 3', event: 'CSI: 78, CA-125: 1,500 (↓47%)', status: 'complete' },
+              { label: 'Month 6', event: '🚨 CSI: 72 (↓6), CA-125 Plateau', status: 'alert' },
+              { label: 'Month 9', event: 'CSI: 72, New Trial Match', status: 'complete' },
+              { label: 'Month 12', event: '🚨 CSI: 68 (↓4), KRAS G12D', status: 'alert' },
+              { label: 'Ongoing', event: 'CSI Monitoring...', status: 'active' }
             ].map((milestone, idx) => (
               <div key={idx} className="flex flex-col items-center min-w-[120px]">
                 <div className={`w-4 h-4 rounded-full mb-2 ${
