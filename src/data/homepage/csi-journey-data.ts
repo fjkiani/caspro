@@ -1,11 +1,9 @@
 /**
- * CSI Journey Data - Data-Driven Journey Levels
- * Extracted from validation context + medical hierarchy
+ * Three Validated Engines — Journey Data
+ * Source: docs/landingpage.mdc (THE BIGGER PICTURE section)
  * 
- * Source:
- * - PLATFORM_CAPABILITY_SUMMARY.md (Static → Real-Time → Evolution)
- * - FOCUSED_HERO_CONFIG.medicalHierarchy.dataDependencies
- * - CORE_DIFFERENTIATOR_STATIC_TO_EVOLUTION.md
+ * Trimmed from 5 levels → 3 engine cards.
+ * Each engine maps to a validated product with real metrics from MDC.
  */
 
 import { BarChart3, Pill, AlertTriangle, Shield, FileText } from 'lucide-react';
@@ -13,15 +11,15 @@ import { BarChart3, Pill, AlertTriangle, Shield, FileText } from 'lucide-react';
 export interface JourneyLevel {
   level: number;
   title: string;
-  subtitle: string; // Metric shown at top (e.g., "AUROC 0.714")
-  description: string; // Short description (line-clamp-3)
+  subtitle: string;
+  description: string;
   data: string;
   unlocks: string[];
   color: 'blue' | 'purple' | 'orange' | 'green' | 'indigo';
   icon: string;
-  metric: string; // Main metric (e.g., "AUROC 0.714")
-  time: string; // Time estimate (e.g., "30 seconds")
-  href: string; // Route to detail page
+  metric: string;
+  time: string;
+  href: string;
   validation?: {
     status: 'proof-of-concept' | 'retrospective-tested' | 'production';
     metric?: string;
@@ -32,116 +30,71 @@ export interface JourneyLevel {
 export const csiJourneyLevels: JourneyLevel[] = [
   {
     level: 1,
-    title: "The Score",
-    subtitle: "AUROC 0.714",
-    description: "Basic CSI calculation from stage and cancer type. Predicts 6-month PFS probability for next DDR-targeted therapy with validated mechanism fit.",
-    data: "Basic patient info (stage, cancer type)",
+    title: "INTERCEPTION (CRISPR)",
+    subtitle: "Target-Lock: 0.988 AUROC",
+    description: "Therapeutic target identification via 4-signal composite (Evo2 + Enformer) across 304 gene-step combinations. 11/11 FDA-approved targets prospectively predicted.",
+    data: "NGS panel + metastatic gene context",
     unlocks: [
-      "CSI Score (0-100)",
-      "Will chemo work? Yes/No answer",
-      "Expected benefit duration (6-month PFS probability)"
+      "Target-Lock composite score (4-signal: Functionality, Essentiality, Regulatory, Chromatin)",
+      "Stage-specific targeting across 8 metastatic steps",
+      "AlphaFold3 structural pass rate: 100% (mean pLDDT 65.6)",
+      "Prospective FDA prediction: 11/11 targets, AUROC 1.000"
     ],
     color: "blue",
-    icon: "📊",
-    metric: "AUROC 0.714",
-    time: "30 seconds",
-    href: "/products/oncology", // Route to CSI detail
+    icon: "🎯",
+    metric: "0.988 AUROC",
+    time: "In silico",
+    href: "/products/forge",
     validation: {
       status: 'retrospective-tested',
-      metric: 'TOPACIO validation (p=0.023)',
-      source: 'FOCUSED_HERO_CONFIG.primaryClaim'
+      metric: '0.988 AUROC, Precision@3 = 1.000, 304 gene-step combinations',
+      source: 'landingpage.mdc — Target-Lock section'
     }
   },
   {
     level: 2,
-    title: "Therapies & Trials",
-    subtitle: "S/P/E Framework",
-    description: "Drug recommendations and clinical trial matching with genomic context. Mechanism-based matching with transparent S/P/E scoring.",
-    data: "+ Genomic test results (NGS)",
+    title: "IO ENGINE",
+    subtitle: "8-Pathway Model: AUC 0.806",
+    description: "Will IO work for this patient? 8-pathway transcriptomic model predicts IO response with held-out AUC 0.806 and KEYNOTE-158 proxy delta +0.358.",
+    data: "Tumor transcriptomic profile + IO pathway scores",
     unlocks: [
-      "Top 5 drug recommendations ranked by match",
-      "Clinical trials you qualify for",
-      "Why each therapy fits your specific tumor (S/P/E framework)",
-      "Mechanism map and pathway analysis"
+      "8-pathway transcriptomic scoring (EXHAUSTION, TIL, T_EFFECTOR, ANGIOGENESIS, etc.)",
+      "3x responder enrichment (10-15% → 30-50%)",
+      "KEYNOTE-158 proxy validated: delta +0.358 (3.5x threshold)",
+      "STK11/KEAP1-loss identification for IO-refractory routing"
     ],
     color: "purple",
-    icon: "💊",
-    metric: "AUROC 0.70",
-    time: "45 seconds",
-    href: "/products/oncology/match-patients-to-therapies",
+    icon: "🛡️",
+    metric: "AUC 0.806",
+    time: "Held-out + external validated",
+    href: "/products/oracle",
     validation: {
       status: 'retrospective-tested',
-      metric: 'S/P/E Pipeline (n=149)',
-      source: 'PLATFORM_CAPABILITY_SUMMARY.md - Baseline Resistance Prediction'
+      metric: 'AUC 0.806 held-out, AUC 0.714 external (NeoPembrOV), KEYNOTE-158 delta +0.358',
+      source: 'landingpage.mdc — IO ENGINE section'
     }
   },
   {
     level: 3,
-    title: "Resistance Prediction",
-    subtitle: "3-6 Weeks Early",
-    description: "Predict when chemo might stop working and when to retest. Post-treatment pathway profiling captures tumor evolution after treatment.",
-    data: "+ Treatment history (PFI, PTPI, TFI, PFS, OS)",
+    title: "KILL CHAIN + SPE",
+    subtitle: "680 Patients / 6 Datasets",
+    description: "What resistance class is active right now? Monitors 10 resistance classes validated across 680 patients from 6 independent datasets with temporal ctDNA modeling.",
+    data: "Post-treatment pathway profiling + resistance markers + ctDNA",
     unlocks: [
-      "When chemo might stop working (resistance timeline)",
-      "Early warning signs to watch for",
-      "When to retest and recalculate CSI",
-      "Post-treatment pathway profiling (evolution tracking)"
+      "10 resistance class detection (BRCA reversion, ABCB1 efflux, SLFN11, lineage plasticity)",
+      "6 independent datasets (ARIEL, Patch, Christie, TCGA-OV, Abbott, MSK-SPECTRUM)",
+      "Temporal ctDNA resistance modeling (27 paired ARIEL profiles)",
+      "SLFN11 33.6% dual PARPi+platinum resistance detection"
     ],
     color: "orange",
-    icon: "⚠️",
-    metric: "3-6 Weeks Earlier",
-    time: "60 seconds",
-    href: "/products/oncology/predict-resistance",
-    validation: {
-      status: 'retrospective-tested',
-      metric: 'Post-treatment profiling AUROC 0.714-0.750 (n=11)',
-      source: 'CORE_DIFFERENTIATOR_STATIC_TO_EVOLUTION.md - Post-Treatment Pathway Profiling'
-    }
-  },
-  {
-    level: 4,
-    title: "Safety & Dosing",
-    subtitle: "100% PGx Coverage",
-    description: "Prevent dangerous side effects with genetic safety screening. Life-threatening prevention with drug interaction checking.",
-    data: "+ Genetic safety screening (germline variants)",
-    unlocks: [
-      "Prevent dangerous side effects before they happen",
-      "Personalized dosing recommendations",
-      "Drug interactions to avoid",
-      "PGx-guided therapy selection"
-    ],
-    color: "green",
-    icon: "🛡️",
-    metric: "100% Coverage",
-    time: "30 seconds",
-    href: "/products/oncology/prevent-toxicity",
-    validation: {
-      status: 'retrospective-tested',
-      metric: '83.1% toxicity reduction (PREPARE trial)',
-      source: 'PGX_VALIDATION_CONTEXT.md'
-    }
-  },
-  {
-    level: 5,
-    title: "Complete Care Plan",
-    subtitle: "Platform Journey",
-    description: "Continuous monitoring with automatic CSI updates and complete treatment timeline. Static → Real-Time → Evolution tracking.",
-    data: "+ Continuous monitoring (CA-125, biomarkers, completeness L2)",
-    unlocks: [
-      "CSI updates automatically as tumor changes",
-      "Complete treatment timeline (baseline → during treatment → post-treatment)",
-      "Exportable care plan for your medical team",
-      "Platform journey: Static → Real-Time → Evolution"
-    ],
-    color: "indigo",
-    icon: "📋",
-    metric: "Complete Platform",
-    time: "Real-time",
+    icon: "⚡",
+    metric: "680 Patients",
+    time: "6 Datasets",
     href: "/products/oncology",
     validation: {
-      status: 'proof-of-concept',
-      metric: 'Platform architecture complete',
-      source: 'PLATFORM_CAPABILITY_SUMMARY.md'
+      status: 'retrospective-tested',
+      metric: '680 patients, 10 resistance classes, 6 datasets, SLFN11 33.6% detection',
+      source: 'kill-chain-assault-2-debrief.mdc + io-validation-receipt.mdc'
     }
   }
 ];
@@ -153,7 +106,7 @@ export const csiJourneyToVisualFlow = csiJourneyLevels.map((level, idx) => ({
   number: level.level,
   title: level.title,
   description: level.description,
-  icon: 'BarChart3', // Will be mapped by SolutionInteractiveBase
+  icon: 'BarChart3',
   color: level.color,
   details: [
     { label: 'Data Required', value: level.data },

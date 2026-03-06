@@ -5,24 +5,24 @@ import { Rocket, Heart, FlaskConical, Microscope } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const products = [
-  {
-    slug: 'oncology',
-    title: 'CrisPRO Oncology',
-    subtitle: 'From VUS to Validated Care Plan in Minutes',
-    description: 'Clinical decision support platform for precision oncology. Resolve VUS uncertainty, match patients to therapies, and predict resistance.',
-    icon: Heart,
-    gradient: 'from-red-500 to-pink-600',
-    features: [
-      'VUS Resolution (73% improvement)',
-      '96.6% Trial Match Accuracy',
-      'Resistance Prediction (6 months early)',
-      'Unified Care Plans'
-    ],
-    link: '/products/oncology'
-  },
+  // {
+  //   slug: 'oncology',
+  //   title: 'CrisPRO Oncology',
+  //   subtitle: 'From VUS to Validated Care Plan in Minutes',
+  //   description: 'Clinical decision support platform for precision oncology. Resolve VUS uncertainty, match patients to therapies, and predict resistance.',
+  //   icon: Heart,
+  //   gradient: 'from-red-500 to-pink-600',
+  //   features: [
+  //     'VUS Resolution (73% improvement)',
+  //     '96.6% Trial Match Accuracy',
+  //     'Resistance Prediction (6 months early)',
+  //     'Unified Care Plans'
+  //   ],
+  //   link: '/products/oncology'
+  // },
   {
     slug: 'r-d',
-    title: 'CrisPRO R&D',
+    title: 'R&D',
     subtitle: 'Design the Undruggable. Validate in Silico.',
     description: 'Transform drug development from 90% failure to predictable success. Validate targets, design therapeutics, and predict outcomes with zero-shot AI.',
     icon: FlaskConical,
@@ -37,7 +37,7 @@ const products = [
   },
   {
     slug: 'research',
-    title: 'CrisPRO Research',
+    title: 'Research',
     subtitle: 'Research platform for hypothesis testing and variant analysis',
     description: 'Research platform. Test hypotheses at scale, explore genomic variants, and analyze data with multi-modal AI analysis.',
     icon: Microscope,

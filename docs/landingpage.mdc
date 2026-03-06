@@ -1,0 +1,137 @@
+zo here is the plan
+comment out blog, evidence, product, use-cases and about - in the nav and footer
+
+This is content for the landing page
+
+CrisPRO is a precision oncology platform that successfully predicted the results of five major cancer clinical trials using only patients' pre-treatment genetic data
+.
+It works by translating a tumor's specific mutations into an 8-dimensional biological "fingerprint" and matching it against how different drugs work
+. In retroactive tests, the system definitively separated the patients who actually responded to the trial drugs from those who did not
+. Ultimately, this proves the platform can be used to predict if a cancer treatment will fail before a patient ever takes it—saving patients from toxic, ineffective therapies while saving the healthcare system billions of dollars by routing them directly to the drugs that will work
+
+ CrisPRO Precision Oncology Platform CrisPRO is a validated, deterministic clinical decision support platform that predicts cancer drug efficacy before a patient ever receives treatment. By translating standard pre-treatment genomic data into an 8-dimensional biological "fingerprint," CrisPRO successfully stratifies clinical trial responders from non-responders
+. In retroactive testing of five major oncology trials, CrisPRO definitively proved its ability to match the right biology to the right treatment, offering a direct path to eliminate billions of dollars in futile, toxic cancer therapies
+.
+The Technology: The 8-Dimensional "Glass Box" Unlike black-box AI platforms, CrisPRO utilizes a transparent, deterministic engine. It evaluates patient NGS (Next-Generation Sequencing) data and constructs an 8-dimensional mechanism vector encompassing pathways like DNA Damage Response (DDR), PI3K, MAPK, and IO (Immunotherapy)
+
+. Crucially, the platform features highly advanced axes designed to catch what standard diagnostics miss:
+The Efflux Axis: Encodes a patient's prior drug exposure and resistance history, recognizing when a tumor has evolved past the point of responding to specific combinations (e.g., PARP inhibitors)
+.
+The RSS (Replication Stress Score) Axis: A dedicated dimension that predicts when a tumor's replication stress is already saturated, correctly identifying patients for whom adding certain drugs will cause collateral toxicity rather than clinical benefit
+.
+Clinical Validation: The "Receipts" CrisPRO has undergone rigorous, retroactive validation against five major clinical trials, passing stringent acceptance gates with high predictive separation ("deltas")
+.
+Adavosertib (NCT03579316): The platform successfully predicted that ovarian cancer patients with PTEN-loss would have a 0% response rate to this WEE1 inhibitor, recognizing that their dominant vulnerability had shifted to the PI3K pathway. CrisPRO would have rerouted these patients prior to the trial
+.
+CAPRI & Berzosertib: CrisPRO successfully identified how acquired resistance nullifies treatment efficacy (CAPRI) and exposed counterintuitive trial results, proving that adding ATR inhibitors only benefits "RS-Low" patients while potentially harming "RS-High" patients
+.
+The Commercial Heavyweight: LATIFY and the $7 Billion TAM The most immediate commercial application for CrisPRO lies in its Phase III validation regarding the LATIFY trial (ceralasertib + durvalumab) in Non-Small Cell Lung Cancer (NSCLC)
+.
+The Problem: Immunotherapy (IO) has revolutionized NSCLC, but 20-30% of patients have STK11/KEAP1 genetic losses that make their tumors highly immunosuppressive or "cold"
+. Standard IO drugs like pembrolizumab fail these patients, yet they are routinely prescribed at a cost of 150,000perfutilecourse∗∗,resultingin∗∗4 to $7 billion in wasted annual spend
+.
+The Solution: CrisPRO proactively identifies these STK11/KEAP1-loss patients upfront
+. Furthermore, it predicts that these specific patients require an ATR inhibitor to trigger the cGAS-STING pathway, which converts their "cold" tumor "hot" and enables immunotherapy to finally work
+.
+Strategic Positioning and Go-To-Market CrisPRO is not a competitor to major pharmaceutical drugs; it is a patient selection layer that ensures those drugs reach the right patients
+. The platform is primed for strategic partnerships:
+For AstraZeneca: CrisPRO inherently validates their entire DDR and IO pipeline, including adavosertib, ceralasertib, and durvalumab
+.
+For IO Leaders (Merck, BMS, Roche): CrisPRO offers a solution to the "Keytruda Problem" in lung cancer, allowing drug makers to identify IO-refractory patients upfront and route them to salvage combinations rather than watching them fail monotherapy
+.
+For Payers: Provides deterministic proof to deny reimbursement for $150K treatments that are biologically destined to fail, while rerouting patients to effective clinical trials
+
+
+This one product 1 : CLinical trials 
+
+Imagine you have a highly advanced matching system, but instead of matching people, it matches a cancer patient's specific biology to the exact drug that will kill their tumor. That is what CrisPRO does.
+Before a patient ever takes a pill or starts an IV, CrisPRO reads their tumor's DNA and creates an 8-dimensional "fingerprint" of how that specific cancer survives
+. To prove this system actually works, scientists ran a massive retroactive test. They fed CrisPRO the starting genetic data of patients from five major, completed clinical trials and asked: "Who will this drug help, and who will it fail?"
+CrisPRO's predictions matched the real-world outcomes perfectly
+. Here is the simplified story of how it proved itself across those five trials:
+1. The "Wrong Target" Trial (Adavosertib) In this ovarian cancer trial, a drug completely failed to help a specific group of patients who were missing a gene called PTEN
+. If doctors had used CrisPRO, they would have known this before the trial even started. CrisPRO’s fingerprinting correctly saw that these specific tumors weren't relying on the pathway the drug was attacking; they were surviving using a completely different biological pathway
+.
+2. The "Drug Resistance" Trial (CAPRI) Cancer is smart and can learn to resist treatments. This trial tested a drug combination, and CrisPRO accurately predicted it would barely work (less than 10% success) on patients who had already been heavily treated with similar drugs
+. CrisPRO knew this because one of its 8 dimensions is an "efflux" score, which acts as a built-in alarm that flags when a tumor has already evolved a resistance to a certain class of medicine
+.
+3. The Trial That Upgraded the System (Berzosertib) Originally, CrisPRO only had 7 dimensions and actually failed to predict the outcome of this trial
+. The creators realized they were missing a crucial piece of the puzzle: a Replication Stress Score, which measures how overwhelmed the cancer cells already are
+. Once they added this 8th dimension, CrisPRO correctly predicted a highly counterintuitive result: giving the drug to patients whose cells were already highly stressed caused them harm, while it dramatically helped patients with low cell stress
+.
+4. The Billion-Dollar Lung Cancer Trial (LATIFY) This is the most commercially important test
+. Immunotherapy is a popular, expensive treatment that wakes up the immune system to fight cancer
+. However, in 20-30% of lung cancer patients, the tumor is biologically "cold"—meaning it has put up a shield that completely blocks the immune system, causing a $150,000 immunotherapy treatment to be completely useless
+. CrisPRO can identify these patients instantly
+. More importantly, it correctly predicted that giving these patients a specific drug (ceralasertib) destroys that shield, flipping the tumor from "cold" to "hot" so the immunotherapy can finally work
+.
+5. The General Proof (KEYNOTE-158) The final test wasn't about a specific drug, but rather a broad proof of concept. It proved that CrisPRO’s built-in "immunotherapy dimension" successfully tracks with real-world survival data across many different types of tumors
+.
+The main takeaway: CrisPRO isn't guessing. By reading a tumor's exact weaknesses, it can stop doctors from prescribing toxic, expensive treatments that are biologically destined to fail, and instantly route patients to the clinical trials or drug combinations that will actually save their lives
+.
+
+Give me some bullets for a resume for Crispro - focus on impact first, metrics and outcome
+
+//content for the main page / landing page
+
+Here are high-impact, metrics-driven resume bullets for your work on the CrisPRO platform, categorized by key achievements:
+Clinical Validation & Predictive Modeling
+Predicted major clinical trial outcomes: Retroactively validated the CrisPRO platform against 5 major oncology trials (including the Phase III LATIFY trial), successfully stratifying responders from non-responders using an 8-dimensional pre-treatment mechanism vector with predictive separation (deltas) up to +0.366
+.
+Developed the ChemoSensitivity Index (CSI): Engineered a unified, 5-engine biomarker scoring system evaluated across 2,200+ patients in 3 cancer types, achieving AUROCs of 0.71–0.78 and demonstrating a 6x difference in clinical response rates between high and low-scoring cohorts
+.
+Prevented futile immunotherapy toxicity: Designed a 2-pathway (TIL + Exhaustion) predictive model for immune checkpoint inhibitors (e.g., Keytruda) that enriches responder identification by 3x (from 10-15% to 30-50%) and identifies 60–70% of patients who would experience futile, toxic immune-related adverse events
+.
+Target Discovery & CRISPR Engineering
+Predicted FDA approvals with near-perfect accuracy: Developed the "Target-Lock" multi-modal scoring framework (integrating Evo 2 and Enformer foundation models) that achieved a 0.988 AUROC and correctly identified 11 out of 11 newly FDA-approved metastatic cancer targets prior to their inclusion in the training data
+.
+Achieved a 100% CRISPR structural pass rate: Architected the "Assassin Score" for an 8-step metastasis interception pipeline, utilizing AlphaFold 3 for structural pre-validation to eliminate costly synthesis failures, resulting in a 100% pass rate (mean pLDDT 65.6) across the validation cohort
+.
+Systems Engineering & Architecture
+Architected "Glass Box" deterministic decision engine: Re-engineered the platform's monolithic probabilistic service into a verifiable, deterministic engine, resolving "split brain" data processing errors (such as complex indel normalization) and integrating strict provenance tracking to eliminate AI hallucinations in tumor board recommendations
+.
+Dual-validated oncology timing infrastructure: Built a configurable Ovarian Cancer Treatment Timing Engine to automate complex clinical metrics (like Platinum-Free Interval), achieving 95.6% exact-day internal consistency and statistical equivalence (p=0.12) against independently-recorded Phase 3 clinical trial data (ARIEL3)
+.
+Discovered post-treatment pathway predictors: Conducted comprehensive audits shifting platform focus from serial kinetics to validated post-treatment pathway states, proving that post-treatment DDR/PI3K scores robustly predict platinum resistance (AUC 0.714–0.750)
+
+
+
+this is product 2 
+
+Target-Lock is CrisPRO’s foundational target-discovery engine, designed to solve the 71.1% failure rate of Phase II oncology trials by computationally predicting which biological targets will succeed before millions of dollars are spent on wet-lab validation
+.
+Rather than relying on "intuition-based" selection, Target-Lock acts as an in silico pre-screen that evaluates a gene's vulnerability across the entire metastatic cascade
+.
+How It Works: The 4-Signal Composite Score
+Target-Lock asks two fundamental questions: How vulnerable is this gene to disruption, and how critical is it to the specific metastatic process?
+. It answers this by integrating four multi-modal signals using both the Evo2 and Enformer foundation models
+:
+Functionality (35% weight - Evo2): Measures how disruptive a mutation would be to the target's protein function, leveraging Evo2's 9.3 trillion tokens of evolutionary data
+.
+Essentiality (35% weight - Evo2): Predicts gene-level impact, determining if disrupting the gene actually kills the cell or if the cancer can rely on backup pathways
+.
+Regulatory (15% weight - Evo2): Analyzes noncoding impacts, specifically looking for splice or UTR vulnerabilities
+.
+Chromatin (15% weight - Enformer): Assesses physical accessibility. It predicts whether the target DNA is "open" and physically accessible to a drug or CRISPR editor, or tightly wound and inaccessible
+.
+Stage-Specific Targeting
+Unlike generic target discovery tools, Target-Lock is uniquely "stage-aware." It evaluates target viability independently across 8 distinct metastatic steps: local invasion, intravasation, circulation survival, extravasation, micrometastasis formation, angiogenesis, and metastatic colonization
+. For example, it can identify that a gene like VEGFA is a critical vulnerability for angiogenesis, but irrelevant for local invasion
+.
+Validation & "The Receipts"
+The algorithm has undergone rigorous multi-tiered validation with near-perfect predictive metrics:
+Primary Validation: Across 38 primary metastatic genes and 304 distinct gene-step combinations, Target-Lock achieved an AUROC of 0.988 and a Precision@3 of 1.000, meaning its top 3 ranked targets for any given metastatic step were always correct
+.
+Prospective FDA Prediction ("Time Travel" Experiment): To prove the model doesn't just memorize the past, developers tested it on 11 newly FDA-approved metastatic cancer targets from 2024–2025 (such as RET, IDH1, PIK3CA) that were strictly excluded from the training data
+.
+Target-Lock correctly identified 11 out of 11 of these targets with high-confidence scores (>0.35)
+.
+Simultaneously, it correctly rejected 8 negative controls/housekeeping genes (scores <0.25), yielding an AUROC of 1.000 for this prospective cohort
+.
+Commercial & Clinical Impact
+Target-Lock offers a massive strategic advantage for pharmaceutical R&D and CRISPR therapeutic companies. By running a pipeline of potential targets through this engine, companies can filter out biological dead-ends in weeks rather than spending 12 to 18 months and upward of $50 million per target in the wet lab
+.
+As the developers note: "We don't predict the FDA. We predict the biology the FDA eventually approves."
+
+
+Product 3 is CSI - but just simplofy it for 1 page

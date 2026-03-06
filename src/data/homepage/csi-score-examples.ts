@@ -1,11 +1,12 @@
 /**
- * CSI Score Examples - Data-Driven Score Visualization
- * Extracted from FOCUSED_HERO_CONFIG
+ * Three Validated Engines — Data Cards
+ * Source: docs/landingpage.mdc (THE BIGGER PICTURE section)
  * 
- * Source: FOCUSED_HERO_CONFIG.primaryUseCase.example
+ * Replaces old CSI score (72/50/28) cards with 3 engine validation cards.
+ * Uses same interface shape so ScoreVisualization component works unchanged.
  */
 
-import { CheckCircle2, XCircle, Clock, TrendingUp } from 'lucide-react';
+import { Target, Shield, Zap, CheckCircle2 } from 'lucide-react';
 
 export interface CSIScoreExample {
   score: number;
@@ -23,48 +24,48 @@ export interface CSIScoreExample {
 
 export const csiScoreExamples: CSIScoreExample[] = [
   {
-    score: 72,
-    label: "High Score",
-    recommendation: "Continue Treatment",
-    benefit: "6+ months benefit",
-    description: "Chemo will likely work. Proceed with confidence, monitor for optimal duration.",
-    icon: CheckCircle2,
+    score: 0.988,
+    label: "INTERCEPTION",
+    recommendation: "Target-Lock Engine",
+    benefit: "304 gene-step combinations",
+    description: "4-signal composite (Evo2 + Enformer). 11/11 FDA-approved targets prospectively predicted. AlphaFold3 structural validation: 100% pass rate. Precision@3 = 1.000.",
+    icon: Target,
     color: "green",
-    bgColor: "bg-gradient-to-br from-green-50 to-emerald-50",
-    borderColor: "border-green-200",
-    textColor: "text-green-700",
-    iconColor: "text-green-600"
+    bgColor: "bg-slate-800/50 backdrop-blur-md",
+    borderColor: "border-blue-500/30",
+    textColor: "text-blue-400",
+    iconColor: "text-blue-400"
   },
   {
-    score: 50,
-    label: "Medium Score",
-    recommendation: "Re-Evaluate",
-    benefit: "3-6 months",
-    description: "Consider combination therapies or re-evaluation. Benefit is uncertain.",
-    icon: TrendingUp,
+    score: 0.806,
+    label: "IO ENGINE",
+    recommendation: "Immunotherapy Prediction",
+    benefit: "KEYNOTE-158 validated",
+    description: "8-pathway transcriptomic model. Held-out AUC 0.806, external AUC 0.714 (NeoPembrOV). KEYNOTE-158 proxy delta +0.358. 3x responder enrichment (10-15% → 30-50%).",
+    icon: Shield,
     color: "yellow",
-    bgColor: "bg-gradient-to-br from-yellow-50 to-amber-50",
-    borderColor: "border-yellow-200",
-    textColor: "text-yellow-700",
-    iconColor: "text-yellow-600"
+    bgColor: "bg-slate-800/50 backdrop-blur-md",
+    borderColor: "border-purple-500/30",
+    textColor: "text-purple-400",
+    iconColor: "text-purple-400"
   },
   {
-    score: 28,
-    label: "Low Score",
-    recommendation: "Avoid Unnecessary Treatment",
-    benefit: "<3 months",
-    description: "Avoid unnecessary treatment. Explore alternative strategies or trials.",
-    icon: XCircle,
+    score: 680,
+    label: "KILL CHAIN + SPE",
+    recommendation: "Resistance Detection",
+    benefit: "6 independent datasets",
+    description: "10 resistance classes across 680 patients (ARIEL, Patch, Christie, TCGA-OV, Abbott, MSK-SPECTRUM). Temporal ctDNA modeling. SLFN11 33.6% dual-resistance detection.",
+    icon: Zap,
     color: "red",
-    bgColor: "bg-gradient-to-br from-red-50 to-rose-50",
-    borderColor: "border-red-200",
-    textColor: "text-red-700",
-    iconColor: "text-red-600"
+    bgColor: "bg-slate-800/50 backdrop-blur-md",
+    borderColor: "border-rose-500/30",
+    textColor: "text-rose-400",
+    iconColor: "text-rose-400"
   }
 ];
 
 /**
- * Get score example by score value
+ * Get score example by index
  */
 export const getScoreExample = (score: number): CSIScoreExample => {
   if (score >= 70) return csiScoreExamples[0];

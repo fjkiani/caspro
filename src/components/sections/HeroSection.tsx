@@ -72,13 +72,13 @@ const HeroSection = () => {
       <div className="hidden lg:block absolute right-10 top-20 w-20 h-3/4 opacity-10 dark:opacity-70 pointer-events-none">
         <DoubleDnaHelix className="w-full h-full" baseCount={6} rotationSpeed={12} />
       </div>
-      
+
       {/* Enhanced Hero Layout - Centered & Lower */}
       <div className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-32 lg:pt-40 pb-10 sm:pb-14 md:pb-20 lg:pb-24 relative z-10">
-        
+
         {/* Mobile: Single Column, Desktop: Two Column */}
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
-          
+
           {/* Content Section - Centered & Captivating */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -87,18 +87,18 @@ const HeroSection = () => {
             className="text-center lg:text-left mb-8 lg:mb-0"
           >
             {/* Product Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 via-purple-100 to-indigo-100 dark:from-blue-900/40 dark:via-purple-900/40 dark:to-indigo-900/40 text-slate-800 dark:text-slate-200 rounded-full text-sm font-bold mb-6 border border-blue-300 dark:border-blue-700"
-              >
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 via-purple-100 to-indigo-100 dark:from-blue-900/40 dark:via-purple-900/40 dark:to-indigo-900/40 text-slate-800 dark:text-slate-200 rounded-full text-sm font-bold mb-6 border border-blue-300 dark:border-blue-700"
+            >
               <span className="text-lg">📊</span>
               {product.name}
-              </motion.div>
-            
+            </motion.div>
+
             {/* Main Hero Headline - ONE Problem */}
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -108,9 +108,9 @@ const HeroSection = () => {
                 {problem.headline}
               </span>
             </motion.h1>
-            
+
             {/* Subtitle - ONE Claim */}
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -118,50 +118,50 @@ const HeroSection = () => {
             >
               {primaryClaim.headline}
             </motion.p>
-            
+
             {/* Description - Product Tagline */}
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 mb-6 sm:mb-7 md:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
-              >
-              {product.tagline}
-              </motion.p>
-            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 mb-6 sm:mb-7 md:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+            >
+              {product.description}
+            </motion.p>
+
             {/* Validation Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6 sm:mb-7"
-              >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6 sm:mb-7"
+            >
               <div className="px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-green-100 text-green-700 border-2 border-green-300">
                 <span className="mr-2">✅</span>
                 <span className="font-bold">Validated: {primaryClaim.metric}</span>
-                  </div>
-              </motion.div>
-            
+              </div>
+            </motion.div>
+
             {/* Moat Badge - ONE Advantage */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
               className="mt-6 sm:mt-8 flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mb-6 sm:mb-7"
             >
               <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-full text-xs sm:text-sm md:text-base font-semibold border border-blue-300 dark:border-blue-700">
-                🔬 Multimodal Integration
+                🔬 Glass Box Engine
               </div>
               <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-200 rounded-full text-xs sm:text-sm md:text-base font-semibold border border-purple-300 dark:border-purple-700">
-                ⏱️ Continuous Updates
+                ✅ 5 Trials Validated
               </div>
               <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-200 rounded-full text-xs sm:text-sm md:text-base font-semibold border border-green-300 dark:border-green-700">
-                ✅ TOPACIO Validated
+                💰 $7B TAM Identified
               </div>
-            </motion.div>
+            </motion.div> */}
 
             {/* Focused CTA Buttons - 2 buttons (ONE use case) */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -182,7 +182,7 @@ const HeroSection = () => {
 
               {/* Secondary: View Validation */}
               <Link href={config.cta.secondary.href} className="w-full sm:w-auto">
-                <motion.button 
+                <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full sm:w-auto min-w-[280px] flex items-center justify-center gap-2 text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 py-4 sm:py-4.5 md:py-5 bg-white dark:bg-slate-800 border-2 border-slate-400 dark:border-slate-500 text-slate-800 dark:text-slate-100 font-bold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 shadow-lg hover:shadow-xl transition-all touch-manipulation"
@@ -208,18 +208,18 @@ const HeroSection = () => {
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-red-400 via-purple-400 to-blue-400 opacity-80 z-10"></div>
               <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 via-green-400 to-red-400 opacity-80 z-10"></div>
             </div>
-            
+
             {/* CRISPR Gene Editing Visualization - Responsive */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-full h-4/5 scale-70 sm:scale-80 md:scale-90 lg:scale-100">
-                <CrisprGenomeEditor 
-                  baseCount={8} 
+                <CrisprGenomeEditor
+                  baseCount={8}
                   targetSequence="ATGCCTGAGCTAGTCGAA"
                   rotationSpeed={60}
                 />
               </div>
             </div>
-            
+
             {/* Protein visualization in bottom section */}
             <div className="absolute bottom-0 left-0 right-0 h-2/5 opacity-90 rounded-b-xl overflow-hidden">
               <Suspense fallback={
@@ -229,16 +229,16 @@ const HeroSection = () => {
               }>
                 {/* <ProteinModelViewer className="w-full h-full" /> */}
               </Suspense>
-              
+
               {/* Protein info overlay */}
               <div className="absolute top-1 right-2 sm:top-2 sm:right-4 bg-white/30 dark:bg-black/30 backdrop-blur-sm p-1 sm:p-2 rounded text-[8px] sm:text-[10px] md:text-xs text-slate-700 dark:text-white font-mono">
                 <span className="hidden sm:inline">Cas9 • </span>1,368 aa
               </div>
             </div>
-            
+
             {/* Glow effects */}
             <div className="absolute bottom-1/3 left-0 right-0 h-16 sm:h-24 bg-gradient-to-t from-blue-200/30 to-transparent dark:from-blue-500/30"></div>
-            
+
             {/* Floating indicators */}
             <motion.div
               className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-4 md:left-4 lg:top-6 lg:left-6 text-[9px] sm:text-[10px] md:text-xs font-mono bg-green-100 dark:bg-green-500/20 border border-green-500/30 text-green-800 dark:text-green-300 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md"
@@ -247,7 +247,7 @@ const HeroSection = () => {
             >
               <span className="hidden sm:inline">On-target: </span>0.92
             </motion.div>
-            
+
             <motion.div
               className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 lg:top-6 lg:right-6 text-[9px] md:text-xs font-mono bg-red-100 dark:bg-red-500/20 border border-red-500/30 text-red-800 dark:text-red-300 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md"
               animate={{ y: [0, -5, 0] }}

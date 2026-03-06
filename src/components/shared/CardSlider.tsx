@@ -58,22 +58,20 @@ function CardSlider<T = any>({
           <button
             onClick={goToPrevious}
             disabled={currentIndex === 0}
-            className={`absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all hover:scale-110 border border-slate-200 ${
-              currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            className={`absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 z-10 bg-slate-800/80 backdrop-blur-sm rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all hover:scale-110 border border-slate-600 ${currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
             aria-label="Previous"
           >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" />
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-slate-300" />
           </button>
           <button
             onClick={goToNext}
             disabled={currentIndex >= maxIndex}
-            className={`absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all hover:scale-110 border border-slate-200 ${
-              currentIndex >= maxIndex ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            className={`absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 z-10 bg-slate-800/80 backdrop-blur-sm rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all hover:scale-110 border border-slate-600 ${currentIndex >= maxIndex ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
             aria-label="Next"
           >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" />
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-slate-300" />
           </button>
         </>
       )}
@@ -100,8 +98,8 @@ function CardSlider<T = any>({
               return null;
             }
             return (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="flex-shrink-0"
                 style={{
                   width: `${(100 / items.length) * cardsToShow}%`
@@ -121,11 +119,10 @@ function CardSlider<T = any>({
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? 'w-8 sm:w-10 bg-blue-600'
-                  : 'w-2 sm:w-2.5 bg-slate-300 hover:bg-slate-400'
-              }`}
+              className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 ${index === currentIndex
+                  ? 'w-8 sm:w-10 bg-blue-500'
+                  : 'w-2 sm:w-2.5 bg-slate-600 hover:bg-slate-500'
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

@@ -22,8 +22,12 @@ export default function CSIJourneySection() {
   const config = FOCUSED_HERO_CONFIG;
 
   return (
-    <section className="py-16 sm:py-20 bg-gradient-to-br from-white via-blue-50 to-white">
-      <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+    <section className="py-16 sm:py-24 bg-[#0B0F19] relative overflow-hidden">
+      {/* Background Deep Glows */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
         <CoreQuestionSection />
         <ScoreVisualization />
         <PatientExampleCard />

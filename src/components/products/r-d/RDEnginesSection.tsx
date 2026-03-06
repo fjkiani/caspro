@@ -57,30 +57,30 @@ export default function RDEnginesSection({ className = '' }: RDEnginesSectionPro
       capabilities: forgeData.capabilities?.slice(0, 2) || [],
       link: '/products/forge'
     },
-    {
-      id: 'boltz',
-      name: 'Boltz',
-      icon: Shield,
-      gradient: 'from-orange-400 to-red-300',
-      bgGradient: 'from-slate-900 via-slate-800 to-orange-900/20',
-      heroTitle: '⚡ Boltz: 3D Structural Assessment',
-      description: boltzData.description || '3D structural validation and binding affinity prediction with AlphaFold 3 integration',
-      data: boltzData,
-      capabilities: boltzData.capabilities?.slice(0, 2) || [],
-      link: '/products/boltz'
-    },
-    {
-      id: 'command-center',
-      name: 'Command Center',
-      icon: Network,
-      gradient: 'from-purple-400 to-pink-300',
-      bgGradient: 'from-slate-900 via-slate-800 to-purple-900/20',
-      heroTitle: '🎯 Command Center: Central Nervous System',
-      description: commandCenterData.description || 'Workflow orchestration, provenance tracking, and evidence aggregation',
-      data: commandCenterData,
-      capabilities: commandCenterData.capabilities?.slice(0, 2) || [],
-      link: '/products/command-center'
-    }
+    // {
+    //   id: 'boltz',
+    //   name: 'Boltz',
+    //   icon: Shield,
+    //   gradient: 'from-orange-400 to-red-300',
+    //   bgGradient: 'from-slate-900 via-slate-800 to-orange-900/20',
+    //   heroTitle: '⚡ Boltz: 3D Structural Assessment',
+    //   description: boltzData.description || '3D structural validation and binding affinity prediction with AlphaFold 3 integration',
+    //   data: boltzData,
+    //   capabilities: boltzData.capabilities?.slice(0, 2) || [],
+    //   link: '/products/boltz'
+    // },
+    // {
+    //   id: 'command-center',
+    //   name: 'Command Center',
+    //   icon: Network,
+    //   gradient: 'from-purple-400 to-pink-300',
+    //   bgGradient: 'from-slate-900 via-slate-800 to-purple-900/20',
+    //   heroTitle: '🎯 Command Center: Central Nervous System',
+    //   description: commandCenterData.description || 'Workflow orchestration, provenance tracking, and evidence aggregation',
+    //   data: commandCenterData,
+    //   capabilities: commandCenterData.capabilities?.slice(0, 2) || [],
+    //   link: '/products/command-center'
+    // }
   ];
 
   return (

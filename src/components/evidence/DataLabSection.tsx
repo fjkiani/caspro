@@ -6,17 +6,25 @@ import { dataLabData } from '@/data/evidence/data-lab-data';
 import { HeroSection } from '@/components/use-cases/HeroSection';
 import SectionHeader from '@/components/shared/SectionHeader';
 import CTASection from '@/components/shared/CTASection';
-import { 
+import {
   Database,
   Target,
   BarChart3,
-  CheckCircle
+  CheckCircle,
+  Search,
+  Play,
+  Tag,
+  Download
 } from 'lucide-react';
 
-const iconMap = {
+const iconMap: Record<string, React.FC<{ className?: string }>> = {
   Database,
   Target,
-  BarChart3
+  BarChart3,
+  Search,
+  Play,
+  Tag,
+  Download
 };
 
 export const DataLabSection: React.FC = () => {
@@ -63,16 +71,15 @@ export const DataLabSection: React.FC = () => {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-slate-900">{capability.title}</h3>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        capability.status === 'live' 
-                          ? 'bg-green-100 text-green-700' 
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${capability.status === 'live'
+                          ? 'bg-green-100 text-green-700'
                           : 'bg-orange-100 text-orange-700'
-                      }`}>
+                        }`}>
                         {capability.status.toUpperCase()}
                       </span>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-4">
                     <div>
                       <h4 className="font-medium text-slate-900 mb-2">Technical</h4>

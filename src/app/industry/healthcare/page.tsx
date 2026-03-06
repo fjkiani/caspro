@@ -114,8 +114,8 @@ export default function HealthcarePage() {
       {/* Universal Platform - Removed */}
       {/* <UniversalPlatformSection /> */}
 
-      {/* Capability Journey Slider */}
-      <CapabilityJourneySlider />
+      {/* Capability Journey Slider — COMMENTED OUT BY ZO (Alpha's orders 2026-03-06) */}
+      {/* <CapabilityJourneySlider /> */}
 
       {/* Patient Journey Transformation */}
       <section className="py-16 px-6 bg-slate-50">
@@ -137,10 +137,10 @@ export default function HealthcarePage() {
             </div>
 
             <TwoHitDiagram steps={runx1Content.twoHit.steps} />
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <RiskMap {...runx1Content.riskMap} />
-              <Arsenal 
+              <Arsenal
                 input={runx1Content.arsenal.input}
                 processTitle={runx1Content.arsenal.processTitle}
                 outputs={[...runx1Content.arsenal.outputs]}
@@ -175,7 +175,7 @@ export default function HealthcarePage() {
           {/* Immunotherapy Personalization */}
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold text-white text-center">Personalized Cancer Immunotherapy</h3>
-            
+
             <div className="bg-gradient-to-r from-green-900/20 to-green-800/20 border border-green-700/50 rounded-xl p-8">
               <div className="text-center space-y-6">
                 <h4 className="text-xl font-bold text-green-300">Immunotherapy Transformation Impact</h4>
@@ -231,11 +231,11 @@ export default function HealthcarePage() {
       {/* Related Products Section */}
       <RelatedProductsSection
         products={[
-          {
-            slug: 'oncology',
-            title: 'CrisPRO Oncology',
-            subtitle: 'From VUS to Validated Care Plan in Minutes. Complete clinical decision support platform.',
-          },
+          // {
+          //   slug: 'oncology',
+          //   title: 'CrisPRO Oncology',
+          //   subtitle: 'From VUS to Validated Care Plan in Minutes. Complete clinical decision support platform.',
+          // },
           {
             slug: 'r-d',
             title: 'CrisPRO R&D',

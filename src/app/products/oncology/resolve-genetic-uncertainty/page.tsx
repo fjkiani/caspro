@@ -22,13 +22,13 @@ export default function ResolveGeneticUncertaintyPlaceholder() {
         </nav>
         
         {/* Back Button */}
-        <Link
+        {/* <Link
           href="/products/oncology"
           className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-8 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Oncology</span>
-        </Link>
+        </Link> */}
         
         {/* Coming Soon Content */}
         <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-12 text-center">

@@ -58,94 +58,16 @@ export const SAESection: React.FC = () => {
         description={saeData.hero.subtitle}
         whyItMatters={[
           "Transform black-box predictions into transparent, biologically-grounded stories",
-          "Expose the model's internal logic to explain variant impact",
-          "Flag risky designs and steer generative AI (roadmap)"
+
         ]}
         delivered={[
-          "Interactive feature visualizations with disruption scores",
-          "Automated prompt safety checks",
+     
           "Clear biological explanations for every prediction"
         ]}
       />
 
       {/* Value Propositions */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeader
-            title="Built for Different Audiences"
-            subtitle="SAE Intelligence serves both scientific discovery and engineering excellence"
-          />
-          <div className="grid md:grid-cols-2 gap-8 mt-12">
-            {saeData.valueProps.map((prop, index) => {
-              const IconComponent = iconMap[prop.icon as keyof typeof iconMap];
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-2xl p-8 shadow-lg border border-slate-200"
-                >
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="p-3 bg-blue-100 rounded-xl">
-                      <IconComponent className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-slate-900">
-                      {prop.audience}
-                    </h3>
-                  </div>
-                  <ul className="space-y-3">
-                    {prop.points.map((point, pointIndex) => (
-                      <li key={pointIndex} className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-slate-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: renderMarkdown(point) }} />
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Today */}
-      <section className="py-16 px-4 bg-slate-50">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeader
-            title={saeData.buildsOn.title}
-            subtitle="Current implementation details and technical foundation"
-          />
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
-            {saeData.buildsOn.points.map((point, index) => {
-              // Extract component name from markdown
-              const componentMatch = point.match(/\*\*`([^`]+)`\*\*/);
-              const componentName = componentMatch ? componentMatch[1] : `Component ${index + 1}`;
-              const description = point.replace(/\*\*`[^`]+`\*\*:\s*/, '');
-              
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-xl p-6 shadow-md border border-slate-200 hover:shadow-lg transition-shadow"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-green-100 rounded-lg flex-shrink-0">
-                      <Code className="w-5 h-5 text-green-600" />
-                    </div>
-                    <h4 className="font-semibold text-slate-900 text-lg">{componentName}</h4>
-                  </div>
-                  <p className="text-slate-700 leading-relaxed text-sm" dangerouslySetInnerHTML={{ __html: renderMarkdown(description) }} />
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+     
 
       {/* Core Capabilities */}
       <section className="py-16 px-4">
@@ -245,36 +167,16 @@ export const SAESection: React.FC = () => {
       {/* Observed Outcomes */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionHeader
-            title="Observed Outcomes"
-            subtitle="Real-world impact from SAE Intelligence"
-          />
+          
           <ObservedOutcomes outcomes={saeData.observedOutcomes} />
         </div>
       </section>
 
       {/* Value Proposition */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeader
-            title="Institutional Value"
-            subtitle="Why SAE Intelligence matters for your organization"
-          />
-          <div className="mt-12">
-            {saeData.valueProposition.map((prop, index) => (
-              <ValuePropositionCard
-                key={index}
-                audience={prop.audience}
-                icon={Target}
-                points={prop.points}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* Technical Details */}
-      <section className="py-16 px-4 bg-slate-50">
+      {/* <section className="py-16 px-4 bg-slate-50">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             title="Technical Implementation"
@@ -339,7 +241,7 @@ export const SAESection: React.FC = () => {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <CTASection

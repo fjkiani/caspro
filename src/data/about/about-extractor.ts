@@ -40,21 +40,9 @@ export const extractAboutHero = (): AboutHeroData => {
     subtitle: "Accelerating drug discovery through AI fusion",
     description: "An in-silico research-use-only (RUO) framework designed to accelerate drug discovery by fusing the capabilities of discriminative and generative Artificial Intelligence. Our platform orchestrates a generalist genome foundation model with a suite of specialist predictors and structural oracles to achieve state-of-the-art performance across multiple benchmarks.",
     keyMetrics: [
-      {
-        label: "ClinVar AUROC",
-        value: clinvarMetric?.value || "95.7%",
-        description: `Across ${clinvarMetric?.samples?.toLocaleString() || "53,210"} variants`
-      },
-      {
-        label: "VUS Resolution",
-        value: vusMetric?.benchmarks?.[0]?.value?.value ? formatMetricValue(vusMetric.benchmarks[0].value.value, vusMetric.benchmarks[0].value.format) : "73%",
-        description: "Variants of Uncertain Significance"
-      },
-      {
-        label: "R&D Acceleration",
-        value: "36x faster",
-        description: "From years to weeks"
-      }
+
+
+
     ]
   };
 };
@@ -143,22 +131,14 @@ export const extractFusionSection = (): AboutSectionData => {
     id: "fusion",
     title: "The Fusion Approach: Why We Win",
     description: "The competitive advantage of CrisPRO.ai lies in our fusion approach. We combine the generalist genome foundation model with specialist models to achieve SOTA across the entire R&D continuum.",
-    keyPoints: [
-      "CrisPRO baseline: 95.7% AUROC ClinVar validation on 53,210 samples",
-      "Specialist integration: AlphaMissense for coding SNVs, GPN-MSA for specialized tasks",
-      "Cross-species capability: 0.82-0.99 AUROC range across 8 species",
-      "CrisPRO generation: 1M token context window for comprehensive sequence design",
-      "Functional scoring: Enformer/Borzoi for epigenomic validation",
-      "Structural validation: AlphaFold 3 for 3D structure prediction"
-    ],
-    businessImpact: "This approach gives us Breadth (covering all variant types), Depth (achieving SOTA on key targets like BRCA1), and Control (designing sequences with predictable functional properties)."
+
   };
 };
 
 // Extract business value section
 export const extractBusinessValueSection = (): AboutSectionData => {
   const vusGroup = businessMetrics.find(m => m.id === 'vus-resolution');
-  
+
   return {
     id: "business-value",
     title: "Business Value: From Research to Revenue",

@@ -60,9 +60,9 @@ const colorClasses = {
   }
 };
 
-export default function FullPageCascadeExperience({ 
+export default function FullPageCascadeExperience({
   patientId = 'AK',
-  autoStart = false 
+  autoStart = false
 }: FullPageCascadeExperienceProps) {
   const {
     dataStore,
@@ -132,7 +132,7 @@ export default function FullPageCascadeExperience({
   const currentTab = tabs.find(tab => tab.id === activeTab) || tabs[0];
 
   return (
-    <div className="w-full bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+    <div id="cascade-experience" className="w-full bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
       {/* Header with Gradient Background */}
       <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white p-6">
         <div className="flex items-center justify-between flex-wrap gap-4">
@@ -180,13 +180,12 @@ export default function FullPageCascadeExperience({
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  className={`flex items-center gap-2 px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all flex-shrink-0 ${
-                    isActive
+                  className={`flex items-center gap-2 px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all flex-shrink-0 ${isActive
                       ? `${colorClass.bg} ${colorClass.text} border-2 ${colorClass.border}`
                       : isCompleted || isPending
-                      ? 'bg-green-100 text-green-700'
-                      : 'bg-slate-200 text-slate-500'
-                  }`}
+                        ? 'bg-green-100 text-green-700'
+                        : 'bg-slate-200 text-slate-500'
+                    }`}
                 >
                   <span className="text-base md:text-lg">{phase.icon}</span>
                   <span className="hidden sm:inline">{phase.title}</span>
@@ -210,22 +209,21 @@ export default function FullPageCascadeExperience({
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
               const phaseIndex = tab.id === 'molecular' ? 0 :
-                                 tab.id === 'therapeutic' ? 3 :
-                                 tab.id === 'trials' ? 4 : 6;
+                tab.id === 'therapeutic' ? 3 :
+                  tab.id === 'trials' ? 4 : 6;
               const hasData = completedPhases.has(phaseIndex) || phaseIndex === 0;
-              
+
               return (
                 <button
                   key={tab.id}
                   onClick={() => hasData && setActiveTab(tab.id)}
                   disabled={!hasData}
-                  className={`flex items-center px-4 md:px-6 py-4 font-semibold transition-all border-b-2 flex-shrink-0 ${
-                    isActive
+                  className={`flex items-center px-4 md:px-6 py-4 font-semibold transition-all border-b-2 flex-shrink-0 ${isActive
                       ? 'border-blue-600 text-blue-600 bg-blue-50'
                       : hasData
-                      ? 'border-transparent text-slate-600 hover:text-blue-600 hover:bg-slate-50'
-                      : 'border-transparent text-slate-300 cursor-not-allowed'
-                  }`}
+                        ? 'border-transparent text-slate-600 hover:text-blue-600 hover:bg-slate-50'
+                        : 'border-transparent text-slate-300 cursor-not-allowed'
+                    }`}
                 >
                   <Icon className="w-5 h-5 mr-2" />
                   <span className="text-sm md:text-base">{tab.label}</span>

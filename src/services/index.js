@@ -1,7 +1,8 @@
-import { request, gql } from 'graphql-request';
+import { GraphQLClient, gql } from 'graphql-request';
 
 // Use process.env for Next.js environment variables
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+const graphqlToken = process.env.GRAPHCMS_TOKEN;
 
 // Check if the environment variable is loaded
 if (!graphqlAPI) {
@@ -9,6 +10,13 @@ if (!graphqlAPI) {
   // This will prevent the app from crashing if it's missing during build/runtime,
   // but the blog will not fetch data.
 }
+
+// Initialize GraphQL Client with Auth Header if token is present
+const graphQLClient = new GraphQLClient(graphqlAPI, {
+  headers: {
+    authorization: graphqlToken ? `Bearer ${graphqlToken}` : '',
+  },
+});
 
 export const getPosts = async () => {
   if (!graphqlAPI) {
@@ -45,7 +53,7 @@ export const getPosts = async () => {
     }
   `;
   try {
-    const result = await request(graphqlAPI, query);
+    const result = await graphQLClient.request(query);
     return result?.postsConnection?.edges || []; // Robustly return an array
   } catch (error) {
     console.error("Error fetching posts in getPosts service:", error);
@@ -64,7 +72,7 @@ export const getCategories = async () => {
     }
   `;
   try {
-    const result = await request(graphqlAPI, query);
+    const result = await graphQLClient.request(query);
     return result?.categories || [];
   } catch (error) {
     console.error("Error fetching categories:", error);
@@ -106,7 +114,7 @@ export const getPostDetails = async (slug) => {
     }
   `;
   try {
-    const result = await request(graphqlAPI, query, { slug });
+    const result = await graphQLClient.request(query, { slug });
     return result?.post || null;
   } catch (error) {
     console.error(`Error fetching post details for ${slug}:`, error);
@@ -132,7 +140,7 @@ export const getSimilarPosts = async (categories, slug) => {
     }
   `;
   try {
-    const result = await request(graphqlAPI, query, { slug, categories });
+    const result = await graphQLClient.request(query, { slug, categories });
     return result?.posts || [];
   } catch (error) {
     console.error("Error fetching similar posts:", error);
@@ -158,7 +166,7 @@ export const getRecentPosts = async () => {
     }   
   `;
   try {
-    const result = await request(graphqlAPI, query);
+    const result = await graphQLClient.request(query);
     return result?.posts || [];
   } catch (error) {
     console.error("Error fetching recent posts:", error);
@@ -198,7 +206,7 @@ export const getAdjacentPosts = async (createdAt, slug) => {
   `;
 
   try {
-    const result = await request(graphqlAPI, query, { slug, createdAt });
+    const result = await graphQLClient.request(query, { slug, createdAt });
     return { next: result?.next?.[0] || null, previous: result?.previous?.[0] || null };
   } catch (error) {
     console.error("Error fetching adjacent posts:", error);
@@ -239,7 +247,7 @@ export const getCategoryPost = async (slug) => {
     }
   `;
   try {
-    const result = await request(graphqlAPI, query, { slug });
+    const result = await graphQLClient.request(query, { slug });
     return result?.postsConnection?.edges || [];
   } catch (error) {
     console.error(`Error fetching category post for ${slug}:`, error);
@@ -268,7 +276,7 @@ export const getFeaturedPosts = async () => {
     }   
   `;
   try {
-    const result = await request(graphqlAPI, query);
+    const result = await graphQLClient.request(query);
     return result?.posts || [];
   } catch (error) {
     console.error("Error fetching featured posts:", error);
@@ -306,7 +314,7 @@ export const getComments = async (slug) => {
     }
   `;
   try {
-    const result = await request(graphqlAPI, query, { slug });
+    const result = await graphQLClient.request(query, { slug });
     return result?.comments || [];
   } catch (error) {
     console.error(`Error fetching comments for ${slug}:`, error);
@@ -315,4 +323,3 @@ export const getComments = async (slug) => {
 };
 
 // ... (rest of the service functions like getPostDetails, getCategories, etc.) 
- 

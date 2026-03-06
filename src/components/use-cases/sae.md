@@ -12,33 +12,7 @@ export const coPilotDetailsData: Record<string, CoPilotDetailContent> = {
     heroSubtitle: "Go beyond the score. See the exact biological features—exons, TF motifs, protein structures—that drive a prediction and understand *why* a variant is disruptive.",
     vision: "Transform black-box predictions into transparent, biologically-grounded stories. We expose the model's internal logic to explain variant impact, flag risky designs, and (on the roadmap) steer generative AI.",
 
-    valueProps: [
-      {
-        audience: 'For Scientists',
-        icon: 'Lightbulb',
-        points: [
-          '**Readable Biology:** See features like exon boundaries, TF motifs, and secondary structures.',
-          '**Quantifiable Disruption:** Pinpoint exactly which features a variant impacts with disruption scores (ΔLL).',
-          '**Explainable AI:** Move from a simple score to a full, auditable explanation for every prediction.'
-        ]
-      },
-      {
-        audience: 'For Engineers',
-        icon: 'Settings',
-        points: [
-          '**Live Frontend Components:** Interactive visualizations powered by robust simulations.',
-          '**Clear Data Contracts:** Stable JSON from simulations drives predictable UI behavior.',
-          '**Roadmap to Production:** Clear path from current RUO simulations to future-state backend services.'
-        ]
-      }
-    ],
-
-    buildsOn: "How It Works Today",
-    buildsOnStackPoints: [
-      "**`DynamicOracleExplain` Component:** An interactive, multi-track visualizer that displays SAE features and their disruption scores (ΔLL) directly on the genomic sequence.",
-      "**`simulateVariantImpactWithSAE` Function:** A powerful simulation in `simulations.ts` that generates the rich feature and attribution data needed to power our visualizations.",
-      "**Prompt Quality Checker:** A safety gate that flags pathological inputs (like low‑complexity repeats) in our design flows."
-    ],
+   
 
     kpis: [
       { label: 'Feature Coverage', value: 'Exon/Intron/TFBS/2° Structure' },

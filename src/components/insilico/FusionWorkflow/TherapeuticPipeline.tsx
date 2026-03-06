@@ -189,7 +189,6 @@ const TherapeuticPipeline: React.FC = () => {
         </div>
       </div>
 
-      <RUODisclaimer />
     </div>
   );
 };

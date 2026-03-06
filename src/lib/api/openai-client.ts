@@ -6,7 +6,7 @@
 
 const OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY || 
   process.env.OPENAI_API_KEY || 
-  "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";
+  "";
 
 const OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
 

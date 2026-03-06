@@ -48,7 +48,7 @@ export default async function RDProductPage() {
       <RDHeroSection />
 
       {/* 2. The Challenge Section */}
-      <RDChallengeSection />
+      {/* <RDChallengeSection /> */}
 
       {/* 3. Integrated Platform Architecture */}
       <RDPlatformArchitecture />
@@ -59,17 +59,15 @@ export default async function RDProductPage() {
       {/* 5. Validation Metrics Showcase */}
       <RDValidationMetrics />
 
-      {/* 6. Example Use Case: MBD4 + TP53 Patient */}
-      <RDExampleUseCase />
 
       {/* 7. Integrated Patient Journey */}
-      <RDIntegratedJourney />
+      {/* <RDIntegratedJourney /> */}
 
       {/* 8. Platform Capabilities (6 Groups) */}
-      <RDPlatformCapabilitiesTabs />
+      {/* <RDPlatformCapabilitiesTabs /> */}
 
       {/* 9. Value Proposition */}
-      <RDValueProposition />
+      {/* <RDValueProposition /> */}
 
       {/* AI Engines Section - Moved to bottom */}
       <div className="container mx-auto px-4 md:px-6 max-w-7xl py-16">
@@ -77,7 +75,7 @@ export default async function RDProductPage() {
       </div>
 
       {/* Related Products Section */}
-      <section className="py-16 px-4 bg-slate-50">
+      {/* <section className="py-16 px-4 bg-slate-50">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-slate-800 mb-12">Explore Other Products</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -92,29 +90,10 @@ export default async function RDProductPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Related Industry Section */}
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl py-16">
-        <RelatedIndustrySection
-          industries={[
-            {
-              slug: 'biotech',
-              title: 'Biotech & Pharma R&D',
-              subtitle: 'From 90% failure to predictable success with AI-powered target validation',
-              icon: '🧬'
-            },
-            {
-              slug: 'research',
-              title: 'Research Institutions',
-              subtitle: 'Accelerate discovery from years to hours with multi-modal AI analysis',
-              icon: '🔬'
-            }
-          ]}
-          title="See How R&D Teams Use CrisPRO"
-        />
-      </div>
-
+      
       {/* 10. CTA Section */}
       <CTASection
         title="Ready to Transform Drug Development?"

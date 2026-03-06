@@ -93,7 +93,7 @@ export default function OncologyJourneyLevelPage({
                   )}
                   
                   {/* Unlock Badge - Most Important */}
-                  {step.unlocks && (
+                  {/* {step.unlocks && (
                     <div className="mt-3 pt-3 border-t border-slate-200">
                       <div className="flex items-center gap-1.5">
                         <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
@@ -101,7 +101,7 @@ export default function OncologyJourneyLevelPage({
                       </div>
                       <p className="text-xs text-slate-700 mt-1 font-semibold">{step.unlocks}</p>
                     </div>
-                  )}
+                  )} */}
                   
                   {/* Arrow to next step (desktop only) */}
                   {index < howItWorksSteps.length - 1 && (

@@ -21,6 +21,8 @@ export const ROUTES = {
   SAE_INTELLIGENCE: '/evidence/sae-intelligence',
   DOCS: '/docs',
   MEDIA: '/media',
+  /** CMS-driven use case narratives (replaces media for case-study content) */
+  USE_CASE: '/use-case',
   
   // Anchor links on main page
   FEATURES: '#features',

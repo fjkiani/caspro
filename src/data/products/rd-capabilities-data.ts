@@ -37,9 +37,9 @@ export const RD_CAPABILITIES: RDCapabilityCard[] = [
     title: 'Mechanism-Based Trial Matching',
     description: 'Mechanism vector computation and drug-pathway alignment scoring',
     status: 'framework',
-    metrics: { 
-      primary: '0.983 DDR fit', 
-      secondary: '1.0 Top-3 accuracy' 
+    metrics: {
+      primary: '0.983 DDR fit',
+      secondary: '1.0 Top-3 accuracy'
     },
     icon: 'Target',
     color: 'blue',
@@ -60,9 +60,9 @@ export const RD_CAPABILITIES: RDCapabilityCard[] = [
     title: 'Drug Efficacy Assessment',
     description: 'S/P/E (Sequence/Pathway/Evidence) framework for drug ranking',
     status: 'validated',
-    metrics: { 
-      primary: '100% top-5 accuracy', 
-      secondary: '17/17 patients' 
+    metrics: {
+      primary: '100% top-5 accuracy',
+      secondary: '17/17 patients'
     },
     icon: 'Activity',
     color: 'green',
@@ -83,9 +83,9 @@ export const RD_CAPABILITIES: RDCapabilityCard[] = [
     title: 'Toxicity Risk Assessment',
     description: 'Pharmacogenomic screening and pathway overlap analysis',
     status: 'validated',
-    metrics: { 
-      primary: '83.1% RRR', 
-      secondary: 'PREPARE trial' 
+    metrics: {
+      primary: '83.1% RRR',
+      secondary: 'PREPARE trial'
     },
     icon: 'Shield',
     color: 'orange',
@@ -106,9 +106,9 @@ export const RD_CAPABILITIES: RDCapabilityCard[] = [
     title: 'Dosing Guidance',
     description: 'CPIC-aligned dosing recommendations where applicable',
     status: 'validated',
-    metrics: { 
-      primary: '100% concordance', 
-      secondary: '10/10 CPIC cases' 
+    metrics: {
+      primary: '100% concordance',
+      secondary: '10/10 CPIC cases'
     },
     icon: 'Gauge',
     color: 'purple',
@@ -129,9 +129,9 @@ export const RD_CAPABILITIES: RDCapabilityCard[] = [
     title: 'Evidence Integration',
     description: 'Literature and guideline integration for decision support',
     status: 'framework',
-    metrics: { 
-      primary: 'Multi-provider', 
-      secondary: 'Quality scoring' 
+    metrics: {
+      primary: 'Multi-provider',
+      secondary: 'Quality scoring'
     },
     icon: 'BookOpen',
     color: 'teal',
@@ -152,9 +152,9 @@ export const RD_CAPABILITIES: RDCapabilityCard[] = [
     title: 'Regulatory Support',
     description: 'Framework designed to support regulatory workflows',
     status: 'framework',
-    metrics: { 
-      primary: 'Exploratory', 
-      secondary: 'FDA Sentinel' 
+    metrics: {
+      primary: 'Exploratory',
+      secondary: 'FDA Sentinel'
     },
     icon: 'FileText',
     color: 'indigo',

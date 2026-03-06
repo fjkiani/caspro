@@ -118,7 +118,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </motion.div>
 
         {/* CTA Section */}
-        <motion.div
+        {/* <motion.div
           className="text-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -142,7 +142,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               View Metrics
             </motion.button>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

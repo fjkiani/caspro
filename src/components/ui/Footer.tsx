@@ -55,12 +55,12 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4 text-xl">
               {FOOTER_CONFIG.socialLinks.map(link => (
-                <a 
-                  key={link.label} 
-                  href={link.href} 
-                  target="_blank" 
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-400 hover:text-primary transition-colors" 
+                  className="text-slate-400 hover:text-primary transition-colors"
                   aria-label={link.label}
                 >
                   {link.icon}
@@ -73,12 +73,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-5 text-white">Core Co-Pilots</h4>
             <ul className="space-y-3">
-              <li>
-                <Link href="/platform/chemo" className="hover:text-primary transition-colors text-sm">
-                  Chemo Co-Pilot
-                </Link>
-                <p className="text-xs text-slate-400 mt-1">In-silico chemotherapy guidance</p>
-              </li>
+           
               <li>
                 <Link href="/platform/clinical-trials" className="hover:text-primary transition-colors text-sm">
                   Clinical Trials Co-Pilot
@@ -91,12 +86,7 @@ const Footer = () => {
                 </Link>
                 <p className="text-xs text-slate-400 mt-1">Genome editing guidance</p>
               </li>
-              <li>
-                <Link href="/platform/therapy-fit" className="hover:text-primary transition-colors text-sm">
-                  Therapy Fit Co-Pilot
-                </Link>
-                <p className="text-xs text-slate-400 mt-1">Treatment optimization</p>
-              </li>
+              
             </ul>
           </div>
 
@@ -114,7 +104,7 @@ const Footer = () => {
                 <Link href="/evidence/sae-intelligence" className="hover:text-primary transition-colors text-sm">
                   SAE Intelligence
                 </Link>
-                <p className="text-xs text-slate-400 mt-1">Serious adverse events</p>
+                <p className="text-xs text-slate-400 mt-1">Sparse Auto-Encoders</p>
               </li>
             </ul>
           </div>
@@ -133,7 +123,7 @@ const Footer = () => {
                 <Link href="/use-cases" className="hover:text-primary transition-colors text-sm">
                   Use Cases
                 </Link>
-                <p className="text-xs text-slate-400 mt-1">Multiple myeloma & more</p>
+              
               </li>
               <li>
                 <Link href="/platform/pathway" className="hover:text-primary transition-colors text-sm">
@@ -141,12 +131,12 @@ const Footer = () => {
                 </Link>
                 <p className="text-xs text-slate-400 mt-1">Biological pathway insights</p>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/platform/toxicity-risk" className="hover:text-primary transition-colors text-sm">
                   Toxicity Risk
                 </Link>
                 <p className="text-xs text-slate-400 mt-1">Safety assessment tools</p>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -163,19 +153,19 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          
+
           {/* Contact Info */}
           <div className="text-right">
-             <h4 className="text-lg font-semibold mb-5 text-white">Get In Touch</h4>
-             <p className="text-sm mb-4">
-                Have questions or need support?
-             </p>
-             <a href="mailto:jedi@jedilabs.org" className="btn-outline text-sm py-2 px-4 inline-flex items-center gap-2 hover:bg-primary hover:text-white transition-all">
-                <FiMail /> Email Support
-             </a>
-             <p className="text-xs mt-4 text-slate-400">
-                For demo requests, please visit our Contact page.
-             </p>
+            <h4 className="text-lg font-semibold mb-5 text-white">Get In Touch</h4>
+            <p className="text-sm mb-4">
+              Have questions or need support?
+            </p>
+            <a href="mailto:jedi@jedilabs.org" className="btn-outline text-sm py-2 px-4 inline-flex items-center gap-2 hover:bg-primary hover:text-white transition-all">
+              <FiMail /> Email Support
+            </a>
+            <p className="text-xs mt-4 text-slate-400">
+              For demo requests, please visit our Contact page.
+            </p>
           </div>
 
         </div>
@@ -198,7 +188,7 @@ const Footer = () => {
             <span className="text-slate-500">•</span>
             <span className="text-slate-400">Powered by Supabase</span>
           </div>
-          
+
           {/* Research Use Disclaimer */}
           <div className="bg-slate-800/40 backdrop-blur-sm border border-slate-500/40 rounded-lg px-4 py-2 flex items-center gap-2 text-xs text-slate-200">
             <div className="w-2 h-2 bg-orange-400 rounded-full"></div>

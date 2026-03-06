@@ -16,9 +16,9 @@ const NAV_CONFIG = {
 
 // --- SUB-LINK DEFINITIONS ---
 const industrySubLinks = [
-  { href: '/industry/healthcare', label: 'Healthcare & Clinical Oncology' },
-  { href: '/industry/biotech', label: 'Biotech & Pharma R&D' },
-  { href: '/industry/research', label: 'Research Institutions' },
+  // { href: '/industry/healthcare', label: 'Healthcare & Clinical Oncology' },
+  // { href: '/industry/biotech', label: 'Biotech & Pharma R&D' },
+  // { href: '/industry/research', label: 'Research Institutions' },
   { href: '/industry/genetic-testing', label: 'Genetic Testing Labs' },
 ];
 
@@ -68,14 +68,14 @@ export const NAV_LINKS = [
     label: 'About',
     icon: <BookOpen className="inline-block h-4 w-4" />,
   },
-  
+
   {
     href: '/products',
     label: 'Products',
     icon: <Rocket className="inline-block h-4 w-4" />,
     subLinks: [
-      { href: '/products/oncology', label: 'CSI for Oncology' },
-      { href: '/products/research', label: 'Research' },
+      { href: '/products/forge', label: 'Generative AI Oncology' },
+      { href: '/products/oracle', label: 'Discriminative AI Oncology' },
       { href: '/products/r-d', label: 'R&D' },
     ],
   },
@@ -95,17 +95,17 @@ export const NAV_LINKS = [
   //     // Future: { href: '/comparisons/clinical', label: 'Clinical Scenarios' },
   //   ],
   // },
-// Removed "Use Cases" from NAV_LINKS as per Alpha's command. 🚀
-  {
-    href: '/evidence',
-    label: 'Evidence',
-    icon: <BookOpen className="inline-block h-4 w-4" />,
-    subLinks: [
-      { href: '/evidence', label: 'Evidence Intelligence' },
-      { href: '/evidence/spe-fusion', label: 'S/P/E Fusion' },
-      { href: '/evidence/sae-intelligence', label: 'SAE Intelligence' },
-    ],
-  },
+  // Removed "Use Cases" from NAV_LINKS as per Alpha's command. 🚀
+  // {
+  //   href: '/evidence',
+  //   label: 'Evidence',
+  //   icon: <BookOpen className="inline-block h-4 w-4" />,
+  //   subLinks: [
+  //     { href: '/evidence', label: 'Evidence Intelligence' },
+  //     { href: '/evidence/spe-fusion', label: 'S/P/E Fusion' },
+  //     { href: '/evidence/sae-intelligence', label: 'SAE Intelligence' },
+  //   ],
+  // },
   {
     href: '/evidence/sae-intelligence',
     label: 'SAE',
@@ -116,12 +116,16 @@ export const NAV_LINKS = [
   //   label: 'Cancer 101',
   //   icon: <BookOpen className="inline-block h-4 w-4" />,
   // },
+  // {
+  //   href: '/blog',
+  //   label: 'Blog',
+  //   icon: <PenTool className="inline-block h-4 w-4" />,
+  // },
   {
-    href: '/blog',
-    label: 'Blog',
+    href: '/use-cases',
+    label: 'Use Cases',
     icon: <PenTool className="inline-block h-4 w-4" />,
   },
-  
   {
     href: '/docs',
     label: 'Docs',
@@ -163,7 +167,7 @@ const DropdownMenu: React.FC<{ menu: NavMenu }> = ({ menu }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div 
+    <div
       className="relative group"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
@@ -243,10 +247,10 @@ const Navbar: React.FC = () => {
 
   // Check if we're on a learn page (light background)
   const isLearnPage = pathname.startsWith('/learn');
-  
+
   const navClass = isLearnPage
     ? 'bg-slate-900/80 backdrop-blur-lg border-b border-slate-700/50'
-    : isScrolled 
+    : isScrolled
       ? 'bg-slate-900/90 backdrop-blur-lg border-b border-slate-700/50'
       : 'bg-slate-900/80 backdrop-blur-lg';
 
@@ -284,7 +288,7 @@ const Navbar: React.FC = () => {
               )}
             </nav>
           </div>
-          
+
           {/* <div className="hidden md:flex items-center gap-2 flex-shrink-0">
             <ToggleButton href="/platform">
               Research Use Only
@@ -294,8 +298,8 @@ const Navbar: React.FC = () => {
 
           {/* Mobile Nav Toggle */}
           <div className="md:hidden relative z-[100]">
-            <button 
-              onClick={() => setIsOpen(!isOpen)} 
+            <button
+              onClick={() => setIsOpen(!isOpen)}
               className="text-white p-2 hover:bg-slate-800 rounded transition-colors touch-manipulation"
               aria-label="Toggle menu"
               type="button"
@@ -317,7 +321,7 @@ const Navbar: React.FC = () => {
             onClick={() => setIsOpen(false)}
             className="fixed top-20 left-0 right-0 bottom-0 bg-black/50 z-[60] md:hidden"
           />
-          
+
           {/* Mobile Menu - Scrollable */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -326,102 +330,101 @@ const Navbar: React.FC = () => {
             transition={{ duration: 0.2 }}
             className="md:hidden fixed top-20 left-0 right-0 bottom-0 bg-white z-[70] overflow-y-auto"
           >
-              <div className="px-4 pt-4 pb-6">
-                {NAV_LINKS.map((link) => {
-                  const hasSubLinks = 'subLinks' in link && link.subLinks;
-                  const isExpanded = expandedItems.has(link.label);
-                  
-                  return (
-                    <div key={link.label} className="border-b border-slate-100 last:border-b-0">
-                      {hasSubLinks ? (
-                        <>
-                          {/* Expandable Item with Sub-links */}
-                          <button
-                            onClick={() => {
-                              const newExpanded = new Set(expandedItems);
-                              if (isExpanded) {
-                                newExpanded.delete(link.label);
-                              } else {
-                                newExpanded.add(link.label);
-                              }
-                              setExpandedItems(newExpanded);
-                            }}
-                            className="w-full flex items-center justify-between py-3 text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50 -mx-4 px-4 transition-colors"
-                          >
-                            <div className="flex items-center gap-2">
-                              {link.icon}
-                              <span>{link.label}</span>
-                            </div>
-                            <ChevronDown 
-                              className={`w-5 h-5 text-slate-500 transition-transform duration-200 ${
-                                isExpanded ? 'rotate-180' : ''
-                              }`} 
-                            />
-                          </button>
-                          
-                          {/* Sub-links - Collapsible */}
-                          <AnimatePresence>
-                            {isExpanded && (
-                              <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: 'auto' }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="overflow-hidden"
-                              >
-                                <div className="pl-6 pb-2 space-y-0.5 border-l-2 border-slate-200 ml-4">
-                                  {(link as any).subLinks.map((sub: any, subIndex: number) => (
-                                    <React.Fragment key={sub.href || subIndex}>
-                                      {sub.divider && subIndex > 0 && (
-                                        <div className="my-1 -mx-4 border-t border-slate-200" />
-                                      )}
-                                      {sub.href !== '#' ? (
-                                        <Link
-                                          href={sub.href}
-                                          onClick={() => setIsOpen(false)}
-                                          className="block py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 -mx-4 px-4 rounded transition-colors flex items-center justify-between"
-                                        >
-                                          <span>{sub.label}</span>
-                                          {sub.badge && (
-                                            <span className="ml-2 px-2 py-0.5 text-xs font-semibold text-blue-600 bg-blue-50 rounded-full">
-                                              {sub.badge}
-                                            </span>
-                                          )}
-                                        </Link>
-                                      ) : (
-                                        <div className="py-2 -mx-4 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                                          {sub.label}
-                                        </div>
-                                      )}
-                                    </React.Fragment>
-                                  ))}
-                                </div>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </>
-                      ) : (
-                        /* Regular Link - No Sub-links */
-                        <Link
-                          href={link.href}
-                          onClick={() => setIsOpen(false)}
-                          className="flex items-center gap-2 py-3 text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50 -mx-4 px-4 transition-colors"
+            <div className="px-4 pt-4 pb-6">
+              {NAV_LINKS.map((link) => {
+                const hasSubLinks = 'subLinks' in link && link.subLinks;
+                const isExpanded = expandedItems.has(link.label);
+
+                return (
+                  <div key={link.label} className="border-b border-slate-100 last:border-b-0">
+                    {hasSubLinks ? (
+                      <>
+                        {/* Expandable Item with Sub-links */}
+                        <button
+                          onClick={() => {
+                            const newExpanded = new Set(expandedItems);
+                            if (isExpanded) {
+                              newExpanded.delete(link.label);
+                            } else {
+                              newExpanded.add(link.label);
+                            }
+                            setExpandedItems(newExpanded);
+                          }}
+                          className="w-full flex items-center justify-between py-3 text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50 -mx-4 px-4 transition-colors"
                         >
-                          {link.icon}
-                          <span>{link.label}</span>
-                        </Link>
-                      )}
-                    </div>
-                  );
-                })}
-                
-                {/* Toggle Button */}
-                {/* <div className="pt-4 mt-4 border-t border-slate-200">
+                          <div className="flex items-center gap-2">
+                            {link.icon}
+                            <span>{link.label}</span>
+                          </div>
+                          <ChevronDown
+                            className={`w-5 h-5 text-slate-500 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''
+                              }`}
+                          />
+                        </button>
+
+                        {/* Sub-links - Collapsible */}
+                        <AnimatePresence>
+                          {isExpanded && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="pl-6 pb-2 space-y-0.5 border-l-2 border-slate-200 ml-4">
+                                {(link as any).subLinks.map((sub: any, subIndex: number) => (
+                                  <React.Fragment key={sub.href || subIndex}>
+                                    {sub.divider && subIndex > 0 && (
+                                      <div className="my-1 -mx-4 border-t border-slate-200" />
+                                    )}
+                                    {sub.href !== '#' ? (
+                                      <Link
+                                        href={sub.href}
+                                        onClick={() => setIsOpen(false)}
+                                        className="block py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 -mx-4 px-4 rounded transition-colors flex items-center justify-between"
+                                      >
+                                        <span>{sub.label}</span>
+                                        {sub.badge && (
+                                          <span className="ml-2 px-2 py-0.5 text-xs font-semibold text-blue-600 bg-blue-50 rounded-full">
+                                            {sub.badge}
+                                          </span>
+                                        )}
+                                      </Link>
+                                    ) : (
+                                      <div className="py-2 -mx-4 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                                        {sub.label}
+                                      </div>
+                                    )}
+                                  </React.Fragment>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </>
+                    ) : (
+                      /* Regular Link - No Sub-links */
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="flex items-center gap-2 py-3 text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50 -mx-4 px-4 transition-colors"
+                      >
+                        {link.icon}
+                        <span>{link.label}</span>
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
+
+              {/* Toggle Button */}
+              {/* <div className="pt-4 mt-4 border-t border-slate-200">
                   <ToggleButton href="/platform">
                     Research Use Only
                   </ToggleButton>
                 </div> */}
-              </div>
+            </div>
           </motion.div>
         </>,
         document.body

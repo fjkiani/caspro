@@ -43,14 +43,14 @@ const CSIMoatSection: React.FC = () => {
       color: 'from-blue-500 to-cyan-600'
     },
     {
-      name: 'Timing Engine',
-      description: moatConfig.components.timing,
+      name: 'Efflux Axis',
+      description: moatConfig.components.efflux,
       icon: Clock,
       color: 'from-purple-500 to-violet-600'
     },
     {
-      name: 'Kinetic Engine',
-      description: moatConfig.components.kinetics,
+      name: 'RSS Axis',
+      description: moatConfig.components.rss,
       icon: TrendingUp,
       color: 'from-green-500 to-emerald-600'
     }

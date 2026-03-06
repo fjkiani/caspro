@@ -239,7 +239,7 @@ export const businessMetrics: MetricGroup[] = [
         category: 'business'
       }
     ],
-    businessImpact: 'Transform 40% VUS rate to 15% with validated predictions, accelerating target selection',
+    businessImpact: 'Reduce experimental costs by $2.1M per program',
     methodology: 'Validated predictions reduce exploratory experiments and focus wet-lab validation'
   }
 ];
