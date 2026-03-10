@@ -21,15 +21,6 @@ const PRODUCTS = [
     description: 'Complete clinical intelligence platform with unified care plans, trial matching, and toxicity prevention'
   },
   {
-    id: 'r-d',
-    title: 'CrisPRO R&D',
-    subtitle: 'Design the Undruggable. Validate in Silico.',
-    icon: Dna,
-    color: 'from-blue-500 to-cyan-600',
-    link: '/products/r-d',
-    description: 'AI-powered engines for therapeutic design, structural validation, and IND package generation'
-  },
-  {
     id: 'research',
     title: 'CrisPRO Research',
     subtitle: 'Accelerate Discovery from Years to Hours',

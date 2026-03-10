@@ -122,7 +122,7 @@ export const HERO_DRUG_DEVELOPMENT_CONFIG = {
     },
     secondary: {
       text: "I am designing a drug",
-      href: "/products/r-d",
+      href: "/products/research",
       icon: "🔬"
     },
     tertiary: {

@@ -68,7 +68,7 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
       link: '/metrics#generative',
       badge: '4x Better',
       product: 'CrisPRO R&D',
-      productLink: '/products/r-d'
+      productLink: '/products/research'
     },
     {
       id: 'business-impact',
@@ -82,7 +82,7 @@ const MetricsShowcase: React.FC<MetricsShowcaseProps> = ({ className = '' }) => 
       link: '/metrics#business',
       badge: 'Available',
       product: 'CrisPRO R&D',
-      productLink: '/products/r-d'
+      productLink: '/products/research'
     }
   ];
 

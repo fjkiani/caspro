@@ -72,24 +72,24 @@ export default function DrugDevelopmentPlatform() {
         'CRISPR Guide Optimization'
       ],
       poweredBy: ['Oracle', 'Forge', 'Boltz'],
-      link: '/products/r-d',
+      link: '/products/research',
       interactiveTeasers: [
         {
           title: 'Design CRISPR Guides',
           description: 'Optimize therapeutic guides with AI',
-          link: '/products/r-d',
+          link: '/products/research',
           cta: 'Design Guides'
         },
         {
           title: 'Protein Engineering',
           description: 'Generate novel therapeutic proteins',
-          link: '/products/r-d',
+          link: '/products/research',
           cta: 'Engineer Proteins'
         },
         {
           title: 'Structural Validation',
           description: 'Validate 3D integrity before experiments',
-          link: '/products/r-d',
+          link: '/products/research',
           cta: 'Validate Structure'
         }
       ]

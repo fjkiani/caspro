@@ -87,15 +87,8 @@ export default function EngineRoom() {
             <span className="text-blue-600">Biological Foundation Models</span>
           </h2>
           <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto mb-4">
-            Technical validation for the products above - these are the AI engines that power CrisPRO R&D
+            Technical validation for the products above – these are the AI engines that power CrisPRO.
           </p>
-          <Link 
-            href="/products/r-d#engines" 
-            className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors"
-          >
-            <span>View all engines on R&D product page</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
         </motion.div>
 
         {/* 2x2 Grid */}
@@ -174,13 +167,6 @@ export default function EngineRoom() {
                       <span>Explore {engine.name}</span>
                       <ArrowRight className="w-3 h-3 group-hover/cta:translate-x-1 transition-transform" />
                     </motion.div>
-                  </Link>
-                  {/* Secondary link to R&D page */}
-                  <Link 
-                    href="/products/r-d#engines" 
-                    className="mt-2 text-center text-sm text-slate-600 hover:text-slate-800 transition-colors"
-                  >
-                    Part of CrisPRO R&D →
                   </Link>
                 </div>
               </motion.div>

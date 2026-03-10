@@ -74,7 +74,7 @@ export default function BiotechTransformationMetrics() {
         },
         secondary: {
           text: 'View Biotech Platform',
-          onClick: () => window.location.href = '/products/r-d'
+          onClick: () => window.location.href = '/products/research'
         }
       }}
     />

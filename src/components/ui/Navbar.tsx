@@ -76,7 +76,6 @@ export const NAV_LINKS = [
     subLinks: [
       { href: '/products/forge', label: 'Generative AI Oncology' },
       { href: '/products/oracle', label: 'Discriminative AI Oncology' },
-      { href: '/products/r-d', label: 'R&D' },
     ],
   },
   // {

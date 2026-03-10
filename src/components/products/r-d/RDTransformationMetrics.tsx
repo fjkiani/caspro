@@ -71,7 +71,7 @@ export default function RDTransformationMetrics() {
         },
         secondary: {
           text: 'View R&D Platform',
-          onClick: () => window.location.href = '/products/r-d'
+          onClick: () => window.location.href = '/products/research'
         }
       }}
     />

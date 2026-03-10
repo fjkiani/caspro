@@ -21,21 +21,6 @@ const products = [
   //   link: '/products/oncology'
   // },
   {
-    slug: 'r-d',
-    title: 'R&D',
-    subtitle: 'Design the Undruggable. Validate in Silico.',
-    description: 'Transform drug development from 90% failure to predictable success. Validate targets, design therapeutics, and predict outcomes with zero-shot AI.',
-    icon: FlaskConical,
-    gradient: 'from-blue-500 to-indigo-600',
-    features: [
-      '72x Faster Target Validation',
-      '99.8% Cost Reduction',
-      '6x Success Rate Improvement',
-      '88% False Discovery Reduction'
-    ],
-    link: '/products/r-d'
-  },
-  {
     slug: 'research',
     title: 'Research',
     subtitle: 'Research platform for hypothesis testing and variant analysis',
