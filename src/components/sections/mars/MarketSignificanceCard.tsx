@@ -60,21 +60,21 @@ export const SystemSummaryCard: React.FC<{
       <Terminal className="w-4 h-4 text-indigo-500" />
     </div>
     <div className="space-y-4 py-6">
-      <div className="flex justify-between items-center text-[11px] font-bold">
+      <div className="flex justify-between items-center text-[11px] font-bold uppercase tracking-wide">
         <span className={isDarkMode ? 'text-zinc-300' : 'text-slate-600'}>Database Scored</span>
-        <span className={isDarkMode ? 'text-white' : 'text-slate-900'}>{trialsScored} Trials</span>
+        <span className={isDarkMode ? 'text-white' : 'text-slate-900'}>{trialsScored} TRIALS</span>
       </div>
-      <div className="flex justify-between items-center text-[11px] font-bold">
+      <div className="flex justify-between items-center text-[11px] font-bold uppercase tracking-wide">
         <span className={isDarkMode ? 'text-zinc-300' : 'text-slate-600'}>Prediction Layer</span>
-        <span className={isDarkMode ? 'text-white' : 'text-slate-900'}>Two-Layer AI</span>
+        <span className={isDarkMode ? 'text-white' : 'text-slate-900'}>TWO-LAYER AI</span>
       </div>
-      <div className="flex justify-between items-center text-[11px] font-bold text-rose-500">
+      <div className="flex justify-between items-center text-[11px] font-bold text-rose-500 uppercase tracking-wide">
         <span className="opacity-60">Status</span>
-        <span className="font-black uppercase tracking-widest">FAILURE PREDICTED</span>
+        <span className="font-black tracking-widest">FAILURE PREDICTED</span>
       </div>
-      <div className="flex justify-between items-center text-[11px] font-bold">
+      <div className="flex justify-between items-center text-[11px] font-bold uppercase tracking-wide">
         <span className={isDarkMode ? 'text-zinc-300' : 'text-slate-600'}>Gates</span>
-        <span className={isDarkMode ? 'text-white' : 'text-slate-900'}>{gatesSummary}</span>
+        <span className={isDarkMode ? 'text-white' : 'text-slate-900'}>{gatesSummary.toUpperCase()}</span>
       </div>
     </div>
     <button className={`w-full py-4 rounded-sm text-[10px] font-black uppercase tracking-[0.4em] transition-all ${

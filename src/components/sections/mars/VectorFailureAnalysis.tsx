@@ -134,7 +134,7 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
                 : 'border-sky-500/40 bg-sky-500/10 text-sky-700 hover:bg-sky-600 hover:text-white hover:shadow-sky-500/20'
             }`}
           >
-            Open Full Case File
+            OPEN FULL CASE FILE
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -161,15 +161,15 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
               <div className="flex flex-wrap gap-x-4 gap-y-2 sm:gap-6">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full" style={{ backgroundColor: trialStroke }} />
-                  <span className={`text-[9px] font-black uppercase ${subtleClass}`}>Trial Vector</span>
+                  <span className={`text-[9px] font-black uppercase ${subtleClass}`}>TRIAL VECTOR</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full border" style={{ borderColor: responderStroke }} />
-                  <span className={`text-[9px] font-black uppercase ${subtleClass}`}>Responder</span>
+                  <span className={`text-[9px] font-black uppercase ${subtleClass}`}>RESPONDER</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full border border-dashed" style={{ borderColor: nonResponderStroke }} />
-                  <span className={`text-[9px] font-black uppercase ${subtleClass}`}>Non-Responder</span>
+                  <span className={`text-[9px] font-black uppercase ${subtleClass}`}>NON-RESPONDER</span>
                 </div>
               </div>
             </div>
@@ -222,22 +222,22 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
               <div className="absolute top-[25%] left-[20%] pointer-events-none">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-px" style={{ backgroundColor: trialStroke }} />
-                  <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: trialStroke }}>Trial Vector</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: trialStroke }}>TRIAL VECTOR</span>
                 </div>
               </div>
               <div className="absolute top-[15%] right-[15%] pointer-events-none">
-                <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: responderStroke }}>Responder</span>
+                <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: responderStroke }}>RESPONDER</span>
               </div>
               <div className="absolute bottom-[35%] left-[10%] pointer-events-none text-center">
-                <p className={`text-[12px] font-black uppercase tracking-widest drop-shadow-lg ${headingClass}`}>The Gap:</p>
+                <p className={`text-[12px] font-black uppercase tracking-widest drop-shadow-lg ${headingClass}`}>THE GAP:</p>
                 <p className="text-[14px] font-black uppercase tracking-widest mt-1" style={{ color: nonResponderStroke }}>Δ {trial.deltaImpact}</p>
                 <div className="w-full h-0.5 mt-2 opacity-50" style={{ backgroundColor: nonResponderStroke }} />
               </div>
               <div className={`absolute bottom-[20%] right-[20%] pointer-events-none border px-4 py-2 rounded-sm backdrop-blur-md ${
                 isDarkMode ? 'bg-emerald-500/5 border-emerald-500/30' : 'bg-emerald-50 border-emerald-300/80'
               }`}>
-                <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: responderStroke }}>Alignment Zone</span>
-                <p className={`text-[11px] font-black mt-1 ${headingClass}`}>cosine = {trial.cosineResponder.toFixed(4)}</p>
+                <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: responderStroke }}>ALIGNMENT ZONE</span>
+                <p className={`text-[11px] font-black mt-1 uppercase ${headingClass}`}>COSINE = {trial.cosineResponder.toFixed(4)}</p>
               </div>
             </div>
           </div>
@@ -262,15 +262,15 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
 
                 <div className={`space-y-4 pt-4 border-t ${dividerClass}`}>
                   <div className="flex justify-between items-center">
-                    <span className={`text-[10px] font-bold uppercase ${subtleClass}`}>Target Responder</span>
+                    <span className={`text-[10px] font-bold uppercase ${subtleClass}`}>TARGET RESPONDER</span>
                     <span className={`text-xl font-light ${headingClass}`}>{trial.cosineResponder.toFixed(4)}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className={`text-[10px] font-bold uppercase ${subtleClass}`}>ITT Diluted</span>
+                    <span className={`text-[10px] font-bold uppercase ${subtleClass}`}>ITT DILUTED</span>
                     <span className="text-xl font-light" style={{ color: nonResponderStroke }}>{trial.cosineITT.toFixed(4)}</span>
                   </div>
                   <div className={`flex justify-between items-center py-3 px-4 rounded border ${isDarkMode ? 'bg-rose-500/5 border-rose-500/20' : 'bg-rose-50 border-rose-300/60'}`}>
-                    <span className="text-[10px] font-black uppercase" style={{ color: nonResponderStroke }}>Delta Impact</span>
+                    <span className="text-[10px] font-black uppercase" style={{ color: nonResponderStroke }}>DELTA IMPACT</span>
                     <span className="text-xl font-black" style={{ color: nonResponderStroke }}>{trial.deltaImpact}</span>
                   </div>
                 </div>

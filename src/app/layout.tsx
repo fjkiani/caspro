@@ -103,7 +103,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark ${spaceGrotesk.variable} ${inter.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`light-mode ${spaceGrotesk.variable} ${inter.variable}`}>
       <head>
         <JsonLd data={organizationSchema} />
       </head>

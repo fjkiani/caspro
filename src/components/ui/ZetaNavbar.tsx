@@ -76,12 +76,12 @@ export const ZetaNavbar = ({
     };
   }, [mobileMenuOpen]);
 
-  const links = [{ label: 'Home', href: '/' }];
+  const links = [{ label: 'HOME', href: '/' }];
 
   const isEngineRoute = pathname?.startsWith('/engine');
 
   const handleCtaClick = () => {
-    router.push('/');
+    router.push('/contact/');
   };
 
   const navigate = (href: string) => {
@@ -114,18 +114,18 @@ export const ZetaNavbar = ({
             }`}>
               <span className="text-[12px] leading-none" aria-hidden="true">🧬</span>
             </div>
-            <span className={`text-lg sm:text-xl font-black tracking-tighter pr-2 sm:pr-4 border-r whitespace-nowrap ${brandBorder}`}>
-              CrisPRO<span className="text-cyan-500">.ai</span>
+            <span className={`text-lg sm:text-xl font-black tracking-tighter pr-2 sm:pr-4 border-r whitespace-nowrap uppercase ${brandBorder}`}>
+              CRISPRO<span className={isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}>.AI</span>
             </span>
           </Link>
         </div>
-        <div className={`hidden lg:flex gap-8 text-[11px] font-black uppercase tracking-widest items-center ${navMuted}`}>
+        <div className={`hidden lg:flex gap-8 text-[11px] font-black tracking-widest items-center ${navMuted}`}>
           {links.map(link => {
             const isActive = normalizePath(pathname) === '/';
             return (
               <Link key={link.href} href={link.href} prefetch={false}>
                 <span
-                  className={`cursor-pointer transition-colors ${
+                  className={`uppercase cursor-pointer transition-colors ${
                     isActive
                       ? `${isDarkMode ? 'text-white' : 'text-slate-900'} border-b border-cyan-500 pb-1`
                       : navHover
@@ -140,15 +140,16 @@ export const ZetaNavbar = ({
           {/* Receipts (trial case files) */}
           <div className="relative" ref={receiptsRef}>
             <button
+              type="button"
               onClick={() => { setReceiptsOpen(!receiptsOpen); setEnginesOpen(false); }}
-              className={`flex items-center gap-2 cursor-pointer transition-colors ${
+              className={`uppercase flex items-center gap-2 cursor-pointer transition-colors ${
                 pathname?.startsWith('/proof')
                   ? `${isDarkMode ? 'text-white' : 'text-slate-900'} border-b border-amber-500 pb-1`
                   : navHover
               }`}
             >
-              Receipts
-              <ChevronDown className={`w-3 h-3 transition-transform ${receiptsOpen ? 'rotate-180' : ''}`} />
+              RECEIPTS
+              <ChevronDown className={`w-3 h-3 transition-transform shrink-0 ${receiptsOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {receiptsOpen && (
@@ -158,8 +159,8 @@ export const ZetaNavbar = ({
                 }`}
               >
                 <div className={`px-5 py-3 border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'}`}>
-                  <span className={`text-[11px] font-black uppercase tracking-[0.4em] ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
-                    Trial Receipts
+                  <span className={`text-[11px] font-black uppercase tracking-[0.4em] ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}>
+                    TRIAL RECEIPTS
                   </span>
                 </div>
                 <div className="py-2">
@@ -208,13 +209,13 @@ export const ZetaNavbar = ({
 
           <Link href={SAFETY_ROUTE} prefetch={false}>
             <span
-              className={`cursor-pointer transition-colors ${
+              className={`uppercase cursor-pointer transition-colors ${
                 pathsEqual(pathname, SAFETY_ROUTE)
                   ? `${isDarkMode ? 'text-white' : 'text-slate-900'} border-b border-cyan-500 pb-1`
                   : navHover
               }`}
             >
-              Safety
+              SAFETY
             </span>
           </Link>
 
@@ -222,7 +223,7 @@ export const ZetaNavbar = ({
             href={ORG_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className={`cursor-pointer transition-colors ${navHover}`}
+            className={`uppercase cursor-pointer transition-colors ${navHover}`}
           >
             ORG
           </a>
@@ -231,15 +232,16 @@ export const ZetaNavbar = ({
           <div className="relative" ref={dropdownRef}>
 
             <button
+              type="button"
               onClick={() => setEnginesOpen(!enginesOpen)}
-              className={`flex items-center gap-2 cursor-pointer transition-colors ${
+              className={`uppercase flex items-center gap-2 cursor-pointer transition-colors ${
                 isEngineRoute && !pathsEqual(pathname, SAFETY_ROUTE)
                   ? `${isDarkMode ? 'text-white' : 'text-slate-900'} border-b border-cyan-500 pb-1`
                   : navHover
               }`}
             >
-              Engines
-              <ChevronDown className={`w-3 h-3 transition-transform ${enginesOpen ? 'rotate-180' : ''}`} />
+              ENGINES
+              <ChevronDown className={`w-3 h-3 transition-transform shrink-0 ${enginesOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {enginesOpen && (
@@ -249,8 +251,8 @@ export const ZetaNavbar = ({
                 }`}
               >
                 <div className={`px-5 py-3 border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'}`}>
-                  <span className={`text-[11px] font-black uppercase tracking-[0.4em] ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
-                    Intelligence Engines
+                  <span className={`text-[11px] font-black uppercase tracking-[0.4em] ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}>
+                    INTELLIGENCE ENGINES
                   </span>
                 </div>
                 <div className="py-2">
@@ -306,7 +308,7 @@ export const ZetaNavbar = ({
                                   : 'text-slate-700 group-hover:text-cyan-600'
                             }`}
                           >
-                            {engine.label}
+                            {engine.label.toUpperCase()}
                           </span>
                         </div>
                         <span
@@ -358,9 +360,10 @@ export const ZetaNavbar = ({
           <ThemeToggle />
 
           <button 
+            type="button"
             onClick={handleCtaClick}
             disabled={isProcessing}
-            className={`flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-2 sm:py-2.5 rounded-sm border text-[10px] sm:text-[11px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] transition-all whitespace-nowrap ${
+            className={`uppercase flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-2 sm:py-2.5 rounded-sm border text-[10px] sm:text-[11px] font-black tracking-[0.15em] sm:tracking-[0.2em] transition-all whitespace-nowrap ${
               isProcessing 
               ? (isDarkMode
                   ? 'bg-zinc-900 border-zinc-800 text-cyan-500 animate-pulse pointer-events-none'
@@ -371,7 +374,7 @@ export const ZetaNavbar = ({
             }`}
           >
             {isProcessing ? <Activity className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-            {isProcessing ? 'Processing...' : 'Confirm Certainty'}
+            {isProcessing ? 'PROCESSING…' : 'CONFIRM CERTAINTY'}
           </button>
 
           <div className={`hidden sm:block h-6 w-px mx-2 ${isDarkMode ? 'bg-zinc-800' : 'bg-slate-200'}`} />
@@ -412,8 +415,8 @@ export const ZetaNavbar = ({
         >
           <div className="px-4 py-4 space-y-6">
               <div className="flex flex-col gap-1">
-                <span className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
-                  Navigate
+                <span className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}>
+                  NAVIGATE
                 </span>
                 {links.map((link) => {
                   const isActive = normalizePath(pathname) === '/';
@@ -423,7 +426,7 @@ export const ZetaNavbar = ({
                       href={link.href}
                       prefetch={false}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`block py-3 text-sm font-black uppercase tracking-widest border-b ${
+                      className={`uppercase block py-3 text-sm font-black tracking-widest border-b ${
                         isDarkMode ? 'border-zinc-800' : 'border-slate-100'
                       } ${isActive ? (isDarkMode ? 'text-cyan-400' : 'text-indigo-600') : navMuted}`}
                     >
@@ -435,7 +438,7 @@ export const ZetaNavbar = ({
                   href={SAFETY_ROUTE}
                   prefetch={false}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block py-3 text-sm font-black uppercase tracking-widest border-b ${
+                  className={`uppercase block py-3 text-sm font-black tracking-widest border-b ${
                     isDarkMode ? 'border-zinc-800' : 'border-slate-100'
                   } ${
                     pathsEqual(pathname, SAFETY_ROUTE)
@@ -445,24 +448,24 @@ export const ZetaNavbar = ({
                       : navMuted
                   }`}
                 >
-                  Safety
+                  SAFETY
                 </Link>
                 <a
                   href={ORG_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block py-3 text-sm font-black uppercase tracking-widest border-b ${
+                  className={`uppercase block py-3 text-sm font-black tracking-widest border-b ${
                     isDarkMode ? 'border-zinc-800' : 'border-slate-100'
                   } ${navMuted}`}
                 >
-                  ORG (crispro.org)
+                  ORG · CRISPRO.ORG
                 </a>
               </div>
 
               <div>
-                <span className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-amber-500/80' : 'text-amber-700'}`}>
-                  Receipts — trial cases
+                <span className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-amber-500/90' : 'text-amber-800'}`}>
+                  RECEIPTS · TRIAL CASES
                 </span>
                 <div className="mt-2 space-y-1">
                   {TRIALS.map((trial) => {
@@ -495,8 +498,8 @@ export const ZetaNavbar = ({
               </div>
 
               <div>
-                <span className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-cyan-500/80' : 'text-cyan-700'}`}>
-                  Engines
+                <span className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-cyan-400' : 'text-indigo-700'}`}>
+                  ENGINES
                 </span>
                 <div className="mt-2 space-y-1">
                   {engines.map((engine) => {
@@ -518,7 +521,7 @@ export const ZetaNavbar = ({
                         <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-cyan-400' : isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`} />
                         <div className="min-w-0">
                           <span className={`block text-xs font-black uppercase tracking-widest truncate ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
-                            {engine.label}
+                            {engine.label.toUpperCase()}
                           </span>
                           <span className={`block text-[10px] font-mono truncate ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
                             {engine.keyMetric}
