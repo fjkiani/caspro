@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Rocket, Target, Layers, CheckCircle, BrainCircuit, Microscope, ShieldCheck, ArrowRight, Users } from 'lucide-react';
 import { coPilotDetailsData } from '@/data/coPilotDetails';
@@ -132,7 +132,7 @@ const SolutionSection = () => {
                 </div>
 
                 <div className="mt-8">
-                  <Link href={`/platform/${activeSlug}`} className="inline-flex items-center font-semibold text-primary hover:text-primary/80 transition-colors">
+                  <Link to={`/platform/${activeSlug}`} className="inline-flex items-center font-semibold text-primary hover:text-primary/80 transition-colors">
                     Learn More <ArrowRight className="w-4 h-4 ml-2" />
                   </Link>
                 </div>

@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { TestTube, Zap, Search, Database, BookOpen, Target } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 export default function ResearchHeroSection() {
   return (
@@ -82,13 +82,13 @@ export default function ResearchHeroSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Link href="#hypothesis-testing">
+            <Link to="#hypothesis-testing">
               <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
                 <TestTube className="w-5 h-5 mr-3" />
                 Try Hypothesis Testing
               </button>
             </Link>
-            <Link href="#interactive-tools">
+            <Link to="#interactive-tools">
               <button className="inline-flex items-center px-8 py-4 bg-white text-slate-700 border-2 border-slate-300 rounded-xl font-semibold text-lg hover:bg-slate-50 hover:border-slate-400 transition-all duration-300">
                 <Search className="w-5 h-5 mr-3" />
                 Explore Research Tools

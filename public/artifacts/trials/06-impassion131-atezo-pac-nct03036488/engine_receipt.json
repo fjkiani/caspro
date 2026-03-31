@@ -1,0 +1,105 @@
+{
+  "nct_id": "NCT03036488",
+  "name": "IMpassion131",
+  "expected_outcome": "failure",
+  "db_total_tagged": 815,
+  "db_trial_found": true,
+  "db_trial_tags": [
+    "checkpoint_inhibitor",
+    "immunotherapy",
+    "chemotherapy",
+    "taxane"
+  ],
+  "resp_score": 0.9447,
+  "resp_rank": 18,
+  "resp_vector": [
+    0.3,
+    0.1,
+    0.15,
+    0.1,
+    0.0,
+    0.6,
+    0.1,
+    0.0
+  ],
+  "nr_score": 0.6335,
+  "nr_rank": 586,
+  "nr_vector": [
+    0.3,
+    0.1,
+    0.15,
+    0.1,
+    0.0,
+    0.15,
+    0.25,
+    0.0
+  ],
+  "delta": 0.3112,
+  "top_resp": [
+    {
+      "rank": 1,
+      "id": "NCT02726997",
+      "score": 0.9597,
+      "title": "Matched Paired Pharmacodynamics and Feasibility St"
+    },
+    {
+      "rank": 2,
+      "id": "NCT06607185",
+      "score": 0.9597,
+      "title": "A Study of the Pan-KRAS Inhibitor LY4066434 in Par"
+    },
+    {
+      "rank": 3,
+      "id": "NCT04960579",
+      "score": 0.9564,
+      "title": "P-BCMA-ALLO1 Allogeneic CAR-T Cells in the Treatme"
+    },
+    {
+      "rank": 4,
+      "id": "NCT03172416",
+      "score": 0.955,
+      "title": "Pressurized Intraperitoneal Aerosol Chemotherapy ("
+    },
+    {
+      "rank": 5,
+      "id": "NCT03734692",
+      "score": 0.955,
+      "title": "Systemic Immune Checkpoint Blockade and Intraperit"
+    }
+  ],
+  "top_nr": [
+    {
+      "rank": 1,
+      "id": "NCT06719479",
+      "score": 0.863,
+      "title": "A Clinical Trial to Evaluate Effect of IAE0972 Com"
+    },
+    {
+      "rank": 2,
+      "id": "NCT00002913",
+      "score": 0.8596,
+      "title": "Paclitaxel, Cisplatin, and Topotecan With or Witho"
+    },
+    {
+      "rank": 3,
+      "id": "NCT00003379",
+      "score": 0.8596,
+      "title": "Radiation Therapy Plus Paclitaxel and Cisplatin in"
+    },
+    {
+      "rank": 4,
+      "id": "NCT00004934",
+      "score": 0.8596,
+      "title": "Paclitaxel and Carboplatin With or Without Epirubi"
+    },
+    {
+      "rank": 5,
+      "id": "NCT00052468",
+      "score": 0.8596,
+      "title": "Carboplatin/Paclitaxel +/-Gemcitabine in Treating "
+    }
+  ],
+  "verdict": "FAIL",
+  "verdict_reason": "\u0394=+0.3112 \u2014 engine predicts stratification but trial failed. Investigate.",
+  "timestamp": "2026-03-24T19:21:33.951812Z"
+}

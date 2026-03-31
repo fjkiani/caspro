@@ -137,14 +137,14 @@ export const CapabilitiesShowcase: React.FC = () => {
             className="flex flex-wrap justify-center gap-4"
           >
             <a
-              href="/evidence"
+              to="/evidence"
               className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center gap-2"
             >
               Explore Evidence Intelligence
               <ArrowRight className="w-4 h-4" />
             </a>
             <a
-              href="/use-cases"
+              to="/use-cases"
               className="px-8 py-3 border-2 border-slate-300 text-slate-700 rounded-lg font-semibold hover:border-slate-400 transition-colors flex items-center gap-2"
             >
               View Use Cases
@@ -161,7 +161,7 @@ export const CapabilitiesShowcase: React.FC = () => {
               title={capability.title}
               description={capability.description}
               icon={capability.icon}
-              href={capability.href}
+              to={capability.href}
               previewType={capability.previewType}
               metrics={capability.metrics}
               features={capability.features}
@@ -231,14 +231,14 @@ export const CapabilitiesShowcase: React.FC = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="/evidence/spe-fusion"
+              to="/evidence/spe-fusion"
               className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all flex items-center gap-2"
             >
               <Play className="w-4 h-4" />
               Start with S/P/E Fusion
             </a>
             <a
-              href="/evidence/data-lab"
+              to="/evidence/data-lab"
               className="px-8 py-3 border-2 border-slate-300 text-slate-700 rounded-lg font-semibold hover:border-slate-400 transition-colors flex items-center gap-2"
             >
               Explore Data Lab

@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link } from 'react-router-dom';
+import { usePathname } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Clock, ChevronRight } from 'lucide-react';
 import { EducationalPageLayoutData } from '@/types/educational-capability';
@@ -95,7 +95,7 @@ export default function EducationalPageLayout({
           {productSlug && capabilitySlug && (
             <div className="mb-8">
               <Link 
-                href={`/products/${productSlug}`} 
+                to={`/products/${productSlug}`} 
                 className="text-sm text-blue-600 hover:text-blue-800 inline-flex items-center gap-2"
               >
                 <span>←</span>
@@ -119,7 +119,7 @@ export default function EducationalPageLayout({
             <div className="p-6 border-b border-slate-200">
               {productSlug && capabilitySlug && (
                 <Link 
-                  href={`/products/${productSlug}`} 
+                  to={`/products/${productSlug}`} 
                   className="text-sm text-blue-600 hover:text-blue-800 mb-2 block"
                 >
                   ← Back to {productSlug === 'oncology' ? 'Oncology' : productSlug === 'r-d' ? 'R&D' : 'Research'}
@@ -179,7 +179,7 @@ export default function EducationalPageLayout({
             <div className="lg:hidden bg-white border-b border-slate-200 p-4 mt-16">
               {productSlug && capabilitySlug && (
                 <Link 
-                  href={`/products/${productSlug}`} 
+                  to={`/products/${productSlug}`} 
                   className="text-sm text-blue-600 hover:text-blue-800 mb-2 block"
                 >
                   ← Back to {productSlug === 'oncology' ? 'Oncology' : productSlug === 'r-d' ? 'R&D' : 'Research'}

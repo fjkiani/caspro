@@ -3,7 +3,6 @@
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import Link from 'next/link';
 import { Zap, Clock } from 'lucide-react';
 import { csiJourneyLevels } from '@/data/homepage/csi-journey-data';
 
@@ -88,7 +87,7 @@ export default function JourneyLevels() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5, delay: idx * 0.15 }}
               >
-                {/* <Link href={step.href}> */}
+                {/* <Link to={step.href}> */}
                   <div
                     className={`${theme.bg} rounded-2xl p-6 border ${theme.border} ${theme.hoverBorder} ${theme.hoverShadow} transition-all duration-300 cursor-pointer h-full relative overflow-hidden group`}
                   >

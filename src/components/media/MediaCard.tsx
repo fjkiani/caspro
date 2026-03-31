@@ -2,7 +2,7 @@
 
 import { FileText, Video, Presentation } from 'lucide-react';
 import type { MediaItem } from '@/lib/docs/hygraph/media-types';
-import Image from 'next/image';
+// Ported from next/image;
 
 interface MediaCardProps {
   media: MediaItem;
@@ -42,7 +42,7 @@ export default function MediaCard({ media, onClick }: MediaCardProps) {
       {/* Thumbnail */}
       <div className="relative h-48 bg-gray-100 overflow-hidden">
         {thumbnail ? (
-          <Image
+          <img
             src={thumbnail.url}
             alt={media.title}
             fill

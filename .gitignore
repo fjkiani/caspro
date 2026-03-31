@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local agent / scratch
+build-errors.log
+ts-errors.log
+.cursor/rules/MOAT/clinical_trials.db

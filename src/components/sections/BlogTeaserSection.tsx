@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen } from 'lucide-react';
 import { getPosts } from '@/services';
 import PostCard from '@/app/blog/PostCard';
@@ -84,7 +84,7 @@ const BlogTeaserSection = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Link 
-              href="/blog"
+              to="/blog"
               className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white text-lg font-bold rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300"
             >
               View All Posts <ArrowRight />

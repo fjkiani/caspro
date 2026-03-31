@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, Info } from 'lucide-react';
 import { csiJourneyLevels } from '@/data/homepage/csi-journey-data';
@@ -87,7 +87,7 @@ export default function CSIJourneyContext({ level, capabilitySlug }: CSIJourneyC
       {/* Navigation */}
       <div className="flex items-center justify-between flex-wrap gap-4">
         <Link
-          href="/products/oncology"
+          to="/products/oncology"
           className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -97,7 +97,7 @@ export default function CSIJourneyContext({ level, capabilitySlug }: CSIJourneyC
         <div className="flex items-center gap-4">
           {previousLevel && (
             <Link
-              href={previousLevel.href}
+              to={previousLevel.href}
               className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
             >
               ← Level {previousLevel.level}: {previousLevel.title}
@@ -105,7 +105,7 @@ export default function CSIJourneyContext({ level, capabilitySlug }: CSIJourneyC
           )}
           {nextLevel && (
             <Link
-              href={nextLevel.href}
+              to={nextLevel.href}
               className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
             >
               Level {nextLevel.level}: {nextLevel.title} →

@@ -1,0 +1,29 @@
+{
+  "responder": {
+    "label": "TMB-High proxy (io=0.8)",
+    "vector": {
+      "ddr": 0.2,
+      "mapk": 0.1,
+      "pi3k": 0.1,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.8,
+      "efflux": 0.1,
+      "rss": 0.3
+    }
+  },
+  "non_responder": {
+    "label": "TMB-Low proxy (io=0.2)",
+    "vector": {
+      "ddr": 0.2,
+      "mapk": 0.1,
+      "pi3k": 0.1,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.2,
+      "efflux": 0.1,
+      "rss": 0.3
+    }
+  },
+  "discriminating_axis": "io (0.80 vs 0.20)"
+}

@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Dna, Clock, TrendingUp, ArrowRight, Shield, AlertTriangle } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { FOCUSED_HERO_CONFIG } from '@/data/homepage/hero-focused-claim';
 import ComparisonSection from '@/components/universal/organisms/ComparisonSection';
 import type { ComparisonData } from '@/types/universal-content';
@@ -128,7 +128,7 @@ const CSIMoatSection: React.FC = () => {
             {moatConfig.value}
           </p>
           <Link
-            href={FOCUSED_HERO_CONFIG.cta.primary.href}
+            to={FOCUSED_HERO_CONFIG.cta.primary.href}
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all"
           >
             {FOCUSED_HERO_CONFIG.cta.primary.text}

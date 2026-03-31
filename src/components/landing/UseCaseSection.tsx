@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Target, TrendingUp, Users } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { multipleMyelomaUseCase } from '@/data/use-cases/multiple-myeloma';
 import { formatMetricValue } from '@/data/metrics';
 
@@ -95,7 +95,7 @@ const UseCaseSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <Link
-                href="/use-cases/multiple-myeloma"
+                to="/use-cases/multiple-myeloma"
                 className="group inline-flex items-center gap-3 px-6 py-4 bg-blue-600 text-white rounded-xl font-semibold text-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 <TrendingUp className="w-5 h-5" />

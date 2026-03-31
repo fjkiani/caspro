@@ -1,0 +1,29 @@
+{
+  "responder": {
+    "label": "BRCA1-mutated, PARPi-naive",
+    "vector": {
+      "ddr": 0.8,
+      "mapk": 0.05,
+      "pi3k": 0.1,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.1,
+      "efflux": 0.15,
+      "rss": 0.0
+    }
+  },
+  "non_responder": {
+    "label": "HRD+, post-PARPi maintenance",
+    "vector": {
+      "ddr": 0.65,
+      "mapk": 0.05,
+      "pi3k": 0.1,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.1,
+      "efflux": 0.4,
+      "rss": 0.0
+    }
+  },
+  "discriminating_axis": "efflux (0.15 vs 0.40) + ddr (0.80 vs 0.65)"
+}

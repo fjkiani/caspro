@@ -1,0 +1,19 @@
+{
+  "nct_id": "NCT02628067",
+  "drug": "Pembrolizumab (Keytruda)",
+  "cancer": "Pan-tumor (10 solid types)",
+  "engine": "cosine similarity (8D vectors) \u2014 local SQLite, 806 tagged trials",
+  "responder": {
+    "label": "TMB-High proxy (io=0.8)",
+    "score": 0.9223,
+    "rank": 1
+  },
+  "non_responder": {
+    "label": "TMB-Low proxy (io=0.2)",
+    "score": 0.5642,
+    "rank": null
+  },
+  "delta": 0.3581,
+  "gates": "IO axis proxy only",
+  "caveat": "io axis is crude TMB proxy \u2014 correlated, not equivalent. Documented approximation."
+}

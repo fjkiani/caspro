@@ -1,0 +1,29 @@
+{
+  "responder": {
+    "label": "RS-Low (no RB/oncogene RS)",
+    "vector": {
+      "ddr": 0.8,
+      "mapk": 0.05,
+      "pi3k": 0.1,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.1,
+      "efflux": 0.1,
+      "rss": 0.2
+    }
+  },
+  "non_responder": {
+    "label": "RS-High (CCNE1-amp, RB1-loss, MYC-amp)",
+    "vector": {
+      "ddr": 0.8,
+      "mapk": 0.05,
+      "pi3k": 0.1,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.1,
+      "efflux": 0.1,
+      "rss": 0.8
+    }
+  },
+  "discriminating_axis": "rss (0.20 vs 0.80) \u2014 the axis this trial forced CrisPRO to build"
+}

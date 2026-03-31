@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Stethoscope, FlaskConical, Factory, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 interface JourneyCard {
   id: string;
@@ -101,7 +101,7 @@ export const CustomerJourneyCards = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group relative"
               >
-                <Link href={journey.href} className="block h-full">
+                <Link to={journey.href} className="block h-full">
                   <div className={`bg-gradient-to-br ${journey.bgGradient} rounded-2xl p-6 sm:p-8 border-2 border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col`}>
                     {/* Icon */}
                     <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center mb-4 sm:mb-6 border-2 ${journey.color.replace('text-', 'border-')}`}>

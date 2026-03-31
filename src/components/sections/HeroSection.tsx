@@ -3,11 +3,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { Suspense, useState, useEffect } from 'react';
+import Link from 'next/link';
 import DoubleDnaHelix from '../ui/DoubleDnaHelix';
 import CrisprGenomeEditor from '../ui/CrisprGenomeEditor';
 import DnaBasePairStrip from '../ui/DnaBasePairStrip';
 import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
 import { FOCUSED_HERO_CONFIG } from '@/data/homepage/hero-focused-claim';
 import { RotatingText } from '../shared/RotatingText';
 

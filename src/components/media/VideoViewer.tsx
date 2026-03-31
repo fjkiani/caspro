@@ -59,7 +59,7 @@ export default function VideoViewer({ media, showToolbar = false }: VideoViewerP
           </div>
           {media.videoUrl && (
             <a
-              href={media.videoUrl}
+              to={media.videoUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
@@ -92,7 +92,7 @@ export default function VideoViewer({ media, showToolbar = false }: VideoViewerP
                 Please click the button below to open it in a new tab.
               </p>
               <a
-                href={videoUrl}
+                to={videoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-semibold transition-colors flex items-center gap-3 text-lg"

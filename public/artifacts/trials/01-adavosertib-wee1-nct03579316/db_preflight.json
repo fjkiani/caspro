@@ -1,0 +1,14 @@
+{
+  "db_query": "SELECT id, title, moa_tags FROM trials WHERE id = 'NCT03579316'",
+  "found": true,
+  "nct_id": "NCT03579316",
+  "title": "Adavosertib With or Without Olaparib in Treating Patients With Recurrent Ovarian, Primary Peritoneal, or Fallopian Tube Cancer",
+  "moa_tags": [
+    "atr_inhibitor",
+    "ddr",
+    "parp_inhibitor",
+    "wee1_inhibitor"
+  ],
+  "total_tagged_trials": 806,
+  "total_trials": 2888
+}

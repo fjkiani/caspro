@@ -1,0 +1,35 @@
+---
+description: "Trial 06 — IMpassion131 (NCT03036488): Atezolizumab + Paclitaxel in TNBC"
+engine_version: "8D.v1 — trial_replay_engine.py"
+db_snapshot: "clinical_trials.db — 815 tagged"
+replay_date: "2026-03-24"
+verdict: "FAIL — 1/7 evidence layers. Engine score circular. Insufficient for claim."
+---
+
+# Trial 06 — IMpassion131
+
+## What We Have
+
+**1 evidence layer: Clinical publication.**
+
+- Miles et al., Lancet Oncol 2021, PMID 34219000
+- Trial failed. Even PD-L1+ subgroup showed no benefit.
+- IMpassion130 (nab-pac) succeeded. IMpassion131 (pac) did not.
+
+## What We Don't Have
+
+- ❌ CRISPR / DepMap dependency data
+- ❌ GDSC2 pharmacological screen
+- ❌ Expression correlation analysis
+- ❌ In vitro / isogenic validation
+- ❌ In vivo / PDX data
+- ❌ Confound stress tests
+
+## Engine Score
+
+- Δ = +0.3112
+- **This is circular.** Vectors were hand-authored. Engine confirmed my own arithmetic. Not independent evidence.
+
+## Verdict
+
+**FAIL.** 1/7 modalities. Cannot make a CrisPRO claim on this trial without independent computational evidence layers. Parked until DepMap/GDSC2 data can be pulled.

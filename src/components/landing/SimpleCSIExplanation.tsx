@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, XCircle, Clock, TrendingUp, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 /**
  * Simple CSI Explanation - Beautiful, Clear, Human-Centered
@@ -359,7 +359,7 @@ export default function SimpleCSIExplanation() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="text-center"
         >
-          <Link href="/products/oncology">
+          <Link to="/products/oncology">
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}

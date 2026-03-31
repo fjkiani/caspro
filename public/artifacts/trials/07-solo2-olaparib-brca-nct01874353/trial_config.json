@@ -1,0 +1,36 @@
+{
+  "nct_id": "NCT01874353",
+  "name": "SOLO-2",
+  "drug": "Olaparib (PARPi) maintenance",
+  "cancer": "BRCA1/2-mutant platinum-sensitive relapsed ovarian cancer",
+  "expected_outcome": "success",
+  "published_ref": "Pujade-Lauraine et al., Lancet Oncol 2017, PMID 28754483 \u2014 Olaparib maintenance vs placebo in BRCA1/2-mut PSR ovarian",
+  "why_failed_or_succeeded": "BRCA1/2-mutant patients on olaparib maintenance: PFS 19.1 months vs 5.5 months placebo (HR=0.30, p<0.0001). The mechanism is synthetic lethality: BRCA1/2 LOF disables homologous recombination, and PARP trapping at SSBs causes replication fork collapse \u2192 DSBs that HR-deficient cells cannot repair \u2192 cell death. This is FDA-validated, backed by 7/7 evidence modalities in CrisPRO's SL v4 frozen receipts.",
+  "responder": {
+    "label": "BRCA1/2-mutant, platinum-sensitive, HR-deficient",
+    "vector": {
+      "ddr": 0.85,
+      "mapk": 0.05,
+      "pi3k": 0.05,
+      "vegf": 0.05,
+      "her2": 0.0,
+      "io": 0.1,
+      "efflux": 0.05,
+      "rss": 0.1
+    }
+  },
+  "non_responder": {
+    "label": "BRCA-WT, HR-proficient (PARPi non-benefiters in PRIMA/NOVA subgroup analyses)",
+    "vector": {
+      "ddr": 0.2,
+      "mapk": 0.1,
+      "pi3k": 0.1,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.1,
+      "efflux": 0.15,
+      "rss": 0.0
+    }
+  },
+  "discriminating_axes": "ddr (0.85 vs 0.20) \u2014 BRCA-mutant DDR deficiency is the synthetic lethal axis, validated by 7/7 multimodal evidence layers in SL v4 frozen receipts"
+}

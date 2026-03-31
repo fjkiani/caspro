@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, FileText, Target, TrendingUp } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 import { formatMetricValue } from '@/data/metrics';
 import { MetricBenchmark, MetricGroup } from '@/data/metrics/types';
@@ -72,7 +72,7 @@ export default function MetricPageClient({ metricData }: MetricPageClientProps) 
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <Link href="/metrics" className="text-blue-600 font-semibold mb-4 inline-block">&larr; Back to All Metrics</Link>
+                    <Link to="/metrics" className="text-blue-600 font-semibold mb-4 inline-block">&larr; Back to All Metrics</Link>
                     <h1 className="text-5xl font-extrabold text-slate-900 mb-6">{metricData.title}</h1>
                     <p className="text-xl text-slate-700">{metricData.description}</p>
                 </motion.div>

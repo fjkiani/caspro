@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { JobListing } from '@/data/careers/jobs';
 import { ROUTES } from '@/constants/routes';
@@ -96,7 +96,7 @@ export default function JobCard({ job, index = 0 }: JobCardProps) {
 
       <div className="flex items-center justify-between pt-4 border-t border-slate-200">
         <Link
-          href={`${ROUTES.CAREERS}/${job.slug}`}
+          to={`${ROUTES.CAREERS}/${job.slug}`}
           className="text-primary hover:text-primary-dark text-sm font-medium"
         >
           View Details →

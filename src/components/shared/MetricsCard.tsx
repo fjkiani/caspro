@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 export interface MetricsCardData {
   id: string;
@@ -39,7 +39,7 @@ const MetricsCard: React.FC<MetricsCardProps> = ({ data, index }) => {
   const theme = colorVariants[data.color];
 
   return (
-    <Link href={data.href} className="block w-full">
+    <Link to={data.href} className="block w-full">
       <motion.div
         className="relative overflow-hidden bg-white rounded-xl sm:rounded-2xl p-8 sm:p-10 shadow-lg hover:shadow-xl transition-all duration-300 group h-full w-full text-center"
         initial={{ opacity: 0, y: 20 }}

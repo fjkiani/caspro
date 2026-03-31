@@ -1,0 +1,18 @@
+{
+  "nct_id": "NCT03579316",
+  "drug": "Adavosertib (AZD1775) + Gemcitabine",
+  "cancer": "Recurrent solid tumors (ovarian focus)",
+  "engine": "cosine similarity (8D vectors) \u2014 local SQLite, 806 tagged trials",
+  "responder": {
+    "label": "CCNE1-amplified, PTEN-intact",
+    "score": 0.963,
+    "rank": 2
+  },
+  "non_responder": {
+    "label": "PTEN-loss",
+    "score": 0.656,
+    "rank": 2
+  },
+  "delta": 0.307,
+  "gates": "3/3"
+}

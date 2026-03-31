@@ -1,0 +1,29 @@
+{
+  "responder": {
+    "label": "BRCA1/2-mutant, platinum-sensitive, HR-deficient",
+    "vector": {
+      "ddr": 0.85,
+      "mapk": 0.05,
+      "pi3k": 0.05,
+      "vegf": 0.05,
+      "her2": 0.0,
+      "io": 0.1,
+      "efflux": 0.05,
+      "rss": 0.1
+    }
+  },
+  "non_responder": {
+    "label": "BRCA-WT, HR-proficient (PARPi non-benefiters in PRIMA/NOVA subgroup analyses)",
+    "vector": {
+      "ddr": 0.2,
+      "mapk": 0.1,
+      "pi3k": 0.1,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.1,
+      "efflux": 0.15,
+      "rss": 0.0
+    }
+  },
+  "discriminating_axes": "ddr (0.85 vs 0.20) \u2014 BRCA-mutant DDR deficiency is the synthetic lethal axis, validated by 7/7 multimodal evidence layers in SL v4 frozen receipts"
+}

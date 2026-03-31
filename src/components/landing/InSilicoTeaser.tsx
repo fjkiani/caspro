@@ -139,14 +139,14 @@ export const InSilicoTeaser: React.FC = () => {
             className="flex flex-wrap justify-center gap-4"
           >
             <a
-              href="/insilico"
+              to="/insilico"
               className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center gap-2"
             >
               Explore Platform
               <ArrowRight className="w-4 h-4" />
             </a>
             <a
-              href="/platform/oracle-intelligence"
+              to="/platform/oracle-intelligence"
               className="px-8 py-3 border-2 border-slate-300 text-slate-300 rounded-lg font-semibold hover:border-white hover:text-white transition-colors flex items-center gap-2"
             >
               Try Oracle
@@ -227,7 +227,7 @@ export const InSilicoTeaser: React.FC = () => {
               {/* CTA */}
               <div className="relative z-10 flex items-center justify-between">
                 <a
-                  href={capability.href}
+                  to={capability.href}
                   className={`flex items-center gap-2 text-sm font-medium ${capability.color} hover:opacity-80 transition-opacity`}
                 >
                   Explore {capability.title}
@@ -307,14 +307,14 @@ export const InSilicoTeaser: React.FC = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="/insilico"
+              to="/insilico"
               className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all flex items-center gap-2"
             >
               <Microscope className="w-4 h-4" />
               Explore Platform
             </a>
             <a
-              href="/platform/oracle-intelligence"
+              to="/platform/oracle-intelligence"
               className="px-8 py-3 border-2 border-slate-300 text-slate-300 rounded-lg font-semibold hover:border-white hover:text-white transition-colors flex items-center gap-2"
             >
               Try Oracle Intelligence

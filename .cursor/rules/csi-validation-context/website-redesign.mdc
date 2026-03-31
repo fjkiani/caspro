@@ -1,0 +1,135 @@
+---
+alwaysApply: true
+---
+CrisPRO Website Content Map
+Core message — never drift from this:
+
+"Built the first clinical AI that tells you why a precision oncology trial will fail — before it enrolls a single patient."
+
+SITE STRUCTURE (4 pages, nothing else)
+/ (Home)
+/proof
+/platform
+/contact
+PAGE 1: HOME /
+Section 1 — Hero (above fold, 3 lines max)
+Built the first clinical AI that tells you why a precision oncology
+trial will fail — before it enrolls a single patient.
+Three Phase III failures. Three different cancers.
+CrisPRO retroactively identified the responding subgroup in every case
+using only data that existed before Trial Day 1.
+[See the receipts →]          [Talk to us →]
+Section 2 — The Pattern (below fold, one scroll)
+Headline: Two things have to be true for a cancer trial to work. Most trials only check one.
+
+Layer	Question	How most trials answer
+Layer 1: Target-Lock	Is the target a real cancer driver?	✅ Usually yes
+Layer 2: Mechanism Fit	Are the right patients enrolled?	❌ Often no
+LATIFY (NCT05450692): Real ATR target. Wrong patients enrolled.
+CEACAM5 / CARMEN-LC03: Real CEACAM5 target. No expression gate.
+Both trials failed. Same root cause. CrisPRO scores the gap.
+
+Section 3 — Three Numbers (social proof strip)
+AUROC 0.976     38 metastatic driver genes validated across 8 cancer cascade steps
+11 / 11         2024–2025 FDA-approved targets correctly identified prospectively  
+427 / 427       SPE subgroup scores reproduced exactly vs. discovery cohort
+Section 4 — Single CTA
+We're walking into AstraZeneca with their own trial data analyzed.
+If you're running a precision oncology program, that conversation 
+is relevant to you.
+[Schedule 30 minutes →]
+PAGE 2: PROOF /proof
+Headline: Every claim traces to a file. Every receipt is timestamped.
+
+Three cards, each a self-contained proof unit:
+
+Card 1 — LATIFY
+Label: Phase III Failure. AstraZeneca. NSCLC.
+
+Ceralasertib + Durvalumab. 594 patients enrolled.
+OS primary endpoint missed.
+
+What we did:
+Scored the STK11-loss/DDR-high subpopulation: 0.8936
+Scored the unselected non-responder population enrolled: 0.6295
+Delta: +0.3658 — 2.6× the minimum signal threshold.
+
+When: Before trial reported failure. Using only data that existed at enrollment.
+
+"AstraZeneca collected STK11 and KEAP1 status on every LATIFY patient at screening using FoundationOne CDx. They did not use it to gate enrollment. CrisPRO uses that data on day one."
+
+Receipt: latify_curl_receipts.json
+
+Card 2 — CEACAM5
+Label: Phase III Failure. Sanofi. NSCLC.
+
+Tusamitamab ravtansine. CARMEN-LC03. Primary endpoints missed.
+
+What we did:
+High Target-Lock score confirmed (real driver). Expression gate absent.
+Pattern identical to LATIFY. Second independent confirmation.
+
+"CEACAM5 is a real cancer driver. The trial enrolled unselected NSCLC patients with no expression gate. This is LATIFY in a different cancer with a different drug. Same root cause."
+
+Receipt: predictions_2026_02_21.json
+
+Card 3 — PLCO (CA-125 Screening)
+Label: The Largest Government Cancer Screening Trial Ever Conducted.
+
+78,209 women. 72 confirmed ovarian cancers. 6 years of annual CA-125.
+CA-125 missed 72% of cancers (177/246 never crossed threshold).
+
+What we found:
+CA-125 velocity in women who develop cancer: 19.75 U/mL/month
+In women who don't: 0.035 U/mL/month
+A 500-fold difference — inside a $30 blood test — invisible to snapshot reading.
+
+MUC16 (CA-125 gene) is the 3rd most mutated gene in ovarian cancer. When it mutates, the tumor stops making CA-125. The threshold never fires. The cancer is invisible.
+
+"We analyzed 78,209 women without sequencing a single patient — and proposed the most parsimonious explanation for why a $300M screening program missed 72% of cancers."
+
+Receipt: package-plco-2010.2026-02-27/, scripts/plco/core/config.py
+
+PAGE 3: PLATFORM /platform
+Headline: Four engines. One question: will this work for this patient?
+
+Keep it brief. Each engine gets 2 sentences + one number.
+
+Target-Lock — Is the target a real metastasis driver?
+38 genes × 8 metastatic steps × 4 biological signals (Evo2 + Enformer + functional + essentiality).
+AUROC 0.976 | 11/11 FDA prospective validation
+
+Mechanism Alignment — Are the right patients enrolled?
+Cosine similarity between the patient's 8D genomic vector and the trial's mechanism vector.
+Identified the LATIFY responding subgroup delta +0.3658 before the trial reported failure
+
+Kill Chain — When does resistance start?
+2-of-3 detection machine: CA-125 kinetics + ctDNA/MRD + HRD shift + NRF2 + SLC31A1.
+Calibrated against 3,720 patients across 3 published trials via live KELIM API
+
+IO Risk-Benefit Gate — Will checkpoint immunotherapy help or harm?
+Net Clinical Benefit model. RULE_OUT verdict for likely non-responders. Mechanistic explanation, not just a score.
+AUC 0.822 (LOO-CV, n=29, NeoPembrOV) | SPE TIER_1 subgroup: median OS 25.0 vs 38.3 months (p=0.0038)
+
+PAGE 4: CONTACT /contact
+One paragraph. One form.
+
+We're a pre-revenue precision oncology AI company with timestamped receipts 
+on three Phase III trial failures. We are not looking for feedback on the idea. 
+We are looking for a first commercial conversation.
+If you run a precision oncology program at a pharma company, a CRO, 
+or an academic medical center — talk to us.
+[Name]  [Company]  [Email]  [Message]
+[Send →]
+WHAT DOES NOT GO ON THE WEBSITE (yet)
+SAE / Evo2 platinum resistance engine → too early-stage for homepage
+PLCO histotype mislabeling detail → goes in the blog / proof deep dive only
+SPE full methodology → belongs in the platform deep-dive, not homepage
+CRISPR guide design details → publication track, not commercial website
+Ayesha patient case studies → HIPAA-adjacent, not website ready
+TONE RULES
+Never say "we believe" or "we think" — say what we proved with a receipt.
+Never use "AI-powered" without a mechanism sentence after it.
+Numbers always come before context. Lead with the stat, then explain it.
+CTA is always one line. Never a paragraph.
+The word "revolutionary" is banned.

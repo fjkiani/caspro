@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Target, Zap, FlaskConical, ArrowRight, TrendingUp, DollarSign, Clock } from 'lucide-react';
 import { DRUG_DEVELOPMENT_STAGES } from '@/data/homepage/drug-development-homepage';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import CardSlider from '@/components/shared/CardSlider';
 
 const DrugDevelopmentTransformation = () => {
@@ -58,7 +58,7 @@ const DrugDevelopmentTransformation = () => {
                       <span className="text-xs font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded">
                         STAGE {index + 1}
                       </span>
-                      <Link href="/evidence/sae-intelligence" className="text-xs font-semibold text-purple-700 bg-purple-100 hover:bg-purple-200 px-2 py-1 rounded border border-purple-300 transition-colors flex items-center gap-1">
+                      <Link to="/evidence/sae-intelligence" className="text-xs font-semibold text-purple-700 bg-purple-100 hover:bg-purple-200 px-2 py-1 rounded border border-purple-300 transition-colors flex items-center gap-1">
                         🧠 See What AI Sees
                       </Link>
                 </div>
@@ -144,7 +144,7 @@ const DrugDevelopmentTransformation = () => {
           className="text-center"
         >
           <Link
-            href="#interactive-demo"
+            to="#interactive-demo"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300"
           >
             See Live 3-Stage Pipeline Demo

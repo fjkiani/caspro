@@ -1,0 +1,29 @@
+{
+  "responder": {
+    "label": "CCNE1-amplified, PTEN-intact",
+    "vector": {
+      "ddr": 0.7,
+      "mapk": 0.1,
+      "pi3k": 0.1,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.1,
+      "efflux": 0.05,
+      "rss": 0.0
+    }
+  },
+  "non_responder": {
+    "label": "PTEN-loss",
+    "vector": {
+      "ddr": 0.7,
+      "mapk": 0.1,
+      "pi3k": 0.8,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.1,
+      "efflux": 0.05,
+      "rss": 0.0
+    }
+  },
+  "discriminating_axis": "pi3k (0.10 vs 0.80)"
+}

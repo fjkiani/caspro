@@ -91,7 +91,7 @@ export default function ProductHeroSection({ content, className = '' }: ProductH
               return (
                 <a
                   key={idx}
-                  href={cta.href}
+                  to={cta.href}
                   className={buttonClasses}
                 >
                   {cta.icon}

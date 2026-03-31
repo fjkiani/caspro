@@ -3,7 +3,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
 import { csiPatientExamples } from '@/data/homepage/csi-patient-examples';
 import { FOCUSED_HERO_CONFIG } from '@/data/homepage/hero-focused-claim';
 
@@ -68,7 +67,7 @@ export default function PatientExampleCard() {
         </div>
       </div>
       {/* <Link
-        href={config.cta.secondary.href}
+        to={config.cta.secondary.href}
         className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-xs sm:text-sm"
       >
         View LATIFY Validation <ArrowRight className="w-4 h-4" />

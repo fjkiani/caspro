@@ -1,0 +1,83 @@
+---
+description: "Mars Doctrine V6: Component Architecture and Page 1 Flow"
+globs: ["src/app/page.tsx", "src/components/sections/mars/*.tsx"]
+---
+
+# Mars Doctrine V6 Architecture & Execution Plan
+
+This is the immutable specification for the CrisPRO landing page and core routing. 
+**ALL LEGACY SAAS MARKETING COMPONENTS MUST BE GUTTED.** We are building the raw computational V6 components, mapped precisely to the generated mockups.
+
+## 1. Design System Rules (The Mars Doctrine)
+- **Backgrounds:** strictly `#0A0A0F` (near-black). No white pages.
+- **Surfaces:** `#111118` with minimal `1px` borders.
+- **Typography:** `Inter` for prose/headlines, `JetBrains Mono` for all data, scores, and receipts.
+- **Accents:** `#00E5FF` (cyan) for active data / links. `#FF4040` (red) for failures/warnings. `#00D97E` (green) for success.
+- **Motion:** No bouncy easing. Elements snap in, numbers count up like a terminal loading.
+
+---
+
+## 2. Component Architecture Map
+
+### CORE DIRECTORY: `src/components/sections/mars/`
+All new UI lives here. Legacy marketing folders (`components/hero/`, etc.) are dead.
+
+#### The Blueprint (Page 1 Flow -> The Home Matrix)
+Page 1 (`src/app/page.tsx`) must hit all beats, including aggressive teasers for the sub-pages to prevent user drop-off.
+
+1. **`HomeHero.tsx`**
+   - **Target:** `mars_v6_hero_dna_struct`
+   - Data as the hero. Computational DNA background matrix. Quiet centered text.
+
+2. **`ProblemTable.tsx`**
+   - **Target:** `mars_v6_problem_table`
+   - Layer 1 vs Layer 2. Staggered row reveal highlighting LATIFY/CEACAM5 failures in red.
+
+3. **`ProofNumbersBase.tsx`**
+   - **Target:** `mars_v6_proof_numbers`
+   - 0.976 | 11/11 | 427/427 counting up in huge monospace over DNA network.
+
+4. **`CaseFileTeaser.tsx` (NEW ROUTE TEASER)**
+   - **Target:** `mars_v6_case_latify_var_e`
+   - A single, compact "Console Terminal Log" block showing the LATIFY trial analysis.
+   - Ends with a blinking cursor CTA: `> [ VIEW ALL CASE FILES -> /proof ]_`
+
+5. **`EngineStackTeaser.tsx` (NEW ROUTE TEASER)**
+   - **Base Target:** `mars_v6_platform_stack` but embedded.
+   - A stark, 4-row mission control list (01 TARGET-LOCK, 02 MECHANISM, 03 KILL CHAIN, 04 IO GATE).
+   - Leads directly to `/platform` for the interactive deep dives.
+
+6. **`UrgencyCallout.tsx`**
+   - **Target:** `mars_v6_urgency_callout`
+   - "Cancer patients don't have time..." Minimal CTA leading to `/contact`.
+
+---
+
+### Page 2: Proof (`/proof`)
+We prove the claims here with literal data logs.
+- **`src/app/proof/page.tsx`**
+- Maps to `DrilldownCaseFile.tsx` (Console Log Aesthetic: `mars_v6_case_latify_var_e`).
+- Iterates over LATIFY, CEACAM5, and PLCO.
+
+---
+
+### Page 3: Platform (`/platform`)
+The Deep-Tech Engine Room. We re-house the advanced React components here.
+- **`src/app/platform/page.tsx`**
+- Maps to `EngineDeepDive.tsx`.
+- **Engine 01:** Target-Lock (`mars_v6_problem_table` aesthetic) -> Houses modified `TherapeuticPipeline`
+- **Engine 02:** Mechanism Alignment (`mars_v6_mechanism_fit` aesthetic) -> Matrix 8D arrays.
+- **Engine 03:** Kill Chain (`mars_v6_engine_kill_chain` vector radar) -> Houses modified `FinalBattlePlanViz`
+- **Engine 04:** IO Risk-Benefit (`mars_v6_engine_io_gate` scatter) -> Houses modified `SAEFeatureVisualization`
+
+---
+
+### Page 4: Contact (`/contact`)
+- **`src/app/contact/page.tsx`**
+- Minimal Contact Form. 4 input fields, clinical aesthetic. No marketing fluff.
+
+---
+
+## 3. Execution Mandate
+- When editing `page.tsx` files, **delete the old code**. Do not comment it out. Do not try to merge it. Replace it completely with the V6 `mars` components.
+- Rely entirely on standard Tailwind classes and custom `#0A0A0F`, `#111118`, `#00E5FF` hex values to ensure absolute dark mode enforcement.

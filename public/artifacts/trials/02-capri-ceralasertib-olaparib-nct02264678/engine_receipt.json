@@ -1,0 +1,18 @@
+{
+  "nct_id": "NCT02264678",
+  "drug": "Ceralasertib (ATRi) + Olaparib (PARPi)",
+  "cancer": "Recurrent HGSOC",
+  "engine": "cosine similarity (8D vectors) \u2014 local SQLite, 806 tagged trials",
+  "responder": {
+    "label": "BRCA1-mutated, PARPi-naive",
+    "score": 0.88,
+    "rank": 422
+  },
+  "non_responder": {
+    "label": "HRD+, post-PARPi maintenance",
+    "score": 0.772,
+    "rank": 361
+  },
+  "delta": 0.108,
+  "gates": "3/3"
+}

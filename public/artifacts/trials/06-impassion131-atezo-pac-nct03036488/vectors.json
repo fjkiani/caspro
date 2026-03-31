@@ -1,0 +1,29 @@
+{
+  "responder": {
+    "label": "PD-L1+ TNBC (hypothetical responder \u2014 trial showed NO benefit even here)",
+    "vector": {
+      "ddr": 0.3,
+      "mapk": 0.1,
+      "pi3k": 0.15,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.6,
+      "efflux": 0.1,
+      "rss": 0.0
+    }
+  },
+  "non_responder": {
+    "label": "PD-L1-negative TNBC (IO-cold, taxane-dominant)",
+    "vector": {
+      "ddr": 0.3,
+      "mapk": 0.1,
+      "pi3k": 0.15,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.15,
+      "efflux": 0.25,
+      "rss": 0.0
+    }
+  },
+  "discriminating_axes": "io (0.60 vs 0.15) \u2014 but trial failed EVEN in PD-L1+ subgroup, suggesting taxane blunts the IO signal regardless"
+}

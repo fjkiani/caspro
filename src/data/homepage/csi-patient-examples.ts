@@ -54,9 +54,9 @@ export const csiPatientExamples: CSIPatientExample[] = [
       }
     ],
     result: {
-      score: 0.9852,
-      probability: "Rank #1 of 806 trials. Delta: +0.3658. All 3 gates passed.",
-      recommendation: "MATCH: Ceralasertib + Durvalumab"
+      score: 0.114,
+      probability: "Predicted Futility 90%. HR 0.90 / P 0.287 realization. All 3 gates passed for MOA, but failed on patient selection.",
+      recommendation: "FAILURE_PREDICTED: Ceralasertib + Durvalumab"
     },
     validation: "Phase III validated (NCT05450692). Cancer Cell 2025 (PMID 40645185). HUDSON subgroup confirmed (PMCID PMC10957481). $4-7B annual wasted IO spend addressable."
   }

@@ -258,7 +258,7 @@ export default function DrugDevelopmentPlatform() {
                           {product.interactiveTeasers.map((teaser, idx) => (
                             <motion.a
                               key={idx}
-                              href={teaser.link}
+                              to={teaser.link}
                               className="group flex items-center justify-between p-3 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition-all duration-200"
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
@@ -283,7 +283,7 @@ export default function DrugDevelopmentPlatform() {
 
                     {/* Action Button */}
                     <motion.a
-                      href={product.link}
+                      to={product.link}
                       className={`w-full bg-gradient-to-r ${product.color} text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:shadow-lg transition-all duration-300 block`}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { 
   Search, Pill, Target, Dna, FileText, Users, Activity, Shield,
   ExternalLink, Code, BookOpen, CheckCircle, Clock
@@ -75,7 +75,7 @@ const InSilicoCapabilityCard: React.FC<InSilicoCapabilityCardProps> = ({ capabil
   const theme = colorVariants[capability.color];
 
   return (
-    <Link href={`/platform/${capability.coPilotSlug}`}>
+    <Link to={`/platform/${capability.coPilotSlug}`}>
       <motion.div
         className={`relative overflow-hidden bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border-2 ${theme.border} shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer`}
         whileHover={{ y: -8, scale: 1.02 }}

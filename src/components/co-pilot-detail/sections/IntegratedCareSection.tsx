@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { KeyCapability } from '@/types/copilot-types';
 import KeyCapabilityDisplay from '../KeyCapabilityDisplay';
 import { Network, Link as LinkIcon } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 interface IntegratedCareSectionProps {
   capability: KeyCapability;
@@ -24,7 +24,7 @@ export default function IntegratedCareSection({ capability }: IntegratedCareSect
       transition={{ duration: 0.6, delay: 0.2 }}
     >
       <Link 
-        href="/api/complete_care/universal" 
+        to="/api/complete_care/universal" 
         target="_blank"
         rel="noopener noreferrer"
         className="block"

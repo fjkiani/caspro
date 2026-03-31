@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { FOCUSED_HERO_CONFIG } from '@/data/homepage/hero-focused-claim';
 
 /**
@@ -108,7 +108,7 @@ export default function CSISisterQuestion() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center"
         >
-          <Link href={config.cta.primary.href}>
+          <Link to={config.cta.primary.href}>
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}

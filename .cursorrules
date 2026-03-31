@@ -67,9 +67,23 @@ If needed, you can further use the web_scraper.py file to scrape the web page co
 Cursor learned
 =======
 
+- **Proof “full case file” vs radar:** `/proof/[trialId]` renders `VectorFailureAnalysis` only. CTAs labeled “Open Full Case File” must go to `/proof/[trialId]/case`, which mounts `TrialDeRiskMap` (`src/components/mockups/latify.tsx`). Pushing to the same URL as the current page feels like a broken button.
+- **Proof routes + Mars nav:** Use `src/app/proof/layout.tsx` with `<ZetaNavbar />` + `pt-14` so all `/proof/*` pages match home. “View De-Risking Map” / hero evidence CTAs should use `next/link` to `/proof/{id}/case`. Theme contrast for case pages uses `isDarkMode` from `ThemeContext` and `.light-mode` overrides in `globals.css` for `.zeta-evidence-*` (Tailwind `dark:` alone is unreliable because `<html>` keeps `class="dark"`).
+- **`/engine/target-lock`:** Render `TargetIdentificationEngine` from `src/components/mockups/targetLock.tsx` (same as `EngineStack` engine `01`), not `ProteinPreview`. Use `src/app/engine/layout.tsx` with `ZetaNavbar` like `/proof`.
+- **`trailingSlash: true` + engines:** Registry `route` values must include a trailing slash (e.g. `/engine/kill-chain/`). Compare `usePathname()` to routes with a normalizer. Use a **server** `page.tsx` that passes `normalizeEngineSlug(params.engineSlug)` into a client `EngineSlugClient` so slugs never 404 from client/param edge cases. **`ZetaNavbar`** should style with `useTheme().isDarkMode`, not only `var(--background)` / Tailwind `dark:`.
+- **Mobile UX (`ZetaNavbar`):** Desktop-only nav (`hidden lg:flex`) must have a **`lg:hidden` sheet or drawer** with the same destinations (Home, Proof, Evidence trials, Engines). Otherwise `<md` users cannot reach Proof/Evidence/Engines except stray CTAs.
+- **Tailwind:** This project’s `tailwind.config.cjs` has no `xs` breakpoint unless extended — use `sm:` / `md:` / `lg:` for responsive grids (e.g. metrics: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`).
 
 Scratchpad
 ==========
+
+## Current Task: Mobile UI/UX audit + fixes (2026-03-31)
+
+**Done:** Mobile sheet nav in `ZetaNavbar.tsx`; responsive header/grid in `VectorFailureAnalysis.tsx`; `MetricCardGrid` columns; `HeroSlider` padding + bottom bar scroll; lighter `latify.tsx` page padding on small screens.
+
+**Still watch:** Recharts `ResponsiveContainer` negative dimensions on some pages; `MobileGuard` is unused (no import) — optional product decision.
+
+---
 
 ## Current Task: Unified Execution Plan - Full Project Scope (2024-12-19)
 

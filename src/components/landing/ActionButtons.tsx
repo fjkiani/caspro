@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, Search } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 interface ActionButtonsProps {
   actions: Array<{ label: string; href: string }>;
@@ -43,7 +43,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({ actions }) => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Link
-                  href={action.href}
+                  to={action.href}
                   className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-gray-700 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   <IconComponent className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />

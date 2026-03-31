@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Layers, ArrowRight } from 'lucide-react';
 
@@ -23,7 +23,7 @@ const FusionWorkflowTeaser = () => {
           <p className="text-xl text-slate-600 max-w-4xl mx-auto mb-12">
             Complete RUO workflow combining discriminative and generative AI for therapeutic discovery, from problem framing to validated designs ready for wet-lab validation.
           </p>
-          <Link href="/about#fusion-workflow" className="inline-flex items-center gap-3 px-10 py-5 bg-slate-800 text-white rounded-xl font-bold text-lg hover:bg-slate-900 transition-colors shadow-xl">
+          <Link to="/about#fusion-workflow" className="inline-flex items-center gap-3 px-10 py-5 bg-slate-800 text-white rounded-xl font-bold text-lg hover:bg-slate-900 transition-colors shadow-xl">
             See the Full Workflow
             <ArrowRight className="w-5 h-5" />
           </Link>

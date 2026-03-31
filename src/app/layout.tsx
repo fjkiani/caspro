@@ -5,10 +5,9 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/ui/Navbar";
-import Footer from "@/components/ui/Footer";
 // import FloatingToggleButton from "@/components/ui/FloatingToggleButton";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { AccessibilityProvider } from "@/context/AccessibilityContext";
 import { JsonLd, organizationSchema } from "@/components/SEO/JsonLd";
 
 // Space Grotesk for headings - more technical and modern
@@ -110,14 +109,14 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} flex flex-col min-h-screen bg-background`}>
         <ThemeProvider>
-          <Navbar />
-          {/* <FloatingToggleButton href="/platform">
-            Research Use Only
-          </FloatingToggleButton> */}
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
+          <AccessibilityProvider>
+            {/* <FloatingToggleButton href="/platform">
+              Research Use Only
+            </FloatingToggleButton> */}
+            <div className="flex-grow flex flex-col min-h-0">
+              {children}
+            </div>
+          </AccessibilityProvider>
         </ThemeProvider>
       </body>
     </html>

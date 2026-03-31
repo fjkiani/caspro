@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { WORKFLOW_CONFIG } from '@/data/workflow-config';
@@ -35,7 +35,7 @@ const IntegratedWorkflowSection: React.FC = () => {
                         whileTap={{ scale: 0.95 }}
                     >
                         <Link 
-                            href={WORKFLOW_CONFIG.ctaLink}
+                            to={WORKFLOW_CONFIG.ctaLink}
                             className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-red-600 rounded-lg shadow-lg hover:bg-red-700 transition-colors duration-300"
                         >
                             {WORKFLOW_CONFIG.ctaText} <ArrowRight className="ml-2 w-6 h-6" />

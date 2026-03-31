@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { ExternalLink, ArrowLeft, ArrowRight } from 'lucide-react';
 import type { MediaItem } from '@/lib/docs/hygraph/media-types';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'react-router-dom';
 
 interface DeckViewerProps {
   media: MediaItem;

@@ -1,0 +1,36 @@
+{
+  "nct_id": "NCT03036488",
+  "name": "IMpassion131",
+  "drug": "Atezolizumab + Paclitaxel",
+  "cancer": "First-line metastatic TNBC",
+  "expected_outcome": "failure",
+  "published_ref": "Miles et al., Lancet Oncol 2021, PMID 34219000 \u2014 Atezo+Pac vs Pac in 1L mTNBC",
+  "why_failed_or_succeeded": "Atezolizumab + standard paclitaxel FAILED to improve PFS in unselected first-line mTNBC. PD-L1+ subgroup also showed NO benefit. This contrasts with IMpassion130 (nab-paclitaxel), which succeeded. The critical difference: standard paclitaxel requires corticosteroid premedication (dexamethasone) which is immunosuppressive, and paclitaxel itself depletes T-cells more than nab-paclitaxel. The taxane delivery vehicle blunted the IO axis.",
+  "responder": {
+    "label": "PD-L1+ TNBC (hypothetical responder \u2014 trial showed NO benefit even here)",
+    "vector": {
+      "ddr": 0.3,
+      "mapk": 0.1,
+      "pi3k": 0.15,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.6,
+      "efflux": 0.1,
+      "rss": 0.0
+    }
+  },
+  "non_responder": {
+    "label": "PD-L1-negative TNBC (IO-cold, taxane-dominant)",
+    "vector": {
+      "ddr": 0.3,
+      "mapk": 0.1,
+      "pi3k": 0.15,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.15,
+      "efflux": 0.25,
+      "rss": 0.0
+    }
+  },
+  "discriminating_axes": "io (0.60 vs 0.15) \u2014 but trial failed EVEN in PD-L1+ subgroup, suggesting taxane blunts the IO signal regardless"
+}

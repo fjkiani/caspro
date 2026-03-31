@@ -134,7 +134,7 @@ export const CapabilityPreview: React.FC<CapabilityPreviewProps> = ({
       {/* CTA */}
       <div className="relative z-10 flex items-center justify-between">
         <a
-          href={href}
+          to={href}
           className={`flex items-center gap-2 text-sm font-medium ${color} hover:opacity-80 transition-opacity`}
         >
           Explore {title}

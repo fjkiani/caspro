@@ -1,0 +1,143 @@
+---
+description: RS Axis (8th vector dimension) — complete build debrief. What it is, what was built, what passed, what's left.
+---
+
+# RS Axis — Build Debrief
+
+**Sprint:** Feb 21–22 2026  
+**Source:** Konstantinopoulos 2021, PMID 34552099  
+**Status:** 🟡 PoC — Backend complete, frontend entry form added, no tests yet
+
+---
+
+## What Is The RS Score
+
+The Replication Stress (RS) score is a **binary genomic alteration flag**, NOT a transcriptomic signature. It is derived from standard NGS copy number + mutation calls — no RNA-seq, no RAD51 foci, no specialized assay needed.
+
+### RS-High triggers (≥1 = RS-High)
+
+| Category | Alteration | Vector value |
+|---|---|---|
+| RB pathway | CCNE1 copy number > 4 | rss = 0.80 |
+| RB pathway | RB1 loss (deletion or LoF mutation) | rss = 0.80 |
+| RB pathway | CDKN2A deletion | rss = 0.80 |
+| RB pathway | CDKN2B deletion | rss = 0.80 |
+| Oncogene-induced RS | MYC amplification | rss = 0.80 |
+| Oncogene-induced RS | MYCL1 amplification | rss = 0.80 |
+| Oncogene-induced RS | KRAS amplification (copy number, not point mut) | rss = 0.80 |
+| Oncogene-induced RS | ERBB2/HER2 amplification | rss = 0.80 |
+| Oncogene-induced RS | NF1 loss-of-function or deletion | rss = 0.80 |
+
+**RS-Low:** None of the above present → rss = 0.20
+
+**Clinical meaning:**
+- **RS-High:** Tumor already has sufficient replication stress → gemcitabine alone is sufficient → adding ATRi (berzosertib) provides NO benefit (HR 1.11 in the trial)
+- **RS-Low:** Tumor under the lethality threshold → gemcitabine + ATRi tips it over → benefit (HR 0.34 in the trial)
+
+---
+
+## Hallucination Audit Results
+
+Before building, every claim in the original strategy was verified:
+
+| Claim | Wrong version | Corrected |
+|---|---|---|
+| PMID | 34548480 | **34552099** |
+| RS definition | "transcriptomic signature" | **binary genomic alteration flag via NGS** |
+| RNA-seq required | Yes | **No — NGS panel only** |
+| CCNE1 threshold | not specified | **> 4 copies = amplified** |
+
+---
+
+## Files Built
+
+| File | Status |
+|---|---|
+| `api/services/rss_service.py` | NEW — binary flag, no fabrication |
+| `api/services/holistic_score/utils.py` | MODIFIED — 7D → 8D |
+| `api/routers/ayesha_therapy_fit.py` | MODIFIED — `rss_inputs` in BundleRequest, RSSService wired |
+| `scripts/backfill_rss_tags.py` | NEW — ran live (4/4 tagged) |
+| `scripts/retroactive_prediction_run.py` | MODIFIED — 8D vectors, rss_sensitive tag |
+| `src/components/ayesha/inputs/RSSEntryForm.jsx` | NEW — data entry form |
+| `src/components/ayesha/inputs/DataEntryPanel.jsx` | MODIFIED — Section 3 added |
+| `src/hooks/useTumorBoardBundle.js` | MODIFIED — reads rss_inputs from localStorage |
+| `src/pages/ayesha/PatientStrategyBoard.jsx` | MODIFIED — RS-High/Low badge in UI |
+
+---
+
+## DB Backfill — Live Receipt
+
+```
+Backfilling rss_sensitive tags
+
+  TAGGED: NCT02627443 — Berzosertib + Carboplatin + Gem
+  TAGGED: NCT02595892 — Berzosertib + Gem   ← primary Trial 1 target
+  TAGGED: NCT04616534 — Elimusertib + Gem
+  TAGGED: NCT04491942 — Elimusertib + Cisplatin/Gem
+
+Summary: updated=4 skipped=0 not_found=0
+```
+
+---
+
+## Retroactive Validation — Final Results
+
+```
+Trial                  Resp score   NR score   Delta   Result
+──────────────────────────────────────────────────────────────
+NCT03579316 (WEE1)       0.963       0.656     0.307   ✅ PASS
+NCT02264678 (CAPRI)      0.880       0.772     0.108   ✅ PASS
+NCT02595892 (ATRi/RS)    0.955       0.817     0.138   ✅ PASS (directionally correct)
+```
+
+**Trial 1 interpretation:** RS-Low (rss=0.20) correctly scores HIGHER for the berzosertib trial than RS-High (rss=0.80). The delta of 0.138 matches the published clinical signal direction (HR 0.34 for RS-Low on gem+berzosertib).
+
+**The encoding trick:** The `rss_sensitive` tag on ATRi trials has `rss=0.20` (NOT 0.90). This means the trial vector is designed to match RS-LOW patients — the patients who benefit. RS-High patients (rss=0.80) score lower against this trial vector, which is correct.
+
+---
+
+## RSSService Live Test
+
+```python
+rss_service.compute_rss(ccne1_copy_number=6.0, rb1_loss=False)
+→ RSSResult(rss=0.80, rs_high=True, triggers=['CCNE1_AMP(cn=6.0)'])
+
+rss_service.compute_rss(rb1_loss=False, myc_amplified=False, cdkn2a_deleted=False)
+→ RSSResult(rss=0.20, rs_high=False, triggers=[])
+
+rss_service.compute_rss()
+→ RSSResult(rss=None, rs_high=None, confidence='NONE')  ← no fabrication
+```
+
+---
+
+## End-to-End Flow
+
+```
+AK enters: CCNE1 copy number = 6
+  ↓
+RSSEntryForm → localStorage[ayesha_rss_inputs_v1] = {ccne1_copy_number: 6}
+  ↓
+useTumorBoardBundle → body.rss_inputs = {ccne1_copy_number: 6}
+  ↓
+POST /bundle → RSSService.compute_rss → rss=0.80, rs_high=true
+→ profile["sae_mechanism_vector"]["rss"] = 0.80
+  ↓
+Cosine similarity: berzosertib trial (rss=0.20) scores LOWER for this patient
+→ gem alone is the better match for RS-High patients
+  ↓
+L1.rss = { rss: 0.80, rs_high: true, triggers: ["CCNE1_AMP(cn=6.0)"] }
+  ↓
+PatientStrategyBoard → RS-High badge (amber) visible below IntelligencePanel
+```
+
+---
+
+## What's Left to Harden
+
+| Priority | Task |
+|---|---|
+| P1 | `tests/test_rss_service.py` — all 9 alteration types + boundary cases |
+| P1 | Wire `L1.rss` display into AyeshaWeaponCompatibility trial cards |
+| P2 | Confidence: upgrade from `LOW` to `HIGH` once RS validation study (ENDO/c endpoint) completes |
+| P2 | Consider adding CCNE1 threshold as a configurable parameter (currently hardcoded at 4.0) |

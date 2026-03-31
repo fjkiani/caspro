@@ -23,7 +23,7 @@ const PosterPresentation: React.FC = () => {
         <html>
           <head>
             <title>CrisPRO.ai Poster - Download</title>
-            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+            <link to="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
             <style>
               @page { size: 48in 24in; margin: 0.5in; }
               body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; }

@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, TrendingUp, Target, Shield, FileText, Database, Icon as LucideIcon } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { MetricBenchmark } from '@/data/metrics/types';
 import { formatMetricValue } from '@/data/metrics';
 
@@ -49,7 +49,7 @@ const EvidenceMetricCard: React.FC<EvidenceMetricCardProps> = ({ metric, index }
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ y: -5 }}
     >
-      <Link href={`/metrics/${metric.slug}`} className="flex flex-col h-full">
+      <Link to={`/metrics/${metric.slug}`} className="flex flex-col h-full">
         {/* Icon */}
         <div className={`inline-flex p-3 sm:p-4 rounded-xl sm:rounded-2xl mb-4 sm:mb-6 ${theme.bg}`}>
           <IconComponent className={`w-6 h-6 sm:w-8 sm:h-8 ${theme.text}`} />

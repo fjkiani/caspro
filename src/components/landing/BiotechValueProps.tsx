@@ -161,7 +161,7 @@ const BiotechValueProps: React.FC<BiotechValuePropsProps> = ({ className = '' })
 
                 {/* CTA */}
                 <motion.a
-                  href={prop.cta.href}
+                  to={prop.cta.href}
                   className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
                     isHovered
                       ? 'bg-blue-500 text-white shadow-lg'
@@ -220,7 +220,7 @@ const BiotechValueProps: React.FC<BiotechValuePropsProps> = ({ className = '' })
             </motion.button>
             
             <motion.a
-              href="/contact"
+              to="/contact"
               className="px-8 py-4 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-blue-600 transition-colors flex items-center gap-3"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

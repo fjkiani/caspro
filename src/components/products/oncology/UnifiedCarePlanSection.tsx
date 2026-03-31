@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Network, ArrowRight, Zap, Target, Shield, Activity, Heart } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 interface CapabilityCard {
   title: string;
@@ -143,7 +143,7 @@ export default function UnifiedCarePlanSection({
               </div>
 
               {/* CTA Button */}
-              <Link href={card.link}>
+              <Link to={card.link}>
                 <motion.button
                   className={`w-full flex items-center justify-center gap-2 px-4 py-3 bg-${card.color}-600 hover:bg-${card.color}-700 text-white rounded-xl font-semibold transition-all duration-300 group-hover:shadow-lg`}
                   whileHover={{ scale: 1.02 }}

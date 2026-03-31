@@ -1,0 +1,17 @@
+{
+  "db_query": "SELECT id, title, moa_tags FROM trials WHERE id = 'NCT05450692'",
+  "found": true,
+  "nct_id": "NCT05450692",
+  "title": "A Phase III Study of Ceralasertib Plus Durvalumab Versus Docetaxel in Patients With Non Small Cell Lung Cancer (NSCLC) Whose Disease Progressed On or After Prior Anti PD (L)1 Therapy And Platinum Based Chemotherapy",
+  "moa_tags": [
+    "atr_inhibitor",
+    "checkpoint_inhibitor",
+    "chemotherapy",
+    "ddr",
+    "immunotherapy",
+    "taxane",
+    "stk11_sensitive"
+  ],
+  "total_tagged_trials": 806,
+  "total_trials": 2888
+}

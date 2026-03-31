@@ -1,0 +1,103 @@
+{
+  "nct_id": "NCT01874353",
+  "name": "SOLO-2",
+  "expected_outcome": "success",
+  "db_total_tagged": 815,
+  "db_trial_found": true,
+  "db_trial_tags": [
+    "ddr",
+    "parp_inhibitor"
+  ],
+  "resp_score": 0.9799,
+  "resp_rank": 33,
+  "resp_vector": [
+    0.85,
+    0.05,
+    0.05,
+    0.05,
+    0.0,
+    0.1,
+    0.05,
+    0.1
+  ],
+  "nr_score": 0.6247,
+  "nr_rank": 409,
+  "nr_vector": [
+    0.2,
+    0.1,
+    0.1,
+    0.1,
+    0.0,
+    0.1,
+    0.15,
+    0.0
+  ],
+  "delta": 0.3552,
+  "top_resp": [
+    {
+      "rank": 1,
+      "id": "NCT03330847",
+      "score": 0.9866,
+      "title": "To Assess Safety and Efficacy of Agents Targeting "
+    },
+    {
+      "rank": 2,
+      "id": "NCT03579316",
+      "score": 0.9866,
+      "title": "Adavosertib With or Without Olaparib in Treating P"
+    },
+    {
+      "rank": 3,
+      "id": "NCT02627443",
+      "score": 0.9854,
+      "title": "Carboplatin, Gemcitabine Hydrochloride, and Berzos"
+    },
+    {
+      "rank": 4,
+      "id": "NCT04491942",
+      "score": 0.9854,
+      "title": "Testing the Addition of an Anti-cancer Drug, BAY 1"
+    },
+    {
+      "rank": 5,
+      "id": "NCT02595892",
+      "score": 0.9852,
+      "title": "Gemcitabine Hydrochloride Alone or With M6620 in T"
+    }
+  ],
+  "top_nr": [
+    {
+      "rank": 1,
+      "id": "NCT02465060",
+      "score": 0.8499,
+      "title": "Targeted Therapy Directed by Genetic Testing in Tr"
+    },
+    {
+      "rank": 2,
+      "id": "NCT03768063",
+      "score": 0.8472,
+      "title": "A Study in Patients Previously Enrolled in a Genen"
+    },
+    {
+      "rank": 3,
+      "id": "NCT04931342",
+      "score": 0.8472,
+      "title": "A Study Evaluating the Efficacy and Safety of Biom"
+    },
+    {
+      "rank": 4,
+      "id": "NCT02693535",
+      "score": 0.8431,
+      "title": "TAPUR: Testing the Use of Food and Drug Administra"
+    },
+    {
+      "rank": 5,
+      "id": "NCT02925234",
+      "score": 0.8431,
+      "title": "The Drug Rediscovery Protocol (DRUP Trial)"
+    }
+  ],
+  "verdict": "REVIEW",
+  "verdict_reason": "\u0394=+0.3552 \u2014 marginal stratification",
+  "timestamp": "2026-03-24T20:07:20.527409Z"
+}

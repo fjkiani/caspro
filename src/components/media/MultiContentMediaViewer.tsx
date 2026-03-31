@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'react-router-dom';
 import { ArrowLeft, Maximize2, Video as VideoIcon, FileText, Presentation, Download } from 'lucide-react';
 import type { MediaItem } from '@/lib/docs/hygraph/media-types';
 import VideoViewer from '@/components/media/VideoViewer';

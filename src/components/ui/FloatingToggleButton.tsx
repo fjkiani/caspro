@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Dna, Microscope, Zap, Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
@@ -13,7 +13,7 @@ interface FloatingToggleButtonProps {
 }
 
 const FloatingToggleButton: React.FC<FloatingToggleButtonProps> = ({ href, children, className = '' }) => {
-  const { theme, toggleTheme, isResearchMode } = useTheme();
+  const { theme, toggleTheme, isDarkMode } = useTheme();
   const [isToggled, setIsToggled] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -71,7 +71,7 @@ const FloatingToggleButton: React.FC<FloatingToggleButtonProps> = ({ href, child
                 }}
                 transition={{ duration: 0.3 }}
               >
-                {isResearchMode ? (
+                {isDarkMode ? (
                   <Sun className="w-5 h-5 text-white" />
                 ) : (
                   <Moon className="w-5 h-5 text-white" />
@@ -112,8 +112,8 @@ const FloatingToggleButton: React.FC<FloatingToggleButtonProps> = ({ href, child
               <motion.span
                 className="text-blue-600"
                 animate={{
-                  opacity: isResearchMode ? 0.3 : 1,
-                  scale: isResearchMode ? 0.8 : 1
+                  opacity: isDarkMode ? 0.3 : 1,
+                  scale: isDarkMode ? 0.8 : 1
                 }}
                 transition={{ duration: 0.2 }}
               >
@@ -122,8 +122,8 @@ const FloatingToggleButton: React.FC<FloatingToggleButtonProps> = ({ href, child
               <motion.span
                 className="text-white"
                 animate={{
-                  opacity: isResearchMode ? 1 : 0.3,
-                  scale: isResearchMode ? 1 : 0.8
+                  opacity: isDarkMode ? 1 : 0.3,
+                  scale: isDarkMode ? 1 : 0.8
                 }}
                 transition={{ duration: 0.2 }}
               >
@@ -136,11 +136,11 @@ const FloatingToggleButton: React.FC<FloatingToggleButtonProps> = ({ href, child
           <motion.div
             className="text-center mt-2 text-xs font-bold text-blue-600"
             animate={{
-              color: isResearchMode ? '#10b981' : '#3b82f6'
+              color: isDarkMode ? '#10b981' : '#3b82f6'
             }}
             transition={{ duration: 0.2 }}
           >
-            {isResearchMode ? 'Research Mode' : 'Dark Mode'}
+            {isDarkMode ? 'Research Mode' : 'Dark Mode'}
           </motion.div>
         </button>
       </motion.div>

@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, TrendingUp, Target, Shield, Activity, Dna, Search, Pill } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { CapabilityCard as CapabilityCardType } from '@/data/landing/landing-data';
 
 interface CapabilityCardProps {
@@ -76,7 +76,7 @@ const CapabilityCard: React.FC<CapabilityCardProps> = ({ capability, index }) =>
         {capability.actions.map((action, actionIndex) => (
           <Link
             key={actionIndex}
-            href={action.href}
+            to={action.href}
             className={`group/btn flex items-center justify-center gap-2 w-full px-3 sm:px-4 py-2 ${theme.bg} ${theme.text} rounded-lg text-xs sm:text-sm font-medium hover:opacity-90 transition-all duration-300`}
           >
             {action.label}

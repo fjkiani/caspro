@@ -1,0 +1,56 @@
+{
+  "trial": "LATIFY \u2014 NCT05450692 (ceralasertib + durvalumab)",
+  "computation_date": "2026-02-22",
+  "validated_by": "CrisPRO retroactive_prediction_run.py engine (sqlite3 + cosine_sim)",
+  "engine_source": "scripts/retroactive_prediction_run.py \u2014 same TAG_VECTORS, same score_trials(), same l2_normalize()",
+  "db_source": "/Users/fahadkiani/Desktop/development/crispr-assistant-main/oncology-coPilot/oncology-backend-minimal/data/clinical_trials.db",
+  "latify_tags_from_db": [
+    "atr_inhibitor",
+    "checkpoint_inhibitor",
+    "chemotherapy",
+    "ddr",
+    "immunotherapy",
+    "taxane",
+    "stk11_sensitive"
+  ],
+  "latify_trial_vector": {
+    "ddr": 0.85,
+    "mapk": 0.1,
+    "pi3k": 0.0,
+    "vegf": 0.0,
+    "her2": 0.0,
+    "io": 0.7,
+    "efflux": 0.0,
+    "rss": 0.0
+  },
+  "responder_vector": {
+    "ddr": 0.8,
+    "mapk": 0.7,
+    "pi3k": 0.1,
+    "vegf": 0.1,
+    "her2": 0.0,
+    "io": 0.75,
+    "efflux": 0.1,
+    "rss": 0.0
+  },
+  "non_responder_vector": {
+    "ddr": 0.2,
+    "mapk": 0.1,
+    "pi3k": 0.1,
+    "vegf": 0.1,
+    "her2": 0.0,
+    "io": 0.2,
+    "efflux": 0.4,
+    "rss": 0.0
+  },
+  "responder_biology": "STK11-loss + KEAP1-loss + KRAS-mutant NSCLC \u2014 DDR-burdened, IO-warm",
+  "non_responder_biology": "STK11-intact + IO-warm + post-ICI NSCLC \u2014 DDR-intact, IO-exhausted",
+  "cosine_sim_responder": 0.879,
+  "responder_rank": 39,
+  "cosine_sim_non_responder": 0.557,
+  "non_responder_rank": 39,
+  "n_trials_scored": 695,
+  "delta_fit": 0.322,
+  "delta_fit_formatted": "+0.322",
+  "note": "Cosine similarity computed using production engine logic. Used as delta_fit in MANUSCRIPT.md Discussion \u2014 Two-Layer Drug Failure Prediction section."
+}

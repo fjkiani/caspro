@@ -380,7 +380,7 @@ export default function ComparisonShowcase({
                       {currentQuestion.moatPoint.explanation}
                       {currentQuestion.moatPoint.evidence && (
                         <a 
-                          href={currentQuestion.moatPoint.evidence} 
+                          to={currentQuestion.moatPoint.evidence} 
                           className="text-blue-600 hover:text-blue-800 hover:underline ml-2 font-semibold inline-flex items-center gap-1"
                         >
                           Learn more

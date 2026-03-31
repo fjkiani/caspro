@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, ArrowLeft, CheckCircle, Users, Award, TrendingUp } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 interface PartnerData {
   id: string;
@@ -51,7 +51,7 @@ const PartnerPage: React.FC<PartnerPageProps> = ({ data }) => {
       {/* Back Button */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <Link
-          href="/"
+          to="/"
           className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-800 transition-colors duration-300"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -91,7 +91,7 @@ const PartnerPage: React.FC<PartnerPageProps> = ({ data }) => {
 
             {/* Website Link */}
             <a
-              href={data.website}
+              to={data.website}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 text-white rounded-lg font-semibold hover:bg-slate-700 transition-colors duration-300"
@@ -271,14 +271,14 @@ const PartnerPage: React.FC<PartnerPageProps> = ({ data }) => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/contact"
+                to="/contact"
                 className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300"
               >
                 Become a Partner
                 <ExternalLink className="w-4 h-4" />
               </Link>
               <Link
-                href="/about"
+                to="/about"
                 className="inline-flex items-center gap-2 px-8 py-3 bg-slate-200 text-slate-800 rounded-lg font-semibold hover:bg-slate-300 transition-colors duration-300"
               >
                 Learn More About Us

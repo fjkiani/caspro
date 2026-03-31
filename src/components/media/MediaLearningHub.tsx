@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { ArrowLeft, Download, ExternalLink, FileText, Video as VideoIcon, BookOpen, ArrowRight } from 'lucide-react';
 import type { MediaItem } from '@/lib/docs/hygraph/media-types';
 import VideoViewer from '@/components/media/VideoViewer';
@@ -24,7 +24,7 @@ export default function MediaLearningHub({ media, relatedMedia = [] }: MediaLear
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link
-                href="/media"
+                to="/media"
                 className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
@@ -161,7 +161,7 @@ export default function MediaLearningHub({ media, relatedMedia = [] }: MediaLear
               <div className="flex flex-wrap gap-4">
                 {media.videoFile?.url && (
                   <a
-                    href={media.videoFile.url}
+                    to={media.videoFile.url}
                     download
                     className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                   >
@@ -171,7 +171,7 @@ export default function MediaLearningHub({ media, relatedMedia = [] }: MediaLear
                 )}
                 {media.videoUrl && (
                   <a
-                    href={media.videoUrl}
+                    to={media.videoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -182,7 +182,7 @@ export default function MediaLearningHub({ media, relatedMedia = [] }: MediaLear
                 )}
                 {media.pdfFile?.url && (
                   <a
-                    href={media.pdfFile.url}
+                    to={media.pdfFile.url}
                     download
                     className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
                   >
@@ -208,7 +208,7 @@ export default function MediaLearningHub({ media, relatedMedia = [] }: MediaLear
                 {relatedMedia.map((item) => (
                   <Link
                     key={item.id}
-                    href={`/media/${item.slug}`}
+                    to={`/media/${item.slug}`}
                     className="block group"
                   >
                     <div className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all border border-gray-200 h-full">

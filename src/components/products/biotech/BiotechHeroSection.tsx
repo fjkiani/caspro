@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FlaskConical, Target, Zap, TrendingUp, Shield, TestTube } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 export default function BiotechHeroSection() {
   const capabilities = [
@@ -102,13 +102,13 @@ export default function BiotechHeroSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Link href="#biotech-capabilities">
+            <Link to="#biotech-capabilities">
               <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-xl font-semibold text-lg hover:from-cyan-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl">
                 <TestTube className="w-5 h-5 mr-3" />
                 Try R&D Demo
               </button>
             </Link>
-            <Link href="#biotech-metrics">
+            <Link to="#biotech-metrics">
               <button className="inline-flex items-center px-8 py-4 bg-white text-slate-700 border-2 border-slate-300 rounded-xl font-semibold text-lg hover:bg-slate-50 hover:border-slate-400 transition-all duration-300">
                 <Target className="w-5 h-5 mr-3" />
                 View Transformation Metrics

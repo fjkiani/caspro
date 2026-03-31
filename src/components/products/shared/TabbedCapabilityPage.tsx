@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { ProductSlug, CapabilitySlug, getCapabilityCoPilots } from '@/data/navigation/co-pilot-mappings';
 import { getCapabilityDefinition } from '@/data/navigation/product-capabilities';
 import { coPilotDetailsData } from '@/data/coPilotDetails';
@@ -165,7 +165,7 @@ export default function TabbedCapabilityPage({
                   <h3 className="text-2xl font-bold text-slate-900 mb-2">{nextLevel.title}</h3>
                   <p className="text-slate-700 mb-4">{nextLevel.description}</p>
                   <Link
-                    href={nextLevel.href}
+                    to={nextLevel.href}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700 transition-colors"
                   >
                     <span>Continue to Level {nextLevel.level}</span>
@@ -208,7 +208,7 @@ export default function TabbedCapabilityPage({
               ].map((capability, idx) => {
               const IconComp = capability.icon;
               return (
-                <Link key={capability.href} href={capability.href}>
+                <Link key={capability.href} to={capability.href}>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

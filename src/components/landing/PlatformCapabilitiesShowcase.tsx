@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Stethoscope,
@@ -69,7 +69,7 @@ const PlatformCapabilitiesShowcase: React.FC = () => {
                 whileHover={{ y: -4, scale: 1.02 }}
                 className="group"
               >
-                <Link href={product.link} className="block h-full">
+                <Link to={product.link} className="block h-full">
                   <div className="bg-white rounded-2xl border-2 border-slate-200 hover:border-blue-400 shadow-lg hover:shadow-xl transition-all overflow-hidden h-full flex flex-col cursor-pointer">
                     <div className="p-8 flex flex-col items-center text-center h-full">
                       {/* Icon */}

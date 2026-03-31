@@ -1,0 +1,19 @@
+{
+  "nct_id": "NCT02595892",
+  "drug": "Berzosertib (M6620) + Gemcitabine",
+  "cancer": "Platinum-resistant ovarian",
+  "engine": "cosine similarity (8D vectors) \u2014 local SQLite, 806 tagged trials",
+  "responder": {
+    "label": "RS-Low (no RB/oncogene RS)",
+    "score": 0.955,
+    "rank": 3
+  },
+  "non_responder": {
+    "label": "RS-High (CCNE1-amp, RB1-loss, MYC-amp)",
+    "score": 0.817,
+    "rank": 3
+  },
+  "delta": 0.138,
+  "gates": "3/3",
+  "historical_note": "7D delta was 0.064 (below threshold). RSS axis added, delta jumped to 0.138."
+}

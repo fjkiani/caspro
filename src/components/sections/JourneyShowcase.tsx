@@ -157,7 +157,7 @@ const JourneyShowcase: React.FC = () => {
                       <span className={`text-${card.color}-600 font-bold`}>{card.keyMetric}</span>
                     </div>
                     <a
-                      href={card.href}
+                      to={card.href}
                       className={`text-${card.color}-600 hover:text-${card.color}-700 transition-colors`}
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -235,7 +235,7 @@ const JourneyShowcase: React.FC = () => {
             {/* CTA */}
             <div className="mt-8 text-center">
               <a
-                href={journeyCards[selectedJourney].href}
+                to={journeyCards[selectedJourney].href}
                 className={`inline-flex items-center gap-2 px-8 py-3 bg-${journeyCards[selectedJourney].color}-600 text-white rounded-lg font-semibold hover:bg-${journeyCards[selectedJourney].color}-700 transition-colors`}
               >
                 Explore {journeyCards[selectedJourney].title}

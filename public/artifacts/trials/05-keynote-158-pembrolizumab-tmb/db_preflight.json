@@ -1,0 +1,9 @@
+{
+  "db_query": "SELECT id, title, moa_tags FROM trials WHERE id = 'NCT02628067'",
+  "found": false,
+  "nct_id": null,
+  "title": null,
+  "moa_tags": null,
+  "total_tagged_trials": 806,
+  "total_trials": 2888
+}

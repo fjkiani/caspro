@@ -8,6 +8,7 @@ interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
   isResearchMode: boolean;
+  isDarkMode: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -32,7 +33,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     // Load theme from localStorage on mount
     const savedTheme = localStorage.getItem('theme') as Theme;
     const savedResearchMode = localStorage.getItem('researchMode') === 'true';
-    
+
     if (savedTheme) {
       setTheme(savedTheme);
     }
@@ -45,7 +46,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     // Save theme to localStorage
     localStorage.setItem('theme', theme);
     localStorage.setItem('researchMode', isResearchMode.toString());
-    
+
     // Apply theme to document
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -55,12 +56,14 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   }, [theme, isResearchMode]);
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light');
-    setIsResearchMode(prev => !prev);
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    setIsResearchMode((prev) => !prev);
   };
 
+  const isDarkMode = theme === 'dark';
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, isResearchMode }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, isResearchMode, isDarkMode }}>
       {children}
     </ThemeContext.Provider>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Rocket } from 'lucide-react';
 
@@ -48,7 +48,7 @@ export default function RelatedProductsSection({
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
             >
-              <Link href={`/products/${product.slug}`}>
+              <Link to={`/products/${product.slug}`}>
                 <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 hover:border-green-500/50 transition-all duration-300 h-full flex flex-col group">
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors">
                     {product.title}

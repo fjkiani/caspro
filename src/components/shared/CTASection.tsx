@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 interface CTASectionProps {
   title: string;
@@ -81,7 +81,7 @@ const CTASection: React.FC<CTASectionProps> = ({
         <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 leading-tight">{title}</h3>
         <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 leading-relaxed">{description}</p>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-          <Link href={primaryButton.href}>
+          <Link to={primaryButton.href}>
             <motion.button
               className={`px-6 sm:px-8 py-3 sm:py-4 ${theme.primary} text-white rounded-xl font-semibold transition-colors duration-300 text-sm sm:text-base touch-manipulation`}
               whileHover={{ scale: 1.05 }}
@@ -91,7 +91,7 @@ const CTASection: React.FC<CTASectionProps> = ({
             </motion.button>
           </Link>
           {secondaryButton && (
-            <Link href={secondaryButton.href}>
+            <Link to={secondaryButton.href}>
               <motion.button
                 className={`px-6 sm:px-8 py-3 sm:py-4 border-2 ${theme.secondary} rounded-xl font-semibold transition-colors duration-300 text-sm sm:text-base touch-manipulation`}
                 whileHover={{ scale: 1.05 }}

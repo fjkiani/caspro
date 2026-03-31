@@ -1,0 +1,29 @@
+{
+  "responder": {
+    "label": "STK11-loss + KEAP1-loss + KRAS-mut (cold TME)",
+    "vector": {
+      "ddr": 0.8,
+      "mapk": 0.7,
+      "pi3k": 0.2,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.75,
+      "efflux": 0.1,
+      "rss": 0.0
+    }
+  },
+  "non_responder": {
+    "label": "STK11-intact + IO-warm + post-ICI",
+    "vector": {
+      "ddr": 0.2,
+      "mapk": 0.1,
+      "pi3k": 0.1,
+      "vegf": 0.1,
+      "her2": 0.0,
+      "io": 0.2,
+      "efflux": 0.4,
+      "rss": 0.0
+    }
+  },
+  "discriminating_axis": "ddr (0.80 vs 0.20) + io (0.75 vs 0.20) + mapk (0.70 vs 0.10)"
+}

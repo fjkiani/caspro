@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import KPIStrip from './KPIStrip';
 import { KPIMetric } from '@/data/landing/landing-data';
 
@@ -78,7 +78,7 @@ const Hero: React.FC<HeroProps> = ({
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <Link
-              href={primaryCta.href}
+              to={primaryCta.href}
               className="group inline-flex items-center gap-3 px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold text-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               {primaryCta.label}
@@ -86,7 +86,7 @@ const Hero: React.FC<HeroProps> = ({
             </Link>
             
             <Link
-              href={secondaryCta.href}
+              to={secondaryCta.href}
               className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-gray-700 rounded-xl font-semibold text-lg border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all duration-300"
             >
               <Play className="w-5 h-5" />

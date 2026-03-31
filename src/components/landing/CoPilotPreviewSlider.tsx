@@ -84,7 +84,7 @@ const CoPilotPreviewSlider: React.FC = () => {
                       )}
                     </div>
                     <a
-                      href={`/platform/${pilot.slug}`}
+                      to={`/platform/${pilot.slug}`}
                       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold hover:from-blue-700 hover:to-indigo-700"
                     >
                       Open

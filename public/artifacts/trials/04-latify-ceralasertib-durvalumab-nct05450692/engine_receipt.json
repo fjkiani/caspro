@@ -1,0 +1,18 @@
+{
+  "nct_id": "NCT05450692",
+  "drug": "Ceralasertib (ATRi) + Durvalumab (PD-L1)",
+  "cancer": "IO-refractory NSCLC",
+  "engine": "cosine similarity (8D vectors) \u2014 local SQLite, 806 tagged trials",
+  "responder": {
+    "label": "STK11-loss + KEAP1-loss + KRAS-mut (cold TME)",
+    "score": 0.9852,
+    "rank": 1
+  },
+  "non_responder": {
+    "label": "STK11-intact + IO-warm + post-ICI",
+    "score": 0.6194,
+    "rank": 129
+  },
+  "delta": 0.3658,
+  "gates": "3/3"
+}

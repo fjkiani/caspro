@@ -1,0 +1,17 @@
+{
+  "db_query": "SELECT id, title, moa_tags FROM trials WHERE id = 'NCT02264678'",
+  "found": true,
+  "nct_id": "NCT02264678",
+  "title": "Ascending Doses of Ceralasertib in Combination With Chemotherapy and/or Novel Anti Cancer Agents",
+  "moa_tags": [
+    "atr_inhibitor",
+    "checkpoint_inhibitor",
+    "chemotherapy",
+    "ddr",
+    "immunotherapy",
+    "parp_inhibitor",
+    "platinum_based"
+  ],
+  "total_tagged_trials": 806,
+  "total_trials": 2888
+}
