@@ -2,10 +2,10 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { FileText, Video, Presentation, Filter, Search, Grid, List } from 'lucide-react';
+import { FileText, Video, Presentation, Search, Grid, List } from 'lucide-react';
 import type { MediaItem, MediaCategory } from '@/lib/docs/hygraph/media-types';
-import MediaCard from '@/components/media/MediaCard';
 import InlineMediaViewer from '@/components/homepage/InlineMediaViewer';
+import { useTheme } from '@/context/ThemeContext';
 
 interface MediaPageClientProps {
   initialMedia: MediaItem[];
@@ -13,7 +13,7 @@ interface MediaPageClientProps {
 }
 
 export default function MediaPageClient({ initialMedia, categories }: MediaPageClientProps) {
-  const [selectedMedia, setSelectedMedia] = useState<MediaItem | null>(null);
+  const { isDarkMode } = useTheme();
   const [filterType, setFilterType] = useState<'ALL' | 'PDF' | 'VIDEO' | 'DECK'>('ALL');
   const [filterCategory, setFilterCategory] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
@@ -48,14 +48,6 @@ export default function MediaPageClient({ initialMedia, categories }: MediaPageC
     });
   }, [initialMedia, filterType, filterCategory, searchQuery]);
 
-  const handleMediaClick = (media: MediaItem) => {
-    setSelectedMedia(media);
-  };
-
-  const handleCloseViewer = () => {
-    setSelectedMedia(null);
-  };
-
   // Count by type
   const counts = useMemo(() => {
     return {
@@ -66,32 +58,41 @@ export default function MediaPageClient({ initialMedia, categories }: MediaPageC
     };
   }, [initialMedia]);
 
+  const pageBg = isDarkMode ? 'bg-[#020408] text-zinc-100' : 'bg-slate-50 text-slate-900';
+  const panelBg = isDarkMode ? 'bg-zinc-950/70 border-zinc-800' : 'bg-white border-slate-200';
+  const softBtn = isDarkMode ? 'bg-zinc-900 text-zinc-300 hover:bg-zinc-800' : 'bg-slate-100 text-slate-700 hover:bg-slate-200';
+  const activeBtn = isDarkMode ? 'bg-cyan-500/15 text-cyan-400 border-cyan-500/40' : 'bg-indigo-600 text-white border-indigo-600';
+  const inputCls = isDarkMode
+    ? 'border-zinc-700 bg-zinc-900 text-zinc-100 placeholder:text-zinc-500 focus:ring-cyan-500 focus:border-cyan-500'
+    : 'border-gray-300 bg-white text-slate-900 placeholder:text-slate-500 focus:ring-indigo-500 focus:border-indigo-500';
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className={`min-h-screen font-mono ${pageBg}`}>
+      <div className={`absolute inset-0 pointer-events-none ${isDarkMode ? 'bg-[linear-gradient(to_right,#00E5FF06_1px,transparent_1px),linear-gradient(to_bottom,#00E5FF06_1px,transparent_1px)]' : 'bg-[linear-gradient(to_right,#6366f10a_1px,transparent_1px),linear-gradient(to_bottom,#6366f10a_1px,transparent_1px)]'} bg-[size:48px_48px]`} />
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className={`relative border-b ${panelBg}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Media</h1>
-          <p className="text-gray-600">
+          <h1 className="text-3xl font-black tracking-tight mb-2">Media</h1>
+          <p className={isDarkMode ? 'text-zinc-400' : 'text-slate-600'}>
             Browse our collection of 1-pagers, slide decks, and videos
           </p>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
+      <div className={`relative sticky top-0 z-10 border-b backdrop-blur-md ${panelBg}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
             {/* Search */}
             <div className="flex-1 max-w-md">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDarkMode ? 'text-zinc-500' : 'text-slate-400'}`} />
                 <input
                   type="text"
                   placeholder="Search media..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 ${inputCls}`}
                 />
               </div>
             </div>
@@ -100,22 +101,14 @@ export default function MediaPageClient({ initialMedia, categories }: MediaPageC
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-lg transition-colors ${
-                  viewMode === 'grid'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
+                className={`p-2 rounded-lg border transition-colors ${viewMode === 'grid' ? activeBtn : `${softBtn} ${isDarkMode ? 'border-zinc-700' : 'border-slate-200'}`}`}
                 title="Grid view"
               >
                 <Grid className="w-5 h-5" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2 rounded-lg transition-colors ${
-                  viewMode === 'list'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
+                className={`p-2 rounded-lg border transition-colors ${viewMode === 'list' ? activeBtn : `${softBtn} ${isDarkMode ? 'border-zinc-700' : 'border-slate-200'}`}`}
                 title="List view"
               >
                 <List className="w-5 h-5" />
@@ -127,43 +120,27 @@ export default function MediaPageClient({ initialMedia, categories }: MediaPageC
           <div className="flex flex-wrap gap-2 mb-4">
             <button
               onClick={() => setFilterType('ALL')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                filterType === 'ALL'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+              className={`px-4 py-2 rounded-lg border font-medium transition-colors ${filterType === 'ALL' ? activeBtn : `${softBtn} ${isDarkMode ? 'border-zinc-700' : 'border-slate-200'}`}`}
             >
               All ({counts.all})
             </button>
             <button
               onClick={() => setFilterType('PDF')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 ${
-                filterType === 'PDF'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+              className={`px-4 py-2 rounded-lg border font-medium transition-colors flex items-center gap-2 ${filterType === 'PDF' ? activeBtn : `${softBtn} ${isDarkMode ? 'border-zinc-700' : 'border-slate-200'}`}`}
             >
               <FileText className="w-4 h-4" />
               PDFs ({counts.pdf})
             </button>
             <button
               onClick={() => setFilterType('VIDEO')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 ${
-                filterType === 'VIDEO'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+              className={`px-4 py-2 rounded-lg border font-medium transition-colors flex items-center gap-2 ${filterType === 'VIDEO' ? activeBtn : `${softBtn} ${isDarkMode ? 'border-zinc-700' : 'border-slate-200'}`}`}
             >
               <Video className="w-4 h-4" />
               Videos ({counts.video})
             </button>
             <button
               onClick={() => setFilterType('DECK')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 ${
-                filterType === 'DECK'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+              className={`px-4 py-2 rounded-lg border font-medium transition-colors flex items-center gap-2 ${filterType === 'DECK' ? activeBtn : `${softBtn} ${isDarkMode ? 'border-zinc-700' : 'border-slate-200'}`}`}
             >
               <Presentation className="w-4 h-4" />
               Decks ({counts.deck})
@@ -175,11 +152,7 @@ export default function MediaPageClient({ initialMedia, categories }: MediaPageC
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setFilterCategory('ALL')}
-                className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
-                  filterCategory === 'ALL'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
+                className={`px-3 py-1 rounded-md text-sm border font-medium transition-colors ${filterCategory === 'ALL' ? activeBtn : `${softBtn} ${isDarkMode ? 'border-zinc-700' : 'border-slate-200'}`}`}
               >
                 All Categories
               </button>
@@ -187,11 +160,7 @@ export default function MediaPageClient({ initialMedia, categories }: MediaPageC
                 <button
                   key={category.id}
                   onClick={() => setFilterCategory(category.slug)}
-                  className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
-                    filterCategory === category.slug
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
+                  className={`px-3 py-1 rounded-md text-sm border font-medium transition-colors ${filterCategory === category.slug ? activeBtn : `${softBtn} ${isDarkMode ? 'border-zinc-700' : 'border-slate-200'}`}`}
                 >
                   {category.title}
                 </button>
@@ -202,26 +171,26 @@ export default function MediaPageClient({ initialMedia, categories }: MediaPageC
       </div>
 
       {/* Media Grid/List */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {filteredMedia.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">No media found matching your filters.</p>
+            <p className={`text-lg ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>No media found matching your filters.</p>
           </div>
         ) : viewMode === 'grid' ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredMedia.map((media) => (
-              <div key={media.id} className="bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 hover:shadow-xl transition-all duration-300">
+              <div key={media.id} className={`rounded-xl shadow-lg overflow-hidden border hover:shadow-xl transition-all duration-300 ${panelBg}`}>
                 {/* Inline viewer - click to play/view */}
                 <div className="relative">
                   <InlineMediaViewer media={media} />
                 </div>
                 {/* Card content */}
                 <div className="p-4">
-                  <h3 className="font-semibold text-slate-900 mb-2 line-clamp-2">
+                  <h3 className={`font-semibold mb-2 line-clamp-2 ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
                     {media.title}
                   </h3>
                   {media.excerpt && (
-                    <p className="text-sm text-slate-600 line-clamp-2 mb-3">
+                    <p className={`text-sm line-clamp-2 mb-3 ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
                       {media.excerpt}
                     </p>
                   )}
@@ -237,7 +206,7 @@ export default function MediaPageClient({ initialMedia, categories }: MediaPageC
                     </span>
                     <Link 
                       href={`/media/${media.slug}`}
-                      className="text-sm text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center gap-1"
+                      className={`text-sm font-semibold inline-flex items-center gap-1 ${isDarkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-indigo-600 hover:text-indigo-700'}`}
                     >
                       <span>Full Page</span>
                     </Link>
@@ -249,7 +218,7 @@ export default function MediaPageClient({ initialMedia, categories }: MediaPageC
         ) : (
           <div className="space-y-4">
             {filteredMedia.map((media) => (
-              <div key={media.id} className="bg-white rounded-lg shadow-md border border-slate-200 hover:shadow-lg transition-all duration-300">
+              <div key={media.id} className={`rounded-lg shadow-md border hover:shadow-lg transition-all duration-300 ${panelBg}`}>
                 <div className="flex flex-col md:flex-row gap-4 p-4">
                   {/* Thumbnail */}
                   <div className="md:w-64 flex-shrink-0">
@@ -258,7 +227,7 @@ export default function MediaPageClient({ initialMedia, categories }: MediaPageC
                   {/* Content */}
                   <div className="flex-1">
                     <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-lg font-semibold text-slate-900">
+                      <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
                         {media.title}
                       </h3>
                       <span className={`text-xs font-semibold px-2 py-1 rounded ml-2 ${
@@ -272,14 +241,14 @@ export default function MediaPageClient({ initialMedia, categories }: MediaPageC
                       </span>
                     </div>
                     {media.excerpt && (
-                      <p className="text-slate-600 mb-3 line-clamp-2">
+                      <p className={`mb-3 line-clamp-2 ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
                         {media.excerpt}
                       </p>
                     )}
                     {media.tags && media.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2 mb-3">
                         {media.tags.slice(0, 3).map((tag) => (
-                          <span key={tag} className="text-xs bg-slate-100 text-slate-700 px-2 py-1 rounded">
+                          <span key={tag} className={`text-xs px-2 py-1 rounded ${isDarkMode ? 'bg-zinc-900 text-zinc-300' : 'bg-slate-100 text-slate-700'}`}>
                             {tag}
                           </span>
                         ))}
@@ -287,7 +256,7 @@ export default function MediaPageClient({ initialMedia, categories }: MediaPageC
                     )}
                     <Link 
                       href={`/media/${media.slug}`}
-                      className="text-sm text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center gap-1"
+                      className={`text-sm font-semibold inline-flex items-center gap-1 ${isDarkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-indigo-600 hover:text-indigo-700'}`}
                     >
                       <span>View Full Page</span>
                     </Link>

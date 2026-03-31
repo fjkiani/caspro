@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, Download, ExternalLink } from 'lucide-react';
 import type { CmsUseCase } from '@/lib/docs/hygraph/use-case-types';
 import UseCaseRichSection from './UseCaseRichSection';
+import { useTheme } from '@/context/ThemeContext';
 
 interface UseCaseViewerProps {
   useCase: CmsUseCase;
@@ -23,30 +24,35 @@ function embedUrl(url: string): string {
 
 export default function UseCaseViewer({ useCase }: UseCaseViewerProps) {
   const router = useRouter();
+  const { isDarkMode } = useTheme();
   const hasVideo = !!useCase.demoVideoUrl?.trim();
   const hasPdf = !!useCase.pdfDeck?.url;
+  const panelClass = isDarkMode ? 'bg-zinc-950/60 border-zinc-800' : 'bg-white border-slate-200';
+  const textMain = isDarkMode ? 'text-zinc-100' : 'text-slate-900';
+  const textSubtle = isDarkMode ? 'text-zinc-400' : 'text-slate-600';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white">
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div className={`min-h-screen font-mono ${isDarkMode ? 'bg-[#020408] text-zinc-100' : 'bg-gradient-to-br from-white via-slate-50 to-white text-slate-900'}`}>
+      <div className={`absolute inset-0 pointer-events-none ${isDarkMode ? 'bg-[linear-gradient(to_right,#00E5FF06_1px,transparent_1px),linear-gradient(to_bottom,#00E5FF06_1px,transparent_1px)]' : 'bg-[linear-gradient(to_right,#6366f10a_1px,transparent_1px),linear-gradient(to_bottom,#6366f10a_1px,transparent_1px)]'} bg-[size:48px_48px]`} />
+      <header className={`sticky top-0 z-40 shadow-sm border-b backdrop-blur-md ${panelClass}`}>
         <div className="flex items-center justify-between p-4 max-w-5xl mx-auto">
           <button
             type="button"
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors"
+            className={`flex items-center gap-2 transition-colors ${isDarkMode ? 'text-zinc-400 hover:text-zinc-100' : 'text-slate-600 hover:text-slate-900'}`}
           >
             <ArrowLeft className="w-5 h-5" />
             <span>Back</span>
           </button>
-          <span className="text-sm text-slate-500">Use case</span>
+          <span className={`text-sm ${textSubtle}`}>Use case</span>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-8 pb-16">
+      <main className="relative max-w-4xl mx-auto px-4 py-8 pb-16">
         {/* Hero */}
         <div className="mb-10">
           {useCase.heroImage?.url && (
-            <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm mb-6">
+            <div className={`rounded-xl overflow-hidden border shadow-sm mb-6 ${panelClass}`}>
               <img
                 src={useCase.heroImage.url}
                 alt={useCase.title}
@@ -54,11 +60,11 @@ export default function UseCaseViewer({ useCase }: UseCaseViewerProps) {
               />
             </div>
           )}
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
+          <h1 className={`text-3xl md:text-4xl font-black tracking-tight mb-2 ${textMain}`}>
             {useCase.title}
           </h1>
           {(useCase.resultsHeadline || useCase.description) && (
-            <p className="text-lg text-slate-600">
+            <p className={`text-lg ${textSubtle}`}>
               {useCase.resultsHeadline || useCase.description}
             </p>
           )}
@@ -67,8 +73,8 @@ export default function UseCaseViewer({ useCase }: UseCaseViewerProps) {
         {/* Single primary media: video or PDF (no tabs) */}
         {hasVideo && (
           <section className="mb-10">
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">Demo</h2>
-            <div className="rounded-xl overflow-hidden border border-slate-200 bg-slate-900 aspect-video">
+            <h2 className={`text-xl font-semibold mb-3 ${textMain}`}>Demo</h2>
+            <div className={`rounded-xl overflow-hidden border aspect-video ${isDarkMode ? 'border-zinc-700 bg-black' : 'border-slate-200 bg-slate-900'}`}>
               <iframe
                 src={embedUrl(useCase.demoVideoUrl!)}
                 title={`${useCase.title} demo`}
@@ -82,8 +88,8 @@ export default function UseCaseViewer({ useCase }: UseCaseViewerProps) {
 
         {!hasVideo && hasPdf && (
           <section className="mb-10">
-            <h2 className="text-xl font-semibold text-slate-900 mb-3">Deck / PDF</h2>
-            <div className="rounded-xl border border-slate-200 bg-slate-50 overflow-hidden">
+            <h2 className={`text-xl font-semibold mb-3 ${textMain}`}>Deck / PDF</h2>
+            <div className={`rounded-xl border overflow-hidden ${isDarkMode ? 'border-zinc-700 bg-zinc-950' : 'border-slate-200 bg-slate-50'}`}>
               <iframe
                 src={`${useCase.pdfDeck!.url}#toolbar=1&navpanes=1&scrollbar=1`}
                 className="w-full h-[500px] border-0"
@@ -94,7 +100,7 @@ export default function UseCaseViewer({ useCase }: UseCaseViewerProps) {
               href={useCase.pdfDeck!.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-2 text-blue-600 hover:underline"
+              className={`inline-flex items-center gap-2 mt-2 ${isDarkMode ? 'text-cyan-400 hover:underline' : 'text-indigo-600 hover:underline'}`}
             >
               <Download className="w-4 h-4" />
               Download PDF
@@ -154,12 +160,12 @@ export default function UseCaseViewer({ useCase }: UseCaseViewerProps) {
 
         {/* PDF link at bottom if we showed video above */}
         {hasVideo && hasPdf && (
-          <section className="mt-10 pt-8 border-t border-slate-200">
+          <section className={`mt-10 pt-8 border-t ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'}`}>
             <a
               href={useCase.pdfDeck!.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-600 hover:underline"
+              className={`inline-flex items-center gap-2 ${isDarkMode ? 'text-cyan-400 hover:underline' : 'text-indigo-600 hover:underline'}`}
             >
               <ExternalLink className="w-4 h-4" />
               View or download deck (PDF)
