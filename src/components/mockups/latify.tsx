@@ -22,7 +22,6 @@ import { MetricCardGrid } from '@/components/sections/mars/MetricCard';
 import { ArtifactList } from '@/components/sections/mars/ArtifactRow';
 import { PlaybookGrid } from '@/components/sections/mars/PlaybookStep';
 import { RootCausePanel } from '@/components/sections/mars/RootCausePanel';
-import { GateStatusPanel } from '@/components/sections/mars/GateStatusPanel';
 import { DiagnosticLog } from '@/components/sections/mars/DiagnosticLog';
 import { MarketSignificanceCard, SystemSummaryCard } from '@/components/sections/mars/MarketSignificanceCard';
 
@@ -233,13 +232,19 @@ export default function TrialDeRiskMap({ initialTrialId = 'latify' }: { initialT
                       cos(θ) = (A·B) / (||A|| ||B||)
                     </div>
                     <div className="space-y-3">
-                      <div className="flex justify-between items-center">
-                        <span className="zeta-evidence-label">Target Responder</span>
-                        <span className={`text-lg font-light ${isDarkMode ? 'text-white' : 'text-slate-950'}`}>{trial.cosineResponder.toFixed(4)}</span>
+                      <div className="flex justify-between items-center gap-2">
+                        <span className={`text-[10px] font-black uppercase tracking-widest ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+                          TARGET RESPONDER
+                        </span>
+                        <span className={`text-lg font-light tabular-nums shrink-0 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                          {trial.cosineResponder.toFixed(4)}
+                        </span>
                       </div>
-                      <div className="flex justify-between items-center">
-                        <span className="zeta-evidence-label">ITT Diluted</span>
-                        <span className="text-lg font-light text-rose-500">{trial.cosineITT.toFixed(4)}</span>
+                      <div className="flex justify-between items-center gap-2">
+                        <span className={`text-[10px] font-black uppercase tracking-widest ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+                          ITT DILUTED
+                        </span>
+                        <span className="text-lg font-light text-rose-500 tabular-nums shrink-0">{trial.cosineITT.toFixed(4)}</span>
                       </div>
                       <div className={`flex justify-between items-center p-3 rounded ${isDarkMode ? 'bg-rose-500/5 border border-rose-500/20' : 'bg-rose-50 border border-rose-200'}`}>
                         <span className="text-[9px] font-black text-rose-500 uppercase">Observed HR</span>
@@ -255,9 +260,13 @@ export default function TrialDeRiskMap({ initialTrialId = 'latify' }: { initialT
                       <div key={gate.id} className={`flex justify-between items-center p-2.5 border rounded text-[9px] transition-colors ${
                         isDarkMode ? 'bg-black/40 border-zinc-900' : 'bg-slate-50 border-slate-100'
                       }`}>
-                        <div className="flex-1 mr-2">
-                          <span className="zeta-evidence-label block">{gate.label}</span>
-                          <span className="zeta-evidence-value block text-[10px] mt-1">{gate.result}</span>
+                        <div className="flex-1 mr-2 min-w-0">
+                          <span className={`block text-[10px] font-black uppercase tracking-wide ${isDarkMode ? 'text-zinc-300' : 'text-slate-800'}`}>
+                            {gate.label.toUpperCase()}
+                          </span>
+                          <span className={`block text-[9px] sm:text-[10px] font-bold uppercase mt-1 leading-snug ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
+                            {gate.result.toUpperCase()}
+                          </span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <div className={`w-1.5 h-1.5 rounded-full ${gate.pass ? 'bg-emerald-500' : 'bg-rose-500'}`} />

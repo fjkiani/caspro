@@ -10,18 +10,12 @@
 /* Theme follows ThemeContext (.light-mode on <html>), not Tailwind `dark` alone */
 .zeta-evidence-label {
   @apply text-[11px] font-black uppercase tracking-[0.2em] !important;
-  color: rgb(228 228 231); /* zinc-200 — dark default */
-}
-.light-mode .zeta-evidence-label {
-  color: rgb(51 65 85); /* slate-700 */
+  color: var(--zeta-evidence-label-color) !important;
 }
 
 .zeta-evidence-value {
   @apply text-[13px] font-black uppercase !important;
-  color: rgb(255 255 255);
-}
-.light-mode .zeta-evidence-value {
-  color: rgb(15 23 42); /* slate-900 */
+  color: var(--zeta-evidence-value-color) !important;
 }
 
 .zeta-trial-tab {
@@ -72,10 +66,16 @@ html, body {
   --panel-bg: rgba(2, 4, 8, 0.8);
   --panel-border: rgba(0, 229, 255, 0.2);
   --grid-line-color: rgba(0, 229, 255, 0.03);
+
+  --zeta-evidence-label-color: #d4d4d8;
+  --zeta-evidence-value-color: #fafafa;
 }
 
 /* ─── DESIGN TOKENS: LIGHT MODE ─── */
 .light-mode {
+  --zeta-evidence-label-color: #475569;
+  --zeta-evidence-value-color: #0f172a;
+
   --background: #ffffff;
   --foreground: #09090b;
   --muted: #f4f4f5;

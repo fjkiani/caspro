@@ -2,103 +2,203 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { FiArrowRight, FiMail, FiMessageSquare, FiBriefcase, FiUser, FiAward, FiCheckCircle } from 'react-icons/fi';
+import {
+  FiArrowRight,
+  FiMail,
+  FiMessageSquare,
+  FiBriefcase,
+  FiUser,
+  FiCheckCircle,
+  FiPhone,
+} from 'react-icons/fi';
 import React from 'react';
 import emailjs from '@emailjs/browser';
 import DoubleDnaHelix from '@/components/ui/DoubleDnaHelix';
 import DnaBasePairStrip from '@/components/ui/DnaBasePairStrip';
+import { useTheme } from '@/context/ThemeContext';
 
-// Constants for Contact Section configuration
 export const CONTACT_CONFIG = {
   sectionId: 'contact',
-  className: 'section bg-gradient-to-br from-slate-800 via-blue-900 to-indigo-900 text-white',
   animationDelay: 0.2,
-  
-  // The title is a command, not a question.
   titleText: 'Request a Demo',
-  
-  // The subtitle is a direct statement of what a briefing entails.
-  subtitleText: 'Schedule a demo to witness how our AI command and control platform transforms diagnostic ambiguity and R&D guesswork into your decisive advantage.',
-  
-  // The CTA is a call to action for commanders.
-  ctaText: 'Request Strategic Briefing',
-  
-  hintText: 'Our AI agents will respond shortly.',
+  subtitleText:
+    'Schedule a demo to witness how our AI command and control platform transforms diagnostic ambiguity and R&D guesswork into your decisive advantage.',
+  ctaText: 'Submit Request',
+  hintText: 'Required fields are marked with *',
   formTitle: 'Initiate Contact',
-  
-  // We don't have "partners." We have allies who leverage our power.
-  partnerTitle: "Research Use Only",
-  
-  // Benefits are framed as tactical advantages.
+  partnerTitle: 'Research Use Only',
   partnerBenefits: [
-      '95.7% AUROC ClinVar (53,210 samples)',
-      '73% VUS Resolution Rate',
-      '89.1% AUROC BRCA1 Zero-shot',
-      '82.6% AUROC SpliceVarDB Exonic Variants'
+    '95.7% AUROC ClinVar (53,210 samples)',
+    '73% VUS Resolution Rate',
+    '89.1% AUROC BRCA1 Zero-shot',
+    '82.6% AUROC SpliceVarDB Exonic Variants',
   ],
-
-  // Social proof is about joining the victors.
-    socialProofTitle: ' The CrisPRO Research Platform',
-  socialProofOrganizations: [
-    'Dana-Farber Cancer Institute', // Represents top-tier clinical/research - for PrecisionRad
-    'Vertex Pharmaceuticals',       // Represents biotech/pharma - for CrisPRO
-    'Flatiron Health',              // Represents clinical data/EMR - for AgenticEMR
-    'Stanford Medicine'             // Represents a leading academic partner
-  ],
-
   animationVariants: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: (delay = 0) => ({ duration: 0.6, delay })
-  }
+    transition: (delay = 0) => ({ duration: 0.6, delay }),
+  },
 };
 
-// Form fields remain functional but are part of a more powerful frame.
-export const FORM_FIELDS = [
-  { id: 'name', label: 'Full Name', type: 'text', icon: React.createElement(FiUser) },
-  { id: 'email', label: 'Work Email', type: 'email', icon: React.createElement(FiMail) },
-  { id: 'organization', label: 'Organization / Institution', type: 'text',  icon: React.createElement(FiBriefcase) },
-  { id: 'role', label: 'Your Role / Specialty', type: 'text', icon: React.createElement(FiAward) },
+export type ContactFormField = {
+  id: string;
+  name: string;
+  label: string;
+  type: 'text' | 'email' | 'tel';
+  icon: React.ReactNode;
+  required: boolean;
+  placeholder: string;
+  autoComplete?: string;
+  gridClass?: string;
+};
+
+/** Required for routing + follow-up. EmailJS template should map these variable names. */
+export const CONTACT_FORM_FIELDS: ContactFormField[] = [
+  {
+    id: 'name',
+    name: 'name',
+    label: 'FULL NAME',
+    type: 'text',
+    icon: <FiUser className="w-4 h-4" />,
+    required: true,
+    placeholder: 'Jane Doe',
+    autoComplete: 'name',
+    gridClass: 'sm:col-span-1',
+  },
+  {
+    id: 'job_title',
+    name: 'job_title',
+    label: 'JOB TITLE',
+    type: 'text',
+    icon: <FiBriefcase className="w-4 h-4" />,
+    required: true,
+    placeholder: 'Director, Translational Oncology',
+    autoComplete: 'organization-title',
+    gridClass: 'sm:col-span-1',
+  },
+  {
+    id: 'email',
+    name: 'email',
+    label: 'WORK EMAIL',
+    type: 'email',
+    icon: <FiMail className="w-4 h-4" />,
+    required: true,
+    placeholder: 'you@institution.org',
+    autoComplete: 'email',
+    gridClass: 'sm:col-span-1',
+  },
+  {
+    id: 'phone',
+    name: 'phone',
+    label: 'PHONE',
+    type: 'tel',
+    icon: <FiPhone className="w-4 h-4" />,
+    required: true,
+    placeholder: '+1 555 123 4567',
+    autoComplete: 'tel',
+    gridClass: 'sm:col-span-1',
+  },
+  {
+    id: 'organization',
+    name: 'organization',
+    label: 'ORGANIZATION / INSTITUTION',
+    type: 'text',
+    icon: <FiBriefcase className="w-4 h-4" />,
+    required: true,
+    placeholder: 'Company or hospital system',
+    autoComplete: 'organization',
+    gridClass: 'sm:col-span-2',
+  },
 ];
+
 const MESSAGE_FIELD = {
   id: 'message',
-  label: 'Specific Interests or Questions (Optional)',
-  placeholder: 'e.g., Interested in variant interpretation, protien structure, CRISPR design, clinical trials, etc.',
+  name: 'message',
+  label: 'CONTEXT (OPTIONAL)',
+  placeholder:
+    'Trial phase, therapeutic area, or questions — helps us prepare your briefing.',
   rows: 4,
-  icon: React.createElement(FiMessageSquare)
+  icon: <FiMessageSquare className="w-4 h-4" />,
 };
 
+function buildEmailPayload(form: HTMLFormElement): Record<string, string> {
+  const fd = new FormData(form);
+  const payload: Record<string, string> = {};
+  fd.forEach((value, key) => {
+    if (typeof value === 'string') payload[key] = value.trim();
+  });
+  // Alias for templates that still expect `title` instead of `job_title`
+  if (payload.job_title && !payload.title) payload.title = payload.job_title;
+  return payload;
+}
+
 const ContactSection = () => {
-  const [formData, setFormData] = useState<Record<string, string>>({});
+  const { isDarkMode } = useTheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{ message: string; type: 'success' | 'error' | '' }>({ message: '', type: '' });
+  const [submitStatus, setSubmitStatus] = useState<{ message: string; type: 'success' | 'error' | '' }>({
+    message: '',
+    type: '',
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const inputShell = isDarkMode
+    ? 'bg-zinc-950/80 border-zinc-700 text-zinc-100 placeholder:text-zinc-600 focus:border-cyan-500/60 focus:ring-cyan-500/20'
+    : 'bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-indigo-500/20';
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const labelCls = `block text-[10px] font-black uppercase tracking-[0.2em] mb-2 ${
+    isDarkMode ? 'text-zinc-400' : 'text-slate-600'
+  }`;
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    const form = e.currentTarget;
     setSubmitStatus({ message: '', type: '' });
 
-    // Replace with your actual EmailJS User ID, Service ID, and Template ID
+    const payload = buildEmailPayload(form);
+
+    const missing = CONTACT_FORM_FIELDS.filter((f) => f.required && !payload[f.name]?.trim()).map((f) => f.label);
+    if (missing.length > 0) {
+      setSubmitStatus({
+        message: `Please complete: ${missing.join(', ')}.`,
+        type: 'error',
+      });
+      return;
+    }
+
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email || '');
+    if (!emailOk) {
+      setSubmitStatus({ message: 'Enter a valid work email address.', type: 'error' });
+      return;
+    }
+
+    const phoneDigits = (payload.phone || '').replace(/\D/g, '');
+    if (phoneDigits.length < 8) {
+      setSubmitStatus({
+        message: 'Enter a complete phone number (digits only count; include country / area code).',
+        type: 'error',
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
     const emailJsUserId = 'uJYd4pcG3X27kg7z-';
     const serviceId = 'service_pbft5vk';
     const templateId = 'template_1hgequt';
 
-    emailjs.send(serviceId, templateId, formData, emailJsUserId)
-      .then((response) => {
-        console.log('SUCCESS!', response.status, response.text);
-        setSubmitStatus({ message: 'Thank you for your request! We will be in touch shortly.', type: 'success' });
-        setFormData({}); // Clear form data
-        // Find the form element and reset it
-        const form = e.target as HTMLFormElement;
+    emailjs
+      .send(serviceId, templateId, payload, emailJsUserId)
+      .then(() => {
+        setSubmitStatus({
+          message: 'Thank you — we will follow up shortly at the email and phone you provided.',
+          type: 'success',
+        });
         form.reset();
       })
-      .catch((err) => {
-        console.error('FAILED...', err);
-        setSubmitStatus({ message: 'Failed to send message. Please try again later or contact us directly.', type: 'error' });
+      .catch(() => {
+        setSubmitStatus({
+          message: 'Could not send right now. Please retry or email us directly.',
+          type: 'error',
+        });
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -106,171 +206,249 @@ const ContactSection = () => {
   };
 
   return (
-    <section id={CONTACT_CONFIG.sectionId} className="relative overflow-hidden py-20 lg:py-32 bg-white dark:bg-slate-900">
-      {/* DNA Background Elements */}
-      <div className="absolute left-4 top-12 w-24 h-4/5 opacity-5 dark:opacity-20 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
-        <DoubleDnaHelix 
-          className="w-full h-full" 
+    <section
+      id={CONTACT_CONFIG.sectionId}
+      className={`relative overflow-hidden py-16 lg:py-24 transition-colors ${
+        isDarkMode ? 'bg-[#020408] text-zinc-100' : 'bg-slate-50 text-slate-900'
+      }`}
+    >
+      <div
+        className={`absolute left-4 top-12 w-24 h-4/5 pointer-events-none ${isDarkMode ? 'opacity-10' : 'opacity-[0.06]'}`}
+        style={{ perspective: '800px', transformStyle: 'preserve-3d' }}
+      >
+        <DoubleDnaHelix
+          className="w-full h-full"
           baseCount={12}
           rotationSpeed={45}
           colors={{
-            adenine: '#60a5fa',
-            thymine: '#a78bfa', 
+            adenine: '#22d3ee',
+            thymine: '#a78bfa',
             guanine: '#34d399',
             cytosine: '#fbbf24',
-            backbone1: '#60a5fa',
-            backbone2: '#a78bfa'
+            backbone1: '#22d3ee',
+            backbone2: '#a78bfa',
           }}
         />
       </div>
-      <div className="absolute right-4 top-20 w-20 h-3/4 opacity-5 dark:opacity-15 pointer-events-none" style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
-        <DoubleDnaHelix 
-          className="w-full h-full" 
+      <div
+        className={`absolute right-4 top-20 w-20 h-3/4 pointer-events-none ${isDarkMode ? 'opacity-10' : 'opacity-[0.05]'}`}
+        style={{ perspective: '800px', transformStyle: 'preserve-3d' }}
+      >
+        <DoubleDnaHelix
+          className="w-full h-full"
           baseCount={10}
           rotationSpeed={38}
           colors={{
             adenine: '#a78bfa',
-            thymine: '#60a5fa',
-            guanine: '#fbbf24', 
+            thymine: '#22d3ee',
+            guanine: '#fbbf24',
             cytosine: '#34d399',
             backbone1: '#a78bfa',
-            backbone2: '#60a5fa'
+            backbone2: '#22d3ee',
           }}
         />
       </div>
-      
-      {/* DNA base pairs decorative element */}
-      <DnaBasePairStrip className="absolute top-0 left-0 right-0 opacity-10" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-16 items-center">
-          {/* Content */}
+      <DnaBasePairStrip className="absolute top-0 left-0 right-0 opacity-[0.08]" />
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <motion.div
+            className="lg:col-span-5"
             initial={CONTACT_CONFIG.animationVariants.initial}
             whileInView={CONTACT_CONFIG.animationVariants.animate}
             viewport={{ once: true }}
             transition={CONTACT_CONFIG.animationVariants.transition()}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-800 dark:text-white">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400">
-                {CONTACT_CONFIG.titleText}
-              </span>
+            <p
+              className={`text-[10px] font-black uppercase tracking-[0.35em] mb-3 ${
+                isDarkMode ? 'text-cyan-500' : 'text-indigo-600'
+              }`}
+            >
+              CONTACT
+            </p>
+            <h2
+              className={`text-3xl md:text-4xl font-black uppercase tracking-tight mb-5 leading-tight ${
+                isDarkMode ? 'text-white' : 'text-slate-900'
+              }`}
+            >
+              {CONTACT_CONFIG.titleText}
             </h2>
-            <p className="text-xl mb-8 text-slate-600 dark:text-indigo-200 leading-relaxed">
+            <p
+              className={`text-sm md:text-base mb-8 leading-relaxed font-bold uppercase tracking-wide ${
+                isDarkMode ? 'text-zinc-400' : 'text-slate-600'
+              }`}
+            >
               {CONTACT_CONFIG.subtitleText}
             </p>
-            
-            <div className="mb-10">
-              <div className="bg-gray-50 dark:bg-white/10 p-6 rounded-xl border border-gray-200 dark:border-purple-400/30 relative overflow-hidden">
-                {/* DNA strand decoration */}
-                <div className="absolute right-0 top-0 bottom-0 w-6 opacity-10 dark:opacity-20 pointer-events-none" style={{ perspective: '400px', transformStyle: 'preserve-3d' }}>
-                  <DoubleDnaHelix 
-                    className="w-full h-full" 
-                    baseCount={3}
-                    rotationSpeed={15}
-                    colors={{
-                      adenine: '#9ca3af',
-                      thymine: '#9ca3af', 
-                      guanine: '#9ca3af',
-                      cytosine: '#9ca3af',
-                      backbone1: '#9ca3af',
-                      backbone2: '#9ca3af'
-                    }}
-                  />
-                </div>
-                <h3 className="text-xl font-semibold mb-4 text-slate-800 dark:text-indigo-100 relative z-10">{CONTACT_CONFIG.partnerTitle}</h3>
-                <ul className="space-y-3 relative z-10">
-                  {CONTACT_CONFIG.partnerBenefits.map((benefit, index) => (
-                    <li key={index} className="flex items-start">
-                      <FiCheckCircle className="text-green-500 dark:text-green-400 mr-3 mt-1 flex-shrink-0" />
-                      <span className="text-slate-600 dark:text-indigo-200">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
+
+            <div
+              className={`rounded-sm border p-6 relative overflow-hidden ${
+                isDarkMode ? 'bg-zinc-950/90 border-zinc-800' : 'bg-white border-slate-200 shadow-sm'
+              }`}
+            >
+              <div
+                className="absolute right-0 top-0 bottom-0 w-6 opacity-[0.07] pointer-events-none"
+                style={{ perspective: '400px', transformStyle: 'preserve-3d' }}
+              >
+                <DoubleDnaHelix
+                  className="w-full h-full"
+                  baseCount={3}
+                  rotationSpeed={15}
+                  colors={{
+                    adenine: '#71717a',
+                    thymine: '#71717a',
+                    guanine: '#71717a',
+                    cytosine: '#71717a',
+                    backbone1: '#71717a',
+                    backbone2: '#71717a',
+                  }}
+                />
               </div>
+              <h3
+                className={`text-xs font-black uppercase tracking-[0.25em] mb-4 relative z-10 ${
+                  isDarkMode ? 'text-zinc-300' : 'text-slate-800'
+                }`}
+              >
+                {CONTACT_CONFIG.partnerTitle}
+              </h3>
+              <ul className="space-y-3 relative z-10">
+                {CONTACT_CONFIG.partnerBenefits.map((benefit, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <FiCheckCircle
+                      className={`mt-0.5 flex-shrink-0 w-4 h-4 ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}
+                    />
+                    <span
+                      className={`text-xs font-bold uppercase tracking-wide ${
+                        isDarkMode ? 'text-zinc-400' : 'text-slate-600'
+                      }`}
+                    >
+                      {benefit}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            
-          
           </motion.div>
 
-          {/* Form */}
           <motion.div
+            className="lg:col-span-7"
             initial={CONTACT_CONFIG.animationVariants.initial}
             whileInView={CONTACT_CONFIG.animationVariants.animate}
             viewport={{ once: true }}
             transition={CONTACT_CONFIG.animationVariants.transition(CONTACT_CONFIG.animationDelay)}
-            className="relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm text-slate-900 dark:text-white p-8 md:p-10 rounded-xl shadow-2xl border border-gray-200 dark:border-blue-200/50"
           >
-            {/* DNA-themed glowing border for form */}
-            <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 opacity-80"></div>
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-400 via-purple-400 to-blue-400 opacity-80"></div>
-              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-400 via-purple-400 to-indigo-400 opacity-80"></div>
-              <div className="absolute right-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-400 via-purple-400 to-blue-400 opacity-80"></div>
-            </div>
-            
-            <h3 className="text-2xl font-bold mb-8 text-center relative z-10">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
+            <div
+              className={`relative rounded-sm border p-6 sm:p-8 md:p-10 overflow-hidden ${
+                isDarkMode
+                  ? 'bg-zinc-950/95 border-zinc-800 shadow-[0_0_40px_rgba(0,229,255,0.06)]'
+                  : 'bg-white border-slate-200 shadow-lg'
+              }`}
+            >
+              <div
+                className={`absolute inset-x-0 top-0 h-px ${
+                  isDarkMode ? 'bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent' : 'bg-gradient-to-r from-transparent via-indigo-400/50 to-transparent'
+                }`}
+              />
+
+              <h3
+                className={`text-lg sm:text-xl font-black uppercase tracking-[0.2em] mb-2 text-center ${
+                  isDarkMode ? 'text-cyan-400' : 'text-indigo-700'
+                }`}
+              >
                 {CONTACT_CONFIG.formTitle}
-              </span>
-            </h3>
-            <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
-              {FORM_FIELDS.map((field) => (
-                <div key={field.id} className="relative">
-                  <label htmlFor={field.id} className="block text-sm font-medium mb-1 text-foreground/80">
-                    {field.label}
-                  </label>
-                  <div className="relative mt-1">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-muted-foreground">
-                      {field.icon}
+              </h3>
+              <p
+                className={`text-center text-[10px] font-bold uppercase tracking-widest mb-8 ${
+                  isDarkMode ? 'text-zinc-500' : 'text-slate-500'
+                }`}
+              >
+                {CONTACT_CONFIG.hintText}
+              </p>
+
+              <form onSubmit={handleSubmit} className="space-y-5 relative z-10" noValidate>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {CONTACT_FORM_FIELDS.map((field) => (
+                    <div key={field.id} className={field.gridClass ?? ''}>
+                      <label htmlFor={field.id} className={labelCls}>
+                        {field.label}
+                        {field.required ? <span className="text-rose-500 ml-1">*</span> : null}
+                      </label>
+                      <div className="relative">
+                        <div
+                          className={`absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none ${
+                            isDarkMode ? 'text-zinc-500' : 'text-slate-400'
+                          }`}
+                        >
+                          {field.icon}
+                        </div>
+                        <input
+                          type={field.type}
+                          id={field.id}
+                          name={field.name}
+                          autoComplete={field.autoComplete}
+                          placeholder={field.placeholder}
+                          required={field.required}
+                          className={`w-full pl-10 pr-3 py-3 border rounded-sm text-sm font-medium focus:outline-none focus:ring-2 transition-shadow ${inputShell}`}
+                        />
+                      </div>
                     </div>
-                    <input
-                      type={field.type}
-                      id={field.id}
-                      name={field.id}
-                      onChange={handleChange}
-                      className="bg-background/50 w-full pl-10 pr-4 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring transition-shadow shadow-sm focus:shadow-md text-foreground placeholder:text-muted-foreground"
-                      required
+                  ))}
+                </div>
+
+                <div>
+                  <label htmlFor={MESSAGE_FIELD.id} className={labelCls}>
+                    {MESSAGE_FIELD.label}
+                  </label>
+                  <div className="relative">
+                    <div
+                      className={`absolute top-3 left-0 pl-3 pointer-events-none ${
+                        isDarkMode ? 'text-zinc-500' : 'text-slate-400'
+                      }`}
+                    >
+                      {MESSAGE_FIELD.icon}
+                    </div>
+                    <textarea
+                      id={MESSAGE_FIELD.id}
+                      name={MESSAGE_FIELD.name}
+                      rows={MESSAGE_FIELD.rows}
+                      placeholder={MESSAGE_FIELD.placeholder}
+                      className={`w-full pl-10 pr-3 py-3 border rounded-sm text-sm font-medium focus:outline-none focus:ring-2 resize-y min-h-[100px] ${inputShell}`}
                     />
                   </div>
                 </div>
-              ))}
-              
-              <div className="relative">
-                <label htmlFor={MESSAGE_FIELD.id} className="block text-sm font-medium mb-1 text-foreground/80">
-                  {MESSAGE_FIELD.label}
-                </label>
-                <div className="relative mt-1">
-                  <div className="absolute top-3 left-0 pl-3 flex items-start pointer-events-none text-muted-foreground">
-                    {MESSAGE_FIELD.icon}
-                  </div>
-                  <textarea
-                    id={MESSAGE_FIELD.id}
-                    name={MESSAGE_FIELD.id}
-                    rows={MESSAGE_FIELD.rows}
-                    onChange={handleChange}
-                    className="bg-background/50 w-full pl-10 pr-4 py-2.5 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring transition-shadow shadow-sm focus:shadow-md text-foreground placeholder:text-muted-foreground"
-                    placeholder={MESSAGE_FIELD.placeholder}
-                  />
-                </div>
-              </div>
-              
-              {submitStatus.message && (
-                <div className={`p-3 rounded-lg text-sm text-center ${submitStatus.type === 'success' ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'}`}>
-                  {submitStatus.message}
-                </div>
-              )}
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? 'Sending...' : CONTACT_CONFIG.ctaText}
-                {!isSubmitting && <FiArrowRight size={20} />}
-              </button>
-              <p className="text-xs text-center text-muted-foreground mt-3">{CONTACT_CONFIG.hintText}</p>
-            </form>
+                {submitStatus.message ? (
+                  <div
+                    role="alert"
+                    className={`p-4 rounded-sm text-xs font-bold uppercase tracking-wide text-center border ${
+                      submitStatus.type === 'success'
+                        ? isDarkMode
+                          ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
+                          : 'bg-emerald-50 border-emerald-200 text-emerald-800'
+                        : isDarkMode
+                          ? 'bg-rose-500/10 border-rose-500/30 text-rose-300'
+                          : 'bg-rose-50 border-rose-200 text-rose-800'
+                    }`}
+                  >
+                    {submitStatus.message}
+                  </div>
+                ) : null}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full py-4 rounded-sm text-[11px] font-black uppercase tracking-[0.25em] flex items-center justify-center gap-2 transition-all border disabled:opacity-50 disabled:cursor-not-allowed ${
+                    isDarkMode
+                      ? 'bg-cyan-500 text-black border-cyan-400 hover:bg-cyan-400'
+                      : 'bg-indigo-600 text-white border-indigo-600 hover:bg-indigo-700'
+                  }`}
+                >
+                  {isSubmitting ? 'SENDING…' : CONTACT_CONFIG.ctaText}
+                  {!isSubmitting ? <FiArrowRight className="w-4 h-4" /> : null}
+                </button>
+              </form>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -278,4 +456,4 @@ const ContactSection = () => {
   );
 };
 
-export default ContactSection; 
+export default ContactSection;

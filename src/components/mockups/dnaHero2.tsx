@@ -1,14 +1,13 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { Zap, ChevronRight } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 
 import * as THREE from 'three';
-import { NumberCounter } from '@/components/ui/NumberCounter';
 import { TypewriterText } from '@/components/ui/TypewriterText';
 import { HERO_CAPABILITIES } from '@/components/sections/mars/CapabilityShowcase';
-import { DNA_METRICS } from '@/data/dna-hero-data';
 
 // --- Capability cycling text for the typewriter ---
 const CAPABILITY_LINES = HERO_CAPABILITIES.map(
@@ -229,34 +228,24 @@ export function DnaHero({ embedded = false }: { embedded?: boolean }) {
       {/* === MAIN HERO CONTENT === */}
       <div className="absolute inset-0 z-10 flex flex-col justify-between p-4 sm:p-8 lg:p-12 pointer-events-none">
 
-        {/* Top Bar: Minimal confidence only */}
-        <div className="flex justify-between items-start gap-4">
-          <div />
-          
-          <div className="text-right shrink-0">
-            <NumberCounter end={DNA_METRICS.confidence_floor} prefix="" suffix="" />
-            <div className="text-[9px] uppercase tracking-[0.35em] font-black text-zinc-700 mt-2">Confidence</div>
-          </div>
-        </div>
-
         {/* Bottom Section: Headline + CTA */}
         <div className="flex flex-col sm:flex-row sm:justify-start sm:items-end pb-24 sm:pb-28 gap-6 sm:gap-12 pointer-events-auto">
           
           {/* Left: Primary Copy */}
           <div className="max-w-2xl space-y-4 sm:space-y-6 min-w-0">
             {/* Main Headline — per landing page spec */}
-            <h1 className={`text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-[1.15] ${
+            <h1 className={`text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-[1.15] uppercase ${
               isDarkMode ? 'text-white' : 'text-slate-900'
             }`}>
-              Prediction is <span className={isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}>Certainty</span>.
+              PREDICTION IS <span className={isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}>CERTAINTY</span>.
             </h1>
 
             {/* Typewriter Capability Cycling */}
             <div className={`backdrop-blur-sm border rounded px-6 py-4 ${
               isDarkMode ? 'bg-zinc-950/80 border-zinc-800/60' : 'bg-white/90 border-slate-200'
             }`}>
-              <div className="text-[9px] text-zinc-600 font-black uppercase tracking-[0.4em] mb-2">
-                Active Gate
+              <div className={`text-[9px] font-black uppercase tracking-[0.4em] mb-2 ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}>
+                ACTIVE GATE
               </div>
               <div className={`text-[13px] font-mono leading-relaxed min-h-[1.5em] ${isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}`}>
                 <TypewriterText
@@ -269,27 +258,35 @@ export function DnaHero({ embedded = false }: { embedded?: boolean }) {
             </div>
 
             {/* Subline */}
-            <p className="text-[11px] text-zinc-500 uppercase tracking-[0.3em] font-bold flex items-center gap-4">
-              <Zap className="w-3 h-3 text-cyan-600" />
-              Five Phase III failures. Five receipts. Zero excuses.
+            <p className={`text-[11px] uppercase tracking-[0.3em] font-bold flex items-center gap-4 ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}>
+              <Zap className={`w-3 h-3 ${isDarkMode ? 'text-cyan-500' : 'text-indigo-600'}`} />
+              FIVE PHASE III FAILURES. FIVE RECEIPTS. ZERO EXCUSES.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-              <button className={`group px-6 sm:px-8 py-3 border text-[10px] font-black transition-all uppercase tracking-[0.3em] flex items-center justify-center gap-2 ${
-                isDarkMode 
-                  ? 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/20 shadow-[0_0_30px_rgba(6,182,212,0.1)]'
-                  : 'bg-indigo-500/10 border-indigo-500/30 text-indigo-600 hover:bg-indigo-500/20 shadow-[0_0_30px_rgba(79,70,229,0.1)]'
-              }`}>
-                See the receipts <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-              </button>
-              <button className={`px-6 sm:px-8 py-3 bg-transparent border text-[10px] font-black transition-all uppercase tracking-[0.3em] ${
-                isDarkMode 
-                  ? 'border-zinc-800 text-zinc-500 hover:text-white hover:border-zinc-600'
-                  : 'border-slate-300 text-slate-500 hover:text-slate-900 hover:border-slate-500'
-              }`}>
-                Talk to us
-              </button>
+              <Link
+                href="/engine/safety/"
+                prefetch={false}
+                className={`group px-6 sm:px-8 py-3 border text-[10px] font-black transition-all uppercase tracking-[0.3em] flex items-center justify-center gap-2 ${
+                  isDarkMode
+                    ? 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/20 shadow-[0_0_30px_rgba(6,182,212,0.1)]'
+                    : 'bg-indigo-500/10 border-indigo-500/30 text-indigo-600 hover:bg-indigo-500/20 shadow-[0_0_30px_rgba(79,70,229,0.1)]'
+                }`}
+              >
+                SEE THE RECEIPTS <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+              <Link
+                href="/contact/"
+                prefetch={false}
+                className={`inline-flex items-center justify-center px-6 sm:px-8 py-3 bg-transparent border text-[10px] font-black transition-all uppercase tracking-[0.3em] ${
+                  isDarkMode
+                    ? 'border-zinc-800 text-zinc-500 hover:text-white hover:border-zinc-600'
+                    : 'border-slate-300 text-slate-500 hover:text-slate-900 hover:border-slate-500'
+                }`}
+              >
+                TALK TO US
+              </Link>
             </div>
           </div>
         </div>

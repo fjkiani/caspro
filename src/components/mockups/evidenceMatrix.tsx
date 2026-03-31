@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
-import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
 import { 
   Copy,
   Check,
@@ -94,11 +93,11 @@ const VectorBackground = ({ isDarkMode }: { isDarkMode: boolean }) => {
 // --- Data Constants ---
 
 export const MATRIX_AXES = [
-  { id: 'cytidine', name: 'Cytidine Analogs', tier: 'VALIDATED_SL', color: 'emerald' },
-  { id: 'icb', name: 'Immune Checkpoints', tier: 'VALIDATED_CLIN', color: 'emerald' },
+  { id: 'cytidine', name: 'CYTIDINE ANALOGS', tier: 'VALIDATED_SL', color: 'emerald' },
+  { id: 'icb', name: 'IMMUNE CHECKPOINTS', tier: 'VALIDATED_CLIN', color: 'emerald' },
   { id: 'atr', name: 'ATR/WEE1', tier: 'STRONG_CANDIDATE', color: 'amber' },
-  { id: 'parp', name: 'PARP Inhibitors', tier: 'MECHANISTIC_ONLY', color: 'amber' },
-  { id: 'wrn', name: 'WRN Inhibitors', tier: 'NOT_SUPPORTED', color: 'rose' }
+  { id: 'parp', name: 'PARP INHIBITORS', tier: 'MECHANISTIC_ONLY', color: 'amber' },
+  { id: 'wrn', name: 'WRN INHIBITORS', tier: 'NOT_SUPPORTED', color: 'rose' }
 ];
 
 export const MATRIX_MODALITIES = ['CRISPR', 'Screen', 'Expr', 'In Vivo', 'Clin', 'PubMed'];
@@ -120,11 +119,11 @@ const SLC25A32_STRUCTURAL_RECEIPT = {
 };
 
 const PUBMED_RECEIPTS = [
-  { pmid: '36323843', author: 'Chabot T', year: '2022', finding: 'MBD4 KO → cytidine-analog SL (isogenic+PDX)', axis: 'Cytidine' },
-  { pmid: '35863105', author: 'Saint-Ghislain', year: '2022', finding: 'MBD4 deficiency predicts ICB response in OM', axis: 'ICB' },
-  { pmid: '38619111', author: 'Fröhlich LM', year: '2024', finding: 'PARP1 expression predicts PARPi sensitivity', axis: 'PARP1' },
-  { pmid: '38658754', author: 'Ferretti S', year: '2024', finding: 'HRO761 WRN inhibitor — MSI-specific SL', axis: 'WRN-MSI' },
-  { pmid: '38060262', author: 'Villy MC', year: '2024', finding: 'Germline MBD4 → multi-tumor predisposition', axis: 'Clinical' },
+  { pmid: '36323843', author: 'CHABOT T', year: '2022', finding: 'MBD4 KO → CYTIDINE-ANALOG SL (ISOGENIC+PDX)', axis: 'CYTIDINE' },
+  { pmid: '35863105', author: 'SAINT-GHISLAIN', year: '2022', finding: 'MBD4 DEFICIENCY PREDICTS ICB RESPONSE IN OM', axis: 'ICB' },
+  { pmid: '38619111', author: 'FRÖHLICH LM', year: '2024', finding: 'PARP1 EXPRESSION PREDICTS PARPI SENSITIVITY', axis: 'PARP1' },
+  { pmid: '38658754', author: 'FERRETTI S', year: '2024', finding: 'HRO761 WRN INHIBITOR — MSI-SPECIFIC SL', axis: 'WRN-MSI' },
+  { pmid: '38060262', author: 'VILLY MC', year: '2024', finding: 'GERMLINE MBD4 → MULTI-TUMOR PREDISPOSITION', axis: 'CLINICAL' },
 ];
 
 const CALIBRATION_BAR = [
@@ -172,16 +171,23 @@ export const EvidenceMatrix = ({ isDarkMode, activeAxis, onAxisSelect }: { isDar
            <span className={`text-[12px] font-black uppercase tracking-[0.3em] ${isDarkMode ? 'text-white' : 'text-slate-950'}`}>Multi-Modal Matrix</span>
         </div>
         <div className="flex gap-4">
-           <span className="text-[10px] font-black uppercase text-emerald-500 flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500"/> Positive</span>
-           <span className="text-[10px] font-black uppercase text-rose-500 flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-rose-500"/> Negative</span>
-           <span className="text-[10px] font-black uppercase text-purple-500 flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-purple-500"/> Conf/Mixed</span>
+           <span className="text-[10px] font-black uppercase text-emerald-500 flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500"/> POSITIVE</span>
+           <span className="text-[10px] font-black uppercase text-rose-500 flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-rose-500"/> NEGATIVE</span>
+           <span className="text-[10px] font-black uppercase text-purple-500 flex items-center gap-1"><div className="w-1.5 h-1.5 rounded-full bg-purple-500"/> CONF / MIXED</span>
         </div>
       </div>
 
       <div className="flex-1 grid grid-cols-8 gap-y-3 gap-x-1">
         <div className="col-span-2" />
         {MATRIX_MODALITIES.map(m => (
-          <div key={m} className="text-[10px] font-black uppercase text-center pb-2 truncate zeta-evidence-label">{m}</div>
+          <div
+            key={m}
+            className={`text-[10px] font-black uppercase text-center pb-2 truncate tracking-widest ${
+              isDarkMode ? 'text-zinc-200' : 'text-slate-900'
+            }`}
+          >
+            {m}
+          </div>
         ))}
         
         {MATRIX_AXES.map((axis) => (
@@ -314,10 +320,14 @@ const PubMedReceipts = ({ isDarkMode }: { isDarkMode: boolean }) => {
 
        <div className={`mt-6 pt-4 border-t ${isDarkMode ? 'border-zinc-800' : 'border-slate-100'}`}>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Structural Receipt (AF3)</span>
-            <span className="text-[9px] font-black text-cyan-500 uppercase">{SLC25A32_STRUCTURAL_RECEIPT.confidence}</span>
+            <span className={`text-[9px] font-black uppercase tracking-widest ${isDarkMode ? 'text-zinc-400' : 'text-slate-700'}`}>
+              STRUCTURAL RECEIPT (AF3)
+            </span>
+            <span className={`text-[9px] font-black uppercase ${isDarkMode ? 'text-cyan-400' : 'text-indigo-700'}`}>
+              {SLC25A32_STRUCTURAL_RECEIPT.confidence}
+            </span>
           </div>
-          <div className="font-mono text-[8px] break-all opacity-40 uppercase line-clamp-2">
+          <div className={`font-mono text-[8px] break-all uppercase line-clamp-2 ${isDarkMode ? 'text-zinc-500 opacity-70' : 'text-slate-600 opacity-90'}`}>
             PROT: {SLC25A32_STRUCTURAL_RECEIPT.protein}
           </div>
        </div>
@@ -342,9 +352,8 @@ export default function EvidenceLedgerEngine() {
 
   return (
     <div className={`min-h-screen transition-colors duration-700 font-mono flex flex-col relative overflow-hidden ${
-      isDarkMode ? 'bg-[#020408] text-zinc-400' : 'bg-slate-50 text-slate-600'
+      isDarkMode ? 'bg-[#020408] text-zinc-400' : 'bg-slate-50 text-slate-700'
     }`}>
-      <ZetaNavbar />
       <div className="p-8 flex flex-col flex-1 z-10">
         <VectorBackground isDarkMode={isDarkMode} />
 
@@ -360,7 +369,10 @@ export default function EvidenceLedgerEngine() {
           </div>
           <div>
             <h1 className={`text-xl md:text-2xl font-black tracking-[0.3em] uppercase transition-colors ${isDarkMode ? 'text-white' : 'text-slate-950'}`}>
-              L7: Safety · Evidence Ledger <span className="hidden md:inline text-zinc-700 font-light tracking-normal ml-2">v6.2.9</span>
+              L7: SAFETY · EVIDENCE LEDGER{' '}
+              <span className={`hidden md:inline font-light tracking-normal ml-2 ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}>
+                V6.2.9
+              </span>
             </h1>
             <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mt-2">
                <span className="text-[9px] md:text-[11px] font-black uppercase tracking-widest text-emerald-500 animate-pulse flex items-center gap-2">
@@ -402,8 +414,12 @@ export default function EvidenceLedgerEngine() {
                  className="space-y-4"
                >
                  <div className={`p-4 rounded border flex flex-col gap-2 ${isDarkMode ? 'bg-black/40 border-zinc-900' : 'bg-slate-50 border-slate-200'}`}>
-                    <span className="zeta-evidence-label">Therapeutic Axis</span>
-                    <span className="zeta-evidence-value">{activeAxis.name}</span>
+                    <span className={`text-[11px] font-black uppercase tracking-[0.2em] ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+                      THERAPEUTIC AXIS
+                    </span>
+                    <span className={`text-[13px] font-black uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                      {activeAxis.name}
+                    </span>
                  </div>
                  
                  <div className={`p-4 rounded border flex flex-col gap-2 ${
@@ -411,12 +427,14 @@ export default function EvidenceLedgerEngine() {
                    activeAxis.tier.includes('NOT') ? (isDarkMode ? 'bg-rose-500/10 border-rose-500/30' : 'bg-rose-50 border-rose-200') :
                    (isDarkMode ? 'bg-amber-500/10 border-amber-500/30' : 'bg-amber-50 border-amber-200')
                  }`}>
-                    <span className="text-[11px] font-black uppercase text-zinc-500 tracking-widest">Verdict</span>
+                    <span className={`text-[11px] font-black uppercase tracking-widest ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+                      VERDICT
+                    </span>
                     <span className={`text-[12px] font-black uppercase ${
                        activeAxis.tier.includes('VALIDATED') ? 'text-emerald-500' :
                        activeAxis.tier.includes('NOT') ? 'text-rose-500' :
                        'text-amber-500'
-                    }`}>{activeAxis.tier.replace('_', ' ')}</span>
+                    }`}>{activeAxis.tier.replace(/_/g, ' ')}</span>
                  </div>
                </motion.div>
             </AnimatePresence>
@@ -469,17 +487,23 @@ export default function EvidenceLedgerEngine() {
               </div>
 
               <div className="space-y-3">
-                 <span className="zeta-evidence-label">PARP Discordance Alert</span>
-                 <div className={`p-4 rounded border flex flex-col gap-2 transition-colors ${isDarkMode ? 'bg-black/40 border-zinc-800' : 'bg-slate-50 border-slate-100'}`}>
+                 <span className={`text-[11px] font-black uppercase tracking-[0.2em] ${isDarkMode ? 'text-zinc-300' : 'text-slate-800'}`}>
+                   PARP DISCORDANCE ALERT
+                 </span>
+                 <div className={`p-4 rounded border flex flex-col gap-2 transition-colors ${isDarkMode ? 'bg-black/40 border-zinc-800' : 'bg-slate-50 border-slate-200'}`}>
                     <div className="flex justify-between items-center">
                        <span className={`text-[11px] font-black uppercase ${isDarkMode ? 'text-white' : 'text-slate-950'}`}>CRISPR (Δ=+0.03)</span>
-                       <span className="text-[11px] font-black text-rose-500 uppercase">Flat</span>
+                       <span className="text-[11px] font-black text-rose-500 uppercase">FLAT</span>
                     </div>
                     <div className="flex justify-between items-center">
                        <span className={`text-[11px] font-black uppercase ${isDarkMode ? 'text-white' : 'text-slate-950'}`}>GDSC2 (ΔZ=-0.02)</span>
-                       <span className="text-[11px] font-black text-rose-500 uppercase">Flat</span>
+                       <span className="text-[11px] font-black text-rose-500 uppercase">FLAT</span>
                     </div>
-                    <p className="text-[10px] font-bold text-slate-700 dark:text-zinc-500 uppercase mt-2 border-t border-zinc-800/50 pt-2">Result: Both negative. PARP1 expr is a biomarker, not a therapeutic lever.</p>
+                    <p className={`text-[10px] font-bold uppercase mt-2 border-t pt-2 leading-relaxed ${
+                      isDarkMode ? 'text-zinc-400 border-zinc-800/80' : 'text-slate-700 border-slate-200'
+                    }`}>
+                      RESULT: BOTH NEGATIVE. PARP1 EXPR IS A BIOMARKER, NOT A THERAPEUTIC LEVER.
+                    </p>
                  </div>
               </div>
 

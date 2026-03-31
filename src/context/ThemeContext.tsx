@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useRef, useLayoutEffect } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -28,30 +28,33 @@ interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>('light');
   const [isResearchMode, setIsResearchMode] = useState(true);
+  const didHydrateTheme = useRef(false);
 
-  useEffect(() => {
-    // Load theme from localStorage on mount
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    const savedResearchMode = localStorage.getItem('researchMode') === 'true';
+  useLayoutEffect(() => {
+    let t = theme;
+    let rm = isResearchMode;
 
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
-    if (savedResearchMode !== undefined) {
+    if (!didHydrateTheme.current) {
+      didHydrateTheme.current = true;
+      const savedTheme = localStorage.getItem('theme') as Theme | null;
+      const savedResearchMode = localStorage.getItem('researchMode') === 'true';
+      if (savedTheme === 'dark' || savedTheme === 'light') {
+        t = savedTheme;
+        setTheme(savedTheme);
+      }
+      rm = savedResearchMode;
       setIsResearchMode(savedResearchMode);
     }
-  }, []);
 
-  useEffect(() => {
-    // Save theme to localStorage
-    localStorage.setItem('theme', theme);
-    localStorage.setItem('researchMode', isResearchMode.toString());
+    localStorage.setItem('theme', t);
+    localStorage.setItem('researchMode', String(rm));
 
-    // Apply theme to document
-    if (theme === 'dark') {
+    if (t === 'dark') {
       document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light-mode');
     } else {
       document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light-mode');
     }
   }, [theme, isResearchMode]);
 
