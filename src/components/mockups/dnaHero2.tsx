@@ -226,7 +226,7 @@ export function DnaHero({ embedded = false }: { embedded?: boolean }) {
       }`} />
 
       {/* === MAIN HERO CONTENT === */}
-      <div className="absolute inset-0 z-10 flex flex-col justify-between p-4 sm:p-8 lg:p-12 pointer-events-none">
+      <div className="absolute inset-0 z-10 flex flex-col justify-end p-4 sm:p-8 lg:p-12 pointer-events-none">
 
         {/* Bottom Section: Headline + CTA */}
         <div className="flex flex-col sm:flex-row sm:justify-start sm:items-end pb-24 sm:pb-28 gap-6 sm:gap-12 pointer-events-auto">
