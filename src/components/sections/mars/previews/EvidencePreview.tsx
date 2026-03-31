@@ -9,7 +9,7 @@ import { EvidenceMatrix, MATRIX_AXES } from '@/components/mockups/evidenceMatrix
 export default function EvidencePreview() {
   const { isDarkMode } = useTheme();
   
-  const engine = getActiveEngines().find(e => e.slug === 'evidence-matrix');
+  const engine = getActiveEngines().find(e => e.slug === 'safety');
   const headlines = (engine?.typewriterPhrases || []).map(phrase => ({ text: phrase }));
 
   const accent = isDarkMode ? 'text-amber-400' : 'text-amber-600';

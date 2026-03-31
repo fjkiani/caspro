@@ -104,6 +104,7 @@ export default function EngineSlugClient({ slug }: { slug: string }) {
             <SafetyDosingEngine />
           </div>
         );
+      case 'safety':
       case 'evidence-matrix':
         return (
           <div className="p-4 md:p-6 min-h-[calc(100vh-3.5rem)] overflow-auto">

@@ -5,7 +5,7 @@ import { Activity, Play, Settings, User, ChevronDown, Eye, EyeOff, Menu, X } fro
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { ThemeToggle } from '../ThemeToggle';
-import { getActiveEngines } from '@/data/engine-registry';
+import { getEnginesForNav } from '@/data/engine-registry';
 import { useAccessibility } from '@/context/AccessibilityContext';
 import { useTheme } from '@/context/ThemeContext';
 
@@ -27,15 +27,18 @@ export const ZetaNavbar = ({
 }) => {
   const pathname = usePathname();
   const [enginesOpen, setEnginesOpen] = useState(false);
-  const [evidenceOpen, setEvidenceOpen] = useState(false);
+  const [receiptsOpen, setReceiptsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const evidenceRef = useRef<HTMLDivElement>(null);
+  const receiptsRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const { isLargeText, toggleLargeText } = useAccessibility();
   const { isDarkMode } = useTheme();
 
-  const engines = getActiveEngines();
+  const engines = getEnginesForNav();
+
+  const SAFETY_ROUTE = '/engine/safety/';
+  const ORG_URL = 'https://crispro.org/';
 
   const TRIALS = [
     { label: 'LATIFY', id: 'latify', desc: 'BRAF V600E CRC · MoA failure analysis' },
@@ -49,7 +52,7 @@ export const ZetaNavbar = ({
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) setEnginesOpen(false);
-      if (evidenceRef.current && !evidenceRef.current.contains(e.target as Node)) setEvidenceOpen(false);
+      if (receiptsRef.current && !receiptsRef.current.contains(e.target as Node)) setReceiptsOpen(false);
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
@@ -73,20 +76,17 @@ export const ZetaNavbar = ({
     };
   }, [mobileMenuOpen]);
 
-  const links = [
-    { label: 'Home', href: '/' },
-    { label: 'Proof', href: '/proof/' },
-  ];
+  const links = [{ label: 'Home', href: '/' }];
 
   const isEngineRoute = pathname?.startsWith('/engine');
 
   const handleCtaClick = () => {
-    router.push('/proof/');
+    router.push('/');
   };
 
   const navigate = (href: string) => {
     // Close overlays first to keep interaction snappy.
-    setEvidenceOpen(false);
+    setReceiptsOpen(false);
     setEnginesOpen(false);
     setMobileMenuOpen(false);
     router.push(href);
@@ -121,10 +121,7 @@ export const ZetaNavbar = ({
         </div>
         <div className={`hidden lg:flex gap-8 text-[11px] font-black uppercase tracking-widest items-center ${navMuted}`}>
           {links.map(link => {
-            const isActive =
-              link.label === 'Home'
-                ? normalizePath(pathname) === '/'
-                : (pathname ?? '').startsWith('/proof');
+            const isActive = normalizePath(pathname) === '/';
             return (
               <Link key={link.href} href={link.href} prefetch={false}>
                 <span
@@ -140,21 +137,21 @@ export const ZetaNavbar = ({
             );
           })}
 
-          {/* Evidence Dropdown */}
-          <div className="relative" ref={evidenceRef}>
+          {/* Receipts (trial case files) */}
+          <div className="relative" ref={receiptsRef}>
             <button
-              onClick={() => { setEvidenceOpen(!evidenceOpen); setEnginesOpen(false); }}
+              onClick={() => { setReceiptsOpen(!receiptsOpen); setEnginesOpen(false); }}
               className={`flex items-center gap-2 cursor-pointer transition-colors ${
                 pathname?.startsWith('/proof')
                   ? `${isDarkMode ? 'text-white' : 'text-slate-900'} border-b border-amber-500 pb-1`
                   : navHover
               }`}
             >
-              Evidence
-              <ChevronDown className={`w-3 h-3 transition-transform ${evidenceOpen ? 'rotate-180' : ''}`} />
+              Receipts
+              <ChevronDown className={`w-3 h-3 transition-transform ${receiptsOpen ? 'rotate-180' : ''}`} />
             </button>
 
-            {evidenceOpen && (
+            {receiptsOpen && (
               <div
                 className={`absolute top-full left-0 mt-4 w-[300px] rounded-sm shadow-2xl backdrop-blur-xl z-[100] overflow-hidden border ${
                   isDarkMode ? 'bg-zinc-950/98 border-zinc-800' : 'bg-white border-slate-200'
@@ -209,13 +206,34 @@ export const ZetaNavbar = ({
             )}
           </div>
 
+          <Link href={SAFETY_ROUTE} prefetch={false}>
+            <span
+              className={`cursor-pointer transition-colors ${
+                pathsEqual(pathname, SAFETY_ROUTE)
+                  ? `${isDarkMode ? 'text-white' : 'text-slate-900'} border-b border-cyan-500 pb-1`
+                  : navHover
+              }`}
+            >
+              Safety
+            </span>
+          </Link>
+
+          <a
+            href={ORG_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`cursor-pointer transition-colors ${navHover}`}
+          >
+            ORG
+          </a>
+
           {/* Engines Dropdown */}
           <div className="relative" ref={dropdownRef}>
 
             <button
               onClick={() => setEnginesOpen(!enginesOpen)}
               className={`flex items-center gap-2 cursor-pointer transition-colors ${
-                isEngineRoute
+                isEngineRoute && !pathsEqual(pathname, SAFETY_ROUTE)
                   ? `${isDarkMode ? 'text-white' : 'text-slate-900'} border-b border-cyan-500 pb-1`
                   : navHover
               }`}
@@ -398,10 +416,7 @@ export const ZetaNavbar = ({
                   Navigate
                 </span>
                 {links.map((link) => {
-                  const isActive =
-                    link.label === 'Home'
-                      ? normalizePath(pathname) === '/'
-                      : (pathname ?? '').startsWith('/proof');
+                  const isActive = normalizePath(pathname) === '/';
                   return (
                     <Link
                       key={link.href}
@@ -416,11 +431,38 @@ export const ZetaNavbar = ({
                     </Link>
                   );
                 })}
+                <Link
+                  href={SAFETY_ROUTE}
+                  prefetch={false}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block py-3 text-sm font-black uppercase tracking-widest border-b ${
+                    isDarkMode ? 'border-zinc-800' : 'border-slate-100'
+                  } ${
+                    pathsEqual(pathname, SAFETY_ROUTE)
+                      ? isDarkMode
+                        ? 'text-cyan-400'
+                        : 'text-indigo-600'
+                      : navMuted
+                  }`}
+                >
+                  Safety
+                </Link>
+                <a
+                  href={ORG_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block py-3 text-sm font-black uppercase tracking-widest border-b ${
+                    isDarkMode ? 'border-zinc-800' : 'border-slate-100'
+                  } ${navMuted}`}
+                >
+                  ORG (crispro.org)
+                </a>
               </div>
 
               <div>
                 <span className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-amber-500/80' : 'text-amber-700'}`}>
-                  Evidence — trial receipts
+                  Receipts — trial cases
                 </span>
                 <div className="mt-2 space-y-1">
                   {TRIALS.map((trial) => {

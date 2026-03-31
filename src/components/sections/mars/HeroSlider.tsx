@@ -37,7 +37,7 @@ const getSlideContent = (slideId: string) => {
   const engine = getActiveEngines().find(e => e.slug === slug);
   if (engine) {
     return {
-      heading: engine.zetaHeadline || 'Inevitability Detected.',
+      heading: engine.zetaHeadline ?? engine.label,
       sub: engine.heroTagline,
     };
   }

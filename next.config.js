@@ -16,6 +16,16 @@ const nextConfig = {
   // Redirects from old co-pilot routes to new hierarchical routes
   async redirects() {
     return [
+      {
+        source: '/engine/evidence-matrix',
+        destination: '/engine/safety/',
+        permanent: true,
+      },
+      {
+        source: '/engine/evidence-matrix/',
+        destination: '/engine/safety/',
+        permanent: true,
+      },
       // Oncology co-pilots
       {
         source: '/platform/chemo',

@@ -21,6 +21,10 @@ export interface EngineEntry {
   version: string;
   keyMetric: string;            // headline stat
   active: boolean;              // show in UI?
+  /** When false, hidden from Engines dropdown (e.g. top-level Safety tab). Default true. */
+  showInEnginesNav?: boolean;
+  /** Optional hero overlay heading (e.g. Mars slider). */
+  zetaHeadline?: string;
 }
 
 export const ENGINE_REGISTRY: EngineEntry[] = [
@@ -159,12 +163,13 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
   {
     id: '07',
     layer: 'L7',
-    label: 'Evidence Ledger',
-    shortLabel: 'Evidence',
-    slug: 'evidence-matrix',
-    route: '/engine/evidence-matrix/',
-    desc: 'Multi-modal evidence fuser: 7-axis SL matrix, PubMed receipts, CRISPR vs GDSC2 concordance, calibration rigor bar.',
+    label: 'Safety',
+    shortLabel: 'Safety',
+    slug: 'safety',
+    route: '/engine/safety/',
+    desc: 'Evidence ledger: 7-axis SL matrix, PubMed receipts, CRISPR vs GDSC2 concordance, calibration rigor bar.',
     heroTagline: 'Every claim has a receipt. 5 PubMed anchors, isogenic validation, PDX confirmation. No hallucinations.',
+    zetaHeadline: 'Receipts, validated.',
     typewriterPhrases: [
       'Cytidine analogs: isogenic + PDX + patient response. 5 receipts.█',
       'PARP inhibitors: CRISPR Δ=+0.03, GDSC2 Δ=−0.02 → both flat. Rejected.█',
@@ -177,6 +182,7 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
     version: '1.0.0',
     keyMetric: '5 PubMed',
     active: true,
+    showInEnginesNav: false,
   },
 ];
 
@@ -184,6 +190,9 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
 
 /** Get only active engines (for UI rendering) */
 export const getActiveEngines = () => ENGINE_REGISTRY.filter(e => e.active);
+
+/** Engines listed in the Engines navbar dropdown (excludes Safety tab target). */
+export const getEnginesForNav = () => getActiveEngines().filter(e => e.showInEnginesNav !== false);
 
 /** Normalize dynamic segment (handles trailing slashes, encoding) */
 export function normalizeEngineSlug(raw: string | undefined | null): string {

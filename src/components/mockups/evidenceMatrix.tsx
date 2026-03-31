@@ -360,7 +360,7 @@ export default function EvidenceLedgerEngine() {
           </div>
           <div>
             <h1 className={`text-xl md:text-2xl font-black tracking-[0.3em] uppercase transition-colors ${isDarkMode ? 'text-white' : 'text-slate-950'}`}>
-              L7: Evidence Ledger <span className="hidden md:inline text-zinc-700 font-light tracking-normal ml-2">v6.2.9</span>
+              L7: Safety · Evidence Ledger <span className="hidden md:inline text-zinc-700 font-light tracking-normal ml-2">v6.2.9</span>
             </h1>
             <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mt-2">
                <span className="text-[9px] md:text-[11px] font-black uppercase tracking-widest text-emerald-500 animate-pulse flex items-center gap-2">
