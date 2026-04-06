@@ -207,9 +207,11 @@ export function DnaHero({ embedded = false }: { embedded?: boolean }) {
     };
   }, [isLoaded, isDarkMode]);
 
+  // Embedded: fill the HeroSlider slide frame. Using only `relative flex-1` collapses height when
+  // all children are `absolute` (no in-flow content), so `justify-end` pins copy to the top — looks "inverted".
   const shell =
     embedded
-      ? 'relative w-full h-full min-h-0 flex-1 overflow-hidden'
+      ? 'absolute inset-0 w-full h-full min-h-0 overflow-hidden'
       : 'relative w-full min-h-screen h-screen overflow-hidden';
 
   return (
