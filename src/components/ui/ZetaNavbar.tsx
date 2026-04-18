@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { ThemeToggle } from '../ThemeToggle';
 import { getEnginesForNav } from '@/data/engine-registry';
+import { TRIAL_RECEIPT_NAV } from '@/data/trial-receipt-nav';
 import { useAccessibility } from '@/context/AccessibilityContext';
 import { useTheme } from '@/context/ThemeContext';
 
@@ -40,14 +41,6 @@ export const ZetaNavbar = ({
   const SAFETY_ROUTE = '/engine/safety/';
   const ORG_URL = 'https://crispro.org/';
 
-  const TRIALS = [
-    { label: 'LATIFY', id: 'latify', desc: 'BRAF V600E CRC · MoA failure analysis' },
-    { label: 'CEACAM5', id: 'ceacam5', desc: 'Tusamitamab ADC · antigen expression gate' },
-    { label: 'ADAVOSERTIB', id: 'adavosertib', desc: 'WEE1i · DNA-damage SL window' },
-    { label: 'CAPRI', id: 'capri', desc: 'Ceralasertib · ATR MBD4-LOF SL proof' },
-    { label: 'BERZOSERTIB', id: 'berzosertib', desc: 'ATR inhibitor · replication stress gate' },
-  ];
-
   // Close dropdowns on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -76,7 +69,10 @@ export const ZetaNavbar = ({
     };
   }, [mobileMenuOpen]);
 
-  const links = [{ label: 'HOME', href: '/' }];
+  const links = [
+    { label: 'HOME', href: '/' },
+    { label: 'BLOG', href: '/blog/' },
+  ];
 
   const isEngineRoute = pathname?.startsWith('/engine');
 
@@ -99,13 +95,13 @@ export const ZetaNavbar = ({
 
   const navSurface = isDarkMode
     ? 'bg-[#020408]/95 border-zinc-800/90 text-zinc-100'
-    : 'bg-white/95 border-slate-200 text-slate-900';
+    : 'bg-white border-slate-300 text-slate-900 shadow-sm';
   const navMuted = isDarkMode ? 'text-zinc-400' : 'text-slate-600';
   const navHover = isDarkMode ? 'hover:text-zinc-100' : 'hover:text-slate-900';
   const brandBorder = isDarkMode ? 'border-zinc-800' : 'border-slate-200';
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[220] w-full pointer-events-auto backdrop-blur-md border-b ${navSurface}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-[1000] w-full pointer-events-auto backdrop-blur-md border-b ${navSurface}`}>
       <div className="flex items-center justify-between h-14 px-4 sm:px-6 max-w-[1920px] mx-auto w-full gap-2">
         <div className="flex items-center gap-3 sm:gap-8 min-w-0 shrink-0">
           <Link href="/" prefetch={false} className="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -120,8 +116,11 @@ export const ZetaNavbar = ({
           </Link>
         </div>
         <div className={`hidden lg:flex gap-8 text-[11px] font-black tracking-widest items-center ${navMuted}`}>
-          {links.map(link => {
-            const isActive = normalizePath(pathname) === '/';
+          {links.map((link) => {
+            const isActive =
+              normalizePath(link.href) === '/'
+                ? normalizePath(pathname) === '/'
+                : pathsEqual(pathname, link.href) || (pathname ?? '').startsWith('/blog');
             return (
               <Link key={link.href} href={link.href} prefetch={false}>
                 <span
@@ -164,7 +163,7 @@ export const ZetaNavbar = ({
                   </span>
                 </div>
                 <div className="py-2">
-                  {TRIALS.map(trial => {
+                  {TRIAL_RECEIPT_NAV.map((trial) => {
                     const trialPath = `/proof/${trial.id}/case/`;
                     const isActive =
                       pathsEqual(pathname, trialPath) ||
@@ -394,7 +393,7 @@ export const ZetaNavbar = ({
 
       {/* Mobile nav — always mounted drawer for reliable toggle behavior */}
       <div
-        className={`lg:hidden fixed inset-0 top-14 z-[230] transition-opacity duration-200 ${
+        className={`lg:hidden fixed inset-0 top-14 z-[1100] transition-opacity duration-200 ${
           mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         role="dialog"
@@ -419,7 +418,10 @@ export const ZetaNavbar = ({
                   NAVIGATE
                 </span>
                 {links.map((link) => {
-                  const isActive = normalizePath(pathname) === '/';
+                  const isActive =
+                    normalizePath(link.href) === '/'
+                      ? normalizePath(pathname) === '/'
+                      : pathsEqual(pathname, link.href) || (pathname ?? '').startsWith('/blog');
                   return (
                     <Link
                       key={link.href}
@@ -468,7 +470,7 @@ export const ZetaNavbar = ({
                   RECEIPTS · TRIAL CASES
                 </span>
                 <div className="mt-2 space-y-1">
-                  {TRIALS.map((trial) => {
+                  {TRIAL_RECEIPT_NAV.map((trial) => {
                     const trialPath = `/proof/${trial.id}/case/`;
                     const isActive =
                       pathsEqual(pathname, trialPath) ||

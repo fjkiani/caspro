@@ -49,6 +49,7 @@ export const getPosts = async () => {
 };
 
 export const getCategories = async () => {
+  if (!graphqlAPI) return [];
   const query = gql`
     query GetGategories {
         categories {
@@ -57,10 +58,13 @@ export const getCategories = async () => {
         }
     }
   `;
-
-  const result = await request(graphqlAPI, query);
-
-  return result.categories;
+  try {
+    const result = await request(graphqlAPI, query);
+    return Array.isArray(result.categories) ? result.categories : [];
+  } catch (e) {
+    console.error('[getCategories] Hygraph/GraphCMS request failed:', e?.message || e);
+    return [];
+  }
 };
 
 export const getPostDetails = async (slug) => {

@@ -17,8 +17,8 @@ const CAPABILITY_LINES = HERO_CAPABILITIES.map(
 // --- Gene Ticker Background (horizontal scrolling gene names) ---
 const GeneTicker = () => {
   const genes = [
-    'SLC25A32:3.1Å', 'MBD4:LOF', 'LATIFY:NCT05450692', 'CEACAM5:ADC', 'CAPRI:RES',
-    'BERZOSERTIB:SL', 'ADAVOSERTIB:WEE1', 'STK11:KEAP1_GATE', 'BRCA1:BDP1',
+    'SLC25A32:3.1Å', 'MBD4:LOF', 'LATIFY:NCT05450692', 'CEACAM5:ADC', 'CAPRI:PARP_STATUS',
+    'BERZOSERTIB:RSS', 'ADAVOSERTIB:WEE1', 'STK11:KEAP1', 'BRCA1:BDP1',
     'TP53:MUT', 'KRAS:G12C', 'EGFR:L858R', 'ALK:FUSION', 'BRAF:V600E',
   ];
   const doubled = [...genes, ...genes, ...genes];

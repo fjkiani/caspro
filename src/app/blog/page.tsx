@@ -1,36 +1,47 @@
-// \'use client\'; // Removed: This is now a Server Component
-
 import React from 'react';
-import { getPosts } from '@/services'; // Only getPosts is needed now
-import BlogPageClient from './BlogPageClient'; 
+import { getPosts, getCategories } from '@/services';
+import BlogPageClient from './BlogPageClient';
 import { PostNode } from '@/types/blog';
 
 interface PostEdge {
   node: PostNode;
 }
 
-// RecentPost interface can be removed if not used
-// export interface RecentPost extends Pick<PostNode, 'title' | 'slug' | 'createdAt' | 'featuredImage'> {}
+export const dynamic = 'force-dynamic';
 
-export default async function BlogPage() {
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: { category?: string };
+}) {
   let posts: PostNode[] = [];
-  // Removed categories and recentPosts state
+  let categories: { name: string; slug: string }[] = [];
 
   try {
-    const fetchedPostsData: PostEdge[] = await getPosts();
-
+    const fetchedPostsData = await getPosts();
     if (Array.isArray(fetchedPostsData)) {
       posts = fetchedPostsData.map((edge: PostEdge) => edge.node);
-    } else {
-      console.error("getPosts did not return an array. Fetched data:", fetchedPostsData);
     }
-    console.log("Fetched Posts for Blog Page (Server Component):", posts);
-
   } catch (error) {
-    console.error("Failed to fetch blog posts in Server Component:", error);
+    console.error('Failed to fetch blog posts:', error);
     posts = [];
   }
+  try {
+    const fetchedCategories = await getCategories();
+    categories = Array.isArray(fetchedCategories) ? fetchedCategories : [];
+  } catch (error) {
+    console.error('Failed to fetch blog categories:', error);
+    categories = [];
+  }
 
-  // Pass only posts to BlogPageClient
-  return <BlogPageClient posts={posts} />;
-} 
+  const initialCategory = typeof searchParams?.category === 'string' ? searchParams.category : '';
+
+  return (
+    <BlogPageClient
+      key={initialCategory || 'all'}
+      posts={posts}
+      categories={categories}
+      initialCategory={initialCategory}
+    />
+  );
+}

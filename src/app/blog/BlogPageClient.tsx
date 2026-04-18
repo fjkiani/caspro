@@ -1,22 +1,22 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ROUTES } from '@/constants/routes';
+import { useRouter } from 'next/navigation';
 import PostCard from './PostCard';
-import { PostNode } from '@/types/blog'; // Corrected import path
-// CategoriesWidget and PostWidget imports removed
+import { PostNode, Category } from '@/types/blog';
 import { ArrowRight } from 'lucide-react';
 
 interface BlogPageClientProps {
   posts: PostNode[];
-  // categories and recentPosts props removed
+  categories: Category[];
+  initialCategory: string;
 }
 
 const FeaturedPostCard: React.FC<{ post: PostNode }> = ({ post }) => (
   <div className="group grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-slate-50 dark:bg-slate-800/30 p-8 rounded-2xl border border-slate-200 dark:border-slate-700/80 mb-16 hover:border-primary/30 transition-colors duration-300">
-    <Link href={`/blog/post/${post.slug}`}>
+    <Link href={`/blog/post/${post.slug}/`}>
       <div className="relative block h-80 overflow-hidden rounded-lg">
         {post.featuredImage?.url ? (
           <img
@@ -34,11 +34,14 @@ const FeaturedPostCard: React.FC<{ post: PostNode }> = ({ post }) => (
     <div className="flex flex-col">
       <p className="text-sm text-slate-500 dark:text-slate-400 mb-3">Featured Article</p>
       <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-4 group-hover:text-primary transition-colors duration-200">
-        <Link href={`/blog/post/${post.slug}`}>{post.title}</Link>
+        <Link href={`/blog/post/${post.slug}/`}>{post.title}</Link>
       </h2>
       <p className="text-slate-600 dark:text-slate-300 mb-6 line-clamp-4">{post.excerpt}</p>
       <div className="mt-auto">
-        <Link href={`/blog/post/${post.slug}`} className="inline-flex items-center text-lg font-semibold text-primary hover:text-primary-dark transition-colors duration-300">
+        <Link
+          href={`/blog/post/${post.slug}/`}
+          className="inline-flex items-center text-lg font-semibold text-primary hover:text-primary-dark transition-colors duration-300"
+        >
           Read Full Story
           <ArrowRight className="ml-2 h-5 w-5" />
         </Link>
@@ -47,46 +50,123 @@ const FeaturedPostCard: React.FC<{ post: PostNode }> = ({ post }) => (
   </div>
 );
 
-export default function BlogPageClient({ posts }: BlogPageClientProps) {
-  const featuredPost = posts && posts.length > 0 ? posts[0] : null;
-  const otherPosts = posts && posts.length > 1 ? posts.slice(1) : [];
+function postMatchesCategory(post: PostNode, categorySlug: string): boolean {
+  if (!categorySlug) return true;
+  return (post.categories || []).some((c) => c.slug === categorySlug);
+}
+
+export default function BlogPageClient({ posts, categories, initialCategory }: BlogPageClientProps) {
+  const router = useRouter();
+  const activeSlug = initialCategory || '';
+
+  const setCategory = useCallback(
+    (slug: string) => {
+      router.replace(slug ? `/blog/?category=${encodeURIComponent(slug)}` : '/blog/', { scroll: false });
+    },
+    [router]
+  );
+
+  const filteredPosts = useMemo(() => {
+    if (!activeSlug) return posts;
+    return posts.filter((p) => postMatchesCategory(p, activeSlug));
+  }, [posts, activeSlug]);
+
+  const featuredPost = !activeSlug && filteredPosts.length > 0 ? filteredPosts[0] : null;
+  const gridPosts = activeSlug
+    ? filteredPosts
+    : filteredPosts.length > 1
+      ? filteredPosts.slice(1)
+      : [];
+
+  /** Union of Hygraph/GraphCMS categories and any categories embedded on posts (CMS names win on slug clash). */
+  const categoryChips = useMemo(() => {
+    const bySlug = new Map<string, string>();
+    (categories || []).forEach((c) => {
+      if (c?.slug) bySlug.set(c.slug, c.name || c.slug);
+    });
+    posts.forEach((p) => {
+      (p.categories || []).forEach((c) => {
+        if (!c?.slug) return;
+        if (!bySlug.has(c.slug)) bySlug.set(c.slug, c.name || c.slug);
+      });
+    });
+    return Array.from(bySlug.entries())
+      .map(([slug, name]) => ({ slug, name }))
+      .sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
+  }, [categories, posts]);
 
   return (
-    <>
-      <main className="pt-24 pb-16 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-7xl mx-auto"
-          >
-            <div className="mb-16 text-center">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-slate-100 mb-6">CrisPRO Blog</h1>
-              <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-                Insights, news, and research at the intersection of AI and oncology.
-              </p>
+    <main className="pt-8 pb-16 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+          className="max-w-7xl mx-auto"
+        >
+          <div className="mb-10 text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-slate-100 mb-6">CrisPRO Blog</h1>
+            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+              Insights, news, and research at the intersection of AI and oncology.
+            </p>
+          </div>
+
+          {(categoryChips.length > 0 || posts.length > 0) && (
+            <div className="mb-10 flex flex-wrap items-center justify-center gap-2">
+              <button
+                type="button"
+                onClick={() => setCategory('')}
+                className={`rounded-full px-4 py-2 text-xs font-black uppercase tracking-widest border transition-colors ${
+                  !activeSlug
+                    ? 'border-cyan-500 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400'
+                    : 'border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:border-slate-400'
+                }`}
+              >
+                All
+              </button>
+              {categoryChips.map((c) => (
+                <button
+                  key={c.slug}
+                  type="button"
+                  onClick={() => setCategory(c.slug)}
+                  className={`rounded-full px-4 py-2 text-xs font-black uppercase tracking-widest border transition-colors ${
+                    activeSlug === c.slug
+                      ? 'border-cyan-500 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400'
+                      : 'border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:border-slate-400'
+                  }`}
+                >
+                  {c.name}
+                </button>
+              ))}
             </div>
+          )}
 
-            {featuredPost && <FeaturedPostCard post={featuredPost} />}
+          {featuredPost && <FeaturedPostCard post={featuredPost} />}
 
-            {otherPosts.length > 0 && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {otherPosts.map((post: PostNode) => (
-                  <PostCard key={post.slug} post={post} />
-                ))}
-              </div>
-            )}
-            
-            {!posts || posts.length === 0 && (
-              <div className="text-center py-16">
-                <p className="text-xl text-slate-600 dark:text-slate-400">No blog posts found. Check back soon!</p>
-              </div>
-            )}
-          </motion.div>
-        </div>
-      </main>
-    </>
+          {gridPosts.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {gridPosts.map((post: PostNode) => (
+                <PostCard key={post.slug} post={post} />
+              ))}
+            </div>
+          )}
+
+          {(!posts || posts.length === 0) && (
+            <div className="text-center py-16">
+              <p className="text-xl text-slate-600 dark:text-slate-400">No blog posts found. Check back soon!</p>
+            </div>
+          )}
+
+          {posts.length > 0 && filteredPosts.length === 0 && (
+            <div className="text-center py-16">
+              <p className="text-xl text-slate-600 dark:text-slate-400 mb-4">No posts in this category.</p>
+              <button type="button" onClick={() => setCategory('')} className="text-primary font-semibold underline">
+                Clear filter
+              </button>
+            </div>
+          )}
+        </motion.div>
+      </div>
+    </main>
   );
-} 
- 
+}

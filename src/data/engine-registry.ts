@@ -60,7 +60,7 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
     desc: '8D vector manifold synchronization for clinical trial failure analysis.',
     heroTagline: 'Most cancer trials fail for a simple reason. Nobody checks Layer 2.',
     typewriterPhrases: [
-      'LATIFY trial: BRAF V600E + MEK off-target → pathway reactivation.█',
+      'LATIFY (NCT05450692): cold TME + missing STK11/KEAP1 gate vs ATRi hypothesis.█',
       '8D vector divergence at Dimension 3: target selectivity failure.█',
       'MEK escape via NRAS Q61K amplification — confound unmasked.█',
       'Encorafenib + Cetuximab: vector alignment score 0.91/1.0. Pass.█',
