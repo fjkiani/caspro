@@ -9,9 +9,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface DynamicDeckViewerProps {
   media: MediaItem;
   showControls?: boolean;
+  /** When true (e.g. blog embed), avoid full-viewport height so the deck fits inside article layout. */
+  embedded?: boolean;
 }
 
-export default function DynamicDeckViewer({ media, showControls = true }: DynamicDeckViewerProps) {
+export default function DynamicDeckViewer({ media, showControls = true, embedded = false }: DynamicDeckViewerProps) {
   const [deck, setDeck] = useState<DeckMetadata | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -21,28 +23,16 @@ export default function DynamicDeckViewer({ media, showControls = true }: Dynami
     // Try to load deck by slug first, then by ID
     let foundDeck: DeckMetadata | undefined;
     
-    console.log('[DynamicDeckViewer] Loading deck:', {
-      deckSlug: media.deckSlug,
-      deckId: media.deckId,
-      title: media.title,
-    });
-    
     if (media.deckSlug) {
       foundDeck = getDeckBySlug(media.deckSlug);
-      console.log('[DynamicDeckViewer] Searched by slug:', media.deckSlug, foundDeck ? 'Found' : 'Not found');
     }
-    
+
     if (!foundDeck && media.deckId) {
       foundDeck = getDeckById(media.deckId);
-      console.log('[DynamicDeckViewer] Searched by ID:', media.deckId, foundDeck ? 'Found' : 'Not found');
     }
-    
+
     if (foundDeck) {
-      console.log('[DynamicDeckViewer] Deck loaded:', foundDeck.title);
       setDeck(foundDeck);
-    } else {
-      console.warn(`[DynamicDeckViewer] Deck not found for slug: ${media.deckSlug}, id: ${media.deckId}`);
-      console.log('[DynamicDeckViewer] Available decks:', ['safety', 'efficacy', 'trials', 'r-and-d', 'crispro-101', 'metastasis']);
     }
   }, [media.deckSlug, media.deckId, media.title]);
 
@@ -125,7 +115,11 @@ export default function DynamicDeckViewer({ media, showControls = true }: Dynami
   const DeckComponent = deck.component;
 
   return (
-    <div className={`w-full bg-slate-900 text-white font-sans ${isFullscreen ? 'fixed inset-0 z-50' : 'min-h-screen'}`}>
+    <div
+      className={`w-full bg-slate-900 text-white font-sans ${
+        isFullscreen ? 'fixed inset-0 z-50' : embedded ? 'min-h-[min(70vh,640px)] max-h-[min(85vh,900px)]' : 'min-h-screen'
+      }`}
+    >
       {/* Controls */}
       {showControls && (
         <div className="absolute top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-700">

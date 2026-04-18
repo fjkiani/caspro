@@ -23,7 +23,9 @@ export const ROUTES = {
   MEDIA: '/media',
   /** CMS-driven use case narratives (replaces media for case-study content) */
   USE_CASE: '/use-case',
-  
+  /** Contact page (use this from 404 / global chrome; ROUTES.CONTACT stays a home anchor). */
+  CONTACT_PAGE: '/contact/',
+
   // Anchor links on main page
   FEATURES: '#features',
   SCIENCE: '#science',
