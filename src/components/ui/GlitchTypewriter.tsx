@@ -170,7 +170,7 @@ export const GlitchTypewriter: React.FC<GlitchTypewriterProps> = ({
         <motion.span
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className={`block text-[8px] font-mono uppercase tracking-[0.3em] mt-2 ${isDarkMode ? 'text-zinc-700' : 'text-slate-300'}`}
+          className={`block text-[8px] font-mono uppercase tracking-[0.3em] mt-2 ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`}
         >
           ref: {(currentLine as any).trial}
         </motion.span>

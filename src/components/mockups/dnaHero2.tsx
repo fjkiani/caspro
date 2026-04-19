@@ -239,7 +239,7 @@ export function DnaHero({ embedded = false }: { embedded?: boolean }) {
             <h1 className={`text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-[1.15] uppercase ${
               isDarkMode ? 'text-white' : 'text-slate-900'
             }`}>
-              PREDICTION IS <span className={isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}>CERTAINTY</span>.
+              Computional Oncology <span className={isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}>that tells you exactly why your clinical trial will fail — before you enroll a single patient</span>
             </h1>
 
             {/* Typewriter Capability Cycling */}

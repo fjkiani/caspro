@@ -27,7 +27,7 @@ function StatusDot({ status }: { status: EvidenceStatus }) {
 
 const SLPreview = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const accent = isDarkMode ? 'text-emerald-400' : 'text-emerald-600';
-  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-400';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
   const heading = isDarkMode ? 'text-white' : 'text-slate-900';
   const border = isDarkMode ? 'border-zinc-800' : 'border-slate-200';
   const cardBg = isDarkMode ? 'bg-zinc-950/60' : 'bg-white';

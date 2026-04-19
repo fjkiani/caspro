@@ -34,6 +34,12 @@ export interface CmsUseCase {
   // Media
   heroImage?: Asset | null;
   thumbnail?: Asset | null;
+  /** Slide deck / general PDF (legacy iframe path superseded by flip reader when present alone). */
   pdfDeck?: Asset | null;
+  /**
+   * Optional long-form manuscript PDF — preferred for the page-flip reader when set.
+   * Can live on `UseCase` and/or the `MediaItem` with the same slug (merged at fetch time).
+   */
+  manuscriptPdf?: Asset | null;
   demoVideoUrl?: string | null;
 }

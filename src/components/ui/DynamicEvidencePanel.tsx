@@ -25,7 +25,7 @@ export const DynamicEvidencePanel: React.FC<DynamicEvidencePanelProps> = ({
   const evidence = current?.evidence;
   if (!evidence) return null;
 
-  const muted = isDarkMode ? 'text-zinc-400' : 'text-slate-600';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-700';
   const heading = isDarkMode ? 'text-white' : 'text-slate-900';
   const border = isDarkMode ? 'border-zinc-800' : 'border-slate-200';
   const bg = isDarkMode ? 'bg-zinc-950/60' : 'bg-slate-50';

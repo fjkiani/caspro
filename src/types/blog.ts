@@ -36,12 +36,15 @@ export interface PostDetail extends PostNode {
     text?: string | null;
   };
   /**
-   * PDF for the hero/iframe — from `Post.pdfDeck` when present, else merged from
-   * `MediaItem.pdfFile` when a `MediaItem` shares the same slug as this post.
+   * PDF for the hero/iframe — from `Post.pdfDeck`, optional Hygraph aliases `deck` / `slideDeck`
+   * (Asset), or merged from `MediaItem` / `Post.deck` (MediaItem) when it shares the post slug.
    */
   pdfDeck?: { id?: string; url: string; fileName?: string | null; mimeType?: string | null } | null;
   /** Direct HTTPS link to a PDF when Asset upload/picker is not used. */
   pdfDeckUrl?: string | null;
-  /** Registry slug / id for `DynamicDeckViewer` (e.g. safety, trials, crispro-101). */
+  /**
+   * Registry id for `DynamicDeckViewer` (`getDeckBySlug`), from `slideDeckSlug`, `deckSlug`,
+   * `deckId`, `MediaItem.deckSlug` / `slideDeckSlug`, or linked `Post.deck` (MediaItem).
+   */
   slideDeckSlug?: string | null;
 }

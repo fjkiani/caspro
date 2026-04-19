@@ -17,6 +17,26 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/use-case',
+        destination: '/manuscripts',
+        permanent: true,
+      },
+      {
+        source: '/use-case/',
+        destination: '/manuscripts/',
+        permanent: true,
+      },
+      {
+        source: '/use-case/:slug',
+        destination: '/manuscripts/:slug',
+        permanent: true,
+      },
+      {
+        source: '/use-case/:slug/',
+        destination: '/manuscripts/:slug/',
+        permanent: true,
+      },
+      {
         source: '/engine/evidence-matrix',
         destination: '/engine/safety/',
         permanent: true,

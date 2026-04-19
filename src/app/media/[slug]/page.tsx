@@ -31,7 +31,7 @@ export default async function MediaDetailPage({ params }: PageProps) {
   // Prefer Use Case (CMS): redirect to use-case section for a single-page narrative (no tabs)
   const useCase = await getUseCaseBySlugCms(slug);
   if (useCase) {
-    redirect(`/use-case/${slug}`);
+    redirect(`/manuscripts/${encodeURIComponent(slug)}/`);
   }
 
   const media = await getMediaBySlug(slug);

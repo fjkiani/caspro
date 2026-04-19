@@ -21,8 +21,10 @@ export const ROUTES = {
   SAE_INTELLIGENCE: '/evidence/sae-intelligence',
   DOCS: '/docs',
   MEDIA: '/media',
-  /** CMS-driven use case narratives (replaces media for case-study content) */
-  USE_CASE: '/use-case',
+  /** CMS manuscript list + reader (`MediaItem` with type PDF; decks use DECK for blog) */
+  MANUSCRIPTS: '/manuscripts/',
+  /** @deprecated use MANUSCRIPTS — `/use-case/` redirects to `/manuscripts/` */
+  USE_CASE: '/manuscripts',
   /** Contact page (use this from 404 / global chrome; ROUTES.CONTACT stays a home anchor). */
   CONTACT_PAGE: '/contact/',
 

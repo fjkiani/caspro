@@ -137,7 +137,7 @@ function XMark() {
 }
 
 const EvidenceMatrixView = ({ isDarkMode }: { isDarkMode: boolean }) => {
-  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-400';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
   const heading = isDarkMode ? 'text-white' : 'text-slate-900';
 
   return (
@@ -168,7 +168,7 @@ const EvidenceMatrixView = ({ isDarkMode }: { isDarkMode: boolean }) => {
           <React.Fragment key={axis.name}>
             <div className="flex flex-col justify-center pr-4">
               <span className={`text-[12px] font-black uppercase ${heading}`}>{axis.name}</span>
-              <span className={`text-[9px] font-bold uppercase ${isDarkMode ? 'text-emerald-600' : 'text-emerald-500'}`}>{axis.tier}</span>
+              <span className={`text-[9px] font-bold uppercase ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}>{axis.tier}</span>
             </div>
             {EVIDENCE_MODALITIES.map(mod => {
               const cell = axis.modalities[mod];
@@ -194,7 +194,7 @@ const EvidenceMatrixView = ({ isDarkMode }: { isDarkMode: boolean }) => {
 
 const ConfoundView = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const heading = isDarkMode ? 'text-white' : 'text-slate-900';
-  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-400';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
   const accent = isDarkMode ? 'text-emerald-400' : 'text-emerald-600';
 
   return (
@@ -237,7 +237,8 @@ const ConfoundView = ({ isDarkMode }: { isDarkMode: boolean }) => {
 
 const Parp1View = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const heading = isDarkMode ? 'text-white' : 'text-slate-900';
-  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-400';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
+  const secondaryFigure = isDarkMode ? 'text-zinc-100' : 'text-slate-800';
   const accent = isDarkMode ? 'text-emerald-400' : 'text-emerald-600';
   const d = PARP1_DATA;
 
@@ -255,7 +256,7 @@ const Parp1View = ({ isDarkMode }: { isDarkMode: boolean }) => {
             </div>
             <div className="text-right">
               <span className={`text-[10px] font-black uppercase block mb-1 ${muted}`}>Wild-Type (n={d.nWt.toLocaleString()})</span>
-              <span className={`text-3xl font-black ${muted}`}>{d.wtMedian}</span>
+              <span className={`text-3xl font-black ${secondaryFigure}`}>{d.wtMedian}</span>
               <span className={`text-xs ml-2 ${muted}`}>{d.unit}</span>
             </div>
           </div>
@@ -327,7 +328,7 @@ const Parp1View = ({ isDarkMode }: { isDarkMode: boolean }) => {
 
 const CeralasertibView = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const heading = isDarkMode ? 'text-white' : 'text-slate-900';
-  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-400';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
   const accent = isDarkMode ? 'text-emerald-400' : 'text-emerald-600';
   const c = CERALASERTIB_DATA;
 
@@ -343,7 +344,7 @@ const CeralasertibView = ({ isDarkMode }: { isDarkMode: boolean }) => {
 
       {/* Metrics Table */}
       <div className={`border rounded-sm overflow-hidden ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'}`}>
-        <div className={`grid grid-cols-6 gap-0 text-[10px] font-black uppercase tracking-wider ${isDarkMode ? 'bg-zinc-900 text-zinc-500' : 'bg-slate-100 text-slate-500'}`}>
+        <div className={`grid grid-cols-6 gap-0 text-[10px] font-black uppercase tracking-wider ${isDarkMode ? 'bg-zinc-900 text-zinc-300' : 'bg-slate-100 text-slate-600'}`}>
           <div className="p-3">Metric</div>
           <div className="p-3 text-center">LOF</div>
           <div className="p-3 text-center">WT</div>
@@ -410,14 +411,14 @@ export default function SyntheticLethalityEngine() {
   }, [isSynthesizing]);
 
   const heading = isDarkMode ? 'text-white' : 'text-slate-900';
-  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-400';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
   const accent = isDarkMode ? 'text-emerald-400' : 'text-emerald-600';
   const border = isDarkMode ? 'border-zinc-800' : 'border-slate-200';
   const cardBg = isDarkMode ? 'bg-zinc-950/60' : 'bg-white shadow-xl';
 
   return (
     <div className={`min-h-screen transition-colors duration-500 font-mono p-6 md:p-8 flex flex-col relative overflow-hidden ${
-      isDarkMode ? 'bg-[#020408] text-zinc-400' : 'bg-slate-50 text-slate-600'
+      isDarkMode ? 'bg-[#020408] text-zinc-300' : 'bg-slate-50 text-slate-700'
     }`}>
 
       {/* ─── Header ─────────────────────────────────────────────────────── */}
@@ -476,7 +477,7 @@ export default function SyntheticLethalityEngine() {
                   className={`w-full flex items-center justify-between px-4 py-3.5 rounded-sm transition-all group ${
                     activeTab === tab.key
                       ? `${isDarkMode ? 'bg-emerald-500/10 text-emerald-400 border-l-4 border-emerald-500' : 'bg-emerald-50 text-emerald-800 border-l-4 border-emerald-600'}`
-                      : `${isDarkMode ? 'text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200' : 'text-slate-400 hover:bg-slate-50 hover:text-slate-900'}`
+                      : `${isDarkMode ? 'text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`
                   }`}
                 >
                   <div className="text-left">
@@ -498,7 +499,7 @@ export default function SyntheticLethalityEngine() {
             <div className="space-y-3 font-mono text-[10px]">
               {logs.slice(0, 6).map((l, i) => (
                 <div key={i} className={`truncate tracking-wider uppercase transition-all ${
-                  i === 0 ? `font-black ${heading}` : `opacity-30 ${muted}`
+                  i === 0 ? `font-black ${heading}` : `opacity-60 ${muted}`
                 }`}>{l}</div>
               ))}
             </div>
@@ -531,7 +532,7 @@ export default function SyntheticLethalityEngine() {
           <span className={`text-[10px] font-black uppercase tracking-widest block ${muted}`}>Multi-Modal Evidence Fuser</span>
           <span className={`text-xl font-light tracking-tighter ${accent}`}>MARS COMPUTATIONAL SUITE</span>
         </div>
-        <div className={`flex gap-8 ${isDarkMode ? 'text-zinc-800' : 'text-slate-300'}`}>
+        <div className={`flex gap-8 ${isDarkMode ? 'text-zinc-600' : 'text-slate-400'}`}>
           <Database className="w-4 h-4" />
           <Cpu className="w-4 h-4" />
           <Scale className="w-4 h-4" />

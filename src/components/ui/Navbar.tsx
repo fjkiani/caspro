@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail, Users, GitCompare, Heart, Zap, Brain } from 'lucide-react';
+import { Menu, X, ChevronDown, Rocket, BookOpen, PenTool, Briefcase, Mail, Users, GitCompare, Heart, Zap, Brain, FileText } from 'lucide-react';
 import ToggleButton from './ToggleButton';
+import { ROUTES } from '@/constants/routes';
 
 const NAV_CONFIG = {
   brandEmoji: "🧬",
@@ -69,6 +70,12 @@ export const NAV_LINKS = [
     icon: <BookOpen className="inline-block h-4 w-4" />,
   },
 
+  {
+    href: ROUTES.MANUSCRIPTS,
+    label: 'Manuscripts',
+    icon: <FileText className="inline-block h-4 w-4" />,
+    subLinks: [{ href: ROUTES.MANUSCRIPTS, label: 'All manuscripts' }],
+  },
   {
     href: '/products',
     label: 'Products',
@@ -231,10 +238,43 @@ const Navbar: React.FC = () => {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  const [manuscriptSubLinks, setManuscriptSubLinks] = useState<NavLink[]>([
+    { href: ROUTES.MANUSCRIPTS, label: 'All manuscripts' },
+  ]);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/manuscripts')
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error('manuscripts'))))
+      .then((body: { items?: { slug: string; title: string }[] }) => {
+        if (cancelled || !Array.isArray(body?.items)) return;
+        const extra = body.items
+          .filter((i) => i?.slug && String(i.slug).trim())
+          .map((i) => ({
+            href: `/manuscripts/${encodeURIComponent(String(i.slug).trim())}/`,
+            label: i.title.length > 64 ? `${i.title.slice(0, 62)}…` : i.title,
+          }));
+        setManuscriptSubLinks([{ href: ROUTES.MANUSCRIPTS, label: 'All manuscripts' }, ...extra]);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const navLinksResolved = useMemo(
+    () =>
+      NAV_LINKS.map((link) =>
+        link.href === ROUTES.MANUSCRIPTS && link.label === 'Manuscripts'
+          ? { ...link, subLinks: manuscriptSubLinks }
+          : link
+      ),
+    [manuscriptSubLinks]
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -245,7 +285,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   // Check if we're on a learn page (light background)
-  const isLearnPage = pathname.startsWith('/learn');
+  const isLearnPage = (pathname ?? '').startsWith('/learn');
 
   const navClass = isLearnPage
     ? 'bg-slate-900/80 backdrop-blur-lg border-b border-slate-700/50'
@@ -272,9 +312,9 @@ const Navbar: React.FC = () => {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center justify-center flex-1">
             <nav className="flex items-center gap-6">
-              {NAV_LINKS.map((link) =>
-                ('subLinks' in link && link.subLinks) ? (
-                  <DropdownMenu key={link.label} menu={link as any} />
+              {navLinksResolved.map((link) =>
+                'subLinks' in link && link.subLinks && link.subLinks.length > 0 ? (
+                  <DropdownMenu key={link.label} menu={link as NavMenu} />
                 ) : (
                   <Link
                     key={link.href}
@@ -330,8 +370,8 @@ const Navbar: React.FC = () => {
             className="md:hidden fixed top-20 left-0 right-0 bottom-0 bg-white z-[70] overflow-y-auto"
           >
             <div className="px-4 pt-4 pb-6">
-              {NAV_LINKS.map((link) => {
-                const hasSubLinks = 'subLinks' in link && link.subLinks;
+              {navLinksResolved.map((link) => {
+                const hasSubLinks = 'subLinks' in link && link.subLinks && link.subLinks.length > 0;
                 const isExpanded = expandedItems.has(link.label);
 
                 return (

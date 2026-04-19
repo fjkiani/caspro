@@ -2,7 +2,7 @@
  * HyGraph Media Schema Setup Script
  * 
  * This script programmatically creates the Media schema in HyGraph:
- * - MediaType enum (PDF, VIDEO, DECK)
+ * - MediaType enum (PDF = manuscript /use-case/, DECK = blog decks, VIDEO)
  * - MediaCategory model
  * - MediaItem model
  * - Relations between models

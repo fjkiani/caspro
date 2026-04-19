@@ -5,6 +5,8 @@ import { FiLinkedin, FiTwitter, FiMail, FiNavigation } from 'react-icons/fi';
 import React from 'react';
 import { NAV_CATEGORIES, ROUTES } from '@/constants/routes';
 import { NAV_LINKS } from './Navbar';
+import { ORG_URL, SAFETY_ROUTE } from './zeta-navbar/constants';
+import { TRIAL_RECEIPT_NAV } from '@/data/trial-receipt-nav';
 
 // Constants for Footer configuration
 const FOOTER_CONFIG = {
@@ -36,7 +38,7 @@ const Footer = () => {
   return (
     <footer className="bg-slate-900 text-slate-300 py-16">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-6 mb-12">
           {/* Company Info & Branding */}
           <div className="md:col-span-2 lg:col-span-1">
             <Link href={ROUTES.HOME} className="flex items-center space-x-2 mb-4 group">
@@ -67,6 +69,61 @@ const Footer = () => {
                 </a>
               ))}
             </div>
+          </div>
+
+          {/* Blog, clinical trials & trial receipts (navbar-era IA) */}
+          <div>
+            <h4 className="text-lg font-semibold mb-5 text-white">Blog &amp; trials</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link href={ROUTES.HOME} className="hover:text-primary transition-colors text-sm font-medium">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href={ROUTES.BLOG} className="hover:text-primary transition-colors text-sm font-medium">
+                  Blog
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">Evidence notes &amp; releases</p>
+              </li>
+              <li>
+                <Link href="/platform/clinical-trials" className="hover:text-primary transition-colors text-sm font-medium">
+                  Clinical trials
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">Co-pilot · matching &amp; eligibility</p>
+              </li>
+              <li>
+                <Link href={SAFETY_ROUTE} className="hover:text-primary transition-colors text-sm font-medium">
+                  Safety
+                </Link>
+                <p className="text-xs text-slate-400 mt-1">Evidence ledger</p>
+              </li>
+              <li>
+                <a
+                  href={ORG_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-primary transition-colors text-sm font-medium"
+                >
+                  CrisPRO.org
+                </a>
+                <p className="text-xs text-slate-400 mt-1">Organization</p>
+              </li>
+            </ul>
+            <h4 className="text-lg font-semibold mb-4 mt-8 text-white">Trial receipts</h4>
+            <p className="text-xs text-slate-500 mb-3 leading-snug">
+              Case files tied to real trial narratives — same set we surface in product flows.
+            </p>
+            <ul className="space-y-3">
+              {TRIAL_RECEIPT_NAV.map((trial) => (
+                <li key={trial.id}>
+                  <Link href={`/proof/${trial.id}/case/`} className="hover:text-primary transition-colors text-sm font-medium">
+                    {trial.label}
+                  </Link>
+                  <p className="text-xs text-slate-400 mt-1 leading-snug">{trial.desc}</p>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Core Co-Pilots */}

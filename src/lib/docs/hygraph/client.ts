@@ -21,7 +21,8 @@ const HYGRAPH_ENDPOINT =
   process.env.HYGRAPH_ENDPOINT || 
   process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT ||
   process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
-const HYGRAPH_TOKEN = process.env.HYGRAPH_TOKEN;
+/** Same CMS token as blog (`GRAPHCMS_TOKEN`) when `HYGRAPH_TOKEN` is unset — avoids empty use-case queries in prod. */
+const HYGRAPH_TOKEN = process.env.HYGRAPH_TOKEN || process.env.GRAPHCMS_TOKEN;
 
 // Check if Hygraph is configured
 const isHygraphConfigured = !!HYGRAPH_ENDPOINT;
