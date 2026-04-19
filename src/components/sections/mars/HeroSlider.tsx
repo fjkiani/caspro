@@ -172,50 +172,95 @@ export const HeroSlider = () => {
 
       </div>
 
-      {/* Mars-Style Navigation Bar */}
-      <div className={`fixed bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-[90] w-[calc(100vw-12px)] max-w-[56rem] backdrop-blur-xl border rounded-lg flex items-center gap-0 shadow-2xl overflow-hidden px-0.5 ${
-        isDarkMode ? 'bg-black/90 border-zinc-800/80' : 'bg-white/95 border-slate-200'
-      }`}>
-        <button type="button" onClick={goPrev} aria-label="Previous slide" className={`shrink-0 p-2 sm:p-2.5 transition-colors ${
-          isDarkMode ? 'text-zinc-600 hover:text-cyan-400 hover:bg-cyan-500/10' : 'text-slate-400 hover:text-indigo-600 hover:bg-indigo-50'
-        }`}>
-          <ChevronLeft className="w-4 h-4" />
-        </button>
+      {/* Slide dock — content-width (no stretched empty rail), high contrast in light + dark */}
+      <div
+        className={`fixed inset-x-0 bottom-0 z-[90] flex justify-center pointer-events-none px-3 pb-3 sm:pb-5 pt-8 bg-gradient-to-t to-transparent ${
+          isDarkMode ? 'from-black/75 via-black/40' : 'from-slate-900/40 via-slate-900/12'
+        }`}
+      >
+        <div
+          className={`pointer-events-auto inline-flex max-w-full items-stretch overflow-hidden rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop-blur-md ${
+            isDarkMode
+              ? 'border-2 border-zinc-500/70 bg-zinc-950/95 text-zinc-100 ring-1 ring-cyan-500/25'
+              : 'border-2 border-slate-800/90 bg-white text-slate-900 shadow-[0_8px_32px_rgba(15,23,42,0.18)] ring-1 ring-slate-900/10'
+          }`}
+        >
+          <button
+            type="button"
+            onClick={goPrev}
+            aria-label="Previous slide"
+            className={`shrink-0 flex items-center justify-center px-3 py-3 sm:px-3.5 transition-colors border-r ${
+              isDarkMode
+                ? 'border-zinc-700/90 text-zinc-200 hover:bg-zinc-800 hover:text-cyan-300'
+                : 'border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-indigo-700'
+            }`}
+          >
+            <ChevronLeft className="w-5 h-5" strokeWidth={2.5} />
+          </button>
 
-        <div className={`flex flex-1 min-w-0 items-center gap-0.5 px-0.5 sm:px-1 border-x overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${isDarkMode ? 'border-zinc-800/60' : 'border-slate-200'}`}>
-          {slides.map((slide, i) => {
-            const isActive = i === activeIdx;
-            const Icon = slide.icon;
-            return (
-              <button
-                key={slide.id}
-                ref={(el) => { tabBtnRefs.current[i] = el; }}
-                type="button"
-                onClick={() => goTo(i)}
-                className={`flex items-center gap-1 sm:gap-2 px-1.5 sm:px-3 py-1.5 sm:py-2.5 transition-all duration-300 rounded-md text-[8px] sm:text-[9px] font-black uppercase tracking-[0.12em] sm:tracking-[0.15em] whitespace-nowrap shrink-0 ${
-                  isActive
-                    ? (isDarkMode ? 'bg-[#00E5FF]/15 text-[#00E5FF] border border-[#00E5FF]/30' : 'bg-indigo-500/15 text-indigo-600 border border-indigo-500/30')
-                    : (isDarkMode ? 'text-zinc-600 hover:text-zinc-400 hover:bg-zinc-900 border border-transparent' : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50 border border-transparent')
-                }`}
-                title={`${slide.label} — ${slide.sublabel}`}
-              >
-                {Icon && <Icon className="w-3 h-3 shrink-0" />}
-                <span className="max-[360px]:hidden">{slide.label}</span>
-              </button>
-            );
-          })}
-        </div>
+          <div className="flex items-center gap-1 px-1.5 sm:px-2 py-1 overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {slides.map((slide, i) => {
+              const isActive = i === activeIdx;
+              const Icon = slide.icon;
+              return (
+                <button
+                  key={slide.id}
+                  ref={(el) => {
+                    tabBtnRefs.current[i] = el;
+                  }}
+                  type="button"
+                  onClick={() => goTo(i)}
+                  className={`flex items-center gap-1.5 sm:gap-2 rounded-lg px-2.5 sm:px-3.5 py-2 sm:py-2.5 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.14em] sm:tracking-[0.16em] whitespace-nowrap shrink-0 transition-all duration-200 ${
+                    isActive
+                      ? isDarkMode
+                        ? 'bg-cyan-500/25 text-cyan-200 border border-cyan-400/50 shadow-[inset_0_0_0_1px_rgba(34,211,238,0.2)]'
+                        : 'bg-indigo-700 text-white border border-indigo-800 shadow-sm'
+                      : isDarkMode
+                        ? 'text-zinc-400 border border-transparent hover:bg-zinc-800/80 hover:text-zinc-100'
+                        : 'text-slate-600 border border-transparent hover:bg-slate-100 hover:text-slate-950'
+                  }`}
+                  title={`${slide.label} — ${slide.sublabel}`}
+                >
+                  {Icon && (
+                    <Icon
+                      className={`w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 ${isActive && !isDarkMode ? 'text-white' : ''}`}
+                      strokeWidth={isActive ? 2.5 : 2}
+                    />
+                  )}
+                  <span className="max-[380px]:sr-only">{slide.label}</span>
+                </button>
+              );
+            })}
+          </div>
 
-        <button type="button" onClick={goNext} aria-label="Next slide" className={`shrink-0 p-2 sm:p-2.5 transition-colors ${
-          isDarkMode ? 'text-zinc-600 hover:text-cyan-400 hover:bg-cyan-500/10' : 'text-slate-400 hover:text-indigo-600 hover:bg-indigo-50'
-        }`}>
-          <ChevronRight className="w-4 h-4" />
-        </button>
+          <button
+            type="button"
+            onClick={goNext}
+            aria-label="Next slide"
+            className={`shrink-0 flex items-center justify-center px-3 py-3 sm:px-3.5 transition-colors border-l ${
+              isDarkMode
+                ? 'border-zinc-700/90 text-zinc-200 hover:bg-zinc-800 hover:text-cyan-300'
+                : 'border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-indigo-700'
+            }`}
+          >
+            <ChevronRight className="w-5 h-5" strokeWidth={2.5} />
+          </button>
 
-        <div className={`hidden min-[400px]:flex px-1.5 sm:px-3 py-2 border-l text-[8px] sm:text-[9px] font-black tracking-[0.2em] sm:tracking-[0.3em] tabular-nums shrink-0 ${
-          isDarkMode ? 'text-zinc-700 border-zinc-800/60' : 'text-slate-400 border-slate-200'
-        }`}>
-          {String(activeIdx + 1).padStart(2, '0')}/{String(slides.length).padStart(2, '0')}
+          <div
+            className={`hidden min-[420px]:flex items-center px-3 sm:px-3.5 border-l tabular-nums shrink-0 ${
+              isDarkMode ? 'border-zinc-700/90 bg-zinc-900/50' : 'border-slate-200 bg-slate-50'
+            }`}
+          >
+            <span
+              className={`text-[10px] sm:text-[11px] font-black tracking-[0.2em] ${
+                isDarkMode ? 'text-cyan-300/90' : 'text-indigo-800'
+              }`}
+            >
+              {String(activeIdx + 1).padStart(2, '0')}
+              <span className={isDarkMode ? 'text-zinc-500' : 'text-slate-400'}>/</span>
+              {String(slides.length).padStart(2, '0')}
+            </span>
+          </div>
         </div>
       </div>
     </div>
