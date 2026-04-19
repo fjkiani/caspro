@@ -2,78 +2,14 @@
 
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Dna, Grid3X3, ArrowRight, Target, Fingerprint, Cpu, Beaker } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Dna, ArrowRight, Target, Fingerprint, Cpu } from 'lucide-react';
 import Link from 'next/link';
 import { useTheme } from '@/context/ThemeContext';
-import { getActiveEngines } from '@/data/engine-registry';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
 import DnaHero from '@/components/mockups/dnaHero2';
-import GenomicHero from '@/components/mockups/hero';
 import MoaRadarPreview from './previews/MoaRadarPreview';
 import ProteinPreview from './previews/ProteinPreview';
 import KillChainPreview from './previews/KillChainPreview';
-import SLPreview from './previews/SLPreview';
-
-// ═══════════════════════════════════════════════════════════════════════════════
-// DYNAMIC HERO OVERLAY — shows on ALL slides
-// ═══════════════════════════════════════════════════════════════════════════════
-
-const HERO_TAGLINES: Record<string, { heading: string; sub: string }> = {
-  'dna-hero': {
-    heading: 'Prediction is Certainty.',
-    sub: 'Five Phase III failures. Five receipts. Zero excuses.',
-  },
-  'genomic-matrix': {
-    heading: 'The Oracle confirms the failure.',
-    sub: 'Structural pharmacology is the only gate that matters.',
-  },
-};
-
-// Engine taglines come from the registry dynamically
-const getSlideContent = (slideId: string) => {
-  if (HERO_TAGLINES[slideId]) return HERO_TAGLINES[slideId];
-  // Engine slides: pull from registry
-  const slug = slideId.replace('engine-', '');
-  const engine = getActiveEngines().find(e => e.slug === slug);
-  if (engine) {
-    return {
-      heading: engine.zetaHeadline ?? engine.label,
-      sub: engine.heroTagline,
-    };
-  }
-  return HERO_TAGLINES['dna-hero'];
-};
-
-const HeroOverlay = ({ slideId, isDarkMode }: { slideId: string; isDarkMode: boolean }) => {
-  const content = getSlideContent(slideId);
-  return (
-    <div className="absolute bottom-16 md:bottom-24 left-4 md:left-8 right-4 lg:right-auto z-50 pointer-events-none max-w-xl">
-      <div className={`backdrop-blur-md border rounded-lg px-6 py-4 pointer-events-auto ${
-        isDarkMode ? 'bg-black/60 border-zinc-800/60' : 'bg-white/80 border-slate-200'
-      }`}>
-        <h2 className={`text-base md:text-lg font-black tracking-tight leading-snug ${
-          isDarkMode ? 'text-white' : 'text-slate-900'
-        }`}>
-          {content.heading.split(' ').map((word: string, i: number) => {
-            const cleanWord = word.replace(/[.,]/g, '');
-            const isHighlight = ['Certainty', 'Failure', 'Inevitability'].includes(cleanWord);
-            const color = cleanWord === 'Inevitability' ? 'text-amber-500' : 'text-cyan-400';
-            return (
-              <span key={i} className={isHighlight ? color : ''}>
-                {word}{' '}
-              </span>
-            );
-          })}
-        </h2>
-        <p className={`text-[10px] uppercase tracking-[0.2em] font-black mt-2 ${
-          isDarkMode ? 'text-zinc-400' : 'text-slate-700'
-        }`}>
-          {content.sub}
-        </p>
-      </div>
-    </div>
-  );
-};
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // SLIDE REGISTRY
@@ -87,16 +23,6 @@ interface HeroSlide {
   route?: string;
 }
 
-const ENGINE_PREVIEW_MAP: Record<string, string> = {
-  '01': 'ProteinPreview',
-  '02': 'MoaRadarPreview',
-  '03': 'KillChainPreview',
-  '04': 'IoGatePreview',
-  '05': 'SLPreview',
-  '06': 'SafetyPreview',
-  '07': 'EvidencePreview',
-};
-
 // ═══════════════════════════════════════════════════════════════════════════════
 // HERO SLIDER COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -106,12 +32,9 @@ export const HeroSlider = () => {
 
   const slides = useMemo((): HeroSlide[] => [
     { id: 'dna-hero', label: 'ORACLE', sublabel: 'COMMAND', icon: Dna },
-    { id: 'genomic-matrix', label: 'MATRIX', sublabel: 'COHORT', icon: Grid3X3 },
     { id: 'ceacam5', label: 'CEACAM5', sublabel: 'TARGET-LOCK', icon: Target, route: '/proof/ceacam5' },
     { id: 'latify', label: 'LATIFY', sublabel: 'MOA-ALIGN', icon: Fingerprint, route: '/proof/latify' },
-    { id: 'adavosertib', label: 'ADAVOSERTIB', sublabel: 'AXIS-ALIGN', icon: Fingerprint, route: '/proof/adavosertib' },
     { id: 'capri', label: 'CAPRI', sublabel: 'KILL-CHAIN', icon: Cpu, route: '/proof/capri' },
-    { id: 'berzosertib', label: 'BERZOSERTIB', sublabel: 'SL-ENGINE', icon: Beaker, route: '/proof/berzosertib' },
   ], []);
 
   const [activeIdx, setActiveIdx] = useState(0);
@@ -152,20 +75,20 @@ export const HeroSlider = () => {
   // Render the active slide component
   const renderSlide = () => {
     if (activeSlide.id === 'dna-hero') return <DnaHero key="v6-hero" embedded />;
-    if (activeSlide.id === 'genomic-matrix') return <GenomicHero key="genomic-hero" embedded />;
 
     // Trial Previews
     const trialId = activeSlide.id;
-    
-    // Mapping Trials to Engine Visuals
+
     const getVisual = () => {
       switch (trialId) {
-        case 'ceacam5': return <ProteinPreview isDarkMode={isDarkMode} />;
+        case 'ceacam5':
+          return <ProteinPreview isDarkMode={isDarkMode} />;
         case 'latify':
-        case 'adavosertib': return <MoaRadarPreview isDarkMode={isDarkMode} />;
-        case 'capri': return <KillChainPreview isDarkMode={isDarkMode} />;
-        case 'berzosertib': return <SLPreview isDarkMode={isDarkMode} />;
-        default: return null;
+          return <MoaRadarPreview isDarkMode={isDarkMode} />;
+        case 'capri':
+          return <KillChainPreview isDarkMode={isDarkMode} />;
+        default:
+          return null;
       }
     };
 
@@ -247,8 +170,6 @@ export const HeroSlider = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Dynamic Hero Overlay — renders on ALL slides */}
-        {/* HeroOverlay removed — taglines are consolidated into each engine preview */}
       </div>
 
       {/* Mars-Style Navigation Bar */}
