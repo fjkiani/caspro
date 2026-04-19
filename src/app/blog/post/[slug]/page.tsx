@@ -1,15 +1,27 @@
 import React from 'react';
-import { getPostDetails, getNextPostInSameCategory } from '@/services';
-import { PostDetail, BlogAdjacentPost } from '@/types/blog';
-import { RichText } from '@graphcms/rich-text-react-renderer';
+import { getPostDetails, getNextPost } from '@/services';
+import { PostDetail } from '@/types/blog';
 import Link from 'next/link';
-import { ChevronLeft, ArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import BlogPostMedia from '@/components/blog/BlogPostMedia';
+import BlogPostHero from '@/components/blog/BlogPostHero';
+import BlogPostBody from '@/components/blog/BlogPostBody';
+import BlogMarkdown from '@/components/blog/BlogMarkdown';
+import { looksLikeMarkdown } from '@/lib/blog/markdown-heuristics';
 
 interface PostPageProps {
   params: {
     slug: string;
   };
+}
+
+interface NextPost {
+  title: string;
+  slug: string;
+  createdAt?: string;
+  excerpt?: string;
+  featuredImage?: { url: string } | null;
+  categories?: { name: string; slug: string }[];
 }
 
 export default async function PostDetailPage({ params }: PostPageProps) {
@@ -20,7 +32,9 @@ export default async function PostDetailPage({ params }: PostPageProps) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
         <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Post not found</h1>
-        <p className="mt-4 text-slate-600 dark:text-slate-400">Sorry, we couldn&apos;t find the post you were looking for.</p>
+        <p className="mt-4 text-slate-600 dark:text-slate-400">
+          Sorry, we couldn&apos;t find the post you were looking for.
+        </p>
         <div className="mt-8">
           <Link
             href="/blog/"
@@ -34,12 +48,22 @@ export default async function PostDetailPage({ params }: PostPageProps) {
     );
   }
 
-  const categorySlugs = (post.categories || []).map((c) => c.slug).filter(Boolean);
-  const nextInCategory: BlogAdjacentPost | null = await getNextPostInSameCategory(
-    slug,
-    post.createdAt,
-    categorySlugs
-  );
+  const deckSlug = post.slideDeckSlug?.trim();
+  const pdfUrl = (post.pdfDeck?.url ?? post.pdfDeckUrl)?.trim();
+  const heroShowsDeck = Boolean(deckSlug);
+  const heroShowsPdf = !heroShowsDeck && Boolean(pdfUrl);
+
+  const categorySlugs: string[] = (post.categories ?? [])
+    .map((c) => c.slug)
+    .filter((s): s is string => Boolean(s));
+  const nextPost: NextPost | null = await getNextPost({
+    slug: post.slug,
+    createdAt: post.createdAt,
+    categorySlugs,
+  });
+
+  const matchedCategory =
+    nextPost?.categories?.find((c) => categorySlugs.includes(c.slug))?.name ?? null;
 
   return (
     <main className="pt-8 pb-16 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">
@@ -54,87 +78,128 @@ export default async function PostDetailPage({ params }: PostPageProps) {
           </Link>
         </div>
         <article className="prose prose-slate dark:prose-invert max-w-none prose-headings:font-semibold prose-p:text-slate-700 dark:prose-p:text-slate-300 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-li:text-slate-700 dark:prose-li:text-slate-300 prose-ol:text-slate-700 dark:prose-ol:text-slate-300 prose-ul:text-slate-700 dark:prose-ul:text-slate-300 prose-headings:text-slate-900 dark:prose-headings:text-slate-100">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-6">{post.title}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-100 mb-6">
+            {post.title}
+          </h1>
           <div className="flex items-center mb-8 text-sm text-slate-600 dark:text-slate-400">
             {post.author?.photo?.url && (
-              <img src={post.author.photo.url} alt={post.author.name || 'Author photo'} className="w-10 h-10 rounded-full mr-3" />
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={post.author.photo.url}
+                alt={post.author.name || 'Author photo'}
+                className="w-10 h-10 rounded-full mr-3"
+              />
             )}
             <span>By {post.author?.name || 'Anonymous'}</span>
             <span className="mx-2">|</span>
-            <span>{new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span>
+              {new Date(post.createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </span>
           </div>
 
-          {post.featuredImage?.url && (
-            <div className="mb-8">
-              <img
-                src={post.featuredImage.url}
-                alt={post.title}
-                className="w-full h-auto rounded-lg shadow-md object-cover max-h-[500px]"
-              />
+          <BlogPostHero
+            postTitle={post.title}
+            featuredImageUrl={post.featuredImage?.url}
+            pdfDeck={post.pdfDeck ?? null}
+            pdfDeckUrl={post.pdfDeckUrl ?? null}
+            slideDeckSlug={post.slideDeckSlug ?? null}
+          />
+
+          {post.excerpt ? (
+            <div className="not-prose mb-8 text-slate-600 dark:text-slate-300">
+              {looksLikeMarkdown(post.excerpt) ? (
+                <BlogMarkdown source={post.excerpt} />
+              ) : (
+                <p className="text-lg leading-relaxed">{post.excerpt}</p>
+              )}
             </div>
-          )}
+          ) : null}
 
           <BlogPostMedia
             postTitle={post.title}
             pdfDeck={post.pdfDeck ?? null}
+            pdfDeckUrl={post.pdfDeckUrl ?? null}
             slideDeckSlug={post.slideDeckSlug ?? null}
+            suppressSlideDeck={heroShowsDeck}
+            suppressPdf={heroShowsPdf}
           />
 
-          {post.content?.raw && (
-            <div className="prose-lg">
-              <RichText content={post.content.raw} />
-            </div>
-          )}
+          <div className="not-prose">
+            <BlogPostBody content={post.content} />
+          </div>
 
           {post.categories && post.categories.length > 0 && (
-            <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-700 not-prose">
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-200 mb-3">Categories</h3>
+            <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-700">
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-200 mb-3">
+                Categories
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {post.categories.map((category) => (
-                  <Link
+                  <span
                     key={category.slug}
-                    href={`/blog/?category=${encodeURIComponent(category.slug)}`}
-                    className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1 rounded-full text-sm hover:bg-cyan-500/10 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors"
+                    className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1 rounded-full text-sm"
                   >
                     {category.name}
-                  </Link>
+                  </span>
                 ))}
               </div>
             </div>
           )}
+        </article>
 
-          {nextInCategory && (
-            <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700 not-prose">
-              <p className="text-xs font-black uppercase tracking-[0.25em] text-slate-500 dark:text-slate-400 mb-3">Next in category</p>
+        {nextPost ? (
+          <section className="mt-16 border-t border-slate-200 pt-10 dark:border-slate-700">
+            <div className="mb-3 flex items-center justify-between">
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                {matchedCategory ? `Next in ${matchedCategory}` : 'Next article'}
+              </p>
               <Link
-                href={`/blog/post/${nextInCategory.slug}/`}
-                className="group flex flex-col sm:flex-row gap-6 rounded-xl border border-slate-200 dark:border-slate-700 p-6 hover:border-cyan-500/40 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                href="/blog/"
+                className="text-sm font-medium text-primary hover:underline"
               >
-                {nextInCategory.featuredImage?.url ? (
-                  <div className="sm:w-48 h-40 sm:h-28 shrink-0 overflow-hidden rounded-lg">
-                    <img
-                      src={nextInCategory.featuredImage.url}
-                      alt=""
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                ) : null}
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors line-clamp-2">
-                    {nextInCategory.title}
-                  </h3>
-                  {nextInCategory.excerpt && (
-                    <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">{nextInCategory.excerpt}</p>
-                  )}
-                  <span className="mt-4 inline-flex items-center text-sm font-semibold text-primary">
-                    Continue reading
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-                </div>
+                All articles
               </Link>
             </div>
-          )}
-        </article>
+
+            <Link
+              href={`/blog/post/${nextPost.slug}/`}
+              className="group block overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-lg dark:border-slate-700 dark:bg-slate-800/60"
+            >
+              <div className="grid gap-0 sm:grid-cols-[200px_1fr]">
+                {nextPost.featuredImage?.url ? (
+                  <div className="relative aspect-[16/10] sm:aspect-auto sm:h-full">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={nextPost.featuredImage.url}
+                      alt={nextPost.title}
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    />
+                  </div>
+                ) : (
+                  <div className="hidden sm:block bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900" />
+                )}
+                <div className="flex flex-col justify-center gap-2 p-5 sm:p-6">
+                  <h3 className="text-xl font-semibold text-slate-900 group-hover:text-primary dark:text-slate-100">
+                    {nextPost.title}
+                  </h3>
+                  {nextPost.excerpt ? (
+                    <p className="line-clamp-2 text-sm text-slate-600 dark:text-slate-400">
+                      {nextPost.excerpt}
+                    </p>
+                  ) : null}
+                  <span className="mt-1 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                    Read next
+                    <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </section>
+        ) : null}
       </div>
     </main>
   );

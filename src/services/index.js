@@ -80,44 +80,310 @@ export const getCategories = async () => {
   }
 };
 
-export const getPostDetails = async (slug) => {
-  if (!graphqlAPI) return null;
-  const query = gql`
-    query GetPostDetails($slug : String!) {
-      post(where: {slug: $slug}) {
-        title
-        excerpt
-        featuredImage {
+/**
+ * Core post query — only fields that exist on every Hygraph `Post` in this project.
+ * Deck / PDF fields are fetched separately so a missing schema field does not 400 the whole post.
+ */
+const GET_POST_DETAILS_CORE = gql`
+  query GetPostDetailsCore($slug: String!) {
+    post(where: { slug: $slug }) {
+      title
+      excerpt
+      featuredImage { url width height mimeType fileName }
+      author { name bio photo { url } }
+      createdAt
+      slug
+      content { raw markdown text }
+      categories { name slug }
+    }
+  }
+`;
+
+/**
+ * Same `pdfDeck` Asset selection as CMS use cases (`src/lib/docs/hygraph/use-case-queries.ts`).
+ * On `Post`, add an Asset field with API ID **pdfDeck** (same as UseCase) and upload the PDF there.
+ * Kept in its own query so missing *other* optional fields never blocks this from merging.
+ */
+const MERGE_POST_PDF_DECK = gql`
+  query MergePostPdfDeck($slug: String!) {
+    post(where: { slug: $slug }) {
+      pdfDeck {
+        id
+        url
+        fileName
+        mimeType
+      }
+    }
+  }
+`;
+
+const MERGE_POST_SLIDE_DECK_SLUG = gql`
+  query MergePostSlideDeckSlug($slug: String!) {
+    post(where: { slug: $slug }) {
+      slideDeckSlug
+    }
+  }
+`;
+
+const MERGE_POST_PDF_DECK_URL = gql`
+  query MergePostPdfDeckUrl($slug: String!) {
+    post(where: { slug: $slug }) {
+      pdfDeckUrl
+    }
+  }
+`;
+
+/**
+ * Deck/PDF often live on `MediaItem` (pdfFile, deckSlug) while the article body
+ * stays on `Post` — same slug in both. Merge so the blog route matches Studio.
+ */
+const MERGE_MEDIA_ITEM_BY_POST_SLUG = gql`
+  query MergeMediaItemByPostSlug($slug: String!) {
+    mediaItem(where: { slug: $slug }) {
+      pdfFile {
+        id
+        url
+        fileName
+        mimeType
+      }
+      deckSlug
+    }
+  }
+`;
+
+/** When singular `author` is missing or wrong, Hygraph may still link `authors` (plural). */
+const MERGE_POST_AUTHORS = gql`
+  query MergePostAuthors($slug: String!) {
+    post(where: { slug: $slug }) {
+      authors {
+        id
+        name
+        bio
+        photo {
           url
-          width
-          height
-          mimeType
-          fileName
-        }
-        author {
-          name
-          bio
-          photo {
-            url
-          }
-        }
-        createdAt
-        slug
-        content {
-          raw
-        }
-        categories {
-          name
-          slug
         }
       }
     }
-  `;
+  }
+`;
+
+function pickAuthorName(value) {
+  if (value == null) return '';
+  if (typeof value === 'string') return value.trim();
+  if (typeof value === 'object') {
+    if (typeof value.en === 'string' && value.en.trim()) return value.en.trim();
+    for (const v of Object.values(value)) {
+      if (typeof v === 'string' && v.trim()) return v.trim();
+    }
+  }
+  return '';
+}
+
+/** Hygraph `createdBy` is often a workspace member email — never use as article byline. */
+function isLikelyEmail(s) {
+  const t = (s || '').trim();
+  if (!t) return false;
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/i.test(t);
+}
+
+function collectAuthorNameCandidates(post) {
+  const out = [];
+  if (post.author?.name != null) out.push(post.author.name);
+  if (Array.isArray(post.authors)) {
+    for (const x of post.authors) {
+      if (x?.name != null) out.push(x.name);
+    }
+  }
+  return out;
+}
+
+function pickDisplayAuthorName(post) {
+  for (const raw of collectAuthorNameCandidates(post)) {
+    const n = pickAuthorName(raw);
+    if (n && !isLikelyEmail(n)) return n;
+  }
+  return '';
+}
+
+function findAuthorRecordForDisplayName(post, displayName) {
+  const target = (displayName || '').trim().toLowerCase();
+  const match = (rec) => pickAuthorName(rec?.name).toLowerCase() === target;
+  if (post.author && match(post.author)) return post.author;
+  if (Array.isArray(post.authors)) {
+    const hit = post.authors.find((x) => match(x));
+    if (hit) return hit;
+  }
+  if (post.author && !isLikelyEmail(pickAuthorName(post.author.name))) return post.author;
+  if (Array.isArray(post.authors) && post.authors.length > 0) {
+    const ok = post.authors.find((x) => !isLikelyEmail(pickAuthorName(x?.name)));
+    if (ok) return ok;
+  }
+  return post.author || post.authors?.[0];
+}
+
+function normalizePostAuthor(post) {
+  if (!post) return;
+  const name = pickDisplayAuthorName(post);
+  if (!name) {
+    const cur = pickAuthorName(post.author?.name);
+    if (cur && isLikelyEmail(cur)) {
+      post.author = { ...post.author, name: '' };
+    }
+    return;
+  }
+  const record = findAuthorRecordForDisplayName(post, name) || {};
+  post.author = {
+    ...record,
+    id: record.id || post.author?.id || post.authors?.[0]?.id || 'author',
+    name,
+    bio: record.bio ?? post.author?.bio,
+    photo: record.photo ?? post.author?.photo,
+  };
+}
+
+const GET_POST_DETAILS_RAW_ONLY = gql`
+  query GetPostDetailsRawOnly($slug: String!) {
+    post(where: { slug: $slug }) {
+      title
+      excerpt
+      featuredImage { url width height mimeType fileName }
+      author { name bio photo { url } }
+      createdAt
+      slug
+      content { raw }
+      categories { name slug }
+    }
+  }
+`;
+
+export const getPostDetails = async (slug) => {
+  if (!graphqlAPI) return null;
+  let post = null;
   try {
-    const result = await graphQLClient.request(query, { slug });
-    return result?.post || null;
-  } catch (error) {
-    console.error(`Error fetching post details for ${slug}:`, error);
+    const result = await graphQLClient.request(GET_POST_DETAILS_CORE, { slug });
+    post = result?.post || null;
+  } catch (e2) {
+    console.warn(`getPostDetails core query failed for ${slug}:`, e2?.message || e2);
+    try {
+      const result = await graphQLClient.request(GET_POST_DETAILS_RAW_ONLY, { slug });
+      post = result?.post || null;
+    } catch (e3) {
+      console.error(`Error fetching post details for ${slug}:`, e3);
+      return null;
+    }
+  }
+  if (!post) return null;
+
+  const tryMerge = async (query) => {
+    try {
+      const r = await graphQLClient.request(query, { slug });
+      if (r?.post) Object.assign(post, r.post);
+    } catch {
+      /* field not on Post schema */
+    }
+  };
+
+  await tryMerge(MERGE_POST_PDF_DECK);
+  await tryMerge(MERGE_POST_SLIDE_DECK_SLUG);
+  await tryMerge(MERGE_POST_PDF_DECK_URL);
+
+  try {
+    const r = await graphQLClient.request(MERGE_MEDIA_ITEM_BY_POST_SLUG, { slug });
+    const mi = r?.mediaItem;
+    if (mi) {
+      const pdf = mi.pdfFile;
+      if (pdf?.url && !post.pdfDeck?.url) {
+        post.pdfDeck = {
+          id: pdf.id,
+          url: pdf.url,
+          fileName: pdf.fileName ?? null,
+          mimeType: pdf.mimeType ?? null,
+        };
+      }
+      const ds = typeof mi.deckSlug === 'string' ? mi.deckSlug.trim() : '';
+      if (ds && !post.slideDeckSlug) {
+        post.slideDeckSlug = ds;
+      }
+    }
+  } catch {
+    /* MediaItem or fields not in schema */
+  }
+
+  await tryMerge(MERGE_POST_AUTHORS);
+  normalizePostAuthor(post);
+
+  return post;
+};
+
+/**
+ * Next post for the in-article "Next article" CTA.
+ * Tries the next post (oldest first after `createdAt`) within any of the same categories.
+ * Falls back to the next post anywhere, then to the most recent other post.
+ */
+/**
+ * @param {{ slug: string; createdAt?: string; categorySlugs?: string[] }} [opts]
+ */
+export const getNextPost = async ({ slug, createdAt, categorySlugs = [] } = {}) => {
+  if (!graphqlAPI || !slug) return null;
+  const NEXT_IN_CATEGORY = gql`
+    query GetNextPostInCategory($slug: String!, $createdAt: DateTime!, $categories: [String!]) {
+      posts(
+        first: 1
+        orderBy: createdAt_ASC
+        where: { slug_not: $slug, createdAt_gt: $createdAt, categories_some: { slug_in: $categories } }
+      ) {
+        title slug createdAt excerpt
+        featuredImage { url }
+        categories { name slug }
+      }
+    }
+  `;
+  const NEXT_GLOBAL = gql`
+    query GetNextPostGlobal($slug: String!, $createdAt: DateTime!) {
+      posts(
+        first: 1
+        orderBy: createdAt_ASC
+        where: { slug_not: $slug, createdAt_gt: $createdAt }
+      ) {
+        title slug createdAt excerpt
+        featuredImage { url }
+        categories { name slug }
+      }
+    }
+  `;
+  const FALLBACK_RECENT = gql`
+    query GetFallbackRecent($slug: String!) {
+      posts(first: 1, orderBy: createdAt_DESC, where: { slug_not: $slug }) {
+        title slug createdAt excerpt
+        featuredImage { url }
+        categories { name slug }
+      }
+    }
+  `;
+
+  if (createdAt && Array.isArray(categorySlugs) && categorySlugs.length > 0) {
+    try {
+      const r = await graphQLClient.request(NEXT_IN_CATEGORY, { slug, createdAt, categories: categorySlugs });
+      if (r?.posts?.[0]) return r.posts[0];
+    } catch (err) {
+      console.warn(`getNextPost (in-category) failed for ${slug}:`, err?.message || err);
+    }
+  }
+
+  if (createdAt) {
+    try {
+      const r = await graphQLClient.request(NEXT_GLOBAL, { slug, createdAt });
+      if (r?.posts?.[0]) return r.posts[0];
+    } catch (err) {
+      console.warn(`getNextPost (global) failed for ${slug}:`, err?.message || err);
+    }
+  }
+
+  try {
+    const r = await graphQLClient.request(FALLBACK_RECENT, { slug });
+    return r?.posts?.[0] || null;
+  } catch (err) {
+    console.error(`getNextPost (fallback) failed for ${slug}:`, err);
     return null;
   }
 };
@@ -321,5 +587,3 @@ export const getComments = async (slug) => {
     return [];
   }
 };
-
-// ... (rest of the service functions like getPostDetails, getCategories, etc.) 

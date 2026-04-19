@@ -116,8 +116,12 @@ export default function DynamicDeckViewer({ media, showControls = true, embedded
 
   return (
     <div
-      className={`w-full bg-slate-900 text-white font-sans ${
-        isFullscreen ? 'fixed inset-0 z-50' : embedded ? 'min-h-[min(70vh,640px)] max-h-[min(85vh,900px)]' : 'min-h-screen'
+      className={`relative w-full bg-slate-900 text-white font-sans ${
+        isFullscreen
+          ? 'fixed inset-0 z-50'
+          : embedded
+            ? 'h-[min(72vh,640px)] min-h-[420px] max-h-[min(85vh,900px)] overflow-hidden [&_main]:!h-full [&_main]:min-h-0'
+            : 'min-h-screen'
       }`}
     >
       {/* Controls */}

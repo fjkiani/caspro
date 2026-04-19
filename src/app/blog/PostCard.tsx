@@ -3,7 +3,8 @@
 import React from 'react';
 import moment from 'moment';
 import Link from 'next/link';
-import { PostNode } from '@/types/blog'; // Corrected import path
+import BlogExcerptSnippet from '@/components/blog/BlogExcerptSnippet';
+import { PostNode } from '@/types/blog';
 import { ArrowRight } from 'lucide-react';
 
 interface PostCardProps {
@@ -31,23 +32,26 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
       </Link>
-      
+
       <div className="p-6 flex flex-col flex-grow">
         <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">
           {moment(postData.createdAt).format('MMMM DD, YYYY')}
         </p>
         <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-3 flex-grow hover:text-primary transition-colors duration-200">
-          <Link href={`/blog/post/${postData.slug}`}>
-            {postData.title}
-          </Link>
+          <Link href={`/blog/post/${postData.slug}`}>{postData.title}</Link>
         </h3>
-        <p className="text-sm text-slate-600 dark:text-slate-300 mb-4 line-clamp-3">
-            {postData.excerpt}
-        </p>
+        {postData.excerpt?.trim() ? (
+          <div className="mb-4 min-w-0">
+            <BlogExcerptSnippet text={postData.excerpt} maxLines={3} size="sm" />
+          </div>
+        ) : null}
         <div className="mt-auto">
-          <Link href={`/blog/post/${postData.slug}`} className="inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark transition-colors duration-300">
-              Read More
-              <ArrowRight className="ml-1 h-4 w-4" />
+          <Link
+            href={`/blog/post/${postData.slug}`}
+            className="inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark transition-colors duration-300"
+          >
+            Read More
+            <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
         </div>
       </div>
@@ -55,4 +59,4 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
   );
 };
 
-export default PostCard; 
+export default PostCard;

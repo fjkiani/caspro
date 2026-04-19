@@ -68,12 +68,6 @@ export const getCategories = async () => {
 };
 
 export const getPostDetails = async (slug) => {
-  /*
-   * Hygraph / GraphCMS — add to **Post** model (optional fields):
-   *   pdfDeck      → Asset (single file) — shown inline like use-case PDFs
-   *   slideDeckSlug → Single line text — must match deck-registry id (e.g. trials, safety, crispro-101)
-   * Publish schema before this query runs or GraphQL will error on unknown fields.
-   */
   const query = gql`
     query GetPostDetails($slug : String!) {
       post(where: {slug: $slug}) {
@@ -102,11 +96,6 @@ export const getPostDetails = async (slug) => {
           name
           slug
         }
-        pdfDeck {
-          url
-          fileName
-        }
-        slideDeckSlug
       }
     }
   `;

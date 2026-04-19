@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PostCard from './PostCard';
+import BlogExcerptSnippet from '@/components/blog/BlogExcerptSnippet';
 import { PostNode, Category } from '@/types/blog';
 import { ArrowRight } from 'lucide-react';
 
@@ -36,7 +37,11 @@ const FeaturedPostCard: React.FC<{ post: PostNode }> = ({ post }) => (
       <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-4 group-hover:text-primary transition-colors duration-200">
         <Link href={`/blog/post/${post.slug}/`}>{post.title}</Link>
       </h2>
-      <p className="text-slate-600 dark:text-slate-300 mb-6 line-clamp-4">{post.excerpt}</p>
+      {post.excerpt?.trim() ? (
+        <div className="mb-6 min-w-0">
+          <BlogExcerptSnippet text={post.excerpt} maxLines={4} size="md" />
+        </div>
+      ) : null}
       <div className="mt-auto">
         <Link
           href={`/blog/post/${post.slug}/`}
