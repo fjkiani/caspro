@@ -5,9 +5,10 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PostCard from './PostCard';
-import BlogExcerptSnippet from '@/components/blog/BlogExcerptSnippet';
+import BlogSeriesBlock from '@/components/blog/BlogSeriesBlock';
 import { PostNode, Category } from '@/types/blog';
 import { ArrowRight } from 'lucide-react';
+import { partitionPostsForListing } from '@/lib/blog/series-grouping';
 
 interface BlogPageClientProps {
   posts: PostNode[];
@@ -37,11 +38,7 @@ const FeaturedPostCard: React.FC<{ post: PostNode }> = ({ post }) => (
       <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-4 group-hover:text-primary transition-colors duration-200">
         <Link href={`/blog/post/${post.slug}/`}>{post.title}</Link>
       </h2>
-      {post.excerpt?.trim() ? (
-        <div className="mb-6 min-w-0">
-          <BlogExcerptSnippet text={post.excerpt} maxLines={4} size="md" />
-        </div>
-      ) : null}
+      <p className="text-slate-600 dark:text-slate-300 mb-6 line-clamp-4">{post.excerpt}</p>
       <div className="mt-auto">
         <Link
           href={`/blog/post/${post.slug}/`}
@@ -77,11 +74,16 @@ export default function BlogPageClient({ posts, categories, initialCategory }: B
   }, [posts, activeSlug]);
 
   const featuredPost = !activeSlug && filteredPosts.length > 0 ? filteredPosts[0] : null;
-  const gridPosts = activeSlug
-    ? filteredPosts
-    : filteredPosts.length > 1
-      ? filteredPosts.slice(1)
-      : [];
+  const remainderForListing = useMemo(() => {
+    if (activeSlug) return filteredPosts;
+    if (filteredPosts.length <= 1) return [];
+    return filteredPosts.slice(1);
+  }, [activeSlug, filteredPosts]);
+
+  const { series, standalone } = useMemo(
+    () => partitionPostsForListing(remainderForListing),
+    [remainderForListing]
+  );
 
   /** Union of Hygraph/GraphCMS categories and any categories embedded on posts (CMS names win on slug clash). */
   const categoryChips = useMemo(() => {
@@ -148,11 +150,20 @@ export default function BlogPageClient({ posts, categories, initialCategory }: B
 
           {featuredPost && <FeaturedPostCard post={featuredPost} />}
 
-          {gridPosts.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {gridPosts.map((post: PostNode) => (
-                <PostCard key={post.slug} post={post} />
-              ))}
+          {series.map((block) => (
+            <BlogSeriesBlock key={block.key} displayName={block.displayName} posts={block.posts} />
+          ))}
+
+          {standalone.length > 0 && (
+            <div className="mb-6">
+              <h2 className="text-xs font-black uppercase tracking-[0.35em] text-slate-500 dark:text-slate-400 mb-4">
+                {series.length > 0 ? 'Also on the blog' : 'Latest articles'}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+                {standalone.map((post: PostNode) => (
+                  <PostCard key={post.slug} post={post} prominent />
+                ))}
+              </div>
             </div>
           )}
 
