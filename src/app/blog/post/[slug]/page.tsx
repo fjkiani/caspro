@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { getPostDetails, getNextPost } from '@/services';
 import { PostDetail } from '@/types/blog';
 import Link from 'next/link';
@@ -24,6 +25,69 @@ interface NextPost {
   categories?: { name: string; slug: string }[];
 }
 
+// ---------------------------------------------------------------------------
+// generateMetadata — full Twitter card + LinkedIn (OpenGraph) with Hygraph image
+// ---------------------------------------------------------------------------
+export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
+  const { slug } = params;
+  const post: PostDetail | null = await getPostDetails(slug);
+
+  if (!post) {
+    return {
+      title: 'Post not found | CrisPRO Blog',
+      description: 'The requested blog post could not be found.',
+    };
+  }
+
+  const title = `${post.title} | CrisPRO Blog`;
+  const description =
+    post.excerpt?.trim() ||
+    'Insights on AI-powered oncology, CRISPR therapeutics, and precision medicine from the CrisPRO team.';
+
+  const pageUrl = `https://crispro.ai/blog/post/${slug}/`;
+
+  // Prefer the Hygraph featuredImage; fall back to the site-wide OG image
+  const ogImageUrl = post.featuredImage?.url ?? 'https://crispro.ai/og-image.png';
+  const ogImageWidth = (post.featuredImage as { url: string; width?: number } | null)?.width ?? 1200;
+  const ogImageHeight = (post.featuredImage as { url: string; height?: number } | null)?.height ?? 630;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: pageUrl,
+      siteName: 'CrisPRO',
+      type: 'article',
+      publishedTime: post.createdAt,
+      authors: post.author?.name ? [post.author.name] : undefined,
+      images: [
+        {
+          url: ogImageUrl,
+          width: ogImageWidth,
+          height: ogImageHeight,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImageUrl],
+      creator: '@crispro_ai',
+      site: '@crispro_ai',
+    },
+    alternates: {
+      canonical: pageUrl,
+    },
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Page component
+// ---------------------------------------------------------------------------
 export default async function PostDetailPage({ params }: PostPageProps) {
   const { slug } = params;
   const post: PostDetail | null = await getPostDetails(slug);

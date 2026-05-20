@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://crispro.ai'), // Replace with your actual domain
+  metadataBase: new URL('https://crispro.ai'),
   openGraph: {
     title: "CrisPRO: AI-Powered Metastasis Prevention System",
     description: "The world's first AI-powered metastasis prevention system. Transform cancer care from reactive to preventive with our Oncology Co-Pilot.",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: 'CrisPRO',
     images: [
       {
-        url: '/og-image.png', // You'll need to add this image
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'CrisPRO - AI-Powered Cancer Genomics Platform',
@@ -55,10 +55,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "CrisPRO:",
-    description: "world's first AI-powered metastasis prevention system.",
-    images: ['/og-image.png'], // You'll need to add this image
-    creator: '@crispro_ai', // Replace with your actual Twitter handle
+    title: "CrisPRO: AI-Powered Metastasis Prevention & Oncology Co-Pilot",
+    description: "The world's first AI-powered metastasis prevention system. VUS resolution, in silico therapeutic design, and predictive oncology analytics.",
+    images: ['/og-image.png'],
+    creator: '@crispro_ai',
+    site: '@crispro_ai',
   },
   robots: {
     index: true,
