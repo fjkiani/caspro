@@ -14,6 +14,10 @@ const USER_ID = process.argv[2] || 'HrO6JwkAAAAJ';
 const SCHOLAR_URL = `https://scholar.google.com/citations?user=${USER_ID}&hl=en&cstart=0&pagesize=100`;
 
 const KNOWN_LINKS = {
+  'abstract lb340': 'https://aacrjournals.org/cancerres/article/86/8_Supplement/LB340/782958',
+  'intercepting metastasis': 'https://aacrjournals.org/cancerres/article/86/7_Supplement/2235/776855',
+  'abstract b065': 'https://aacrjournals.org/cancerres/article/86/6_Supplement/B065/775413',
+  'abstract lb-b013': 'https://aacrjournals.org/cancerimmunolres/article/14/2_Supplement/LB-B013/775104',
   'abstract b025': 'https://aacrjournals.org/cancerimmunolres/article/13/9_Supplement/B025/765414/Abstract-B025-An-agentic-platform-for-designing',
 };
 

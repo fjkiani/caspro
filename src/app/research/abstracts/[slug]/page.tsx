@@ -65,7 +65,7 @@ export default async function ResearchAbstractDetailPage({ params }: Props) {
           </div>
         ) : (
           <a
-            href={researchAbstractImageHref(item.link)}
+            href={researchAbstractImageHref(item.slug, item.title)}
             target="_blank"
             rel="noopener noreferrer"
             className="relative mb-8 block rounded-xl border border-slate-200 dark:border-zinc-800 overflow-hidden bg-slate-50 dark:bg-zinc-900 h-40"

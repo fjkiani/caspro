@@ -6,34 +6,60 @@
 
 import { normalizeAbstractSlug } from '@/lib/research/abstract-slug';
 
-/** Slug (normalized) or abstract ID → canonical published URL */
-export const ABSTRACT_PUBLISHED_URLS: Record<string, string> = {
+/** Slug (normalized) or abstract ID → AACR journals direct abstract page */
+export const ABSTRACT_AACR_JOURNAL_URLS: Record<string, string> = {
   'abstract-lb340-mechanism-based-trial-matching-reveals-a-54-target-alignment-gap':
-    'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HrO6JwkAAAAJ&citation_for_view=HrO6JwkAAAAJ:lSLTfruPkqcC',
+    'https://aacrjournals.org/cancerres/article/86/8_Supplement/LB340/782958',
   'abstract-lb340-ovarian-trial-matching':
-    'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HrO6JwkAAAAJ&citation_for_view=HrO6JwkAAAAJ:lSLTfruPkqcC',
+    'https://aacrjournals.org/cancerres/article/86/8_Supplement/LB340/782958',
+  LB340: 'https://aacrjournals.org/cancerres/article/86/8_Supplement/LB340/782958',
   'intercepting-metastasis-8-step-crispr-design-via-multi-modal-foundation-models':
-    'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HrO6JwkAAAAJ&citation_for_view=HrO6JwkAAAAJ:RYcK_YlVTxYC',
+    'https://aacrjournals.org/cancerres/article/86/7_Supplement/2235/776855',
+  '2235': 'https://aacrjournals.org/cancerres/article/86/7_Supplement/2235/776855',
   'abstract-b065-stage-aware-crispr-design-for-brain-metastasis-interception-multi':
-    'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HrO6JwkAAAAJ&citation_for_view=HrO6JwkAAAAJ:J_g5lzvAfSwC',
+    'https://aacrjournals.org/cancerres/article/86/6_Supplement/B065/775413',
   'abstract-b065-brain-metastasis-crispr':
-    'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HrO6JwkAAAAJ&citation_for_view=HrO6JwkAAAAJ:J_g5lzvAfSwC',
+    'https://aacrjournals.org/cancerres/article/86/6_Supplement/B065/775413',
+  B065: 'https://aacrjournals.org/cancerres/article/86/6_Supplement/B065/775413',
   'abstract-lb-b013-eight-pathway-transcriptomic-biomarker-outperforms-pd-l1-for-an':
-    'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HrO6JwkAAAAJ&citation_for_view=HrO6JwkAAAAJ:NaGl4SEjCO4C',
+    'https://aacrjournals.org/cancerimmunolres/article/14/2_Supplement/LB-B013/775104',
   'abstract-lb-b013-eight-pathway-melanoma':
-    'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=HrO6JwkAAAAJ&citation_for_view=HrO6JwkAAAAJ:NaGl4SEjCO4C',
+    'https://aacrjournals.org/cancerimmunolres/article/14/2_Supplement/LB-B013/775104',
+  'LB-B013': 'https://aacrjournals.org/cancerimmunolres/article/14/2_Supplement/LB-B013/775104',
   'abstract-b025-an-agentic-platform-for-designing-cancer-immunotherapies-from-auto':
     'https://aacrjournals.org/cancerimmunolres/article/13/9_Supplement/B025/765414/Abstract-B025-An-agentic-platform-for-designing',
   'abstract-b025-agentic-immunotherapy-platform':
     'https://aacrjournals.org/cancerimmunolres/article/13/9_Supplement/B025/765414/Abstract-B025-An-agentic-platform-for-designing',
+  B025: 'https://aacrjournals.org/cancerimmunolres/article/13/9_Supplement/B025/765414/Abstract-B025-An-agentic-platform-for-designing',
 };
+
+/** @deprecated Prefer ABSTRACT_AACR_JOURNAL_URLS — kept as alias for published-link resolution */
+export const ABSTRACT_PUBLISHED_URLS = ABSTRACT_AACR_JOURNAL_URLS;
 
 export function parseAbstractIdFromTitle(title: string): string | null {
   const m = title.match(/Abstract\s+([A-Z]{1,3}-?[A-Z]?\d+)/i);
   return m ? m[1].toUpperCase() : null;
 }
 
-/** Best URL for the published abstract (journal / Scholar). */
+function lookupAacrJournalUrl(slug: string, title?: string): string | null {
+  const norm = normalizeAbstractSlug(slug);
+  if (ABSTRACT_AACR_JOURNAL_URLS[norm]) return ABSTRACT_AACR_JOURNAL_URLS[norm];
+
+  const abstractId = title ? parseAbstractIdFromTitle(title) : null;
+  if (abstractId && ABSTRACT_AACR_JOURNAL_URLS[abstractId]) return ABSTRACT_AACR_JOURNAL_URLS[abstractId];
+
+  return null;
+}
+
+/** Direct AACR journals abstract page (poster image click). */
+export function resolveAacrJournalUrl(opts: { slug: string; title?: string }): string {
+  return (
+    lookupAacrJournalUrl(opts.slug, opts.title) ??
+    'https://www.aacr.org/'
+  );
+}
+
+/** Best URL for the published abstract — prefers AACR journals over Scholar. */
 export function resolvePublishedAbstractUrl(opts: {
   slug: string;
   title?: string;
@@ -41,16 +67,16 @@ export function resolvePublishedAbstractUrl(opts: {
   seedLink?: string | null;
 }): string | null {
   const fromHygraph = opts.hygraphExternalLink?.trim();
-  if (fromHygraph) return fromHygraph;
+  if (fromHygraph && /aacr\.org|aacrjournals\.org/i.test(fromHygraph)) return fromHygraph;
+
+  const aacr = lookupAacrJournalUrl(opts.slug, opts.title);
+  if (aacr) return aacr;
 
   const fromSeed = opts.seedLink?.trim();
+  if (fromSeed && /aacr\.org|aacrjournals\.org/i.test(fromSeed)) return fromSeed;
+
+  if (fromHygraph) return fromHygraph;
   if (fromSeed) return fromSeed;
-
-  const slug = normalizeAbstractSlug(opts.slug);
-  if (ABSTRACT_PUBLISHED_URLS[slug]) return ABSTRACT_PUBLISHED_URLS[slug];
-
-  const abstractId = opts.title ? parseAbstractIdFromTitle(opts.title) : null;
-  if (abstractId && ABSTRACT_PUBLISHED_URLS[abstractId]) return ABSTRACT_PUBLISHED_URLS[abstractId];
 
   return null;
 }

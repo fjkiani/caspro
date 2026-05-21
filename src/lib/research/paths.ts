@@ -1,5 +1,7 @@
 /** Research knowledge-base routes (hub → section → item). */
 
+import { resolveAacrJournalUrl } from '@/data/abstract-published-urls';
+
 export const RESEARCH_HUB = '/research';
 
 export const RESEARCH_SECTIONS = {
@@ -41,14 +43,12 @@ export function researchAbstractDetailPath(slug: string): string {
   return `${RESEARCH_SECTIONS.abstracts}/${encodeURIComponent(s)}/`;
 }
 
-/** AACR.org — default when the published URL is not on an AACR domain. */
+/** AACR.org — fallback when no journal URL is mapped for this abstract. */
 export const AACR_ORG_URL = 'https://www.aacr.org/';
 
-/** Image click: AACR journal/org URL when available, otherwise AACR.org. */
-export function researchAbstractImageHref(publishedUrl?: string | null): string {
-  const url = publishedUrl?.trim();
-  if (url && /aacr\.org|aacrjournals\.org/i.test(url)) return url;
-  return AACR_ORG_URL;
+/** Image click: direct AACR journals abstract page (not Google Scholar). */
+export function researchAbstractImageHref(slug: string, title?: string): string {
+  return resolveAacrJournalUrl({ slug, title });
 }
 
 /** Primary click target: detail page when a deck exists; else published URL; else detail. */
