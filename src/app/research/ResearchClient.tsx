@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { BookOpen, FileText, Presentation, ArrowRight, ExternalLink } from 'lucide-react';
+import { BookOpen, FileText, Presentation, ArrowRight, ExternalLink, Download } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import Link from 'next/link';
 import moment from 'moment';
@@ -11,18 +11,29 @@ import type { CmsUseCase } from '@/lib/docs/hygraph/use-case-types';
 
 type Tab = 'articles' | 'manuscripts' | 'decks';
 
-/** Deck post — PostNode extended with optional deck fields from getDeckPosts */
-interface DeckPost extends PostNode {
-  pdfDeck?: { url: string; fileName?: string | null } | null;
-  pdfDeckUrl?: string | null;
-  slideDeckSlug?: string | null;
+/**
+ * MediaItem of type DECK — shape returned by getDeckPosts().
+ * Confirmed via Hygraph introspection: decks live on MediaItem, NOT on Post.
+ */
+interface DeckMediaItem {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt?: string | null;
+  deckSlug?: string | null;
+  deckId?: string | null;
+  pdfFile?: { url: string; fileName?: string | null; mimeType?: string | null } | null;
+  thumbnail?: { url: string } | null;
+  featuredImage?: { url: string } | null;
+  isPublished: boolean;
+  type: string;
 }
 
 interface ResearchClientProps {
   posts: PostNode[];
   categories: { name: string; slug: string }[];
   manuscripts: CmsUseCase[];
-  deckPosts: DeckPost[];
+  deckPosts: DeckMediaItem[];
 }
 
 // ─── Shared helpers ──────────────────────────────────────────────────────────
@@ -32,18 +43,24 @@ function tabButtonClass(active: boolean, isDarkMode: boolean) {
     active
       ? isDarkMode
         ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
-        : 'bg-white text-indigo-700 border border-indigo-200 shadow-sm'
+        // Light mode active: solid indigo — high contrast, clearly readable
+        : 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
       : isDarkMode
         ? 'text-zinc-400 hover:text-zinc-200'
-        : 'text-slate-500 hover:text-slate-800'
+        : 'text-slate-600 hover:text-slate-900'
   }`;
 }
 
 function badgeClass(active: boolean, isDarkMode: boolean) {
   return `text-[9px] px-1.5 py-0.5 rounded font-black ${
     active
-      ? isDarkMode ? 'bg-cyan-500/20 text-cyan-400' : 'bg-indigo-100 text-indigo-600'
-      : isDarkMode ? 'bg-zinc-800 text-zinc-500' : 'bg-slate-200 text-slate-500'
+      ? isDarkMode
+        ? 'bg-cyan-500/20 text-cyan-400'
+        // Light mode active badge: white/translucent on indigo background
+        : 'bg-white/20 text-white'
+      : isDarkMode
+        ? 'bg-zinc-800 text-zinc-500'
+        : 'bg-slate-200 text-slate-500'
   }`;
 }
 
@@ -76,7 +93,6 @@ function ArticlesTab({
     return posts.filter((p) => (p.categories || []).some((c) => c.slug === activeSlug));
   }, [posts, activeSlug]);
 
-  // Build category chips from both CMS categories and post-embedded categories
   const categoryChips = useMemo(() => {
     const bySlug = new Map<string, string>();
     (categories || []).forEach((c) => { if (c?.slug) bySlug.set(c.slug, c.name || c.slug); });
@@ -107,8 +123,12 @@ function ArticlesTab({
             onClick={() => setCategory('')}
             className={`rounded-full px-4 py-2 text-xs font-black uppercase tracking-widest border transition-colors ${
               !activeSlug
-                ? 'border-cyan-500 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400'
-                : 'border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:border-slate-400'
+                ? isDarkMode
+                  ? 'border-cyan-500 bg-cyan-500/10 text-cyan-400'
+                  : 'border-indigo-600 bg-indigo-600 text-white'
+                : isDarkMode
+                  ? 'border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-200'
+                  : 'border-slate-300 text-slate-600 hover:border-slate-500 hover:text-slate-900'
             }`}
           >
             All
@@ -120,8 +140,12 @@ function ArticlesTab({
               onClick={() => setCategory(c.slug)}
               className={`rounded-full px-4 py-2 text-xs font-black uppercase tracking-widest border transition-colors ${
                 activeSlug === c.slug
-                  ? 'border-cyan-500 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400'
-                  : 'border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:border-slate-400'
+                  ? isDarkMode
+                    ? 'border-cyan-500 bg-cyan-500/10 text-cyan-400'
+                    : 'border-indigo-600 bg-indigo-600 text-white'
+                  : isDarkMode
+                    ? 'border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-200'
+                    : 'border-slate-300 text-slate-600 hover:border-slate-500 hover:text-slate-900'
               }`}
             >
               {c.name}
@@ -151,11 +175,11 @@ function ArticlesTab({
             </div>
           </Link>
           <div className="flex flex-col">
-            <p className="text-sm text-slate-500 dark:text-slate-400 mb-3">Featured Article</p>
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-4 group-hover:text-primary transition-colors duration-200">
+            <p className={`text-sm mb-3 ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`}>Featured Article</p>
+            <h2 className={`text-3xl font-bold mb-4 group-hover:text-primary transition-colors duration-200 ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
               <Link href={`/blog/post/${featuredPost.slug}/`} prefetch>{featuredPost.title}</Link>
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 mb-6 line-clamp-4">{featuredPost.excerpt}</p>
+            <p className={`mb-6 line-clamp-4 ${isDarkMode ? 'text-zinc-300' : 'text-slate-600'}`}>{featuredPost.excerpt}</p>
             <div className="mt-auto">
               <Link
                 href={`/blog/post/${featuredPost.slug}/`}
@@ -173,14 +197,18 @@ function ArticlesTab({
       {/* Post grid */}
       {gridPosts.length > 0 && (
         <div>
-          <h2 className="text-xs font-black uppercase tracking-[0.35em] text-slate-500 dark:text-slate-400 mb-4">
+          <h2 className={`text-xs font-black uppercase tracking-[0.35em] mb-4 ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`}>
             {featuredPost ? 'More articles' : 'Latest articles'}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
             {gridPosts.map((post) => (
               <div
                 key={post.slug}
-                className="group rounded-xl overflow-hidden transition-all duration-300 h-full flex flex-col border shadow-md hover:shadow-lg bg-white dark:bg-slate-800/70 border-slate-200 dark:border-slate-600 hover:border-cyan-500/40"
+                className={`group rounded-xl overflow-hidden transition-all duration-300 h-full flex flex-col border shadow-md hover:shadow-lg ${
+                  isDarkMode
+                    ? 'bg-slate-800/70 border-slate-600 hover:border-cyan-500/40'
+                    : 'bg-white border-slate-200 hover:border-indigo-300'
+                }`}
               >
                 <Link href={`/blog/post/${post.slug}/`} prefetch>
                   <div className="relative block overflow-hidden h-52 sm:h-56">
@@ -192,20 +220,20 @@ function ArticlesTab({
                       />
                     ) : (
                       <div className={`w-full h-full flex items-center justify-center ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
-                        <span className="text-slate-500 dark:text-slate-400 text-sm">No Image</span>
+                        <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>No Image</span>
                       </div>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   </div>
                 </Link>
                 <div className="flex flex-col flex-grow p-6 sm:p-7">
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">
+                  <p className={`text-xs mb-2 ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`}>
                     {moment(post.createdAt).format('MMMM DD, YYYY')}
                   </p>
-                  <h3 className="font-semibold text-xl leading-snug text-slate-900 dark:text-slate-100 mb-3 flex-grow hover:text-primary transition-colors duration-200">
+                  <h3 className={`font-semibold text-xl leading-snug mb-3 flex-grow hover:text-primary transition-colors duration-200 ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
                     <Link href={`/blog/post/${post.slug}/`} prefetch>{post.title}</Link>
                   </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 mb-4 line-clamp-3">{post.excerpt}</p>
+                  <p className={`text-sm mb-4 line-clamp-3 ${isDarkMode ? 'text-zinc-300' : 'text-slate-600'}`}>{post.excerpt}</p>
                   <div className="mt-auto">
                     <Link
                       href={`/blog/post/${post.slug}/`}
@@ -225,13 +253,13 @@ function ArticlesTab({
 
       {posts.length === 0 && (
         <div className="text-center py-16">
-          <p className="text-xl text-slate-600 dark:text-slate-400">No articles found. Check back soon!</p>
+          <p className={`text-xl ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>No articles found. Check back soon!</p>
         </div>
       )}
 
       {posts.length > 0 && filteredPosts.length === 0 && (
         <div className="text-center py-16">
-          <p className="text-xl text-slate-600 dark:text-slate-400 mb-4">No posts in this category.</p>
+          <p className={`text-xl mb-4 ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>No posts in this category.</p>
           <button type="button" onClick={() => setCategory('')} className="text-primary font-semibold underline">
             Clear filter
           </button>
@@ -295,7 +323,7 @@ function DecksTab({
   deckPosts,
   isDarkMode,
 }: {
-  deckPosts: DeckPost[];
+  deckPosts: DeckMediaItem[];
   isDarkMode: boolean;
 }) {
   if (deckPosts.length === 0) {
@@ -310,41 +338,47 @@ function DecksTab({
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {deckPosts.map((post) => {
-          const pdfUrl = post.pdfDeck?.url || post.pdfDeckUrl || null;
-          const hasDeckViewer = Boolean(post.slideDeckSlug?.trim());
+        {deckPosts.map((deck) => {
+          const fileUrl = deck.pdfFile?.url || null;
+          const mimeType = deck.pdfFile?.mimeType || '';
+          const isImage = mimeType.startsWith('image/');
+          const isPdf = mimeType === 'application/pdf';
+          // Thumbnail: prefer explicit thumbnail, then featuredImage, then pdfFile if it's an image
+          const thumbUrl = deck.thumbnail?.url || deck.featuredImage?.url || (isImage ? fileUrl : null);
+          // Badge label
+          const badgeLabel = deck.deckSlug ? 'Slides' : isPdf ? 'PDF' : isImage ? 'Preview' : 'Deck';
+          const badgeColor = deck.deckSlug ? 'bg-indigo-600' : isPdf ? 'bg-cyan-600' : 'bg-slate-600';
 
           return (
             <div
-              key={post.slug}
+              key={deck.id}
               className={`group rounded-xl border overflow-hidden flex flex-col shadow-sm hover:shadow-md transition-all ${
                 isDarkMode
-                  ? 'bg-zinc-950/60 border-zinc-800 hover:border-zinc-700'
-                  : 'bg-white border-slate-200 hover:border-slate-300'
+                  ? 'bg-zinc-950/60 border-zinc-800 hover:border-zinc-600'
+                  : 'bg-white border-slate-200 hover:border-indigo-300'
               }`}
             >
-              {/* Thumbnail */}
-              <Link href={`/blog/post/${post.slug}/`} prefetch className="block">
-                <div className="relative h-40 overflow-hidden bg-slate-100 dark:bg-zinc-900">
-                  {post.featuredImage?.url ? (
+              {/* Thumbnail / preview */}
+              <Link href={`/blog/post/${deck.slug}/`} prefetch className="block">
+                <div className={`relative overflow-hidden ${thumbUrl ? 'h-48' : 'h-32'} bg-slate-100 dark:bg-zinc-900`}>
+                  {thumbUrl ? (
                     <img
-                      src={post.featuredImage.url}
-                      alt={post.title}
+                      src={thumbUrl}
+                      alt={deck.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center">
+                    <div className="w-full h-full flex flex-col items-center justify-center gap-2">
                       <Presentation className={`w-10 h-10 opacity-30 ${isDarkMode ? 'text-zinc-400' : 'text-slate-400'}`} />
+                      <span className={`text-[10px] font-black uppercase tracking-widest opacity-40 ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`}>
+                        {deck.title}
+                      </span>
                     </div>
                   )}
-                  {/* Deck badge */}
+                  {/* Type badge */}
                   <div className="absolute top-2 right-2">
-                    <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded ${
-                      hasDeckViewer
-                        ? 'bg-indigo-600 text-white'
-                        : 'bg-cyan-600 text-white'
-                    }`}>
-                      {hasDeckViewer ? 'Slides' : 'PDF'}
+                    <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded text-white ${badgeColor}`}>
+                      {badgeLabel}
                     </span>
                   </div>
                 </div>
@@ -352,47 +386,44 @@ function DecksTab({
 
               {/* Content */}
               <div className="flex flex-col flex-grow p-4">
-                <p className={`text-[10px] font-black uppercase tracking-widest mb-1 ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
-                  {moment(post.createdAt).format('MMM YYYY')}
-                </p>
                 <h3 className={`text-sm font-bold leading-snug mb-2 flex-grow ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
-                  <Link href={`/blog/post/${post.slug}/`} prefetch className="hover:text-cyan-500 transition-colors">
-                    {post.title}
+                  <Link href={`/blog/post/${deck.slug}/`} prefetch className={`hover:underline transition-colors ${isDarkMode ? 'hover:text-cyan-400' : 'hover:text-indigo-600'}`}>
+                    {deck.title}
                   </Link>
                 </h3>
-                {post.excerpt && (
+                {deck.excerpt && (
                   <p className={`text-xs line-clamp-2 mb-3 ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
-                    {post.excerpt}
+                    {deck.excerpt}
                   </p>
                 )}
 
                 {/* CTAs */}
-                <div className="mt-auto flex flex-wrap gap-2">
+                <div className="mt-auto flex flex-wrap gap-2 pt-2">
                   <Link
-                    href={`/blog/post/${post.slug}/`}
+                    href={`/blog/post/${deck.slug}/`}
                     prefetch
-                    className={`inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg transition-colors ${
+                    className={`inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest px-3 py-2 rounded-lg border transition-colors ${
                       isDarkMode
-                        ? 'bg-zinc-800 text-zinc-200 hover:bg-zinc-700'
-                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                        ? 'border-zinc-700 text-zinc-200 hover:bg-zinc-800 hover:border-zinc-600'
+                        : 'border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400'
                     }`}
                   >
                     <Presentation className="w-3 h-3" />
-                    View deck
+                    View post
                   </Link>
-                  {pdfUrl && (
+                  {fileUrl && (
                     <a
-                      href={pdfUrl}
+                      href={fileUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg transition-colors ${
+                      className={`inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest px-3 py-2 rounded-lg border transition-colors ${
                         isDarkMode
-                          ? 'bg-zinc-800 text-zinc-200 hover:bg-zinc-700'
-                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                          ? 'border-zinc-700 text-zinc-200 hover:bg-zinc-800 hover:border-zinc-600'
+                          : 'border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400'
                       }`}
                     >
-                      <ExternalLink className="w-3 h-3" />
-                      PDF
+                      {isPdf ? <Download className="w-3 h-3" /> : <ExternalLink className="w-3 h-3" />}
+                      {isPdf ? 'PDF' : 'Open'}
                     </a>
                   )}
                 </div>
@@ -420,7 +451,6 @@ export default function ResearchClient({ posts, categories, manuscripts, deckPos
   const switchTab = (tab: Tab) => {
     setActiveTab(tab);
     const params = new URLSearchParams(searchParams?.toString() ?? '');
-    // Clear category filter when switching away from articles
     if (tab !== 'articles') params.delete('category');
     if (tab === 'articles') {
       params.delete('tab');
@@ -440,12 +470,13 @@ export default function ResearchClient({ posts, categories, manuscripts, deckPos
   const withSlug = manuscripts.filter((u) => u.slug);
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#020408] text-zinc-100' : 'bg-white text-slate-900'}`}>
-      {/* Sticky tab bar */}
+    // pt-14 = height of fixed ZetaNavbar (h-14 = 56px) so content starts below it
+    <div className={`min-h-screen pt-14 transition-colors duration-300 ${isDarkMode ? 'bg-[#020408] text-zinc-100' : 'bg-white text-slate-900'}`}>
+      {/* Sticky tab bar — sits just below the fixed navbar */}
       <div className={`sticky top-14 z-40 border-b backdrop-blur-md ${isDarkMode ? 'bg-zinc-950/90 border-zinc-800' : 'bg-white/95 border-slate-200'}`}>
         <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className={`text-[9px] font-black uppercase tracking-[0.4em] ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
+            <p className={`text-[9px] font-black uppercase tracking-[0.4em] ${isDarkMode ? 'text-zinc-500' : 'text-slate-400'}`}>
               CRISPRO · KNOWLEDGE BASE
             </p>
             <h1 className={`text-xl font-black uppercase tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>

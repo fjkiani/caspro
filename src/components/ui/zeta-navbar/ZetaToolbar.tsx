@@ -62,10 +62,14 @@ export function ZetaToolbar({
         className={`uppercase flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-2 sm:py-2.5 rounded-sm border text-[10px] sm:text-[11px] font-black tracking-[0.15em] sm:tracking-[0.2em] transition-all whitespace-nowrap ${
           isProcessing
             ? isDarkMode
+              // Dark processing: subtle cyan pulse
               ? 'bg-zinc-900 border-zinc-800 text-cyan-500 animate-pulse pointer-events-none'
-              : 'bg-indigo-100 border-indigo-200 text-indigo-600 animate-pulse pointer-events-none'
+              // Light processing: neutral grey — clearly muted, readable
+              : 'bg-slate-200 border-slate-300 text-slate-500 animate-pulse pointer-events-none'
             : isDarkMode
+              // Dark idle: white bg, black text → cyan on hover
               ? 'bg-zinc-100 text-black hover:bg-cyan-500 hover:text-white border-zinc-700 shadow-[0_0_20px_rgba(255,255,255,0.08)]'
+              // Light idle: solid indigo — white text, high contrast
               : 'bg-indigo-600 text-white hover:bg-indigo-700 border-indigo-600 shadow-md'
         }`}
       >

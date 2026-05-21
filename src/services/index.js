@@ -833,71 +833,36 @@ export const getComments = async (slug) => {
   }
 };
 
+
 /**
- * Fetch posts that have a PDF deck or slide deck slug attached.
- * Used by the Research page Decks tab.
- * Tries pdfDeck first; falls back gracefully if the field is absent from the schema.
+ * Fetch published DECK MediaItems from Hygraph.
+ * Decks live on the MediaItem type (not Post) — confirmed via schema introspection.
+ * Only returns isPublished: true items.
  */
 export const getDeckPosts = async () => {
   if (!graphqlAPI) return [];
-
-  // Primary: posts with a Hygraph Asset pdfDeck
-  const queryWithPdf = gql`
-    query GetDeckPostsWithPdf {
-      postsConnection(orderBy: createdAt_DESC) {
-        edges {
-          node {
-            slug
-            title
-            excerpt
-            createdAt
-            featuredImage { url }
-            categories { name slug }
-            pdfDeck { url fileName mimeType }
-            slideDeckSlug
-            pdfDeckUrl
-          }
-        }
+  const query = gql`
+    query GetDeckMediaItems {
+      mediaItems(where: { type: DECK, isPublished: true }, orderBy: createdAt_DESC) {
+        id
+        title
+        slug
+        excerpt
+        deckSlug
+        deckId
+        pdfFile { url fileName mimeType }
+        thumbnail { url }
+        featuredImage { url }
+        isPublished
+        type
       }
     }
   `;
-
-  // Fallback: posts without pdfDeck field in schema
-  const queryNoPdf = gql`
-    query GetDeckPostsNoPdf {
-      postsConnection(orderBy: createdAt_DESC) {
-        edges {
-          node {
-            slug
-            title
-            excerpt
-            createdAt
-            featuredImage { url }
-            categories { name slug }
-            slideDeckSlug
-            pdfDeckUrl
-          }
-        }
-      }
-    }
-  `;
-
-  let edges = [];
   try {
-    const result = await graphQLClient.request(queryWithPdf);
-    edges = result?.postsConnection?.edges || [];
-  } catch {
-    try {
-      const result = await graphQLClient.request(queryNoPdf);
-      edges = result?.postsConnection?.edges || [];
-    } catch (err) {
-      console.error('getDeckPosts: both queries failed', err);
-      return [];
-    }
+    const result = await graphQLClient.request(query);
+    return result?.mediaItems || [];
+  } catch (error) {
+    console.error('getDeckPosts: MediaItem query failed', error);
+    return [];
   }
-
-  // Filter to only posts that actually have a deck
-  return edges
-    .map((e) => e.node)
-    .filter((p) => p.pdfDeck?.url || p.slideDeckSlug?.trim() || p.pdfDeckUrl?.trim());
 };
