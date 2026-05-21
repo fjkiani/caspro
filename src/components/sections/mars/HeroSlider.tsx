@@ -8,9 +8,9 @@ import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
 import { PasscodeModal } from '@/components/ui/PasscodeModal';
 import DnaHero from '@/components/mockups/dnaHero2';
-import MoaRadarPreview from './previews/MoaRadarPreview';
-import ProteinPreview from './previews/ProteinPreview';
-import KillChainPreview from './previews/KillChainPreview';
+import ProteinPreviewGated from './previews/ProteinPreviewGated';
+import MoaRadarPreviewGated from './previews/MoaRadarPreviewGated';
+import KillChainPreviewGated from './previews/KillChainPreviewGated';
 import VectorMapPreviewGated from './previews/VectorMapPreviewGated';
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -36,9 +36,9 @@ export const HeroSlider = () => {
 
   const slides = useMemo((): HeroSlide[] => [
     { id: 'dna-hero', label: 'ORACLE', sublabel: 'COMMAND', icon: Dna },
-    { id: 'ceacam5', label: 'CEACAM5', sublabel: 'TARGET-LOCK', icon: Target, route: '/ledger/ceacam5/' },
-    { id: 'latify', label: 'LATIFY', sublabel: 'MOA-ALIGN', icon: Fingerprint, route: '/ledger/latify/' },
-    { id: 'capri', label: 'CAPRI', sublabel: 'KILL-CHAIN', icon: Cpu, route: '/ledger/capri/' },
+    { id: 'ceacam5', label: 'CEACAM5', sublabel: 'TARGET-LOCK', icon: Target, route: '/ledger/ceacam5/', gated: true },
+    { id: 'latify', label: 'LATIFY', sublabel: 'MOA-ALIGN', icon: Fingerprint, route: '/ledger/latify/', gated: true },
+    { id: 'capri', label: 'CAPRI', sublabel: 'KILL-CHAIN', icon: Cpu, route: '/ledger/capri/', gated: true },
     {
       id: 'adavosertib',
       label: 'ADAVOSERTIB',
@@ -101,22 +101,22 @@ export const HeroSlider = () => {
     const trialId = activeSlide.id;
 
     const getVisual = () => {
-      if (activeSlide.gated) {
-        return (
-          <VectorMapPreviewGated
-            trialId={trialId}
-            targetLabel={activeSlide.label}
-            isDarkMode={isDarkMode}
-          />
-        );
-      }
       switch (trialId) {
         case 'ceacam5':
-          return <ProteinPreview isDarkMode={isDarkMode} />;
+          return <ProteinPreviewGated isDarkMode={isDarkMode} />;
         case 'latify':
-          return <MoaRadarPreview isDarkMode={isDarkMode} />;
+          return <MoaRadarPreviewGated isDarkMode={isDarkMode} />;
         case 'capri':
-          return <KillChainPreview isDarkMode={isDarkMode} />;
+          return <KillChainPreviewGated isDarkMode={isDarkMode} />;
+        case 'adavosertib':
+        case 'berzosertib':
+          return (
+            <VectorMapPreviewGated
+              trialId={trialId}
+              targetLabel={activeSlide.label}
+              isDarkMode={isDarkMode}
+            />
+          );
         default:
           return null;
       }

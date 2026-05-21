@@ -7,10 +7,12 @@ import { getNavTheme } from './nav-theme';
 import { buildTopNavItems } from './nav-items';
 import { useZetaNavFeed } from './useZetaNavFeed';
 import { useZetaNavbar } from './useZetaNavbar';
+import { PasscodeModal } from '@/components/ui/PasscodeModal';
 import { ZetaBrand } from './ZetaBrand';
 import { ZetaDesktopNav } from './ZetaDesktopNav';
 import { ZetaMobileDrawer } from './ZetaMobileDrawer';
 import { ZetaToolbar } from './ZetaToolbar';
+import { useGatedNavClick } from './useGatedNavClick';
 
 export function ZetaNavbar({ isProcessing = false }: { isProcessing?: boolean }) {
   const { isLargeText, toggleLargeText } = useAccessibility();
@@ -19,6 +21,7 @@ export function ZetaNavbar({ isProcessing = false }: { isProcessing?: boolean })
   const nav = useZetaNavbar();
   const feed = useZetaNavFeed();
   const topNavItems = useMemo(() => buildTopNavItems(feed.abstracts), [feed.abstracts]);
+  const { gateTarget, handleDropdownClick, closeGate } = useGatedNavClick(nav.navigate);
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-[1000] w-full pointer-events-auto backdrop-blur-md border-b ${theme.navSurface}`}>
@@ -32,6 +35,7 @@ export function ZetaNavbar({ isProcessing = false }: { isProcessing?: boolean })
             navMuted={theme.navMuted}
             navHover={theme.navHover}
             navigate={nav.navigate}
+            onDropdownClick={handleDropdownClick}
             openDropdownId={nav.openDropdownId}
             openDropdown={nav.openDropdown}
             scheduleCloseDropdown={nav.scheduleCloseDropdown}
@@ -58,7 +62,17 @@ export function ZetaNavbar({ isProcessing = false }: { isProcessing?: boolean })
         isDarkMode={isDarkMode}
         navMuted={theme.navMuted}
         navigate={nav.navigate}
+        onDropdownClick={handleDropdownClick}
       />
+
+      {gateTarget && (
+        <PasscodeModal
+          open
+          onClose={closeGate}
+          proofUrl={gateTarget.href}
+          targetLabel={gateTarget.label}
+        />
+      )}
     </nav>
   );
 }

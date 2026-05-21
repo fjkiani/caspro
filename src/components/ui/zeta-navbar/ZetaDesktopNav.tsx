@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
-import type { NavTopItem } from './nav-items';
+import type { NavDropdownItem, NavTopItem } from './nav-items';
 import { TOP_NAV_ITEMS } from './nav-items';
 import { pathsEqual } from './paths';
 import type { NavTheme } from './nav-theme';
@@ -15,6 +15,7 @@ type ZetaDesktopNavProps = {
   navMuted: NavTheme['navMuted'];
   navHover: NavTheme['navHover'];
   navigate: (href: string) => void;
+  onDropdownClick?: (sub: NavDropdownItem) => void;
   openDropdownId: string | null;
   openDropdown: (id: string) => void;
   scheduleCloseDropdown: () => void;
@@ -82,6 +83,7 @@ export function ZetaDesktopNav({
   navMuted,
   navHover,
   navigate,
+  onDropdownClick,
   openDropdownId,
   openDropdown,
   scheduleCloseDropdown,
@@ -153,7 +155,7 @@ export function ZetaDesktopNav({
                     <button
                       key={`${sub.href}-${sub.label}`}
                       type="button"
-                      onClick={() => navigate(sub.href)}
+                      onClick={() => (onDropdownClick ?? ((s) => navigate(s.href)))(sub)}
                       className={`flex w-full flex-col gap-0.5 px-5 py-2.5 text-left transition-colors ${
                         pathsEqual(pathname, sub.href)
                           ? isDarkMode

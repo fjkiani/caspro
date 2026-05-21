@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import type { NavTopItem } from './nav-items';
+import type { NavDropdownItem, NavTopItem } from './nav-items';
 import { TOP_NAV_ITEMS } from './nav-items';
 import { pathsEqual } from './paths';
 
@@ -13,6 +13,7 @@ type ZetaMobileDrawerProps = {
   isDarkMode: boolean;
   navMuted: string;
   navigate: (href: string) => void;
+  onDropdownClick?: (sub: NavDropdownItem) => void;
 };
 
 function linkRowClass(isDarkMode: boolean, isActive: boolean, navMuted: string) {
@@ -47,6 +48,7 @@ export function ZetaMobileDrawer({
   isDarkMode,
   navMuted,
   navigate,
+  onDropdownClick,
 }: ZetaMobileDrawerProps) {
   return (
     <div
@@ -91,7 +93,7 @@ export function ZetaMobileDrawer({
                         key={`${sub.href}-${sub.label}`}
                         type="button"
                         onClick={() => {
-                          navigate(sub.href);
+                          (onDropdownClick ?? ((s) => navigate(s.href)))(sub);
                           onClose();
                         }}
                         className={`text-left pl-3 py-2 text-[11px] font-bold uppercase tracking-wider border-l-2 ${
