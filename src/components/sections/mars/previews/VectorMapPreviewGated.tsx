@@ -1,14 +1,15 @@
 'use client';
 
 /**
- * Gated 8D vector-map preview — used for ADAVOSERTIB / BERZOSERTIB on hero and ledger.
+ * Gated de-risk preview — ADAVOSERTIB / BERZOSERTIB on hero.
+ * Public registry metadata + redacted receipt visual (no vector IP on surface).
  */
 
 import React, { useState, useCallback } from 'react';
 import { GlitchTypewriter } from '@/components/ui/GlitchTypewriter';
 import { GatedEvidencePanel } from '@/components/ui/GatedEvidencePanel';
 import { HERO_HEADLINES } from '@/data/hero-headlines';
-import { VectorFailureAnalysis } from '@/components/sections/mars/VectorFailureAnalysis';
+import LockedDeRiskReceiptVisual from './LockedDeRiskReceiptVisual';
 
 type VectorMapPreviewGatedProps = {
   trialId: string;
@@ -26,14 +27,6 @@ export default function VectorMapPreviewGated({
   const [activeIdx, setActiveIdx] = useState(0);
   const handleLineChange = useCallback((idx: number) => setActiveIdx(idx), []);
 
-  if (headlines.length === 0) {
-    return (
-      <div className="flex-1 flex items-center justify-center w-full min-h-[220px] px-4">
-        <VectorFailureAnalysis initialTrialId={trialId} singleTrialMode chartOnly />
-      </div>
-    );
-  }
-
   return (
     <div className="flex-1 flex items-center justify-center w-full min-h-0 px-3 sm:px-4 py-2 sm:py-4">
       <div className="w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-6 lg:gap-8 items-stretch min-h-0">
@@ -42,14 +35,20 @@ export default function VectorMapPreviewGated({
             <span
               className={`text-[8px] sm:text-[9px] font-black uppercase tracking-[0.35em] sm:tracking-[0.5em] block mb-2 sm:mb-4 opacity-60 ${accent}`}
             >
-              8D De-Risking Map // LOCKED
+              De-Risking Receipt // LOCKED
             </span>
-            <GlitchTypewriter
-              lines={headlines}
-              accentColor={accent}
-              isDarkMode={isDarkMode}
-              onLineChange={handleLineChange}
-            />
+            {headlines.length > 0 ? (
+              <GlitchTypewriter
+                lines={headlines}
+                accentColor={accent}
+                isDarkMode={isDarkMode}
+                onLineChange={handleLineChange}
+              />
+            ) : (
+              <p className={`text-sm font-black uppercase tracking-tight ${accent}`}>
+                Analysis sealed pending passcode
+              </p>
+            )}
           </div>
           {headlines.length > 0 && (
             <GatedEvidencePanel
@@ -61,8 +60,8 @@ export default function VectorMapPreviewGated({
             />
           )}
         </div>
-        <div className="relative flex min-h-[220px] sm:min-h-[320px] w-full min-w-0 order-1 lg:order-none overflow-hidden rounded-lg border border-inherit opacity-90">
-          <VectorFailureAnalysis initialTrialId={trialId} singleTrialMode chartOnly />
+        <div className="relative flex min-h-[220px] sm:min-h-[320px] w-full min-w-0 order-1 lg:order-none">
+          <LockedDeRiskReceiptVisual trialId={trialId} isDarkMode={isDarkMode} />
         </div>
       </div>
     </div>
