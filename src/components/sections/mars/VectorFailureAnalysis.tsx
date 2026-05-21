@@ -51,6 +51,8 @@ interface VectorFailureAnalysisProps {
   initialTrialId?: string;
   /** When true, hide trial switcher (used on /ledger/[slug] receipt pages) */
   singleTrialMode?: boolean;
+  /** Hero/ledger preview — radar chart only; math + verdict live in GatedEvidencePanel */
+  chartOnly?: boolean;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -60,6 +62,7 @@ interface VectorFailureAnalysisProps {
 export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
   initialTrialId = 'latify',
   singleTrialMode = false,
+  chartOnly = false,
 }) => {
   const router = useRouter();
   const { isDarkMode } = useTheme();
@@ -94,6 +97,7 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
       </div>
 
       {/* Header */}
+      {!chartOnly && (
       <header className="z-10 mb-6 flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-start">
         <div className="flex items-center gap-4 sm:gap-6 min-w-0">
           <div className={`w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded border flex items-center justify-center shadow-lg ${softPanelClass}`}>
@@ -143,6 +147,7 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
           </button>
         </div>
       </header>
+      )}
 
       {/* Main Grid */}
       <AnimatePresence mode="wait">
@@ -152,12 +157,13 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
-          className="z-10 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 min-h-0"
+          className={`z-10 flex-1 grid grid-cols-1 min-h-0 ${chartOnly ? '' : 'lg:grid-cols-12 gap-6 lg:gap-8'}`}
         >
 
           {/* Left: 8D Radar Manifold */}
-          <div className={`col-span-1 lg:col-span-8 flex flex-col rounded p-4 sm:p-6 lg:p-8 shadow-2xl relative overflow-hidden border min-h-0 min-w-0 ${panelClass}`}>
+          <div className={`col-span-1 ${chartOnly ? '' : 'lg:col-span-8'} flex flex-col rounded p-4 sm:p-6 ${chartOnly ? 'p-2 sm:p-3' : 'lg:p-8'} shadow-2xl relative overflow-hidden border min-h-0 min-w-0 ${panelClass}`}>
             {/* Legend */}
+            {!chartOnly && (
             <div className={`flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center mb-6 border-b pb-4 ${dividerClass}`}>
               <span className={`text-[11px] sm:text-[12px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] ${headingClass}`}>
                 Computational Vector Space
@@ -177,9 +183,10 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
                 </div>
               </div>
             </div>
+            )}
 
             {/* Radar Chart */}
-            <div className="flex-1 relative min-h-[280px] sm:min-h-[350px] w-full min-w-0">
+            <div className={`flex-1 relative w-full min-w-0 ${chartOnly ? 'min-h-[220px] sm:min-h-[300px]' : 'min-h-[280px] sm:min-h-[350px]'}`}>
               <ResponsiveContainer width="100%" height="100%">
                 <RadarChart cx="50%" cy="50%" outerRadius="80%" data={radarData}>
                   <PolarGrid stroke={chartGridStroke} />
@@ -247,6 +254,7 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
           </div>
 
           {/* Right: Math + Verdict */}
+          {!chartOnly && (
           <div className="col-span-1 lg:col-span-4 flex flex-col gap-6 min-w-0">
 
             {/* Vector Convergence Math */}
@@ -311,10 +319,12 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
               </div>
             </div>
           </div>
+          )}
         </motion.main>
       </AnimatePresence>
 
       {/* CTA Bar */}
+      {!chartOnly && (
       <div className={`z-10 mt-6 flex items-center justify-between border-t pt-6 ${dividerClass}`}>
         <div className="flex items-center gap-8">
           <span className={`text-[10px] font-black uppercase tracking-widest ${mutedClass}`}>In Silico Failure Analyzer v1.4.2</span>
@@ -333,6 +343,7 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
+      )}
     </div>
   );
 };

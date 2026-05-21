@@ -29,7 +29,7 @@ export default function VectorMapPreviewGated({
   if (headlines.length === 0) {
     return (
       <div className="flex-1 flex items-center justify-center w-full min-h-[220px] px-4">
-        <VectorFailureAnalysis initialTrialId={trialId} singleTrialMode />
+        <VectorFailureAnalysis initialTrialId={trialId} singleTrialMode chartOnly />
       </div>
     );
   }
@@ -62,7 +62,7 @@ export default function VectorMapPreviewGated({
           )}
         </div>
         <div className="relative flex min-h-[220px] sm:min-h-[320px] w-full min-w-0 order-1 lg:order-none overflow-hidden rounded-lg border border-inherit opacity-90">
-          <VectorFailureAnalysis initialTrialId={trialId} singleTrialMode />
+          <VectorFailureAnalysis initialTrialId={trialId} singleTrialMode chartOnly />
         </div>
       </div>
     </div>
