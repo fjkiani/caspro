@@ -1,10 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+import type { NavTopItem } from './nav-items';
 import { TOP_NAV_ITEMS } from './nav-items';
 import { pathsEqual } from './paths';
 
 type ZetaMobileDrawerProps = {
+  navItems?: NavTopItem[];
   open: boolean;
   onClose: () => void;
   pathname: string | null;
@@ -23,12 +25,29 @@ function isNavItemActive(pathname: string | null, href: string, itemId: string):
   if (pathsEqual(pathname, href)) return true;
   const norm = (pathname ?? '').replace(/\/+$/, '') || '/';
   if (itemId === 'ledger' && norm.startsWith('/ledger')) return true;
-  if (itemId === 'research' && (norm.startsWith('/research') || norm.startsWith('/blog') || norm.startsWith('/manuscripts') || norm.startsWith('/media'))) return true;
+  if (
+    itemId === 'research' &&
+    ((norm.startsWith('/research') && !norm.startsWith('/research/abstracts')) ||
+      norm.startsWith('/blog') ||
+      norm.startsWith('/manuscripts') ||
+      norm.startsWith('/media'))
+  ) {
+    return true;
+  }
+  if (itemId === 'abstracts' && norm.startsWith('/research/abstracts')) return true;
   if (itemId === 'engines' && norm.startsWith('/engine')) return true;
   return false;
 }
 
-export function ZetaMobileDrawer({ open, onClose, pathname, isDarkMode, navMuted, navigate }: ZetaMobileDrawerProps) {
+export function ZetaMobileDrawer({
+  navItems = TOP_NAV_ITEMS,
+  open,
+  onClose,
+  pathname,
+  isDarkMode,
+  navMuted,
+  navigate,
+}: ZetaMobileDrawerProps) {
   return (
     <div
       className={`lg:hidden fixed inset-0 top-14 z-[1100] transition-opacity duration-200 ${
@@ -52,7 +71,7 @@ export function ZetaMobileDrawer({ open, onClose, pathname, isDarkMode, navMuted
             >
               NAVIGATE
             </span>
-            {TOP_NAV_ITEMS.map((item) => {
+            {navItems.map((item) => {
               const isActive = isNavItemActive(pathname, item.href, item.id);
               const hasDropdown = item.dropdownItems && item.dropdownItems.length > 0;
 
@@ -69,7 +88,7 @@ export function ZetaMobileDrawer({ open, onClose, pathname, isDarkMode, navMuted
                   {hasDropdown &&
                     item.dropdownItems!.map((sub) => (
                       <button
-                        key={sub.href}
+                        key={`${sub.href}-${sub.label}`}
                         type="button"
                         onClick={() => {
                           navigate(sub.href);

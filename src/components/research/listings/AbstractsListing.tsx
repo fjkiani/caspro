@@ -1,10 +1,19 @@
 'use client';
 
-import { FileText, ExternalLink } from 'lucide-react';
+import Link from 'next/link';
+import { FileText, ExternalLink, ArrowRight, Presentation } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import type { ResearchAbstract } from '@/lib/docs/hygraph/research-abstract-types';
+import { abstractHasDeck } from '@/lib/docs/hygraph/research-abstract-deck';
+import { researchAbstractHref, researchAbstractImageHref } from '@/lib/research/paths';
 
-export default function AbstractsListing({ abstracts }: { abstracts: ResearchAbstract[] }) {
+export default function AbstractsListing({
+  abstracts,
+  source,
+}: {
+  abstracts: ResearchAbstract[];
+  source?: 'hygraph' | 'local';
+}) {
   const { isDarkMode } = useTheme();
 
   if (abstracts.length === 0) {
@@ -17,24 +26,54 @@ export default function AbstractsListing({ abstracts }: { abstracts: ResearchAbs
   }
 
   const cardClass = isDarkMode
-    ? 'border-zinc-800 bg-zinc-950/60 hover:border-zinc-700'
+    ? 'border-zinc-800 bg-zinc-950/60 hover:border-zinc-600'
     : 'border-slate-200 bg-white hover:border-slate-300';
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
-      <p className={`text-base mb-8 ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
-        AACR and conference abstracts with links to full text and citations.
-      </p>
+      <div className="flex flex-wrap items-center gap-3 mb-8">
+        <p className={`text-base ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+          AACR and conference abstracts — open slides on-site or the published citation.
+        </p>
+        {source && (
+          <span
+            className={`text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded border ${
+              source === 'hygraph'
+                ? isDarkMode
+                  ? 'border-cyan-500/40 text-cyan-300 bg-cyan-500/10'
+                  : 'border-cyan-600/30 text-cyan-800 bg-cyan-50'
+                : isDarkMode
+                  ? 'border-amber-500/40 text-amber-200 bg-amber-500/10'
+                  : 'border-amber-600/30 text-amber-900 bg-amber-50'
+            }`}
+          >
+            {source === 'hygraph' ? 'Hygraph CMS' : 'Local seed'}
+          </span>
+        )}
+      </div>
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {abstracts.map((ab) => {
+          const hasDeck = abstractHasDeck(ab.deck);
+          const publishedUrl = ab.link?.trim() || null;
+          const cardHref = researchAbstractHref(ab.slug, publishedUrl, hasDeck);
+          const imageHref = researchAbstractImageHref(publishedUrl);
           const imgSrc = ab.imageUrl || 'https://www.aacr.org/wp-content/uploads/2019/01/AACR-Logo-4C.png';
           const summary = ab.bodyText || [ab.authorLine, ab.venue].filter(Boolean).join(' · ');
           const yearLabel = ab.year ? String(ab.year) : null;
 
-          return (
-            <li key={ab.id} className={`rounded-xl border overflow-hidden shadow-sm transition-all hover:shadow-md ${cardClass}`}>
+          const inner = (
+            <>
               <div className={`relative h-36 ${isDarkMode ? 'bg-zinc-900' : 'bg-slate-100'}`}>
-                <img src={imgSrc} alt="" className="w-full h-full object-contain p-4" />
+                <a
+                  href={imageHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="block h-full w-full"
+                  aria-label="Open on AACR"
+                >
+                  <img src={imgSrc} alt="" className="w-full h-full object-contain p-4" />
+                </a>
                 {yearLabel && (
                   <span
                     className={`absolute top-3 right-3 text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded ${
@@ -42,6 +81,12 @@ export default function AbstractsListing({ abstracts }: { abstracts: ResearchAbs
                     }`}
                   >
                     {yearLabel}
+                  </span>
+                )}
+                {hasDeck && (
+                  <span className="absolute top-3 left-3 inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded bg-indigo-600 text-white">
+                    <Presentation className="w-3 h-3" />
+                    Slides
                   </span>
                 )}
               </div>
@@ -52,18 +97,42 @@ export default function AbstractsListing({ abstracts }: { abstracts: ResearchAbs
                 {summary && (
                   <p className={`text-sm line-clamp-3 ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>{summary}</p>
                 )}
-                {ab.link && (
-                  <a
-                    href={ab.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline mt-auto"
+                <div className="mt-auto flex flex-wrap items-center gap-3">
+                  <span
+                    className={`inline-flex items-center gap-1.5 text-sm font-medium ${
+                      isDarkMode ? 'text-cyan-400' : 'text-indigo-600'
+                    }`}
                   >
-                    View abstract
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                )}
+                    {hasDeck ? 'View slides' : 'Read more'}
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                  {publishedUrl && (
+                    <a
+                      href={publishedUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className={`inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider ${
+                        isDarkMode ? 'text-zinc-400 hover:text-cyan-300' : 'text-slate-500 hover:text-indigo-600'
+                      }`}
+                    >
+                      Published
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  )}
+                </div>
               </div>
+            </>
+          );
+
+          return (
+            <li key={ab.id} id={ab.slug} className="scroll-mt-24">
+              <Link
+                href={cardHref}
+                className={`block rounded-xl border overflow-hidden shadow-sm transition-all hover:shadow-md ${cardClass}`}
+              >
+                {inner}
+              </Link>
             </li>
           );
         })}

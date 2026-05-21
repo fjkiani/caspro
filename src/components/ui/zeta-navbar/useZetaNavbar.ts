@@ -87,9 +87,13 @@ export function useZetaNavbar() {
     (href: string) => {
       closeAllDropdowns();
       setMobileMenuOpen(false);
+      if (/^https?:\/\//i.test(href)) {
+        window.open(href, '_blank', 'noopener,noreferrer');
+        return;
+      }
       router.push(href);
     },
-    [router, closeAllDropdowns]
+    [router, closeAllDropdowns],
   );
 
   const toggleMobileMenu = useCallback((e?: ReactMouseEvent<HTMLButtonElement>) => {

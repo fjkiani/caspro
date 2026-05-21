@@ -1,0 +1,21 @@
+{
+  "description": "Fallback deck fields when Hygraph Content API has not published Post deck fields yet. Match abstract Post slug. In Studio: Post → pdfDeckUrl, slideDeckSlug, or pdfDeck asset.",
+  "items": [
+    {
+      "slug": "abstract-lb340-mechanism-based-trial-matching-reveals-a-54-target-alignment-gap"
+    },
+    {
+      "slug": "intercepting-metastasis-8-step-crispr-design-via-multi-modal-foundation-models"
+    },
+    {
+      "slug": "abstract-b065-stage-aware-crispr-design-for-brain-metastasis-interception-multi"
+    },
+    {
+      "slug": "abstract-lb-b013-eight-pathway-transcriptomic-biomarker-outperforms-pd-l1-for-an"
+    },
+    {
+      "slug": "abstract-b025-an-agentic-platform-for-designing-cancer-immunotherapies-from-auto",
+      "pdfDeckUrl": "https://aacrjournals.org/cancerimmunolres/article/13/9_Supplement/B025/765414/Abstract-B025-An-agentic-platform-for-designing"
+    }
+  ]
+}

@@ -1,23 +1,26 @@
 /**
  * Top-level Zeta navigation.
- * Dropdowns: Research (content types), Ledger (decoded trials), Engines (platform engines).
+ * Dropdowns: Research, Abstracts (dynamic), Ledger, Engines.
  */
 
+import { RESEARCH_SECTIONS } from '@/lib/research/paths';
 import { TRIAL_LEDGER_ENTRIES } from '@/data/trial-ledger-registry';
 import { getProductEngines, productMenuTitle } from './product-engines';
+import type { AbstractNavItem } from '@/lib/docs/hygraph/research-abstract-queries';
 
 export interface NavDropdownItem {
   label: string;
   description?: string;
   href: string;
   accent?: 'cyan' | 'amber' | 'indigo';
+  /** Open in new tab (external Scholar / journal links). */
+  external?: boolean;
 }
 
 export interface NavTopItem {
   id: string;
   label: string;
   href: string;
-  /** Empty = plain link. Populated = dropdown panel. */
   dropdownItems?: NavDropdownItem[];
 }
 
@@ -39,12 +42,6 @@ const researchDropdown: NavDropdownItem[] = [
     description: 'Slide decks & programmatic posters',
     href: '/research/decks/',
     accent: 'cyan',
-  },
-  {
-    label: 'Abstracts',
-    description: 'Conference abstracts',
-    href: '/research/abstracts/',
-    accent: 'amber',
   },
 ];
 
@@ -70,23 +67,59 @@ const engineDropdown: NavDropdownItem[] = getProductEngines().map((engine) => ({
   accent: 'cyan' as const,
 }));
 
-export const TOP_NAV_ITEMS: NavTopItem[] = [
-  {
-    id: 'research',
-    label: 'RESEARCH',
-    href: '/research/',
-    dropdownItems: researchDropdown,
-  },
-  {
-    id: 'ledger',
-    label: 'LEDGER',
-    href: '/ledger/',
-    dropdownItems: ledgerDropdown,
-  },
-  {
-    id: 'engines',
-    label: 'ENGINES',
-    href: '/engine/',
-    dropdownItems: engineDropdown,
-  },
-];
+function truncateTitle(title: string, max = 52): string {
+  const t = title.trim();
+  return t.length > max ? `${t.slice(0, max - 1)}…` : t;
+}
+
+function buildAbstractsDropdown(abstracts: AbstractNavItem[]): NavDropdownItem[] {
+  const hub: NavDropdownItem = {
+    label: 'All abstracts',
+    description: 'Conference abstracts index',
+    href: RESEARCH_SECTIONS.abstracts,
+    accent: 'amber',
+  };
+
+  const entries = abstracts.map((ab) => ({
+    label: truncateTitle(ab.title),
+    description: ab.description,
+    href: ab.href,
+    accent: 'amber' as const,
+    external: ab.href.startsWith('http'),
+  }));
+
+  return [hub, ...entries];
+}
+
+/** Build nav with live abstract list from Hygraph (client: pass feed from useZetaNavFeed). */
+export function buildTopNavItems(abstracts: AbstractNavItem[] = []): NavTopItem[] {
+  return [
+    {
+      id: 'research',
+      label: 'RESEARCH',
+      href: '/research/',
+      dropdownItems: researchDropdown,
+    },
+    {
+      id: 'abstracts',
+      label: 'ABSTRACTS',
+      href: RESEARCH_SECTIONS.abstracts,
+      dropdownItems: buildAbstractsDropdown(abstracts),
+    },
+    {
+      id: 'ledger',
+      label: 'LEDGER',
+      href: '/ledger/',
+      dropdownItems: ledgerDropdown,
+    },
+    {
+      id: 'engines',
+      label: 'ENGINES',
+      href: '/engine/',
+      dropdownItems: engineDropdown,
+    },
+  ];
+}
+
+/** Static fallback before client feed loads. */
+export const TOP_NAV_ITEMS: NavTopItem[] = buildTopNavItems();

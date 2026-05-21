@@ -1,9 +1,10 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useMemo } from 'react';
 import { useAccessibility } from '@/context/AccessibilityContext';
 import { useTheme } from '@/context/ThemeContext';
 import { getNavTheme } from './nav-theme';
+import { buildTopNavItems } from './nav-items';
 import { useZetaNavFeed } from './useZetaNavFeed';
 import { useZetaNavbar } from './useZetaNavbar';
 import { ZetaBrand } from './ZetaBrand';
@@ -17,6 +18,7 @@ export function ZetaNavbar({ isProcessing = false }: { isProcessing?: boolean })
   const theme = getNavTheme(isDarkMode);
   const nav = useZetaNavbar();
   const feed = useZetaNavFeed();
+  const topNavItems = useMemo(() => buildTopNavItems(feed.abstracts), [feed.abstracts]);
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-[1000] w-full pointer-events-auto backdrop-blur-md border-b ${theme.navSurface}`}>
@@ -24,20 +26,12 @@ export function ZetaNavbar({ isProcessing = false }: { isProcessing?: boolean })
         <ZetaBrand isDarkMode={isDarkMode} brandBorder={theme.brandBorder} />
         <Suspense fallback={<div className="hidden lg:flex flex-1 min-w-0 justify-end" aria-hidden />}>
           <ZetaDesktopNav
+            navItems={topNavItems}
             pathname={nav.pathname}
             isDarkMode={isDarkMode}
             navMuted={theme.navMuted}
             navHover={theme.navHover}
-            blogOpen={nav.blogOpen}
-            setBlogOpen={nav.setBlogOpen}
-            manuscriptsOpen={nav.manuscriptsOpen}
-            setManuscriptsOpen={nav.setManuscriptsOpen}
             navigate={nav.navigate}
-            blogRef={nav.blogRef}
-            manuscriptsRef={nav.manuscriptsRef}
-            manuscripts={feed.manuscripts}
-            blogPosts={feed.blogPosts}
-            blogCategories={feed.blogCategories}
             openDropdownId={nav.openDropdownId}
             openDropdown={nav.openDropdown}
             scheduleCloseDropdown={nav.scheduleCloseDropdown}
@@ -57,6 +51,7 @@ export function ZetaNavbar({ isProcessing = false }: { isProcessing?: boolean })
       </div>
 
       <ZetaMobileDrawer
+        navItems={topNavItems}
         open={nav.mobileMenuOpen}
         onClose={() => nav.setMobileMenuOpen(false)}
         pathname={nav.pathname}

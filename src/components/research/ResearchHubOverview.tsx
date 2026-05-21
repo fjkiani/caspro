@@ -8,8 +8,11 @@ import { useTheme } from '@/context/ThemeContext';
 import type { PostNode } from '@/types/blog';
 import type { CmsUseCase } from '@/lib/docs/hygraph/use-case-types';
 import type { ResearchAbstract } from '@/lib/docs/hygraph/research-abstract-types';
+import { abstractHasDeck } from '@/lib/docs/hygraph/research-abstract-deck';
 import { plainPreviewText } from '@/lib/research/plain-text';
 import {
+  researchAbstractHref,
+  researchAbstractImageHref,
   RESEARCH_SECTIONS,
   RESEARCH_SECTION_LABELS,
   RESEARCH_HUB_TAB_LABELS,
@@ -30,6 +33,7 @@ type PreviewItem = {
   href: string;
   subtitle?: string;
   imageUrl?: string | null;
+  imageHref?: string;
   badge?: string;
   external?: boolean;
 };
@@ -82,14 +86,18 @@ function buildDeckPreviews(decks: DeckMediaItem[], limit = 12): PreviewItem[] {
 }
 
 function buildAbstractPreviews(abstracts: ResearchAbstract[], limit = 12): PreviewItem[] {
-  return abstracts.slice(0, limit).map((a) => ({
-    title: a.title,
-    href: a.link || RESEARCH_SECTIONS.abstracts,
-    subtitle: plainPreviewText(a.authorLine || a.venue || a.bodyText),
-    imageUrl: a.imageUrl || AACR_LOGO,
-    badge: a.year ? String(a.year) : 'Abstract',
-    external: Boolean(a.link),
-  }));
+  return abstracts.slice(0, limit).map((a) => {
+    const hasDeck = abstractHasDeck(a.deck);
+    return {
+      title: a.title,
+      href: researchAbstractHref(a.slug, a.link, hasDeck),
+      subtitle: plainPreviewText(a.authorLine || a.venue || a.bodyText),
+      imageUrl: a.imageUrl || AACR_LOGO,
+      imageHref: researchAbstractImageHref(a.link),
+      badge: hasDeck ? 'Slides' : a.year ? String(a.year) : 'Abstract',
+      external: !hasDeck && Boolean(a.link?.trim()),
+    };
+  });
 }
 
 function HubTabs({
@@ -179,7 +187,20 @@ function ContentCard({
     <article className={`flex h-full flex-col overflow-hidden rounded-lg border transition-all ${shell}`}>
       <div className="relative aspect-[5/3] shrink-0 overflow-hidden bg-slate-100 dark:bg-zinc-900">
         {item.imageUrl ? (
-          <img src={item.imageUrl} alt="" className="h-full w-full object-cover" />
+          item.imageHref ? (
+            <a
+              href={item.imageHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="block h-full w-full"
+              aria-label="Open on AACR"
+            >
+              <img src={item.imageUrl} alt="" className="h-full w-full object-cover" />
+            </a>
+          ) : (
+            <img src={item.imageUrl} alt="" className="h-full w-full object-cover" />
+          )
         ) : (
           <div className="flex h-full items-center justify-center">
             <Icon className={`h-8 w-8 opacity-25 ${isDarkMode ? 'text-zinc-500' : 'text-slate-400'}`} />

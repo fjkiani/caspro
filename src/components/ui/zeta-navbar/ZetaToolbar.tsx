@@ -74,7 +74,7 @@ export function ZetaToolbar({
         }`}
       >
         {isProcessing ? <Activity className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-        {isProcessing ? 'PROCESSING…' : 'CONFIRM CERTAINTY'}
+        {isProcessing ? 'PROCESSING…' : 'Eliminate Guesswork'}
       </button>
 
       <div className={`hidden sm:block h-6 w-px mx-2 ${isDarkMode ? 'bg-zinc-800' : 'bg-slate-200'}`} />

@@ -34,6 +34,43 @@ export function researchManuscriptPath(slug: string): string {
   return `/manuscripts/${encodeURIComponent(s)}/`;
 }
 
+export function researchAbstractDetailPath(slug: string): string {
+  const s = String(slug || '')
+    .replace(/^\/+|\/+$/g, '')
+    .replace(/-+$/, '');
+  return `${RESEARCH_SECTIONS.abstracts}/${encodeURIComponent(s)}/`;
+}
+
+/** AACR.org — default when the published URL is not on an AACR domain. */
+export const AACR_ORG_URL = 'https://www.aacr.org/';
+
+/** Image click: AACR journal/org URL when available, otherwise AACR.org. */
+export function researchAbstractImageHref(publishedUrl?: string | null): string {
+  const url = publishedUrl?.trim();
+  if (url && /aacr\.org|aacrjournals\.org/i.test(url)) return url;
+  return AACR_ORG_URL;
+}
+
+/** Primary click target: detail page when a deck exists; else published URL; else detail. */
+export function researchAbstractHref(
+  slug: string,
+  publishedUrl?: string | null,
+  hasDeck?: boolean,
+): string {
+  if (hasDeck) return researchAbstractDetailPath(slug);
+  const url = publishedUrl?.trim();
+  if (url && /^https?:\/\//i.test(url)) return url;
+  return researchAbstractDetailPath(slug);
+}
+
+/** @deprecated Use researchAbstractHref */
+export function researchAbstractNavHref(
+  slug: string,
+  externalLink?: string | null,
+): string {
+  return researchAbstractHref(slug, externalLink);
+}
+
 /** Active tab on `/research` hub (`?tab=`). Default: overview (all sections). */
 export function researchHubTabFromQuery(tab: string | null | undefined): ResearchHubTab {
   switch (tab) {

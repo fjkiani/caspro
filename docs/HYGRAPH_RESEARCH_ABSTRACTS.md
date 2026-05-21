@@ -1,49 +1,69 @@
-# Hygraph: Research Abstracts
+# Hygraph: Conference Abstracts
 
-Conference abstracts on `/research/?tab=abstracts` — each entry has **image**, **body text**, and **external link**.
+Live at `/research/abstracts/` and the top-level **ABSTRACTS** navbar (dynamic dropdown via `/api/abstracts/nav`).
 
-## Model: `ResearchAbstract`
+## Where they live in Hygraph
 
-| Field | Type | Notes |
-|-------|------|--------|
-| `title` | String | Title (display field) |
-| `slug` | Slug | Unique, URL-safe |
-| `body` | Rich text | Authors + venue (HTML ok) |
-| `externalLink` | String | Scholar / journal URL |
-| `image` | Asset | e.g. AACR logo |
-| `authorLine` | String | e.g. `F Kiani` |
-| `venue` | String | Journal + supplement |
-| `year` | Int | Conference year |
-| `order` | Int | Sort order (asc) |
-| `publishedAt` | DateTime | Optional |
+**Project:** main blog CMS (`HYGRAPH_ENDPOINT` / `GRAPHCMS_TOKEN`) — **not** the CrisPRO Program Hygraph project.
 
-GraphQL plural: `researchAbstracts`.
+**Content model:** existing **`Post`** entries assigned to category **`conference-abstracts`** (“Conference Abstracts”).
 
-## Setup
+**GraphQL:**
 
-1. **Create schema** (Management API or Studio):
-   ```bash
-   npx tsx tools/setup-hygraph-research-abstracts.ts
-   ```
-   If Management API fails, create the model manually in Hygraph Studio using the table above.
+```graphql
+posts(
+  where: { categories_some: { slug: "conference-abstracts" } }
+  orderBy: abstractOrder_ASC
+) {
+  slug title excerpt authorLine venueLine abstractYear abstractOrder externalLink
+  content { html text }
+  featuredImage { url }
+}
+```
 
-2. **Scrape Google Scholar** (Fahad Kiani profile):
-   ```bash
-   node tools/scrape-google-scholar-abstracts.mjs
-   ```
-   Writes `src/data/research-abstracts-seed.json`.
+Custom Post fields: `authorLine`, `venueLine`, `abstractYear`, `abstractOrder`, `externalLink`. If the Content API schema lags, the app retries a **bare** query (title/excerpt/content only) before falling back to local seed.
 
-3. **Seed Hygraph**:
-   ```bash
-   npx tsx tools/seed-research-abstracts.ts
-   ```
+## App behavior
 
-4. **App**: `getResearchAbstracts()` queries Hygraph; falls back to `research-abstracts-seed.json` when empty or on error.
+| Piece | Role |
+|-------|------|
+| `getResearchAbstracts()` | Hygraph posts → `ResearchAbstract[]`; `source: 'hygraph' \| 'local'` |
+| `research-abstracts-fallback.ts` | Local seed when Hygraph is empty or errors |
+| `isBlogArticlePost()` | Excludes `conference-abstracts` from blog listing |
+| Navbar | `buildTopNavItems(feed.abstracts)` — grows as CMS adds posts |
 
-## Re-scrape
+**Verify source:** abstracts page shows a badge — **Hygraph CMS** vs **Local seed**.
+
+## Legacy `ResearchAbstract` model
+
+`tools/setup-hygraph-research-abstracts.ts` and `researchAbstracts` GraphQL are **not** used by the app. Prefer Post + category; seed scripts may still target the legacy model for one-off imports.
+
+## Re-scrape / local seed
 
 ```bash
 node tools/scrape-google-scholar-abstracts.mjs
-# Re-run seed only for new slugs (existing slugs are skipped)
-npx tsx tools/seed-research-abstracts.ts
+# Updates src/data/research-abstracts-seed.json → fallback only
 ```
+
+To publish in Hygraph: create/edit **Post** in Studio, category **Conference Abstracts**, fill custom fields and `externalLink`.
+
+## Seed script (Posts + category)
+
+```bash
+node tools/seed-conference-abstract-posts.mjs
+```
+
+Creates category `conference-abstracts`, uploads AACR image asset, creates/publishes all rows from `src/data/research-abstracts-seed.json`. Trims trailing hyphens from slugs (Hygraph validation). Re-run is idempotent (skips slugs already in the category).
+
+## Slide deck / PDF
+
+Same **Post** fields as blog (`pdfDeckUrl`, `slideDeckSlug`, `pdfDeck` Asset). Optional **MediaItem** with the same slug can supply `pdfFile` / `deckSlug`.
+
+```bash
+node tools/attach-abstract-deck.mjs <abstract-slug> --pdf-url "https://..."
+node tools/attach-abstract-deck.mjs <abstract-slug> --slide-deck-slug "crispro-101"
+```
+
+Fallback when Content API has not published deck fields yet: `src/data/abstract-deck-config.json`.
+
+Front-end: `/research/abstracts/[slug]/` uses the same PDF pager and slide deck viewer as blog posts. Listing cards show **Slides** when a deck exists; **Published** links to the external citation.

@@ -3,11 +3,13 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
+import type { NavTopItem } from './nav-items';
 import { TOP_NAV_ITEMS } from './nav-items';
 import { pathsEqual } from './paths';
 import type { NavTheme } from './nav-theme';
 
 type ZetaDesktopNavProps = {
+  navItems?: NavTopItem[];
   pathname: string | null;
   isDarkMode: boolean;
   navMuted: NavTheme['navMuted'];
@@ -35,7 +37,16 @@ function isNavItemActive(pathname: string | null, href: string, itemId: string):
   if (pathsEqual(pathname, href)) return true;
   const norm = (pathname ?? '').replace(/\/+$/, '') || '/';
   if (itemId === 'ledger' && norm.startsWith('/ledger')) return true;
-  if (itemId === 'research' && (norm.startsWith('/research') || norm.startsWith('/blog') || norm.startsWith('/manuscripts') || norm.startsWith('/media'))) return true;
+  if (
+    itemId === 'research' &&
+    ((norm.startsWith('/research') && !norm.startsWith('/research/abstracts')) ||
+      norm.startsWith('/blog') ||
+      norm.startsWith('/manuscripts') ||
+      norm.startsWith('/media'))
+  ) {
+    return true;
+  }
+  if (itemId === 'abstracts' && norm.startsWith('/research/abstracts')) return true;
   if (itemId === 'engines' && norm.startsWith('/engine')) return true;
   return false;
 }
@@ -65,6 +76,7 @@ function scrollBody() {
 }
 
 export function ZetaDesktopNav({
+  navItems = TOP_NAV_ITEMS,
   pathname,
   isDarkMode,
   navMuted,
@@ -82,7 +94,7 @@ export function ZetaDesktopNav({
     <div
       className={`hidden lg:flex flex-1 min-w-0 justify-end flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-black tracking-widest ${navMuted}`}
     >
-      {TOP_NAV_ITEMS.map((item) => {
+      {navItems.map((item) => {
         const isActive = isNavItemActive(pathname, item.href, item.id);
         const hasDropdown = Array.isArray(item.dropdownItems) && item.dropdownItems.length > 0;
         const isOpen = openDropdownId === item.id;
@@ -116,7 +128,7 @@ export function ZetaDesktopNav({
             </Link>
 
             {isOpen && (
-              <div className={dropdownShell(isDarkMode, item.id === 'ledger')}>
+              <div className={dropdownShell(isDarkMode, item.id === 'ledger' || item.id === 'abstracts')}>
                 <div className={dropdownHeader(isDarkMode)}>
                   <span className={dropdownHeaderLabel(isDarkMode)}>{item.label}</span>
                 </div>
@@ -139,7 +151,7 @@ export function ZetaDesktopNav({
                   </button>
                   {item.dropdownItems!.map((sub) => (
                     <button
-                      key={sub.href}
+                      key={`${sub.href}-${sub.label}`}
                       type="button"
                       onClick={() => navigate(sub.href)}
                       className={`flex w-full flex-col gap-0.5 px-5 py-2.5 text-left transition-colors ${

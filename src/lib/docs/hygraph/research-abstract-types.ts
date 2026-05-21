@@ -1,3 +1,10 @@
+/** Slide deck / PDF attachment (same Hygraph fields as blog Post). */
+export type ResearchAbstractDeck = {
+  slideDeckSlug: string | null;
+  pdfDeckUrl: string | null;
+  pdfDeck: { url: string; fileName?: string | null; mimeType?: string | null } | null;
+};
+
 /** Conference abstract — Hygraph `ResearchAbstract` or local fallback. */
 export type ResearchAbstract = {
   id: string;
@@ -12,4 +19,5 @@ export type ResearchAbstract = {
   year: number | null;
   order: number | null;
   publishedAt: string | null;
+  deck?: ResearchAbstractDeck | null;
 };
