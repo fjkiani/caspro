@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
-import { getPosts, getCategories } from '@/services';
+import { getPosts, getCategories, getDeckPosts } from '@/services';
 import { getAllUseCasesCms } from '@/lib/docs/hygraph/use-case-queries';
 import type { PostNode } from '@/types/blog';
 import ResearchClient from './ResearchClient';
@@ -30,11 +30,11 @@ interface PostEdge {
 }
 
 export default async function ResearchPage() {
-  // Fetch both data sources in parallel
-  const [postsData, categoriesData, manuscripts] = await Promise.all([
+  const [postsData, categoriesData, manuscripts, deckPosts] = await Promise.all([
     getPosts().catch(() => []),
     getCategories().catch(() => []),
     getAllUseCasesCms().catch(() => []),
+    getDeckPosts().catch(() => []),
   ]);
 
   const posts: PostNode[] = Array.isArray(postsData)
@@ -55,6 +55,7 @@ export default async function ResearchPage() {
         posts={posts}
         categories={categories}
         manuscripts={manuscripts}
+        deckPosts={deckPosts}
       />
     </Suspense>
   );

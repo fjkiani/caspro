@@ -832,3 +832,72 @@ export const getComments = async (slug) => {
     return [];
   }
 };
+
+/**
+ * Fetch posts that have a PDF deck or slide deck slug attached.
+ * Used by the Research page Decks tab.
+ * Tries pdfDeck first; falls back gracefully if the field is absent from the schema.
+ */
+export const getDeckPosts = async () => {
+  if (!graphqlAPI) return [];
+
+  // Primary: posts with a Hygraph Asset pdfDeck
+  const queryWithPdf = gql`
+    query GetDeckPostsWithPdf {
+      postsConnection(orderBy: createdAt_DESC) {
+        edges {
+          node {
+            slug
+            title
+            excerpt
+            createdAt
+            featuredImage { url }
+            categories { name slug }
+            pdfDeck { url fileName mimeType }
+            slideDeckSlug
+            pdfDeckUrl
+          }
+        }
+      }
+    }
+  `;
+
+  // Fallback: posts without pdfDeck field in schema
+  const queryNoPdf = gql`
+    query GetDeckPostsNoPdf {
+      postsConnection(orderBy: createdAt_DESC) {
+        edges {
+          node {
+            slug
+            title
+            excerpt
+            createdAt
+            featuredImage { url }
+            categories { name slug }
+            slideDeckSlug
+            pdfDeckUrl
+          }
+        }
+      }
+    }
+  `;
+
+  let edges = [];
+  try {
+    const result = await graphQLClient.request(queryWithPdf);
+    edges = result?.postsConnection?.edges || [];
+  } catch {
+    try {
+      const result = await graphQLClient.request(queryNoPdf);
+      edges = result?.postsConnection?.edges || [];
+    } catch (err) {
+      console.error('getDeckPosts: both queries failed', err);
+      return [];
+    }
+  }
+
+  // Filter to only posts that actually have a deck
+  return edges
+    .map((e) => e.node)
+    .filter((p) => p.pdfDeck?.url || p.slideDeckSlug?.trim() || p.pdfDeckUrl?.trim());
+};

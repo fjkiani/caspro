@@ -1,14 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { ROUTES } from '@/constants/routes';
 import type { EngineEntry } from '@/data/engine-registry';
 import { TOP_NAV_ITEMS } from './nav-items';
-import type { BlogNavCategory, BlogNavPost, ManuscriptNavItem } from './useZetaNavFeed';
-import { normalizePath, pathsEqual } from './paths';
+import { pathsEqual } from './paths';
 import type { NavTheme } from './nav-theme';
-
-const BLOG_INDEX = '/blog/';
 
 type ZetaMobileDrawerProps = {
   open: boolean;
@@ -18,9 +14,10 @@ type ZetaMobileDrawerProps = {
   navMuted: NavTheme['navMuted'];
   productEngines: EngineEntry[];
   navigate: (href: string) => void;
-  manuscripts: ManuscriptNavItem[];
-  blogPosts: BlogNavPost[];
-  blogCategories: BlogNavCategory[];
+  // Legacy props kept for compatibility — no longer rendered
+  manuscripts?: unknown[];
+  blogPosts?: unknown[];
+  blogCategories?: unknown[];
 };
 
 function linkRowClass(isDarkMode: boolean, isActive: boolean, navMuted: string) {
@@ -35,10 +32,6 @@ export function ZetaMobileDrawer({
   pathname,
   isDarkMode,
   navMuted,
-  navigate,
-  manuscripts,
-  blogPosts,
-  blogCategories,
 }: ZetaMobileDrawerProps) {
   return (
     <div
@@ -58,7 +51,7 @@ export function ZetaMobileDrawer({
       >
         <div className="px-4 py-4 space-y-6">
 
-          {/* ── Dynamic TOP_NAV_ITEMS ── */}
+          {/* ── Dynamic TOP_NAV_ITEMS (Research, Target Validation, Resistance, MoA) ── */}
           <div className="flex flex-col gap-1">
             <span
               className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}
@@ -79,93 +72,6 @@ export function ZetaMobileDrawer({
                 </Link>
               );
             })}
-          </div>
-
-          {/* ── BLOG ── */}
-          <div>
-            <span className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-cyan-400' : 'text-indigo-700'}`}>BLOG</span>
-            <div className="mt-2 space-y-1">
-              <Link
-                href={BLOG_INDEX}
-                prefetch={false}
-                onClick={onClose}
-                className={`block rounded-sm px-2 py-2.5 text-xs font-black uppercase tracking-widest ${
-                  pathsEqual(pathname, BLOG_INDEX) || pathsEqual(pathname, '/blog')
-                    ? isDarkMode
-                      ? 'bg-cyan-500/10 text-cyan-300'
-                      : 'bg-indigo-50 text-indigo-900'
-                    : isDarkMode
-                      ? 'text-zinc-200 hover:bg-zinc-900'
-                      : 'text-slate-900 hover:bg-slate-50'
-                }`}
-              >
-                All posts
-              </Link>
-              {blogCategories.map((c) => (
-                <Link
-                  key={c.slug}
-                  href={`/blog/?category=${encodeURIComponent(c.slug)}`}
-                  prefetch={false}
-                  onClick={onClose}
-                  className={`block rounded-sm px-2 py-2 text-[11px] font-bold ${
-                    isDarkMode ? 'text-zinc-200 hover:bg-zinc-900' : 'text-slate-800 hover:bg-slate-50'
-                  }`}
-                >
-                  {c.name}
-                </Link>
-              ))}
-              {blogPosts.map((p) => (
-                <Link
-                  key={p.slug}
-                  href={`/blog/post/${encodeURIComponent(p.slug)}/`}
-                  prefetch={false}
-                  onClick={onClose}
-                  className={`block rounded-sm px-2 py-2 text-xs font-black uppercase tracking-widest ${
-                    isDarkMode ? 'text-zinc-100 hover:bg-zinc-900' : 'text-slate-900 hover:bg-slate-50'
-                  }`}
-                >
-                  {p.title}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* ── MANUSCRIPTS ── */}
-          <div>
-            <span className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-cyan-400' : 'text-indigo-700'}`}>
-              MANUSCRIPTS
-            </span>
-            <div className="mt-2 space-y-1">
-              <Link
-                href={ROUTES.MANUSCRIPTS}
-                prefetch={false}
-                onClick={onClose}
-                className={`block rounded-sm px-2 py-2.5 text-xs font-black uppercase tracking-widest ${
-                  pathsEqual(pathname, ROUTES.MANUSCRIPTS) || normalizePath(pathname) === '/manuscripts'
-                    ? isDarkMode
-                      ? 'bg-cyan-500/10 text-cyan-300'
-                      : 'bg-indigo-50 text-indigo-900'
-                    : isDarkMode
-                      ? 'text-zinc-200 hover:bg-zinc-900'
-                      : 'text-slate-900 hover:bg-slate-50'
-                }`}
-              >
-                All manuscripts
-              </Link>
-              {manuscripts.map((m) => (
-                <Link
-                  key={m.id}
-                  href={`/manuscripts/${encodeURIComponent(m.slug)}/`}
-                  prefetch={false}
-                  onClick={onClose}
-                  className={`block rounded-sm px-2 py-2 text-xs font-black uppercase tracking-widest ${
-                    isDarkMode ? 'text-zinc-100 hover:bg-zinc-900' : 'text-slate-900 hover:bg-slate-50'
-                  }`}
-                >
-                  {m.title}
-                </Link>
-              ))}
-            </div>
           </div>
 
         </div>
