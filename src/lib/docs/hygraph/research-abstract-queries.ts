@@ -6,7 +6,12 @@
 import { clearCache, fetchWithCache, hygraphClient } from './client';
 import { resolveAacrJournalUrl, resolvePublishedAbstractUrl } from '@/data/abstract-published-urls';
 import { RESEARCH_ABSTRACTS_FALLBACK } from '@/data/research-abstracts-fallback';
-import { decodeAbstractSlugParam } from '@/lib/research/abstract-slug';
+import {
+  abstractMatchesSlugParam,
+  canonicalAbstractSlug,
+  decodeAbstractSlugParam,
+} from '@/lib/research/abstract-slug';
+import { resolveAbstractConferenceId } from '@/data/abstract-published-urls';
 import {
   abstractHasDeck,
   fetchAbstractDeckBySlug,
@@ -112,10 +117,25 @@ function parseExcerptMeta(excerpt?: string | null): {
 }
 
 function seedFallbackForSlug(slug: string) {
-  const norm = slug.replace(/-+$/, '');
+  const canon = canonicalAbstractSlug(slug);
   return RESEARCH_ABSTRACTS_FALLBACK.find(
-    (f) => f.slug === slug || f.slug.replace(/-+$/, '') === norm || norm.startsWith(f.slug.slice(0, 24)),
+    (f) =>
+      f.slug === slug ||
+      canonicalAbstractSlug(f.slug) === canon ||
+      f.slug.replace(/-+$/, '') === canon,
   );
+}
+
+function dedupeAbstractsByCanonicalSlug(items: ResearchAbstract[]): ResearchAbstract[] {
+  const bySlug = new Map<string, ResearchAbstract>();
+  for (const item of items) {
+    const key = canonicalAbstractSlug(item.slug);
+    const existing = bySlug.get(key);
+    if (!existing || item.slug.length > existing.slug.length) {
+      bySlug.set(key, { ...item, slug: key });
+    }
+  }
+  return [...bySlug.values()];
 }
 
 function mapPost(row: HygraphPostRow): ResearchAbstract {
@@ -139,8 +159,10 @@ function mapPost(row: HygraphPostRow): ResearchAbstract {
       seedLink: seed?.link,
     }) ?? null;
 
+  const slug = canonicalAbstractSlug(row.slug);
+  const conferenceId = resolveAbstractConferenceId(row.title, venue);
   const aacrImageUrl = resolveAacrJournalUrl({
-    slug: row.slug,
+    slug,
     title: row.title,
     venue,
     publishedUrl: link ?? seed?.link,
@@ -148,7 +170,8 @@ function mapPost(row: HygraphPostRow): ResearchAbstract {
 
   return {
     id: row.id,
-    slug: row.slug,
+    slug,
+    conferenceId,
     title: row.title,
     bodyHtml: row.content?.html ?? null,
     bodyText,
@@ -224,7 +247,9 @@ export async function getResearchAbstracts(options?: { noCache?: boolean }): Pro
     const items = await enrichAbstractsWithDecks(sortAbstracts(RESEARCH_ABSTRACTS_FALLBACK));
     return { source: 'local', items };
   }
-  const items = await enrichAbstractsWithDecks(sortAbstracts(rows.map(mapPost)));
+  const items = await enrichAbstractsWithDecks(
+    dedupeAbstractsByCanonicalSlug(sortAbstracts(rows.map(mapPost))),
+  );
   return { source: 'hygraph', items };
 }
 
@@ -272,10 +297,7 @@ export async function getResearchAbstractBySlug(
 ): Promise<{ source: 'hygraph' | 'local'; item: ResearchAbstract } | null> {
   const slug = decodeAbstractSlugParam(slugParam);
   const { source, items } = await getResearchAbstracts();
-  const item =
-    items.find((a) => a.slug === slug) ||
-    items.find((a) => a.slug.replace(/-+$/, '') === slug) ||
-    null;
+  const item = items.find((a) => abstractMatchesSlugParam(a.slug, slug)) ?? null;
   if (!item) return null;
   return { source, item };
 }

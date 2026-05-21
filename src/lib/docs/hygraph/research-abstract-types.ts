@@ -9,6 +9,8 @@ export type ResearchAbstractDeck = {
 export type ResearchAbstract = {
   id: string;
   slug: string;
+  /** AACR abstract number when known (LB340, B065, 2235, …) */
+  conferenceId: string | null;
   title: string;
   bodyHtml: string | null;
   bodyText: string | null;

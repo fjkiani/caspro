@@ -93,7 +93,7 @@ function buildAbstractPreviews(abstracts: ResearchAbstract[], limit = 12): Previ
       subtitle: plainPreviewText(a.authorLine || a.venue || a.bodyText),
       imageUrl: a.imageUrl || AACR_LOGO,
       imageHref: a.aacrImageUrl,
-      badge: hasDeck ? 'Slides' : a.year ? String(a.year) : 'Abstract',
+      badge: a.conferenceId ?? (hasDeck ? 'Slides' : a.year ? String(a.year) : 'Abstract'),
       external: !hasDeck && Boolean(a.link?.trim()),
     };
   });

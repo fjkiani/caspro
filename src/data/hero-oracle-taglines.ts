@@ -8,33 +8,34 @@ export const HERO_ORACLE_PREFIX = 'Precision Computional Oncology';
 
 export const HERO_ORACLE_TAGLINES: HeroOracleTagline[] = [
   {
-    accent: 'that de-risks your entire cohort before the trial even begins.',
+    accent: 'that mathematically guarantees precision-eligible enrollment before you burn your first million.',
+  },
+
+  {
+    accent: 'that replaces clinicopathologic guessing with deterministic, dependency-first frameworks.',
   },
   {
-    accent: 'that eliminates guesswork patients, doctors and pharma.',
+    accent: 'that enrolls based on absolute molecular addiction—not lazy geographic tumor labels.',
   },
   {
-    accent: 'that matches patients to trials based on biology — not eligibility.',
+    accent: 'that isolates the 5% of true responders buried alive in your failed Phase III cohort.',
   },
   {
-    accent: 'that tells you which patients will respond — before the first dose.',
+    accent: 'that detects the tumor\'s escape architecture before the radiologist even blinks.',
   },
   {
-    accent: 'that re-routes treatment the moment the tumor starts to escape.',
+    accent: 'that forensically autopsies Phase III failures—with the unforgeable JSON receipts to prove it.',
   },
   {
-    accent: 'that would have caught all three Phase III failures — with timestamped receipts.',
+    accent: 'that strips out the AI slop for raw, A100-computed truth backed by hard PMIDs.',
   },
   {
-    accent: 'in silico: every claim traces to a published paper. Nothing fabricated.',
+    accent: 'that stops you from setting $300M on fire in a mathematically doomed, all-comers clinical trial.',
   },
   {
-    accent: 'before you spend $300 million finding out the hard way.',
+    accent: 'that salvages dead IP from the pharmaceutical graveyard and resurrects it for pennies.',
   },
   {
-    accent: 'that finds responders before enrollment — not after the trial fails.',
-  },
-  {
-    accent: 'that validates against 78,000 women in PLCO — without sequencing a single patient.',
-  },
+    accent: 'that catches lethal drug-drug interactions standard EMRs can\'t see.',
+  }
 ];

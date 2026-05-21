@@ -41,6 +41,18 @@ export function parseAbstractIdFromTitle(title: string): string | null {
   return m ? m[1].toUpperCase() : null;
 }
 
+/** Conference abstract number (LB340, B065, 2235, …) from title or venue line */
+export function resolveAbstractConferenceId(
+  title?: string | null,
+  venue?: string | null,
+): string | null {
+  if (title?.trim()) {
+    const fromTitle = parseAbstractIdFromTitle(title);
+    if (fromTitle) return fromTitle;
+  }
+  return parseAbstractIdFromVenue(venue);
+}
+
 /** e.g. "LB340-LB340", "2235-2235", "LB-B013-LB-B013" from venue line */
 export function parseAbstractIdFromVenue(venue?: string | null): string | null {
   if (!venue?.trim()) return null;

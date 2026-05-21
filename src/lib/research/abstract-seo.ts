@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
-import { resolvePublishedAbstractUrl } from '@/data/abstract-published-urls';
+import {
+  resolveAbstractConferenceId,
+  resolvePublishedAbstractUrl,
+} from '@/data/abstract-published-urls';
 import type { ResearchAbstract } from '@/lib/docs/hygraph/research-abstract-types';
 import { researchAbstractDetailPath } from '@/lib/research/paths';
 
@@ -29,11 +32,6 @@ function parseAuthors(authorLine: string | null): string[] {
     .filter(Boolean);
 }
 
-function parseAbstractId(title: string): string | null {
-  const m = title.match(/Abstract\s+([A-Z]{1,3}-?[A-Z]?\d+)/i);
-  return m ? m[1].toUpperCase() : null;
-}
-
 function buildKeywords(abstract: ResearchAbstract, abstractId: string | null): string[] {
   const base = [
     'CrisPRO',
@@ -60,7 +58,8 @@ function buildKeywords(abstract: ResearchAbstract, abstractId: string | null): s
 
 /** Extract SEO fields from a conference abstract (Hygraph or local). */
 export function extractAbstractSeoMeta(abstract: ResearchAbstract): AbstractSeoMeta {
-  const abstractId = parseAbstractId(abstract.title);
+  const abstractId =
+    abstract.conferenceId ?? resolveAbstractConferenceId(abstract.title, abstract.venue);
   const authors = parseAuthors(abstract.authorLine);
   const venue = abstract.venue?.trim() || null;
   const description =

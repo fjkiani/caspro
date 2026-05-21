@@ -22,16 +22,17 @@ export const CONTACT_CONFIG = {
   animationDelay: 0.2,
   titleText: 'Request a Demo',
   subtitleText:
-    'Schedule a demo to witness how our AI command and control platform transforms diagnostic ambiguity and R&D guesswork into your decisive advantage.',
+    'The current standard of care is a coin toss. Book a live demo to witness our command-and-control platform replace clinical guessing with deterministic, dependency-first therapeutic architecture. Watch us resolve VUS noise in real-time, bypass the stromal cage, and intercept lethal drug-drug interactions before the first dose is drawn. We don\'t guess. We do the math.',
   ctaText: 'Submit Request',
   hintText: 'Required fields are marked with *',
   formTitle: 'Initiate Contact',
   partnerTitle: 'Research Use Only',
   partnerBenefits: [
-    '95.7% AUROC ClinVar (53,210 samples)',
-    '73% VUS Resolution Rate',
-    '89.1% AUROC BRCA1 Zero-shot',
-    '82.6% AUROC SpliceVarDB Exonic Variants',
+    '[ A100 TELEMETRY // RESEARCH USE ONLY ]',
+    '> AUROC_CLINVAR_53K: [95.7%]',
+    '> VUS_RESOLUTION_RATE: [73.0%]',
+    '> AUROC_BRCA1_ZERO_SHOT: [89.1%]',
+    '> AUROC_SPLICEVAR_EXONIC: [82.6%]', 
   ],
   animationVariants: {
     initial: { opacity: 0, y: 20 },

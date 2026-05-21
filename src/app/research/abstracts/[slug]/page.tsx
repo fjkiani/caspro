@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { ExternalLink, ChevronLeft } from 'lucide-react';
 import { getResearchAbstractBySlug } from '@/lib/docs/hygraph/research-abstract-queries';
 import { abstractHasDeck } from '@/lib/docs/hygraph/research-abstract-deck';
@@ -9,7 +9,8 @@ import {
   abstractSeoToNextMetadata,
   extractAbstractSeoMeta,
 } from '@/lib/research/abstract-seo';
-import { RESEARCH_SECTIONS } from '@/lib/research/paths';
+import { RESEARCH_SECTIONS, researchAbstractDetailPath } from '@/lib/research/paths';
+import { canonicalAbstractSlug, normalizeAbstractSlug } from '@/lib/research/abstract-slug';
 import { JsonLd } from '@/components/SEO/JsonLd';
 import ResearchSectionShell from '@/components/research/ResearchSectionShell';
 import AbstractDeckMedia from '@/components/research/AbstractDeckMedia';
@@ -27,6 +28,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ResearchAbstractDetailPage({ params }: Props) {
+  const canonical = canonicalAbstractSlug(params.slug);
+  if (normalizeAbstractSlug(params.slug) !== canonical) {
+    redirect(researchAbstractDetailPath(canonical));
+  }
+
   const resolved = await getResearchAbstractBySlug(params.slug);
   if (!resolved) notFound();
 
@@ -46,7 +52,9 @@ export default async function ResearchAbstractDetailPage({ params }: Props) {
       <JsonLd data={abstractScholarlyArticleJsonLd(seo)} />
       <article className="max-w-4xl mx-auto px-4 py-10">
         <div className="mb-6 flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-zinc-500">
-          {seo.abstractId && <span className="text-cyan-600 dark:text-cyan-400">{seo.abstractId}</span>}
+          {(item.conferenceId ?? seo.abstractId) && (
+            <span className="text-cyan-600 dark:text-cyan-400">{item.conferenceId ?? seo.abstractId}</span>
+          )}
           {seo.year && <span>{seo.year}</span>}
           {seo.venue && <span className="normal-case font-medium tracking-normal">{seo.venue}</span>}
         </div>

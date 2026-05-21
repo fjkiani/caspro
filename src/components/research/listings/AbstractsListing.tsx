@@ -60,6 +60,7 @@ export default function AbstractsListing({
           const imgSrc = ab.imageUrl || 'https://www.aacr.org/wp-content/uploads/2019/01/AACR-Logo-4C.png';
           const summary = ab.bodyText || [ab.authorLine, ab.venue].filter(Boolean).join(' · ');
           const yearLabel = ab.year ? String(ab.year) : null;
+          const conferenceId = ab.conferenceId;
 
           return (
             <li key={ab.id} id={ab.slug} className="scroll-mt-24">
@@ -76,6 +77,15 @@ export default function AbstractsListing({
                   >
                     <img src={imgSrc} alt="" className="w-full h-full object-contain p-4" />
                   </a>
+                  {conferenceId && (
+                    <span
+                      className={`absolute top-3 left-3 text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded pointer-events-none ${
+                        isDarkMode ? 'bg-cyan-950 text-cyan-300 border border-cyan-500/40' : 'bg-cyan-600 text-white'
+                      }`}
+                    >
+                      {conferenceId}
+                    </span>
+                  )}
                   {yearLabel && (
                     <span
                       className={`absolute top-3 right-3 text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded pointer-events-none ${
@@ -86,7 +96,11 @@ export default function AbstractsListing({
                     </span>
                   )}
                   {hasDeck && (
-                    <span className="absolute top-3 left-3 inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded bg-indigo-600 text-white pointer-events-none">
+                    <span
+                      className={`absolute left-3 inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded bg-indigo-600 text-white pointer-events-none ${
+                        conferenceId ? 'top-11' : 'top-3'
+                      }`}
+                    >
                       <Presentation className="w-3 h-3" />
                       Slides
                     </span>

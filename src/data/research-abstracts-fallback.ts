@@ -5,7 +5,8 @@
  */
 
 import seed from './research-abstracts-seed.json';
-import { resolveAacrJournalUrl } from '@/data/abstract-published-urls';
+import { resolveAacrJournalUrl, resolveAbstractConferenceId } from '@/data/abstract-published-urls';
+import { canonicalAbstractSlug } from '@/lib/research/abstract-slug';
 import type { ResearchAbstract } from '@/lib/docs/hygraph/research-abstract-types';
 
 function toAbstract(item: (typeof seed.items)[number], index: number): ResearchAbstract {
@@ -15,9 +16,11 @@ function toAbstract(item: (typeof seed.items)[number], index: number): ResearchA
     venue: item.venue,
     publishedUrl: item.link,
   });
+  const slug = canonicalAbstractSlug(item.slug);
   return {
-    id: `local-${item.slug}`,
-    slug: item.slug,
+    id: `local-${slug}`,
+    slug,
+    conferenceId: resolveAbstractConferenceId(item.title, item.venue),
     title: item.title,
     bodyHtml: item.bodyHtml,
     bodyText: item.bodyText,
