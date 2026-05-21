@@ -5,7 +5,6 @@
 
 import { RESEARCH_SECTIONS } from '@/lib/research/paths';
 import { TRIAL_LEDGER_ENTRIES } from '@/data/trial-ledger-registry';
-import { isGatedLedgerTrial } from '@/data/trial-gate';
 import { getProductEngines, productMenuTitle } from './product-engines';
 import type { AbstractNavItem } from '@/lib/docs/hygraph/research-abstract-queries';
 
@@ -16,8 +15,6 @@ export interface NavDropdownItem {
   accent?: 'cyan' | 'amber' | 'indigo';
   /** Open in new tab (external Scholar / journal links). */
   external?: boolean;
-  /** Ledger receipt — requires passcode before navigate */
-  gated?: boolean;
 }
 
 export interface NavTopItem {
@@ -60,7 +57,6 @@ const ledgerDropdown: NavDropdownItem[] = [
     description: `${entry.route.replace(/\/$/, '')}${entry.legacyRoutes[0] ? ` · was ${entry.legacyRoutes[0]}` : ''}`,
     href: entry.route,
     accent: entry.preview === 'target-lock' ? 'cyan' : entry.preview === 'kill-chain' ? 'amber' : 'indigo',
-    gated: isGatedLedgerTrial(entry.slug),
   })),
 ];
 

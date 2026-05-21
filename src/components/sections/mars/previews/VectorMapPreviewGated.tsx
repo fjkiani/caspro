@@ -26,6 +26,14 @@ export default function VectorMapPreviewGated({
   const [activeIdx, setActiveIdx] = useState(0);
   const handleLineChange = useCallback((idx: number) => setActiveIdx(idx), []);
 
+  if (headlines.length === 0) {
+    return (
+      <div className="flex-1 flex items-center justify-center w-full min-h-[220px] px-4">
+        <VectorFailureAnalysis initialTrialId={trialId} singleTrialMode />
+      </div>
+    );
+  }
+
   return (
     <div className="flex-1 flex items-center justify-center w-full min-h-0 px-3 sm:px-4 py-2 sm:py-4">
       <div className="w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-6 lg:gap-8 items-stretch min-h-0">

@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
 import { PasscodeModal } from '@/components/ui/PasscodeModal';
-import { isGatedLedgerTrial } from '@/data/trial-gate';
 import DnaHero from '@/components/mockups/dnaHero2';
 import MoaRadarPreview from './previews/MoaRadarPreview';
 import ProteinPreview from './previews/ProteinPreview';
@@ -37,9 +36,9 @@ export const HeroSlider = () => {
 
   const slides = useMemo((): HeroSlide[] => [
     { id: 'dna-hero', label: 'ORACLE', sublabel: 'COMMAND', icon: Dna },
-    { id: 'ceacam5', label: 'CEACAM5', sublabel: 'TARGET-LOCK', icon: Target, route: '/ledger/ceacam5/', gated: true },
-    { id: 'latify', label: 'LATIFY', sublabel: 'MOA-ALIGN', icon: Fingerprint, route: '/ledger/latify/', gated: true },
-    { id: 'capri', label: 'CAPRI', sublabel: 'KILL-CHAIN', icon: Cpu, route: '/ledger/capri/', gated: true },
+    { id: 'ceacam5', label: 'CEACAM5', sublabel: 'TARGET-LOCK', icon: Target, route: '/ledger/ceacam5/' },
+    { id: 'latify', label: 'LATIFY', sublabel: 'MOA-ALIGN', icon: Fingerprint, route: '/ledger/latify/' },
+    { id: 'capri', label: 'CAPRI', sublabel: 'KILL-CHAIN', icon: Cpu, route: '/ledger/capri/' },
     {
       id: 'adavosertib',
       label: 'ADAVOSERTIB',
@@ -102,7 +101,7 @@ export const HeroSlider = () => {
     const trialId = activeSlide.id;
 
     const getVisual = () => {
-      if (isGatedLedgerTrial(trialId)) {
+      if (activeSlide.gated) {
         return (
           <VectorMapPreviewGated
             trialId={trialId}

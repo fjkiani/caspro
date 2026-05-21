@@ -1,12 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { Lock } from 'lucide-react';
-import { PasscodeModal } from '@/components/ui/PasscodeModal';
 import type { NavTopItem } from './nav-items';
 import { TOP_NAV_ITEMS } from './nav-items';
 import { pathsEqual } from './paths';
-import { useGatedNavClick } from './useGatedNavClick';
 
 type ZetaMobileDrawerProps = {
   navItems?: NavTopItem[];
@@ -51,8 +48,6 @@ export function ZetaMobileDrawer({
   navMuted,
   navigate,
 }: ZetaMobileDrawerProps) {
-  const { gateTarget, handleDropdownClick, closeGate } = useGatedNavClick(navigate);
-
   return (
     <div
       className={`lg:hidden fixed inset-0 top-14 z-[1100] transition-opacity duration-200 ${
@@ -96,22 +91,16 @@ export function ZetaMobileDrawer({
                         key={`${sub.href}-${sub.label}`}
                         type="button"
                         onClick={() => {
-                          handleDropdownClick(sub);
-                          if (!sub.gated) onClose();
+                          navigate(sub.href);
+                          onClose();
                         }}
-                        className={`text-left pl-3 py-2 text-[11px] font-bold uppercase tracking-wider border-l-2 inline-flex items-center gap-1.5 ${
+                        className={`text-left pl-3 py-2 text-[11px] font-bold uppercase tracking-wider border-l-2 ${
                           isDarkMode
                             ? 'border-zinc-800 text-zinc-400 hover:text-cyan-300 hover:border-cyan-500/50'
                             : 'border-slate-200 text-slate-600 hover:text-indigo-700 hover:border-indigo-300'
                         }`}
                       >
                         {sub.label}
-                        {sub.gated && (
-                          <Lock
-                            className={`w-3 h-3 shrink-0 ${isDarkMode ? 'text-violet-400' : 'text-violet-600'}`}
-                            aria-hidden
-                          />
-                        )}
                       </button>
                     ))}
                 </div>
@@ -120,14 +109,6 @@ export function ZetaMobileDrawer({
           </div>
         </div>
       </div>
-      {gateTarget && (
-        <PasscodeModal
-          open
-          onClose={closeGate}
-          proofUrl={gateTarget.href}
-          targetLabel={gateTarget.label}
-        />
-      )}
     </div>
   );
 }
