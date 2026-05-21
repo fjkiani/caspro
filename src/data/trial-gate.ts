@@ -1,6 +1,13 @@
 /** Trials that require passcode before opening ledger receipt or hero slide. */
 
-export const GATED_LEDGER_TRIAL_SLUGS = ['adavosertib', 'berzosertib'] as const;
+/** All ledger trial receipts require passcode before open (hero dock, nav, /ledger routes). */
+export const GATED_LEDGER_TRIAL_SLUGS = [
+  'ceacam5',
+  'latify',
+  'capri',
+  'adavosertib',
+  'berzosertib',
+] as const;
 
 export type GatedLedgerTrialSlug = (typeof GATED_LEDGER_TRIAL_SLUGS)[number];
 
