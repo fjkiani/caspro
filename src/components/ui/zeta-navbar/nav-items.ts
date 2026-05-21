@@ -1,11 +1,11 @@
 /**
- * Top-level navigation items config.
- *
- * Items with an empty `dropdownItems` array render as plain links.
- * Items with populated `dropdownItems` render a dropdown panel.
- * To add sub-items to any nav entry in the future, just push to its `dropdownItems` array —
- * no JSX changes required.
+ * Top-level Zeta navigation.
+ * Dropdowns: Research (content types), Ledger (decoded trials), Engines (platform engines).
  */
+
+import { ROUTES } from '@/constants/routes';
+import { TRIAL_LEDGER_ENTRIES } from '@/data/trial-ledger-registry';
+import { getProductEngines, productMenuTitle } from './product-engines';
 
 export interface NavDropdownItem {
   label: string;
@@ -22,36 +22,64 @@ export interface NavTopItem {
   dropdownItems?: NavDropdownItem[];
 }
 
+const researchDropdown: NavDropdownItem[] = [
+  {
+    label: 'Decks',
+    description: 'Slide decks & programmatic posters',
+    href: '/research/?tab=decks',
+    accent: 'cyan',
+  },
+  {
+    label: 'Manuscripts',
+    description: 'Long-form PDFs from Hygraph',
+    href: ROUTES.MANUSCRIPTS,
+    accent: 'indigo',
+  },
+  {
+    label: 'Blog',
+    description: 'Articles & news',
+    href: `${ROUTES.BLOG}/`,
+    accent: 'indigo',
+  },
+  {
+    label: 'Abstracts',
+    description: 'Conference abstracts (Hygraph — coming soon)',
+    href: '/research/?tab=abstracts',
+    accent: 'amber',
+  },
+];
+
+const ledgerDropdown: NavDropdownItem[] = TRIAL_LEDGER_ENTRIES.map((entry) => ({
+  label: `${entry.label} // ${entry.sublabel}`,
+  description: `${entry.trialId} · ${entry.cancer}${entry.legacyRoutes[0] ? ` · was ${entry.legacyRoutes[0]}` : ''}`,
+  href: entry.route,
+  accent: entry.preview === 'target-lock' ? 'cyan' : entry.preview === 'kill-chain' ? 'amber' : 'indigo',
+}));
+
+const engineDropdown: NavDropdownItem[] = getProductEngines().map((engine) => ({
+  label: productMenuTitle(engine),
+  description: engine.desc,
+  href: engine.route,
+  accent: 'cyan' as const,
+}));
+
 export const TOP_NAV_ITEMS: NavTopItem[] = [
   {
     id: 'research',
     label: 'RESEARCH',
-    href: '/research',
-    // No dropdownItems — renders as a plain link
+    href: '/research/',
+    dropdownItems: researchDropdown,
   },
   {
-    id: 'target-validation',
-    label: 'TARGET VALIDATION',
-    href: '/target-validation',
-    dropdownItems: [
-      // Future: add trial-specific sub-items here, e.g.:
-      // { label: 'CEACAM5', description: 'Solid tumor target lock', href: '/target-validation', accent: 'cyan' },
-    ],
+    id: 'ledger',
+    label: 'LEDGER',
+    href: '/ledger/',
+    dropdownItems: ledgerDropdown,
   },
   {
-    id: 'resistance',
-    label: 'RESISTANCE',
-    href: '/resistance',
-    dropdownItems: [
-      // Future: add resistance mechanism sub-items here
-    ],
-  },
-  {
-    id: 'moa',
-    label: 'MoA',
-    href: '/moa',
-    dropdownItems: [
-      // Future: add mechanism-of-action sub-items here
-    ],
+    id: 'engines',
+    label: 'ENGINES',
+    href: '/engine/target-lock/',
+    dropdownItems: engineDropdown,
   },
 ];

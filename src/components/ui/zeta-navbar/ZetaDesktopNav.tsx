@@ -31,6 +31,15 @@ type ZetaDesktopNavProps = {
   blogCategories?: unknown[];
 };
 
+function isNavItemActive(pathname: string | null, href: string, itemId: string): boolean {
+  if (pathsEqual(pathname, href)) return true;
+  const norm = (pathname ?? '').replace(/\/+$/, '') || '/';
+  if (itemId === 'ledger' && norm.startsWith('/ledger')) return true;
+  if (itemId === 'research' && (norm.startsWith('/research') || norm.startsWith('/blog') || norm.startsWith('/manuscripts') || norm.startsWith('/media'))) return true;
+  if (itemId === 'engines' && norm.startsWith('/engine')) return true;
+  return false;
+}
+
 function navLinkClass(isActive: boolean, isDarkMode: boolean, navHover: string) {
   return `uppercase cursor-pointer transition-colors whitespace-nowrap shrink-0 ${
     isActive ? `${isDarkMode ? 'text-white' : 'text-slate-900'} border-b border-cyan-500 pb-1` : navHover
@@ -74,7 +83,7 @@ export function ZetaDesktopNav({
     >
       {/* ── Dynamic TOP_NAV_ITEMS (Research, Target Validation, Resistance, MoA) ── */}
       {TOP_NAV_ITEMS.map((item) => {
-        const isActive = pathsEqual(pathname, item.href);
+        const isActive = isNavItemActive(pathname, item.href, item.id);
         const hasDropdown = Array.isArray(item.dropdownItems) && item.dropdownItems.length > 0;
         const isOpen = openDropdownId === item.id;
 

@@ -17,6 +17,36 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/target-validation',
+        destination: '/ledger/ceacam5/',
+        permanent: true,
+      },
+      {
+        source: '/target-validation/',
+        destination: '/ledger/ceacam5/',
+        permanent: true,
+      },
+      {
+        source: '/resistance',
+        destination: '/ledger/capri/',
+        permanent: true,
+      },
+      {
+        source: '/resistance/',
+        destination: '/ledger/capri/',
+        permanent: true,
+      },
+      {
+        source: '/moa',
+        destination: '/ledger/latify/',
+        permanent: true,
+      },
+      {
+        source: '/moa/',
+        destination: '/ledger/latify/',
+        permanent: true,
+      },
+      {
         source: '/use-case',
         destination: '/manuscripts',
         permanent: true,

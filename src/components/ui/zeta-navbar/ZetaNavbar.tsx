@@ -61,11 +61,7 @@ export function ZetaNavbar({ isProcessing = false }: { isProcessing?: boolean })
         pathname={nav.pathname}
         isDarkMode={isDarkMode}
         navMuted={theme.navMuted}
-        productEngines={nav.productEngines}
         navigate={nav.navigate}
-        manuscripts={feed.manuscripts}
-        blogPosts={feed.blogPosts}
-        blogCategories={feed.blogCategories}
       />
     </nav>
   );

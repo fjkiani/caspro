@@ -21,6 +21,8 @@ export const ROUTES = {
   SAE_INTELLIGENCE: '/evidence/sae-intelligence',
   DOCS: '/docs',
   MEDIA: '/media',
+  LEDGER: '/ledger/',
+  ENGINE_TARGET_LOCK: '/engine/target-lock/',
   /** CMS manuscript list + reader (`MediaItem` with type PDF; decks use DECK for blog) */
   MANUSCRIPTS: '/manuscripts/',
   /** @deprecated use MANUSCRIPTS — `/use-case/` redirects to `/manuscripts/` */

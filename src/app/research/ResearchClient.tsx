@@ -9,7 +9,7 @@ import moment from 'moment';
 import type { PostNode } from '@/types/blog';
 import type { CmsUseCase } from '@/lib/docs/hygraph/use-case-types';
 
-type Tab = 'articles' | 'manuscripts' | 'decks';
+type Tab = 'articles' | 'manuscripts' | 'decks' | 'abstracts';
 
 /**
  * MediaItem of type DECK — shape returned by getDeckPosts().
@@ -444,9 +444,13 @@ export default function ResearchClient({ posts, categories, manuscripts, deckPos
   const router = useRouter();
 
   const tabParam = searchParams?.get('tab');
-  const [activeTab, setActiveTab] = useState<Tab>(
-    tabParam === 'manuscripts' ? 'manuscripts' : tabParam === 'decks' ? 'decks' : 'articles'
-  );
+  const tabFromParam = (): Tab => {
+    if (tabParam === 'manuscripts') return 'manuscripts';
+    if (tabParam === 'decks') return 'decks';
+    if (tabParam === 'abstracts') return 'abstracts';
+    return 'articles';
+  };
+  const [activeTab, setActiveTab] = useState<Tab>(tabFromParam);
 
   const switchTab = (tab: Tab) => {
     setActiveTab(tab);
@@ -462,9 +466,10 @@ export default function ResearchClient({ posts, categories, manuscripts, deckPos
   };
 
   useEffect(() => {
-    setActiveTab(
-      tabParam === 'manuscripts' ? 'manuscripts' : tabParam === 'decks' ? 'decks' : 'articles'
-    );
+    if (tabParam === 'manuscripts') setActiveTab('manuscripts');
+    else if (tabParam === 'decks') setActiveTab('decks');
+    else if (tabParam === 'abstracts') setActiveTab('abstracts');
+    else setActiveTab('articles');
   }, [tabParam]);
 
   const withSlug = manuscripts.filter((u) => u.slug);
@@ -503,6 +508,12 @@ export default function ResearchClient({ posts, categories, manuscripts, deckPos
               Decks
               <span className={badgeClass(activeTab === 'decks', isDarkMode)}>{deckPosts.length}</span>
             </button>
+
+            <button type="button" onClick={() => switchTab('abstracts')} className={tabButtonClass(activeTab === 'abstracts', isDarkMode)}>
+              <FileText className="w-3.5 h-3.5" />
+              Abstracts
+              <span className={badgeClass(activeTab === 'abstracts', isDarkMode)}>0</span>
+            </button>
           </div>
         </div>
       </div>
@@ -516,6 +527,17 @@ export default function ResearchClient({ posts, categories, manuscripts, deckPos
       )}
       {activeTab === 'decks' && (
         <DecksTab deckPosts={deckPosts} isDarkMode={isDarkMode} />
+      )}
+      {activeTab === 'abstracts' && (
+        <div className="max-w-3xl mx-auto px-4 py-16 text-center">
+          <p className={`text-sm ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+            Conference abstracts will appear here once published in Hygraph as{' '}
+            <code className={isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}>MediaItem.type = ABSTRACT</code>.
+          </p>
+          <p className={`text-xs mt-3 ${isDarkMode ? 'text-zinc-600' : 'text-slate-500'}`}>
+            See <code>docs/HYGRAPH_TRIAL_LEDGER.md</code> for schema setup.
+          </p>
+        </div>
       )}
     </div>
   );

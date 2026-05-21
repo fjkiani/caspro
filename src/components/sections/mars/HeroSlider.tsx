@@ -32,9 +32,9 @@ export const HeroSlider = () => {
 
   const slides = useMemo((): HeroSlide[] => [
     { id: 'dna-hero', label: 'ORACLE', sublabel: 'COMMAND', icon: Dna },
-    { id: 'ceacam5', label: 'CEACAM5', sublabel: 'TARGET-LOCK', icon: Target, route: '/proof/ceacam5' },
-    { id: 'latify', label: 'LATIFY', sublabel: 'MOA-ALIGN', icon: Fingerprint, route: '/proof/latify' },
-    { id: 'capri', label: 'CAPRI', sublabel: 'KILL-CHAIN', icon: Cpu, route: '/proof/capri' },
+    { id: 'ceacam5', label: 'CEACAM5', sublabel: 'TARGET-LOCK', icon: Target, route: '/ledger/ceacam5' },
+    { id: 'latify', label: 'LATIFY', sublabel: 'MOA-ALIGN', icon: Fingerprint, route: '/ledger/latify' },
+    { id: 'capri', label: 'CAPRI', sublabel: 'KILL-CHAIN', icon: Cpu, route: '/ledger/capri' },
   ], []);
 
   const [activeIdx, setActiveIdx] = useState(0);
