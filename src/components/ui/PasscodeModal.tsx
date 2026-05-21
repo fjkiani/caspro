@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { Lock, X, ArrowRight, MessageSquare } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
+import { unlockTrialGateFromUrl } from '@/data/trial-gate';
 
 const CORRECT_CODE = 'curecancer';
 
@@ -54,6 +55,7 @@ export function PasscodeModal({ open, onClose, proofUrl, targetLabel }: Passcode
 
   const handleSubmit = useCallback(() => {
     if (code.trim().toLowerCase() === CORRECT_CODE) {
+      unlockTrialGateFromUrl(proofUrl);
       onClose();
       router.push(proofUrl);
     } else {

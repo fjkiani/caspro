@@ -2,14 +2,17 @@
 
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Dna, ArrowRight, Target, Fingerprint, Cpu } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Dna, ArrowRight, Target, Fingerprint, Cpu, Scale, Lock } from 'lucide-react';
 import Link from 'next/link';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
+import { PasscodeModal } from '@/components/ui/PasscodeModal';
+import { isGatedLedgerTrial } from '@/data/trial-gate';
 import DnaHero from '@/components/mockups/dnaHero2';
 import MoaRadarPreview from './previews/MoaRadarPreview';
 import ProteinPreview from './previews/ProteinPreview';
 import KillChainPreview from './previews/KillChainPreview';
+import VectorMapPreviewGated from './previews/VectorMapPreviewGated';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // SLIDE REGISTRY
@@ -21,6 +24,8 @@ interface HeroSlide {
   sublabel: string;
   icon?: React.ElementType;
   route?: string;
+  /** Passcode required before opening ledger receipt */
+  gated?: boolean;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -32,13 +37,30 @@ export const HeroSlider = () => {
 
   const slides = useMemo((): HeroSlide[] => [
     { id: 'dna-hero', label: 'ORACLE', sublabel: 'COMMAND', icon: Dna },
-    { id: 'ceacam5', label: 'CEACAM5', sublabel: 'TARGET-LOCK', icon: Target, route: '/ledger/ceacam5' },
-    { id: 'latify', label: 'LATIFY', sublabel: 'MOA-ALIGN', icon: Fingerprint, route: '/ledger/latify' },
-    { id: 'capri', label: 'CAPRI', sublabel: 'KILL-CHAIN', icon: Cpu, route: '/ledger/capri' },
+    { id: 'ceacam5', label: 'CEACAM5', sublabel: 'TARGET-LOCK', icon: Target, route: '/ledger/ceacam5/' },
+    { id: 'latify', label: 'LATIFY', sublabel: 'MOA-ALIGN', icon: Fingerprint, route: '/ledger/latify/' },
+    { id: 'capri', label: 'CAPRI', sublabel: 'KILL-CHAIN', icon: Cpu, route: '/ledger/capri/' },
+    {
+      id: 'adavosertib',
+      label: 'ADAVOSERTIB',
+      sublabel: 'DE-RISK MAP',
+      icon: Scale,
+      route: '/ledger/adavosertib/',
+      gated: true,
+    },
+    {
+      id: 'berzosertib',
+      label: 'BERZOSERTIB',
+      sublabel: 'DE-RISK MAP',
+      icon: Scale,
+      route: '/ledger/berzosertib/',
+      gated: true,
+    },
   ], []);
 
   const [activeIdx, setActiveIdx] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [gateModalOpen, setGateModalOpen] = useState(false);
 
   const [isSimulating, setIsSimulating] = useState(false);
   const handleSimulate = () => {
@@ -80,6 +102,15 @@ export const HeroSlider = () => {
     const trialId = activeSlide.id;
 
     const getVisual = () => {
+      if (isGatedLedgerTrial(trialId)) {
+        return (
+          <VectorMapPreviewGated
+            trialId={trialId}
+            targetLabel={activeSlide.label}
+            isDarkMode={isDarkMode}
+          />
+        );
+      }
       switch (trialId) {
         case 'ceacam5':
           return <ProteinPreview isDarkMode={isDarkMode} />;
@@ -130,19 +161,34 @@ export const HeroSlider = () => {
           <p className={`hidden sm:block text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] ${isDarkMode ? 'text-zinc-600' : 'text-slate-400'}`}>
              DE-RISKING RECEIPT: 2026_03_24_V2 // LOCKED FOR AUDIT
           </p>
-          {activeSlide.route && (
-            <Link
-              href={activeSlide.route}
-              className={`group flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-8 py-2 sm:py-3 rounded border text-[9px] sm:text-[10px] font-black uppercase tracking-[0.18em] sm:tracking-[0.3em] transition-all shadow-lg w-full sm:w-auto shrink-0 ${
-                isDarkMode
-                  ? 'border-[#00E5FF]/40 bg-[#00E5FF]/10 text-[#00E5FF] hover:bg-[#00E5FF] hover:text-black hover:shadow-[#00E5FF]/20'
-                  : 'border-indigo-500/40 bg-indigo-500/10 text-indigo-600 hover:bg-indigo-500 hover:text-white hover:shadow-indigo-500/20'
-              }`}
-            >
-              Open Trial Receipt
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          )}
+          {activeSlide.route &&
+            (activeSlide.gated ? (
+              <button
+                type="button"
+                onClick={() => setGateModalOpen(true)}
+                className={`group flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-8 py-2 sm:py-3 rounded border text-[9px] sm:text-[10px] font-black uppercase tracking-[0.18em] sm:tracking-[0.3em] transition-all shadow-lg w-full sm:w-auto shrink-0 ${
+                  isDarkMode
+                    ? 'border-violet-500/40 bg-violet-500/10 text-violet-300 hover:bg-violet-500 hover:text-black'
+                    : 'border-violet-600/40 bg-violet-600/10 text-violet-700 hover:bg-violet-600 hover:text-white text-on-primary'
+                }`}
+              >
+                <Lock className="w-3.5 h-3.5" />
+                Unlock Trial Receipt
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            ) : (
+              <Link
+                href={activeSlide.route}
+                className={`group flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-8 py-2 sm:py-3 rounded border text-[9px] sm:text-[10px] font-black uppercase tracking-[0.18em] sm:tracking-[0.3em] transition-all shadow-lg w-full sm:w-auto shrink-0 ${
+                  isDarkMode
+                    ? 'border-[#00E5FF]/40 bg-[#00E5FF]/10 text-[#00E5FF] hover:bg-[#00E5FF] hover:text-black hover:shadow-[#00E5FF]/20'
+                    : 'border-indigo-500/40 bg-indigo-500/10 text-indigo-600 hover:bg-indigo-500 hover:text-white hover:shadow-indigo-500/20'
+                }`}
+              >
+                Open Trial Receipt
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            ))}
         </div>
       </div>
     );
@@ -228,6 +274,12 @@ export const HeroSlider = () => {
                     />
                   )}
                   <span className="max-[380px]:sr-only">{slide.label}</span>
+                  {slide.gated && (
+                    <Lock
+                      className={`w-3 h-3 shrink-0 ${isActive && !isDarkMode ? 'text-white/90' : isDarkMode ? 'text-violet-400/80' : 'text-violet-600'}`}
+                      aria-hidden
+                    />
+                  )}
                 </button>
               );
             })}
@@ -263,6 +315,15 @@ export const HeroSlider = () => {
           </div>
         </div>
       </div>
+
+      {activeSlide.route && activeSlide.gated && (
+        <PasscodeModal
+          open={gateModalOpen}
+          onClose={() => setGateModalOpen(false)}
+          proofUrl={activeSlide.route}
+          targetLabel={activeSlide.label}
+        />
+      )}
     </div>
   );
 };

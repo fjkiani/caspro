@@ -10,6 +10,7 @@ import {
   ledgerSlugPath,
   type LegacyCategoryHub,
 } from '@/data/trial-ledger-registry';
+import GatedLedgerTrialLink from '@/components/ledger/GatedLedgerTrialLink';
 
 const HUB_ICONS: Record<string, typeof Target> = {
   'target-validation': Target,
@@ -145,39 +146,7 @@ export default function LedgerMainPage() {
           <ul className="space-y-2">
             {TRIAL_LEDGER_ENTRIES.map((entry) => (
               <li key={entry.slug}>
-                <Link
-                  href={entry.route}
-                  className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 rounded-lg border px-4 py-3 transition-colors ${
-                    isDarkMode
-                      ? 'border-zinc-800 bg-zinc-950/60 hover:border-cyan-500/40'
-                      : 'border-slate-200 bg-slate-50/80 hover:border-indigo-300'
-                  }`}
-                >
-                  <div className="min-w-0">
-                    <span className="text-sm font-black uppercase tracking-wide">
-                      {entry.label} // {entry.sublabel}
-                    </span>
-                    <p className={`text-xs mt-0.5 truncate ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
-                      {entry.trialId} · {entry.cancer}
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-3 shrink-0">
-                    <code
-                      className={`text-[10px] font-bold px-2 py-1 rounded ${
-                        isDarkMode ? 'bg-zinc-900 text-cyan-400' : 'bg-white text-indigo-700 border border-slate-200'
-                      }`}
-                    >
-                      {entry.route}
-                    </code>
-                    <span
-                      className={`text-[10px] font-black uppercase tracking-widest ${
-                        isDarkMode ? 'text-zinc-600 hover:text-cyan-400' : 'text-slate-500 hover:text-indigo-600'
-                      }`}
-                    >
-                      Open receipt →
-                    </span>
-                  </div>
-                </Link>
+                <GatedLedgerTrialLink entry={entry} isDarkMode={isDarkMode} />
               </li>
             ))}
           </ul>

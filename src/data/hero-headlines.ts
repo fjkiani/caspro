@@ -522,6 +522,78 @@ export const HERO_HEADLINES: Record<string, HeadlineEntry[]> = {
     },
   ],
 
+  // ─── Vector map trials (gated on ledger + hero) ─────────────────────────────
+  adavosertib: [
+    {
+      text: 'Adavosertib. PTEN-loss patients. 0% ORR.',
+      highlight: 'WEE1 targets DDR. PTEN-loss is PI3K-dominant. Wrong axis.',
+      trial: 'ADAVOSERTIB › NCT03579316 › JCO 2023',
+      evidence: {
+        title: 'ADAVOSERTIB Vector Space',
+        rows: [
+          { label: 'CCNE1-amp (responder)', value: '36% ORR', color: 'emerald' },
+          { label: 'PTEN-loss', value: '0% ORR', color: 'rose' },
+          { label: 'Distinguishing Axis', value: 'PI3K: 0.10 vs 0.80', color: 'accent' },
+        ],
+        impact: 'Vector Δ',
+        impactValue: '+0.307',
+        proofId: 'adavosertib',
+      },
+    },
+    {
+      text: 'CCNE1-amplified patients responded at 36%. PTEN-loss at 0%.',
+      highlight: 'One axis. pi3k. That\'s the entire clinical distinction.',
+      trial: 'ADAVOSERTIB › Vector Δ +0.307',
+      evidence: {
+        title: 'Single Axis Proof',
+        rows: [
+          { label: 'pi3k (Responder)', value: '0.10', color: 'emerald' },
+          { label: 'pi3k (Non-Responder)', value: '0.80', color: 'rose' },
+          { label: 'ddr (both)', value: '0.70 (identical)', color: 'muted' },
+        ],
+        impact: 'Clinical Implication',
+        impactValue: 'Route to PI3Ki',
+        proofId: 'adavosertib',
+      },
+    },
+  ],
+
+  berzosertib: [
+    {
+      text: '7 dimensions couldn\'t distinguish RS-Low from RS-High. Delta: 0.064. Fail.',
+      highlight: 'We built the 8th axis. Delta jumped to 0.138. Three gates passed.',
+      trial: 'BERZOSERTIB › NCT02595892 › RSS Axis Sprint',
+      evidence: {
+        title: 'RSS Axis Discovery',
+        rows: [
+          { label: '7D Delta', value: '0.064 FAIL', color: 'rose' },
+          { label: '8D Delta', value: '0.138 PASS', color: 'emerald' },
+          { label: 'RS-Low (responder)', value: 'HR 0.34', color: 'emerald' },
+          { label: 'RS-High', value: 'HR 1.11 (toward harm)', color: 'rose' },
+        ],
+        impact: 'Axis Built',
+        impactValue: 'RSS (8th)',
+        proofId: 'berzosertib',
+      },
+    },
+    {
+      text: 'RS-High tumors: CCNE1-amp, RB1-loss, MYC-amp. Already maximally stressed.',
+      highlight: 'Adding ATRi provided no lethality. HR: 1.11. Trend toward harm.',
+      trial: 'BERZOSERTIB › RS Saturation',
+      evidence: {
+        title: 'Replication Stress Saturation',
+        rows: [
+          { label: 'RS-Low (benefiting)', value: 'HR 0.34', color: 'emerald' },
+          { label: 'RS-High (harmed)', value: 'HR 1.11', color: 'rose' },
+          { label: 'Oncogenes', value: 'CCNE1, RB1, MYC', color: 'accent' },
+        ],
+        impact: 'RS Status',
+        impactValue: 'SATURATED',
+        proofId: 'berzosertib',
+      },
+    },
+  ],
+
   // ─── Genomic Matrix ────────────────────────────────────────────────────────
   'genomic-matrix': [
     {
