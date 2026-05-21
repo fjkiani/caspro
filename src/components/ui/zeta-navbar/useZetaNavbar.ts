@@ -3,45 +3,44 @@
 import { useState, useRef, useEffect, useCallback, type MouseEvent as ReactMouseEvent } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { getProductEngines } from './product-engines';
+import { TOP_NAV_ITEMS } from './nav-items';
 
 export function useZetaNavbar() {
   const pathname = usePathname();
-  const [receiptsOpen, setReceiptsOpen] = useState(false);
-  const [productOpen, setProductOpen] = useState(false);
-  const [blogOpen, setBlogOpen] = useState(false);
-  const [manuscriptsOpen, setManuscriptsOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const receiptsRef = useRef<HTMLDivElement>(null);
-  const productRef = useRef<HTMLDivElement>(null);
-  const blogRef = useRef<HTMLDivElement>(null);
-  const manuscriptsRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+
+  // Single open-dropdown tracker — id matches NavTopItem.id or 'blog' | 'manuscripts'
+  const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // One ref per possible dropdown panel (blog, manuscripts + dynamic items)
+  const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const productEngines = getProductEngines();
 
-  const closeAllDropdowns = useCallback(() => {
-    setReceiptsOpen(false);
-    setProductOpen(false);
-    setBlogOpen(false);
-    setManuscriptsOpen(false);
+  const closeAllDropdowns = useCallback(() => setOpenDropdownId(null), []);
+
+  const toggleDropdown = useCallback((id: string) => {
+    setOpenDropdownId((prev) => (prev === id ? null : id));
   }, []);
 
+  // Close on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       const t = e.target as Node;
-      if (!receiptsRef.current?.contains(t)) setReceiptsOpen(false);
-      if (!productRef.current?.contains(t)) setProductOpen(false);
-      if (!blogRef.current?.contains(t)) setBlogOpen(false);
-      if (!manuscriptsRef.current?.contains(t)) setManuscriptsOpen(false);
+      const anyContains = Object.values(dropdownRefs.current).some((el) => el?.contains(t));
+      if (!anyContains) setOpenDropdownId(null);
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+  // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
 
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (!mobileMenuOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -74,25 +73,32 @@ export function useZetaNavbar() {
     router.push('/contact/');
   }, [router]);
 
+  const setDropdownRef = useCallback((id: string, el: HTMLDivElement | null) => {
+    dropdownRefs.current[id] = el;
+  }, []);
+
   return {
     pathname,
     productEngines,
-    receiptsOpen,
-    setReceiptsOpen,
-    productOpen,
-    setProductOpen,
-    blogOpen,
-    setBlogOpen,
-    manuscriptsOpen,
-    setManuscriptsOpen,
+    topNavItems: TOP_NAV_ITEMS,
+    openDropdownId,
+    toggleDropdown,
+    closeAllDropdowns,
     mobileMenuOpen,
     setMobileMenuOpen,
-    receiptsRef,
-    productRef,
-    blogRef,
-    manuscriptsRef,
+    dropdownRefs,
+    setDropdownRef,
     navigate,
     toggleMobileMenu,
     handleCtaClick,
+    // Legacy aliases kept so ZetaNavbar.tsx compiles without changes
+    blogOpen: openDropdownId === 'blog',
+    setBlogOpen: (v: boolean) => setOpenDropdownId(v ? 'blog' : null),
+    manuscriptsOpen: openDropdownId === 'manuscripts',
+    setManuscriptsOpen: (v: boolean) => setOpenDropdownId(v ? 'manuscripts' : null),
+    // Legacy refs — still used by ZetaNavbar prop drilling; point to dropdownRefs entries
+    blogRef: { current: null } as React.RefObject<HTMLDivElement>,
+    manuscriptsRef: { current: null } as React.RefObject<HTMLDivElement>,
+    // Removed: receiptsOpen, receiptsRef, productOpen, productRef
   };
 }

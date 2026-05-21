@@ -3,9 +3,7 @@
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 import type { EngineEntry } from '@/data/engine-registry';
-import { TRIAL_RECEIPT_NAV } from '@/data/trial-receipt-nav';
-import { PRIMARY_NAV_LINKS } from './constants';
-import { productMenuTitle } from './product-engines';
+import { TOP_NAV_ITEMS } from './nav-items';
 import type { BlogNavCategory, BlogNavPost, ManuscriptNavItem } from './useZetaNavFeed';
 import { normalizePath, pathsEqual } from './paths';
 import type { NavTheme } from './nav-theme';
@@ -37,7 +35,6 @@ export function ZetaMobileDrawer({
   pathname,
   isDarkMode,
   navMuted,
-  productEngines,
   navigate,
   manuscripts,
   blogPosts,
@@ -60,22 +57,31 @@ export function ZetaMobileDrawer({
         } ${isDarkMode ? 'bg-zinc-950 border-zinc-800' : 'bg-white border-slate-200'}`}
       >
         <div className="px-4 py-4 space-y-6">
+
+          {/* ── Dynamic TOP_NAV_ITEMS ── */}
           <div className="flex flex-col gap-1">
             <span
               className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}
             >
               NAVIGATE
             </span>
-            {PRIMARY_NAV_LINKS.map((link) => {
-              const isActive = normalizePath(link.href) === '/' ? normalizePath(pathname) === '/' : pathsEqual(pathname, link.href);
+            {TOP_NAV_ITEMS.map((item) => {
+              const isActive = pathsEqual(pathname, item.href);
               return (
-                <Link key={link.href} href={link.href} prefetch={false} onClick={onClose} className={linkRowClass(isDarkMode, isActive, navMuted)}>
-                  {link.label}
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  prefetch={false}
+                  onClick={onClose}
+                  className={linkRowClass(isDarkMode, isActive, navMuted)}
+                >
+                  {item.label}
                 </Link>
               );
             })}
           </div>
 
+          {/* ── BLOG ── */}
           <div>
             <span className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-cyan-400' : 'text-indigo-700'}`}>BLOG</span>
             <div className="mt-2 space-y-1">
@@ -124,6 +130,7 @@ export function ZetaMobileDrawer({
             </div>
           </div>
 
+          {/* ── MANUSCRIPTS ── */}
           <div>
             <span className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-cyan-400' : 'text-indigo-700'}`}>
               MANUSCRIPTS
@@ -161,77 +168,6 @@ export function ZetaMobileDrawer({
             </div>
           </div>
 
-          <div>
-            <span
-              className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-amber-500/90' : 'text-amber-800'}`}
-            >
-              RECEIPTS · TRIAL CASES
-            </span>
-            <div className="mt-2 space-y-1">
-              {TRIAL_RECEIPT_NAV.map((trial) => {
-                const trialPath = `/proof/${trial.id}/case/`;
-                const active =
-                  pathsEqual(pathname, trialPath) ||
-                  pathsEqual(pathname, `/proof/${trial.id}/`) ||
-                  pathsEqual(pathname, `/proof/${trial.id}`);
-                return (
-                  <button
-                    key={trial.id}
-                    type="button"
-                    onClick={() => navigate(trialPath)}
-                    className={`w-full text-left py-3 px-2 rounded-sm border-l-2 ${
-                      active
-                        ? 'border-amber-500 bg-amber-500/10'
-                        : isDarkMode
-                          ? 'border-transparent hover:bg-zinc-900'
-                          : 'border-transparent hover:bg-slate-50'
-                    }`}
-                  >
-                    <span className={`block text-xs font-black uppercase tracking-widest ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
-                      {trial.label}
-                    </span>
-                    <span className={`block text-[11px] mt-0.5 ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}>{trial.desc}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className={`pt-4 border-t ${isDarkMode ? 'border-zinc-800' : 'border-slate-100'}`}>
-            <span className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-cyan-400' : 'text-indigo-700'}`}>
-              PRODUCT
-            </span>
-            <div className="mt-2 space-y-1">
-              {productEngines.map((engine) => {
-                const Icon = engine.icon;
-                const active = pathsEqual(pathname, engine.route);
-                return (
-                  <button
-                    key={engine.id}
-                    type="button"
-                    onClick={() => navigate(engine.route)}
-                    className={`w-full flex items-center gap-3 py-3 px-2 rounded-sm border-l-2 text-left ${
-                      active
-                        ? 'border-cyan-500 bg-cyan-500/10'
-                        : isDarkMode
-                          ? 'border-transparent hover:bg-zinc-900'
-                          : 'border-transparent hover:bg-slate-50'
-                    }`}
-                  >
-                    <Icon className={`w-4 h-4 shrink-0 ${active ? 'text-cyan-400' : isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`} />
-                    <div className="min-w-0">
-                      <span className={`block text-xs font-black uppercase tracking-widest truncate ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
-                        {productMenuTitle(engine)}
-                      </span>
-                      <span className={`block text-[10px] font-mono truncate ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
-                        {engine.keyMetric}
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
         </div>
       </div>
     </div>

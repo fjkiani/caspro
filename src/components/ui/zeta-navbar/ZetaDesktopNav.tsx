@@ -6,9 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
 import { ROUTES } from '@/constants/routes';
 import type { EngineEntry } from '@/data/engine-registry';
-import { TRIAL_RECEIPT_NAV } from '@/data/trial-receipt-nav';
-import { PRIMARY_NAV_LINKS } from './constants';
-import { productMenuTitle } from './product-engines';
+import { TOP_NAV_ITEMS } from './nav-items';
 import type { BlogNavCategory, BlogNavPost, ManuscriptNavItem } from './useZetaNavFeed';
 import { normalizePath, pathsEqual } from './paths';
 import type { NavTheme } from './nav-theme';
@@ -21,22 +19,22 @@ type ZetaDesktopNavProps = {
   navMuted: NavTheme['navMuted'];
   navHover: NavTheme['navHover'];
   productEngines: EngineEntry[];
-  productOpen: boolean;
-  setProductOpen: (open: boolean) => void;
-  receiptsOpen: boolean;
-  setReceiptsOpen: (open: boolean) => void;
+  // Legacy dropdown state — kept for blog/manuscripts
   blogOpen: boolean;
   setBlogOpen: (open: boolean) => void;
   manuscriptsOpen: boolean;
   setManuscriptsOpen: (open: boolean) => void;
   navigate: (href: string) => void;
-  receiptsRef: RefObject<HTMLDivElement>;
-  productRef: RefObject<HTMLDivElement>;
   blogRef: RefObject<HTMLDivElement>;
   manuscriptsRef: RefObject<HTMLDivElement>;
   manuscripts: ManuscriptNavItem[];
   blogPosts: BlogNavPost[];
   blogCategories: BlogNavCategory[];
+  // New unified dropdown state
+  openDropdownId: string | null;
+  toggleDropdown: (id: string) => void;
+  setDropdownRef: (id: string, el: HTMLDivElement | null) => void;
+  // Removed: receiptsOpen, receiptsRef, productOpen, productRef
 };
 
 function navLinkClass(isActive: boolean, isDarkMode: boolean, navHover: string) {
@@ -68,23 +66,19 @@ export function ZetaDesktopNav({
   isDarkMode,
   navMuted,
   navHover,
-  productEngines,
-  productOpen,
-  setProductOpen,
-  receiptsOpen,
-  setReceiptsOpen,
   blogOpen,
   setBlogOpen,
   manuscriptsOpen,
   setManuscriptsOpen,
   navigate,
-  receiptsRef,
-  productRef,
   blogRef,
   manuscriptsRef,
   manuscripts,
   blogPosts,
   blogCategories,
+  openDropdownId,
+  toggleDropdown,
+  setDropdownRef,
 }: ZetaDesktopNavProps) {
   const searchParams = useSearchParams();
   const rawCategory = searchParams?.get('category')?.trim() ?? '';
@@ -95,30 +89,107 @@ export function ZetaDesktopNav({
     /* keep raw */
   }
 
-  const productActive = productEngines.some((e) => pathsEqual(pathname, e.route));
   const blogActive = pathname != null && normalizePath(pathname).startsWith('/blog');
   const manuscriptsActive = pathname != null && normalizePath(pathname).startsWith('/manuscripts');
 
-  const openOnly = (which: 'blog' | 'manuscripts' | 'receipts' | 'product') => {
+  const openOnly = (which: 'blog' | 'manuscripts') => {
     setBlogOpen(which === 'blog');
     setManuscriptsOpen(which === 'manuscripts');
-    setReceiptsOpen(which === 'receipts');
-    setProductOpen(which === 'product');
   };
 
   return (
     <div
       className={`hidden lg:flex flex-1 min-w-0 justify-end flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-black tracking-widest ${navMuted}`}
     >
-      {PRIMARY_NAV_LINKS.map((link) => {
-        const isActive = normalizePath(link.href) === '/' ? normalizePath(pathname) === '/' : pathsEqual(pathname, link.href);
+      {/* ── Dynamic TOP_NAV_ITEMS ── */}
+      {TOP_NAV_ITEMS.map((item) => {
+        const isActive = pathsEqual(pathname, item.href);
+        const hasDropdown = Array.isArray(item.dropdownItems) && item.dropdownItems.length > 0;
+        const isOpen = openDropdownId === item.id;
+
+        if (!hasDropdown) {
+          // Plain link
+          return (
+            <Link key={item.id} href={item.href} prefetch={false} className="shrink-0">
+              <span className={navLinkClass(isActive, isDarkMode, navHover)}>{item.label}</span>
+            </Link>
+          );
+        }
+
+        // Dropdown-capable item
         return (
-          <Link key={link.href} href={link.href} prefetch={false} className="shrink-0">
-            <span className={navLinkClass(isActive, isDarkMode, navHover)}>{link.label}</span>
-          </Link>
+          <div
+            key={item.id}
+            className="relative shrink-0"
+            ref={(el) => setDropdownRef(item.id, el)}
+          >
+            <button
+              type="button"
+              onClick={() => toggleDropdown(item.id)}
+              className={`uppercase flex items-center gap-2 cursor-pointer transition-colors whitespace-nowrap ${
+                isActive
+                  ? `${isDarkMode ? 'text-white' : 'text-slate-900'} border-b border-cyan-500 pb-1`
+                  : navHover
+              }`}
+            >
+              {item.label}
+              <ChevronDown className={`w-3 h-3 transition-transform shrink-0 ${isOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {isOpen && (
+              <div className={dropdownShell(isDarkMode, false)}>
+                <div className={dropdownHeader(isDarkMode)}>
+                  <span className={dropdownHeaderLabel(isDarkMode)}>{item.label}</span>
+                </div>
+                <div className={scrollBody()}>
+                  {/* Primary link to the page itself */}
+                  <button
+                    type="button"
+                    onClick={() => navigate(item.href)}
+                    className={`mx-2 mb-2 flex w-[calc(100%-1rem)] items-center justify-between rounded-sm px-3 py-2.5 text-left text-[12px] font-black uppercase tracking-widest ${
+                      isActive
+                        ? isDarkMode
+                          ? 'bg-cyan-500/15 text-cyan-300'
+                          : 'bg-indigo-50 text-indigo-900'
+                        : isDarkMode
+                          ? 'text-zinc-100 hover:bg-zinc-900'
+                          : 'text-slate-900 hover:bg-slate-50'
+                    }`}
+                  >
+                    Overview
+                    <span className="text-[10px] font-black text-cyan-500/60">→</span>
+                  </button>
+                  {item.dropdownItems!.map((sub) => (
+                    <button
+                      key={sub.href}
+                      type="button"
+                      onClick={() => navigate(sub.href)}
+                      className={`flex w-full flex-col gap-0.5 px-5 py-2.5 text-left transition-colors ${
+                        pathsEqual(pathname, sub.href)
+                          ? isDarkMode
+                            ? 'bg-cyan-500/10 text-cyan-200'
+                            : 'bg-indigo-50 text-indigo-900'
+                          : isDarkMode
+                            ? 'text-zinc-100 hover:bg-zinc-900'
+                            : 'text-slate-900 hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-[11px] font-black uppercase tracking-widest">{sub.label}</span>
+                      {sub.description && (
+                        <span className={`text-[10px] font-medium ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`}>
+                          {sub.description}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         );
       })}
 
+      {/* ── BLOG dropdown (Hygraph-driven) ── */}
       <div className="relative shrink-0" ref={blogRef}>
         <button
           type="button"
@@ -221,6 +292,7 @@ export function ZetaDesktopNav({
         )}
       </div>
 
+      {/* ── MANUSCRIPTS dropdown (Hygraph-driven) ── */}
       <div className="relative shrink-0" ref={manuscriptsRef}>
         <button
           type="button"
@@ -281,174 +353,6 @@ export function ZetaDesktopNav({
                     }`}
                   >
                     <span className="text-[11px] font-black uppercase tracking-widest">{m.title}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </div>
-
-      <div className="relative shrink-0" ref={receiptsRef}>
-        <button
-          type="button"
-          onClick={() => {
-            if (receiptsOpen) setReceiptsOpen(false);
-            else openOnly('receipts');
-          }}
-          className={`uppercase flex items-center gap-2 cursor-pointer transition-colors whitespace-nowrap ${
-            pathname?.startsWith('/proof')
-              ? `${isDarkMode ? 'text-white' : 'text-slate-900'} border-b border-amber-500 pb-1`
-              : navHover
-          }`}
-        >
-          RECEIPTS
-          <ChevronDown className={`w-3 h-3 transition-transform shrink-0 ${receiptsOpen ? 'rotate-180' : ''}`} />
-        </button>
-
-        {receiptsOpen && (
-          <div className={dropdownShell(isDarkMode, false)}>
-            <div className={dropdownHeader(isDarkMode)}>
-              <span className={dropdownHeaderLabel(isDarkMode)}>TRIAL RECEIPTS</span>
-            </div>
-            <div className={scrollBody()}>
-              {TRIAL_RECEIPT_NAV.map((trial) => {
-                const trialPath = `/proof/${trial.id}/case/`;
-                const active =
-                  pathsEqual(pathname, trialPath) ||
-                  pathsEqual(pathname, `/proof/${trial.id}/`) ||
-                  pathsEqual(pathname, `/proof/${trial.id}`);
-                return (
-                  <button
-                    key={trial.id}
-                    type="button"
-                    onClick={() => navigate(trialPath)}
-                    className={`flex items-center justify-between px-5 py-3 transition-all group w-full text-left ${
-                      active
-                        ? 'bg-amber-500/10 border-l-2 border-amber-500'
-                        : isDarkMode
-                          ? 'hover:bg-zinc-900 border-l-2 border-transparent'
-                          : 'hover:bg-slate-50 border-l-2 border-transparent'
-                    }`}
-                  >
-                    <div className="flex flex-col gap-0.5">
-                      <span
-                        className={`text-[12px] font-black uppercase tracking-widest ${
-                          active
-                            ? 'text-amber-400'
-                            : isDarkMode
-                              ? 'text-zinc-100 group-hover:text-amber-400'
-                              : 'text-slate-900 group-hover:text-amber-600'
-                        }`}
-                      >
-                        {trial.label}
-                      </span>
-                      <span className={`text-[11px] font-bold ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
-                        {trial.desc}
-                      </span>
-                    </div>
-                    <span className="text-[10px] font-black text-amber-500/60 uppercase">→</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </div>
-
-      <div className="relative shrink-0" ref={productRef}>
-        <button
-          type="button"
-          onClick={() => {
-            if (productOpen) setProductOpen(false);
-            else openOnly('product');
-          }}
-          className={`uppercase flex items-center gap-2 cursor-pointer transition-colors whitespace-nowrap ${
-            productActive
-              ? `${isDarkMode ? 'text-white' : 'text-slate-900'} border-b border-cyan-500 pb-1`
-              : navHover
-          }`}
-        >
-          PRODUCT
-          <ChevronDown className={`w-3 h-3 transition-transform shrink-0 ${productOpen ? 'rotate-180' : ''}`} />
-        </button>
-
-        {productOpen && (
-          <div className={`${dropdownShell(isDarkMode, false)} max-h-[min(72vh,28rem)]`}>
-            <div className={dropdownHeader(isDarkMode)}>
-              <span className={dropdownHeaderLabel(isDarkMode)}>PRODUCT</span>
-            </div>
-            <div className={scrollBody()}>
-              {productEngines.map((engine) => {
-                const Icon = engine.icon;
-                const active = pathsEqual(pathname, engine.route);
-                const title = productMenuTitle(engine);
-                return (
-                  <button
-                    key={engine.id}
-                    type="button"
-                    onClick={() => navigate(engine.route)}
-                    className={`flex items-center gap-4 px-5 py-3.5 transition-all group w-full text-left ${
-                      active
-                        ? 'bg-cyan-500/10 border-l-2 border-cyan-500'
-                        : isDarkMode
-                          ? 'hover:bg-zinc-900 border-l-2 border-transparent'
-                          : 'hover:bg-slate-50 border-l-2 border-transparent'
-                    }`}
-                  >
-                    <div
-                      className={`p-2 rounded ${
-                        active ? 'bg-cyan-500/20' : isDarkMode ? 'bg-zinc-900 group-hover:bg-zinc-800' : 'bg-slate-100 group-hover:bg-slate-200'
-                      }`}
-                    >
-                      <Icon
-                        className={`w-4 h-4 ${
-                          active ? 'text-cyan-400' : isDarkMode ? 'text-zinc-400 group-hover:text-zinc-200' : 'text-slate-500 group-hover:text-slate-800'
-                        }`}
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span
-                          className={`text-[9px] font-black uppercase ${
-                            active ? 'text-cyan-400' : isDarkMode ? 'text-zinc-500' : 'text-slate-500'
-                          }`}
-                        >
-                          {engine.layer}
-                        </span>
-                        <span
-                          className={`text-[8px] font-black uppercase px-1.5 py-0.5 rounded ${
-                            engine.status === 'OPTIMIZED'
-                              ? 'bg-emerald-500/10 text-emerald-500'
-                              : engine.status === 'ACTIVE'
-                                ? 'bg-cyan-500/10 text-cyan-500'
-                                : 'bg-zinc-500/10 text-zinc-500'
-                          }`}
-                        >
-                          {engine.status}
-                        </span>
-                      </div>
-                      <span
-                        className={`text-[11px] font-black uppercase tracking-widest block mt-0.5 ${
-                          active
-                            ? isDarkMode
-                              ? 'text-white'
-                              : 'text-slate-900'
-                            : isDarkMode
-                              ? 'text-zinc-300 group-hover:text-cyan-400'
-                              : 'text-slate-700 group-hover:text-cyan-600'
-                        }`}
-                      >
-                        {title}
-                      </span>
-                    </div>
-                    <span
-                      className={`text-[11px] font-mono ${
-                        active ? 'text-cyan-400' : isDarkMode ? 'text-zinc-500' : 'text-slate-500'
-                      }`}
-                    >
-                      {engine.keyMetric}
-                    </span>
                   </button>
                 );
               })}

@@ -29,22 +29,19 @@ export function ZetaNavbar({ isProcessing = false }: { isProcessing?: boolean })
             navMuted={theme.navMuted}
             navHover={theme.navHover}
             productEngines={nav.productEngines}
-            productOpen={nav.productOpen}
-            setProductOpen={nav.setProductOpen}
-            receiptsOpen={nav.receiptsOpen}
-            setReceiptsOpen={nav.setReceiptsOpen}
             blogOpen={nav.blogOpen}
             setBlogOpen={nav.setBlogOpen}
             manuscriptsOpen={nav.manuscriptsOpen}
             setManuscriptsOpen={nav.setManuscriptsOpen}
             navigate={nav.navigate}
-            receiptsRef={nav.receiptsRef}
-            productRef={nav.productRef}
             blogRef={nav.blogRef}
             manuscriptsRef={nav.manuscriptsRef}
             manuscripts={feed.manuscripts}
             blogPosts={feed.blogPosts}
             blogCategories={feed.blogCategories}
+            openDropdownId={nav.openDropdownId}
+            toggleDropdown={nav.toggleDropdown}
+            setDropdownRef={nav.setDropdownRef}
           />
         </Suspense>
         <ZetaToolbar
