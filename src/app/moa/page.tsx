@@ -1,36 +1,54 @@
-import type { Metadata } from 'next';
-import { Fingerprint } from 'lucide-react';
-import { TrialGatePage } from '@/components/ui/TrialGatePage';
-import MoaRadarPreview from '@/components/sections/mars/previews/MoaRadarPreview';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'MoA | CrisPRO.ai',
-  description: 'LATIFY mechanism-of-action alignment — AI-powered MoA radar mapping drug-target engagement, pathway modulation, and off-target risk.',
-  openGraph: {
-    title: 'MoA · LATIFY | CrisPRO.ai',
-    description: 'AI-powered mechanism-of-action alignment and drug-target engagement mapping.',
-    url: 'https://crispro.ai/moa',
-    siteName: 'CrisPRO',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'MoA · LATIFY | CrisPRO.ai',
-    description: 'AI-powered mechanism-of-action alignment and drug-target engagement mapping.',
-    site: '@crispro_ai',
-  },
-};
+import { Fingerprint } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
+import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
+import MoaRadarPreviewGated from '@/components/sections/mars/previews/MoaRadarPreviewGated';
 
 export default function MoaPage() {
+  const { isDarkMode } = useTheme();
+
   return (
-    <TrialGatePage
-      trialId="latify"
-      label="LATIFY"
-      sublabel="MOA-ALIGN"
-      icon={Fingerprint}
-      proofUrl="/proof/latify/case"
-      PreviewComponent={MoaRadarPreview}
-      description="LATIFY (Latent Target Identification and Function Yield) aligns mechanism-of-action signatures across drug classes, tumor subtypes, and genomic contexts. Our MoA radar maps pathway engagement, on-target efficacy, and off-target liability in a single interpretable view."
-    />
+    <div className={`relative min-h-screen flex flex-col overflow-hidden font-mono transition-colors duration-500 ${
+      isDarkMode ? 'bg-[#020408]' : 'bg-white'
+    }`}>
+      <ZetaNavbar />
+
+      {/* Grid overlay */}
+      <div className={`absolute inset-0 pointer-events-none ${
+        isDarkMode
+          ? 'bg-[linear-gradient(to_right,#00E5FF05_1px,transparent_1px),linear-gradient(to_bottom,#00E5FF05_1px,transparent_1px)]'
+          : 'bg-[linear-gradient(to_right,#6366f108_1px,transparent_1px),linear-gradient(to_bottom,#6366f108_1px,transparent_1px)]'
+      } bg-[size:48px_48px]`} />
+
+      {/* Trial Identity */}
+      <div className="relative z-10 pt-16 sm:pt-20 px-4 sm:px-8 lg:px-12 flex items-center gap-3 sm:gap-5">
+        <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded border flex items-center justify-center ${
+          isDarkMode ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-slate-200 shadow-md'
+        }`}>
+          <Fingerprint className={`w-5 h-5 sm:w-6 sm:h-6 ${isDarkMode ? 'text-[#00E5FF]' : 'text-indigo-500'}`} />
+        </div>
+        <div className="min-w-0">
+          <span className={`hidden sm:block text-[9px] font-black uppercase tracking-[0.5em] ${isDarkMode ? 'text-[#00E5FF]' : 'text-indigo-500'}`}>
+            RECEIPT_ID: LATIFY // ZETA_SIG_LOCKED
+          </span>
+          <h1 className={`text-sm sm:text-xl font-black uppercase tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+            LATIFY // MOA-ALIGN
+          </h1>
+        </div>
+      </div>
+
+      {/* Full slide content */}
+      <div className="relative z-10 flex-1 flex items-start sm:items-center justify-center px-3 sm:px-8 lg:px-12 py-1 sm:py-4 min-h-0 overflow-hidden">
+        <MoaRadarPreviewGated isDarkMode={isDarkMode} />
+      </div>
+
+      {/* Footer bar */}
+      <div className="relative z-10 px-3 sm:px-8 lg:px-12 pb-10 sm:pb-12">
+        <p className={`hidden sm:block text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] ${isDarkMode ? 'text-zinc-600' : 'text-slate-400'}`}>
+          DE-RISKING RECEIPT: 2026_03_24_V2 // LOCKED FOR AUDIT
+        </p>
+      </div>
+    </div>
   );
 }

@@ -1,0 +1,127 @@
+'use client';
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import type { HeadlineEntry } from '@/data/hero-headlines';
+import { PasscodeModal } from '@/components/ui/PasscodeModal';
+
+/**
+ * Drop-in replacement for DynamicEvidencePanel on gated pages.
+ * Identical rendering — but the "View De-Risking Map" button opens
+ * the PasscodeModal instead of navigating directly.
+ */
+
+interface GatedEvidencePanelProps {
+  headlines: HeadlineEntry[];
+  activeIndex: number;
+  isDarkMode: boolean;
+  accentColor: string;
+  /** Label shown in the modal header, e.g. 'CEACAM5' */
+  targetLabel: string;
+}
+
+export const GatedEvidencePanel: React.FC<GatedEvidencePanelProps> = ({
+  headlines, activeIndex, isDarkMode, accentColor, targetLabel,
+}) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [pendingProofId, setPendingProofId] = useState<string | null>(null);
+
+  const current = headlines[activeIndex % headlines.length];
+  const evidence = current?.evidence;
+  if (!evidence) return null;
+
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-700';
+  const heading = isDarkMode ? 'text-white' : 'text-slate-900';
+  const border = isDarkMode ? 'border-zinc-800' : 'border-slate-200';
+  const bg = isDarkMode ? 'bg-zinc-950/60' : 'bg-slate-50';
+
+  const colorMap: Record<string, string> = {
+    accent: accentColor,
+    rose: 'text-rose-500',
+    emerald: 'text-emerald-500',
+    muted: muted,
+  };
+
+  const accentBgMap: Record<string, string> = {
+    'text-cyan-400': 'bg-cyan-500 hover:bg-cyan-400',
+    'text-indigo-600': 'bg-indigo-600 hover:bg-indigo-500',
+    'text-red-400': 'bg-red-500 hover:bg-red-400',
+    'text-red-500': 'bg-red-600 hover:bg-red-500',
+    'text-amber-400': 'bg-amber-500 hover:bg-amber-400',
+    'text-amber-600': 'bg-amber-600 hover:bg-amber-500',
+    'text-rose-400': 'bg-rose-500 hover:bg-rose-400',
+    'text-rose-600': 'bg-rose-600 hover:bg-rose-500',
+  };
+  const btnBg = accentBgMap[accentColor] || 'bg-cyan-500 hover:bg-cyan-400';
+
+  const handleCtaClick = (proofId: string) => {
+    setPendingProofId(proofId);
+    setModalOpen(true);
+  };
+
+  return (
+    <>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`evidence-${activeIndex}`}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          className={`border rounded-sm p-3 sm:p-4 ${bg} ${border}`}
+        >
+          <span className={`text-[9px] font-black uppercase tracking-[0.4em] block mb-4 ${muted}`}>
+            {evidence.title}
+          </span>
+
+          <div className="flex flex-col gap-2.5">
+            {evidence.rows.map((row, i) => (
+              <div key={i} className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-3 min-w-0">
+                <span className={`text-[10px] font-black uppercase tracking-widest shrink-0 ${heading}`}>
+                  {row.label}
+                </span>
+                <span className={`text-[11px] sm:text-[12px] font-black break-all sm:break-normal text-right sm:text-left ${colorMap[row.color || 'accent']}`}>
+                  {row.value}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {evidence.impact && (
+            <div className={`mt-4 pt-3 border-t flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between ${border}`}>
+              <span className={`text-[9px] font-black uppercase tracking-widest ${muted}`}>
+                {evidence.impact}
+              </span>
+              <span className={`text-xs sm:text-sm font-black tracking-tight ${accentColor}`}>
+                {evidence.impactValue}
+              </span>
+            </div>
+          )}
+
+          {/* Gated CTA — opens PasscodeModal instead of navigating */}
+          {evidence.proofId && (
+            <motion.button
+              type="button"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              onClick={() => handleCtaClick(evidence.proofId!)}
+              className={`mt-4 w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-sm text-white text-[10px] font-black uppercase tracking-[0.3em] cursor-pointer transition-colors ${btnBg}`}
+            >
+              {evidence.proofLabel || 'View De-Risking Map'}
+              <ArrowRight size={12} strokeWidth={3} />
+            </motion.button>
+          )}
+        </motion.div>
+      </AnimatePresence>
+
+      <PasscodeModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        proofUrl={pendingProofId ? `/proof/${pendingProofId}/case` : '/contact/'}
+        targetLabel={targetLabel}
+      />
+    </>
+  );
+};
