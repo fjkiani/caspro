@@ -4,7 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { ArrowRight, Zap } from 'lucide-react';
-import { getActiveEngines, type EngineEntry } from '@/data/engine-registry';
+import { getActiveEngines } from '@/data/engine-registry';
+import { getEngineIcon } from '@/components/engine/engine-icons';
 
 // Re-export for backward compat
 export interface Capability {
@@ -20,7 +21,7 @@ const buildCapabilities = (): Capability[] =>
     id: e.id,
     label: e.label.toUpperCase(),
     question: e.desc,
-    icon: e.icon,
+    icon: getEngineIcon(e.slug),
     route: e.route,
   }));
 

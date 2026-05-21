@@ -1,16 +1,15 @@
 'use client';
 
-import { Target, Fingerprint, Cpu } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
+import { getTrialLedgerEntry, type TrialLedgerEntry } from '@/data/trial-ledger-registry';
+import { getTrialLedgerIcon } from '@/components/ledger/trial-ledger-icons';
 import ProteinPreviewGated from '@/components/sections/mars/previews/ProteinPreviewGated';
 import MoaRadarPreviewGated from '@/components/sections/mars/previews/MoaRadarPreviewGated';
 import KillChainPreviewGated from '@/components/sections/mars/previews/KillChainPreviewGated';
 import { VectorFailureAnalysis } from '@/components/sections/mars/VectorFailureAnalysis';
-import type { TrialLedgerEntry } from '@/data/trial-ledger-registry';
-
 type TrialLedgerReceiptPageProps = {
-  entry: TrialLedgerEntry;
+  slug: string;
 };
 
 function TrialVisual({ entry, isDarkMode }: { entry: TrialLedgerEntry; isDarkMode: boolean }) {
@@ -32,9 +31,12 @@ function TrialVisual({ entry, isDarkMode }: { entry: TrialLedgerEntry; isDarkMod
   }
 }
 
-export default function TrialLedgerReceiptPage({ entry }: TrialLedgerReceiptPageProps) {
+export default function TrialLedgerReceiptPage({ slug }: TrialLedgerReceiptPageProps) {
   const { isDarkMode } = useTheme();
-  const Icon = entry.icon === Target || entry.icon === Fingerprint || entry.icon === Cpu ? entry.icon : Target;
+  const entry = getTrialLedgerEntry(slug);
+  if (!entry) return null;
+
+  const Icon = getTrialLedgerIcon(entry.preview);
 
   return (
     <div

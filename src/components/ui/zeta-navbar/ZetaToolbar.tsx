@@ -70,7 +70,7 @@ export function ZetaToolbar({
               // Dark idle: white bg, black text → cyan on hover
               ? 'bg-zinc-100 text-black hover:bg-cyan-500 hover:text-white border-zinc-700 shadow-[0_0_20px_rgba(255,255,255,0.08)]'
               // Light idle: solid indigo — white text, high contrast
-              : 'bg-indigo-600 text-white hover:bg-indigo-700 border-indigo-600 shadow-md'
+              : 'bg-indigo-600 text-white text-on-primary hover:bg-indigo-700 border-indigo-600 shadow-md'
         }`}
       >
         {isProcessing ? <Activity className="w-3 h-3" /> : <Play className="w-3 h-3" />}

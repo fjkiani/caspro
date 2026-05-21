@@ -5,7 +5,11 @@
  * `NEXT_PUBLIC_HYGRAPH_MEDIA_ITEM_MANUSCRIPT_ENUM` (e.g. `Pdf`).
  */
 
+import { manuscriptSlugify, normalizeManuscriptSlugParam } from '@/lib/research/manuscript-slug';
 import { fetchWithCache, hygraphClient } from './client';
+
+/** Shorter TTL for manuscript list queries so new Hygraph publishes show up without a hard refresh. */
+const MANUSCRIPT_LIST_CACHE_SEC = 90;
 import type { CmsUseCase } from './use-case-types';
 import type { Asset } from './types';
 
@@ -328,6 +332,48 @@ export async function getUseCaseBySlugCms(slug: string): Promise<CmsUseCase | nu
   }
 }
 
+/**
+ * Resolve a manuscript from URL segment: exact Hygraph slug, kebab alias, or title match.
+ */
+export async function resolveManuscriptBySlugParam(param: string): Promise<CmsUseCase | null> {
+  const normalized = normalizeManuscriptSlugParam(param);
+  if (!normalized) return null;
+
+  const direct = await getUseCaseBySlugCms(normalized);
+  if (direct?.slug) return direct;
+
+  const kebab = manuscriptSlugify(normalized);
+  if (kebab && kebab !== normalized) {
+    const viaKebab = await getUseCaseBySlugCms(kebab);
+    if (viaKebab?.slug) return viaKebab;
+  }
+
+  const all = await getAllUseCasesCms();
+  const normLower = normalized.toLowerCase();
+  const kebabLower = kebab.toLowerCase();
+
+  for (const item of all) {
+    const itemSlug = item.slug?.trim();
+    if (!itemSlug) continue;
+
+    const itemKebab = manuscriptSlugify(itemSlug);
+    const titleKebab = manuscriptSlugify(item.title || '');
+
+    const matches =
+      itemSlug === normalized ||
+      itemSlug.toLowerCase() === normLower ||
+      itemKebab === kebabLower ||
+      titleKebab === kebabLower ||
+      (item.title?.trim().toLowerCase() === normLower);
+
+    if (matches) {
+      return (await getUseCaseBySlugCms(itemSlug)) ?? item;
+    }
+  }
+
+  return null;
+}
+
 function manuscriptListWhereClause(publishedOnly: boolean): string {
   if (publishedOnly) {
     return `where: { AND: [{ type: ${LIST_MEDIA_TYPE_ENUM} }, { isPublished: true }] }`;
@@ -361,12 +407,13 @@ async function tryManuscriptMediaItemsBareSelection(
         excerpt
         pdfFile { id url fileName mimeType }
         pdfDeck { id url fileName mimeType }
-        thumbnail { id url fileName mimeType }${pubField}
+        thumbnail { id url fileName mimeType }
+        featuredImage { id url fileName mimeType }${pubField}
       }
     }
   `;
     try {
-      const data = await fetchWithCache<Record<string, unknown>>(q);
+      const data = await fetchWithCache<Record<string, unknown>>(q, undefined, MANUSCRIPT_LIST_CACHE_SEC);
       const rows = data?.[plural];
       if (!Array.isArray(rows)) return null;
       let list = rows as MediaItemGqlWithPub[];
@@ -411,6 +458,7 @@ async function tryManuscriptMediaItemsBareNoPdfDeck(
         excerpt
         pdfFile { id url fileName mimeType }
         thumbnail { id url fileName mimeType }
+        featuredImage { id url fileName mimeType }
       }
     }
   `;
@@ -451,7 +499,8 @@ async function tryManuscriptMediaItems(
         description { text }
         manuscriptPdf { id url fileName mimeType }
         pdfFile { id url fileName mimeType }
-        thumbnail { id url fileName }
+        thumbnail { id url fileName mimeType }
+        featuredImage { id url fileName mimeType }
       }
     }
   `;
@@ -475,7 +524,8 @@ async function tryManuscriptMediaItems(
         type
         manuscriptPdf { id url fileName mimeType }
         pdfFile { id url fileName mimeType }
-        thumbnail { id url fileName }
+        thumbnail { id url fileName mimeType }
+        featuredImage { id url fileName mimeType }
       }
     }
   `;
@@ -510,6 +560,7 @@ async function tryManuscriptMediaItemsClientFilter(
         pdfFile { id url fileName mimeType }
         pdfDeck { id url fileName mimeType }
         thumbnail { id url fileName mimeType }
+        featuredImage { id url fileName mimeType }
       }
     }
   `;
@@ -575,9 +626,28 @@ async function tryManuscriptMediaItemsClientFilter(
   }
 }
 
+function useCaseRichnessScore(uc: CmsUseCase): number {
+  let n = 0;
+  if (uc.description?.trim()) n += 2;
+  if (uc.manuscriptPdf?.url) n += 4;
+  if (uc.pdfDeck?.url) n += 1;
+  if (uc.resultsHeadline?.trim()) n += 1;
+  return n;
+}
+
+function mergeUseCaseRows(into: Map<string, CmsUseCase>, rows: CmsUseCase[]): void {
+  for (const row of rows) {
+    const prev = into.get(row.id);
+    if (!prev || useCaseRichnessScore(row) >= useCaseRichnessScore(prev)) {
+      into.set(row.id, row);
+    }
+  }
+}
+
 /**
  * Published `MediaItem` rows eligible as manuscripts (see `mediaItemAllowedForManuscriptRoute`).
- * Loose queries + client filter run when strict `type: PDF` Hygraph filters return nothing.
+ * Runs every query strategy and merges by id — the first successful attempt alone can omit
+ * manuscripts that only match looser filters (e.g. a newly published PDF with a new type alias).
  */
 export async function getAllUseCasesCms(): Promise<CmsUseCase[]> {
   if (!isHygraphConfigured || !hygraphClient) return [];
@@ -593,10 +663,13 @@ export async function getAllUseCasesCms(): Promise<CmsUseCase[]> {
     () => tryManuscriptMediaItemsClientFilter('mediaItemS', false),
   ];
 
+  const merged = new Map<string, CmsUseCase>();
   for (const run of attempts) {
     const rows = await run();
-    if (rows !== null && rows.length > 0) return rows;
+    if (rows?.length) mergeUseCaseRows(merged, rows);
   }
 
-  return [];
+  return Array.from(merged.values()).sort((a, b) =>
+    a.title.localeCompare(b.title, undefined, { sensitivity: 'base' }),
+  );
 }

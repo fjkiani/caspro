@@ -3,7 +3,6 @@
  * Local registry today; Hygraph `TrialLedger` model will mirror these fields (see docs/HYGRAPH_TRIAL_LEDGER.md).
  */
 
-import { Target, Fingerprint, Cpu, type LucideIcon } from 'lucide-react';
 import { TRIAL_CASE_FILES, TRIAL_IDS, VECTOR_AXIS_META, type TrialCaseFile, type VectorAxes } from './trial-case-files';
 
 export type TrialReceiptPreview =
@@ -29,7 +28,6 @@ export interface TrialLedgerEntry {
   sublabel: string;
   receiptId: string;
   preview: TrialReceiptPreview;
-  icon: LucideIcon;
   /** Canonical ledger receipt URL — every trial has one */
   route: string;
   /** Full 8D de-risking map (proof workspace) */
@@ -86,13 +84,6 @@ const PREVIEW_BY_SLUG: Record<string, TrialReceiptPreview> = {
   berzosertib: 'vector-map',
 };
 
-const ICON_BY_PREVIEW: Record<TrialReceiptPreview, LucideIcon> = {
-  'target-lock': Target,
-  'moa-align': Fingerprint,
-  'kill-chain': Cpu,
-  'vector-map': Target,
-};
-
 const SUBLABEL_BY_PREVIEW: Record<TrialReceiptPreview, string> = {
   'target-lock': 'TARGET-LOCK',
   'moa-align': 'MOA-ALIGN',
@@ -135,7 +126,6 @@ function buildEntry(slug: string, file: TrialCaseFile): TrialLedgerEntry {
     sublabel: SUBLABEL_BY_PREVIEW[preview],
     receiptId: slug.toUpperCase(),
     preview,
-    icon: ICON_BY_PREVIEW[preview],
     route: ledgerSlugPath(slug),
     proofRoute: `/proof/${slug}/`,
     trialId: file.trialId,

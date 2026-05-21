@@ -46,6 +46,7 @@ const IoGatePreview = ({ isDarkMode }: { isDarkMode: boolean }) => {
               accentColor={accent}
               isDarkMode={isDarkMode}
               onLineChange={handleLineChange}
+              loop={false}
             />
           </div>
 

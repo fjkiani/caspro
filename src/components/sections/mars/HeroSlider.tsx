@@ -214,7 +214,7 @@ export const HeroSlider = () => {
                     isActive
                       ? isDarkMode
                         ? 'bg-cyan-500/25 text-cyan-200 border border-cyan-400/50 shadow-[inset_0_0_0_1px_rgba(34,211,238,0.2)]'
-                        : 'bg-indigo-700 text-white border border-indigo-800 shadow-sm'
+                        : 'bg-indigo-700 text-white text-on-primary border border-indigo-800 shadow-sm'
                       : isDarkMode
                         ? 'text-zinc-400 border border-transparent hover:bg-zinc-800/80 hover:text-zinc-100'
                         : 'text-slate-600 border border-transparent hover:bg-slate-100 hover:text-slate-950'

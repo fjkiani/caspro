@@ -1,29 +1,25 @@
 // ==============================================================================
 // ENGINE REGISTRY — Single Source of Truth for all platform engines
-// Consumed by: ZetaNavbar (Product dropdown), EngineStack (homepage), engine pages
-// ZERO hardcoding — add/remove engines here and every UI updates automatically
+// Serializable data only (no Lucide icons — use getEngineIcon(slug) on the client).
 // ==============================================================================
 
-import { Target, Fingerprint, Cpu, ShieldCheck, Beaker, FlaskConical, ClipboardList, type LucideIcon } from 'lucide-react';
+import { normalizeEngineSlug } from '@/data/engine-slug';
 
 export interface EngineEntry {
-  id: string;                   // sidebar key: '01', '02', etc.
-  layer: string;                // L1, L2, L3, L4
-  label: string;                // display name
-  shortLabel: string;           // navbar dropdown compact
-  slug: string;                 // route slug
-  route: string;                // full route path
-  desc: string;                 // short description
-  heroTagline: string;          // dynamic subtitle for hero overlay
-  typewriterPhrases: string[];  // glitch typewriter shown above engine panel
+  id: string;
+  layer: string;
+  label: string;
+  shortLabel: string;
+  slug: string;
+  route: string;
+  desc: string;
+  heroTagline: string;
+  typewriterPhrases: string[];
   status: 'ACTIVE' | 'OPTIMIZED' | 'STANDBY' | 'DEVELOPMENT';
-  icon: LucideIcon;             // lucide icon component
   version: string;
-  keyMetric: string;            // headline stat
-  active: boolean;              // show in UI?
-  /** When false, hidden from Engines dropdown (e.g. top-level Safety tab). Default true. */
+  keyMetric: string;
+  active: boolean;
   showInEnginesNav?: boolean;
-  /** Optional hero overlay heading (e.g. Mars slider). */
   zetaHeadline?: string;
 }
 
@@ -45,7 +41,6 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
       'MET exon 14 skip → kinase domain overexposed. Lock acquired.█',
     ],
     status: 'OPTIMIZED',
-    icon: Target,
     version: '4.2.1',
     keyMetric: 'AUC 0.68',
     active: true,
@@ -67,55 +62,10 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
       'NCT02928224 failure root-caused: D3 + D5 misalignment detected.█',
     ],
     status: 'ACTIVE',
-    icon: Fingerprint,
     version: '3.1.0',
     keyMetric: '8D Vector',
     active: true,
   },
-  // {
-  //   id: '03',
-  //   layer: 'L3',
-  //   label: 'Kill Chain',
-  //   shortLabel: 'Kill Chain',
-  //   slug: 'kill-chain',
-  //   route: '/engine/kill-chain/',
-  //   desc: 'Resistance detection via 12-class taxonomy, 8-signal channels, 7D strike vector.',
-  //   heroTagline: 'Tumors evolve. So should your protocol. Intercept resistance before it intercepts your trial.',
-  //   typewriterPhrases: [
-  //     'CCNE1 amplification → CDK2 bypass → PARP resistance class 7.█',
-  //     'ctDNA signal rising → BRCA reversion detected at day 112.█',
-  //     'Lineage plasticity score 0.78 → phenotypic switch imminent.█',
-  //     'WEE1 upregulation → G2/M checkpoint re-armed. Pivot required.█',
-  //     'Intercept window: 23 days before clinical resistance manifests.█',
-  //   ],
-  //   status: 'ACTIVE',
-  //   icon: Cpu,
-  //   version: '6.2.9',
-  //   keyMetric: 'AUROC 0.783',
-  //   active: true,
-  // },
-  // {
-  //   id: '04',
-  //   layer: 'L4',
-  //   label: 'IO Risk-Benefit Gate',
-  //   shortLabel: 'IO Gate',
-  //   slug: 'io-risk-benefit',
-  //   route: '/engine/io-risk-benefit/',
-  //   desc: 'Dynamic harm prevention gate for IO therapeutic selection.',
-  //   heroTagline: 'Immunotherapy can cure — or kill. This gate ensures only the right patients get through.',
-  //   typewriterPhrases: [
-  //     'TMB-H + PD-L1 >50% → IO eligible. Gate: OPEN.█',
-  //     'Colitis risk 34% → irAE veto flagged before first infusion.█',
-  //     'MSI-H → pembrolizumab NCB score +0.76. Cleared to proceed.█',
-  //     'Low TMI + autoimmune history → gate CLOSED. Pivot to TKI.█',
-  //     'Net Clinical Benefit: benefit 0.82, harm 0.18. Patient cleared.█',
-  //   ],
-  //   status: 'ACTIVE',
-  //   icon: ShieldCheck,
-  //   version: '2.4.0',
-  //   keyMetric: 'NCB Active',
-  //   active: true,
-  // },
   {
     id: '05',
     layer: 'L5',
@@ -133,7 +83,6 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
       'GDSC2 Δ LN_IC50 = −0.88, AUC shift p<0.001. Receipt locked.█',
     ],
     status: 'ACTIVE',
-    icon: Beaker,
     version: '4.0.0',
     keyMetric: 'd = −0.88',
     active: true,
@@ -155,7 +104,6 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
       'Warfarin INR instability → VKORC1 + CYP2C9 interaction caught.█',
     ],
     status: 'ACTIVE',
-    icon: FlaskConical,
     version: '6.2.9',
     keyMetric: '100% CPIC',
     active: true,
@@ -178,7 +126,6 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
       'PARP meets 1 of 5 gold-standard criteria. Calibration bar: failed.█',
     ],
     status: 'ACTIVE',
-    icon: ClipboardList,
     version: '1.0.0',
     keyMetric: '5 PubMed',
     active: true,
@@ -186,43 +133,13 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
   },
 ];
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
+export const getActiveEngines = () => ENGINE_REGISTRY.filter((e) => e.active);
 
-/** Get only active engines (for UI rendering) */
-export const getActiveEngines = () => ENGINE_REGISTRY.filter(e => e.active);
+export const getEnginesForNav = () => getActiveEngines().filter((e) => e.showInEnginesNav !== false);
 
-/** Engines listed in the Engines navbar dropdown (excludes Safety tab target). */
-export const getEnginesForNav = () => getActiveEngines().filter(e => e.showInEnginesNav !== false);
-
-/** Normalize dynamic segment (handles trailing slashes, encoding) */
-export function normalizeEngineSlug(raw: string | undefined | null): string {
-  if (raw == null) return '';
-  let s = String(raw).trim();
-  try {
-    s = decodeURIComponent(s);
-  } catch {
-    /* ignore */
-  }
-  return s.replace(/^\/+|\/+$/g, '');
-}
-
-/** Find engine by route slug */
 export const getEngineBySlug = (slug: string | undefined | null) => {
   const key = normalizeEngineSlug(slug);
-  return ENGINE_REGISTRY.find(e => e.slug === key);
+  return ENGINE_REGISTRY.find((e) => e.slug === key);
 };
 
-/** Find engine by sidebar ID */
-export const getEngineById = (id: string) => ENGINE_REGISTRY.find(e => e.id === id);
-
-/** Convert to EngineItem shape for EngineSidebar compatibility */
-export const toSidebarItems = () =>
-  getActiveEngines().map(e => ({
-    id: e.id,
-    label: e.label,
-    icon: e.icon,
-    desc: e.desc,
-    status: e.status,
-    color: 'bg-cyan-500/10 border-cyan-500/50',
-    border: 'border-cyan-400/30',
-  }));
+export const getEngineById = (id: string) => ENGINE_REGISTRY.find((e) => e.id === id);

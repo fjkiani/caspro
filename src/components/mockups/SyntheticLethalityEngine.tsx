@@ -442,7 +442,7 @@ export default function SyntheticLethalityEngine() {
         </div>
 
         <div className="flex gap-4 items-center">
-          <button
+          {/* <button
             onClick={startSynthesis}
             disabled={isSynthesizing}
             className={`px-8 py-3 rounded border text-[11px] font-black uppercase tracking-[0.3em] transition-all flex items-center gap-3 ${
@@ -453,7 +453,7 @@ export default function SyntheticLethalityEngine() {
           >
             {isSynthesizing ? <Activity className="w-4 h-4 animate-spin" /> : <Zap className="w-4 h-4" />}
             {isSynthesizing ? 'Executing...' : 'Run SL Pipeline'}
-          </button>
+          </button> */}
         </div>
       </header>
 
@@ -529,15 +529,10 @@ export default function SyntheticLethalityEngine() {
       {/* ─── Footer ──────────────────────────────────────────────────────── */}
       <footer className={`z-10 mt-8 pt-6 border-t flex items-center justify-between ${border}`}>
         <div>
-          <span className={`text-[10px] font-black uppercase tracking-widest block ${muted}`}>Multi-Modal Evidence Fuser</span>
-          <span className={`text-xl font-light tracking-tighter ${accent}`}>MARS COMPUTATIONAL SUITE</span>
+        
+          {/* <span className={`text-xl font-light tracking-tighter ${accent}`}>MARS COMPUTATIONAL SUITE</span> */}
         </div>
-        <div className={`flex gap-8 ${isDarkMode ? 'text-zinc-600' : 'text-slate-400'}`}>
-          <Database className="w-4 h-4" />
-          <Cpu className="w-4 h-4" />
-          <Scale className="w-4 h-4" />
-          <Lock className="w-4 h-4" />
-        </div>
+     
       </footer>
     </div>
   );

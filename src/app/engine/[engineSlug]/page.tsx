@@ -1,5 +1,5 @@
 import EngineSlugClient from './EngineSlugClient';
-import { normalizeEngineSlug } from '@/data/engine-registry';
+import { normalizeEngineSlug } from '@/data/engine-slug';
 
 type Props = {
   params: { engineSlug: string };

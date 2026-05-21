@@ -31,6 +31,7 @@ import {
   PREPARE_DATA,
   SAFETY_PROVENANCE,
   SAFETY_TYPEWRITER_PHRASES,
+  IO_SCATTER_COMPACT,
   type PGxGene,
 } from '@/data/safety-engine-data';
 
@@ -107,13 +108,7 @@ function PGxDosingMatrix({ isDarkMode }: { isDarkMode: boolean }) {
 // ─── IO Risk-Benefit Gate ─────────────────────────────────────────────────────
 
 function IORiskBenefitGate({ isDarkMode }: { isDarkMode: boolean }) {
-  // Deterministic patient scatter — pass/veto split based on real gate logic
-  const points = Array.from({ length: 30 }, (_, i) => ({
-    x: parseFloat((Math.random() * 0.9).toFixed(2)),
-    y: parseFloat((Math.random() * 0.9).toFixed(2)),
-    // approx: high toxicity (y > 0.5) + low response (x < 0.35) = veto
-    status: (Math.random() * 0.9 > 0.5 && Math.random() * 0.9 < 0.35) ? 'veto' : 'pass',
-  }));
+  const points = IO_SCATTER_COMPACT;
 
   const border = isDarkMode ? 'border-zinc-800' : 'border-slate-200';
   const cardBg = isDarkMode ? 'bg-zinc-950/40' : 'bg-white';
@@ -139,7 +134,7 @@ function IORiskBenefitGate({ isDarkMode }: { isDarkMode: boolean }) {
             <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} opacity={0.3} />
             <XAxis type="number" dataKey="x" domain={[0, 1]} hide />
             <YAxis type="number" dataKey="y" domain={[0, 1]} hide />
-            <Scatter name="Patients" data={points}>
+            <Scatter name="Patients" data={points} isAnimationActive={false}>
               {points.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
@@ -214,12 +209,12 @@ export default function SafetyDosingEngine() {
         </div>
 
         <div className="flex gap-4 items-center">
-          <button className={`px-12 py-4 rounded-sm border text-[11px] font-black uppercase tracking-[0.4em] transition-all flex items-center gap-4 ${
-            isDarkMode ? 'bg-white text-black hover:bg-cyan-500 border-transparent shadow-2xl shadow-cyan-900/20' : 'bg-indigo-600 text-white hover:bg-indigo-700 border-transparent shadow-xl'
+          {/* <button className={`px-12 py-4 rounded-sm border text-[11px] font-black uppercase tracking-[0.4em] transition-all flex items-center gap-4 ${
+            isDarkMode ? 'bg-white text-black hover:bg-cyan-500 border-transparent shadow-2xl shadow-cyan-900/20' : 'bg-indigo-600 text-white text-on-primary hover:bg-indigo-700 border-transparent shadow-xl'
           }`}>
             <Zap className="w-4 h-4" />
             Execute L6 Safety Run
-          </button>
+          </button> */}
         </div>
       </header>
 
@@ -332,7 +327,7 @@ export default function SafetyDosingEngine() {
       </div>
 
       {/* ── Footer ── */}
-      <footer className={`h-auto min-h-24 py-6 border-t mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 px-6 lg:px-12 transition-colors ${isDarkMode ? 'border-zinc-900 bg-black/40' : 'border-slate-200 bg-white'}`}>
+      {/* <footer className={`h-auto min-h-24 py-6 border-t mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 px-6 lg:px-12 transition-colors ${isDarkMode ? 'border-zinc-900 bg-black/40' : 'border-slate-200 bg-white'}`}>
         <div className="flex items-center gap-6 lg:gap-16">
           <div className="space-y-4 md:space-y-2">
             <span className={`text-[11px] font-black uppercase tracking-widest ${heading}`}>Mars Computational Suite v6.2.9</span>
@@ -351,7 +346,7 @@ export default function SafetyDosingEngine() {
           <ShieldCheck className="w-6 h-6" />
           <ActivitySquare className="w-6 h-6" />
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 }

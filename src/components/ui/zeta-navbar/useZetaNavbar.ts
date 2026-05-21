@@ -24,6 +24,28 @@ export function useZetaNavbar() {
     setOpenDropdownId((prev) => (prev === id ? null : id));
   }, []);
 
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const cancelCloseDropdown = useCallback(() => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }, []);
+
+  const scheduleCloseDropdown = useCallback(() => {
+    cancelCloseDropdown();
+    closeTimerRef.current = setTimeout(() => setOpenDropdownId(null), 180);
+  }, [cancelCloseDropdown]);
+
+  const openDropdown = useCallback(
+    (id: string) => {
+      cancelCloseDropdown();
+      setOpenDropdownId(id);
+    },
+    [cancelCloseDropdown],
+  );
+
   // Close on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -33,6 +55,12 @@ export function useZetaNavbar() {
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
   }, []);
 
   // Close mobile menu on route change
@@ -83,6 +111,9 @@ export function useZetaNavbar() {
     topNavItems: TOP_NAV_ITEMS,
     openDropdownId,
     toggleDropdown,
+    openDropdown,
+    scheduleCloseDropdown,
+    cancelCloseDropdown,
     closeAllDropdowns,
     mobileMenuOpen,
     setMobileMenuOpen,

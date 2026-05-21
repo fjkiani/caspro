@@ -3,7 +3,6 @@
  * Dropdowns: Research (content types), Ledger (decoded trials), Engines (platform engines).
  */
 
-import { ROUTES } from '@/constants/routes';
 import { TRIAL_LEDGER_ENTRIES } from '@/data/trial-ledger-registry';
 import { getProductEngines, productMenuTitle } from './product-engines';
 
@@ -24,27 +23,27 @@ export interface NavTopItem {
 
 const researchDropdown: NavDropdownItem[] = [
   {
-    label: 'Decks',
-    description: 'Slide decks & programmatic posters',
-    href: '/research/?tab=decks',
-    accent: 'cyan',
+    label: 'Blog',
+    description: 'Articles & series',
+    href: '/research/blog/',
+    accent: 'indigo',
   },
   {
     label: 'Manuscripts',
     description: 'Long-form PDFs from Hygraph',
-    href: ROUTES.MANUSCRIPTS,
+    href: '/research/manuscripts/',
     accent: 'indigo',
   },
   {
-    label: 'Blog',
-    description: 'Articles & news',
-    href: `${ROUTES.BLOG}/`,
-    accent: 'indigo',
+    label: 'Decks',
+    description: 'Slide decks & programmatic posters',
+    href: '/research/decks/',
+    accent: 'cyan',
   },
   {
     label: 'Abstracts',
-    description: 'Conference abstracts (Hygraph — coming soon)',
-    href: '/research/?tab=abstracts',
+    description: 'Conference abstracts',
+    href: '/research/abstracts/',
     accent: 'amber',
   },
 ];
@@ -87,7 +86,7 @@ export const TOP_NAV_ITEMS: NavTopItem[] = [
   {
     id: 'engines',
     label: 'ENGINES',
-    href: '/engine/target-lock/',
+    href: '/engine/',
     dropdownItems: engineDropdown,
   },
 ];

@@ -4,14 +4,13 @@ import React, { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useTheme } from '@/context/ThemeContext';
 import { getEngineBySlug } from '@/data/engine-registry';
-import TargetIdentificationEngine from '@/components/mockups/targetLock';
 import SyntheticLethalityEngine from '@/components/mockups/SyntheticLethalityEngine';
 import SafetyDosingEngine from '@/components/mockups/dosing';
 import EvidenceLedgerEngine from '@/components/mockups/evidenceMatrix';
 import KillChainIntercept from '@/components/sections/mars/KillChainIntercept';
 import { RiskBenefitGate } from '@/components/sections/mars/RiskBenefitGate';
 import { IoRiskBenefitChart } from '@/components/sections/mars/IoRiskBenefitChart';
-import { VectorFailureAnalysis } from '@/components/sections/mars/VectorFailureAnalysis';
+import MoaRadarPreviewGated from '@/components/sections/mars/previews/MoaRadarPreviewGated';
 
 /** Same IO layout as `EngineStack` engine `04` (RiskBenefitGate + chart). */
 function IoGateEngineRoute() {
@@ -77,11 +76,49 @@ export default function EngineSlugClient({ slug }: { slug: string }) {
   const renderEngine = () => {
     switch (engine.slug) {
       case 'target-lock':
-        return <TargetIdentificationEngine />;
+        return (
+          <div className="min-h-[calc(100vh-3.5rem)] flex flex-col items-center justify-center px-6 text-center font-mono">
+            <p className={`text-sm mb-6 max-w-md ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+              Target Lock opens with a brief overview first.
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <Link
+                href="/engine/target-lock/"
+                className={`inline-flex px-5 py-3 rounded-sm border text-[11px] font-black uppercase tracking-widest transition-colors ${
+                  isDarkMode
+                    ? 'border-zinc-700 text-zinc-200 hover:border-cyan-500/50'
+                    : 'border-slate-300 text-slate-800 hover:border-indigo-400'
+                }`}
+              >
+                Overview
+              </Link>
+              <Link
+                href="/engine/target-lock/workspace/"
+                className={`inline-flex px-5 py-3 rounded-sm border text-[11px] font-black uppercase tracking-widest transition-colors ${
+                  isDarkMode
+                    ? 'bg-cyan-500/10 border-cyan-500/40 text-cyan-400 hover:bg-cyan-500 hover:text-black'
+                    : 'bg-indigo-600 text-white text-on-primary border-indigo-600 hover:bg-indigo-700'
+                }`}
+              >
+                Open workspace
+              </Link>
+              <Link
+                href="/engine/target-lock/archive/"
+                className={`inline-flex px-5 py-3 rounded-sm border text-[11px] font-black uppercase tracking-widest transition-colors ${
+                  isDarkMode
+                    ? 'border-zinc-700 text-zinc-200 hover:border-cyan-500/50'
+                    : 'border-slate-300 text-slate-800 hover:border-indigo-400'
+                }`}
+              >
+                FDA archive
+              </Link>
+            </div>
+          </div>
+        );
       case 'mechanism-alignment':
         return (
-          <div className="p-4 md:p-6 min-h-[calc(100vh-3.5rem)]">
-            <VectorFailureAnalysis />
+          <div className="flex flex-col min-h-[calc(100vh-3.5rem)] overflow-hidden">
+            <MoaRadarPreviewGated isDarkMode={isDarkMode} />
           </div>
         );
       case 'kill-chain':

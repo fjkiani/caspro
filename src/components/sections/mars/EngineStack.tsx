@@ -14,14 +14,15 @@ import TargetIdentificationEngine from '@/components/mockups/targetLock';
 import SyntheticLethalityEngine from '@/components/mockups/SyntheticLethalityEngine';
 import SafetyDosingEngine from '@/components/mockups/dosing';
 import EvidenceLedgerEngine from '@/components/mockups/evidenceMatrix';
-import { toSidebarItems, getEngineById, ENGINE_REGISTRY } from '@/data/engine-registry';
+import { getEngineById, ENGINE_REGISTRY } from '@/data/engine-registry';
+import { toSidebarItems } from '@/components/engine/engine-sidebar-items';
 
 const ENGINES = toSidebarItems();
 
 // ─── Glitch Typewriter ─────────────────────────────────────────────────────────
 const GLITCH_CHARS = '!@#$%^&*<>[]{}|\\/~`';
 
-function GlitchTypewriter({ phrases }: { phrases: string[] }) {
+function GlitchTypewriter({ phrases, loop = true }: { phrases: string[]; loop?: boolean }) {
   const [index, setIndex] = useState(0);
   const [display, setDisplay] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -44,6 +45,7 @@ function GlitchTypewriter({ phrases }: { phrases: string[] }) {
           }, 30);
         }, 55);
       } else {
+        if (!loop) return;
         setIsPaused(true);
         timer = setTimeout(() => { setIsPaused(false); setIsDeleting(true); }, 3200);
       }
@@ -56,7 +58,7 @@ function GlitchTypewriter({ phrases }: { phrases: string[] }) {
       }
     }
     return () => clearTimeout(timer);
-  }, [display, isDeleting, isPaused, index, phrases]);
+  }, [display, isDeleting, isPaused, index, phrases, loop]);
 
   return (
     <div className="px-6 py-3 border-b border-[var(--border)] bg-[var(--muted)]/20 min-h-[44px] flex items-center">
@@ -170,7 +172,10 @@ export const EngineStack: React.FC = () => {
               <AnimatePresence mode="wait">
                 {activeRegistry?.typewriterPhrases && (
                   <motion.div key={`tw-${activeEngine}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                    <GlitchTypewriter phrases={activeRegistry.typewriterPhrases} />
+                    <GlitchTypewriter
+                      phrases={activeRegistry.typewriterPhrases}
+                      loop={activeEngine !== '04'}
+                    />
                   </motion.div>
                 )}
               </AnimatePresence>

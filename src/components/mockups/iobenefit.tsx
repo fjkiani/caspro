@@ -13,6 +13,7 @@ import {
   Cell
 } from 'recharts';
 import { Target, Activity, Database, Cpu, ShieldCheck } from 'lucide-react';
+import { IO_SCATTER_STABLE, IO_SCATTER_FUTILE, IO_SCATTER_BOUNDARY } from '@/data/safety-engine-data';
 
 // --- Technical DNA Background Component ---
 const DnaBackground = () => {
@@ -122,29 +123,10 @@ const DnaBackground = () => {
 
 // --- Data & Components ---
 
-const SCATTER_DATA_GRAY = Array.from({ length: 60 }, () => ({
-  x: Math.random() * 0.65,
-  y: Math.random() * 0.9,
-  type: 'stable'
-}));
+const SCATTER_DATA_GRAY = IO_SCATTER_STABLE.map((p) => ({ x: p.x, y: p.y, type: 'stable' as const }));
+const SCATTER_DATA_RED = IO_SCATTER_FUTILE.map((p) => ({ x: p.x, y: p.y, type: 'futile' as const }));
 
-const SCATTER_DATA_RED = Array.from({ length: 35 }, () => ({
-  x: 0.7 + Math.random() * 0.15,
-  y: 0.1 + Math.random() * 0.3,
-  type: 'futile'
-}));
-
-const STEP_LINE = [
-  { x: 0, y: 0.5 },
-  { x: 0.3, y: 0.5 },
-  { x: 0.3, y: 0.4 },
-  { x: 0.5, y: 0.4 },
-  { x: 0.5, y: 0.35 },
-  { x: 0.6, y: 0.35 },
-  { x: 0.6, y: 0.25 },
-  { x: 0.65, y: 0.25 },
-  { x: 0.65, y: 0 },
-];
+const STEP_LINE = [...IO_SCATTER_BOUNDARY];
 
 export default function App() {
   const { isDarkMode } = useTheme();
@@ -211,14 +193,13 @@ export default function App() {
             />
 
             {/* Stable Data Points */}
-            <Scatter data={SCATTER_DATA_GRAY}>
+            <Scatter data={SCATTER_DATA_GRAY} isAnimationActive={false}>
               {SCATTER_DATA_GRAY.map((entry, index) => (
                 <Cell key={`cell-gray-${index}`} fill="#475569" opacity={0.6} />
               ))}
             </Scatter>
 
-            {/* Futile Data Points (Red Cluster) */}
-            <Scatter data={SCATTER_DATA_RED}>
+            <Scatter data={SCATTER_DATA_RED} isAnimationActive={false}>
               {SCATTER_DATA_RED.map((entry, index) => (
                 <Cell key={`cell-red-${index}`} fill="#f43f5e" shadow="0 0 10px #f43f5e" />
               ))}

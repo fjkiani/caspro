@@ -240,7 +240,22 @@ body {
 .light-mode .text-\[\#606068\] { color: #64748b !important; }  /* dark gray → slate-500 */
 .light-mode .text-\[\#00E5FF\] { color: #4f46e5 !important; }  /* cyan → indigo */
 .light-mode .text-\[\#00E5FF\]\/40 { color: rgba(79, 70, 229, 0.4) !important; }
-.light-mode .text-white        { color: #0f172a !important; }  /* white → near-black */
+.light-mode .text-white        { color: #0f172a !important; }  /* white → near-black on light surfaces */
+
+/* Filled primary buttons: keep white label text on indigo/solid backgrounds */
+.light-mode .text-on-primary,
+.light-mode .bg-indigo-600.text-white,
+.light-mode .bg-indigo-700.text-white,
+.light-mode .bg-indigo-800.text-white,
+.light-mode a.bg-indigo-600,
+.light-mode button.bg-indigo-600,
+.light-mode .bg-indigo-600.text-white:hover,
+.light-mode .bg-indigo-700.text-white:hover,
+.light-mode .hover\:bg-indigo-500.hover\:text-white:hover,
+.light-mode .hover\:bg-indigo-700.hover\:text-white:hover,
+.light-mode .bg-primary.text-white {
+  color: #ffffff !important;
+}
 
 /* Borders */
 .light-mode .border-\[\#111118\] { border-color: #e2e8f0 !important; }

@@ -515,7 +515,7 @@ export default function EvidenceLedgerEngine() {
       </div>
 
       {/* Global Metadata Footer */}
-      <footer className={`h-auto py-6 lg:h-24 border-t mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 px-6 lg:px-12 transition-colors ${
+      {/* <footer className={`h-auto py-6 lg:h-24 border-t mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 px-6 lg:px-12 transition-colors ${
         isDarkMode ? 'border-zinc-900 bg-black/40' : 'border-slate-200 bg-white'
       }`}>
         <div className="flex items-center gap-16">
@@ -534,7 +534,7 @@ export default function EvidenceLedgerEngine() {
            <Scale className="w-6 h-6" />
            <ActivitySquare className="w-6 h-6" />
         </div>
-      </footer>
+      </footer> */}
 
       </div>
 

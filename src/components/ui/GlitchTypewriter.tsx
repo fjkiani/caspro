@@ -22,6 +22,8 @@ interface GlitchTypewriterProps {
   glitchChars?: string;     // character set for glitch effect
   isDarkMode?: boolean;
   onLineChange?: (index: number) => void; // fires when the active line index changes
+  /** When false, stops after the first line (no glitch cycle) */
+  loop?: boolean;
 }
 
 const GLITCH_CHARS = '█▓▒░╔╗╚╝━│┃┄▀▄';
@@ -34,6 +36,7 @@ export const GlitchTypewriter: React.FC<GlitchTypewriterProps> = ({
   glitchChars = GLITCH_CHARS,
   isDarkMode = true,
   onLineChange,
+  loop = true,
 }) => {
   const [lineIdx, setLineIdx] = useState(0);
   const [displayText, setDisplayText] = useState('');
@@ -83,6 +86,7 @@ export const GlitchTypewriter: React.FC<GlitchTypewriterProps> = ({
     }
 
     if (phase === 'holding') {
+      if (!loop) return;
       timeoutRef.current = setTimeout(() => {
         setPhase('glitching');
       }, holdDuration);
@@ -110,7 +114,7 @@ export const GlitchTypewriter: React.FC<GlitchTypewriterProps> = ({
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [phase, displayText, displayHighlight, currentLine, lines.length, typingSpeed, holdDuration, glitchChars]);
+  }, [phase, displayText, displayHighlight, currentLine, lines.length, typingSpeed, holdDuration, glitchChars, loop]);
 
   // Cleanup glitch interval on unmount
   useEffect(() => {

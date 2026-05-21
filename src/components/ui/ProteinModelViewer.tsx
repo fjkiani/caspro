@@ -2,6 +2,7 @@
 
 import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
+import type { CascadeViewPreset } from '@/data/metastatic-cascade-data';
 
 interface LoadingProps {
   className?: string;
@@ -36,12 +37,26 @@ const ThreeScene = dynamic(
 interface ProteinModelViewerProps {
   modelUrl?: string;
   className?: string;
+  isDarkMode?: boolean;
+  viewPreset?: CascadeViewPreset;
 }
 
-const ProteinModelViewer: React.FC<ProteinModelViewerProps> = ({ className, modelUrl }) => {
+const ProteinModelViewer: React.FC<ProteinModelViewerProps> = ({
+  className,
+  modelUrl,
+  isDarkMode,
+  viewPreset,
+}) => {
+  const url = viewPreset?.modelUrl ?? modelUrl ?? '/models/3nmm-haemoglobin.glb';
+
   return (
     <Suspense fallback={<LoadingPlaceholder className={className} />}>
-      <ThreeScene className={className} modelUrl={modelUrl || '/models/3nmm-haemoglobin.glb'} />
+      <ThreeScene
+        className={className}
+        modelUrl={url}
+        isDarkMode={isDarkMode}
+        viewPreset={viewPreset}
+      />
     </Suspense>
   );
 };

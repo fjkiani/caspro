@@ -28,7 +28,6 @@ export function ZetaNavbar({ isProcessing = false }: { isProcessing?: boolean })
             isDarkMode={isDarkMode}
             navMuted={theme.navMuted}
             navHover={theme.navHover}
-            productEngines={nav.productEngines}
             blogOpen={nav.blogOpen}
             setBlogOpen={nav.setBlogOpen}
             manuscriptsOpen={nav.manuscriptsOpen}
@@ -40,7 +39,9 @@ export function ZetaNavbar({ isProcessing = false }: { isProcessing?: boolean })
             blogPosts={feed.blogPosts}
             blogCategories={feed.blogCategories}
             openDropdownId={nav.openDropdownId}
-            toggleDropdown={nav.toggleDropdown}
+            openDropdown={nav.openDropdown}
+            scheduleCloseDropdown={nav.scheduleCloseDropdown}
+            cancelCloseDropdown={nav.cancelCloseDropdown}
             setDropdownRef={nav.setDropdownRef}
           />
         </Suspense>

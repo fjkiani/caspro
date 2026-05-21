@@ -1,0 +1,164 @@
+'use client';
+
+import Link from 'next/link';
+import { Target, ChevronRight } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
+import { TARGET_LOCK_EXPLAINER } from '@/data/target-lock-data';
+import { TWO_LAYER_MATRIX, FDA_STATS } from '@/data/fda-prediction-data';
+import { TARGET_LOCK_ARCHIVE_PATH, TARGET_LOCK_WORKSPACE_PATH } from '@/lib/engine/paths';
+import ProteinPreviewGated from '@/components/sections/mars/previews/ProteinPreviewGated';
+
+/**
+ * Single-viewport intro (ledger-style). Full simulator lives at workspace path.
+ */
+export default function TargetLockIntroPage() {
+  const { isDarkMode } = useTheme();
+  const accent = isDarkMode ? 'text-cyan-400' : 'text-indigo-600';
+  const panel = isDarkMode ? 'bg-zinc-950/60 border-zinc-800' : 'bg-white border-slate-200';
+  const textMain = isDarkMode ? 'text-zinc-100' : 'text-slate-900';
+  const textMuted = isDarkMode ? 'text-zinc-400' : 'text-slate-600';
+
+  return (
+    <div
+      className={`relative h-[calc(100dvh-3.5rem)] overflow-hidden font-mono flex flex-col ${
+        isDarkMode ? 'bg-[#020408] text-zinc-100' : 'bg-white text-slate-900'
+      }`}
+    >
+      <div
+        className={`absolute inset-0 pointer-events-none ${
+          isDarkMode
+            ? 'bg-[linear-gradient(to_right,#00E5FF05_1px,transparent_1px),linear-gradient(to_bottom,#00E5FF05_1px,transparent_1px)]'
+            : 'bg-[linear-gradient(to_right,#6366f108_1px,transparent_1px),linear-gradient(to_bottom,#6366f108_1px,transparent_1px)]'
+        } bg-[size:48px_48px]`}
+      />
+
+      <header className="relative z-10 shrink-0 px-4 sm:px-8 pt-4 sm:pt-5 flex items-center gap-3">
+        <div
+          className={`w-10 h-10 rounded border flex items-center justify-center ${panel}`}
+        >
+          <Target className={`w-5 h-5 ${accent}`} />
+        </div>
+        <div className="min-w-0">
+          <p className={`text-[9px] font-black uppercase tracking-[0.45em] ${accent}`}>
+            L1 · ENGINE
+          </p>
+          <h1 className={`text-base sm:text-lg font-black uppercase tracking-tight truncate ${textMain}`}>
+            Target Lock
+          </h1>
+        </div>
+      </header>
+
+      <div className="relative z-10 flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-3 sm:gap-5 px-4 sm:px-8 py-2 sm:py-3">
+        <div className="min-h-0 flex flex-col gap-2 sm:gap-3 overflow-hidden">
+          <section className={`rounded-sm border p-3 sm:p-4 shrink-0 ${panel}`}>
+            <p className={`text-[10px] font-black uppercase tracking-widest mb-2 ${accent}`}>
+              How Target Lock Works
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+              {TARGET_LOCK_EXPLAINER.map((item) => (
+                <div key={item.label} className="min-w-0">
+                  <span className={`text-[9px] font-black uppercase block ${textMuted}`}>
+                    {item.label}
+                  </span>
+                  <p className={`text-[11px] sm:text-xs leading-snug mt-0.5 ${textMain}`}>{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className={`rounded-sm border flex-1 min-h-0 flex flex-col overflow-hidden ${panel}`}>
+            <div
+              className={`shrink-0 flex items-center justify-between px-3 py-2 border-b ${
+                isDarkMode ? 'border-zinc-800' : 'border-slate-100'
+              }`}
+            >
+              <span className={`text-[10px] font-black uppercase tracking-widest ${textMain}`}>
+                Two-Layer Prediction Framework
+              </span>
+              <span className={`text-[9px] font-bold uppercase ${textMuted}`}>L1 × L2 → Outcome</span>
+            </div>
+            <div className="flex-1 min-h-0 overflow-hidden">
+              {TWO_LAYER_MATRIX.map((row, i) => (
+                <div
+                  key={i}
+                  className={`grid grid-cols-[3.5rem_3.5rem_1fr_auto] sm:grid-cols-[4rem_4rem_1fr_auto] gap-x-2 items-center px-3 py-1.5 sm:py-2 text-[10px] sm:text-[11px] border-b last:border-b-0 ${
+                    row.isCritical
+                      ? isDarkMode
+                        ? 'bg-rose-500/10 border-rose-500/20'
+                        : 'bg-rose-50 border-rose-100'
+                      : isDarkMode
+                        ? 'border-zinc-800/80'
+                        : 'border-slate-50'
+                  }`}
+                >
+                  <span className={`font-black ${row.l1 === 'HIGH' ? 'text-emerald-500' : 'text-rose-500'}`}>
+                    {row.l1}
+                  </span>
+                  <span className={`font-black ${row.l2 === 'HIGH' ? 'text-emerald-500' : 'text-rose-500'}`}>
+                    {row.l2}
+                  </span>
+                  <span className={`font-bold truncate ${textMuted}`}>{row.prediction}</span>
+                  {row.cost ? (
+                    <span className="font-black text-rose-500 shrink-0">{row.cost}</span>
+                  ) : (
+                    <span />
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section
+            className={`shrink-0 rounded-sm border px-3 py-2.5 sm:px-4 sm:py-3 ${
+              isDarkMode ? 'bg-rose-500/10 border-rose-500/25' : 'bg-rose-50 border-rose-200'
+            }`}
+          >
+            <span className="text-[9px] font-black text-rose-500 uppercase tracking-[0.3em] block mb-1">
+              The $300M Row
+            </span>
+            <p className={`text-[11px] sm:text-xs font-bold leading-snug ${textMain}`}>
+              {FDA_STATS.thesisStatement}
+            </p>
+          </section>
+        </div>
+
+        <div className="hidden lg:block min-h-0 overflow-hidden rounded-sm border border-inherit opacity-95">
+          <ProteinPreviewGated isDarkMode={isDarkMode} />
+        </div>
+      </div>
+
+      <footer
+        className={`relative z-10 shrink-0 px-4 sm:px-8 py-3 sm:py-4 flex items-center justify-between gap-3 border-t ${
+          isDarkMode ? 'border-zinc-800' : 'border-slate-200'
+        }`}
+      >
+        <p className={`hidden sm:block text-[9px] font-bold uppercase tracking-[0.25em] ${textMuted}`}>
+          {FDA_STATS.retroConcordance} retroactive · {FDA_STATS.prospectiveTotal} prospective locks
+        </p>
+        <div className="flex flex-wrap items-center gap-2 shrink-0">
+          <Link
+            href={TARGET_LOCK_ARCHIVE_PATH}
+            className={`inline-flex items-center gap-1.5 rounded-sm px-4 py-2.5 text-[10px] font-black uppercase tracking-widest border transition-colors ${
+              isDarkMode
+                ? 'border-zinc-700 text-zinc-300 hover:border-cyan-500/50'
+                : 'border-slate-300 text-slate-700 hover:border-indigo-400'
+            }`}
+          >
+            FDA archive
+          </Link>
+          <Link
+            href={TARGET_LOCK_WORKSPACE_PATH}
+            className={`inline-flex items-center gap-2 rounded-sm px-5 py-2.5 text-[11px] font-black uppercase tracking-widest transition-colors ${
+              isDarkMode
+                ? 'bg-cyan-500 text-black hover:bg-cyan-400'
+                : 'bg-indigo-600 text-white text-on-primary hover:bg-indigo-700'
+            }`}
+          >
+            Cascade workspace
+            <ChevronRight className="w-4 h-4" aria-hidden />
+          </Link>
+        </div>
+      </footer>
+    </div>
+  );
+}

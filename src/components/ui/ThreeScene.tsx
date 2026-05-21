@@ -4,47 +4,86 @@ import React, { useRef, useState, useEffect } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import type { CascadeViewPreset } from '@/data/metastatic-cascade-data';
 
 interface ThreeSceneProps {
   className?: string;
   modelUrl: string;
+  isDarkMode?: boolean;
+  viewPreset?: CascadeViewPreset;
 }
 
-export default function ThreeScene({ className, modelUrl }: ThreeSceneProps) {
+function applyViewPreset(model: THREE.Object3D, preset: CascadeViewPreset) {
+  const box = new THREE.Box3().setFromObject(model);
+  const center = box.getCenter(new THREE.Vector3());
+  model.position.sub(center);
+
+  const size = box.getSize(new THREE.Vector3());
+  const maxDim = Math.max(size.x, size.y, size.z);
+  const scale = (200 / maxDim) * (preset.scaleMul ?? 1);
+  model.scale.multiplyScalar(scale);
+
+  model.rotation.x = preset.rotationX;
+  model.rotation.y = preset.rotationY;
+
+  if (preset.tint) {
+    const tint = new THREE.Color(preset.tint);
+    model.traverse((child) => {
+      if (!(child instanceof THREE.Mesh) || !child.material) return;
+      const tintMat = (m: THREE.Material) => {
+        const cloned = m.clone();
+        if ('color' in cloned && cloned.color instanceof THREE.Color) {
+          cloned.color.lerp(tint, 0.35);
+        }
+        return cloned;
+      };
+      child.material = Array.isArray(child.material)
+        ? child.material.map(tintMat)
+        : tintMat(child.material);
+    });
+  }
+}
+
+export default function ThreeScene({ className, modelUrl, isDarkMode = false, viewPreset }: ThreeSceneProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const presetKey = viewPreset
+    ? `${viewPreset.modelUrl}-${viewPreset.rotationX}-${viewPreset.rotationY}-${viewPreset.scaleMul ?? 1}-${viewPreset.tint ?? ''}`
+    : modelUrl;
+
   useEffect(() => {
     if (!containerRef.current) return;
 
+    const el = containerRef.current;
     let mounted = true;
     let animationFrameId: number;
     let controls: OrbitControls;
+    let loadedRoot: THREE.Object3D | null = null;
+
+    setIsLoading(true);
+    setError(null);
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('#f8fafc');
+    if (!isDarkMode) {
+      scene.background = new THREE.Color('#f8fafc');
+    }
 
-    const camera = new THREE.PerspectiveCamera(
-      60, // Normal field of view
-      containerRef.current.clientWidth / containerRef.current.clientHeight,
-      0.1,
-      1000
-    );
-    camera.position.set(0, 0, 30); // Move camera further back
+    const camera = new THREE.PerspectiveCamera(60, el.clientWidth / el.clientHeight, 0.1, 1000);
+    camera.position.set(0, 0, 30);
 
-    const renderer = new THREE.WebGLRenderer({ 
+    const renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
-      logarithmicDepthBuffer: true
+      logarithmicDepthBuffer: true,
     });
-    renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+    renderer.setSize(el.clientWidth, el.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    containerRef.current.appendChild(renderer.domElement);
+    el.appendChild(renderer.domElement);
 
-    // Enhanced lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, isDarkMode ? 0.85 : 1);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, isDarkMode ? 1.2 : 1.5);
     directionalLight.position.set(10, 10, 10);
     const backLight = new THREE.DirectionalLight(0xffffff, 0.7);
     backLight.position.set(-10, -10, -10);
@@ -52,7 +91,6 @@ export default function ThreeScene({ className, modelUrl }: ThreeSceneProps) {
     scene.add(directionalLight);
     scene.add(backLight);
 
-    // Add OrbitControls with better defaults
     controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
@@ -61,65 +99,69 @@ export default function ThreeScene({ className, modelUrl }: ThreeSceneProps) {
     controls.autoRotate = true;
     controls.autoRotateSpeed = 1;
 
-    // Load the model
     const loader = new GLTFLoader();
     loader.load(
       modelUrl,
       (gltf) => {
         if (!mounted) return;
 
-        const model = gltf.scene;
-        
-        // Center the model
-        const box = new THREE.Box3().setFromObject(model);
-        const center = box.getCenter(new THREE.Vector3());
-        model.position.sub(center);
-        
-        // Make the model much larger
-        const size = box.getSize(new THREE.Vector3());
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 200 / maxDim; // Increased scale factor by 100x
-        model.scale.multiplyScalar(scale);
+        if (loadedRoot) {
+          scene.remove(loadedRoot);
+          loadedRoot.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
+              child.geometry?.dispose();
+              const mats = Array.isArray(child.material) ? child.material : [child.material];
+              mats.forEach((m) => m.dispose());
+            }
+          });
+        }
 
-        // Add some rotation to show the 3D nature better
-        model.rotation.x = Math.PI * 0.15;
-        model.rotation.y = Math.PI * 0.25;
+        loadedRoot = gltf.scene.clone(true);
+        if (viewPreset) {
+          applyViewPreset(loadedRoot, viewPreset);
+        } else {
+          const box = new THREE.Box3().setFromObject(loadedRoot);
+          const center = box.getCenter(new THREE.Vector3());
+          loadedRoot.position.sub(center);
+          const size = box.getSize(new THREE.Vector3());
+          const maxDim = Math.max(size.x, size.y, size.z);
+          loadedRoot.scale.multiplyScalar(200 / maxDim);
+          loadedRoot.rotation.x = Math.PI * 0.15;
+          loadedRoot.rotation.y = Math.PI * 0.25;
+        }
 
-        scene.add(model);
+        scene.add(loadedRoot);
         setIsLoading(false);
 
-        // Adjust camera to frame the model
-        const distance = maxDim * 3;
-        camera.position.z = distance;
+        const box = new THREE.Box3().setFromObject(loadedRoot);
+        const size = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        camera.position.z = maxDim * 3;
         controls.target.set(0, 0, 0);
         controls.update();
       },
       undefined,
-      (error) => {
+      (loadError) => {
         if (!mounted) return;
-        console.error('Error loading model:', error);
+        console.error('Error loading model:', loadError);
         setError('Failed to load 3D model');
         setIsLoading(false);
       }
     );
 
-    // Animation loop with smooth rotation
     const animate = () => {
       if (!mounted) return;
-      
       controls.update();
       renderer.render(scene, camera);
       animationFrameId = requestAnimationFrame(animate);
     };
     animate();
 
-    // Handle resize
     const handleResize = () => {
-      if (!containerRef.current) return;
-      
-      camera.aspect = containerRef.current.clientWidth / containerRef.current.clientHeight;
+      if (!el) return;
+      camera.aspect = el.clientWidth / el.clientHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+      renderer.setSize(el.clientWidth, el.clientHeight);
     };
     window.addEventListener('resize', handleResize);
 
@@ -128,34 +170,43 @@ export default function ThreeScene({ className, modelUrl }: ThreeSceneProps) {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
       controls.dispose();
-      
-      if (containerRef.current) {
-        containerRef.current.removeChild(renderer.domElement);
+      if (loadedRoot) {
+        scene.remove(loadedRoot);
+        loadedRoot.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            child.geometry?.dispose();
+            const mats = Array.isArray(child.material) ? child.material : [child.material];
+            mats.forEach((m) => m.dispose());
+          }
+        });
+      }
+      if (el.contains(renderer.domElement)) {
+        el.removeChild(renderer.domElement);
       }
       renderer.dispose();
     };
-  }, [modelUrl]);
+  }, [modelUrl, isDarkMode, presetKey]);
 
   if (error) {
     return (
       <div className={className || 'w-full h-full min-h-[300px] md:min-h-[400px] bg-slate-200 rounded-lg overflow-hidden shadow-lg'}>
         <div className="w-full h-full flex items-center justify-center">
-          <div className="text-red-600">{error}</div>
+          <div className={isDarkMode ? 'text-rose-400' : 'text-red-600'}>{error}</div>
         </div>
       </div>
     );
   }
 
   return (
-    <div 
-      ref={containerRef} 
+    <div
+      ref={containerRef}
       className={className || 'w-full h-full min-h-[300px] md:min-h-[400px] bg-slate-200 rounded-lg overflow-hidden shadow-lg'}
     >
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="animate-pulse text-gray-600">Loading model...</div>
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          <div className={`animate-pulse ${isDarkMode ? 'text-zinc-400' : 'text-gray-600'}`}>Loading model...</div>
         </div>
       )}
     </div>
   );
-} 
+}

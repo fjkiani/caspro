@@ -2,17 +2,13 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Zap, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 
 import * as THREE from 'three';
-import { TypewriterText } from '@/components/ui/TypewriterText';
-import { HERO_CAPABILITIES } from '@/components/sections/mars/CapabilityShowcase';
-
-// --- Capability cycling text for the typewriter ---
-const CAPABILITY_LINES = HERO_CAPABILITIES.map(
-  (c) => `${c.id} // ${c.label}: ${c.question}`
-);
+import { HeroSyncedFadeCopy } from '@/components/ui/HeroSyncedFadeCopy';
+import { HERO_ACTIVE_GATE_LINES } from '@/data/hero-active-gate-lines';
+import { HERO_ORACLE_TAGLINES } from '@/data/hero-oracle-taglines';
 
 // --- Gene Ticker Background (horizontal scrolling gene names) ---
 const GeneTicker = () => {
@@ -47,7 +43,6 @@ export function DnaHero({ embedded = false }: { embedded?: boolean }) {
   const { isDarkMode } = useTheme();
   const mountRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [activeCapability, setActiveCapability] = useState(0);
   const [hudPositions, setHudPositions] = useState({
     brca1: { x: 0, y: 0, visible: false },
     at: { x: 0, y: 0, visible: false },
@@ -58,14 +53,6 @@ export function DnaHero({ embedded = false }: { embedded?: boolean }) {
     hras: { x: 0, y: 0, visible: false },
     cgX: { x: 0, y: 0, visible: false }
   });
-
-  // Auto-cycle capabilities (synced with typewriter pause)
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveCapability((prev) => (prev + 1) % HERO_CAPABILITIES.length);
-    }, 5000); // matches typing + pause + deleting cycle
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -224,56 +211,39 @@ export function DnaHero({ embedded = false }: { embedded?: boolean }) {
       <div className={`absolute inset-0 bg-[size:40px_40px] pointer-events-none z-0 ${
         isDarkMode 
           ? 'bg-[linear-gradient(to_right,#0ef3ff02_1px,transparent_1px),linear-gradient(to_bottom,#0ef3ff02_1px,transparent_1px)]'
-          : 'bg-[linear-gradient(to_right,#0891b208_1px,transparent_1px),linear-gradient(to_bottom,#0891b208_1px,transparent_1px)]'
+          : 'bg-[linear-gradient(to_right,#94a3b812_1px,transparent_1px),linear-gradient(to_bottom,#94a3b812_1px,transparent_1px)]'
       }`} />
 
       {/* === MAIN HERO CONTENT === */}
-      <div className="absolute inset-0 z-10 flex flex-col justify-end p-4 sm:p-8 lg:p-12 pointer-events-none">
+      <div className="absolute inset-0 z-10 flex flex-col justify-end px-3 py-4 sm:p-8 lg:p-12 pointer-events-none">
 
         {/* Bottom Section: Headline + CTA */}
-        <div className="flex flex-col sm:flex-row sm:justify-start sm:items-end pb-24 sm:pb-28 gap-6 sm:gap-12 pointer-events-auto">
+        <div className="flex flex-col sm:flex-row sm:justify-start sm:items-end pb-[7.5rem] sm:pb-28 gap-4 sm:gap-12 pointer-events-auto w-full">
           
           {/* Left: Primary Copy */}
-          <div className="max-w-2xl space-y-4 sm:space-y-6 min-w-0">
-            {/* Main Headline — per landing page spec */}
-            <h1 className={`text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-[1.15] uppercase ${
-              isDarkMode ? 'text-white' : 'text-slate-900'
-            }`}>
-              Computional Oncology <span className={isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}>that tells you exactly why your clinical trial will fail — before you enroll a single patient</span>
-            </h1>
-
-            {/* Typewriter Capability Cycling */}
-            <div className={`backdrop-blur-sm border rounded px-6 py-4 ${
-              isDarkMode ? 'bg-zinc-950/80 border-zinc-800/60' : 'bg-white/90 border-slate-200'
-            }`}>
-              <div className={`text-[9px] font-black uppercase tracking-[0.4em] mb-2 ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}>
-                ACTIVE GATE
-              </div>
-              <div className={`text-[13px] font-mono leading-relaxed min-h-[1.5em] ${isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}`}>
-                <TypewriterText
-                  texts={CAPABILITY_LINES}
-                  typingSpeed={35}
-                  deletingSpeed={20}
-                  pauseDuration={2800}
-                />
-              </div>
-            </div>
+          <div className="w-full max-w-2xl space-y-3 sm:space-y-6 min-w-0">
+            {/* Tagline + ACTIVE GATE — synced fade / repair (fixed height, no layout jump) */}
+            <HeroSyncedFadeCopy
+              taglines={HERO_ORACLE_TAGLINES}
+              gateLines={HERO_ACTIVE_GATE_LINES}
+              isDarkMode={isDarkMode}
+            />
 
             {/* Subline */}
-            <p className={`text-[11px] uppercase tracking-[0.3em] font-bold flex items-center gap-4 ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}>
+            {/* <p className={`text-[11px] uppercase tracking-[0.3em] font-bold flex items-center gap-4 ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}>
               <Zap className={`w-3 h-3 ${isDarkMode ? 'text-cyan-500' : 'text-indigo-600'}`} />
               FIVE PHASE III FAILURES. FIVE RECEIPTS. ZERO EXCUSES.
-            </p>
+            </p> */}
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+            <div className="flex flex-col min-[400px]:flex-row items-stretch gap-2.5 sm:gap-4">
               <Link
-                href="/engine/safety/"
+                href="/ledger/"
                 prefetch={false}
-                className={`group px-6 sm:px-8 py-3 border text-[10px] font-black transition-all uppercase tracking-[0.3em] flex items-center justify-center gap-2 ${
+                className={`group px-4 sm:px-8 py-2.5 sm:py-3 border text-[9px] sm:text-[10px] font-black transition-all uppercase tracking-[0.22em] sm:tracking-[0.3em] flex items-center justify-center gap-2 ${
                   isDarkMode
                     ? 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/20 shadow-[0_0_30px_rgba(6,182,212,0.1)]'
-                    : 'bg-indigo-500/10 border-indigo-500/30 text-indigo-600 hover:bg-indigo-500/20 shadow-[0_0_30px_rgba(79,70,229,0.1)]'
+                    : 'bg-white border-slate-800 text-slate-900 hover:bg-slate-50'
                 }`}
               >
                 SEE THE RECEIPTS <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
@@ -281,10 +251,10 @@ export function DnaHero({ embedded = false }: { embedded?: boolean }) {
               <Link
                 href="/contact/"
                 prefetch={false}
-                className={`inline-flex items-center justify-center px-6 sm:px-8 py-3 bg-transparent border text-[10px] font-black transition-all uppercase tracking-[0.3em] ${
+                className={`inline-flex items-center justify-center px-4 sm:px-8 py-2.5 sm:py-3 bg-transparent border text-[9px] sm:text-[10px] font-black transition-all uppercase tracking-[0.22em] sm:tracking-[0.3em] ${
                   isDarkMode
                     ? 'border-zinc-800 text-zinc-500 hover:text-white hover:border-zinc-600'
-                    : 'border-slate-300 text-slate-500 hover:text-slate-900 hover:border-slate-500'
+                    : 'border-slate-400 text-slate-700 hover:text-slate-900 hover:border-slate-600'
                 }`}
               >
                 TALK TO US

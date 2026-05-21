@@ -13,5 +13,5 @@ export default function LedgerTrialPage({ params }: Props) {
   const entry = getTrialLedgerEntry(slug);
   if (!entry) notFound();
 
-  return <TrialLedgerReceiptPage entry={entry} />;
+  return <TrialLedgerReceiptPage slug={slug} />;
 }

@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { ChevronDown } from 'lucide-react';
-import type { EngineEntry } from '@/data/engine-registry';
 import { TOP_NAV_ITEMS } from './nav-items';
 import { pathsEqual } from './paths';
 import type { NavTheme } from './nav-theme';
@@ -13,17 +12,18 @@ type ZetaDesktopNavProps = {
   isDarkMode: boolean;
   navMuted: NavTheme['navMuted'];
   navHover: NavTheme['navHover'];
-  productEngines: EngineEntry[];
   navigate: (href: string) => void;
-  // New unified dropdown state
   openDropdownId: string | null;
-  toggleDropdown: (id: string) => void;
+  openDropdown: (id: string) => void;
+  scheduleCloseDropdown: () => void;
+  cancelCloseDropdown: () => void;
   setDropdownRef: (id: string, el: HTMLDivElement | null) => void;
   // Legacy props kept for compatibility — no longer rendered
   blogOpen?: boolean;
   setBlogOpen?: (open: boolean) => void;
   manuscriptsOpen?: boolean;
   setManuscriptsOpen?: (open: boolean) => void;
+  toggleDropdown?: (id: string) => void;
   blogRef?: React.RefObject<HTMLDivElement>;
   manuscriptsRef?: React.RefObject<HTMLDivElement>;
   manuscripts?: unknown[];
@@ -41,13 +41,13 @@ function isNavItemActive(pathname: string | null, href: string, itemId: string):
 }
 
 function navLinkClass(isActive: boolean, isDarkMode: boolean, navHover: string) {
-  return `uppercase cursor-pointer transition-colors whitespace-nowrap shrink-0 ${
+  return `uppercase transition-colors whitespace-nowrap shrink-0 ${
     isActive ? `${isDarkMode ? 'text-white' : 'text-slate-900'} border-b border-cyan-500 pb-1` : navHover
   }`;
 }
 
 function dropdownShell(isDarkMode: boolean, wide = false) {
-  return `absolute top-full right-0 mt-4 ${wide ? 'w-[340px]' : 'w-[300px]'} max-h-[min(72vh,26rem)] flex flex-col rounded-sm shadow-2xl backdrop-blur-xl z-[100] overflow-hidden border ${
+  return `absolute top-full left-0 mt-2 ${wide ? 'w-[340px]' : 'w-[300px]'} max-h-[min(72vh,26rem)] flex flex-col rounded-sm shadow-2xl backdrop-blur-xl z-[100] overflow-hidden border ${
     isDarkMode ? 'bg-zinc-950/98 border-zinc-800' : 'bg-white border-slate-200'
   }`;
 }
@@ -71,17 +71,17 @@ export function ZetaDesktopNav({
   navHover,
   navigate,
   openDropdownId,
-  toggleDropdown,
+  openDropdown,
+  scheduleCloseDropdown,
+  cancelCloseDropdown,
   setDropdownRef,
 }: ZetaDesktopNavProps) {
-  // searchParams used only if a future dropdown item needs query-param awareness
   useSearchParams();
 
   return (
     <div
       className={`hidden lg:flex flex-1 min-w-0 justify-end flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-black tracking-widest ${navMuted}`}
     >
-      {/* ── Dynamic TOP_NAV_ITEMS (Research, Target Validation, Resistance, MoA) ── */}
       {TOP_NAV_ITEMS.map((item) => {
         const isActive = isNavItemActive(pathname, item.href, item.id);
         const hasDropdown = Array.isArray(item.dropdownItems) && item.dropdownItems.length > 0;
@@ -100,22 +100,23 @@ export function ZetaDesktopNav({
             key={item.id}
             className="relative shrink-0"
             ref={(el) => setDropdownRef(item.id, el)}
+            onMouseEnter={() => {
+              cancelCloseDropdown();
+              openDropdown(item.id);
+            }}
+            onMouseLeave={scheduleCloseDropdown}
           >
-            <button
-              type="button"
-              onClick={() => toggleDropdown(item.id)}
-              className={`uppercase flex items-center gap-2 cursor-pointer transition-colors whitespace-nowrap ${
-                isActive
-                  ? `${isDarkMode ? 'text-white' : 'text-slate-900'} border-b border-cyan-500 pb-1`
-                  : navHover
-              }`}
+            <Link
+              href={item.href}
+              prefetch={false}
+              className={`inline-flex items-center gap-2 ${navLinkClass(isActive, isDarkMode, navHover)}`}
             >
               {item.label}
-              <ChevronDown className={`w-3 h-3 transition-transform shrink-0 ${isOpen ? 'rotate-180' : ''}`} />
-            </button>
+              <ChevronDown className={`w-3 h-3 transition-transform shrink-0 ${isOpen ? 'rotate-180' : ''}`} aria-hidden />
+            </Link>
 
             {isOpen && (
-              <div className={dropdownShell(isDarkMode, false)}>
+              <div className={dropdownShell(isDarkMode, item.id === 'ledger')}>
                 <div className={dropdownHeader(isDarkMode)}>
                   <span className={dropdownHeaderLabel(isDarkMode)}>{item.label}</span>
                 </div>

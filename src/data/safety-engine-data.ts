@@ -103,6 +103,50 @@ export const SAFETY_PROVENANCE: ProvenanceItem[] = [
   { slug: 'VETO_LOGIC', description: 'Deterministic: high toxicity → veto treatment', meta: 'Net Benefit' },
 ];
 
+// ─── IO Risk-Benefit scatter (fixed — do not use Math.random in render) ───────
+
+export type IoScatterPoint = { x: number; y: number; status: 'pass' | 'veto' };
+
+function buildIoScatterStable(count: number): IoScatterPoint[] {
+  return Array.from({ length: count }, (_, i) => ({
+    x: parseFloat((0.08 + ((i * 17) % 45) / 100).toFixed(2)),
+    y: parseFloat((0.28 + ((i * 23) % 55) / 100).toFixed(2)),
+    status: 'pass' as const,
+  }));
+}
+
+function buildIoScatterFutile(count: number): IoScatterPoint[] {
+  return Array.from({ length: count }, (_, i) => ({
+    x: parseFloat((0.68 + ((i * 11) % 22) / 100).toFixed(2)),
+    y: parseFloat((0.12 + ((i * 13) % 22) / 100).toFixed(2)),
+    status: 'veto' as const,
+  }));
+}
+
+/** Gate chart — stable cohort */
+export const IO_SCATTER_STABLE = buildIoScatterStable(40);
+
+/** Gate chart — futile toxicity zone */
+export const IO_SCATTER_FUTILE = buildIoScatterFutile(25);
+
+/** Compact gate panel (safety-dosing) */
+export const IO_SCATTER_COMPACT: IoScatterPoint[] = [
+  ...buildIoScatterStable(22),
+  ...buildIoScatterFutile(8),
+];
+
+export const IO_SCATTER_BOUNDARY = [
+  { x: 0, y: 0.5 },
+  { x: 0.3, y: 0.5 },
+  { x: 0.3, y: 0.4 },
+  { x: 0.5, y: 0.4 },
+  { x: 0.5, y: 0.35 },
+  { x: 0.6, y: 0.35 },
+  { x: 0.6, y: 0.25 },
+  { x: 0.65, y: 0.25 },
+  { x: 0.65, y: 0 },
+] as const;
+
 // ─── Sidebar Tabs ─────────────────────────────────────────────────────────────
 
 export const SAFETY_TABS = [

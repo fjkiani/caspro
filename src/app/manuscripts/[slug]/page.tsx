@@ -1,32 +1,31 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { getUseCaseBySlugCms } from '@/lib/docs/hygraph/use-case-queries';
+import { notFound, permanentRedirect } from 'next/navigation';
+import { resolveManuscriptBySlugParam } from '@/lib/docs/hygraph/use-case-queries';
+import { researchManuscriptPath } from '@/lib/research/paths';
+import { normalizeManuscriptSlugParam } from '@/lib/research/manuscript-slug';
 import UseCaseViewer from '@/components/use-case/UseCaseViewer';
 
-interface ManuscriptPageProps {
-  params: Promise<{ slug: string }>;
-}
+type ManuscriptPageProps = {
+  params: { slug: string };
+};
 
-// ---------------------------------------------------------------------------
-// generateMetadata — full Twitter card + LinkedIn (OpenGraph) with Hygraph image
-// ---------------------------------------------------------------------------
 export async function generateMetadata({ params }: ManuscriptPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const useCase = await getUseCaseBySlugCms(slug);
+  const slug = normalizeManuscriptSlugParam(params.slug);
+  const useCase = await resolveManuscriptBySlugParam(slug);
 
   if (!useCase) {
     return { title: 'Manuscript not found | CrisPRO.ai' };
   }
 
+  const canonicalSlug = useCase.slug || slug;
   const title = `${useCase.title} | CrisPRO.ai Manuscript`;
   const description =
     useCase.resultsHeadline?.trim() ||
     useCase.description?.trim() ||
     'How we solved a real problem with AI and engineering.';
 
-  const pageUrl = `https://crispro.ai/manuscripts/${slug}/`;
+  const pageUrl = `https://crispro.ai${researchManuscriptPath(canonicalSlug)}`;
 
-  // Prefer heroImage, then thumbnail, then site-wide fallback
   const ogImageUrl =
     useCase.heroImage?.url ??
     useCase.thumbnail?.url ??
@@ -74,15 +73,17 @@ export async function generateMetadata({ params }: ManuscriptPageProps): Promise
   };
 }
 
-// ---------------------------------------------------------------------------
-// Page component
-// ---------------------------------------------------------------------------
 export default async function ManuscriptDetailPage({ params }: ManuscriptPageProps) {
-  const { slug } = await params;
-  const useCase = await getUseCaseBySlugCms(slug);
+  const paramSlug = normalizeManuscriptSlugParam(params.slug);
+  const useCase = await resolveManuscriptBySlugParam(paramSlug);
 
   if (!useCase) {
     notFound();
+  }
+
+  const canonicalSlug = useCase.slug?.trim();
+  if (canonicalSlug && canonicalSlug !== paramSlug) {
+    permanentRedirect(researchManuscriptPath(canonicalSlug));
   }
 
   return <UseCaseViewer useCase={useCase} />;

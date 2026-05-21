@@ -18,32 +18,32 @@ const nextConfig = {
     return [
       {
         source: '/target-validation',
-        destination: '/ledger/',
+        destination: '/ledger/ceacam5/',
         permanent: true,
       },
       {
         source: '/target-validation/',
-        destination: '/ledger/',
+        destination: '/ledger/ceacam5/',
         permanent: true,
       },
       {
         source: '/resistance',
-        destination: '/ledger/',
+        destination: '/ledger/capri/',
         permanent: true,
       },
       {
         source: '/resistance/',
-        destination: '/ledger/',
+        destination: '/ledger/capri/',
         permanent: true,
       },
       {
         source: '/moa',
-        destination: '/ledger/',
+        destination: '/ledger/latify/',
         permanent: true,
       },
       {
         source: '/moa/',
-        destination: '/ledger/',
+        destination: '/ledger/latify/',
         permanent: true,
       },
       {
@@ -74,6 +74,26 @@ const nextConfig = {
       {
         source: '/engine/evidence-matrix/',
         destination: '/engine/safety/',
+        permanent: true,
+      },
+      {
+        source: '/blog',
+        destination: '/research',
+        permanent: true,
+      },
+      {
+        source: '/blog/',
+        destination: '/research/',
+        permanent: true,
+      },
+      {
+        source: '/blog/post/:slug',
+        destination: '/research/blog/:slug',
+        permanent: true,
+      },
+      {
+        source: '/blog/post/:slug/',
+        destination: '/research/blog/:slug/',
         permanent: true,
       },
       // Oncology co-pilots
