@@ -4,7 +4,7 @@
  */
 
 import { clearCache, fetchWithCache, hygraphClient } from './client';
-import { resolvePublishedAbstractUrl } from '@/data/abstract-published-urls';
+import { resolveAacrJournalUrl, resolvePublishedAbstractUrl } from '@/data/abstract-published-urls';
 import { RESEARCH_ABSTRACTS_FALLBACK } from '@/data/research-abstracts-fallback';
 import { decodeAbstractSlugParam } from '@/lib/research/abstract-slug';
 import {
@@ -130,19 +130,30 @@ function mapPost(row: HygraphPostRow): ResearchAbstract {
     [authorLine, venue].filter(Boolean).join(' · ') ||
     null;
 
+  const link =
+    resolvePublishedAbstractUrl({
+      slug: row.slug,
+      title: row.title,
+      venue,
+      hygraphExternalLink: row.externalLink,
+      seedLink: seed?.link,
+    }) ?? null;
+
+  const aacrImageUrl = resolveAacrJournalUrl({
+    slug: row.slug,
+    title: row.title,
+    venue,
+    publishedUrl: link ?? seed?.link,
+  });
+
   return {
     id: row.id,
     slug: row.slug,
     title: row.title,
     bodyHtml: row.content?.html ?? null,
     bodyText,
-    link:
-      resolvePublishedAbstractUrl({
-        slug: row.slug,
-        title: row.title,
-        hygraphExternalLink: row.externalLink,
-        seedLink: seed?.link,
-      }) ?? null,
+    link,
+    aacrImageUrl,
     imageUrl: row.featuredImage?.url ?? null,
     authorLine,
     venue,

@@ -12,7 +12,6 @@ import { abstractHasDeck } from '@/lib/docs/hygraph/research-abstract-deck';
 import { plainPreviewText } from '@/lib/research/plain-text';
 import {
   researchAbstractHref,
-  researchAbstractImageHref,
   RESEARCH_SECTIONS,
   RESEARCH_SECTION_LABELS,
   RESEARCH_HUB_TAB_LABELS,
@@ -93,7 +92,7 @@ function buildAbstractPreviews(abstracts: ResearchAbstract[], limit = 12): Previ
       href: researchAbstractHref(a.slug, a.link, hasDeck),
       subtitle: plainPreviewText(a.authorLine || a.venue || a.bodyText),
       imageUrl: a.imageUrl || AACR_LOGO,
-      imageHref: researchAbstractImageHref(a.slug, a.title),
+      imageHref: a.aacrImageUrl,
       badge: hasDeck ? 'Slides' : a.year ? String(a.year) : 'Abstract',
       external: !hasDeck && Boolean(a.link?.trim()),
     };
@@ -212,22 +211,45 @@ function ContentCard({
           </span>
         )}
       </div>
-      <div className="flex flex-1 flex-col p-4 min-h-0">
-        <h3 className={`text-sm font-semibold leading-snug line-clamp-2 ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
-          {item.title}
-        </h3>
-        {item.subtitle ? (
-          <p className={`mt-2 text-xs leading-relaxed line-clamp-3 ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
-            {item.subtitle}
-          </p>
-        ) : null}
-        <span className={`mt-auto pt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider ${isDarkMode ? 'text-cyan-500' : 'text-indigo-600'}`}>
-          {item.external ? 'Open' : 'Read'}
-          {item.external ? <ExternalLink className="h-3 w-3" /> : <ArrowRight className="h-3 w-3" />}
-        </span>
-      </div>
+      {item.imageHref && item.imageHref !== item.href ? (
+        <Link href={item.href} className="flex flex-1 flex-col p-4 min-h-0">
+          <h3 className={`text-sm font-semibold leading-snug line-clamp-2 ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
+            {item.title}
+          </h3>
+          {item.subtitle ? (
+            <p className={`mt-2 text-xs leading-relaxed line-clamp-3 ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+              {item.subtitle}
+            </p>
+          ) : null}
+          <span className={`mt-auto pt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider ${isDarkMode ? 'text-cyan-500' : 'text-indigo-600'}`}>
+            {item.external ? 'Open' : 'Read'}
+            {item.external ? <ExternalLink className="h-3 w-3" /> : <ArrowRight className="h-3 w-3" />}
+          </span>
+        </Link>
+      ) : (
+        <div className="flex flex-1 flex-col p-4 min-h-0">
+          <h3 className={`text-sm font-semibold leading-snug line-clamp-2 ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
+            {item.title}
+          </h3>
+          {item.subtitle ? (
+            <p className={`mt-2 text-xs leading-relaxed line-clamp-3 ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+              {item.subtitle}
+            </p>
+          ) : null}
+          <span className={`mt-auto pt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider ${isDarkMode ? 'text-cyan-500' : 'text-indigo-600'}`}>
+            {item.external ? 'Open' : 'Read'}
+            {item.external ? <ExternalLink className="h-3 w-3" /> : <ArrowRight className="h-3 w-3" />}
+          </span>
+        </div>
+      )}
     </article>
   );
+
+  const imageOpensSeparately = Boolean(item.imageHref && item.imageHref !== item.href);
+
+  if (imageOpensSeparately) {
+    return <div className="block h-full">{inner}</div>;
+  }
 
   if (item.external) {
     return (

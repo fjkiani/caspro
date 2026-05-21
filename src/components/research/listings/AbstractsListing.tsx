@@ -5,7 +5,7 @@ import { FileText, ExternalLink, ArrowRight, Presentation } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import type { ResearchAbstract } from '@/lib/docs/hygraph/research-abstract-types';
 import { abstractHasDeck } from '@/lib/docs/hygraph/research-abstract-deck';
-import { researchAbstractHref, researchAbstractImageHref } from '@/lib/research/paths';
+import { researchAbstractHref } from '@/lib/research/paths';
 
 export default function AbstractsListing({
   abstracts,
@@ -56,7 +56,7 @@ export default function AbstractsListing({
           const hasDeck = abstractHasDeck(ab.deck);
           const publishedUrl = ab.link?.trim() || null;
           const cardHref = researchAbstractHref(ab.slug, publishedUrl, hasDeck);
-          const imageHref = researchAbstractImageHref(ab.slug, ab.title);
+          const imageHref = ab.aacrImageUrl;
           const imgSrc = ab.imageUrl || 'https://www.aacr.org/wp-content/uploads/2019/01/AACR-Logo-4C.png';
           const summary = ab.bodyText || [ab.authorLine, ab.venue].filter(Boolean).join(' · ');
           const yearLabel = ab.year ? String(ab.year) : null;

@@ -43,12 +43,14 @@ export function researchAbstractDetailPath(slug: string): string {
   return `${RESEARCH_SECTIONS.abstracts}/${encodeURIComponent(s)}/`;
 }
 
-/** AACR.org — fallback when no journal URL is mapped for this abstract. */
-export const AACR_ORG_URL = 'https://www.aacr.org/';
-
-/** Image click: direct AACR journals abstract page (not Google Scholar). */
-export function researchAbstractImageHref(slug: string, title?: string): string {
-  return resolveAacrJournalUrl({ slug, title });
+/** Image click: direct aacrjournals.org abstract page (never generic aacr.org). */
+export function researchAbstractImageHref(
+  slug: string,
+  title?: string,
+  publishedUrl?: string | null,
+  venue?: string | null,
+): string {
+  return resolveAacrJournalUrl({ slug, title, publishedUrl, venue });
 }
 
 /** Primary click target: detail page when a deck exists; else published URL; else detail. */

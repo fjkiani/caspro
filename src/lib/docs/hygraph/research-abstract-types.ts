@@ -19,5 +19,7 @@ export type ResearchAbstract = {
   year: number | null;
   order: number | null;
   publishedAt: string | null;
+  /** Direct aacrjournals.org page — used for poster image clicks */
+  aacrImageUrl: string;
   deck?: ResearchAbstractDeck | null;
 };
