@@ -18,32 +18,32 @@ const nextConfig = {
     return [
       {
         source: '/target-validation',
-        destination: '/ledger/ceacam5/',
+        destination: '/ledger/',
         permanent: true,
       },
       {
         source: '/target-validation/',
-        destination: '/ledger/ceacam5/',
+        destination: '/ledger/',
         permanent: true,
       },
       {
         source: '/resistance',
-        destination: '/ledger/capri/',
+        destination: '/ledger/',
         permanent: true,
       },
       {
         source: '/resistance/',
-        destination: '/ledger/capri/',
+        destination: '/ledger/',
         permanent: true,
       },
       {
         source: '/moa',
-        destination: '/ledger/latify/',
+        destination: '/ledger/',
         permanent: true,
       },
       {
         source: '/moa/',
-        destination: '/ledger/latify/',
+        destination: '/ledger/',
         permanent: true,
       },
       {

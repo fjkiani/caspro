@@ -49,6 +49,8 @@ function buildRadarData(trial: TrialCaseFile) {
 interface VectorFailureAnalysisProps {
   /** Which trial to render on mount — defaults to 'latify' */
   initialTrialId?: string;
+  /** When true, hide trial switcher (used on /ledger/[slug] receipt pages) */
+  singleTrialMode?: boolean;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -57,6 +59,7 @@ interface VectorFailureAnalysisProps {
 
 export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
   initialTrialId = 'latify',
+  singleTrialMode = false,
 }) => {
   const router = useRouter();
   const { isDarkMode } = useTheme();
@@ -108,23 +111,24 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
 
         {/* Trial Tabs */}
         <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto lg:justify-end">
-          {TRIAL_IDS.map((id) => {
-            const t = TRIAL_CASE_FILES[id];
-            const isActive = id === activeTrialId;
-            return (
-              <button
-                key={id}
-                onClick={() => setActiveTrialId(id)}
-                className={`px-3 sm:px-5 py-2 rounded text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all border shrink-0 ${
-                  isActive
-                    ? (isDarkMode ? 'bg-cyan-500/10 border-cyan-500/40 text-cyan-400' : 'bg-sky-500/10 border-sky-500/40 text-sky-700')
-                    : (isDarkMode ? 'bg-zinc-950 border-zinc-800 text-zinc-600 hover:text-zinc-400' : 'bg-white border-slate-300 text-slate-600 hover:text-slate-900')
-                }`}
-              >
-                {t.id.toUpperCase()}
-              </button>
-            );
-          })}
+          {!singleTrialMode &&
+            TRIAL_IDS.map((id) => {
+              const t = TRIAL_CASE_FILES[id];
+              const isActive = id === activeTrialId;
+              return (
+                <button
+                  key={id}
+                  onClick={() => setActiveTrialId(id)}
+                  className={`px-3 sm:px-5 py-2 rounded text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all border shrink-0 ${
+                    isActive
+                      ? (isDarkMode ? 'bg-cyan-500/10 border-cyan-500/40 text-cyan-400' : 'bg-sky-500/10 border-sky-500/40 text-sky-700')
+                      : (isDarkMode ? 'bg-zinc-950 border-zinc-800 text-zinc-600 hover:text-zinc-400' : 'bg-white border-slate-300 text-slate-600 hover:text-slate-900')
+                  }`}
+                >
+                  {t.id.toUpperCase()}
+                </button>
+              );
+            })}
           <button
             type="button"
             onClick={() => router.push(`/proof/${activeTrialId}/case/`)}

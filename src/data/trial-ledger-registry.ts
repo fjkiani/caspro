@@ -12,6 +12,17 @@ export type TrialReceiptPreview =
   | 'kill-chain'
   | 'vector-map';
 
+/** Former top-level “category” pages that were really single-trial receipts */
+export interface LegacyCategoryHub {
+  id: string;
+  navLabel: string;
+  pageTitle: string;
+  pageSubtitle: string;
+  legacyPath: string;
+  trialSlug: string;
+  accent: 'cyan' | 'amber' | 'indigo';
+}
+
 export interface TrialLedgerEntry {
   slug: string;
   label: string;
@@ -19,9 +30,9 @@ export interface TrialLedgerEntry {
   receiptId: string;
   preview: TrialReceiptPreview;
   icon: LucideIcon;
-  /** Primary receipt route */
+  /** Canonical ledger receipt URL — every trial has one */
   route: string;
-  /** Full 8D de-risking map */
+  /** Full 8D de-risking map (proof workspace) */
   proofRoute: string;
   trialId: string;
   phase: string;
@@ -30,6 +41,41 @@ export interface TrialLedgerEntry {
   /** Wrong top-level routes that previously pointed at this trial */
   legacyRoutes: string[];
   order: number;
+}
+
+/** What used to be the LEDGER nav “main pages” (now trial slugs under /ledger/) */
+export const LEGACY_CATEGORY_HUBS: LegacyCategoryHub[] = [
+  {
+    id: 'target-validation',
+    navLabel: 'TARGET VALIDATION',
+    pageTitle: 'Target Validation',
+    pageSubtitle: 'TARGET-LOCK',
+    legacyPath: '/target-validation',
+    trialSlug: 'ceacam5',
+    accent: 'cyan',
+  },
+  {
+    id: 'resistance',
+    navLabel: 'RESISTANCE',
+    pageTitle: 'Resistance Intelligence',
+    pageSubtitle: 'KILL-CHAIN',
+    legacyPath: '/resistance',
+    trialSlug: 'capri',
+    accent: 'amber',
+  },
+  {
+    id: 'moa',
+    navLabel: 'MoA',
+    pageTitle: 'Mechanism Alignment',
+    pageSubtitle: 'MOA-ALIGN',
+    legacyPath: '/moa',
+    trialSlug: 'latify',
+    accent: 'indigo',
+  },
+];
+
+export function ledgerSlugPath(slug: string): string {
+  return `/ledger/${slug.trim().toLowerCase()}/`;
 }
 
 const PREVIEW_BY_SLUG: Record<string, TrialReceiptPreview> = {
@@ -90,7 +136,7 @@ function buildEntry(slug: string, file: TrialCaseFile): TrialLedgerEntry {
     receiptId: slug.toUpperCase(),
     preview,
     icon: ICON_BY_PREVIEW[preview],
-    route: preview === 'vector-map' ? `/proof/${slug}/` : `/ledger/${slug}/`,
+    route: ledgerSlugPath(slug),
     proofRoute: `/proof/${slug}/`,
     trialId: file.trialId,
     phase: file.phase,

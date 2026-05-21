@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 
-/** @deprecated Use `/ledger/latify/` — was incorrectly used as a category slug. */
+/** @deprecated Trial ledger hub — was a mistaken category URL. */
 export default function MoaRedirect() {
-  redirect('/ledger/latify/');
+  redirect('/ledger/');
 }

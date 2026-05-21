@@ -6,6 +6,7 @@ import { fetchWithCache, hygraphClient } from './client';
 import {
   TRIAL_LEDGER_ENTRIES,
   getTrialLedgerEntry,
+  ledgerSlugPath,
   type TrialLedgerEntry,
 } from '@/data/trial-ledger-registry';
 import { TRIAL_CASE_FILES } from '@/data/trial-case-files';
@@ -92,7 +93,7 @@ export async function getTrialLedgerEntries(): Promise<{
           sublabel: r.sublabel || local.sublabel,
           receiptId: (r.receiptLabel || local.receiptId).toUpperCase(),
           preview,
-          route: preview === 'vector-map' ? `/proof/${r.slug}/` : `/ledger/${r.slug}/`,
+          route: ledgerSlugPath(r.slug),
           trialId: r.trialId || local.trialId,
           phase: r.phase || local.phase,
           cancer: r.cancer || local.cancer,

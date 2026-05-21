@@ -6,6 +6,7 @@ import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
 import ProteinPreviewGated from '@/components/sections/mars/previews/ProteinPreviewGated';
 import MoaRadarPreviewGated from '@/components/sections/mars/previews/MoaRadarPreviewGated';
 import KillChainPreviewGated from '@/components/sections/mars/previews/KillChainPreviewGated';
+import { VectorFailureAnalysis } from '@/components/sections/mars/VectorFailureAnalysis';
 import type { TrialLedgerEntry } from '@/data/trial-ledger-registry';
 
 type TrialLedgerReceiptPageProps = {
@@ -20,6 +21,12 @@ function TrialVisual({ entry, isDarkMode }: { entry: TrialLedgerEntry; isDarkMod
       return <MoaRadarPreviewGated isDarkMode={isDarkMode} />;
     case 'kill-chain':
       return <KillChainPreviewGated isDarkMode={isDarkMode} />;
+    case 'vector-map':
+      return (
+        <div className="w-full h-full min-h-[420px] max-h-[70vh] overflow-auto">
+          <VectorFailureAnalysis initialTrialId={entry.slug} singleTrialMode />
+        </div>
+      );
     default:
       return null;
   }

@@ -49,12 +49,20 @@ const researchDropdown: NavDropdownItem[] = [
   },
 ];
 
-const ledgerDropdown: NavDropdownItem[] = TRIAL_LEDGER_ENTRIES.map((entry) => ({
-  label: `${entry.label} // ${entry.sublabel}`,
-  description: `${entry.trialId} · ${entry.cancer}${entry.legacyRoutes[0] ? ` · was ${entry.legacyRoutes[0]}` : ''}`,
-  href: entry.route,
-  accent: entry.preview === 'target-lock' ? 'cyan' : entry.preview === 'kill-chain' ? 'amber' : 'indigo',
-}));
+const ledgerDropdown: NavDropdownItem[] = [
+  {
+    label: 'Ledger hub',
+    description: 'Former Target Validation / Resistance / MoA pages',
+    href: '/ledger/',
+    accent: 'cyan',
+  },
+  ...TRIAL_LEDGER_ENTRIES.map((entry) => ({
+    label: `${entry.label} // ${entry.sublabel}`,
+    description: `${entry.route.replace(/\/$/, '')}${entry.legacyRoutes[0] ? ` · was ${entry.legacyRoutes[0]}` : ''}`,
+    href: entry.route,
+    accent: entry.preview === 'target-lock' ? 'cyan' : entry.preview === 'kill-chain' ? 'amber' : 'indigo',
+  })),
+];
 
 const engineDropdown: NavDropdownItem[] = getProductEngines().map((engine) => ({
   label: productMenuTitle(engine),

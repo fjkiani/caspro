@@ -4,11 +4,13 @@ Decoded clinical trials live under **`/ledger/[slug]/`** (receipt UI) and **`/pr
 
 ## Wrong routes (fixed)
 
-| Legacy URL | Correct trial ledger |
-|------------|----------------------|
-| `/target-validation/` | `/ledger/ceacam5/` |
-| `/resistance/` | `/ledger/capri/` |
-| `/moa/` | `/ledger/latify/` |
+| Legacy URL | New destination |
+|------------|-----------------|
+| `/target-validation/` | `/ledger/` (hub) → receipt at `/ledger/ceacam5/` |
+| `/resistance/` | `/ledger/` (hub) → receipt at `/ledger/capri/` |
+| `/moa/` | `/ledger/` (hub) → receipt at `/ledger/latify/` |
+
+Every trial slug: `latify`, `ceacam5`, `capri`, `adavosertib`, `berzosertib` → `/ledger/[slug]/`
 
 ## Model: `TrialLedger` (create in Hygraph Studio)
 
