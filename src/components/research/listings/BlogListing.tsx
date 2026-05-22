@@ -85,16 +85,7 @@ export default function BlogListing({
     }`;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 pt-6 md:pt-10 pb-16">
-      <div className="mb-8 md:mb-10 text-center max-w-3xl mx-auto">
-        <h2 className={`text-2xl md:text-3xl font-bold mb-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-          CrisPRO Blog
-        </h2>
-        <p className={`text-base md:text-lg ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
-          Insights, news, and research at the intersection of AI and oncology — organized by series where it matters.
-        </p>
-      </div>
-
+    <div className="max-w-7xl mx-auto px-4 pt-4 md:pt-6 pb-16">
       {(categoryChips.length > 0 || posts.length > 0) && (
         <div className="mb-8 md:mb-10 flex flex-wrap items-center justify-center gap-2">
           <button type="button" onClick={() => setCategory('')} className={chipClass(!activeSlug)}>

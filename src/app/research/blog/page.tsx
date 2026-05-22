@@ -5,6 +5,7 @@ import type { PostNode } from '@/types/blog';
 import ResearchSectionShell from '@/components/research/ResearchSectionShell';
 import BlogListing from '@/components/research/listings/BlogListing';
 import { isBlogArticlePost } from '@/lib/research/blog-posts';
+import AppLoading from '@/components/ui/AppLoading';
 import { RESEARCH_SECTIONS } from '@/lib/research/paths';
 
 export const dynamic = 'force-dynamic';
@@ -25,12 +26,15 @@ export default async function ResearchBlogIndexPage() {
   const categories = Array.isArray(categoriesData) ? categoriesData : [];
 
   return (
-    <Suspense fallback={<div className="min-h-screen" />}>
+    <Suspense fallback={<AppLoading label="Loading blog" />}>
       <ResearchSectionShell
         chrome={{
           section: 'blog',
           backHref: '/research',
           backLabel: 'Back to Research',
+          sectionTitle: 'CrisPRO Blog',
+          sectionDescription:
+            'Insights, news, and research at the intersection of AI and oncology — organized by series where it matters.',
         }}
       >
         <BlogListing posts={posts} categories={categories} />

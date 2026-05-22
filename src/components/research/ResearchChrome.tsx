@@ -19,6 +19,9 @@ export type ResearchChromeProps = {
   backLabel?: string;
   /** Hub uses a larger title block; sections use compact header. */
   variant?: 'hub' | 'section';
+  /** Section index page title (e.g. CrisPRO Blog). */
+  sectionTitle?: string;
+  sectionDescription?: string;
 };
 
 export default function ResearchChrome({
@@ -27,6 +30,8 @@ export default function ResearchChrome({
   backHref,
   backLabel,
   variant = section ? 'section' : 'hub',
+  sectionTitle,
+  sectionDescription,
 }: ResearchChromeProps) {
   const { isDarkMode } = useTheme();
   const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-400';
@@ -74,6 +79,17 @@ export default function ResearchChrome({
 
         {variant === 'hub' ? (
           <h1 className={`mt-3 text-2xl md:text-3xl font-black uppercase tracking-tight ${text}`}>Research</h1>
+        ) : null}
+
+        {sectionTitle && !leafLabel ? (
+          <div className="mt-3 md:mt-4">
+            <h1 className={`text-xl md:text-2xl lg:text-3xl font-bold tracking-tight ${text}`}>{sectionTitle}</h1>
+            {sectionDescription ? (
+              <p className={`mt-2 text-sm md:text-base max-w-3xl ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+                {sectionDescription}
+              </p>
+            ) : null}
+          </div>
         ) : null}
 
         {backHref && backLabel ? (

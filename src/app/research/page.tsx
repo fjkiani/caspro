@@ -7,6 +7,7 @@ import { getResearchAbstracts } from '@/lib/docs/hygraph/research-abstract-queri
 import { RESEARCH_SECTIONS, researchHubTabFromQuery } from '@/lib/research/paths';
 import { isBlogArticlePost } from '@/lib/research/blog-posts';
 import type { PostNode } from '@/types/blog';
+import AppLoading from '@/components/ui/AppLoading';
 import ResearchHubOverview from '@/components/research/ResearchHubOverview';
 
 export const dynamic = 'force-dynamic';
@@ -51,13 +52,7 @@ export default async function ResearchPage({
   const blogPosts = posts.filter(isBlogArticlePost);
 
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-white dark:bg-[#020408] flex items-center justify-center">
-          <div className="text-slate-400 dark:text-zinc-600 text-sm font-mono uppercase tracking-widest">Loading…</div>
-        </div>
-      }
-    >
+    <Suspense fallback={<AppLoading label="Loading research" />}>
       <ResearchHubOverview
         initialTab={researchHubTabFromQuery(tab || undefined)}
         blogPosts={blogPosts}

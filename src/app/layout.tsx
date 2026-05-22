@@ -9,6 +9,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { AccessibilityProvider } from "@/context/AccessibilityContext";
 import { JsonLd, organizationSchema } from "@/components/SEO/JsonLd";
+import NavigationLoader from "@/components/ui/NavigationLoader";
 
 // Space Grotesk for headings - more technical and modern
 const spaceGrotesk = Space_Grotesk({ 
@@ -111,6 +112,7 @@ export default function RootLayout({
       <body className={`${inter.className} flex flex-col min-h-screen bg-background`}>
         <ThemeProvider>
           <AccessibilityProvider>
+            <NavigationLoader />
             {/* <FloatingToggleButton href="/platform">
               Research Use Only
             </FloatingToggleButton> */}
