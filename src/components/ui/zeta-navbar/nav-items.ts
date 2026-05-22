@@ -24,6 +24,8 @@ export interface NavTopItem {
   label: string;
   href: string;
   dropdownItems?: NavDropdownItem[];
+  /** Opens in a new tab (e.g. crispro.org). */
+  external?: boolean;
 }
 
 const researchDropdown: NavDropdownItem[] = [
@@ -112,6 +114,12 @@ export function buildTopNavItems(abstracts: AbstractNavItem[] = []): NavTopItem[
       label: 'ENGINES',
       href: '/engine/',
       dropdownItems: engineDropdown,
+    },
+    {
+      id: 'org',
+      label: 'ORG',
+      href: 'https://crispro.org/',
+      external: true,
     },
   ];
 }

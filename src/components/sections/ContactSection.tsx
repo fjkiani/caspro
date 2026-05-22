@@ -23,6 +23,9 @@ export const CONTACT_CONFIG = {
   titleText: 'Request a Demo',
   subtitleText:
     'The current standard of care is a coin toss. Book a live demo to witness our command-and-control platform replace clinical guessing with deterministic, dependency-first therapeutic architecture. Watch us resolve VUS noise in real-time, bypass the stromal cage, and intercept lethal drug-drug interactions before the first dose is drawn. We don\'t guess. We do the math.',
+  /** Nonprofit / disclosures (opens in new tab). */
+  orgSiteUrl: 'https://crispro.org/',
+  orgSiteLabel: 'CrisPRO.org',
   ctaText: 'Submit Request',
   hintText: 'Required fields are marked with *',
   formTitle: 'Initiate Contact',
@@ -281,6 +284,17 @@ const ContactSection = () => {
               }`}
             >
               {CONTACT_CONFIG.subtitleText}
+            </p>
+            <p className={`text-xs font-semibold uppercase tracking-widest mb-8 -mt-4 ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
+              Nonprofit mission and disclosures:{' '}
+              <a
+                href={CONTACT_CONFIG.orgSiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`underline-offset-2 hover:underline ${isDarkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-indigo-600 hover:text-indigo-800'}`}
+              >
+                {CONTACT_CONFIG.orgSiteLabel}
+              </a>
             </p>
 
             <div

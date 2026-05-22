@@ -37,6 +37,7 @@ function isNavItemActive(pathname: string | null, href: string, itemId: string):
   }
   if (itemId === 'abstracts' && norm.startsWith('/research/abstracts')) return true;
   if (itemId === 'engines' && norm.startsWith('/engine')) return true;
+  if (itemId === 'org') return false;
   return false;
 }
 
@@ -79,14 +80,26 @@ export function ZetaMobileDrawer({
 
               return (
                 <div key={item.id} className="flex flex-col gap-1">
-                  <Link
-                    href={item.href}
-                    prefetch={false}
-                    onClick={onClose}
-                    className={linkRowClass(isDarkMode, isActive, navMuted)}
-                  >
-                    {item.label}
-                  </Link>
+                  {item.external ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={onClose}
+                      className={linkRowClass(isDarkMode, false, navMuted)}
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      prefetch={false}
+                      onClick={onClose}
+                      className={linkRowClass(isDarkMode, isActive, navMuted)}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                   {hasDropdown &&
                     item.dropdownItems!.map((sub) => (
                       <button

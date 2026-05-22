@@ -49,6 +49,7 @@ function isNavItemActive(pathname: string | null, href: string, itemId: string):
   }
   if (itemId === 'abstracts' && norm.startsWith('/research/abstracts')) return true;
   if (itemId === 'engines' && norm.startsWith('/engine')) return true;
+  if (itemId === 'org') return false;
   return false;
 }
 
@@ -102,6 +103,19 @@ export function ZetaDesktopNav({
         const isOpen = openDropdownId === item.id;
 
         if (!hasDropdown) {
+          if (item.external) {
+            return (
+              <a
+                key={item.id}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0"
+              >
+                <span className={navLinkClass(false, isDarkMode, navHover)}>{item.label}</span>
+              </a>
+            );
+          }
           return (
             <Link key={item.id} href={item.href} prefetch={false} className="shrink-0">
               <span className={navLinkClass(isActive, isDarkMode, navHover)}>{item.label}</span>
