@@ -8,7 +8,7 @@ import PostCard from './PostCard';
 import BlogSeriesBlock from '@/components/blog/BlogSeriesBlock';
 import { PostNode, Category } from '@/types/blog';
 import { ArrowRight } from 'lucide-react';
-import { partitionPostsForListing } from '@/lib/blog/series-grouping';
+import { planBlogListingLayout } from '@/lib/blog/series-grouping';
 
 interface BlogPageClientProps {
   posts: PostNode[];
@@ -73,16 +73,9 @@ export default function BlogPageClient({ posts, categories, initialCategory }: B
     return posts.filter((p) => postMatchesCategory(p, activeSlug));
   }, [posts, activeSlug]);
 
-  const featuredPost = !activeSlug && filteredPosts.length > 0 ? filteredPosts[0] : null;
-  const remainderForListing = useMemo(() => {
-    if (activeSlug) return filteredPosts;
-    if (filteredPosts.length <= 1) return [];
-    return filteredPosts.slice(1);
-  }, [activeSlug, filteredPosts]);
-
-  const { series, standalone } = useMemo(
-    () => partitionPostsForListing(remainderForListing),
-    [remainderForListing]
+  const { series, standalone, featuredPost } = useMemo(
+    () => planBlogListingLayout(filteredPosts, { featureStandalone: !activeSlug }),
+    [filteredPosts, activeSlug],
   );
 
   /** Union of Hygraph/GraphCMS categories and any categories embedded on posts (CMS names win on slug clash). */

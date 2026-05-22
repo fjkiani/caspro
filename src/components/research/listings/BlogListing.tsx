@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import type { PostNode } from '@/types/blog';
 import { researchBlogPostPath, RESEARCH_SECTIONS } from '@/lib/research/paths';
-import { partitionPostsForListing } from '@/lib/blog/series-grouping';
+import { planBlogListingLayout } from '@/lib/blog/series-grouping';
 import BlogSeriesBlock from '@/components/blog/BlogSeriesBlock';
 import PostCard from '@/app/blog/PostCard';
 import { isBlogArticlePost } from '@/lib/research/blog-posts';
@@ -68,16 +68,9 @@ export default function BlogListing({
   const { isDarkMode } = useTheme();
   const { activeSlug, setCategory, filteredPosts, categoryChips } = useBlogCategoryFilter(posts, categories);
 
-  const featuredPost = !activeSlug && filteredPosts.length > 0 ? filteredPosts[0] : null;
-  const remainderForListing = useMemo(() => {
-    if (activeSlug) return filteredPosts;
-    if (filteredPosts.length <= 1) return [];
-    return filteredPosts.slice(1);
-  }, [activeSlug, filteredPosts]);
-
-  const { series, standalone } = useMemo(
-    () => partitionPostsForListing(remainderForListing),
-    [remainderForListing],
+  const { series, standalone, featuredPost } = useMemo(
+    () => planBlogListingLayout(filteredPosts, { featureStandalone: !activeSlug }),
+    [filteredPosts, activeSlug],
   );
 
   const chipClass = (active: boolean) =>
