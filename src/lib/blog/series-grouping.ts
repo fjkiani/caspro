@@ -1,5 +1,6 @@
 import type { PostNode } from '@/types/blog';
 import { ABSTRACT_CATEGORY_SLUG } from '@/lib/docs/hygraph/research-abstract-queries';
+import { BLOG_SERIES_RULES } from '@/lib/blog/blog-series-registry';
 
 export type SeriesGroup = {
   key: string;
@@ -38,28 +39,38 @@ export function formatSeriesDisplayName(key: string): string {
     .join(' ');
 }
 
+/** True when post belongs to a numbered series (never use as featured hero). */
+export function isSeriesPartPost(post: PostNode): boolean {
+  if (parseSeriesFromSlug(post.slug) || parsePartFromTitle(post.title)) return true;
+  return BLOG_SERIES_RULES.some((rule) => rule.matchPost(post));
+}
+
 type SeriesMembership = {
   key: string;
   displayName: string;
   part: number;
 };
 
+function resolveSeriesRule(post: PostNode) {
+  return BLOG_SERIES_RULES.find((rule) => rule.matchPost(post)) ?? null;
+}
+
 function inferSeriesCategorySlugs(posts: PostNode[]): Set<string> {
-  const counts = new Map<string, { count: number; name: string }>();
+  const counts = new Map<string, number>();
 
   for (const post of posts) {
+    if (resolveSeriesRule(post)) continue;
     const isPart =
       Boolean(parsePartFromTitle(post.title)) || Boolean(parseSeriesFromSlug(post.slug));
     if (!isPart) continue;
     for (const cat of post.categories || []) {
       if (!cat.slug || cat.slug === ABSTRACT_CATEGORY_SLUG) continue;
-      const prev = counts.get(cat.slug) ?? { count: 0, name: cat.name || cat.slug };
-      counts.set(cat.slug, { count: prev.count + 1, name: prev.name || cat.slug });
+      counts.set(cat.slug, (counts.get(cat.slug) ?? 0) + 1);
     }
   }
 
   return new Set(
-    [...counts.entries()].filter(([, v]) => v.count >= 2).map(([slug]) => slug),
+    [...counts.entries()].filter(([, count]) => count >= 2).map(([slug]) => slug),
   );
 }
 
@@ -67,6 +78,15 @@ function resolveSeriesMembership(
   post: PostNode,
   inferredSeriesCats: Set<string>,
 ): SeriesMembership | null {
+  const rule = resolveSeriesRule(post);
+  if (rule) {
+    return {
+      key: rule.id,
+      displayName: rule.displayName,
+      part: seriesPartIndex(post),
+    };
+  }
+
   const fromSlug = parseSeriesFromSlug(post.slug);
   if (fromSlug) {
     return {
@@ -85,7 +105,7 @@ function resolveSeriesMembership(
   if (seriesCat) {
     return {
       key: seriesCat.slug.toLowerCase(),
-      displayName: seriesCat.name || formatSeriesDisplayName(seriesCat.slug),
+      displayName: formatSeriesDisplayName(seriesCat.slug),
       part,
     };
   }
@@ -95,7 +115,6 @@ function resolveSeriesMembership(
 
 /**
  * Split posts into multi-part series (2+ posts sharing a series key) vs standalone.
- * Matches `-part-N` slugs OR `Part N` titles grouped by shared Hygraph category.
  */
 export function partitionPostsForListing(posts: PostNode[]): {
   series: SeriesGroup[];
@@ -131,7 +150,7 @@ export function partitionPostsForListing(posts: PostNode[]): {
 
   series.sort((a, b) => {
     const ta = Math.max(...a.posts.map((p) => new Date(p.createdAt).getTime()));
-    const tb = Math.max(...b.posts.map((p) => new Date(b.createdAt).getTime()));
+    const tb = Math.max(...b.posts.map((p) => new Date(p.createdAt).getTime()));
     return tb - ta;
   });
 
@@ -140,7 +159,6 @@ export function partitionPostsForListing(posts: PostNode[]): {
   return { series, standalone };
 }
 
-/** Pull standalone Part N posts into a series when they share its Hygraph category. */
 function mergeOrphanPartsIntoSeries(
   series: SeriesGroup[],
   standalone: PostNode[],
@@ -151,6 +169,16 @@ function mergeOrphanPartsIntoSeries(
   const remaining: PostNode[] = [];
 
   for (const post of standalone) {
+    const rule = resolveSeriesRule(post);
+    if (rule) {
+      const target = merged.find((s) => s.key === rule.id);
+      if (target) {
+        target.posts.push(post);
+        target.posts.sort((a, b) => seriesPartIndex(a) - seriesPartIndex(b));
+        continue;
+      }
+    }
+
     const fromSlug = parseSeriesFromSlug(post.slug);
     if (fromSlug) {
       const target = merged.find((s) => s.key === fromSlug.key);
@@ -190,21 +218,40 @@ export type BlogListingLayout = {
  * Partition full post list first so every series part stays in its rail.
  * Featured slot is reserved for standalone (non-series) posts only.
  */
+function postMatchesCategory(post: PostNode, categorySlug: string): boolean {
+  if (!categorySlug) return true;
+  return (post.categories || []).some((c) => c.slug === categorySlug);
+}
+
 export function planBlogListingLayout(
-  posts: PostNode[],
-  opts?: { featureStandalone?: boolean },
+  allPosts: PostNode[],
+  opts?: { featureStandalone?: boolean; categorySlug?: string },
 ): BlogListingLayout {
-  const { series: rawSeries, standalone: rawStandalone } = partitionPostsForListing(posts);
+  const categorySlug = opts?.categorySlug?.trim() ?? '';
+
+  // Always partition the full list so every series part stays in its rail.
+  const { series: rawSeries, standalone: rawStandalone } = partitionPostsForListing(allPosts);
   const { series, standalone: mergedStandalone } = mergeOrphanPartsIntoSeries(rawSeries, rawStandalone);
 
-  const featureStandalone = opts?.featureStandalone !== false;
-  let featuredPost: PostNode | null = null;
-  let standalone = mergedStandalone;
+  const visibleSeries = categorySlug
+    ? series.filter((block) => block.posts.some((p) => postMatchesCategory(p, categorySlug)))
+    : series;
 
-  if (featureStandalone && mergedStandalone.length > 0) {
-    featuredPost = mergedStandalone[0];
-    standalone = mergedStandalone.slice(1);
+  const seriesSlugs = new Set(visibleSeries.flatMap((block) => block.posts.map((p) => p.slug)));
+
+  const featureStandalone = opts?.featureStandalone !== false;
+  const pool = mergedStandalone.filter(
+    (p) => postMatchesCategory(p, categorySlug) && !seriesSlugs.has(p.slug),
+  );
+  const nonSeriesPool = pool.filter((p) => !isSeriesPartPost(p));
+
+  let featuredPost: PostNode | null = null;
+  let standalone = pool;
+
+  if (featureStandalone && nonSeriesPool.length > 0) {
+    featuredPost = nonSeriesPool[0];
+    standalone = pool.filter((p) => p.slug !== featuredPost!.slug);
   }
 
-  return { series, standalone, featuredPost };
+  return { series: visibleSeries, standalone, featuredPost };
 }

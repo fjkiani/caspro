@@ -9,6 +9,7 @@ import BlogSeriesBlock from '@/components/blog/BlogSeriesBlock';
 import { PostNode, Category } from '@/types/blog';
 import { ArrowRight } from 'lucide-react';
 import { planBlogListingLayout } from '@/lib/blog/series-grouping';
+import { blogCategoryLabel } from '@/lib/blog/blog-series-registry';
 
 interface BlogPageClientProps {
   posts: PostNode[];
@@ -52,11 +53,6 @@ const FeaturedPostCard: React.FC<{ post: PostNode }> = ({ post }) => (
   </div>
 );
 
-function postMatchesCategory(post: PostNode, categorySlug: string): boolean {
-  if (!categorySlug) return true;
-  return (post.categories || []).some((c) => c.slug === categorySlug);
-}
-
 export default function BlogPageClient({ posts, categories, initialCategory }: BlogPageClientProps) {
   const router = useRouter();
   const activeSlug = initialCategory || '';
@@ -68,15 +64,12 @@ export default function BlogPageClient({ posts, categories, initialCategory }: B
     [router]
   );
 
-  const filteredPosts = useMemo(() => {
-    if (!activeSlug) return posts;
-    return posts.filter((p) => postMatchesCategory(p, activeSlug));
-  }, [posts, activeSlug]);
-
   const { series, standalone, featuredPost } = useMemo(
-    () => planBlogListingLayout(filteredPosts, { featureStandalone: !activeSlug }),
-    [filteredPosts, activeSlug],
+    () => planBlogListingLayout(posts, { featureStandalone: !activeSlug, categorySlug: activeSlug }),
+    [posts, activeSlug],
   );
+
+  const hasVisibleContent = series.length > 0 || standalone.length > 0 || Boolean(featuredPost);
 
   /** Union of Hygraph/GraphCMS categories and any categories embedded on posts (CMS names win on slug clash). */
   const categoryChips = useMemo(() => {
@@ -91,7 +84,7 @@ export default function BlogPageClient({ posts, categories, initialCategory }: B
       });
     });
     return Array.from(bySlug.entries())
-      .map(([slug, name]) => ({ slug, name }))
+      .map(([slug, name]) => ({ slug, name: blogCategoryLabel(slug, name) }))
       .sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
   }, [categories, posts]);
 
@@ -141,11 +134,11 @@ export default function BlogPageClient({ posts, categories, initialCategory }: B
             </div>
           )}
 
-          {featuredPost && <FeaturedPostCard post={featuredPost} />}
-
           {series.map((block) => (
             <BlogSeriesBlock key={block.key} displayName={block.displayName} posts={block.posts} />
           ))}
+
+          {featuredPost && <FeaturedPostCard post={featuredPost} />}
 
           {standalone.length > 0 && (
             <div className="mb-6">
@@ -166,7 +159,7 @@ export default function BlogPageClient({ posts, categories, initialCategory }: B
             </div>
           )}
 
-          {posts.length > 0 && filteredPosts.length === 0 && (
+          {posts.length > 0 && activeSlug && !hasVisibleContent && (
             <div className="text-center py-16">
               <p className="text-xl text-slate-600 dark:text-slate-400 mb-4">No posts in this category.</p>
               <button type="button" onClick={() => setCategory('')} className="text-primary font-semibold underline">

@@ -148,7 +148,7 @@ export function ZetaDesktopNav({
                           : 'text-slate-900 hover:bg-slate-50'
                     }`}
                   >
-                    Overview
+                    {item.id === 'ledger' ? 'Trial ledger hub // LOCKED' : 'Overview'}
                     <span className="text-[10px] font-black text-cyan-500/60">→</span>
                   </button>
                   {item.dropdownItems!.map((sub) => (

@@ -1,16 +1,18 @@
 'use client';
 
 import Link from 'next/link';
-import { Target, Fingerprint, Cpu, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { Target, Fingerprint, Cpu, ArrowRight, Lock } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
 import {
   LEGACY_CATEGORY_HUBS,
   TRIAL_LEDGER_ENTRIES,
-  ledgerSlugPath,
   type LegacyCategoryHub,
 } from '@/data/trial-ledger-registry';
 import GatedLedgerTrialLink from '@/components/ledger/GatedLedgerTrialLink';
+import { PasscodeModal } from '@/components/ui/PasscodeModal';
+import { isGatedLedgerTrial } from '@/data/trial-gate';
 
 const HUB_ICONS: Record<string, typeof Target> = {
   'target-validation': Target,
@@ -21,17 +23,18 @@ const HUB_ICONS: Record<string, typeof Target> = {
 function LegacyHubCard({ hub, isDarkMode }: { hub: LegacyCategoryHub; isDarkMode: boolean }) {
   const entry = TRIAL_LEDGER_ENTRIES.find((e) => e.slug === hub.trialSlug);
   const Icon = HUB_ICONS[hub.id] ?? Target;
-  const href = ledgerSlugPath(hub.trialSlug);
+  const href = entry?.route ?? `/ledger/${hub.trialSlug}/`;
+  const gated = entry ? isGatedLedgerTrial(entry.slug) : false;
+  const [modalOpen, setModalOpen] = useState(false);
 
-  return (
-    <Link
-      href={href}
-      className={`group flex flex-col rounded-xl border p-6 transition-all ${
-        isDarkMode
-          ? 'bg-zinc-950/80 border-zinc-800 hover:border-cyan-500/50'
-          : 'bg-white border-slate-200 hover:border-indigo-300 shadow-sm hover:shadow-md'
-      }`}
-    >
+  const cardClass = `group flex flex-col rounded-xl border p-6 transition-all text-left w-full ${
+    isDarkMode
+      ? 'bg-zinc-950/80 border-zinc-800 hover:border-violet-500/40'
+      : 'bg-white border-slate-200 hover:border-violet-300 shadow-sm hover:shadow-md'
+  }`;
+
+  const inner = (
+    <>
       <div className="flex items-start gap-4 mb-4">
         <div
           className={`w-12 h-12 rounded border flex items-center justify-center shrink-0 ${
@@ -43,10 +46,10 @@ function LegacyHubCard({ hub, isDarkMode }: { hub: LegacyCategoryHub; isDarkMode
         <div className="min-w-0 flex-1">
           <span
             className={`block text-[9px] font-black uppercase tracking-[0.4em] mb-1 ${
-              isDarkMode ? 'text-[#00E5FF]' : 'text-indigo-600'
+              isDarkMode ? 'text-violet-400' : 'text-violet-600'
             }`}
           >
-            {hub.navLabel}
+            {hub.navLabel} // LOCKED
           </span>
           <h2
             className={`text-lg font-black uppercase tracking-tight ${
@@ -60,11 +63,15 @@ function LegacyHubCard({ hub, isDarkMode }: { hub: LegacyCategoryHub; isDarkMode
             <code className={`text-[10px] ${isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}`}>{href}</code>
           </p>
         </div>
-        <ArrowRight
-          className={`w-5 h-5 shrink-0 opacity-40 group-hover:opacity-100 transition-opacity ${
-            isDarkMode ? 'text-cyan-400' : 'text-indigo-600'
-          }`}
-        />
+        {gated ? (
+          <Lock className={`w-5 h-5 shrink-0 ${isDarkMode ? 'text-violet-400' : 'text-violet-600'}`} aria-hidden />
+        ) : (
+          <ArrowRight
+            className={`w-5 h-5 shrink-0 opacity-40 group-hover:opacity-100 transition-opacity ${
+              isDarkMode ? 'text-cyan-400' : 'text-indigo-600'
+            }`}
+          />
+        )}
       </div>
       {entry && (
         <p className={`text-sm leading-relaxed flex-grow ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
@@ -76,9 +83,31 @@ function LegacyHubCard({ hub, isDarkMode }: { hub: LegacyCategoryHub; isDarkMode
           isDarkMode ? 'text-zinc-600' : 'text-slate-400'
         }`}
       >
-        RECEIPT_ID: {entry?.receiptId ?? hub.trialSlug.toUpperCase()} // ZETA_SIG_LOCKED
+        {gated ? 'Unlock trial receipt →' : 'Open trial receipt →'}
       </p>
-    </Link>
+    </>
+  );
+
+  return (
+    <>
+      {gated ? (
+        <button type="button" onClick={() => setModalOpen(true)} className={cardClass}>
+          {inner}
+        </button>
+      ) : (
+        <Link href={href} className={cardClass}>
+          {inner}
+        </Link>
+      )}
+      {gated && entry && (
+        <PasscodeModal
+          open={modalOpen}
+          onClose={() => setModalOpen(false)}
+          proofUrl={entry.route}
+          targetLabel={entry.label}
+        />
+      )}
+    </>
   );
 }
 
@@ -105,7 +134,7 @@ export default function LedgerMainPage() {
         <header className="mb-10 sm:mb-14">
           <span
             className={`text-[9px] font-black uppercase tracking-[0.5em] ${
-              isDarkMode ? 'text-[#00E5FF]' : 'text-indigo-600'
+              isDarkMode ? 'text-violet-400' : 'text-violet-600'
             }`}
           >
             TRIAL LEDGER // ZETA_SIG_LOCKED
@@ -114,9 +143,8 @@ export default function LedgerMainPage() {
             Decoded clinical trials
           </h1>
           <p className={`text-sm mt-3 max-w-2xl ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
-            Former site sections (Target Validation, Resistance, MoA) were single trials — each now has a
-            canonical slug under <strong>/ledger/</strong>. Pick a receipt below or open the full 8D map from any
-            trial page.
+            All trial receipts are passcode-locked. Pick a receipt below to unlock the full de-risking map and
+            ledger case file.
           </p>
         </header>
 

@@ -8,6 +8,7 @@ import { useTheme } from '@/context/ThemeContext';
 import type { PostNode } from '@/types/blog';
 import { researchBlogPostPath, RESEARCH_SECTIONS } from '@/lib/research/paths';
 import { planBlogListingLayout } from '@/lib/blog/series-grouping';
+import { blogCategoryLabel } from '@/lib/blog/blog-series-registry';
 import BlogSeriesBlock from '@/components/blog/BlogSeriesBlock';
 import PostCard from '@/app/blog/PostCard';
 import { isBlogArticlePost } from '@/lib/research/blog-posts';
@@ -34,11 +35,6 @@ function useBlogCategoryFilter(posts: PostNode[], categories: { name: string; sl
     [router],
   );
 
-  const filteredPosts = useMemo(() => {
-    if (!activeSlug) return posts;
-    return posts.filter((p) => (p.categories || []).some((c) => c.slug === activeSlug));
-  }, [posts, activeSlug]);
-
   const categoryChips = useMemo(() => {
     const bySlug = new Map<string, string>();
     (categories || []).forEach((c) => {
@@ -51,11 +47,11 @@ function useBlogCategoryFilter(posts: PostNode[], categories: { name: string; sl
       });
     });
     return Array.from(bySlug.entries())
-      .map(([slug, name]) => ({ slug, name }))
+      .map(([slug, name]) => ({ slug, name: blogCategoryLabel(slug, name) }))
       .sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
   }, [categories, posts]);
 
-  return { activeSlug, setCategory, filteredPosts, categoryChips };
+  return { activeSlug, setCategory, categoryChips };
 }
 
 export default function BlogListing({
@@ -66,12 +62,14 @@ export default function BlogListing({
   categories: { name: string; slug: string }[];
 }) {
   const { isDarkMode } = useTheme();
-  const { activeSlug, setCategory, filteredPosts, categoryChips } = useBlogCategoryFilter(posts, categories);
+  const { activeSlug, setCategory, categoryChips } = useBlogCategoryFilter(posts, categories);
 
   const { series, standalone, featuredPost } = useMemo(
-    () => planBlogListingLayout(filteredPosts, { featureStandalone: !activeSlug }),
-    [filteredPosts, activeSlug],
+    () => planBlogListingLayout(posts, { featureStandalone: !activeSlug, categorySlug: activeSlug }),
+    [posts, activeSlug],
   );
+
+  const hasVisibleContent = series.length > 0 || standalone.length > 0 || Boolean(featuredPost);
 
   const chipClass = (active: boolean) =>
     `rounded-full px-4 py-2 text-xs font-black uppercase tracking-widest border transition-colors ${
@@ -98,6 +96,10 @@ export default function BlogListing({
           ))}
         </div>
       )}
+
+      {series.map((block) => (
+        <BlogSeriesBlock key={block.key} displayName={block.displayName} posts={block.posts} />
+      ))}
 
       {featuredPost && (
         <div
@@ -138,10 +140,6 @@ export default function BlogListing({
         </div>
       )}
 
-      {series.map((block) => (
-        <BlogSeriesBlock key={block.key} displayName={block.displayName} posts={block.posts} />
-      ))}
-
       {standalone.length > 0 && (
         <div className="mb-6">
           <h2 className={`text-xs font-black uppercase tracking-[0.35em] mb-4 ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`}>
@@ -161,7 +159,7 @@ export default function BlogListing({
         </div>
       )}
 
-      {posts.length > 0 && filteredPosts.length === 0 && (
+      {posts.length > 0 && activeSlug && !hasVisibleContent && (
         <div className="text-center py-16">
           <p className={`text-xl mb-4 ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>No posts in this topic.</p>
           <button type="button" onClick={() => setCategory('')} className="text-primary font-semibold underline">
