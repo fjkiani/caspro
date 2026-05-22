@@ -4,7 +4,8 @@ import Link from 'next/link';
 import moment from 'moment';
 import { ChevronRight, Layers } from 'lucide-react';
 import type { PostNode } from '@/types/blog';
-import { parseSeriesFromSlug } from '@/lib/blog/series-grouping';
+import { seriesPartIndex } from '@/lib/blog/series-grouping';
+import { researchBlogPostPath } from '@/lib/research/paths';
 
 export type BlogSeriesBlockProps = {
   displayName: string;
@@ -38,11 +39,11 @@ export default function BlogSeriesBlock({ displayName, posts }: BlogSeriesBlockP
 
         <ol className="space-y-0 border border-slate-200/80 dark:border-slate-700/80 rounded-xl overflow-hidden divide-y divide-slate-200 dark:divide-slate-700 bg-white/80 dark:bg-slate-950/50">
           {posts.map((post) => {
-            const part = parseSeriesFromSlug(post.slug)?.part ?? 0;
+            const part = seriesPartIndex(post);
             return (
               <li key={post.slug}>
                 <Link
-                  href={`/blog/post/${post.slug}/`}
+                  href={researchBlogPostPath(post.slug)}
                   className="group flex flex-col sm:flex-row sm:items-stretch gap-4 p-4 sm:p-5 hover:bg-cyan-500/[0.07] dark:hover:bg-cyan-500/10 transition-colors"
                 >
                   <div className="flex shrink-0 items-center gap-3 sm:w-44">

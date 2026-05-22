@@ -4,6 +4,7 @@ import React from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 import { PostNode } from '@/types/blog'; // Corrected import path
+import { researchBlogPostPath } from '@/lib/research/paths';
 import { ArrowRight } from 'lucide-react';
 
 interface PostCardProps {
@@ -23,7 +24,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, prominent }) => {
           : 'bg-white dark:bg-slate-800/50 rounded-lg shadow-lg hover:shadow-primary/20 border-slate-200 dark:border-slate-700 hover:border-primary/30'
       }`}
     >
-      <Link href={`/blog/post/${postData.slug}/`}>
+      <Link href={researchBlogPostPath(postData.slug)}>
         <div className={`relative block overflow-hidden ${prominent ? 'h-52 sm:h-56' : 'h-48'}`}>
           {postData.featuredImage?.url ? (
             <img
@@ -49,7 +50,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, prominent }) => {
             prominent ? 'text-xl leading-snug' : 'text-lg'
           }`}
         >
-          <Link href={`/blog/post/${postData.slug}/`}>
+          <Link href={researchBlogPostPath(postData.slug)}>
             {postData.title}
           </Link>
         </h3>
@@ -57,7 +58,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, prominent }) => {
             {postData.excerpt}
         </p>
         <div className="mt-auto">
-          <Link href={`/blog/post/${postData.slug}/`} className="inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark transition-colors duration-300">
+          <Link href={researchBlogPostPath(postData.slug)} className="inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark transition-colors duration-300">
               Read More
               <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
