@@ -182,85 +182,99 @@ function ContentCard({
     ? 'border-zinc-800 bg-zinc-950 hover:border-zinc-600'
     : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-md';
 
-  const inner = (
-    <article className={`flex h-full flex-col overflow-hidden rounded-lg border transition-all ${shell}`}>
-      <div className="relative aspect-[5/3] shrink-0 overflow-hidden bg-slate-100 dark:bg-zinc-900">
-        {item.imageUrl ? (
-          item.imageHref ? (
-            <a
-              href={item.imageHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="block h-full w-full"
-              aria-label="Open on AACR"
-            >
-              <img src={item.imageUrl} alt="" className="h-full w-full object-cover" />
-            </a>
-          ) : (
-            <img src={item.imageUrl} alt="" className="h-full w-full object-cover" />
-          )
-        ) : (
-          <div className="flex h-full items-center justify-center">
-            <Icon className={`h-8 w-8 opacity-25 ${isDarkMode ? 'text-zinc-500' : 'text-slate-400'}`} />
-          </div>
-        )}
-        {item.badge && (
-          <span className="absolute left-2 top-2 rounded bg-black/60 px-1.5 py-0.5 text-[9px] font-semibold uppercase text-white">
-            {item.badge}
-          </span>
-        )}
-      </div>
-      {item.imageHref && item.imageHref !== item.href ? (
-        <Link href={item.href} className="flex flex-1 flex-col p-4 min-h-0">
-          <h3 className={`text-sm font-semibold leading-snug line-clamp-2 ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
-            {item.title}
-          </h3>
-          {item.subtitle ? (
-            <p className={`mt-2 text-xs leading-relaxed line-clamp-3 ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
-              {item.subtitle}
-            </p>
-          ) : null}
-          <span className={`mt-auto pt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider ${isDarkMode ? 'text-cyan-500' : 'text-indigo-600'}`}>
-            {item.external ? 'Open' : 'Read'}
-            {item.external ? <ExternalLink className="h-3 w-3" /> : <ArrowRight className="h-3 w-3" />}
-          </span>
-        </Link>
-      ) : (
-        <div className="flex flex-1 flex-col p-4 min-h-0">
-          <h3 className={`text-sm font-semibold leading-snug line-clamp-2 ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
-            {item.title}
-          </h3>
-          {item.subtitle ? (
-            <p className={`mt-2 text-xs leading-relaxed line-clamp-3 ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
-              {item.subtitle}
-            </p>
-          ) : null}
-          <span className={`mt-auto pt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider ${isDarkMode ? 'text-cyan-500' : 'text-indigo-600'}`}>
-            {item.external ? 'Open' : 'Read'}
-            {item.external ? <ExternalLink className="h-3 w-3" /> : <ArrowRight className="h-3 w-3" />}
-          </span>
-        </div>
-      )}
-    </article>
+  const showSeparateImageLink = Boolean(
+    item.imageUrl && item.imageHref && item.imageHref !== item.href,
   );
 
-  const imageOpensSeparately = Boolean(item.imageHref && item.imageHref !== item.href);
+  const imageArea = (
+    <div className="relative aspect-[5/3] shrink-0 overflow-hidden bg-slate-100 dark:bg-zinc-900">
+      {item.imageUrl ? (
+        showSeparateImageLink ? (
+          <a
+            href={item.imageHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block h-full w-full"
+            aria-label="Open linked image source"
+          >
+            <img src={item.imageUrl} alt="" className="h-full w-full object-cover" />
+          </a>
+        ) : (
+          <img src={item.imageUrl} alt="" className="h-full w-full object-cover" />
+        )
+      ) : (
+        <div className="flex h-full items-center justify-center">
+          <Icon className={`h-8 w-8 opacity-25 ${isDarkMode ? 'text-zinc-500' : 'text-slate-400'}`} />
+        </div>
+      )}
+      {item.badge && (
+        <span className="absolute left-2 top-2 rounded bg-black/60 px-1.5 py-0.5 text-[9px] font-semibold uppercase text-white">
+          {item.badge}
+        </span>
+      )}
+    </div>
+  );
 
-  if (imageOpensSeparately) {
-    return <div className="block h-full">{inner}</div>;
+  const textArea = (
+    <>
+      <h3 className={`text-sm font-semibold leading-snug line-clamp-2 ${isDarkMode ? 'text-zinc-100' : 'text-slate-900'}`}>
+        {item.title}
+      </h3>
+      {item.subtitle ? (
+        <p className={`mt-2 text-xs leading-relaxed line-clamp-3 ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+          {item.subtitle}
+        </p>
+      ) : null}
+      <span
+        className={`mt-auto pt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider ${
+          isDarkMode ? 'text-cyan-500' : 'text-indigo-600'
+        }`}
+      >
+        {item.external ? 'Open' : 'Read'}
+        {item.external ? <ExternalLink className="h-3 w-3" /> : <ArrowRight className="h-3 w-3" />}
+      </span>
+    </>
+  );
+
+  const cardFrame = (
+    <div className={`flex h-full flex-col overflow-hidden rounded-lg border transition-all ${shell}`}>
+      {imageArea}
+      {showSeparateImageLink ? (
+        item.external ? (
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex min-h-0 flex-1 flex-col p-4"
+          >
+            {textArea}
+          </a>
+        ) : (
+          <Link href={item.href} className="flex min-h-0 flex-1 flex-col p-4">
+            {textArea}
+          </Link>
+        )
+      ) : (
+        <div className="flex min-h-0 flex-1 flex-col p-4">{textArea}</div>
+      )}
+    </div>
+  );
+
+  if (showSeparateImageLink) {
+    return <div className="block h-full">{cardFrame}</div>;
   }
 
   if (item.external) {
     return (
       <a href={item.href} target="_blank" rel="noopener noreferrer" className="block h-full">
-        {inner}
+        {cardFrame}
       </a>
     );
   }
+
   return (
     <Link href={item.href} className="block h-full">
-      {inner}
+      {cardFrame}
     </Link>
   );
 }

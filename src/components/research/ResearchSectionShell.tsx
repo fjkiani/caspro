@@ -17,7 +17,7 @@ export default function ResearchSectionShell({
     <>
       <ZetaNavbar />
       <div
-        className={`min-h-screen transition-colors duration-300 ${
+        className={`min-h-screen pt-14 transition-colors duration-300 ${
           isDarkMode ? 'bg-[#020408] text-zinc-100' : 'bg-slate-50 text-slate-900'
         }`}
       >

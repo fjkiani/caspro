@@ -19,11 +19,27 @@ interface PostEdge {
   node: PostNode;
 }
 
-export default async function ResearchBlogIndexPage() {
+function categoryFromSearchParams(searchParams: Record<string, string | string[] | undefined> | undefined): string {
+  const raw = searchParams?.category;
+  const s = Array.isArray(raw) ? raw[0] : raw;
+  if (!s || typeof s !== 'string') return '';
+  try {
+    return decodeURIComponent(s.trim());
+  } catch {
+    return s.trim();
+  }
+}
+
+export default async function ResearchBlogIndexPage({
+  searchParams,
+}: {
+  searchParams: Record<string, string | string[] | undefined>;
+}) {
   const [postsData, categoriesData] = await Promise.all([getPosts().catch(() => []), getCategories().catch(() => [])]);
 
   const posts = (Array.isArray(postsData) ? postsData.map((e: PostEdge) => e.node) : []).filter(isBlogArticlePost);
   const categories = Array.isArray(categoriesData) ? categoriesData : [];
+  const serverCategory = categoryFromSearchParams(searchParams);
 
   return (
     <Suspense fallback={<AppLoading label="Loading blog" />}>
@@ -37,7 +53,7 @@ export default async function ResearchBlogIndexPage() {
             'Insights, news, and research at the intersection of AI and oncology — organized by series where it matters.',
         }}
       >
-        <BlogListing posts={posts} categories={categories} />
+        <BlogListing posts={posts} categories={categories} serverCategory={serverCategory} />
       </ResearchSectionShell>
     </Suspense>
   );

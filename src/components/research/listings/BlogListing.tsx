@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
@@ -16,16 +16,32 @@ import { ABSTRACT_CATEGORY_SLUG } from '@/lib/docs/hygraph/research-abstract-que
 
 export { isBlogArticlePost };
 
-function useBlogCategoryFilter(posts: PostNode[], categories: { name: string; slug: string }[]) {
+function useBlogCategoryFilter(
+  posts: PostNode[],
+  categories: { name: string; slug: string }[],
+  serverCategory: string,
+) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const rawCategory = searchParams?.get('category')?.trim() ?? '';
-  let activeSlug = rawCategory;
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  const hasCategoryKey = searchParams?.has('category');
+  const rawFromUrl = hasCategoryKey ? (searchParams?.get('category')?.trim() ?? '') : '';
+  let fromUrl = rawFromUrl;
   try {
-    activeSlug = decodeURIComponent(rawCategory);
+    if (fromUrl) fromUrl = decodeURIComponent(rawFromUrl);
   } catch {
     /* keep raw */
   }
+
+  /**
+   * Before hydration: URL param or RSC `serverCategory` so first HTML matches a shared link.
+   * After hydration: live URL only so "All" / chip changes are not stuck on stale server props.
+   */
+  const activeSlug = hydrated ? (hasCategoryKey ? fromUrl : '') : fromUrl || serverCategory.trim();
 
   const setCategory = useCallback(
     (slug: string) => {
@@ -57,12 +73,15 @@ function useBlogCategoryFilter(posts: PostNode[], categories: { name: string; sl
 export default function BlogListing({
   posts,
   categories,
+  serverCategory = '',
 }: {
   posts: PostNode[];
   categories: { name: string; slug: string }[];
+  /** Category filter from RSC `searchParams` — keeps layout in sync with URL and avoids hydration gaps. */
+  serverCategory?: string;
 }) {
   const { isDarkMode } = useTheme();
-  const { activeSlug, setCategory, categoryChips } = useBlogCategoryFilter(posts, categories);
+  const { activeSlug, setCategory, categoryChips } = useBlogCategoryFilter(posts, categories, serverCategory);
 
   const { series, standalone, featuredPost } = useMemo(
     () => planBlogListingLayout(posts, { featureStandalone: !activeSlug, categorySlug: activeSlug }),
