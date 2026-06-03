@@ -44,3 +44,4 @@ next-env.d.ts
 build-errors.log
 ts-errors.log
 .cursor/rules/MOAT/clinical_trials.db
+.env.local

@@ -3,12 +3,17 @@
  *
  * Keyword intelligence engine for CrisPRO SEO platform.
  *
- * Live data sources (wire API keys via environment variables):
- *   - Semrush Keyword Magic Tool (RAPIDAPI_SEMRUSH_KEY)
- *   - Google Keyword Insight by Hexaplay (RAPIDAPI_GOOGLE_KEYWORD_KEY)
- *   - SEO Keyword Research by VebAPI (RAPIDAPI_VEBAPI_KEY)
- *   - Answer The Public by Csequery (RAPIDAPI_ATP_KEY)
+ * Live data sources:
+ *   Semrush Keyword Magic Tool
+ *     GET https://semrush-keyword-magic-tool.p.rapidapi.com/global-volume?keyword=<kw>&country=us
+ *     GET https://semrush-keyword-magic-tool.p.rapidapi.com/questions?keyword=<kw>&country=us
  *
+ *   Google Keyword Insight (google-keyword-insight1)
+ *     GET https://google-keyword-insight1.p.rapidapi.com/keysuggest/?keyword=<kw>&location=United+States&lang=en
+ *     GET https://google-keyword-insight1.p.rapidapi.com/questions/?keyword=<kw>&location=United+States&lang=en
+ *     GET https://google-keyword-insight1.p.rapidapi.com/topkeyword/?keyword=<kw>&location=United+States&lang=en
+ *
+ * All APIs share the same RapidAPI key (RAPIDAPI_KEY).
  * Falls back to seed data from crispro-keywords.ts when APIs are unavailable.
  */
 
@@ -25,7 +30,7 @@ export interface LiveKeywordData {
   serp_features: string[];   // 'featured_snippet', 'people_also_ask', 'ai_overview', etc.
   related_keywords: string[];
   questions: string[];       // "People also ask" questions
-  source: 'semrush' | 'google' | 'vebapi' | 'seed';
+  source: 'semrush' | 'google' | 'seed';
   fetchedAt: string;
 }
 
@@ -38,15 +43,6 @@ export interface KeywordGapReport {
   recommended_content_order: Keyword[];
 }
 
-export interface SERPAnalysis {
-  keyword: string;
-  top10: SERPResult[];
-  ai_overview_present: boolean;
-  featured_snippet: boolean;
-  people_also_ask: string[];
-  crispro_position: number | null;
-}
-
 export interface SERPResult {
   position: number;
   url: string;
@@ -55,152 +51,212 @@ export interface SERPResult {
   type: 'organic' | 'featured_snippet' | 'ai_overview' | 'paid';
 }
 
-// ── API Configuration ─────────────────────────────────────────────────────────
+// ── Shared API config ─────────────────────────────────────────────────────────
 
-const RAPIDAPI_HOST_SEMRUSH = 'semrush-keyword-magic-tool.p.rapidapi.com';
-const RAPIDAPI_HOST_GOOGLE_KW = 'google-keyword-insight1.p.rapidapi.com';
-const RAPIDAPI_HOST_VEBAPI = 'seo-keyword-research.p.rapidapi.com';
-const RAPIDAPI_HOST_ATP = 'answer-the-public.p.rapidapi.com';
+// All RapidAPI tools share one key — set RAPIDAPI_KEY in .env.local
+const RAPIDAPI_KEY = () => process.env.RAPIDAPI_KEY || '';
 
-const getHeaders = (apiKey: string, host: string) => ({
-  'X-RapidAPI-Key': apiKey,
-  'X-RapidAPI-Host': host,
+const SEMRUSH_HOST = 'semrush-keyword-magic-tool.p.rapidapi.com';
+const GOOGLE_KW_HOST = 'google-keyword-insight1.p.rapidapi.com';
+
+const headers = (host: string) => ({
+  'x-rapidapi-key': RAPIDAPI_KEY(),
+  'x-rapidapi-host': host,
   'Content-Type': 'application/json',
 });
 
 // ── Semrush Keyword Magic Tool ────────────────────────────────────────────────
+// GET /global-volume?keyword=ai+tools&country=us
+// GET /questions?keyword=ai+tools&country=us
 
-export async function fetchSemrushKeywordData(
+export async function fetchSemrushGlobalVolume(
   keyword: string,
-  database: string = 'us'
+  country: string = 'us'
 ): Promise<LiveKeywordData | null> {
-  const apiKey = process.env.RAPIDAPI_SEMRUSH_KEY;
-  if (!apiKey) {
-    console.warn('[keywordEngine] RAPIDAPI_SEMRUSH_KEY not set — using seed data');
+  if (!RAPIDAPI_KEY()) {
+    console.warn('[keywordEngine] RAPIDAPI_KEY not set — using seed data');
     return null;
   }
 
   try {
-    const url = `https://${RAPIDAPI_HOST_SEMRUSH}/keywords`;
+    const params = new URLSearchParams({ keyword, country });
+    const url = `https://${SEMRUSH_HOST}/global-volume?${params}`;
+
     const response = await fetch(url, {
-      method: 'POST',
-      headers: getHeaders(apiKey, RAPIDAPI_HOST_SEMRUSH),
-      body: JSON.stringify({
-        keyword,
-        database,
-        limit: 10,
-        sort_by: 'search_volume',
-      }),
+      method: 'GET',
+      headers: headers(SEMRUSH_HOST),
     });
 
     if (!response.ok) {
-      console.error(`[keywordEngine] Semrush API error: ${response.status}`);
+      console.error(`[keywordEngine] Semrush global-volume error: ${response.status} ${await response.text()}`);
       return null;
     }
 
     const data = await response.json();
 
-    // Normalize Semrush response shape
-    const kw = data?.data?.[0] || data;
+    // Semrush global-volume response shape:
+    // { keyword, volume, cpc, competition, trend: [...], keyword_difficulty, ... }
     return {
       keyword,
-      volume: kw.search_volume || kw.volume || 0,
-      difficulty: kw.keyword_difficulty || kw.difficulty || 0,
-      cpc: kw.cpc || 0,
-      trend: kw.trend || [],
-      serp_features: kw.serp_features || [],
-      related_keywords: (data?.data || []).slice(1, 6).map((k: { keyword: string }) => k.keyword),
+      volume: data?.volume || data?.search_volume || 0,
+      difficulty: data?.keyword_difficulty || data?.difficulty || 0,
+      cpc: data?.cpc || 0,
+      trend: Array.isArray(data?.trend) ? data.trend : [],
+      serp_features: data?.serp_features || [],
+      related_keywords: [],
       questions: [],
       source: 'semrush',
       fetchedAt: new Date().toISOString(),
     };
   } catch (err) {
-    console.error('[keywordEngine] Semrush fetch failed:', err);
+    console.error('[keywordEngine] Semrush global-volume failed:', err);
     return null;
   }
 }
 
-// ── Google Keyword Insight ────────────────────────────────────────────────────
-
-export async function fetchGoogleKeywordData(
-  keyword: string,
-  location: string = 'United States',
-  language: string = 'English'
-): Promise<LiveKeywordData | null> {
-  const apiKey = process.env.RAPIDAPI_GOOGLE_KEYWORD_KEY;
-  if (!apiKey) {
-    console.warn('[keywordEngine] RAPIDAPI_GOOGLE_KEYWORD_KEY not set — using seed data');
-    return null;
-  }
-
-  try {
-    const url = `https://${RAPIDAPI_HOST_GOOGLE_KW}/keysuggest`;
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: getHeaders(apiKey, RAPIDAPI_HOST_GOOGLE_KW),
-      body: JSON.stringify({ keyword, location, language }),
-    });
-
-    if (!response.ok) {
-      console.error(`[keywordEngine] Google Keyword API error: ${response.status}`);
-      return null;
-    }
-
-    const data = await response.json();
-    const kw = Array.isArray(data) ? data[0] : data;
-
-    return {
-      keyword,
-      volume: kw?.search_volume || kw?.avg_monthly_searches || 0,
-      difficulty: kw?.competition_index || 0,
-      cpc: kw?.high_top_of_page_bid || kw?.cpc || 0,
-      trend: kw?.monthly_search_volumes?.map((m: { search_volume: number }) => m.search_volume) || [],
-      serp_features: [],
-      related_keywords: (Array.isArray(data) ? data.slice(1, 6) : []).map((k: { keyword: string }) => k.keyword),
-      questions: [],
-      source: 'google',
-      fetchedAt: new Date().toISOString(),
-    };
-  } catch (err) {
-    console.error('[keywordEngine] Google Keyword fetch failed:', err);
-    return null;
-  }
-}
-
-// ── Answer The Public (question keywords) ────────────────────────────────────
-
-export async function fetchQuestionKeywords(
+export async function fetchSemrushQuestions(
   keyword: string,
   country: string = 'us'
 ): Promise<string[]> {
-  const apiKey = process.env.RAPIDAPI_ATP_KEY;
-  if (!apiKey) {
-    console.warn('[keywordEngine] RAPIDAPI_ATP_KEY not set');
-    return [];
-  }
+  if (!RAPIDAPI_KEY()) return [];
 
   try {
-    const url = `https://${RAPIDAPI_HOST_ATP}/search`;
+    const params = new URLSearchParams({ keyword, country });
+    const url = `https://${SEMRUSH_HOST}/questions?${params}`;
+
     const response = await fetch(url, {
       method: 'GET',
-      headers: getHeaders(apiKey, RAPIDAPI_HOST_ATP),
+      headers: headers(SEMRUSH_HOST),
     });
 
     if (!response.ok) return [];
 
     const data = await response.json();
-    // Extract question-format keywords
-    const questions: string[] = [];
-    const questionTypes = ['what', 'how', 'why', 'when', 'where', 'which', 'who', 'will', 'can'];
+    // Response: array of { keyword, volume, ... } question-format keywords
+    const items = Array.isArray(data) ? data : (data?.data || []);
+    return items.map((item: { keyword: string }) => item.keyword).slice(0, 20);
+  } catch (err) {
+    console.error('[keywordEngine] Semrush questions failed:', err);
+    return [];
+  }
+}
 
-    for (const type of questionTypes) {
-      const group = data?.data?.[type]?.list || [];
-      questions.push(...group.map((item: { query: string }) => item.query));
+// ── Google Keyword Insight ────────────────────────────────────────────────────
+// GET /keysuggest/?keyword=<kw>&location=United+States&lang=en
+// GET /questions/?keyword=<kw>&location=United+States&lang=en
+// GET /topkeyword/?keyword=<kw>&location=United+States&lang=en
+
+export async function fetchGoogleKeywordSuggestions(
+  keyword: string,
+  location: string = 'United States',
+  lang: string = 'en'
+): Promise<LiveKeywordData | null> {
+  if (!RAPIDAPI_KEY()) {
+    console.warn('[keywordEngine] RAPIDAPI_KEY not set — using seed data');
+    return null;
+  }
+
+  try {
+    const params = new URLSearchParams({ keyword, location, lang });
+    const url = `https://${GOOGLE_KW_HOST}/keysuggest/?${params}`;
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: headers(GOOGLE_KW_HOST),
+    });
+
+    if (!response.ok) {
+      console.error(`[keywordEngine] Google KW keysuggest error: ${response.status}`);
+      return null;
     }
 
-    return questions.slice(0, 20);
+    const data = await response.json();
+    // Response: array of { keyword, search_volume, competition, cpc, ... }
+    const items = Array.isArray(data) ? data : [];
+    const primary = items[0];
+
+    if (!primary) return null;
+
+    return {
+      keyword,
+      volume: primary?.search_volume || primary?.volume || 0,
+      difficulty: primary?.competition_index || primary?.competition || 0,
+      cpc: primary?.cpc || primary?.high_top_of_page_bid || 0,
+      trend: primary?.monthly_search_volumes?.map((m: { search_volume: number }) => m.search_volume) || [],
+      serp_features: [],
+      related_keywords: items.slice(1, 8).map((k: { keyword: string }) => k.keyword),
+      questions: [],
+      source: 'google',
+      fetchedAt: new Date().toISOString(),
+    };
   } catch (err) {
-    console.error('[keywordEngine] ATP fetch failed:', err);
+    console.error('[keywordEngine] Google KW keysuggest failed:', err);
+    return null;
+  }
+}
+
+export async function fetchGoogleQuestions(
+  keyword: string,
+  location: string = 'United States',
+  lang: string = 'en'
+): Promise<string[]> {
+  if (!RAPIDAPI_KEY()) return [];
+
+  try {
+    const params = new URLSearchParams({ keyword, location, lang });
+    const url = `https://${GOOGLE_KW_HOST}/questions/?${params}`;
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: headers(GOOGLE_KW_HOST),
+    });
+
+    if (!response.ok) return [];
+
+    const data = await response.json();
+    const items = Array.isArray(data) ? data : [];
+    return items.map((k: { keyword: string }) => k.keyword).slice(0, 20);
+  } catch (err) {
+    console.error('[keywordEngine] Google KW questions failed:', err);
+    return [];
+  }
+}
+
+export async function fetchGoogleTopKeywords(
+  keyword: string,
+  location: string = 'United States',
+  lang: string = 'en'
+): Promise<LiveKeywordData[]> {
+  if (!RAPIDAPI_KEY()) return [];
+
+  try {
+    const params = new URLSearchParams({ keyword, location, lang });
+    const url = `https://${GOOGLE_KW_HOST}/topkeyword/?${params}`;
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: headers(GOOGLE_KW_HOST),
+    });
+
+    if (!response.ok) return [];
+
+    const data = await response.json();
+    const items = Array.isArray(data) ? data : [];
+
+    return items.map((k: { keyword: string; search_volume?: number; volume?: number; competition?: number; cpc?: number }) => ({
+      keyword: k.keyword,
+      volume: k.search_volume || k.volume || 0,
+      difficulty: k.competition || 0,
+      cpc: k.cpc || 0,
+      trend: [],
+      serp_features: [],
+      related_keywords: [],
+      questions: [],
+      source: 'google' as const,
+      fetchedAt: new Date().toISOString(),
+    }));
+  } catch (err) {
+    console.error('[keywordEngine] Google KW topkeyword failed:', err);
     return [];
   }
 }
@@ -208,14 +264,21 @@ export async function fetchQuestionKeywords(
 // ── Unified keyword enrichment ────────────────────────────────────────────────
 
 export async function enrichKeyword(keyword: string): Promise<LiveKeywordData> {
-  // Try Semrush first, fall back to Google, then seed data
-  const semrush = await fetchSemrushKeywordData(keyword);
-  if (semrush) return semrush;
+  // Try Semrush first (most accurate volume + difficulty), fall back to Google, then seed
+  const semrush = await fetchSemrushGlobalVolume(keyword);
+  if (semrush) {
+    // Augment with questions from Google
+    const questions = await fetchGoogleQuestions(keyword);
+    return { ...semrush, questions };
+  }
 
-  const google = await fetchGoogleKeywordData(keyword);
-  if (google) return google;
+  const google = await fetchGoogleKeywordSuggestions(keyword);
+  if (google) {
+    const questions = await fetchGoogleQuestions(keyword);
+    return { ...google, questions };
+  }
 
-  // Fall back to seed data
+  // Seed data fallback
   const seed = CRISPRO_KEYWORDS.find(k => k.keyword.toLowerCase() === keyword.toLowerCase());
   return {
     keyword,
@@ -239,15 +302,14 @@ export async function enrichKeywordBatch(
 ): Promise<LiveKeywordData[]> {
   const results: LiveKeywordData[] = [];
 
-  // Process in chunks to respect rate limits
   for (let i = 0; i < keywords.length; i += concurrency) {
     const chunk = keywords.slice(i, i + concurrency);
     const chunkResults = await Promise.all(chunk.map(kw => enrichKeyword(kw)));
     results.push(...chunkResults);
 
-    // Rate limit pause between chunks
+    // Respect RapidAPI rate limits between chunks
     if (i + concurrency < keywords.length) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 1200));
     }
   }
 
@@ -266,7 +328,6 @@ export function generateKeywordGapReport(): KeywordGapReport {
     ? Math.round(missing.reduce((sum, k) => sum + k.difficulty, 0) / missing.length)
     : 0;
 
-  // Prioritize: high relevance × high volume × low difficulty
   const recommended = [...missing].sort((a, b) => {
     const scoreA = (a.crispro_relevance * a.monthlyVolume) / (a.difficulty + 1);
     const scoreB = (b.crispro_relevance * b.monthlyVolume) / (b.difficulty + 1);
@@ -296,7 +357,6 @@ export function groupKeywordsByCluster(): Record<string, Keyword[]> {
 // ── Opportunity score ─────────────────────────────────────────────────────────
 
 export function calculateOpportunityScore(kw: Keyword): number {
-  // Score = (relevance × volume) / (difficulty + 1) × intent_multiplier
   const intentMultiplier = {
     transactional: 3,
     commercial: 2,
@@ -305,6 +365,5 @@ export function calculateOpportunityScore(kw: Keyword): number {
   }[kw.intent];
 
   const raw = (kw.crispro_relevance * kw.monthlyVolume * intentMultiplier) / (kw.difficulty + 1);
-  // Normalize to 0-100
   return Math.min(100, Math.round(raw / 1000));
 }
