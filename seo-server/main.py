@@ -3,24 +3,31 @@ main.py — JEDI Labs SEO Intelligence API
 FastAPI multi-agent orchestrator for SEO auditing.
 
 Architecture:
-  - Tier 1 (asyncio.gather): KeywordAgent + AuthorityAgent + TrafficAgent run concurrently
-  - Tier 2 (inline): TechnicalAgent desktop (blocking, primary signal)
-  - Tier 3 (BackgroundTask): TechnicalAgent mobile (non-blocking, rate-limit safe)
-  - Tier 4 (inline): CrawlabilityAgent (pure computation, no API)
-  - Tier 5 (inline): StrategyAgent (SCI computation, no API)
-  - Tier 6 (inline): LLMAgent (OpenRouter synthesis, optional)
+  Tier 1 (asyncio.gather): KeywordAgent + AuthorityAgent + TrafficAgent + ViteAudit — concurrent
+  Tier 2 (inline):         TechnicalAgent desktop (blocking, primary signal)
+  Tier 3 (BackgroundTask): TechnicalAgent mobile (non-blocking, rate-limit safe)
+  Tier 4 (compute):        CrawlabilityAgent (embeds ViteSPAAudit) + StrategyAgent (ODI-normalised SCI)
+  Tier 5 (inline):         LLMAgent (OpenRouter synthesis, optional)
+
+Requirement 1 — ViteSPAAudit:
+  run_vite_audit() fetches package.json, vite.config.js/ts, src/App.jsx/tsx, src/main.jsx/tsx
+  from GitHub Raw Content API (no git clone). Detects bare SPA, routing type, dynamic routes,
+  harmful sitemap pattern, client-side fetch deps.
+
+Requirement 2 — ODI Normalization:
+  StrategyAgent uses Estimated_ODI = (competition_index × 0.7) + (PageSpeed_Impact × 0.3)
+  as the SCI denominator instead of raw KD or competition_index.
 
 Usage:
   uvicorn main:app --reload --port 8000
   curl http://localhost:8000/audit/jedilabs.org
   curl http://localhost:8000/health
+  curl http://localhost:8000/vite-audit/fjkiani/jedi-v2
 """
 import asyncio
-import json
 import logging
-import os
 from datetime import datetime, timezone
-from typing import Any, Dict, List, Optional
+from typing import Optional
 
 from fastapi import BackgroundTasks, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -36,20 +43,24 @@ from agents import (
     traffic_agent,
 )
 from core.config import get_settings
-from core.models import AuditRequest, AuditResponse, PageNode
+from core.models import AuditRequest, AuditResponse
 
-# ── Logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
 )
 logger = logging.getLogger(__name__)
 
-# ── App ───────────────────────────────────────────────────────────────────────
 app = FastAPI(
     title="JEDI Labs SEO Intelligence API",
-    description="Multi-agent SEO audit framework with live RapidAPI data + LLM synthesis",
-    version="1.0.0",
+    description=(
+        "Multi-agent SEO audit framework. "
+        "Tier 1: concurrent keyword+authority+traffic+ViteAudit. "
+        "Tier 2: PageSpeed desktop. Tier 3: PageSpeed mobile (background). "
+        "Tier 4: CrawlabilityAgent (ViteSPAAudit) + StrategyAgent (ODI-normalised SCI). "
+        "Tier 5: OpenRouter LLM synthesis."
+    ),
+    version="2.0.0",
 )
 
 app.add_middleware(
@@ -60,15 +71,12 @@ app.add_middleware(
 )
 
 # In-memory store for background mobile PageSpeed results
-_mobile_results: Dict[str, Any] = {}
+_mobile_results: dict = {}
 
 
 # ── Background worker: mobile PageSpeed ───────────────────────────────────────
 async def _run_mobile_pagespeed(domain: str) -> None:
-    """
-    Background task: fetch mobile PageSpeed and store result.
-    Non-blocking — does not delay the main audit response.
-    """
+    """Non-blocking background task for mobile PageSpeed."""
     try:
         settings = get_settings()
         result = await technical_agent.run_mobile(domain, settings)
@@ -90,10 +98,26 @@ async def health():
             "status": "ok",
             "rapidapi_key_set": bool(settings.rapidapi_key),
             "openrouter_key_set": bool(settings.openrouter_key),
+            "version": "2.0.0",
             "timestamp": datetime.now(timezone.utc).isoformat(),
         }
     except EnvironmentError as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/vite-audit/{owner}/{repo}")
+async def vite_audit_endpoint(owner: str, repo: str, branch: str = "master"):
+    """
+    Standalone Vite SPA audit endpoint.
+    Fetches package.json, vite.config, App/main entry from GitHub Raw API.
+
+    GET /vite-audit/fjkiani/jedi-v2
+    GET /vite-audit/fjkiani/jedi-v2?branch=main
+    """
+    full_repo = f"{owner}/{repo}"
+    logger.info(f"Running ViteSPAAudit for {full_repo}@{branch}")
+    audit = await crawlability_agent.run_vite_audit(repo=full_repo, branch=branch)
+    return audit.model_dump()
 
 
 @app.post("/audit", response_model=AuditResponse)
@@ -102,6 +126,8 @@ async def run_audit(
     background_tasks: BackgroundTasks,
     domain: str = "jedilabs.org",
     body: Optional[AuditRequest] = None,
+    vite_repo: str = "fjkiani/jedi-v2",
+    vite_branch: str = "master",
 ) -> AuditResponse:
     """
     Run full SEO audit for a domain.
@@ -109,59 +135,80 @@ async def run_audit(
     GET  /audit/jedilabs.org
     POST /audit  {"domain": "jedilabs.org", "keywords": [...], "pages": [...]}
 
-    Tier 1 (concurrent): KeywordAgent + AuthorityAgent + TrafficAgent
+    Query params:
+      vite_repo   — GitHub repo to audit for SPA crawlability (default: fjkiani/jedi-v2)
+      vite_branch — branch to fetch from (default: master)
+
+    Tier 1 (concurrent): KeywordAgent + AuthorityAgent + TrafficAgent + ViteAudit
     Tier 2 (inline):     TechnicalAgent desktop
-    Tier 3 (background): TechnicalAgent mobile (non-blocking)
-    Tier 4 (compute):    CrawlabilityAgent + StrategyAgent
+    Tier 3 (background): TechnicalAgent mobile
+    Tier 4 (compute):    CrawlabilityAgent (with ViteSPAAudit) + StrategyAgent (ODI SCI)
     Tier 5 (optional):   LLM synthesis via OpenRouter
     """
     settings = get_settings()
 
-    # Merge GET params with POST body
     if body:
         domain = body.domain
         keywords = body.keywords
         pages = body.pages
     else:
-        keywords = AuditRequest().keywords
+        keywords = AuditRequest.__fields__["keywords"].default
         pages = []
 
-    logger.info(f"Starting audit for {domain} with {len(keywords)} keywords")
+    logger.info(f"Starting audit for {domain} | vite_repo={vite_repo}@{vite_branch}")
     audit_start = datetime.now(timezone.utc)
 
-    # ── Tier 1: Concurrent API calls ──────────────────────────────────────────
-    logger.info("Tier 1: Launching concurrent keyword + authority + traffic agents")
-    kw_task = keyword_agent.run(keywords, settings)
-    auth_task = authority_agent.run(domain, settings)
-    traffic_task = traffic_agent.run(domain, settings)
-
-    keyword_results, authority_result, traffic_result = await asyncio.gather(
-        kw_task, auth_task, traffic_task,
-        return_exceptions=False,
+    # ── Tier 1: Concurrent — keyword + authority + traffic + Vite audit ───────
+    logger.info("Tier 1: keyword + authority + traffic + ViteAudit (concurrent)")
+    (
+        keyword_results,
+        authority_result,
+        traffic_result,
+        vite_audit,
+    ) = await asyncio.gather(
+        keyword_agent.run(keywords, settings),
+        authority_agent.run(domain, settings),
+        traffic_agent.run(domain, settings),
+        crawlability_agent.run_vite_audit(repo=vite_repo, branch=vite_branch),
     )
     logger.info(
         f"Tier 1 complete: {len(keyword_results)} keywords, "
-        f"DA={authority_result.moz_da}, visits={traffic_result.monthly_visits}"
+        f"DA={authority_result.moz_da}, visits={traffic_result.monthly_visits}, "
+        f"vite_severity={vite_audit.severity}"
     )
 
-    # ── Tier 2: Desktop PageSpeed (blocking — primary technical signal) ───────
+    # ── Tier 2: Desktop PageSpeed (blocking) ──────────────────────────────────
     logger.info("Tier 2: Desktop PageSpeed (blocking)")
     desktop_result = await technical_agent.run_desktop(domain, settings)
-    logger.info(f"Tier 2 complete: desktop perf={desktop_result.performance}, TBT={desktop_result.tbt_ms}ms")
+    logger.info(
+        f"Tier 2 complete: perf={desktop_result.performance}, "
+        f"TBT={desktop_result.tbt_ms}ms, SPA={desktop_result.spa_signal}"
+    )
 
-    # ── Tier 3: Mobile PageSpeed (background — non-blocking) ─────────────────
+    # ── Tier 3: Mobile PageSpeed (background) ─────────────────────────────────
     logger.info("Tier 3: Mobile PageSpeed dispatched as background task")
     background_tasks.add_task(_run_mobile_pagespeed, domain)
 
     technical_results = [desktop_result]
 
-    # ── Tier 4: Crawlability + Strategy (pure computation) ───────────────────
-    logger.info("Tier 4: Crawlability diagnosis + SCI computation")
-    crawlability_result = crawlability_agent.run(authority_result, technical_results)
-    strategy_result = strategy_agent.run(keyword_results, pages)
+    # ── Tier 4: Crawlability + ODI-normalised SCI ─────────────────────────────
+    logger.info("Tier 4: CrawlabilityAgent + StrategyAgent (ODI SCI)")
+    crawlability_result = crawlability_agent.run(
+        authority_result,
+        technical_results,
+        vite_audit=vite_audit,
+    )
+    strategy_result = strategy_agent.run(
+        keyword_results,
+        pages,
+        competitor_score=1.0,
+        desktop_performance=desktop_result.performance,
+    )
     logger.info(
         f"Tier 4 complete: crawlability={crawlability_result.severity}, "
-        f"top SCI={strategy_result.sci_rankings[0].sci if strategy_result.sci_rankings else 0}"
+        f"top SCI={strategy_result.sci_rankings[0].sci:,.0f} "
+        f"(ODI={strategy_result.sci_rankings[0].odi_display}) "
+        f"if strategy_result.sci_rankings else 'no rankings'"
     )
 
     # ── Tier 5: LLM synthesis (optional) ─────────────────────────────────────
@@ -170,38 +217,40 @@ async def run_audit(
         domain, authority_result, traffic_result,
         crawlability_result, keyword_results, strategy_result, settings,
     )
-    if synthesis:
-        logger.info(f"Tier 5 complete: synthesis model={synthesis.model_used}")
-    else:
-        logger.info("Tier 5: LLM synthesis skipped (no OPENROUTER_API_KEY)")
 
     # ── Data quality notes ────────────────────────────────────────────────────
     data_quality_notes = []
-    semrush_kd_zero = [k for k in keyword_results if k.kd == 0.0]
-    if semrush_kd_zero:
+    if vite_audit.is_bare_spa:
         data_quality_notes.append(
-            f"Semrush global-volume endpoint returns KD=0 for all keywords. "
-            f"Using Google KW competition_index as authoritative KD source. "
-            f"SCI uses KD=1 floor for {len(semrush_kd_zero)} keywords."
+            f"ViteSPAAudit [{vite_repo}@{vite_branch}]: BARE SPA confirmed. "
+            f"No pre-rendering plugins. {vite_audit.dynamic_route_count} dynamic routes invisible to Googlebot."
+        )
+    if vite_audit.sitemap_harmful:
+        data_quality_notes.append(
+            "HARMFUL SITEMAP: vite-plugin-sitemap is submitting unrenderable SPA routes to Google. "
+            "Pause sitemap submission until SSR/SSG is in place."
         )
     if traffic_result.monthly_visits == 0:
         data_quality_notes.append(
-            "Similarweb reports 0 monthly visits — site is below Similarweb measurement "
-            "threshold (<5K visits/mo). Confirms near-zero organic search presence."
+            "Similarweb: 0 monthly visits — site below 5K/mo measurement threshold."
         )
     if authority_result.indexed_pages < 10:
         data_quality_notes.append(
-            f"Only {authority_result.indexed_pages} pages indexed by Majestic. "
-            "Expected 221+ from Hygraph CMS. SPA crawl problem confirmed."
+            f"Only {authority_result.indexed_pages} pages indexed. Expected 221+. SPA crawl problem confirmed."
         )
-
-    audit_end = datetime.now(timezone.utc)
-    elapsed = (audit_end - audit_start).total_seconds()
-    logger.info(f"Audit complete for {domain} in {elapsed:.1f}s")
+    kd_zero = [k for k in keyword_results if k.kd == 0.0]
+    if kd_zero:
+        data_quality_notes.append(
+            f"Semrush KD=0 for {len(kd_zero)} keywords — unreliable. "
+            "ODI uses Google competition_index as primary input."
+        )
+    data_quality_notes.append(
+        f"ODI formula: {strategy_result.odi_formula}"
+    )
 
     return AuditResponse(
         domain=domain,
-        audit_timestamp=audit_end.isoformat(),
+        audit_timestamp=datetime.now(timezone.utc).isoformat(),
         keywords=keyword_results,
         authority=authority_result,
         traffic=traffic_result,
@@ -215,10 +264,7 @@ async def run_audit(
 
 @app.get("/mobile-result/{domain}")
 async def get_mobile_result(domain: str):
-    """
-    Retrieve background mobile PageSpeed result.
-    Poll this endpoint after /audit returns to get mobile data.
-    """
+    """Poll for background mobile PageSpeed result after /audit returns."""
     result = _mobile_results.get(domain)
     if result is None:
         return JSONResponse(
@@ -229,17 +275,23 @@ async def get_mobile_result(domain: str):
 
 
 @app.get("/sci/{domain}")
-async def get_sci_rankings(domain: str = "jedilabs.org"):
+async def get_sci_rankings(domain: str = "jedilabs.org", desktop_performance: Optional[int] = None):
     """
-    Quick SCI ranking endpoint — uses cached keyword data if available,
-    otherwise returns default page inventory with placeholder volumes.
+    Quick ODI-normalised SCI ranking endpoint.
+    Pass ?desktop_performance=72 to use real PageSpeed data.
     """
     settings = get_settings()
-    keywords = AuditRequest().keywords
-    kw_results = await keyword_agent.run(keywords, settings)
-    strategy = strategy_agent.run(kw_results, [])
+    keywords_list = [
+        "enterprise AI solutions", "AI agents platform", "AI agent framework",
+        "AI automation platform", "AI consulting services", "LLM orchestration",
+        "multi-agent AI", "AI solutions for enterprise",
+    ]
+    kw_results = await keyword_agent.run(keywords_list, settings)
+    strategy = strategy_agent.run(kw_results, [], desktop_performance=desktop_performance)
     return {
         "domain": domain,
+        "odi_formula": strategy.odi_formula,
+        "pagespeed_impact_used": strategy.pagespeed_impact_used,
         "sci_rankings": [n.model_dump() for n in strategy.sci_rankings],
         "top_opportunities": strategy.top_opportunities,
         "quick_wins": strategy.quick_wins,

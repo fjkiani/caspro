@@ -1,21 +1,40 @@
 """
 agents/strategy_agent.py
-Computes SCI scores for all page nodes and generates the 90-day action plan.
+Computes ODI-normalised SCI scores for all page nodes.
 
-SCI Formula (PATH A — signed by Fahad Kiani 2026-04-28):
-  SCI = (Volume × Relevance) / (KD × Competitor_Score)
-  - KD floor = 1 (avoid division by zero; Semrush KD=0 is unreliable)
-  - Competitor_Score floor = 1
-  - Relevance: 0.0–1.0 (how well the page topic matches the keyword intent)
-  - Competitor_Score: 1.0 = no strong competitors; higher = more competition
+ODI Normalization (Requirement 2):
+  Google competition_index measures PPC ad-spend competition, NOT organic ranking
+  difficulty. Raw competition_index overstates organic difficulty for low-budget
+  niches and understates it for high-intent commercial terms.
 
-Page inventory: manually seeded with 14 core JEDI Labs pages.
-Full 221-page inventory requires Hygraph API pull (future enhancement).
+  Normalization formula:
+    PageSpeed_Impact_Score (PSI) = 1 - (desktop_performance / 100)
+      → 0.0 = perfect site (no technical penalty)
+      → 1.0 = completely broken site (maximum technical penalty)
+      → Default = 0.30 if PageSpeed unavailable (conservative: assumes moderate debt)
+
+    Estimated_ODI = (competition_index × 0.7) + (PSI × 0.3)
+      → 0.7 weight: PPC competition is the primary organic difficulty proxy
+      → 0.3 weight: site technical health affects ranking ability
+      → ODI floor = 0.01 (avoid division by zero)
+      → ODI range: 0.01–1.0 (multiply × 100 for human-readable display)
+
+    SCI = (Volume × Relevance) / (ODI × Competitor_Score)
+      → PATH A formula (signed Fahad Kiani 2026-04-28), ODI replaces raw KD
+
+  jedilabs.org example ("enterprise AI solutions"):
+    competition_index = 0.15, desktop_perf = 72 → PSI = 0.28
+    ODI = (0.15 × 0.7) + (0.28 × 0.3) = 0.105 + 0.084 = 0.189
+    SCI = (49,500 × 1.0) / (0.189 × 1.0) = 261,905
+
+  Note: SCI absolute values are larger than KD-based SCI because ODI is 0–1 scale
+  vs KD 0–100 scale. sci_normalized (0–100) is the comparable metric across runs.
+
+SCI Formula governance: PATH A — signed by Fahad Kiani 2026-04-28.
 """
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 from core.models import KeywordResult, PageNode, SCINode, StrategyResult
-
 
 # Default JEDI Labs page inventory (14 core nodes)
 DEFAULT_JEDI_PAGES: List[Dict[str, Any]] = [
@@ -35,34 +54,68 @@ DEFAULT_JEDI_PAGES: List[Dict[str, Any]] = [
     {"path": "/contact", "title": "Contact", "primary_keyword": "AI consulting services", "relevance": 0.4},
 ]
 
+PSI_DEFAULT = 0.30   # conservative default when PageSpeed is unavailable
+ODI_FLOOR = 0.01     # minimum ODI to avoid division by zero
 
-def _compute_sci(volume: int, relevance: float, kd: float, competitor_score: float) -> float:
+
+def _compute_psi(desktop_performance: Optional[int]) -> float:
     """
-    SCI = (Volume × Relevance) / (KD × Competitor_Score)
-    PATH A formula — signed 2026-04-28.
+    PageSpeed Impact Score = 1 - (performance / 100).
+    Returns PSI_DEFAULT (0.30) if performance is unavailable.
     """
-    kd_safe = max(kd, 1.0)
+    if desktop_performance is None:
+        return PSI_DEFAULT
+    return round(1.0 - (desktop_performance / 100.0), 4)
+
+
+def _compute_odi(competition_index: float, psi: float) -> float:
+    """
+    Estimated_ODI = (competition_index × 0.7) + (PSI × 0.3)
+    Clipped to [ODI_FLOOR, 1.0].
+    """
+    raw = (competition_index * 0.7) + (psi * 0.3)
+    return round(max(raw, ODI_FLOOR), 4)
+
+
+def _compute_sci(
+    volume: int,
+    relevance: float,
+    odi: float,
+    competitor_score: float,
+) -> float:
+    """
+    SCI = (Volume × Relevance) / (ODI × Competitor_Score)
+    PATH A formula — ODI replaces raw KD in denominator.
+    """
     comp_safe = max(competitor_score, 1.0)
-    return round((volume * relevance) / (kd_safe * comp_safe), 2)
+    return round((volume * relevance) / (odi * comp_safe), 2)
 
 
 def run(
     keywords: List[KeywordResult],
     pages: List[PageNode],
     competitor_score: float = 1.0,
+    desktop_performance: Optional[int] = None,
 ) -> StrategyResult:
     """
-    Compute SCI for all page nodes and generate strategy.
-    Uses DEFAULT_JEDI_PAGES if pages list is empty.
+    Compute ODI-normalised SCI for all page nodes and generate strategy.
+
+    Args:
+        keywords: from KeywordAgent (includes competition_index)
+        pages: page inventory (uses DEFAULT_JEDI_PAGES if empty)
+        competitor_score: domain-level competitor pressure (default 1.0)
+        desktop_performance: PageSpeed desktop score (0–100); None → PSI default
     """
-    # Build keyword lookup: keyword → (volume, kd)
+    # Build keyword lookup: keyword → KeywordResult
     kw_lookup: Dict[str, KeywordResult] = {k.keyword.lower(): k for k in keywords}
 
-    # Use provided pages or fall back to default inventory
     page_nodes = pages if pages else [PageNode(**p) for p in DEFAULT_JEDI_PAGES]
 
+    # Compute PSI once — same site-wide technical debt for all pages
+    psi = _compute_psi(desktop_performance)
+    psi_source = "PageSpeed desktop" if desktop_performance is not None else f"default ({PSI_DEFAULT})"
+
     sci_nodes: List[SCINode] = []
-    data_quality_notes: List[str] = []
 
     for page in page_nodes:
         kw_lower = page.primary_keyword.lower()
@@ -71,21 +124,16 @@ def run(
         if kw_data:
             volume = kw_data.volume
             kd = kw_data.kd
+            ci = kw_data.competition_index or 0.0
         else:
-            # Keyword not in fetched data — use conservative defaults
+            # Conservative defaults for unmapped keywords
             volume = 500
             kd = 10.0
-            data_quality_notes.append(
-                f"No keyword data for '{page.primary_keyword}' on {page.path}. "
-                "Using conservative defaults (vol=500, KD=10)."
-            )
+            ci = 0.10
 
-        if kd == 0.0:
-            data_quality_notes.append(
-                f"KD=0 for '{page.primary_keyword}' — using KD=1 floor in SCI calculation."
-            )
-
-        sci = _compute_sci(volume, page.relevance, kd, competitor_score)
+        # ODI normalization
+        odi = _compute_odi(ci, psi)
+        sci = _compute_sci(volume, page.relevance, odi, competitor_score)
 
         sci_nodes.append(SCINode(
             path=page.path,
@@ -93,90 +141,116 @@ def run(
             primary_keyword=page.primary_keyword,
             volume=volume,
             kd=kd,
+            competition_index=ci,
+            pagespeed_impact=psi,
+            odi=odi,
+            odi_display=round(odi * 100, 1),
             relevance=page.relevance,
             competitor_score=competitor_score,
             sci=sci,
+            sci_normalized=0.0,  # filled after sorting
         ))
 
     # Sort by SCI descending
     sci_nodes.sort(key=lambda x: x.sci, reverse=True)
 
-    # ── Top opportunities (top 5 by SCI) ─────────────────────────────────────
+    # Compute sci_normalized (0–100 relative scale)
+    max_sci = sci_nodes[0].sci if sci_nodes else 1.0
+    for node in sci_nodes:
+        node.sci_normalized = round((node.sci / max_sci) * 100, 1)
+
+    # ── Top opportunities ─────────────────────────────────────────────────────
     top_opportunities = []
-    for node in sci_nodes[:5]:
+    for i, node in enumerate(sci_nodes[:5]):
         top_opportunities.append({
-            "rank": sci_nodes.index(node) + 1,
+            "rank": i + 1,
             "path": node.path,
             "title": node.title,
             "keyword": node.primary_keyword,
             "volume": node.volume,
-            "kd": node.kd,
+            "competition_index": node.competition_index,
+            "odi": node.odi,
+            "odi_display": node.odi_display,
             "sci": node.sci,
+            "sci_normalized": node.sci_normalized,
             "action": _generate_action(node),
         })
 
-    # ── Quick wins (KD < 20, volume > 1000) ──────────────────────────────────
+    # ── Quick wins: ODI < 0.20 (≈ KD<20 equivalent) and volume > 1000 ────────
     quick_wins = [
-        f"{n.path} → '{n.primary_keyword}' (vol={n.volume:,}, KD={n.kd}, SCI={n.sci:,.0f})"
+        f"{n.path} → '{n.primary_keyword}' "
+        f"(vol={n.volume:,}, ODI={n.odi_display}, SCI={n.sci:,.0f}, norm={n.sci_normalized})"
         for n in sci_nodes
-        if n.kd < 20 and n.volume > 1000
+        if n.odi < 0.20 and n.volume > 1000
     ]
 
     # ── 90-day plan ───────────────────────────────────────────────────────────
+    top = sci_nodes[0] if sci_nodes else None
+    second = sci_nodes[1] if len(sci_nodes) > 1 else None
+    third = sci_nodes[2] if len(sci_nodes) > 2 else None
+
     ninety_day_plan = [
         {
-            "phase": "Days 1–30: Fix Crawlability (Priority 0)",
+            "phase": "Days 1–30: Fix Crawlability (Priority 0 — blocks everything else)",
             "actions": [
-                "Migrate to Next.js SSR/SSG or add Vite SSR plugin",
-                "Generate and submit XML sitemap for all 221 Hygraph pages",
+                "Add vike (vite-plugin-ssr) to vite.config.js for build-time SSG",
+                "OR add prerender-spa-plugin as immediate bridge solution",
+                "PAUSE sitemap submission until SSR is live (currently harmful)",
+                "Generate and submit corrected XML sitemap after SSR is in place",
                 "Add <meta name=\"description\"> to all page templates",
-                "Implement dynamic rendering (Prerender.io) as bridge",
-                "Set up Google Search Console and submit sitemap",
+                "Set up Google Search Console — monitor indexation from day 1",
             ],
             "expected_outcome": "Google begins indexing all 221 pages. Organic keyword count rises from 0.",
         },
         {
-            "phase": "Days 31–60: On-Page Optimisation for Top SCI Pages",
+            "phase": "Days 31–60: On-Page Optimisation for Top ODI-Normalised SCI Pages",
             "actions": [
-                f"Optimise {sci_nodes[0].path} for '{sci_nodes[0].primary_keyword}' (SCI={sci_nodes[0].sci:,.0f})",
-                f"Optimise {sci_nodes[1].path} for '{sci_nodes[1].primary_keyword}' (SCI={sci_nodes[1].sci:,.0f})",
-                f"Optimise {sci_nodes[2].path} for '{sci_nodes[2].primary_keyword}' (SCI={sci_nodes[2].sci:,.0f})",
-                "Add structured data (JSON-LD) to all solution and use-case pages",
-                "Internal linking: connect all /technologies/ pages to /solutions/ pages",
+                f"Optimise {top.path} for '{top.primary_keyword}' (ODI={top.odi_display}, SCI_norm={top.sci_normalized})" if top else "Optimise top SCI page",
+                f"Optimise {second.path} for '{second.primary_keyword}' (ODI={second.odi_display}, SCI_norm={second.sci_normalized})" if second else "Optimise second SCI page",
+                f"Optimise {third.path} for '{third.primary_keyword}' (ODI={third.odi_display}, SCI_norm={third.sci_normalized})" if third else "Optimise third SCI page",
+                "Add JSON-LD SoftwareApplication schema to all solution + use-case pages",
+                "Internal linking: connect all /technology/ pages to /solutions/ pages",
             ],
-            "expected_outcome": "Top 3 SCI pages begin appearing in Google for target keywords.",
+            "expected_outcome": "Top 3 ODI-normalised SCI pages begin appearing in Google for target keywords.",
         },
         {
             "phase": "Days 61–90: Authority + Content Moat",
             "actions": [
-                "Publish 4 long-form blog posts targeting quick-win keywords (KD<20)",
+                "Publish 4 long-form blog posts targeting quick-win keywords (ODI<0.20)",
                 "Build 10 high-quality backlinks via guest posts on AI/ML publications",
                 "Launch TechDemoPanel interactive demos as linkable assets",
                 "Create comparison pages: 'JEDI Labs vs [competitor]' for AI agent frameworks",
-                "Submit to AI tool directories (Futurepedia, There's An AI For That, etc.)",
+                "Submit to AI tool directories (Futurepedia, There\'s An AI For That, etc.)",
             ],
-            "expected_outcome": "DA rises from 5 to 15+. First page rankings for KD<20 keywords.",
+            "expected_outcome": "DA rises from 5 to 15+. First page rankings for ODI<0.20 keywords.",
         },
     ]
+
+    odi_formula = (
+        f"ODI = (competition_index × 0.7) + (PageSpeed_Impact × 0.3) | "
+        f"PSI = 1 - ({desktop_performance}/100) = {psi} [{psi_source}] | "
+        f"SCI = (Volume × Relevance) / (ODI × Competitor_Score)"
+    )
 
     return StrategyResult(
         sci_rankings=sci_nodes,
         top_opportunities=top_opportunities,
         quick_wins=quick_wins,
         ninety_day_plan=ninety_day_plan,
+        pagespeed_impact_used=psi,
+        odi_formula=odi_formula,
     )
 
 
 def _generate_action(node: SCINode) -> str:
-    """Generate a one-line action brief for a page node."""
-    if node.kd < 10:
+    if node.odi < 0.10:
         urgency = "QUICK WIN"
-    elif node.kd < 25:
+    elif node.odi < 0.20:
         urgency = "HIGH PRIORITY"
     else:
         urgency = "MEDIUM PRIORITY"
-
     return (
-        f"[{urgency}] Add H1 + meta description targeting '{node.primary_keyword}'. "
-        f"Ensure SSR renders full content. Add JSON-LD SoftwareApplication schema."
+        f"[{urgency}] H1 + meta targeting '{node.primary_keyword}'. "
+        f"Ensure SSR renders full content. Add JSON-LD schema. "
+        f"ODI={node.odi_display} (PPC_ci={node.competition_index}, PSI={node.pagespeed_impact})"
     )
