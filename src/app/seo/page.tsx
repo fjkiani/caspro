@@ -15,6 +15,7 @@ import { generateMockAIVisibilityResults, generateAIVisibilityReport } from '@/l
 import { generateMockTechnicalAudit } from '@/lib/seo/technicalSeoAudit';
 import { COMPETITOR_STATS } from '@/data/seo/competitors';
 import { KEYWORD_STATS } from '@/data/seo/crispro-keywords';
+import { AuditLauncher } from '@/components/seo/audit/AuditLauncher';
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
@@ -97,6 +98,7 @@ function QuickWinRow({ keyword, volume, difficulty, relevance }: {
 
 export default function SEODashboard() {
   const [loading, setLoading] = useState(true);
+  const [showAudit, setShowAudit] = useState(false);
 
   // Compute all stats from seed data (no API calls needed for dashboard overview)
   const keywordReport = generateKeywordGapReport();
@@ -140,17 +142,24 @@ export default function SEODashboard() {
             <span className="text-xs text-gray-500 bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-full">
               Seed data mode — add API keys to enable live data
             </span>
-            <Link
-              href="/seo/keywords"
+            <button
+              onClick={() => setShowAudit(prev => !prev)}
               className="bg-yellow-500 hover:bg-yellow-400 text-black text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
             >
-              Run Full Audit
-            </Link>
+              {showAudit ? 'Hide Audit' : 'Run Full Audit'}
+            </button>
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-8 py-8 space-y-8">
+
+        {/* LangGraph Audit Launcher */}
+        {showAudit && (
+          <div>
+            <AuditLauncher defaultDomain="crispro.ai" />
+          </div>
+        )}
 
         {/* Overall Score Banner */}
         <div className="bg-gradient-to-r from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-8">
