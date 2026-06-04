@@ -1,10 +1,13 @@
 """
 agents/authority_agent.py
 Fetches domain authority metrics from Domain Metrics Check API.
-Returns DA, DR, TF, CF, backlinks, ref domains, indexed pages.
+
+Confirmed response fields (2026-06-04):
+  mozDA, mozPA, mozRank, mozTrust, mozSpam, mozLinks
+  majesticLinks, majesticRefDomains, majesticCF, majesticTTF0Name/Value
+  (No Ahrefs data in this API plan)
 """
 import logging
-from typing import Optional
 
 import aiohttp
 
@@ -19,16 +22,19 @@ async def run(domain: str, settings: Settings) -> AuthorityResult:
     Fetch domain authority metrics.
     Endpoint: GET /domain-metrics/{domain}/
     """
-    url = f"https://domain-metrics-check.p.rapidapi.com/domain-metrics/{domain}/"
+    url = f"https://{settings.domain_metrics_host}/domain-metrics/{domain}/"
     headers = {
         "x-rapidapi-key": settings.rapidapi_key,
         "x-rapidapi-host": settings.domain_metrics_host,
-        "Accept-Encoding": "gzip, deflate",
+        "Content-Type": "application/json",
     }
 
     async with aiohttp.ClientSession() as session:
         try:
-            async with session.get(url, headers=headers, timeout=aiohttp.ClientTimeout(total=20)) as resp:
+            async with session.get(
+                url, headers=headers,
+                timeout=aiohttp.ClientTimeout(total=20)
+            ) as resp:
                 if resp.status == 200:
                     data = await resp.json(content_type=None)
                     return _parse(domain, data)
@@ -42,24 +48,33 @@ async def run(domain: str, settings: Settings) -> AuthorityResult:
 
 
 def _parse(domain: str, data: dict) -> AuthorityResult:
-    """Parse Domain Metrics Check response into AuthorityResult."""
+    """
+    Parse Domain Metrics Check response.
+    Fields: mozDA, mozPA, mozLinks, majesticLinks, majesticRefDomains, majesticCF
+    """
     def safe_int(val, default=0) -> int:
         try:
-            return int(val or default)
+            return int(float(str(val or default).replace(",", "")))
+        except (ValueError, TypeError):
+            return default
+
+    def safe_float(val, default=0.0) -> float:
+        try:
+            return float(str(val or default).replace(",", ""))
         except (ValueError, TypeError):
             return default
 
     return AuthorityResult(
         domain=domain,
-        moz_da=safe_int(data.get("moz_da")),
-        moz_pa=safe_int(data.get("moz_pa")),
-        ahrefs_dr=safe_int(data.get("ahrefs_dr")),
-        majestic_tf=safe_int(data.get("majestic_tf")),
-        majestic_cf=safe_int(data.get("majestic_cf")),
-        backlinks=safe_int(data.get("ahrefs_backlinks")),
-        ref_domains=safe_int(data.get("ahrefs_ref_domains")),
-        indexed_pages=safe_int(data.get("majestic_crawled_pages", data.get("pretty_page_count"))),
-        organic_keywords=safe_int(data.get("ahrefs_organic_keywords")),
+        moz_da=safe_int(data.get("mozDA", data.get("moz_da"))),
+        moz_pa=safe_int(data.get("mozPA", data.get("moz_pa"))),
+        ahrefs_dr=0,  # Not available in this API plan
+        majestic_tf=safe_int(data.get("majesticTTF0Value", data.get("majestic_tf"))),
+        majestic_cf=safe_int(data.get("majesticCF", data.get("majestic_cf"))),
+        backlinks=safe_int(data.get("mozLinks", data.get("majesticLinks"))),
+        ref_domains=safe_int(data.get("majesticRefDomains", data.get("ref_domains"))),
+        indexed_pages=0,  # Not in Domain Metrics Check — use SimilarWeb or GSC
+        organic_keywords=0,  # Not in Domain Metrics Check
     )
 
 

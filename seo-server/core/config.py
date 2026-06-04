@@ -11,12 +11,12 @@ class Settings:
     rapidapi_key: str
     openrouter_key: str
 
-    # RapidAPI hosts
-    semrush_host: str = "semrush-online-marketing-tools.p.rapidapi.com"
-    similarweb_host: str = "similarweb12.p.rapidapi.com"
+    # RapidAPI hosts (verified live 2026-06-04)
+    semrush_host: str = "semrush-keyword-magic-tool.p.rapidapi.com"
+    similarweb_host: str = "similarweb-insights.p.rapidapi.com"
     domain_metrics_host: str = "domain-metrics-check.p.rapidapi.com"
     google_kw_host: str = "google-keyword-insight1.p.rapidapi.com"
-    pagespeed_host: str = "google-pagespeed-insights.p.rapidapi.com"
+    pagespeed_host: str = "pagespeed-insights.p.rapidapi.com"
 
     # OpenRouter
     openrouter_base: str = "https://openrouter.ai/api/v1"

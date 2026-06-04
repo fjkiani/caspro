@@ -3,9 +3,14 @@ agents/technical_agent.py
 Fetches PageSpeed Insights for desktop + mobile.
 Mobile runs as a FastAPI BackgroundTask (non-blocking) due to rate limit risk.
 Desktop runs inline (blocking) as it is the primary signal.
+
+Confirmed working params (2026-06-04):
+  category=PERFORMANCE (uppercase)
+  strategy=desktop (lowercase)
+  timeout=90s (API can be slow under load)
 """
 import logging
-from typing import List, Optional
+from typing import Optional
 
 import aiohttp
 
@@ -14,8 +19,9 @@ from core.models import TechnicalResult
 
 logger = logging.getLogger(__name__)
 
-SPA_TBT_THRESHOLD = 300  # ms — above this + high unused JS = SPA signal
+SPA_TBT_THRESHOLD = 300        # ms — above this + high unused JS = SPA signal
 SPA_UNUSED_JS_THRESHOLD = 100  # KiB
+PAGESPEED_TIMEOUT = 90         # seconds — API can be slow
 
 
 async def _fetch_pagespeed(
@@ -25,21 +31,21 @@ async def _fetch_pagespeed(
     settings: Settings,
 ) -> TechnicalResult:
     """Fetch PageSpeed Insights for one URL + strategy."""
-    api_url = "https://google-pagespeed-insights.p.rapidapi.com/run_pagespeed"
+    api_url = f"https://{settings.pagespeed_host}/run_pagespeed"
     headers = {
         "x-rapidapi-key": settings.rapidapi_key,
         "x-rapidapi-host": settings.pagespeed_host,
-        "Accept-Encoding": "gzip, deflate",
+        "Content-Type": "application/json",
     }
     params = {
         "url": f"https://{url}" if not url.startswith("http") else url,
-        "category": "performance,seo,accessibility",
-        "strategy": strategy,
+        "category": "PERFORMANCE",
+        "strategy": strategy.lower(),  # API requires lowercase: "desktop" or "mobile"
     }
     try:
         async with session.get(
             api_url, headers=headers, params=params,
-            timeout=aiohttp.ClientTimeout(total=60)
+            timeout=aiohttp.ClientTimeout(total=PAGESPEED_TIMEOUT, connect=10)
         ) as resp:
             if resp.status == 200:
                 data = await resp.json(content_type=None)
@@ -55,6 +61,15 @@ async def _fetch_pagespeed(
                     status=resp.status,
                     error=f"HTTP {resp.status}",
                 )
+    except aiohttp.ServerTimeoutError as e:
+        logger.warning(f"PageSpeed {strategy} timeout after {PAGESPEED_TIMEOUT}s: {e}")
+        return TechnicalResult(
+            url=url, strategy=strategy,
+            performance=None, seo_score=None, accessibility=None,
+            fcp_ms=None, lcp_ms=None, tbt_ms=None,
+            unused_js_kib=None, spa_signal=False,
+            status=0, error=f"timeout after {PAGESPEED_TIMEOUT}s",
+        )
     except Exception as e:
         logger.error(f"PageSpeed {strategy} exception: {e}")
         return TechnicalResult(
@@ -108,11 +123,13 @@ def _parse(url: str, strategy: str, data: dict) -> TechnicalResult:
 
 async def run_desktop(domain: str, settings: Settings) -> TechnicalResult:
     """Run desktop PageSpeed — blocking, called inline."""
-    async with aiohttp.ClientSession() as session:
+    connector = aiohttp.TCPConnector(limit=10, force_close=True)
+    async with aiohttp.ClientSession(connector=connector) as session:
         return await _fetch_pagespeed(session, domain, "desktop", settings)
 
 
 async def run_mobile(domain: str, settings: Settings) -> TechnicalResult:
     """Run mobile PageSpeed — called as BackgroundTask in FastAPI."""
-    async with aiohttp.ClientSession() as session:
+    connector = aiohttp.TCPConnector(limit=10, force_close=True)
+    async with aiohttp.ClientSession(connector=connector) as session:
         return await _fetch_pagespeed(session, domain, "mobile", settings)
