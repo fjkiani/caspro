@@ -410,3 +410,317 @@ async def get_sci_rankings(domain: str = "jedilabs.org", desktop_performance: Op
         "top_opportunities": strategy.top_opportunities,
         "quick_wins": strategy.quick_wins,
     }
+
+
+# =============================================================================
+# LangGraph Async Audit Endpoints (v4)
+# =============================================================================
+# Architecture:
+#   POST /api/v1/audit-graph        → INSERT seo_audit_queue (pending) → {run_id}
+#   GET  /api/v1/audit-graph/{run_id}/status → SELECT status + routing_path
+#   GET  /api/v1/audit-graph/{run_id}/stream → SSE: node events + thinking tokens
+#
+# The GraphWorker (graph/worker.py) polls seo_audit_queue independently.
+# These endpoints are pure DB reads/writes — they never touch the graph directly.
+# =============================================================================
+
+import asyncio
+import json
+import os
+import uuid
+from contextlib import asynccontextmanager
+
+import asyncpg
+from fastapi import Request
+from pydantic import BaseModel
+from sse_starlette.sse import EventSourceResponse
+
+from graph.worker import GraphWorker
+
+# ── DB pool for FastAPI endpoints (separate from worker pool) ─────────────────
+# This pool lives in the FastAPI event loop. The worker has its own pool
+# in its own event loop. They never share a pool.
+_api_pool: asyncpg.Pool | None = None
+_graph_worker: GraphWorker | None = None
+
+
+async def _get_api_pool() -> asyncpg.Pool:
+    global _api_pool
+    if _api_pool is None:
+        database_url = os.environ.get("DATABASE_URL", "")
+        if not database_url:
+            raise RuntimeError("DATABASE_URL environment variable not set")
+        _api_pool = await asyncpg.create_pool(database_url, min_size=1, max_size=5)
+    return _api_pool
+
+
+# ── Lifespan: start/stop GraphWorker ─────────────────────────────────────────
+# Replace the existing app = FastAPI(...) startup with lifespan context manager.
+# We patch the existing app's lifespan here rather than rewriting the whole file.
+
+@asynccontextmanager
+async def _graph_lifespan(app):
+    """Start GraphWorker on startup, stop it gracefully on shutdown."""
+    global _graph_worker
+    database_url = os.environ.get("DATABASE_URL", "")
+    if database_url:
+        _graph_worker = GraphWorker(db_url=database_url)
+        _graph_worker.start()
+        logger.info("GraphWorker started")
+    else:
+        logger.warning("DATABASE_URL not set — GraphWorker not started")
+    yield
+    if _graph_worker is not None:
+        logger.info("Stopping GraphWorker (timeout=30s)...")
+        _graph_worker.stop(timeout=30)
+        logger.info("GraphWorker stopped")
+    if _api_pool is not None:
+        await _api_pool.close()
+
+
+# Attach lifespan to the existing app
+app.router.lifespan_context = _graph_lifespan
+
+
+# ── Request / Response models ─────────────────────────────────────────────────
+
+class AuditGraphRequest(BaseModel):
+    domain: str
+    keywords: list[str] = []
+    tenant_id: str = "default"
+    workspace_id: str = "default"
+
+
+class AuditGraphSubmitResponse(BaseModel):
+    run_id: str
+    status: str = "pending"
+
+
+class AuditGraphStatusResponse(BaseModel):
+    run_id: str
+    status: str
+    routing_path: list[str]
+    loop_counter: int
+    client_report: str | None
+    error_message: str | None
+
+
+# ── POST /api/v1/audit-graph ──────────────────────────────────────────────────
+
+@app.post("/api/v1/audit-graph", response_model=AuditGraphSubmitResponse)
+async def submit_audit_graph(body: AuditGraphRequest):
+    """
+    Submit a new LangGraph SEO audit job.
+
+    Inserts a row into seo_audit_queue with status='pending'.
+    The GraphWorker picks it up within POLL_INTERVAL_SECONDS (2s).
+    Returns run_id immediately — no blocking, no 60s timeout risk.
+    """
+    run_id = str(uuid.uuid4())
+    pool = await _get_api_pool()
+
+    await pool.execute(
+        """
+        INSERT INTO seo_audit_queue
+            (run_id, domain, tenant_id, workspace_id, keywords_json, status, created_at, updated_at)
+        VALUES
+            ($1, $2, $3, $4, $5, 'pending', NOW(), NOW())
+        """,
+        run_id,
+        body.domain,
+        body.tenant_id,
+        body.workspace_id,
+        json.dumps(body.keywords),
+    )
+
+    logger.info("audit-graph submitted run_id=%s domain=%s", run_id, body.domain)
+    return AuditGraphSubmitResponse(run_id=run_id)
+
+
+# ── GET /api/v1/audit-graph/{run_id}/status ───────────────────────────────────
+
+@app.get("/api/v1/audit-graph/{run_id}/status", response_model=AuditGraphStatusResponse)
+async def get_audit_graph_status(run_id: str):
+    """
+    Poll the status of a LangGraph audit job.
+
+    The React frontend calls this every 2s via useAuditGraph's refetchInterval.
+    Returns routing_path[] so the UI can render the live node feed.
+    """
+    pool = await _get_api_pool()
+
+    row = await pool.fetchrow(
+        """
+        SELECT run_id, status, routing_path, loop_counter,
+               client_report, error_message
+        FROM seo_audit_queue
+        WHERE run_id = $1
+        """,
+        run_id,
+    )
+
+    if row is None:
+        raise HTTPException(status_code=404, detail=f"run_id {run_id} not found")
+
+    return AuditGraphStatusResponse(
+        run_id=row["run_id"],
+        status=row["status"],
+        routing_path=list(row["routing_path"] or []),
+        loop_counter=row["loop_counter"] or 0,
+        client_report=row["client_report"],
+        error_message=row["error_message"],
+    )
+
+
+# ── GET /api/v1/audit-graph/{run_id}/stream ───────────────────────────────────
+# SSE stream: emits node lifecycle events and Nemotron thinking tokens.
+# The React AuditStream component subscribes to this via native EventSource.
+#
+# Event types:
+#   node_start    { node, timestamp }
+#   thinking      { node, text }        ← incremental Nemotron tokens
+#   node_complete { node, timestamp }
+#   done          { client_report }
+#   error         { message }
+#
+# Implementation: polls seo_audit_queue + seo_graph_checkpoints every 1.5s.
+# The checkpoint JSONB contains the latest AuditState — we diff it against
+# the previous state to emit node_start / node_complete events.
+# Nemotron thinking tokens are stored in checkpoint metadata as they stream.
+
+@app.get("/api/v1/audit-graph/{run_id}/stream")
+async def stream_audit_graph(run_id: str, request: Request):
+    """
+    SSE stream for a LangGraph audit run.
+    Connects the Nemotron thinking panel in the React frontend.
+    """
+    pool = await _get_api_pool()
+
+    async def event_generator():
+        prev_routing_path: list[str] = []
+        prev_thinking: dict[str, str] = {}  # node → accumulated text
+        poll_interval = 1.5
+        max_polls = 240  # 6 minutes max stream duration
+
+        for _ in range(max_polls):
+            # Check if client disconnected
+            if await request.is_disconnected():
+                break
+
+            try:
+                row = await pool.fetchrow(
+                    """
+                    SELECT status, routing_path, loop_counter,
+                           client_report, error_message, graph_state_json
+                    FROM seo_audit_queue
+                    WHERE run_id = $1
+                    """,
+                    run_id,
+                )
+            except Exception as e:
+                yield {
+                    "event": "error",
+                    "data": json.dumps({"message": str(e)}),
+                }
+                return
+
+            if row is None:
+                yield {
+                    "event": "error",
+                    "data": json.dumps({"message": f"run_id {run_id} not found"}),
+                }
+                return
+
+            current_path: list[str] = list(row["routing_path"] or [])
+            status: str = row["status"]
+
+            # ── Emit node_start / node_complete for new path entries ──────────
+            new_nodes = current_path[len(prev_routing_path):]
+            for node in new_nodes:
+                # The previous last node just completed
+                if prev_routing_path:
+                    yield {
+                        "event": "node_complete",
+                        "data": json.dumps({
+                            "node": prev_routing_path[-1],
+                            "timestamp": _now_iso(),
+                        }),
+                    }
+                # New node starting
+                yield {
+                    "event": "node_start",
+                    "data": json.dumps({
+                        "node": node,
+                        "timestamp": _now_iso(),
+                    }),
+                }
+            prev_routing_path = current_path
+
+            # ── Emit thinking tokens from graph_state_json ────────────────────
+            # The worker writes incremental Nemotron output to graph_state_json
+            # as nodes execute. We diff against prev_thinking to emit only new text.
+            if row["graph_state_json"]:
+                try:
+                    state_json = row["graph_state_json"]
+                    if isinstance(state_json, str):
+                        state_json = json.loads(state_json)
+
+                    # thinking_stream: { node_name: accumulated_text }
+                    thinking_stream: dict = state_json.get("thinking_stream", {})
+                    for node, full_text in thinking_stream.items():
+                        already_sent = prev_thinking.get(node, "")
+                        new_text = full_text[len(already_sent):]
+                        if new_text:
+                            yield {
+                                "event": "thinking",
+                                "data": json.dumps({
+                                    "node": node,
+                                    "text": new_text,
+                                }),
+                            }
+                            prev_thinking[node] = full_text
+                except Exception:
+                    pass  # Don't crash the stream on state parse errors
+
+            # ── Terminal states ───────────────────────────────────────────────
+            if status == "completed":
+                # Complete the last node
+                if current_path:
+                    yield {
+                        "event": "node_complete",
+                        "data": json.dumps({
+                            "node": current_path[-1],
+                            "timestamp": _now_iso(),
+                        }),
+                    }
+                yield {
+                    "event": "done",
+                    "data": json.dumps({
+                        "client_report": row["client_report"] or "",
+                    }),
+                }
+                return
+
+            if status == "failed":
+                yield {
+                    "event": "error",
+                    "data": json.dumps({
+                        "message": row["error_message"] or "Audit failed",
+                    }),
+                }
+                return
+
+            await asyncio.sleep(poll_interval)
+
+        # Timeout
+        yield {
+            "event": "error",
+            "data": json.dumps({"message": "Stream timeout — poll /status for final result"}),
+        }
+
+    return EventSourceResponse(event_generator())
+
+
+def _now_iso() -> str:
+    from datetime import datetime, timezone
+    return datetime.now(timezone.utc).isoformat()
