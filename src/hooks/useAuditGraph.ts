@@ -3,8 +3,7 @@
  * ----------------
  * Submits a LangGraph SEO audit job and polls its status until terminal.
  *
- * Stolen pattern: open-seo `useRankRunPolling` + `AuditDetail` statusQuery.
- * Stack: TanStack Query v5 `refetchInterval` — no SSE needed for status.
+ * Stack: plain React useState + useEffect + setInterval — no external deps.
  *
  * Flow:
  *   1. submit(domain, keywords) → POST /api/seo/audit-graph → { run_id }
@@ -13,8 +12,7 @@
  *   4. Expose routing_path array for progress bar rendering
  */
 
-import { useState, useRef } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -30,35 +28,26 @@ export type AuditStatus =
 
 export interface AuditStatusResponse {
   status: AuditStatus;
-  routing_path: string[];   // e.g. ["supervisor:spa_critical", "crawlability_fix", "strategy", "synthesis"]
+  routing_path: string[];
   loop_counter: number;
   client_report: string | null;
   error_message: string | null;
 }
 
 export interface UseAuditGraphReturn {
-  /** Current run_id — null until first submit */
   runId: string | null;
-  /** Aggregated status across submit + poll lifecycle */
   status: AuditStatus;
-  /** routing_path array from DB — drives progress bar */
   routingPath: string[];
-  /** loop_counter from DB */
   loopCounter: number;
-  /** Final markdown report — non-null only when status === "completed" */
   clientReport: string | null;
-  /** Error string — non-null when status === "failed" */
   error: string | null;
-  /** True while any network activity is in flight */
   isLoading: boolean;
-  /** Submit a new audit. Resets all state. */
   submit: (domain: string, keywords: string[]) => Promise<void>;
-  /** Reset back to idle so the user can start a new audit */
   reset: () => void;
 }
 
 // ---------------------------------------------------------------------------
-// API helpers — call Next.js API routes (which proxy to Railway FastAPI)
+// API helpers
 // ---------------------------------------------------------------------------
 
 async function postAuditGraph(
@@ -72,18 +61,18 @@ async function postAuditGraph(
   });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
-    throw new Error(body?.error ?? `Submit failed: ${res.status}`);
+    throw new Error((body as { error?: string })?.error ?? `Submit failed: ${res.status}`);
   }
-  return res.json();
+  return res.json() as Promise<{ run_id: string }>;
 }
 
 async function fetchAuditStatus(runId: string): Promise<AuditStatusResponse> {
   const res = await fetch(`/api/seo/audit-graph/${runId}/status`);
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
-    throw new Error(body?.error ?? `Status fetch failed: ${res.status}`);
+    throw new Error((body as { error?: string })?.error ?? `Status fetch failed: ${res.status}`);
   }
-  return res.json();
+  return res.json() as Promise<AuditStatusResponse>;
 }
 
 // ---------------------------------------------------------------------------
@@ -91,76 +80,79 @@ async function fetchAuditStatus(runId: string): Promise<AuditStatusResponse> {
 // ---------------------------------------------------------------------------
 
 export function useAuditGraph(): UseAuditGraphReturn {
-  const queryClient = useQueryClient();
   const [runId, setRunId] = useState<string | null>(null);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting'>('idle');
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const prevStatusRef = useRef<AuditStatus | undefined>(undefined);
+  const [pollData, setPollData] = useState<AuditStatusResponse | null>(null);
+  const [pollError, setPollError] = useState<string | null>(null);
+  const [isFetching, setIsFetching] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // ── Status polling ────────────────────────────────────────────────────────
-  // Mirrors open-seo's AuditDetail statusQuery exactly:
-  //   refetchInterval returns 2000 while running, false when terminal.
-  const statusQuery = useQuery<AuditStatusResponse>({
-    queryKey: ['audit-graph-status', runId],
-    queryFn: () => fetchAuditStatus(runId!),
-    enabled: runId !== null && submitStatus !== 'submitting',
-    refetchInterval: (query) => {
-      const data = query.state.data;
-      const prev = prevStatusRef.current;
-      prevStatusRef.current = data?.status;
+  // ── Polling ───────────────────────────────────────────────────────────────
+  const stopPolling = useCallback(() => {
+    if (intervalRef.current !== null) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
 
-      // When transitioning to terminal, invalidate any dependent queries
-      const isTerminal =
-        data?.status === 'completed' || data?.status === 'failed';
-      const wasActive =
-        prev === 'running' || prev === 'pending';
-      if (wasActive && isTerminal) {
-        void queryClient.invalidateQueries({
-          queryKey: ['audit-graph-history'],
-        });
+  const poll = useCallback(async (id: string) => {
+    setIsFetching(true);
+    try {
+      const data = await fetchAuditStatus(id);
+      setPollData(data);
+      if (data.status === 'completed' || data.status === 'failed') {
+        stopPolling();
       }
+    } catch (err) {
+      // 404 on first poll is expected — row may not exist yet
+      const msg = err instanceof Error ? err.message : 'Poll error';
+      if (!msg.includes('404')) {
+        setPollError(msg);
+        stopPolling();
+      }
+    } finally {
+      setIsFetching(false);
+    }
+  }, [stopPolling]);
 
-      if (data?.status === 'pending' || data?.status === 'running') {
-        return 2000;
-      }
-      return false; // stop polling
-    },
-    // Don't throw on 404 — the row may not exist yet on first poll
-    retry: (failureCount, error) => {
-      if (error instanceof Error && error.message.includes('404')) {
-        return failureCount < 3;
-      }
-      return failureCount < 2;
-    },
-  });
+  useEffect(() => {
+    if (!runId || submitStatus === 'submitting') return;
+
+    // Immediate first poll
+    void poll(runId);
+
+    // Then every 2s
+    intervalRef.current = setInterval(() => {
+      void poll(runId);
+    }, 2000);
+
+    return () => stopPolling();
+  }, [runId, submitStatus, poll, stopPolling]);
 
   // ── Derived state ─────────────────────────────────────────────────────────
-  const polledStatus = statusQuery.data?.status ?? null;
-
   let status: AuditStatus = 'idle';
   if (submitStatus === 'submitting') {
     status = 'submitting';
-  } else if (runId && !polledStatus) {
-    status = 'pending'; // run_id exists but first poll hasn't returned yet
-  } else if (polledStatus) {
-    status = polledStatus;
+  } else if (runId && !pollData) {
+    status = 'pending';
+  } else if (pollData) {
+    status = pollData.status;
   }
 
   const error =
     submitError ??
-    statusQuery.data?.error_message ??
-    (statusQuery.isError
-      ? (statusQuery.error as Error)?.message ?? 'Unknown error'
-      : null);
+    pollData?.error_message ??
+    pollError ??
+    null;
 
   // ── Actions ───────────────────────────────────────────────────────────────
-  async function submit(domain: string, keywords: string[]) {
-    // Reset all state before new submission
+  const submit = useCallback(async (domain: string, keywords: string[]) => {
+    stopPolling();
     setSubmitError(null);
+    setPollData(null);
+    setPollError(null);
     setRunId(null);
-    prevStatusRef.current = undefined;
-    void queryClient.removeQueries({ queryKey: ['audit-graph-status'] });
-
     setSubmitStatus('submitting');
     try {
       const { run_id } = await postAuditGraph(domain, keywords);
@@ -172,26 +164,27 @@ export function useAuditGraph(): UseAuditGraphReturn {
     } finally {
       setSubmitStatus('idle');
     }
-  }
+  }, [stopPolling]);
 
-  function reset() {
+  const reset = useCallback(() => {
+    stopPolling();
     setRunId(null);
     setSubmitStatus('idle');
     setSubmitError(null);
-    prevStatusRef.current = undefined;
-    void queryClient.removeQueries({ queryKey: ['audit-graph-status'] });
-  }
+    setPollData(null);
+    setPollError(null);
+  }, [stopPolling]);
 
   return {
     runId,
     status,
-    routingPath: statusQuery.data?.routing_path ?? [],
-    loopCounter: statusQuery.data?.loop_counter ?? 0,
-    clientReport: statusQuery.data?.client_report ?? null,
+    routingPath: pollData?.routing_path ?? [],
+    loopCounter: pollData?.loop_counter ?? 0,
+    clientReport: pollData?.client_report ?? null,
     error,
     isLoading:
       submitStatus === 'submitting' ||
-      (statusQuery.isFetching && status !== 'completed' && status !== 'failed'),
+      (isFetching && status !== 'completed' && status !== 'failed'),
     submit,
     reset,
   };
