@@ -3,215 +3,131 @@
 /**
  * AuditLauncher.tsx
  * -----------------
- * Submit form + result renderer for the openclaw double-dip ZIE SEO audit.
+ * Full submit + live progress UI for the LangGraph SEO audit.
  *
- * Backend: POST /api/seo/audit-graph → openclaw-api-k30t.onrender.com/api/v1/seo/audit
- * Synchronous — one request, full result returned (5–55s).
- * No polling, no run_id, no status endpoint.
+ * Stolen from open-seo:
+ *   - LaunchFormCard  → domain input + submit button pattern
+ *   - ProgressCard    → progress bar + live routing_path feed
+ *   - StatusBadge     → running/completed/failed badge
+ *   - useRankRunPolling → refetchInterval pattern (now in useAuditGraph)
+ *
+ * Adapted to:
+ *   - caspro's black/gray-900 design system (not DaisyUI)
+ *   - routing_path array from LangGraph state (not crawl phases)
+ *   - Nemotron thinking stream via <AuditStream /> (rendered below progress)
  */
 
 import { useState, type FormEvent } from 'react';
-import {
-  Loader2,
-  ScanSearch,
-  CheckCircle,
-  AlertCircle,
-  Zap,
-  Shield,
-  TrendingUp,
-  AlertTriangle,
-  ChevronDown,
-  ChevronUp,
-} from 'lucide-react';
-import {
-  useAuditGraph,
-  type AuditSubmitParams,
-  type SeoAuditResult,
-  type SeoSynthesis,
-  type SCIRanking,
-  type ViteAudit,
-} from '@/hooks/useAuditGraph';
+import { Loader2, ScanSearch, CheckCircle, AlertCircle, Zap } from 'lucide-react';
+import { useAuditGraph, type AuditStatus } from '@/hooks/useAuditGraph';
+import { AuditStream } from '@/components/seo/audit/AuditStream';
+import { SynthesisReport } from '@/components/seo/audit/SynthesisReport';
 
 // ---------------------------------------------------------------------------
-// Verdict badge
+// Routing path → human-readable labels + progress percentage
 // ---------------------------------------------------------------------------
 
-const VERDICT_STYLES: Record<SeoSynthesis['verdict'], string> = {
-  CRITICAL: 'bg-red-900/30 border-red-700/40 text-red-400',
-  HIGH:     'bg-orange-900/30 border-orange-700/40 text-orange-400',
-  MEDIUM:   'bg-yellow-900/30 border-yellow-700/40 text-yellow-400',
-  LOW:      'bg-green-900/30 border-green-700/40 text-green-400',
+const NODE_LABELS: Record<string, string> = {
+  'supervisor:spa_critical':  'Supervisor → SPA Critical',
+  'supervisor:low_authority': 'Supervisor → Authority Gap',
+  'supervisor:content_gap':   'Supervisor → Content Gap',
+  'supervisor:synthesize':    'Supervisor → Synthesize',
+  'crawlability_fix':         'Crawlability Fix Plan',
+  'authority_gap':            'Authority Gap Plan',
+  'content_gap':              'Content Gap Plan',
+  'strategy':                 'Strategy Merge',
+  'synthesis':                'Writing Client Report',
 };
 
-function VerdictBadge({ verdict }: { verdict: SeoSynthesis['verdict'] }) {
-  return (
-    <span className={`inline-flex items-center gap-1.5 text-sm font-bold px-3 py-1 rounded-full border ${VERDICT_STYLES[verdict]}`}>
-      {verdict === 'CRITICAL' && <AlertTriangle className="size-3.5" />}
-      {verdict === 'HIGH' && <AlertCircle className="size-3.5" />}
-      {verdict === 'MEDIUM' && <Shield className="size-3.5" />}
-      {verdict === 'LOW' && <CheckCircle className="size-3.5" />}
-      {verdict}
-    </span>
-  );
+// Ordered node sequence for progress bar calculation
+const NODE_ORDER = [
+  'gather',
+  'technical',
+  'supervisor',
+  'fix',       // any fix node
+  'strategy',
+  'synthesis',
+];
+
+function routingPathToProgress(path: string[]): number {
+  if (path.length === 0) return 5;
+  const last = path[path.length - 1];
+  if (last.startsWith('supervisor')) return 40;
+  if (last === 'crawlability_fix' || last === 'authority_gap' || last === 'content_gap') return 65;
+  if (last === 'strategy') return 80;
+  if (last === 'synthesis') return 95;
+  return Math.min(5 + path.length * 12, 90);
+}
+
+function labelForNode(node: string): string {
+  return NODE_LABELS[node] ?? node.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 }
 
 // ---------------------------------------------------------------------------
-// SCI Rankings table
+// Sub-components
 // ---------------------------------------------------------------------------
 
-function SCITable({ rankings }: { rankings: SCIRanking[] }) {
-  if (!rankings.length) return null;
+function StatusBadge({ status }: { status: AuditStatus }) {
+  if (status === 'submitting' || status === 'pending' || status === 'running') {
+    return (
+      <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-blue-900/30 border border-blue-700/40 text-blue-400">
+        <Loader2 className="size-3 animate-spin" />
+        {status === 'submitting' ? 'Submitting…' : status === 'pending' ? 'Queued' : 'Running'}
+      </span>
+    );
+  }
+  if (status === 'completed') {
+    return (
+      <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-green-900/20 border border-green-700/30 text-green-400">
+        <CheckCircle className="size-3" />
+        Complete
+      </span>
+    );
+  }
+  if (status === 'failed') {
+    return (
+      <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-red-900/20 border border-red-700/30 text-red-400">
+        <AlertCircle className="size-3" />
+        Failed
+      </span>
+    );
+  }
+  return null;
+}
+
+function ProgressBar({ value }: { value: number }) {
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-800">
-      <table className="w-full text-sm">
-        <thead className="bg-gray-800/60">
-          <tr>
-            <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">#</th>
-            <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Keyword</th>
-            <th className="px-4 py-2.5 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">SCI</th>
-            <th className="px-4 py-2.5 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">ODI</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-800">
-          {rankings.map((r) => {
-            const odiColor =
-              r.odi_display < 15 ? 'text-green-400' :
-              r.odi_display < 30 ? 'text-yellow-400' :
-              'text-red-400';
-            return (
-              <tr key={r.keyword} className="hover:bg-gray-800/30 transition-colors">
-                <td className="px-4 py-2.5 text-gray-500 text-xs">{r.rank}</td>
-                <td className="px-4 py-2.5 text-gray-200">{r.keyword}</td>
-                <td className="px-4 py-2.5 text-right text-white font-mono">{r.sci_normalized}</td>
-                <td className={`px-4 py-2.5 text-right font-mono ${odiColor}`}>{r.odi_display}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    <div className="w-full bg-gray-800 rounded-full h-1.5 overflow-hidden">
+      <div
+        className="h-1.5 rounded-full bg-yellow-400 transition-all duration-700 ease-out"
+        style={{ width: `${value}%` }}
+      />
     </div>
   );
 }
 
-// ---------------------------------------------------------------------------
-// Vite SPA flags
-// ---------------------------------------------------------------------------
-
-function ViteAuditFlags({ audit }: { audit: ViteAudit }) {
-  if (!audit.is_bare_spa && !audit.flags.length) return null;
+function RoutingPathFeed({ path }: { path: string[] }) {
+  if (path.length === 0) return null;
   return (
-    <div className="bg-orange-950/20 border border-orange-800/30 rounded-lg p-4 space-y-2">
-      <p className="text-orange-400 text-xs font-semibold uppercase tracking-wider">
-        Vite SPA Audit — {audit.repo}@{audit.branch}
-      </p>
-      {audit.is_bare_spa && (
-        <p className="text-orange-300 text-sm">
-          Bare SPA detected — {audit.dynamic_route_count} dynamic routes invisible to Googlebot
-        </p>
-      )}
-      {audit.flags.map((flag, i) => (
-        <p key={i} className="text-orange-200/70 text-xs font-mono">{flag}</p>
-      ))}
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Full result card
-// ---------------------------------------------------------------------------
-
-function AuditResultCard({ result, domain }: { result: SeoAuditResult; domain: string }) {
-  const [showRiskLines, setShowRiskLines] = useState(true);
-
-  return (
-    <div className="space-y-4">
-
-      {/* Header */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
-        <div className="flex items-start justify-between gap-4 mb-4">
-          <div>
-            <h3 className="text-white font-semibold text-lg">{domain}</h3>
-            <p className="text-gray-500 text-xs mt-1">
-              Model: {result.model_used} · Dip {result.dip_used}
-              {result.audit_timestamp && ` · ${new Date(result.audit_timestamp).toLocaleString()}`}
-            </p>
-          </div>
-          <VerdictBadge verdict={result.synthesis.verdict} />
-        </div>
-
-        {/* Summary */}
-        <p className="text-gray-300 text-sm leading-relaxed">{result.synthesis.summary}</p>
-      </div>
-
-      {/* SCI Rankings */}
-      {result.sci_rankings.length > 0 && (
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 space-y-3">
-          <h4 className="text-white text-sm font-semibold flex items-center gap-2">
-            <TrendingUp className="size-4 text-yellow-400" />
-            SCI Rankings
-          </h4>
-          <SCITable rankings={result.sci_rankings} />
-        </div>
-      )}
-
-      {/* Vite SPA flags */}
-      {result.vite_audit && (
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
-          <ViteAuditFlags audit={result.vite_audit} />
-        </div>
-      )}
-
-      {/* Risk lines */}
-      {result.synthesis.risk_lines.length > 0 && (
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 space-y-3">
-          <button
-            onClick={() => setShowRiskLines(v => !v)}
-            className="flex items-center justify-between w-full text-left"
-          >
-            <h4 className="text-white text-sm font-semibold flex items-center gap-2">
-              <AlertTriangle className="size-4 text-red-400" />
-              Risk Lines ({result.synthesis.risk_lines.length})
-            </h4>
-            {showRiskLines ? <ChevronUp className="size-4 text-gray-500" /> : <ChevronDown className="size-4 text-gray-500" />}
-          </button>
-          {showRiskLines && (
-            <ul className="space-y-2">
-              {result.synthesis.risk_lines.map((line, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
-                  <span className="text-red-400 shrink-0 mt-0.5">•</span>
-                  {line}
-                </li>
-              ))}
-            </ul>
+    <div className="space-y-1 mt-3">
+      {path.map((node, i) => (
+        <div
+          key={`${node}-${i}`}
+          className={`flex items-center gap-2 text-xs px-2 py-1.5 rounded transition-all ${
+            i === path.length - 1
+              ? 'bg-yellow-900/20 border border-yellow-700/20 text-yellow-300 animate-in fade-in slide-in-from-top-1 duration-300'
+              : 'text-gray-500'
+          }`}
+        >
+          <span className={`size-1.5 rounded-full shrink-0 ${
+            i === path.length - 1 ? 'bg-yellow-400' : 'bg-gray-700'
+          }`} />
+          {labelForNode(node)}
+          {i === path.length - 1 && (
+            <Loader2 className="size-3 animate-spin ml-auto text-yellow-500" />
           )}
         </div>
-      )}
-
-      {/* Quick wins */}
-      {result.synthesis.quick_wins.length > 0 && (
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 space-y-3">
-          <h4 className="text-white text-sm font-semibold flex items-center gap-2">
-            <CheckCircle className="size-4 text-green-400" />
-            Quick Wins
-          </h4>
-          <ul className="space-y-2">
-            {result.synthesis.quick_wins.map((win, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
-                <span className="text-green-400 shrink-0 mt-0.5">✓</span>
-                {win}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Traffic ceiling */}
-      {result.synthesis.traffic_ceiling && (
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
-          <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-1">Traffic Ceiling</p>
-          <p className="text-gray-200 text-sm">{result.synthesis.traffic_ceiling}</p>
-        </div>
-      )}
+      ))}
     </div>
   );
 }
@@ -220,40 +136,30 @@ function AuditResultCard({ result, domain }: { result: SeoAuditResult; domain: s
 // Main component
 // ---------------------------------------------------------------------------
 
-const DEFAULT_KEYWORDS = [
-  { keyword: 'enterprise AI solutions', volume: 49500, competition_index: 0.15 },
-];
-
 export function AuditLauncher({ defaultDomain = '' }: { defaultDomain?: string }) {
   const [domain, setDomain] = useState(defaultDomain);
-  const [githubOwner, setGithubOwner] = useState('fjkiani');
-  const [githubRepo, setGithubRepo] = useState('jedi-v2');
-  const [githubBranch, setGithubBranch] = useState('master');
-  const [keywordsRaw, setKeywordsRaw] = useState('enterprise AI solutions');
-  const [desktopPerf, setDesktopPerf] = useState('90');
-
+  const [keywordsRaw, setKeywordsRaw] = useState('');
   const audit = useAuditGraph();
+
+  const isActive =
+    audit.status === 'submitting' ||
+    audit.status === 'pending' ||
+    audit.status === 'running';
+
+  const progress = audit.status === 'completed'
+    ? 100
+    : audit.status === 'failed'
+    ? 0
+    : routingPathToProgress(audit.routingPath);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!domain.trim()) return;
-
     const keywords = keywordsRaw
       .split(',')
       .map(k => k.trim())
-      .filter(Boolean)
-      .map(k => ({ keyword: k, volume: 1000, competition_index: 0.5 }));
-
-    const params: AuditSubmitParams = {
-      domain: domain.trim(),
-      github_owner: githubOwner.trim() || 'fjkiani',
-      github_repo: githubRepo.trim() || 'jedi-v2',
-      github_branch: githubBranch.trim() || 'master',
-      keywords: keywords.length ? keywords : DEFAULT_KEYWORDS,
-      desktop_performance: Number(desktopPerf) || 90,
-    };
-
-    void audit.submit(params);
+      .filter(Boolean);
+    void audit.submit(domain.trim(), keywords);
   }
 
   return (
@@ -264,94 +170,35 @@ export function AuditLauncher({ defaultDomain = '' }: { defaultDomain?: string }
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-white font-semibold flex items-center gap-2">
             <Zap className="size-4 text-yellow-400" />
-            AI SEO Audit
+            LangGraph Audit
           </h2>
-          {audit.status === 'running' && (
-            <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-blue-900/30 border border-blue-700/40 text-blue-400">
-              <Loader2 className="size-3 animate-spin" />
-              Running double-dip audit…
-            </span>
-          )}
-          {audit.status === 'completed' && (
-            <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-green-900/20 border border-green-700/30 text-green-400">
-              <CheckCircle className="size-3" />
-              Complete
-            </span>
-          )}
-          {audit.status === 'failed' && (
-            <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-red-900/20 border border-red-700/30 text-red-400">
-              <AlertCircle className="size-3" />
-              Failed
-            </span>
-          )}
+          {audit.status !== 'idle' && <StatusBadge status={audit.status} />}
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-3">
-          {/* Row 1: domain + perf */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
             <input
               type="text"
-              placeholder="Domain (e.g. jedilabs.org)"
+              placeholder="jedilabs.org"
               value={domain}
               onChange={e => setDomain(e.target.value)}
-              disabled={audit.isLoading}
-              className="lg:col-span-8 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-yellow-500 disabled:opacity-50"
-            />
-            <input
-              type="number"
-              placeholder="Desktop perf (0-100)"
-              value={desktopPerf}
-              onChange={e => setDesktopPerf(e.target.value)}
-              disabled={audit.isLoading}
-              min={0} max={100}
-              className="lg:col-span-4 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-yellow-500 disabled:opacity-50"
-            />
-          </div>
-
-          {/* Row 2: GitHub repo */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
-            <input
-              type="text"
-              placeholder="GitHub owner"
-              value={githubOwner}
-              onChange={e => setGithubOwner(e.target.value)}
-              disabled={audit.isLoading}
-              className="lg:col-span-4 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-yellow-500 disabled:opacity-50"
+              disabled={isActive}
+              className="lg:col-span-5 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-yellow-500 disabled:opacity-50"
             />
             <input
               type="text"
-              placeholder="GitHub repo"
-              value={githubRepo}
-              onChange={e => setGithubRepo(e.target.value)}
-              disabled={audit.isLoading}
-              className="lg:col-span-4 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-yellow-500 disabled:opacity-50"
-            />
-            <input
-              type="text"
-              placeholder="Branch"
-              value={githubBranch}
-              onChange={e => setGithubBranch(e.target.value)}
-              disabled={audit.isLoading}
-              className="lg:col-span-4 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-yellow-500 disabled:opacity-50"
-            />
-          </div>
-
-          {/* Row 3: keywords + submit */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
-            <input
-              type="text"
-              placeholder="Keywords (comma-separated)"
+              placeholder="Keywords (comma-separated, optional)"
               value={keywordsRaw}
               onChange={e => setKeywordsRaw(e.target.value)}
-              disabled={audit.isLoading}
-              className="lg:col-span-10 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-yellow-500 disabled:opacity-50"
+              disabled={isActive}
+              className="lg:col-span-5 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-yellow-500 disabled:opacity-50"
             />
             <button
               type="submit"
-              disabled={audit.isLoading || !domain.trim()}
+              disabled={isActive || !domain.trim()}
               className="lg:col-span-2 bg-yellow-500 hover:bg-yellow-400 disabled:bg-gray-700 disabled:text-gray-500 text-black font-semibold text-sm px-4 py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2"
             >
-              {audit.isLoading ? (
+              {isActive ? (
                 <><Loader2 className="size-4 animate-spin" /> Running</>
               ) : (
                 <><ScanSearch className="size-4" /> Run Audit</>
@@ -359,19 +206,6 @@ export function AuditLauncher({ defaultDomain = '' }: { defaultDomain?: string }
             </button>
           </div>
         </form>
-
-        {/* Loading state */}
-        {audit.isLoading && (
-          <div className="mt-4 flex items-center gap-3 bg-blue-950/20 border border-blue-800/30 rounded-lg px-4 py-3">
-            <Loader2 className="size-4 text-blue-400 animate-spin shrink-0" />
-            <div>
-              <p className="text-blue-300 text-sm font-medium">Double-dip audit running</p>
-              <p className="text-blue-400/60 text-xs mt-0.5">
-                Dip 1 (gpt-oss-20b) → confidence check → Dip 2 (gpt-oss-120b) if needed. Takes 5–55s.
-              </p>
-            </div>
-          </div>
-        )}
 
         {/* Error */}
         {audit.status === 'failed' && audit.error && (
@@ -381,7 +215,7 @@ export function AuditLauncher({ defaultDomain = '' }: { defaultDomain?: string }
           </div>
         )}
 
-        {/* Reset */}
+        {/* Reset link after terminal state */}
         {(audit.status === 'completed' || audit.status === 'failed') && (
           <button
             onClick={audit.reset}
@@ -392,9 +226,48 @@ export function AuditLauncher({ defaultDomain = '' }: { defaultDomain?: string }
         )}
       </div>
 
-      {/* ── Result ──────────────────────────────────────────────────────── */}
-      {audit.status === 'completed' && audit.result && (
-        <AuditResultCard result={audit.result} domain={domain} />
+      {/* ── Progress Card (visible while running) ───────────────────────── */}
+      {(isActive || audit.status === 'completed') && (
+        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 space-y-3">
+          <div className="flex items-center justify-between">
+            <h3 className="text-white text-sm font-medium flex items-center gap-2">
+              {isActive && <Loader2 className="size-4 animate-spin text-yellow-400" />}
+              {isActive ? 'Audit in progress' : 'Audit complete'}
+            </h3>
+            <span className="text-gray-500 text-xs">
+              {audit.loopCounter > 0 && `Loop ${audit.loopCounter}/2`}
+            </span>
+          </div>
+
+          <ProgressBar value={progress} />
+
+          <div className="flex items-center justify-between text-xs text-gray-500">
+            <span>{progress}%</span>
+            {audit.runId && (
+              <span className="font-mono text-gray-600 truncate max-w-[200px]">
+                {audit.runId}
+              </span>
+            )}
+          </div>
+
+          {/* Live routing path feed — stolen from open-seo ProgressCard crawledUrls */}
+          <RoutingPathFeed path={audit.routingPath} />
+        </div>
+      )}
+
+      {/* ── Nemotron Thinking Stream ─────────────────────────────────────── */}
+      {audit.runId && isActive && (
+        <AuditStream runId={audit.runId} />
+      )}
+
+      {/* ── Final Synthesis Report ───────────────────────────────────────── */}
+      {audit.status === 'completed' && audit.clientReport && (
+        <SynthesisReport
+          report={audit.clientReport}
+          domain={domain}
+          routingPath={audit.routingPath}
+          loopCounter={audit.loopCounter}
+        />
       )}
     </div>
   );
