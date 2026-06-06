@@ -1,78 +1,80 @@
 /**
  * useAuditGraph.ts
  * ----------------
- * Submits a LangGraph SEO audit job and polls its status until terminal.
+ * Submits a synchronous SEO audit to /api/seo/audit-graph and returns the result.
  *
- * Stack: plain React useState + useEffect + setInterval — no external deps.
+ * The openclaw-api endpoint is synchronous — one POST, full result returned.
+ * No run_id, no polling, no status endpoint.
  *
  * Flow:
- *   1. submit(domain, keywords) → POST /api/seo/audit-graph → { run_id }
- *   2. Poll GET /api/seo/audit-graph/{run_id}/status every 2s while running
- *   3. Stop polling on "completed" | "failed"
- *   4. Expose routing_path array for progress bar rendering
+ *   1. submit(params) → POST /api/seo/audit-graph
+ *   2. Await full response (5–55s depending on dip used)
+ *   3. Expose result for rendering
  */
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 
 // ---------------------------------------------------------------------------
-// Types
+// Types — mirrors openclaw-api SeoAuditResult schema
 // ---------------------------------------------------------------------------
 
-export type AuditStatus =
-  | 'idle'
-  | 'submitting'
-  | 'pending'
-  | 'running'
-  | 'completed'
-  | 'failed';
+export type AuditStatus = 'idle' | 'running' | 'completed' | 'failed';
 
-export interface AuditStatusResponse {
-  status: AuditStatus;
-  routing_path: string[];
-  loop_counter: number;
-  client_report: string | null;
-  error_message: string | null;
+export interface KeywordInput {
+  keyword: string;
+  volume: number;
+  competition_index: number;
+}
+
+export interface SCIRanking {
+  keyword: string;
+  sci_normalized: number;
+  odi_display: number;
+  rank: number;
+}
+
+export interface ViteAudit {
+  is_bare_spa: boolean;
+  dynamic_route_count: number;
+  repo: string;
+  branch: string;
+  flags: string[];
+}
+
+export interface SeoSynthesis {
+  verdict: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
+  summary: string;
+  risk_lines: string[];
+  quick_wins: string[];
+  traffic_ceiling: string;
+}
+
+export interface SeoAuditResult {
+  domain: string;
+  vite_audit: ViteAudit;
+  sci_rankings: SCIRanking[];
+  synthesis: SeoSynthesis;
+  model_used: string;
+  dip_used: number;
+  audit_timestamp?: string;
+}
+
+export interface AuditSubmitParams {
+  domain: string;
+  github_owner: string;
+  github_repo: string;
+  github_branch?: string;
+  keywords: KeywordInput[];
+  desktop_performance?: number;
 }
 
 export interface UseAuditGraphReturn {
-  runId: string | null;
   status: AuditStatus;
-  routingPath: string[];
-  loopCounter: number;
-  clientReport: string | null;
+  result: SeoAuditResult | null;
   error: string | null;
   isLoading: boolean;
-  submit: (domain: string, keywords: string[]) => Promise<void>;
+  submit: (params: AuditSubmitParams) => Promise<void>;
   reset: () => void;
-}
-
-// ---------------------------------------------------------------------------
-// API helpers
-// ---------------------------------------------------------------------------
-
-async function postAuditGraph(
-  domain: string,
-  keywords: string[],
-): Promise<{ run_id: string }> {
-  const res = await fetch('/api/seo/audit-graph', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ domain, keywords }),
-  });
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({}));
-    throw new Error((body as { error?: string })?.error ?? `Submit failed: ${res.status}`);
-  }
-  return res.json() as Promise<{ run_id: string }>;
-}
-
-async function fetchAuditStatus(runId: string): Promise<AuditStatusResponse> {
-  const res = await fetch(`/api/seo/audit-graph/${runId}/status`);
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({}));
-    throw new Error((body as { error?: string })?.error ?? `Status fetch failed: ${res.status}`);
-  }
-  return res.json() as Promise<AuditStatusResponse>;
 }
 
 // ---------------------------------------------------------------------------
@@ -80,111 +82,47 @@ async function fetchAuditStatus(runId: string): Promise<AuditStatusResponse> {
 // ---------------------------------------------------------------------------
 
 export function useAuditGraph(): UseAuditGraphReturn {
-  const [runId, setRunId] = useState<string | null>(null);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting'>('idle');
-  const [submitError, setSubmitError] = useState<string | null>(null);
-  const [pollData, setPollData] = useState<AuditStatusResponse | null>(null);
-  const [pollError, setPollError] = useState<string | null>(null);
-  const [isFetching, setIsFetching] = useState(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [status, setStatus] = useState<AuditStatus>('idle');
+  const [result, setResult] = useState<SeoAuditResult | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  // ── Polling ───────────────────────────────────────────────────────────────
-  const stopPolling = useCallback(() => {
-    if (intervalRef.current !== null) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
+  const submit = useCallback(async (params: AuditSubmitParams) => {
+    setStatus('running');
+    setResult(null);
+    setError(null);
+
+    try {
+      const res = await fetch('/api/seo/audit-graph', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params),
+      });
+
+      const data = await res.json() as SeoAuditResult & { error?: string };
+
+      if (!res.ok) {
+        throw new Error(data?.error ?? `Audit failed: ${res.status}`);
+      }
+
+      setResult(data);
+      setStatus('completed');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Audit failed');
+      setStatus('failed');
     }
   }, []);
 
-  const poll = useCallback(async (id: string) => {
-    setIsFetching(true);
-    try {
-      const data = await fetchAuditStatus(id);
-      setPollData(data);
-      if (data.status === 'completed' || data.status === 'failed') {
-        stopPolling();
-      }
-    } catch (err) {
-      // 404 on first poll is expected — row may not exist yet
-      const msg = err instanceof Error ? err.message : 'Poll error';
-      if (!msg.includes('404')) {
-        setPollError(msg);
-        stopPolling();
-      }
-    } finally {
-      setIsFetching(false);
-    }
-  }, [stopPolling]);
-
-  useEffect(() => {
-    if (!runId || submitStatus === 'submitting') return;
-
-    // Immediate first poll
-    void poll(runId);
-
-    // Then every 2s
-    intervalRef.current = setInterval(() => {
-      void poll(runId);
-    }, 2000);
-
-    return () => stopPolling();
-  }, [runId, submitStatus, poll, stopPolling]);
-
-  // ── Derived state ─────────────────────────────────────────────────────────
-  let status: AuditStatus = 'idle';
-  if (submitStatus === 'submitting') {
-    status = 'submitting';
-  } else if (runId && !pollData) {
-    status = 'pending';
-  } else if (pollData) {
-    status = pollData.status;
-  }
-
-  const error =
-    submitError ??
-    pollData?.error_message ??
-    pollError ??
-    null;
-
-  // ── Actions ───────────────────────────────────────────────────────────────
-  const submit = useCallback(async (domain: string, keywords: string[]) => {
-    stopPolling();
-    setSubmitError(null);
-    setPollData(null);
-    setPollError(null);
-    setRunId(null);
-    setSubmitStatus('submitting');
-    try {
-      const { run_id } = await postAuditGraph(domain, keywords);
-      setRunId(run_id);
-    } catch (err) {
-      setSubmitError(
-        err instanceof Error ? err.message : 'Failed to start audit',
-      );
-    } finally {
-      setSubmitStatus('idle');
-    }
-  }, [stopPolling]);
-
   const reset = useCallback(() => {
-    stopPolling();
-    setRunId(null);
-    setSubmitStatus('idle');
-    setSubmitError(null);
-    setPollData(null);
-    setPollError(null);
-  }, [stopPolling]);
+    setStatus('idle');
+    setResult(null);
+    setError(null);
+  }, []);
 
   return {
-    runId,
     status,
-    routingPath: pollData?.routing_path ?? [],
-    loopCounter: pollData?.loop_counter ?? 0,
-    clientReport: pollData?.client_report ?? null,
+    result,
     error,
-    isLoading:
-      submitStatus === 'submitting' ||
-      (isFetching && status !== 'completed' && status !== 'failed'),
+    isLoading: status === 'running',
     submit,
     reset,
   };
