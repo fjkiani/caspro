@@ -40,7 +40,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
           ? (isDarkMode ? 'text-cyan-400' : 'text-indigo-600')
           : 'text-rose-500'
       }`}>{value}</span>
-      {subtext && <span className={`text-[9px] font-black uppercase ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>{subtext}</span>}
+      {subtext && <span className={`text-[9px] font-black uppercase ${isDarkMode ? 'text-zinc-300' : 'text-slate-600'}`}>{subtext}</span>}
     </div>
   </div>
 );

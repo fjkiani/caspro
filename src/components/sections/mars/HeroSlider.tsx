@@ -9,7 +9,6 @@ import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
 import { PasscodeModal } from '@/components/ui/PasscodeModal';
 import DnaHero from '@/components/mockups/dnaHero2';
 import ProteinPreviewGated from './previews/ProteinPreviewGated';
-import MoaRadarPreviewGated from './previews/MoaRadarPreviewGated';
 import KillChainPreviewGated from './previews/KillChainPreviewGated';
 import VectorMapPreviewGated from './previews/VectorMapPreviewGated';
 
@@ -105,7 +104,13 @@ export const HeroSlider = () => {
         case 'ceacam5':
           return <ProteinPreviewGated isDarkMode={isDarkMode} />;
         case 'latify':
-          return <MoaRadarPreviewGated isDarkMode={isDarkMode} />;
+          return (
+            <VectorMapPreviewGated
+              trialId="latify"
+              targetLabel="LATIFY"
+              isDarkMode={isDarkMode}
+            />
+          );
         case 'capri':
           return <KillChainPreviewGated isDarkMode={isDarkMode} />;
         case 'adavosertib':

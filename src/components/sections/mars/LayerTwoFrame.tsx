@@ -126,7 +126,7 @@ export const LayerTwoFrame: React.FC = () => {
             <div className="text-[10px] font-black text-cyan-400 uppercase tracking-[0.3em]">
               Layer 1: Target-Lock
             </div>
-            <div className="text-[9px] text-zinc-600 mt-1 uppercase tracking-[0.2em]">
+            <div className="text-[9px] text-zinc-300 mt-1 uppercase tracking-[0.2em]">
               Is the biology real?
             </div>
           </div>
@@ -134,7 +134,7 @@ export const LayerTwoFrame: React.FC = () => {
             <div className="text-[10px] font-black text-red-400/80 uppercase tracking-[0.3em]">
               Layer 2: Mechanism Fit
             </div>
-            <div className="text-[9px] text-zinc-600 mt-1 uppercase tracking-[0.2em]">
+            <div className="text-[9px] text-zinc-300 mt-1 uppercase tracking-[0.2em]">
               Are the right patients enrolled?
             </div>
           </div>
@@ -158,7 +158,7 @@ export const LayerTwoFrame: React.FC = () => {
           >
             {/* Row Label */}
             <div className="px-6 py-5">
-              <span className={`text-[11px] font-bold uppercase tracking-[0.15em] ${row.isTrial ? 'text-zinc-300 group-hover:text-cyan-400 transition-colors' : 'text-zinc-500'}`}>
+              <span className={`text-[11px] font-bold uppercase tracking-[0.15em] ${row.isTrial ? 'text-zinc-300 group-hover:text-cyan-400 transition-colors' : 'text-zinc-300'}`}>
                 {row.label}
               </span>
               {row.isTrial && (
@@ -178,7 +178,7 @@ export const LayerTwoFrame: React.FC = () => {
             {/* Layer 1 Cell */}
             <div className="px-6 py-5 border-l border-zinc-800/20 flex items-center">
               <StatusBadge pass={row.l1Pass} />
-              <span className={`text-[11px] ${row.l1Pass !== null ? 'text-zinc-300' : 'text-zinc-500'}`}>
+              <span className={`text-[11px] ${row.l1Pass !== null ? 'text-zinc-200' : 'text-zinc-300'}`}>
                 {row.layer1}
               </span>
             </div>
@@ -186,7 +186,7 @@ export const LayerTwoFrame: React.FC = () => {
             {/* Layer 2 Cell */}
             <div className="px-6 py-5 border-l border-zinc-800/20 flex items-center">
               <StatusBadge pass={row.l2Pass} />
-              <span className={`text-[11px] ${row.l2Pass === false ? 'text-red-400/80' : 'text-zinc-500'}`}>
+              <span className={`text-[11px] ${row.l2Pass === false ? 'text-red-400' : 'text-zinc-300'}`}>
                 {row.layer2}
               </span>
             </div>
@@ -202,7 +202,7 @@ export const LayerTwoFrame: React.FC = () => {
         className="mt-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
       >
         <div className="border-l-2 border-zinc-800 pl-8">
-          <p className="text-[12px] text-zinc-500 leading-relaxed max-w-2xl font-medium">
+          <p className="text-[12px] text-zinc-300 leading-relaxed max-w-2xl font-medium">
             {TABLE_ROWS.filter(r => r.isTrial).length} drugs. Different cancers. Different companies.{' '}
             <span className="text-zinc-300">Same root cause.</span>{' '}
             Identified retroactively by the same engine.

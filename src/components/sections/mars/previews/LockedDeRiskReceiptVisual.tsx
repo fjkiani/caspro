@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Public-safe locked preview for vector-map trials (ADAVOSERTIB / BERZOSERTIB).
+ * Public-safe locked preview for gated de-risk trials (LATIFY, ADAVOSERTIB, BERZOSERTIB, …).
  * Shows registry metadata only — mechanistic analysis stays redacted until passcode.
  */
 
@@ -30,13 +30,13 @@ export default function LockedDeRiskReceiptVisual({
   const panel = isDarkMode
     ? 'bg-zinc-950/80 border-zinc-800 text-zinc-100'
     : 'bg-white border-slate-300 text-slate-900';
-  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-500';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
   const accent = isDarkMode ? 'text-violet-400' : 'text-violet-600';
   const redactedBg = isDarkMode ? 'bg-zinc-900/90' : 'bg-slate-100';
   const scanLine = isDarkMode ? 'from-violet-500/0 via-violet-400/20 to-violet-500/0' : 'from-violet-600/0 via-violet-500/15 to-violet-600/0';
 
   return (
-    <div className={`relative flex h-full min-h-[220px] sm:min-h-[320px] w-full flex-col overflow-hidden rounded-lg border p-4 sm:p-6 ${panel}`}>
+    <div className={`relative flex h-full min-h-[160px] w-full flex-col overflow-hidden rounded-lg border p-3 sm:p-4 md:p-6 ${panel}`}>
       {/* Scan sweep */}
       <div
         className={`pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b ${scanLine} animate-pulse`}

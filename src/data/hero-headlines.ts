@@ -7,7 +7,7 @@
 export interface EvidenceRow {
   label: string;
   value: string;
-  color?: 'accent' | 'rose' | 'emerald' | 'muted';  // defaults to 'accent'
+  color?: 'accent' | 'rose' | 'emerald' | 'muted' | 'body';  // defaults to 'accent'
 }
 
 export interface HeadlineEntry {
@@ -523,6 +523,41 @@ export const HERO_HEADLINES: Record<string, HeadlineEntry[]> = {
   ],
 
   // ─── Vector map trials (gated on ledger + hero) ─────────────────────────────
+  latify: [
+    {
+      text: 'LATIFY Phase III. 594 IO-refractory NSCLC patients. OS primary missed.',
+      highlight: 'Enrollment was unselected — biomarker gate existed at screening, not in protocol.',
+      trial: 'LATIFY › NCT05450692 › AstraZeneca',
+      evidence: {
+        title: 'Trial Receipt (Public)',
+        rows: [
+          { label: 'Registry', value: 'NCT05450692', color: 'muted' },
+          { label: 'Modality', value: 'ATRi + PD-L1', color: 'muted' },
+          { label: 'Analysis', value: 'LOCKED', color: 'accent' },
+        ],
+        impact: 'Receipt Status',
+        impactValue: 'PRE-READOUT',
+        proofId: 'latify',
+      },
+    },
+    {
+      text: 'Real target. Wrong patients enrolled. Same Layer 2 failure pattern.',
+      highlight: 'Mechanistic stratification withheld until passcode.',
+      trial: 'LATIFY › Retroactive Validation',
+      evidence: {
+        title: 'Diligence Package',
+        rows: [
+          { label: 'Sponsor', value: 'AstraZeneca', color: 'muted' },
+          { label: 'Phase', value: 'Phase III', color: 'muted' },
+          { label: 'Stratification', value: 'REDACTED', color: 'accent' },
+        ],
+        impact: 'Full Case File',
+        impactValue: 'PASSCODE',
+        proofId: 'latify',
+      },
+    },
+  ],
+
   adavosertib: [
     {
       text: 'Adavosertib Phase II. Biomarker-enriched subgroups diverged sharply.',

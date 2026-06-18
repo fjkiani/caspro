@@ -26,7 +26,7 @@ export const PlaybookStep: React.FC<PlaybookStepProps> = ({ step, title, desc, a
     </div>
     <div className="space-y-1">
       <h4 className={`text-[11px] font-black uppercase tracking-widest ${active ? (isDarkMode ? 'text-white' : 'text-indigo-900') : (isDarkMode ? 'text-zinc-300' : 'text-slate-700')}`}>{title}</h4>
-      <p className={`text-[10px] leading-relaxed font-medium ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>{desc}</p>
+      <p className={`text-[11px] leading-relaxed font-medium ${isDarkMode ? 'text-zinc-200' : 'text-slate-800'}`}>{desc}</p>
     </div>
   </div>
 );

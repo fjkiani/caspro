@@ -8,7 +8,8 @@
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { GlitchTypewriter } from '@/components/ui/GlitchTypewriter';
-import { HERO_HEADLINES } from '@/data/hero-headlines';
+import { getTrialCaseHeadlines } from '@/data/trial-case-headlines';
+import { TRIAL_CASE_FILES } from '@/data/trial-case-files';
 import { GatedEvidencePanel } from '@/components/ui/GatedEvidencePanel';
 
 // ─── Point-cloud protein canvas (unchanged from ProteinPreview) ───────────────
@@ -141,8 +142,9 @@ const ProteinCanvas = ({ isDarkMode }: { isDarkMode: boolean }) => {
 // ─── Gated Target Lock Preview ────────────────────────────────────────────────
 const ProteinPreviewGated = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const accent = isDarkMode ? 'text-cyan-400' : 'text-indigo-600';
-  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-400';
-  const headlines = HERO_HEADLINES['target-lock'] || [];
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
+  const headlines = getTrialCaseHeadlines('ceacam5');
+  const trial = TRIAL_CASE_FILES.ceacam5;
   const [activeIdx, setActiveIdx] = useState(0);
   const handleLineChange = useCallback((idx: number) => setActiveIdx(idx), []);
 
@@ -153,7 +155,7 @@ const ProteinPreviewGated = ({ isDarkMode }: { isDarkMode: boolean }) => {
         {/* Left: Typewriter + Gated Evidence Panel */}
         <div className="flex flex-col justify-start sm:justify-center gap-2 sm:gap-4 lg:gap-8 py-1 sm:py-2 lg:py-8 min-w-0 order-2 lg:order-none">
           <div>
-            <span className={`text-[8px] sm:text-[9px] font-black uppercase tracking-[0.35em] sm:tracking-[0.5em] ${accent} opacity-60 block mb-2 sm:mb-4`}>
+            <span className={`text-[8px] sm:text-[9px] font-black uppercase tracking-[0.35em] sm:tracking-[0.5em] ${accent} block mb-2 sm:mb-4`}>
               Target Validation
             </span>
             <GlitchTypewriter
@@ -187,8 +189,8 @@ const ProteinPreviewGated = ({ isDarkMode }: { isDarkMode: boolean }) => {
                 </span>
               </div>
               <div className={`text-right text-[9px] uppercase font-bold tracking-widest ${muted}`}>
-                Target: MMP9<br />
-                Vulnerability: 0.942
+                Target: CEACAM5<br />
+                Δ: {trial?.deltaImpact ?? '—'}
               </div>
             </div>
           </div>

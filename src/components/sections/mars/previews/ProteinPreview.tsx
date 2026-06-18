@@ -136,7 +136,7 @@ const ProteinCanvas = ({ isDarkMode }: { isDarkMode: boolean }) => {
 
 const ProteinPreview = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const accent = isDarkMode ? 'text-cyan-400' : 'text-indigo-600';
-  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-400';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
   const heading = isDarkMode ? 'text-white' : 'text-slate-900';
   const headlines = HERO_HEADLINES['target-lock'] || [];
   const [activeIdx, setActiveIdx] = useState(0);
@@ -149,7 +149,7 @@ const ProteinPreview = ({ isDarkMode }: { isDarkMode: boolean }) => {
         {/* Left: Typewriter Tagline + Evidence */}
         <div className="flex flex-col justify-start sm:justify-center gap-2 sm:gap-4 lg:gap-8 py-1 sm:py-2 lg:py-8 min-w-0 order-2 lg:order-none">
           <div>
-            <span className={`text-[8px] sm:text-[9px] font-black uppercase tracking-[0.35em] sm:tracking-[0.5em] ${accent} opacity-60 block mb-2 sm:mb-4`}>
+            <span className={`text-[8px] sm:text-[9px] font-black uppercase tracking-[0.35em] sm:tracking-[0.5em] ${accent} block mb-2 sm:mb-4`}>
               Target Validation
             </span>
             <GlitchTypewriter

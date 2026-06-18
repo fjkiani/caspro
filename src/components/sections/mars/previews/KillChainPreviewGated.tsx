@@ -43,7 +43,7 @@ const KillChainPreviewGated = ({ isDarkMode }: { isDarkMode: boolean }) => {
         {/* Left: Tagline + Gated Evidence Panel */}
         <div className="flex flex-col justify-center gap-4 lg:gap-8 py-2 lg:py-8 min-w-0 order-2 lg:order-none">
           <div>
-            <span className={`text-[8px] sm:text-[9px] font-black uppercase tracking-[0.35em] sm:tracking-[0.5em] ${accent} opacity-60 block mb-2 sm:mb-4`}>
+            <span className={`text-[8px] sm:text-[9px] font-black uppercase tracking-[0.35em] sm:tracking-[0.5em] ${accent} block mb-2 sm:mb-4`}>
               Resistance Intelligence
             </span>
             <GlitchTypewriter

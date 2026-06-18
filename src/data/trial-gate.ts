@@ -35,6 +35,15 @@ export function unlockTrialGate(slug: string): void {
 
 /** Persist unlock from a post-passcode destination URL. */
 export function unlockTrialGateFromUrl(url: string): void {
-  const match = url.match(/\/ledger\/([^/]+)/i);
-  if (match?.[1]) unlockTrialGate(match[1]);
+  const ledger = url.match(/\/ledger\/([^/]+)/i);
+  const proof = url.match(/\/proof\/([^/]+)/i);
+  const slug = ledger?.[1] ?? proof?.[1];
+  if (slug) unlockTrialGate(slug);
+}
+
+/** Mirror server cookie unlock in sessionStorage for client UI state. */
+export function unlockAllTrialGates(): void {
+  for (const slug of GATED_LEDGER_TRIAL_SLUGS) {
+    unlockTrialGate(slug);
+  }
 }

@@ -77,7 +77,7 @@ export function ledgerSlugPath(slug: string): string {
 }
 
 const PREVIEW_BY_SLUG: Record<string, TrialReceiptPreview> = {
-  ceacam5: 'target-lock',
+  ceacam5: 'vector-map',
   latify: 'moa-align',
   capri: 'kill-chain',
   adavosertib: 'vector-map',

@@ -11,7 +11,7 @@ import { PGX_GENES, CPIC_CONCORDANCE, PREPARE_DATA } from '@/data/safety-engine-
 
 const SafetyPreview = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const accent = isDarkMode ? 'text-cyan-400' : 'text-indigo-600';
-  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-400';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
   const heading = isDarkMode ? 'text-white' : 'text-slate-900';
   const border = isDarkMode ? 'border-zinc-800' : 'border-slate-200';
   const cardBg = isDarkMode ? 'bg-zinc-950/60' : 'bg-white';

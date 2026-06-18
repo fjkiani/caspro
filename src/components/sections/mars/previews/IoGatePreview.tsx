@@ -25,7 +25,7 @@ const IO_DATA = [
 
 const IoGatePreview = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const accent = isDarkMode ? 'text-rose-400' : 'text-rose-600';
-  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-400';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
   const heading = isDarkMode ? 'text-white' : 'text-slate-900';
   const headlines = HERO_HEADLINES['io-risk-benefit'] || [];
   const [activeIdx, setActiveIdx] = useState(0);
@@ -38,7 +38,7 @@ const IoGatePreview = ({ isDarkMode }: { isDarkMode: boolean }) => {
         {/* Left: Tagline + Legend */}
         <div className="flex flex-col justify-center gap-8 py-8">
           <div>
-            <span className={`text-[9px] font-black uppercase tracking-[0.5em] ${accent} opacity-60 block mb-4`}>
+            <span className={`text-[9px] font-black uppercase tracking-[0.5em] ${accent} block mb-4`}>
               Harm Prevention
             </span>
             <GlitchTypewriter

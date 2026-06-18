@@ -4,9 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { Lock, X, ArrowRight, MessageSquare } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
-import { unlockTrialGateFromUrl } from '@/data/trial-gate';
-
-const CORRECT_CODE = 'curecancer';
+import { unlockAllTrialGates, unlockTrialGateFromUrl } from '@/data/trial-gate';
 
 export interface PasscodeModalProps {
   open: boolean;
@@ -24,13 +22,16 @@ export function PasscodeModal({ open, onClose, proofUrl, targetLabel }: Passcode
 
   const [code, setCode] = useState('');
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('Invalid code.');
   const [shaking, setShaking] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   // Focus input when modal opens
   useEffect(() => {
     if (open) {
       setCode('');
       setError(false);
+      setErrorMessage('Invalid code.');
       setTimeout(() => inputRef.current?.focus(), 80);
     }
   }, [open]);
@@ -53,17 +54,42 @@ export function PasscodeModal({ open, onClose, proofUrl, targetLabel }: Passcode
     return () => { document.body.style.overflow = prev; };
   }, [open]);
 
-  const handleSubmit = useCallback(() => {
-    if (code.trim().toLowerCase() === CORRECT_CODE) {
-      unlockTrialGateFromUrl(proofUrl);
-      onClose();
-      router.push(proofUrl);
-    } else {
+  const handleSubmit = useCallback(async () => {
+    if (submitting) return;
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/trial-gate/unlock/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: code.trim() }),
+      });
+
+      if (res.ok) {
+        unlockAllTrialGates();
+        unlockTrialGateFromUrl(proofUrl);
+        onClose();
+        router.push(proofUrl);
+        return;
+      }
+
+      const payload = (await res.json().catch(() => null)) as { error?: string } | null;
+      setErrorMessage(
+        payload?.error === 'gate_unconfigured'
+          ? 'Access gate is not configured on this server.'
+          : 'Invalid code.',
+      );
       setError(true);
       setShaking(true);
       setTimeout(() => setShaking(false), 500);
+    } catch {
+      setErrorMessage('Could not reach the unlock service. Try again.');
+      setError(true);
+      setShaking(true);
+      setTimeout(() => setShaking(false), 500);
+    } finally {
+      setSubmitting(false);
     }
-  }, [code, proofUrl, router, onClose]);
+  }, [code, proofUrl, router, onClose, submitting]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') handleSubmit();
@@ -153,22 +179,23 @@ export function PasscodeModal({ open, onClose, proofUrl, targetLabel }: Passcode
 
             {error && (
               <p className={`text-[11px] font-bold ${isDarkMode ? 'text-red-400' : 'text-red-600'}`}>
-                Invalid code.
+                {errorMessage}
               </p>
             )}
 
             {/* Unlock button */}
             <button
               type="button"
-              onClick={handleSubmit}
-              className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-[11px] font-black uppercase tracking-[0.2em] transition-all ${
+              onClick={() => void handleSubmit()}
+              disabled={submitting}
+              className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-[11px] font-black uppercase tracking-[0.2em] transition-all disabled:opacity-60 disabled:cursor-not-allowed ${
                 isDarkMode
                   ? 'bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500 hover:text-black hover:border-cyan-500'
                   : 'bg-indigo-600 text-white hover:bg-indigo-700 border border-indigo-700'
               }`}
             >
               <Lock className="w-3.5 h-3.5" />
-              UNLOCK
+              {submitting ? 'VERIFYING…' : 'UNLOCK'}
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>

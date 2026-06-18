@@ -25,7 +25,8 @@ export const DynamicEvidencePanel: React.FC<DynamicEvidencePanelProps> = ({
   const evidence = current?.evidence;
   if (!evidence) return null;
 
-  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-700';
+  const bodyText = isDarkMode ? 'text-zinc-200' : 'text-slate-800';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
   const heading = isDarkMode ? 'text-white' : 'text-slate-900';
   const border = isDarkMode ? 'border-zinc-800' : 'border-slate-200';
   const bg = isDarkMode ? 'bg-zinc-950/60' : 'bg-slate-50';
@@ -34,7 +35,8 @@ export const DynamicEvidencePanel: React.FC<DynamicEvidencePanelProps> = ({
     accent: accentColor,
     rose: 'text-rose-500',
     emerald: 'text-emerald-500',
-    muted: muted,
+    muted: bodyText,
+    body: bodyText,
   };
 
   // Map accent text class to bg class for the button
@@ -70,7 +72,13 @@ export const DynamicEvidencePanel: React.FC<DynamicEvidencePanelProps> = ({
               <span className={`text-[10px] font-black uppercase tracking-widest shrink-0 ${heading}`}>
                 {row.label}
               </span>
-              <span className={`text-[11px] sm:text-[12px] font-black break-all sm:break-normal text-right sm:text-left ${colorMap[row.color || 'accent']}`}>
+              <span
+                className={`text-[11px] sm:text-[12px] break-all sm:break-normal text-right sm:text-left ${
+                  row.color === 'body' || row.color === 'muted'
+                    ? 'font-medium leading-relaxed'
+                    : 'font-black'
+                } ${colorMap[row.color || 'accent']}`}
+              >
                 {row.value}
               </span>
             </div>

@@ -1,30 +1,22 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
+import { ResponsiveContainer } from 'recharts';
+import { TRIAL_CASE_FILES } from '@/data/trial-case-files';
 import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  ResponsiveContainer,
-} from 'recharts';
-import { TRIAL_CASE_FILES, VECTOR_AXIS_META } from '@/data/trial-case-files';
+  buildDualGeometryRadarData,
+  DualGeometryRadar,
+} from '@/components/sections/mars/DualGeometryRadar';
 import { GlitchTypewriter } from '@/components/ui/GlitchTypewriter';
 import { HERO_HEADLINES } from '@/data/hero-headlines';
 import { DynamicEvidencePanel } from '@/components/ui/DynamicEvidencePanel';
 
 const MoaRadarPreview = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const trial = TRIAL_CASE_FILES['latify'];
-  const radarData = VECTOR_AXIS_META.map(m => ({
-    axis: m.label,
-    trial: trial.trialVector[m.key],
-    responder: trial.responderVector[m.key],
-    non_responder: trial.nonResponderVector[m.key],
-  }));
+  const radarData = buildDualGeometryRadarData(trial);
 
   const accent = isDarkMode ? 'text-red-400' : 'text-red-500';
-  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-400';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
   const heading = isDarkMode ? 'text-white' : 'text-slate-900';
   const headlines = HERO_HEADLINES['mechanism-alignment'] || [];
   const [activeIdx, setActiveIdx] = useState(0);
@@ -64,39 +56,7 @@ const MoaRadarPreview = ({ isDarkMode }: { isDarkMode: boolean }) => {
         <div className="relative flex items-center justify-center min-h-[190px] sm:min-h-[280px] w-full min-w-0 order-1 lg:order-none">
           <div className="w-full max-w-[520px] aspect-square max-h-[min(72vw,320px)] sm:max-h-none mx-auto">
             <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="78%" data={radarData}>
-                <PolarGrid stroke={isDarkMode ? '#27272a' : '#e2e8f0'} />
-                <PolarAngleAxis
-                  dataKey="axis"
-                  tick={{ fill: isDarkMode ? '#a1a1aa' : '#475569', fontSize: 9, fontWeight: 'bold' }}
-                />
-                <PolarRadiusAxis angle={90} domain={[0, 1]} tick={false} axisLine={false} />
-                <Radar
-                  name="Non-Responder"
-                  dataKey="non_responder"
-                  stroke="#f43f5e"
-                  strokeWidth={2}
-                  strokeDasharray="4 4"
-                  fill="#f43f5e"
-                  fillOpacity={0.08}
-                />
-                <Radar
-                  name="Responder"
-                  dataKey="responder"
-                  stroke="#10b981"
-                  strokeWidth={2}
-                  fill="#10b981"
-                  fillOpacity={0.05}
-                />
-                <Radar
-                  name="Trial"
-                  dataKey="trial"
-                  stroke={isDarkMode ? '#22d3ee' : '#6366f1'}
-                  strokeWidth={4}
-                  fill={isDarkMode ? '#22d3ee' : '#6366f1'}
-                  fillOpacity={0.12}
-                />
-              </RadarChart>
+              <DualGeometryRadar data={radarData} isDarkMode={isDarkMode} outerRadius="78%" />
             </ResponsiveContainer>
           </div>
         </div>

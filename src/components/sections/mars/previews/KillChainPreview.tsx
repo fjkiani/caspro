@@ -26,7 +26,7 @@ const INTERCEPT = [
 
 const KillChainPreview = ({ isDarkMode }: { isDarkMode: boolean }) => {
   const accent = isDarkMode ? 'text-amber-400' : 'text-amber-600';
-  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-400';
+  const muted = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
   const heading = isDarkMode ? 'text-white' : 'text-slate-900';
   const headlines = HERO_HEADLINES['kill-chain'] || [];
   const [activeIdx, setActiveIdx] = useState(0);
@@ -39,7 +39,7 @@ const KillChainPreview = ({ isDarkMode }: { isDarkMode: boolean }) => {
         {/* Left: Tagline + Legend */}
         <div className="flex flex-col justify-center gap-4 lg:gap-8 py-2 lg:py-8 min-w-0 order-2 lg:order-none">
           <div>
-            <span className={`text-[8px] sm:text-[9px] font-black uppercase tracking-[0.35em] sm:tracking-[0.5em] ${accent} opacity-60 block mb-2 sm:mb-4`}>
+            <span className={`text-[8px] sm:text-[9px] font-black uppercase tracking-[0.35em] sm:tracking-[0.5em] ${accent} block mb-2 sm:mb-4`}>
               Resistance Intelligence
             </span>
             <GlitchTypewriter

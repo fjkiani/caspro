@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Lock } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
 import { PasscodeModal } from '@/components/ui/PasscodeModal';
 import { getTrialLedgerEntry, type TrialLedgerEntry } from '@/data/trial-ledger-registry';
 import { getTrialLedgerIcon } from '@/components/ledger/trial-ledger-icons';
-import { isGatedLedgerTrial, isTrialGateUnlocked } from '@/data/trial-gate';
+import { isGatedLedgerTrial } from '@/data/trial-gate';
 import ProteinPreviewGated from '@/components/sections/mars/previews/ProteinPreviewGated';
 import MoaRadarPreviewGated from '@/components/sections/mars/previews/MoaRadarPreviewGated';
 import KillChainPreviewGated from '@/components/sections/mars/previews/KillChainPreviewGated';
@@ -16,6 +17,8 @@ import { VectorFailureAnalysis } from '@/components/sections/mars/VectorFailureA
 
 type TrialLedgerReceiptPageProps = {
   slug: string;
+  /** Server-verified httpOnly cookie (source of truth for unlock). */
+  gateAuthorized?: boolean;
 };
 
 function TrialVisual({ entry, isDarkMode }: { entry: TrialLedgerEntry; isDarkMode: boolean }) {
@@ -28,8 +31,8 @@ function TrialVisual({ entry, isDarkMode }: { entry: TrialLedgerEntry; isDarkMod
       return <KillChainPreviewGated isDarkMode={isDarkMode} />;
     case 'vector-map':
       return (
-        <div className="w-full h-full min-h-[420px] max-h-[70vh] overflow-auto">
-          <VectorFailureAnalysis initialTrialId={entry.slug} singleTrialMode />
+        <div className="w-full h-full min-h-[420px] max-h-[70vh] overflow-hidden">
+          <VectorFailureAnalysis initialTrialId={entry.slug} singleTrialMode chartOnly />
         </div>
       );
     default:
@@ -37,11 +40,12 @@ function TrialVisual({ entry, isDarkMode }: { entry: TrialLedgerEntry; isDarkMod
   }
 }
 
-export default function TrialLedgerReceiptPage({ slug }: TrialLedgerReceiptPageProps) {
+export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }: TrialLedgerReceiptPageProps) {
+  const searchParams = useSearchParams();
   const { isDarkMode } = useTheme();
   const entry = getTrialLedgerEntry(slug);
   const gated = entry ? isGatedLedgerTrial(entry.slug) : false;
-  const [unlocked, setUnlocked] = useState(!gated);
+  const [unlocked, setUnlocked] = useState(() => !gated || gateAuthorized);
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -49,8 +53,31 @@ export default function TrialLedgerReceiptPage({ slug }: TrialLedgerReceiptPageP
       setUnlocked(true);
       return;
     }
-    setUnlocked(isTrialGateUnlocked(slug));
-  }, [gated, slug]);
+
+    if (gateAuthorized) {
+      setUnlocked(true);
+      return;
+    }
+
+    let cancelled = false;
+    fetch(`/api/trial-gate/status/?slug=${encodeURIComponent(slug)}`)
+      .then((res) => res.json())
+      .then((data: { unlocked?: boolean }) => {
+        if (cancelled) return;
+        if (data.unlocked) setUnlocked(true);
+      })
+      .catch(() => {});
+
+    return () => {
+      cancelled = true;
+    };
+  }, [gated, slug, gateAuthorized]);
+
+  useEffect(() => {
+    if (gated && !unlocked && searchParams.get('locked') === '1') {
+      setModalOpen(true);
+    }
+  }, [gated, unlocked, searchParams]);
 
   if (!entry) return null;
 
@@ -125,7 +152,7 @@ export default function TrialLedgerReceiptPage({ slug }: TrialLedgerReceiptPageP
         )}
       </div>
 
-      {!showGate && (
+      {!showGate && entry.preview !== 'vector-map' && (
         <div className="relative z-10 px-3 sm:px-8 lg:px-12 pb-10 sm:pb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <p
             className={`hidden sm:block text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] ${
@@ -149,7 +176,12 @@ export default function TrialLedgerReceiptPage({ slug }: TrialLedgerReceiptPageP
         open={modalOpen}
         onClose={() => {
           setModalOpen(false);
-          if (isTrialGateUnlocked(slug)) setUnlocked(true);
+          fetch(`/api/trial-gate/status/?slug=${encodeURIComponent(slug)}`)
+            .then((res) => res.json())
+            .then((data: { unlocked?: boolean }) => {
+              if (data.unlocked) setUnlocked(true);
+            })
+            .catch(() => {});
         }}
         proofUrl={entry.route}
         targetLabel={entry.label}

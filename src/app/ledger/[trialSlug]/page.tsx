@@ -1,6 +1,8 @@
+import { cookies } from 'next/headers';
 import nextDynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
 import { getTrialLedgerEntry } from '@/data/trial-ledger-registry';
+import { isTrialGateAuthorized } from '@/lib/trial-gate-server';
 
 /** Recharts + heavy charts must not load on the server for this route (avoids missing vendor-chunks/recharts.js). */
 const TrialLedgerReceiptPage = nextDynamic(
@@ -19,10 +21,12 @@ type Props = { params: { trialSlug: string } };
 
 export const dynamic = 'force-dynamic';
 
-export default function LedgerTrialPage({ params }: Props) {
+export default async function LedgerTrialPage({ params }: Props) {
   const slug = params.trialSlug?.trim().toLowerCase();
   const entry = getTrialLedgerEntry(slug);
   if (!entry) notFound();
 
-  return <TrialLedgerReceiptPage slug={slug} />;
+  const gateAuthorized = await isTrialGateAuthorized(cookies(), slug);
+
+  return <TrialLedgerReceiptPage slug={slug} gateAuthorized={gateAuthorized} />;
 }

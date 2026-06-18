@@ -5,13 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useTheme } from '@/context/ThemeContext';
 import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
   ResponsiveContainer,
 } from 'recharts';
+import {
+  buildDualGeometryRadarData,
+  DualGeometryRadar,
+  DualGeometryLegend,
+} from '@/components/sections/mars/DualGeometryRadar';
 import {
   Target,
   Binary,
@@ -24,22 +24,17 @@ import {
 } from 'lucide-react';
 import {
   TrialCaseFile,
-  VECTOR_AXIS_META,
   TRIAL_CASE_FILES,
   TRIAL_IDS,
 } from '@/data/trial-case-files';
+import { marsReadable } from '@/components/sections/mars/readable-text';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
 function buildRadarData(trial: TrialCaseFile) {
-  return VECTOR_AXIS_META.map((m) => ({
-    axis: m.label,
-    trial: trial.trialVector[m.key],
-    responder: trial.responderVector[m.key],
-    non_responder: trial.nonResponderVector[m.key],
-  }));
+  return buildDualGeometryRadarData(trial);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -77,14 +72,11 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
     ? 'bg-zinc-950 border-zinc-800'
     : 'bg-slate-50 border-slate-300';
   const headingClass = isDarkMode ? 'text-white' : 'text-slate-900';
-  const mutedClass = isDarkMode ? 'text-zinc-500' : 'text-slate-600';
-  const subtleClass = isDarkMode ? 'text-zinc-400' : 'text-slate-500';
+  const { body: bodyClass, secondary: mutedClass, caption: subtleClass } = marsReadable(isDarkMode);
   const dividerClass = isDarkMode ? 'border-zinc-900' : 'border-slate-200';
-  const chartGridStroke = isDarkMode ? '#27272a' : '#cbd5e1';
-  const chartTickColor = isDarkMode ? '#fafafa' : '#334155';
-  const trialStroke = isDarkMode ? '#22d3ee' : '#0284c7';
   const responderStroke = isDarkMode ? '#10b981' : '#059669';
   const nonResponderStroke = isDarkMode ? '#f43f5e' : '#e11d48';
+  const accentStroke = isDarkMode ? '#22d3ee' : '#0284c7';
 
   return (
     <div className="flex-1 flex flex-col font-mono p-1 relative overflow-hidden h-full">
@@ -126,7 +118,7 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
                   className={`px-3 sm:px-5 py-2 rounded text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all border shrink-0 ${
                     isActive
                       ? (isDarkMode ? 'bg-cyan-500/10 border-cyan-500/40 text-cyan-400' : 'bg-sky-500/10 border-sky-500/40 text-sky-700')
-                      : (isDarkMode ? 'bg-zinc-950 border-zinc-800 text-zinc-600 hover:text-zinc-400' : 'bg-white border-slate-300 text-slate-600 hover:text-slate-900')
+                      : (isDarkMode ? 'bg-zinc-950 border-zinc-800 text-zinc-300 hover:text-zinc-100' : 'bg-white border-slate-300 text-slate-600 hover:text-slate-900')
                   }`}
                 >
                   {t.id.toUpperCase()}
@@ -168,74 +160,27 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
               <span className={`text-[11px] sm:text-[12px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] ${headingClass}`}>
                 Computational Vector Space
               </span>
-              <div className="flex flex-wrap gap-x-4 gap-y-2 sm:gap-6">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full" style={{ backgroundColor: trialStroke }} />
-                  <span className={`text-[9px] font-black uppercase ${subtleClass}`}>TRIAL VECTOR</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full border" style={{ borderColor: responderStroke }} />
-                  <span className={`text-[9px] font-black uppercase ${subtleClass}`}>RESPONDER</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full border border-dashed" style={{ borderColor: nonResponderStroke }} />
-                  <span className={`text-[9px] font-black uppercase ${subtleClass}`}>NON-RESPONDER</span>
-                </div>
-              </div>
+              <DualGeometryLegend
+                isDarkMode={isDarkMode}
+                responderStroke={responderStroke}
+                nonResponderStroke={nonResponderStroke}
+              />
             </div>
             )}
 
             {/* Radar Chart */}
             <div className={`flex-1 relative w-full min-w-0 ${chartOnly ? 'min-h-[220px] sm:min-h-[300px]' : 'min-h-[280px] sm:min-h-[350px]'}`}>
               <ResponsiveContainer width="100%" height="100%">
-                <RadarChart cx="50%" cy="50%" outerRadius="80%" data={radarData}>
-                  <PolarGrid stroke={chartGridStroke} />
-                  <PolarAngleAxis
-                    dataKey="axis"
-                    tick={{ fill: chartTickColor, fontSize: 14, fontWeight: 'bold' }}
-                  />
-                  <PolarRadiusAxis angle={90} domain={[0, 1]} tick={false} axisLine={false} />
-
-                  {/* Non-Responder (Dotted Rose) */}
-                  <Radar
-                    name="Non-Responder"
-                    dataKey="non_responder"
-                    stroke={nonResponderStroke}
-                    strokeWidth={2}
-                    strokeDasharray="4 4"
-                    fill={nonResponderStroke}
-                    fillOpacity={0.15}
-                  />
-
-                  {/* Responder (Emerald) */}
-                  <Radar
-                    name="Responder"
-                    dataKey="responder"
-                    stroke={responderStroke}
-                    strokeWidth={2}
-                    fill={responderStroke}
-                    fillOpacity={0.05}
-                  />
-
-                  {/* Trial Vector (Cyan Glow) */}
-                  <Radar
-                    name="Trial"
-                    dataKey="trial"
-                    stroke={trialStroke}
-                    strokeWidth={4}
-                    fill={trialStroke}
-                    fillOpacity={0.2}
-                  />
-                </RadarChart>
+                <DualGeometryRadar
+                  data={radarData}
+                  isDarkMode={isDarkMode}
+                  responderStroke={responderStroke}
+                  nonResponderStroke={nonResponderStroke}
+                />
               </ResponsiveContainer>
 
-              {/* Floating Annotations */}
-              <div className="absolute top-[25%] left-[20%] pointer-events-none">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-px" style={{ backgroundColor: trialStroke }} />
-                  <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: trialStroke }}>TRIAL VECTOR</span>
-                </div>
-              </div>
+              {!chartOnly && (
+              <>
               <div className="absolute top-[15%] right-[15%] pointer-events-none">
                 <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: responderStroke }}>RESPONDER</span>
               </div>
@@ -248,8 +193,10 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
                 isDarkMode ? 'bg-emerald-500/5 border-emerald-500/30' : 'bg-emerald-50 border-emerald-300/80'
               }`}>
                 <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: responderStroke }}>ALIGNMENT ZONE</span>
-                <p className={`text-[11px] font-black mt-1 uppercase ${headingClass}`}>COSINE = {trial.cosineResponder.toFixed(4)}</p>
+                <p className={`text-[11px] font-black mt-1 uppercase ${headingClass}`}>Fit {trial.cosineResponder.toFixed(4)}</p>
               </div>
+              </>
+              )}
             </div>
           </div>
 
@@ -257,32 +204,30 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
           {!chartOnly && (
           <div className="col-span-1 lg:col-span-4 flex flex-col gap-6 min-w-0">
 
-            {/* Vector Convergence Math */}
+            {/* Mechanism fit summary */}
             <div className={`p-6 border rounded shadow-2xl ${softPanelClass}`}>
               <div className={`flex items-center gap-3 mb-6 border-b pb-4 ${dividerClass}`}>
                 <Binary className={`w-5 h-5 ${isDarkMode ? 'text-cyan-500' : 'text-sky-600'}`} />
-                <span className={`text-[11px] font-black uppercase tracking-widest ${headingClass}`}>Vector Convergence Math</span>
+                <span className={`text-[11px] font-black uppercase tracking-widest ${headingClass}`}>Mechanism Fit Summary</span>
               </div>
 
               <div className="space-y-6">
-                <div className="space-y-2">
-                  <span className={`text-[10px] font-black uppercase ${mutedClass}`}>Formula_Resolve:</span>
-                  <div className={`p-4 rounded font-mono text-[11px] leading-relaxed ${isDarkMode ? 'bg-black text-cyan-500' : 'bg-slate-100 text-sky-700'}`}>
-                    cos(θ) = (A·B) / (||A|| ||B||)
-                  </div>
-                </div>
+                <p className={`text-[11px] leading-relaxed tracking-tight ${bodyClass}`}>
+                  Engine alignment between the trial&apos;s mechanism profile and enrolled vs. responder signatures — scores are
+                  retrospective outputs from the 8D manifold, not hand-tuned thresholds.
+                </p>
 
                 <div className={`space-y-4 pt-4 border-t ${dividerClass}`}>
                   <div className="flex justify-between items-center">
-                    <span className={`text-[10px] font-bold uppercase ${subtleClass}`}>TARGET RESPONDER</span>
+                    <span className={`text-[10px] font-bold uppercase ${subtleClass}`}>Responder signature</span>
                     <span className={`text-xl font-light ${headingClass}`}>{trial.cosineResponder.toFixed(4)}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className={`text-[10px] font-bold uppercase ${subtleClass}`}>ITT DILUTED</span>
+                    <span className={`text-[10px] font-bold uppercase ${subtleClass}`}>ITT diluted</span>
                     <span className="text-xl font-light" style={{ color: nonResponderStroke }}>{trial.cosineITT.toFixed(4)}</span>
                   </div>
                   <div className={`flex justify-between items-center py-3 px-4 rounded border ${isDarkMode ? 'bg-rose-500/5 border-rose-500/20' : 'bg-rose-50 border-rose-300/60'}`}>
-                    <span className="text-[10px] font-black uppercase" style={{ color: nonResponderStroke }}>DELTA IMPACT</span>
+                    <span className="text-[10px] font-black uppercase" style={{ color: nonResponderStroke }}>Delta impact</span>
                     <span className="text-xl font-black" style={{ color: nonResponderStroke }}>{trial.deltaImpact}</span>
                   </div>
                 </div>
@@ -295,7 +240,7 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
                 <Info className={`w-4 h-4 ${isDarkMode ? 'text-cyan-800' : 'text-slate-500'}`} />
                 <span className={`text-[11px] font-black uppercase tracking-widest ${headingClass}`}>Failure Interpretation</span>
               </div>
-              <p className={`text-[12px] leading-relaxed font-bold uppercase tracking-tight ${mutedClass}`}>
+              <p className={`text-[12px] leading-relaxed font-medium tracking-tight ${bodyClass}`}>
                 {trial.rootCause.summary}
               </p>
 
@@ -314,7 +259,7 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
                 </div>
                 <div className={`flex justify-between text-[10px] font-black border-b pb-2 ${dividerClass}`}>
                   <span className={`uppercase ${mutedClass}`}>Validation Tier</span>
-                  <span className="uppercase" style={{ color: trialStroke }}>{trial.validationTier}</span>
+                  <span className="uppercase" style={{ color: accentStroke }}>{trial.validationTier}</span>
                 </div>
               </div>
             </div>
@@ -328,7 +273,7 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
       <div className={`z-10 mt-6 flex items-center justify-between border-t pt-6 ${dividerClass}`}>
         <div className="flex items-center gap-8">
           <span className={`text-[10px] font-black uppercase tracking-widest ${mutedClass}`}>In Silico Failure Analyzer v1.4.2</span>
-          <span className="text-lg font-light tracking-tighter leading-none" style={{ color: trialStroke }}>8D VECTOR ENGINE</span>
+          <span className="text-lg font-light tracking-tighter leading-none" style={{ color: accentStroke }}>8D VECTOR ENGINE</span>
         </div>
         <button
           type="button"

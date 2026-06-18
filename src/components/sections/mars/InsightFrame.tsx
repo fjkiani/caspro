@@ -59,7 +59,7 @@ export const InsightFrame: React.FC<InsightFrameProps> = ({ config }) => {
       >
         <div className="flex items-center gap-4 mb-8">
           <Icon className={`w-5 h-5 ${config.highlightColor} opacity-80`} />
-          <span className={`text-[9px] font-black uppercase tracking-[0.5em] ${config.highlightColor} opacity-60`}>
+          <span className={`text-[9px] font-black uppercase tracking-[0.5em] ${config.highlightColor} opacity-90`}>
             {config.tagLabel}
           </span>
         </div>
@@ -86,7 +86,7 @@ export const InsightFrame: React.FC<InsightFrameProps> = ({ config }) => {
             <div className={`text-[10px] font-black uppercase tracking-[0.3em] ${config.col1.color}`}>
               {config.col1.header}
             </div>
-            <div className={`text-[9px] mt-1 uppercase tracking-[0.2em] ${isDarkMode ? 'text-zinc-600' : 'text-slate-400'}`}>
+            <div className={`text-[9px] mt-1 uppercase tracking-[0.2em] ${isDarkMode ? 'text-zinc-300' : 'text-slate-500'}`}>
               {config.col1.sub}
             </div>
           </div>
@@ -94,7 +94,7 @@ export const InsightFrame: React.FC<InsightFrameProps> = ({ config }) => {
             <div className={`text-[10px] font-black uppercase tracking-[0.3em] ${config.col2.color}`}>
               {config.col2.header}
             </div>
-            <div className={`text-[9px] mt-1 uppercase tracking-[0.2em] ${isDarkMode ? 'text-zinc-600' : 'text-slate-400'}`}>
+            <div className={`text-[9px] mt-1 uppercase tracking-[0.2em] ${isDarkMode ? 'text-zinc-300' : 'text-slate-500'}`}>
               {config.col2.sub}
             </div>
           </div>
@@ -112,13 +112,13 @@ export const InsightFrame: React.FC<InsightFrameProps> = ({ config }) => {
             } transition-colors border-l-2 border-l-transparent`}
           >
             <div className="px-6 py-5">
-              <span className={`text-[11px] font-bold uppercase tracking-[0.15em] ${isDarkMode ? 'text-zinc-500' : 'text-slate-400'}`}>
+              <span className={`text-[11px] font-bold uppercase tracking-[0.15em] ${isDarkMode ? 'text-zinc-300' : 'text-slate-500'}`}>
                 {row.label}
               </span>
             </div>
             <div className={`px-6 py-5 border-l flex items-center ${isDarkMode ? 'border-zinc-800/20' : 'border-slate-200/60'}`}>
               <StatusBadge pass={row.col1.pass} />
-              <span className={`text-[11px] ${isDarkMode ? 'text-zinc-300' : 'text-slate-600'}`}>
+              <span className={`text-[11px] ${isDarkMode ? 'text-zinc-200' : 'text-slate-700'}`}>
                 {row.col1.text}
               </span>
             </div>
@@ -140,7 +140,7 @@ export const InsightFrame: React.FC<InsightFrameProps> = ({ config }) => {
         className="mt-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
       >
         <div className={`border-l-2 pl-8 ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'}`}>
-          <p className={`text-[12px] leading-relaxed max-w-2xl font-medium ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
+          <p className={`text-[12px] leading-relaxed max-w-2xl font-medium ${isDarkMode ? 'text-zinc-300' : 'text-slate-600'}`}>
             {config.closing}
           </p>
         </div>
