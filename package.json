@@ -9,8 +9,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
-  },
+    "lint": "next lint",
+    "audit:titles": "node scripts/audit-titles.js",
+    "audit:h1": "node scripts/audit-h1.js",
+    "audit:meta": "node scripts/audit-meta.js",
+    "audit:all": "npm run audit:titles && npm run audit:h1 && npm run audit:meta"
+},
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@graphcms/rich-text-react-renderer": "^0.6.2",

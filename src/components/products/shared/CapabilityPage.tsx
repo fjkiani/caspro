@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+;
 import { ProductSlug, CapabilitySlug, getCapabilityCoPilots } from '@/data/navigation/co-pilot-mappings';
 import { getCapabilityDefinition } from '@/data/navigation/product-capabilities';
 import { coPilotDetailsData } from '@/data/coPilotDetails';
@@ -9,6 +9,7 @@ import ProductHeroSection, { ProductHeroContent } from './ProductHeroSection';
 import SectionHeader from './SectionHeader';
 import { ArrowRight, Target, Shield, Activity, Search, Dna } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 interface CapabilityPageProps {
   productSlug: ProductSlug;
@@ -120,7 +121,7 @@ export default function CapabilityPage({ productSlug, capabilitySlug }: Capabili
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
               >
                 <Link
-                  to={`/products/${productSlug}/${capabilitySlug}/${mapping.coPilotSlug}`}
+                  href={`/products/${productSlug}/${capabilitySlug}/${mapping.coPilotSlug}`}
                   className="block bg-white rounded-2xl p-6 border-2 border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 h-full"
                 >
                   <div className="flex items-start justify-between mb-4">

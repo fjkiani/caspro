@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { coPilotSlug: stri
   const content = coPilotDetailsData[params.coPilotSlug];
   if (!content) {
     return {
-      title: 'Co-Pilot Not Found',
+      title: 'Co-Pilot Not Found | CrisPRO.ai',
     };
   }
   return {

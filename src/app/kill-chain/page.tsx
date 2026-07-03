@@ -15,6 +15,7 @@ import FinalBattlePlanViz from '@/components/kill-chain-visualizations/FinalBatt
 import KillChainSummary from '@/components/sections/KillChainSummary';
 import KillChainProblem from '@/components/sections/KillChainProblem';
 import KillChainCta from '@/components/sections/KillChainCta';
+import RelatedLinks from '@/components/shared/RelatedLinks';
 
 
 const visualizationMap = {
@@ -99,6 +100,8 @@ export default function KillChainPage() {
                   <KillChainCta />
                 </div>
             </div>
-        </main>
+        
+      <RelatedLinks route="/kill-chain" />
+</main>
     );
 } 

@@ -9,10 +9,11 @@ import {
   Network,
   ArrowRight
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+;
 import { adaptOracleForHomepage } from '@/data/adapters/oracle-adapter';
 import { adaptForgeForHomepage } from '@/data/adapters/forge-adapter';
 import { adaptBoltzForHomepage, adaptCommandCenterForHomepage } from '@/data/adapters/platform-adapter';
+import Link from 'next/link';
 
 export default function EngineRoom() {
   const oracleData = adaptOracleForHomepage();
@@ -158,7 +159,7 @@ export default function EngineRoom() {
                   </div>
                   
                   {/* CTA - Always at bottom */}
-                  <Link to={engine.link} className="mt-auto">
+                  <Link href={engine.link} className="mt-auto">
                     <motion.div
                       className={`inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-r ${engine.gradient} text-white rounded-lg font-semibold text-sm hover:shadow-lg transition-all duration-300 group/cta w-full justify-center`}
                       whileHover={{ scale: 1.02 }}

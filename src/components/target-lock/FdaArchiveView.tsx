@@ -7,6 +7,7 @@ import {
   FDA_RETROACTIVE, FDA_PROSPECTIVE, TWO_LAYER_MATRIX,
   FDA_STATS, LATIFY_RECEIPT, DRUG_CORRECTIONS,
 } from '@/data/fda-prediction-data';
+import ArtifactLink from '@/components/shared/ArtifactLink';
 
 /** Desktop padding; tighter only below md */
 const headerPad = 'px-8 py-6 max-md:px-4 max-md:py-4';
@@ -163,9 +164,9 @@ export function FdaArchiveView({ isDarkMode }: { isDarkMode: boolean }) {
         </p>
         <div className="flex justify-center gap-3 mt-5 max-md:flex-wrap">
           {FDA_STATS.artifacts.map(a => (
-            <a key={a.slug} href={a.slug} target="_blank" rel="noopener noreferrer" className={`text-[10px] font-mono px-3 py-1.5 rounded-sm border transition-colors ${isDarkMode ? 'bg-black/40 border-zinc-900 text-cyan-600 hover:text-cyan-400 hover:border-cyan-800' : 'bg-white border-slate-200 text-indigo-500 hover:text-indigo-700'}`}>
+            <ArtifactLink key={a.slug} href={a.slug} ariaLabel={`Download ${a.label}`} className={`text-[10px] font-mono px-3 py-1.5 rounded-sm border transition-colors ${isDarkMode ? 'bg-black/40 border-zinc-900 text-cyan-600 hover:text-cyan-400 hover:border-cyan-800' : 'bg-white border-slate-200 text-indigo-500 hover:text-indigo-700'}`}>
               {a.label}
-            </a>
+            </ArtifactLink>
           ))}
         </div>
       </div>

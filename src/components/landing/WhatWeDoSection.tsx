@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+;
 import { ArrowRight } from 'lucide-react';
 import { WHAT_WE_DO_CONTENT } from '@/data/homepage/what-we-do-content';
+import Link from 'next/link';
 
 export default function WhatWeDoSection() {
   return (
@@ -40,7 +41,7 @@ export default function WhatWeDoSection() {
               whileHover={{ y: -8, scale: 1.02 }}
               className="group"
             >
-              <Link to={item.link} className="block h-full">
+              <Link href={item.link} className="block h-full">
                 <div className="bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-blue-400 shadow-lg hover:shadow-xl transition-all h-full flex flex-col">
                   {/* Icon */}
                   <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-6 text-3xl group-hover:scale-110 transition-transform`}>

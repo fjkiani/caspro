@@ -1,0 +1,80 @@
+# CrisPRO.ai
+
+> CrisPRO.ai is the AI-powered metastasis prevention platform. Three intelligences — Oracle (variant interpretation), Forge (in silico therapeutic design), and Scribe (clinical narrative) — work together as a deterministic oncology Co-Pilot. Validated against ClinVar (95.7% AUROC, n=53,210), SpliceVarDB, and a 1,000-patient clinical cohort (73% VUS resolution).
+
+## Docs
+- [Documentation home](https://crispro.ai/docs/): Entry point for the CrisPRO.ai API and product guides.
+- [Quickstart](https://crispro.ai/docs/quickstart/): Get up and running with the CrisPRO.ai API.
+- [Authentication](https://crispro.ai/docs/authentication/): API keys, scopes, and request signing.
+
+## Platform
+- [Platform overview](https://crispro.ai/platform/): Oracle + Forge + Scribe working together as the CrisPRO.ai oncology Co-Pilot.
+- [Oracle Intelligence](https://crispro.ai/platform/oracle-intelligence/): Variant interpretation and clinical-intent inference.
+- [Forge Intelligence](https://crispro.ai/platform/forge-intelligence/): In silico therapeutic design.
+- [Scribe Intelligence](https://crispro.ai/platform/scribe-intelligence/): Auditable, citable clinical narratives.
+
+## Engines
+- [Engine index](https://crispro.ai/engine/): All CrisPRO.ai engines.
+- [Target-Lock](https://crispro.ai/engine/target-lock/): L1 target vulnerability profiling (9/9 FDA concordance).
+- [Target-Lock Workspace](https://crispro.ai/engine/target-lock/workspace/): Interactive metastatic cascade lock.
+- [Target-Lock Archive](https://crispro.ai/engine/target-lock/archive/): FDA retroactive and prospective archive.
+- [Mechanism Alignment](https://crispro.ai/engine/mechanism-alignment/): 8D vector manifold synchronization.
+- [Synthetic Lethality](https://crispro.ai/engine/synthetic-lethality/): MBD4-LOF and orthogonal modality fusion.
+- [Safety & Dosing](https://crispro.ai/engine/safety-dosing/): Therapeutic index intelligence.
+- [Safety](https://crispro.ai/engine/safety/): Evidence ledger safety surface.
+
+## Products
+- [Boltz](https://crispro.ai/products/boltz/): Binding-affinity and structure prediction (Boltz-2).
+- [Command Center](https://crispro.ai/products/command-center/): Operator console for engines, Co-Pilots, and evidence flows.
+- [Forge](https://crispro.ai/products/forge/): In silico therapeutic design.
+- [Oracle](https://crispro.ai/products/oracle/): Variant interpretation and clinical-intent inference.
+- [Oncology Suite — Predict Resistance](https://crispro.ai/products/oncology/predict-resistance/): Resistance prediction for targeted therapies.
+- [Oncology Suite — Resolve Genetic Uncertainty](https://crispro.ai/products/oncology/resolve-genetic-uncertainty/): From a VUS to a clinical action.
+- [Patient Co-Pilot](https://crispro.ai/products/patient/): Patient-facing oncology Co-Pilot.
+
+## Industries
+- [Biotech R&D](https://crispro.ai/industries/biotech/): Lock targets, align mechanism, prune the trial portfolio.
+- [Genetic testing labs](https://crispro.ai/industries/genetic-testing/): Cut VUS reporting noise with provable variant calls.
+- [Health systems](https://crispro.ai/industries/healthcare/): Clinical-grade oncology Co-Pilot.
+- [Academic research](https://crispro.ai/industries/research/): Programmatic API access.
+
+## Research
+- [Research hub](https://crispro.ai/research/): CrisPRO.ai research surface — blog, abstracts, manuscripts.
+- [Manuscripts](https://crispro.ai/manuscripts/): Peer-review-ready manuscripts and preprints.
+- [Knowledge graph](https://crispro.ai/knowledge-graph/): Biomedical knowledge graph linking variants, mechanisms, drugs, and outcomes.
+- [Cancer kill chain](https://crispro.ai/kill-chain/): Detect, lock, intercept, verify framework.
+- [Genome editing](https://crispro.ai/genome-editing/): CRISPR guide design and off-target analysis.
+
+## Evidence
+- [CSI Validation](https://crispro.ai/evidence/csi-validation/): Cancer Signature Index validation studies.
+- [Metrics](https://crispro.ai/metrics/): Performance benchmarks across BRCA, SNV, VUS, and generative AI evals.
+- [Proof ledger](https://crispro.ai/proof/): Immutable trial-receipt ledger.
+- [Ledger receipts](https://crispro.ai/ledger/): Per-trial receipt index.
+
+## Doctrine
+- [Doctrine overview](https://crispro.ai/doctrine/): Four pillars — VUS Annihilation, Metastasis Prevention, DeSci & IP-NFTs, Trial Conquest.
+- [VUS Annihilation](https://crispro.ai/doctrine/vus-annihilation/): The fight to resolve the VUS backlog.
+- [Metastasis Prevention](https://crispro.ai/doctrine/metastasis-prevention/): The mission.
+- [DeSci & IP-NFTs](https://crispro.ai/doctrine/de-sci-and-ip-nfts/): Decentralized science and tokenized IP.
+- [Trial Conquest](https://crispro.ai/doctrine/trial-conquest/): Defeat the cancer trial failure rate.
+
+## Investors
+- [Investor relations](https://crispro.ai/investors/): Thesis, market landscape, and platform proof points.
+- [Investment thesis](https://crispro.ai/investors/thesis/): Why metastasis prevention is the largest unsolved problem in oncology.
+- [Market landscape](https://crispro.ai/investors/market-landscape/): Precision-oncology competitive landscape.
+
+## Company
+- [About](https://crispro.ai/about/): The CrisPRO.ai mission.
+- [Contact](https://crispro.ai/contact/): Book a demo or request access.
+- [Careers](https://crispro.ai/careers/): Open roles at CrisPRO.ai.
+
+## Legal
+- [Privacy Policy](https://crispro.ai/privacy/): How CrisPRO.ai handles your data.
+- [Terms of Service](https://crispro.ai/terms/): Service terms.
+- [HIPAA Statement](https://crispro.ai/hipaa-statement/): Protected health information handling.
+- [Security Overview](https://crispro.ai/security-overview/): Access controls, encryption, audit logging.
+
+## Optional
+- [Learning Center](https://crispro.ai/learn/): Tutorials, primers, and explainers.
+- [Use case — Multiple Myeloma](https://crispro.ai/use-cases/multiple-myeloma/): Applied to multiple myeloma.
+- [Drug development](https://crispro.ai/drug-development/): How CrisPRO.ai accelerates drug development.

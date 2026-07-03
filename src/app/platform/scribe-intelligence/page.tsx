@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+
 import { scribeIntelligenceData } from '@/data/copilots/scribe-intelligence-data';
 import { motion } from 'framer-motion';
 import { MessageSquare, Layers, Users, Brain, ArrowRight, FileText, Send, User, Bot } from 'lucide-react';

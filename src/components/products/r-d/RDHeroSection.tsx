@@ -3,8 +3,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FlaskConical, Target, Zap, Shield, FileText, Award, TestTube } from 'lucide-react';
-import { Link } from 'react-router-dom';
+;
 import { rDProductData } from '@/data/products/r-d-data';
+import Link from 'next/link';
 
 export default function RDHeroSection() {
   const capabilities = [
@@ -109,13 +110,13 @@ export default function RDHeroSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Link to="#rd-capabilities">
+            <Link href="#rd-capabilities">
               <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl">
                 <TestTube className="w-5 h-5 mr-3" />
                 Try Design Demo
               </button>
             </Link>
-            <Link to="#rd-metrics">
+            <Link href="#rd-metrics">
               <button className="inline-flex items-center px-8 py-4 bg-white text-slate-700 border-2 border-slate-300 rounded-xl font-semibold text-lg hover:bg-slate-50 hover:border-slate-400 transition-all duration-300">
                 <Target className="w-5 h-5 mr-3" />
                 View R&D Capabilities

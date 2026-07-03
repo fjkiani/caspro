@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import { adaptForgeForHomepage } from '@/data/adapters';
 
 export default function ForgePage() {

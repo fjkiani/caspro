@@ -2,7 +2,8 @@
 
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+;
 
 interface DnaButtonProps {
   children: ReactNode;
@@ -110,7 +111,7 @@ export default function DnaButton({
   // Render as Link or button
   if (href) {
     return (
-      <Link to={href} className={buttonStyles} onClick={disabled ? (e) => e.preventDefault() : undefined}>
+      <Link href={href} className={buttonStyles} onClick={disabled ? (e) => e.preventDefault() : undefined}>
         <DnaBackgroundEffect />
         <span className="relative z-10">{children}</span>
       </Link>

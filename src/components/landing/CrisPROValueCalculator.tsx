@@ -334,7 +334,7 @@ const CrisPROValueCalculator: React.FC = () => {
         
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <motion.a
-            to="/contact"
+            href="/contact"
             className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -345,7 +345,7 @@ const CrisPROValueCalculator: React.FC = () => {
           </motion.a>
           
           <motion.a
-            to="/metrics"
+            href="/metrics"
             className="px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-colors flex items-center justify-center gap-2"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

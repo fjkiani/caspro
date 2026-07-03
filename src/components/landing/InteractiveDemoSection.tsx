@@ -20,7 +20,8 @@ import {
 import { BRCAMutationSimulator, VUSResolutionPlayground } from '@/components/metrics/interactive';
 import { SPEFusionPlayground, DataLabExplorer } from '@/components/evidence/interactive';
 import AnimatedText from '@/components/shared/AnimatedText';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+;
 // Removed CardSlider - using grid layout instead
 
 interface InteractiveDemoSectionProps {
@@ -336,7 +337,7 @@ const InteractiveDemoSection: React.FC<InteractiveDemoSectionProps> = ({ classNa
                       ))}
                     </div>
                     <Link 
-                      to="/evidence/sae-intelligence"
+                      href="/evidence/sae-intelligence"
                       className="inline-flex items-center gap-2 text-sm md:text-base text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 font-semibold transition-colors"
                     >
                       Explore All 32,768 SAE Features

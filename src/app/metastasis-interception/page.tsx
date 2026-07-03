@@ -1,5 +1,6 @@
 import React from 'react';
 import MetastasisInterception from '@/components/metastasis/MetastasisInterception';
+import RelatedLinks from '@/components/shared/RelatedLinks';
 
 export const metadata = {
   title: 'Metastasis Interception | Engineering Biological Certainty',
@@ -7,7 +8,10 @@ export const metadata = {
 };
 
 export default function MetastasisInterceptionPage() {
-  return <MetastasisInterception />;
+  return (
+    <main>
+      <MetastasisInterception />
+      <RelatedLinks route="/metastasis-interception" />
+    </main>
+  );
 }
-
-

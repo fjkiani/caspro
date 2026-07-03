@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+;
 import { usePathname } from 'react-router-dom';
+import Link from 'next/link';
 // import { learnModules } from '@/data/learn/modules';
 const learnModules: any[] = []; // Assuming modules are here
 
@@ -35,7 +36,7 @@ const LearnLayout: React.FC<LearnLayoutProps> = ({ children }) => {
                       {module.topics.map((topic: any) => (
                         <li key={topic.slug}>
                           <Link 
-                            to={`/learn/${module.slug}/${topic.slug}`}
+                            href={`/learn/${module.slug}/${topic.slug}`}
                             className={`block text-sm transition-colors ${
                               pathname.endsWith(topic.slug)
                                 ? 'text-primary font-semibold'

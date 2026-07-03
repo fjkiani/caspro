@@ -1,5 +1,13 @@
 import Link from 'next/link';
 import { TRIAL_CASE_FILES, TRIAL_IDS } from '@/data/trial-case-files';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Proof Ledger",
+  description: "Immutable trial-receipt ledger for CrisPRO.ai predictions and trial outcomes.",
+  alternates: { canonical: "/proof" },
+};
+
 
 export default function ProofIndexPage() {
   return (

@@ -1,4 +1,6 @@
 import { Metadata } from 'next';
+export const dynamic = 'force-dynamic';
+
 import Link from 'next/link';
 import { GraduationCap, Search, Sparkles, TrendingUp } from 'lucide-react';
 import RelatedProductsSection from '@/components/industry/RelatedProductsSection';

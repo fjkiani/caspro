@@ -1,4 +1,11 @@
 import { permanentRedirect } from 'next/navigation';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Use Case Detail — CrisPRO.ai",
+  description: "Use case detail on CrisPRO.ai — how the platform resolves a specific clinical or research question with evidence-backed, audit-ready reasoning.",
+  robots: { index: false, follow: false },
+};
 
 interface Props {
   params: Promise<{ slug: string }>;

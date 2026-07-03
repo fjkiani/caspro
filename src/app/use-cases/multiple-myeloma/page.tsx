@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import { motion } from 'framer-motion';
 import { multipleMyelomaUseCase, multipleMyelomaCapabilities } from '@/data/use-cases/multiple-myeloma';
 import { formatMetricValue } from '@/data/metrics';

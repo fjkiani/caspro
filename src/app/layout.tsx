@@ -1,54 +1,69 @@
-import type { Metadata } from "next";
-
-// Force dynamic rendering for all pages
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
-// import FloatingToggleButton from "@/components/ui/FloatingToggleButton";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { AccessibilityProvider } from "@/context/AccessibilityContext";
-import { JsonLd, organizationSchema } from "@/components/SEO/JsonLd";
+import { JsonLd, organizationSchema, websiteSchema } from "@/components/SEO/JsonLd";
 import NavigationLoader from "@/components/ui/NavigationLoader";
 
-// Space Grotesk for headings - more technical and modern
-const spaceGrotesk = Space_Grotesk({ 
+// Space Grotesk for headings — technical, modern.
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
   display: "swap",
 });
 
-// Inter for body text - clean and readable
-const inter = Inter({ 
+// Inter for body text — clean, readable.
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GOOGLE_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+
+export const viewport: Viewport = {
+  themeColor: '#0A0A0F',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
-  title: "CrisPRO: AI-Powered Metastasis Prevention & Oncology Co-Pilot",
-  description: "CrisPRO is the world's first AI-powered metastasis prevention system. Our Oncology Co-Pilot offers VUS resolution, in silico therapeutic design, and predictive analytics.",
-  keywords: "metastasis prevention, predictive oncology, AI cancer genomics, VUS resolution, in silico therapeutic design, oncology co-pilot, CRISPR, personalized medicine, Tempus alternatives",
-  authors: [{ name: "CrisPRO Team" }],
-  creator: "CrisPRO",
-  publisher: "CrisPRO",
+  title: {
+    default: "CrisPRO.ai — AI-Powered Metastasis Prevention & Oncology Co-Pilot",
+    template: "%s | CrisPRO.ai",
+  },
+  description:
+    "CrisPRO.ai is the AI-powered metastasis prevention platform. Resolve VUS noise, design therapeutics in silico, and intercept the metastatic cascade with our deterministic oncology Co-Pilot.",
+  keywords:
+    "metastasis prevention, predictive oncology, AI cancer genomics, VUS resolution, in silico therapeutic design, oncology co-pilot, CRISPR, personalized medicine, precision oncology",
+  authors: [{ name: "CrisPRO.ai" }],
+  creator: "CrisPRO.ai",
+  publisher: "CrisPRO.ai",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   metadataBase: new URL('https://crispro.ai'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: "CrisPRO: AI-Powered Metastasis Prevention System",
-    description: "The world's first AI-powered metastasis prevention system. Transform cancer care from reactive to preventive with our Oncology Co-Pilot.",
+    title: "CrisPRO.ai — AI-Powered Metastasis Prevention & Oncology Co-Pilot",
+    description:
+      "The AI-powered metastasis prevention platform. VUS resolution, in silico therapeutic design, and a deterministic oncology Co-Pilot.",
     url: 'https://crispro.ai',
-    siteName: 'CrisPRO',
+    siteName: 'CrisPRO.ai',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'CrisPRO - AI-Powered Cancer Genomics Platform',
+        alt: 'CrisPRO.ai — AI-Powered Cancer Genomics Platform',
       },
     ],
     locale: 'en_US',
@@ -56,11 +71,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "CrisPRO: AI-Powered Metastasis Prevention & Oncology Co-Pilot",
-    description: "The world's first AI-powered metastasis prevention system. VUS resolution, in silico therapeutic design, and predictive oncology analytics.",
+    title: "CrisPRO.ai — AI-Powered Metastasis Prevention & Oncology Co-Pilot",
+    description:
+      "VUS resolution, in silico therapeutic design, and predictive oncology analytics — from CrisPRO.ai.",
     images: ['/og-image.png'],
-    creator: '@crispro_ai',
-    site: '@crispro_ai',
   },
   robots: {
     index: true,
@@ -79,10 +93,6 @@ export const metadata: Metadata = {
         url: '/favicon.svg',
         type: 'image/svg+xml',
       },
-      {
-        url: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧬</text></svg>",
-        type: 'image/svg+xml',
-      },
     ],
     shortcut: '/favicon.svg',
     apple: [
@@ -92,11 +102,9 @@ export const metadata: Metadata = {
       },
     ],
   },
-  verification: {
-    google: 'your-google-verification-code', // Replace with your actual Google verification code
-    // yandex: 'your-yandex-verification-code',
-    // yahoo: 'your-yahoo-verification-code',
-  },
+  ...(GOOGLE_VERIFICATION
+    ? { verification: { google: GOOGLE_VERIFICATION } }
+    : {}),
 };
 
 export default function RootLayout({
@@ -108,14 +116,28 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`light-mode ${spaceGrotesk.variable} ${inter.variable}`}>
       <head>
         <JsonLd data={organizationSchema} />
+        <JsonLd data={websiteSchema} />
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}', { anonymize_ip: true });
+              `}
+            </Script>
+          </>
+        )}
       </head>
       <body className={`${inter.className} flex flex-col min-h-screen bg-background`}>
         <ThemeProvider>
           <AccessibilityProvider>
             <NavigationLoader />
-            {/* <FloatingToggleButton href="/platform">
-              Research Use Only
-            </FloatingToggleButton> */}
             <div className="flex-grow flex flex-col min-h-0">
               {children}
             </div>

@@ -41,8 +41,10 @@ export function createLegalPage(pageId: string) {
           <ReactMarkdown 
             remarkPlugins={[remarkGfm]}
             components={{
-              // Custom styling for headings to match our design
-              h1: ({node, ...props}) => <h1 className="text-2xl font-bold text-slate-900 mt-8 mb-4" {...props} />,
+              // Custom styling for headings to match our design.
+              // Downgrade markdown `#` to <h2> — the page itself already renders an <h1>{title}</h1>,
+              // so emitting another <h1> here would create a double-H1 (flagged by audit).
+              h1: ({node, ...props}) => <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4" {...props} />,
               h2: ({node, ...props}) => <h2 className="text-xl font-bold text-slate-800 mt-6 mb-3" {...props} />,
               // Make links consistent with our design
               a: ({node, ...props}) => <a className="text-primary hover:underline" {...props} />,

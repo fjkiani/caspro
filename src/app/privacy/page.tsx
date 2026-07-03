@@ -1,6 +1,14 @@
 import { LEGAL_PAGES } from '@/constants/routes';
 import * as serverMarkdown from '@/utils/serverMarkdownLoader';
 import PrivacyClientPage from './client';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "How CrisPRO.ai collects, uses, and protects your information.",
+  alternates: { canonical: "/privacy" },
+};
+
 
 export default async function PrivacyPage() {
   // Find the page config for Privacy Policy

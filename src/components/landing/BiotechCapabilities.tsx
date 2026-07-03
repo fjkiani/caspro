@@ -152,7 +152,7 @@ const BiotechCapabilities: React.FC<BiotechCapabilitiesProps> = ({ className = '
 
                   {/* CTA Button */}
                   <motion.a
-                    to={prop.cta.href}
+                    href={prop.cta.href}
                     className={`inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-xl font-semibold text-sm transition-all duration-300 ${
                       isActive
                         ? `bg-gradient-to-r ${gradientClass} text-white shadow-lg`

@@ -1,6 +1,20 @@
 import { notFound } from 'next/navigation';
 import { parseSyntheticLethalityUseCase } from '@/lib/docs/parser/parseUseCaseMDC';
 import { Beaker, Target, Zap, CheckCircle, ArrowRight, Clock, Users } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const humanized = params.slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+  return {
+    title: `${humanized} — Use Case`,
+    description: `${humanized}: an applied use case on the CrisPRO.ai platform.`,
+    alternates: { canonical: `/docs/use-cases/${params.slug}` },
+  };
+}
 
 interface UseCasePageProps {
   params: {

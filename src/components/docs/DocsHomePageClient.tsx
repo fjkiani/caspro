@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+;
 import { 
   Search, 
   Sparkles, 
@@ -147,7 +148,7 @@ export default function DocsHomePageClient({
         {/* Quick Actions */}
         <motion.div variants={fadeIn} className="flex flex-wrap items-center justify-center gap-3">
           <a
-            to="#api-reference"
+            href="#api-reference"
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 
                        rounded-lg text-sm font-medium transition-colors"
           >
@@ -156,7 +157,7 @@ export default function DocsHomePageClient({
           </a>
           {oracleEndpoints.length > 0 && (
             <Link
-              to={`/docs/api/${oracleEndpoints[0].id}`}
+              href={`/docs/api/${oracleEndpoints[0].id}`}
               className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 
                          border border-slate-700 rounded-lg text-sm font-medium transition-colors"
             >
@@ -198,7 +199,7 @@ export default function DocsHomePageClient({
                 {oracleEndpoints.map((endpoint) => (
                   <Link
                     key={endpoint.id}
-                    to={`/docs/api/${endpoint.id}`}
+                    href={`/docs/api/${endpoint.id}`}
                     className="group p-4 bg-slate-800/30 border border-slate-700 rounded-xl 
                               hover:border-blue-500/50 hover:bg-slate-800/50 transition-all"
                   >
@@ -240,7 +241,7 @@ export default function DocsHomePageClient({
                 {forgeEndpoints.map((endpoint) => (
                   <Link
                     key={endpoint.id}
-                    to={`/docs/api/${endpoint.id}`}
+                    href={`/docs/api/${endpoint.id}`}
                     className="group p-4 bg-slate-800/30 border border-slate-700 rounded-xl 
                               hover:border-purple-500/50 hover:bg-slate-800/50 transition-all"
                   >
@@ -285,7 +286,7 @@ export default function DocsHomePageClient({
           {products.map((product) => (
             <motion.div key={product.id} variants={fadeIn}>
               {product.href !== '#' ? (
-                <Link to={product.href} className="group block">
+                <Link href={product.href} className="group block">
                   <div className="relative p-6 bg-slate-800/50 border border-slate-700/50 rounded-xl 
                                  hover:border-slate-600 transition-all overflow-hidden">
                     {/* Gradient background */}
@@ -375,7 +376,7 @@ export default function DocsHomePageClient({
         </motion.h2>
         <motion.div variants={fadeIn}>
           <Link
-            to="/docs/use-cases/synthetic-lethality-essentiality-agent"
+            href="/docs/use-cases/synthetic-lethality-essentiality-agent"
             className="group block p-6 bg-slate-800/50 border border-slate-700 rounded-xl hover:border-purple-500/50 transition-all"
           >
             <div className="flex items-start justify-between mb-4">
@@ -426,7 +427,7 @@ export default function DocsHomePageClient({
             <motion.div key={link.title} variants={fadeIn}>
               {link.href.startsWith('#') ? (
                 <a
-                  to={link.href}
+                  href={link.href}
                   className="group flex items-start gap-3 p-4 bg-slate-800/30 border border-slate-800 
                             rounded-xl hover:border-slate-700 hover:bg-slate-800/50 transition-all"
                 >
@@ -442,7 +443,7 @@ export default function DocsHomePageClient({
                 </a>
               ) : (
                 <Link
-                  to={link.href}
+                  href={link.href}
                   className="group flex items-start gap-3 p-4 bg-slate-800/30 border border-slate-800 
                             rounded-xl hover:border-slate-700 hover:bg-slate-800/50 transition-all"
                 >
@@ -510,7 +511,7 @@ export default function DocsHomePageClient({
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             {oracleEndpoints.length > 0 && (
               <Link
-                to={`/docs/api/${oracleEndpoints[0].id}`}
+                href={`/docs/api/${oracleEndpoints[0].id}`}
                 className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 
                           rounded-lg font-medium transition-colors"
               >
@@ -519,7 +520,7 @@ export default function DocsHomePageClient({
               </Link>
             )}
             <Link
-              to="/contact"
+              href="/contact"
               className="flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 
                         border border-slate-700 rounded-lg font-medium transition-colors"
             >

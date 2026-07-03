@@ -1,5 +1,13 @@
 import Link from 'next/link';
 import { Sparkles, ArrowRight } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Oracle Documentation",
+  description: "Variant interpretation and clinical-intent inference APIs for the CrisPRO.ai Oracle product.",
+  alternates: { canonical: "/docs/products/oracle" },
+};
+
 
 export default function OracleProductPage() {
   return (

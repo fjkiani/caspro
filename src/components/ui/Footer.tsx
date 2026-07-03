@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { FiLinkedin, FiTwitter, FiMail, FiNavigation } from 'react-icons/fi';
+import { FaTiktok } from 'react-icons/fa';
 import React from 'react';
 import { NAV_CATEGORIES, ROUTES } from '@/constants/routes';
 import { NAV_LINKS } from './Navbar';
@@ -20,7 +21,8 @@ const FOOTER_CONFIG = {
     const iconMap: Record<string, React.ReactNode> = {
       'FiLinkedin': React.createElement(FiLinkedin),
       'FiTwitter': React.createElement(FiTwitter),
-      'FiMail': React.createElement(FiMail)
+      'FiMail': React.createElement(FiMail),
+      'FaTiktok': React.createElement(FaTiktok),
     };
     return {
       ...link,
@@ -56,18 +58,20 @@ const Footer = () => {
               {FOOTER_CONFIG.tagline}
             </p>
             <div className="flex space-x-4 text-xl">
-              {FOOTER_CONFIG.socialLinks.map(link => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-400 hover:text-primary transition-colors"
-                  aria-label={link.label}
-                >
-                  {link.icon}
-                </a>
-              ))}
+              {FOOTER_CONFIG.socialLinks.map(link => {
+                const isExternal = link.href.startsWith('http');
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
+                    className="text-slate-400 hover:text-primary transition-colors"
+                    aria-label={link.label}
+                  >
+                    {link.icon}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -201,7 +205,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-5 text-white">Company</h4>
             <ul className="space-y-3">
-              {[...FOOTER_CONFIG.companyLinks, ...FOOTER_CONFIG.legalLinks].map(link => (
+              {FOOTER_CONFIG.companyLinks.map(link => (
                 <li key={link.label}>
                   <Link href={link.href} className="hover:text-primary transition-colors text-sm">
                     {link.label}

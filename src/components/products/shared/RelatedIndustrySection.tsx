@@ -1,9 +1,10 @@
 'use client';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+;
 import { motion } from 'framer-motion';
 import { Briefcase } from 'lucide-react';
+import Link from 'next/link';
 
 export interface RelatedIndustry {
   slug: string;
@@ -49,7 +50,7 @@ export default function RelatedIndustrySection({
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
             >
-              <Link to={`/industry/${industry.slug}`}>
+              <Link href={`/industry/${industry.slug}`}>
                 <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200 h-full flex flex-col group">
                   <div className="text-4xl mb-4">{industry.icon || '🏢'}</div>
                   <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">

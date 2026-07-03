@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import { adaptOracleForHomepage } from '@/data/adapters';
 import { AnnihilationOfUncertaintySlide } from '@/components/oracle/AnnihilationOfUncertaintySlide';
 

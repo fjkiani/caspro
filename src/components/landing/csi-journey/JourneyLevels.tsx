@@ -87,7 +87,7 @@ export default function JourneyLevels() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5, delay: idx * 0.15 }}
               >
-                {/* <Link to={step.href}> */}
+                {/* <Link href={step.href}> */}
                   <div
                     className={`${theme.bg} rounded-2xl p-6 border ${theme.border} ${theme.hoverBorder} ${theme.hoverShadow} transition-all duration-300 cursor-pointer h-full relative overflow-hidden group`}
                   >

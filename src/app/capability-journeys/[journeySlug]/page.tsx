@@ -1,4 +1,6 @@
 import React from 'react';
+
+export const dynamic = 'force-dynamic';
 import { notFound } from 'next/navigation';
 import { allCapabilityJourneys } from '@/data/capability-journeys';
 import CapabilityJourneyPageClient from './CapabilityJourneyPageClient';

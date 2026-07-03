@@ -1,5 +1,13 @@
 import Link from 'next/link';
 import { Beaker, ArrowRight } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Forge Documentation",
+  description: "In silico therapeutic design APIs for the CrisPRO.ai Forge product.",
+  alternates: { canonical: "/docs/products/forge" },
+};
+
 
 export default function ForgeProductPage() {
   return (

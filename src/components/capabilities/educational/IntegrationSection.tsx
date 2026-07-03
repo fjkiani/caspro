@@ -4,7 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link2, ArrowRight, Network } from 'lucide-react';
 import { IntegrationSectionData } from '@/types/educational-capability';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+;
 
 interface IntegrationSectionProps {
   data: IntegrationSectionData;

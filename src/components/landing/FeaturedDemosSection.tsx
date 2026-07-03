@@ -3,7 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Stethoscope, Microscope, FlaskConical, ArrowRight, Play, Brain, Target } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+;
 
 export default function FeaturedDemosSection() {
   const featuredDemos = [
@@ -135,7 +136,7 @@ export default function FeaturedDemosSection() {
                 </div>
 
                 {/* CTA Button */}
-                <Link to={demo.link}>
+                <Link href={demo.link}>
                   <motion.button
                     className={`w-full bg-gradient-to-r ${demo.color} text-white px-6 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg transition-all duration-300 group-hover:scale-105`}
                     whileHover={{ scale: 1.02 }}
@@ -162,12 +163,12 @@ export default function FeaturedDemosSection() {
             Explore our product suite designed for different user needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/products">
+            <Link href="/products">
               <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
                 Explore All Products
               </button>
             </Link>
-            <Link to="/contact">
+            <Link href="/contact">
               <button className="px-8 py-4 bg-white text-slate-700 border-2 border-slate-300 rounded-xl font-semibold hover:bg-slate-50 hover:border-slate-400 transition-all duration-300">
                 Schedule Demo
               </button>

@@ -9,8 +9,9 @@ import MetricsShowcase, { type Metric } from '@/components/products/shared/Metri
 import UnifiedMonitoringDashboard from '@/components/products/oncology/UnifiedMonitoringDashboard';
 import { motion } from 'framer-motion';
 import { Award, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+;
 import { csiJourneyLevels } from '@/data/homepage/csi-journey-data';
+import Link from 'next/link';
 
 interface HowItWorksStep {
   number: number;
@@ -174,7 +175,7 @@ export default function OncologyJourneyLevelPage({
                     </div>
                   </div>
                   <Link
-                    to={nextLevel.href}
+                    href={nextLevel.href}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                   >
                     Continue to Level {nextLevel.level}

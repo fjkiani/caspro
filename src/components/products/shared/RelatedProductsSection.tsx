@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+;
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export interface RelatedProduct {
   slug: string;
@@ -40,7 +41,7 @@ export default function RelatedProductsSection({
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1 }}
           >
-            <Link to={`/products/${product.slug}`}>
+            <Link href={`/products/${product.slug}`}>
               <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-slate-200 h-full flex flex-col">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">{product.title}</h3>
                 <p className="text-slate-600 flex-grow">{product.subtitle}</p>

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import CrisprGenomeEditor from '@/components/ui/CrisprGenomeEditor';
 import ProteinFoldingVisualizer from '@/components/ui/ProteinFoldingVisualizer';
+import RelatedLinks from '@/components/shared/RelatedLinks';
 
 // Page sections and elements
 const targetSequences = [
@@ -22,7 +23,7 @@ const guideRnas = [
 
 // Cas variants with their properties
 const casVariants = [
-  { id: 'cas9', name: 'Cas9', description: 'Standard CRISPR nuclease, PAM: NGG', specificity: 0.7, efficiency: 0.9 },
+  { id: 'cas9', name: 'Cas9', description: "Genome editing capabilities on the CrisPRO.ai platform — CRISPR therapeutic design, target validation, and mechanism-aligned editing strategies for oncology.", specificity: 0.7, efficiency: 0.9 },
   { id: 'cas12a', name: 'Cas12a (Cpf1)', description: 'Alternative nuclease, PAM: TTTV', specificity: 0.85, efficiency: 0.8 },
   { id: 'cas9-hf', name: 'High-fidelity Cas9', description: 'Engineered for higher specificity, PAM: NGG', specificity: 0.95, efficiency: 0.75 },
 ];
@@ -269,6 +270,8 @@ export default function GenomeEditingPage() {
           </div>
         </div>
       </div>
-    </div>
+    
+      <RelatedLinks route="/genome-editing" />
+</div>
   );
 } 

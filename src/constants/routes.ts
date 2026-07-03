@@ -92,11 +92,23 @@ export const NAV_CATEGORIES = {
     { href: ROUTES.SECURITY, label: 'Security Overview' }
   ],
   COMPANY_LINKS: [
-    // { href: ROUTES.ABOUT, label: 'About Us' },
-    // { href: ROUTES.CAREERS, label: 'Careers' }
+    { href: ROUTES.ABOUT, label: 'About' },
+    { href: '/team', label: 'Team' },
+    { href: '/validation', label: 'Validation' },
+    { href: '/case-studies', label: 'Case Studies' },
+    { href: '/pricing', label: 'Pricing' },
+    { href: '/comparison', label: 'Comparison' },
+    { href: '/faq', label: 'FAQ' },
+    { href: '/api-use-cases', label: 'API Use Cases' },
+    { href: ROUTES.SECURITY, label: 'Security' },
+    { href: ROUTES.CAREERS, label: 'Careers' },
+    { href: ROUTES.PRIVACY, label: 'Privacy Policy' },
+    { href: ROUTES.TERMS, label: 'Terms of Service' },
+    { href: ROUTES.HIPAA, label: 'HIPAA Statement' },
   ],
   SOCIAL_LINKS: [
-    { href: "https://www.linkedin.com/company/crispro/", label: "LinkedIn", icon: "FiLinkedin" },
-    { href: "mailto:fahad@crispro.ai", label: "Email", icon: "FiMail" }
-  ]
+    { href: 'https://linkedin.com/in/crispro-ai', label: 'LinkedIn', icon: 'FiLinkedin' },
+    { href: 'https://www.tiktok.com/@crispro.ai', label: 'TikTok', icon: 'FaTiktok' },
+    { href: 'mailto:fahad@crispro.ai', label: 'Email', icon: 'FiMail' },
+  ],
 }; 

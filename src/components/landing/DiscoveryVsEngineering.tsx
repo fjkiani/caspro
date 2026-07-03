@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FlaskConical, ArrowRight, DraftingCompass, Shield, Dna, Bot } from 'lucide-react';
-import { Link } from 'react-router-dom';
+;
 import CardSlider from '@/components/shared/CardSlider';
+import Link from 'next/link';
 
 interface DiscoveryVsEngineeringProps {
   className?: string;
@@ -153,7 +154,7 @@ const DiscoveryVsEngineering: React.FC<DiscoveryVsEngineeringProps> = ({ classNa
               <p className="text-[10px] sm:text-xs text-purple-700 leading-tight">
                 Every design comes with <strong>32,768 learned biological features</strong> that explain exactly why it works.
               </p>
-              <Link to="/evidence/sae-intelligence" className="text-xs text-purple-600 hover:text-purple-800 font-semibold mt-1 inline-flex items-center gap-1">
+              <Link href="/evidence/sae-intelligence" className="text-xs text-purple-600 hover:text-purple-800 font-semibold mt-1 inline-flex items-center gap-1">
                 Explore <ArrowRight className="w-3 h-3" />
               </Link>
             </div>

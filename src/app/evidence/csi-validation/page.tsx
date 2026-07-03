@@ -1,7 +1,17 @@
 import React from 'react';
+export const dynamic = 'force-dynamic';
+
 import MetricsShowcase from '@/components/products/shared/MetricsShowcase';
 import { FOCUSED_HERO_CONFIG } from '@/data/homepage/hero-focused-claim';
 import { Award, TrendingUp, Target, CheckCircle2 } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "CSI Validation",
+  description: "Cancer Signature Index validation studies on the CrisPRO.ai evidence ledger.",
+  alternates: { canonical: "/evidence/csi-validation" },
+};
+
 
 export default function CSIValidationPage() {
   const claim = FOCUSED_HERO_CONFIG.primaryClaim;

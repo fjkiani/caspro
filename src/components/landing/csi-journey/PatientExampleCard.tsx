@@ -67,7 +67,7 @@ export default function PatientExampleCard() {
         </div>
       </div>
       {/* <Link
-        to={config.cta.secondary.href}
+        href={config.cta.secondary.href}
         className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-xs sm:text-sm"
       >
         View LATIFY Validation <ArrowRight className="w-4 h-4" />

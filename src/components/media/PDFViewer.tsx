@@ -31,7 +31,7 @@ export default function PDFViewer({ media }: PDFViewerProps) {
         </div>
         <div className="flex items-center gap-2">
           <a
-            to={pdfUrl}
+            href={pdfUrl}
             download={media.pdfFile.fileName}
             className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
           >
@@ -39,7 +39,7 @@ export default function PDFViewer({ media }: PDFViewerProps) {
             Download
           </a>
           <a
-            to={pdfUrl}
+            href={pdfUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
@@ -66,7 +66,7 @@ export default function PDFViewer({ media }: PDFViewerProps) {
             <div className="text-center">
               <p className="text-red-600 mb-4">{error}</p>
               <a
-                to={pdfUrl}
+                href={pdfUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"

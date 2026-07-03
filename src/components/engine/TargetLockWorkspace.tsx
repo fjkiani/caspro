@@ -6,6 +6,7 @@ import { useTheme } from '@/context/ThemeContext';
 import { TargetLockCascadeView } from '@/components/mockups/targetLock';
 import { TARGET_LOCK_INTRO_PATH } from '@/lib/engine/paths';
 import { FDA_ARTIFACTS } from '@/data/fda-prediction-data';
+import ArtifactLink from '@/components/shared/ArtifactLink';
 
 /**
  * Single-viewport workspace: interactive metastatic cascade only.
@@ -75,11 +76,10 @@ export default function TargetLockWorkspace() {
           Receipts
         </span>
         {FDA_ARTIFACTS.map((a) => (
-          <a
+          <ArtifactLink
             key={a.slug}
             href={a.slug}
-            target="_blank"
-            rel="noopener noreferrer"
+            ariaLabel={`Download ${a.label}`}
             className={`text-[9px] font-mono px-2 py-1 rounded-sm border whitespace-nowrap shrink-0 transition-colors ${
               isDarkMode
                 ? 'border-zinc-800 text-cyan-600 hover:border-cyan-800'
@@ -87,7 +87,7 @@ export default function TargetLockWorkspace() {
             }`}
           >
             {a.label}
-          </a>
+          </ArtifactLink>
         ))}
       </footer>
     </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+
 import { Rocket, Heart, FlaskConical, Microscope } from 'lucide-react';
 import { motion } from 'framer-motion';
 

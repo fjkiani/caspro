@@ -3,8 +3,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+;
 import { ROUTES } from '@/constants/routes';
+import Link from 'next/link';
 
 const KillChainCta = () => {
   return (
@@ -27,7 +28,7 @@ const KillChainCta = () => {
                 whileTap={{ scale: 0.95 }}
             >
                 <Link 
-                    to={ROUTES.CONTACT}
+                    href={ROUTES.CONTACT}
                     className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-red-600 rounded-lg shadow-lg hover:bg-red-700 transition-colors duration-300"
                 >
                     Request a Strategic Briefing <ArrowRight className="ml-2 w-6 h-6" />

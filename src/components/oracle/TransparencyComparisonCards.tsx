@@ -3,7 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Eye, Brain, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+;
 
 interface TransparencyComparisonCardsProps {
   variant?: 'section' | 'slide';
@@ -88,7 +89,7 @@ export const TransparencyComparisonCards: React.FC<TransparencyComparisonCardsPr
             </p>
           </div>
           {!isSlide && (
-            <Link to="/products/oracle" className="inline-flex items-center gap-1 sm:gap-2 text-white hover:text-purple-200 transition-colors text-[10px] sm:text-xs md:text-sm lg:text-base mt-auto">
+            <Link href="/products/oracle" className="inline-flex items-center gap-1 sm:gap-2 text-white hover:text-purple-200 transition-colors text-[10px] sm:text-xs md:text-sm lg:text-base mt-auto">
               See How It Works <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
             </Link>
           )}
