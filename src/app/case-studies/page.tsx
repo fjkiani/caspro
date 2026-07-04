@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: "Case Studies",
-  description: "CrisPRO.ai case studies — how biotech, genetic testing labs, and health systems use the platform to resolve variants, design therapeutics, and support clinical decisions.",
+  description: "CrisPRO.ai case studies — how biotech, genetic testing labs, and health systems use the platform to resolve variants, design therapeutics, and support…",
   alternates: { canonical: "/case-studies" },
 };
 

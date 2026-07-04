@@ -101,7 +101,7 @@ const UniversalDemoPage: React.FC = () => {
 const newTopicContent: UniversalContent = {
   meta: {
     id: 'new-topic',
-    title: 'Your New Topic',
+    title: 'Universal Demo — CrisPRO.ai Interactive Walkthrough',
     color: 'blue'
   },
   sections: [

@@ -22,7 +22,8 @@ export async function generateMetadata({ params }: { params: { coPilotSlug: stri
   }
   return {
     title: content.pageTitle,
-    description: content.heroSubtitle || content.vision, 
+    description: `Platform · ${params.coPilotSlug}: ${content.heroSubtitle || content.vision}`.slice(0, 160),
+    alternates: { canonical: `/platform/${params.coPilotSlug}` },
   };
 }
 

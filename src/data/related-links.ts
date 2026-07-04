@@ -48,4 +48,19 @@ export const RELATED_LINKS: Record<string, RelatedLink[]> = {
     { href: "/research", label: "Research" },
     { href: "/products/oncology", label: "Oncology Products" },
   ],
+  "/terms": [
+    { href: "/privacy", label: "Privacy" },
+    { href: "/security", label: "Security overview" },
+    { href: "/contact", label: "Contact" },
+  ],
+  "/security-overview": [
+    { href: "/security", label: "Security" },
+    { href: "/hipaa-statement", label: "HIPAA statement" },
+    { href: "/privacy", label: "Privacy" },
+  ],
+  "/privacy": [
+    { href: "/terms", label: "Terms" },
+    { href: "/security", label: "Security" },
+    { href: "/hipaa-statement", label: "HIPAA statement" },
+  ],
 };

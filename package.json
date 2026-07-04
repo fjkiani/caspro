@@ -11,6 +11,8 @@
     "start": "next start",
     "lint": "next lint",
     "audit:titles": "node scripts/audit-titles.js",
+    "audit:title-length": "node scripts/audit-title-length.js",
+    "audit:anchor-text": "node scripts/audit-anchor-text.js",
     "audit:h1": "node scripts/audit-h1.js",
     "audit:meta": "node scripts/audit-meta.js",
     "audit:all": "npm run audit:titles && npm run audit:h1 && npm run audit:meta"

@@ -2,36 +2,35 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: "Comparison",
-  description: "How CrisPRO.ai compares to general-purpose AI assistants and traditional variant interpretation tools — evidence backing, audit trails, and oncology specificity.",
-  alternates: { canonical: "/comparison" },
+  title: 'Comparison — CrisPRO.ai vs Precision Oncology Platforms',
+  description: 'How CrisPRO.ai compares to the major precision-oncology platforms — assay-agnostic reasoning, mechanism alignment, and audit-ready narrative.',
+  alternates: { canonical: '/comparison' },
+  openGraph: { title: 'Comparison — CrisPRO.ai vs Precision Oncology Platforms', description: 'How CrisPRO.ai compares to the major precision-oncology platforms — assay-agnostic reasoning, mechanism alignment, and audit-ready narrative.', url: 'https://crispro.ai/comparison', type: 'article' },
 };
 
-export default function ComparisonPage() {
+export default function ComparisonIndexPage() {
   return (
-    <main className="min-h-screen bg-[#0A0A0F] px-6 py-20">
-      <div className="mx-auto max-w-3xl">
-        <h1 className="text-4xl font-black tracking-tight text-white mb-8">CrisPRO.ai vs. alternatives</h1>
-      <p className="text-zinc-400 leading-relaxed mb-4">{"{{ Company-specific competitive comparison. The following is placeholder framing to be replaced with audited, factual comparison points.}}"}</p>
-      <h2 className="text-xl font-bold text-white mt-8 mb-3">The landscape</h2>
-      <p className="text-zinc-400 leading-relaxed mb-4">Cancer decision support tools fall into three broad categories: general-purpose AI assistants, traditional variant interpretation panels, and oncology-specific platforms like CrisPRO.ai. The differences matter — they determine whether a recommendation is defensible at the point of care.</p>
-      <h2 className="text-xl font-bold text-white mt-8 mb-3">CrisPRO.ai vs. general-purpose AI assistants</h2>
-      <p className="text-zinc-400 leading-relaxed mb-4">General-purpose AI assistants can generate plausible-sounding clinical text, but they do not cite versioned datasets, they do not produce audit trails, and they are not trained on the oncology-specific evidence graph that CrisPRO.ai uses. CrisPRO.ai refuses to answer without evidence; general-purpose assistants typically do not.</p>
-      <p className="text-zinc-400 leading-relaxed mb-4">{"{{ Add specific, factual comparison points if competitive data is available. Avoid unsubstantiated claims about named competitors.}}"}</p>
-      <h2 className="text-xl font-bold text-white mt-8 mb-3">CrisPRO.ai vs. traditional variant interpretation</h2>
-      <p className="text-zinc-400 leading-relaxed mb-4">Traditional variant interpretation relies on human curation against guidelines (ACMG/AMP, etc.). It is rigorous but slow, does not scale to cohort-level analysis, and does not connect variant calls to mechanism or therapeutic design. CrisPRO.ai automates the interpretation pipeline while preserving the evidence chain — and extends it into mechanism alignment and in-silico design.</p>
-      <p className="text-zinc-400 leading-relaxed mb-4">{"{{ Add specific comparison points on throughput, cost, and concordance with manual curation if validation data is available.}}"}</p>
-      <h2 className="text-xl font-bold text-white mt-8 mb-3">CrisPRO.ai vs. other oncology AI platforms</h2>
-      <p className="text-zinc-400 leading-relaxed mb-4">{"{{ If there are named oncology AI competitors, add factual, evidence-backed comparison points here. If not, describe the category gap CrisPRO.ai fills.}}"}</p>
-      <h2 className="text-xl font-bold text-white mt-8 mb-3">The bottom line</h2>
-      <p className="text-zinc-400 leading-relaxed mb-4">If you need a tool that produces defensible, evidence-backed, audit-ready cancer decision support — not plausible text — CrisPRO.ai is built for that. Bring your problem to a demo and compare side by side.</p>
+    <main className="min-h-screen bg-[#0A0A0F] px-6 py-20 text-zinc-200">
+      <article className="mx-auto max-w-3xl">
+        <h1 className="text-4xl font-black tracking-tight text-white mb-6">CrisPRO.ai vs the field</h1>
+        <p className="text-zinc-400 text-lg mb-8">How CrisPRO.ai compares to the major precision-oncology platforms — assay-agnostic reasoning, mechanism alignment, and audit-ready narrative.</p>
 
-        <nav aria-label="Related pages" className="mt-12 flex flex-wrap gap-6 border-t border-zinc-800 pt-8">
-          <Link href="/products" className="text-cyan-400 hover:text-cyan-300 font-semibold">Explore products <span aria-hidden>→</span></Link>
-      <Link href="/platform" className="text-cyan-400 hover:text-cyan-300 font-semibold">Tour the platform <span aria-hidden>→</span></Link>
-      <Link href="/evidence" className="text-cyan-400 hover:text-cyan-300 font-semibold">See the evidence <span aria-hidden>→</span></Link>
-        </nav>
-      </div>
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">Where CrisPRO.ai sits</h2>
+        <p className="mb-4 leading-relaxed">CrisPRO.ai is not a sequencing assay, an EHR, or an RWD marketplace. It is the mechanism-aligned reasoning layer that sits on top of all of them. We ingest molecular data from <Link href="/comparison/tempus" className="text-cyan-400 hover:underline">Tempus</Link>, <Link href="/comparison/foundation-medicine" className="text-cyan-400 hover:underline">Foundation Medicine</Link>, <Link href="/comparison/guardant-health" className="text-cyan-400 hover:underline">Guardant Health</Link>, <Link href="/comparison/caris-life-sciences" className="text-cyan-400 hover:underline">Caris</Link>, or any other CGP vendor, and clinical data from <Link href="/comparison/flatiron-health" className="text-cyan-400 hover:underline">Flatiron</Link> or <Link href="/comparison/ontada" className="text-cyan-400 hover:underline">Ontada</Link>, and produce mechanism-aligned decisions with <Link href="/products/oracle" className="text-cyan-400 hover:underline">Oracle</Link>, <Link href="/products/forge" className="text-cyan-400 hover:underline">Forge</Link>, and <Link href="/products/command-center" className="text-cyan-400 hover:underline">Scribe</Link>.</p>
+
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">Detailed comparisons</h2>
+        <ul className="list-disc pl-6 space-y-3 mb-8">
+            <li><Link href='/comparison/tempus' className="text-cyan-400 hover:underline">CrisPRO.ai vs Tempus AI</Link> — sequencing-driven precision medicine and life sciences data platform.</li>
+            <li><Link href='/comparison/foundation-medicine' className="text-cyan-400 hover:underline">CrisPRO.ai vs Foundation Medicine</Link> — comprehensive genomic profiling and companion-diagnostic sequencing.</li>
+            <li><Link href='/comparison/guardant-health' className="text-cyan-400 hover:underline">CrisPRO.ai vs Guardant Health</Link> — liquid-biopsy sequencing and MRD monitoring.</li>
+            <li><Link href='/comparison/flatiron-health' className="text-cyan-400 hover:underline">CrisPRO.ai vs Flatiron Health</Link> — oncology EHR and real-world evidence for research and pharma.</li>
+            <li><Link href='/comparison/caris-life-sciences' className="text-cyan-400 hover:underline">CrisPRO.ai vs Caris Life Sciences</Link> — molecular profiling and AI-driven biomarker discovery.</li>
+            <li><Link href='/comparison/ontada' className="text-cyan-400 hover:underline">CrisPRO.ai vs Ontada</Link> — oncology real-world evidence and clinical technology (McKesson).</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">See it in action</h2>
+        <p className="mb-4 leading-relaxed">Explore our <Link href="/case-studies" className="text-cyan-400 hover:underline">case studies</Link>, review the <Link href="/evidence" className="text-cyan-400 hover:underline">evidence and validation</Link> (95.7% AUROC on ClinVar, n=53,210), or <Link href="/contact" className="text-cyan-400 hover:underline">book a demo</Link>.</p>
+      </article>
     </main>
   );
 }

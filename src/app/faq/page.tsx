@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { FaqPageJsonLd } from '@/components/SEO/FaqPageJsonLd';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -10,6 +11,8 @@ export const metadata: Metadata = {
 export default function FaqPage() {
   return (
     <main className="min-h-screen bg-[#0A0A0F] px-6 py-20">
+      <FaqPageJsonLd faqs={[]} />
+
       <div className="mx-auto max-w-3xl">
         <h1 className="text-4xl font-black tracking-tight text-white mb-8">FAQ — CrisPRO.ai</h1>
       <p className="text-zinc-400 leading-relaxed mb-4">{"{{ Company-specific FAQ entries. The following are placeholder questions and answers to be replaced with real, audited Q&A.}}"}</p>

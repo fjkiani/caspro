@@ -260,7 +260,34 @@ const Footer = () => {
             <span className="text-slate-300">Consult healthcare professionals</span>
           </div>
         </div>
-      </div>
+      </div>          {/* Sister-site + ecosystem trust block (SEO: reciprocal external + sameAs anchor) */}
+          <div data-role="sister-site-block" className="border-t border-slate-800 mt-8 pt-8 text-sm text-slate-400">
+            <p className="mb-2 text-white font-semibold">CrisPRO ecosystem</p>
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              <li>
+                <a href="https://crispro.org/" target="_blank" rel="noopener" className="hover:text-primary">
+                  CrisPRO.org — foundation and open research
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/crispro-ai" target="_blank" rel="noopener" className="hover:text-primary">
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tiktok.com/@crispro.ai" target="_blank" rel="noopener" className="hover:text-primary">
+                  TikTok
+                </a>
+              </li>
+              <li>
+                <a href="mailto:fahad@crispro.ai" className="hover:text-primary">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+
+
     </footer>
   );
 };

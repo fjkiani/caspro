@@ -3,7 +3,7 @@ import MetastasisInterception from '@/components/metastasis/MetastasisIntercepti
 import RelatedLinks from '@/components/shared/RelatedLinks';
 
 export const metadata = {
-  title: 'Metastasis Interception | Engineering Biological Certainty',
+  title: 'Metastasis Interception',
   description: 'The first AI-powered platform to design stage-specific CRISPR therapeutics against cancer\'s deadliest threat: metastasis.',
 };
 

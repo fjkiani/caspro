@@ -2,7 +2,7 @@ import { CoPilotDetailContent } from '@/types/copilot-types';
 
 export const immunotherapyData: CoPilotDetailContent = {
   slug: "immunotherapy",
-  pageTitle: "Immunotherapy Matching: Eligibility & Response Prediction",
+  pageTitle: "Immunotherapy Matching — Eligibility & Response",
   heroSubtitle: "Predict immunotherapy eligibility and response using biomarker analysis. TMB, MSI, PD-L1, and tumor microenvironment analysis for precision immunotherapy selection.",
   vision: "Identify patients most likely to benefit from immunotherapy through comprehensive biomarker analysis and response prediction.",
 

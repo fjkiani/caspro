@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     template: "%s | CrisPRO.ai",
   },
   description:
-    "CrisPRO.ai is the AI-powered metastasis prevention platform. Resolve VUS noise, design therapeutics in silico, and intercept the metastatic cascade with our deterministic oncology Co-Pilot.",
+    "CrisPRO.ai — AI-powered metastasis prevention. Variant interpretation, in-silico therapeutic design, and mechanism-aligned oncology decisions.",
   keywords:
     "metastasis prevention, predictive oncology, AI cancer genomics, VUS resolution, in silico therapeutic design, oncology co-pilot, CRISPR, personalized medicine, precision oncology",
   authors: [{ name: "CrisPRO.ai" }],

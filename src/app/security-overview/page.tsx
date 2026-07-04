@@ -1,3 +1,4 @@
+import RelatedLinks from '@/components/shared/RelatedLinks';
 import { LEGAL_PAGES } from '@/constants/routes';
 import * as serverMarkdown from '@/utils/serverMarkdownLoader';
 import ClientPage from './client';
@@ -31,4 +32,6 @@ export default async function SecurityOverviewPage() {
       effectiveDate={effectiveDate || undefined} 
     />
   );
+      <RelatedLinks route="/security-overview" />
+
 } 

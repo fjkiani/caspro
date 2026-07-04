@@ -2,7 +2,7 @@ import { CoPilotDetailContent } from '../../types/copilot-types';
 
 export const crisprIntelligenceData: CoPilotDetailContent = {
   slug: "crispr-intelligence",
-  pageTitle: "CRISPR Intelligence: Advanced Therapeutic R&D Platform",
+  pageTitle: "CRISPR Intelligence — Therapeutic R&D AI",
   heroSubtitle: "The definitive therapeutic design platform. Evo2-powered guide RNA design with AlphaFold 3 structural validation (pLDDT ≥70). 100% pass rate on validation benchmarks. IND package generation and IP monetization workflow included.",
   vision: "To create a world where CRISPR-based therapies are designed and validated with computational certainty, eliminating guesswork and accelerating the path to cures.",
   

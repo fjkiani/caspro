@@ -18,7 +18,7 @@ export async function generateMetadata({
   const slug = resolved.endpoint;
   const humanized = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
   return {
-    title: `${humanized} — API Reference`,
+    title: `${humanized} API`,
     description: `${humanized} endpoint reference for the CrisPRO.ai API: parameters, responses, and example requests.`,
     alternates: { canonical: `/docs/api/${slug}` },
   };

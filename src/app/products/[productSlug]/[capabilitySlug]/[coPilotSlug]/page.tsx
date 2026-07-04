@@ -29,9 +29,11 @@ export async function generateMetadata({
     };
   }
   
+  const productLabel = params.productSlug === 'oncology' ? 'Oncology' : params.productSlug === 'r-d' ? 'R&D' : 'Research';
   return {
-    title: `${coPilotData.pageTitle} | CrisPRO ${params.productSlug === 'oncology' ? 'Oncology' : params.productSlug === 'r-d' ? 'R&D' : 'Research'}`,
-    description: coPilotData.heroSubtitle || coPilotData.vision,
+    title: `${coPilotData.pageTitle} | CrisPRO ${productLabel}`,
+    description: `${productLabel} · ${params.capabilitySlug}: ${coPilotData.heroSubtitle || coPilotData.vision}`.slice(0, 160),
+    alternates: { canonical: `/products/${params.productSlug}/${params.capabilitySlug}/${params.coPilotSlug}` },
   };
 }
 
