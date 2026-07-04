@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+
 import { adaptOracleForHomepage } from '@/data/adapters';
 import { AnnihilationOfUncertaintySlide } from '@/components/oracle/AnnihilationOfUncertaintySlide';
+import RelatedLinks from '@/components/shared/RelatedLinks';
 
 export default function OraclePage() {
   // Use the migrated Oracle data
@@ -188,6 +190,10 @@ export default function OraclePage() {
           </div>
           
           <p className="text-slate-400">Powered by migrated CrisPRO.ai data architecture • Research Use Only</p>
+
+          <div className="max-w-4xl mx-auto text-left">
+            <RelatedLinks route="/products/oracle" />
+          </div>
         </div>
       </div>
     </div>

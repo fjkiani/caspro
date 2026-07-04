@@ -1,5 +1,13 @@
 import { parseEndpointsMDC } from '@/lib/docs/parser';
 import DocsHomePageClient from '@/components/docs/DocsHomePageClient';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Documentation",
+  description: "CrisPRO.ai developer documentation: API reference, quickstart, authentication, and product guides for Boltz, Command Center, Forge, and Oracle.",
+  alternates: { canonical: "/docs" },
+};
+
 
 // Server component that fetches data
 export default async function DocsHomePage() {

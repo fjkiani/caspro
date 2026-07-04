@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+;
 import { ArrowRight, FlaskConical, Stethoscope, Shield, Target, Globe, FileText } from 'lucide-react';
+import Link from 'next/link';
 
 /**
  * Oncology Connected Workflow
@@ -157,7 +158,7 @@ export default function OncologyConnectedWorkflow() {
         {/* CTA */}
         <div className="text-center mt-12">
           <Link
-            to="#interactive-showcase"
+            href="#interactive-showcase"
             className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-lg transition-colors"
           >
             <span>Experience the complete workflow in action</span>

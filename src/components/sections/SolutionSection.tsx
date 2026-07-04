@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+;
 import { motion, AnimatePresence } from 'framer-motion';
 import { Rocket, Target, Layers, CheckCircle, BrainCircuit, Microscope, ShieldCheck, ArrowRight, Users } from 'lucide-react';
 import { coPilotDetailsData } from '@/data/coPilotDetails';
+import Link from 'next/link';
 
 // Get the slugs and data for the co-pilots
 const coPilotSlugs = Object.keys(coPilotDetailsData);
@@ -132,8 +133,8 @@ const SolutionSection = () => {
                 </div>
 
                 <div className="mt-8">
-                  <Link to={`/platform/${activeSlug}`} className="inline-flex items-center font-semibold text-primary hover:text-primary/80 transition-colors">
-                    Learn More <ArrowRight className="w-4 h-4 ml-2" />
+                  <Link href={`/platform/${activeSlug}`} className="inline-flex items-center font-semibold text-primary hover:text-primary/80 transition-colors">
+                    {`Explore ${activeCoPilotData.pageTitle.split(':')[0]}`} <ArrowRight className="w-4 h-4 ml-2" />
                   </Link>
                 </div>
 

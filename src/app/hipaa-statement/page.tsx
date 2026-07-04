@@ -1,6 +1,14 @@
 import { LEGAL_PAGES } from '@/constants/routes';
 import * as serverMarkdown from '@/utils/serverMarkdownLoader';
 import ClientPage from './client';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "HIPAA Statement",
+  description: "How CrisPRO.ai handles protected health information and complies with HIPAA.",
+  alternates: { canonical: "/hipaa-statement" },
+};
+
 
 export default async function HipaaStatementPage() {
   // Find the page config for HIPAA Statement

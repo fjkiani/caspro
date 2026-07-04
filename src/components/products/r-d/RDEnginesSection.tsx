@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+;
 import { 
   Target, 
   Zap, 
@@ -13,6 +13,7 @@ import {
 import { adaptOracleForHomepage } from '@/data/adapters/oracle-adapter';
 import { adaptForgeForHomepage } from '@/data/adapters/forge-adapter';
 import { adaptBoltzForHomepage, adaptCommandCenterForHomepage } from '@/data/adapters/platform-adapter';
+import Link from 'next/link';
 
 interface RDEnginesSectionProps {
   className?: string;
@@ -172,7 +173,7 @@ export default function RDEnginesSection({ className = '' }: RDEnginesSectionPro
                   </div>
                   
                   {/* CTA - Link to detailed engine page */}
-                  <Link to={engine.link} className="mt-auto">
+                  <Link href={engine.link} className="mt-auto">
                     <motion.div
                       className={`inline-flex items-center gap-2 px-4 py-3 bg-gradient-to-r ${engine.gradient} text-white rounded-lg font-semibold text-sm hover:shadow-lg transition-all duration-300 group/cta w-full justify-center`}
                       whileHover={{ scale: 1.02 }}

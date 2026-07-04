@@ -1,9 +1,10 @@
 'use client';
 import React from 'react';
-import { Link } from 'react-router-dom';
+;
 import { motion } from 'framer-motion';
 import { Dna, Zap, ShieldCheck, ArrowRight } from 'lucide-react';
 import { aboutData } from '@/data/about/about-data';
+import Link from 'next/link';
 
 const CrisproFrameworkTeaser = () => {
   const { title, subtitle, description, keyMetrics } = aboutData.hero;
@@ -66,7 +67,7 @@ const CrisproFrameworkTeaser = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <Link to="/about" className="inline-flex items-center gap-3 px-10 py-5 bg-slate-800 text-white rounded-xl font-bold text-lg hover:bg-slate-900 transition-colors shadow-xl">
+          <Link href="/about" className="inline-flex items-center gap-3 px-10 py-5 bg-slate-800 text-white rounded-xl font-bold text-lg hover:bg-slate-900 transition-colors shadow-xl">
             Learn About Our Framework
             <ArrowRight className="w-5 h-5" />
           </Link>

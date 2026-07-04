@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+;
 import { motion, AnimatePresence } from 'framer-motion';
 import { PlayCircle, ArrowLeft, Check, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import type { UseCase, UseCaseStepResult } from '@/types/use-case';
+import Link from 'next/link';
 
 interface UseCaseDemoClientProps {
   useCase: UseCase;
@@ -97,7 +98,7 @@ const UseCaseDemoClient: React.FC<UseCaseDemoClientProps> = ({ useCase }) => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <Link 
-            to="/use-cases"
+            href="/use-cases"
             className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -280,7 +281,7 @@ const UseCaseDemoClient: React.FC<UseCaseDemoClientProps> = ({ useCase }) => {
                 Run Again
               </button>
               <Link
-                to="/use-cases"
+                href="/use-cases"
                 className="px-6 py-3 border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white rounded-lg font-semibold transition-colors"
               >
                 Explore More Use Cases

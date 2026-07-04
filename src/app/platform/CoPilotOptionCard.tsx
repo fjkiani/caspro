@@ -72,7 +72,7 @@ const CoPilotOptionCard: React.FC<CoPilotOptionCardProps> = ({ option, defaultCh
             onClick={toggleExpanded} 
             className="inline-flex items-center text-primary hover:text-primary/80 mt-2 sm:mt-3 text-xs sm:text-sm font-medium group"
           >
-            {isExpanded ? 'Read Less' : 'Read More'}
+            {isExpanded ? 'Show less' : 'Show more'}
             {isExpanded ? <ChevronUp size={16} className="ml-1 transition-transform duration-200" /> : <ChevronDown size={16} className="ml-1 transition-transform duration-200" />}
           </button>
         )}

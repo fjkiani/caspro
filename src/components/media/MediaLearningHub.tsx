@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+;
 import { ArrowLeft, Download, ExternalLink, FileText, Video as VideoIcon, BookOpen, ArrowRight } from 'lucide-react';
 import type { MediaItem } from '@/lib/docs/hygraph/media-types';
 import VideoViewer from '@/components/media/VideoViewer';
 import CTASection from '@/components/shared/CTASection';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 interface MediaLearningHubProps {
   media: MediaItem;
@@ -24,7 +25,7 @@ export default function MediaLearningHub({ media, relatedMedia = [] }: MediaLear
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link
-                to="/media"
+                href="/media"
                 className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
@@ -161,7 +162,7 @@ export default function MediaLearningHub({ media, relatedMedia = [] }: MediaLear
               <div className="flex flex-wrap gap-4">
                 {media.videoFile?.url && (
                   <a
-                    to={media.videoFile.url}
+                    href={media.videoFile.url}
                     download
                     className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                   >
@@ -171,7 +172,7 @@ export default function MediaLearningHub({ media, relatedMedia = [] }: MediaLear
                 )}
                 {media.videoUrl && (
                   <a
-                    to={media.videoUrl}
+                    href={media.videoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -182,7 +183,7 @@ export default function MediaLearningHub({ media, relatedMedia = [] }: MediaLear
                 )}
                 {media.pdfFile?.url && (
                   <a
-                    to={media.pdfFile.url}
+                    href={media.pdfFile.url}
                     download
                     className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
                   >
@@ -208,7 +209,7 @@ export default function MediaLearningHub({ media, relatedMedia = [] }: MediaLear
                 {relatedMedia.map((item) => (
                   <Link
                     key={item.id}
-                    to={`/media/${item.slug}`}
+                    href={`/media/${item.slug}`}
                     className="block group"
                   >
                     <div className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all border border-gray-200 h-full">
@@ -243,7 +244,7 @@ export default function MediaLearningHub({ media, relatedMedia = [] }: MediaLear
         {/* CTA Section */}
         <div className="mt-12">
           <CTASection
-            title="Ready to Learn More?"
+            title="Ready to see CrisPRO in action?"
             description="Explore how CrisPRO.ai can transform your research and clinical workflows with AI-powered precision."
             primaryButton={{
               text: 'Schedule a Demo',

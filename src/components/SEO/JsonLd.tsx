@@ -12,13 +12,35 @@ export const JsonLd = ({ data }: JsonLdProps) => (
 );
 
 export const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "CrisPRO",
-  "url": "https://crispro.ai",
-  "logo": "https://crispro.ai/logo.png", // You'll need to add a logo here
-  "sameAs": [
-    "https://twitter.com/crispro_ai", // Replace with your actual Twitter
-    // Add other social media links here
-  ]
-}; 
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'CrisPRO.ai',
+  url: 'https://crispro.ai',
+  logo: 'https://crispro.ai/logo.png',
+  description:
+    'CrisPRO.ai is the AI-powered metastasis prevention platform. Variant interpretation, in silico therapeutic design, and deterministic oncology decision support.',
+  sameAs: [
+    'https://linkedin.com/in/crispro-ai',
+    'https://www.tiktok.com/@crispro.ai',
+    'https://crispro.org/',
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    email: 'fahad@crispro.ai',
+    availableLanguage: ['English'],
+  },
+};
+
+export const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'CrisPRO.ai',
+  url: 'https://crispro.ai',
+  description:
+    'AI-powered metastasis prevention platform — Oracle, Forge, and Scribe intelligence.',
+  publisher: {
+    '@type': 'Organization',
+    name: 'CrisPRO.ai',
+  },
+};

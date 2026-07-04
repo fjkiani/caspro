@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Mail, Sparkles, Heart, ArrowRight } from 'lucide-react';
@@ -72,7 +73,7 @@ export default function PatientProductPage() {
           transition={{ delay: 0.5 }}
           className="mt-12 pt-8 border-t border-slate-700"
         >
-          <p className="text-sm text-slate-400 mb-4">Learn more about our platform:</p>
+          <p className="text-sm text-slate-400 mb-4">Explore other CrisPRO products:</p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/products/oncology" className="text-sm text-pink-400 hover:text-pink-300 underline">
               CrisPRO Oncology

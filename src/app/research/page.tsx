@@ -9,6 +9,7 @@ import { isBlogArticlePost } from '@/lib/research/blog-posts';
 import type { PostNode } from '@/types/blog';
 import AppLoading from '@/components/ui/AppLoading';
 import ResearchHubOverview from '@/components/research/ResearchHubOverview';
+import RelatedLinks from '@/components/shared/RelatedLinks';
 
 export const dynamic = 'force-dynamic';
 
@@ -60,6 +61,9 @@ export default async function ResearchPage({
         deckPosts={deckPosts}
         abstracts={abstractsResult?.items ?? []}
       />
+      <div className="max-w-6xl mx-auto px-4 pb-16">
+        <RelatedLinks route="/research" />
+      </div>
     </Suspense>
   );
 }

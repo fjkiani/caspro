@@ -9,8 +9,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
-  },
+    "lint": "next lint",
+    "audit:titles": "node scripts/audit-titles.js",
+    "audit:title-length": "node scripts/audit-title-length.js",
+    "audit:h1": "node scripts/audit-h1.js",
+    "audit:meta": "node scripts/audit-meta.js",
+    "audit:anchor-text": "node scripts/audit-anchor-text.js",
+    "audit:all": "npm run audit:titles && npm run audit:title-length && npm run audit:h1 && npm run audit:meta && npm run audit:anchor-text"
+},
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@graphcms/rich-text-react-renderer": "^0.6.2",

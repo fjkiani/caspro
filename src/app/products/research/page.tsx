@@ -70,7 +70,7 @@ export default async function ResearchProductPage() {
                   </h3>
                   <p className="text-slate-600 flex-grow mb-4">{product.subtitle}</p>
                   <span className="text-blue-600 font-semibold group-hover:text-blue-700 transition-colors">
-                    Learn more →
+                    {`Explore ${product.title} →`}
                   </span>
                 </div>
               </Link>

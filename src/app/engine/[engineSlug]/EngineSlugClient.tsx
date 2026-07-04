@@ -159,6 +159,8 @@ export default function EngineSlugClient({ slug }: { slug: string }) {
 
   return (
     <main className={`min-h-screen ${isDarkMode ? 'bg-[#020408]' : 'bg-slate-50'}`}>
+      {/* Single page-level H1 — many engine branches render mockup-only UIs without their own heading. */}
+      <h1 className="sr-only">{engine.label} — CrisPRO.ai Engine</h1>
       {renderEngine()}
     </main>
   );

@@ -148,7 +148,7 @@ export default function MonitoringDashboardExplainer({ level }: MonitoringDashbo
                     </AnimatePresence>
                     
                     <button className="text-xs text-blue-600 hover:text-blue-700 mt-2 font-semibold">
-                      {isExpanded ? 'Show less' : 'Learn more →'}
+                      {isExpanded ? 'Show less' : 'Show details →'}
                     </button>
                   </div>
                 </div>

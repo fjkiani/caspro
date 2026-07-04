@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Quickstart Guide",
+  description: "Get up and running with the CrisPRO.ai API in minutes. Authentication, your first request, and recommended next steps.",
+  alternates: { canonical: "/docs/quickstart" },
+};
+
 export default function QuickStartPage() {
   return (
     <div className="space-y-8">

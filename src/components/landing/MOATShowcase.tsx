@@ -13,8 +13,9 @@ import {
   CheckCircle2,
   ArrowRight
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+;
 import CardSlider from '@/components/shared/CardSlider';
+import Link from 'next/link';
 
 interface MOATCapability {
   id: string;
@@ -328,7 +329,7 @@ const MOATShowcase: React.FC = () => {
 
                 {selectedCapability.link && (
                   <Link
-                    to={selectedCapability.link}
+                    href={selectedCapability.link}
                     className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm sm:text-base font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all"
                   >
                     Explore {selectedCapability.title}

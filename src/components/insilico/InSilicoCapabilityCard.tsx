@@ -2,12 +2,13 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+;
 import { 
   Search, Pill, Target, Dna, FileText, Users, Activity, Shield,
   ExternalLink, Code, BookOpen, CheckCircle, Clock
 } from 'lucide-react';
 import { InSilicoCapability } from '@/data/insilico/capabilities';
+import Link from 'next/link';
 
 interface InSilicoCapabilityCardProps {
   capability: InSilicoCapability;
@@ -75,7 +76,7 @@ const InSilicoCapabilityCard: React.FC<InSilicoCapabilityCardProps> = ({ capabil
   const theme = colorVariants[capability.color];
 
   return (
-    <Link to={`/platform/${capability.coPilotSlug}`}>
+    <Link href={`/platform/${capability.coPilotSlug}`}>
       <motion.div
         className={`relative overflow-hidden bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border-2 ${theme.border} shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer`}
         whileHover={{ y: -8, scale: 1.02 }}
@@ -162,7 +163,7 @@ const InSilicoCapabilityCard: React.FC<InSilicoCapabilityCardProps> = ({ capabil
         )}
         <div className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 ${theme.bg} ${theme.text} rounded-lg text-xs sm:text-sm font-medium`}>
           <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
-          <span className="hidden sm:inline">Learn More</span>
+          <span className="hidden sm:inline">Try live demo</span>
         </div>
       </div>
 

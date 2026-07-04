@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+;
 import { usePathname } from 'react-router-dom';
 import { learnModules } from '@/data/learn/modules';
 import { Clock, CheckCircle } from 'lucide-react';
+import Link from 'next/link';
 
 interface LearnLayoutProps {
   children: React.ReactNode;
@@ -90,7 +91,7 @@ const LearnLayout: React.FC<LearnLayoutProps> = ({ children }) => {
         <aside className="hidden lg:block w-80 bg-white shadow-lg border-r border-slate-200 h-screen sticky top-32 overflow-y-auto">
           <div className="p-6 border-b border-slate-200">
             <Link 
-              to="/learn" 
+              href="/learn" 
               className="text-sm text-blue-600 hover:text-blue-800 mb-2 block"
             >
               ← Back to Modules
@@ -118,7 +119,7 @@ const LearnLayout: React.FC<LearnLayoutProps> = ({ children }) => {
                   return (
                     <li key={topic.slug}>
                       <Link
-                        to={`/learn/${moduleSlug}/${topic.slug}`}
+                        href={`/learn/${moduleSlug}/${topic.slug}`}
                         className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
                           isActive
                             ? 'bg-blue-100 text-blue-800 font-medium'
@@ -150,7 +151,7 @@ const LearnLayout: React.FC<LearnLayoutProps> = ({ children }) => {
           {/* Mobile Navigation */}
           <div className="lg:hidden bg-white border-b border-slate-200 p-4 mt-16">
             <Link 
-              to="/learn" 
+              href="/learn" 
               className="text-sm text-blue-600 hover:text-blue-800 mb-2 block"
             >
               ← Back to Modules

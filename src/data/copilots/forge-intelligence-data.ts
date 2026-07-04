@@ -2,7 +2,7 @@ import { CoPilotDetailContent } from '../../types/copilot-types';
 
 export const forgeIntelligenceData: CoPilotDetailContent = {
   slug: "forge-intelligence",
-  pageTitle: "Forge Intelligence: Generative Therapeutic Design Platform",
+  pageTitle: "Forge Intelligence: Generative Therapeutic Design",
   heroSubtitle: "AI that designs precision therapeutics from first principles - CRISPR guides, protein inhibitors, and HDR templates engineered for efficacy.",
 
   vision: "We design precision interventions from molecular first principles, validated through structural modeling and optimized for clinical success. Every therapeutic is engineered, not discovered.",

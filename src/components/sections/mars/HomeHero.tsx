@@ -65,7 +65,7 @@ export const HomeHero = () => {
               className="flex flex-row gap-3 shrink-0"
             >
               <a 
-                to="#proof" 
+                href="#proof" 
                 className="group flex items-center justify-center px-5 py-2.5 border border-[#E8E8F0]/25 rounded text-[#E8E8F0] text-xs uppercase tracking-wider hover:border-[#00E5FF] hover:text-[#00E5FF] transition-all duration-300 bg-[#0A0A0F]/60 backdrop-blur-sm"
                 style={{ fontFamily: '"JetBrains Mono", monospace' }}
               >
@@ -73,7 +73,7 @@ export const HomeHero = () => {
               </a>
               
               <a 
-                to="/contact" 
+                href="/contact" 
                 className="group flex items-center justify-center px-5 py-2.5 border border-[#E8E8F0]/25 rounded text-[#E8E8F0] text-xs uppercase tracking-wider hover:border-[#00E5FF] hover:text-[#00E5FF] transition-all duration-300 bg-[#0A0A0F]/60 backdrop-blur-sm"
                 style={{ fontFamily: '"JetBrains Mono", monospace' }}
               >

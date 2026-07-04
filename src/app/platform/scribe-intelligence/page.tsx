@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
+
 import { scribeIntelligenceData } from '@/data/copilots/scribe-intelligence-data';
 import { motion } from 'framer-motion';
 import { MessageSquare, Layers, Users, Brain, ArrowRight, FileText, Send, User, Bot } from 'lucide-react';
 import Link from 'next/link';
+import RelatedLinks from '@/components/shared/RelatedLinks';
 
 const ScribeIntelligencePage: React.FC = () => {
   const content = scribeIntelligenceData;
@@ -334,6 +336,9 @@ const ScribeIntelligencePage: React.FC = () => {
             <button className="border border-gray-300 hover:border-gray-400 px-6 py-3 rounded-lg font-semibold text-lg transition-colors">
               Schedule Demo
             </button>
+          </div>
+          <div className="max-w-4xl mx-auto text-left">
+            <RelatedLinks route="/platform/scribe-intelligence" />
           </div>
         </motion.div>
       </div>

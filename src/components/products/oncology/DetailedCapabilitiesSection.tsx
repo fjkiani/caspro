@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+;
 import { Target, Users, Pill, AlertTriangle, Route, Network } from 'lucide-react';
+import Link from 'next/link';
 
 interface Capability {
   title: string;
@@ -65,7 +66,7 @@ export default function DetailedCapabilitiesSection({
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Link to={capability.link}>
+                <Link href={capability.link}>
                   <div className="bg-white border-2 border-slate-200 rounded-xl p-6 h-full hover:border-blue-300 hover:shadow-lg transition-all duration-300 group-hover:scale-[1.02]">
                     {/* Icon and Title */}
                     <div className="flex items-start gap-4 mb-4">
@@ -122,7 +123,7 @@ export default function DetailedCapabilitiesSection({
             Want to see how these capabilities work together? Generate a unified care plan.
           </p>
           <Link
-            to="/api/complete_care/universal"
+            href="/api/complete_care/universal"
             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition-colors"
           >
             <Network className="w-5 h-5" />

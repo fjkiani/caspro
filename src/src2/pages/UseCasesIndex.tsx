@@ -33,7 +33,7 @@ const UseCasesIndex: React.FC = () => {
 							</div>
 							<div className="flex items-center justify-between">
 								<a href={`/site/demo/usecase/${uc.id}`} className="px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-500">Run Demo</a>
-								<a href={`/site/demo/usecase/${uc.id}`} className="text-blue-600 dark:text-blue-400 text-sm">Learn more →</a>
+								<a href={`/site/demo/usecase/${uc.id}`} className="text-blue-600 dark:text-blue-400 text-sm">{`View ${uc.name} details →`}</a>
 							</div>
 						</div>
 					);

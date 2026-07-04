@@ -262,7 +262,7 @@ const WhatYouGetSection: React.FC = () => {
           {/* Navigation Link */}
           <div className="text-center">
             <motion.a
-              to={`/platform/${activeCoPilot.slug}`}
+              href={`/platform/${activeCoPilot.slug}`}
               className="inline-flex items-center gap-3 px-12 py-6 bg-gradient-to-r from-blue-600 via-teal-600 to-indigo-600 text-white rounded-2xl font-bold text-xl hover:from-blue-700 hover:via-teal-700 hover:to-indigo-700 transition-all duration-500 shadow-2xl hover:shadow-3xl"
               whileHover={{ scale: 1.08, y: -3 }}
               whileTap={{ scale: 0.98 }}

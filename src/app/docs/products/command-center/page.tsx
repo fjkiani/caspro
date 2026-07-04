@@ -1,4 +1,12 @@
 import { Command } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Command Center Documentation",
+  description: "Operator console for orchestrating CrisPRO.ai engines, Co-Pilots, and evidence flows.",
+  alternates: { canonical: "/docs/products/command-center" },
+};
+
 
 export default function CommandCenterProductPage() {
   return (

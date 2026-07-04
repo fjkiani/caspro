@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 import PartnerPage from '@/components/partners/PartnerPage';
 
 export const metadata: Metadata = {
-  title: 'American Association for Cancer Research - CrisPRO.ai Partner',
-  description: 'Learn about our partnership with AACR, the leading cancer research organization advancing the prevention and cure of cancer.',
+  title: 'AACR Partnership - CrisPRO.ai Research Partner',
+  description: 'Partnership with the American Association for Cancer Research (AACR), advancing the prevention and cure of cancer through collaborative research.',
 };
 
 const aacrData = {

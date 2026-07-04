@@ -16,8 +16,10 @@ function tryPrettifyJson(raw: string): string {
 }
 
 const mdComponents = {
-  h1: (props: ComponentProps<'h1'>) => (
-    <h1 className="mt-2 mb-6 text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100" {...props} />
+  // Downgrade markdown `#` to <h2> — the page already renders <h1>{post.title}</h1>,
+  // so allowing markdown to emit another <h1> creates a double-H1 (flagged by audit).
+  h1: (props: ComponentProps<'h2'>) => (
+    <h2 className="mt-2 mb-6 text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100" {...props} />
   ),
   h2: (props: ComponentProps<'h2'>) => (
     <h2

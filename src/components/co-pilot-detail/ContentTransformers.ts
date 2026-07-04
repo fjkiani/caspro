@@ -42,7 +42,7 @@ export function transformToHeroContent(content: CoPilotDetailContent): ProductHe
         variant: 'secondary' as const,
       },
       {
-        label: 'Learn More',
+        label: 'Technical details',
         href: '#technical',
         variant: 'secondary' as const,
       },

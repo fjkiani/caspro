@@ -11,7 +11,7 @@ const RAndDDeckSlide: React.FC = () => {
 };
 
 export const rAndDDeckData = {
-  title: "Learn More About CrisPRO.ai",
+  title: "The CrisPRO.ai R&D Deck",
   description: "The complete story of how we're transforming drug development from a $2.6B gamble into deterministic engineering through our integrated AI platform.",
   slides: [
     {

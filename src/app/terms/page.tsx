@@ -1,6 +1,14 @@
 import { LEGAL_PAGES } from '@/constants/routes';
 import * as serverMarkdown from '@/utils/serverMarkdownLoader';
 import ClientPage from './client';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description: "Terms of service for CrisPRO.ai — usage terms, data handling policies, and service level agreements for the oncology AI co-pilot platform.",
+  alternates: { canonical: "/terms" },
+};
+
 
 export default async function TermsPage() {
   // Find the page config for Terms of Service

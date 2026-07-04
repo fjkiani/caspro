@@ -1,10 +1,11 @@
 'use client';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+;
 import { extractAboutHero } from '@/data/about/about-extractor';
 import { adaptCompletePlatformForHomepage } from '@/data/adapters/platform-adapter';
 import { ArrowRight, Brain, Zap, Shield, Command } from 'lucide-react';
+import Link from 'next/link';
 
 const AboutPreview: React.FC = () => {
   const heroData = extractAboutHero();
@@ -86,7 +87,7 @@ const AboutPreview: React.FC = () => {
             return (
               <Link
                 key={index}
-                to={engine.href}
+                href={engine.href}
                 className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-200"
               >
                 <div className="text-center">
@@ -103,7 +104,7 @@ const AboutPreview: React.FC = () => {
                     {engine.metric}
                   </div>
                   <div className="inline-flex items-center text-blue-600 font-medium group-hover:text-blue-700">
-                    Learn More
+                    {`Explore ${engine.name.split(':')[0]}`}
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
                 </div>
@@ -115,7 +116,7 @@ const AboutPreview: React.FC = () => {
         {/* CTA */}
         <div className="text-center">
           <Link
-            to="/about"
+            href="/about"
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
           >
             Explore Complete Platform

@@ -3,7 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Stethoscope, FlaskConical, Factory, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+;
 
 interface JourneyCard {
   id: string;
@@ -101,7 +102,7 @@ export const CustomerJourneyCards = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group relative"
               >
-                <Link to={journey.href} className="block h-full">
+                <Link href={journey.href} className="block h-full">
                   <div className={`bg-gradient-to-br ${journey.bgGradient} rounded-2xl p-6 sm:p-8 border-2 border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col`}>
                     {/* Icon */}
                     <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center mb-4 sm:mb-6 border-2 ${journey.color.replace('text-', 'border-')}`}>
@@ -133,7 +134,7 @@ export const CustomerJourneyCards = () => {
 
                     {/* CTA */}
                     <div className="mt-auto flex items-center gap-2 text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      <span>Learn More</span>
+                      <span>{`Explore ${journey.title}`}</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>

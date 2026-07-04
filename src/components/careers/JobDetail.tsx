@@ -1,12 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+;
 import { motion } from 'framer-motion';
 import { JobListing } from '@/data/careers/jobs';
 import { ROUTES } from '@/constants/routes';
 import { ArrowLeft } from 'lucide-react';
 import JobApplicationModal from './JobApplicationModal';
+import Link from 'next/link';
 
 interface JobDetailProps {
   job: JobListing;
@@ -58,7 +59,7 @@ export default function JobDetail({ job }: JobDetailProps) {
     >
       {/* Back Button */}
       <Link
-        to={ROUTES.CAREERS}
+        href={ROUTES.CAREERS}
         className="inline-flex items-center text-slate-600 hover:text-slate-900 mb-6 transition-colors"
       >
         <ArrowLeft className="w-4 h-4 mr-2" />

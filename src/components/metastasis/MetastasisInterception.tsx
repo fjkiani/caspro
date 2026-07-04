@@ -540,7 +540,7 @@ const MetastasisInterception: React.FC = () => {
       <footer className="bg-slate-800 text-slate-400 py-12">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-2xl text-white font-bold mb-4">This is the beginning of engineered certainty.</h2>
-          <p className="text-slate-300">Contact [alpha@crispro.ai] to learn more.</p>
+          <p className="text-slate-300">Contact [alpha@crispro.ai] for details.</p>
           
           {/* Research Use Only Disclaimer */}
           <div className="mt-8 p-4 bg-yellow-900/20 border border-yellow-600/30 rounded-lg">

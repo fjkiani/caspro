@@ -52,7 +52,7 @@ const DoctrineCard: React.FC<DoctrineCardProps> = ({ title, description, href, i
           </div>
         ) : (
           <div className="flex items-center gap-2 text-sm text-primary font-semibold">
-            <span>Learn More</span>
+            <span>Read the doctrine</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
           </div>
         )}

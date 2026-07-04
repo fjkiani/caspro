@@ -1,10 +1,11 @@
 'use client';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+;
 import { motion } from 'framer-motion';
 import { Lightbulb, ArrowRight } from 'lucide-react';
 import { saeData } from '@/data/evidence/sae-data';
+import Link from 'next/link';
 
 const SaeIntelligenceTeaser = () => {
   const firstCapability = saeData.capabilities[0];
@@ -38,7 +39,7 @@ const SaeIntelligenceTeaser = () => {
             </div>
             <div className="text-center">
               <p className="text-slate-700 text-lg mb-8" dangerouslySetInnerHTML={{ __html: firstCapability.genomicUseCases.replace(/\n/g, '<br />') }} />
-              <Link to="/evidence/sae-intelligence" className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 text-white rounded-xl font-bold text-lg hover:bg-blue-700 transition-colors shadow-xl">
+              <Link href="/evidence/sae-intelligence" className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 text-white rounded-xl font-bold text-lg hover:bg-blue-700 transition-colors shadow-xl">
                 Explore SAE Intelligence
                 <ArrowRight className="w-5 h-5" />
               </Link>

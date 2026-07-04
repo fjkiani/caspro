@@ -1,6 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Clock, Search } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Resolve Genetic Uncertainty",
+  description: "From a VUS to a clinical action: how CrisPRO.ai resolves genetic uncertainty in oncology.",
+  alternates: { canonical: "/products/oncology/resolve-genetic-uncertainty" },
+};
+
 
 export default function ResolveGeneticUncertaintyPlaceholder() {
   return (

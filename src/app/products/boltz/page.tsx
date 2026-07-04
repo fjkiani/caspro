@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import { adaptBoltzForHomepage } from '@/data/adapters/platform-adapter';
 
 export default function BoltzPage() {

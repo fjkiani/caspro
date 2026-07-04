@@ -207,7 +207,7 @@ const DrugDevelopmentTransformation: React.FC<DrugDevelopmentTransformationProps
             {/* Solution Teaser */}
             <div className="mt-8 text-center">
               <motion.a
-                to="/insilico"
+                href="/insilico"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

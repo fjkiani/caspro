@@ -6,6 +6,7 @@ import SAEIntelligence from '@/components/dossier/SAEIntelligence';
 import { motion } from 'framer-motion';
 import { Layers, Target, Search, Shield, Gauge, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import RelatedLinks from '@/components/shared/RelatedLinks';
 
 const OracleIntelligencePage: React.FC = () => {
   const content = oracleIntelligenceData;
@@ -284,12 +285,15 @@ const OracleIntelligencePage: React.FC = () => {
           <div className="flex justify-center gap-4">
             <Link href="/products/oracle">
               <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold text-lg transition-colors">
-                Learn More About Oracle
+                Explore Oracle capabilities
               </button>
             </Link>
             <button className="border border-gray-300 hover:border-gray-400 px-6 py-3 rounded-lg font-semibold text-lg transition-colors">
               Schedule Demo
             </button>
+          </div>
+          <div className="max-w-4xl mx-auto text-left">
+            <RelatedLinks route="/platform/oracle-intelligence" />
           </div>
         </motion.div>
       </div>

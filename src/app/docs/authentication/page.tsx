@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Authentication",
+  description: "API authentication for the CrisPRO.ai platform: API keys, scopes, and request signing.",
+  alternates: { canonical: "/docs/authentication" },
+};
+
 export default function AuthenticationPage() {
   return (
     <div className="space-y-8">

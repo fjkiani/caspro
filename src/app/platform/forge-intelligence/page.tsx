@@ -5,6 +5,7 @@ import { forgeIntelligenceData } from '@/data/copilots/forge-intelligence-data';
 import { motion } from 'framer-motion';
 import { Scissors, TestTube2, Dna, CheckCircle, Zap, FileText } from 'lucide-react';
 import Link from 'next/link';
+import RelatedLinks from '@/components/shared/RelatedLinks';
 
 const ForgeIntelligencePage: React.FC = () => {
   const content = forgeIntelligenceData;
@@ -280,6 +281,9 @@ const ForgeIntelligencePage: React.FC = () => {
             <button className="border border-gray-300 hover:border-gray-400 px-6 py-3 rounded-lg font-semibold text-lg transition-colors">
               Schedule Demo
             </button>
+          </div>
+          <div className="max-w-4xl mx-auto text-left">
+            <RelatedLinks route="/platform/forge-intelligence" />
           </div>
         </motion.div>
       </div>

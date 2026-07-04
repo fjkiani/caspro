@@ -1,4 +1,12 @@
 import { Code2 } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Boltz API Reference",
+  description: "Boltz-2 binding-affinity and folding endpoint reference on the CrisPRO.ai platform.",
+  alternates: { canonical: "/docs/products/boltz" },
+};
+
 
 export default function BoltzProductPage() {
   return (

@@ -1,6 +1,14 @@
 import { LEGAL_PAGES } from '@/constants/routes';
 import * as serverMarkdown from '@/utils/serverMarkdownLoader';
 import ClientPage from './client';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Security Overview",
+  description: "How CrisPRO.ai safeguards your data: access controls, encryption, audit logging, and compliance posture.",
+  alternates: { canonical: "/security-overview" },
+};
+
 
 export default async function SecurityOverviewPage() {
   // Find the page config for Security Overview

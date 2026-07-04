@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { CohortSection } from '@/components/cohort';
+import RelatedLinks from '@/components/shared/RelatedLinks';
 
 export const metadata: Metadata = {
   title: 'Cohort Context - CrisPRO.ai',
@@ -11,6 +12,8 @@ export default function CohortPage() {
   return (
     <div className="min-h-screen bg-white">
       <CohortSection />
-    </div>
+    
+      <RelatedLinks route="/cohort" />
+</div>
   );
 }

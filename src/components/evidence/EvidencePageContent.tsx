@@ -182,7 +182,7 @@ export const EvidencePageContent: React.FC = () => {
           />
           <div className="grid md:grid-cols-2 gap-6 mt-12">
             <a
-              to="/evidence/spe-fusion"
+              href="/evidence/spe-fusion"
               className="group bg-white rounded-xl p-6 shadow-lg border border-slate-200 hover:border-green-300 transition-all hover:shadow-xl"
             >
               <div className="flex items-center gap-3 mb-4">
@@ -200,7 +200,7 @@ export const EvidencePageContent: React.FC = () => {
             </a>
 
             <a
-              to="/evidence/sae-intelligence"
+              href="/evidence/sae-intelligence"
               className="group bg-white rounded-xl p-6 shadow-lg border border-slate-200 hover:border-orange-300 transition-all hover:shadow-xl"
             >
               <div className="flex items-center gap-3 mb-4">

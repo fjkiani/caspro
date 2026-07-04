@@ -2,7 +2,7 @@ import { CoPilotDetailContent } from '../../types/copilot-types';
 
 export const oracleIntelligenceData: CoPilotDetailContent = {
   slug: "oracle-intelligence",
-  pageTitle: "Oracle Intelligence: Multi-Modal AI Validation Platform",
+  pageTitle: "Oracle Intelligence: Multi-Modal AI Validation",
   heroSubtitle: "The S/P/E framework - where Sequence, Pathway, and Evidence combine for transparent, auditable variant predictions.",
 
   vision: "Our vision is to solve the AI reliability problem in genomics. We deploy a three-signal validation framework that combines genomic sequence analysis with biological pathway mapping and evidence synthesis, ensuring every prediction is transparent, auditable, and clinically actionable. We provide confidence scores that clinicians can trust for life-changing decisions.",

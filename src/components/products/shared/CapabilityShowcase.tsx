@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+;
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, ArrowRight, CheckCircle, LucideIcon } from 'lucide-react';
+import Link from 'next/link';
 
 export interface CapabilityCardData {
   id: string;
@@ -100,7 +101,7 @@ export default function CapabilityShowcase({
               >
                 {capability.capabilitySlug ? (
                   <Link
-                    to={`/products/${productSlug}/${capability.capabilitySlug}`}
+                    href={`/products/${productSlug}/${capability.capabilitySlug}`}
                     className="block text-left p-6 rounded-2xl border-2 border-slate-200 bg-white hover:border-slate-300 hover:shadow-lg text-slate-800 transition-all duration-300"
                   >
                     <div className="flex flex-col items-start gap-3 w-full">

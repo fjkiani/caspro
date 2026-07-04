@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Decks | CrisPRO Research',
-  description: 'Slide decks and programmatic posters.',
+  description: "Research decks and presentations from CrisPRO.ai — visual deep dives into metastasis prevention, engine architecture, and validation methodology.",
 };
 
 export default async function ResearchDecksPage() {

@@ -100,7 +100,7 @@ const ROICalculatorSection: React.FC<ROICalculatorSectionProps> = ({ className =
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.a
-                  to="/contact"
+                  href="/contact"
                   className="px-8 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition-colors flex items-center justify-center gap-3"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -111,7 +111,7 @@ const ROICalculatorSection: React.FC<ROICalculatorSectionProps> = ({ className =
                 </motion.a>
                 
                 <motion.a
-                  to="/metrics"
+                  href="/metrics"
                   className="px-8 py-4 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-blue-600 transition-colors flex items-center justify-center gap-3"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

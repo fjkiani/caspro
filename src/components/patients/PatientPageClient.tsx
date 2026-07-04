@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+;
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { 
   Heart, 
   Shield, 
@@ -72,14 +73,14 @@ const PatientPageClient: React.FC = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <Link
-                to="#how-it-helps"
+                href="#how-it-helps"
                 className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold transition-colors text-lg flex items-center justify-center gap-2"
               >
                 How It Helps You
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
-                to="#clinical-evidence"
+                href="#clinical-evidence"
                 className="px-8 py-4 border-2 border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white rounded-lg font-semibold transition-colors text-lg"
               >
                 Clinical Evidence
@@ -444,17 +445,17 @@ const PatientPageClient: React.FC = () => {
               Get Started with CrisPRO
             </h2>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-              Talk to your oncologist about CrisPRO, or connect with our patient support team to learn more.
+              Talk to your oncologist about CrisPRO, or connect with our patient support team for guidance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/contact"
+                href="/contact"
                 className="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold transition-colors text-lg"
               >
                 Get Started
               </Link>
               <Link
-                to="/comparisons/patient"
+                href="/comparisons/patient"
                 className="px-8 py-4 border-2 border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white rounded-lg font-semibold transition-colors text-lg"
               >
                 Compare AI Systems

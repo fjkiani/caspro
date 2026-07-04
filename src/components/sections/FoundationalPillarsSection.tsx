@@ -123,7 +123,7 @@ const FoundationalPillarsSection: React.FC = () => {
                   <p className="text-sm text-slate-400 mb-3 font-medium">{tech.origin}</p>
                   <p className="text-sm text-slate-300 mb-4">{tech.description}</p>
                   <a href={tech.link} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline flex items-center">
-                    Learn more <ExternalLink className="w-3 h-3 ml-1.5" />
+                    {`Read ${tech.name} source`} <ExternalLink className="w-3 h-3 ml-1.5" />
                   </a>
                 </motion.div>
               ))}

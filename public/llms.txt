@@ -1,0 +1,57 @@
+# CrisPRO.ai
+
+> CrisPRO.ai is the AI-powered metastasis prevention platform. Three intelligences — Oracle (variant interpretation), Forge (in silico therapeutic design), and Scribe (clinical narrative) — work together as a deterministic oncology Co-Pilot. Validated against ClinVar (95.7% AUROC, n=53,210), SpliceVarDB (82.5-82.6% AUROC, n=4,950), and a 1,000-patient clinical validation cohort (73% VUS resolution).
+
+## Docs
+
+- [Documentation home](https://crispro.ai/): Entry point for the CrisPRO.ai product, evidence, and API surfaces.
+- [Platform overview](https://crispro.ai/platform): The Co-Pilot components — AgenticEMR, Chemo, Trials, Therapy Fit, Toxicity Risk, Immunotherapy, Pathway, Oracle, Forge, Scribe.
+- [Evidence ledger](https://crispro.ai/evidence): Supported / Consider / Insufficient tiers, badges (ClinVar-Strong, SOTA, RCT, Guideline, Pathway-Aligned, Validated), and inline citations.
+- [Comparison](https://crispro.ai/comparison): How CrisPRO differs from keyword-matched decision support and generic pathogenicity callers.
+- [Case studies](https://crispro.ai/case-studies): Illustrative Co-Pilot walkthroughs across therapeutic areas.
+- [Research](https://crispro.ai/research): Published research, abstracts, and manuscripts.
+
+## Machine-readable
+
+- [Oracle capability + benchmark manifest](https://crispro.ai/api/oracle.json): Oracle capabilities, current benchmark values, and pointers to other machine-readable endpoints. Cache-Control: public, max-age=3600.
+- [Benchmark record dump](https://crispro.ai/benchmarks/data.json): Canonical JSON dump of the same records rendered at /benchmarks. CC BY 4.0.
+- [OpenAPI 3.0.3 spec](https://crispro.ai/openapi.json): Self-describing OpenAPI spec for the public JSON, plain-text, and XML surfaces.
+- [Sitemap](https://crispro.ai/sitemap.xml): URL index.
+- [Robots](https://crispro.ai/robots.txt): Crawler rules.
+
+## Benchmarks
+
+- [ClinVar AUROC 95.7% (n=53,210)](https://crispro.ai/benchmarks#clinvar-auroc): Zero-shot area under the ROC across all variant classes. Badge: ClinVar-Strong.
+- [VUS resolution 73.0% (n=1,000)](https://crispro.ai/benchmarks#vus-resolution): Rate at which Oracle returns a Supported/Consider tier for variants that came in as VUS. Badge: Validated.
+- [SpliceVarDB AUROC 82.5-82.6% (n=4,950)](https://crispro.ai/benchmarks#splicevardb-auroc): Zero-shot AUROC on the exonic subset of SpliceVarDB. Badge: SOTA.
+- [BRCA1 zero-shot AUROC 89.1%](https://crispro.ai/benchmarks#brca1-zero-shot-auroc): Out-of-distribution AUROC on the BRCA1 saturation-mutagenesis cohort. Badge: SOTA.
+- [Non-coding SNV AUROC 95.8%](https://crispro.ai/benchmarks#noncoding-snv-sota): SOTA AUROC on the ClinVar non-coding SNV subset. Badge: SOTA.
+- [Coding non-SNV AUROC 93.9%](https://crispro.ai/benchmarks#coding-non-snv-sota): AUROC on the ClinVar coding non-SNV subset. Badge: SOTA.
+
+## Capabilities
+
+- [AgenticEMR](https://crispro.ai/platform/agentic-emr): Ingest unstructured EMR content and emit a structured, source-cited oncology briefing.
+- [Chemo Co-Pilot](https://crispro.ai/platform/chemo): Mechanism-aligned chemotherapy regimen ranking with per-option evidence tier.
+- [Clinical trials matching](https://crispro.ai/platform/clinical-trials): Match patients to trials by biology, not by keyword.
+- [Immunotherapy Co-Pilot](https://crispro.ai/platform/immunotherapy): Dual response + immune-related adverse event risk call.
+- [Pathway alignment](https://crispro.ai/platform/pathway): The curated pathway-graph mechanism substrate that sits under every downstream Co-Pilot.
+- [Therapy Fit](https://crispro.ai/platform/therapy-fit): Cross-class regimen ranking (chemo, targeted, immunotherapy, trial).
+- [Toxicity Risk](https://crispro.ai/platform/toxicity-risk): PGx + comorbidity + prior-AE risk scoring — a hard-filter input to ranking.
+- [Oracle](https://crispro.ai/platform/oracle-intelligence): Discriminative AI for variant interpretation and mechanism scoring.
+- [Forge](https://crispro.ai/platform/forge-intelligence): Generative AI for in-silico therapeutic design.
+- [Scribe](https://crispro.ai/platform/scribe-intelligence): Auditable clinical narrative synthesis.
+
+## Glossary
+
+- [Glossary (31 terms)](https://crispro.ai/glossary): Variant interpretation, AI methodology, clinical evidence, oncology mechanism, and CrisPRO platform terminology in one place.
+
+## Contact
+
+- [Request a demo](https://crispro.ai/contact): Book a live walkthrough of the Co-Pilot.
+- [CrisPRO.org](https://crispro.org/): Nonprofit / disclosures.
+
+## License + provenance
+
+- Benchmark values and the Oracle capability manifest are published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- Illustrative outcome numbers on capability pages are marked with an "illustrative" badge and describe direction, not measured results — the measured numbers are the ones on /benchmarks and /evidence.
+- Every Oracle prediction is emitted to the Proof Ledger with model_version, features_hash, tier, badges, and run_id — the platform is designed to be audited, not just to be trusted.

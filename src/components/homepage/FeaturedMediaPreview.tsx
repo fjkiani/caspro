@@ -78,7 +78,7 @@ export default function FeaturedMediaPreview({ mediaItems }: FeaturedMediaPrevie
                 href={`/media/${featuredItem.slug}`}
                 className="flex items-center gap-2 text-blue-600 font-semibold hover:gap-4 transition-all inline-block"
               >
-                <span>Learn More</span>
+                <span>Read the story</span>
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </div>

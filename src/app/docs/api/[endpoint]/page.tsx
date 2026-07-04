@@ -7,6 +7,22 @@ import { notFound } from 'next/navigation';
 import { parseEndpointsMDC } from '@/lib/docs/parser';
 import APIExplorerAdapter from '@/components/docs/adapters/APIExplorerAdapter';
 import type { APIEndpoint } from '@/lib/docs/hygraph/types';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ endpoint: string }> | { endpoint: string };
+}): Promise<Metadata> {
+  const resolved = await Promise.resolve(params);
+  const slug = resolved.endpoint;
+  const humanized = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+  return {
+    title: `${humanized} — API`,
+    description: `${humanized} endpoint reference for the CrisPRO.ai API: parameters, responses, and example requests.`,
+    alternates: { canonical: `/docs/api/${slug}` },
+  };
+}
 
 interface PageProps {
   params: Promise<{ endpoint: string }>;

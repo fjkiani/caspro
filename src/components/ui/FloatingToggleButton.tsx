@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+;
 import { motion } from 'framer-motion';
 import { Dna, Microscope, Zap, Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
+import Link from 'next/link';
 
 interface FloatingToggleButtonProps {
   href: string;

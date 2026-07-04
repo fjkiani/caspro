@@ -5,6 +5,7 @@ import DrugDevelopmentPlatform from '@/components/homepage/DrugDevelopmentPlatfo
 import DrugDevelopmentTransformation from '@/components/landing/DrugDevelopmentTransformation';
 import DrugDevelopmentShowcase from '@/components/landing/DrugDevelopmentShowcase';
 import CTASection from '@/components/shared/CTASection';
+import RelatedLinks from '@/components/shared/RelatedLinks';
 
 export default function DrugDevelopmentPage() {
   return (
@@ -57,7 +58,9 @@ export default function DrugDevelopmentPage() {
         backgroundColor="blue"
         className="py-20"
       />
-    </main>
+    
+      <RelatedLinks route="/drug-development" />
+</main>
   );
 }
 

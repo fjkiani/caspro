@@ -466,7 +466,7 @@ const DrugDevelopmentComparison = () => {
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </button>
                 <button className="inline-flex items-center px-6 py-3 border-2 border-green-600 text-green-600 rounded-lg font-semibold hover:bg-green-50 transition-colors">
-                  Learn More
+                  Explore the platform
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </button>
               </div>

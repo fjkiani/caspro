@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Manuscripts | CrisPRO Research',
-  description: 'Long-form scientific manuscripts from CrisPRO.',
+  description: "Peer-reviewed manuscripts and research publications from CrisPRO.ai on variant interpretation, mechanism alignment, and oncology AI validation.",
 };
 
 export default async function ResearchManuscriptsPage() {

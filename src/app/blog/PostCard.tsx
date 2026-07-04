@@ -59,7 +59,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, prominent }) => {
         </p>
         <div className="mt-auto">
           <Link href={researchBlogPostPath(postData.slug)} className="inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark transition-colors duration-300">
-              Read More
+              Read the post
               <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
         </div>

@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
   if (!post) {
     return {
       title: 'Post not found | CrisPRO Blog',
-      description: 'The requested blog post could not be found.',
+      description: "Read the latest CrisPRO.ai blog posts on metastasis prevention, VUS resolution, in-silico therapeutic design, and evidence-backed oncology decision support.",
     };
   }
 
@@ -96,7 +96,7 @@ export default async function PostDetailPage({ params }: PostPageProps) {
   if (!post) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Post not found</h1>
+        <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Post not found</h2>
         <p className="mt-4 text-slate-600 dark:text-slate-400">
           Sorry, we couldn&apos;t find the post you were looking for.
         </p>

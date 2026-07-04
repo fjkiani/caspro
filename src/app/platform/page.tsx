@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import CoPilotOptionCard, { CoPilotOption } from './CoPilotOptionCard'; // Import the new card component
+import RelatedLinks from '@/components/shared/RelatedLinks';
 
 const coPilotOptions: CoPilotOption[] = [
   {
@@ -53,6 +54,8 @@ export default function CoPilotAppPage() {
             <CoPilotOptionCard key={option.id} option={option} />
           ))}
         </div>
+
+        <RelatedLinks route="/platform" />
       </div>
     </main>
   );

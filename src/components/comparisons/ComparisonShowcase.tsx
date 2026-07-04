@@ -380,10 +380,10 @@ export default function ComparisonShowcase({
                       {currentQuestion.moatPoint.explanation}
                       {currentQuestion.moatPoint.evidence && (
                         <a 
-                          to={currentQuestion.moatPoint.evidence} 
+                          href={currentQuestion.moatPoint.evidence} 
                           className="text-blue-600 hover:text-blue-800 hover:underline ml-2 font-semibold inline-flex items-center gap-1"
                         >
-                          Learn more
+                          See the evidence
                           <ArrowRight className="w-3 h-3" />
                         </a>
                       )}

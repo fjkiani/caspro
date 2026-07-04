@@ -4,12 +4,28 @@ import { coPilotDetailsData, CoPilotDetailContent } from '@/data/coPilotDetails'
 import OutcomeFocusedCoPilotPage from '@/components/co-pilot-detail/OutcomeFocusedCoPilotPage';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import RelatedLinks from '@/components/shared/RelatedLinks';
+
+/**
+ * Slugs that have their OWN dedicated /platform/{slug}/page.tsx route in R3.
+ * Excluded from the [coPilotSlug] catch-all's generateStaticParams so the
+ * static routes win. If you add a new dedicated capability page, add its slug here.
+ */
+const R3_DEDICATED_SLUGS = new Set([
+  'agentic-emr',
+  'chemo',
+  'clinical-trials',
+  'immunotherapy',
+  'pathway',
+  'therapy-fit',
+  'toxicity-risk',
+]);
 
 // This function generates the static paths for each co-pilot page at build time.
 export async function generateStaticParams() {
-  return Object.keys(coPilotDetailsData).map((slug) => ({
-    coPilotSlug: slug,
-  }));
+  return Object.keys(coPilotDetailsData)
+    .filter((slug) => !R3_DEDICATED_SLUGS.has(slug))
+    .map((slug) => ({ coPilotSlug: slug }));
 }
 
 // This function generates the metadata for each co-pilot page.
@@ -17,7 +33,7 @@ export async function generateMetadata({ params }: { params: { coPilotSlug: stri
   const content = coPilotDetailsData[params.coPilotSlug];
   if (!content) {
     return {
-      title: 'Co-Pilot Not Found',
+      title: 'Co-Pilot Not Found | CrisPRO.ai',
     };
   }
   return {
@@ -57,6 +73,8 @@ export default async function CoPilotDetailPage({ params }: { params: { coPilotS
             ))}
           </div>
         </section>
+
+        <RelatedLinks route={`/platform/${coPilotSlug}`} />
       </div>
     </main>
   );

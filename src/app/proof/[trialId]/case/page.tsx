@@ -4,6 +4,22 @@ import { notFound, redirect } from 'next/navigation';
 import { TRIAL_CASE_FILES, TRIAL_IDS } from '@/data/trial-case-files';
 import { isGatedLedgerTrial } from '@/data/trial-gate';
 import { isTrialGateAuthorized } from '@/lib/trial-gate-server';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { trialId: string };
+}): Promise<Metadata> {
+  const trialFile = TRIAL_CASE_FILES[params.trialId as keyof typeof TRIAL_CASE_FILES];
+  const title = trialFile?.title ?? params.trialId.replace(/-/g, ' ').toUpperCase();
+  return {
+    title: `${title} — Case File`,
+    description: `Case file and de-risk map for ${title} on the CrisPRO.ai platform.`,
+    alternates: { canonical: `/proof/${params.trialId}/case` },
+    robots: { index: false, follow: true },
+  };
+}
 
 /** Recharts must not SSR on this route (avoids missing vendor-chunks/recharts.js). */
 const TrialDeRiskMap = nextDynamic(() => import('@/components/mockups/latify'), {

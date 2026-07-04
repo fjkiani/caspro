@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import { adaptCommandCenterForHomepage } from '@/data/adapters/platform-adapter';
 
 export default function CommandCenterPage() {

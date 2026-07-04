@@ -119,7 +119,7 @@ export default function AbstractsListing({
                         isDarkMode ? 'text-cyan-400' : 'text-indigo-600'
                       }`}
                     >
-                      {hasDeck ? 'View slides' : 'Read more'}
+                      {hasDeck ? 'View slides' : 'Read abstract'}
                       <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                     {publishedUrl && (

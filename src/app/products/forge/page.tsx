@@ -1,7 +1,9 @@
 'use client';
 
 import React from 'react';
+
 import { adaptForgeForHomepage } from '@/data/adapters';
+import RelatedLinks from '@/components/shared/RelatedLinks';
 
 export default function ForgePage() {
   // Use the migrated Forge data
@@ -144,6 +146,10 @@ export default function ForgePage() {
         {/* Footer */}
         <div className="mt-16 text-center text-slate-400">
           <p>Powered by Evo2 40B-parameter foundation model with 1M-token context window</p>
+        </div>
+
+        <div className="max-w-4xl mx-auto text-left">
+          <RelatedLinks route="/products/forge" />
         </div>
       </div>
     </div>

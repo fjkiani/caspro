@@ -147,13 +147,13 @@ export const UnifiedEvidencePageContent: React.FC = () => {
             className="flex flex-wrap justify-center gap-4"
           >
             <a
-              to="/evidence/spe-fusion"
+              href="/evidence/spe-fusion"
               className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
             >
               Explore S/P/E Fusion
             </a>
             <a
-              to="/evidence/data-lab"
+              href="/evidence/data-lab"
               className="px-8 py-3 border-2 border-slate-300 text-slate-700 rounded-lg font-semibold hover:border-slate-400 transition-colors"
             >
               Visit Data Lab
