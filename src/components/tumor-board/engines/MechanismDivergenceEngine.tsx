@@ -47,21 +47,37 @@ import {
 import { getWiring } from '@/data/capability-depth-wiring';
 
 // -----------------------------------------------------------------------------
-// Illustrative divergence deltas — substrate axes only, labelled illustrative
+// Illustrative divergence — substrate axes only, ranked-only rendering
 //
-// Each axis carries a signed contribution delta representing "how much the
-// responder-vs-non-responder difference lands on this axis". Deltas are
-// illustrative — the site's real divergence decomposition is deterministic
-// under the released ranker version, but the specific numbers here are for
-// visual demonstration only.
+// Each axis carries a signed direction (positive = responder-lean,
+// negative = non-responder-lean) and a relative magnitude used ONLY to rank
+// the list and size the internal bar visualisation. The magnitude is NEVER
+// surfaced as a number. Per policy: rank order tells the story, sign colour
+// tells direction, no numeric readout.
 // -----------------------------------------------------------------------------
 
-const ILLUSTRATIVE_DELTAS: Record<string, number> = {
-  ddr: 0.42,
-  mapk: -0.18,
-  vegf: 0.08,
-  io: 0.31,
-  rss: -0.05,
+interface DivergenceRow {
+  direction: 'positive' | 'negative';
+  magnitude: 'strongest' | 'strong' | 'moderate' | 'minimal' | 'trace';
+}
+
+const ILLUSTRATIVE_DIRECTION: Record<string, DivergenceRow> = {
+  ddr: { direction: 'positive', magnitude: 'strongest' },
+  io: { direction: 'positive', magnitude: 'strong' },
+  mapk: { direction: 'negative', magnitude: 'moderate' },
+  vegf: { direction: 'positive', magnitude: 'minimal' },
+  rss: { direction: 'negative', magnitude: 'trace' },
+};
+
+// Rank-order used ONLY for visual bar length. Highest first. Values are not
+// rendered as text and are intentionally coarse (5 buckets) so no viewer can
+// read them as a real percentage or delta.
+const MAGNITUDE_BUCKET: Record<DivergenceRow['magnitude'], number> = {
+  strongest: 100,
+  strong: 78,
+  moderate: 52,
+  minimal: 28,
+  trace: 14,
 };
 
 // -----------------------------------------------------------------------------
@@ -104,15 +120,16 @@ export default function MechanismDivergenceEngine() {
     if (!wiring) return [];
     return wiring.substrateAxes.map((axisSlug) => {
       const a = getAxis(axisSlug);
-      const delta = ILLUSTRATIVE_DELTAS[axisSlug] ?? 0;
+      const dir = ILLUSTRATIVE_DIRECTION[axisSlug] ?? { direction: 'positive' as const, magnitude: 'trace' as const };
       return {
         axisSlug,
         name: a?.name ?? axisSlug,
         oneLiner: a?.oneLiner ?? '',
-        delta,
-        abs: Math.abs(delta),
+        direction: dir.direction,
+        magnitude: dir.magnitude,
+        barPct: MAGNITUDE_BUCKET[dir.magnitude],
       };
-    }).sort((x, y) => y.abs - x.abs);
+    }).sort((x, y) => y.barPct - x.barPct);
   }, [wiring]);
 
   const topAxis = axisRows[0];
@@ -182,9 +199,10 @@ export default function MechanismDivergenceEngine() {
               </span>
             </div>
             <div className="space-y-4">
-              {axisRows.map((row) => {
-                const isPositive = row.delta > 0;
+              {axisRows.map((row, rankIdx) => {
+                const isPositive = row.direction === 'positive';
                 const isFocused = focused?.axisSlug === row.axisSlug;
+                const rank = String(rankIdx + 1).padStart(2, '0');
                 return (
                   <div
                     key={row.axisSlug}
@@ -193,23 +211,32 @@ export default function MechanismDivergenceEngine() {
                     className={`transition-opacity ${isFocused ? 'opacity-100' : 'opacity-70'}`}
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className={`text-[10px] font-black uppercase tracking-widest ${isFocused ? 'text-cyan-400' : 'text-white'}`}>
-                        {row.name}
-                      </span>
-                      <span className={`text-[10px] font-black tracking-widest ${
-                        isPositive ? 'text-emerald-400' : 'text-rose-400'
+                      <div className="flex items-center gap-3">
+                        <span className={`text-[9px] font-black tracking-widest ${
+                          rankIdx === 0 ? 'text-cyan-500' : 'text-zinc-600'
+                        }`}>
+                          {rank}
+                        </span>
+                        <span className={`text-[10px] font-black uppercase tracking-widest ${isFocused ? 'text-cyan-400' : 'text-white'}`}>
+                          {row.name}
+                        </span>
+                      </div>
+                      <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-sm border ${
+                        isPositive
+                          ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
+                          : 'bg-rose-500/10 text-rose-400 border-rose-500/30'
                       }`}>
-                        {isPositive ? '+' : ''}{row.delta.toFixed(2)}
+                        {isPositive ? 'responder-lean' : 'non-responder-lean'}
                       </span>
                     </div>
                     <div className="relative h-2 bg-zinc-900 rounded-sm overflow-hidden">
                       {/* zero line */}
                       <div className="absolute inset-y-0 left-1/2 w-px bg-zinc-700" />
-                      {/* bar */}
+                      {/* directional bar — length shows rank via bucket, sign shows direction */}
                       <motion.div
                         initial={{ width: 0 }}
-                        animate={{ width: `${Math.min(row.abs * 100, 50)}%` }}
-                        transition={{ duration: 0.6, delay: 0.05 }}
+                        animate={{ width: `${row.barPct / 2}%` }}
+                        transition={{ duration: 0.6, delay: rankIdx * 0.08 }}
                         className={`absolute inset-y-0 ${
                           isPositive
                             ? 'left-1/2 bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]'
@@ -223,7 +250,7 @@ export default function MechanismDivergenceEngine() {
               })}
             </div>
             <div className="mt-6 pt-4 border-t border-zinc-900 text-[9px] font-black uppercase tracking-widest text-zinc-600 leading-relaxed">
-              The axis with the largest signed contribution difference is the mechanistic explanation for divergence — not an averaging artifact.
+              Axes sorted by contribution rank. Sign (colour) shows direction, position (top→bottom) shows relative strength. Rank #01 is the mechanistic explanation for divergence.
             </div>
           </div>
 
