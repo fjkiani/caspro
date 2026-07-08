@@ -2,20 +2,25 @@
 
 // ==============================================================================
 // ENGINE INDEX — Primary CrisPRO capability spine.
-// No-scroll (h-screen overflow-hidden), tabbed 5-capability split-pane. Sourced
-// from `capability-registry.ts`. Retired numerics and client-linked terminology
-// are not present in this surface by construction.
 //
 // Layout:
 //   • Fixed-height h-screen split with sticky header
 //   • Left rail (280px on md+) = 5 capability tabs + Comparators tab
-//   • Right pane = detail card for the selected tab
-//   • Zero page scroll on primary surface; only the right pane scrolls if content overflows
+//   • Right pane = 4 sub-tabs per capability: Overview / Powers / Governance / Proof
+//     * Overview  = one-liner + full description + illustrative output + clinical value
+//     * Powers    = axes (from PATIENT_VECTOR_AXES) + modalities (from EVIDENCE_MODALITIES_7)
+//                   + headlineSubstrateSentence (from CAPABILITY_DEPTH_WIRING)
+//     * Governance= guardrails (from GOVERNANCE_GUARDRAILS) + mandatory disclosures
+//                   + prohibited claims (from PUBLIC_MANDATORY_DISCLOSURES / _PROHIBITED_CLAIMS)
+//                   + headlineGovernanceSentence
+//     * Proof     = tiers this cap emits (from EVIDENCE_TIERS_4) + link to /ledger/
+//   • Zero page scroll on primary surface; only the right pane scrolls
+//   • Each capability section has `id={cap.slug}` so /kb/#slug and /governance/ deep-link in
 // ==============================================================================
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Target, Layers, Sparkles, TrendingUp, GitBranch, Scale } from 'lucide-react';
+import { ArrowRight, Target, Layers, Sparkles, TrendingUp, GitBranch, Scale, ShieldCheck, Beaker, BookOpen, Ban } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import {
   CAPABILITY_REGISTRY,
@@ -24,6 +29,15 @@ import {
   type CapabilityEntry,
   type Comparator,
 } from '@/data/capability-registry';
+import {
+  PATIENT_VECTOR_AXES,
+  EVIDENCE_MODALITIES_7,
+  EVIDENCE_TIERS_4,
+  GOVERNANCE_GUARDRAILS,
+  PUBLIC_MANDATORY_DISCLOSURES,
+  PUBLIC_PROHIBITED_CLAIMS,
+} from '@/data/depth-layer';
+import { CAPABILITY_DEPTH_WIRING } from '@/data/capability-depth-wiring';
 
 type TabKey =
   | 'gate-tier-scoring'
@@ -32,6 +46,8 @@ type TabKey =
   | 'population-funnel'
   | 'mechanism-divergence'
   | 'comparators';
+
+type SubTab = 'overview' | 'powers' | 'governance' | 'proof';
 
 const TAB_KEYS: TabKey[] = [
   'gate-tier-scoring',
@@ -100,38 +116,293 @@ function TabButton({
   );
 }
 
-function CapabilityDetail({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMode: boolean }) {
-  const boxLight = 'bg-white border-slate-200';
-  const boxDark = 'bg-zinc-950 border-zinc-800';
-  const box = isDarkMode ? boxDark : boxLight;
+// -----------------------------------------------------------------------------
+// Sub-tab: Overview
+// -----------------------------------------------------------------------------
+function OverviewTab({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMode: boolean }) {
   const label = isDarkMode ? 'text-cyan-400' : 'text-indigo-600';
   const value = isDarkMode ? 'text-zinc-200' : 'text-slate-800';
   const muted = isDarkMode ? 'text-zinc-400' : 'text-slate-500';
-
+  const box = isDarkMode ? 'bg-zinc-950 border-zinc-800' : 'bg-white border-slate-200';
   return (
-    <div className="flex flex-col gap-4 h-full">
-      <header>
-        <p className={`text-[10px] font-black uppercase tracking-[0.3em] ${label}`}>{cap.id} · Capability</p>
-        <h2 className="mt-1.5 text-2xl md:text-3xl font-black tracking-tight uppercase leading-tight">{cap.name}</h2>
-        <p className={`mt-2.5 text-sm leading-relaxed ${muted}`}>{cap.oneLiner}</p>
-      </header>
-
+    <div className="flex flex-col gap-4">
+      <p className={`text-sm leading-relaxed ${muted}`}>{cap.oneLiner}</p>
       <div className={`rounded-lg border p-4 ${box}`}>
         <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-1.5 ${label}`}>What it does</p>
         <p className={`text-sm leading-relaxed ${value}`}>{cap.description}</p>
       </div>
-
       <div className={`rounded-lg border p-4 ${box}`}>
         <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-1.5 ${label}`}>Illustrative output</p>
         <p className={`font-mono text-[13px] leading-relaxed ${value}`}>{cap.demoOutput}</p>
       </div>
-
       <div className={`rounded-lg border p-4 ${box}`}>
         <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-1.5 ${label}`}>Clinical value</p>
         <p className={`text-sm leading-relaxed ${value}`}>{cap.clinicalValue}</p>
       </div>
+    </div>
+  );
+}
 
-      <div className="mt-auto flex flex-wrap items-center gap-3">
+// -----------------------------------------------------------------------------
+// Sub-tab: Powers — what substrate backs this capability
+// -----------------------------------------------------------------------------
+function PowersTab({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMode: boolean }) {
+  const wire = CAPABILITY_DEPTH_WIRING.find((w) => w.capabilitySlug === cap.slug);
+  const label = isDarkMode ? 'text-cyan-400' : 'text-indigo-600';
+  const value = isDarkMode ? 'text-zinc-200' : 'text-slate-800';
+  const muted = isDarkMode ? 'text-zinc-400' : 'text-slate-500';
+  const box = isDarkMode ? 'bg-zinc-950 border-zinc-800' : 'bg-white border-slate-200';
+  const chip = isDarkMode ? 'bg-zinc-900 border-zinc-800 text-zinc-300' : 'bg-slate-100 border-slate-200 text-slate-700';
+
+  if (!wire) {
+    return <p className={`text-sm ${muted}`}>No substrate wiring for this capability.</p>;
+  }
+
+  const axes = wire.substrateAxes.map((slug) => PATIENT_VECTOR_AXES.find((a) => a.axis === slug)).filter(Boolean);
+  const modalities = wire.substrateModalities.map((slug) => EVIDENCE_MODALITIES_7.find((m) => m.modality === slug)).filter(Boolean);
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className={`rounded-lg border p-4 ${box}`}>
+        <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-1.5 ${label}`}>Headline</p>
+        <p className={`text-sm leading-relaxed ${value}`}>{wire.headlineSubstrateSentence}</p>
+      </div>
+
+      <div className={`rounded-lg border p-4 ${box}`}>
+        <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-2 ${label}`}>
+          Patient-biology axes scored ({axes.length})
+        </p>
+        <ul className="space-y-2">
+          {axes.map((a) => (
+            <li key={a!.axis}>
+              <div className="flex items-baseline gap-2">
+                <span className={`text-[10px] uppercase tracking-widest rounded border px-1.5 py-0.5 ${chip}`}>{a!.axis}</span>
+                <span className={`text-sm font-semibold ${value}`}>{a!.name}</span>
+              </div>
+              <p className={`mt-1 text-xs leading-relaxed ${muted}`}>{a!.oneLiner}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className={`rounded-lg border p-4 ${box}`}>
+        <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-2 ${label}`}>
+          Evidence modalities admitted ({modalities.length} of 7)
+        </p>
+        <ul className="space-y-2">
+          {modalities.map((m) => (
+            <li key={m!.modality}>
+              <div className="flex items-baseline gap-2">
+                <Beaker className={`h-3.5 w-3.5 ${label}`} />
+                <span className={`text-sm font-semibold ${value}`}>{m!.name}</span>
+              </div>
+              <p className={`mt-1 text-xs leading-relaxed ${muted}`}>{m!.whatItMeasures}</p>
+              <p className={`mt-1 text-[11px] italic ${muted}`}>Positive threshold: {m!.positiveThreshold}</p>
+              <p className={`mt-0.5 text-[11px] ${muted}`}>Source: {m!.dataSource}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <p className={`text-xs italic ${muted}`}>
+        Substrate detail:{' '}
+        <Link href="/research/chapters/patient-biology-axes/" className="underline">axes</Link>{' · '}
+        <Link href="/research/chapters/seven-evidence-modalities/" className="underline">modalities</Link>{' · '}
+        <Link href="/research/chapters/evidence-hierarchy/" className="underline">tiers</Link>.
+      </p>
+    </div>
+  );
+}
+
+// -----------------------------------------------------------------------------
+// Sub-tab: Governance — how this capability is gated
+// -----------------------------------------------------------------------------
+function GovernanceTab({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMode: boolean }) {
+  const wire = CAPABILITY_DEPTH_WIRING.find((w) => w.capabilitySlug === cap.slug);
+  const label = isDarkMode ? 'text-cyan-400' : 'text-indigo-600';
+  const value = isDarkMode ? 'text-zinc-200' : 'text-slate-800';
+  const muted = isDarkMode ? 'text-zinc-400' : 'text-slate-500';
+  const box = isDarkMode ? 'bg-zinc-950 border-zinc-800' : 'bg-white border-slate-200';
+  const chip = isDarkMode ? 'bg-zinc-900 border-zinc-800 text-zinc-300' : 'bg-slate-100 border-slate-200 text-slate-700';
+  const warn = isDarkMode ? 'text-amber-400' : 'text-amber-700';
+  const ban = isDarkMode ? 'text-rose-400' : 'text-rose-700';
+
+  if (!wire) {
+    return <p className={`text-sm ${muted}`}>No governance wiring for this capability.</p>;
+  }
+  const guardrails = wire.governanceGuardrails.map((slug) => GOVERNANCE_GUARDRAILS.find((g) => g.slug === slug)).filter(Boolean);
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className={`rounded-lg border p-4 ${box}`}>
+        <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-1.5 ${label}`}>Headline</p>
+        <p className={`text-sm leading-relaxed ${value}`}>{wire.headlineGovernanceSentence}</p>
+      </div>
+
+      <div className={`rounded-lg border p-4 ${box}`}>
+        <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-2 ${label}`}>
+          Guardrails that gate this capability ({guardrails.length})
+        </p>
+        <ul className="space-y-3">
+          {guardrails.map((g) => (
+            <li key={g!.slug}>
+              <div className="flex items-baseline gap-2">
+                <ShieldCheck className={`h-3.5 w-3.5 ${label}`} />
+                <span className={`text-sm font-semibold ${value}`}>{g!.name}</span>
+                <Link href={`/governance/#${g!.slug}`} className={`text-[10px] uppercase tracking-widest ${muted} underline`}>
+                  details →
+                </Link>
+              </div>
+              <p className={`mt-1 text-xs leading-relaxed ${muted}`}>{g!.whatItLocks}</p>
+              <p className={`mt-1 text-[11px] italic ${muted}`}>Public disclosure: {g!.publicDisclosure}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className={`rounded-lg border p-4 ${box}`}>
+        <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-2 ${warn}`}>
+          Mandatory disclosures ({PUBLIC_MANDATORY_DISCLOSURES.length})
+        </p>
+        <ul className="space-y-2">
+          {PUBLIC_MANDATORY_DISCLOSURES.map((d) => (
+            <li key={d} className={`text-xs leading-relaxed ${value}`}>
+              <span className={`inline-block mr-2 text-[10px] uppercase tracking-widest rounded border px-1.5 py-0.5 ${chip}`}>Disclosure</span>
+              {d}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className={`rounded-lg border p-4 ${box}`}>
+        <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-2 ${ban}`}>
+          Prohibited claims — CrisPRO never asserts these ({PUBLIC_PROHIBITED_CLAIMS.length})
+        </p>
+        <ul className="space-y-2">
+          {PUBLIC_PROHIBITED_CLAIMS.map((p) => (
+            <li key={p} className="flex items-start gap-2">
+              <Ban className={`h-3.5 w-3.5 mt-0.5 flex-none ${ban}`} />
+              <span className={`text-xs leading-relaxed ${value}`}>{p}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+// -----------------------------------------------------------------------------
+// Sub-tab: Proof — the evidence tiers this capability can emit, plus /ledger/ link
+// -----------------------------------------------------------------------------
+function ProofTab({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMode: boolean }) {
+  const wire = CAPABILITY_DEPTH_WIRING.find((w) => w.capabilitySlug === cap.slug);
+  const label = isDarkMode ? 'text-cyan-400' : 'text-indigo-600';
+  const value = isDarkMode ? 'text-zinc-200' : 'text-slate-800';
+  const muted = isDarkMode ? 'text-zinc-400' : 'text-slate-500';
+  const box = isDarkMode ? 'bg-zinc-950 border-zinc-800' : 'bg-white border-slate-200';
+
+  if (!wire) {
+    return <p className={`text-sm ${muted}`}>No evidence-tier wiring for this capability.</p>;
+  }
+
+  const tiers = wire.substrateTiers.map((slug) => EVIDENCE_TIERS_4.find((t) => t.tier === slug)).filter(Boolean);
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className={`rounded-lg border p-4 ${box}`}>
+        <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-2 ${label}`}>
+          Evidence tiers this capability may emit ({tiers.length} of 4)
+        </p>
+        <ul className="space-y-3">
+          {tiers.map((t) => (
+            <li key={t!.tier}>
+              <div className="flex items-baseline gap-2">
+                <BookOpen className={`h-3.5 w-3.5 ${label}`} />
+                <span className={`text-sm font-semibold uppercase tracking-wider ${value}`}>{t!.name}</span>
+              </div>
+              <p className={`mt-1 text-xs leading-relaxed ${muted}`}>{t!.entryCriteria}</p>
+              <p className={`mt-1 text-[11px] italic ${muted}`}>Clinical actionability: {t!.clinicalActionability}</p>
+              {t!.canonicalPublicExample && (
+                <p className={`mt-1 text-[11px] ${muted}`}>
+                  <span className="font-semibold">Canonical anchor:</span> {t!.canonicalPublicExample}
+                </p>
+              )}
+              {t!.invariant && (
+                <p className={`mt-1 text-[11px] font-medium ${label}`}>
+                  Invariant: {t!.invariant}
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className={`rounded-lg border p-4 ${box}`}>
+        <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-1.5 ${label}`}>Cross-checks</p>
+        <ul className="space-y-1.5 text-xs">
+          <li>
+            <Link href="/ledger/" className={`underline ${value}`}>Public receipts ledger →</Link>
+            <span className={`ml-2 ${muted}`}>every score CrisPRO releases has a corresponding entry.</span>
+          </li>
+          <li>
+            <Link href="/research/chapters/evidence-hierarchy/" className={`underline ${value}`}>Evidence hierarchy chapter →</Link>
+            <span className={`ml-2 ${muted}`}>full tier definitions with canonical anchors.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+// -----------------------------------------------------------------------------
+// CapabilityDetail — 4 sub-tabs
+// -----------------------------------------------------------------------------
+function CapabilityDetail({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMode: boolean }) {
+  const [sub, setSub] = useState<SubTab>('overview');
+  const label = isDarkMode ? 'text-cyan-400' : 'text-indigo-600';
+  const muted = isDarkMode ? 'text-zinc-400' : 'text-slate-500';
+  const idleBtn = isDarkMode
+    ? 'text-zinc-500 hover:text-zinc-300 border-transparent'
+    : 'text-slate-500 hover:text-slate-800 border-transparent';
+  const activeBtn = isDarkMode
+    ? 'text-cyan-100 border-cyan-500/60'
+    : 'text-indigo-900 border-indigo-400';
+
+  const SUBS: { key: SubTab; label: string }[] = [
+    { key: 'overview', label: 'Overview' },
+    { key: 'powers', label: 'What powers this' },
+    { key: 'governance', label: 'Governance' },
+    { key: 'proof', label: 'Proof' },
+  ];
+
+  return (
+    <div id={cap.slug} className="flex flex-col gap-4 h-full">
+      <header>
+        <p className={`text-[10px] font-black uppercase tracking-[0.3em] ${label}`}>{cap.id} · Capability</p>
+        <h2 className="mt-1.5 text-2xl md:text-3xl font-black tracking-tight uppercase leading-tight">{cap.name}</h2>
+      </header>
+
+      <nav className={`flex items-end gap-4 border-b ${isDarkMode ? 'border-zinc-900' : 'border-slate-200'}`}>
+        {SUBS.map(({ key, label: subLabel }) => (
+          <button
+            key={key}
+            type="button"
+            onClick={() => setSub(key)}
+            className={`pb-2 border-b-2 text-xs uppercase tracking-widest transition ${sub === key ? activeBtn : idleBtn}`}
+          >
+            {subLabel}
+          </button>
+        ))}
+      </nav>
+
+      <div className="flex-1 min-h-0">
+        {sub === 'overview' && <OverviewTab cap={cap} isDarkMode={isDarkMode} />}
+        {sub === 'powers' && <PowersTab cap={cap} isDarkMode={isDarkMode} />}
+        {sub === 'governance' && <GovernanceTab cap={cap} isDarkMode={isDarkMode} />}
+        {sub === 'proof' && <ProofTab cap={cap} isDarkMode={isDarkMode} />}
+      </div>
+
+      <div className={`mt-auto pt-3 border-t ${isDarkMode ? 'border-zinc-900' : 'border-slate-200'} flex flex-wrap items-center gap-3`}>
         <Link
           href="/pipeline"
           className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition-colors ${
@@ -145,9 +416,7 @@ function CapabilityDetail({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMod
         </Link>
         <Link
           href="/ledger"
-          className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-colors ${
-            isDarkMode ? 'text-zinc-400 hover:text-zinc-200' : 'text-slate-600 hover:text-slate-900'
-          }`}
+          className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-colors ${muted}`}
         >
           Proof case: {cap.proofCaseSlug.toUpperCase()}
           <ArrowRight className="h-3.5 w-3.5" />
@@ -157,6 +426,9 @@ function CapabilityDetail({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMod
   );
 }
 
+// -----------------------------------------------------------------------------
+// ComparatorsDetail (unchanged)
+// -----------------------------------------------------------------------------
 function ComparatorsDetail({ comparators, isDarkMode }: { comparators: Comparator[]; isDarkMode: boolean }) {
   const label = isDarkMode ? 'text-cyan-400' : 'text-indigo-600';
   const muted = isDarkMode ? 'text-zinc-400' : 'text-slate-500';
@@ -201,6 +473,9 @@ function ComparatorsDetail({ comparators, isDarkMode }: { comparators: Comparato
   );
 }
 
+// -----------------------------------------------------------------------------
+// Root
+// -----------------------------------------------------------------------------
 export default function EngineIndexClient() {
   const { isDarkMode } = useTheme();
   const [activeTab, setActiveTab] = useState<TabKey>('gate-tier-scoring');
@@ -222,7 +497,7 @@ export default function EngineIndexClient() {
           <p className={`text-[10px] font-black uppercase tracking-[0.4em] ${label}`}>CrisPRO · Capability spine</p>
           <h1 className="mt-1 text-2xl md:text-3xl font-black tracking-tight uppercase">Engine</h1>
           <p className={`mt-1.5 text-xs md:text-sm ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
-            Five capabilities that operate at the mechanism-alignment layer. Pick a tab.
+            Five capabilities that operate at the mechanism-alignment layer. Every capability has an Overview, the substrate that powers it, the governance that gates it, and the proof behind it.
           </p>
         </div>
 

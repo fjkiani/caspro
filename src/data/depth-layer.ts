@@ -195,7 +195,7 @@ export const EVIDENCE_MODALITIES_7: EvidenceModality[] = [
     positiveThreshold:
       'At least one confirmed clinical response OR Phase II+ trial with pre-specified biomarker subgroup meeting its primary endpoint.',
     publicExample:
-      'Olaparib in BRCA-mutant ovarian cancer (SOLO-1, SOLO-2, OlympiAD) — the canonical DDR-clinical anchor.',
+      'Olaparib in BRCA-mutant ovarian cancer (SOLO-1 first-line maintenance, SOLO-2 platinum-sensitive relapsed) — the canonical DDR-clinical anchor.',
   },
   {
     modality: 'pharmacologic-prism',
