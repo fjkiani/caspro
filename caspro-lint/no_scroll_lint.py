@@ -8,9 +8,12 @@ flag the most common offenders that cause the problem:
 
 - primary surface files using `min-h-screen` on multiple stacked children
 - primary surface files without any tabbed / slider container
-  (`<Tabs>`, `<Slider>`, `<Stepper>`, or the shared <SurfaceTabs> component)
+  (`<Tabs>`, `<Slider>`, `<Stepper>`, `<SplitPane>`, or `<SurfaceTabs>` etc.)
 
-Primary surfaces (route roots) come from PRIMARY_SURFACES below.
+Rules:
+- A route `page.tsx` that is a thin shell (imports and renders a client component,
+  no other JSX) is exempt from the tabbed-marker check — we lint its client file instead.
+- Layout files, loading files, and error boundaries are not primary surfaces.
 """
 from __future__ import annotations
 
@@ -34,7 +37,7 @@ PRIMARY_SURFACES = [
     "src/app/products/oncology/page.tsx",
     # Also lint the client-file backing when the route file just wraps a client:
     "src/components/home/HomeAudienceRouter.tsx",
-    "src/components/pipeline/PipelineClient.tsx",
+    "src/components/pipeline/PipelineIndexClient.tsx",
     "src/components/engine/EngineIndexClient.tsx",
     "src/components/ledger/LedgerMainPage.tsx",
     "src/components/research/ResearchHub.tsx",
@@ -48,21 +51,35 @@ TABBED_MARKERS = re.compile(
     r"<(Tabs|SurfaceTabs|Slider|SurfaceSlider|Stepper|SurfaceStepper|SplitPane|SurfaceSplitPane)\b"
 )
 
+# Route-page shell: default export that returns a single client-component JSX with no other siblings.
+# Heuristic: file is <= 40 lines, and returns `<Component ... />` or `<Component>...</Component>` where
+# the returned JSX is the ONLY JSX in the function body (no fragments, no multiple siblings).
+SHELL_JSX = re.compile(r"return\s*<([A-Z][A-Za-z0-9]*)\s*(?:[^>]*)?/>", re.MULTILINE)
+
+
+def is_shell_page(txt: str) -> bool:
+    non_empty = [ln for ln in txt.splitlines() if ln.strip()]
+    if len(non_empty) > 40:
+        return False
+    return bool(SHELL_JSX.search(txt))
+
 
 def lint_file(root: Path, rel: str) -> list[str]:
     p = root / rel
     if not p.exists():
-        # Missing file is OK during rebuild; we only warn on strict mode.
         return []
     txt = p.read_text(encoding="utf-8", errors="replace")
     issues: list[str] = []
 
-    # Too many min-h-screen inside primary surface = stacked full-height blocks.
     min_h_count = txt.count("min-h-screen")
     if min_h_count > 1:
         issues.append(f"{rel}: {min_h_count}× min-h-screen — primary surfaces should be single-viewport tabbed")
 
-    # No tabbed / slider container present at all.
+    # Route page.tsx that is a thin shell over a client component is exempt from the
+    # tabbed-marker check (we lint the client file separately).
+    if rel.startswith("src/app/") and rel.endswith("page.tsx") and is_shell_page(txt):
+        return issues
+
     if not TABBED_MARKERS.search(txt):
         issues.append(f"{rel}: missing tabbed / slider / stepper container — primary surfaces must not stack vertically")
 
@@ -86,7 +103,7 @@ def main() -> int:
         all_issues.extend(lint_file(root, rel))
 
     if not all_issues:
-        print(f"caspro-lint (no-scroll): clean.")
+        print("caspro-lint (no-scroll): clean.")
         return 0
     print(f"caspro-lint (no-scroll): {len(all_issues)} issue(s):")
     for i in all_issues:

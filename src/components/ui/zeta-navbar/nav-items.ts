@@ -116,6 +116,11 @@ export function buildTopNavItems(abstracts: AbstractNavItem[] = []): NavTopItem[
       dropdownItems: engineDropdown,
     },
     {
+      id: 'pipeline',
+      label: 'PIPELINE',
+      href: '/pipeline/',
+    },
+    {
       id: 'org',
       label: 'ORG',
       href: 'https://crispro.org/',

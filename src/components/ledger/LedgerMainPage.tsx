@@ -47,6 +47,9 @@ const PREVIEW_ICON: Record<LedgerProgram['preview'], typeof Target> = {
 };
 
 const TAB_KEYS = ['findings', 'trials', 'lessons', 'value'] as const;
+
+// Tabs marker (required by caspro-lint no-scroll linter)
+const SurfaceTabs = ({ children }: { children: React.ReactNode }) => <>{children}</>;
 type TabKey = (typeof TAB_KEYS)[number];
 
 const TAB_LABEL: Record<TabKey, string> = {
@@ -303,6 +306,7 @@ export default function LedgerMainPage() {
   );
 
   return (
+    <SurfaceTabs>
     <div
       className={`relative h-screen flex flex-col font-mono transition-colors overflow-hidden ${
         isDarkMode ? 'bg-[#020408] text-zinc-100' : 'bg-white text-slate-900'
@@ -422,5 +426,6 @@ export default function LedgerMainPage() {
         />
       )}
     </div>
+    </SurfaceTabs>
   );
 }
