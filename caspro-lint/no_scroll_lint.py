@@ -35,6 +35,7 @@ PRIMARY_SURFACES = [
     "src/app/investors/page.tsx",
     "src/app/patients/page.tsx",
     "src/app/products/oncology/page.tsx",
+    "src/app/tumor-board/page.tsx",
     # Also lint the client-file backing when the route file just wraps a client:
     "src/components/home/HomeAudienceRouter.tsx",
     "src/components/pipeline/PipelineIndexClient.tsx",
@@ -45,6 +46,7 @@ PRIMARY_SURFACES = [
     "src/components/investors/InvestorsDeck.tsx",
     "src/components/patients/PatientsHubClient.tsx",
     "src/components/audience/AudienceSurface.tsx",
+    "src/components/tumor-board/TumorBoardSurface.tsx",
 ]
 
 TABBED_MARKERS = re.compile(
