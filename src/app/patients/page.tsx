@@ -1,15 +1,12 @@
-import { Metadata } from 'next';
-import PatientPageClient from '@/components/patients/PatientPageClient';
+import type { Metadata } from 'next';
+import VerticalSurface from '@/components/audience/VerticalSurface';
+import { PATIENTS_PAGE_DATA } from '@/data/pages/patients-page';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: 'For Patients | CrisPRO - AI-Powered Precision Oncology',
-    description: 'AI-powered precision medicine. Get personalized treatment insights, resolve genetic uncertainty, and access clinical trials.',
-  };
-}
+export const metadata: Metadata = {
+  title: 'Patients & advocates · CrisPRO',
+  description: 'Precision oncology in language patients and advocates can use.',
+};
 
 export default function PatientsPage() {
-  return <PatientPageClient />;
+  return <VerticalSurface data={PATIENTS_PAGE_DATA} />;
 }
-
-
