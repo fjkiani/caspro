@@ -3,7 +3,7 @@
  * Based on Alpha's landingpage.mdc directive (2026-03-06)
  * 
  * Lead with: "We predicted 5 major clinical trials" 
- * Core story: 8-dimensional biological fingerprint → match biology to treatment
+ * Core story: mechanism alignment scoring — match biology to treatment
  * Commercial hook: $4-7B in wasted immunotherapy spend
  */
 
@@ -11,7 +11,7 @@ export const FOCUSED_HERO_CONFIG = {
   // ONE problem we solve
   problem: {
     headline: "In-Silico Generative and Discrimative Oncology",
-    description: "CrisPRO translates a tumor's mutations into an 8-dimensional biological fingerprint and matches it against how different drugs work. In retroactive tests, the system definitively separated responders from non-responders.",
+    description: "CrisPRO translates a tumor's mutations into a mechanism-alignment signature and matches it against how different drugs work. In retroactive tests, the system definitively separated responders from non-responders.",
     specific: "Predict if a cancer treatment will fail before a patient ever takes it — saving patients from toxic, ineffective therapies while routing them to drugs that will work."
   },
 
@@ -19,7 +19,7 @@ export const FOCUSED_HERO_CONFIG = {
   product: {
     name: "CrisPRO Precision Oncology Platform",
     // tagline: "A RUO, deterministic research support platform that predicts cancer drug efficacy before a patient ever receives treatment",
-    description: "By translating standard pre-treatment genomic data into an 8-dimensional biological fingerprint, CrisPRO successfully stratifies clinical trial responders from non-responders."
+    description: "By translating standard pre-treatment genomic data into a mechanism-alignment signature, CrisPRO successfully stratifies clinical trial responders from non-responders."
   },
 
   // ONE clear claim
@@ -92,7 +92,7 @@ export const FOCUSED_HERO_CONFIG = {
   // What we DO show (focused messaging)
   showUpfront: [
     "ONE proof: We predicted 5 major clinical trials",
-    "ONE method: 8-dimensional biological fingerprint",
+    "ONE method: mechanism-alignment scoring",
     "ONE outcome: Separate responders from non-responders before treatment",
     "ONE commercial hook: $4-7B in wasted immunotherapy identified",
     "ONE innovation: Efflux + RSS axes catch what others miss",

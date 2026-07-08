@@ -152,7 +152,7 @@ const ENGINES = [
     id: '02',
     title: 'MECHANISM ALIGNMENT',
     question: 'Are the right patients enrolled?',
-    stats: 'LATIFY delta +0.3658 identified before trial failure',
+    stats: 'LATIFY delta gated identified before trial failure',
     color: 'text-cyan-500',
     border: 'border-cyan-500/30'
   },

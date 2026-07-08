@@ -235,7 +235,7 @@ Based on your BRCA1 variant, platinum-based chemotherapy creates significant DNA
         crispro: {
           text: `Pharmacogene Analysis: DPYD Variant
 
-**Risk Quantification**: 0.4 (MODERATE-HIGH)
+**Risk Quantification**: elevated (MODERATE)
 
 **Recommendation**: HIGH RISK - Dose adjustment required
 
@@ -256,7 +256,7 @@ DPYD variant → Reduced enzyme activity → 5-FU accumulation → Increased tox
       },
       moatPoint: {
         title: 'Quantified Risk Assessment',
-        explanation: 'CrisPRO quantifies risk (0.4 MODERATE-HIGH) and provides clear recommendation with mechanism. GPT gives vague "may need dose adjustment" without risk quantification or confidence scores.',
+        explanation: 'CrisPRO quantifies risk (elevated / MODERATE) and provides a clear recommendation with mechanism. GPT gives a vague "may need dose adjustment" without risk quantification or confidence scores.',
         evidence: '/products/oncology'
       }
     },

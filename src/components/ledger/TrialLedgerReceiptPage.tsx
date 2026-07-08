@@ -167,7 +167,7 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
               isDarkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-indigo-600 hover:text-indigo-800'
             }`}
           >
-            View 8D vector map →
+            View mechanism-alignment map →
           </a>
         </div>
       )}

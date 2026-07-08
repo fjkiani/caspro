@@ -213,7 +213,7 @@ export default function GenomicHero({ embedded = false }: { embedded?: boolean }
                   <span className={`text-2xl font-light ${isDarkMode ? 'text-cyan-500' : 'text-indigo-600'}`}>{simResults.successRate}%</span>
                 </div>
                 <div className={`flex flex-col border-l pl-8 ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'}`}>
-                  <span className="zeta-evidence-label">8D Vector Δ</span>
+                  <span className="zeta-evidence-label">Mechanism alignment Δ</span>
                   <span className={`text-2xl font-light ${isDarkMode ? 'text-zinc-400' : 'text-slate-950'}`}>+{simResults.confidence.toFixed(4)}</span>
                 </div>
               </div>

@@ -1,158 +1,126 @@
 import type { ArtifactEntry, TrialCaseFile, VectorAxes } from '../types';
 
-const RESPONDER_VECTOR: VectorAxes = {
-  ddr: 0.8, mapk: 0.7, pi3k: 0.2, io: 0.75, vegf: 0.1, her2: 0, efflux: 0.1, rss: 0,
-};
+/**
+ * Vague-safe canon (rebuilt 2026-07-07).
+ *
+ * Rules:
+ *   - VectorAxes fields are kept as SENTINEL ZEROS to preserve the type
+ *     contract for downstream visual components; no biology is encoded here.
+ *     Radar / MoA components should read from the vague-safe narrative fields
+ *     instead of these values.
+ *   - Numeric fit / delta fields are set to -1 (gated sentinel).
+ *     TrialLedgerReceiptPage renders these as "— (gated under canon review)".
+ *   - Narrative text comes from external_safe program findings.
+ */
 
-const NON_RESPONDER_VECTOR: VectorAxes = {
-  ddr: 0.2, mapk: 0.1, pi3k: 0.1, io: 0.2, vegf: 0.1, her2: 0, efflux: 0.4, rss: 0,
-};
 
-const TRIAL_VECTOR: VectorAxes = {
-  ddr: 0.85, mapk: 0.7, pi3k: 0, vegf: 0, her2: 0, io: 0.75, efflux: 0.1, rss: 0,
-};
+const RESPONDER_VECTOR: VectorAxes = { ddr: 0, mapk: 0, pi3k: 0, io: 0, vegf: 0, her2: 0, efflux: 0, rss: 0 };
+const NON_RESPONDER_VECTOR: VectorAxes = { ddr: 0, mapk: 0, pi3k: 0, io: 0, vegf: 0, her2: 0, efflux: 0, rss: 0 };
+const TRIAL_VECTOR: VectorAxes = { ddr: 0, mapk: 0, pi3k: 0, io: 0, vegf: 0, her2: 0, efflux: 0, rss: 0 };
 
-const LATIFY_ARTIFACTS: ArtifactEntry[] = [
+const ARTIFACTS: ArtifactEntry[] = [
   {
-    doc: 'Published Trial Outcome',
-    path: 'NCT05450692 · public readout',
-    type: 'md',
-    status: 'VERIFIED',
-    summary:
-      'OS HR=0.90 (p=0.287) — primary endpoint missed. 594 patients enrolled. STK11/KEAP1 status collected at screening but not used to gate enrollment.',
+    doc: "Published Trial Outcome",
+    path: "NCT05450692 \u00b7 public readout",
+    type: "md",
+    status: "VERIFIED",
+    summary: "OS HR=0.90 (p=0.287) \u2014 primary endpoint missed. 594 patients enrolled. STK11/KEAP1 status collected at screening but not used to gate enrollment.",
   },
   {
-    doc: 'Mechanism Fit Receipt',
-    path: '8D retrospective analysis',
-    type: 'json',
-    status: 'VERIFIED',
-    summary:
-      'Responder fit 0.9852 · ITT diluted 0.6194 · Δ +0.3658. Gates 3/3 PASS. Responder rank #1 · non-responder rank #129.',
-  },
-  {
-    doc: 'Responder vs Non-Responder Calibration',
-    path: 'STK11/KEAP1 published biology',
-    type: 'mdc',
-    status: 'VERIFIED',
-    summary:
-      `Responder vector: ddr=${RESPONDER_VECTOR.ddr} io=${RESPONDER_VECTOR.io}. ` +
-      `Non-responder vector: ddr=${NON_RESPONDER_VECTOR.ddr} io=${NON_RESPONDER_VECTOR.io}. ` +
-      `Trial ITT blend: ddr=${TRIAL_VECTOR.ddr} io=${TRIAL_VECTOR.io}.`,
+    doc: "Mechanism Alignment Receipt",
+    path: "Under continued canon review",
+    type: "json",
+    status: "PENDING",
+    summary: "Alignment magnitude gated pending canon reconciliation. External-safe framing limited to the mechanism candidate.",
   },
 ];
 
 export const LATIFY: TrialCaseFile = {
-  id: 'latify',
-  caseNumber: '01',
-  trialId: 'NCT05450692',
-  sponsor: 'AstraZeneca',
-  phase: 'Phase III',
-  cancer: 'IO-refractory NSCLC',
-  drug: 'Ceralasertib (ATRi, AZD6738) + Durvalumab (PD-L1)',
-  comparator: 'Docetaxel',
+  id: "latify",
+  caseNumber: "01",
+  trialId: "NCT05450692",
+  sponsor: "AstraZeneca",
+  phase: "Phase III",
+  cancer: "IO-refractory NSCLC (2L+)",
+  drug: "Ceralasertib (ATRi, AZD6738) + Durvalumab (PD-L1)",
+  comparator: "Docetaxel",
   enrolled: 594,
-  primaryEndpoint: 'OS primary endpoint: FAILED (HR 0.90, p=0.287)',
-  title: 'LATIFY De-Risking Map',
-  drugLine: 'Ceralasertib (ATRi) + Durvalumab (PD-L1) // AZ Phase III NSCLC failure',
-
+  primaryEndpoint: "OS primary endpoint: FAILED (HR 0.90, p=0.287)",
+  title: "Ceralasertib + Durvalumab \u2014 under continued analysis",
+  drugLine: "Ceralasertib (ATRi) + Durvalumab (PD-L1) // AZ Phase III NSCLC failure",
   sources: [
-    'PMID 40645185 (Cancer Cell 2025)',
-    'PMCID PMC10957481 (Nat Med 2024, HUDSON)',
-    'PMCID PMC10894296 (Nat Commun 2024)',
+    "PMID 40645185 (Cancer Cell 2025)",
+    "PMCID PMC10957481 (Nat Med 2024, HUDSON)",
+    "PMCID PMC10894296 (Nat Commun 2024)",
   ],
-
   rootCause: {
-    summary: 'Trial enrolled unselected patients, missing the STK11/KEAP1 co-mutation signature required for ATRi success.',
-    failureKeyword: 'unselected',
-    statusQuo: 'Cold TME',
+    summary: "Trial enrolled unselected 2L+ NSCLC. Post-hoc biology suggests the STK11/KEAP1 co-mutation subgroup is where ATRi + PD-L1 could produce benefit \u2014 but the quantitative alignment analysis for this trial is under continued canon review and is not published externally.",
+    failureKeyword: "Unselected enrollment",
+    statusQuo: "Unselected enrollment",
     statusQuoLabel: 'Status Quo',
-    intercept: 'cGAS-STING Flip',
-    interceptLabel: 'Intercept',
+    intercept: "STK11 / KEAP1 co-loss subgroup (candidate)",
+    interceptLabel: 'Candidate framework',
   },
-
-  responderLabel: 'STK11-loss + KEAP1-loss + KRAS-mut (IO-cold)',
-  nonResponderLabel: 'STK11-intact + IO-warm + post-ICI',
+  responderLabel: "STK11-loss + KEAP1-loss + KRAS-mut (IO-cold, candidate)",
+  nonResponderLabel: "STK11-intact + IO-warm + post-ICI",
   responderVector: RESPONDER_VECTOR,
   nonResponderVector: NON_RESPONDER_VECTOR,
   trialVector: TRIAL_VECTOR,
-  cosineResponder: 0.9852,
-  cosineITT: 0.6194,
-  deltaImpact: '+0.3658',
-  vectorFlags: [
-    'pi3k=0.20 (responder) — elevated from 0.10 default, inferred not cited',
-    'efflux=0.40 (non-responder) — elevated from 0.10 default, inferred not cited',
-  ],
-
+  cosineResponder: -1,
+  cosineITT: -1,
+  deltaImpact: 'gated',
+  vectorFlags: [],
   scores: [
-    { label: 'Observed HR', value: '0.90', subtext: 'Primary OS', color: 'rose' },
-    { label: 'P-Value', value: '0.287', subtext: 'Non-Sig', color: 'rose' },
-    { label: 'Engine Futility', value: '90%', subtext: 'Predicted', color: 'cyan' },
-    { label: 'Stratification', value: 'MISSING', subtext: 'STK11/KEAP1', color: 'rose' },
+    { label: 'Alignment score', value: 'gated', subtext: 'Under canon review', color: 'cyan' },
+    { label: 'Published readout', value: "OS primary endpoint:", subtext: 'Public source', color: 'rose' },
+    { label: 'Framework tier', value: "Under continued canon re", subtext: '', color: 'cyan' },
+    { label: 'Responder archetype', value: 'defined', subtext: 'See narrative', color: 'cyan' },
   ],
-
   engineRun: {
-    trialsScored: 2888,
-    responderScore: 0.9852,
-    responderRank: 1,
-    nonResponderScore: 0.6194,
-    nonResponderRank: 129,
-    delta: 0.3658,
-    receiptFile: '8D retrospective analysis',
-    receiptDate: '2026-02-22',
+    trialsScored: 0,
+    responderScore: -1,
+    responderRank: 0,
+    nonResponderScore: -1,
+    nonResponderRank: 0,
+    delta: -1,
+    receiptFile: 'Under continued canon review',
+    receiptDate: 'gated',
   },
-
   gates: [
-    { id: 1, label: 'Gate 1: Target Match', condition: 'Rank ≤ #2 for RESPONDER', result: 'Rank #1 (post stk11_sensitive tag)', pass: true },
-    { id: 2, label: 'Gate 2: Cohort Exclusion', condition: 'Rank ≥ #3 for NON-RESPONDER', result: 'Rank #129', pass: true },
-    { id: 3, label: 'Gate 3: Predictive Efficacy', condition: 'Delta ≥ 0.25', result: 'Δ +0.3658', pass: true },
+    { id: 1, label: 'Gate 1', condition: 'Under continued canon review', result: 'gated', pass: false },
+    { id: 2, label: 'Gate 2', condition: 'Under continued canon review', result: 'gated', pass: false },
+    { id: 3, label: 'Gate 3', condition: 'Under continued canon review', result: 'gated', pass: false },
   ],
-  gatesSummary: '3/3 PASS',
-
-  biologySummary: 'STK11/KEAP1 co-loss creates a profoundly immunosuppressive tumor. ATR inhibition triggers cGAS-STING, flipping the TME from cold to hot, enabling PD-L1 blockade.',
+  gatesSummary: "Gated \u2014 under continued analysis",
+  biologySummary: "STK11/KEAP1 co-loss creates a profoundly immunosuppressive tumor. ATR inhibition may trigger cGAS-STING and flip the TME from cold to hot, enabling PD-L1 blockade. Whether this candidate mechanism is quantitatively sufficient to explain the LATIFY readout is under continued analysis.",
   biologyCascade: [
-    'STK11-loss tumor',
-    '→ MDSC accumulation → cold/excluded TME → IO fails',
-    '→ Ceralasertib blocks ATR → replication stress response uncontrolled',
-    '→ cGAS-STING pathway activated (cytosolic DNA from unrepaired DSBs)',
-    '→ IFN-I released → MDSC depleted in peripheral blood',
-    '→ TME converts from cold to hot',
-    '→ PD-L1 blockade (durvalumab) now has T-cells to release',
-    '→ Durable response in patients who previously had no IO option',
+    "STK11-loss tumor",
+    "\u2192 MDSC accumulation \u2192 cold/excluded TME \u2192 IO tends to fail",
+    "\u2192 Ceralasertib blocks ATR \u2192 replication stress response uncontrolled",
+    "\u2192 cGAS-STING pathway activated (cytosolic DNA from unrepaired DSBs)",
+    "\u2192 IFN-I released \u2192 MDSC depleted in peripheral blood",
+    "\u2192 TME may convert from cold to hot",
+    "\u2192 PD-L1 blockade (durvalumab) then has T-cells to release",
+    "\u2192 Candidate mechanism \u2014 awaiting canon-lock before external quantitative claims",
   ],
-
   playbook: [
-    { title: 'Vector Calibration', desc: 'Mapped RESPONDER (ddr=0.80, io=0.75) vs NON-RESPONDER (ddr=0.20, io=0.20) signatures from published biology.' },
-    { title: 'In Silico Run', desc: 'Scored 806 trials. Initial run: Gate 1 failed (Rank #19) due to 18 near-duplicate ATRi+IO trials.' },
-    { title: 'Confound Resolution', desc: 'Added stk11_sensitive MoA tag to NCT05450692. Rank #1 recalculation. Score 0.9852.' },
-    { title: 'Two-Layer Proof', desc: 'Formalized LATIFY + CEACAM5 as two independent datasets confirming the Layer 2 failure thesis.' },
+    { title: "Candidate archetype", desc: "Mapped RESPONDER (STK11/KEAP1 co-loss) vs NON-RESPONDER (STK11-intact) archetypes from published biology." },
+    { title: "Governance hold", desc: "Delta magnitude and vector fits are quarantined pending canon reconciliation." },
+    { title: "Two-Layer framing", desc: "Consistent with the two-layer decode: target is real; enrolled population may not reflect the archetype that could respond." },
+    { title: "External-safe posture", desc: "External communication limited to the mechanism candidate. Numeric receipts are held internal." },
   ],
-
-  artifacts: LATIFY_ARTIFACTS,
-
+  artifacts: ARTIFACTS,
   commercial: {
-    targetPopulation: '45,000–70,000',
-    populationUnit: 'US / Yr',
-    annualSavings: '$4–7B',
-    savingsUnit: 'Payer Value',
-    closingStatement: 'Identifying non-responders before enrollment saves $150K per patient course.',
+    targetPopulation: "45,000\u201370,000",
+    populationUnit: "US / Yr (candidate subpopulation)",
+    annualSavings: "$4\u20137B",
+    savingsUnit: "Payer Value (candidate)",
+    closingStatement: "Selecting the mechanistic responder subgroup could avoid the ITT failure \u2014 pending canon lock.",
   },
-
   diagnosticLog: [
-    { time: '09:04:12', message: 'Initializing 8D Manifold...', level: 'info' },
-    { time: '09:04:15', message: 'Mapping PMID: 40645185 Context — Cancer Cell 2025', level: 'info' },
-    { time: '09:04:18', message: 'Loading TAG_VECTORS: stk11_sensitive patch applied', level: 'info' },
-    { time: '09:04:22', message: 'CONVERSE: MSI Confound Detected — excluded', level: 'warn' },
-    { time: '09:04:30', message: 'Applying RS Tier-Logic Weights (rss=0.00 design decision)', level: 'info' },
-    { time: '09:04:35', message: 'Scoring 806 trials against RESPONDER vector...', level: 'info' },
-    { time: '09:04:40', message: 'Scoring 806 trials against NON-RESPONDER vector...', level: 'info' },
-    { time: '09:04:45', message: 'Gate 1 PASS: Rank #1 (post stk11_sensitive)', level: 'success' },
-    { time: '09:04:46', message: 'Gate 2 PASS: Rank #129 (non-responder)', level: 'success' },
-    { time: '09:04:47', message: 'Gate 3 PASS: Δ +0.3658 ≥ 0.25 threshold', level: 'success' },
-    { time: '09:04:50', message: 'Chain of custody receipt: LOCKED', level: 'system' },
+    { time: '', message: 'Diagnostic detail is gated pending canon reconciliation.', level: 'info' },
   ],
-
-  oneLiner: 'CrisPRO retroactively predicted that STK11/KEAP1-loss NSCLC patients rank ceralasertib + durvalumab as the #1 matched trial — while STK11-intact/post-ICI patients drop it to rank #129. Delta: +0.3658. All 3 gates passed.',
-
-  validationTier: 'Tier 2 → Tier 1 (upgraded)',
-  validationStrength: '🟢 Maximum — 3/3 gates, Rank #1 for RESPONDER, paper-ready',
+  oneLiner: "Ceralasertib + durvalumab failed ITT in 2L+ NSCLC. The STK11/KEAP1 co-loss subgroup is a candidate mechanistic responder archetype. Quantitative alignment magnitude is under continued canon review; external claims are limited to the mechanism candidate.",
+  validationTier: "Under continued canon review",
+  validationStrength: "Mechanism candidate \u2014 quantitative alignment gated",
 };

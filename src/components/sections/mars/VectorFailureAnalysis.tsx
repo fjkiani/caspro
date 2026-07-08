@@ -97,7 +97,7 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
           </div>
           <div className="min-w-0">
             <h2 className={`text-[11px] sm:text-[12px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] ${headingClass}`}>
-              {trial.trialId} Failure: 8D Vector Analysis
+              {trial.trialId} Failure: Mechanism alignment Analysis
             </h2>
             <p className={`text-[8px] sm:text-[9px] font-bold uppercase tracking-widest mt-1 ${mutedClass}`}>
               Retrospective Failure Mapping // {trial.trialId}

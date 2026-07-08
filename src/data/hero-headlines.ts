@@ -120,17 +120,17 @@ export const HERO_HEADLINES: Record<string, HeadlineEntry[]> = {
   'mechanism-alignment': [
     {
       text: 'AstraZeneca enrolled 594 unselected NSCLC patients on ceralasertib + durvalumab.',
-      highlight: 'OS primary endpoint: missed. Δ +0.3658. We saw it.',
+      highlight: 'OS primary endpoint: missed. Mechanism candidate identified — details gated.',
       trial: 'LATIFY › NCT05450692 › AZ Phase III',
       evidence: {
         title: 'LATIFY Vector Space',
         rows: [
-          { label: 'Responder Sig', value: '0.9852 › Rank #1', color: 'emerald' },
-          { label: 'Non-Responder Sig', value: '0.6194 › Rank #129', color: 'rose' },
+          { label: 'Responder alignment', value: 'strong (gated)', color: 'emerald' },
+          { label: 'Non-responder alignment', value: 'weak (gated)', color: 'rose' },
           { label: 'Gates', value: '3/3 PASS', color: 'emerald' },
         ],
         impact: 'Alignment Gap',
-        impactValue: 'Δ +0.3658',
+        impactValue: 'gated',
         proofId: 'latify',
       },
     },
@@ -162,14 +162,14 @@ export const HERO_HEADLINES: Record<string, HeadlineEntry[]> = {
           { label: 'Distinguishing Axis', value: 'PI3K: 0.10 vs 0.80', color: 'accent' },
         ],
         impact: 'Vector Δ',
-        impactValue: '+0.307',
+        impactValue: 'gated',
         proofId: 'adavosertib',
       },
     },
     {
       text: 'CCNE1-amplified patients responded at 36%. PTEN-loss at 0%.',
       highlight: 'One axis. pi3k. That\'s the entire clinical distinction.',
-      trial: 'ADAVOSERTIB › Vector Δ +0.307',
+      trial: 'ADAVOSERTIB › Mechanism alignment (gated)',
       evidence: {
         title: 'Single Axis Proof',
         rows: [

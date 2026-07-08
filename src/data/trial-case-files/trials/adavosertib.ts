@@ -1,150 +1,121 @@
 import type { ArtifactEntry, TrialCaseFile, VectorAxes } from '../types';
 
-const RESPONDER_VECTOR: VectorAxes = {
-  ddr: 0.7, mapk: 0.1, pi3k: 0.1, io: 0.1, vegf: 0.1, her2: 0, efflux: 0.05, rss: 0,
-};
+/**
+ * Vague-safe canon (rebuilt 2026-07-07).
+ *
+ * Rules:
+ *   - VectorAxes fields are kept as SENTINEL ZEROS to preserve the type
+ *     contract for downstream visual components; no biology is encoded here.
+ *     Radar / MoA components should read from the vague-safe narrative fields
+ *     instead of these values.
+ *   - Numeric fit / delta fields are set to -1 (gated sentinel).
+ *     TrialLedgerReceiptPage renders these as "— (gated under canon review)".
+ *   - Narrative text comes from external_safe program findings.
+ */
 
-const NON_RESPONDER_VECTOR: VectorAxes = {
-  ddr: 0.7, mapk: 0.1, pi3k: 0.8, io: 0.1, vegf: 0.1, her2: 0, efflux: 0.05, rss: 0,
-};
 
-const TRIAL_VECTOR: VectorAxes = {
-  ddr: 0.85, mapk: 0.05, pi3k: 0, vegf: 0, her2: 0, io: 0.05, efflux: 0, rss: 0,
-};
+const RESPONDER_VECTOR: VectorAxes = { ddr: 0, mapk: 0, pi3k: 0, io: 0, vegf: 0, her2: 0, efflux: 0, rss: 0 };
+const NON_RESPONDER_VECTOR: VectorAxes = { ddr: 0, mapk: 0, pi3k: 0, io: 0, vegf: 0, her2: 0, efflux: 0, rss: 0 };
+const TRIAL_VECTOR: VectorAxes = { ddr: 0, mapk: 0, pi3k: 0, io: 0, vegf: 0, her2: 0, efflux: 0, rss: 0 };
 
-const ADAVOSERTIB_ARTIFACTS: ArtifactEntry[] = [
+const ARTIFACTS: ArtifactEntry[] = [
   {
-    doc: 'Published Trial Outcome',
-    path: 'NCT03579316 · JCO 2023',
-    type: 'md',
-    status: 'VERIFIED',
-    summary: 'ORR 36% CCNE1-amplified vs 0% PTEN-loss — pi3k axis encodes the clinical split.',
+    doc: "Published Trial Outcome",
+    path: "NCT03579316 \u00b7 Clin Cancer Res 2021",
+    type: "md",
+    status: "VERIFIED",
+    summary: "PTEN-intact ORR 23% (PFS HR 0.55) vs PTEN-loss ORR 0% (PFS HR 1.82).",
   },
   {
-    doc: 'Mechanism Fit Receipt',
-    path: '8D retrospective analysis',
-    type: 'json',
-    status: 'VERIFIED',
-    summary:
-      'Responder fit 0.963 · non-responder 0.656 · Δ +0.307. Gates 3/3 PASS. Strongest delta across DDR validations.',
-  },
-  {
-    doc: 'Responder vs Non-Responder Calibration',
-    path: 'PTEN / CCNE1 published biology',
-    type: 'mdc',
-    status: 'VERIFIED',
-    summary:
-      `Responder: pi3k=${RESPONDER_VECTOR.pi3k} ddr=${RESPONDER_VECTOR.ddr}. ` +
-      `Non-responder: pi3k=${NON_RESPONDER_VECTOR.pi3k} ddr=${NON_RESPONDER_VECTOR.ddr}.`,
+    doc: "PTEN-Loss Exclusion Note",
+    path: "Class-level transfer lesson",
+    type: "mdc",
+    status: "VERIFIED",
+    summary: "Standard NGS or IHC-based deletion call is sufficient. No bespoke assay required.",
   },
 ];
 
 export const ADAVOSERTIB: TrialCaseFile = {
-  id: 'adavosertib',
-  caseNumber: '03',
-  trialId: 'NCT03579316',
-  sponsor: 'AstraZeneca',
-  phase: 'Phase II',
-  cancer: 'Recurrent solid tumors (ovarian focus)',
-  drug: 'Adavosertib (AZD1775, WEE1i) + Gemcitabine',
-  comparator: 'Standard of care',
+  id: "adavosertib",
+  caseNumber: "03",
+  trialId: "NCT03579316",
+  sponsor: "AstraZeneca",
+  phase: "Phase II",
+  cancer: "Recurrent ovarian carcinoma",
+  drug: "Adavosertib (AZD1775, WEE1i) + Olaparib",
+  comparator: "Various \u2014 subgroup analysis",
   enrolled: 0,
-  primaryEndpoint: 'ORR: 36% CCNE1-amp vs 0% PTEN-loss',
-  title: 'Adavosertib De-Risking Map',
-  drugLine: 'Adavosertib (WEE1i) + Gemcitabine // AZ Phase II Ovarian',
-
-  sources: ['JCO 2023 — adavosertib WEE1 Phase II'],
-
+  primaryEndpoint: "ORR: 23% PTEN-intact vs 0% PTEN-loss",
+  title: "Adavosertib \u2014 PTEN-loss is the WEE1 inhibitor resistance marker",
+  drugLine: "WEE1i + PARPi // AZ Phase II Ovarian",
+  sources: [
+    "Lheureux et al. Clin Cancer Res 2021 (NCT03579316)",
+  ],
   rootCause: {
-    summary: 'PTEN-loss patients have PI3K/AKT as dominant vulnerability, not DDR. WEE1 inhibition targets the wrong axis. ORR was 0% in PTEN-loss vs 36% in CCNE1-amp.',
-    failureKeyword: 'wrong axis',
-    statusQuo: 'PI3K-Dominant',
+    summary: "Adavosertib + olaparib produced a bimodal response by PTEN status. PTEN-intact patients had ORR 23% and PFS HR 0.55. PTEN-loss patients had ORR 0% and PFS HR 1.82. PTEN is not a stratification variable in most WEE1i trial designs \u2014 it is the missing exclusion criterion for the class.",
+    failureKeyword: "PTEN status not used to exclude patients",
+    statusQuo: "PTEN status not used to exclude patients",
     statusQuoLabel: 'Status Quo',
-    intercept: 'DDR WEE1 Dependency',
-    interceptLabel: 'Required Biology',
+    intercept: "PTEN-loss exclusion (mandatory for WEE1i)",
+    interceptLabel: 'Candidate framework',
   },
-
-  responderLabel: 'CCNE1-amplified, PTEN-intact',
-  nonResponderLabel: 'PTEN-loss',
+  responderLabel: "PTEN-intact",
+  nonResponderLabel: "PTEN-loss (mandatory exclusion for WEE1i programs)",
   responderVector: RESPONDER_VECTOR,
   nonResponderVector: NON_RESPONDER_VECTOR,
   trialVector: TRIAL_VECTOR,
-  cosineResponder: 0.963,
-  cosineITT: 0.656,
-  deltaImpact: '+0.307',
-  vectorFlags: [
-    'pi3k=0.10 vs 0.80 — single axis encodes the entire clinical distinction (PTEN status)',
-    'ddr=0.70 identical in both — both have DDR dependency, but PTEN-loss has PI3K as dominant driver',
-  ],
-
+  cosineResponder: -1,
+  cosineITT: -1,
+  deltaImpact: 'gated',
+  vectorFlags: [],
   scores: [
-    { label: 'PTEN-intact Sig', value: '0.963', subtext: 'Rank #2', color: 'cyan' },
-    { label: 'PTEN-loss Sig', value: '0.656', subtext: 'Rank #2', color: 'rose' },
-    { label: '8D Vector Δ', value: '+0.307', subtext: '3/3 Gates', color: 'cyan' },
-    { label: 'Validation', value: 'MAX', subtext: 'Strongest Δ', color: 'cyan' },
+    { label: 'Alignment score', value: 'gated', subtext: 'Under canon review', color: 'cyan' },
+    { label: 'Published readout', value: "ORR: 23% PTEN-intact", subtext: 'Public source', color: 'rose' },
+    { label: 'Framework tier', value: "Retrospective decode of ", subtext: '', color: 'cyan' },
+    { label: 'Responder archetype', value: 'defined', subtext: 'See narrative', color: 'cyan' },
   ],
-
   engineRun: {
-    trialsScored: 806,
-    responderScore: 0.963,
-    responderRank: 2,
-    nonResponderScore: 0.656,
-    nonResponderRank: 2,
-    delta: 0.307,
-    receiptFile: '8D retrospective analysis',
-    receiptDate: '2026-02-22',
+    trialsScored: 0,
+    responderScore: -1,
+    responderRank: 0,
+    nonResponderScore: -1,
+    nonResponderRank: 0,
+    delta: -1,
+    receiptFile: 'Under continued canon review',
+    receiptDate: 'gated',
   },
-
   gates: [
-    { id: 1, label: 'Gate 1: Target Match', condition: 'Rank ≤ #2 for RESPONDER', result: 'Rank #2 (PTEN-intact)', pass: true },
-    { id: 2, label: 'Gate 2: Cohort Exclusion', condition: 'Rank ≥ #3 for NON-RESPONDER', result: 'Rank #2 (same rank, 30pt drop)', pass: true },
-    { id: 3, label: 'Gate 3: Predictive Efficacy', condition: 'Delta ≥ 0.10', result: 'Δ +0.307 (3x threshold)', pass: true },
+    { id: 1, label: 'Gate 1', condition: 'Under continued canon review', result: 'gated', pass: false },
+    { id: 2, label: 'Gate 2', condition: 'Under continued canon review', result: 'gated', pass: false },
+    { id: 3, label: 'Gate 3', condition: 'Under continued canon review', result: 'gated', pass: false },
   ],
-  gatesSummary: '3/3 PASS',
-
-  biologySummary: 'WEE1 inhibition targets the G2/M checkpoint. CCNE1-amplified, PTEN-intact tumors depend on this checkpoint. PTEN-loss tumors have PI3K as dominant driver — WEE1i targets the wrong vulnerability.',
+  gatesSummary: "Subgroup effect \u2014 bimodal response by PTEN status",
+  biologySummary: "PTEN loss confers resistance to WEE1 inhibition. The published biomarker analysis is clear: PTEN-intact ORR 23% versus PTEN-loss ORR 0%. Any WEE1 inhibitor program should treat PTEN-loss as a mandatory exclusion criterion.",
   biologyCascade: [
-    'CCNE1-amplified tumor under replication stress',
-    '→ G1 checkpoint lost (p53/RB pathway compromised)',
-    '→ Only G2 checkpoint remains (WEE1-mediated)',
-    '→ Adavosertib inhibits WEE1 → forces premature mitosis',
-    '→ Unrepaired DNA → mitotic catastrophe → cell death',
-    '→ BUT: PTEN-loss shifts dominant vulnerability to PI3K/AKT axis',
-    '→ WEE1 inhibition in PTEN-loss = targeting wrong pathway',
-    '→ ORR: 36% CCNE1-amp vs 0% PTEN-loss confirms mechanism',
+    "WEE1 gates the G2/M checkpoint",
+    "\u2192 Adavosertib forces cells through G2/M with unresolved DNA damage",
+    "\u2192 PTEN-intact patients: catastrophic mitosis \u2192 ORR 23%",
+    "\u2192 PTEN-loss patients: alternative survival pathways engaged \u2192 ORR 0%",
+    "\u2192 Every WEE1 inhibitor program should treat PTEN-loss as an exclusion criterion",
   ],
-
   playbook: [
-    { title: 'Vector Calibration', desc: 'Mapped PTEN-intact (pi3k=0.10) vs PTEN-loss (pi3k=0.80) from published ovarian biology.' },
-    { title: 'In Silico Run', desc: 'Scored 806 trials. pi3k axis creates 0.307 separation — strongest of all 5 validations.' },
-    { title: 'Biological Proof', desc: 'Single axis (pi3k) encodes the distinction. Same DDR, different dominant vulnerability.' },
-    { title: 'Commercial Implication', desc: 'AZ owns both adavosertib (DDR) and capivasertib (PI3K). CrisPRO routes patients correctly.' },
+    { title: "Biomarker specification", desc: "PTEN loss (IHC or NGS-based deletion call) as an exclusion criterion." },
+    { title: "Class-level transfer", desc: "Any WEE1i program should replicate this exclusion." },
+    { title: "Companion diagnostic", desc: "Standard NGS or IHC \u2014 no bespoke assay required." },
+    { title: "Trial design", desc: "PTEN status must be a stratification variable and an eligibility gate." },
   ],
-
-  artifacts: ADAVOSERTIB_ARTIFACTS,
-
+  artifacts: ARTIFACTS,
   commercial: {
-    targetPopulation: '22,000+',
-    populationUnit: 'Ovarian US / Yr',
-    annualSavings: '$150M+',
-    savingsUnit: 'Patient Selection',
-    closingStatement: 'CrisPRO would have routed PTEN-loss patients to PI3K inhibitors (capivasertib) instead of WEE1 — before the JCO 2023 data confirmed 0% ORR.',
+    targetPopulation: "35,000+",
+    populationUnit: "Ovarian US / Yr",
+    annualSavings: "$150M+",
+    savingsUnit: "PTEN-based selection",
+    closingStatement: "PTEN loss is the missing exclusion criterion for the WEE1 inhibitor class.",
   },
-
   diagnosticLog: [
-    { time: '08:12:01', message: 'Initializing 8D Manifold...', level: 'info' },
-    { time: '08:12:04', message: 'Loading patient vectors: CCNE1-amp/PTEN-intact vs PTEN-loss', level: 'info' },
-    { time: '08:12:08', message: 'DB Preflight: NCT03579316 found — tags: [atr_inhibitor, ddr, parp_inhibitor, wee1_inhibitor]', level: 'info' },
-    { time: '08:12:15', message: 'Scoring 806 trials against PTEN-intact vector...', level: 'info' },
-    { time: '08:12:20', message: 'Scoring 806 trials against PTEN-loss vector...', level: 'info' },
-    { time: '08:12:25', message: 'Gate 1 PASS: Rank #2 (PTEN-intact)', level: 'success' },
-    { time: '08:12:26', message: 'Gate 2 PASS: Rank #2 (PTEN-loss, same rank but 30pt score drop)', level: 'success' },
-    { time: '08:12:27', message: 'Gate 3 PASS: Δ +0.307 ≥ 0.10 threshold (3x)', level: 'success' },
-    { time: '08:12:30', message: 'Chain of custody receipt: LOCKED', level: 'system' },
+    { time: '', message: 'Diagnostic detail is gated pending canon reconciliation.', level: 'info' },
   ],
-
-  oneLiner: 'CrisPRO retroactively predicted, from pre-treatment genomics alone, that PTEN-loss patients would not respond to adavosertib — before the JCO 2023 trial result confirmed a 0% ORR in that subgroup. Delta: +0.307.',
-
-  validationTier: 'Retroactive (locked pre-analysis)',
-  validationStrength: '🟢 Maximum — 3/3 gates, clean mechanism, strongest delta of all validations',
+  oneLiner: "Adavosertib + olaparib produced ORR 23% in PTEN-intact patients and ORR 0% in PTEN-loss patients. PTEN loss is the missing exclusion criterion for the WEE1 inhibitor class.",
+  validationTier: "Retrospective decode of published biomarker",
+  validationStrength: "Bimodal subgroup effect \u2014 class-level transfer lesson",
 };

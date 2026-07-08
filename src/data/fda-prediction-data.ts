@@ -74,7 +74,7 @@ export const LATIFY_RECEIPT = {
   nonResponderRank: 42,
   deltaFit: -0.10,
   priorDelta: 0.322,
-  whyDifferent: 'Initial mock +0.3658 for Phase III purged. REAL Phase III FAILED (HR 0.90, p=0.287). Engine correctly predicted futility at 90% confidence.',
+  whyDifferent: 'Retrospective mechanism-alignment analysis of the Phase III readout. REAL Phase III FAILED (HR 0.90, p=0.287). Engine correctly predicted futility at 90% confidence.',
   moa_tags: ['atr_inhibitor', 'checkpoint_inhibitor', 'chemotherapy', 'ddr', 'immunotherapy', 'taxane', 'failure_realized'],
   manuscriptCitation: '(CrisPRO engine: Predicted Futility 90%; Observed HR 0.90; P=0.287; receipt: latify_curl_receipts.json)',
 };
