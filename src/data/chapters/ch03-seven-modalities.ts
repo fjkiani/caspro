@@ -63,7 +63,7 @@ export const CH_03_SEVEN_MODALITIES: ResearchChapter = {
         '**What it measures:** whether real patients with this biomarker have responded to this therapy in a clinical trial or registry.',
         '**Data source:** CIViC, Cancer Genome Interpreter (CGI), ClinicalTrials.gov, published Phase II/III trial reports.',
         '**Positive threshold:** at least one confirmed clinical response OR Phase II+ trial with pre-specified biomarker subgroup meeting its primary endpoint.',
-        '**Public example:** olaparib in BRCA-mutant ovarian cancer (SOLO-1, SOLO-2, OlympiAD) — the canonical DDR-clinical anchor.',
+        '**Public example:** olaparib in BRCA-mutant ovarian cancer (SOLO-1 first-line maintenance, SOLO-2 platinum-sensitive relapsed) — the canonical DDR-clinical anchor.',
       ],
     },
     {
