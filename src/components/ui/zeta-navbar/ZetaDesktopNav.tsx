@@ -49,6 +49,7 @@ function isNavItemActive(pathname: string | null, href: string, itemId: string):
   }
   if (itemId === 'abstracts' && norm.startsWith('/research/abstracts')) return true;
   if (itemId === 'engines' && norm.startsWith('/engine')) return true;
+  if (itemId === 'governance' && norm.startsWith('/governance')) return true;
   if (itemId === 'org') return false;
   return false;
 }

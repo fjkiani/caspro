@@ -116,6 +116,11 @@ export function buildTopNavItems(abstracts: AbstractNavItem[] = []): NavTopItem[
       dropdownItems: engineDropdown,
     },
     {
+      id: 'governance',
+      label: 'GOVERNANCE',
+      href: '/governance/',
+    },
+    {
       id: 'pipeline',
       label: 'PIPELINE',
       href: '/pipeline/',
