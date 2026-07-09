@@ -21,6 +21,7 @@ import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import ThreeSceneMount from './ThreeSceneMount';
 import { PATIENT_VECTOR_AXES } from '@/data/depth-layer';
+import { useTheme } from '@/context/ThemeContext';
 
 const MISSION_PHRASES = [
   'REASONING BIOLOGY FOR OUR PATIENTS',
@@ -165,8 +166,9 @@ function RotatingAxisLabel() {
 // Root — full-viewport hero
 // ---------------------------------------------------------------------------
 export default function DNAHero() {
+  const { isDarkMode } = useTheme();
   return (
-    <div className="relative w-full h-screen bg-[#020408] overflow-hidden font-mono select-none">
+    <div className={`relative w-full h-screen overflow-hidden font-mono select-none ${isDarkMode ? 'bg-[#020408]' : 'bg-white'}`}>
       {/* 3D scene */}
       <div className="absolute inset-0 z-0 opacity-60">
         <ThreeSceneMount camera={{ position: [0, 0, 60], fov: 30 }} eager>

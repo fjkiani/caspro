@@ -38,6 +38,7 @@ import MultiAssetEngine from './engines/MultiAssetEngine';
 import BiomarkerFailureEngine from './engines/BiomarkerFailureEngine';
 import PopulationFunnelEngine from './engines/PopulationFunnelEngine';
 import MechanismDivergenceEngine from './engines/MechanismDivergenceEngine';
+import { useTheme } from '@/context/ThemeContext';
 
 // no-scroll linter marker (required)
 export const SurfaceTabs = ({ children }: { children: React.ReactNode }) => <>{children}</>;
@@ -58,15 +59,16 @@ const ENGINE_MAP: Record<EngineSlug, { icon: typeof Focus; Component: () => JSX.
 };
 
 export default function TumorBoardSurface() {
+  const { isDarkMode } = useTheme();
   const [active, setActive] = useState<EngineSlug>('gate-tier-scoring');
   const activeCap = CAPABILITY_REGISTRY.find((c) => c.slug === active);
   const activeWiring = CAPABILITY_DEPTH_WIRING.find((w) => w.capabilitySlug === active);
   const ActiveComponent = ENGINE_MAP[active].Component;
 
   return (
-    <div className="min-h-screen bg-[#020408] text-zinc-400 font-mono">
+    <div className={`min-h-screen font-mono ${isDarkMode ? 'bg-[#020408] text-zinc-400' : 'bg-white text-zinc-700'}`}>
       {/* header */}
-      <header className="border-b border-white/5 bg-black/40 backdrop-blur-sm sticky top-0 z-40">
+      <header className={`border-b backdrop-blur-sm sticky top-0 z-40 ${isDarkMode ? 'border-white/5 bg-black/40' : 'border-zinc-200 bg-white/80'}`}>
         <div className="max-w-[1600px] mx-auto px-8 py-6 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center gap-3 group">
@@ -79,7 +81,7 @@ export default function TumorBoardSurface() {
             </Link>
             <span className="h-6 w-px bg-zinc-800" />
             <div>
-              <div className="text-lg font-black tracking-[0.3em] uppercase text-white">Tumor board</div>
+              <div className={`text-lg font-black tracking-[0.3em] uppercase ${isDarkMode ? 'text-white' : 'text-zinc-900'}`}>Tumor board</div>
               <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mt-0.5">
                 Every capability live · substrate-bound · governance-linked
               </div>
@@ -184,9 +186,9 @@ export default function TumorBoardSurface() {
           </span>
           <div className="flex items-center gap-4">
             <Link href="/ledger/" className="hover:text-cyan-400 transition-colors">Ledger</Link>
-            <span className="h-3 w-px bg-zinc-800" />
+            <span className={`h-3 w-px ${isDarkMode ? 'bg-zinc-800' : 'bg-zinc-300'}`} />
             <Link href="/kb/" className="hover:text-cyan-400 transition-colors">Knowledge base</Link>
-            <span className="h-3 w-px bg-zinc-800" />
+            <span className={`h-3 w-px ${isDarkMode ? 'bg-zinc-800' : 'bg-zinc-300'}`} />
             <Link href="/research/" className="hover:text-cyan-400 transition-colors">Research chapters</Link>
           </div>
         </div>

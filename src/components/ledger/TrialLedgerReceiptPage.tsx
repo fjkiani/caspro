@@ -161,14 +161,32 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
           >
             DE-RISKING RECEIPT: 2026_03_24_V2 // LOCKED FOR AUDIT
           </p>
-          <a
-            href={entry.proofRoute}
-            className={`text-[10px] font-black uppercase tracking-widest ${
-              isDarkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-indigo-600 hover:text-indigo-800'
-            }`}
-          >
-            View mechanism-alignment map →
-          </a>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <a
+              href={entry.proofRoute}
+              className={`text-[10px] font-black uppercase tracking-widest ${
+                isDarkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-indigo-600 hover:text-indigo-800'
+              }`}
+            >
+              View mechanism-alignment map →
+            </a>
+            <a
+              href="/engine/target-lock/scroll"
+              className={`text-[10px] font-black uppercase tracking-widest ${
+                isDarkMode ? 'text-zinc-400 hover:text-cyan-300' : 'text-slate-500 hover:text-indigo-800'
+              }`}
+            >
+              Target-lock (brain-met) →
+            </a>
+            <a
+              href="/engine/synthetic-lethality/scroll"
+              className={`text-[10px] font-black uppercase tracking-widest ${
+                isDarkMode ? 'text-zinc-400 hover:text-cyan-300' : 'text-slate-500 hover:text-indigo-800'
+              }`}
+            >
+              Synthetic-lethality (MBD4) →
+            </a>
+          </div>
         </div>
       )}
 

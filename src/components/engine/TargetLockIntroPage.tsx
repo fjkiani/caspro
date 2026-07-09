@@ -137,6 +137,26 @@ export default function TargetLockIntroPage() {
         </p>
         <div className="flex flex-wrap items-center gap-2 shrink-0">
           <Link
+            href="/engine/target-lock/scroll"
+            className={`inline-flex items-center gap-1.5 rounded-sm px-4 py-2.5 text-[10px] font-black uppercase tracking-widest border transition-colors ${
+              isDarkMode
+                ? 'border-zinc-700 text-zinc-300 hover:border-cyan-500/50'
+                : 'border-slate-300 text-slate-700 hover:border-indigo-400'
+            }`}
+          >
+            Brain-Met · Scroll
+          </Link>
+          <Link
+            href="/engine/target-lock/tabs"
+            className={`inline-flex items-center gap-1.5 rounded-sm px-4 py-2.5 text-[10px] font-black uppercase tracking-widest border transition-colors ${
+              isDarkMode
+                ? 'border-zinc-700 text-zinc-300 hover:border-cyan-500/50'
+                : 'border-slate-300 text-slate-700 hover:border-indigo-400'
+            }`}
+          >
+            Brain-Met · Tabs
+          </Link>
+          <Link
             href={TARGET_LOCK_ARCHIVE_PATH}
             className={`inline-flex items-center gap-1.5 rounded-sm px-4 py-2.5 text-[10px] font-black uppercase tracking-widest border transition-colors ${
               isDarkMode

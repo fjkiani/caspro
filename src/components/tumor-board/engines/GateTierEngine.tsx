@@ -56,6 +56,7 @@ import {
   getGuardrail,
 } from '@/data/depth-layer';
 import { getWiring } from '@/data/capability-depth-wiring';
+import { useTheme } from '@/context/ThemeContext';
 
 // -----------------------------------------------------------------------------
 // Cascade steps — derived from substrate, not fabricated
@@ -178,6 +179,7 @@ function ProteinBlob({ isLocking }: { isLocking: boolean }) {
 // -----------------------------------------------------------------------------
 
 export default function GateTierEngine() {
+  const { isDarkMode } = useTheme();
   const cascade = useMemo(buildCascade, []);
   const wiring = getWiring('gate-tier-scoring');
 
@@ -197,24 +199,24 @@ export default function GateTierEngine() {
   const tiers = wiring?.substrateTiers ?? [];
 
   return (
-    <div className="relative w-full min-h-[720px] bg-[#020408] text-zinc-400 font-mono p-8 rounded border border-zinc-900 overflow-hidden">
+    <div className={`relative w-full min-h-[720px] font-mono p-8 rounded border overflow-hidden ${isDarkMode ? 'bg-[#020408] text-zinc-400 border-zinc-900' : 'bg-white text-zinc-700 border-zinc-200 shadow-sm'}`}>
       {/* grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none opacity-40" />
 
       {/* header */}
-      <div className="relative z-10 flex items-center justify-between border-b border-white/5 pb-6 mb-8">
+      <div className={`relative z-10 flex items-center justify-between border-b pb-6 mb-8 ${isDarkMode ? 'border-white/5' : 'border-zinc-200'}`}>
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded border border-zinc-800 bg-zinc-950 flex items-center justify-center">
+          <div className={`w-12 h-12 rounded border flex items-center justify-center ${isDarkMode ? 'border-zinc-800 bg-zinc-950' : 'border-zinc-200 bg-zinc-100'}`}>
             <Focus className="w-6 h-6 text-cyan-400" />
           </div>
           <div>
-            <h2 className="text-lg font-black tracking-[0.3em] uppercase text-white">Gate-tier admissibility engine</h2>
+            <h2 className={`text-lg font-black tracking-[0.3em] uppercase ${isDarkMode ? 'text-white' : 'text-zinc-900'}`}>Gate-tier admissibility engine</h2>
             <div className="flex items-center gap-4 mt-1">
               <span className="text-[10px] font-black uppercase tracking-widest text-emerald-500 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
                 Substrate bound
               </span>
-              <span className="h-3 w-px bg-zinc-800" />
+              <span className={`h-3 w-px ${isDarkMode ? 'bg-zinc-800' : 'bg-zinc-300'}`} />
               <span className="text-[10px] font-black uppercase tracking-widest text-white">
                 {wiring?.substrateAxes.length ?? 0} axes · {wiring?.substrateModalities.length ?? 0} modalities · {wiring?.substrateTiers.length ?? 0} candidate tiers
               </span>
@@ -358,7 +360,7 @@ export default function GateTierEngine() {
 
           {/* log stream */}
           <div className="flex-1 min-h-0">
-            <LogStream messages={LOG_MESSAGES.gateTier} intervalMs={950} />
+            <LogStream messages={LOG_MESSAGES.gateTier} intervalMs={950} isDarkMode={isDarkMode} />
           </div>
         </aside>
       </div>

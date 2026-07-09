@@ -33,6 +33,7 @@ import MultiAssetEngine from './engines/MultiAssetEngine';
 import BiomarkerFailureEngine from './engines/BiomarkerFailureEngine';
 import PopulationFunnelEngine from './engines/PopulationFunnelEngine';
 import MechanismDivergenceEngine from './engines/MechanismDivergenceEngine';
+import { useTheme } from '@/context/ThemeContext';
 
 const ENGINE_ORDER: Array<{
   slug: string;
@@ -67,7 +68,7 @@ function SectionIntro({
   return (
     <section
       id={cap.slug}
-      className="max-w-[1600px] mx-auto px-8 py-16 border-t border-white/5"
+      className={`max-w-[1600px] mx-auto px-8 py-16 border-t ${isDarkMode ? 'border-white/5' : 'border-zinc-200'}`}
     >
       <motion.div
         initial={{ opacity: 0, y: 12 }}
@@ -77,10 +78,10 @@ function SectionIntro({
         className="flex items-start gap-6 mb-8"
       >
         <div className="flex-shrink-0">
-          <div className="w-16 h-16 rounded border border-zinc-800 bg-zinc-950 flex items-center justify-center">
+          <div className={`w-16 h-16 rounded border flex items-center justify-center ${isDarkMode ? 'border-zinc-800 bg-zinc-950' : 'border-zinc-200 bg-zinc-100'}`}>
             <Icon className="w-7 h-7 text-cyan-400" />
           </div>
-          <div className="mt-2 text-center text-[10px] font-black tracking-widest text-zinc-600">
+          <div className={`mt-2 text-center text-[10px] font-black tracking-widest ${isDarkMode ? 'text-zinc-600' : 'text-zinc-500'}`}>
             {String(index + 1).padStart(2, '0')} / {String(ENGINE_ORDER.length).padStart(2, '0')}
           </div>
         </div>
@@ -88,10 +89,10 @@ function SectionIntro({
           <div className="text-[10px] font-black uppercase tracking-[0.3em] text-cyan-500 mb-2">
             Capability {index + 1}
           </div>
-          <h2 className="text-3xl font-black uppercase tracking-[0.15em] text-white mb-3">
+          <h2 className={`text-3xl font-black uppercase tracking-[0.15em] mb-3 ${isDarkMode ? 'text-white' : 'text-zinc-900'}`}>
             {cap.name}
           </h2>
-          <p className="text-[14px] leading-relaxed text-zinc-300 mb-6 max-w-3xl">
+          <p className={`text-[14px] leading-relaxed mb-6 max-w-3xl ${isDarkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
             {cap.oneLiner}
           </p>
           {wiring && (
@@ -133,6 +134,7 @@ function SectionIntro({
 }
 
 export default function ScrollBoardSurface() {
+  const { isDarkMode } = useTheme();
   return (
     <div className="bg-[#020408] text-zinc-400 font-mono">
       {/* fixed nav bar */}

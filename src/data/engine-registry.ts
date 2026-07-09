@@ -22,6 +22,7 @@ export interface EngineEntry {
   keyMetric: string;
   active: boolean;
   showInEnginesNav?: boolean;
+  subroutes?: Array<{ label: string; route: string; description?: string }>;
   zetaHeadline?: string;
 }
 
@@ -46,6 +47,10 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
     version: '4.2.1',
     keyMetric: 'Structural fit',
     active: true,
+    subroutes: [
+      { label: 'Brain-Met · Scroll', route: '/engine/target-lock/scroll',   description: '7-step BrM cascade — Evo2 delta_ll variants — AUROC 0.6889 on 29-gene panel.' },
+      { label: 'Brain-Met · Tabs',   route: '/engine/target-lock/tabs',    description: 'Per-step tab strip covering primary_tumor_escape → brm_angiogenesis.' },
+    ],
   },
   {
     id: '02',
@@ -88,6 +93,10 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
     version: '4.0.0',
     keyMetric: 'SL axis',
     active: true,
+    subroutes: [
+      { label: 'MBD4 · Scroll', route: '/engine/synthetic-lethality/scroll', description: '4-axis manuscript: cytidine (validated) → immunotherapy → ATRi (novel primary) → PARPi FALSIFIED → convergence.' },
+      { label: 'MBD4 · Tabs',   route: '/engine/synthetic-lethality/tabs',  description: 'Per-axis tab strip + reconciliation + gap disclosure + ovarian precomputed hits.' },
+    ],
   },
   {
     id: '06',

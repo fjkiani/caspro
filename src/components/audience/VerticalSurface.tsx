@@ -274,6 +274,53 @@ export default function VerticalSurface({ data, headerLink }: Props) {
             <div className="p-4 md:p-6 min-h-0 h-full">{body}</div>
           </div>
         </section>
+
+        {/* Engine deep-dive rail — added w7d. Persistent across every rail-section on
+            every industry / product / partner / patient page routed through
+            VerticalSurface. */}
+        <footer className={`shrink-0 border-t ${rail}`}>
+          <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <span className={`text-[10px] font-black uppercase tracking-[0.4em] ${label}`}>Engine deep dives</span>
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                href="/engine/target-lock/scroll"
+                className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                  isDarkMode ? 'border-zinc-800 text-zinc-300 hover:border-cyan-500/50' : 'border-slate-300 text-slate-700 hover:border-indigo-400'
+                }`}
+              >
+                Target-Lock · Brain-Met · Scroll
+                <ArrowRight className="h-3 w-3" />
+              </Link>
+              <Link
+                href="/engine/target-lock/tabs"
+                className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                  isDarkMode ? 'border-zinc-800 text-zinc-300 hover:border-cyan-500/50' : 'border-slate-300 text-slate-700 hover:border-indigo-400'
+                }`}
+              >
+                Target-Lock · Tabs
+                <ArrowRight className="h-3 w-3" />
+              </Link>
+              <Link
+                href="/engine/synthetic-lethality/scroll"
+                className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                  isDarkMode ? 'border-zinc-800 text-zinc-300 hover:border-cyan-500/50' : 'border-slate-300 text-slate-700 hover:border-indigo-400'
+                }`}
+              >
+                SL · MBD4 · Scroll
+                <ArrowRight className="h-3 w-3" />
+              </Link>
+              <Link
+                href="/engine/synthetic-lethality/tabs"
+                className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                  isDarkMode ? 'border-zinc-800 text-zinc-300 hover:border-cyan-500/50' : 'border-slate-300 text-slate-700 hover:border-indigo-400'
+                }`}
+              >
+                SL · MBD4 · Tabs
+                <ArrowRight className="h-3 w-3" />
+              </Link>
+            </div>
+          </div>
+        </footer>
       </main>
     </SurfaceTabs>
   );

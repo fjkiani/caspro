@@ -169,6 +169,41 @@ export default function AudienceSurface({ data, compact = false }: Props) {
               ))}
             </div>
 
+            {/* Cross-engine deep-dive band — added w7d. Points every audience at the
+                two new tumor-board surfaces so pharma-BD, oncology, investor,
+                and industry personas land in the same substrate. */}
+            <div className={`rounded-lg border p-4 ${box}`}>
+              <p className={`text-[11px] font-black uppercase tracking-[0.15em] ${label}`}>
+                Engine deep dives
+              </p>
+              <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                <Link
+                  href="/engine/target-lock/scroll"
+                  className={`group flex items-start gap-2 rounded-md border p-3 transition-colors ${box} ${
+                    isDarkMode ? 'hover:border-cyan-500/40' : 'hover:border-indigo-300'
+                  }`}
+                >
+                  <div className="min-w-0">
+                    <p className={`text-[10px] font-black uppercase tracking-[0.15em] ${label}`}>Target-Lock · brain-met</p>
+                    <p className={`mt-1 text-[11px] leading-snug ${value}`}>7-step BrM cascade · Evo2 delta_ll variants · AUROC 0.6889 on 29-gene panel</p>
+                  </div>
+                  <ArrowRight className={`h-3 w-3 shrink-0 mt-1 ${label}`} />
+                </Link>
+                <Link
+                  href="/engine/synthetic-lethality/scroll"
+                  className={`group flex items-start gap-2 rounded-md border p-3 transition-colors ${box} ${
+                    isDarkMode ? 'hover:border-cyan-500/40' : 'hover:border-indigo-300'
+                  }`}
+                >
+                  <div className="min-w-0">
+                    <p className={`text-[10px] font-black uppercase tracking-[0.15em] ${label}`}>SL · MBD4 manuscript</p>
+                    <p className={`mt-1 text-[11px] leading-snug ${value}`}>4 axes tested · ATRi validated (p=0.02) · PARPi hypothesis falsified</p>
+                  </div>
+                  <ArrowRight className={`h-3 w-3 shrink-0 mt-1 ${label}`} />
+                </Link>
+              </div>
+            </div>
+
             <div className={`mt-auto rounded-lg border p-4 ${box}`}>
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
