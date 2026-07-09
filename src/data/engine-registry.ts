@@ -72,6 +72,10 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
     version: '3.1.0',
     keyMetric: 'Mechanism alignment',
     active: true,
+    subroutes: [
+      { label: 'Scroll · 3 divergence cases', route: '/engine/mechanism-alignment/scroll', description: 'PATH A projection + composite gate walked case-by-case (MEK escape, ATRi cold TME, cetuximab RAS-mutant).' },
+      { label: 'Tabs · per-case + governance', route: '/engine/mechanism-alignment/tabs',   description: 'One tab per illustrative case, plus a governance tab covering PATH A signature, RSS opt-in, DL-07 quarantine.' },
+    ],
   },
   {
     id: '05',

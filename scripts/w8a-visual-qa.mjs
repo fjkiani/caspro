@@ -23,6 +23,9 @@ const TUMOR_BOARD_ROUTES = [
   '/engine/synthetic-lethality/',
   '/engine/synthetic-lethality/scroll/',
   '/engine/synthetic-lethality/tabs/',
+  '/engine/mechanism-alignment/',
+  '/engine/mechanism-alignment/scroll/',
+  '/engine/mechanism-alignment/tabs/',
 ];
 
 // w8a scope: verify that surfaces already declared to carry engine cascade
