@@ -1,4 +1,4 @@
-import type { ArtifactEntry, TrialCaseFile, VectorAxes } from '../types';
+import type { ArtifactEntry, MoaGlyphRow, PublishedReadout, TrialCaseFile, TrialVerdict, VectorAxes } from '../types';
 
 /**
  * Vague-safe canon (rebuilt 2026-07-07).
@@ -122,4 +122,23 @@ export const BERZOSERTIB: TrialCaseFile = {
   oneLiner: "Berzosertib + gemcitabine produced a striking RS-Low benefit (ORR 40%) masked by the trial's ITT design. RS-High status is the missing exclusion criterion for any ATR inhibitor program in ovarian cancer.",
   validationTier: "Retrospective decode of published biomarker",
   validationStrength: "Subgroup effect published \u2014 the transfer lesson for the class",
+  publishedReadout: {
+    headlineLabel: "The RS-Split:",
+    headlineValue: "PFS HR 0.34 RS-Low / 1.11 RS-High",
+    tone: 'mixed',
+    endpointLabel: "PFS HR (Low vs High)",
+    endpointValue: "0.34 / 1.11",
+  },
+  verdict: {
+    label: "STRATIFICATION_MISSING",
+    tone: 'mixed',
+    caption: "RS-High (CCNE1-amp / RB1-loss / MYC-amp) is the missing exclusion for any ATR inhibitor.",
+  },
+  moaGlyphs: [
+    { axis: 'ddr', direction: 'responder', magnitude: 'strongest', note: 'ATR inhibition on top of gemcitabine-induced stalled forks is lethal to RS-Low tumors.' },
+    { axis: 'rss', direction: 'responder', magnitude: 'strong', note: 'RS-Low tumors have headroom for additional replication stress before catastrophe.' },
+    { axis: 'efflux', direction: 'non-responder', magnitude: 'moderate', note: 'RS-High cells are already saturated \u2014 ATR blockade adds no lethality.' },
+    { axis: 'io', direction: 'non-responder', magnitude: 'minimal' },
+    { axis: 'her2', direction: 'non-responder', magnitude: 'trace' },
+  ],
 };

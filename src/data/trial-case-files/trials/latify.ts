@@ -1,4 +1,4 @@
-import type { ArtifactEntry, TrialCaseFile, VectorAxes } from '../types';
+import type { ArtifactEntry, MoaGlyphRow, PublishedReadout, TrialCaseFile, TrialVerdict, VectorAxes } from '../types';
 
 /**
  * Vague-safe canon (rebuilt 2026-07-07).
@@ -123,4 +123,23 @@ export const LATIFY: TrialCaseFile = {
   oneLiner: "Ceralasertib + durvalumab failed ITT in 2L+ NSCLC. The STK11/KEAP1 co-loss subgroup is a candidate mechanistic responder archetype. Quantitative alignment magnitude is under continued canon review; external claims are limited to the mechanism candidate.",
   validationTier: "Under continued canon review",
   validationStrength: "Mechanism candidate \u2014 quantitative alignment gated",
+  publishedReadout: {
+    headlineLabel: "The ITT Failure:",
+    headlineValue: "HR 0.90 / p=0.287",
+    tone: 'negative',
+    endpointLabel: "Observed OS HR",
+    endpointValue: "0.90",
+  },
+  verdict: {
+    label: "ITT_FAILURE_ARCHETYPE_HIDDEN",
+    tone: 'negative',
+    caption: "STK11/KEAP1 responder archetype not pre-selected; delta magnitude gated.",
+  },
+  moaGlyphs: [
+    { axis: 'ddr', direction: 'responder', magnitude: 'strong', note: 'ATR inhibition anchors the DDR responder axis.' },
+    { axis: 'io', direction: 'responder', magnitude: 'strong', note: 'PD-L1 blockade requires an IO-permissive substrate.' },
+    { axis: 'rss', direction: 'responder', magnitude: 'moderate', note: 'Candidate STK11/KEAP1 archetype carries replication-stress load.' },
+    { axis: 'mapk', direction: 'non-responder', magnitude: 'minimal', note: 'MAPK/KRAS co-mutation state is a modifier, not a driver here.' },
+    { axis: 'her2', direction: 'non-responder', magnitude: 'trace' },
+  ],
 };

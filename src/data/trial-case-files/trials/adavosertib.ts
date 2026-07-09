@@ -1,4 +1,4 @@
-import type { ArtifactEntry, TrialCaseFile, VectorAxes } from '../types';
+import type { ArtifactEntry, MoaGlyphRow, PublishedReadout, TrialCaseFile, TrialVerdict, VectorAxes } from '../types';
 
 /**
  * Vague-safe canon (rebuilt 2026-07-07).
@@ -118,4 +118,23 @@ export const ADAVOSERTIB: TrialCaseFile = {
   oneLiner: "Adavosertib + olaparib produced ORR 23% in PTEN-intact patients and ORR 0% in PTEN-loss patients. PTEN loss is the missing exclusion criterion for the WEE1 inhibitor class.",
   validationTier: "Retrospective decode of published biomarker",
   validationStrength: "Bimodal subgroup effect \u2014 class-level transfer lesson",
+  publishedReadout: {
+    headlineLabel: "The Bimodal Split:",
+    headlineValue: "ORR 23% intact / 0% PTEN-loss",
+    tone: 'mixed',
+    endpointLabel: "PFS HR (intact vs loss)",
+    endpointValue: "0.55 / 1.82",
+  },
+  verdict: {
+    label: "EXCLUSION_MISSING",
+    tone: 'mixed',
+    caption: "PTEN loss is a mandatory exclusion for the WEE1 inhibitor class.",
+  },
+  moaGlyphs: [
+    { axis: 'ddr', direction: 'responder', magnitude: 'strongest', note: 'WEE1 inhibition drives mitotic-catastrophe on top of PARP-blocked SSB repair.' },
+    { axis: 'rss', direction: 'responder', magnitude: 'strong', note: 'PTEN-intact tumors retain a functional S-phase checkpoint that WEE1i can abrogate.' },
+    { axis: 'pi3k', direction: 'non-responder', magnitude: 'strong', note: 'PTEN loss = constitutive PI3K/AKT \u2014 the trial-failing resistance state.' },
+    { axis: 'io', direction: 'non-responder', magnitude: 'minimal' },
+    { axis: 'her2', direction: 'non-responder', magnitude: 'trace' },
+  ],
 };

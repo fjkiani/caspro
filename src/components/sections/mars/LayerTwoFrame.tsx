@@ -4,11 +4,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { AlertTriangle, CheckCircle2, XCircle, ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { TRIAL_CASE_FILES, TRIAL_IDS, type TrialCaseFile } from '@/data/trial-case-files';
+import { TRIAL_CASE_FILES, HAND_AUTHORED_TRIAL_IDS, type TrialCaseFile } from '@/data/trial-case-files';
 
 // --- Derive table rows from live registry ---
 function buildTrialRows() {
-  return TRIAL_IDS.map((id) => {
+  return HAND_AUTHORED_TRIAL_IDS.map((id) => {
     const t = TRIAL_CASE_FILES[id];
     if (!t) return null;
 

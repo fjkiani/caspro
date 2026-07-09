@@ -1,4 +1,4 @@
-import type { ArtifactEntry, TrialCaseFile, VectorAxes } from '../types';
+import type { ArtifactEntry, MoaGlyphRow, PublishedReadout, TrialCaseFile, TrialVerdict, VectorAxes } from '../types';
 
 /**
  * Vague-safe canon (rebuilt 2026-07-07).
@@ -131,4 +131,23 @@ export const CEACAM5: TrialCaseFile = {
   oneLiner: "CEACAM5 is a real target. CARMEN-LC03 failed because IHC \u226550% enrolled patients who could not respond. The two-gate framework (higher IHC threshold + IO permissiveness) is the candidate rescue architecture for next-generation programs.",
   validationTier: "Prospective decode (external-safe)",
   validationStrength: "Two-Layer decode published for the CEACAM5 franchise",
+  publishedReadout: {
+    headlineLabel: "The Threshold Failure:",
+    headlineValue: "PFS HR 1.14 / p=0.82",
+    tone: 'negative',
+    endpointLabel: "Observed PFS HR",
+    endpointValue: "1.14",
+  },
+  verdict: {
+    label: "GATE_TOO_PERMISSIVE",
+    tone: 'negative',
+    caption: "IHC \u226550% enrolled expressors who cannot respond. \u226580% is the candidate predictive gate.",
+  },
+  moaGlyphs: [
+    { axis: 'her2', direction: 'responder', magnitude: 'strongest', note: 'ADC engagement is proportional to CEACAM5 surface density (analog to HER2 axis).' },
+    { axis: 'io', direction: 'responder', magnitude: 'strong', note: 'IO permissiveness (pTMB, TME) is the missing second gate.' },
+    { axis: 'efflux', direction: 'non-responder', magnitude: 'moderate', note: 'Prior irinotecan exposure drives payload cross-resistance for SN-38 conjugates.' },
+    { axis: 'vegf', direction: 'non-responder', magnitude: 'minimal', note: 'Liver-metastatic subset undermines the IO half of the two-gate framework.' },
+    { axis: 'rss', direction: 'non-responder', magnitude: 'trace' },
+  ],
 };

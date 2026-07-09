@@ -169,7 +169,7 @@ export default function DNAHero() {
     <div className="relative w-full h-screen bg-[#020408] overflow-hidden font-mono select-none">
       {/* 3D scene */}
       <div className="absolute inset-0 z-0 opacity-60">
-        <ThreeSceneMount camera={{ position: [0, 0, 60], fov: 30 }}>
+        <ThreeSceneMount camera={{ position: [0, 0, 60], fov: 30 }} eager>
           <DoubleHelix />
         </ThreeSceneMount>
       </div>

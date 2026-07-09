@@ -1,4 +1,4 @@
-import type { ArtifactEntry, TrialCaseFile, VectorAxes } from '../types';
+import type { ArtifactEntry, MoaGlyphRow, PublishedReadout, TrialCaseFile, TrialVerdict, VectorAxes } from '../types';
 
 /**
  * Vague-safe canon (rebuilt 2026-07-07).
@@ -118,4 +118,23 @@ export const CAPRI: TrialCaseFile = {
   oneLiner: "In CAPRI, PARPi-naive patients had ORR 36% versus 4% in post-PARPi patients. Prior PARPi exposure must be a stratification variable in every ATRi + PARPi combination program.",
   validationTier: "Retrospective decode of published biomarker",
   validationStrength: "Subgroup effect \u2014 class-level transfer lesson",
+  publishedReadout: {
+    headlineLabel: "The Subgroup Split:",
+    headlineValue: "ORR 36% naive / 4% post-PARPi",
+    tone: 'mixed',
+    endpointLabel: "PFS HR (naive vs post)",
+    endpointValue: "0.42 / 1.31",
+  },
+  verdict: {
+    label: "STRATIFICATION_MISSING",
+    tone: 'mixed',
+    caption: "PARPi-naive is the ATRi+PARPi responder gate. Post-PARPi is a distinct biology.",
+  },
+  moaGlyphs: [
+    { axis: 'ddr', direction: 'responder', magnitude: 'strongest', note: 'ATR + PARP double-hit is only lethal to HR-deficient tumors that have NOT selected resistance.' },
+    { axis: 'rss', direction: 'responder', magnitude: 'strong', note: 'Replication-stress load is intact in the naive population.' },
+    { axis: 'efflux', direction: 'non-responder', magnitude: 'strong', note: 'Prior PARPi selects for BRCA reversion / restored HR \u2014 an efflux-like resistance state.' },
+    { axis: 'io', direction: 'non-responder', magnitude: 'minimal' },
+    { axis: 'her2', direction: 'non-responder', magnitude: 'trace' },
+  ],
 };

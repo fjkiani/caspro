@@ -9,7 +9,7 @@ import {
   Play
 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
-import { TRIAL_CASE_FILES, TRIAL_IDS, VECTOR_AXIS_META, type TrialCaseFile } from '@/data/trial-case-files';
+import { TRIAL_CASE_FILES, HAND_AUTHORED_TRIAL_IDS, VECTOR_AXIS_META, type TrialCaseFile } from '@/data/trial-case-files';
 
 // --- Dynamic Gene Columns (from user's spec) ---
 const GENES = [
@@ -132,7 +132,7 @@ export default function GenomicHero({ embedded = false }: { embedded?: boolean }
   
   // Pick first available trial for cohort data
   const activeTrial = useMemo(() => {
-    const firstId = TRIAL_IDS[0];
+    const firstId = HAND_AUTHORED_TRIAL_IDS[0];
     return TRIAL_CASE_FILES[firstId];
   }, []);
 
