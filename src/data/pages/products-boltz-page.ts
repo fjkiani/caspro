@@ -2,8 +2,6 @@
 // /products/boltz/ — Structure-informed mechanism alignment.. Vague-safe.
 // ==============================================================================
 import type { VerticalPageData } from '@/components/audience/VerticalSurface';
-import { Target, Layers, GitBranch, ClipboardCheck, Users, Terminal, Zap, Hammer, Eye, Sparkles } from 'lucide-react';
-
 export const BOLTZ_PAGE_DATA: VerticalPageData = {
   eyebrow: 'Products · Boltz',
   title: 'Structure-informed mechanism alignment.',
@@ -14,7 +12,7 @@ export const BOLTZ_PAGE_DATA: VerticalPageData = {
       label: 'For whom',
       eyebrow: 'Chapter 1 · Who this is for',
       headline: 'Structure-informed mechanism reviewers.',
-      Icon: Zap,
+      iconKey: 'zap',
       body: [
         'Boltz is a structure-informed reader for mechanism-alignment questions where the target has a well-characterized pocket or interface. Used complementary to sequence-based reads when the mechanism turns on a specific structural feature.',
       ],
@@ -24,7 +22,7 @@ export const BOLTZ_PAGE_DATA: VerticalPageData = {
       label: 'What it returns',
       eyebrow: 'Chapter 2 · What it returns',
       headline: 'Structure-informed mechanism-alignment context.',
-      Icon: ClipboardCheck,
+      iconKey: 'clipboard-check',
       body: [
         'For structural mechanism questions, Boltz returns a residue-level alignment context that explains why a drug\'s mechanism aligns (or misaligns) with a patient\'s target biology.',
       ],
@@ -40,7 +38,7 @@ export const BOLTZ_PAGE_DATA: VerticalPageData = {
       label: 'Proof',
       eyebrow: 'Chapter 3 · Proof',
       headline: 'Public ledger of decoded programs.',
-      Icon: GitBranch,
+      iconKey: 'git-branch',
       body: [
         'Boltz has been used against structural mechanism questions in target-directed antibody-drug conjugate binding-interface programs.',
       ],
@@ -51,7 +49,7 @@ export const BOLTZ_PAGE_DATA: VerticalPageData = {
       label: 'Engage',
       eyebrow: 'Chapter 4 · How to engage',
       headline: 'Send a structural mechanism question.',
-      Icon: Sparkles,
+      iconKey: 'sparkles',
       body: [
         'Boltz engagements are scoped inside a broader mechanism-alignment audit — typically embedded in a Trial Failure Decode or IST Design Support offering.',
       ],

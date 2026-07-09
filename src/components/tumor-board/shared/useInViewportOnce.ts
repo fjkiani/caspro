@@ -31,7 +31,7 @@ export interface UseInViewportOnceOptions {
 }
 
 export interface UseInViewportOnceResult<T extends HTMLElement = HTMLDivElement> {
-  ref: React.RefObject<T | null>;
+  ref: React.MutableRefObject<T | null>;
   hasEntered: boolean;
 }
 

@@ -2,8 +2,6 @@
 // /partners/aacr/ — professional-society context. Vague-safe.
 // ==============================================================================
 import type { VerticalPageData } from '@/components/audience/VerticalSurface';
-import { Trophy, Book, Users, ClipboardCheck } from 'lucide-react';
-
 export const PARTNERS_AACR_PAGE_DATA: VerticalPageData = {
   eyebrow: 'Partners · Professional society',
   title: 'A society-anchored home for mechanism-alignment briefs.',
@@ -15,7 +13,7 @@ export const PARTNERS_AACR_PAGE_DATA: VerticalPageData = {
       label: 'Why society context',
       eyebrow: 'Chapter 1 · Why society context matters',
       headline: 'Mechanism-alignment claims sit inside a scholarly conversation.',
-      Icon: Trophy,
+      iconKey: 'trophy',
       body: [
         'A mechanism-alignment claim is not a market claim — it is a scientific claim. That means it has to sit inside the scholarly conversation the field is already having: consensus guidelines, position statements, and annual-meeting scientific programs. CrisPRO tracks that conversation and cites it in every brief.',
       ],
@@ -25,7 +23,7 @@ export const PARTNERS_AACR_PAGE_DATA: VerticalPageData = {
       label: 'Presence',
       eyebrow: 'Chapter 2 · Society presence',
       headline: 'Annual-meeting scientific submissions.',
-      Icon: Book,
+      iconKey: 'book',
       body: [
         'CrisPRO participates in the annual-meeting scientific program of the relevant professional society — as scientific submissions, not as commercial exhibitors. Submissions cover mechanism-alignment methodology, decoded programs, and open-assumption reports.',
       ],
@@ -36,7 +34,7 @@ export const PARTNERS_AACR_PAGE_DATA: VerticalPageData = {
       label: 'Guidelines',
       eyebrow: 'Chapter 3 · Guidelines & consensus',
       headline: 'Every brief cites the current guideline context.',
-      Icon: Users,
+      iconKey: 'users',
       body: [
         'For every decoded program, the accompanying brief cites the current guideline context — which consensus statements apply, which position papers are relevant, and how the mechanism-alignment call sits inside that context.',
       ],
@@ -46,7 +44,7 @@ export const PARTNERS_AACR_PAGE_DATA: VerticalPageData = {
       label: 'Proof',
       eyebrow: 'Chapter 4 · Proof',
       headline: 'Public ledger anchored to society-cited sources.',
-      Icon: ClipboardCheck,
+      iconKey: 'clipboard-check',
       body: [
         'Every claim in the public ledger traces to a public source; the society-cited sources are one of the primary citation anchors.',
       ],

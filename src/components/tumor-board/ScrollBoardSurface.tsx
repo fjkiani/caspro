@@ -52,6 +52,7 @@ function SectionIntro({
   cap,
   Icon,
   wiring,
+  isDarkMode,
 }: {
   index: number;
   cap: CapabilityEntry;
@@ -64,6 +65,7 @@ function SectionIntro({
     headlineSubstrateSentence: string;
     headlineGovernanceSentence: string;
   };
+  isDarkMode: boolean;
 }) {
   return (
     <section
@@ -187,7 +189,7 @@ export default function ScrollBoardSurface() {
         if (!cap) return null;
         return (
           <div key={slug}>
-            <SectionIntro index={i} cap={cap} Icon={icon} wiring={wiring} />
+            <SectionIntro index={i} cap={cap} Icon={icon} wiring={wiring} isDarkMode={isDarkMode} />
             <div className="max-w-[1600px] mx-auto px-8 pb-16">
               <Component />
             </div>

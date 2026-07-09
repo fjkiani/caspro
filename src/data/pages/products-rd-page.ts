@@ -2,8 +2,6 @@
 // /products/r-d/ — Pipeline decisions with a mechanism-alignment gate.. Vague-safe.
 // ==============================================================================
 import type { VerticalPageData } from '@/components/audience/VerticalSurface';
-import { Target, Layers, GitBranch, ClipboardCheck, Users, Terminal, Zap, Hammer, Eye, Sparkles } from 'lucide-react';
-
 export const R_D_PAGE_DATA: VerticalPageData = {
   eyebrow: 'Products · R&D',
   title: 'Pipeline decisions with a mechanism-alignment gate.',
@@ -14,7 +12,7 @@ export const R_D_PAGE_DATA: VerticalPageData = {
       label: 'For whom',
       eyebrow: 'Chapter 1 · Who this is for',
       headline: 'Pipeline heads, portfolio leads, franchise strategists.',
-      Icon: Layers,
+      iconKey: 'layers',
       body: [
         'For pipeline-scale decisions — which asset to advance, which to gate at Phase I, which to reposition, which to license out. The R&D surface returns a mechanism-alignment score across a portfolio, ranked by evidence tier, with a comparator against the existing stratification layers.',
       ],
@@ -24,7 +22,7 @@ export const R_D_PAGE_DATA: VerticalPageData = {
       label: 'What it returns',
       eyebrow: 'Chapter 2 · What it returns',
       headline: 'Multi-asset mechanism-alignment scoring.',
-      Icon: ClipboardCheck,
+      iconKey: 'clipboard-check',
       body: [
         'For every asset in a portfolio, the surface returns a mechanism-alignment score at defined evidence tier, ranked against peer assets in the same mechanism class. The output is a decision-grade table that a pipeline review committee can defend.',
       ],
@@ -41,7 +39,7 @@ export const R_D_PAGE_DATA: VerticalPageData = {
       label: 'Proof',
       eyebrow: 'Chapter 3 · Proof',
       headline: 'Public ledger of decoded programs.',
-      Icon: GitBranch,
+      iconKey: 'git-branch',
       body: [
         'The R&D surface has been used against pipelines in target-directed antibody-drug conjugates, replication-stress-response inhibitors, DNA-damage-response axes, and biomarker-driven checkpoint combinations.',
       ],
@@ -56,7 +54,7 @@ export const R_D_PAGE_DATA: VerticalPageData = {
       label: 'Engage',
       eyebrow: 'Chapter 4 · How to engage',
       headline: 'Send a portfolio. Receive a ranked table.',
-      Icon: Sparkles,
+      iconKey: 'sparkles',
       body: [
         'Portfolio-scale engagements start with a scoped asset list. CrisPRO returns a ranked mechanism-alignment table with per-asset next-step offerings.',
       ],

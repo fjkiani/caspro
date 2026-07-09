@@ -2,8 +2,6 @@
 // /industry/research/ — Academic PIs, translational research groups.
 // ==============================================================================
 import type { VerticalPageData } from '@/components/audience/VerticalSurface';
-import { Microscope, GitBranch, ClipboardList, ClipboardCheck } from 'lucide-react';
-
 export const INDUSTRY_RESEARCH_PAGE_DATA: VerticalPageData = {
   eyebrow: 'Industry · Academic research',
   title: 'For the lab writing the responder-subgroup manuscript.',
@@ -15,7 +13,7 @@ export const INDUSTRY_RESEARCH_PAGE_DATA: VerticalPageData = {
       label: 'Open by default',
       eyebrow: 'Chapter 1 · Open by default',
       headline: 'Public ledger. Public sources. Cited receipts.',
-      Icon: Microscope,
+      iconKey: 'microscope',
       body: [
         'Every claim in CrisPRO traces to a public source and an evidence tier. There are no black-box scores, no proprietary databases behind a paywall, no unsourced numbers in a report. Academic groups can cite CrisPRO the same way they would cite any public database.',
       ],
@@ -30,7 +28,7 @@ export const INDUSTRY_RESEARCH_PAGE_DATA: VerticalPageData = {
       label: 'Collaboration',
       eyebrow: 'Chapter 2 · Collaboration model',
       headline: 'IST design, retrospective co-stratification, mechanism briefs.',
-      Icon: GitBranch,
+      iconKey: 'git-branch',
       body: [
         'CrisPRO collaborates with translational groups on three primary tracks: prospective IST gate definition, retrospective co-stratification of published trial data, and mechanism-alignment briefs for manuscript submission.',
       ],
@@ -41,7 +39,7 @@ export const INDUSTRY_RESEARCH_PAGE_DATA: VerticalPageData = {
       label: 'How to engage',
       eyebrow: 'Chapter 3 · How to engage',
       headline: 'Send a program. Receive a brief.',
-      Icon: ClipboardList,
+      iconKey: 'clipboard-list',
       body: [
         'Academic groups engage the same way sponsors do: send a program (drug + mechanism + population), CrisPRO returns a mechanism-alignment audit with named split, comparator, and next steps. Turnaround is scoped in the engagement letter; pro-bono windows exist for advocacy-adjacent projects.',
       ],
@@ -52,7 +50,7 @@ export const INDUSTRY_RESEARCH_PAGE_DATA: VerticalPageData = {
       label: 'Proof',
       eyebrow: 'Chapter 4 · Proof',
       headline: 'The public ledger is the front door.',
-      Icon: ClipboardCheck,
+      iconKey: 'clipboard-check',
       body: [
         'Programs decoded span target-directed antibody-drug conjugates, replication-stress-response inhibitors, DNA-damage-response axes, and biomarker-driven checkpoint combinations.',
       ],

@@ -272,7 +272,7 @@ export default function GateTierEngine() {
         {/* center — protein viewer + step descriptor */}
         <section className="col-span-6 flex flex-col gap-6 min-h-[600px]">
           <div className="relative flex-1 border border-zinc-800 rounded-sm bg-black/40 overflow-hidden min-h-[360px]">
-            <ThreeSceneMount cameraPosition={[0, 0, 3.5]}>
+            <ThreeSceneMount camera={{ position: [0, 0, 3.5], fov: 40, near: 0.1, far: 1000 }}>
               <ambientLight intensity={0.35} />
               <pointLight position={[5, 5, 5]} intensity={0.8} />
               <ProteinBlob isLocking={isLocking} />

@@ -2,8 +2,6 @@
 // /products/patient/ — Family-facing briefs, plain language.. Vague-safe.
 // ==============================================================================
 import type { VerticalPageData } from '@/components/audience/VerticalSurface';
-import { Target, Layers, GitBranch, ClipboardCheck, Users, Terminal, Zap, Hammer, Eye, Sparkles } from 'lucide-react';
-
 export const PATIENT_PAGE_DATA: VerticalPageData = {
   eyebrow: 'Products · Patient',
   title: 'Family-facing briefs, plain language.',
@@ -14,7 +12,7 @@ export const PATIENT_PAGE_DATA: VerticalPageData = {
       label: 'For whom',
       eyebrow: 'Chapter 1 · Who this is for',
       headline: 'Patients, families, advocates.',
-      Icon: Users,
+      iconKey: 'users',
       body: [
         'The Patient surface is the plain-language translation layer for CrisPRO briefs. It is built to be read by families and used by advocates — every mechanism, every alignment call, every evidence tier explained without jargon.',
       ],
@@ -24,7 +22,7 @@ export const PATIENT_PAGE_DATA: VerticalPageData = {
       label: 'What it returns',
       eyebrow: 'Chapter 2 · What it returns',
       headline: 'A brief you can share, with a citable evidence chain.',
-      Icon: ClipboardCheck,
+      iconKey: 'clipboard-check',
       body: [
         'For each program, the surface returns a plain-language brief with the mechanism-alignment split named, a comparator against the existing stratification layers, and a link into the public ledger receipt.',
       ],
@@ -40,7 +38,7 @@ export const PATIENT_PAGE_DATA: VerticalPageData = {
       label: 'Proof',
       eyebrow: 'Chapter 3 · Proof',
       headline: 'Public ledger of decoded programs.',
-      Icon: GitBranch,
+      iconKey: 'git-branch',
       body: [
         'Every family-facing brief traces to a public ledger entry. Programs decoded span target-directed antibody-drug conjugates, replication-stress-response inhibitors, and biomarker-driven checkpoint combinations.',
       ],
@@ -51,7 +49,7 @@ export const PATIENT_PAGE_DATA: VerticalPageData = {
       label: 'Engage',
       eyebrow: 'Chapter 4 · How to engage',
       headline: 'Send a case. Receive a brief.',
-      Icon: Sparkles,
+      iconKey: 'sparkles',
       body: [
         'Advocacy and patient engagements are structured to be low-friction. If the ledger already contains the relevant program, CrisPRO returns a brief on a pro-bono basis. Turnaround is typically scoped inside a two-week window.',
       ],

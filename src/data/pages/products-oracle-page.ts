@@ -2,8 +2,6 @@
 // /products/oracle/ — Predictive mechanism-alignment scoring at the Phase-I gate.. Vague-safe.
 // ==============================================================================
 import type { VerticalPageData } from '@/components/audience/VerticalSurface';
-import { Target, Layers, GitBranch, ClipboardCheck, Users, Terminal, Zap, Hammer, Eye, Sparkles } from 'lucide-react';
-
 export const ORACLE_PAGE_DATA: VerticalPageData = {
   eyebrow: 'Products · Oracle',
   title: 'Predictive mechanism-alignment scoring at the Phase-I gate.',
@@ -14,7 +12,7 @@ export const ORACLE_PAGE_DATA: VerticalPageData = {
       label: 'For whom',
       eyebrow: 'Chapter 1 · Who this is for',
       headline: 'Phase-I gate reviewers and asset-advance decisions.',
-      Icon: Eye,
+      iconKey: 'eye',
       body: [
         'Oracle scores a mechanism-alignment hypothesis before capital enters the clinic. Used at the Phase-I gate to decide whether an asset\'s mechanism-alignment hypothesis is defensible enough to advance.',
       ],
@@ -24,7 +22,7 @@ export const ORACLE_PAGE_DATA: VerticalPageData = {
       label: 'What it returns',
       eyebrow: 'Chapter 2 · What it returns',
       headline: 'Pre-Phase-I mechanism-alignment score at defined tier.',
-      Icon: ClipboardCheck,
+      iconKey: 'clipboard-check',
       body: [
         'For a pre-clinical asset, Oracle returns a mechanism-alignment score with tier justification, a named comparator, and a set of open assumptions. Every open assumption is flagged as an OPEN_ASSUMPTION with a suggested test to close it.',
       ],
@@ -40,7 +38,7 @@ export const ORACLE_PAGE_DATA: VerticalPageData = {
       label: 'Proof',
       eyebrow: 'Chapter 3 · Proof',
       headline: 'Public ledger of decoded programs.',
-      Icon: GitBranch,
+      iconKey: 'git-branch',
       body: [
         'Oracle has been used at the pre-Phase-I gate for DNA-damage-response inhibitor programs and replication-stress-response inhibitor programs.',
       ],
@@ -51,7 +49,7 @@ export const ORACLE_PAGE_DATA: VerticalPageData = {
       label: 'Engage',
       eyebrow: 'Chapter 4 · How to engage',
       headline: 'Send a Phase-I gate question.',
-      Icon: Sparkles,
+      iconKey: 'sparkles',
       body: [
         'Oracle engagements are scoped as a gate-tier-scoring exercise inside a Trial Failure Decode or BD Intelligence offering.',
       ],

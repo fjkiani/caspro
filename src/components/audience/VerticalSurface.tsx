@@ -23,13 +23,86 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
   ArrowRight,
+  Book,
   CheckCircle2,
+  ClipboardCheck,
+  ClipboardList,
+  Dna,
   ExternalLink,
+  Eye,
+  GitBranch,
+  GraduationCap,
+  Hammer,
+  Handshake,
+  HeartPulse,
+  Hospital,
+  KeyRound,
+  Layers,
+  Lock,
+  MessagesSquare,
+  Microscope,
+  Search,
+  Shield,
   Sparkles,
+  Target,
+  Terminal,
+  TrendingUp,
+  Trophy,
+  Users,
+  Zap,
   type LucideIcon,
 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
+
+// -----------------------------------------------------------------------------
+// Icon registry — Server Components pass a string key (RSC-serializable);
+// resolution to a LucideIcon component happens client-side. Adding an icon:
+//   1. import the lucide component above
+//   2. register it here with a kebab-case key
+//   3. reference the key from data files (e.g. `iconKey: 'trending-up'`)
+// This closes the w7-era "Functions cannot be passed directly to Client
+// Components" RSC boundary bug.
+// -----------------------------------------------------------------------------
+const VERTICAL_ICON_MAP: Record<string, LucideIcon> = {
+  book: Book,
+  'clipboard-check': ClipboardCheck,
+  'clipboard-list': ClipboardList,
+  dna: Dna,
+  eye: Eye,
+  'git-branch': GitBranch,
+  'graduation-cap': GraduationCap,
+  hammer: Hammer,
+  handshake: Handshake,
+  'heart-pulse': HeartPulse,
+  hospital: Hospital,
+  'key-round': KeyRound,
+  layers: Layers,
+  lock: Lock,
+  'messages-square': MessagesSquare,
+  microscope: Microscope,
+  search: Search,
+  shield: Shield,
+  sparkles: Sparkles,
+  target: Target,
+  terminal: Terminal,
+  'trending-up': TrendingUp,
+  trophy: Trophy,
+  users: Users,
+  zap: Zap,
+};
+
+function resolveIcon(iconKey: string): LucideIcon {
+  const Icon = VERTICAL_ICON_MAP[iconKey];
+  if (!Icon) {
+    // Fall back to Sparkles rather than crashing production.
+    if (typeof console !== 'undefined') {
+      console.warn(`[VerticalSurface] unknown iconKey="${iconKey}" — falling back to sparkles`);
+    }
+    return Sparkles;
+  }
+  return Icon;
+}
 
 // ------------------------------------------------------------------------------
 // Data shape — page-level and section-level
@@ -60,7 +133,7 @@ export interface VerticalSection {
   label: string;                    // short rail label
   eyebrow: string;                  // "Chapter 2 · What we return"
   headline: string;                 // one-line section headline
-  Icon: LucideIcon;
+  iconKey: string;                  // kebab-case key resolved by VERTICAL_ICON_MAP
   body: string[];                   // paragraphs
   bullets?: string[];               // optional bullet list under body
   metrics?: VerticalMetric[];       // 0-3 metric callouts (grid-cols-3)
@@ -232,7 +305,7 @@ export default function VerticalSurface({ data, headerLink }: Props) {
           <div className="max-w-7xl mx-auto w-full h-full grid grid-cols-1 md:grid-cols-[240px_1fr] gap-0">
             <nav className={`border-r ${rail} p-3 flex flex-col gap-1.5 overflow-y-auto`}>
               {data.sections.map((s, i) => {
-                const Icon = s.Icon;
+                const Icon = resolveIcon(s.iconKey);
                 const active = i === activeIdx;
                 const activeStyle = isDarkMode
                   ? 'border-cyan-500/60 bg-cyan-500/10 text-cyan-100'

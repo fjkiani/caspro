@@ -2,8 +2,6 @@
 // /products/forge/ — IST design & prospective gate definition.. Vague-safe.
 // ==============================================================================
 import type { VerticalPageData } from '@/components/audience/VerticalSurface';
-import { Target, Layers, GitBranch, ClipboardCheck, Users, Terminal, Zap, Hammer, Eye, Sparkles } from 'lucide-react';
-
 export const FORGE_PAGE_DATA: VerticalPageData = {
   eyebrow: 'Products · Forge',
   title: 'IST design & prospective gate definition.',
@@ -14,7 +12,7 @@ export const FORGE_PAGE_DATA: VerticalPageData = {
       label: 'For whom',
       eyebrow: 'Chapter 1 · Who this is for',
       headline: 'IST designers and prospective-gate architects.',
-      Icon: Hammer,
+      iconKey: 'hammer',
       body: [
         'The Forge is a design surface — used to define a prospective mechanism-alignment gate for an investigator-sponsored trial before enrollment opens. The output is a defensible enrollment gate, not a post-hoc apology.',
       ],
@@ -24,7 +22,7 @@ export const FORGE_PAGE_DATA: VerticalPageData = {
       label: 'What it returns',
       eyebrow: 'Chapter 2 · What it returns',
       headline: 'A prospective enrollment gate with an evidence chain.',
-      Icon: ClipboardCheck,
+      iconKey: 'clipboard-check',
       body: [
         'For an IST, the Forge returns a scoped enrollment gate that names the mechanism-alignment axis, sets the tier threshold, and links every criterion to a public evidence source.',
       ],
@@ -40,7 +38,7 @@ export const FORGE_PAGE_DATA: VerticalPageData = {
       label: 'Proof',
       eyebrow: 'Chapter 3 · Proof',
       headline: 'Public ledger of decoded programs.',
-      Icon: GitBranch,
+      iconKey: 'git-branch',
       body: [
         'The Forge design surface has been used across DNA-damage-response and replication-stress-response mechanism-alignment gates.',
       ],
@@ -51,7 +49,7 @@ export const FORGE_PAGE_DATA: VerticalPageData = {
       label: 'Engage',
       eyebrow: 'Chapter 4 · How to engage',
       headline: 'Send an IST concept. Receive a gate.',
-      Icon: Sparkles,
+      iconKey: 'sparkles',
       body: [
         'IST engagements start with a concept letter and target population. The Forge returns a scoped gate inside the IST Design Support offering timeline.',
       ],

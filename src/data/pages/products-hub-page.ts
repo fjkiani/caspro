@@ -2,8 +2,6 @@
 // /products/ — Hub tab-list linking to the 7 product surfaces.
 // ==============================================================================
 import type { VerticalPageData } from '@/components/audience/VerticalSurface';
-import { Target, Layers, Users, Terminal, Zap, Hammer, Eye } from 'lucide-react';
-
 export const PRODUCTS_HUB_PAGE_DATA: VerticalPageData = {
   eyebrow: 'Products',
   title: 'One engine, seven decision surfaces.',
@@ -15,7 +13,7 @@ export const PRODUCTS_HUB_PAGE_DATA: VerticalPageData = {
       label: 'Oncology',
       eyebrow: 'Surface 1 · Oncology',
       headline: 'Mechanism-alignment for oncology programs.',
-      Icon: Target,
+      iconKey: 'target',
       body: [
         'The anchor product. Every offering starts here — decode a trial, name the mechanism-alignment split, cross-link to a comparator, and hand back a receipt.',
       ],
@@ -26,7 +24,7 @@ export const PRODUCTS_HUB_PAGE_DATA: VerticalPageData = {
       label: 'R & D',
       eyebrow: 'Surface 2 · R&D',
       headline: 'Pipeline decisions with a mechanism-alignment gate.',
-      Icon: Layers,
+      iconKey: 'layers',
       body: [
         'For pipeline-scale decisions — which asset to advance, which to gate at Phase I, which to reposition. The R&D surface returns a mechanism-alignment score across a portfolio, ranked by evidence tier.',
       ],
@@ -37,7 +35,7 @@ export const PRODUCTS_HUB_PAGE_DATA: VerticalPageData = {
       label: 'Patient',
       eyebrow: 'Surface 3 · Patient',
       headline: 'Family-facing briefs, plain language.',
-      Icon: Users,
+      iconKey: 'users',
       body: [
         'A translation layer for patients and advocates. Same underlying alignment call, delivered as a plain-language brief with a citable evidence chain.',
       ],
@@ -48,7 +46,7 @@ export const PRODUCTS_HUB_PAGE_DATA: VerticalPageData = {
       label: 'Command center',
       eyebrow: 'Surface 4 · Command center',
       headline: 'The BD operator\'s workbench.',
-      Icon: Terminal,
+      iconKey: 'terminal',
       body: [
         'For BD teams running diligence at franchise scope. Multi-asset scoring, comparator overlays, and next-step routing into an offering.',
       ],
@@ -59,7 +57,7 @@ export const PRODUCTS_HUB_PAGE_DATA: VerticalPageData = {
       label: 'Boltz',
       eyebrow: 'Surface 5 · Boltz',
       headline: 'Structure-informed mechanism alignment.',
-      Icon: Zap,
+      iconKey: 'zap',
       body: [
         'A structure-informed reader for mechanism-alignment questions where the target has a well-characterized pocket. Complementary to sequence-based reads.',
       ],
@@ -70,7 +68,7 @@ export const PRODUCTS_HUB_PAGE_DATA: VerticalPageData = {
       label: 'Forge',
       eyebrow: 'Surface 6 · Forge',
       headline: 'IST design & prospective gate definition.',
-      Icon: Hammer,
+      iconKey: 'hammer',
       body: [
         'The Forge is a design surface — used to define a prospective mechanism-alignment gate for an investigator-sponsored trial before enrollment opens.',
       ],
@@ -81,7 +79,7 @@ export const PRODUCTS_HUB_PAGE_DATA: VerticalPageData = {
       label: 'Oracle',
       eyebrow: 'Surface 7 · Oracle',
       headline: 'Predictive mechanism-alignment scoring at Phase I gate.',
-      Icon: Eye,
+      iconKey: 'eye',
       body: [
         'Oracle is the pre-Phase-I gate. It scores a mechanism-alignment hypothesis before capital enters the clinic — the input into the gate-tier-scoring capability.',
       ],

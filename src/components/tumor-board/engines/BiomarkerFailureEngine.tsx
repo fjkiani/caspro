@@ -158,7 +158,7 @@ export default function BiomarkerFailureEngine() {
     <div className={`relative w-full min-h-[720px] font-mono p-8 rounded border overflow-hidden ${isDarkMode ? 'bg-[#020408] text-zinc-400 border-zinc-900' : 'bg-white text-zinc-700 border-zinc-200 shadow-sm'}`}>
       {/* r3f lattice background */}
       <div className="absolute inset-0 opacity-25 pointer-events-none">
-        <ThreeSceneMount cameraPosition={[0, 0, 5]}>
+        <ThreeSceneMount camera={{ position: [0, 0, 5], fov: 40, near: 0.1, far: 1000 }}>
           <ambientLight intensity={0.4} />
           <VulnerabilityLattice />
         </ThreeSceneMount>

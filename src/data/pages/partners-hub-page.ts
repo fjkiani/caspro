@@ -2,8 +2,6 @@
 // /partners/ — hub linking to relationship surfaces. Vague-safe.
 // ==============================================================================
 import type { VerticalPageData } from '@/components/audience/VerticalSurface';
-import { GraduationCap, Shield, Trophy, Handshake } from 'lucide-react';
-
 export const PARTNERS_HUB_PAGE_DATA: VerticalPageData = {
   eyebrow: 'Partners',
   title: 'The relationships underneath the mechanism-alignment layer.',
@@ -15,7 +13,7 @@ export const PARTNERS_HUB_PAGE_DATA: VerticalPageData = {
       label: 'Academic host',
       eyebrow: 'Relationship 1 · Academic host',
       headline: 'A public-university host for the research corpus.',
-      Icon: GraduationCap,
+      iconKey: 'graduation-cap',
       body: [
         'The CrisPRO research corpus is hosted through an academic partnership that anchors the public ledger to a public-university institutional commitment. Academic hosting is not incidental — it is the reason every claim in CrisPRO must trace to a public source.',
       ],
@@ -26,7 +24,7 @@ export const PARTNERS_HUB_PAGE_DATA: VerticalPageData = {
       label: 'Identity',
       eyebrow: 'Relationship 2 · Identity & access',
       headline: 'Sponsor-grade identity for gated engagement surfaces.',
-      Icon: Shield,
+      iconKey: 'shield',
       body: [
         'When a CrisPRO surface needs to gate sensitive engagement material behind sponsor-side identity, we use an enterprise-grade identity provider. Public ledger content stays public; sponsor-side working documents stay gated.',
       ],
@@ -37,7 +35,7 @@ export const PARTNERS_HUB_PAGE_DATA: VerticalPageData = {
       label: 'Society',
       eyebrow: 'Relationship 3 · Professional society',
       headline: 'A professional-society context for the field.',
-      Icon: Trophy,
+      iconKey: 'trophy',
       body: [
         'CrisPRO tracks and cites the professional-society context — annual meetings, position statements, and consensus guidelines — so every mechanism-alignment call sits inside the field\'s scholarly conversation.',
       ],
@@ -48,7 +46,7 @@ export const PARTNERS_HUB_PAGE_DATA: VerticalPageData = {
       label: 'Engage',
       eyebrow: 'Relationship 4 · Talk to us',
       headline: 'New partnerships are scoped through the contact channel.',
-      Icon: Handshake,
+      iconKey: 'handshake',
       body: [
         'If your institution or organization wants to explore a mechanism-alignment partnership — hosting, evidence integration, guideline development, or an educational program — start with the contact channel.',
       ],

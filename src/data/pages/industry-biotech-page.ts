@@ -2,8 +2,6 @@
 // /industry/biotech/ — Biotech & pharma R&D landing. Vague-safe.
 // ==============================================================================
 import type { VerticalPageData } from '@/components/audience/VerticalSurface';
-import { Layers, Target, TrendingUp, ClipboardCheck } from 'lucide-react';
-
 export const INDUSTRY_BIOTECH_PAGE_DATA: VerticalPageData = {
   eyebrow: 'Industry · Biotech & pharma R&D',
   title: 'Stop paying for the wrong patients.',
@@ -15,7 +13,7 @@ export const INDUSTRY_BIOTECH_PAGE_DATA: VerticalPageData = {
       label: 'The problem',
       eyebrow: 'Chapter 1 · The problem',
       headline: 'Unstratified populations burn capital.',
-      Icon: TrendingUp,
+      iconKey: 'trending-up',
       body: [
         'Antibody-drug conjugate programs miss endpoints at a lenient target-expression threshold and hit them at a stricter one. Checkpoint combinations show responder subgroups only after post-hoc analysis. Replication-stress-response inhibitors fail on all-comer populations and succeed on a stratified subset.',
         'Every one of those failures preserves a repositioning window — if the mechanism-alignment split is named before the next-generation asset enters the clinic.',
@@ -26,7 +24,7 @@ export const INDUSTRY_BIOTECH_PAGE_DATA: VerticalPageData = {
       label: 'The wedge',
       eyebrow: 'Chapter 2 · The wedge',
       headline: 'CrisPRO occupies the mechanism-alignment layer.',
-      Icon: Target,
+      iconKey: 'target',
       body: [
         'The market already has strong players in tissue biology, comprehensive genomic profiling, and real-world evidence. None of them answer the mechanism-alignment question. CrisPRO does — and treats those three layers as complementary inputs, not competitors.',
       ],
@@ -43,7 +41,7 @@ export const INDUSTRY_BIOTECH_PAGE_DATA: VerticalPageData = {
       label: 'Offerings',
       eyebrow: 'Chapter 3 · Offerings for biotech',
       headline: 'Five offerings, structured around when you call us.',
-      Icon: Layers,
+      iconKey: 'layers',
       body: [
         'CrisPRO monetizes at the four inflection points where mechanism-alignment analysis materially changes an oncology decision: BD diligence, patient selection, IST design, and IP valuation. Each offering has a defined scope, a defined turnaround, and a defined proof case in the ledger.',
       ],
@@ -59,7 +57,7 @@ export const INDUSTRY_BIOTECH_PAGE_DATA: VerticalPageData = {
       label: 'Proof',
       eyebrow: 'Chapter 4 · Proof',
       headline: 'A public ledger, before we open the sales conversation.',
-      Icon: ClipboardCheck,
+      iconKey: 'clipboard-check',
       body: [
         'CrisPRO does not open with a pitch. It opens with the ledger — every program the engine has decoded, with the mechanism-alignment split named and the receipt open for inspection.',
       ],
