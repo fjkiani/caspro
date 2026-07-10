@@ -13,8 +13,9 @@
 //   3. start prod server      — spawn `next start -p <PORT>` in background
 //   4. wait-for-server        — poll until /tumor-board/ returns 200
 //   5. w8c-governance-qa      — DL-07 runtime + ledger deep-dive links + policy
-//   6. w8-tumor-board-content-qa  — full 22 assertions on the AK L1 bundle
-//   7. shutdown server + cleanup
+//   6. w8-tumor-board-content-qa  — 22 assertions on the AK L1 bundle
+//   7. w8e-landing-qa         — 22 assertions on the audience-router landing
+//   8. shutdown server + cleanup
 //
 // NOTE: `next lint` is intentionally NOT run. The repo has no eslint config
 // yet and `next lint` blocks on an interactive `Strict/Base/Cancel` prompt
@@ -209,6 +210,19 @@ async function main() {
     const ok = r.code === 0;
     const summaryLine = r.stdout.trim().split('\n').slice(-1)[0] || '';
     record('tumor-board-content-qa', ok, summaryLine, r.duration_ms);
+    if (!ok) {
+      process.stderr.write(r.stdout + r.stderr);
+      stopSignals.forEach((f) => f());
+      return finish();
+    }
+  }
+
+  // ---------- 7. landing-page content QA ----------
+  {
+    const r = await runShell('node', ['scripts/w8e-landing-qa.mjs']);
+    const ok = r.code === 0;
+    const summaryLine = r.stdout.trim().split('\n').slice(-1)[0] || '';
+    record('landing-content-qa', ok, summaryLine, r.duration_ms);
     if (!ok) {
       process.stderr.write(r.stdout + r.stderr);
       stopSignals.forEach((f) => f());
