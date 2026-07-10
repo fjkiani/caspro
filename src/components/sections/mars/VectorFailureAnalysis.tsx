@@ -129,7 +129,7 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
             })}
           <button
             type="button"
-            onClick={() => router.push(`/proof/${activeTrialId}/case/`)}
+            onClick={() => router.push(`/ledger/${activeTrialId}/`)}
             className={`flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 rounded border text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all shadow-lg w-full sm:w-auto lg:ml-2 ${
               isDarkMode
                 ? 'border-cyan-500/40 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500 hover:text-black hover:shadow-cyan-500/20'
@@ -319,7 +319,7 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
         </div>
         <button
           type="button"
-          onClick={() => router.push(`/proof/${activeTrialId}/case/`)}
+          onClick={() => router.push(`/ledger/${activeTrialId}/`)}
           className={`flex items-center gap-3 px-8 py-3.5 rounded border-2 text-[11px] font-black uppercase tracking-[0.3em] transition-all shadow-lg group ${
             isDarkMode
               ? 'border-cyan-500 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500 hover:text-black hover:shadow-cyan-500/30'

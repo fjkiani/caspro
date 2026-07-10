@@ -144,12 +144,4 @@ export function trialGateCookieOptions() {
   };
 }
 
-/** Paths that must never be served without a valid gate cookie. */
-export function parseGatedProofSlug(pathname: string): string | null {
-  const match = pathname.match(/^\/proof\/([^/]+)(?:\/case)?\/?$/i);
-  if (!match?.[1]) return null;
-  const slug = match[1].trim().toLowerCase();
-  return isGatedLedgerTrial(slug) ? slug : null;
-}
-
 export { GATED_LEDGER_TRIAL_SLUGS };

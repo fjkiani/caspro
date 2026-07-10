@@ -19,7 +19,7 @@ export interface HeadlineEntry {
     rows: EvidenceRow[];      // Key-value rows
     impact?: string;          // Bottom-line impact statement
     impactValue?: string;     // Impact number
-    proofId?: string;         // trial id for /proof/[trialId] CTA button
+    proofId?: string;         // trial id for /ledger/[trialSlug] CTA button
     proofLabel?: string;      // button label override (defaults to 'View De-Risking Map')
   };
 }

@@ -173,6 +173,52 @@ const nextConfig = {
         destination: '/products/oncology/match-patients-to-therapies/agentic-emr',
         permanent: true,
       },
+      // ------------------------------------------------------------------
+      // Retired routes — hard-deleted 2026-07-10 in the target-lock cleanup.
+      // /proof/* → /ledger/* (trial ledger is the durable UI).
+      // /industry/healthcare/* → /products/oncology/ (closest surviving vertical).
+      // 308 permanent to preserve any deep-linked URLs and inbound SEO.
+      // ------------------------------------------------------------------
+      {
+        source: '/proof',
+        destination: '/ledger/',
+        permanent: true,
+      },
+      {
+        source: '/proof/',
+        destination: '/ledger/',
+        permanent: true,
+      },
+      {
+        source: '/proof/:trialId',
+        destination: '/ledger/:trialId/',
+        permanent: true,
+      },
+      {
+        source: '/proof/:trialId/',
+        destination: '/ledger/:trialId/',
+        permanent: true,
+      },
+      {
+        source: '/proof/:trialId/case',
+        destination: '/ledger/:trialId/',
+        permanent: true,
+      },
+      {
+        source: '/proof/:trialId/case/',
+        destination: '/ledger/:trialId/',
+        permanent: true,
+      },
+      {
+        source: '/industry/healthcare',
+        destination: '/products/oncology/',
+        permanent: true,
+      },
+      {
+        source: '/industry/healthcare/',
+        destination: '/products/oncology/',
+        permanent: true,
+      },
     ];
   },
   webpack: (config) => {

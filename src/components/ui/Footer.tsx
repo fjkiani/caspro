@@ -117,7 +117,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {TRIAL_RECEIPT_NAV.map((trial) => (
                 <li key={trial.id}>
-                  <Link href={`/proof/${trial.id}/case/`} className="hover:text-primary transition-colors text-sm font-medium">
+                  <Link href={`/ledger/${trial.id}/`} className="hover:text-primary transition-colors text-sm font-medium">
                     {trial.label}
                   </Link>
                   <p className="text-xs text-slate-400 mt-1 leading-snug">{trial.desc}</p>

@@ -9,7 +9,7 @@ import { unlockAllTrialGates, unlockTrialGateFromUrl } from '@/data/trial-gate';
 export interface PasscodeModalProps {
   open: boolean;
   onClose: () => void;
-  /** Destination after correct code, e.g. '/proof/ceacam5/case' */
+  /** Destination after correct code, e.g. '/ledger/ceacam5/' */
   proofUrl: string;
   /** Display label shown in the modal header, e.g. 'CEACAM5' */
   targetLabel: string;

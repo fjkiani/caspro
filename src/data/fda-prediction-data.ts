@@ -32,7 +32,20 @@ export interface TwoLayerRow {
 }
 
 // --- 9/9 FDA-Approved Genes (2023-2024) ---
-// Scores from prospective_validation_target_lock_scores.csv (real Evo2+Enformer pipeline output)
+// PROVENANCE (audited 2026-07-10):
+//   Scores below (0.3525–0.3549) come from prospective_validation_target_lock_scores.csv
+//   which is the POC-era output from TargetLockScorer.score_genes().
+//   Governance record identifies this as the "poc_saturation_band": "0.352-0.355",
+//   with "saturation_fix": "step-z-score normalization in TargetLockScorer.score_genes()".
+//   In production these would be rescored with step-z-score normalization; the numbers
+//   below are kept verbatim as a historical archive receipt of the POC output, not as
+//   a current production score. Direction of prediction (all 9 correct APPROVED calls)
+//   is retained; the exact 4th-decimal value is POC-band-saturated. Do NOT quote these
+//   as "current production Evo2+Enformer scores" in outbound decks.
+//   Source refs: transcript index 15439 ("What Was Fixed vs the POC" table,
+//                POC Issue: Target-Lock saturation (0.352–0.355 band); Fix: step-z-score),
+//                transcript index 15602 (governance calibration block),
+//                transcript index 15443 ("The AUROC is synthetic. The path to real numbers is clear.")
 export const FDA_RETROACTIVE: FdaRetroEntry[] = [
   { gene: 'RET',    drug: 'Selpercatinib',           score: 0.3526, layer2: 'Biomarker Gated', outcome: 'APPROVED' },
   { gene: 'IDH1',   drug: 'Vorasidenib',             score: 0.3525, layer2: 'Biomarker Gated', outcome: 'APPROVED' },
@@ -137,6 +150,35 @@ export const FDA_ARTIFACTS: FdaArtifact[] = [
     description: 'No hardcoding. Imports TAG_VECTORS, cosine_sim, score_trials directly from production engine.',
   },
 ];
+
+// --- POC saturation caveat (audited 2026-07-10) ---
+// Surfaced verbatim as a labelled banner on the archive UI. Do not remove without
+// governance sign-off; do not paraphrase without checking transcript indices below.
+export const POC_SATURATION_CAVEAT = {
+  headline: 'POC-era scores — archived, not current production output.',
+  band: '0.352-0.355',
+  fixNote: 'Step-z-score normalization was added to TargetLockScorer.score_genes() to correct the saturation band; the numbers on this page pre-date that fix and are retained as a historical archive receipt.',
+  directionClaim: 'All 9 retroactive APPROVED calls remain directionally correct; the 4th-decimal delta between calls should not be quoted as a production ranking.',
+  auroc: {
+    poc: 0.976,
+    pocSd: 0.035,
+    productionStatus: 'Synthetic in POC period. Path to real numbers is documented but not yet run at time of archive snapshot.',
+  },
+  transcriptRefs: ['index 15439 (What Was Fixed vs the POC)', 'index 15602 (governance calibration block)', 'index 15443 (AUROC is synthetic)'],
+};
+
+// --- Cascade version note (audited 2026-07-10) ---
+// The archive page originally shipped with an 8-step metastatic cascade
+// (TWIST1/MMP2/BCL2/ITGB1/ICAM1/CXCR4/MET/VEGFA). The canonical BrM cascade is a
+// 7-step, 29-gene ordering in brain-met-cascade-data.ts. Both are legitimate AF3
+// substrate but the archive's 8-step ordering is superseded; render this file's
+// content as the archive/historical layer, not as the current cascade of record.
+export const ARCHIVE_CASCADE_NOTE = {
+  archiveVersion: '8-step (2026-02 snapshot)',
+  currentVersion: '7-step / 29-gene canonical BrM cascade',
+  authoritativeSource: 'src/data/brain-met-cascade-data.ts',
+  note: 'Archive kept intact for historical audit trail. Current work should reference the canonical file.',
+};
 
 // --- Summary ---
 export const FDA_STATS = {

@@ -22,9 +22,11 @@ import {
   Database,
   Sigma,
   AlertTriangle,
+  Boxes,
 } from 'lucide-react';
 
 import { useTheme } from '@/context/ThemeContext';
+import StructureGallerySection from './sections/StructureGallerySection';
 
 import {
   BRM_STEPS,
@@ -52,11 +54,13 @@ type TabKey =
   | 'brm_angiogenesis'
   | 'variants'
   | 'scoring'
+  | 'structures'
   | 'disclosure';
 
-const EXTRA_TABS: { key: 'variants' | 'scoring' | 'disclosure'; label: string; icon: any }[] = [
+const EXTRA_TABS: { key: 'variants' | 'scoring' | 'structures' | 'disclosure'; label: string; icon: any }[] = [
   { key: 'variants', label: 'Live variants', icon: Database },
   { key: 'scoring', label: 'Scoring · AUROC', icon: Sigma },
+  { key: 'structures', label: 'Structures · 29 targets', icon: Boxes },
   { key: 'disclosure', label: 'Retracted · gaps', icon: AlertTriangle },
 ];
 
@@ -559,7 +563,9 @@ export default function TargetLockBrainMetTabSurface() {
                   ? '12 variants scored on Modal A100. delta_ll from evo2_1b_base conditional_ll endpoint.'
                   : activeExtra.key === 'scoring'
                     ? 'WEIGHTS_BRAIN_MET boosts regulatory to 0.24. Enformer excluded (AUROC 0.4111 alone).'
-                    : 'What we retracted, what we still need to fix. Every headline number and every disclosed gap.'}
+                    : activeExtra.key === 'structures'
+                      ? '28 AlphaFold DB predictions + 1 PDB fallback (KMT2C SET domain via 7W6L). Click any row to inspect.'
+                      : 'What we retracted, what we still need to fix. Every headline number and every disclosed gap.'}
               </>
             ) : null}
           </div>
@@ -591,6 +597,8 @@ export default function TargetLockBrainMetTabSurface() {
               <VariantsPanel isDarkMode={isDarkMode} />
             ) : active === 'scoring' ? (
               <ScoringPanel isDarkMode={isDarkMode} />
+            ) : active === 'structures' ? (
+              <StructureGallerySection isDarkMode={isDarkMode} />
             ) : active === 'disclosure' ? (
               <DisclosurePanel isDarkMode={isDarkMode} />
             ) : null}

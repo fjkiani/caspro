@@ -127,7 +127,7 @@ function buildEntry(slug: string, file: TrialCaseFile): TrialLedgerEntry {
     receiptId: slug.toUpperCase(),
     preview,
     route: ledgerSlugPath(slug),
-    proofRoute: `/proof/${slug}/`,
+    proofRoute: `/ledger/${slug}/`,
     trialId: file.trialId,
     phase: file.phase,
     cancer: file.cancer,

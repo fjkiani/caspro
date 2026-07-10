@@ -24,6 +24,9 @@ import {
   MIN_ELIGIBILITY_THRESHOLD,
   MIN_MECHANISM_FIT_THRESHOLD,
 } from '@/data/mechanism-alignment-data';
+import PARPFalsificationArc from '@/components/tumor-board/ak/PARPFalsificationArc';
+import RecommendedDrugsPanel from '@/components/tumor-board/ak/RecommendedDrugsPanel';
+import SLMatrixTable from '@/components/tumor-board/ak/SLMatrixTable';
 
 // Marker required by caspro-lint/no-scroll linter.
 export const SurfaceTabs = ({ children }: { children: React.ReactNode }) => <>{children}</>;
@@ -56,6 +59,7 @@ export default function MechanismAlignmentTabSurface() {
   const tabs = useMemo(
     () => [
       ...DIVERGENCE_CASES.map((c) => ({ key: c.slug, label: c.id, sub: c.conflict.label })),
+      { key: 'parp-falsification', label: 'REAL', sub: 'PARP arc · MBD4 field case' },
       { key: 'governance', label: 'GOV', sub: 'PATH A · DL-07' },
     ],
     [],
@@ -134,6 +138,8 @@ export default function MechanismAlignmentTabSurface() {
         <section className="relative z-10 flex-1 min-h-0 px-4 sm:px-6 pb-4 pt-3 overflow-hidden">
           {active === 'governance' ? (
             <GovernanceTab isDarkMode={isDarkMode} />
+          ) : active === 'parp-falsification' ? (
+            <PARPFalsificationTab />
           ) : activeCase ? (
             <CaseTab caseData={activeCase} isDarkMode={isDarkMode} />
           ) : null}
@@ -256,6 +262,36 @@ function GovernanceTab({ isDarkMode }: { isDarkMode: boolean }) {
         <p className={`text-[11px] leading-snug ${textMain}`}>
           DDR axis alignment is described qualitatively across every L2 surface. The specific numeric figure cited historically is quarantined per the DL-07 governance rule until it is reproduced end-to-end. No output on this surface pairs the DDR label with that number.
         </p>
+      </div>
+    </div>
+  );
+}
+
+// ------------------------------------------------------------------------------
+// PARP falsification tab — real MBD4 manuscript field case, dark-only shell.
+// Reuses the same three components rendered on /tumor-board and /tumor-board-scroll,
+// so this tab is guaranteed to stay in sync with the AK bundle substrate.
+// ------------------------------------------------------------------------------
+
+function PARPFalsificationTab() {
+  return (
+    <div className="h-full min-h-0 overflow-y-auto rounded border border-zinc-800 bg-[#020408] text-zinc-100">
+      <div className="px-4 sm:px-6 pt-4 pb-2">
+        <p className="text-[10px] font-black uppercase tracking-[0.4em] text-fuchsia-300">
+          Real divergence · MBD4 manuscript field case
+        </p>
+        <p className="mt-1 text-xs text-zinc-400 max-w-3xl leading-snug">
+          Field validation of the illustrative ATRi-cold-TME case (DIV-02). Patient AK carries an MBD4 frameshift
+          (MSS CRC). Prod recommended a PARP inhibitor. Manuscript already falsifies that axis
+          — PARP1 expression p=0.605 (n=19 LOF vs 1,498 non-LOF); pan-cancer PARP1↔PARPi correlation
+          ρ=−0.416, p=1.36×10⁻²¹. ATRi (ceralasertib) is the pivot: Δ LN_IC50=−0.73, p=0.021, d=−0.50
+          (n=14 True-LOF vs 942 WT, GDSC2). No DDR numeric figure appears here — DL-07 quarantine holds.
+        </p>
+      </div>
+      <PARPFalsificationArc />
+      <div className="mx-auto w-full max-w-[1400px] px-8 pb-8 grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+        <RecommendedDrugsPanel />
+        <SLMatrixTable />
       </div>
     </div>
   );

@@ -27,6 +27,9 @@ import {
   MIN_ELIGIBILITY_THRESHOLD,
   MIN_MECHANISM_FIT_THRESHOLD,
 } from '@/data/mechanism-alignment-data';
+import PARPFalsificationArc from '@/components/tumor-board/ak/PARPFalsificationArc';
+import RecommendedDrugsPanel from '@/components/tumor-board/ak/RecommendedDrugsPanel';
+import SLMatrixTable from '@/components/tumor-board/ak/SLMatrixTable';
 
 // ------------------------------------------------------------------------------
 // Local helpers — deterministic client-side math for the display.
@@ -243,6 +246,51 @@ export default function MechanismAlignmentScrollSurface() {
           </section>
         );
       })}
+
+      {/* ============================================================
+          REAL CASE — PARP falsification arc (MBD4-LOF patient AK).
+          This is the field validation of the illustrative DIV-02
+          ATRi-cold-TME case above: real n, real p-values, real ATR
+          pivot. Anchored to /audit/evo2-e2e/ and the MBD4 manuscript.
+          Not illustrative — every number here has a receipt.
+      ============================================================ */}
+      <section className="mt-12 border-t border-fuchsia-500/20 pt-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-4">
+          <p className={`text-[10px] font-black uppercase tracking-[0.4em] ${accent}`}>
+            Real divergence · MBD4 manuscript field case
+          </p>
+          <h2 className={`mt-1 text-lg sm:text-xl font-black uppercase tracking-tight ${textMain}`}>
+            The PARP arc — where the illustrative ATRi case is a real patient
+          </h2>
+          <p className={`mt-2 max-w-3xl text-sm ${textMuted}`}>
+            The three cases above use synthetic vectors to teach the math. Below is a real receipt: patient AK
+            (MBD4 frameshift, MSS CRC) whose prod recommendation was a PARP inhibitor. The manuscript already
+            falsified that mechanism — PARP1 expression is not elevated in MBD4-LOF (p=0.605, n=19 LOF vs 1,498 non-LOF),
+            and pan-cancer PARP1↔PARPi correlation is <em>negative</em> (Spearman ρ=−0.416, p=1.36×10⁻²¹, n=481).
+            ATRi (ceralasertib) is the pivoted-to axis — Δ LN_IC50=−0.73, p=0.021, Cohen’s d=−0.50, n=14 True-LOF vs 942 WT (GDSC2).
+          </p>
+        </div>
+
+        {/* Dark canvas for AK components — they render dark-only, matching the tumor-board surface tone. */}
+        <div className="bg-[#020408] text-zinc-100 border-y border-zinc-800">
+          <PARPFalsificationArc />
+          <div className="mx-auto w-full max-w-[1400px] px-8 pb-12 grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+            <RecommendedDrugsPanel />
+            <SLMatrixTable />
+          </div>
+        </div>
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
+          <div className={`rounded border p-3 ${panel}`}>
+            <p className={`text-[10px] italic leading-snug ${textMuted}`}>
+              <span className={`not-italic font-black uppercase mr-1 ${accent}`}>Receipts ·</span>
+              AK L1 bundle v2.0 (patientId AK, generated 2026-02-12) · manuscript figures anchored under
+              /audit/evo2-e2e/ · manuscript_claim_type=&quot;falsified_mechanism&quot; on the parp_inhibitors row (PR#11).
+              No DDR numeric figure appears on this surface (DL-07 quarantine holds).
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Cross-links footer */}
       <section className={`max-w-6xl mx-auto px-4 sm:px-6 py-8`}>

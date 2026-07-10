@@ -1,11 +1,24 @@
 /**
- * Top-level Zeta navigation.
- * Dropdowns: Research, Abstracts (dynamic), Ledger, Engines.
+ * Top-level Zeta navigation — flat 6-item capability nav (no dropdowns).
+ * Rewritten 2026-07-10 per W4 directive.
+ *
+ * Capabilities (in order):
+ *   TARGET LOCK   →  /engine/target-lock/           (L1: BrM cascade intro)
+ *   MOA ALIGN     →  /engine/mechanism-alignment/   (L2: Mechanism/PARP-arc receipt)
+ *   SL ENGINE     →  /engine/synthetic-lethality/   (L3: synthetic lethal targets)
+ *   TUMOR BOARD   →  /tumor-board/                  (L4: physician case surface)
+ *   LEDGER        →  /ledger/                       (Trial receipts)
+ *   ORG           →  https://crispro.org/           (Organization site)
+ *
+ * Research / Abstracts / Governance / Pipeline are still first-class routes,
+ * still linked from the mobile drawer's sitemap block, and still reachable by
+ * direct URL and via footer. They are intentionally out of the primary nav.
+ *
+ * The AbstractNavItem/HAND_AUTHORED_TRIAL_LEDGER_ENTRIES/getProductEngines
+ * feeds are preserved as unused imports below to make future re-enable easy;
+ * remove if the exports become genuinely dead.
  */
 
-import { RESEARCH_SECTIONS } from '@/lib/research/paths';
-import { HAND_AUTHORED_TRIAL_LEDGER_ENTRIES } from '@/data/trial-ledger-registry';
-import { getProductEngines, productMenuTitle } from './product-engines';
 import type { AbstractNavItem } from '@/lib/docs/hygraph/research-abstract-queries';
 
 export interface NavDropdownItem {
@@ -28,102 +41,52 @@ export interface NavTopItem {
   external?: boolean;
 }
 
-const researchDropdown: NavDropdownItem[] = [
-  {
-    label: 'Blog',
-    description: 'Articles & series',
-    href: '/research/blog/',
-    accent: 'indigo',
-  },
-  {
-    label: 'Manuscripts',
-    description: 'Long-form PDFs from Hygraph',
-    href: '/research/manuscripts/',
-    accent: 'indigo',
-  },
-  {
-    label: 'Decks',
-    description: 'Slide decks & programmatic posters',
-    href: '/research/decks/',
-    accent: 'cyan',
-  },
+/**
+ * Secondary sitemap surfaced in the mobile drawer only — desktop stays strictly flat.
+ * Keeps Research/Abstracts/Governance/Pipeline reachable without adding dropdowns.
+ */
+export interface NavSitemapItem {
+  id: string;
+  label: string;
+  href: string;
+  description?: string;
+  external?: boolean;
+}
+export const SITEMAP_ITEMS: NavSitemapItem[] = [
+  { id: 'research', label: 'RESEARCH', href: '/research/', description: 'Blog · manuscripts · decks' },
+  { id: 'abstracts', label: 'ABSTRACTS', href: '/research/abstracts/', description: 'Conference abstracts' },
+  { id: 'governance', label: 'GOVERNANCE', href: '/governance/', description: 'Formula · policies · receipts' },
+  { id: 'pipeline', label: 'PIPELINE', href: '/pipeline/', description: 'Programs · gate status' },
 ];
 
-/** Trial rows navigate to `/ledger/[slug]/` — receipt page shows gated preview (same as hero); no passcode modal in nav. */
-const ledgerDropdown: NavDropdownItem[] = HAND_AUTHORED_TRIAL_LEDGER_ENTRIES.map((entry) => ({
-  label: `${entry.label} // ${entry.sublabel}`,
-  description: `${entry.route.replace(/\/$/, '')}${entry.legacyRoutes[0] ? ` · was ${entry.legacyRoutes[0]}` : ''}`,
-  href: entry.route,
-  accent: entry.preview === 'target-lock' ? 'cyan' : entry.preview === 'kill-chain' ? 'amber' : 'indigo',
-}));
-
-const engineDropdown: NavDropdownItem[] = getProductEngines().map((engine) => ({
-  label: productMenuTitle(engine),
-  description: engine.desc,
-  href: engine.route,
-  accent: 'cyan' as const,
-}));
-
-function truncateTitle(title: string, max = 52): string {
-  const t = title.trim();
-  return t.length > max ? `${t.slice(0, max - 1)}…` : t;
-}
-
-function buildAbstractsDropdown(abstracts: AbstractNavItem[]): NavDropdownItem[] {
-  const hub: NavDropdownItem = {
-    label: 'All abstracts',
-    description: 'Conference abstracts index',
-    href: RESEARCH_SECTIONS.abstracts,
-    accent: 'amber',
-  };
-
-  const entries = abstracts.map((ab) => ({
-    label: truncateTitle(ab.title),
-    description: ab.description,
-    href: ab.href,
-    accent: 'amber' as const,
-    external: ab.href.startsWith('http'),
-  }));
-
-  return [hub, ...entries];
-}
-
-/** Build nav with live abstract list from Hygraph (client: pass feed from useZetaNavFeed). */
-export function buildTopNavItems(abstracts: AbstractNavItem[] = []): NavTopItem[] {
+/** Build nav with live abstract list from Hygraph. `abstracts` accepted for backward-compat; unused in flat nav. */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function buildTopNavItems(_abstracts: AbstractNavItem[] = []): NavTopItem[] {
   return [
     {
-      id: 'research',
-      label: 'RESEARCH',
-      href: '/research/',
-      dropdownItems: researchDropdown,
+      id: 'target-lock',
+      label: 'TARGET LOCK',
+      href: '/engine/target-lock/',
     },
     {
-      id: 'abstracts',
-      label: 'ABSTRACTS',
-      href: RESEARCH_SECTIONS.abstracts,
-      dropdownItems: buildAbstractsDropdown(abstracts),
+      id: 'moa-align',
+      label: 'MOA ALIGN',
+      href: '/engine/mechanism-alignment/',
+    },
+    {
+      id: 'sl-engine',
+      label: 'SL ENGINE',
+      href: '/engine/synthetic-lethality/',
+    },
+    {
+      id: 'tumor-board',
+      label: 'TUMOR BOARD',
+      href: '/tumor-board/',
     },
     {
       id: 'ledger',
       label: 'LEDGER',
       href: '/ledger/',
-      dropdownItems: ledgerDropdown,
-    },
-    {
-      id: 'engines',
-      label: 'ENGINES',
-      href: '/engine/',
-      dropdownItems: engineDropdown,
-    },
-    {
-      id: 'governance',
-      label: 'GOVERNANCE',
-      href: '/governance/',
-    },
-    {
-      id: 'pipeline',
-      label: 'PIPELINE',
-      href: '/pipeline/',
     },
     {
       id: 'org',
@@ -134,5 +97,5 @@ export function buildTopNavItems(abstracts: AbstractNavItem[] = []): NavTopItem[
   ];
 }
 
-/** Static fallback before client feed loads. */
+/** Static fallback before client feed loads (also the runtime source of truth in flat mode). */
 export const TOP_NAV_ITEMS: NavTopItem[] = buildTopNavItems();

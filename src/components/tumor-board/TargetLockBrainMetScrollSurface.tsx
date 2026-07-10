@@ -27,6 +27,7 @@ import {
 
 import { useTheme } from '@/context/ThemeContext';
 import DNAHero from './shared/DNAHero';
+import StructureGallerySection from './sections/StructureGallerySection';
 
 import {
   BRM_STEPS,
@@ -915,6 +916,7 @@ export default function TargetLockBrainMetScrollSurface() {
       ))}
 
       <VariantTableSection isDarkMode={isDarkMode} />
+      <StructureGallerySection isDarkMode={isDarkMode} />
       <FormulaAurocSection isDarkMode={isDarkMode} />
       <DisclosureSection isDarkMode={isDarkMode} />
       <DatasetSection isDarkMode={isDarkMode} />
