@@ -7,6 +7,7 @@ import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 // import FloatingToggleButton from "@/components/ui/FloatingToggleButton";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { PersonaProvider } from "@/context/PersonaContext";
 import { AccessibilityProvider } from "@/context/AccessibilityContext";
 import { JsonLd, organizationSchema } from "@/components/SEO/JsonLd";
 import NavigationLoader from "@/components/ui/NavigationLoader";
@@ -112,13 +113,15 @@ export default function RootLayout({
       <body className={`${inter.className} flex flex-col min-h-screen bg-background`}>
         <ThemeProvider>
           <AccessibilityProvider>
-            <NavigationLoader />
-            {/* <FloatingToggleButton href="/platform">
-              Research Use Only
-            </FloatingToggleButton> */}
-            <div className="flex-grow flex flex-col min-h-0">
-              {children}
-            </div>
+            <PersonaProvider>
+              <NavigationLoader />
+              {/* <FloatingToggleButton href="/platform">
+                Research Use Only
+              </FloatingToggleButton> */}
+              <div className="flex-grow flex flex-col min-h-0">
+                {children}
+              </div>
+            </PersonaProvider>
           </AccessibilityProvider>
         </ThemeProvider>
       </body>
