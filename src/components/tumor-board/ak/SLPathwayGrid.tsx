@@ -1,26 +1,22 @@
 'use client';
 
-import {
-  AK_BROKEN_PATHWAYS,
-  AK_ESSENTIAL_PATHWAYS,
-  AK_DOUBLE_HIT,
-  AK_SL_PROVENANCE,
-} from '@/data/tumor-board/ak-l1-bundle';
-
+import { usePatient } from '@/context/PatientContext';
 /**
  * SL pathway grid — 2 columns of substrate:
  *  left  = broken pathways (BER, CHECKPOINT, UNKNOWN) with disruption scores
  *  right = essential backups (ATR, WEE1, HR, PARP) with lineage grounding
  */
 export default function SLPathwayGrid() {
+  const patient = usePatient();
+
   return (
     <section className="mx-auto w-full max-w-[1400px] px-8 py-10">
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
         <div>
           <h2 className="text-lg font-semibold text-white">SL pathway map</h2>
           <p className="mt-1 text-xs text-white/50">
-            Detection <span className="text-emerald-300">DETECTED</span> · {AK_DOUBLE_HIT.description} · method{' '}
-            <span className="font-mono text-white/70">{AK_SL_PROVENANCE.detectionMethod}</span>
+            Detection <span className="text-emerald-300">DETECTED</span> · {patient.doubleHit.description} · method{' '}
+            <span className="font-mono text-white/70">{patient.slProvenance.detectionMethod}</span>
           </p>
         </div>
         <span className="font-mono text-[10px] text-white/30">
@@ -33,7 +29,7 @@ export default function SLPathwayGrid() {
           title="Broken pathways"
           subtitle="Double-hit + secondary damage"
           tone="danger"
-          rows={AK_BROKEN_PATHWAYS.map((p) => ({
+          rows={patient.brokenPathways.map((p) => ({
             id: p.pathwayId,
             head: p.pathwayId,
             tag: p.status,
@@ -45,7 +41,7 @@ export default function SLPathwayGrid() {
           title="Essential backup dependencies"
           subtitle="Where the tumor must lean when BER + checkpoint fail"
           tone="opportunity"
-          rows={AK_ESSENTIAL_PATHWAYS.map((p) => ({
+          rows={patient.essentialPathways.map((p) => ({
             id: p.pathwayId,
             head: p.pathwayId,
             tag: `disruption ${p.disruptionScore.toFixed(2)}`,
