@@ -152,43 +152,70 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
         )}
       </div>
 
-      {!showGate && entry.preview !== 'vector-map' && (
-        <div className="relative z-10 px-3 sm:px-8 lg:px-12 pb-10 sm:pb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <p
-            className={`hidden sm:block text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] ${
-              isDarkMode ? 'text-zinc-600' : 'text-slate-400'
-            }`}
-          >
-            DE-RISKING RECEIPT: 2026_03_24_V2 // LOCKED FOR AUDIT
-          </p>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <a
-              href={entry.proofRoute}
-              className={`text-[10px] font-black uppercase tracking-widest ${
-                isDarkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-indigo-600 hover:text-indigo-800'
+      {!showGate && (() => {
+        // w8c: engine deep-dive links must be present on every unlocked trial
+        // ledger receipt. Primary link is preview-appropriate; the other two
+        // engines are always available as cross-links so the receipt page is a
+        // real gateway into the L2 engine surfaces.
+        const ENGINES = {
+          moa:  { href: '/engine/mechanism-alignment/', label: 'Mechanism alignment' },
+          sl:   { href: '/engine/synthetic-lethality/scroll', label: 'Synthetic lethality' },
+          tl:   { href: '/engine/target-lock/scroll',         label: 'Target lock' },
+        } as const;
+        // preview → primary engine mapping (see PREVIEW_BY_SLUG in trial-ledger-registry)
+        const primaryKey =
+          entry.preview === 'moa-align'    ? 'moa' :
+          entry.preview === 'kill-chain'   ? 'sl'  :
+          entry.preview === 'target-lock'  ? 'tl'  :
+          /* vector-map (berzosertib/adavosertib) */ 'moa';
+        const primary = ENGINES[primaryKey];
+        const secondaries = (Object.keys(ENGINES) as Array<keyof typeof ENGINES>)
+          .filter(k => k !== primaryKey)
+          .map(k => ENGINES[k]);
+        return (
+          <div className="relative z-10 px-3 sm:px-8 lg:px-12 pb-10 sm:pb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <p
+              className={`hidden sm:block text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] ${
+                isDarkMode ? 'text-zinc-600' : 'text-slate-400'
               }`}
             >
-              View mechanism-alignment map →
-            </a>
-            <a
-              href="/engine/target-lock/scroll"
-              className={`text-[10px] font-black uppercase tracking-widest ${
-                isDarkMode ? 'text-zinc-400 hover:text-cyan-300' : 'text-slate-500 hover:text-indigo-800'
-              }`}
-            >
-              Target-lock (brain-met) →
-            </a>
-            <a
-              href="/engine/synthetic-lethality/scroll"
-              className={`text-[10px] font-black uppercase tracking-widest ${
-                isDarkMode ? 'text-zinc-400 hover:text-cyan-300' : 'text-slate-500 hover:text-indigo-800'
-              }`}
-            >
-              Synthetic-lethality (MBD4) →
-            </a>
+              DE-RISKING RECEIPT: {entry.receiptId} // LOCKED FOR AUDIT
+            </p>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+              <a
+                href={primary.href}
+                data-engine-link="primary"
+                className={`text-[10px] font-black uppercase tracking-widest ${
+                  isDarkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-indigo-600 hover:text-indigo-800'
+                }`}
+              >
+                Deep-dive: {primary.label} engine →
+              </a>
+              {secondaries.map((eng) => (
+                <a
+                  key={eng.href}
+                  href={eng.href}
+                  data-engine-link="secondary"
+                  className={`text-[10px] font-black uppercase tracking-widest ${
+                    isDarkMode ? 'text-zinc-400 hover:text-cyan-300' : 'text-slate-500 hover:text-indigo-800'
+                  }`}
+                >
+                  {eng.label} →
+                </a>
+              ))}
+              <a
+                href={entry.proofRoute}
+                data-engine-link="proof"
+                className={`text-[10px] font-black uppercase tracking-widest ${
+                  isDarkMode ? 'text-zinc-400 hover:text-cyan-300' : 'text-slate-500 hover:text-indigo-800'
+                }`}
+              >
+                Full 8D de-risking map →
+              </a>
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       <PasscodeModal
         open={modalOpen}
