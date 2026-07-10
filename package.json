@@ -9,7 +9,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "governance-lint": "node scripts/caspro-lint.mjs",
+    "validate": "node scripts/w8d-validate.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
