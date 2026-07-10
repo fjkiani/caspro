@@ -28,6 +28,7 @@ import {
 import { useTheme } from '@/context/ThemeContext';
 import DNAHero from './shared/DNAHero';
 import StructureGallerySection from './sections/StructureGallerySection';
+import PersonaHero from '@/components/shared/PersonaHero';
 
 import {
   BRM_STEPS,
@@ -775,6 +776,7 @@ export default function TargetLockBrainMetScrollSurface() {
         isDarkMode ? 'bg-[#020408] text-zinc-400' : 'bg-slate-50 text-slate-600'
       } font-mono`}
     >
+      <div className="mx-auto max-w-[1400px] px-6 pt-6"><PersonaHero pageId="target-lock-brain-met" /></div>
       {/* fixed nav bar */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-md ${

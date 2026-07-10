@@ -28,6 +28,7 @@
 
 import Link from 'next/link';
 import { ChevronRight, Beaker, Layers, Microscope, ShieldCheck, XCircle, GitMerge, Cog, ListTree, FileCheck, AlertOctagon } from 'lucide-react';
+import PersonaHero from '@/components/shared/PersonaHero';
 
 import { useTheme } from '@/context/ThemeContext';
 import DNAHero from './shared/DNAHero';
@@ -164,6 +165,9 @@ export default function SyntheticLethalityScrollSurface() {
   const { isDarkMode } = useTheme();
   return (
     <div className={`min-h-screen font-mono ${isDarkMode ? 'bg-[#020408] text-zinc-400' : 'bg-white text-zinc-700'}`}>
+      <div className="mx-auto max-w-[1400px] px-6 pt-6">
+        <PersonaHero pageId="synthetic-lethality-mbd4" />
+      </div>
       {/* Nav */}
       <header
         className={`border-b backdrop-blur-sm sticky top-0 z-40 ${

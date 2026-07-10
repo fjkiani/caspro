@@ -1,11 +1,12 @@
-import PipelineIndexClient from '@/components/pipeline/PipelineIndexClient';
+import type { Metadata } from 'next';
+import PipelineMasterSurface from '@/components/pipeline/PipelineMasterSurface';
 
-export const metadata = {
-  title: 'Offerings | CrisPRO.ai',
+export const metadata: Metadata = {
+  title: 'Pipeline — CrisPRO',
   description:
-    'Five CrisPRO offerings — Trial Failure Decode, Patient Selection Package, IST Design Support, BD Intelligence Package, and IP Valuation.',
+    'Seven programs · 32+ decoded trials · IP estate · active engagements. Sourced from the master pipeline JSON (external-safe unless flagged internal_only).',
 };
 
 export default function PipelinePage() {
-  return <PipelineIndexClient />;
+  return <PipelineMasterSurface />;
 }

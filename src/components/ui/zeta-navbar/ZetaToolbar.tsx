@@ -1,18 +1,43 @@
 'use client';
 
-import type { MouseEvent as ReactMouseEvent } from 'react';
-import { Activity, Play, Settings, User, Eye, EyeOff, Menu, X } from 'lucide-react';
-import { ThemeToggle } from '@/components/ThemeToggle';
+import { Menu, X, Type, Loader2, User2, HeartPulse, Building2 } from 'lucide-react';
+import { usePersona, PERSONA_LABELS, type Persona } from '@/context/PersonaContext';
 
-type ZetaToolbarProps = {
+interface Props {
   isDarkMode: boolean;
   mobileMenuOpen: boolean;
-  toggleMobileMenu: (e?: ReactMouseEvent<HTMLButtonElement>) => void;
+  toggleMobileMenu: () => void;
   isLargeText: boolean;
   toggleLargeText: () => void;
   isProcessing: boolean;
   onCtaClick: () => void;
+}
+
+const ICON: Record<Persona, typeof User2> = {
+  oncologist: User2,
+  patient: HeartPulse,
+  pharma: Building2,
 };
+
+function PersonaPill({ p, active, isDarkMode, onClick }: { p: Persona; active: boolean; isDarkMode: boolean; onClick: () => void }) {
+  const Icon = ICON[p];
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      title={`View as ${PERSONA_LABELS[p]}`}
+      className={
+        `inline-flex items-center gap-1.5 px-2 py-1 text-[10px] uppercase tracking-widest transition-colors ` +
+        (active
+          ? (isDarkMode ? 'bg-cyan-500/20 text-cyan-200 border border-cyan-400/50' : 'bg-cyan-100 text-cyan-800 border border-cyan-400')
+          : (isDarkMode ? 'text-white/50 hover:text-white/80 border border-transparent' : 'text-zinc-500 hover:text-zinc-800 border border-transparent'))
+      }
+    >
+      <Icon className="h-3 w-3" aria-hidden />
+      <span className="hidden md:inline">{PERSONA_LABELS[p]}</span>
+    </button>
+  );
+}
 
 export function ZetaToolbar({
   isDarkMode,
@@ -22,77 +47,51 @@ export function ZetaToolbar({
   toggleLargeText,
   isProcessing,
   onCtaClick,
-}: ZetaToolbarProps) {
+}: Props) {
+  const { persona, setPersona } = usePersona();
+
   return (
-    <div className="flex items-center gap-2 sm:gap-4 shrink-0">
-      <button
-        type="button"
-        aria-expanded={mobileMenuOpen}
-        aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-        onClick={toggleMobileMenu}
-        className={`lg:hidden p-2 rounded-sm border transition-colors ${
-          isDarkMode ? 'border-zinc-700 text-zinc-300 hover:bg-zinc-900' : 'border-slate-200 text-slate-700 hover:bg-slate-50'
-        }`}
+    <div className="flex items-center gap-2">
+      {/* Persona switcher */}
+      <div
+        role="group"
+        aria-label="Persona view"
+        className={`hidden sm:inline-flex items-center gap-1 rounded border px-1 py-0.5 ${isDarkMode ? 'border-white/10 bg-white/[0.03]' : 'border-black/10 bg-black/[0.02]'}`}
       >
-        {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-      </button>
+        <PersonaPill p="oncologist" active={persona === 'oncologist'} isDarkMode={isDarkMode} onClick={() => setPersona('oncologist')} />
+        <PersonaPill p="patient"    active={persona === 'patient'}    isDarkMode={isDarkMode} onClick={() => setPersona('patient')} />
+        <PersonaPill p="pharma"     active={persona === 'pharma'}     isDarkMode={isDarkMode} onClick={() => setPersona('pharma')} />
+      </div>
 
       <button
         type="button"
         onClick={toggleLargeText}
-        title={isLargeText ? 'Disable Large Text' : 'Enable Large Text Mode (Visual Impairment)'}
-        className={`flex items-center gap-2 px-3 py-2 rounded-sm border text-[10px] font-black uppercase tracking-widest transition-all ${
-          isLargeText
-            ? 'bg-amber-500/10 border-amber-500/40 text-amber-400 hover:bg-amber-500/20'
-            : isDarkMode
-              ? 'border-zinc-700 text-zinc-500 hover:text-zinc-100 hover:border-zinc-500'
-              : 'border-slate-200 text-slate-500 hover:text-slate-900 hover:border-slate-400'
-        }`}
+        title={isLargeText ? 'Standard text' : 'Larger text'}
+        className={`hidden md:inline-flex items-center rounded p-1.5 text-xs transition-colors ${isDarkMode ? 'text-white/60 hover:text-white' : 'text-zinc-600 hover:text-zinc-900'}`}
       >
-        {isLargeText ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-        <span className="hidden xl:inline">{isLargeText ? 'A−' : 'A+'}</span>
+        <Type className="h-4 w-4" aria-hidden />
       </button>
 
-      <ThemeToggle />
+      {isProcessing && (
+        <Loader2 className={`h-4 w-4 animate-spin ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} aria-hidden />
+      )}
 
       <button
         type="button"
         onClick={onCtaClick}
-        disabled={isProcessing}
-        className={`uppercase flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-2 sm:py-2.5 rounded-sm border text-[10px] sm:text-[11px] font-black tracking-[0.15em] sm:tracking-[0.2em] transition-all whitespace-nowrap ${
-          isProcessing
-            ? isDarkMode
-              // Dark processing: subtle cyan pulse
-              ? 'bg-zinc-900 border-zinc-800 text-cyan-500 animate-pulse pointer-events-none'
-              // Light processing: neutral grey — clearly muted, readable
-              : 'bg-slate-200 border-slate-300 text-slate-500 animate-pulse pointer-events-none'
-            : isDarkMode
-              // Dark idle: white bg, black text → cyan on hover
-              ? 'bg-zinc-100 text-black hover:bg-cyan-500 hover:text-white border-zinc-700 shadow-[0_0_20px_rgba(255,255,255,0.08)]'
-              // Light idle: solid indigo — white text, high contrast
-              : 'bg-indigo-600 text-white text-on-primary hover:bg-indigo-700 border-indigo-600 shadow-md'
-        }`}
+        className={`hidden md:inline-flex items-center rounded border px-3 py-1.5 text-[11px] uppercase tracking-widest ${isDarkMode ? 'border-cyan-400/40 bg-cyan-500/10 text-cyan-200 hover:bg-cyan-500/20' : 'border-cyan-400 bg-cyan-50 text-cyan-800 hover:bg-cyan-100'}`}
       >
-        {isProcessing ? <Activity className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-        {isProcessing ? 'PROCESSING…' : 'Eliminate Guesswork'}
+        Contact
       </button>
 
-      <div className={`hidden sm:block h-6 w-px mx-2 ${isDarkMode ? 'bg-zinc-800' : 'bg-slate-200'}`} />
-
-      <div className="hidden sm:flex items-center gap-4">
-        <Settings
-          className={`w-4 h-4 cursor-pointer transition-colors ${isDarkMode ? 'text-zinc-500 hover:text-zinc-200' : 'text-slate-500 hover:text-slate-900'}`}
-        />
-        <div
-          className={`w-8 h-8 rounded-full border flex items-center justify-center transition-colors cursor-pointer ${
-            isDarkMode ? 'bg-zinc-900 border-zinc-800 hover:bg-zinc-800' : 'bg-slate-100 border-slate-200 hover:bg-slate-200'
-          }`}
-        >
-          <User
-            className={`w-4 h-4 transition-colors ${isDarkMode ? 'text-zinc-400 hover:text-zinc-100' : 'text-slate-500 hover:text-slate-900'}`}
-          />
-        </div>
-      </div>
+      <button
+        type="button"
+        onClick={toggleMobileMenu}
+        aria-label="Toggle menu"
+        className={`lg:hidden inline-flex items-center rounded p-1.5 ${isDarkMode ? 'text-white' : 'text-zinc-900'}`}
+      >
+        {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+      </button>
     </div>
   );
 }
