@@ -17,6 +17,7 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import { Layers, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
+import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
 import {
   DIVERGENCE_CASES,
   PATHWAYS_7D,
@@ -27,6 +28,63 @@ import {
   MIN_ELIGIBILITY_THRESHOLD,
   MIN_MECHANISM_FIT_THRESHOLD,
 } from '@/data/mechanism-alignment-data';
+
+// ---- Persona-aware step-1 deck --------------------------------------------
+// Explains what the L2 mechanism-alignment scroll is showing, per audience.
+// The math (PATH A formula, composite gate) is identical across personas —
+// only the framing changes. Anchored to the signed 2026-04-28 PATH A decision.
+// ---------------------------------------------------------------------------
+
+type BrMStep1Copy = {
+  eyebrow: string;
+  headline: string;
+  body: string;
+  bullets: { label: string; value: string }[];
+  caveat?: string;
+};
+
+const BRM_STEP1_DECK: PersonaCopyDeck<BrMStep1Copy> = {
+  oncologist: {
+    eyebrow: 'Step 1 · How the composite gate reads a case',
+    headline:
+      'The ranker projects the patient onto the therapy — not a naive cosine.',
+    body:
+      'For each case below, the tumor gets a 7-dimensional patient vector p across canonical mechanism axes (DDR, MAPK, immune-permissive, PI3K, cell-cycle, epigenetic, metabolic). The therapy has its own vector t. The mechanism_fit is the projection of p onto t/‖t‖₂, clipped to [0,1]. That clip preserves magnitude information a naive cosine would strip. The composite gate is 0.7·eligibility + 0.3·mechanism_fit, and both floors must clear (eligibility ≥ 0.60, mechanism_fit ≥ 0.30).',
+    bullets: [
+      { label: 'Ranker', value: 'fit = clip((p·t) / ‖t‖₂, 0, 1)' },
+      { label: 'Composite', value: 'score = 0.7·elig + 0.3·fit' },
+      { label: 'Floors', value: 'elig ≥ 0.60 AND fit ≥ 0.30' },
+    ],
+    caveat:
+      'PATH A signed 2026-04-28 by Fahad Kiani; PATH B is prohibited in outputs. The 3 cases below are illustrative synthetic vectors chosen to teach the math; the real case (MBD4-LOF AK) lives at the bottom of this page and in the SL surface.',
+  },
+  patient: {
+    eyebrow: 'What this page shows',
+    headline: 'How the tool decides whether a treatment fits your tumor’s biology.',
+    body:
+      'Every tumor has a fingerprint of which biological pathways are active. Every drug has a fingerprint of which pathways it targets. This page shows three example cases where the two fingerprints don’t match — and how the tool refuses to recommend a drug when the biology doesn’t line up. The math has two thresholds; both have to clear.',
+    bullets: [
+      { label: 'Match score', value: 'How well the drug lines up with the tumor’s biology' },
+      { label: 'Eligibility', value: 'Whether the patient meets basic clinical criteria' },
+      { label: 'Both must clear', value: 'A single high score alone is not enough' },
+    ],
+    caveat:
+      'The three cases are examples chosen to teach how the tool works, not real patient stories. Ask your care team to walk through the specifics of your case.',
+  },
+  pharma: {
+    eyebrow: 'BD · L2 ranker under the hood',
+    headline: 'PATH A projection is the load-bearing math. Composite gate is the veto.',
+    body:
+      'The L2 mechanism-alignment layer projects the patient mechanism vector onto the therapy axis (PATH A: fit = clip((p·t) / ‖t‖₂, 0, 1)) and gates on composite = 0.7·eligibility + 0.3·mechanism_fit with dual floors. The 3 illustrative cases show how the gate FAILS an unstratified MEK bet (NRAS Q61K bypass), an unstratified ATRi bet (cold TME missing IO gate), and a cetuximab-in-RAS-mutant bet (already litigated historically). The AK case at the bottom is the real-world receipt — MBD4-LOF patient where prod recommended PARP; the SL manuscript already falsified PARP at first premise.',
+    bullets: [
+      { label: 'Formula (signed)', value: 'PATH A · fit = clip((p·t) / ‖t‖₂, 0, 1)' },
+      { label: 'Governance', value: 'Signed 2026-04-28 · PATH B prohibited' },
+      { label: 'Field validation', value: 'AK patient (MBD4-LOF MSS-CRC) — real receipt below' },
+    ],
+    caveat:
+      'DIV-01/02/03 are illustrative vectors. One quarantined figure remains publication-blocked under DL-07 (see governance ledger). Treat this surface as the mechanism-of-veto explanation, not phase-3 evidence.',
+  },
+};
 import PARPFalsificationArc from '@/components/tumor-board/ak/PARPFalsificationArc';
 import RecommendedDrugsPanel from '@/components/tumor-board/ak/RecommendedDrugsPanel';
 import SLMatrixTable from '@/components/tumor-board/ak/SLMatrixTable';
@@ -106,6 +164,44 @@ export default function MechanismAlignmentScrollSurface() {
           </div>
         </div>
       </section>
+
+      {/* Persona-aware step-1 deck — same math, per-audience framing */}
+      <PersonaContent
+        deck={BRM_STEP1_DECK}
+        render={(copy) => (
+          <section className={`border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'}`}>
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+              <p className={`text-[10px] font-black uppercase tracking-[0.4em] mb-2 ${accent}`}>
+                {copy.eyebrow}
+              </p>
+              <h2 className={`text-xl sm:text-2xl font-black tracking-tight leading-tight mb-3 max-w-4xl ${textMain}`}>
+                {copy.headline}
+              </h2>
+              <p className={`text-sm leading-relaxed mb-4 max-w-4xl ${textMuted}`}>
+                {copy.body}
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+                {copy.bullets.map((b) => (
+                  <div key={b.label} className={`rounded border p-3 ${panel}`}>
+                    <p className={`text-[9px] font-black uppercase tracking-[0.3em] mb-1 ${accent}`}>
+                      {b.label}
+                    </p>
+                    <p className={`text-[12px] leading-snug ${textMain}`}>
+                      {b.value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              {copy.caveat && (
+                <p className={`text-[11px] italic leading-relaxed max-w-4xl ${textMuted}`}>
+                  <span className={`not-italic font-black uppercase tracking-widest mr-1 ${accent}`}>Caveat ·</span>
+                  {copy.caveat}
+                </p>
+              )}
+            </div>
+          </section>
+        )}
+      />
 
       {/* Cases */}
       {DIVERGENCE_CASES.map((c, idx) => {

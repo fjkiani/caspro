@@ -30,6 +30,7 @@ import {
 } from 'lucide-react';
 
 import { useTheme } from '@/context/ThemeContext';
+import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
 
 import {
   MANUSCRIPT,
@@ -43,6 +44,62 @@ import {
   RECONCILIATION,
   SL_GAPS,
 } from '@/data/mbd4-manuscript-data';
+
+// ---- Persona-aware header deck --------------------------------------------
+// Same MBD4 story, per-audience voice. Consumed once above the tab strip so
+// the deck framing persists across all 8 tab views.
+// Anchored to mbd4-manuscript-data.ts (same numbers as SL scroll surface).
+// ---------------------------------------------------------------------------
+
+type SLHeaderCopy = {
+  eyebrow: string;
+  headline: string;
+  body: string;
+  bullets: { label: string; value: string }[];
+  caveat?: string;
+};
+
+const SL_HEADER_DECK: PersonaCopyDeck<SLHeaderCopy> = {
+  oncologist: {
+    eyebrow: 'Tab-strip navigation · MBD4-LOF synthetic-lethality',
+    headline: 'Pick an axis. Each tab shows the receipt, not the summary.',
+    body:
+      'The tabs mirror the four therapeutic axes tested against MBD4-LOF plus convergence, engine, ovarian hits, and disclosure. Axes A + C validated. Axis B emerging (case-level). PARPi is falsified at its first premise (PARP1 not up, alternate bridge dead) — read the falsification tab before positioning any PARP bet.',
+    bullets: [
+      { label: 'Primary axis (validated)', value: 'ATRi ceralasertib · ΔLN_IC50=-0.73 · n=14 LOF vs 914 WT' },
+      { label: 'Falsified', value: 'PARP1 MWU p=0.605 · n=19 LOF vs 1498 WT' },
+      { label: 'Convergence', value: '4 stress tests hold: TP53-adj, MSI-adj, lineage, WEE1i' },
+    ],
+    caveat:
+      'GDSC2 cell-line data; small LOF cohort. Hypothesis-generating with strong receipts, not a phase-3 confirmatory readout.',
+  },
+  patient: {
+    eyebrow: 'Reading this page',
+    headline: 'Eight tabs. Each explains a possible treatment route for MBD4-broken tumors.',
+    body:
+      'The tab strip above lets you jump between the four drug routes tested (Cytidine, Immunotherapy, ATRi, PARP) plus the summary tabs. Green badges mean the evidence supports the route. Red X means the route was tested and did not hold up.',
+    bullets: [
+      { label: 'Green', value: 'Cytidine analogs · ATR inhibitors (ceralasertib)' },
+      { label: 'Emerging', value: 'Immunotherapy — supported by individual patient cases' },
+      { label: 'Red X', value: 'PARP inhibitors — evidence does not support' },
+    ],
+    caveat:
+      'These are laboratory findings. Ask your care team whether a clinical trial exists for your tumor’s MBD4 status.',
+  },
+  pharma: {
+    eyebrow: 'BD tab-strip · SL manuscript navigation',
+    headline: 'Eight tabs. Only two axes clear the bar. Falsification tab is the load-bearing one.',
+    body:
+      'Portfolio position: ATRi (AZD6738/ceralasertib) is the pivoted-to axis with 4 stress tests holding. PARP1 hypothesis is dead at the first premise; alternate RNF144A bridge is dead too. Ovarian precomputed hits + v3 engine tabs explain how the platform surfaces additional lineage-selective vulnerabilities beyond MBD4. Reconciliation + gaps tab is where the honest limitations live — read before committing spend.',
+    bullets: [
+      { label: 'Manuscript target', value: 'bioRxiv · RUO' },
+      { label: 'Load-bearing evidence', value: 'Axis C ATRi · 4 stress tests · GDSC2 n=14 LOF' },
+      { label: 'Falsified with receipts', value: 'PARPi · PARP1 p=0.605 · RNF144A also dead' },
+    ],
+    caveat:
+      'AK patient (MBD4 frameshift MSS-CRC, PARP recommended by prod) is the field validation. Reconciliation + gaps tab is not optional reading for BD.',
+  },
+};
 
 // no-scroll linter marker (required)
 export const SurfaceTabs = ({ children }: { children: React.ReactNode }) => <>{children}</>;
@@ -455,6 +512,42 @@ export default function SyntheticLethalityTabSurface() {
             Target journal: <span className="font-black">{MANUSCRIPT.target}</span> · RUO · Author {MANUSCRIPT.author}
           </p>
         </div>
+
+        {/* Persona-aware header deck — same story, per-audience voice */}
+        <PersonaContent
+          deck={SL_HEADER_DECK}
+          render={(copy) => (
+            <div className={`max-w-[1600px] mx-auto px-6 py-6 border-b ${isDarkMode ? 'border-white/5' : 'border-zinc-200'}`}>
+              <p className={`text-[10px] font-black uppercase tracking-[0.4em] mb-1 ${isDarkMode ? 'text-fuchsia-400' : 'text-fuchsia-600'}`}>
+                {copy.eyebrow}
+              </p>
+              <h2 className={`text-lg md:text-xl font-black uppercase tracking-[0.12em] mb-3 max-w-4xl ${isDarkMode ? 'text-white' : 'text-zinc-900'}`}>
+                {copy.headline}
+              </h2>
+              <p className={`text-[13px] leading-relaxed max-w-4xl mb-4 ${isDarkMode ? 'text-zinc-300' : 'text-zinc-700'}`}>
+                {copy.body}
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+                {copy.bullets.map((b) => (
+                  <div key={b.label} className={`rounded border p-3 ${isDarkMode ? 'border-zinc-800 bg-zinc-950/60' : 'border-zinc-200 bg-white'}`}>
+                    <p className={`text-[9px] font-black uppercase tracking-[0.3em] mb-1 ${isDarkMode ? 'text-fuchsia-400' : 'text-fuchsia-600'}`}>
+                      {b.label}
+                    </p>
+                    <p className={`text-[12px] leading-snug ${isDarkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>
+                      {b.value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              {copy.caveat && (
+                <p className={`text-[11px] italic leading-relaxed max-w-4xl ${isDarkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>
+                  <span className="not-italic font-black uppercase tracking-widest mr-1">Caveat ·</span>
+                  {copy.caveat}
+                </p>
+              )}
+            </div>
+          )}
+        />
 
         {/* Panel body */}
         <main className="max-w-[1600px] mx-auto px-6 py-8">

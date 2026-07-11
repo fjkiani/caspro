@@ -10,6 +10,32 @@ import Link from 'next/link';
 import { ChevronRight, Beaker, Layers, XCircle, ShieldCheck, GitMerge } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { AXIS_A_CYTIDINE, AXIS_C_ATR, PARPI_FALSIFIED, CONVERGENCE, V3_ENGINE } from '@/data/mbd4-manuscript-data';
+import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
+
+// ---- Persona-aware intro deck ---------------------------------------------
+// Explains L5 · Synthetic-Lethality per audience. Numbers stay identical,
+// voice changes. Anchored to mbd4-manuscript-data.ts.
+// ---------------------------------------------------------------------------
+
+type SLIntroCopy = { eyebrow: string; title: string; kicker: string };
+
+const SL_INTRO_DECK: PersonaCopyDeck<SLIntroCopy> = {
+  oncologist: {
+    eyebrow: 'L5 · Engine · MBD4 synthetic-lethality',
+    title: 'Synthetic-Lethality · MBD4',
+    kicker: 'ATRi is the pivoted-to axis. PARPi is falsified at first premise.',
+  },
+  patient: {
+    eyebrow: 'How this engine reads a tumor',
+    title: 'Finding a targeted weakness in MBD4-broken tumors',
+    kicker: 'Certain drugs (ATR inhibitors) hit MBD4-broken tumors hard. PARP inhibitors do not.',
+  },
+  pharma: {
+    eyebrow: 'L5 · SL engine · BD portfolio',
+    title: 'Rare-selective SL vulnerability · ATRi lead',
+    kicker: 'Ceralasertib (AZD6738) lead; PARP hypothesis dead at n=19 LOF vs 1498 WT, p=0.605.',
+  },
+};
 
 export default function SyntheticLethalityIntroPage() {
   const { isDarkMode } = useTheme();
@@ -59,18 +85,24 @@ export default function SyntheticLethalityIntroPage() {
         } bg-[size:48px_48px]`}
       />
 
-      {/* Header */}
-      <header className="relative z-10 shrink-0 px-4 sm:px-8 pt-4 sm:pt-5 flex items-center gap-3">
-        <div className={`w-10 h-10 rounded border flex items-center justify-center ${panel}`}>
-          <Beaker className={`w-5 h-5 ${accent}`} />
-        </div>
-        <div className="min-w-0">
-          <p className={`text-[9px] font-black uppercase tracking-[0.45em] ${accent}`}>L5 · ENGINE</p>
-          <h1 className={`text-base sm:text-lg font-black uppercase tracking-tight truncate ${textMain}`}>
-            Synthetic-Lethality · MBD4
-          </h1>
-        </div>
-      </header>
+      {/* Header — persona-aware eyebrow + title */}
+      <PersonaContent
+        deck={SL_INTRO_DECK}
+        render={(copy) => (
+          <header className="relative z-10 shrink-0 px-4 sm:px-8 pt-4 sm:pt-5 flex items-start gap-3">
+            <div className={`w-10 h-10 rounded border flex items-center justify-center shrink-0 ${panel}`}>
+              <Beaker className={`w-5 h-5 ${accent}`} />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className={`text-[9px] font-black uppercase tracking-[0.45em] ${accent}`}>{copy.eyebrow}</p>
+              <h1 className={`text-base sm:text-lg font-black uppercase tracking-tight truncate ${textMain}`}>
+                {copy.title}
+              </h1>
+              <p className={`text-[10px] leading-snug mt-0.5 line-clamp-2 ${textMuted}`}>{copy.kicker}</p>
+            </div>
+          </header>
+        )}
+      />
 
       {/* Body */}
       <div className="relative z-10 flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-3 sm:gap-5 px-4 sm:px-8 py-2 sm:py-3">
