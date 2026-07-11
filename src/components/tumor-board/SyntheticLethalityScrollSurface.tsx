@@ -32,6 +32,7 @@ import PersonaHero from '@/components/shared/PersonaHero';
 
 import { useTheme } from '@/context/ThemeContext';
 import DNAHero from './shared/DNAHero';
+import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
 
 import {
   MANUSCRIPT,
@@ -45,6 +46,47 @@ import {
   RECONCILIATION,
   SL_GAPS,
 } from '@/data/mbd4-manuscript-data';
+
+// ---- Persona-aware opening deck ------------------------------------------
+// Same underlying story (MBD4-LOF defines a synthetic-lethal state;
+// ATRi is the pivoted-to axis; PARPi hypothesis is falsified at n=19 LOF
+// vs 1498 WT, p=0.605). Only the voice changes per audience.
+// Anchored to /workspace/caspro/src/data/mbd4-manuscript-data.ts.
+// ---------------------------------------------------------------------------
+
+type SLOpeningCopy = {
+  eyebrow: string;
+  headline: string;
+  body: string;
+  caveat?: string;
+};
+
+const SL_OPENING_DECK: PersonaCopyDeck<SLOpeningCopy> = {
+  oncologist: {
+    eyebrow: 'For the tumor board · MBD4-LOF synthetic-lethality',
+    headline: 'Four axes tested. ATRi validated. PARPi hypothesis falsified.',
+    body:
+      'MBD4 loss-of-function defines a synthetic-lethal state. Cytidine analogs (Axis A) show a ~10× IC50 shift (2.3 nM LOF vs 20.1 nM WT, p=2.82×10⁻³, Chabot 2022). ATR inhibition with ceralasertib (Axis C) delivers ΔLN_IC50=-0.73, Cohen’s d=-0.50, n=14 LOF vs 914 WT (GDSC2). PARP1 expression is NOT elevated in MBD4-LOF (p=0.605, n=19 vs 1,498), and the RNF144A alternate bridge fails too — PARPi is off the table at its first premise.',
+    caveat:
+      'Numbers vary by cohort (pharmacology n=914 WT excludes somatic MBD4; expression n=1,498 does not). ATRi n=14 LOF is small — treat as strong hypothesis-generating, not confirmatory.',
+  },
+  patient: {
+    eyebrow: 'What this page is showing',
+    headline: 'A gene called MBD4, when broken, opens a targeted weakness.',
+    body:
+      'When the MBD4 repair gene is broken in tumor cells, certain drugs (ATR inhibitors like ceralasertib) hit the tumor about twice as hard as usual. Older drugs called PARP inhibitors, once hoped to work here, do not — the underlying protein PARP1 is not turned up in MBD4-broken tumors. This page walks through four possible treatment routes and marks which ones the evidence actually supports.',
+    caveat:
+      'The strongest data is from cell lines in the GDSC2 panel — not yet from a randomised trial. Ask your care team whether a clinical trial exists for your tumor’s MBD4 status.',
+  },
+  pharma: {
+    eyebrow: 'BD · Portfolio implications · SL manuscript',
+    headline: 'ATRi is the pivoted-to axis. PARP-first bets are falsified.',
+    body:
+      'The MBD4-LOF manuscript (target: bioRxiv, RUO) redirects program spend. Ceralasertib (AZD6738) is the primary pharmacogenomic result — 4 stress tests hold (TP53-adjusted, MSI-adjusted, lineage-controlled, WEE1i companion). PARP1 expression MWU is non-significant at n=19 LOF vs 1,498 WT (p=0.605) — the alternate bridge (RNF144A) is dead too. Pan-cancer PARP1↔PARPi Spearman ρ=-0.416 is a distractor at population level; MBD4-LOF does not selectively produce that state. This is a rare-selective vulnerability sized by MBD4-LOF prevalence, not a broad indication.',
+    caveat:
+      'Illustrative + real-case mix. AK patient (MBD4 frameshift MSS-CRC, PARP recommended by prod) is the field validation of DIV-02. Reconciliation and gap disclosure on §disclosure — read before positioning.',
+  },
+};
 
 // ---- Small local UI helpers ------------------------------------------------
 
@@ -230,6 +272,52 @@ export default function SyntheticLethalityScrollSurface() {
       <div className={isDarkMode ? '' : 'border-b border-zinc-200'}>
         <DNAHero />
       </div>
+
+      {/* Persona-aware opening deck — same MBD4-LOF story, per-audience voice */}
+      <PersonaContent
+        deck={SL_OPENING_DECK}
+        render={(copy) => (
+          <section
+            className={`max-w-[1600px] mx-auto px-8 py-10 border-t ${
+              isDarkMode ? 'border-white/5' : 'border-zinc-200'
+            }`}
+          >
+            <p
+              className={`text-[10px] font-black uppercase tracking-[0.4em] mb-2 ${
+                isDarkMode ? 'text-fuchsia-400' : 'text-fuchsia-600'
+              }`}
+            >
+              {copy.eyebrow}
+            </p>
+            <h2
+              className={`text-2xl md:text-3xl font-black uppercase tracking-[0.12em] mb-4 max-w-4xl ${
+                isDarkMode ? 'text-white' : 'text-zinc-900'
+              }`}
+            >
+              {copy.headline}
+            </h2>
+            <p
+              className={`text-[14px] leading-relaxed max-w-4xl mb-3 ${
+                isDarkMode ? 'text-zinc-300' : 'text-zinc-700'
+              }`}
+            >
+              {copy.body}
+            </p>
+            {copy.caveat && (
+              <p
+                className={`text-[12px] italic leading-relaxed max-w-4xl ${
+                  isDarkMode ? 'text-zinc-500' : 'text-zinc-500'
+                }`}
+              >
+                <span className="not-italic font-black uppercase tracking-widest mr-1">
+                  Caveat ·
+                </span>
+                {copy.caveat}
+              </p>
+            )}
+          </section>
+        )}
+      />
 
       {/* Manuscript intro */}
       <Section id="intro" step="§0" eyebrow="Manuscript · Target" title={MANUSCRIPT.short}>

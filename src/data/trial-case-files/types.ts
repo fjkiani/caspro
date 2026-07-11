@@ -190,4 +190,12 @@ export interface TrialCaseFile {
    * falls back to a gated placeholder when absent.
    */
   verdict?: TrialVerdict;
+  /**
+   * Brenus registry v2 8D decode overlay — pulled by NCT match from
+   * src/data/brenus/trial-decode-registry.ts. Optional so hand-authored
+   * files that predate the overlay still compile; consumers should render
+   * "NOT_DECODED" when this is absent.
+   * SOURCE: Fahad Kiani directive 2026-07-10.
+   */
+  brenusDecode?: import('../brenus/trial-decode-registry').BrenusTrialDecoded;
 }

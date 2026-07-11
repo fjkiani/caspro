@@ -28,6 +28,32 @@ import {
   DIVERGENCE_CASES,
   MECHANISM_ALIGNMENT_EXPLAINER,
 } from '@/data/mechanism-alignment-data';
+import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
+
+// ---- Persona-aware intro deck ---------------------------------------------
+// L2 · Mechanism-Alignment per audience. PATH A signed 2026-04-28 badge
+// stays visible for all personas — it's governance canon, not framing.
+// ---------------------------------------------------------------------------
+
+type BrMIntroCopy = { eyebrow: string; title: string; kicker: string };
+
+const BRM_INTRO_DECK: PersonaCopyDeck<BrMIntroCopy> = {
+  oncologist: {
+    eyebrow: 'L2 · Engine · PATH A composite gate',
+    title: 'Mechanism Alignment',
+    kicker: 'PATH A ranker · 7 canonical axes + 1 opt-in RSS · composite 0.7·elig + 0.3·fit.',
+  },
+  patient: {
+    eyebrow: 'How the tool matches treatments to your tumor',
+    title: 'Aligning drug mechanism with tumor biology',
+    kicker: 'The system compares drug fingerprints against tumor fingerprints across 7 biological pathways.',
+  },
+  pharma: {
+    eyebrow: 'L2 · Ranker · PATH A locked',
+    title: 'Mechanism Alignment · projection ranker',
+    kicker: 'fit = clip((p·t) / ‖t‖₂, 0, 1). Composite = 0.7·elig + 0.3·fit. Dual floors 0.60/0.30.',
+  },
+};
 
 export default function MechanismAlignmentIntroPage() {
   const { isDarkMode } = useTheme();
@@ -52,20 +78,24 @@ export default function MechanismAlignmentIntroPage() {
         } bg-[size:48px_48px]`}
       />
 
-      {/* Header */}
-      <header className="relative z-10 shrink-0 px-4 sm:px-8 pt-4 sm:pt-5 flex items-center gap-3">
-        <div className={`w-10 h-10 rounded border flex items-center justify-center ${panel}`}>
+      {/* Header — persona-aware eyebrow + title. PATH A badge is governance canon → stays outside deck. */}
+      <header className="relative z-10 shrink-0 px-4 sm:px-8 pt-4 sm:pt-5 flex items-start gap-3">
+        <div className={`w-10 h-10 rounded border flex items-center justify-center shrink-0 ${panel}`}>
           <Layers className={`w-5 h-5 ${accent}`} />
         </div>
-        <div className="min-w-0">
-          <p className={`text-[9px] font-black uppercase tracking-[0.45em] ${accent}`}>
-            L2 · ENGINE
-          </p>
-          <h1 className={`text-base sm:text-lg font-black uppercase tracking-tight truncate ${textMain}`}>
-            Mechanism Alignment
-          </h1>
-        </div>
-        <div className="ml-auto hidden sm:flex items-center gap-2">
+        <PersonaContent
+          deck={BRM_INTRO_DECK}
+          render={(copy) => (
+            <div className="min-w-0 flex-1">
+              <p className={`text-[9px] font-black uppercase tracking-[0.45em] ${accent}`}>{copy.eyebrow}</p>
+              <h1 className={`text-base sm:text-lg font-black uppercase tracking-tight truncate ${textMain}`}>
+                {copy.title}
+              </h1>
+              <p className={`text-[10px] leading-snug mt-0.5 line-clamp-2 ${textMuted}`}>{copy.kicker}</p>
+            </div>
+          )}
+        />
+        <div className="ml-auto hidden sm:flex items-center gap-2 shrink-0">
           <span className={`text-[10px] font-bold uppercase ${textMuted}`}>PATH A</span>
           <span className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase ${accent}`}>
             <ShieldCheck className="w-3 h-3" />

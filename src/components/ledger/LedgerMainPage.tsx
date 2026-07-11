@@ -37,6 +37,7 @@ import {
 } from '@/data/ledger-programs';
 import { TRIAL_LEDGER_BY_SLUG } from '@/data/trial-ledger-registry';
 import { isGatedLedgerTrial } from '@/data/trial-gate';
+import BrenusVectorWallTab from './BrenusVectorWallTab';
 
 const PREVIEW_ICON: Record<LedgerProgram['preview'], typeof Target> = {
   target: Target,
@@ -46,7 +47,7 @@ const PREVIEW_ICON: Record<LedgerProgram['preview'], typeof Target> = {
   active: ShieldCheck,
 };
 
-const TAB_KEYS = ['findings', 'trials', 'lessons', 'value'] as const;
+const TAB_KEYS = ['findings', 'trials', 'vector', 'lessons', 'value'] as const;
 
 // Tabs marker (required by caspro-lint no-scroll linter)
 const SurfaceTabs = ({ children }: { children: React.ReactNode }) => <>{children}</>;
@@ -55,6 +56,7 @@ type TabKey = (typeof TAB_KEYS)[number];
 const TAB_LABEL: Record<TabKey, string> = {
   findings: 'Findings',
   trials: 'Trials',
+  vector: 'Vector wall',
   lessons: 'Transfer lessons',
   value: 'IP value',
 };
@@ -323,21 +325,33 @@ export default function LedgerMainPage() {
       />
 
       <main className="relative z-10 flex-1 flex flex-col min-h-0 max-w-7xl mx-auto w-full px-4 sm:px-8 pt-16 sm:pt-20 pb-6">
-        <header className="mb-4 sm:mb-6 shrink-0">
-          <span
-            className={`text-[9px] font-black uppercase tracking-[0.5em] ${
-              isDarkMode ? 'text-violet-400' : 'text-violet-600'
+        <header className="mb-4 sm:mb-6 shrink-0 flex items-start justify-between gap-4">
+          <div>
+            <span
+              className={`text-[9px] font-black uppercase tracking-[0.5em] ${
+                isDarkMode ? 'text-violet-400' : 'text-violet-600'
+              }`}
+            >
+              TRIAL LEDGER // 6 EXTERNAL-SAFE PROGRAMS
+            </span>
+            <h1 className="text-xl sm:text-2xl font-black uppercase tracking-tight mt-1">
+              Decoded clinical-trial corpus
+            </h1>
+            <p className={`text-[12px] mt-1 max-w-3xl ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+              Six programs. Every finding is grounded in a published source. Every trial gets a 5-tab program
+              view including CrisPRO 8D vector decode. Full 42-trial wall lives one link away.
+            </p>
+          </div>
+          <Link
+            href="/ledger/decode-wall/"
+            className={`shrink-0 rounded border px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.25em] transition-colors ${
+              isDarkMode
+                ? 'border-[#00E5FF] text-[#00E5FF] hover:bg-[#00E5FF10]'
+                : 'border-indigo-600 text-indigo-600 hover:bg-indigo-50'
             }`}
           >
-            TRIAL LEDGER // 6 EXTERNAL-SAFE PROGRAMS
-          </span>
-          <h1 className="text-xl sm:text-2xl font-black uppercase tracking-tight mt-1">
-            Decoded clinical-trial corpus
-          </h1>
-          <p className={`text-[12px] mt-1 max-w-3xl ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
-            Six programs. Every finding is grounded in a published source. Trial-level receipts open the
-            existing de-risking maps.
-          </p>
+            Decode wall · 42 trials
+          </Link>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-4 sm:gap-6 flex-1 min-h-0">
@@ -409,6 +423,9 @@ export default function LedgerMainPage() {
                   isDarkMode={isDarkMode}
                   onOpenGated={(slug, label) => setModalTrial({ slug, label })}
                 />
+              )}
+              {activeTab === 'vector' && (
+                <BrenusVectorWallTab program={active} isDarkMode={isDarkMode} />
               )}
               {activeTab === 'lessons' && <LessonsTab program={active} isDarkMode={isDarkMode} />}
               {activeTab === 'value' && <ValueTab program={active} isDarkMode={isDarkMode} />}

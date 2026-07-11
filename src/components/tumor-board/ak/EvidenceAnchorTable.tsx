@@ -15,8 +15,7 @@ export default function EvidenceAnchorTable() {
         <div>
           <h2 className="text-lg font-semibold text-white">Evidence chain · numeric anchors</h2>
           <p className="mt-1 text-xs text-white/50">
-            Six anchors verified against the manuscript. Five rounded matches confirm the trace, and one exact match{' '}
-            (<span className="font-mono">PARP1 in MBD4-LOF</span>) is the falsification arm.
+            <AnchorSubtitle />
           </p>
         </div>
         <span className="font-mono text-[10px] text-white/30">
@@ -92,6 +91,38 @@ function MatchBadge({ match }: { match: 'exact' | 'rounded' | 'positive_control'
   return (
     <span className="rounded border border-amber-400/40 bg-amber-500/10 px-2 py-0.5 text-[10px] uppercase tracking-widest text-amber-200">
       ✓ positive control
+    </span>
+  );
+}
+
+/**
+ * Anchor-table subtitle that derives from the bundle instead of hardcoding
+ * AK biology (the old "Six anchors verified... PARP1 in MBD4-LOF" line
+ * assumed exactly six anchors and a PARP falsification arm — wrong for
+ * every non-AK bundle).
+ */
+function AnchorSubtitle() {
+  const patient = usePatient();
+  const anchors = patient.evidenceAnchors;
+  const total = anchors.length;
+  if (total === 0) {
+    return (
+      <span>
+        This bundle carries no numeric anchors — recommendations rest on published trial sources cited on the
+        {' '}<span className="font-mono">RecommendedDrugsPanel</span> below, not on independent value regeneration.
+      </span>
+    );
+  }
+  const exact = anchors.filter((a) => a.match === 'exact').length;
+  const rounded = anchors.filter((a) => a.match === 'rounded').length;
+  const positive = anchors.filter((a) => a.match === 'positive_control').length;
+  const parts: string[] = [];
+  if (rounded > 0) parts.push(`${rounded} rounded match${rounded === 1 ? '' : 'es'}`);
+  if (exact > 0) parts.push(`${exact} exact match${exact === 1 ? '' : 'es'}`);
+  if (positive > 0) parts.push(`${positive} positive control${positive === 1 ? '' : 's'}`);
+  return (
+    <span>
+      {total} anchor{total === 1 ? '' : 's'} verified against manuscript / trial sources — {parts.join(', ')}.
     </span>
   );
 }

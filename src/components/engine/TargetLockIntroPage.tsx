@@ -7,6 +7,33 @@ import { TARGET_LOCK_EXPLAINER } from '@/data/target-lock-data';
 import { TWO_LAYER_MATRIX, FDA_STATS } from '@/data/fda-prediction-data';
 import { TARGET_LOCK_ARCHIVE_PATH, TARGET_LOCK_WORKSPACE_PATH } from '@/lib/engine/paths';
 import ProteinPreviewGated from '@/components/sections/mars/previews/ProteinPreviewGated';
+import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
+
+// ---- Persona-aware intro deck ---------------------------------------------
+// Explains L1 · Target-Lock per audience. Numbers stay identical
+// (FDA_STATS.retroConcordance = 9/9); voice changes. Anchored to
+// target-lock-data.ts + fda-prediction-data.ts.
+// ---------------------------------------------------------------------------
+
+type TLIntroCopy = { eyebrow: string; title: string; kicker: string };
+
+const TL_INTRO_DECK: PersonaCopyDeck<TLIntroCopy> = {
+  oncologist: {
+    eyebrow: 'L1 · Engine · Two-layer FDA-outcome ranker',
+    title: 'Target Lock',
+    kicker: 'Retro concordance 9/9 across 2023–24 FDA calls. L1 × L2 → PASS/FAIL matrix below.',
+  },
+  patient: {
+    eyebrow: 'What this engine does',
+    title: 'Deciding which drug targets are worth pursuing',
+    kicker: 'The system checks whether a target has held up historically before recommending it for a new drug.',
+  },
+  pharma: {
+    eyebrow: 'L1 · Target ranker · BD portfolio',
+    title: 'Two-layer target ranker · 9/9 retro concordance',
+    kicker: 'Deterministic L1 × L2 gate. Retro-lock 9/9 (2023–24). Repurposing arsenal below with chain-of-custody.',
+  },
+};
 
 /**
  * Single-viewport intro (ledger-style). Full simulator lives at workspace path.
@@ -32,21 +59,23 @@ export default function TargetLockIntroPage() {
         } bg-[size:48px_48px]`}
       />
 
-      <header className="relative z-10 shrink-0 px-4 sm:px-8 pt-4 sm:pt-5 flex items-center gap-3">
-        <div
-          className={`w-10 h-10 rounded border flex items-center justify-center ${panel}`}
-        >
-          <Target className={`w-5 h-5 ${accent}`} />
-        </div>
-        <div className="min-w-0">
-          <p className={`text-[9px] font-black uppercase tracking-[0.45em] ${accent}`}>
-            L1 · ENGINE
-          </p>
-          <h1 className={`text-base sm:text-lg font-black uppercase tracking-tight truncate ${textMain}`}>
-            Target Lock
-          </h1>
-        </div>
-      </header>
+      <PersonaContent
+        deck={TL_INTRO_DECK}
+        render={(copy) => (
+          <header className="relative z-10 shrink-0 px-4 sm:px-8 pt-4 sm:pt-5 flex items-start gap-3">
+            <div className={`w-10 h-10 rounded border flex items-center justify-center shrink-0 ${panel}`}>
+              <Target className={`w-5 h-5 ${accent}`} />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className={`text-[9px] font-black uppercase tracking-[0.45em] ${accent}`}>{copy.eyebrow}</p>
+              <h1 className={`text-base sm:text-lg font-black uppercase tracking-tight truncate ${textMain}`}>
+                {copy.title}
+              </h1>
+              <p className={`text-[10px] leading-snug mt-0.5 line-clamp-2 ${textMuted}`}>{copy.kicker}</p>
+            </div>
+          </header>
+        )}
+      />
 
       <div className="relative z-10 flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-3 sm:gap-5 px-4 sm:px-8 py-2 sm:py-3">
         <div className="min-h-0 flex flex-col gap-2 sm:gap-3 overflow-hidden">
