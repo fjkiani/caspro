@@ -14,7 +14,8 @@ import { useMemo, useState } from 'react';
 import { AlertTriangle, Activity, CheckSquare, LineChart, ShieldCheck } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
-import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
+import { PersonaContent, type PersonaCopyDeck, usePersonaContent } from '@/context/persona-content';
+import { PGX_DOCTRINE, type PgxReceiptId } from '@/data/pgx-doctrine-decks';
 import {
   CPIC_CONCORDANCE,
   CYP2C19_RECEIPT,
@@ -123,7 +124,7 @@ const PREPARE_TAB_DECK: PersonaCopyDeck<TabCopy> = {
       { label: 'Actionable ARR', value: `${(PREPARE_RECEIPT.calculated_metrics.actionable_carriers.absolute_risk_reduction * 100).toFixed(1)} pp` },
       { label: 'Signal localisation', value: `${PREPARE_RECEIPT.calculated_metrics.signal_localization?.value ?? 'n/a'}× actionable vs non-actionable` },
     ],
-    caveat: 'p=0.054 borderline — trial powered on whole cohort. Bayesian read: strong RRR + directional consistency + null non-actionable > single p threshold.',
+    caveat: 'p=0.054 borderline — trial powered on whole cohort. See doctrine block below.',
   },
 };
 
@@ -153,7 +154,7 @@ const CYP_TAB_DECK: PersonaCopyDeck<TabCopy> = {
   },
   pharma: {
     headline: `CYP2C19 clopidogrel · PMID ${CYP2C19_RECEIPT.source_pmid} · borderline-phenotype validated`,
-    body: `Retrospective TIA/stroke cohort · CPIC 1A evidence tier. Deterministic veto avoids the meta-analytic controversy around outcome-driven antiplatelet trials (POPular Genetics et al.) by using guideline concordance as primary QC.`,
+    body: `Retrospective TIA/stroke cohort · CPIC 1A evidence tier. See doctrine block below.`,
     bullets: [
       { label: 'PMID', value: CYP2C19_RECEIPT.source_pmid },
       { label: 'Cohort', value: 'Retrospective TIA/stroke, 210 clopidogrel-treated' },
@@ -161,7 +162,7 @@ const CYP_TAB_DECK: PersonaCopyDeck<TabCopy> = {
       { label: 'HR (multivariate)', value: `${CYP2C19_RECEIPT.calculated_metrics.reported_multivariate_hr.hazard_ratio} (CI ${CYP2C19_RECEIPT.calculated_metrics.reported_multivariate_hr.confidence_interval})` },
       { label: 'CPIC concordance', value: '100% for 3 example diplotypes tested' },
     ],
-    caveat: 'Portfolio positioning: CPIC 1A + deterministic veto → regulatory-grade filter, not probabilistic recommender.',
+    caveat: 'CPIC 1A evidence tier. See doctrine block below.',
   },
 };
 
@@ -176,7 +177,7 @@ const NGUYEN_TAB_DECK: PersonaCopyDeck<TabCopy> = {
       { label: 'Upfront reduction', value: '100% adherence in pretreatment cohort' },
       { label: 'First-cycle RDI (pre)', value: `${NGUYEN_RECEIPT.outcomes_data.pretreatment_screening.mean_rdi_first_cycle}%` },
     ],
-    caveat: 'Cohorts are policy-choice comparisons (test upfront vs test after harm), not matched controls. The 25 pp hospitalization delta is the cost of delayed testing.',
+    caveat: 'See doctrine block below.',
   },
   patient: {
     headline: 'Same test, twice as many hospitalizations if it comes late',
@@ -225,7 +226,7 @@ const CPIC_TAB_DECK: PersonaCopyDeck<TabCopy> = {
   },
   pharma: {
     headline: `CPIC exact concordance ${(M.cpic.concordance_rate * 100).toFixed(0)}% · deterministic layer · zero substitutions`,
-    body: 'Deterministic PGx logic → veto is auditable line-by-line against guideline PMID (e.g. DPYD CPIC PMID 29152729). Regulatory-grade filter, not probabilistic.',
+    body: 'Deterministic PGx logic; see doctrine block below.',
     bullets: [
       { label: 'Total cases', value: String(CPIC_CONCORDANCE.total_cases) },
       { label: 'Match rate', value: `${(M.cpic.concordance_rate * 100).toFixed(0)}%` },
@@ -238,7 +239,7 @@ const CPIC_TAB_DECK: PersonaCopyDeck<TabCopy> = {
 const TIER2_TAB_DECK: PersonaCopyDeck<TabCopy> = {
   oncologist: {
     headline: `Tier 2 heuristic · ${(TIER2_VALIDATION.performance_metrics.sensitivity.value * 100).toFixed(0)}% sensitivity for CPIC-gap toxicity`,
-    body: `Rule-based screen for gene-drug pairs CPIC has no explicit recommendation on. ${TIER2_VALIDATION.performance_metrics.scorable_cases} scorable cases · TP ${TIER2_VALIDATION.performance_metrics.tp} · FN ${TIER2_VALIDATION.performance_metrics.fn}. High false-positive rate is intentional — the design goal is "never miss a preventable harm".`,
+    body: `Rule-based screen for gene-drug pairs CPIC has no explicit recommendation on. ${TIER2_VALIDATION.performance_metrics.scorable_cases} scorable cases · TP ${TIER2_VALIDATION.performance_metrics.tp} · FN ${TIER2_VALIDATION.performance_metrics.fn}. High false-positive rate is intentional — design goal detailed in doctrine block below.`,
     bullets: [
       { label: 'Sensitivity', value: `${(TIER2_VALIDATION.performance_metrics.sensitivity.value * 100).toFixed(0)}% (CI ${formatTier2Ci(TIER2_VALIDATION.performance_metrics.sensitivity)})` },
       { label: 'Specificity', value: `${(TIER2_VALIDATION.performance_metrics.specificity.value * 100).toFixed(0)}% (CI ${formatTier2Ci(TIER2_VALIDATION.performance_metrics.specificity)})` },
@@ -246,7 +247,7 @@ const TIER2_TAB_DECK: PersonaCopyDeck<TabCopy> = {
       { label: 'Confusion matrix', value: `TP ${TIER2_VALIDATION.performance_metrics.tp} · FN ${TIER2_VALIDATION.performance_metrics.fn} · FP ${TIER2_VALIDATION.performance_metrics.fp} · TN ${TIER2_VALIDATION.performance_metrics.tn}` },
       { label: 'Indeterminate', value: `${TIER2_VALIDATION.performance_metrics.indeterminate_cases} / ${TIER2_VALIDATION.performance_metrics.total_cases}` },
     ],
-    caveat: 'Screening layer, not decision layer — Tier 2 hits route to human review, they do not auto-veto.',
+    caveat: 'See doctrine block below.',
   },
   patient: {
     headline: 'Belt and suspenders — extra safety check for gaps in the rulebook',
@@ -306,6 +307,8 @@ export default function SafetyDosingTabsSurface() {
 
   const activeMeta = TAB_META[active];
   const activeDeck = CONTENT_DECKS[active];
+  // W9 doctrine parity — per-tab canonical doctrine framing from pgx-doctrine-decks
+  const activeDoctrine = usePersonaContent(PGX_DOCTRINE[active as PgxReceiptId])!;
 
   // Memoized so re-render on persona flip stays cheap
   const tabButtons = useMemo(
@@ -410,6 +413,15 @@ export default function SafetyDosingTabsSurface() {
                 {copy.body}
               </p>
 
+              {/* W9 doctrine parity — canonical framing (locked across intro/scroll/tabs) */}
+              <p
+                className={`mt-3 rounded border-l-2 pl-3 py-1 text-[12px] font-semibold ${
+                  isDarkMode ? 'border-violet-500/60 text-violet-300' : 'border-violet-500 text-violet-700'
+                }`}
+              >
+                Doctrine: {activeDoctrine.claim}
+              </p>
+
               <ul className={`mt-4 grid gap-2 sm:grid-cols-2 text-[12px]`}>
                 {copy.bullets.map((bullet) => (
                   <li
@@ -447,6 +459,14 @@ export default function SafetyDosingTabsSurface() {
                   Caveat: {copy.caveat}
                 </p>
               )}
+              {/* Canonical doctrine caveat — locked across surfaces */}
+              <p
+                className={`mt-3 rounded border-l-2 pl-3 py-1 text-[11px] italic ${
+                  isDarkMode ? 'border-zinc-600 text-zinc-400' : 'border-zinc-400 text-zinc-600'
+                }`}
+              >
+                {activeDoctrine.caveat}
+              </p>
             </section>
           )}
         />

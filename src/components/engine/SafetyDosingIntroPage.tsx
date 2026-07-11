@@ -19,7 +19,8 @@
 import Link from 'next/link';
 import { ShieldCheck, AlertTriangle, Activity, CheckSquare, LineChart } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
-import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
+import { PersonaContent, type PersonaCopyDeck, usePersonaContent } from '@/context/persona-content';
+import { PGX_DOCTRINE } from '@/data/pgx-doctrine-decks';
 import { PGX_HEADLINE_METRICS } from '@/data/pgx-receipts';
 
 // ─── persona intro decks ──────────────────────────────────────────────────
@@ -147,6 +148,8 @@ export default function SafetyDosingIntroPage() {
   const panel = isDarkMode ? 'bg-zinc-950/60 border-zinc-800' : 'bg-white border-slate-200';
   const textMain = isDarkMode ? 'text-zinc-100' : 'text-slate-900';
   const textMuted = isDarkMode ? 'text-zinc-400' : 'text-slate-600';
+  // W9 doctrine parity — canonical opening doctrine framing, sourced from pgx-doctrine-decks
+  const openingDoctrine = usePersonaContent(PGX_DOCTRINE.opening)!;
 
   return (
     <div
@@ -176,6 +179,12 @@ export default function SafetyDosingIntroPage() {
                 {copy.headline}
               </h1>
               <p className={`text-[11px] mt-1 leading-relaxed max-w-4xl ${textMuted}`}>{copy.body}</p>
+              <p className={`text-[10px] mt-1 leading-relaxed max-w-4xl font-semibold ${isDarkMode ? 'text-violet-300' : 'text-violet-700'}`}>
+                Doctrine: {openingDoctrine.claim}
+              </p>
+              <p className={`text-[10px] mt-1 italic leading-relaxed max-w-4xl ${textMuted}`}>
+                {openingDoctrine.caveat}
+              </p>
             </div>
           )}
         />
