@@ -160,6 +160,14 @@ export type PatientMeta = {
 
 // ---------- assembled patient bundle ----------
 
+// Optional anchor-repo panels wired for CRC01 (Brenus) and BM01 (evo2-e2e).
+// See anchor-panel-types.ts for the full type. Kept as a duck-typed record here
+// to avoid a cyclic import; runtime shape validated by the extraction scripts.
+export type PatientAnchorPanels = {
+  crc?: unknown;
+  brm?: unknown;
+};
+
 export type PatientBundle = {
   meta: PatientMeta;
   tumorContext: TumorContext;
@@ -177,4 +185,5 @@ export type PatientBundle = {
   parpFalsification: PARPFalsification | null;
   discoveryOnly?: boolean;
   discoveryOnlyReason?: string;
+  anchorPanels?: PatientAnchorPanels;
 };

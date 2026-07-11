@@ -7,6 +7,7 @@
  * completeness field. NOT a real clinical case.
  */
 import type { PatientBundle } from '../tumor-board/patient-bundle-types';
+import { CRC01_BRENUS_PANEL } from '../tumor-board/anchor/crc01_brenus';
 
 
 export const CRC01: PatientBundle = {
@@ -189,4 +190,10 @@ export const CRC01: PatientBundle = {
   discoveryOnly: true,
   discoveryOnlyReason:
     'Zero colorectal archetypes tested in the current pan-cancer bench sweep (/mnt/results/spe_audit/w4_pancancer_grid.json). Recommendations above rest on published pivotal trials (KEYNOTE-177, CheckMate-142), not on the CrisPRO backend having demonstrated recall for this tumor type. The frontend must show this discovery-only banner on every tab.',
+  // Snapshot-only anchor evidence panel — sourced at build time from the
+  // Brenus repository trial_decode_registry_v2.json + IO_APPENDIX artifacts.
+  // See scripts/anchor_extract/w1_extract_crc_brenus.py.
+  anchorPanels: {
+    crc: CRC01_BRENUS_PANEL,
+  },
 };

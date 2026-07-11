@@ -3,8 +3,12 @@
  * bundles the tumor-board surface can render, and the summary metadata the
  * picker page displays.
  *
- * Bench numbers come from /mnt/results/spe_audit/w4_pancancer_grid.json.
- * Any coverage change re-derives from that file, not from memory.
+ * Bench numbers come from /mnt/results/spe_audit/w4_pancancer_grid.json (v1).
+ * The v3 file /mnt/results/spe_audit/w4_pancancer_grid_v3.json adds a
+ * closed-negative note on the GBM_MGMT_UNMETH archetype (GLASS bulk-recurrence
+ * analysis, ZEB1 direction=DOWN, verdict NOT_SUPPORTED_YET) but keeps every
+ * v1 scored archetype identical. Numbers below are re-derivable from either.
+ * Any coverage change re-derives from those files, not from memory.
  */
 import type { PatientBundle } from '../tumor-board/patient-bundle-types';
 

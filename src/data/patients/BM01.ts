@@ -7,6 +7,7 @@
  * completeness field. NOT a real clinical case.
  */
 import type { PatientBundle } from '../tumor-board/patient-bundle-types';
+import { BM01_EVO2_PANEL } from '../tumor-board/anchor/bm01_evo2';
 
 
 export const BM01: PatientBundle = {
@@ -193,4 +194,10 @@ export const BM01: PatientBundle = {
   discoveryOnly: true,
   discoveryOnlyReason:
     'Brain-metastasis is not an independent tumor-type class in the v1 pan-cancer bench sweep — BrM cases live as annotations on their primary tumor (breast, lung, melanoma). Zero BrM-specific archetypes were tested. Recommendations rest on pivotal trials (HER2CLIMB, DESTINY-Breast03), not on the CrisPRO backend having demonstrated recall for the BrM-substrate specifically.',
+  // Snapshot-only anchor evidence panel — sourced at build time from the
+  // evo2-e2e repository pipeline_results + brm_clinical_variants + README.
+  // See scripts/anchor_extract/w2_extract_brm_evo2.py.
+  anchorPanels: {
+    brm: BM01_EVO2_PANEL,
+  },
 };
