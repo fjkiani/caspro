@@ -26,6 +26,11 @@ import {
 } from 'lucide-react';
 
 import { useTheme } from '@/context/ThemeContext';
+import { useOptionalPatient } from '@/context/PatientContext';
+import { BM01 } from '@/data/patients/BM01';
+import type { PatientBundle } from '@/data/tumor-board/patient-bundle-types';
+import { getCapabilities } from '@/lib/capabilities';
+import { productFor } from '@/lib/product-glossary';
 import StructureGallerySection from './sections/StructureGallerySection';
 
 import {
@@ -408,10 +413,18 @@ function DisclosurePanel({ isDarkMode }: { isDarkMode: boolean }) {
 
 export default function TargetLockBrainMetTabSurface() {
   const { isDarkMode } = useTheme();
+  const patientCtx = useOptionalPatient();
+  const patient: PatientBundle = patientCtx ?? BM01;
+  const caps = getCapabilities(patient);
   const [active, setActive] = useState<TabKey>('primary_tumor_escape');
 
   const activeStep = BRM_STEPS.find((s) => s.slug === active);
   const activeExtra = EXTRA_TABS.find((t) => t.key === active);
+
+  // Capability gate — this engine is scoped to Brain-Met patients only.
+  if (!caps.hasBrmAnchor) {
+    return <NotBrainMetGate patient={patient} isDarkMode={isDarkMode} variant="tabs" />;
+  }
 
   return (
     <div
@@ -621,6 +634,81 @@ export default function TargetLockBrainMetTabSurface() {
           </div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+// ── NotBrainMetGate ──────────────────────────────────────────────────────────
+// Shown when the patient in context has no Brain-Met anchor (i.e., not BM01).
+// This engine only makes sense for brain-metastasis patients; for anyone else
+// we redirect to their L1 board instead of rendering the cascade shell.
+
+function NotBrainMetGate({
+  patient,
+  isDarkMode,
+  variant,
+}: {
+  patient: PatientBundle;
+  isDarkMode: boolean;
+  variant: 'tabs' | 'scroll';
+}) {
+  const accent = isDarkMode ? 'text-cyan-300' : 'text-indigo-600';
+  const panel = isDarkMode ? 'bg-zinc-950/60 border-zinc-800' : 'bg-white border-slate-200';
+  const textMain = isDarkMode ? 'text-zinc-100' : 'text-slate-900';
+  const textMuted = isDarkMode ? 'text-zinc-400' : 'text-slate-600';
+
+  return (
+    <div
+      className={`min-h-screen font-mono flex items-center justify-center px-6 ${
+        isDarkMode ? 'bg-[#020408] text-zinc-400' : 'bg-slate-50 text-slate-600'
+      }`}
+    >
+      <div className={`max-w-2xl w-full rounded border p-8 ${panel}`}>
+        <div className="flex items-center gap-3 mb-4">
+          <div className={`w-9 h-9 rounded border flex items-center justify-center ${panel}`}>
+            <AlertTriangle className={`w-4 h-4 ${accent}`} />
+          </div>
+          <div>
+            <p className={`text-[10px] font-black uppercase tracking-[0.4em] ${accent}`}>
+              Not applicable for this patient
+            </p>
+            <p className={`text-[10px] uppercase tracking-widest mt-0.5 ${textMuted}`}>
+              L2 · target-lock · brain-met · {variant}
+            </p>
+          </div>
+        </div>
+        <h1 className={`text-xl sm:text-2xl font-black tracking-tight ${textMain}`}>
+          The Brain-Met {productFor('cascade')} is scoped to brain-metastasis patients
+        </h1>
+        <p className={`mt-3 text-sm leading-relaxed ${textMuted}`}>
+          {patient.meta.patientId} ({patient.tumorContext?.subtype ?? patient.tumorContext?.cancerType ?? patient.meta.displayName ?? 'unknown case'})
+          does not carry a Brain-Met {productFor('brm_step').toLowerCase()} anchor. This L2 engine
+          renders the 7-step BrM invasion cascade and its live variant scoring — it only makes
+          sense for a brain-metastasis case.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-2">
+          <Link
+            href={`/tumor-board/${patient.meta.patientId}`}
+            className={`inline-flex items-center gap-1.5 rounded border px-3 py-2 text-[11px] uppercase tracking-widest transition-colors ${
+              isDarkMode
+                ? 'border-cyan-500/40 bg-cyan-500/10 text-cyan-200 hover:bg-cyan-500/20'
+                : 'border-indigo-400 bg-indigo-50 text-indigo-700 hover:bg-indigo-100'
+            }`}
+          >
+            ← Back to {patient.meta.patientId} board
+            <ArrowRight className="w-3 h-3" />
+          </Link>
+          <Link
+            href="/tumor-board/BM01"
+            className={`inline-flex items-center gap-1.5 rounded border px-3 py-2 text-[11px] uppercase tracking-widest transition-colors ${panel} ${textMuted} ${
+              isDarkMode ? 'hover:text-cyan-200 hover:border-cyan-500/40' : 'hover:text-indigo-700 hover:border-indigo-300'
+            }`}
+          >
+            View BM01 (the anchor case)
+            <ArrowRight className="w-3 h-3" />
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

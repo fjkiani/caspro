@@ -1,27 +1,29 @@
 'use client';
 
 // ==============================================================================
-// /engine/mechanism-alignment/scroll — L2 scroll surface, case-by-case walk.
+// /engine/mechanism-alignment/scroll — L2 long-scroll · PATIENT-DRIVEN.
 //
-// Layout: sticky top-of-viewport eyebrow + long-scroll spine. Each of the 3
-// illustrative divergence cases owns one section:
-//   1. header (case title + audience hook + PASS/FAIL badge)
-//   2. side-by-side vector bars (patient p vs. therapy t) across 7 axes
-//   3. projection breakdown (dot product per axis) with running total
-//   4. composite gate readout (α · eligibility + β · fit → verdict + reason)
-//   5. narrative paragraphs
-//   6. illustrative-only disclaimer strip
+// Sections (each gated on caps):
+//   00. Hero — patient identity + PATH A formula + composite gate readout
+//   01. Divergence cards — one per SL row where divergenceIntended === true
+//       (or a single "no active divergence" info card if none)
+//   02. Ranked drug ladder — patient.recommendedDrugs, falsified rows demoted
+//   03. PARP arc (gated) — patient.parpFalsification three-card story
+//   04. Governance footer — PATH A · composite gate · RSS opt-in · DL-07
+//   05. Cross-engine links
 // ==============================================================================
 
-import { Fragment } from 'react';
 import Link from 'next/link';
-import { Layers, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Layers, ArrowRight, ShieldCheck, Check, AlertTriangle } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
-import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
+import { useOptionalPatient } from '@/context/PatientContext';
+import { AK01 } from '@/data/patients/AK01';
+import type { PatientBundle } from '@/data/tumor-board/patient-bundle-types';
+import { getCapabilities } from '@/lib/capabilities';
+import { labelFor, productFor } from '@/lib/product-glossary';
 import {
-  DIVERGENCE_CASES,
-  PATHWAYS_7D,
   PATH_A_FORMULA,
+  PATH_A_APPROVAL,
   COMPOSITE_EXPRESSION,
   MECHANISM_FIT_ALPHA,
   MECHANISM_FIT_BETA,
@@ -29,374 +31,279 @@ import {
   MIN_MECHANISM_FIT_THRESHOLD,
 } from '@/data/mechanism-alignment-data';
 
-// ---- Persona-aware step-1 deck --------------------------------------------
-// Explains what the L2 mechanism-alignment scroll is showing, per audience.
-// The math (PATH A formula, composite gate) is identical across personas —
-// only the framing changes. Anchored to the signed 2026-04-28 PATH A decision.
-// ---------------------------------------------------------------------------
-
-type BrMStep1Copy = {
-  eyebrow: string;
-  headline: string;
-  body: string;
-  bullets: { label: string; value: string }[];
-  caveat?: string;
-};
-
-const BRM_STEP1_DECK: PersonaCopyDeck<BrMStep1Copy> = {
-  oncologist: {
-    eyebrow: 'Step 1 · How the composite gate reads a case',
-    headline:
-      'The ranker projects the patient onto the therapy — not a naive cosine.',
-    body:
-      'For each case below, the tumor gets a 7-dimensional patient vector p across canonical mechanism axes (DDR, MAPK, immune-permissive, PI3K, cell-cycle, epigenetic, metabolic). The therapy has its own vector t. The mechanism_fit is the projection of p onto t/‖t‖₂, clipped to [0,1]. That clip preserves magnitude information a naive cosine would strip. The composite gate is 0.7·eligibility + 0.3·mechanism_fit, and both floors must clear (eligibility ≥ 0.60, mechanism_fit ≥ 0.30).',
-    bullets: [
-      { label: 'Ranker', value: 'fit = clip((p·t) / ‖t‖₂, 0, 1)' },
-      { label: 'Composite', value: 'score = 0.7·elig + 0.3·fit' },
-      { label: 'Floors', value: 'elig ≥ 0.60 AND fit ≥ 0.30' },
-    ],
-    caveat:
-      'PATH A signed 2026-04-28 by Fahad Kiani; PATH B is prohibited in outputs. The 3 cases below are illustrative synthetic vectors chosen to teach the math; the real case (MBD4-LOF AK) lives at the bottom of this page and in the SL surface.',
-  },
-  patient: {
-    eyebrow: 'What this page shows',
-    headline: 'How the tool decides whether a treatment fits your tumor’s biology.',
-    body:
-      'Every tumor has a fingerprint of which biological pathways are active. Every drug has a fingerprint of which pathways it targets. This page shows three example cases where the two fingerprints don’t match — and how the tool refuses to recommend a drug when the biology doesn’t line up. The math has two thresholds; both have to clear.',
-    bullets: [
-      { label: 'Match score', value: 'How well the drug lines up with the tumor’s biology' },
-      { label: 'Eligibility', value: 'Whether the patient meets basic clinical criteria' },
-      { label: 'Both must clear', value: 'A single high score alone is not enough' },
-    ],
-    caveat:
-      'The three cases are examples chosen to teach how the tool works, not real patient stories. Ask your care team to walk through the specifics of your case.',
-  },
-  pharma: {
-    eyebrow: 'BD · L2 ranker under the hood',
-    headline: 'PATH A projection is the load-bearing math. Composite gate is the veto.',
-    body:
-      'The L2 mechanism-alignment layer projects the patient mechanism vector onto the therapy axis (PATH A: fit = clip((p·t) / ‖t‖₂, 0, 1)) and gates on composite = 0.7·eligibility + 0.3·mechanism_fit with dual floors. The 3 illustrative cases show how the gate FAILS an unstratified MEK bet (NRAS Q61K bypass), an unstratified ATRi bet (cold TME missing IO gate), and a cetuximab-in-RAS-mutant bet (already litigated historically). The AK case at the bottom is the real-world receipt — MBD4-LOF patient where prod recommended PARP; the SL manuscript already falsified PARP at first premise.',
-    bullets: [
-      { label: 'Formula (signed)', value: 'PATH A · fit = clip((p·t) / ‖t‖₂, 0, 1)' },
-      { label: 'Governance', value: 'Signed 2026-04-28 · PATH B prohibited' },
-      { label: 'Field validation', value: 'AK patient (MBD4-LOF MSS-CRC) — real receipt below' },
-    ],
-    caveat:
-      'DIV-01/02/03 are illustrative vectors. One quarantined figure remains publication-blocked under DL-07 (see governance ledger). Treat this surface as the mechanism-of-veto explanation, not phase-3 evidence.',
-  },
-};
-import PARPFalsificationArc from '@/components/tumor-board/ak/PARPFalsificationArc';
-import RecommendedDrugsPanel from '@/components/tumor-board/ak/RecommendedDrugsPanel';
-import SLMatrixTable from '@/components/tumor-board/ak/SLMatrixTable';
-
-// ------------------------------------------------------------------------------
-// Local helpers — deterministic client-side math for the display.
-// ------------------------------------------------------------------------------
-
-function l2Norm(v: number[]): number {
-  return Math.sqrt(v.reduce((s, x) => s + x * x, 0));
-}
-
-function dot(a: number[], b: number[]): number {
-  return a.reduce((s, x, i) => s + x * b[i], 0);
-}
-
-function clip01(x: number): number {
-  return Math.max(0, Math.min(1, x));
-}
-
-// Returns the per-axis contribution of the projection (p_i · t_i / ‖t‖₂).
-// The sum of these is the numerator projected onto the therapy axis.
-function perAxisContribution(pVec: number[], tVec: number[]): number[] {
-  const n = l2Norm(tVec);
-  if (n === 0) return pVec.map(() => 0);
-  return pVec.map((p_i, i) => (p_i * tVec[i]) / n);
-}
-
 export default function MechanismAlignmentScrollSurface() {
   const { isDarkMode } = useTheme();
+  const patientCtx = useOptionalPatient();
+  const patient: PatientBundle = patientCtx ?? AK01;
+  const caps = getCapabilities(patient);
+
   const accent = isDarkMode ? 'text-fuchsia-300' : 'text-fuchsia-600';
-  const accentBg = isDarkMode ? 'bg-fuchsia-500/20' : 'bg-fuchsia-100';
+  const accentBg = isDarkMode ? 'bg-fuchsia-950/40 border-fuchsia-800/40' : 'bg-fuchsia-50 border-fuchsia-200';
   const panel = isDarkMode ? 'bg-zinc-950/60 border-zinc-800' : 'bg-white border-slate-200';
-  const barBase = isDarkMode ? 'bg-zinc-900' : 'bg-slate-100';
   const textMain = isDarkMode ? 'text-zinc-100' : 'text-slate-900';
   const textMuted = isDarkMode ? 'text-zinc-400' : 'text-slate-600';
 
-  return (
-    <div className={`relative min-h-screen font-mono ${isDarkMode ? 'bg-[#020408] text-zinc-100' : 'bg-white text-slate-900'}`}>
-      {/* Sticky eyebrow */}
-      <div className={`sticky top-0 z-20 backdrop-blur border-b ${
-        isDarkMode ? 'bg-[#020408]/80 border-zinc-800' : 'bg-white/80 border-slate-200'
-      }`}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-2 sm:py-3 flex items-center gap-3">
-          <div className={`w-8 h-8 rounded border flex items-center justify-center ${panel}`}>
-            <Layers className={`w-4 h-4 ${accent}`} />
-          </div>
-          <div className="min-w-0">
-            <p className={`text-[9px] font-black uppercase tracking-[0.4em] ${accent}`}>L2 · scroll surface</p>
-            <p className={`text-xs sm:text-sm font-black uppercase tracking-tight truncate ${textMain}`}>
-              Mechanism Alignment — 3 illustrative divergence cases
-            </p>
-          </div>
-          <div className={`ml-auto hidden md:flex items-center gap-2 text-[10px] font-bold uppercase ${textMuted}`}>
-            <ShieldCheck className="w-3 h-3" />
-            <span>PATH A · signed 2026-04-28</span>
-          </div>
-        </div>
-      </div>
+  const divergenceRows = (patient.slMatrix ?? []).filter((r) => r.divergenceIntended === true);
+  const drugs = [...(patient.recommendedDrugs ?? [])].sort((a, b) => {
+    if (a.falsified !== b.falsified) return a.falsified ? 1 : -1;
+    return (b.confidence ?? 0) - (a.confidence ?? 0);
+  });
 
-      {/* Formula strip */}
-      <section className={`border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'}`}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div className={`rounded border p-4 ${panel}`}>
-            <p className={`text-[10px] font-black uppercase tracking-widest mb-1 ${accent}`}>Ranker formula</p>
-            <code className={`text-sm sm:text-base font-black ${textMain}`}>{PATH_A_FORMULA}</code>
-            <p className={`mt-2 text-[11px] leading-snug ${textMuted}`}>
-              Projection of the patient vector onto the therapy axis, unit-normalized by ‖t‖₂ and clipped to [0,1]. Naive cosine would strip that projection information.
-            </p>
+  return (
+    <div className={`min-h-screen font-mono ${isDarkMode ? 'bg-[#020408] text-zinc-100' : 'bg-white text-slate-900'}`}>
+      {/* ============================================================
+          00 · Hero — patient identity + governance math
+      ============================================================ */}
+      <section className={`relative border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'} overflow-hidden`}>
+        <div
+          className={`absolute inset-0 pointer-events-none ${
+            isDarkMode
+              ? 'bg-[linear-gradient(to_right,#F0ABFC08_1px,transparent_1px),linear-gradient(to_bottom,#F0ABFC08_1px,transparent_1px)]'
+              : 'bg-[linear-gradient(to_right,#a21caf08_1px,transparent_1px),linear-gradient(to_bottom,#a21caf08_1px,transparent_1px)]'
+          } bg-[size:48px_48px]`}
+        />
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+          <div className="flex items-center gap-3 mb-6">
+            <div className={`w-10 h-10 rounded border flex items-center justify-center ${panel}`}>
+              <Layers className={`w-5 h-5 ${accent}`} />
+            </div>
+            <div>
+              <p className={`text-[10px] font-black uppercase tracking-[0.4em] ${accent}`}>
+                L2 · scroll · {productFor('mechanism_fit')}
+              </p>
+              <p className={`text-[10px] uppercase tracking-widest mt-0.5 ${textMuted}`}>
+                {patient.meta.patientId} · {patient.tumorContext?.subtype ?? patient.tumorContext?.cancerType ?? patient.meta.displayName ?? '—'}
+              </p>
+            </div>
+            <div className={`ml-auto hidden sm:flex items-center gap-2 text-[10px] font-bold uppercase ${textMuted}`}>
+              <ShieldCheck className="w-3 h-3" />
+              <span>PATH A signed</span>
+            </div>
           </div>
-          <div className={`rounded border p-4 ${panel}`}>
-            <p className={`text-[10px] font-black uppercase tracking-widest mb-1 ${accent}`}>Composite gate</p>
-            <code className={`text-sm sm:text-base font-black ${textMain}`}>{COMPOSITE_EXPRESSION}</code>
-            <p className={`mt-2 text-[11px] leading-snug ${textMuted}`}>
-              α = {MECHANISM_FIT_ALPHA}, β = {MECHANISM_FIT_BETA}. Eligibility ≥ {MIN_ELIGIBILITY_THRESHOLD} and mechanism_fit ≥ {MIN_MECHANISM_FIT_THRESHOLD} — both must clear.
-            </p>
+
+          <h1 className={`text-2xl sm:text-4xl font-black tracking-tight leading-tight mb-4 max-w-4xl ${textMain}`}>
+            Mechanism Alignment · {productFor('mechanism_fit')} explained
+          </h1>
+          <p className={`text-sm sm:text-base leading-relaxed max-w-3xl ${textMuted}`}>
+            This surface answers one question: does the recommended therapy actually line up with
+            the patient's active biology? Every card below is derived from{' '}
+            <span className={textMain}>{patient.meta.patientId}</span>'s bundle — the intentional
+            simulator upgrades, the ranked drug candidates, and (where applicable) why we did NOT
+            pick certain classes.
+          </p>
+
+          {/* Governance math strip */}
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className={`rounded border p-3 ${panel}`}>
+              <p className={`text-[10px] font-black uppercase tracking-widest mb-1 ${accent}`}>
+                PATH A · production ranker
+              </p>
+              <code className={`text-sm sm:text-base font-black ${textMain}`}>{PATH_A_FORMULA}</code>
+              <p className={`mt-2 text-[11px] leading-snug ${textMuted}`}>
+                Projection of the patient vector onto the therapy axis, clipped to [0,1]. Naive
+                cosine strips magnitude information; the clip preserves it.
+              </p>
+            </div>
+            <div className={`rounded border p-3 ${panel}`}>
+              <p className={`text-[10px] font-black uppercase tracking-widest mb-1 ${accent}`}>
+                Composite gate
+              </p>
+              <code className={`text-sm sm:text-base font-black ${textMain}`}>{COMPOSITE_EXPRESSION}</code>
+              <p className={`mt-2 text-[11px] leading-snug ${textMuted}`}>
+                α = {MECHANISM_FIT_ALPHA}, β = {MECHANISM_FIT_BETA}. Eligibility ≥{' '}
+                {MIN_ELIGIBILITY_THRESHOLD} and mechanism_fit ≥ {MIN_MECHANISM_FIT_THRESHOLD} — both
+                must clear.
+              </p>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Persona-aware step-1 deck — same math, per-audience framing */}
-      <PersonaContent
-        deck={BRM_STEP1_DECK}
-        render={(copy) => (
-          <section className={`border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'}`}>
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-              <p className={`text-[10px] font-black uppercase tracking-[0.4em] mb-2 ${accent}`}>
-                {copy.eyebrow}
-              </p>
-              <h2 className={`text-xl sm:text-2xl font-black tracking-tight leading-tight mb-3 max-w-4xl ${textMain}`}>
-                {copy.headline}
-              </h2>
-              <p className={`text-sm leading-relaxed mb-4 max-w-4xl ${textMuted}`}>
-                {copy.body}
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
-                {copy.bullets.map((b) => (
-                  <div key={b.label} className={`rounded border p-3 ${panel}`}>
-                    <p className={`text-[9px] font-black uppercase tracking-[0.3em] mb-1 ${accent}`}>
-                      {b.label}
-                    </p>
-                    <p className={`text-[12px] leading-snug ${textMain}`}>
-                      {b.value}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              {copy.caveat && (
-                <p className={`text-[11px] italic leading-relaxed max-w-4xl ${textMuted}`}>
-                  <span className={`not-italic font-black uppercase tracking-widest mr-1 ${accent}`}>Caveat ·</span>
-                  {copy.caveat}
-                </p>
-              )}
-            </div>
-          </section>
-        )}
-      />
-
-      {/* Cases */}
-      {DIVERGENCE_CASES.map((c, idx) => {
-        const pVec = PATHWAYS_7D.map((p) => c.patientVector[p.key] ?? 0);
-        const tVec = PATHWAYS_7D.map((p) => c.therapyVector[p.key] ?? 0);
-        const contributions = perAxisContribution(pVec, tVec);
-        const rawFit = contributions.reduce((s, x) => s + x, 0);
-        const clippedFit = clip01(rawFit);
-        const composite = clip01(MECHANISM_FIT_ALPHA * c.outcome.eligibility + MECHANISM_FIT_BETA * clippedFit);
-        const verdictColor = c.outcome.verdict === 'PASS'
-          ? isDarkMode ? 'text-emerald-400' : 'text-emerald-700'
-          : isDarkMode ? 'text-rose-400' : 'text-rose-700';
-        const verdictBg = c.outcome.verdict === 'PASS'
-          ? isDarkMode ? 'bg-emerald-500/20' : 'bg-emerald-100'
-          : isDarkMode ? 'bg-rose-500/20' : 'bg-rose-100';
-        const eligibilityCleared = c.outcome.eligibility >= MIN_ELIGIBILITY_THRESHOLD;
-        const fitCleared = clippedFit >= MIN_MECHANISM_FIT_THRESHOLD;
-
-        return (
-          <section
-            key={c.id}
-            className={`border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'}`}
-          >
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
-
-              {/* Case header */}
-              <div className="flex flex-wrap items-start gap-3 mb-6">
-                <div className={`inline-flex items-center gap-2 rounded px-2 py-1 ${accentBg}`}>
-                  <span className={`text-[10px] font-black uppercase ${accent}`}>{c.id}</span>
-                  <span className={`text-[10px] font-black uppercase ${accent}`}>Case {idx + 1} of {DIVERGENCE_CASES.length}</span>
-                </div>
-                <span className={`text-[10px] font-black uppercase rounded px-2 py-1 ${verdictBg} ${verdictColor}`}>
-                  {c.outcome.verdict}
-                </span>
-                <span className={`text-[10px] font-bold uppercase rounded px-2 py-1 ${panel} ${textMuted}`}>
-                  {c.conflict.label}
-                </span>
-              </div>
-
-              <h2 className={`text-2xl sm:text-3xl font-black tracking-tight leading-tight ${textMain}`}>
-                {c.title}
-              </h2>
-              <p className={`mt-2 text-sm sm:text-base ${textMuted}`}>{c.audience}</p>
-
-              {/* Vector bars */}
-              <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <VectorBars
-                  title="Patient vector p"
-                  subtitle="Where the patient loads in mechanism space"
-                  vec={pVec}
-                  isDarkMode={isDarkMode}
-                  color="fuchsia"
-                />
-                <VectorBars
-                  title="Therapy vector t"
-                  subtitle="Where the therapy expects to work"
-                  vec={tVec}
-                  isDarkMode={isDarkMode}
-                  color="cyan"
-                />
-              </div>
-
-              {/* Projection breakdown */}
-              <div className={`mt-6 rounded border ${panel}`}>
-                <div className={`px-4 py-2 border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-100'}`}>
-                  <p className={`text-[10px] font-black uppercase tracking-widest ${accent}`}>PATH A projection · per-axis contribution</p>
-                </div>
-                <div className="p-4 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
-                  {PATHWAYS_7D.map((p, i) => (
-                    <div key={p.key} className={`rounded border p-2 ${panel}`}>
-                      <p className={`text-[9px] font-black uppercase ${textMuted}`}>{p.label}</p>
-                      <p className={`text-sm font-black ${textMain}`}>{contributions[i].toFixed(3)}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className={`px-4 py-2 border-t grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 ${isDarkMode ? 'border-zinc-800' : 'border-slate-100'}`}>
-                  <FormulaCell label="raw projection" value={rawFit.toFixed(3)} isDarkMode={isDarkMode} />
-                  <FormulaCell label="clip [0,1] → mechanism_fit" value={clippedFit.toFixed(3)} isDarkMode={isDarkMode} />
-                  <FormulaCell label="eligibility" value={c.outcome.eligibility.toFixed(2)} isDarkMode={isDarkMode} />
-                </div>
-              </div>
-
-              {/* Composite verdict */}
-              <div className={`mt-4 rounded border ${panel}`}>
-                <div className={`px-4 py-2 border-b flex items-center justify-between ${isDarkMode ? 'border-zinc-800' : 'border-slate-100'}`}>
-                  <p className={`text-[10px] font-black uppercase tracking-widest ${accent}`}>Composite gate</p>
-                  <span className={`text-[10px] font-black uppercase rounded px-2 py-0.5 ${verdictBg} ${verdictColor}`}>
-                    {c.outcome.verdict}
-                  </span>
-                </div>
-                <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                  <GateCell
-                    label={`α = ${MECHANISM_FIT_ALPHA}`}
-                    sub="eligibility"
-                    value={c.outcome.eligibility.toFixed(2)}
-                    cleared={eligibilityCleared}
-                    threshold={MIN_ELIGIBILITY_THRESHOLD}
-                    isDarkMode={isDarkMode}
-                  />
-                  <GateCell
-                    label={`β = ${MECHANISM_FIT_BETA}`}
-                    sub="mechanism_fit"
-                    value={clippedFit.toFixed(3)}
-                    cleared={fitCleared}
-                    threshold={MIN_MECHANISM_FIT_THRESHOLD}
-                    isDarkMode={isDarkMode}
-                  />
-                  <GateCell
-                    label="composite"
-                    sub="α · elig + β · fit"
-                    value={composite.toFixed(3)}
-                    cleared={eligibilityCleared && fitCleared}
-                    threshold={MECHANISM_FIT_ALPHA * MIN_ELIGIBILITY_THRESHOLD + MECHANISM_FIT_BETA * MIN_MECHANISM_FIT_THRESHOLD}
-                    isDarkMode={isDarkMode}
-                  />
-                  <div className={`rounded border p-2 ${panel}`}>
-                    <p className={`text-[9px] font-black uppercase ${textMuted}`}>Named reason</p>
-                    <p className={`text-[11px] leading-snug mt-1 ${textMain}`}>{c.outcome.reason}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Narrative */}
-              <div className="mt-6 space-y-3">
-                {c.narrative.map((para, i) => (
-                  <p key={i} className={`text-sm leading-relaxed ${textMuted}`}>{para}</p>
-                ))}
-              </div>
-
-              {/* Illustrative disclaimer */}
-              <div className={`mt-6 rounded border p-3 ${panel}`}>
-                <p className={`text-[10px] italic leading-snug ${textMuted}`}>
-                  <span className={`not-italic font-black uppercase mr-1 ${accent}`}>Note ·</span>
-                  {c.illustrativeNote}
-                </p>
-              </div>
-            </div>
-          </section>
-        );
-      })}
 
       {/* ============================================================
-          REAL CASE — PARP falsification arc (MBD4-LOF patient AK).
-          This is the field validation of the illustrative DIV-02
-          ATRi-cold-TME case above: real n, real p-values, real ATR
-          pivot. Anchored to /audit/evo2-e2e/ and the MBD4 manuscript.
-          Not illustrative — every number here has a receipt.
+          01 · Divergence cards — patient's intentional prod→sim upgrades
       ============================================================ */}
-      <section className="mt-12 border-t border-fuchsia-500/20 pt-8">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-4">
-          <p className={`text-[10px] font-black uppercase tracking-[0.4em] ${accent}`}>
-            Real divergence · MBD4 manuscript field case
+      <section className={`border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'}`}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+          <p className={`text-[10px] font-black uppercase tracking-[0.4em] mb-2 ${accent}`}>
+            01 · {productFor('divergence_intended')}
           </p>
-          <h2 className={`mt-1 text-lg sm:text-xl font-black uppercase tracking-tight ${textMain}`}>
-            The PARP arc — where the illustrative ATRi case is a real patient
+          <h2 className={`text-xl sm:text-2xl font-black tracking-tight leading-tight mb-3 max-w-4xl ${textMain}`}>
+            {divergenceRows.length > 0
+              ? `Where the Simulator upgrades what production would ship`
+              : `Prod and Simulator agree for ${patient.meta.patientId}`}
           </h2>
-          <p className={`mt-2 max-w-3xl text-sm ${textMuted}`}>
-            The three cases above use synthetic vectors to teach the math. Below is a real receipt: patient AK
-            (MBD4 frameshift, MSS CRC) whose prod recommendation was a PARP inhibitor. The manuscript already
-            falsified that mechanism — PARP1 expression is not elevated in MBD4-LOF (p=0.605, n=19 LOF vs 1,498 non-LOF),
-            and pan-cancer PARP1↔PARPi correlation is <em>negative</em> (Spearman ρ=−0.416, p=1.36×10⁻²¹, n=481).
-            ATRi (ceralasertib) is the pivoted-to axis — Δ LN_IC50=−0.73, p=0.021, Cohen’s d=−0.50, n=14 True-LOF vs 942 WT (GDSC2).
-          </p>
-        </div>
 
-        {/* Dark canvas for AK components — they render dark-only, matching the tumor-board surface tone. */}
-        <div className="bg-[#020408] text-zinc-100 border-y border-zinc-800">
-          <PARPFalsificationArc />
-          <div className="mx-auto w-full max-w-[1400px] px-8 pb-12 grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
-            <RecommendedDrugsPanel />
-            <SLMatrixTable />
-          </div>
+          {divergenceRows.length === 0 ? (
+            <div className={`rounded border p-5 ${panel}`}>
+              <div className="flex items-center gap-2 mb-2">
+                <Check className={`w-4 h-4 ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`} />
+                <p className={`text-[10px] font-black uppercase tracking-widest ${
+                  isDarkMode ? 'text-emerald-400' : 'text-emerald-700'
+                }`}>
+                  No active divergence
+                </p>
+              </div>
+              <p className={`text-sm leading-relaxed max-w-3xl ${textMain}`}>
+                The Simulator identifies the same top {productFor('sl_axis').toLowerCase()} that
+                the production ranker already picks for this patient. No axis is currently being
+                promoted by a candidate fusion rule that hasn't already shipped to production.
+              </p>
+              <p className={`mt-3 text-[11px] italic max-w-3xl ${textMuted}`}>
+                If a new manuscript claim or fusion rule ships that would upgrade a candidate axis
+                for {patient.meta.patientId}, the card appears here automatically without any code
+                change to this surface.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-4">
+              {divergenceRows.map((row, i) => (
+                <DivergenceCard
+                  key={row.axis}
+                  index={i}
+                  total={divergenceRows.length}
+                  row={row}
+                  isDarkMode={isDarkMode}
+                />
+              ))}
+            </div>
+          )}
         </div>
+      </section>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
-          <div className={`rounded border p-3 ${panel}`}>
-            <p className={`text-[10px] italic leading-snug ${textMuted}`}>
-              <span className={`not-italic font-black uppercase mr-1 ${accent}`}>Receipts ·</span>
-              AK L1 bundle v2.0 (patientId AK, generated 2026-02-12) · manuscript figures anchored under
-              /audit/evo2-e2e/ · manuscript_claim_type=&quot;falsified_mechanism&quot; on the parp_inhibitors row (PR#11).
-              No DDR numeric figure appears on this surface (DL-07 quarantine holds).
+      {/* ============================================================
+          02 · Ranked drug ladder
+      ============================================================ */}
+      {caps.hasRecommendedDrugs && (
+        <section className={`border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'}`}>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+            <p className={`text-[10px] font-black uppercase tracking-[0.4em] mb-2 ${accent}`}>
+              02 · {productFor('recommended_drugs')}
             </p>
+            <h2 className={`text-xl sm:text-2xl font-black tracking-tight leading-tight mb-3 max-w-4xl ${textMain}`}>
+              What the ranker picks — and what it demotes
+            </h2>
+            <p className={`text-sm leading-relaxed max-w-3xl mb-5 ${textMuted}`}>
+              Ordered by confidence. Falsified candidates are pushed below the fold, with the
+              falsification reason attached so the demotion is auditable.
+            </p>
+
+            {patient.suggestedTherapy?.value && (
+              <div className={`rounded border p-3 mb-4 ${accentBg}`}>
+                <p className={`text-[10px] font-black uppercase tracking-widest ${accent}`}>
+                  {productFor('suggested_therapy')}
+                </p>
+                <p className={`mt-1 text-sm font-black ${textMain}`}>
+                  {patient.suggestedTherapy.value}
+                </p>
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {drugs.map((d, i) => (
+                <DrugCard key={`${d.drugName}-${i}`} rank={i + 1} drug={d} isDarkMode={isDarkMode} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ============================================================
+          03 · PARP arc (gated on caps.hasParpFalsification)
+      ============================================================ */}
+      {caps.hasParpFalsification && patient.parpFalsification && (
+        <section className={`border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'} bg-[#020408] text-zinc-100`}>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+            <p className="text-[10px] font-black uppercase tracking-[0.4em] mb-2 text-fuchsia-300">
+              03 · {productFor('parp_falsification')}
+            </p>
+            <h2 className="text-xl sm:text-2xl font-black tracking-tight leading-tight mb-3 max-w-4xl text-zinc-100">
+              The three-card arc — what prod does, what the data says, how the bridge is fixed
+            </h2>
+            <p className="text-sm leading-relaxed max-w-3xl mb-6 text-zinc-400">
+              Production still ships PARP as a candidate for {patient.meta.patientId}. The
+              manuscript already falsifies that mechanism. This section reproduces the arc
+              end-to-end so the fix is legible without opening the bundle.
+            </p>
+            <ParpArcCards arc={patient.parpFalsification} />
+          </div>
+        </section>
+      )}
+
+      {/* ============================================================
+          04 · Governance footer
+      ============================================================ */}
+      <section className={`border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-200'}`}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+          <p className={`text-[10px] font-black uppercase tracking-[0.4em] mb-2 ${accent}`}>
+            04 · Governance
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className={`rounded border p-3 ${panel}`}>
+              <p className={`text-[10px] font-black uppercase tracking-widest mb-1 ${accent}`}>
+                Signed ranker
+              </p>
+              <code className={`text-sm font-black ${textMain}`}>{PATH_A_FORMULA}</code>
+              <p className={`mt-2 text-[10px] italic ${textMuted}`}>{PATH_A_APPROVAL}</p>
+            </div>
+            <div className={`rounded border p-3 ${panel}`}>
+              <p className={`text-[10px] font-black uppercase tracking-widest mb-1 ${accent}`}>
+                RSS · opt-in axis
+              </p>
+              <p className={`text-[11px] leading-snug ${textMain}`}>
+                The Replication-Stress Score (PMID 34552099) is an optional 8th axis. It ships only
+                when the therapy modality demands it — the 7-axis canonical vector is the default
+                everywhere else.
+              </p>
+            </div>
+            <div className={`rounded border p-3 ${panel}`}>
+              <p className={`text-[10px] font-black uppercase tracking-widest mb-1 ${accent}`}>
+                DL-07 quarantine
+              </p>
+              <p className={`text-[11px] leading-snug ${textMain}`}>
+                The DDR axis alignment number cited historically is quarantined until reproduced
+                end-to-end. This surface never pairs the DDR label with that specific number.
+              </p>
+            </div>
+            <div className={`rounded border p-3 ${panel}`}>
+              <p className={`text-[10px] font-black uppercase tracking-widest mb-1 ${accent}`}>
+                Composite gate
+              </p>
+              <code className={`text-sm font-black ${textMain}`}>{COMPOSITE_EXPRESSION}</code>
+              <p className={`mt-2 text-[10px] ${textMuted}`}>
+                α = {MECHANISM_FIT_ALPHA} · β = {MECHANISM_FIT_BETA} · elig ≥{' '}
+                {MIN_ELIGIBILITY_THRESHOLD} · fit ≥ {MIN_MECHANISM_FIT_THRESHOLD}
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Cross-links footer */}
-      <section className={`max-w-6xl mx-auto px-4 sm:px-6 py-8`}>
+      {/* ============================================================
+          05 · Cross-engine links
+      ============================================================ */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
         <p className={`text-[10px] font-black uppercase tracking-widest mb-2 ${accent}`}>
           Cross-engine deep dives
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-          <CrossLink href="/engine/target-lock/scroll" title="Target-Lock · brain-met" note="7-step BrM cascade — the L1 counterpart to L2 mechanism alignment." isDarkMode={isDarkMode} />
-          <CrossLink href="/engine/synthetic-lethality/scroll" title="SL · MBD4 manuscript" note="4-axis SL substrate — where mechanism alignment collides with lethality." isDarkMode={isDarkMode} />
-          <CrossLink href="/engine/mechanism-alignment/tabs" title="L2 tab strip" note="Per-case tab view + governance / PATH A signature tab." isDarkMode={isDarkMode} />
+          <CrossLink
+            href={`/tumor-board/${patient.meta.patientId}`}
+            title={`Case · ${patient.meta.patientId}`}
+            note="Full L1 board for this patient — 9 panels, primary source."
+            isDarkMode={isDarkMode}
+          />
+          <CrossLink
+            href="/engine/synthetic-lethality/scroll"
+            title="SL · scroll"
+            note="Lethality substrate that MOA collides with."
+            isDarkMode={isDarkMode}
+          />
+          <CrossLink
+            href="/engine/mechanism-alignment/tabs"
+            title="L2 tab strip"
+            note="Same content, tab layout."
+            isDarkMode={isDarkMode}
+          />
         </div>
       </section>
     </div>
@@ -404,95 +311,252 @@ export default function MechanismAlignmentScrollSurface() {
 }
 
 // ------------------------------------------------------------------------------
-// Sub-components
+// Divergence card — one intentional prod→sim upgrade
 // ------------------------------------------------------------------------------
 
-interface VectorBarsProps {
-  title: string;
-  subtitle: string;
-  vec: number[];
+function DivergenceCard({
+  index,
+  total,
+  row,
+  isDarkMode,
+}: {
+  index: number;
+  total: number;
+  row: PatientBundle['slMatrix'][number];
   isDarkMode: boolean;
-  color: 'fuchsia' | 'cyan';
-}
-
-function VectorBars({ title, subtitle, vec, isDarkMode, color }: VectorBarsProps) {
+}) {
+  const accent = isDarkMode ? 'text-fuchsia-300' : 'text-fuchsia-600';
+  const accentBg = isDarkMode ? 'bg-fuchsia-950/40 border-fuchsia-800/40' : 'bg-fuchsia-50 border-fuchsia-200';
   const panel = isDarkMode ? 'bg-zinc-950/60 border-zinc-800' : 'bg-white border-slate-200';
   const textMain = isDarkMode ? 'text-zinc-100' : 'text-slate-900';
   const textMuted = isDarkMode ? 'text-zinc-400' : 'text-slate-600';
-  const barBase = isDarkMode ? 'bg-zinc-900' : 'bg-slate-100';
-  const fill =
-    color === 'fuchsia'
-      ? isDarkMode ? 'bg-fuchsia-500' : 'bg-fuchsia-400'
-      : isDarkMode ? 'bg-cyan-500' : 'bg-cyan-400';
-  const accent =
-    color === 'fuchsia'
-      ? isDarkMode ? 'text-fuchsia-300' : 'text-fuchsia-600'
-      : isDarkMode ? 'text-cyan-300' : 'text-cyan-600';
 
   return (
-    <div className={`rounded border ${panel}`}>
-      <div className={`px-3 py-2 border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-100'}`}>
-        <p className={`text-[10px] font-black uppercase tracking-widest ${accent}`}>{title}</p>
-        <p className={`text-[10px] mt-0.5 ${textMuted}`}>{subtitle}</p>
+    <div className={`rounded border p-5 ${panel}`}>
+      <div className="flex flex-wrap items-center gap-2 mb-4">
+        <div className={`inline-flex items-center gap-2 rounded px-2 py-1 ${accentBg}`}>
+          <span className={`text-[10px] font-black uppercase ${accent}`}>
+            Δ-{String(index + 1).padStart(2, '0')} of {total}
+          </span>
+        </div>
+        <span className={`text-[10px] font-black uppercase rounded px-2 py-1 ${
+          isDarkMode ? 'bg-emerald-500/20 text-emerald-300' : 'bg-emerald-100 text-emerald-700'
+        }`}>
+          {productFor('divergence_intended')}
+        </span>
+        {row.manuscriptClaimType && (
+          <span className={`text-[10px] font-bold uppercase rounded px-2 py-1 ${panel} ${textMuted}`}>
+            {row.manuscriptClaimType.replace(/_/g, ' ')}
+          </span>
+        )}
       </div>
-      <div className="p-3 space-y-1.5">
-        {PATHWAYS_7D.map((p, i) => (
-          <div key={p.key} className="grid grid-cols-[3rem_1fr_3rem] items-center gap-2">
-            <span className={`text-[10px] font-black uppercase ${textMuted}`}>{p.label}</span>
-            <div className={`h-2 rounded-sm relative overflow-hidden ${barBase}`}>
-              <div
-                className={`h-full ${fill}`}
-                style={{ width: `${Math.min(100, Math.max(0, vec[i] * 100))}%` }}
-              />
-            </div>
-            <span className={`text-[10px] font-black text-right ${textMain}`}>{vec[i].toFixed(2)}</span>
+
+      <h3 className={`text-lg sm:text-xl font-black tracking-tight ${textMain}`}>
+        {prettyAxis(row.axis)}
+      </h3>
+
+      {/* Prod → Sim delta strip */}
+      <div className={`mt-4 rounded border p-3 ${panel}`}>
+        <p className={`text-[10px] font-black uppercase tracking-widest mb-2 ${accent}`}>
+          {productFor('prod_tier')} → {productFor('sim_tier')}
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-center gap-3">
+          <div>
+            <p className={`text-[9px] uppercase font-bold ${textMuted}`}>{labelFor('prod_tier')}</p>
+            <p className={`text-sm font-bold mt-1 ${textMain}`}>{row.prodTier}</p>
           </div>
-        ))}
+          <ArrowRight className={`w-4 h-4 shrink-0 self-center ${accent} hidden sm:block`} />
+          <div>
+            <p className={`text-[9px] uppercase font-bold ${textMuted}`}>{labelFor('sim_tier')}</p>
+            <p className={`text-sm font-bold mt-1 ${textMain}`}>{row.simTier}</p>
+          </div>
+        </div>
       </div>
+
+      {row.divergenceExplanation && (
+        <div className={`mt-3 rounded border p-3 ${panel}`}>
+          <p className={`text-[10px] font-black uppercase tracking-widest mb-2 ${accent}`}>
+            Why the Simulator upgrades this axis
+          </p>
+          <p className={`text-[12px] leading-relaxed ${textMain}`}>{row.divergenceExplanation}</p>
+        </div>
+      )}
     </div>
   );
 }
 
-function FormulaCell({ label, value, isDarkMode }: { label: string; value: string; isDarkMode: boolean }) {
-  const textMain = isDarkMode ? 'text-zinc-100' : 'text-slate-900';
-  const textMuted = isDarkMode ? 'text-zinc-400' : 'text-slate-600';
-  return (
-    <div>
-      <p className={`text-[9px] font-black uppercase ${textMuted}`}>{label}</p>
-      <p className={`text-sm font-black ${textMain}`}>{value}</p>
-    </div>
-  );
-}
+// ------------------------------------------------------------------------------
+// Drug card
+// ------------------------------------------------------------------------------
 
-function GateCell({ label, sub, value, cleared, threshold, isDarkMode }: {
-  label: string; sub: string; value: string; cleared: boolean; threshold: number; isDarkMode: boolean;
+function DrugCard({
+  rank,
+  drug,
+  isDarkMode,
+}: {
+  rank: number;
+  drug: PatientBundle['recommendedDrugs'][number];
+  isDarkMode: boolean;
 }) {
   const panel = isDarkMode ? 'bg-zinc-950/60 border-zinc-800' : 'bg-white border-slate-200';
   const textMain = isDarkMode ? 'text-zinc-100' : 'text-slate-900';
   const textMuted = isDarkMode ? 'text-zinc-400' : 'text-slate-600';
-  const passBg = isDarkMode ? 'bg-emerald-500/15 border-emerald-500/40' : 'bg-emerald-50 border-emerald-200';
-  const failBg = isDarkMode ? 'bg-rose-500/15 border-rose-500/40' : 'bg-rose-50 border-rose-200';
+  const isFalsified = drug.falsified === true;
+  const accent = isDarkMode ? 'text-fuchsia-300' : 'text-fuchsia-600';
+
+  const borderTone = isFalsified
+    ? isDarkMode
+      ? 'border-rose-500/40 bg-rose-950/20'
+      : 'border-rose-200 bg-rose-50/60'
+    : isDarkMode
+      ? 'border-emerald-500/30 bg-emerald-950/10'
+      : 'border-emerald-200 bg-emerald-50/40';
+  const tagTone = isFalsified
+    ? isDarkMode
+      ? 'bg-rose-500/20 text-rose-300'
+      : 'bg-rose-100 text-rose-700'
+    : isDarkMode
+      ? 'bg-emerald-500/20 text-emerald-300'
+      : 'bg-emerald-100 text-emerald-700';
+
   return (
-    <div className={`rounded border p-2 ${cleared ? passBg : failBg}`}>
-      <p className={`text-[9px] font-black uppercase ${textMuted}`}>{label}</p>
-      <p className={`text-[9px] uppercase ${textMuted}`}>{sub}</p>
-      <p className={`mt-1 text-sm font-black ${textMain}`}>{value}</p>
-      <p className={`text-[9px] mt-0.5 ${cleared ? 'text-emerald-500' : 'text-rose-500'}`}>
-        threshold {threshold.toFixed(2)} · {cleared ? 'cleared' : 'below'}
-      </p>
+    <div className={`rounded border p-4 ${borderTone}`}>
+      <div className="flex items-start justify-between gap-2">
+        <div>
+          <p className={`text-base font-black ${textMain}`}>
+            {drug.drugName}
+            <span className={`ml-2 text-[9px] font-bold uppercase ${textMuted}`}>#{rank}</span>
+          </p>
+          <p className={`text-[10px] font-bold uppercase mt-1 ${textMuted}`}>
+            target · {drug.targetPathway}
+          </p>
+        </div>
+        <span className={`shrink-0 rounded px-2 py-0.5 text-[9px] font-bold uppercase ${tagTone}`}>
+          {isFalsified ? 'falsified' : `conf ${drug.confidence.toFixed(2)}`}
+        </span>
+      </div>
+      {isFalsified && drug.falsifiedReason && (
+        <div className={`mt-3 rounded border p-2 ${panel}`}>
+          <div className="flex items-center gap-1 mb-1">
+            <AlertTriangle className={`w-3 h-3 ${isDarkMode ? 'text-rose-300' : 'text-rose-600'}`} />
+            <p className={`text-[9px] font-black uppercase ${accent}`}>Why demoted</p>
+          </div>
+          <p className={`text-[11px] leading-snug ${textMain}`}>{drug.falsifiedReason}</p>
+        </div>
+      )}
     </div>
   );
 }
 
-function CrossLink({ href, title, note, isDarkMode }: { href: string; title: string; note: string; isDarkMode: boolean }) {
+// ------------------------------------------------------------------------------
+// PARP arc — three cards (dark-only, matches AK component styling)
+// ------------------------------------------------------------------------------
+
+function ParpArcCards({
+  arc,
+}: {
+  arc: NonNullable<PatientBundle['parpFalsification']>;
+}) {
+  return (
+    <div className="grid gap-4 lg:grid-cols-3">
+      <div className="flex flex-col rounded border border-rose-500/30 bg-rose-500/[0.05] p-5">
+        <p className="text-[10px] font-black uppercase tracking-[0.24em] text-rose-300">
+          1 · Prod ships today
+        </p>
+        <p className="mt-3 text-sm text-white/80">{arc.prodShipsToday.drugName}</p>
+        <dl className="mt-4 space-y-2 text-xs">
+          <ArcRow label="Matrix axis">{arc.prodShipsToday.matrixAxis}</ArcRow>
+          <ArcRow label="Tier">{arc.prodShipsToday.tier}</ArcRow>
+          <ArcRow label="Bridge policy">{arc.prodShipsToday.bridgePolicy}</ArcRow>
+        </dl>
+        <div className="mt-4 rounded border border-rose-400/30 bg-rose-500/[0.08] p-3 text-[11px] leading-relaxed text-rose-100/80">
+          <span className="text-rose-300">Result:</span> {arc.prodShipsToday.behavior}
+        </div>
+      </div>
+
+      <div className="flex flex-col rounded border border-amber-500/30 bg-amber-500/[0.05] p-5">
+        <p className="text-[10px] font-black uppercase tracking-[0.24em] text-amber-300">
+          2 · Manuscript says
+        </p>
+        <p className="mt-3 text-sm text-white/80">{arc.manuscriptSays.finding}</p>
+        <div className="mt-3 rounded border border-amber-400/40 bg-black/30 p-3">
+          <p className="font-mono text-xs text-amber-200">{arc.manuscriptSays.stat}</p>
+          <p className="mt-1 text-[11px] leading-relaxed text-white/70">
+            {arc.manuscriptSays.conclusion}
+          </p>
+        </div>
+        {arc.manuscriptSays.positiveControl && (
+          <div className="mt-3 rounded border border-white/10 bg-black/20 p-3">
+            <p className="text-[10px] uppercase tracking-widest text-white/40">
+              {productFor('positive_control')}
+            </p>
+            <p className="mt-1 text-xs text-white/80">
+              {arc.manuscriptSays.positiveControl.finding}
+            </p>
+            <p className="mt-1 font-mono text-xs text-white/60">
+              {arc.manuscriptSays.positiveControl.stat}
+            </p>
+            <p className="mt-1 text-[11px] leading-relaxed text-white/50">
+              {arc.manuscriptSays.positiveControl.point}
+            </p>
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-col rounded border border-cyan-500/30 bg-cyan-500/[0.05] p-5">
+        <p className="text-[10px] font-black uppercase tracking-[0.24em] text-cyan-300">
+          3 · How the bridge is fixed
+        </p>
+        <dl className="mt-3 space-y-2 text-xs">
+          <ArcRow label="Field">{arc.pr11Fix.field}</ArcRow>
+          <ArcRow label="Value">{arc.pr11Fix.value}</ArcRow>
+        </dl>
+        <div className="mt-4 rounded border border-cyan-400/30 bg-cyan-500/[0.08] p-3 text-[11px] leading-relaxed text-cyan-100/80">
+          <span className="text-cyan-300">Effect:</span> {arc.pr11Fix.effect}
+        </div>
+        <p className="mt-3 text-[11px] leading-relaxed text-white/60">
+          <span className="font-bold uppercase mr-1 text-white/40">Row kept ·</span>
+          {arc.pr11Fix.rowKept}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function ArcRow({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-2">
+      <dt className="text-[10px] uppercase tracking-widest text-white/40 w-28">{label}</dt>
+      <dd className="text-xs text-white/80">{children}</dd>
+    </div>
+  );
+}
+
+// ------------------------------------------------------------------------------
+// Cross-link footer card
+// ------------------------------------------------------------------------------
+
+function CrossLink({
+  href,
+  title,
+  note,
+  isDarkMode,
+}: {
+  href: string;
+  title: string;
+  note: string;
+  isDarkMode: boolean;
+}) {
   const panel = isDarkMode ? 'bg-zinc-950/60 border-zinc-800' : 'bg-white border-slate-200';
   const accent = isDarkMode ? 'text-fuchsia-300' : 'text-fuchsia-600';
-  const textMain = isDarkMode ? 'text-zinc-100' : 'text-slate-900';
   const textMuted = isDarkMode ? 'text-zinc-400' : 'text-slate-600';
   return (
-    <Link href={href} className={`group flex items-start gap-2 rounded border p-3 transition-colors ${panel} ${
-      isDarkMode ? 'hover:border-fuchsia-500/40' : 'hover:border-fuchsia-300'
-    }`}>
+    <Link
+      href={href}
+      className={`group flex items-start gap-2 rounded border p-3 transition-colors ${panel} ${
+        isDarkMode ? 'hover:border-fuchsia-500/40' : 'hover:border-fuchsia-300'
+      }`}
+    >
       <div className="min-w-0 flex-1">
         <p className={`text-[10px] font-black uppercase tracking-[0.15em] ${accent}`}>{title}</p>
         <p className={`mt-1 text-[11px] leading-snug ${textMuted}`}>{note}</p>
@@ -500,4 +564,23 @@ function CrossLink({ href, title, note, isDarkMode }: { href: string; title: str
       <ArrowRight className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${accent}`} />
     </Link>
   );
+}
+
+// ------------------------------------------------------------------------------
+// Helper — pretty axis names
+// ------------------------------------------------------------------------------
+
+function prettyAxis(axisKey: string): string {
+  const map: Record<string, string> = {
+    cytidine_analogs: 'Cytidine analogs',
+    atr_wee1: 'ATR / WEE1',
+    parp_inhibitors: 'PARP inhibitors',
+    immunotherapy: 'Immunotherapy',
+    pkmyt1: 'PKMYT1',
+    wrn: 'WRN',
+    her2_targeting: 'HER2 targeting',
+    her2_adc: 'HER2 ADC',
+    pi3k_axis: 'PI3K axis',
+  };
+  return map[axisKey] ?? axisKey.replace(/_/g, ' ');
 }
