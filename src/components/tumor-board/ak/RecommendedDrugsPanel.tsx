@@ -1,14 +1,15 @@
 'use client';
 
-import { AK_RECOMMENDED_DRUGS, AK_SUGGESTED_THERAPY } from '@/data/tumor-board/ak-l1-bundle';
-
+import { usePatient } from '@/context/PatientContext';
 /**
  * 5 SL-graded drugs. Ceralasertib is the anchor (matches suggested_therapy).
  * Rucaparib carries a FALSIFIED overlay because the manuscript falsifies PARP
  * for this bundle at p=0.605 (see PARPFalsificationArc).
  */
 export default function RecommendedDrugsPanel() {
-  const anchorName = AK_SUGGESTED_THERAPY.value;
+  const patient = usePatient();
+
+  const anchorName = patient.suggestedTherapy.value;
   return (
     <section className="mx-auto w-full max-w-[1400px] px-8 py-10">
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
@@ -23,7 +24,7 @@ export default function RecommendedDrugsPanel() {
       </div>
 
       <div className="grid gap-3">
-        {AK_RECOMMENDED_DRUGS.map((d) => {
+        {patient.recommendedDrugs.map((d) => {
           const pct = Math.round(d.confidence * 100);
           const anchor = d.drugName === anchorName;
           const falsified = d.falsified === true;

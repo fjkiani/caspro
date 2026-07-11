@@ -407,3 +407,52 @@ export const AK_PARP_FALSIFICATION = {
     rowKept: 'Row remains in evidence_matrix.rows for auditability; only recommended_drugs is filtered.',
   },
 } as const;
+
+// ---------- AK01 assembled PatientBundle (used by generic patient loader) ----------
+
+import type { PatientBundle } from './patient-bundle-types';
+
+// Widen the AK_TUMOR_CONTEXT literal to the generic TumorContext by adding
+// the cancerType field (implicit for AK — HGSOC MBD4-LOF hypermutator).
+const AK01_TUMOR_CONTEXT = {
+  cancerType: 'ovarian_cancer',
+  subtype: 'HGSOC · MBD4-LOF hypermutator (demo)',
+  msiStatus: AK_TUMOR_CONTEXT.msiStatus,
+  pdL1Status: AK_TUMOR_CONTEXT.pdL1Status,
+  pdL1Cps: AK_TUMOR_CONTEXT.pdL1Cps,
+  erStatus: AK_TUMOR_CONTEXT.erStatus,
+  erPercent: AK_TUMOR_CONTEXT.erPercent,
+  completenessScore: AK_TUMOR_CONTEXT.completenessScore,
+  path: AK_TUMOR_CONTEXT.path,
+};
+
+export const AK01: PatientBundle = {
+  meta: {
+    patientId: AK_BUNDLE_META.patientId,
+    displayName: 'AK · Ovarian (MBD4-LOF)',
+    contractVersion: AK_BUNDLE_META.contractVersion,
+    generatedAt: AK_BUNDLE_META.generatedAt,
+    requestedLevels: AK_BUNDLE_META.requestedLevels,
+    endpoint: AK_BUNDLE_META.endpoint,
+    demoDisclaimer: AK_BUNDLE_META.demoDisclaimer,
+  },
+  tumorContext: AK01_TUMOR_CONTEXT,
+  mutations: AK_MUTATIONS,
+  completeness: {
+    completenessScore: AK_COMPLETENESS.completenessScore,
+    confidenceCap: AK_COMPLETENESS.confidenceCap,
+    missing: AK_COMPLETENESS.missing,
+    path: AK_COMPLETENESS.path,
+  },
+  brokenPathways: AK_BROKEN_PATHWAYS,
+  essentialPathways: AK_ESSENTIAL_PATHWAYS,
+  slMatrix: AK_SL_MATRIX,
+  recommendedDrugs: AK_RECOMMENDED_DRUGS,
+  suggestedTherapy: AK_SUGGESTED_THERAPY,
+  evidenceAnchors: AK_EVIDENCE_ANCHORS,
+  testsNeeded: AK_TESTS_NEEDED,
+  slProvenance: AK_SL_PROVENANCE,
+  doubleHit: AK_DOUBLE_HIT,
+  parpFalsification: AK_PARP_FALSIFICATION,
+  discoveryOnly: false,
+};

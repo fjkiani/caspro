@@ -1,12 +1,13 @@
 'use client';
 
-import { AK_MUTATIONS } from '@/data/tumor-board/ak-l1-bundle';
-
+import { usePatient } from '@/context/PatientContext';
 /**
  * Three mutation rows: MBD4, PDGFRA, TP53. Each row shows HGVS, GRCh38
  * coords, consequence, Evo2 scoring state, normalization note if any.
  */
 export default function AKMutationPanel() {
+  const patient = usePatient();
+
   return (
     <section className="mx-auto w-full max-w-[1400px] px-8 py-10">
       <div className="mb-4 flex items-baseline justify-between">
@@ -26,7 +27,7 @@ export default function AKMutationPanel() {
             </tr>
           </thead>
           <tbody className="text-sm">
-            {AK_MUTATIONS.map((m) => (
+            {patient.mutations.map((m) => (
               <tr key={m.gene} className="border-t border-white/5">
                 <td className="px-4 py-3 font-mono text-cyan-300">{m.gene}</td>
                 <td className="px-4 py-3 font-mono text-xs text-white/80">{m.hgvs}</td>

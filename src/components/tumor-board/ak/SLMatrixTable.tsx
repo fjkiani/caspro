@@ -1,7 +1,6 @@
 'use client';
 
-import { AK_SL_MATRIX } from '@/data/tumor-board/ak-l1-bundle';
-
+import { usePatient } from '@/context/PatientContext';
 /**
  * 6-row SL matrix. Wide table with 5 columns: axis · prod tier · sim tier ·
  * manuscript_claim_type · match indicator. Match rules mirror the walkthrough:
@@ -9,6 +8,8 @@ import { AK_SL_MATRIX } from '@/data/tumor-board/ak-l1-bundle';
  *   1 row (atr_wee1) is an intended tier upgrade (rendered ↑)
  */
 export default function SLMatrixTable() {
+  const patient = usePatient();
+
   return (
     <section className="mx-auto w-full max-w-[1400px] px-8 py-10">
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
@@ -36,7 +37,7 @@ export default function SLMatrixTable() {
             </tr>
           </thead>
           <tbody className="text-sm">
-            {AK_SL_MATRIX.map((row) => (
+            {patient.slMatrix.map((row) => (
               <MatrixRow key={row.axis} row={row} />
             ))}
           </tbody>
@@ -60,7 +61,7 @@ export default function SLMatrixTable() {
   );
 }
 
-function MatrixRow({ row }: { row: (typeof AK_SL_MATRIX)[number] }) {
+function MatrixRow({ row }: { row: (typeof patient.slMatrix)[number] }) {
   const isUpgrade = row.divergenceIntended;
   const isFalsified = row.manuscriptClaimType === 'falsified_mechanism';
   const marker = isUpgrade ? '↑' : isFalsified ? '⊘' : '✓';

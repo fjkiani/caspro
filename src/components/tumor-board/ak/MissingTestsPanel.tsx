@@ -1,15 +1,16 @@
 'use client';
 
-import { AK_TESTS_NEEDED, AK_COMPLETENESS } from '@/data/tumor-board/ak-l1-bundle';
-
+import { usePatient } from '@/context/PatientContext';
 /**
  * Why AK's completeness ceiling is 0.55 — 4 discrete tests are missing,
  * confidence is capped at 0.60. Numeric relationship is spelled out so the
  * reviewer sees the same rule the engine uses.
  */
 export default function MissingTestsPanel() {
-  const compPct = Math.round(AK_COMPLETENESS.completenessScore * 100);
-  const capPct = Math.round(AK_COMPLETENESS.confidenceCap * 100);
+  const patient = usePatient();
+
+  const compPct = Math.round(patient.completeness.completenessScore * 100);
+  const capPct = Math.round(patient.completeness.confidenceCap * 100);
   return (
     <section className="mx-auto w-full max-w-[1400px] px-8 py-10">
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
@@ -27,7 +28,7 @@ export default function MissingTestsPanel() {
         <div className="rounded-lg border border-amber-400/25 bg-amber-500/[0.05] p-4 md:col-span-2">
           <div className="text-[10px] uppercase tracking-widest text-amber-300">Requested next</div>
           <ul className="mt-3 space-y-2">
-            {AK_TESTS_NEEDED.map((t, i) => (
+            {patient.testsNeeded.map((t, i) => (
               <li key={i} className="rounded border border-white/10 bg-black/25 p-3">
                 <div className="flex items-baseline justify-between gap-3">
                   <span className="font-mono text-sm text-white">{t.test}</span>

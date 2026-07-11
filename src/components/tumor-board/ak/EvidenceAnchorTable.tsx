@@ -1,13 +1,14 @@
 'use client';
 
-import { AK_EVIDENCE_ANCHORS } from '@/data/tumor-board/ak-l1-bundle';
-
+import { usePatient } from '@/context/PatientContext';
 /**
  * 6 verified numeric anchors from the tumor_board_evidence_chain.json
  * (SHA d33f6403). Each row shows canonical p/d/n from the source JSON, the
  * script-rounded value the UI ships, and whether the two match.
  */
 export default function EvidenceAnchorTable() {
+  const patient = usePatient();
+
   return (
     <section className="mx-auto w-full max-w-[1400px] px-8 py-10">
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
@@ -35,7 +36,7 @@ export default function EvidenceAnchorTable() {
             </tr>
           </thead>
           <tbody className="text-sm">
-            {AK_EVIDENCE_ANCHORS.map((a, i) => {
+            {patient.evidenceAnchors.map((a, i) => {
               // QA-friendly key labels — surface both the manuscript pattern
               // ("Primary ceralasertib", "TP53-stratified LN_IC50", "TP53-stratified AUC",
               // "MSI-purge LN_IC50", "PARP1 in MBD4-LOF", "Pan-cancer PARP1↔PARPi")
