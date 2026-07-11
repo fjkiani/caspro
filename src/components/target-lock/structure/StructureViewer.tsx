@@ -19,6 +19,7 @@
 import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
 import manifest from '@/data/structure-manifest.json';
+import RnaVsProteinDoctrineBadge from './RnaVsProteinDoctrineBadge';
 
 const MolstarCanvas = dynamic(() => import('./MolstarCanvas'), {
   ssr: false,
@@ -83,6 +84,9 @@ export default function StructureViewer({ gene, height = 320 }: Props) {
 
   return (
     <div className="flex flex-col gap-2">
+      {/* Doctrine badge — RNA-DNA doctrine does NOT apply here (Cohort A: protein monomer) */}
+      {!isCrystalFallback && <RnaVsProteinDoctrineBadge cohort="protein" />}
+
       {/* Header chip */}
       <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-widest">
         <span className="rounded bg-neutral-800 px-2 py-1 font-mono text-neutral-100">
