@@ -5,15 +5,12 @@
  * version, completeness bar, MSI/PD-L1/ER chips, missing-data callout.
  * No log-stream rail — the surface is content-first.
  */
-import {
-  AK_BUNDLE_META,
-  AK_COMPLETENESS,
-  AK_TUMOR_CONTEXT,
-} from '@/data/tumor-board/ak-l1-bundle';
-
+import { usePatient } from '@/context/PatientContext';
 export default function AKBundleHeader({ compact = false }: { compact?: boolean }) {
-  const pct = Math.round(AK_COMPLETENESS.completenessScore * 100);
-  const capPct = Math.round(AK_COMPLETENESS.confidenceCap * 100);
+  const patient = usePatient();
+
+  const pct = Math.round(patient.completeness.completenessScore * 100);
+  const capPct = Math.round(patient.completeness.confidenceCap * 100);
 
   return (
     <header className="border-b border-white/10 bg-black/40 py-6">
@@ -28,18 +25,18 @@ export default function AKBundleHeader({ compact = false }: { compact?: boolean 
               Patient AK · L1 bundle
             </h1>
             <span className="rounded border border-cyan-500/40 bg-cyan-500/10 px-2 py-0.5 text-[10px] uppercase tracking-widest text-cyan-300">
-              {AK_BUNDLE_META.contractVersion}
+              {patient.meta.contractVersion}
             </span>
           </div>
           <div className="font-mono text-[11px] text-white/40">
-            {AK_BUNDLE_META.generatedAt} · Levels [
-            {AK_BUNDLE_META.requestedLevels.join(', ')}]
+            {patient.meta.generatedAt} · Levels [
+            {patient.meta.requestedLevels.join(', ')}]
           </div>
         </div>
 
         {!compact && (
           <p className="max-w-3xl text-xs text-white/50">
-            {AK_BUNDLE_META.demoDisclaimer}
+            {patient.meta.demoDisclaimer}
           </p>
         )}
 
@@ -61,7 +58,7 @@ export default function AKBundleHeader({ compact = false }: { compact?: boolean 
               />
             </div>
             <div className="mt-2 text-[11px] text-white/40">
-              Missing: {AK_COMPLETENESS.missing.join(' · ')}
+              Missing: {patient.completeness.missing.join(' · ')}
             </div>
           </div>
 
@@ -72,22 +69,22 @@ export default function AKBundleHeader({ compact = false }: { compact?: boolean 
             <div className="mt-3 flex flex-wrap gap-2">
               <Chip
                 label="MSI"
-                value={AK_TUMOR_CONTEXT.msiStatus}
+                value={patient.tumorContext.msiStatus}
                 tone="neutral"
               />
               <Chip
                 label="PD-L1"
-                value={`${AK_TUMOR_CONTEXT.pdL1Status} · CPS ${AK_TUMOR_CONTEXT.pdL1Cps}`}
+                value={`${patient.tumorContext.pdL1Status} · CPS ${patient.tumorContext.pdL1Cps}`}
                 tone="positive"
               />
               <Chip
                 label="ER"
-                value={`${AK_TUMOR_CONTEXT.erStatus} · ${AK_TUMOR_CONTEXT.erPercent}%`}
+                value={`${patient.tumorContext.erStatus} · ${patient.tumorContext.erPercent}%`}
                 tone="neutral"
               />
             </div>
             <div className="mt-3 font-mono text-[10px] text-white/30">
-              {AK_TUMOR_CONTEXT.path}
+              {patient.tumorContext.path}
             </div>
           </div>
         </div>

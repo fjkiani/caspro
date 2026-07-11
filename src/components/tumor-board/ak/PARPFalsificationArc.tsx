@@ -1,7 +1,6 @@
 'use client';
 
-import { AK_PARP_FALSIFICATION } from '@/data/tumor-board/ak-l1-bundle';
-
+import { usePatient } from '@/context/PatientContext';
 /**
  * The memorable centerpiece — three stacked cards that tell the PARP arc:
  *   1) what AK's UI ships today (bug)
@@ -9,7 +8,9 @@ import { AK_PARP_FALSIFICATION } from '@/data/tumor-board/ak-l1-bundle';
  *   3) what PR#11 fixes
  */
 export default function PARPFalsificationArc() {
-  const { prodShipsToday, manuscriptSays, pr11Fix } = AK_PARP_FALSIFICATION;
+  const patient = usePatient();
+
+  const { prodShipsToday, manuscriptSays, pr11Fix } = patient.parpFalsification;
   return (
     <section className="mx-auto w-full max-w-[1400px] px-8 py-12">
       <div className="mb-6 flex flex-wrap items-baseline justify-between gap-3">
