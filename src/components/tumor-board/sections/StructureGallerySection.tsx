@@ -20,7 +20,9 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { AlertTriangle, ChevronDown, ChevronUp, Info, ExternalLink } from 'lucide-react';
 import StructureViewer from '@/components/target-lock/structure/StructureViewer';
+import RnaDnaStructureViewer from '@/components/target-lock/structure/RnaDnaStructureViewer';
 import manifest from '@/data/structure-manifest.json';
+import guideManifest from '@/data/af3-guide-manifest.json';
 
 interface StructureRow {
   gene: string;
@@ -196,6 +198,9 @@ export default function StructureGallerySection({ isDarkMode }: { isDarkMode: bo
         })}
       </div>
 
+      {/* Cohort B — RNA-DNA guide-target gallery (AF3 3-chain) */}
+      <GuideGallery isDarkMode={isDarkMode} />
+
       {/* Provenance footnote */}
       <div className={`mt-6 flex items-start gap-2 text-[11px] leading-relaxed ${
         isDarkMode ? 'text-zinc-500' : 'text-slate-500'
@@ -209,9 +214,148 @@ export default function StructureGallerySection({ isDarkMode }: { isDarkMode: bo
           . KMT2C (Q8NEZ4, 4911 aa) has no full-length AF prediction; we use PDB 7W6L
           (2.25 Å X-ray, MLL3–RBBP5–ASH2L complex with H3K4me0 peptide, chains C+E residues 4754–4911).
           Coloring: AF DB structures use per-residue pLDDT (B-factor column); PDB crystals use chain coloring.
+          Cohort B RNA-DNA complexes come from AF3 local runs (mmCIF ships under{' '}
+          <code className={`px-1 rounded ${isDarkMode ? 'bg-white/5' : 'bg-slate-100'}`}>
+            /public/artifacts/structural_validation/
+          </code>
+          ).
         </span>
       </div>
     </section>
+  );
+}
+
+// ============================================================================
+// Cohort B — RNA-DNA guide-target gallery
+// ============================================================================
+
+interface GuideRow {
+  guide_id: string;
+  gene: string;
+  step: string;
+  plddt: number;
+  iptm: number;
+  fraction_disordered: number;
+  has_clash: number;
+  ranking_score: number;
+  structural_confidence: number;
+  chain_pair_iptm: number[][];
+  cif_path: string;
+  rna_dna_verdict: string;
+}
+
+function guideBand(p: number): { className: string } {
+  if (p >= 70) return { className: 'text-emerald-300 border-emerald-500/40' };
+  if (p >= 50) return { className: 'text-[#75A025] border-[#75A025]/40' };
+  return         { className: 'text-red-300 border-red-500/40' };
+}
+
+function GuideGallery({ isDarkMode }: { isDarkMode: boolean }) {
+  const guides = useMemo<GuideRow[]>(() => {
+    const g = (guideManifest as any).guides as Record<string, GuideRow>;
+    // Sort desc by structural_confidence to match the ledger's canonical order
+    return Object.values(g).sort((a, b) => b.structural_confidence - a.structural_confidence);
+  }, []);
+
+  const [openGuide, setOpenGuide] = useState<string | null>(null);
+  const passCount = guides.filter((g) => g.rna_dna_verdict === 'PASS').length;
+
+  return (
+    <div className="mt-12">
+      {/* Header */}
+      <div className="mb-6">
+        <div className={`text-[10px] font-black uppercase tracking-[0.3em] mb-2 ${
+          isDarkMode ? 'text-[#75A025]' : 'text-[#75A025]'
+        }`}>
+          Cohort B — guide × target complexes
+        </div>
+        <h3 className={`text-2xl md:text-3xl font-black leading-tight mb-3 ${
+          isDarkMode ? 'text-white' : 'text-slate-900'
+        }`}>
+          15 AF3 guide-target folds —
+          <br />
+          RNA-DNA doctrine, not protein.
+        </h3>
+        <p className={`max-w-3xl text-[13px] leading-relaxed ${
+          isDarkMode ? 'text-zinc-400' : 'text-slate-600'
+        }`}>
+          Each entry is a 3-chain AF3 prediction (guide RNA + 60-bp target dsDNA)
+          scored against the RNA-DNA doctrine (pLDDT ≥ 50, iPTM ≥ 0.30). Applying
+          the Cohort-A protein cut here rejects all 15 real guides — the split is
+          not cosmetic. Click any row for the 3D model and its chain_pair_iptm
+          decomposition.
+        </p>
+      </div>
+
+      {/* Coverage strip */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+        <MetricTile isDarkMode={isDarkMode} label="Coverage" value={`${guides.length}/15`} sub="guides audited" />
+        <MetricTile isDarkMode={isDarkMode} label="RNA-DNA PASS" value={`${passCount}/${guides.length}`} sub="under Abramson 2024 cut" />
+        <MetricTile isDarkMode={isDarkMode} label="If protein cut applied" value="0/15" sub="all rejected as noise" warn />
+        <MetricTile isDarkMode={isDarkMode} label="dsDNA duplex iPTM" value="~0.44" sub="canonical B-form (B↔C)" />
+      </div>
+
+      {/* Rows */}
+      <div className="flex flex-col divide-y divide-neutral-800 rounded-lg border border-neutral-800 overflow-hidden">
+        {guides.map((g) => {
+          const isOpen = openGuide === g.guide_id;
+          const band = guideBand(g.plddt);
+
+          return (
+            <div key={g.guide_id} className={isDarkMode ? 'bg-black/40' : 'bg-white'}>
+              <button
+                type="button"
+                onClick={() => setOpenGuide(isOpen ? null : g.guide_id)}
+                aria-expanded={isOpen}
+                aria-label={`${isOpen ? 'Collapse' : 'Expand'} ${g.guide_id} viewer`}
+                className={`w-full flex flex-wrap items-center gap-3 px-4 py-3 text-left transition-colors ${
+                  isDarkMode ? 'hover:bg-white/[0.03]' : 'hover:bg-slate-50'
+                }`}
+              >
+                <span className={`font-mono text-sm font-black w-20 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                  {g.gene}
+                </span>
+                <span className={`font-mono text-[11px] w-24 ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`}>
+                  {g.step}
+                </span>
+                <span className={`rounded border px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest ${band.className}`}>
+                  pLDDT {g.plddt.toFixed(1)}
+                </span>
+                <span className={`rounded border px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest ${
+                  g.iptm >= 0.3 ? 'text-[#75A025] border-[#75A025]/40' : 'text-red-300 border-red-500/40'
+                }`}>
+                  iPTM {g.iptm.toFixed(2)}
+                </span>
+                <span className={`rounded border border-neutral-700 px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest ${
+                  isDarkMode ? 'text-zinc-400' : 'text-slate-500'
+                }`}>
+                  composite {g.structural_confidence.toFixed(3)}
+                </span>
+                <span className={`hidden md:inline text-[11px] flex-1 truncate font-mono ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
+                  {g.guide_id}
+                </span>
+                <span className={`ml-auto rounded px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest ${
+                  g.rna_dna_verdict === 'PASS'
+                    ? 'text-[#75A025] border border-[#75A025]/40 bg-[#75A025]/10'
+                    : 'text-red-300 border border-red-500/40 bg-red-500/10'
+                }`}>
+                  {g.rna_dna_verdict}
+                </span>
+                {isOpen
+                  ? <ChevronUp className={`w-4 h-4 ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`} />
+                  : <ChevronDown className={`w-4 h-4 ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`} />}
+              </button>
+
+              {isOpen && (
+                <div className="px-4 pb-4">
+                  <RnaDnaStructureViewer guideId={g.guide_id} height={360} />
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
