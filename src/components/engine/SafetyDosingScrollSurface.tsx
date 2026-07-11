@@ -17,7 +17,8 @@
 
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
-import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
+import { PersonaContent, type PersonaCopyDeck, usePersonaContent } from '@/context/persona-content';
+import { PGX_DOCTRINE, type PgxReceiptId } from '@/data/pgx-doctrine-decks';
 import {
   CPIC_CONCORDANCE,
   CYP2C19_RECEIPT,
@@ -68,7 +69,7 @@ const PREPARE_DECK: PersonaCopyDeck<{ headline: string; body: string; caveat: st
   pharma: {
     headline: `PREPARE — signal localisation ${PREPARE_RECEIPT.calculated_metrics.signal_localization?.value ?? 'n/a'}× stronger in actionable subgroup`,
     body: `PMID ${PREPARE_RECEIPT.source_pmid} · PMC ${PREPARE_RECEIPT.source_pmc}. Cohort n=${PREPARE_RECEIPT.cohort_summary.total_patients} (control ${PREPARE_RECEIPT.cohort_summary.control_arm} / intervention ${PREPARE_RECEIPT.cohort_summary.intervention_arm}). Actionable carriers n=${PREPARE_RECEIPT.cohort_summary.actionable_carriers}: control 8/23 (34.8%), intervention 1/17 (5.9%). RRR ${(PREPARE_RECEIPT.calculated_metrics.actionable_carriers.relative_risk_reduction * 100).toFixed(1)}%, ARR ${(PREPARE_RECEIPT.calculated_metrics.actionable_carriers.absolute_risk_reduction * 100).toFixed(1)} pp, Fisher exact p=${PREPARE_RECEIPT.calculated_metrics.actionable_carriers.fisher_exact_p}. Non-actionable RRR ${(PREPARE_RECEIPT.calculated_metrics.nonactionable.relative_risk_reduction * 100).toFixed(1)}% (p=${(PREPARE_RECEIPT.calculated_metrics.nonactionable.fisher_exact_p as number).toFixed(3)}) confirms actionable-only mechanism, not confounder-driven.`,
-    caveat: `p=0.054 in actionable subgroup — Bayesian read: strong RRR + directional consistency + null non-actionable control > single p-threshold. Portfolio positioning: PGx pre-veto is the outcome-linked de-risking step no CDSS competitor validates end-to-end.`,
+    caveat: `p=0.054 in actionable subgroup — trial powered on whole cohort. See doctrine block below.`,
   },
 };
 
@@ -89,7 +90,7 @@ const CYP_DECK: PersonaCopyDeck<{ headline: string; body: string; caveat: string
     headline: `CYP2C19 clopidogrel · PMID ${CYP2C19_RECEIPT.source_pmid} · borderline-phenotype signal`,
     body: `Retrospective ${CYP2C19_RECEIPT.cohort_summary.clopidogrel_treated_subset}-patient TIA/stroke cohort. EM 5/106 (4.7%) vs PM/IM 21/104 (20.2%). RR ${CYP2C19_RECEIPT.calculated_metrics.risk_ratio.pm_im_vs_em}, Fisher p=${CYP2C19_RECEIPT.calculated_metrics.statistical_significance.fisher_exact_p} (${CYP2C19_RECEIPT.calculated_metrics.statistical_significance.scientific_notation}). Table 4 multivariate HR ${CYP2C19_RECEIPT.calculated_metrics.reported_multivariate_hr.hazard_ratio} (95% CI ${CYP2C19_RECEIPT.calculated_metrics.reported_multivariate_hr.confidence_interval}). Key validation: our system recommends 100% concordantly with CPIC borderline-phenotype guidance for the 3 example diplotypes tested.`,
     caveat:
-      'Portfolio positioning: PGx-guided antiplatelet is CPIC 1A evidence; deterministic veto avoids the meta-analytic controversy around outcome-driven RCTs (POPular Genetics) by using guideline concordance as the primary QC signal.',
+      'See doctrine block below.',
   },
 };
 
@@ -131,9 +132,9 @@ const CPIC_DECK: PersonaCopyDeck<{ headline: string; body: string }> = {
 const TIER2_DECK: PersonaCopyDeck<{ headline: string; body: string; caveat: string }> = {
   oncologist: {
     headline: 'Tier 2 heuristic — when the guideline is silent',
-    body: `Backup rule-based screen when CPIC has no explicit recommendation. ${TIER2_VALIDATION.performance_metrics.scorable_cases} scorable cases, TP ${TIER2_VALIDATION.performance_metrics.tp} / FN ${TIER2_VALIDATION.performance_metrics.fn} → sensitivity ${(TIER2_VALIDATION.performance_metrics.sensitivity.value * 100).toFixed(0)}% for known toxicity events. Specificity ${(TIER2_VALIDATION.performance_metrics.specificity.value * 100).toFixed(0)}% is intentionally low — the design goal is "never miss a preventable harm", specificity is traded for sensitivity.`,
+    body: `Backup rule-based screen when CPIC has no explicit recommendation. ${TIER2_VALIDATION.performance_metrics.scorable_cases} scorable cases, TP ${TIER2_VALIDATION.performance_metrics.tp} / FN ${TIER2_VALIDATION.performance_metrics.fn} → sensitivity ${(TIER2_VALIDATION.performance_metrics.sensitivity.value * 100).toFixed(0)}% for known toxicity events. Specificity ${(TIER2_VALIDATION.performance_metrics.specificity.value * 100).toFixed(0)}% is intentionally low — high false-positive rate is intentional — see doctrine block below.`,
     caveat:
-      'This is a screening layer, not a decision layer. A Tier 2 hit forwards the case to human review, it does not auto-veto.',
+      'See doctrine block below.',
   },
   patient: {
     headline: 'Belt and suspenders — an extra safety check',
@@ -155,13 +156,19 @@ function ReceiptSection({
   toneEyebrow,
   index,
   label,
+  receiptId,
 }: {
   deck: PersonaCopyDeck<{ headline: string; body: string; caveat?: string }>;
   isDarkMode: boolean;
   toneEyebrow: string;
   index: string;
   label: string;
+  receiptId: PgxReceiptId;
 }) {
+  // W9 doctrine parity: canonical persona-differentiated doctrine framing
+  // sourced from src/data/pgx-doctrine-decks.ts (not authored inline).
+  const doctrine = usePersonaContent(PGX_DOCTRINE[receiptId]);
+
   return (
     <PersonaContent
       deck={deck}
@@ -180,6 +187,14 @@ function ReceiptSection({
           <p className={`mt-2 text-[13px] leading-relaxed ${isDarkMode ? 'text-zinc-300' : 'text-slate-700'}`}>
             {copy.body}
           </p>
+          {/* W9 doctrine parity — canonical framing (shared across intro/scroll/tabs) */}
+          <p
+            className={`mt-3 rounded border-l-2 pl-3 py-1 text-[12px] font-semibold ${
+              isDarkMode ? 'border-violet-500/60 text-violet-300' : 'border-violet-500 text-violet-700'
+            }`}
+          >
+            Doctrine: {doctrine.claim}
+          </p>
           {copy.caveat && (
             <p
               className={`mt-3 rounded border-l-2 pl-3 py-1 text-[11px] italic ${
@@ -189,6 +204,14 @@ function ReceiptSection({
               Caveat: {copy.caveat}
             </p>
           )}
+          {/* Canonical doctrine caveat — locked across surfaces */}
+          <p
+            className={`mt-2 rounded border-l-2 pl-3 py-1 text-[11px] italic ${
+              isDarkMode ? 'border-zinc-600 text-zinc-400' : 'border-zinc-400 text-zinc-600'
+            }`}
+          >
+            {doctrine.caveat}
+          </p>
         </section>
       )}
     />
@@ -242,6 +265,7 @@ export default function SafetyDosingScrollSurface() {
 
         <ReceiptSection
           deck={PREPARE_DECK}
+          receiptId="prepare"
           isDarkMode={isDarkMode}
           toneEyebrow={isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}
           index="01"
@@ -250,6 +274,7 @@ export default function SafetyDosingScrollSurface() {
 
         <ReceiptSection
           deck={CYP_DECK}
+          receiptId="cyp2c19"
           isDarkMode={isDarkMode}
           toneEyebrow={isDarkMode ? 'text-amber-400' : 'text-amber-600'}
           index="02"
@@ -258,6 +283,7 @@ export default function SafetyDosingScrollSurface() {
 
         <ReceiptSection
           deck={NGUYEN_DECK}
+          receiptId="nguyen"
           isDarkMode={isDarkMode}
           toneEyebrow={isDarkMode ? 'text-rose-400' : 'text-rose-600'}
           index="03"
@@ -266,6 +292,7 @@ export default function SafetyDosingScrollSurface() {
 
         <ReceiptSection
           deck={CPIC_DECK}
+          receiptId="cpic"
           isDarkMode={isDarkMode}
           toneEyebrow={isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}
           index="04"
@@ -274,6 +301,7 @@ export default function SafetyDosingScrollSurface() {
 
         <ReceiptSection
           deck={TIER2_DECK}
+          receiptId="tier2"
           isDarkMode={isDarkMode}
           toneEyebrow={isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}
           index="05"
