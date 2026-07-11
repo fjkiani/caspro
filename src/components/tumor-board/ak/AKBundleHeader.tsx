@@ -22,7 +22,7 @@ export default function AKBundleHeader({ compact = false }: { compact?: boolean 
               Tumor Board
             </span>
             <h1 className="text-2xl font-semibold text-white">
-              Patient AK · L1 bundle
+              Patient {patient.meta.patientId} · L1 bundle
             </h1>
             <span className="rounded border border-cyan-500/40 bg-cyan-500/10 px-2 py-0.5 text-[10px] uppercase tracking-widest text-cyan-300">
               {patient.meta.contractVersion}

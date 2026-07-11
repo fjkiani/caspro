@@ -53,9 +53,38 @@ export default function AKMutationPanel() {
         </table>
       </div>
       <div className="mt-3 text-[11px] text-white/40">
-        MBD4 required left-pad normalization (indel VCF form) before Evo2. TP53 hit memory cache — 3 of 3 mutations
-        scored with receipts under <span className="font-mono">synthetic_lethality.provenance.sequence_scoring.variants_sent_to_engine[]</span>.
+        <MutationCaption />
+        <span> Receipts under <span className="font-mono">synthetic_lethality.provenance.sequence_scoring.variants_sent_to_engine[]</span>.</span>
       </div>
     </section>
+  );
+}
+
+/**
+ * Derives the mutation-row caption from the active bundle instead of
+ * hardcoding AK biology. Falls back to a generic count-only sentence when
+ * no normalization notes are present.
+ */
+function MutationCaption() {
+  const patient = usePatient();
+  const total = patient.mutations.length;
+  const scored = patient.mutations.filter((m) => m.scoredByEvo2).length;
+  const normalized = patient.mutations.filter((m) => m.normalizationNote);
+  if (normalized.length === 0) {
+    return (
+      <span>
+        {scored} of {total} mutations scored by Evo2 without normalization fixes.
+      </span>
+    );
+  }
+  const parts = normalized.map((m) =>
+    m.normalizationNote
+      ? `${m.gene} — ${m.normalizationNote}`
+      : `${m.gene}`,
+  );
+  return (
+    <span>
+      {parts.join('; ')}. {scored} of {total} mutations scored with receipts.
+    </span>
   );
 }
