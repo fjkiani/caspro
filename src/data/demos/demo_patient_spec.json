@@ -1,0 +1,304 @@
+{
+  "demo_id": "patient_treatment_discovery",
+  "persona": "patient",
+  "title": "Understanding Your Treatment Options",
+  "subtitle": "How CrisPRO helps you and your care team find the right treatments for your specific cancer",
+  "governance_mode": "clean_plus_roadmap",
+  "patient_context": {
+    "display_name": "AK",
+    "cancer_type": "Ovarian cancer (high-grade serous)",
+    "stage": "IVB",
+    "key_biomarkers": {
+      "MSI_status": "Stable (MSS) \u2014 this means immunotherapy alone is unlikely to work",
+      "TP53": "Mutant pattern",
+      "PD-L1": "Positive (CPS 10)",
+      "HER2": "Negative",
+      "BRCA_HRD": "Not yet tested \u2014 recommended",
+      "germline": "MBD4 homozygous pathogenic mutation found"
+    },
+    "treatment_history": [
+      "Carboplatin + Bevacizumab (4 cycles, completed Jan 2026)"
+    ],
+    "data_sources": "7 medical reports (2 CT scans, 1 PET scan, 3 pathology reports, 1 genetic test)"
+  },
+  "stages": [
+    {
+      "stage_id": 1,
+      "name": "Your Cancer Profile",
+      "plain_language": "CrisPRO reads your medical reports \u2014 CT scans, pathology results, genetic tests \u2014 and builds a complete picture of your cancer. This includes your tumor type, stage, biomarker test results, and genetic mutations. Think of it as a organized summary of everything your doctors know about your cancer, all in one place.",
+      "data_shown": {
+        "type": "patient_profile_summary",
+        "items": [
+          {
+            "label": "Cancer type",
+            "value": "High-grade serous ovarian cancer",
+            "source": "Pathology reports"
+          },
+          {
+            "label": "Stage",
+            "value": "IVB",
+            "source": "CT and PET scans"
+          },
+          {
+            "label": "Origin",
+            "value": "Mullerian (ovarian or peritoneal)",
+            "source": "WT-1 and PAX8 staining"
+          },
+          {
+            "label": "MSI status",
+            "value": "Stable (MSS)",
+            "source": "IHC \u2014 MMR proteins preserved",
+            "what_it_means": "Your tumor has stable microsatellites. This means checkpoint immunotherapy alone is unlikely to work for you."
+          },
+          {
+            "label": "PD-L1",
+            "value": "Positive (CPS 10)",
+            "source": "IHC 22C3 assay",
+            "what_it_means": "Your tumor has some immune checkpoint protein, which could make certain immunotherapy combinations worth exploring."
+          },
+          {
+            "label": "TP53",
+            "value": "Mutant pattern",
+            "source": "IHC",
+            "what_it_means": "TP53 mutation is common in high-grade serous ovarian cancer and helps confirm your diagnosis."
+          },
+          {
+            "label": "Genetic test",
+            "value": "MBD4 homozygous pathogenic mutation",
+            "source": "Ambry Genetics (77-gene panel)",
+            "what_it_means": "You have an inherited genetic mutation in the MBD4 gene. This is rare and may increase risk for certain blood cancers and colon cancer. Your family may benefit from genetic counseling."
+          },
+          {
+            "label": "BRCA/HRD",
+            "value": "Not yet tested",
+            "source": "Pending",
+            "what_it_means": "Testing for BRCA mutations and HRD (homologous recombination deficiency) is strongly recommended. These results determine whether PARP inhibitor drugs could work for you."
+          }
+        ],
+        "completeness_score": 0.55,
+        "completeness_explanation": "Your profile is 55% complete. You have pathology and genetic testing, but are missing tumor sequencing (NGS), CA-125 levels, and BRCA/HRD testing. Getting these tests could unlock more treatment options."
+      },
+      "status": "validated",
+      "evidence_grade": "VERIFIED"
+    },
+    {
+      "stage_id": 2,
+      "name": "Biomarker Intelligence: What Your Test Results Mean",
+      "plain_language": "Each biomarker test result tells a story about your tumor. CrisPRO translates these results into plain language \u2014 what each marker means, which treatments it connects to, and what questions to ask your doctor. For example, your MSS status means immunotherapy alone probably won't work, but your PD-L1 positivity and MBD4 mutation suggest specific combination approaches might be worth discussing.",
+      "data_shown": {
+        "type": "biomarker_intelligence",
+        "biomarkers": [
+          {
+            "marker": "MSS (Microsatellite Stable)",
+            "result": "Stable",
+            "what_it_means": "Your tumor's DNA doesn't have enough mutations to attract the immune system on its own. This is why single-agent immunotherapy hasn't worked well for MSS tumors.",
+            "treatments_connected": "Immunotherapy combinations, therapeutic vaccines",
+            "questions_to_ask": "Are there clinical trials testing immunotherapy combinations for MSS ovarian cancer?"
+          },
+          {
+            "marker": "PD-L1 (CPS 10)",
+            "result": "Positive",
+            "what_it_means": "Your tumor expresses a protein that can be targeted by checkpoint inhibitors. A CPS of 10 is moderate \u2014 not high enough to guarantee response, but not zero either.",
+            "treatments_connected": "Pembrolizumab, nivolumab (checkpoint inhibitors) \u2014 likely in combination",
+            "questions_to_ask": "Would adding a checkpoint inhibitor to my chemotherapy be beneficial given my PD-L1 status?"
+          },
+          {
+            "marker": "MBD4 mutation",
+            "result": "Homozygous pathogenic",
+            "what_it_means": "MBD4 is involved in DNA repair. Loss of MBD4 function may make tumors more sensitive to certain DNA-damaging drugs and immunotherapy approaches. This is a rare finding being actively researched.",
+            "treatments_connected": "DNA-damaging chemotherapy, PARP inhibitors (theoretical), immunotherapy (research)",
+            "questions_to_ask": "Are there clinical trials specifically for MBD4-mutated tumors? Does this affect my PARP inhibitor eligibility?"
+          },
+          {
+            "marker": "BRCA/HRD",
+            "result": "Not tested",
+            "what_it_means": "This is the most important missing test for ovarian cancer. BRCA mutations and HRD status determine whether PARP inhibitors (olaparib, niraparib) could work for you. About 50% of high-grade serous ovarian cancers have HRD.",
+            "treatments_connected": "Olaparib, niraparib, rucaparib (PARP inhibitors)",
+            "questions_to_ask": "Can we order BRCA1/2 and HRD testing? This could open up maintenance therapy options."
+          }
+        ]
+      },
+      "status": "validated",
+      "evidence_grade": "PEER-REVIEWED"
+    },
+    {
+      "stage_id": 3,
+      "name": "Finding Clinical Trials For You",
+      "plain_language": "CrisPRO searches clinical trial databases and matches your profile against ongoing trials. It looks at your cancer type, stage, biomarkers, treatment history, and genetic mutations to find trials you may be eligible for. Each trial is ranked by how well it fits your specific situation.",
+      "data_shown": {
+        "type": "trial_matching",
+        "how_it_works": "CrisPRO compares your biomarker profile against trial eligibility criteria. Trials are ranked by how many of your characteristics match the trial requirements.",
+        "what_you_see": [
+          "Trial name and purpose (in plain language)",
+          "Why this trial matches you (which of your biomarkers fit)",
+          "What treatment the trial tests",
+          "Where the trial is happening",
+          "How to contact the trial team"
+        ],
+        "example_matches": [
+          {
+            "trial_type": "PARP inhibitor combination",
+            "why_it_matches": "Your MBD4 mutation may affect DNA repair, making PARP inhibitors potentially more effective. BRCA/HRD testing would confirm this.",
+            "eligibility": "Pending BRCA/HRD test results",
+            "status": "potential_match"
+          },
+          {
+            "trial_type": "Immunotherapy combination for MSS tumors",
+            "why_it_matches": "Your MSS status means single immunotherapy won't work, but your PD-L1 positivity (CPS 10) suggests combination approaches may be worth exploring.",
+            "eligibility": "PD-L1 positive, MSS, Stage IV",
+            "status": "potential_match"
+          },
+          {
+            "trial_type": "Therapeutic cancer vaccine",
+            "why_it_matches": "Therapeutic vaccines train the immune system to recognize tumor proteins. Your intact immune markers (PD-L1 positive) suggest your immune system could respond to vaccine-based approaches.",
+            "eligibility": "Ovarian cancer, MSS, prior platinum chemotherapy",
+            "status": "potential_match"
+          }
+        ],
+        "note": "Specific trial listings require verification with your oncologist. CrisPRO identifies potential matches but does not guarantee eligibility."
+      },
+      "status": "validated",
+      "evidence_grade": "VERIFIED"
+    },
+    {
+      "stage_id": 4,
+      "name": "Treatment Fit Analysis",
+      "plain_language": "For each potential treatment, CrisPRO analyzes how well it matches your tumor's biology. This isn't just about whether you're eligible \u2014 it's about whether the treatment targets the right pathways in your specific cancer. A treatment might be technically available but not a good biological match for your tumor.",
+      "data_shown": {
+        "type": "therapy_fit",
+        "how_it_works": "CrisPRO builds a biological profile of each drug (what pathways it targets, what resistance it overcomes) and compares it to your tumor's profile. Treatments that target pathways active in your tumor score higher.",
+        "categories": [
+          {
+            "category": "Standard chemotherapy",
+            "examples": "Carboplatin, paclitaxel, doxorubicin",
+            "fit_for_this_patient": "Already received carboplatin + bevacizumab. Response completed but disease is advanced (Stage IVB).",
+            "next_steps": "Discuss next-line chemotherapy options with your oncologist"
+          },
+          {
+            "category": "PARP inhibitors",
+            "examples": "Olaparib, niraparib, rucaparib",
+            "fit_for_this_patient": "Potentially strong fit IF BRCA/HRD testing comes back positive. MBD4 mutation may also enhance sensitivity. This is the most important test to complete.",
+            "next_steps": "Request BRCA/HRD testing immediately"
+          },
+          {
+            "category": "Immunotherapy combinations",
+            "examples": "Checkpoint inhibitor + chemotherapy, checkpoint inhibitor + targeted therapy",
+            "fit_for_this_patient": "Moderate fit. MSS status is a barrier, but PD-L1 positivity provides some rationale. Combination approaches (not single-agent) would be needed.",
+            "next_steps": "Discuss clinical trial options combining immunotherapy with other drugs"
+          },
+          {
+            "category": "Antibody-drug conjugates",
+            "examples": "Mirvetuximab soravtansine (ELAHERE)",
+            "fit_for_this_patient": "ELAHERE requires FR-alpha positivity (>=75%). Your FR-alpha is negative (<1%), so this is NOT a match.",
+            "next_steps": "Not recommended for this patient"
+          },
+          {
+            "category": "Therapeutic vaccines",
+            "examples": "STC-1010 and similar vaccine approaches",
+            "fit_for_this_patient": "Exploratory. Vaccine approaches aim to activate the immune system against tumor proteins. Your PD-L1 positivity suggests immune engagement is possible, but MSS status means the immune system needs help recognizing the tumor.",
+            "next_steps": "Monitor clinical trial landscape for vaccine trials in ovarian cancer"
+          }
+        ]
+      },
+      "status": "validated",
+      "evidence_grade": "MECHANISTIC HYPOTHESIS"
+    },
+    {
+      "stage_id": 5,
+      "name": "Resistance Forecasting",
+      "plain_language": "CrisPRO can forecast how your tumor might develop resistance to a treatment over time. Tumors are smart \u2014 they find ways to survive. By understanding the most likely resistance pathways for each treatment, your care team can plan ahead: which drug to try first, what to switch to when resistance develops, and how to combine treatments to block multiple escape routes.",
+      "data_shown": {
+        "type": "resistance_forecast",
+        "how_it_works": "CrisPRO analyzes the biological pathways your tumor uses to survive and predicts which resistance mechanisms are most likely to activate for each treatment.",
+        "example": {
+          "treatment": "PARP inhibitor (if BRCA/HRD positive)",
+          "likely_resistance_mechanisms": [
+            {
+              "mechanism": "BRCA reversion mutation",
+              "probability": "Moderate",
+              "what_it_means": "The tumor may repair its BRCA gene, restoring DNA repair and making PARP inhibitors ineffective.",
+              "backup_plan": "Switch to a different mechanism class (e.g., immunotherapy combination)"
+            },
+            {
+              "mechanism": "Drug efflux pump upregulation",
+              "probability": "Low-Moderate",
+              "what_it_means": "The tumor may produce proteins that pump the drug out of cells before it can work.",
+              "backup_plan": "Consider dose adjustment or combination with efflux inhibitor"
+            }
+          ],
+          "strategic_implication": "If PARP inhibitors are used, having a backup plan ready before resistance develops can save valuable treatment time."
+        },
+        "note": "Resistance forecasting is based on published biological mechanisms. Actual resistance patterns vary by individual patient."
+      },
+      "status": "validated",
+      "evidence_grade": "MECHANISTIC HYPOTHESIS"
+    },
+    {
+      "stage_id": 6,
+      "name": "Your Care Plan Summary",
+      "plain_language": "Everything comes together in a single care plan summary you can share with your oncologist. It includes your complete biomarker profile, recommended next tests, potential treatment options ranked by fit, matching clinical trials, and questions to ask at your next appointment.",
+      "data_shown": {
+        "type": "care_plan_summary",
+        "sections": [
+          {
+            "section": "Complete Biomarker Profile",
+            "content": "All your test results organized in one place, with plain-language explanations"
+          },
+          {
+            "section": "Recommended Next Tests",
+            "content": "BRCA/HRD testing (highest priority), tumor sequencing (NGS), CA-125 baseline"
+          },
+          {
+            "section": "Treatment Options Ranked by Fit",
+            "content": "PARP inhibitors (pending test), immunotherapy combinations, therapeutic vaccines, next-line chemotherapy"
+          },
+          {
+            "section": "Matching Clinical Trials",
+            "content": "Trials you may be eligible for, with contact information and eligibility explanation"
+          },
+          {
+            "section": "Questions for Your Oncologist",
+            "content": "Can we order BRCA/HRD testing? Are there PARP inhibitor trials for MBD4-mutated tumors? Would an immunotherapy combination be worth trying given my PD-L1 status?"
+          },
+          {
+            "section": "Resistance Planning",
+            "content": "For each recommended treatment, the most likely resistance mechanisms and backup options"
+          }
+        ],
+        "what_you_can_do": [
+          "Download or print your care plan summary",
+          "Share it with your oncologist at your next visit",
+          "Use the questions list to guide your appointment",
+          "Request the recommended tests to unlock more options"
+        ]
+      },
+      "status": "validated",
+      "evidence_grade": "VERIFIED"
+    }
+  ],
+  "roadmap_items": [
+    {
+      "capability": "Responder prediction for individual patients",
+      "description": "CrisPRO is developing the ability to predict whether you specifically will respond to a treatment, based on your tumor's complete biological profile. Currently, CrisPRO ranks treatments by how well they match your biology, but cannot yet predict individual response with certainty.",
+      "status": "in_development",
+      "note": "Treatment fit ranking is available now. Individual response prediction is an active research area."
+    },
+    {
+      "capability": "Real-time trial matching with live databases",
+      "description": "Currently, trial matching uses CrisPRO's curated trial database. Integration with live ClinicalTrials.gov data for real-time trial availability is being developed.",
+      "status": "in_development",
+      "note": "Curated trial matching is available. Live database integration is planned."
+    },
+    {
+      "capability": "Tumor board presentation generator",
+      "description": "Automatic generation of a formatted presentation for your care team's tumor board meeting, summarizing your case and recommended options.",
+      "status": "in_development",
+      "note": "Care plan summary is available. Tumor board presentation format is planned."
+    }
+  ],
+  "governance_labels": {
+    "validated": "Available now, supported by your medical reports and published evidence",
+    "in_development": "Active area of research; not yet available for clinical use",
+    "mechanistic_hypothesis": "Based on biological understanding and published research, but not yet proven in clinical trials for your specific situation"
+  }
+}

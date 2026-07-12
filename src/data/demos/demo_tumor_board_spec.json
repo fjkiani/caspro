@@ -1,0 +1,361 @@
+{
+  "demo_id": "tumor_board_case_review",
+  "persona": "hospital",
+  "title": "Multi-Disciplinary Case Review",
+  "subtitle": "How CrisPRO supports your tumor board with drug ranking, resistance forecasting, and evidence assembly",
+  "governance_mode": "clean_plus_roadmap",
+  "case_context": {
+    "patient": "AK",
+    "cancer": "High-grade serous ovarian cancer, Stage IVB",
+    "situation": "Post 4 cycles carboplatin + bevacizumab. Disease is advanced with peritoneal carcinomatosis, pleural effusions, and lymph node involvement.",
+    "key_question": "What treatment options remain, and which best match this patient's tumor biology?",
+    "data_completeness": "55% \u2014 has IHC and germline, missing NGS, BRCA/HRD, CA-125 series"
+  },
+  "stages": [
+    {
+      "stage_id": 1,
+      "name": "Case Overview",
+      "plain_language": "The tumor board view starts with a complete case summary: patient demographics, diagnosis, staging, treatment history, biomarker results, and imaging findings. Everything the board needs is on one screen, sourced directly from the patient's medical reports.",
+      "data_shown": {
+        "type": "case_overview",
+        "patient_summary": {
+          "age": 40,
+          "sex": "Female",
+          "diagnosis": "High-grade serous ovarian carcinoma (Mullerian origin)",
+          "stage": "IVB",
+          "prior_treatment": "Carboplatin + Bevacizumab x4 cycles (completed Jan 2026, bevacizumab held cycle 4 due to proteinuria)",
+          "disease_burden": "Peritoneal carcinomatosis, ascites, bilateral pleural effusions, abdominopelvic lymphadenopathy",
+          "key_biomarkers": {
+            "MSI": "Stable (MSS)",
+            "PD-L1": "Positive, CPS 10 (22C3 assay)",
+            "TP53": "Mutant pattern (IHC)",
+            "HER2": "Negative",
+            "FR-alpha": "Negative (<1%)",
+            "MMR": "Preserved (MLH1, PMS2, MSH2, MSH6)"
+          },
+          "germline": "MBD4 homozygous pathogenic (c.1293delA, p.K431Nfs*54), PDGFRA VUS (p.S755P)",
+          "missing_data": [
+            "BRCA1/2 status",
+            "HRD score",
+            "Tumor sequencing (NGS)",
+            "CA-125 series",
+            "ECOG status"
+          ]
+        },
+        "run_metadata": {
+          "analysis_levels_available": [
+            "L1 (baseline)",
+            "L2 (with NGS/HRD)",
+            "L3 (with CA-125/RNA)"
+          ],
+          "current_level": "L1",
+          "efficacy_mode": "comprehensive"
+        }
+      },
+      "status": "validated",
+      "evidence_grade": "VERIFIED"
+    },
+    {
+      "stage_id": 2,
+      "name": "Data Readiness Assessment",
+      "plain_language": "Before recommending treatments, CrisPRO assesses how complete the patient's data is. A 55% completeness score means we have enough to make baseline recommendations, but critical tests are missing. Each missing test is flagged with what it would unlock \u2014 for example, BRCA/HRD testing unlocks Level 2 analysis, which adds synthetic lethality detection and more precise drug ranking.",
+      "data_shown": {
+        "type": "data_readiness",
+        "completeness_score": 0.55,
+        "confidence_cap": "Level 1 recommendations only \u2014 higher confidence requires additional testing",
+        "missing_tests": [
+          {
+            "test": "BRCA1/2 germline and somatic",
+            "unlocks": "Level 2 analysis \u2014 PARP inhibitor eligibility, synthetic lethality detection",
+            "priority": "Critical",
+            "clinical_impact": "Determines whether PARP inhibitors (olaparib, niraparib) are an option. ~50% of HGS ovarian cancers have HRD."
+          },
+          {
+            "test": "HRD score (Myriad MyChoice or equivalent)",
+            "unlocks": "Level 2 analysis \u2014 HRD-positive classification expands PARP inhibitor eligibility beyond BRCA",
+            "priority": "Critical",
+            "clinical_impact": "HRD-positive patients benefit from PARP inhibitors even without BRCA mutation"
+          },
+          {
+            "test": "Tumor sequencing (NGS panel)",
+            "unlocks": "Level 2 analysis \u2014 somatic mutation profile, TMB, actionable alterations",
+            "priority": "High",
+            "clinical_impact": "Identifies additional targeted therapy options and clinical trial eligibility"
+          },
+          {
+            "test": "CA-125 series (baseline + trend)",
+            "unlocks": "Level 3 analysis \u2014 treatment response monitoring, recurrence detection",
+            "priority": "Moderate",
+            "clinical_impact": "Enables longitudinal response tracking and early recurrence detection"
+          },
+          {
+            "test": "RNA expression data",
+            "unlocks": "Level 3 analysis \u2014 CCNE1 amplification, BRCA reversion detection",
+            "priority": "Moderate",
+            "clinical_impact": "CCNE1 amplification predicts PARP inhibitor resistance; BRCA reversion confirms acquired resistance"
+          }
+        ],
+        "recommendation": "Order BRCA/HRD testing and tumor NGS panel before next tumor board. These two tests unlock the highest-value analysis levels."
+      },
+      "status": "validated",
+      "evidence_grade": "VERIFIED"
+    },
+    {
+      "stage_id": 3,
+      "name": "Drug Ranking",
+      "plain_language": "CrisPRO ranks available treatments by how well each drug's mechanism matches this patient's tumor biology. The ranking considers what pathways the drug targets, what resistance mechanisms the tumor has, and what biomarkers predict response. Each drug gets a fit score from 0 to 1, with the reasoning shown for why it scored high or low.",
+      "data_shown": {
+        "type": "drug_ranking",
+        "how_it_works": "Each drug is profiled by its mechanism of action (what biological pathways it targets). The patient's tumor is profiled by which pathways are active. Drugs that target active pathways in this tumor score higher. The score combines eligibility (can the patient receive this drug?) with mechanism fit (does the drug target the right pathways?).",
+        "ranking_categories": [
+          {
+            "tier": "Strong match (pending test confirmation)",
+            "drugs": [
+              {
+                "name": "Olaparib (PARP inhibitor)",
+                "fit_rationale": "Targets DNA repair deficiency. If BRCA/HRD is positive, this is the strongest match. MBD4 mutation may enhance sensitivity through impaired DNA repair.",
+                "blocking_factor": "BRCA/HRD test results pending",
+                "estimated_fit": "High (if HRD positive)"
+              },
+              {
+                "name": "Niraparib (PARP inhibitor)",
+                "fit_rationale": "Same mechanism class as olaparib. Broader HRD-positive eligibility. Also used as maintenance therapy.",
+                "blocking_factor": "BRCA/HRD test results pending",
+                "estimated_fit": "High (if HRD positive)"
+              }
+            ]
+          },
+          {
+            "tier": "Moderate match",
+            "drugs": [
+              {
+                "name": "Pembrolizumab + chemotherapy combination",
+                "fit_rationale": "PD-L1 positive (CPS 10) provides rationale for checkpoint inhibitor. MSS status limits single-agent efficacy, but combination with chemotherapy may overcome this.",
+                "blocking_factor": "MSS status reduces likelihood of response",
+                "estimated_fit": "Moderate"
+              },
+              {
+                "name": "Doxorubicin (liposomal)",
+                "fit_rationale": "Standard option for platinum-resistant ovarian cancer. Different mechanism from prior carboplatin, reducing cross-resistance.",
+                "blocking_factor": "No specific biomarker match \u2014 empirical choice",
+                "estimated_fit": "Moderate"
+              }
+            ]
+          },
+          {
+            "tier": "Weak match / not recommended",
+            "drugs": [
+              {
+                "name": "Mirvetuximab soravtansine (ELAHERE)",
+                "fit_rationale": "FR-alpha targeted antibody-drug conjugate. Requires FR-alpha >= 75% positivity.",
+                "blocking_factor": "FR-alpha negative (<1%) \u2014 NOT eligible",
+                "estimated_fit": "None"
+              },
+              {
+                "name": "Trastuzumab (HER2-targeted)",
+                "fit_rationale": "HER2-targeted therapy.",
+                "blocking_factor": "HER2 negative \u2014 NOT eligible",
+                "estimated_fit": "None"
+              }
+            ]
+          }
+        ],
+        "ranking_note": "Current ranking is at Level 1 (baseline). Adding BRCA/HRD and NGS data will refine the ranking and may promote PARP inhibitors to confirmed strong matches."
+      },
+      "status": "validated",
+      "evidence_grade": "MECHANISTIC HYPOTHESIS"
+    },
+    {
+      "stage_id": 4,
+      "name": "Resistance Forecast",
+      "plain_language": "For each recommended treatment, CrisPRO forecasts the most likely resistance mechanisms \u2014 how the tumor might adapt to survive. This lets the board plan ahead: which drug to try first, what to switch to when resistance develops, and whether combination therapy could block multiple escape routes simultaneously.",
+      "data_shown": {
+        "type": "resistance_forecast",
+        "forecasts": [
+          {
+            "drug": "PARP inhibitor (olaparib/niraparib)",
+            "resistance_mechanisms": [
+              {
+                "mechanism": "BRCA reversion mutation",
+                "likelihood": "Moderate",
+                "biology": "Tumor restores BRCA function through secondary mutations, repairing DNA damage and escaping PARP inhibitor effect.",
+                "monitoring": "Serial ctDNA testing can detect BRCA reversion before clinical progression",
+                "backup_strategy": "Switch to non-PARP mechanism (immunotherapy combination, chemotherapy)"
+              },
+              {
+                "mechanism": "CCNE1 amplification",
+                "likelihood": "Moderate (common in HGS ovarian)",
+                "biology": "CCNE1 amplification activates alternative cell cycle pathways that bypass the DNA repair vulnerability.",
+                "monitoring": "RNA expression testing (Level 3) can detect CCNE1 amplification",
+                "backup_strategy": "CDK2 inhibitors (clinical trial), or switch mechanism class"
+              },
+              {
+                "mechanism": "Drug efflux pump upregulation",
+                "likelihood": "Low-Moderate",
+                "biology": "Tumor increases production of proteins that pump the drug out of cells.",
+                "monitoring": "No standard clinical test",
+                "backup_strategy": "Dose adjustment or combination with efflux inhibitor"
+              }
+            ],
+            "strategic_implication": "If PARP inhibitors are used, plan for BRCA reversion monitoring via ctDNA. Have a backup plan ready before resistance develops."
+          },
+          {
+            "drug": "Checkpoint inhibitor + chemotherapy",
+            "resistance_mechanisms": [
+              {
+                "mechanism": "T-cell exhaustion",
+                "likelihood": "High (MSS context)",
+                "biology": "In MSS tumors, the immune microenvironment suppresses T-cell activity over time, even with checkpoint blockade.",
+                "monitoring": "PD-L1 re-testing on progression, TIL assessment",
+                "backup_strategy": "Add VEGF inhibitor (bevacizumab) to reprogram microenvironment, or switch to therapeutic vaccine approach"
+              },
+              {
+                "mechanism": "Antigen loss",
+                "likelihood": "Low-Moderate",
+                "biology": "Tumor stops presenting the antigens that T-cells were targeting.",
+                "monitoring": "Serial biopsy for IHC comparison",
+                "backup_strategy": "Multi-antigen approaches (therapeutic vaccines presenting multiple targets)"
+              }
+            ],
+            "strategic_implication": "MSS status is the primary barrier. Combination strategies that address the immunosuppressive microenvironment are more likely to succeed than single-agent approaches."
+          }
+        ]
+      },
+      "status": "validated",
+      "evidence_grade": "MECHANISTIC HYPOTHESIS"
+    },
+    {
+      "stage_id": 5,
+      "name": "Synthetic Lethality Analysis",
+      "plain_language": "CrisPRO looks for synthetic lethal relationships \u2014 pairs where a mutation in the patient's tumor creates a vulnerability that a specific drug can exploit. For example, if a tumor has lost a DNA repair gene, a drug that blocks a backup repair pathway can be lethal to the tumor while sparing normal cells. This analysis runs at Level 2 and requires NGS data.",
+      "data_shown": {
+        "type": "synthetic_lethality",
+        "how_it_works": "CrisPRO checks the patient's mutation profile against a database of known synthetic lethal pairs. When a tumor loses gene A, and a drug blocks gene B (where A and B are backup systems for each other), the tumor cannot survive \u2014 but normal cells still have gene A, so they are spared.",
+        "current_status": "Level 2 analysis not yet available \u2014 requires NGS and BRCA/HRD testing",
+        "potential_pairs": [
+          {
+            "tumor_mutation": "MBD4 loss (confirmed)",
+            "potential_vulnerability": "Impaired DNA repair may create sensitivity to DNA-damaging agents and PARP inhibitors",
+            "drug_class": "PARP inhibitors, platinum compounds",
+            "evidence_level": "Mechanistic hypothesis \u2014 MBD4's role in DNA repair is established, but clinical synthetic lethality data is limited",
+            "requires": "BRCA/HRD testing to confirm the full DNA repair deficiency profile"
+          },
+          {
+            "tumor_mutation": "TP53 mutation (confirmed by IHC)",
+            "potential_vulnerability": "Cell cycle checkpoint deficiency may increase sensitivity to cell cycle inhibitors",
+            "drug_class": "WEE1 inhibitors, ATR inhibitors (clinical trial)",
+            "evidence_level": "Established \u2014 TP53-mutant tumors are known to be sensitive to WEE1/ATR inhibition",
+            "requires": "NGS to confirm TP53 mutation type and check for co-mutations"
+          }
+        ],
+        "what_unlocks_it": "Ordering NGS and BRCA/HRD testing will activate Level 2 analysis, including full synthetic lethality detection across all known pairs."
+      },
+      "status": "in_development",
+      "evidence_grade": "MECHANISTIC HYPOTHESIS"
+    },
+    {
+      "stage_id": 6,
+      "name": "Evidence Assembly",
+      "plain_language": "CrisPRO assembles the evidence behind each recommendation into a structured evidence vault. For every drug ranking, resistance forecast, and synthetic lethality call, the supporting data is traceable \u2014 which biomarker, which publication, which clinical trial supports this recommendation. This makes it easy to defend decisions at tumor board and to document the rationale in the medical record.",
+      "data_shown": {
+        "type": "evidence_vault",
+        "what_it_contains": [
+          {
+            "category": "Drug Ranking Evidence",
+            "items": "For each ranked drug: the biomarkers that support it, the mechanism match score, and the source of the biomarker data (which lab, which report)"
+          },
+          {
+            "category": "Resistance Evidence",
+            "items": "For each forecasted resistance mechanism: the published literature supporting it, the likelihood estimate, and the monitoring strategy"
+          },
+          {
+            "category": "Synthetic Lethality Evidence",
+            "items": "For each synthetic lethal pair: the published research establishing the relationship, the evidence grade, and the clinical trial status of the targeting drug"
+          },
+          {
+            "category": "Truth Table",
+            "items": "A structured table showing which recommendations are confirmed by testing, which are pending test results, and which are mechanistic hypotheses"
+          }
+        ],
+        "traceability": "Every recommendation links back to the specific biomarker result, medical report, or publication that supports it. No recommendation appears without a traceable evidence source.",
+        "export_options": "Evidence vault can be exported as a formatted report for the medical record or as a presentation slide for tumor board"
+      },
+      "status": "validated",
+      "evidence_grade": "VERIFIED"
+    },
+    {
+      "stage_id": 7,
+      "name": "Strategic Priorities",
+      "plain_language": "The tumor board view ends with a prioritized action list. The top priority is defense \u2014 understanding and planning for resistance. The second priority is attack \u2014 identifying the best treatment targets. The third priority is data \u2014 ordering the tests that will unlock deeper analysis. This gives the board a clear, actionable summary.",
+      "data_shown": {
+        "type": "strategic_priorities",
+        "priorities": [
+          {
+            "priority": 1,
+            "category": "Defense (Resistance Planning)",
+            "actions": [
+              "If PARP inhibitors are used, plan BRCA reversion monitoring via serial ctDNA",
+              "Prepare backup treatment plan for when resistance develops",
+              "Consider combination therapy to block multiple resistance pathways simultaneously"
+            ]
+          },
+          {
+            "priority": 2,
+            "category": "Attack (Treatment Selection)",
+            "actions": [
+              "PARP inhibitors are the strongest potential match \u2014 pending BRCA/HRD results",
+              "Checkpoint inhibitor + chemotherapy is a moderate match given PD-L1 positivity and MSS status",
+              "FR-alpha targeted therapy (ELAHERE) is NOT an option \u2014 FR-alpha negative",
+              "Discuss clinical trial options for MBD4-mutated tumors and TP53-targeted therapies"
+            ]
+          },
+          {
+            "priority": 3,
+            "category": "Data (Test Ordering)",
+            "actions": [
+              "Order BRCA1/2 germline and somatic testing \u2014 CRITICAL",
+              "Order HRD score (Myriad MyChoice or equivalent) \u2014 CRITICAL",
+              "Order tumor NGS panel \u2014 HIGH priority",
+              "Establish CA-125 baseline and begin serial monitoring \u2014 MODERATE priority",
+              "Consider RNA expression testing for CCNE1 and BRCA reversion \u2014 MODERATE priority"
+            ]
+          }
+        ],
+        "bottom_line": "This patient's most promising path is PARP inhibitor therapy, contingent on BRCA/HRD testing. The MBD4 mutation may enhance sensitivity. Without these test results, treatment selection is operating at 55% data completeness \u2014 ordering these tests is the single highest-value action."
+      },
+      "status": "validated",
+      "evidence_grade": "VERIFIED"
+    }
+  ],
+  "roadmap_items": [
+    {
+      "capability": "Responder prediction for individual patients",
+      "description": "CrisPRO currently ranks treatments by mechanism fit \u2014 how well a drug's targets match the tumor's biology. The ability to predict whether a specific patient will respond to a specific treatment, with quantified confidence, is in development.",
+      "status": "in_development",
+      "note": "Mechanism-fit ranking is available now. Individual response prediction is an active research area."
+    },
+    {
+      "capability": "Level 3 analysis (CA-125 and RNA expression)",
+      "description": "Level 3 analysis adds longitudinal response tracking (CA-125 trends) and expression-based resistance detection (CCNE1, BRCA reversion). This requires serial CA-125 data and RNA expression testing.",
+      "status": "in_development",
+      "note": "Level 1 and Level 2 analysis are available. Level 3 requires additional data inputs."
+    },
+    {
+      "capability": "Automated tumor board presentation generation",
+      "description": "Automatic generation of a formatted slide deck for tumor board presentation, including case summary, drug ranking, resistance forecast, and evidence references.",
+      "status": "in_development",
+      "note": "Evidence vault export is available. Full slide deck generation is planned."
+    },
+    {
+      "capability": "Cross-patient benchmarking",
+      "description": "Comparison of this patient's biomarker profile and treatment outcomes against similar patients in the CrisPRO database, to identify patterns and inform treatment selection.",
+      "status": "in_development",
+      "note": "Individual patient analysis is available. Cross-patient benchmarking is planned."
+    }
+  ],
+  "governance_labels": {
+    "validated": "Available now, supported by patient data and published evidence",
+    "in_development": "Active area of development; not yet available for clinical use",
+    "mechanistic_hypothesis": "Based on biological understanding and published research; requires clinical validation for this specific context"
+  }
+}

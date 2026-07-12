@@ -1,0 +1,21 @@
+{
+  "frozen_at": "2026-07-12",
+  "files": {
+    "src/data/demos/demo_index.json": {
+      "sha256": "68b69260d2bd82b6ae3e63aaaa37ca0993f8556ac23584ee47e56dfcca1addce",
+      "bytes": 983
+    },
+    "src/data/demos/demo_patient_spec.json": {
+      "sha256": "8246db603bc407f5ae035e115a1a77a079d2c45bc3f00ef110637db2681c3e3c",
+      "bytes": 17653
+    },
+    "src/data/demos/demo_pharma_spec.json": {
+      "sha256": "90aed5096716f41adeadcc30082c48a65a4606eac9f7b3fa2e8b3682b271209f",
+      "bytes": 16456
+    },
+    "src/data/demos/demo_tumor_board_spec.json": {
+      "sha256": "9739c59ff6dfd52ba1444a304ce005643ba45b47e51b40d5b09e303bf08e73b4",
+      "bytes": 21163
+    }
+  }
+}
