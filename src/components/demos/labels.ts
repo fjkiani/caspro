@@ -175,6 +175,11 @@ export const UI_LABELS = {
   brand_chip: 'CrisPRO · Demos',
   brand_back_home: '← Home',
 
+  // Route labels (shown in walker header)
+  route_label_patient: '/demo/patient',
+  route_label_pharma: '/demo/pharma',
+  route_label_tumor_board: '/demo/tumor-board',
+
   // Nav
   demos_nav_link: 'Demos',
 } as const;
