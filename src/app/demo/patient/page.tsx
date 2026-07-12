@@ -1,5 +1,3 @@
-'use client';
-
 /**
  * /demo/patient — Ayesha's demo (6 stages).
  *
@@ -13,6 +11,10 @@
 import DemoWalker from '@/components/demos/DemoWalker';
 import { loadPatientDemo } from '@/data/demos/loader';
 import { UI_LABELS } from '@/components/demos/labels';
+
+export const metadata = {
+  title: 'CrisPRO Demos · Patient',
+};
 
 export default function PatientDemoPage() {
   const spec = loadPatientDemo();
