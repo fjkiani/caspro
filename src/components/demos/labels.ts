@@ -101,6 +101,7 @@ export const UI_LABELS = {
   trial_label: 'Trial',
   finding_label: 'Finding',
   key_finding_label: 'Key finding',
+  ceacam5_failure_modes_heading: 'CEACAM5 failure modes',
   priority_label: 'Priority',
   action_label: 'Action',
   rationale_label: 'Rationale',
