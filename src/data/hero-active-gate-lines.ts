@@ -92,8 +92,8 @@ export const HERO_ACTIVE_GATE_LINES: HeadlineEntry[] = [
     trial: 'CAPRI › kinetics',
   },
   {
-    text: 'Target-Lock validated 38 cancer driver genes across 8 metastatic steps — 304 data points.',
-    highlight: 'AUROC 0.976, AUPRC 0.962, perfect top-3 ranking. Every FDA-approved driver scored high-confidence.',
+    text: 'Target-Lock validated on a 29-gene panel (honest primary composite) — brain-met cascade data, class-aware.',
+    highlight: 'AUROC 0.6889 (honest primary composite). Assassin vs composite disambiguated; Enformer excluded. No cherry-picked ranking.',
   },
   {
     text: 'We are what Theranos should have been — in silico.',
