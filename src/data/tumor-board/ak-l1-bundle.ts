@@ -183,16 +183,20 @@ export const AK_RECOMMENDED_DRUGS: RecommendedDrug[] = [
   },
   {
     drugName: 'Olaparib',
-    targetPathway: 'HR',
+    targetPathway: 'PARP',
     confidence: 0.7,
-    falsified: false,
+    falsified: true,
+    falsifiedReason:
+      'Post-PR#11 demotion: PARP1 expression in MBD4-LOF p=0.605 (n=19 vs 1498) — mechanism ruled out. Positive control ρ=-0.42 p=1.4e-21 confirms pan-cancer PARP1↔PARPi correlation that MBD4-LOF lines do not share.',
     path: 'levels.L1.synthetic_lethality.recommended_drugs[2]',
   },
   {
     drugName: 'Niraparib',
-    targetPathway: 'HR',
+    targetPathway: 'PARP',
     confidence: 0.7,
-    falsified: false,
+    falsified: true,
+    falsifiedReason:
+      'Post-PR#11 demotion: PARP1 expression in MBD4-LOF p=0.605 (n=19 vs 1498) — mechanism ruled out. Positive control ρ=-0.42 p=1.4e-21 confirms pan-cancer PARP1↔PARPi correlation that MBD4-LOF lines do not share.',
     path: 'levels.L1.synthetic_lethality.recommended_drugs[3]',
   },
   {
@@ -336,8 +340,8 @@ export type TestNeeded = {
 export const AK_TESTS_NEEDED: TestNeeded[] = [
   {
     test: 'HRD assay (Myriad myChoice CDx or equivalent)',
-    unlocks: 'PARP-inhibitor eligibility gate + HR pathway score',
-    why: 'HR pathway currently null; MBD4-LOF context motivates orthogonal HR-status readout.',
+    unlocks: 'HR pathway score + orthogonal genome-instability readout',
+    why: 'HR pathway currently null; MBD4-LOF context motivates orthogonal HR-status readout independent of the PARP1 falsification. PARPi eligibility remains ruled out on mechanism (p=0.605).',
   },
   {
     test: 'Comprehensive genomic profiling for TMB',
@@ -403,8 +407,8 @@ export const AK_PARP_FALSIFICATION = {
   pr11Fix: {
     field: 'manuscript_claim_type',
     value: 'falsified_mechanism',
-    effect: 'Bridge demotes parp_inhibitors row → PARP no longer surfaces in AK\'s recommended_drugs even though tier stays "Mechanistic candidate only".',
-    rowKept: 'Row remains in evidence_matrix.rows for auditability; only recommended_drugs is filtered.',
+    effect: 'All three PARPi rows (Olaparib, Niraparib, Rucaparib) ship with falsified:true + falsifiedReason so the tumor-board UI shows the mechanism-ruled-out audit trail rather than hiding the row.',
+    rowKept: 'Row remains in evidence_matrix.rows for auditability; recommended_drugs entries stay visible but flagged.',
   },
 } as const;
 
