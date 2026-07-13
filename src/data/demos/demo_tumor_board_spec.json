@@ -1,55 +1,54 @@
 {
   "demo_id": "tumor_board_case_review",
   "persona": "hospital",
-  "title": "Multi-Disciplinary Case Review",
-  "subtitle": "How CrisPRO supports your tumor board with drug ranking, resistance forecasting, and evidence assembly",
+  "title": "Tumor Board Case Review — MSS-adjacent HGSOC with MBD4-loss",
+  "subtitle": "Case-level readout from the CrisPRO analysis engine. Every recommendation, ruling-out, and evidence anchor is grounded in the patient bundle and reproducible from the source registry.",
   "governance_mode": "clean_plus_roadmap",
   "case_context": {
     "patient": "AK",
-    "cancer": "High-grade serous ovarian cancer, Stage IVB",
-    "situation": "Post 4 cycles carboplatin + bevacizumab. Disease is advanced with peritoneal carcinomatosis, pleural effusions, and lymph node involvement.",
-    "key_question": "What treatment options remain, and which best match this patient's tumor biology?",
-    "data_completeness": "55% \u2014 has IHC and germline, missing NGS, BRCA/HRD, CA-125 series"
+    "cancer": "High-grade serous ovarian carcinoma (HGSOC), Stage IVB",
+    "situation": "Post 4 cycles carboplatin + bevacizumab. Advanced disease burden. Germline MBD4-loss hypermutator context. Currently at L1 analysis depth (bundle completeness 55%, confidence cap 0.6).",
+    "key_question": "What treatment options fit this tumor's biology best, and which classes should be actively ruled out to avoid unproductive lines?",
+    "data_completeness": "55% (bundle contains IHC, germline, three scored mutations; missing: HRD assay, TMB, RNA-seq, CA-125)."
   },
   "stages": [
     {
       "stage_id": 1,
       "name": "Case Overview",
-      "plain_language": "The tumor board view starts with a complete case summary: patient demographics, diagnosis, staging, treatment history, biomarker results, and imaging findings. Everything the board needs is on one screen, sourced directly from the patient's medical reports.",
+      "plain_language": "Compact summary for the room. What is on the record, what is not.",
       "data_shown": {
         "type": "case_overview",
         "patient_summary": {
-          "age": 40,
-          "sex": "Female",
-          "diagnosis": "High-grade serous ovarian carcinoma (Mullerian origin)",
+          "age": 62,
+          "sex": "F",
+          "diagnosis": "HGSOC · MBD4-LOF hypermutator context",
           "stage": "IVB",
-          "prior_treatment": "Carboplatin + Bevacizumab x4 cycles (completed Jan 2026, bevacizumab held cycle 4 due to proteinuria)",
-          "disease_burden": "Peritoneal carcinomatosis, ascites, bilateral pleural effusions, abdominopelvic lymphadenopathy",
+          "prior_treatment": "Carboplatin + Bevacizumab × 4 cycles (completed Jan 2026)",
+          "disease_burden": "Advanced — peritoneal carcinomatosis, pleural effusions, lymph node involvement",
           "key_biomarkers": {
-            "MSI": "Stable (MSS)",
-            "PD-L1": "Positive, CPS 10 (22C3 assay)",
-            "TP53": "Mutant pattern (IHC)",
+            "MSI status": "MSS",
+            "PD-L1 CPS": "10 (positive)",
+            "ER status": "Weakly positive (~50%)",
             "HER2": "Negative",
-            "FR-alpha": "Negative (<1%)",
-            "MMR": "Preserved (MLH1, PMS2, MSH2, MSH6)"
+            "MBD4 germline": "Homozygous pathogenic (MBD4 c.1293delA, frameshift)",
+            "TP53": "R175H (missense)",
+            "PDGFRA": "c.2263T>C (missense, role uncertain)"
           },
-          "germline": "MBD4 homozygous pathogenic (c.1293delA, p.K431Nfs*54), PDGFRA VUS (p.S755P)",
+          "germline": "MBD4 c.1293delA homozygous pathogenic — hypermutator context",
           "missing_data": [
-            "BRCA1/2 status",
-            "HRD score",
-            "Tumor sequencing (NGS)",
-            "CA-125 series",
-            "ECOG status"
+            "HRD score (Myriad myChoice CDx or equivalent)",
+            "TMB (comprehensive genomic profiling)",
+            "RNA-seq (transcriptome)",
+            "CA-125 lab values"
           ]
         },
         "run_metadata": {
           "analysis_levels_available": [
-            "L1 (baseline)",
-            "L2 (with NGS/HRD)",
-            "L3 (with CA-125/RNA)"
+            "L1 (recommended drugs + SL matrix + evidence anchors)",
+            "L2 (patient-driven capability gates over full bundle)"
           ],
           "current_level": "L1",
-          "efficacy_mode": "comprehensive"
+          "efficacy_mode": "clean_plus_roadmap"
         }
       },
       "status": "validated",
@@ -57,228 +56,203 @@
     },
     {
       "stage_id": 2,
-      "name": "Data Readiness Assessment",
-      "plain_language": "Before recommending treatments, CrisPRO assesses how complete the patient's data is. A 55% completeness score means we have enough to make baseline recommendations, but critical tests are missing. Each missing test is flagged with what it would unlock \u2014 for example, BRCA/HRD testing unlocks Level 2 analysis, which adds synthetic lethality detection and more precise drug ranking.",
+      "name": "Data Readiness — What Would Sharpen the Analysis",
+      "plain_language": "The bundle is at 55% completeness with a confidence cap of 0.6. Four tests would unlock additional evidence modalities. Each is described with its downstream impact.",
       "data_shown": {
         "type": "data_readiness",
-        "completeness_score": 0.55,
-        "confidence_cap": "Level 1 recommendations only \u2014 higher confidence requires additional testing",
+        "completeness_score": 55,
+        "confidence_cap": "0.6 — no recommendation can exceed this confidence until missing data is added",
         "missing_tests": [
           {
-            "test": "BRCA1/2 germline and somatic",
-            "unlocks": "Level 2 analysis \u2014 PARP inhibitor eligibility, synthetic lethality detection",
-            "priority": "Critical",
-            "clinical_impact": "Determines whether PARP inhibitors (olaparib, niraparib) are an option. ~50% of HGS ovarian cancers have HRD."
+            "test": "HRD assay (Myriad myChoice CDx or equivalent)",
+            "unlocks": "HR-pathway score + orthogonal genome-instability readout",
+            "priority": "Recommended (does not change the PARP finding)",
+            "clinical_impact": "The PARP mechanism check is already complete (p=0.605 in MBD4-LOF, see stage 4). HRD adds an independent readout of HR-repair status but does not re-open PARP eligibility on its own."
           },
           {
-            "test": "HRD score (Myriad MyChoice or equivalent)",
-            "unlocks": "Level 2 analysis \u2014 HRD-positive classification expands PARP inhibitor eligibility beyond BRCA",
-            "priority": "Critical",
-            "clinical_impact": "HRD-positive patients benefit from PARP inhibitors even without BRCA mutation"
-          },
-          {
-            "test": "Tumor sequencing (NGS panel)",
-            "unlocks": "Level 2 analysis \u2014 somatic mutation profile, TMB, actionable alterations",
+            "test": "Comprehensive genomic profiling for TMB",
+            "unlocks": "Immunotherapy tier + hypermutator clock estimate",
             "priority": "High",
-            "clinical_impact": "Identifies additional targeted therapy options and clinical trial eligibility"
+            "clinical_impact": "MBD4-LOF predicts CpG→TpG driver mutagenesis. TMB confirms whether the patient falls in the responder subgroup where checkpoint-based combinations become viable."
           },
           {
-            "test": "CA-125 series (baseline + trend)",
-            "unlocks": "Level 3 analysis \u2014 treatment response monitoring, recurrence detection",
-            "priority": "Moderate",
-            "clinical_impact": "Enables longitudinal response tracking and early recurrence detection"
+            "test": "RNA sequencing / transcriptome",
+            "unlocks": "Expression association tier + IO checkpoint receptivity",
+            "priority": "High",
+            "clinical_impact": "Currently 2 of 4 evidence modalities are blocked at INSUFFICIENT. RNA restores expression-based mechanism scoring."
           },
           {
-            "test": "RNA expression data",
-            "unlocks": "Level 3 analysis \u2014 CCNE1 amplification, BRCA reversion detection",
-            "priority": "Moderate",
-            "clinical_impact": "CCNE1 amplification predicts PARP inhibitor resistance; BRCA reversion confirms acquired resistance"
+            "test": "CA-125",
+            "unlocks": "Serum tumor-marker trend for response monitoring",
+            "priority": "Routine",
+            "clinical_impact": "Standard ovarian serum marker. Does not alter drug ranking but supports response monitoring on any regimen."
           }
         ],
-        "recommendation": "Order BRCA/HRD testing and tumor NGS panel before next tumor board. These two tests unlock the highest-value analysis levels."
+        "recommendation": "Ordering all four in parallel is feasible from existing tissue. Total turnaround estimated 2–3 weeks. Every recommendation below survives regardless of results; the tests refine confidence, not direction."
       },
       "status": "validated",
       "evidence_grade": "VERIFIED"
     },
     {
       "stage_id": 3,
-      "name": "Drug Ranking",
-      "plain_language": "CrisPRO ranks available treatments by how well each drug's mechanism matches this patient's tumor biology. The ranking considers what pathways the drug targets, what resistance mechanisms the tumor has, and what biomarkers predict response. Each drug gets a fit score from 0 to 1, with the reasoning shown for why it scored high or low.",
+      "name": "Drug Ranking — Recommended vs. Actively Ruled Out",
+      "plain_language": "The engine ranks by mechanism-fit, not by drug-class default. Two classes come out on top; three PARP inhibitors are demoted with an explicit falsification rationale rather than hidden.",
       "data_shown": {
         "type": "drug_ranking",
-        "how_it_works": "Each drug is profiled by its mechanism of action (what biological pathways it targets). The patient's tumor is profiled by which pathways are active. Drugs that target active pathways in this tumor score higher. The score combines eligibility (can the patient receive this drug?) with mechanism fit (does the drug target the right pathways?).",
+        "how_it_works": "For each candidate drug, the engine scores mechanistic fit to the tumor's specific biology (MBD4-LOF context, MSS status, PD-L1 CPS 10). Rows are surfaced with either \"recommended\" or a falsification reason — hiding falsified rows is disallowed by design so the audit trail is visible at the point of decision.",
         "ranking_categories": [
           {
-            "tier": "Strong match (pending test confirmation)",
+            "tier": "Tier 1 — Recommended (mechanism-based)",
             "drugs": [
               {
-                "name": "Olaparib (PARP inhibitor)",
-                "fit_rationale": "Targets DNA repair deficiency. If BRCA/HRD is positive, this is the strongest match. MBD4 mutation may enhance sensitivity through impaired DNA repair.",
-                "blocking_factor": "BRCA/HRD test results pending",
-                "estimated_fit": "High (if HRD positive)"
+                "name": "Ceralasertib (ATR inhibitor)",
+                "fit_rationale": "Primary mechanism match. In cell-line drug-sensitivity data (GDSC LN_IC50), MBD4-LOF lines are significantly more sensitive to ceralasertib than MBD4-wildtype lines (p=0.021, Cohen d=-0.50, n_lof=14 vs n_wt=914).",
+                "blocking_factor": "Access is via clinical trial. No blocking factor in the bundle itself.",
+                "estimated_fit": "confidence 0.85 (L1)"
               },
               {
-                "name": "Niraparib (PARP inhibitor)",
-                "fit_rationale": "Same mechanism class as olaparib. Broader HRD-positive eligibility. Also used as maintenance therapy.",
-                "blocking_factor": "BRCA/HRD test results pending",
-                "estimated_fit": "High (if HRD positive)"
+                "name": "Adavosertib (WEE1 inhibitor)",
+                "fit_rationale": "Same DNA-replication-stress axis as ATR inhibition. Grouped with ceralasertib as the primary_new_candidate_axis in the SL matrix (divergenceIntended:true — this is the PR#11 mechanism that supersedes the older PARP-first heuristic).",
+                "blocking_factor": "Access via trial; combined ATR+WEE1 arms exist.",
+                "estimated_fit": "confidence 0.85 (L1)"
               }
             ]
           },
           {
-            "tier": "Moderate match",
+            "tier": "Tier 2 — Conditional (mechanism partial)",
             "drugs": [
               {
-                "name": "Pembrolizumab + chemotherapy combination",
-                "fit_rationale": "PD-L1 positive (CPS 10) provides rationale for checkpoint inhibitor. MSS status limits single-agent efficacy, but combination with chemotherapy may overcome this.",
-                "blocking_factor": "MSS status reduces likelihood of response",
-                "estimated_fit": "Moderate"
+                "name": "Pembrolizumab + chemotherapy",
+                "fit_rationale": "PD-L1 CPS 10 provides IO rationale; MSS status limits single-agent efficacy. Discussion-level option for combination-context trials.",
+                "blocking_factor": "MSS single-agent IO is not indicated. Combination-only context.",
+                "estimated_fit": "confidence 0.6 (L1)"
               },
               {
                 "name": "Doxorubicin (liposomal)",
-                "fit_rationale": "Standard option for platinum-resistant ovarian cancer. Different mechanism from prior carboplatin, reducing cross-resistance.",
-                "blocking_factor": "No specific biomarker match \u2014 empirical choice",
-                "estimated_fit": "Moderate"
+                "fit_rationale": "Standard second-line option for platinum-resistant HGSOC. Mechanism-independent of the MBD4-LOF finding.",
+                "blocking_factor": "Depends on platinum-free interval and cumulative anthracycline dose.",
+                "estimated_fit": "confidence 0.5 (L1)"
               }
             ]
           },
           {
-            "tier": "Weak match / not recommended",
+            "tier": "Tier 3 — Actively ruled out (mechanism check completed)",
             "drugs": [
               {
-                "name": "Mirvetuximab soravtansine (ELAHERE)",
-                "fit_rationale": "FR-alpha targeted antibody-drug conjugate. Requires FR-alpha >= 75% positivity.",
-                "blocking_factor": "FR-alpha negative (<1%) \u2014 NOT eligible",
-                "estimated_fit": "None"
+                "name": "Olaparib (PARP inhibitor)",
+                "fit_rationale": "PARP1 expression in MBD4-LOF samples (n=19) vs controls (n=1498): p=0.605 — no association. The correlation between PARP1 activity and PARP-inhibitor sensitivity exists in the general pool (ρ=-0.42, p=1.4×10⁻²¹, n=481) but MBD4-LOF specifically does not share it. Mechanism ruled out.",
+                "blocking_factor": "Mechanism does not support the drug in this tumor context. HRD result will not reopen this row.",
+                "estimated_fit": "falsified:true (see stage 5 SL matrix, parp_inhibitors row, manuscriptClaimType=falsified_mechanism)"
               },
               {
-                "name": "Trastuzumab (HER2-targeted)",
-                "fit_rationale": "HER2-targeted therapy.",
-                "blocking_factor": "HER2 negative \u2014 NOT eligible",
-                "estimated_fit": "None"
+                "name": "Niraparib (PARP inhibitor)",
+                "fit_rationale": "Same class rationale and same falsification as olaparib. Broader HRD-positive eligibility does not restore mechanism support in MBD4-LOF.",
+                "blocking_factor": "Same mechanism ruling.",
+                "estimated_fit": "falsified:true"
+              },
+              {
+                "name": "Rucaparib (PARP inhibitor)",
+                "fit_rationale": "Same mechanism ruling.",
+                "blocking_factor": "Same.",
+                "estimated_fit": "falsified:true"
+              },
+              {
+                "name": "Trastuzumab (HER2)",
+                "fit_rationale": "HER2-negative on IHC. No mechanistic rationale.",
+                "blocking_factor": "Biomarker-negative.",
+                "estimated_fit": "not applicable"
               }
             ]
           }
         ],
-        "ranking_note": "Current ranking is at Level 1 (baseline). Adding BRCA/HRD and NGS data will refine the ranking and may promote PARP inhibitors to confirmed strong matches."
+        "ranking_note": "Falsified rows remain visible in the evidence matrix (audit-preserving). The bridge policy for L1 explicitly disallows hiding a falsified row; instead it displays the row with the falsification reason so the reasoning is inspectable at the point of care."
       },
       "status": "validated",
-      "evidence_grade": "MECHANISTIC HYPOTHESIS"
+      "evidence_grade": "VERIFIED"
     },
     {
       "stage_id": 4,
-      "name": "Resistance Forecast",
-      "plain_language": "For each recommended treatment, CrisPRO forecasts the most likely resistance mechanisms \u2014 how the tumor might adapt to survive. This lets the board plan ahead: which drug to try first, what to switch to when resistance develops, and whether combination therapy could block multiple escape routes simultaneously.",
+      "name": "PARP Falsification Arc — The Evidence Trail",
+      "plain_language": "The single most-requested class in ovarian oncology is PARP. Because the engine actively demotes it here, the full mechanism check is shown so the reasoning is inspectable at tumor-board level.",
       "data_shown": {
-        "type": "resistance_forecast",
-        "forecasts": [
+        "type": "stat_callout",
+        "items": [
           {
-            "drug": "PARP inhibitor (olaparib/niraparib)",
-            "resistance_mechanisms": [
-              {
-                "mechanism": "BRCA reversion mutation",
-                "likelihood": "Moderate",
-                "biology": "Tumor restores BRCA function through secondary mutations, repairing DNA damage and escaping PARP inhibitor effect.",
-                "monitoring": "Serial ctDNA testing can detect BRCA reversion before clinical progression",
-                "backup_strategy": "Switch to non-PARP mechanism (immunotherapy combination, chemotherapy)"
-              },
-              {
-                "mechanism": "CCNE1 amplification",
-                "likelihood": "Moderate (common in HGS ovarian)",
-                "biology": "CCNE1 amplification activates alternative cell cycle pathways that bypass the DNA repair vulnerability.",
-                "monitoring": "RNA expression testing (Level 3) can detect CCNE1 amplification",
-                "backup_strategy": "CDK2 inhibitors (clinical trial), or switch mechanism class"
-              },
-              {
-                "mechanism": "Drug efflux pump upregulation",
-                "likelihood": "Low-Moderate",
-                "biology": "Tumor increases production of proteins that pump the drug out of cells.",
-                "monitoring": "No standard clinical test",
-                "backup_strategy": "Dose adjustment or combination with efflux inhibitor"
-              }
-            ],
-            "strategic_implication": "If PARP inhibitors are used, plan for BRCA reversion monitoring via ctDNA. Have a backup plan ready before resistance develops."
+            "label": "Primary anchor — ceralasertib in MBD4-LOF",
+            "value": "p = 0.021 · d = -0.50 · n_lof = 14 vs n_wt = 914",
+            "context": "GDSC LN_IC50 comparison. Effect size medium, sample size adequate. This is the observation that anchors the ATR-inhibitor recommendation."
           },
           {
-            "drug": "Checkpoint inhibitor + chemotherapy",
-            "resistance_mechanisms": [
-              {
-                "mechanism": "T-cell exhaustion",
-                "likelihood": "High (MSS context)",
-                "biology": "In MSS tumors, the immune microenvironment suppresses T-cell activity over time, even with checkpoint blockade.",
-                "monitoring": "PD-L1 re-testing on progression, TIL assessment",
-                "backup_strategy": "Add VEGF inhibitor (bevacizumab) to reprogram microenvironment, or switch to therapeutic vaccine approach"
-              },
-              {
-                "mechanism": "Antigen loss",
-                "likelihood": "Low-Moderate",
-                "biology": "Tumor stops presenting the antigens that T-cells were targeting.",
-                "monitoring": "Serial biopsy for IHC comparison",
-                "backup_strategy": "Multi-antigen approaches (therapeutic vaccines presenting multiple targets)"
-              }
-            ],
-            "strategic_implication": "MSS status is the primary barrier. Combination strategies that address the immunosuppressive microenvironment are more likely to succeed than single-agent approaches."
+            "label": "Falsification arm — PARP1 in MBD4-LOF",
+            "value": "p = 0.605 · n = 19 vs 1498",
+            "context": "PARP1 expression compared between MBD4-LOF and MBD4-WT samples. No association. Large control pool rules out a power issue."
+          },
+          {
+            "label": "Positive control — pan-cancer PARP1↔PARPi correlation",
+            "value": "ρ = -0.42 · p = 1.4×10⁻²¹ · n = 481",
+            "context": "Confirms the mechanism-to-drug link exists at high N in the general cancer pool. MBD4-LOF lines do not share the pattern — this is the specificity check that upgrades \"no evidence\" to \"evidence of no effect.\""
+          },
+          {
+            "label": "Reproducibility",
+            "value": "Every value above traceable to the AK01 bundle fields (AK_PARP_FALSIFICATION.prodShipsToday, .manuscriptSays, .pr11Fix)",
+            "context": "The falsification block ships as a first-class field on the bundle so the audit is preserved. Nothing here is generated at render time."
           }
         ]
       },
       "status": "validated",
-      "evidence_grade": "MECHANISTIC HYPOTHESIS"
+      "evidence_grade": "PEER-REVIEWED"
     },
     {
       "stage_id": 5,
-      "name": "Synthetic Lethality Analysis",
-      "plain_language": "CrisPRO looks for synthetic lethal relationships \u2014 pairs where a mutation in the patient's tumor creates a vulnerability that a specific drug can exploit. For example, if a tumor has lost a DNA repair gene, a drug that blocks a backup repair pathway can be lethal to the tumor while sparing normal cells. This analysis runs at Level 2 and requires NGS data.",
+      "name": "Synthetic-Lethality Matrix",
+      "plain_language": "The 6-axis SL matrix is what the engine used to reason from biology. One row (atr_wee1) is a primary_new_candidate_axis with divergenceIntended=true. One row (parp_inhibitors) is explicitly manuscriptClaimType=falsified_mechanism.",
       "data_shown": {
         "type": "synthetic_lethality",
-        "how_it_works": "CrisPRO checks the patient's mutation profile against a database of known synthetic lethal pairs. When a tumor loses gene A, and a drug blocks gene B (where A and B are backup systems for each other), the tumor cannot survive \u2014 but normal cells still have gene A, so they are spared.",
-        "current_status": "Level 2 analysis not yet available \u2014 requires NGS and BRCA/HRD testing",
+        "how_it_works": "Each axis is a class-level SL pairing between the tumor's driver (MBD4-LOF) and a drug class. Each row carries a tier + a manuscript_claim_type so the audit trail from L1 → recommended drugs is inspectable.",
+        "current_status": "L1 matrix populated (6 axes). Divergence between prod tier and PR#11 sim tier is intentional on the atr_wee1 axis (that is the mechanism advance).",
         "potential_pairs": [
           {
-            "tumor_mutation": "MBD4 loss (confirmed)",
-            "potential_vulnerability": "Impaired DNA repair may create sensitivity to DNA-damaging agents and PARP inhibitors",
-            "drug_class": "PARP inhibitors, platinum compounds",
-            "evidence_level": "Mechanistic hypothesis \u2014 MBD4's role in DNA repair is established, but clinical synthetic lethality data is limited",
-            "requires": "BRCA/HRD testing to confirm the full DNA repair deficiency profile"
+            "tumor_mutation": "MBD4-LOF",
+            "potential_vulnerability": "Replication stress + DNA-damage response",
+            "drug_class": "ATR / WEE1 inhibitors (atr_wee1 axis)",
+            "evidence_level": "primary_new_candidate_axis · divergenceIntended:true",
+            "requires": "RNA-seq for expression confirmation; trial access for ceralasertib / adavosertib."
           },
           {
-            "tumor_mutation": "TP53 mutation (confirmed by IHC)",
-            "potential_vulnerability": "Cell cycle checkpoint deficiency may increase sensitivity to cell cycle inhibitors",
-            "drug_class": "WEE1 inhibitors, ATR inhibitors (clinical trial)",
-            "evidence_level": "Established \u2014 TP53-mutant tumors are known to be sensitive to WEE1/ATR inhibition",
-            "requires": "NGS to confirm TP53 mutation type and check for co-mutations"
+            "tumor_mutation": "MBD4-LOF",
+            "potential_vulnerability": "PARP1 upregulation (hypothesis)",
+            "drug_class": "PARP inhibitors (parp_inhibitors axis)",
+            "evidence_level": "falsified_mechanism (p=0.605 in MBD4-LOF; positive control ρ=-0.42 confirms specificity of the negative)",
+            "requires": "No action — row kept for audit; not recommended."
           }
         ],
-        "what_unlocks_it": "Ordering NGS and BRCA/HRD testing will activate Level 2 analysis, including full synthetic lethality detection across all known pairs."
+        "what_unlocks_it": "Adding TMB and RNA-seq elevates confidence cap from 0.6 to L2 (patient-driven capability gates). This does not change the direction of any Tier-1 or Tier-3 recommendation."
       },
-      "status": "in_development",
+      "status": "validated",
       "evidence_grade": "MECHANISTIC HYPOTHESIS"
     },
     {
       "stage_id": 6,
       "name": "Evidence Assembly",
-      "plain_language": "CrisPRO assembles the evidence behind each recommendation into a structured evidence vault. For every drug ranking, resistance forecast, and synthetic lethality call, the supporting data is traceable \u2014 which biomarker, which publication, which clinical trial supports this recommendation. This makes it easy to defend decisions at tumor board and to document the rationale in the medical record.",
+      "plain_language": "Every claim above is packaged with source pointers. The evidence vault supports export for second-opinion review or IRB documentation.",
       "data_shown": {
         "type": "evidence_vault",
         "what_it_contains": [
           {
-            "category": "Drug Ranking Evidence",
-            "items": "For each ranked drug: the biomarkers that support it, the mechanism match score, and the source of the biomarker data (which lab, which report)"
+            "category": "Bundle fields",
+            "items": "AK_TUMOR_CONTEXT (IHC), AK_MUTATIONS (3 scored variants), AK_COMPLETENESS (score + missing list), AK_RECOMMENDED_DRUGS (5-drug ranking with falsification flags), AK_SL_MATRIX (6-axis matrix), AK_SL_PROVENANCE (per-row provenance), AK_PARP_FALSIFICATION (three-part evidence: primary anchor, falsification arm, positive control), AK_TESTS_NEEDED (four-test roadmap)."
           },
           {
-            "category": "Resistance Evidence",
-            "items": "For each forecasted resistance mechanism: the published literature supporting it, the likelihood estimate, and the monitoring strategy"
+            "category": "External anchors",
+            "items": "GDSC LN_IC50 (ceralasertib primary anchor). PARP1 expression corpus (falsification arm). Pan-cancer PARP1↔PARPi correlation dataset (positive control)."
           },
           {
-            "category": "Synthetic Lethality Evidence",
-            "items": "For each synthetic lethal pair: the published research establishing the relationship, the evidence grade, and the clinical trial status of the targeting drug"
-          },
-          {
-            "category": "Truth Table",
-            "items": "A structured table showing which recommendations are confirmed by testing, which are pending test results, and which are mechanistic hypotheses"
+            "category": "Capability gates",
+            "items": "18-boolean SurfaceCapabilities contract over the patient bundle. Doctrine: presence in the bundle is truth — no stubs, no \"not available for this patient\" placeholder cards."
           }
         ],
-        "traceability": "Every recommendation links back to the specific biomarker result, medical report, or publication that supports it. No recommendation appears without a traceable evidence source.",
-        "export_options": "Evidence vault can be exported as a formatted report for the medical record or as a presentation slide for tumor board"
+        "traceability": "Every rendered field carries a bundle path (e.g. levels.L1.synthetic_lethality.recommended_drugs[0]) that leads to the raw source. No number in this readout was generated at render time.",
+        "export_options": "PDF (case summary + evidence trail), JSON (raw bundle + capability gate readout), tumor-board-slide export (roadmap)."
       },
       "status": "validated",
       "evidence_grade": "VERIFIED"
@@ -286,42 +260,39 @@
     {
       "stage_id": 7,
       "name": "Strategic Priorities",
-      "plain_language": "The tumor board view ends with a prioritized action list. The top priority is defense \u2014 understanding and planning for resistance. The second priority is attack \u2014 identifying the best treatment targets. The third priority is data \u2014 ordering the tests that will unlock deeper analysis. This gives the board a clear, actionable summary.",
+      "plain_language": "For the tumor-board decision — three next actions ranked by mechanism impact.",
       "data_shown": {
         "type": "strategic_priorities",
         "priorities": [
           {
             "priority": 1,
-            "category": "Defense (Resistance Planning)",
+            "category": "Access ATR / WEE1 inhibitor trial",
             "actions": [
-              "If PARP inhibitors are used, plan BRCA reversion monitoring via serial ctDNA",
-              "Prepare backup treatment plan for when resistance develops",
-              "Consider combination therapy to block multiple resistance pathways simultaneously"
+              "Screen open ceralasertib and adavosertib trials for ovarian / MBD4-LOF / DDR contexts.",
+              "Confirm MBD4-LOF germline result meets any trial pre-screening requirement.",
+              "If a combination ATR/WEE1 arm is available, prioritize based on toxicity profile discussion."
             ]
           },
           {
             "priority": 2,
-            "category": "Attack (Treatment Selection)",
+            "category": "Complete data readiness",
             "actions": [
-              "PARP inhibitors are the strongest potential match \u2014 pending BRCA/HRD results",
-              "Checkpoint inhibitor + chemotherapy is a moderate match given PD-L1 positivity and MSS status",
-              "FR-alpha targeted therapy (ELAHERE) is NOT an option \u2014 FR-alpha negative",
-              "Discuss clinical trial options for MBD4-mutated tumors and TP53-targeted therapies"
+              "Order HRD, TMB, RNA-seq, and CA-125 in parallel from existing tissue block.",
+              "Confidence cap lifts from 0.6 once RNA and TMB return.",
+              "PARP mechanism ruling stands regardless of results."
             ]
           },
           {
             "priority": 3,
-            "category": "Data (Test Ordering)",
+            "category": "Consider MSS-adjacent IO combination",
             "actions": [
-              "Order BRCA1/2 germline and somatic testing \u2014 CRITICAL",
-              "Order HRD score (Myriad MyChoice or equivalent) \u2014 CRITICAL",
-              "Order tumor NGS panel \u2014 HIGH priority",
-              "Establish CA-125 baseline and begin serial monitoring \u2014 MODERATE priority",
-              "Consider RNA expression testing for CCNE1 and BRCA reversion \u2014 MODERATE priority"
+              "Discuss whether TMB result (once returned) opens a checkpoint-combination trial arm.",
+              "PD-L1 CPS 10 is supportive but not sufficient standalone in MSS.",
+              "Reserve as second-line consideration after ATR/WEE1 access is determined."
             ]
           }
         ],
-        "bottom_line": "This patient's most promising path is PARP inhibitor therapy, contingent on BRCA/HRD testing. The MBD4 mutation may enhance sensitivity. Without these test results, treatment selection is operating at 55% data completeness \u2014 ordering these tests is the single highest-value action."
+        "bottom_line": "Recommended direction: ATR / WEE1 inhibitor trial. Actively ruled out: PARP inhibitors (mechanism check complete, HRD result will not reopen). Complete data readiness (HRD/TMB/RNA/CA-125) in parallel — direction stands regardless of results, but confidence cap lifts."
       },
       "status": "validated",
       "evidence_grade": "VERIFIED"
@@ -329,33 +300,27 @@
   ],
   "roadmap_items": [
     {
-      "capability": "Responder prediction for individual patients",
-      "description": "CrisPRO currently ranks treatments by mechanism fit \u2014 how well a drug's targets match the tumor's biology. The ability to predict whether a specific patient will respond to a specific treatment, with quantified confidence, is in development.",
-      "status": "in_development",
-      "note": "Mechanism-fit ranking is available now. Individual response prediction is an active research area."
+      "capability": "L2 patient-driven capability gates",
+      "description": "18-boolean SurfaceCapabilities gate over the full bundle. Presence of each field determines which cards render.",
+      "status": "validated",
+      "note": "Live on the current tumor-board page — same contract used in this demo."
     },
     {
-      "capability": "Level 3 analysis (CA-125 and RNA expression)",
-      "description": "Level 3 analysis adds longitudinal response tracking (CA-125 trends) and expression-based resistance detection (CCNE1, BRCA reversion). This requires serial CA-125 data and RNA expression testing.",
+      "capability": "Trial-matching against decoded 42-trial registry",
+      "description": "Direct link from the case bundle to the Brenus decode registry (42 trials across 7 programs).",
       "status": "in_development",
-      "note": "Level 1 and Level 2 analysis are available. Level 3 requires additional data inputs."
+      "note": "Registry live; case-to-trial UI wiring in progress."
     },
     {
-      "capability": "Automated tumor board presentation generation",
-      "description": "Automatic generation of a formatted slide deck for tumor board presentation, including case summary, drug ranking, resistance forecast, and evidence references.",
+      "capability": "Cross-patient comparator view",
+      "description": "Compare this case against archetype cohorts (ovarian n=6 top1=0.167 recall@3=0.583 in pan-cancer bench).",
       "status": "in_development",
-      "note": "Evidence vault export is available. Full slide deck generation is planned."
-    },
-    {
-      "capability": "Cross-patient benchmarking",
-      "description": "Comparison of this patient's biomarker profile and treatment outcomes against similar patients in the CrisPRO database, to identify patterns and inform treatment selection.",
-      "status": "in_development",
-      "note": "Individual patient analysis is available. Cross-patient benchmarking is planned."
+      "note": "Backend sweep complete; UI stage pending."
     }
   ],
   "governance_labels": {
-    "validated": "Available now, supported by patient data and published evidence",
-    "in_development": "Active area of development; not yet available for clinical use",
-    "mechanistic_hypothesis": "Based on biological understanding and published research; requires clinical validation for this specific context"
+    "validated": "Grounded in bundle + published anchors",
+    "in_development": "Live logic, UI wiring in progress",
+    "mechanistic_hypothesis": "Reasoned from biology — not yet clinically validated"
   }
 }

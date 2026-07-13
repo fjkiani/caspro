@@ -5,10 +5,10 @@
   "subtitle": "How CrisPRO identified a patient subgroup where STC-1010 outperforms every standard option",
   "governance_mode": "clean_plus_roadmap",
   "data_sources": {
-    "primary": "CRC mechanism-fit ranker (TCGA COADREAD MSS cohort, n=485)",
-    "formula": "PATH A \u2014 locked April 28, 2026",
-    "trial_decode_registry": "42 trials decoded across 7 programs",
-    "ceacam5_corpus": "5-trial failure corpus with IHC threshold analysis"
+    "primary": "CRC mechanism-fit ranker v1 \u2014 TCGA COADREAD MSS cohort, n=485. Vendored from fjkiani/Brenus @ c2d90b6.",
+    "formula": "PATH A (locked 2026-04-28): fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1). vector_version = 8D.v1. PATH B is prohibited in all outputs.",
+    "trial_decode_registry": "trial_decode_registry_v2.json \u2014 42 trials across 7 programs (ATR_DDR:5, CEACAM5:5, IO_CORE:7, IO_APPENDIX:15, HISTORICAL_BENCHMARK:6, BREAK_CRC_001:1, GBM_ESCAPEMAP:3).",
+    "ceacam5_corpus": "5-trial failure corpus: CARMEN-LC03, PROCEADE-CRC-01, Labetuzumab govitecan, SGN-CEACAM5C, Cibisatamab."
   },
   "stages": [
     {
@@ -153,6 +153,36 @@
             "mean_rank": "1st for all 9 patients",
             "delta_vs_best": 0.143,
             "interpretation": "STC-1010 is the top-ranked treatment for every patient in this subgroup"
+          },
+          {
+            "name": "HRD-Low subgroup",
+            "n": 150,
+            "stc1010_mean_fit": 0.5469,
+            "stc1010_ranks_first": "0.0% (recall@3 = 94% \u2014 often in top-3 but not #1)",
+            "recall_at_3": 0.94,
+            "mean_rank": "top-3 in 94% of cases",
+            "delta_vs_best": -0.1701,
+            "interpretation": "HRD-Low tumors do not favor STC-1010 head-to-head, but STC-1010 still lands in the top-3 in 94% of cases."
+          },
+          {
+            "name": "HRD-Intermediate subgroup",
+            "n": 225,
+            "stc1010_mean_fit": 0.5545,
+            "stc1010_ranks_first": "0.0% (recall@3 = 44%)",
+            "recall_at_3": 0.44,
+            "mean_rank": "top-3 in 44% of cases",
+            "delta_vs_best": -0.1731,
+            "interpretation": "HRD-Intermediate is the least favorable subgroup for STC-1010 by recall@3."
+          },
+          {
+            "name": "HRD-High subgroup",
+            "n": 102,
+            "stc1010_mean_fit": 0.591,
+            "stc1010_ranks_first": "0.0% (recall@3 = 38%)",
+            "recall_at_3": 0.3824,
+            "mean_rank": "top-3 in 38% of cases",
+            "delta_vs_best": -0.1412,
+            "interpretation": "HRD-High tumors show slightly higher mean fit but lower top-3 recall \u2014 the signal here is not TMB-driven."
           }
         ],
         "key_metric": "recall_at_3 = 1.0 means STC-1010 appears in the top 3 recommendations for 100% of high-TMB patients",
@@ -170,10 +200,12 @@
         "explanation": "In high-TMB patients, the immune activation component of STC-1010's score becomes dominant. At TMB >= 25, the immune axis contributes the majority of the fit score, pushing STC-1010 above all comparators.",
         "crossover_point": "STC-1010 overtakes PRIME when the immune axis score reaches 0.44, which corresponds to approximately TMB = 30 mut/Mb. In this dataset, the 9 high-TMB patients all have TMB between 102 and 382 mut/Mb.",
         "pathway_comparison": {
-          "STC-1010": "Immune activation (benefits from high TMB)",
-          "PRIME": "Cell growth signaling (MAPK \u2014 active in all MSS tumors regardless of TMB)",
-          "N0147": "Cell growth signaling + drug resistance (efflux \u2014 higher in HRD-High tumors)"
-        }
+          "STC-1010 primary driver": "Immune activation (io axis, 37.2% of dot product). Suppressed by low TMB in MSS CRC (median TMB=3.3 mut/Mb \u2192 io=0.226). Activates in TMB-high subgroup.",
+          "PRIME / PEAK_FOLFIRI dominant driver": "MAPK cell-growth signaling (mapk=0.8 for MSS tumors, 41.6% of dot product). Fixed across MSS cohort \u2014 not TMB-dependent.",
+          "N0147 mechanism": "MAPK + efflux (drug resistance). efflux axis contributes 2.8% of dot product; higher in HRD-High tumors."
+        },
+        "figure_asset": "/data/pharma/crc-ranker-v1/crc_ranker_figure_v1.png",
+        "figure_caption": "STC-1010 fit crosses PRIME as TMB rises. All 9 TMB\u226525 patients rank STC-1010 first."
       },
       "status": "validated",
       "evidence_grade": "MECHANISTIC HYPOTHESIS"
@@ -268,24 +300,30 @@
         "recommendations": [
           {
             "priority": 1,
-            "action": "Collect TMB prospectively in BreAK CRC-001",
-            "rationale": "The responder signal is confined to TMB >= 25. Without prospective TMB collection, the trial cannot confirm this subgroup benefit.",
+            "action": "Anchor BreAK CRC-001 (NCT06934538) enrollment to the four GAPs surfaced by the decode analysis",
+            "rationale": "BreAK CRC-001 PATH A fit = 0.6944 (canonical_vectors.py, locked 2026-04-28). Decode analysis surfaced GAP-01 (liver-metastasis stratification not pre-specified \u2014 CRITICAL, replicates the CO.26 design gap), GAP-02 (pTMB not collected prospectively \u2014 HIGH), GAP-03 (io axis = 0.40 vs mechanism optimum \u2265 0.50 \u2014 MEDIUM), GAP-04 (no biomarker gate for patient selection \u2014 HIGH).",
             "status": "validated"
           },
           {
             "priority": 2,
-            "action": "Consider TMB-enriched enrollment for Phase 2 expansion",
-            "rationale": "If 100% of TMB >= 25 patients rank STC-1010 first, enriching for this subgroup could dramatically increase the probability of seeing a clinical signal.",
+            "action": "Collect TMB prospectively \u2014 enrichment target TMB \u2265 25",
+            "rationale": "Responder signal in the vendored ranker (n=485 MSS TCGA COADREAD) is confined to TMB \u2265 25 subgroup (n=9, stc1010_mean_fit=0.8644, all 9 rank STC-1010 first, delta vs best comparator = +0.143). Without prospective TMB collection, the trial cannot confirm this subgroup benefit \u2014 this is what GAP-02 addresses.",
             "status": "validated"
           },
           {
             "priority": 3,
-            "action": "Use the CEACAM5 failure corpus to avoid selection mistakes",
-            "rationale": "The CEACAM5 program failed partly because the patient selection biomarker (IHC threshold) was set too low. STC-1010's TMB threshold must be validated prospectively.",
+            "action": "Stratify by liver-metastasis status \u2014 GAP-01",
+            "rationale": "CO.26 (NCT02870920) showed pTMB \u2265 28 OS HR = 0.34 (90% CI 0.18\u20130.63, p=0.022) and liver-metastasis PFS HR = 1.39 vs non-liver-metastasis PFS HR = 0.54 (Pint = 0.02). Liver metastasis is the critical stratification variable for IO in MSS CRC. BreAK CRC-001 directly replicates this design gap unless corrected.",
+            "status": "validated"
+          },
+          {
+            "priority": 4,
+            "action": "Apply the CEACAM5 5-failure corpus lesson \u2014 set the biomarker gate before enrollment opens, not after",
+            "rationale": "CEACAM5 program failures include CARMEN-LC03 (n=389, IHC \u226550% threshold set too low; \u226580% subgroup showed directional benefit), PROCEADE-CRC-01 (Spearman \u03c1=-0.14, p=0.4 \u2014 expression-to-response correlation missing), Labetuzumab govitecan (n=86, ORR 1.2%), SGN-CEACAM5C (EU regulatory hold across France/Spain/Sweden/Netherlands, shared linker with terminated PF-08046044), and Cibisatamab (n=52, ORR 13.5%). The common thread: biomarker gate specified too late or too permissively. STC-1010's TMB threshold must be validated prospectively.",
             "status": "validated"
           }
         ],
-        "clinical_anchor": "CCTG CO.26 showed that patients with plasma TMB >= 28 had OS HR 0.34 with dual checkpoint blockade \u2014 the strongest published immunotherapy signal in MSS CRC. STC-1010's mechanism-fit advantage in the same biology is consistent with this external evidence."
+        "clinical_anchor": "CCTG CO.26 (NCT02870920) \u2014 pTMB \u2265 28 OS HR = 0.34 (90% CI 0.18\u20130.63, p=0.022). Liver-metastasis stratification is the critical design variable for IO in MSS CRC. STC-1010's mechanism-fit advantage in high-TMB subgroup replicates this signal in a mechanism-fit ranking framework."
       },
       "status": "validated",
       "evidence_grade": "VERIFIED"
