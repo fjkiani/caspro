@@ -190,6 +190,11 @@ export interface AxisContribution {
   explanation: string;
   crossover_point: string;
   pathway_comparison: Record<string, string>;
+  // Optional figure receipt from the vendored ranker. If both are present,
+  // the renderer draws the image beneath the pathway comparison table.
+  // Path is served from /public; caption sits below the image.
+  figure_asset?: string;
+  figure_caption?: string;
 }
 
 export interface TrialDecodeProgram {

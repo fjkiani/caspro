@@ -92,6 +92,7 @@ export const UI_LABELS = {
   secondary_pathways_label: 'Secondary pathways',
   crossover_point_label: 'Crossover point',
   pathway_comparison_label: 'Pathway comparison',
+  figure_label: 'Ranker receipt figure',
   total_trials_decoded_label: 'Total trials decoded',
   programs_label: 'Programs',
   program_name_label: 'Program',

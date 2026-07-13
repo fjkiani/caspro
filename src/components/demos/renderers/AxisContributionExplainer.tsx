@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useTheme } from '@/context/ThemeContext';
 import { UI_LABELS } from '../labels';
 import type { AxisContribution } from '@/data/demos/types';
@@ -8,8 +9,8 @@ import type { AxisContribution } from '@/data/demos/types';
  * AxisContributionExplainer — Stage 5 pharma demo.
  *
  * explanation blurb + crossover_point highlighted callout + pathway_comparison
- * table (drug → dominant pathway). Standard "explainer + callout + table"
- * pattern.
+ * table (drug → dominant pathway) + optional receipt figure. Standard
+ * "explainer + callout + table" pattern with a receipt-figure tail.
  */
 export default function AxisContributionExplainer({ data }: { data: AxisContribution }) {
   const { isDarkMode } = useTheme();
@@ -112,6 +113,40 @@ export default function AxisContributionExplainer({ data }: { data: AxisContribu
           ))}
         </div>
       </section>
+
+      {data.figure_asset ? (
+        <section>
+          <p
+            className={`mb-3 text-[9px] font-black uppercase tracking-[0.3em] ${
+              isDarkMode ? 'text-cyan-400' : 'text-indigo-600'
+            }`}
+          >
+            {UI_LABELS.figure_label}
+          </p>
+          <figure
+            className={`rounded border ${
+              isDarkMode ? 'border-zinc-800 bg-zinc-950/60' : 'border-zinc-200 bg-white'
+            }`}
+          >
+            <Image
+              src={data.figure_asset}
+              alt={data.figure_caption ?? UI_LABELS.figure_label}
+              width={1200}
+              height={800}
+              className="h-auto w-full rounded-t"
+            />
+            {data.figure_caption ? (
+              <figcaption
+                className={`px-4 py-3 text-[12px] leading-relaxed ${
+                  isDarkMode ? 'text-zinc-400' : 'text-zinc-600'
+                }`}
+              >
+                {data.figure_caption}
+              </figcaption>
+            ) : null}
+          </figure>
+        </section>
+      ) : null}
     </div>
   );
 }
