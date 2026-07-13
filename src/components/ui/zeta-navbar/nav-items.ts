@@ -86,6 +86,7 @@ export function buildTopNavItems(
     { id: 'governance',  label: 'GOVERNANCE',  href: '/governance/',                      personas: ['pharma'] },
     { id: 'research',    label: 'RESEARCH',    href: '/research/',
       dropdownItems: buildResearchDropdown(abstracts),                                    personas: ['oncologist', 'patient', 'pharma'] },
+    { id: 'demos',       label: 'DEMOS',       href: '/demo/',                            personas: ['oncologist', 'patient', 'pharma'] },
     { id: 'org',         label: 'ORG',         href: 'https://crispro.org/', external: true,
                                                                                           personas: ['oncologist', 'patient', 'pharma'] },
   ];
