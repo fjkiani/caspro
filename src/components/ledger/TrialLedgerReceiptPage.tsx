@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Lock } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
+import { usePersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
 import { getTrialLedgerEntry, type TrialLedgerEntry } from '@/data/trial-ledger-registry';
 import { getTrialLedgerIcon } from '@/components/ledger/trial-ledger-icons';
 import { isGatedLedgerTrial } from '@/data/trial-gate';
@@ -18,6 +19,41 @@ type TrialLedgerReceiptPageProps = {
   slug: string;
   /** Server-verified httpOnly cookie (source of truth for unlock). */
   gateAuthorized?: boolean;
+};
+
+// -------- Persona-scoped copy for the receipt surface --------
+const RECEIPT_COPY: PersonaCopyDeck<{
+  eyebrowGate: string;
+  eyebrowUnlocked: string;
+  unlockCta: string;
+  footerEyebrow: string;
+  deepDivePrefix: string;
+  proofLink: string;
+}> = {
+  oncologist: {
+    eyebrowGate: 'PASSCODE REQUIRED',
+    eyebrowUnlocked: 'ZETA_SIG_LOCKED',
+    unlockCta: 'Unlock receipt',
+    footerEyebrow: 'LOCKED FOR AUDIT',
+    deepDivePrefix: 'Deep-dive',
+    proofLink: 'Full 8D de-risking map →',
+  },
+  patient: {
+    eyebrowGate: 'NOT YET UNLOCKED',
+    eyebrowUnlocked: 'FROM PUBLISHED SOURCES',
+    unlockCta: 'Enter access code',
+    footerEyebrow: 'PUBLISHED SOURCES ONLY',
+    deepDivePrefix: 'How CrisPRO reads this',
+    proofLink: 'Read all 8 lenses for this trial →',
+  },
+  pharma: {
+    eyebrowGate: 'GATE // PASSCODE',
+    eyebrowUnlocked: 'RECEIPT // ZETA-LOCKED',
+    unlockCta: 'Unlock decode',
+    footerEyebrow: 'AUDIT-LOCKED',
+    deepDivePrefix: 'Engine trace',
+    proofLink: '8D decode + proof route →',
+  },
 };
 
 function TrialVisual({ entry, isDarkMode }: { entry: TrialLedgerEntry; isDarkMode: boolean }) {
@@ -43,6 +79,7 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
   const router = useRouter();
   const searchParams = useSearchParams();
   const { isDarkMode } = useTheme();
+  const receiptCopy = usePersonaContent(RECEIPT_COPY);
   const entry = getTrialLedgerEntry(slug);
   const gated = entry ? isGatedLedgerTrial(entry.slug) : false;
   const [unlocked, setUnlocked] = useState(() => !gated || gateAuthorized);
@@ -115,7 +152,7 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
               isDarkMode ? 'text-[#00E5FF]' : 'text-indigo-500'
             }`}
           >
-            RECEIPT_ID: {entry.receiptId} // {showGate ? 'PASSCODE REQUIRED' : 'ZETA_SIG_LOCKED'}
+            RECEIPT_ID: {entry.receiptId} // {showGate ? receiptCopy.eyebrowGate : receiptCopy.eyebrowUnlocked}
           </span>
           <h1
             className={`text-sm sm:text-xl font-black uppercase tracking-tight flex items-center gap-2 ${
@@ -145,7 +182,7 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
               }`}
             >
               <Lock className="w-4 h-4" />
-              Unlock receipt
+              {receiptCopy.unlockCta}
             </button>
           </div>
         ) : (
@@ -180,7 +217,7 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
                 isDarkMode ? 'text-zinc-600' : 'text-slate-400'
               }`}
             >
-              DE-RISKING RECEIPT: {entry.receiptId} // LOCKED FOR AUDIT
+              DE-RISKING RECEIPT: {entry.receiptId} // {receiptCopy.footerEyebrow}
             </p>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
               <a
@@ -190,7 +227,7 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
                   isDarkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-indigo-600 hover:text-indigo-800'
                 }`}
               >
-                Deep-dive: {primary.label} engine →
+                {receiptCopy.deepDivePrefix}: {primary.label} engine →
               </a>
               {secondaries.map((eng) => (
                 <a
@@ -211,7 +248,7 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
                   isDarkMode ? 'text-zinc-400 hover:text-cyan-300' : 'text-slate-500 hover:text-indigo-800'
                 }`}
               >
-                Full 8D de-risking map →
+                {receiptCopy.proofLink}
               </a>
             </div>
           </div>

@@ -13,7 +13,7 @@
 import { useMemo, useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
-import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
+import { PersonaContent, usePersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
 import {
   BRENUS_DECODE_WALL,
   BRENUS_REGISTRY_META,
@@ -26,6 +26,37 @@ import {
   type BrenusTrial,
   type BrenusTrialDecoded,
 } from '@/data/brenus/trial-decode-registry';
+
+// -------- Persona-scoped stats-bar labels + column headers --------
+const STATS_DECK: PersonaCopyDeck<{
+  total: string;
+  decoded: string;
+  pending: string;
+  numericDelta: string;
+  quarantined: string;
+}> = {
+  oncologist: {
+    total: 'Total',
+    decoded: 'Decoded',
+    pending: 'Pending',
+    numericDelta: 'Numeric delta',
+    quarantined: 'Quarantined',
+  },
+  patient: {
+    total: 'Trials in this list',
+    decoded: 'We have read',
+    pending: 'Not read yet',
+    numericDelta: 'With hard numbers',
+    quarantined: 'Set aside · needs work',
+  },
+  pharma: {
+    total: 'Corpus',
+    decoded: 'Full 8D domain',
+    pending: 'Pending decode',
+    numericDelta: 'Numeric Δ (DOCUMENTED)',
+    quarantined: 'Quarantined (vector conflict)',
+  },
+};
 
 const HEADER_DECK: PersonaCopyDeck<{
   eyebrow: string;
@@ -126,6 +157,7 @@ function TrialRow({ trial, isDarkMode }: { trial: BrenusTrial; isDarkMode: boole
 
 export default function BrenusDecodeWallPage() {
   const { isDarkMode } = useTheme();
+  const stats = usePersonaContent(STATS_DECK);
   const [filter, setFilter] = useState<'all' | 'decoded' | 'pending' | 'quarantined'>('all');
   const [programFilter, setProgramFilter] = useState<BrenusProgram | 'all'>('all');
 
@@ -178,11 +210,11 @@ export default function BrenusDecodeWallPage() {
           }`}
         >
           {[
-            { label: 'Total', v: BRENUS_DECODE_WALL.total, tone: '' },
-            { label: 'Decoded', v: BRENUS_DECODE_WALL.decoded, tone: 'text-cyan-400' },
-            { label: 'Pending', v: BRENUS_DECODE_WALL.not_decoded, tone: 'text-amber-400' },
-            { label: 'Numeric delta', v: BRENUS_DECODE_WALL.numeric_delta, tone: 'text-emerald-400' },
-            { label: 'Quarantined', v: BRENUS_DECODE_WALL.quarantined, tone: 'text-red-400' },
+            { label: stats.total, v: BRENUS_DECODE_WALL.total, tone: '' },
+            { label: stats.decoded, v: BRENUS_DECODE_WALL.decoded, tone: 'text-cyan-400' },
+            { label: stats.pending, v: BRENUS_DECODE_WALL.not_decoded, tone: 'text-amber-400' },
+            { label: stats.numericDelta, v: BRENUS_DECODE_WALL.numeric_delta, tone: 'text-emerald-400' },
+            { label: stats.quarantined, v: BRENUS_DECODE_WALL.quarantined, tone: 'text-red-400' },
           ].map((s) => (
             <div key={s.label} className="min-w-0">
               <p className={`text-[9px] uppercase tracking-[0.25em] ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>{s.label}</p>

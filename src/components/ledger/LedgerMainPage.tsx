@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
+import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
 import {
   LEDGER_PROGRAMS,
   type LedgerProgram,
@@ -38,6 +39,33 @@ import {
 import { TRIAL_LEDGER_BY_SLUG } from '@/data/trial-ledger-registry';
 import { isGatedLedgerTrial } from '@/data/trial-gate';
 import BrenusVectorWallTab from './BrenusVectorWallTab';
+
+// -------- Persona-scoped copy for the ledger main surface --------
+const HEADER_DECK: PersonaCopyDeck<{
+  eyebrow: string;
+  title: string;
+  body: string;
+  decodeCta: string;
+}> = {
+  oncologist: {
+    eyebrow: 'TRIAL LEDGER // 6 EXTERNAL-SAFE PROGRAMS',
+    title: 'Decoded clinical-trial corpus',
+    body: 'Six programs. Every finding is grounded in a published source. Every trial gets a 5-tab program view including CrisPRO 8D vector decode. Full 42-trial wall lives one link away.',
+    decodeCta: 'Decode wall · 42 trials',
+  },
+  patient: {
+    eyebrow: 'HOW WE READ CLINICAL TRIALS',
+    title: 'Six programs, one honest scoreboard',
+    body: 'Six programs, all grounded in published clinical trials. Each program tells you what the trial found, what CrisPRO reads across it, and what still needs work. No blue-sky claims — every number links to a source.',
+    decodeCta: 'See all 42 trials',
+  },
+  pharma: {
+    eyebrow: 'PROGRAM DECODE // 6 GLB, 42 CORPUS',
+    title: 'External-safe portfolio decode',
+    body: '6 GLB programs. Full 8D decode on the 17 anchor trials with domain distribution D2:10 · D1:5 · D8:1 · D3:1. Numeric delta on 3 (Berzosertib 0.138 · Adavosertib 0.307 · CAPRI 0.108, all DOCUMENTED_NOT_REPRODUCED). 25 pending decode; 1 quarantined (LATIFY CT-03).',
+    decodeCta: '42-trial decode wall →',
+  },
+};
 
 const PREVIEW_ICON: Record<LedgerProgram['preview'], typeof Target> = {
   target: Target,
@@ -325,34 +353,39 @@ export default function LedgerMainPage() {
       />
 
       <main className="relative z-10 flex flex-col mx-auto w-full max-w-[1400px] px-4 md:px-8 pt-16 md:pt-20 pb-6">
-        <header className="mb-4 sm:mb-6 shrink-0 flex items-start justify-between gap-4">
-          <div>
-            <span
-              className={`text-[9px] font-black uppercase tracking-[0.5em] ${
-                isDarkMode ? 'text-violet-400' : 'text-violet-600'
-              }`}
-            >
-              TRIAL LEDGER // 6 EXTERNAL-SAFE PROGRAMS
-            </span>
-            <h1 className="text-xl sm:text-2xl font-black uppercase tracking-tight mt-1">
-              Decoded clinical-trial corpus
-            </h1>
-            <p className={`text-[12px] mt-1 max-w-3xl ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
-              Six programs. Every finding is grounded in a published source. Every trial gets a 5-tab program
-              view including CrisPRO 8D vector decode. Full 42-trial wall lives one link away.
-            </p>
-          </div>
-          <Link
-            href="/ledger/decode-wall/"
-            className={`shrink-0 rounded border px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.25em] transition-colors ${
-              isDarkMode
-                ? 'border-[#00E5FF] text-[#00E5FF] hover:bg-[#00E5FF10]'
-                : 'border-indigo-600 text-indigo-600 hover:bg-indigo-50'
-            }`}
-          >
-            Decode wall · 42 trials
-          </Link>
-        </header>
+        <PersonaContent
+          deck={HEADER_DECK}
+          render={(copy) => (
+            <header className="mb-4 sm:mb-6 shrink-0 flex items-start justify-between gap-4">
+              <div>
+                <span
+                  className={`text-[9px] font-black uppercase tracking-[0.5em] ${
+                    isDarkMode ? 'text-violet-400' : 'text-violet-600'
+                  }`}
+                >
+                  {copy.eyebrow}
+                </span>
+                <h1 className="text-xl sm:text-2xl font-black uppercase tracking-tight mt-1">
+                  {copy.title}
+                </h1>
+                <p className={`text-[12px] mt-1 max-w-3xl ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+                  {copy.body}
+                </p>
+              </div>
+              <Link
+                href="/ledger/decode-wall/"
+                className={`shrink-0 rounded border px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.25em] transition-colors ${
+                  isDarkMode
+                    ? 'border-[#00E5FF] text-[#00E5FF] hover:bg-[#00E5FF10]'
+                    : 'border-indigo-600 text-indigo-600 hover:bg-indigo-50'
+                }`}
+              >
+                {copy.decodeCta}
+              </Link>
+            </header>
+          )}
+        />
+
 
         <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-4 md:gap-6">
           {/* left rail — programs — sticky on desktop, stacks on mobile */}
