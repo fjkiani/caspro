@@ -86,7 +86,7 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
 
   return (
     <div
-      className={`relative min-h-screen flex flex-col overflow-hidden font-mono transition-colors duration-500 ${
+      className={`relative min-h-screen flex flex-col font-mono transition-colors duration-500 ${
         isDarkMode ? 'bg-[#020408]' : 'bg-white'
       }`}
     >
@@ -130,7 +130,7 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
         </div>
       </div>
 
-      <div className="relative z-10 flex-1 flex items-start sm:items-center justify-center px-3 sm:px-8 lg:px-12 py-1 sm:py-4 min-h-0 overflow-hidden">
+      <div className="relative z-10 flex flex-1 items-start justify-center px-3 py-3 md:items-center md:px-8 md:py-6 lg:px-12">
         {showGate ? (
           <div className="w-full h-full flex flex-col gap-4">
             <VectorMapPreviewGated trialId={entry.slug} targetLabel={entry.label} isDarkMode={isDarkMode} />

@@ -310,7 +310,7 @@ export default function LedgerMainPage() {
   return (
     <SurfaceTabs>
     <div
-      className={`relative h-screen flex flex-col font-mono transition-colors overflow-hidden ${
+      className={`relative min-h-screen flex flex-col font-mono transition-colors ${
         isDarkMode ? 'bg-[#020408] text-zinc-100' : 'bg-white text-slate-900'
       }`}
     >
@@ -324,7 +324,7 @@ export default function LedgerMainPage() {
         } bg-[size:48px_48px]`}
       />
 
-      <main className="relative z-10 flex-1 flex flex-col min-h-0 max-w-7xl mx-auto w-full px-4 sm:px-8 pt-16 sm:pt-20 pb-6">
+      <main className="relative z-10 flex flex-col mx-auto w-full max-w-[1400px] px-4 md:px-8 pt-16 md:pt-20 pb-6">
         <header className="mb-4 sm:mb-6 shrink-0 flex items-start justify-between gap-4">
           <div>
             <span
@@ -354,9 +354,9 @@ export default function LedgerMainPage() {
           </Link>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-4 sm:gap-6 flex-1 min-h-0">
-          {/* left rail — programs */}
-          <aside className="flex flex-col gap-2 overflow-y-auto pr-1 min-h-0">
+        <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-4 md:gap-6">
+          {/* left rail — programs — sticky on desktop, stacks on mobile */}
+          <aside className="flex flex-col gap-2 md:sticky md:top-24 md:self-start md:max-h-[calc(100vh-8rem)] md:overflow-y-auto md:pr-1">
             {LEDGER_PROGRAMS.map((p) => (
               <ProgramRailButton
                 key={p.programId}
@@ -371,9 +371,9 @@ export default function LedgerMainPage() {
             ))}
           </aside>
 
-          {/* right pane — program detail */}
+          {/* right pane — program detail — natural scroll */}
           <section
-            className={`flex flex-col min-h-0 rounded-lg border p-4 sm:p-5 ${
+            className={`flex min-w-0 flex-col rounded-lg border p-4 md:p-5 ${
               isDarkMode ? 'bg-zinc-950/60 border-zinc-800' : 'bg-slate-50 border-slate-200'
             }`}
           >
@@ -415,7 +415,7 @@ export default function LedgerMainPage() {
               ))}
             </nav>
 
-            <div className="flex-1 min-h-0 overflow-y-auto pr-1">
+            <div className="pr-1">
               {activeTab === 'findings' && <FindingsTab program={active} isDarkMode={isDarkMode} />}
               {activeTab === 'trials' && (
                 <TrialsTab
