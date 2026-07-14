@@ -71,7 +71,7 @@ export const PARP_ARC_COPY: PersonaCopyDeck<ParpArcCopyKey> = {
     eyebrow: 'Falsification-driven ledger scrub · PR#11',
     title: 'PARP class de-recommended (falsified) with receipt',
     blurb:
-      'The prior shortlist carried PARP inhibitors on a matrix-axis heuristic. The peer-reviewed source (Adair 2023, DOI on the receipt) rules the class out for the MBD4-LOF axis with p < 0.05 and a positive control. PR#11 stamps manuscript_claim_type so this de-recommendation is auditable.',
+      'The prior shortlist carried PARP inhibitors on a matrix-axis heuristic. The peer-reviewed source on the receipt rules the class out for the MBD4-LOF axis with a positive control. PR#11 stamps manuscript_claim_type so this de-recommendation is auditable.',
     card1Label: '1 · Prior recommendation on the ledger',
     card2Label: '2 · Peer-reviewed falsification receipt',
     card3Label: '3 · Manuscript-claim-type stamp',
