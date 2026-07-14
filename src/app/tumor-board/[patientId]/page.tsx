@@ -2,8 +2,10 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
 import { PATIENT_IDS, loadPatient } from '@/data/patients/registry';
+import { usesNewSurface } from '@/data/patients/new-surface-registry';
 import { PatientProvider } from '@/context/PatientContext';
 import TumorBoardSurface from '@/components/tumor-board/TumorBoardSurface';
+import PatientBoardWalker from '@/components/tumor-board/PatientBoardWalker';
 import BenchCoverageCard from '@/components/tumor-board/ak/BenchCoverageCard';
 import DiscoveryOnlyBanner from '@/components/tumor-board/ak/DiscoveryOnlyBanner';
 
@@ -36,14 +38,17 @@ export default async function PatientTumorBoardPage({
   const bundle = loadPatient(patientId);
   if (!bundle) notFound();
 
-  // Anchor panels (CRC01 Brenus / BM01 evo2-e2e) are rendered INSIDE
-  // TumorBoardSurface's tab flow — under CONFIDENCE for Brenus and
-  // SL AXES for evo2-e2e — not as separate above-the-fold cards.
+  // Route-level bridge: bundle renders with the new mobile-first walker
+  // when NEW_SURFACE_ENABLED[patientId] is true (see new-surface-registry.ts).
+  // Legacy surface stays wired for any bundle not yet flipped, so this switch
+  // is fully reversible per-patient.
+  const Surface = usesNewSurface(patientId) ? PatientBoardWalker : TumorBoardSurface;
+
   return (
     <PatientProvider bundle={bundle}>
       {bundle.discoveryOnly ? <DiscoveryOnlyBanner /> : null}
       <BenchCoverageCard />
-      <TumorBoardSurface />
+      <Surface />
     </PatientProvider>
   );
 }
