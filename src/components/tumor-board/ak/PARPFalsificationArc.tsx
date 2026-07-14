@@ -30,6 +30,7 @@ export default function PARPFalsificationArc() {
   const copy = PARP_ARC_COPY[persona];
   const show = PARP_ARC_VISIBILITY[persona];
 
+  if (!patient.parpFalsification) return null;
   const { prodShipsToday, manuscriptSays, pr11Fix } = patient.parpFalsification;
 
   // token palette (defined once)
@@ -142,28 +143,30 @@ export default function PARPFalsificationArc() {
               </div>
             </div>
           )}
-          <div
-            className={`mt-4 rounded border p-3 ${inlineBrd} ${inlineBg}`}
-          >
+          {manuscriptSays.positiveControl && (
             <div
-              className={`text-[10px] uppercase tracking-widest ${meta}`}
+              className={`mt-4 rounded border p-3 ${inlineBrd} ${inlineBg}`}
             >
-              {copy.card2Positive}
-            </div>
-            <div className={`mt-1 text-xs ${inlineTxt3}`}>
-              {manuscriptSays.positiveControl.finding}
-            </div>
-            {show.showPValueLine && (
-              <div className={`mt-1 font-mono text-xs ${inlineTxt2}`}>
-                {manuscriptSays.positiveControl.stat}
+              <div
+                className={`text-[10px] uppercase tracking-widest ${meta}`}
+              >
+                {copy.card2Positive}
               </div>
-            )}
-            <div
-              className={`mt-1 text-[11px] leading-relaxed ${inlineTxt}`}
-            >
-              {manuscriptSays.positiveControl.point}
+              <div className={`mt-1 text-xs ${inlineTxt3}`}>
+                {manuscriptSays.positiveControl.finding}
+              </div>
+              {show.showPValueLine && (
+                <div className={`mt-1 font-mono text-xs ${inlineTxt2}`}>
+                  {manuscriptSays.positiveControl.stat}
+                </div>
+              )}
+              <div
+                className={`mt-1 text-[11px] leading-relaxed ${inlineTxt}`}
+              >
+                {manuscriptSays.positiveControl.point}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Card 3 — PR#11 fix */}

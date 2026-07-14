@@ -11,10 +11,14 @@
  * SNAPSHOT-ONLY: numbers come from a build-time extraction of a real GPU run
  * (pipeline_results_20260328T070235Z.json, produced by crispro-evo2-v9 on
  * Modal A100). No live Modal call at render time.
+ *
+ * Theme-aware. Original was light-mode-only; every color class is now
+ * conditional on isDarkMode.
  */
 import { useState } from 'react';
 
 import { BM01_EVO2_PANEL } from '@/data/tumor-board/anchor/bm01_evo2';
+import { useTheme } from '@/context/ThemeContext';
 
 type Panel = typeof BM01_EVO2_PANEL & {
   patientVariants: Array<any>;
@@ -24,8 +28,6 @@ type Panel = typeof BM01_EVO2_PANEL & {
   provenance: Array<any>;
 };
 
-// Plain-English step labels so the persona doesn't have to decode
-// pipeline internals to skim the table.
 const stepLabel: Record<string, string> = {
   primary_tumor_escape: 'Escaping the breast primary',
   intravasation: 'Entering the bloodstream',
@@ -48,61 +50,133 @@ function formatDelta(n: number): string {
 export default function BrmTargetLockPanel() {
   const panel = BM01_EVO2_PANEL as Panel;
   const [showAudit, setShowAudit] = useState(false);
+  const { isDarkMode } = useTheme();
+
   const patientMatched = panel.patientVariants.filter((v: any) => v.patientMatch);
   const patientContext = panel.patientVariants.filter((v: any) => !v.patientMatch);
+
+  const shell = isDarkMode
+    ? 'border-white/10 bg-white/[0.02] text-white'
+    : 'border-gray-200 bg-white text-gray-900';
+  const eyebrow = isDarkMode ? 'text-purple-300' : 'text-purple-700';
+  const heading = isDarkMode ? 'text-white' : 'text-gray-900';
+  const snapshotChip = isDarkMode
+    ? 'bg-purple-500/10 text-purple-200'
+    : 'bg-purple-50 text-purple-700';
+  const bodyText = isDarkMode ? 'text-white/85' : 'text-gray-800';
+  const emph     = isDarkMode ? 'text-white' : 'text-gray-900';
+
+  const matchedBox = isDarkMode
+    ? 'border-purple-400/40 bg-purple-500/[0.08]'
+    : 'border-purple-200 bg-purple-50';
+  const matchedHead = isDarkMode ? 'text-purple-200' : 'text-purple-900';
+  const matchedCard = isDarkMode
+    ? 'border-purple-400/30 bg-black/30'
+    : 'border-purple-100 bg-white';
+  const matchedText = isDarkMode ? 'text-white' : 'text-gray-900';
+  const matchedNote = isDarkMode ? 'text-white/70' : 'text-gray-600';
+  const stepChip    = isDarkMode
+    ? 'bg-purple-500/20 text-purple-200'
+    : 'bg-purple-100 text-purple-800';
+
+  const contextBox  = isDarkMode
+    ? 'border-white/10 bg-white/[0.02]'
+    : 'border-gray-200 bg-gray-50';
+  const contextHead = isDarkMode ? 'text-white/80' : 'text-gray-800';
+  const contextRow  = isDarkMode
+    ? 'border-white/10 bg-black/30 text-white/85'
+    : 'border-gray-200 bg-white text-gray-900';
+
+  const auditBorder = isDarkMode ? 'border-white/10' : 'border-gray-100';
+  const auditBtn = isDarkMode
+    ? 'text-white/60 hover:text-white'
+    : 'text-gray-600 hover:text-gray-900';
+
+  const tableBorder = isDarkMode ? 'border-white/10' : 'border-gray-100';
+  const tableHead   = isDarkMode
+    ? 'bg-black/40 text-white/60'
+    : 'bg-gray-50 text-gray-600';
+  const tableBody   = isDarkMode
+    ? 'divide-white/10 bg-transparent text-white/85'
+    : 'divide-gray-100 bg-white text-gray-900';
+  const dimRow      = isDarkMode ? 'text-white/40' : 'text-gray-400';
+  const driverBadge = isDarkMode
+    ? 'bg-emerald-500/20 text-emerald-200'
+    : 'bg-emerald-100 text-emerald-800';
+  const hnBadge     = isDarkMode
+    ? 'bg-white/10 text-white/60'
+    : 'bg-gray-100 text-gray-600';
+
+  const infoCard    = isDarkMode
+    ? 'border-white/10 bg-black/30 text-white/85'
+    : 'border-gray-100 bg-white text-gray-700';
+  const infoHead    = isDarkMode ? 'text-white/60' : 'text-gray-600';
+
+  const provenanceCard = isDarkMode
+    ? 'border-white/10 bg-black/30'
+    : 'border-gray-100 bg-white';
+  const provenanceHead = isDarkMode ? 'text-white/50' : 'text-gray-500';
+  const provenanceRepo = isDarkMode
+    ? 'bg-white/10 text-white/70'
+    : 'bg-gray-100 text-gray-700';
+  const provenanceText = isDarkMode ? 'text-white/70' : 'text-gray-700';
+  const provenanceRole = isDarkMode ? 'text-white/50' : 'text-gray-500';
+
+  const deltaChipPositive = isDarkMode
+    ? 'bg-white/10 text-white/70'
+    : 'bg-gray-100 text-gray-700';
+  const deltaChipNegative = isDarkMode
+    ? 'bg-rose-500/20 text-rose-200'
+    : 'bg-red-50 text-red-800';
 
   return (
     <section
       aria-label="evo2-e2e Target-Lock anchor evidence for BM01"
-      className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
+      className={`rounded-2xl border p-4 shadow-sm md:p-6 ${shell}`}
     >
-      <header className="mb-4 flex items-start justify-between gap-4">
-        <div>
-          <div className="text-xs font-medium uppercase tracking-wide text-purple-700">
+      <header className="mb-4 flex flex-wrap items-start justify-between gap-3">
+        <div className="min-w-0 flex-1">
+          <div className={`text-xs font-medium uppercase tracking-wide ${eyebrow}`}>
             CrisPRO · Brain-metastasis Target-Lock pipeline
           </div>
-          <h2 className="mt-1 text-xl font-semibold text-gray-900">
+          <h2 className={`mt-1 text-xl font-semibold ${heading}`}>
             What Evo2 already scored for this patient
           </h2>
         </div>
-        <span className="rounded-full bg-purple-50 px-3 py-1 text-xs font-medium text-purple-700">
+        <span className={`rounded-full px-3 py-1 text-xs font-medium ${snapshotChip}`}>
           Snapshot · seed {panel.runInfo.seed} · {panel.runInfo.timestamp}
         </span>
       </header>
 
-      {/* Above-the-fold plain-English narrative — the user amendment */}
       <div className="mb-6 space-y-3">
-        <p className="text-base leading-relaxed text-gray-800">{panel.plainSummary}</p>
-        <p className="text-base leading-relaxed text-gray-800">
-          <span className="font-medium text-gray-900">For BM01 specifically: </span>
+        <p className={`text-base leading-relaxed ${bodyText}`}>{panel.plainSummary}</p>
+        <p className={`text-base leading-relaxed ${bodyText}`}>
+          <span className={`font-medium ${emph}`}>For BM01 specifically: </span>
           {panel.patientRelevance}
         </p>
       </div>
 
-      {/* Patient-specific variant highlight — this is the "money shot" */}
       {patientMatched.length > 0 ? (
-        <div className="mb-4 rounded-lg border-2 border-purple-200 bg-purple-50 p-4">
-          <div className="mb-3 text-sm font-semibold text-purple-900">
+        <div className={`mb-4 rounded-lg border-2 p-4 ${matchedBox}`}>
+          <div className={`mb-3 text-sm font-semibold ${matchedHead}`}>
             BM01&rsquo;s own mutation scored by Evo2
           </div>
           <div className="grid gap-3 md:grid-cols-2">
             {patientMatched.map((v: any, i: number) => (
-              <article key={i} className="rounded border border-purple-100 bg-white p-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-base font-mono font-semibold text-gray-900">
+              <article key={i} className={`rounded border p-3 ${matchedCard}`}>
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className={`text-base font-mono font-semibold ${matchedText}`}>
                     {v.gene} {v.hgvsP}
                   </span>
                   <span
                     className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                      v.deltaLL < 0
-                        ? 'bg-red-50 text-red-800'
-                        : 'bg-gray-100 text-gray-700'
+                      v.deltaLL < 0 ? deltaChipNegative : deltaChipPositive
                     }`}
                   >
                     delta-LL {formatDelta(v.deltaLL)}
                   </span>
                 </div>
-                <div className="mt-2 text-xs text-gray-600">
+                <div className={`mt-2 text-xs ${matchedNote}`}>
                   {v.interpretation || 'See evo2-e2e brm_clinical_variants.json'}
                 </div>
                 {v.relatedSteps.length > 0 ? (
@@ -110,7 +184,7 @@ export default function BrmTargetLockPanel() {
                     {v.relatedSteps.map((s: string) => (
                       <span
                         key={s}
-                        className="rounded bg-purple-100 px-1.5 py-0.5 text-[10px] font-medium text-purple-800"
+                        className={`rounded px-1.5 py-0.5 text-[10px] font-medium ${stepChip}`}
                       >
                         {stepLabel[s] ?? s}
                       </span>
@@ -123,21 +197,23 @@ export default function BrmTargetLockPanel() {
         </div>
       ) : null}
 
-      {/* Context variants — not on BM01's chart, but scored for the BrM population */}
       {patientContext.length > 0 ? (
-        <div className="mb-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
-          <div className="mb-2 text-sm font-semibold text-gray-800">
+        <div className={`mb-4 rounded-lg border p-4 ${contextBox}`}>
+          <div className={`mb-2 text-sm font-semibold ${contextHead}`}>
             Contextual variants scored by the same pipeline
           </div>
           <ul className="grid gap-2 md:grid-cols-2">
             {patientContext.slice(0, 6).map((v: any, i: number) => (
-              <li key={i} className="flex items-center justify-between rounded border border-gray-200 bg-white p-2 text-sm">
-                <span className="font-mono text-gray-800">
+              <li
+                key={i}
+                className={`flex items-center justify-between rounded border p-2 text-sm ${contextRow}`}
+              >
+                <span className="font-mono">
                   {v.gene} {v.hgvsP}
                 </span>
                 <span
                   className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                    v.deltaLL < 0 ? 'bg-red-50 text-red-700' : 'bg-gray-100 text-gray-700'
+                    v.deltaLL < 0 ? deltaChipNegative : deltaChipPositive
                   }`}
                 >
                   {formatDelta(v.deltaLL)}
@@ -148,42 +224,40 @@ export default function BrmTargetLockPanel() {
         </div>
       ) : null}
 
-      {/* Audit drawer — collapsed by default */}
-      <div className="mt-6 border-t border-gray-100 pt-4">
+      <div className={`mt-6 border-t pt-4 ${auditBorder}`}>
         <button
           type="button"
           onClick={() => setShowAudit((s) => !s)}
-          className="text-xs font-medium text-gray-600 hover:text-gray-900"
+          className={`text-xs font-medium ${auditBtn}`}
           aria-expanded={showAudit}
         >
           {showAudit ? '▾' : '▸'} Pipeline audit drawer &mdash; {panel.topTargetLock.length} target-lock rows, {panel.validation.length} step-level validation metrics
         </button>
         {showAudit ? (
           <div className="mt-3 space-y-4">
-            {/* Top target-lock rows across 7 BrM steps */}
-            <div className="overflow-x-auto rounded border border-gray-100">
-              <table className="min-w-full divide-y divide-gray-100 text-xs">
-                <thead className="bg-gray-50">
+            <div className={`overflow-x-auto rounded border ${tableBorder}`}>
+              <table className="min-w-full divide-y divide-inherit text-xs">
+                <thead className={tableHead}>
                   <tr>
-                    <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-gray-600">Gene</th>
-                    <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-gray-600">BrM step</th>
-                    <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide text-gray-600">Target-Lock</th>
-                    <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide text-gray-600">Calibrated</th>
-                    <th className="px-3 py-2 text-center font-semibold uppercase tracking-wide text-gray-600">Label</th>
+                    <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide">Gene</th>
+                    <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide">BrM step</th>
+                    <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide">Target-Lock</th>
+                    <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide">Calibrated</th>
+                    <th className="px-3 py-2 text-center font-semibold uppercase tracking-wide">Label</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100 bg-white">
+                <tbody className={`divide-y ${tableBody}`}>
                   {panel.topTargetLock.map((r: any, i: number) => (
-                    <tr key={i} className={r.label ? '' : 'text-gray-400'}>
+                    <tr key={i} className={r.label ? '' : dimRow}>
                       <td className="px-3 py-1.5 font-mono">{r.gene}</td>
                       <td className="px-3 py-1.5">{stepLabel[r.step] ?? r.step}</td>
                       <td className="px-3 py-1.5 text-right font-mono">{formatScore(r.targetLockScore)}</td>
                       <td className="px-3 py-1.5 text-right font-mono">{formatScore(r.calibratedScore)}</td>
                       <td className="px-3 py-1.5 text-center">
                         {r.label ? (
-                          <span className="rounded bg-emerald-100 px-1.5 text-emerald-800">driver</span>
+                          <span className={`rounded px-1.5 ${driverBadge}`}>driver</span>
                         ) : (
-                          <span className="rounded bg-gray-100 px-1.5 text-gray-600">hard-negative</span>
+                          <span className={`rounded px-1.5 ${hnBadge}`}>hard-negative</span>
                         )}
                       </td>
                     </tr>
@@ -192,19 +266,20 @@ export default function BrmTargetLockPanel() {
               </table>
             </div>
 
-            {/* Validation metrics per BrM step */}
-            <div className="overflow-x-auto rounded border border-gray-100">
-              <table className="min-w-full divide-y divide-gray-100 text-xs">
-                <thead className="bg-gray-50">
+            <div className={`overflow-x-auto rounded border ${tableBorder}`}>
+              <table className="min-w-full divide-y divide-inherit text-xs">
+                <thead className={tableHead}>
                   <tr>
-                    <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide text-gray-600">BrM step</th>
-                    <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide text-gray-600">AUROC</th>
-                    <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide text-gray-600">AUPRC</th>
-                    <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide text-gray-600">P@3</th>
-                    <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide text-gray-600">n<sub>pos</sub> / n<sub>total</sub></th>
+                    <th className="px-3 py-2 text-left font-semibold uppercase tracking-wide">BrM step</th>
+                    <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide">AUROC</th>
+                    <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide">AUPRC</th>
+                    <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide">P@3</th>
+                    <th className="px-3 py-2 text-right font-semibold uppercase tracking-wide">
+                      n<sub>pos</sub> / n<sub>total</sub>
+                    </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100 bg-white">
+                <tbody className={`divide-y ${tableBody}`}>
                   {panel.validation.map((v: any) => (
                     <tr key={v.step}>
                       <td className="px-3 py-1.5">{stepLabel[v.step] ?? v.step}</td>
@@ -220,49 +295,62 @@ export default function BrmTargetLockPanel() {
               </table>
             </div>
 
-            {/* Run info + Modal deployments footer */}
             <div className="grid gap-3 md:grid-cols-2">
-              <div className="rounded border border-gray-100 bg-white p-3 text-xs">
-                <div className="font-semibold uppercase tracking-wide text-gray-600">Run info</div>
-                <ul className="mt-2 space-y-1 text-gray-700">
+              <div className={`rounded border p-3 text-xs ${infoCard}`}>
+                <div className={`font-semibold uppercase tracking-wide ${infoHead}`}>Run info</div>
+                <ul className="mt-2 space-y-1">
                   <li>Disease: {panel.runInfo.disease}</li>
                   <li>Seed: {panel.runInfo.seed}</li>
                   <li>Timestamp: {panel.runInfo.timestamp}</li>
                   <li>
-                    Genes: {panel.runInfo.nGenes} ({panel.runInfo.nPositives} positives / {panel.runInfo.nNegatives} hard-negatives)
+                    Genes: {panel.runInfo.nGenes} ({panel.runInfo.nPositives} positives /{' '}
+                    {panel.runInfo.nNegatives} hard-negatives)
                   </li>
                   <li>Elapsed: {panel.runInfo.elapsedSeconds.toFixed(1)} s</li>
                   <li>
-                    Enformer: {panel.runInfo.useEnformer ? 'enabled' : 'disabled'} · Fast-mode: {panel.runInfo.fastMode ? 'yes' : 'no'}
+                    Enformer: {panel.runInfo.useEnformer ? 'enabled' : 'disabled'} · Fast-mode:{' '}
+                    {panel.runInfo.fastMode ? 'yes' : 'no'}
                   </li>
                 </ul>
               </div>
-              <div className="rounded border border-gray-100 bg-white p-3 text-xs">
-                <div className="font-semibold uppercase tracking-wide text-gray-600">Modal deployments</div>
-                <ul className="mt-2 space-y-1 text-gray-700">
+              <div className={`rounded border p-3 text-xs ${infoCard}`}>
+                <div className={`font-semibold uppercase tracking-wide ${infoHead}`}>
+                  Modal deployments
+                </div>
+                <ul className="mt-2 space-y-1">
                   {panel.modalDeployments.map((m: any, i: number) => (
                     <li key={i}>
                       <span className="font-mono">{m.app}</span> · {m.service} · GPU {m.gpu} ·{' '}
-                      <span className={m.status === 'LIVE' ? 'text-emerald-700' : 'text-gray-500'}>{m.status}</span>
+                      <span
+                        className={
+                          m.status === 'LIVE'
+                            ? isDarkMode ? 'text-emerald-300' : 'text-emerald-700'
+                            : isDarkMode ? 'text-white/40' : 'text-gray-500'
+                        }
+                      >
+                        {m.status}
+                      </span>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
 
-            <div className="rounded border border-gray-100 bg-white p-3">
-              <div className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+            <div className={`rounded border p-3 ${provenanceCard}`}>
+              <div className={`text-xs font-semibold uppercase tracking-wide ${provenanceHead}`}>
                 Panel provenance
               </div>
-              <ul className="mt-2 space-y-1 text-xs text-gray-700">
+              <ul className={`mt-2 space-y-1 text-xs ${provenanceText}`}>
                 {panel.provenance.map((p: any, i: number) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="rounded bg-gray-100 px-1 py-0.5 text-[10px] font-medium text-gray-700">
+                    <span
+                      className={`rounded px-1 py-0.5 text-[10px] font-medium ${provenanceRepo}`}
+                    >
                       {p.repo}
                     </span>
                     <code className="min-w-0 flex-1 truncate">{p.sourcePath}</code>
                     {p.fileRole ? (
-                      <span className="text-gray-500">{p.fileRole}</span>
+                      <span className={provenanceRole}>{p.fileRole}</span>
                     ) : null}
                   </li>
                 ))}

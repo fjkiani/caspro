@@ -1,6 +1,5 @@
 'use client';
 
-import { usePatient } from '@/context/PatientContext';
 /**
  * Provenance stack — three tiles that ground the whole surface:
  *   SL receipt version + detection method + PR#11 note
@@ -8,12 +7,16 @@ import { usePatient } from '@/context/PatientContext';
  *   Evidence chain SHA + anchor count
  *
  * All strings pulled from the active bundle so the surface never fabricates.
- * The "Evo2 receipts" tile in particular used to hardcode AK biology
- * (MBD4 left-pad, PDGFRA scored, TP53 R175H cache); it now derives those
- * rows from patient.mutations at render time.
+ *
+ * Theme-aware. Mobile-safe (grid drops to 1-col below lg; internal receipts
+ * ul drops to 1-col below md).
  */
+import { usePatient } from '@/context/PatientContext';
+import { useTheme } from '@/context/ThemeContext';
+
 export default function ProvenanceStack() {
   const patient = usePatient();
+  const { isDarkMode } = useTheme();
 
   const cacheHits = patient.slProvenance.evo2CacheHits;
   const indelsNormalized = patient.mutations.filter(
@@ -24,43 +27,53 @@ export default function ProvenanceStack() {
   const nExact = patient.evidenceAnchors.filter((a) => a.match === 'exact').length;
   const nRounded = patient.evidenceAnchors.filter((a) => a.match === 'rounded').length;
 
-  // Per-mutation compact row for the Evo2 receipts tile — genuine
-  // patient-specific content, not AK stubs.
   const evoMutRows: [string, string][] = patient.mutations.map((m) => {
     const label = m.scoredByEvo2
-      ? m.normalizationNote
-        ? 'scored (normalized)'
-        : 'scored (cache hit)'
+      ? m.normalizationNote ? 'scored (normalized)' : 'scored (cache hit)'
       : 'excluded';
     return [`${m.gene}${m.hgvs ? ' · ' + shortHgvs(m.hgvs) : ''}`, label];
   });
 
+  const heading = isDarkMode ? 'text-white' : 'text-zinc-900';
+  const sub     = isDarkMode ? 'text-white/50' : 'text-zinc-600';
+  const receipts = isDarkMode
+    ? 'border-white/10 bg-black/30'
+    : 'border-zinc-200 bg-zinc-50';
+  const receiptsLabel = isDarkMode ? 'text-white/40' : 'text-zinc-500';
+  const receiptsPath  = isDarkMode ? 'text-white/30' : 'text-zinc-400';
+  const receiptItem   = isDarkMode
+    ? 'border-white/5 bg-white/[0.02] text-white/60'
+    : 'border-zinc-200 bg-white text-zinc-700';
+
   return (
-    <section className="mx-auto w-full max-w-[1400px] px-8 py-10">
+    <section className="mx-auto w-full max-w-[1400px] px-4 py-8 md:px-8 md:py-10">
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
         <div>
-          <h2 className="text-lg font-semibold text-white">Provenance stack</h2>
-          <p className="mt-1 text-xs text-white/50">
-            Every panel above renders from these receipts. Nothing on this screen is drawn without a bundle path.
+          <h2 className={`text-lg font-semibold ${heading}`}>Provenance stack</h2>
+          <p className={`mt-1 text-xs ${sub}`}>
+            Every panel above renders from these receipts. Nothing on this screen is drawn
+            without a bundle path.
           </p>
         </div>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <ProvCard
           heading="Synthetic Lethality"
+          isDarkMode={isDarkMode}
           rows={[
             ['agent', patient.slProvenance.agent],
             ['version', patient.slProvenance.version],
             ['detection_method', patient.slProvenance.detectionMethod],
             ['status', patient.slProvenance.status],
           ]}
-          note={patient.slProvenance.hgvsResolutionNote}
+          note={patient.slProvenance.hgvsResolutionNote ?? ''}
           path="synthetic_lethality.provenance.*"
         />
 
         <ProvCard
           heading="Evo2 receipts"
+          isDarkMode={isDarkMode}
           rows={[
             ['cache_hits', `${cacheHits} / ${patient.mutations.length} scored variants`],
             ['indels_normalized', String(indelsNormalized)],
@@ -72,6 +85,7 @@ export default function ProvenanceStack() {
 
         <ProvCard
           heading="Evidence chain"
+          isDarkMode={isDarkMode}
           rows={[
             ['anchors_total', `${anchorCount} verified`],
             ['exact_match', String(nExact)],
@@ -83,13 +97,15 @@ export default function ProvenanceStack() {
         />
       </div>
 
-      {/* Bundle path receipts — every panel's source path in one auditable table */}
-      <div className="mt-6 rounded-lg border border-white/10 bg-black/30 p-4">
+      {/* Bundle path receipts */}
+      <div className={`mt-6 rounded-lg border p-4 ${receipts}`}>
         <div className="mb-3 flex items-baseline justify-between">
-          <div className="text-[10px] uppercase tracking-widest text-white/40">Bundle path receipts</div>
-          <span className="font-mono text-[10px] text-white/30">levels.L1.*</span>
+          <div className={`text-[10px] uppercase tracking-widest ${receiptsLabel}`}>
+            Bundle path receipts
+          </div>
+          <span className={`font-mono text-[10px] ${receiptsPath}`}>levels.L1.*</span>
         </div>
-        <ul className="grid gap-1 text-[11px] md:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-1 text-[11px] md:grid-cols-2">
           {[
             patient.slProvenance.path,
             patient.tumorContext.path,
@@ -103,7 +119,10 @@ export default function ProvenanceStack() {
           ]
             .filter(Boolean)
             .map((p) => (
-              <li key={p as string} className="rounded border border-white/5 bg-white/[0.02] px-2 py-1 font-mono text-white/60">
+              <li
+                key={p as string}
+                className={`overflow-x-auto rounded border px-2 py-1 font-mono ${receiptItem}`}
+              >
                 {p as string}
               </li>
             ))}
@@ -114,7 +133,6 @@ export default function ProvenanceStack() {
 }
 
 function shortHgvs(hgvs: string): string {
-  // BRCA1:c.5266dupC -> c.5266dupC
   const idx = hgvs.indexOf(':');
   return idx >= 0 ? hgvs.slice(idx + 1) : hgvs;
 }
@@ -154,25 +172,36 @@ function ProvCard({
   rows,
   note,
   path,
+  isDarkMode,
 }: {
   heading: string;
   rows: [string, string][];
   note: string;
   path: string;
+  isDarkMode: boolean;
 }) {
+  const wrap = isDarkMode
+    ? 'border-white/10 bg-white/[0.02]'
+    : 'border-zinc-200 bg-white';
+  const eyebrow = isDarkMode ? 'text-cyan-300' : 'text-indigo-700';
+  const dtCls = isDarkMode ? 'text-white/40' : 'text-zinc-500';
+  const ddCls = isDarkMode ? 'text-white/80' : 'text-zinc-800';
+  const noteCls = isDarkMode ? 'text-white/60' : 'text-zinc-600';
+  const pathCls = isDarkMode ? 'text-white/30' : 'text-zinc-400';
+
   return (
-    <div className="rounded-lg border border-white/10 bg-white/[0.02] p-4">
-      <div className="text-[10px] uppercase tracking-[0.24em] text-cyan-300">{heading}</div>
+    <div className={`rounded-lg border p-4 ${wrap}`}>
+      <div className={`text-[10px] uppercase tracking-[0.24em] ${eyebrow}`}>{heading}</div>
       <dl className="mt-3 space-y-1.5 text-[11px]">
         {rows.map(([k, v]) => (
           <div key={k} className="flex items-baseline justify-between gap-3">
-            <dt className="font-mono text-white/40">{k}</dt>
-            <dd className="text-right font-mono text-white/80">{v}</dd>
+            <dt className={`font-mono ${dtCls}`}>{k}</dt>
+            <dd className={`text-right font-mono ${ddCls}`}>{v}</dd>
           </div>
         ))}
       </dl>
-      <p className="mt-3 text-[11px] leading-relaxed text-white/60">{note}</p>
-      <div className="mt-3 font-mono text-[9px] text-white/30">{path}</div>
+      <p className={`mt-3 text-[11px] leading-relaxed ${noteCls}`}>{note}</p>
+      <div className={`mt-3 font-mono text-[9px] ${pathCls}`}>{path}</div>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { usePatient } from '@/context/PatientContext';
 import { usePersona, PERSONA_LABELS, type Persona } from '@/context/PersonaContext';
+import { useTheme } from '@/context/ThemeContext';
 import AKBundleHeader from './ak/AKBundleHeader';
 import AKMutationPanel from './ak/AKMutationPanel';
 import SLPathwayGrid from './ak/SLPathwayGrid';
@@ -23,19 +24,18 @@ import PatientTranslator from './PatientTranslator';
 /**
  * /tumor-board — 5-tab summary surface with persona action bar.
  *
- * Left nav = icon+badge sticky rail. Right = active tab. Bottom = persona CTAs.
+ * Left nav = icon+badge sticky rail (md+); mobile: nav stacks above content.
+ * Right = active tab. Bottom = persona CTAs.
  *
  * PATIENT-GENERIC: header, subtitle, counts, and the "driver-gene" chip line
  * all derive from `usePatient()` at render time. The 11 tab components
- * underneath were already patient-generic; this shell now matches.
+ * underneath are patient-generic.
  *
- * Anchor panels (Brenus for CRC01, evo2-e2e for BM01) integrate INTO the tab
- * flow — Brenus goes under CONFIDENCE, evo2-e2e goes under SL AXES — not as
- * separate above-the-fold cards.
+ * Theme-aware (dark: black + cyan; light: white + indigo). Mobile-safe
+ * (grid collapses to 1-col below md; sticky rail becomes wrapping row).
  */
 type TabId = 'patient' | 'sl-axes' | 'falsification' | 'confidence' | 'provenance';
 
-// Terms that show up per tab — for the patient translator strip
 const TAB_TERMS: Record<TabId, string[]> = {
   'patient':       ['mbd4_lof', 'target_lock'],
   'sl-axes':       ['sl_axis', 'mechanism_fit', 'ln_ic50', 'cohens_d', 'atr_axis'],
@@ -48,9 +48,9 @@ export default function TumorBoardSurface() {
   const patient = usePatient();
   const [tab, setTab] = useState<TabId>('patient');
   const { persona, setPersona } = usePersona();
+  const { isDarkMode } = useTheme();
 
-  // -------- Header derivation from the active bundle --------
-  // Driver gene chip line: first 3 gene symbols from mutations (unique).
+  // Driver gene chip line
   const driverGenes = Array.from(
     new Set(patient.mutations.map((m) => m.gene)),
   ).slice(0, 3);
@@ -62,22 +62,13 @@ export default function TumorBoardSurface() {
     prettifyCancerType(patient.tumorContext.cancerType);
   const bundleLabel = `${patient.meta.patientId} bundle`.toUpperCase();
 
-  // Header title — "Patient <id> · <driver gene chips>" so every patient
-  // reads distinctly (AK reads MBD4/PDGFRA/TP53; OV01 reads BRCA1/TP53;
-  // BM01 reads TP53/PIK3CA; etc.).
   const headerTitle = `Patient ${patient.meta.patientId} · ${driverChips}`;
 
-  // Subtitle — patient-scoped explanation, not the AK contract hardcode.
-  // Fall back to the bundle's own demoDisclaimer when present.
   const contractVersion = patient.meta.contractVersion ?? 'v2.0';
   const subtitle = patient.meta.demoDisclaimer
     ? patient.meta.demoDisclaimer
     : `Wired to the canonical ${patient.meta.patientId} L1 bundle (contract ${contractVersion}). Toggle tabs to walk the SL analysis, the falsification arc, and the receipts stack.`;
 
-  // -------- Tab count derivation --------
-  // Each count is a real quantity computed from the active bundle. Falsy or
-  // zero-count tabs still render (the tab itself still shows "0"), so
-  // patients with e.g. no PARP-falsification arc don't hide the tab.
   const nVar = patient.mutations.length;
   const nAxes = patient.brokenPathways.length;
   const nArc = patient.parpFalsification ? 1 : 0;
@@ -128,36 +119,65 @@ export default function TumorBoardSurface() {
     },
   ];
 
-  // Anchor panel presence — panels integrate INTO tabs, not above the fold.
   const hasCrcAnchor = Boolean(patient.anchorPanels?.crc);
   const hasBrmAnchor = Boolean(patient.anchorPanels?.brm);
 
+  // ------ tokens ------
+  const shell = isDarkMode ? 'bg-black text-white' : 'bg-white text-zinc-900';
+  const topStrip = isDarkMode
+    ? 'border-b border-white/10 bg-white/[0.02]'
+    : 'border-b border-zinc-200 bg-zinc-50';
+  const eyebrow = isDarkMode ? 'text-cyan-300' : 'text-indigo-700';
+  const bodySub = isDarkMode ? 'text-white/40' : 'text-zinc-500';
+  const bodySub2 = isDarkMode ? 'text-white/60' : 'text-zinc-600';
+  const scrollBtn = isDarkMode
+    ? 'border-cyan-400/40 bg-cyan-500/10 text-cyan-200 hover:bg-cyan-500/20'
+    : 'border-indigo-300 bg-indigo-50 text-indigo-700 hover:bg-indigo-100';
+  const activeChip = isDarkMode
+    ? 'border-cyan-400/60 bg-cyan-500/10 text-cyan-100'
+    : 'border-indigo-400 bg-indigo-50 text-indigo-800';
+  const inactiveChip = isDarkMode
+    ? 'border-white/10 bg-white/[0.02] text-white/70 hover:bg-white/[0.05] hover:border-white/30'
+    : 'border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 hover:border-zinc-300';
+  const activeIcon = isDarkMode ? 'text-cyan-300' : 'text-indigo-600';
+  const inactiveIcon = isDarkMode
+    ? 'text-white/40 group-hover:text-white/70'
+    : 'text-zinc-400 group-hover:text-zinc-600';
+  const tabSub = isDarkMode ? 'text-white/50' : 'text-zinc-500';
+  const actionBar = isDarkMode
+    ? 'border-t border-white/10'
+    : 'border-t border-zinc-200';
+  const personaLabel = isDarkMode ? 'text-white/40' : 'text-zinc-500';
+
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="border-b border-white/10 bg-white/[0.02]">
-        <div className="mx-auto flex w-full max-w-[1400px] flex-wrap items-baseline justify-between gap-3 px-8 py-6">
-          <div>
-            <div className="text-[10px] uppercase tracking-[0.24em] text-cyan-300">
+    <div className={`min-h-screen ${shell}`}>
+      <div className={topStrip}>
+        <div className="mx-auto flex w-full max-w-[1400px] flex-wrap items-baseline justify-between gap-3 px-4 py-6 md:px-8">
+          <div className="min-w-0 flex-1">
+            <div className={`text-[10px] uppercase tracking-[0.24em] ${eyebrow}`}>
               TUMOR BOARD · {bundleLabel}
             </div>
-            <h1 className="mt-1 text-3xl font-semibold">{headerTitle}</h1>
-            <p className="mt-1 text-xs uppercase tracking-widest text-white/40">
+            <h1 className="mt-1 text-2xl font-semibold md:text-3xl">{headerTitle}</h1>
+            <p className={`mt-1 text-xs uppercase tracking-widest ${bodySub}`}>
               {tumorLabel}
             </p>
-            <p className="mt-2 max-w-2xl text-sm text-white/60">{subtitle}</p>
+            <p className={`mt-2 max-w-2xl text-sm ${bodySub2}`}>{subtitle}</p>
           </div>
           <Link
             href="/tumor-board-scroll"
-            className="rounded border border-cyan-400/40 bg-cyan-500/10 px-3 py-1.5 text-[11px] uppercase tracking-widest text-cyan-200 hover:bg-cyan-500/20"
+            className={`rounded border px-3 py-1.5 text-[11px] uppercase tracking-widest ${scrollBtn}`}
           >
             Read as scroll →
           </Link>
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-[1400px] grid-cols-[240px_1fr] gap-6 px-8 py-6">
-        {/* Left sticky nav */}
-        <nav aria-label="Tumor-board sections" className="sticky top-20 self-start space-y-1">
+      <div className="mx-auto flex max-w-[1400px] flex-col gap-6 px-4 py-6 md:grid md:grid-cols-[240px_1fr] md:px-8">
+        {/* Left nav — sticky at md+, stacked scroll at mobile */}
+        <nav
+          aria-label="Tumor-board sections"
+          className="flex flex-row gap-2 overflow-x-auto md:sticky md:top-20 md:flex-col md:space-y-1 md:self-start md:overflow-visible"
+        >
           {TABS.map(({ id, label, sub, Icon, count }) => {
             const active = id === tab;
             return (
@@ -165,32 +185,31 @@ export default function TumorBoardSurface() {
                 key={id}
                 type="button"
                 onClick={() => setTab(id)}
-                className={
-                  'group w-full text-left px-3 py-3 rounded border flex items-start gap-3 transition-colors cursor-pointer ' +
-                  (active
-                    ? 'border-cyan-400/60 bg-cyan-500/10 text-cyan-100'
-                    : 'border-white/10 bg-white/[0.02] text-white/70 hover:bg-white/[0.05] hover:border-white/30')
-                }
+                className={`group flex min-w-[180px] items-start gap-3 rounded border px-3 py-3 text-left transition-colors md:min-w-0 ${
+                  active ? activeChip : inactiveChip
+                }`}
                 tabIndex={0}
               >
-                <Icon className={`h-4 w-4 mt-0.5 ${active ? 'text-cyan-300' : 'text-white/40 group-hover:text-white/70'}`} aria-hidden />
-                <div className="flex-1 min-w-0">
+                <Icon
+                  className={`mt-0.5 h-4 w-4 ${active ? activeIcon : inactiveIcon}`}
+                  aria-hidden
+                />
+                <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-2">
-                    <div className="text-xs font-semibold uppercase tracking-widest">{label}</div>
-                    <span className="text-[9px] font-mono opacity-60">{count}</span>
+                    <div className="text-xs font-semibold uppercase tracking-widest">
+                      {label}
+                    </div>
+                    <span className="font-mono text-[9px] opacity-60">{count}</span>
                   </div>
-                  <div className="text-[11px] text-white/50 mt-0.5">{sub}</div>
+                  <div className={`mt-0.5 text-[11px] ${tabSub}`}>{sub}</div>
                 </div>
               </button>
             );
           })}
         </nav>
 
-        {/* Right pane */}
         <section className="min-w-0 space-y-4">
-          {persona === 'patient' && (
-            <PatientTranslator termIds={TAB_TERMS[tab]} />
-          )}
+          {persona === 'patient' && <PatientTranslator termIds={TAB_TERMS[tab]} />}
 
           {tab === 'patient' && (
             <div className="space-y-4">
@@ -202,38 +221,32 @@ export default function TumorBoardSurface() {
             <div className="space-y-4">
               <SLPathwayGrid />
               <SLMatrixTable />
-              {/* BM01 (evo2-e2e brain-met cascade) plugs in here — the panel
-                  is the SL-axis story for a brain-met patient: 7 steps × 29
-                  genes × real GPU-scored target-lock ranks. Only renders if
-                  the active bundle carries anchorPanels.brm. */}
               {hasBrmAnchor ? <BrmTargetLockPanel /> : null}
             </div>
           )}
-          {tab === 'falsification' && (
-            patient.parpFalsification ? (
+          {tab === 'falsification' &&
+            (patient.parpFalsification ? (
               <PARPFalsificationArc />
             ) : (
-              <NoFalsificationArc patientId={patient.meta.patientId} />
-            )
-          )}
+              <NoFalsificationArc
+                patientId={patient.meta.patientId}
+                isDarkMode={isDarkMode}
+              />
+            ))}
           {tab === 'confidence' && (
             <div className="space-y-4">
               <EvidenceAnchorTable />
               <RecommendedDrugsPanel />
               <MissingTestsPanel />
-              {/* CRC01 (Brenus IO_APPENDIX trials) plugs in here — the panel
-                  IS the confidence story for a Lynch/MSI-H patient:
-                  KEYNOTE-177 + CheckMate-142 pulled from Brenus's 42-trial
-                  registry with admissibility tags and provenance paths.
-                  Only renders if the active bundle carries anchorPanels.crc. */}
               {hasCrcAnchor ? <CrcAnchorEvidencePanel /> : null}
             </div>
           )}
           {tab === 'provenance' && <ProvenanceStack />}
 
-          {/* Bottom action bar */}
-          <div className="mt-6 border-t border-white/10 pt-4 flex flex-wrap items-center gap-2">
-            <div className="text-[10px] uppercase tracking-widest text-white/40 mr-2">Explain to:</div>
+          <div className={`mt-6 flex flex-wrap items-center gap-2 pt-4 ${actionBar}`}>
+            <div className={`mr-2 text-[10px] uppercase tracking-widest ${personaLabel}`}>
+              Explain to:
+            </div>
             {(['oncologist', 'patient', 'pharma'] as Persona[]).map((p) => {
               const active = persona === p;
               return (
@@ -241,12 +254,9 @@ export default function TumorBoardSurface() {
                   key={p}
                   type="button"
                   onClick={() => setPersona(p)}
-                  className={
-                    'inline-flex items-center gap-1.5 rounded border px-3 py-1.5 text-[11px] uppercase tracking-widest transition-colors ' +
-                    (active
-                      ? 'border-cyan-400/60 bg-cyan-500/10 text-cyan-100'
-                      : 'border-white/10 bg-white/[0.02] text-white/70 hover:bg-white/[0.05]')
-                  }
+                  className={`inline-flex items-center gap-1.5 rounded border px-3 py-1.5 text-[11px] uppercase tracking-widest transition-colors ${
+                    active ? activeChip : inactiveChip
+                  }`}
                 >
                   {PERSONA_LABELS[p]}
                   {active && <ArrowRight className="h-3 w-3" />}
@@ -260,26 +270,16 @@ export default function TumorBoardSurface() {
   );
 }
 
-// ---------- helpers ----------
-
 function prettifyCancerType(ct: string): string {
-  return ct
-    .replace(/_/g, ' ')
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+  return ct.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-// Count receipts across every provenance-bearing block. Receipts are the
-// "canonicalPath / path" stamps that let a reader trace a value back to its
-// source JSON. Different bundles ship different counts, so this must derive
-// from the bundle, not hardcoded.
 function countReceipts(patient: ReturnType<typeof usePatient>): number {
   let n = 0;
   if (patient.tumorContext.path) n++;
   if (patient.completeness.path) n++;
   if (patient.suggestedTherapy.path) n++;
-  // slProvenance is always present in the bundle contract
   n++;
-  // anchor panels carry their own provenance arrays
   const crcProv = (patient.anchorPanels?.crc as { provenance?: unknown[] } | undefined)?.provenance;
   if (Array.isArray(crcProv)) n += crcProv.length;
   const brmProv = (patient.anchorPanels?.brm as { provenance?: unknown[] } | undefined)?.provenance;
@@ -287,18 +287,30 @@ function countReceipts(patient: ReturnType<typeof usePatient>): number {
   return n;
 }
 
-function NoFalsificationArc({ patientId }: { patientId: string }) {
+function NoFalsificationArc({
+  patientId,
+  isDarkMode,
+}: {
+  patientId: string;
+  isDarkMode: boolean;
+}) {
+  const wrap = isDarkMode
+    ? 'border-white/10 bg-white/[0.02]'
+    : 'border-zinc-200 bg-zinc-50';
+  const label = isDarkMode ? 'text-white/40' : 'text-zinc-500';
+  const head  = isDarkMode ? 'text-white' : 'text-zinc-900';
+  const body  = isDarkMode ? 'text-white/60' : 'text-zinc-600';
+
   return (
-    <div className="rounded border border-white/10 bg-white/[0.02] p-6">
-      <p className="text-xs uppercase tracking-widest text-white/40">Falsification arc</p>
-      <h3 className="mt-1 text-lg font-semibold text-white">
+    <div className={`rounded border p-6 ${wrap}`}>
+      <p className={`text-xs uppercase tracking-widest ${label}`}>Falsification arc</p>
+      <h3 className={`mt-1 text-lg font-semibold ${head}`}>
         {patientId} carries no PARP-falsification arc.
       </h3>
-      <p className="mt-2 text-sm text-white/60">
-        This patient&rsquo;s recommended-drug set does not overlap with the
-        AK-anchored PARP falsification story (BRCA1/MBD4-LOF + olaparib +
-        positive control). Nothing to falsify here — the tab is intentionally
-        empty rather than fabricating an arc.
+      <p className={`mt-2 text-sm ${body}`}>
+        This patient&rsquo;s recommended-drug set does not overlap with the AK-anchored
+        PARP falsification story (BRCA1/MBD4-LOF + olaparib + positive control). Nothing
+        to falsify here — the tab is intentionally empty rather than fabricating an arc.
       </p>
     </div>
   );
