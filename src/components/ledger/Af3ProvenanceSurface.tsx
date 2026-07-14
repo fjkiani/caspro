@@ -90,7 +90,7 @@ const PAGE_INTRO: PersonaCopyDeck<{ eyebrow: string; title: string; sub: string 
   pharma: {
     eyebrow: 'AF3 provenance · two-cohort structural audit',
     title: 'Cohort A (AFDB v2 monomer) + Cohort B (AF3 3-chain complex)',
-    sub: 'Doctrine badges show applied cutoffs (Jumper 2021 for Cohort A, Abramson 2024 for Cohort B). All numeric values traceable to files-on-disk in src/data/af3/ and src/data/evo2/. PATH A locked; PATH B not authorised.',
+    sub: 'Doctrine badges show applied cutoffs (Jumper 2021 for Cohort A, Abramson 2024 for Cohort B). All numeric values traceable to files-on-disk in src/data/af3/ and src/data/evo2/. PATH A locked; PATH B prohibited.',
   },
 };
 
@@ -152,7 +152,7 @@ const PANEL_COHORT_B_INTRO: PersonaCopyDeck<{ heading: string; body: string; ver
 const GOVERNANCE_STRIP: PersonaCopyDeck<string> = {
   oncologist: 'Every number on this page traces to a file on disk. If a claim can\'t be traced, it is not shown.',
   patient: 'Nothing on this page is a demo mockup. Every value comes from a real model run saved with a date and version.',
-  pharma: 'PATH A locked as production ranker (fit = clip((p·t) / ‖t‖₂, 0, 1)). PATH B not authorised. DL-07 (DDR 0.983 Figure 2) quarantined. LATIFY delta values (+0.366 / +0.2641) quarantined pending vector version resolution. PC-02 permanently downgraded. Provenance verified via engagements/brenus/tests/overlay_verification.py.',
+  pharma: 'PATH A locked as production ranker (fit = clip((p·t) / ‖t‖₂, 0, 1)). PATH B is prohibited. DL-07 Figure 2 quarantined (forbidden from all surfaces). LATIFY delta values (+0.366 / +0.2641) quarantined pending vector version resolution. PC-02 permanently downgraded. Provenance verified via engagements/brenus/tests/overlay_verification.py.',
 };
 
 // ============================================================================
