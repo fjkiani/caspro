@@ -11,9 +11,9 @@
  */
 export const NEW_SURFACE_ENABLED: Record<string, boolean> = {
   AK:    true,   // walker live 2026-07-14 (D2)
-  BR01:  false,  // flip in D5 after smoke
-  CRC01: false,  // flip in D5 after smoke
-  BM01:  false,  // flip in D5 after smoke
+  BR01:  true,   // D5 — bundle fields verified (no anchor panels, no PARP falsification; walker guards both)
+  CRC01: true,   // D5 — bundle fields verified (anchorPanels.crc present; CrcAnchorEvidencePanel on confidence tab)
+  BM01:  true,   // D5 — bundle fields verified (anchorPanels.brm present; BrmTargetLockPanel on sl-axes tab)
 };
 
 export function usesNewSurface(patientId: string): boolean {
