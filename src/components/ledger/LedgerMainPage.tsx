@@ -19,6 +19,7 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   ShieldCheck,
   Target,
@@ -30,7 +31,6 @@ import {
 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
-import { PasscodeModal } from '@/components/ui/PasscodeModal';
 import {
   LEDGER_PROGRAMS,
   type LedgerProgram,
@@ -298,9 +298,9 @@ function ValueTab({ program, isDarkMode }: { program: LedgerProgram; isDarkMode:
 
 export default function LedgerMainPage() {
   const { isDarkMode } = useTheme();
+  const router = useRouter();
   const [activeProgramId, setActiveProgramId] = useState<string>(LEDGER_PROGRAMS[0]!.programId);
   const [activeTab, setActiveTab] = useState<TabKey>('findings');
-  const [modalTrial, setModalTrial] = useState<{ slug: string; label: string } | null>(null);
 
   const active = useMemo(
     () => LEDGER_PROGRAMS.find((p) => p.programId === activeProgramId) ?? LEDGER_PROGRAMS[0]!,
@@ -421,7 +421,7 @@ export default function LedgerMainPage() {
                 <TrialsTab
                   program={active}
                   isDarkMode={isDarkMode}
-                  onOpenGated={(slug, label) => setModalTrial({ slug, label })}
+                  onOpenGated={(slug) => router.push(`/ledger/${slug}/unlock/`)}
                 />
               )}
               {activeTab === 'vector' && (
@@ -434,14 +434,6 @@ export default function LedgerMainPage() {
         </div>
       </main>
 
-      {modalTrial && (
-        <PasscodeModal
-          open
-          onClose={() => setModalTrial(null)}
-          proofUrl={`/ledger/${modalTrial.slug}/`}
-          targetLabel={modalTrial.label}
-        />
-      )}
     </div>
     </SurfaceTabs>
   );

@@ -1,11 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Lock } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
-import { PasscodeModal } from '@/components/ui/PasscodeModal';
 import { getTrialLedgerEntry, type TrialLedgerEntry } from '@/data/trial-ledger-registry';
 import { getTrialLedgerIcon } from '@/components/ledger/trial-ledger-icons';
 import { isGatedLedgerTrial } from '@/data/trial-gate';
@@ -41,12 +40,12 @@ function TrialVisual({ entry, isDarkMode }: { entry: TrialLedgerEntry; isDarkMod
 }
 
 export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }: TrialLedgerReceiptPageProps) {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const { isDarkMode } = useTheme();
   const entry = getTrialLedgerEntry(slug);
   const gated = entry ? isGatedLedgerTrial(entry.slug) : false;
   const [unlocked, setUnlocked] = useState(() => !gated || gateAuthorized);
-  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     if (!gated) {
@@ -74,10 +73,12 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
   }, [gated, slug, gateAuthorized]);
 
   useEffect(() => {
-    if (gated && !unlocked && searchParams.get('locked') === '1') {
-      setModalOpen(true);
+    // Legacy `?locked=1` bounce → send user to the unlock route with a `next`
+    // param so we can return them here after they enter their code.
+    if (gated && !unlocked && entry && searchParams.get('locked') === '1') {
+      router.replace(`/ledger/${slug}/unlock/?next=${encodeURIComponent(entry.route)}`);
     }
-  }, [gated, unlocked, searchParams]);
+  }, [gated, unlocked, searchParams, slug, entry, router]);
 
   if (!entry) return null;
 
@@ -136,7 +137,7 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
             <VectorMapPreviewGated trialId={entry.slug} targetLabel={entry.label} isDarkMode={isDarkMode} />
             <button
               type="button"
-              onClick={() => setModalOpen(true)}
+              onClick={() => router.push(`/ledger/${slug}/unlock/?next=${encodeURIComponent(entry.route)}`)}
               className={`mx-auto shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-sm border text-[10px] font-black uppercase tracking-[0.3em] ${
                 isDarkMode
                   ? 'border-violet-500/50 bg-violet-500/10 text-violet-300 hover:bg-violet-500 hover:text-black'
@@ -217,20 +218,6 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
         );
       })()}
 
-      <PasscodeModal
-        open={modalOpen}
-        onClose={() => {
-          setModalOpen(false);
-          fetch(`/api/trial-gate/status/?slug=${encodeURIComponent(slug)}`)
-            .then((res) => res.json())
-            .then((data: { unlocked?: boolean }) => {
-              if (data.unlocked) setUnlocked(true);
-            })
-            .catch(() => {});
-        }}
-        proofUrl={entry.route}
-        targetLabel={entry.label}
-      />
     </div>
   );
 }

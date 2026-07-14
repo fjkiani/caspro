@@ -6,6 +6,13 @@ import { Lock, X, ArrowRight, MessageSquare } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { unlockAllTrialGates, unlockTrialGateFromUrl } from '@/data/trial-gate';
 
+/**
+ * @deprecated For ledger contexts use `/ledger/[trialSlug]/unlock/` instead.
+ * This modal is retained for non-ledger callers (HeroSlider, GatedEvidencePanel,
+ * ZetaNavbar) that still gate on a passcode inline. The modal is a
+ * `document.body.style.overflow = 'hidden'` trap on mobile — new call sites
+ * should always prefer the route-based unlock.
+ */
 export interface PasscodeModalProps {
   open: boolean;
   onClose: () => void;
