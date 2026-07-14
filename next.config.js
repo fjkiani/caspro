@@ -219,6 +219,24 @@ const nextConfig = {
         destination: '/products/oncology/',
         permanent: true,
       },
+      // ------------------------------------------------------------------
+      // /tumor-board/AK01 → /tumor-board/AK.
+      // Registry key was AK01 (verbose id); the underlying bundle's
+      // meta.patientId is 'AK' and every external caller (products/oncology/*
+      // dashboards + IntelligenceCascade family) defaults patientId = 'AK'.
+      // Canonicalize the URL on 'AK' so those callers stop hitting 404.
+      // Old bookmarks keep working via this 308.
+      // ------------------------------------------------------------------
+      {
+        source: '/tumor-board/AK01',
+        destination: '/tumor-board/AK/',
+        permanent: true,
+      },
+      {
+        source: '/tumor-board/AK01/',
+        destination: '/tumor-board/AK/',
+        permanent: true,
+      },
     ];
   },
   webpack: (config) => {

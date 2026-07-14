@@ -12,15 +12,22 @@
  */
 import type { PatientBundle } from '../tumor-board/patient-bundle-types';
 
-import { AK01 } from './AK01';
-import { OV01 } from './OV01';
+import { AK01 as AK } from './AK01';
+// OV01 retired 2026-07-14 (user directive): unregister-only. Substrate file
+// stays on disk; the URL /tumor-board/OV01 now 404s naturally, and BR01's
+// doc reference "Same mechanism as OV01" stays intact for cross-bundle
+// explanatory continuity. Do not re-add without an explicit re-registration
+// decision.
 import { BR01 } from './BR01';
 import { CRC01 } from './CRC01';
 import { BM01 } from './BM01';
 
+// Registry key now matches the bundle's internal meta.patientId ('AK'),
+// which is also what every external default patientId = 'AK' caller uses
+// (src/components/products/oncology/*). Old /tumor-board/AK01 URLs 308 to
+// /tumor-board/AK via next.config.js redirect.
 export const PATIENT_REGISTRY: Record<string, PatientBundle> = {
-  AK01,
-  OV01,
+  AK,
   BR01,
   CRC01,
   BM01,

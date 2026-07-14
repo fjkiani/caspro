@@ -86,7 +86,7 @@ export default function TumorBoardPage() {
         </div>
 
         <p className="mt-10 font-mono text-[10px] text-white/25">
-          Substrate: src/data/patients/{'{'}AK01,OV01,BR01,CRC01,BM01{'}'}.ts · registry:
+          Substrate: src/data/patients/{'{'}AK,BR01,CRC01,BM01{'}'}.ts · registry:
           src/data/patients/registry.ts · bench: /mnt/results/spe_audit/w4_pancancer_grid.json
         </p>
       </div>
