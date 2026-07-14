@@ -37,9 +37,11 @@ export const RD_CAPABILITIES: RDCapabilityCard[] = [
     title: 'Mechanism-Based Trial Matching',
     description: 'Mechanism vector computation and drug-pathway alignment scoring',
     status: 'framework',
+    // DL-07: DDR-fit numeric quarantined pending Figure 2 provenance walk.
+    // Report Top-3 ranking accuracy (validated) instead of the DDR mean fit.
     metrics: {
-      primary: '0.983 DDR fit',
-      secondary: '1.0 Top-3 accuracy'
+      primary: '1.00 Top-3 accuracy',
+      secondary: 'MRR 0.75'
     },
     icon: 'Target',
     color: 'blue',
@@ -291,9 +293,11 @@ export const VALIDATION_METRICS: ValidationMetric[] = [
   },
   {
     capability: 'Mechanism-Based Trial Matching',
-    metric: 'DDR Fit',
-    value: '0.983',
-    meaning: 'Near-perfect mechanism alignment (0.983 = 98.3% similarity)',
+    metric: 'Top-3 Ranking Accuracy',
+    value: '1.00',
+    // DL-07: DDR-fit numeric quarantined. Report ranking accuracy — the
+    // validated end-to-end metric — instead of the raw cosine mean.
+    meaning: 'The intended trial appears in the top 3 mechanism-aligned matches for every evaluated patient (17/17)',
     status: 'validated'
   },
   {

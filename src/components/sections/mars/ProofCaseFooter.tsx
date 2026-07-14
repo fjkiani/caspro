@@ -45,7 +45,7 @@ export function ProofCaseFooter({ activeTrialId, isDarkMode }: ProofCaseFooterPr
             key={id}
             type="button"
             onClick={() => {
-              router.push(`/proof/${id}/case/`);
+              router.push(`/ledger/${id}/`);
             }}
             className={pillClasses(active, isDarkMode)}
           >

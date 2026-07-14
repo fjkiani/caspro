@@ -54,8 +54,8 @@ function buildHeadlines(trial: TrialCaseFile): HeadlineEntry[] {
       evidence: {
         title: 'Mechanism Fit',
         rows: [
-          { label: 'PATH A fit (responder)', value: String(trial.cosineResponder), color: 'emerald' },
-          { label: 'PATH A fit (non-resp)', value: String(trial.cosineITT), color: 'rose' },
+          { label: 'Responder alignment', value: 'gated', color: 'emerald' },
+          { label: 'Non-responder alignment', value: 'gated', color: 'rose' },
           { label: 'Vector Δ', value: trial.deltaImpact, color: 'accent' },
           ...trial.scores.map((s) => ({
             label: s.label,

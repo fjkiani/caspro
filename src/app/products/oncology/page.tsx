@@ -1,16 +1,12 @@
-import { Metadata } from 'next';
-import { oncologyProductData } from '@/data/products/oncology-data';
-import OncologyPageClient from './OncologyPageClient';
+import type { Metadata } from 'next';
+import VerticalSurface from '@/components/audience/VerticalSurface';
+import { ONCOLOGY_PAGE_DATA } from '@/data/pages/products-oncology-page';
 
-// Generate metadata for the Oncology product page
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: oncologyProductData.pageTitle,
-    description: oncologyProductData.heroSubtitle || oncologyProductData.vision,
-  };
-}
+export const metadata: Metadata = {
+  title: 'Oncology · CrisPRO',
+  description: 'Mechanism-alignment for oncology programs.',
+};
 
-// Main Oncology Product Page Component (Server Component)
-export default function OncologyProductPage() {
-  return <OncologyPageClient content={oncologyProductData} />;
+export default function oncology_Page() {
+  return <VerticalSurface data={ONCOLOGY_PAGE_DATA} />;
 }

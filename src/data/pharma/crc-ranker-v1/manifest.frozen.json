@@ -1,0 +1,27 @@
+{
+  "source_repo": "fjkiani/Brenus",
+  "source_commit": "c2d90b6",
+  "source_commit_message": "Governance reconciliation v2 — retire 0.7375, resolve Berzosertib, exclude NCT02264678",
+  "source_path": "data/ranker_results/",
+  "vendored_at": "2026-07-13",
+  "files": {
+    "crc_ranker_results_v1.csv": {
+      "sha256": "29e31a6662785c6dadcebe8caeb3c89b262c7217565d095491426376646b3b85",
+      "bytes": 137756,
+      "rows": 485
+    },
+    "crc_ranker_summary_v1.json": {
+      "sha256": "125618d068cd79427a7a446522de729f0e712d8d9dde6bb3dccc9a70362acef3",
+      "bytes": 4480
+    },
+    "crc_ranker_figure_v1.png": {
+      "sha256": "40f94eaa1615be53203a25e7e2c6894f5ed96f476b74e404e2dedae02f8efd14",
+      "bytes": 158363
+    }
+  },
+  "governance": {
+    "formula": "PATH A (locked 2026-04-28): fit = clip((p·t) / ‖t‖₂, 0, 1)",
+    "vector_version": "8D.v1",
+    "path_b_prohibited": true
+  }
+}

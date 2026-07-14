@@ -1,8 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import Link from 'next/link';
 import { Lock, ArrowRight } from 'lucide-react';
-import { PasscodeModal } from '@/components/ui/PasscodeModal';
 import type { TrialLedgerEntry } from '@/data/trial-ledger-registry';
 import { isGatedLedgerTrial } from '@/data/trial-gate';
 
@@ -11,11 +10,15 @@ type GatedLedgerTrialLinkProps = {
   isDarkMode: boolean;
 };
 
+/**
+ * Ledger entry link. Gated entries deep-link into `/ledger/[slug]/unlock/`
+ * (with `?next=` set to the receipt URL); ungated entries link straight to
+ * the receipt. Modal-based unlock has been retired for ledger surfaces.
+ */
 export default function GatedLedgerTrialLink({ entry, isDarkMode }: GatedLedgerTrialLinkProps) {
-  const [modalOpen, setModalOpen] = useState(false);
   const gated = isGatedLedgerTrial(entry.slug);
 
-  const rowClass = `flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 rounded-lg border px-4 py-3 transition-colors cursor-pointer ${
+  const rowClass = `flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 rounded-lg border px-4 py-3 transition-colors ${
     isDarkMode
       ? 'border-zinc-800 bg-zinc-950/60 hover:border-violet-500/40'
       : 'border-slate-200 bg-slate-50/80 hover:border-violet-400'
@@ -57,25 +60,13 @@ export default function GatedLedgerTrialLink({ entry, isDarkMode }: GatedLedgerT
     </>
   );
 
-  if (!gated) {
-    return (
-      <a href={entry.route} className={`group ${rowClass}`}>
-        {inner}
-      </a>
-    );
-  }
+  const href = gated
+    ? `/ledger/${entry.slug}/unlock/?next=${encodeURIComponent(entry.route)}`
+    : entry.route;
 
   return (
-    <>
-      <button type="button" onClick={() => setModalOpen(true)} className={`group w-full text-left ${rowClass}`}>
-        {inner}
-      </button>
-      <PasscodeModal
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        proofUrl={entry.route}
-        targetLabel={entry.label}
-      />
-    </>
+    <Link href={href} className={`group ${rowClass}`}>
+      {inner}
+    </Link>
   );
 }

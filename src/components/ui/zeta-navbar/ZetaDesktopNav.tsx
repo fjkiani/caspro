@@ -37,18 +37,18 @@ type ZetaDesktopNavProps = {
 function isNavItemActive(pathname: string | null, href: string, itemId: string): boolean {
   if (pathsEqual(pathname, href)) return true;
   const norm = (pathname ?? '').replace(/\/+$/, '') || '/';
+  // Merged persona-aware nav: each ID owns a specific route family. ORG never highlights (external).
+  if (itemId === 'target-lock' && norm.startsWith('/engine/target-lock')) return true;
+  if (itemId === 'moa-align' && norm.startsWith('/engine/mechanism-alignment')) return true;
+  if (itemId === 'sl-engine' && norm.startsWith('/engine/synthetic-lethality')) return true;
+  if (itemId === 'tumor-board' && norm.startsWith('/tumor-board')) return true;
   if (itemId === 'ledger' && norm.startsWith('/ledger')) return true;
-  if (
-    itemId === 'research' &&
-    ((norm.startsWith('/research') && !norm.startsWith('/research/abstracts')) ||
-      norm.startsWith('/blog') ||
-      norm.startsWith('/manuscripts') ||
-      norm.startsWith('/media'))
-  ) {
-    return true;
-  }
-  if (itemId === 'abstracts' && norm.startsWith('/research/abstracts')) return true;
-  if (itemId === 'engines' && norm.startsWith('/engine')) return true;
+  if (itemId === 'pipeline' && norm.startsWith('/pipeline')) return true;
+  if (itemId === 'governance' && norm.startsWith('/governance')) return true;
+  if (itemId === 'research' && (norm.startsWith('/research') || norm.startsWith('/blog') || norm.startsWith('/manuscripts'))) return true;
+  // Patient personas carry ?persona=patient onto ledger + target-lock respectively
+  if (itemId === 'my-trials' && norm.startsWith('/ledger')) return true;
+  if (itemId === 'understand' && norm.startsWith('/engine/target-lock')) return true;
   if (itemId === 'org') return false;
   return false;
 }

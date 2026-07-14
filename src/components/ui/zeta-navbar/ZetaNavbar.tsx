@@ -3,6 +3,7 @@
 import { Suspense, useMemo } from 'react';
 import { useAccessibility } from '@/context/AccessibilityContext';
 import { useTheme } from '@/context/ThemeContext';
+import { usePersona } from '@/context/PersonaContext';
 import { getNavTheme } from './nav-theme';
 import { buildTopNavItems } from './nav-items';
 import { useZetaNavFeed } from './useZetaNavFeed';
@@ -17,10 +18,14 @@ import { useGatedNavClick } from './useGatedNavClick';
 export function ZetaNavbar({ isProcessing = false }: { isProcessing?: boolean }) {
   const { isLargeText, toggleLargeText } = useAccessibility();
   const { isDarkMode } = useTheme();
+  const { persona } = usePersona();
   const theme = getNavTheme(isDarkMode);
   const nav = useZetaNavbar();
   const feed = useZetaNavFeed();
-  const topNavItems = useMemo(() => buildTopNavItems(feed.abstracts), [feed.abstracts]);
+  const topNavItems = useMemo(
+    () => buildTopNavItems(feed.abstracts, persona),
+    [feed.abstracts, persona],
+  );
   const { gateTarget, handleDropdownClick, closeGate } = useGatedNavClick(nav.navigate);
 
   return (

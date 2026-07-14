@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Lock } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
-import { PasscodeModal } from '@/components/ui/PasscodeModal';
+import { usePersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
 import { getTrialLedgerEntry, type TrialLedgerEntry } from '@/data/trial-ledger-registry';
 import { getTrialLedgerIcon } from '@/components/ledger/trial-ledger-icons';
 import { isGatedLedgerTrial } from '@/data/trial-gate';
@@ -19,6 +19,41 @@ type TrialLedgerReceiptPageProps = {
   slug: string;
   /** Server-verified httpOnly cookie (source of truth for unlock). */
   gateAuthorized?: boolean;
+};
+
+// -------- Persona-scoped copy for the receipt surface --------
+const RECEIPT_COPY: PersonaCopyDeck<{
+  eyebrowGate: string;
+  eyebrowUnlocked: string;
+  unlockCta: string;
+  footerEyebrow: string;
+  deepDivePrefix: string;
+  proofLink: string;
+}> = {
+  oncologist: {
+    eyebrowGate: 'PASSCODE REQUIRED',
+    eyebrowUnlocked: 'ZETA_SIG_LOCKED',
+    unlockCta: 'Unlock receipt',
+    footerEyebrow: 'LOCKED FOR AUDIT',
+    deepDivePrefix: 'Deep-dive',
+    proofLink: 'Full 8D de-risking map →',
+  },
+  patient: {
+    eyebrowGate: 'NOT YET UNLOCKED',
+    eyebrowUnlocked: 'FROM PUBLISHED SOURCES',
+    unlockCta: 'Enter access code',
+    footerEyebrow: 'PUBLISHED SOURCES ONLY',
+    deepDivePrefix: 'How CrisPRO reads this',
+    proofLink: 'Read all 8 lenses for this trial →',
+  },
+  pharma: {
+    eyebrowGate: 'GATE // PASSCODE',
+    eyebrowUnlocked: 'RECEIPT // ZETA-LOCKED',
+    unlockCta: 'Unlock decode',
+    footerEyebrow: 'AUDIT-LOCKED',
+    deepDivePrefix: 'Engine trace',
+    proofLink: '8D decode + proof route →',
+  },
 };
 
 function TrialVisual({ entry, isDarkMode }: { entry: TrialLedgerEntry; isDarkMode: boolean }) {
@@ -41,12 +76,13 @@ function TrialVisual({ entry, isDarkMode }: { entry: TrialLedgerEntry; isDarkMod
 }
 
 export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }: TrialLedgerReceiptPageProps) {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const { isDarkMode } = useTheme();
+  const receiptCopy = usePersonaContent(RECEIPT_COPY);
   const entry = getTrialLedgerEntry(slug);
   const gated = entry ? isGatedLedgerTrial(entry.slug) : false;
   const [unlocked, setUnlocked] = useState(() => !gated || gateAuthorized);
-  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     if (!gated) {
@@ -74,10 +110,12 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
   }, [gated, slug, gateAuthorized]);
 
   useEffect(() => {
-    if (gated && !unlocked && searchParams.get('locked') === '1') {
-      setModalOpen(true);
+    // Legacy `?locked=1` bounce → send user to the unlock route with a `next`
+    // param so we can return them here after they enter their code.
+    if (gated && !unlocked && entry && searchParams.get('locked') === '1') {
+      router.replace(`/ledger/${slug}/unlock/?next=${encodeURIComponent(entry.route)}`);
     }
-  }, [gated, unlocked, searchParams]);
+  }, [gated, unlocked, searchParams, slug, entry, router]);
 
   if (!entry) return null;
 
@@ -86,7 +124,7 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
 
   return (
     <div
-      className={`relative min-h-screen flex flex-col overflow-hidden font-mono transition-colors duration-500 ${
+      className={`relative min-h-screen flex flex-col font-mono transition-colors duration-500 ${
         isDarkMode ? 'bg-[#020408]' : 'bg-white'
       }`}
     >
@@ -114,7 +152,7 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
               isDarkMode ? 'text-[#00E5FF]' : 'text-indigo-500'
             }`}
           >
-            RECEIPT_ID: {entry.receiptId} // {showGate ? 'PASSCODE REQUIRED' : 'ZETA_SIG_LOCKED'}
+            RECEIPT_ID: {entry.receiptId} // {showGate ? receiptCopy.eyebrowGate : receiptCopy.eyebrowUnlocked}
           </span>
           <h1
             className={`text-sm sm:text-xl font-black uppercase tracking-tight flex items-center gap-2 ${
@@ -130,13 +168,13 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
         </div>
       </div>
 
-      <div className="relative z-10 flex-1 flex items-start sm:items-center justify-center px-3 sm:px-8 lg:px-12 py-1 sm:py-4 min-h-0 overflow-hidden">
+      <div className="relative z-10 flex flex-1 items-start justify-center px-3 py-3 md:items-center md:px-8 md:py-6 lg:px-12">
         {showGate ? (
           <div className="w-full h-full flex flex-col gap-4">
             <VectorMapPreviewGated trialId={entry.slug} targetLabel={entry.label} isDarkMode={isDarkMode} />
             <button
               type="button"
-              onClick={() => setModalOpen(true)}
+              onClick={() => router.push(`/ledger/${slug}/unlock/?next=${encodeURIComponent(entry.route)}`)}
               className={`mx-auto shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-sm border text-[10px] font-black uppercase tracking-[0.3em] ${
                 isDarkMode
                   ? 'border-violet-500/50 bg-violet-500/10 text-violet-300 hover:bg-violet-500 hover:text-black'
@@ -144,7 +182,7 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
               }`}
             >
               <Lock className="w-4 h-4" />
-              Unlock receipt
+              {receiptCopy.unlockCta}
             </button>
           </div>
         ) : (
@@ -152,40 +190,71 @@ export default function TrialLedgerReceiptPage({ slug, gateAuthorized = false }:
         )}
       </div>
 
-      {!showGate && entry.preview !== 'vector-map' && (
-        <div className="relative z-10 px-3 sm:px-8 lg:px-12 pb-10 sm:pb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <p
-            className={`hidden sm:block text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] ${
-              isDarkMode ? 'text-zinc-600' : 'text-slate-400'
-            }`}
-          >
-            DE-RISKING RECEIPT: 2026_03_24_V2 // LOCKED FOR AUDIT
-          </p>
-          <a
-            href={entry.proofRoute}
-            className={`text-[10px] font-black uppercase tracking-widest ${
-              isDarkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-indigo-600 hover:text-indigo-800'
-            }`}
-          >
-            View 8D vector map →
-          </a>
-        </div>
-      )}
+      {!showGate && (() => {
+        // w8c: engine deep-dive links must be present on every unlocked trial
+        // ledger receipt. Primary link is preview-appropriate; the other two
+        // engines are always available as cross-links so the receipt page is a
+        // real gateway into the L2 engine surfaces.
+        const ENGINES = {
+          moa:  { href: '/engine/mechanism-alignment/', label: 'Mechanism alignment' },
+          sl:   { href: '/engine/synthetic-lethality/scroll', label: 'Synthetic lethality' },
+          tl:   { href: '/engine/target-lock/scroll',         label: 'Target lock' },
+        } as const;
+        // preview → primary engine mapping (see PREVIEW_BY_SLUG in trial-ledger-registry)
+        const primaryKey =
+          entry.preview === 'moa-align'    ? 'moa' :
+          entry.preview === 'kill-chain'   ? 'sl'  :
+          entry.preview === 'target-lock'  ? 'tl'  :
+          /* vector-map (berzosertib/adavosertib) */ 'moa';
+        const primary = ENGINES[primaryKey];
+        const secondaries = (Object.keys(ENGINES) as Array<keyof typeof ENGINES>)
+          .filter(k => k !== primaryKey)
+          .map(k => ENGINES[k]);
+        return (
+          <div className="relative z-10 px-3 sm:px-8 lg:px-12 pb-10 sm:pb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <p
+              className={`hidden sm:block text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] ${
+                isDarkMode ? 'text-zinc-600' : 'text-slate-400'
+              }`}
+            >
+              DE-RISKING RECEIPT: {entry.receiptId} // {receiptCopy.footerEyebrow}
+            </p>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+              <a
+                href={primary.href}
+                data-engine-link="primary"
+                className={`text-[10px] font-black uppercase tracking-widest ${
+                  isDarkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-indigo-600 hover:text-indigo-800'
+                }`}
+              >
+                {receiptCopy.deepDivePrefix}: {primary.label} engine →
+              </a>
+              {secondaries.map((eng) => (
+                <a
+                  key={eng.href}
+                  href={eng.href}
+                  data-engine-link="secondary"
+                  className={`text-[10px] font-black uppercase tracking-widest ${
+                    isDarkMode ? 'text-zinc-400 hover:text-cyan-300' : 'text-slate-500 hover:text-indigo-800'
+                  }`}
+                >
+                  {eng.label} →
+                </a>
+              ))}
+              <a
+                href={entry.proofRoute}
+                data-engine-link="proof"
+                className={`text-[10px] font-black uppercase tracking-widest ${
+                  isDarkMode ? 'text-zinc-400 hover:text-cyan-300' : 'text-slate-500 hover:text-indigo-800'
+                }`}
+              >
+                {receiptCopy.proofLink}
+              </a>
+            </div>
+          </div>
+        );
+      })()}
 
-      <PasscodeModal
-        open={modalOpen}
-        onClose={() => {
-          setModalOpen(false);
-          fetch(`/api/trial-gate/status/?slug=${encodeURIComponent(slug)}`)
-            .then((res) => res.json())
-            .then((data: { unlocked?: boolean }) => {
-              if (data.unlocked) setUnlocked(true);
-            })
-            .catch(() => {});
-        }}
-        proofUrl={entry.route}
-        targetLabel={entry.label}
-      />
     </div>
   );
 }

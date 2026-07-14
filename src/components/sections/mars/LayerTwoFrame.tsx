@@ -4,11 +4,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { AlertTriangle, CheckCircle2, XCircle, ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { TRIAL_CASE_FILES, TRIAL_IDS, type TrialCaseFile } from '@/data/trial-case-files';
+import { TRIAL_CASE_FILES, HAND_AUTHORED_TRIAL_IDS, type TrialCaseFile } from '@/data/trial-case-files';
 
 // --- Derive table rows from live registry ---
 function buildTrialRows() {
-  return TRIAL_IDS.map((id) => {
+  return HAND_AUTHORED_TRIAL_IDS.map((id) => {
     const t = TRIAL_CASE_FILES[id];
     if (!t) return null;
 
@@ -153,7 +153,7 @@ export const LayerTwoFrame: React.FC = () => {
               ${row.isTrial ? 'border-l-2 border-l-red-500/60 cursor-pointer' : 'border-l-2 border-l-transparent'}
             `}
             onClick={() => {
-              if (row.slug) router.push(`/proof/${row.slug}`);
+              if (row.slug) router.push(`/ledger/${row.slug}/`);
             }}
           >
             {/* Row Label */}
@@ -210,7 +210,7 @@ export const LayerTwoFrame: React.FC = () => {
         </div>
 
         <button
-          onClick={() => router.push('/proof/latify')}
+          onClick={() => router.push('/ledger/latify/')}
           className="group flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500/10 to-cyan-500/5 border border-cyan-500/20 rounded text-cyan-400 hover:bg-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 flex-shrink-0"
         >
           <span className="text-[11px] font-black uppercase tracking-[0.2em]">

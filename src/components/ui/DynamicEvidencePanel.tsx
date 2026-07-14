@@ -99,7 +99,7 @@ export const DynamicEvidencePanel: React.FC<DynamicEvidencePanelProps> = ({
 
         {/* Proof CTA button */}
         {evidence.proofId && (
-          <Link href={`/proof/${evidence.proofId}/case/`} prefetch={false} className="block">
+          <Link href={`/ledger/${evidence.proofId}/`} prefetch={false} className="block">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

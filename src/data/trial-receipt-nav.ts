@@ -1,4 +1,4 @@
-import { TRIAL_CASE_FILES, TRIAL_IDS, type TrialCaseFile } from './trial-case-files';
+import { TRIAL_CASE_FILES, HAND_AUTHORED_TRIAL_IDS, type TrialCaseFile } from './trial-case-files';
 
 const TRIAL_LABELS: Record<string, string> = {
   latify: 'LATIFY',
@@ -20,7 +20,7 @@ export type TrialReceiptNavItem = {
 };
 
 /** Trial receipts dropdown — copy is generated from trial-case-files only. */
-export const TRIAL_RECEIPT_NAV: TrialReceiptNavItem[] = TRIAL_IDS.map((id) => ({
+export const TRIAL_RECEIPT_NAV: TrialReceiptNavItem[] = HAND_AUTHORED_TRIAL_IDS.map((id) => ({
   id,
   label: TRIAL_LABELS[id] ?? id.toUpperCase(),
   desc: receiptNavDesc(TRIAL_CASE_FILES[id]),
