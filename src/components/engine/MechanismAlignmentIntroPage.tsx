@@ -55,6 +55,108 @@ const BRM_INTRO_DECK: PersonaCopyDeck<BrMIntroCopy> = {
   },
 };
 
+// ---- Body chrome deck ------------------------------------------------------
+// Section eyebrows, side-labels, composite-gate quads, note text, deep-dive
+// tile bodies. Substrate (PATH_A_FORMULA, thresholds, axis keys, case IDs,
+// verdict badges) held invariant across all personas.
+// ---------------------------------------------------------------------------
+
+type BrMBodyCopy = {
+  formulaEyebrow: string;
+  formulaFooter: string;
+  explainerEyebrow: string;
+  compositeEyebrow: string;
+  compositeExprLegend: string;
+  compositeAlphaLabel: string;
+  compositeBetaLabel: string;
+  compositeMinEligLabel: string;
+  compositeMinFitLabel: string;
+  compositeGateNote: string;
+  axesEyebrow: string;
+  axesCountLabel: string;
+  rssChipLabel: string;
+  rssChipCopy: string;
+  divergenceEyebrow: string;
+  divergenceCountLabel: (n: number) => string;
+  deepDivesEyebrow: string;
+  scrollTileEyebrow: string;
+  scrollTileBody: string;
+  tabsTileEyebrow: string;
+  tabsTileBody: string;
+};
+
+const BRM_BODY_DECK: PersonaCopyDeck<BrMBodyCopy> = {
+  oncologist: {
+    formulaEyebrow: 'PATH A ranker · production formula',
+    formulaFooter: 'p = patient mechanism vector · t = therapy mechanism vector · projection clipped to [0,1]. PATH B fallback is prohibited in every downstream surface.',
+    explainerEyebrow: 'How Mechanism Alignment works',
+    compositeEyebrow: 'Composite gate',
+    compositeExprLegend: 'α · elig + β · fit',
+    compositeAlphaLabel: 'α (eligibility)',
+    compositeBetaLabel: 'β (fit)',
+    compositeMinEligLabel: 'min eligibility',
+    compositeMinFitLabel: 'min mechanism_fit',
+    compositeGateNote: 'Both thresholds must clear. Neither can pass alone. Naive cosine can’t reproduce this — the gate is what turns strong axis alignment into a defensible go/no-go.',
+    axesEyebrow: 'Canonical mechanism axes',
+    axesCountLabel: '7 core + 1 opt-in',
+    rssChipLabel: 'RSS · opt-in 8th axis',
+    rssChipCopy: 'Replication-Stress Score — enabled only when the therapy modality demands it. Reference: PMID 34552099.',
+    divergenceEyebrow: 'Illustrative divergence cases',
+    divergenceCountLabel: (n) => `${n} case files`,
+    deepDivesEyebrow: 'Engine deep dives',
+    scrollTileEyebrow: 'Scroll surface',
+    scrollTileBody: 'Case-by-case scroll through 3 illustrative divergence scenarios — patient vector, therapy vector, projection, composite verdict.',
+    tabsTileEyebrow: 'Tab strip',
+    tabsTileBody: 'One tab per case + a governance tab covering PATH A signature, RSS opt-in policy, and DL-07 quarantine rule.',
+  },
+  patient: {
+    formulaEyebrow: 'The formula (plain-English)',
+    formulaFooter: 'The tool builds two fingerprints — one for your tumor’s biology, one for how the drug works — and measures how well the drug lines up with the tumor. Higher line-up = better mechanistic match. The team locked in this method on 28 Apr 2026.',
+    explainerEyebrow: 'How the matching works',
+    compositeEyebrow: 'The go / no-go check',
+    compositeExprLegend: 'Weighted score of two checks',
+    compositeAlphaLabel: 'Weight on eligibility',
+    compositeBetaLabel: 'Weight on mechanism match',
+    compositeMinEligLabel: 'Minimum eligibility score',
+    compositeMinFitLabel: 'Minimum mechanism match',
+    compositeGateNote: 'A drug has to clear both minimums to be recommended for you — being strong on one alone is not enough. That’s how the tool avoids false-positive matches.',
+    axesEyebrow: 'The biology dimensions checked',
+    axesCountLabel: '7 always-on + 1 extra',
+    rssChipLabel: 'Extra check — only when relevant',
+    rssChipCopy: 'For drugs that stress a tumor’s DNA copying, the tool adds a Replication-Stress check. It’s turned off for drugs that don’t work through that path.',
+    divergenceEyebrow: 'Example cases where the tool disagrees',
+    divergenceCountLabel: (n) => `${n} example cases`,
+    deepDivesEyebrow: 'See the full walk-through',
+    scrollTileEyebrow: 'Scroll walk-through',
+    scrollTileBody: 'Walks through 3 real examples: the patient tumor pattern, the drug pattern, the match score, and the go / no-go verdict.',
+    tabsTileEyebrow: 'Tabbed view',
+    tabsTileBody: 'The same three examples in tabs, plus a background tab explaining why the method was chosen and how it’s locked down.',
+  },
+  pharma: {
+    formulaEyebrow: 'L2 ranker · locked production formula',
+    formulaFooter: 'p = patient mechanism substrate vector · t = therapy mechanism substrate vector. Projection clipped to [0,1]. PATH A is signed audit-canon; PATH B is prohibited across every downstream surface, receipt, and BD deck.',
+    explainerEyebrow: 'Mechanism Alignment · methodology',
+    compositeEyebrow: 'Composite go/no-go gate',
+    compositeExprLegend: 'α · elig + β · fit (dual-floor)',
+    compositeAlphaLabel: 'α — eligibility weight',
+    compositeBetaLabel: 'β — mechanism-fit weight',
+    compositeMinEligLabel: 'Floor · eligibility',
+    compositeMinFitLabel: 'Floor · mechanism_fit',
+    compositeGateNote: 'Dual-floor gating: both eligibility and mechanism_fit must exceed their thresholds. Naive cosine cannot reproduce this — the gate is what converts strong axis alignment into an audit-defensible go/no-go for portfolio review.',
+    axesEyebrow: 'Canonical mechanism substrate — 7-axis basis',
+    axesCountLabel: '7 canonical + 1 modality-conditional',
+    rssChipLabel: 'RSS — conditional 8th axis',
+    rssChipCopy: 'Replication-Stress Score — engaged only when modality (e.g. ATRi, WEE1i) has published RS-dependent MoA. Reference substrate: PMID 34552099.',
+    divergenceEyebrow: 'Franchise-fit divergence case files',
+    divergenceCountLabel: (n) => `${n} case files · audited`,
+    deepDivesEyebrow: 'BD-legible deep dives',
+    scrollTileEyebrow: 'Scroll surface · narrative',
+    scrollTileBody: 'Case-by-case narrative through 3 franchise-fit divergence scenarios — patient vector, therapy vector, projection math, composite verdict with governance trail.',
+    tabsTileEyebrow: 'Tab strip · discrete',
+    tabsTileBody: 'One tab per case + a governance tab surfacing PATH A signature, RSS opt-in policy, and DL-07 quarantine rule — designed for procurement / diligence review.',
+  },
+};
+
 export default function MechanismAlignmentIntroPage() {
   const { isDarkMode } = useTheme();
   const accent = isDarkMode ? 'text-fuchsia-300' : 'text-fuchsia-600';
@@ -105,175 +207,180 @@ export default function MechanismAlignmentIntroPage() {
       </header>
 
       {/* Body — 2-col grid */}
-      <div className="relative z-10 flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-3 sm:gap-5 px-4 sm:px-8 py-2 sm:py-3">
-        {/* Left column */}
-        <div className="min-h-0 flex flex-col gap-2 sm:gap-3 overflow-hidden">
+      <PersonaContent
+        deck={BRM_BODY_DECK}
+        render={(body) => (
+          <div className="relative z-10 flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-3 sm:gap-5 px-4 sm:px-8 py-2 sm:py-3">
+            {/* Left column */}
+            <div className="min-h-0 flex flex-col gap-2 sm:gap-3 overflow-hidden">
 
-          {/* Formula card */}
-          <section className={`rounded-sm border p-3 sm:p-4 shrink-0 ${panel}`}>
-            <p className={`text-[10px] font-black uppercase tracking-widest mb-2 ${accent}`}>
-              PATH A ranker · production formula
-            </p>
-            <div className={`rounded border px-3 py-2 text-center ${isDarkMode ? 'border-zinc-700 bg-zinc-900/60' : 'border-slate-200 bg-slate-50'}`}>
-              <code className={`text-sm sm:text-base font-black ${textMain}`}>{PATH_A_FORMULA}</code>
-            </div>
-            <p className={`mt-2 text-[10px] leading-snug ${textMuted}`}>
-              p = patient mechanism vector · t = therapy mechanism vector · projection clipped to [0,1]. PATH B fallback is prohibited in every downstream surface.
-            </p>
-          </section>
+              {/* Formula card */}
+              <section className={`rounded-sm border p-3 sm:p-4 shrink-0 ${panel}`}>
+                <p className={`text-[10px] font-black uppercase tracking-widest mb-2 ${accent}`}>
+                  {body.formulaEyebrow}
+                </p>
+                <div className={`rounded border px-3 py-2 text-center ${isDarkMode ? 'border-zinc-700 bg-zinc-900/60' : 'border-slate-200 bg-slate-50'}`}>
+                  <code className={`text-sm sm:text-base font-black ${textMain}`}>{PATH_A_FORMULA}</code>
+                </div>
+                <p className={`mt-2 text-[10px] leading-snug ${textMuted}`}>
+                  {body.formulaFooter}
+                </p>
+              </section>
 
-          {/* Explainer bullets */}
-          <section className={`rounded-sm border p-3 sm:p-4 shrink-0 ${panel}`}>
-            <p className={`text-[10px] font-black uppercase tracking-widest mb-2 ${accent}`}>
-              How Mechanism Alignment works
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-              {MECHANISM_ALIGNMENT_EXPLAINER.map((item) => (
-                <div key={item.label} className="min-w-0">
-                  <span className={`text-[9px] font-black uppercase block ${textMuted}`}>{item.label}</span>
-                  <p className={`text-[11px] sm:text-xs leading-snug mt-0.5 ${textMain}`}>{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Composite gate */}
-          <section className={`rounded-sm border flex-1 min-h-0 flex flex-col overflow-hidden ${panel}`}>
-            <div className={`shrink-0 flex items-center justify-between px-3 py-2 border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-100'}`}>
-              <span className={`text-[10px] font-black uppercase tracking-widest ${textMain}`}>
-                Composite gate
-              </span>
-              <span className={`text-[9px] font-bold uppercase ${textMuted}`}>α · elig + β · fit</span>
-            </div>
-            <div className="flex-1 min-h-0 px-3 py-2 sm:py-3 space-y-2">
-              <div className={`rounded border px-3 py-2 text-center ${isDarkMode ? 'border-zinc-700 bg-zinc-900/40' : 'border-slate-200 bg-slate-50'}`}>
-                <code className={`text-xs sm:text-sm font-black ${textMain}`}>{COMPOSITE_EXPRESSION}</code>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <div className={`rounded border p-2 ${panel}`}>
-                  <p className={`text-[9px] font-black uppercase ${textMuted}`}>α (eligibility)</p>
-                  <p className={`text-sm font-black ${textMain}`}>{MECHANISM_FIT_ALPHA}</p>
-                </div>
-                <div className={`rounded border p-2 ${panel}`}>
-                  <p className={`text-[9px] font-black uppercase ${textMuted}`}>β (fit)</p>
-                  <p className={`text-sm font-black ${textMain}`}>{MECHANISM_FIT_BETA}</p>
-                </div>
-                <div className={`rounded border p-2 ${panel}`}>
-                  <p className={`text-[9px] font-black uppercase ${textMuted}`}>min eligibility</p>
-                  <p className={`text-sm font-black ${textMain}`}>{MIN_ELIGIBILITY_THRESHOLD.toFixed(2)}</p>
-                </div>
-                <div className={`rounded border p-2 ${panel}`}>
-                  <p className={`text-[9px] font-black uppercase ${textMuted}`}>min mechanism_fit</p>
-                  <p className={`text-sm font-black ${textMain}`}>{MIN_MECHANISM_FIT_THRESHOLD.toFixed(2)}</p>
-                </div>
-              </div>
-              <p className={`text-[10px] leading-snug ${textMuted}`}>
-                Both thresholds must clear. Neither can pass alone. Naive cosine can’t reproduce this — the gate is what turns strong axis alignment into a defensible go/no-go.
-              </p>
-            </div>
-          </section>
-        </div>
-
-        {/* Right column */}
-        <div className="min-h-0 flex flex-col gap-2 sm:gap-3 overflow-hidden">
-
-          {/* Axis chips */}
-          <section className={`rounded-sm border p-3 sm:p-4 shrink-0 ${panel}`}>
-            <div className="flex items-center justify-between mb-2">
-              <span className={`text-[10px] font-black uppercase tracking-widest ${accent}`}>
-                Canonical mechanism axes
-              </span>
-              <span className={`text-[9px] font-bold uppercase ${textMuted}`}>7 core + 1 opt-in</span>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
-              {PATHWAYS_7D.map((p) => (
-                <div key={p.key} className={`rounded border px-2 py-1.5 ${chip}`}>
-                  <p className="text-[9px] font-black uppercase leading-none">{p.label}</p>
-                  <p className={`text-[9px] leading-snug mt-0.5 ${textMuted}`}>{p.name}</p>
-                </div>
-              ))}
-              <div className={`rounded border px-2 py-1.5 col-span-2 sm:col-span-4 ${chipRss}`}>
-                <p className="text-[9px] font-black uppercase leading-none">RSS · opt-in 8th axis</p>
-                <p className="text-[9px] leading-snug mt-0.5 opacity-80">Replication-Stress Score — enabled only when the therapy modality demands it. Reference: PMID 34552099.</p>
-              </div>
-            </div>
-          </section>
-
-          {/* Divergence teasers */}
-          <section className={`rounded-sm border flex-1 min-h-0 flex flex-col overflow-hidden ${panel}`}>
-            <div className={`shrink-0 flex items-center justify-between px-3 py-2 border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-100'}`}>
-              <span className={`text-[10px] font-black uppercase tracking-widest ${textMain}`}>Illustrative divergence cases</span>
-              <span className={`text-[9px] font-bold uppercase ${textMuted}`}>{DIVERGENCE_CASES.length} case files</span>
-            </div>
-            <div className="flex-1 min-h-0 overflow-y-auto divide-y divide-transparent">
-              {DIVERGENCE_CASES.map((c, i) => (
-                <div
-                  key={c.id}
-                  className={`px-3 py-2 sm:py-2.5 border-b last:border-b-0 ${
-                    isDarkMode ? 'border-zinc-800/70' : 'border-slate-100'
-                  }`}
-                >
-                  <div className="flex items-start gap-2">
-                    <span className={`text-[10px] font-black uppercase mt-0.5 ${accent}`}>
-                      {c.id}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <p className={`text-[12px] font-bold leading-snug ${textMain}`}>{c.title}</p>
-                      <p className={`text-[10px] leading-snug mt-0.5 ${textMuted}`}>{c.audience}</p>
+              {/* Explainer bullets */}
+              <section className={`rounded-sm border p-3 sm:p-4 shrink-0 ${panel}`}>
+                <p className={`text-[10px] font-black uppercase tracking-widest mb-2 ${accent}`}>
+                  {body.explainerEyebrow}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                  {MECHANISM_ALIGNMENT_EXPLAINER.map((item) => (
+                    <div key={item.label} className="min-w-0">
+                      <span className={`text-[9px] font-black uppercase block ${textMuted}`}>{item.label}</span>
+                      <p className={`text-[11px] sm:text-xs leading-snug mt-0.5 ${textMain}`}>{item.text}</p>
                     </div>
-                    <span className={`shrink-0 text-[9px] font-black uppercase rounded px-1.5 py-0.5 ${c.outcome.verdict === 'FAIL' ? 'bg-rose-500/20 text-rose-400' : 'bg-emerald-500/20 text-emerald-400'}`}>
-                      {c.outcome.verdict}
-                    </span>
-                  </div>
-                  <p className={`mt-1 text-[10px] leading-snug ${textMuted}`}>
-                    <span className={`font-bold ${textMain}`}>{c.conflict.label}:</span> {c.conflict.detail}
-                  </p>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </section>
+              </section>
 
-          {/* Deep dives */}
-          <section className={`rounded-sm border p-3 sm:p-4 shrink-0 ${panel}`}>
-            <p className={`text-[10px] font-black uppercase tracking-widest mb-2 ${accent}`}>
-              Engine deep dives
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <Link
-                href="/engine/mechanism-alignment/scroll"
-                className={`group flex items-start gap-2 rounded-sm border p-2.5 transition-colors ${panel} ${
-                  isDarkMode ? 'hover:border-fuchsia-500/40' : 'hover:border-fuchsia-300'
-                }`}
-              >
-                <div className="min-w-0 flex-1">
-                  <p className={`text-[10px] font-black uppercase tracking-[0.15em] ${accent}`}>Scroll surface</p>
-                  <p className={`mt-1 text-[11px] leading-snug ${textMain}`}>
-                    Case-by-case scroll through 3 illustrative divergence scenarios — patient vector, therapy vector, projection, composite verdict.
+              {/* Composite gate */}
+              <section className={`rounded-sm border flex-1 min-h-0 flex flex-col overflow-hidden ${panel}`}>
+                <div className={`shrink-0 flex items-center justify-between px-3 py-2 border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-100'}`}>
+                  <span className={`text-[10px] font-black uppercase tracking-widest ${textMain}`}>
+                    {body.compositeEyebrow}
+                  </span>
+                  <span className={`text-[9px] font-bold uppercase ${textMuted}`}>{body.compositeExprLegend}</span>
+                </div>
+                <div className="flex-1 min-h-0 px-3 py-2 sm:py-3 space-y-2">
+                  <div className={`rounded border px-3 py-2 text-center ${isDarkMode ? 'border-zinc-700 bg-zinc-900/40' : 'border-slate-200 bg-slate-50'}`}>
+                    <code className={`text-xs sm:text-sm font-black ${textMain}`}>{COMPOSITE_EXPRESSION}</code>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className={`rounded border p-2 ${panel}`}>
+                      <p className={`text-[9px] font-black uppercase ${textMuted}`}>{body.compositeAlphaLabel}</p>
+                      <p className={`text-sm font-black ${textMain}`}>{MECHANISM_FIT_ALPHA}</p>
+                    </div>
+                    <div className={`rounded border p-2 ${panel}`}>
+                      <p className={`text-[9px] font-black uppercase ${textMuted}`}>{body.compositeBetaLabel}</p>
+                      <p className={`text-sm font-black ${textMain}`}>{MECHANISM_FIT_BETA}</p>
+                    </div>
+                    <div className={`rounded border p-2 ${panel}`}>
+                      <p className={`text-[9px] font-black uppercase ${textMuted}`}>{body.compositeMinEligLabel}</p>
+                      <p className={`text-sm font-black ${textMain}`}>{MIN_ELIGIBILITY_THRESHOLD.toFixed(2)}</p>
+                    </div>
+                    <div className={`rounded border p-2 ${panel}`}>
+                      <p className={`text-[9px] font-black uppercase ${textMuted}`}>{body.compositeMinFitLabel}</p>
+                      <p className={`text-sm font-black ${textMain}`}>{MIN_MECHANISM_FIT_THRESHOLD.toFixed(2)}</p>
+                    </div>
+                  </div>
+                  <p className={`text-[10px] leading-snug ${textMuted}`}>
+                    {body.compositeGateNote}
                   </p>
                 </div>
-                <ArrowRight className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${accent}`} />
-              </Link>
-              <Link
-                href="/engine/mechanism-alignment/tabs"
-                className={`group flex items-start gap-2 rounded-sm border p-2.5 transition-colors ${panel} ${
-                  isDarkMode ? 'hover:border-fuchsia-500/40' : 'hover:border-fuchsia-300'
-                }`}
-              >
-                <div className="min-w-0 flex-1">
-                  <p className={`text-[10px] font-black uppercase tracking-[0.15em] ${accent}`}>Tab strip</p>
-                  <p className={`mt-1 text-[11px] leading-snug ${textMain}`}>
-                    One tab per case + a governance tab covering PATH A signature, RSS opt-in policy, and DL-07 quarantine rule.
-                  </p>
-                </div>
-                <ArrowRight className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${accent}`} />
-              </Link>
+              </section>
             </div>
-            <p className={`mt-2 text-[9px] italic leading-snug ${textMuted}`}>
-              {PATH_A_APPROVAL}
-            </p>
-          </section>
-        </div>
-      </div>
+
+            {/* Right column */}
+            <div className="min-h-0 flex flex-col gap-2 sm:gap-3 overflow-hidden">
+
+              {/* Axis chips */}
+              <section className={`rounded-sm border p-3 sm:p-4 shrink-0 ${panel}`}>
+                <div className="flex items-center justify-between mb-2">
+                  <span className={`text-[10px] font-black uppercase tracking-widest ${accent}`}>
+                    {body.axesEyebrow}
+                  </span>
+                  <span className={`text-[9px] font-bold uppercase ${textMuted}`}>{body.axesCountLabel}</span>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+                  {PATHWAYS_7D.map((p) => (
+                    <div key={p.key} className={`rounded border px-2 py-1.5 ${chip}`}>
+                      <p className="text-[9px] font-black uppercase leading-none">{p.label}</p>
+                      <p className={`text-[9px] leading-snug mt-0.5 ${textMuted}`}>{p.name}</p>
+                    </div>
+                  ))}
+                  <div className={`rounded border px-2 py-1.5 col-span-2 sm:col-span-4 ${chipRss}`}>
+                    <p className="text-[9px] font-black uppercase leading-none">{body.rssChipLabel}</p>
+                    <p className="text-[9px] leading-snug mt-0.5 opacity-80">{body.rssChipCopy}</p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Divergence teasers */}
+              <section className={`rounded-sm border flex-1 min-h-0 flex flex-col overflow-hidden ${panel}`}>
+                <div className={`shrink-0 flex items-center justify-between px-3 py-2 border-b ${isDarkMode ? 'border-zinc-800' : 'border-slate-100'}`}>
+                  <span className={`text-[10px] font-black uppercase tracking-widest ${textMain}`}>{body.divergenceEyebrow}</span>
+                  <span className={`text-[9px] font-bold uppercase ${textMuted}`}>{body.divergenceCountLabel(DIVERGENCE_CASES.length)}</span>
+                </div>
+                <div className="flex-1 min-h-0 overflow-y-auto divide-y divide-transparent">
+                  {DIVERGENCE_CASES.map((c) => (
+                    <div
+                      key={c.id}
+                      className={`px-3 py-2 sm:py-2.5 border-b last:border-b-0 ${
+                        isDarkMode ? 'border-zinc-800/70' : 'border-slate-100'
+                      }`}
+                    >
+                      <div className="flex items-start gap-2">
+                        <span className={`text-[10px] font-black uppercase mt-0.5 ${accent}`}>
+                          {c.id}
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <p className={`text-[12px] font-bold leading-snug ${textMain}`}>{c.title}</p>
+                          <p className={`text-[10px] leading-snug mt-0.5 ${textMuted}`}>{c.audience}</p>
+                        </div>
+                        <span className={`shrink-0 text-[9px] font-black uppercase rounded px-1.5 py-0.5 ${c.outcome.verdict === 'FAIL' ? 'bg-rose-500/20 text-rose-400' : 'bg-emerald-500/20 text-emerald-400'}`}>
+                          {c.outcome.verdict}
+                        </span>
+                      </div>
+                      <p className={`mt-1 text-[10px] leading-snug ${textMuted}`}>
+                        <span className={`font-bold ${textMain}`}>{c.conflict.label}:</span> {c.conflict.detail}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* Deep dives */}
+              <section className={`rounded-sm border p-3 sm:p-4 shrink-0 ${panel}`}>
+                <p className={`text-[10px] font-black uppercase tracking-widest mb-2 ${accent}`}>
+                  {body.deepDivesEyebrow}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <Link
+                    href="/engine/mechanism-alignment/scroll"
+                    className={`group flex items-start gap-2 rounded-sm border p-2.5 transition-colors ${panel} ${
+                      isDarkMode ? 'hover:border-fuchsia-500/40' : 'hover:border-fuchsia-300'
+                    }`}
+                  >
+                    <div className="min-w-0 flex-1">
+                      <p className={`text-[10px] font-black uppercase tracking-[0.15em] ${accent}`}>{body.scrollTileEyebrow}</p>
+                      <p className={`mt-1 text-[11px] leading-snug ${textMain}`}>
+                        {body.scrollTileBody}
+                      </p>
+                    </div>
+                    <ArrowRight className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${accent}`} />
+                  </Link>
+                  <Link
+                    href="/engine/mechanism-alignment/tabs"
+                    className={`group flex items-start gap-2 rounded-sm border p-2.5 transition-colors ${panel} ${
+                      isDarkMode ? 'hover:border-fuchsia-500/40' : 'hover:border-fuchsia-300'
+                    }`}
+                  >
+                    <div className="min-w-0 flex-1">
+                      <p className={`text-[10px] font-black uppercase tracking-[0.15em] ${accent}`}>{body.tabsTileEyebrow}</p>
+                      <p className={`mt-1 text-[11px] leading-snug ${textMain}`}>
+                        {body.tabsTileBody}
+                      </p>
+                    </div>
+                    <ArrowRight className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${accent}`} />
+                  </Link>
+                </div>
+                <p className={`mt-2 text-[9px] italic leading-snug ${textMuted}`}>
+                  {PATH_A_APPROVAL}
+                </p>
+              </section>
+            </div>
+          </div>
+        )}
+      />
     </div>
   );
 }
