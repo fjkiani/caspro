@@ -218,8 +218,11 @@ const DECK_LITERAL = (deckName) =>
   new RegExp(`const\\s+${deckName.replace(/_INVARIANTS$/, '')}\\s*(?::[^=]+)?=\\s*\\{`, 'g');
 const PERSONA_KEYS = ['oncologist', 'patient', 'pharma'];
 
-function extractPersonaBlockText(source, deckIdx) {
-  // Balanced-brace scan starting at the '{' index.
+function extractPersonaBlock(source, deckIdx) {
+  // Balanced-brace scan starting at/after deckIdx. Returns { body, bodyStart }
+  // where bodyStart is the ABSOLUTE offset (in `source`) of the first
+  // character INSIDE the outermost matched braces. Returns null if the braces
+  // do not balance before EOF.
   let depth = 0;
   let start = -1;
   for (let i = deckIdx; i < source.length; i++) {
@@ -230,11 +233,17 @@ function extractPersonaBlockText(source, deckIdx) {
     } else if (ch === '}') {
       depth -= 1;
       if (depth === 0 && start >= 0) {
-        return source.slice(start + 1, i);
+        return { body: source.slice(start + 1, i), bodyStart: start + 1 };
       }
     }
   }
-  return '';
+  return null;
+}
+
+// Backwards-compatible thin wrapper — returns just the body string.
+function extractPersonaBlockText(source, deckIdx) {
+  const r = extractPersonaBlock(source, deckIdx);
+  return r ? r.body : '';
 }
 
 function findPersonaInvariant(source, relPath) {
@@ -251,12 +260,14 @@ function findPersonaInvariant(source, relPath) {
     const deckRe = new RegExp(`const\\s+${deckName}\\s*(?::[^=]+)?=\\s*\\{`);
     const dm = deckRe.exec(source);
     if (!dm) continue;
-    const deckBody = extractPersonaBlockText(source, dm.index);
-    if (!deckBody) continue;
+    const deck = extractPersonaBlock(source, dm.index);
+    if (!deck) continue;
     for (const persona of PERSONA_KEYS) {
-      // Loose per-persona block extraction (best-effort scan).
+      // Locate the persona key WITHIN the deck body, then re-scan the raw
+      // source at the absolute offset so brace-balancing matches the outer
+      // deck coordinate frame.
       const pRe = new RegExp(`${persona}\\s*:\\s*\\{`, 'g');
-      const pm = pRe.exec(deckBody);
+      const pm = pRe.exec(deck.body);
       if (!pm) {
         violations.push({
           rule: 'PERSONA_INVARIANT',
@@ -267,8 +278,9 @@ function findPersonaInvariant(source, relPath) {
         });
         continue;
       }
-      const pStart = dm.index + pm.index + pm[0].length - 1;
-      const pBody = extractPersonaBlockText(source, pStart);
+      // pm.index is an offset within deck.body; convert to absolute source coord.
+      const pAbs = deck.bodyStart + pm.index;
+      const pBody = extractPersonaBlockText(source, pAbs);
       const missing = tokens.filter((t) => !pBody.toLowerCase().includes(t.toLowerCase()));
       if (missing.length > 0) {
         violations.push({
@@ -305,14 +317,14 @@ function findPersonaNameParity(source, relPath) {
     const deckRe = new RegExp(`const\\s+${deckName}\\s*(?::[^=]+)?=\\s*\\{`);
     const dm = deckRe.exec(source);
     if (!dm) continue;
-    const deckBody = extractPersonaBlockText(source, dm.index);
-    if (!deckBody) continue;
+    const deck = extractPersonaBlock(source, dm.index);
+    if (!deck) continue;
     for (const persona of PERSONA_KEYS) {
       const pRe = new RegExp(`${persona}\\s*:\\s*\\{`, 'g');
-      const pm = pRe.exec(deckBody);
+      const pm = pRe.exec(deck.body);
       if (!pm) continue;
-      const pStart = dm.index + pm.index + pm[0].length - 1;
-      const pBody = extractPersonaBlockText(source, pStart);
+      const pAbs = deck.bodyStart + pm.index;
+      const pBody = extractPersonaBlockText(source, pAbs);
       const missing = names.filter((n) => !pBody.includes(n));
       if (missing.length > 0) {
         violations.push({
@@ -348,19 +360,34 @@ function findPatientJargon(source, relPath) {
   while ((dm = deckRe.exec(source)) !== null) {
     const deckName = dm[1];
     if (!/DECK|COPY/i.test(deckName)) continue;
-    const deckBody = extractPersonaBlockText(source, dm.index);
-    if (!deckBody) continue;
+    const deck = extractPersonaBlock(source, dm.index);
+    if (!deck) continue;
     const pRe = /patient\s*:\s*\{/g;
-    const pm = pRe.exec(deckBody);
+    const pm = pRe.exec(deck.body);
     if (!pm) continue;
-    const pStart = dm.index + pm.index + pm[0].length - 1;
-    const pBody = extractPersonaBlockText(source, pStart);
-    for (const jargon of PATIENT_JARGON_TOKENS) {
+    const pAbs = deck.bodyStart + pm.index;
+    const pBody = extractPersonaBlockText(source, pAbs);
+    // Iterate jargon list longest-first so subsumed substrings (e.g. 'IC50'
+    // inside 'LN_IC50') don't produce a duplicate violation for the same
+    // sentence. Track per-sentence flagged tokens to avoid the same sentence
+    // firing on both LN_IC50 and IC50.
+    const sortedJargon = [...PATIENT_JARGON_TOKENS].sort((a, b) => b.length - a.length);
+    const sentences = pBody.split(/[.!?\n]+/);
+    const flaggedRanges = new Array(sentences.length).fill(null).map(() => []);
+    for (const jargon of sortedJargon) {
       if (!pBody.includes(jargon)) continue;
-      const sentences = pBody.split(/[.!?\n]+/);
-      for (const s of sentences) {
-        if (!s.includes(jargon)) continue;
+      for (let si = 0; si < sentences.length; si += 1) {
+        const s = sentences[si];
+        const jIdx = s.indexOf(jargon);
+        if (jIdx < 0) continue;
         if (PLAIN_LANG_MARKERS.test(s)) continue;
+        // Skip if this hit is inside a range already flagged (a longer token
+        // was matched first at an overlapping position).
+        const overlaps = flaggedRanges[si].some(
+          ([lo, hi]) => jIdx >= lo && jIdx + jargon.length <= hi,
+        );
+        if (overlaps) continue;
+        flaggedRanges[si].push([jIdx, jIdx + jargon.length]);
         violations.push({
           rule: 'PERSONA_PATIENT_JARGON',
           file: relPath,
