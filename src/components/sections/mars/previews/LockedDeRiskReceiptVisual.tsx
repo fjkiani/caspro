@@ -7,6 +7,8 @@
 
 import { Lock, Shield } from 'lucide-react';
 import { TRIAL_CASE_FILES } from '@/data/trial-case-files';
+import { getTrialPersonaHeaders } from '@/data/trial-case-files/trials-persona-copy';
+import { usePersona } from '@/context/PersonaContext';
 
 type LockedDeRiskReceiptVisualProps = {
   trialId: string;
@@ -24,8 +26,10 @@ export default function LockedDeRiskReceiptVisual({
   trialId,
   isDarkMode,
 }: LockedDeRiskReceiptVisualProps) {
+  const { persona } = usePersona();
   const trial = TRIAL_CASE_FILES[trialId];
   if (!trial) return null;
+  const trialHeader = getTrialPersonaHeaders(trial, persona);
 
   const panel = isDarkMode
     ? 'bg-zinc-950/80 border-zinc-800 text-zinc-100'
@@ -49,10 +53,10 @@ export default function LockedDeRiskReceiptVisual({
             De-Risking Receipt // Sealed
           </span>
           <h3 className="mt-2 text-sm sm:text-base font-black uppercase tracking-tight truncate">
-            {trial.title}
+            {trialHeader.title}
           </h3>
           <p className={`mt-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest ${muted}`}>
-            {trial.drugLine}
+            {trialHeader.drugLine}
           </p>
         </div>
         <div

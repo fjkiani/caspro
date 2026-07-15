@@ -23,6 +23,7 @@ import { usePersona } from '@/context/PersonaContext';
 import { PROGRAM_CARD_COPY } from '@/data/pipeline/persona-copy';
 import type { PipelineProgram } from '@/data/pipeline-master';
 import { nctToLedgerSlug } from '@/data/pipeline-master';
+import { getPipelinePersonaHeader } from '@/data/pipeline-master-persona-copy';
 import { TRIAL_LEDGER_SLUGS } from '@/data/trial-ledger-registry';
 
 interface Props {
@@ -52,6 +53,7 @@ export default function PipelineProgramCard({ program: p, tab }: Props) {
   const { isDarkMode } = useTheme();
   const { persona } = usePersona();
   const copy = PROGRAM_CARD_COPY[persona];
+  const header = getPipelinePersonaHeader(p, persona);
 
   // ---- token colors, defined once ----
   const cardBorder = isDarkMode ? 'border-white/10' : 'border-zinc-200';
@@ -75,12 +77,12 @@ export default function PipelineProgramCard({ program: p, tab }: Props) {
     <article className={`rounded border p-5 ${cardBorder} ${cardBg}`}>
       <header>
         <div className={`text-[10px] uppercase tracking-widest ${eyebrow}`}>{p.program_id}</div>
-        <h2 className={`mt-1 text-xl font-semibold ${heading}`}>{p.program_name}</h2>
-        {p.headline && <p className={`mt-2 text-sm ${body}`}>{p.headline}</p>}
+        <h2 className={`mt-1 text-xl font-semibold ${heading}`}>{header.program_name}</h2>
+        {header.headline && <p className={`mt-2 text-sm ${body}`}>{header.headline}</p>}
         <div className={`mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[10px] uppercase tracking-widest ${meta}`}>
-          {p.indication_focus && <span>focus · {p.indication_focus}</span>}
-          {p.ip_value && <span>IP · {p.ip_value}</span>}
-          <span>admissibility · {p.admissibility}</span>
+          {header.indication_focus && <span>focus · {header.indication_focus}</span>}
+          {header.ip_value && <span>IP · {header.ip_value}</span>}
+          <span>admissibility · {header.admissibility}</span>
         </div>
       </header>
 

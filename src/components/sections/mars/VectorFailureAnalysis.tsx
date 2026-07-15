@@ -27,6 +27,8 @@ import {
   TRIAL_CASE_FILES,
   HAND_AUTHORED_TRIAL_IDS,
 } from '@/data/trial-case-files';
+import { getTrialPersonaHeaders } from '@/data/trial-case-files/trials-persona-copy';
+import { usePersona } from '@/context/PersonaContext';
 import { marsReadable } from '@/components/sections/mars/readable-text';
 import { MoaGlyphStrip } from '@/components/sections/mars/MoaGlyphStrip';
 import { isCosineGated, toneClasses } from '@/components/sections/mars/gated-values';
@@ -63,8 +65,10 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
 }) => {
   const router = useRouter();
   const { isDarkMode } = useTheme();
+  const { persona } = usePersona();
   const [activeTrialId, setActiveTrialId] = useState(initialTrialId);
   const trial = TRIAL_CASE_FILES[activeTrialId] ?? TRIAL_CASE_FILES['latify'];
+  const trialHeader = getTrialPersonaHeaders(trial, persona);
   const radarData = useMemo(() => buildRadarData(trial), [trial]);
 
   const panelClass = isDarkMode
@@ -326,7 +330,7 @@ export const VectorFailureAnalysis: React.FC<VectorFailureAnalysisProps> = ({
               : 'border-sky-600 bg-sky-600/10 text-sky-700 hover:bg-sky-600 hover:text-white hover:shadow-sky-500/30'
           }`}
         >
-          View {trial.title}
+          View {trialHeader.title}
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>

@@ -14,6 +14,8 @@ import {
 
 // --- Data ---
 import { TRIAL_CASE_FILES, type TrialCaseFile } from '@/data/trial-case-files';
+import { getTrialPersonaHeaders } from '@/data/trial-case-files/trials-persona-copy';
+import { usePersona } from '@/context/PersonaContext';
 import {
   buildDualGeometryRadarData,
   DualGeometryRadar,
@@ -44,10 +46,12 @@ function buildRadarData(trial: TrialCaseFile) {
 
 export default function TrialDeRiskMap({ initialTrialId = 'latify' }: { initialTrialId?: string }) {
   const { isDarkMode } = useTheme();
+  const { persona } = usePersona();
   const [activeTab, setActiveTab] = useState<'Overview' | 'Artifacts'>('Overview');
   const [activeTrialId, setActiveTrialId] = useState(initialTrialId);
 
   const trial: TrialCaseFile = TRIAL_CASE_FILES[activeTrialId] ?? TRIAL_CASE_FILES['latify'];
+  const trialHeader = getTrialPersonaHeaders(trial, persona);
   const radarData = buildRadarData(trial);
   const { body: bodyText, secondary: secondaryText } = marsReadable(isDarkMode);
 
@@ -86,13 +90,13 @@ export default function TrialDeRiskMap({ initialTrialId = 'latify' }: { initialT
           </div>
           <div className="space-y-1">
             <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-              <h1 className={`text-base sm:text-xl md:text-2xl font-black tracking-tighter uppercase transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{trial.title}</h1>
+              <h1 className={`text-base sm:text-xl md:text-2xl font-black tracking-tighter uppercase transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{trialHeader.title}</h1>
               <span className={`self-start md:self-auto px-3 py-1 rounded-sm text-[10px] font-black uppercase tracking-[0.2em] border ${
                 isDarkMode ? 'bg-zinc-950 border-zinc-800 text-zinc-200' : 'bg-slate-100 border-slate-200 text-slate-700'
               }`}>{trial.trialId}</span>
             </div>
             <p className={`text-[10px] md:text-[11px] font-bold uppercase tracking-widest ${isDarkMode ? 'text-zinc-300' : 'text-slate-600'}`}>
-              {trial.drugLine}
+              {trialHeader.drugLine}
             </p>
           </div>
         </div>

@@ -34,8 +34,10 @@ import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
 import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
 import {
   LEDGER_PROGRAMS,
+  getLedgerTransferLessons,
   type LedgerProgram,
 } from '@/data/ledger-programs';
+import { usePersona } from '@/context/PersonaContext';
 import { TRIAL_LEDGER_BY_SLUG } from '@/data/trial-ledger-registry';
 import { isGatedLedgerTrial } from '@/data/trial-gate';
 import BrenusVectorWallTab from './BrenusVectorWallTab';
@@ -276,7 +278,9 @@ function TrialsTab({
 }
 
 function LessonsTab({ program, isDarkMode }: { program: LedgerProgram; isDarkMode: boolean }) {
-  if (!program.transferLessons.length) {
+  const { persona } = usePersona();
+  const lessons = getLedgerTransferLessons(program, persona);
+  if (!lessons.length) {
     return (
       <p className={`text-xs italic ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
         Transfer lessons for this program are consolidated in the findings tab.
@@ -285,7 +289,7 @@ function LessonsTab({ program, isDarkMode }: { program: LedgerProgram; isDarkMod
   }
   return (
     <ul className="space-y-2">
-      {program.transferLessons.map((l, i) => (
+      {lessons.map((l, i) => (
         <li
           key={i}
           className={`rounded border p-3 text-[12px] leading-relaxed ${

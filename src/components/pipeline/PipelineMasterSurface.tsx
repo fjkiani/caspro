@@ -24,6 +24,7 @@ import {
   PIPELINE_META,
   PIPELINE_PLATFORM,
 } from '@/data/pipeline-master';
+import { getPipelinePersonaHeader } from '@/data/pipeline-master-persona-copy';
 import PipelineProgramCard from './PipelineProgramCard';
 
 const TABS = ['overview', 'trials', 'findings', 'lessons', 'value'] as const;
@@ -136,7 +137,7 @@ export default function PipelineMasterSurface() {
                       #{p.program_number} · {p.trial_count} trials
                     </div>
                     <div className={`truncate text-sm font-medium ${isActive ? activeText : heading}`}>
-                      {p.program_name}
+                      {getPipelinePersonaHeader(p, persona).program_name}
                     </div>
                     {p.admissibility !== 'external_safe' && (
                       <div

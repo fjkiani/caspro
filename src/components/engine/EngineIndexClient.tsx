@@ -39,7 +39,7 @@ import {
   PUBLIC_MANDATORY_DISCLOSURES,
   PUBLIC_PROHIBITED_CLAIMS,
 } from '@/data/depth-layer';
-import { CAPABILITY_DEPTH_WIRING } from '@/data/capability-depth-wiring';
+import { CAPABILITY_DEPTH_WIRING, getWiringCopy } from '@/data/capability-depth-wiring';
 
 type TabKey =
   | 'gate-tier-scoring'
@@ -186,6 +186,7 @@ function OverviewTab({ cap, isDarkMode, persona }: { cap: CapabilityEntry; isDar
 // Sub-tab: Powers — what substrate backs this capability
 // -----------------------------------------------------------------------------
 function PowersTab({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMode: boolean }) {
+  const { persona } = usePersona();
   const wire = CAPABILITY_DEPTH_WIRING.find((w) => w.capabilitySlug === cap.slug);
   const label = isDarkMode ? 'text-cyan-400' : 'text-indigo-600';
   const value = isDarkMode ? 'text-zinc-200' : 'text-slate-800';
@@ -197,6 +198,10 @@ function PowersTab({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMode: bool
     return <p className={`text-sm ${muted}`}>No substrate wiring for this capability.</p>;
   }
 
+  const copy = getWiringCopy(cap.slug, persona) ?? {
+    headlineSubstrateSentence: wire.headlineSubstrateSentence,
+    headlineGovernanceSentence: wire.headlineGovernanceSentence,
+  };
   const axes = wire.substrateAxes.map((slug) => PATIENT_VECTOR_AXES.find((a) => a.axis === slug)).filter(Boolean);
   const modalities = wire.substrateModalities.map((slug) => EVIDENCE_MODALITIES_7.find((m) => m.modality === slug)).filter(Boolean);
 
@@ -204,7 +209,7 @@ function PowersTab({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMode: bool
     <div className="flex flex-col gap-4">
       <div className={`rounded-lg border p-4 ${box}`}>
         <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-1.5 ${label}`}>Headline</p>
-        <p className={`text-sm leading-relaxed ${value}`}>{wire.headlineSubstrateSentence}</p>
+        <p className={`text-sm leading-relaxed ${value}`}>{copy.headlineSubstrateSentence}</p>
       </div>
 
       <div className={`rounded-lg border p-4 ${box}`}>
@@ -257,6 +262,7 @@ function PowersTab({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMode: bool
 // Sub-tab: Governance — how this capability is gated
 // -----------------------------------------------------------------------------
 function GovernanceTab({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMode: boolean }) {
+  const { persona } = usePersona();
   const wire = CAPABILITY_DEPTH_WIRING.find((w) => w.capabilitySlug === cap.slug);
   const label = isDarkMode ? 'text-cyan-400' : 'text-indigo-600';
   const value = isDarkMode ? 'text-zinc-200' : 'text-slate-800';
@@ -269,13 +275,17 @@ function GovernanceTab({ cap, isDarkMode }: { cap: CapabilityEntry; isDarkMode: 
   if (!wire) {
     return <p className={`text-sm ${muted}`}>No governance wiring for this capability.</p>;
   }
+  const copy = getWiringCopy(cap.slug, persona) ?? {
+    headlineSubstrateSentence: wire.headlineSubstrateSentence,
+    headlineGovernanceSentence: wire.headlineGovernanceSentence,
+  };
   const guardrails = wire.governanceGuardrails.map((slug) => GOVERNANCE_GUARDRAILS.find((g) => g.slug === slug)).filter(Boolean);
 
   return (
     <div className="flex flex-col gap-4">
       <div className={`rounded-lg border p-4 ${box}`}>
         <p className={`text-[10px] font-bold uppercase tracking-[0.2em] mb-1.5 ${label}`}>Headline</p>
-        <p className={`text-sm leading-relaxed ${value}`}>{wire.headlineGovernanceSentence}</p>
+        <p className={`text-sm leading-relaxed ${value}`}>{copy.headlineGovernanceSentence}</p>
       </div>
 
       <div className={`rounded-lg border p-4 ${box}`}>
