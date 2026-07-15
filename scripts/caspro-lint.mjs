@@ -205,6 +205,177 @@ function findSlop(lines, relPath) {
 }
 
 // ----------------------------------------------------------------------------
+// Rule 4: PERSONA_INVARIANT
+//   For any file that declares a PersonaCopyDeck<T> literal with an adjacent
+//   `INVARIANTS = [...]` array (either exported or module-local), every persona
+//   variant of the deck must contain every invariant substring.
+//   Scan strategy: extract deck literal + INVARIANTS pair via balanced-brace scan
+//   on the raw source, then for each persona key ('oncologist' | 'patient' | 'pharma')
+//   assert each invariant token is present in the concatenated string leaves.
+// ----------------------------------------------------------------------------
+const DECK_INVARIANT_BLOCK = /const\s+([A-Z_0-9]+_INVARIANTS)\s*(?::\s*[^=]+)?\s*=\s*\[([\s\S]*?)\]\s*;/g;
+const DECK_LITERAL = (deckName) =>
+  new RegExp(`const\\s+${deckName.replace(/_INVARIANTS$/, '')}\\s*(?::[^=]+)?=\\s*\\{`, 'g');
+const PERSONA_KEYS = ['oncologist', 'patient', 'pharma'];
+
+function extractPersonaBlockText(source, deckIdx) {
+  // Balanced-brace scan starting at the '{' index.
+  let depth = 0;
+  let start = -1;
+  for (let i = deckIdx; i < source.length; i++) {
+    const ch = source[i];
+    if (ch === '{') {
+      if (depth === 0) start = i;
+      depth += 1;
+    } else if (ch === '}') {
+      depth -= 1;
+      if (depth === 0 && start >= 0) {
+        return source.slice(start + 1, i);
+      }
+    }
+  }
+  return '';
+}
+
+function findPersonaInvariant(source, relPath) {
+  const violations = [];
+  DECK_INVARIANT_BLOCK.lastIndex = 0;
+  let m;
+  while ((m = DECK_INVARIANT_BLOCK.exec(source)) !== null) {
+    const invName = m[1];
+    const invBlock = m[2];
+    // Extract string literals from the invariant array.
+    const tokens = [...invBlock.matchAll(/['"`]([^'"`\n]+)['"`]/g)].map((x) => x[1]);
+    if (tokens.length === 0) continue;
+    const deckName = invName.replace(/_INVARIANTS$/, '');
+    const deckRe = new RegExp(`const\\s+${deckName}\\s*(?::[^=]+)?=\\s*\\{`);
+    const dm = deckRe.exec(source);
+    if (!dm) continue;
+    const deckBody = extractPersonaBlockText(source, dm.index);
+    if (!deckBody) continue;
+    for (const persona of PERSONA_KEYS) {
+      // Loose per-persona block extraction (best-effort scan).
+      const pRe = new RegExp(`${persona}\\s*:\\s*\\{`, 'g');
+      const pm = pRe.exec(deckBody);
+      if (!pm) {
+        violations.push({
+          rule: 'PERSONA_INVARIANT',
+          file: relPath,
+          line: source.slice(0, dm.index).split('\n').length,
+          text: `${deckName} missing '${persona}' variant`,
+          message: `PersonaCopyDeck '${deckName}' declared with ${invName} but has no ${persona} variant.`,
+        });
+        continue;
+      }
+      const pStart = dm.index + pm.index + pm[0].length - 1;
+      const pBody = extractPersonaBlockText(source, pStart);
+      const missing = tokens.filter((t) => !pBody.toLowerCase().includes(t.toLowerCase()));
+      if (missing.length > 0) {
+        violations.push({
+          rule: 'PERSONA_INVARIANT',
+          file: relPath,
+          line: source.slice(0, dm.index).split('\n').length,
+          text: `${deckName}.${persona} missing: ${missing.join(', ')}`,
+          message: `PersonaCopyDeck '${deckName}' variant '${persona}' is missing invariant token(s).`,
+        });
+      }
+    }
+  }
+  return violations;
+}
+
+// ----------------------------------------------------------------------------
+// Rule 5: PERSONA_NAME_PARITY
+//   Same shape as Rule 4 but with a *_NAMES array: every drug/target/biomarker
+//   name declared must appear VERBATIM (case-sensitive) in every persona
+//   variant of the paired deck.
+// ----------------------------------------------------------------------------
+const DECK_NAMES_BLOCK = /const\s+([A-Z_0-9]+_NAMES)\s*(?::\s*[^=]+)?\s*=\s*\[([\s\S]*?)\]\s*;/g;
+
+function findPersonaNameParity(source, relPath) {
+  const violations = [];
+  DECK_NAMES_BLOCK.lastIndex = 0;
+  let m;
+  while ((m = DECK_NAMES_BLOCK.exec(source)) !== null) {
+    const namesName = m[1];
+    const namesBlock = m[2];
+    const names = [...namesBlock.matchAll(/['"`]([^'"`\n]+)['"`]/g)].map((x) => x[1]);
+    if (names.length === 0) continue;
+    const deckName = namesName.replace(/_NAMES$/, '');
+    const deckRe = new RegExp(`const\\s+${deckName}\\s*(?::[^=]+)?=\\s*\\{`);
+    const dm = deckRe.exec(source);
+    if (!dm) continue;
+    const deckBody = extractPersonaBlockText(source, dm.index);
+    if (!deckBody) continue;
+    for (const persona of PERSONA_KEYS) {
+      const pRe = new RegExp(`${persona}\\s*:\\s*\\{`, 'g');
+      const pm = pRe.exec(deckBody);
+      if (!pm) continue;
+      const pStart = dm.index + pm.index + pm[0].length - 1;
+      const pBody = extractPersonaBlockText(source, pStart);
+      const missing = names.filter((n) => !pBody.includes(n));
+      if (missing.length > 0) {
+        violations.push({
+          rule: 'PERSONA_NAME_PARITY',
+          file: relPath,
+          line: source.slice(0, dm.index).split('\n').length,
+          text: `${deckName}.${persona} missing name(s): ${missing.join(', ')}`,
+          message: `PersonaCopyDeck '${deckName}' variant '${persona}' dropped a drug/target/biomarker name that must survive rewrite.`,
+        });
+      }
+    }
+  }
+  return violations;
+}
+
+// ----------------------------------------------------------------------------
+// Rule 6: PERSONA_PATIENT_JARGON
+//   Patient-variant strings scanned against a shortlist of banned bare technical
+//   acronyms. Rule fires when a banned token appears in the patient block AND
+//   no plain-language noun-phrase companion appears in the same sentence.
+// ----------------------------------------------------------------------------
+const PATIENT_JARGON_TOKENS = [
+  'LN_IC50', 'IC50', "Cohen's d", 'AUROC', 'AUPRC', 'padj', 'pLDDT', 'iPTM',
+  'BH-FDR', 'Bonferroni', 'HR ', 'OR ', 'FDR', 'delta_ll', 'Enformer',
+];
+const PLAIN_LANG_MARKERS =
+  /\b(how much|score for|measure of|ranking of|confidence in|a drug that|a test that|the odds|the fraction|the model thinks|the model finds|the amount|the extent|opposite of|makes lots of|means the tumor|how big the|how well|per-residue|how confident|log scale|means|explains)\b/i;
+
+function findPatientJargon(source, relPath) {
+  const violations = [];
+  const deckRe = /const\s+([A-Z_0-9]+)\s*(?::[^=]+)?=\s*\{/g;
+  let dm;
+  while ((dm = deckRe.exec(source)) !== null) {
+    const deckName = dm[1];
+    if (!/DECK|COPY/i.test(deckName)) continue;
+    const deckBody = extractPersonaBlockText(source, dm.index);
+    if (!deckBody) continue;
+    const pRe = /patient\s*:\s*\{/g;
+    const pm = pRe.exec(deckBody);
+    if (!pm) continue;
+    const pStart = dm.index + pm.index + pm[0].length - 1;
+    const pBody = extractPersonaBlockText(source, pStart);
+    for (const jargon of PATIENT_JARGON_TOKENS) {
+      if (!pBody.includes(jargon)) continue;
+      const sentences = pBody.split(/[.!?\n]+/);
+      for (const s of sentences) {
+        if (!s.includes(jargon)) continue;
+        if (PLAIN_LANG_MARKERS.test(s)) continue;
+        violations.push({
+          rule: 'PERSONA_PATIENT_JARGON',
+          file: relPath,
+          line: source.slice(0, dm.index).split('\n').length,
+          text: s.trim().slice(0, 200),
+          message: `Patient variant of '${deckName}' uses bare technical token '${jargon}' without a plain-language companion phrase.`,
+        });
+        break;
+      }
+    }
+  }
+  return violations;
+}
+
+// ----------------------------------------------------------------------------
 // Driver
 // ----------------------------------------------------------------------------
 async function main() {
@@ -230,6 +401,9 @@ async function main() {
     violations.push(...findDL07(lines, relPath));
     violations.push(...findPathB(lines, relPath));
     violations.push(...findSlop(lines, relPath));
+    violations.push(...findPersonaInvariant(src, relPath));
+    violations.push(...findPersonaNameParity(src, relPath));
+    violations.push(...findPatientJargon(src, relPath));
   }
 
   const summary = {
@@ -239,6 +413,9 @@ async function main() {
       'DL-07': violations.filter((v) => v.rule === 'DL-07').length,
       'PATH_B_SURFACE': violations.filter((v) => v.rule === 'PATH_B_SURFACE').length,
       'TUMOR_BOARD_SLOP': violations.filter((v) => v.rule === 'TUMOR_BOARD_SLOP').length,
+      'PERSONA_INVARIANT': violations.filter((v) => v.rule === 'PERSONA_INVARIANT').length,
+      'PERSONA_NAME_PARITY': violations.filter((v) => v.rule === 'PERSONA_NAME_PARITY').length,
+      'PERSONA_PATIENT_JARGON': violations.filter((v) => v.rule === 'PERSONA_PATIENT_JARGON').length,
     },
     total: violations.length,
   };
