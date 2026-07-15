@@ -20,12 +20,21 @@
  *   Body  :  Step tab strip  ·  per-step { biology narrative + validation card + gene table }
  *   Overlay: BM01 patient-variant strip (toggleable)
  *   Footer:  Cross-links to /tabs, /scroll, /tumor-board/BM01, receipts
+ *
+ * Persona overlay (D14):
+ *   Chrome and section eyebrows carry a persona-varied deck (`CHROME_COPY_DECK`).
+ *   Substrate — the metrics (AUROC/AUPRC/P@3), the column headers, the gene
+ *   symbols, HGVS strings, deltaLL scores, BM01 hit chip — is INVARIANT across
+ *   personas. This surface is an audited pipeline receipt; the numbers do not
+ *   change based on who is reading, only the framing labels do.
  */
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, Target, Beaker, Check, X, Waves, Info } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
+import { usePersona } from '@/context/PersonaContext';
+import type { Persona } from '@/context/PersonaContext';
 import { TARGET_LOCK_INTRO_PATH } from '@/lib/engine/paths';
 import { BRM_STEPS } from '@/data/brain-met-cascade-data';
 import {
@@ -38,6 +47,133 @@ import {
   BM01_PATIENT_VARIANTS,
 } from '@/data/evo2/brm_pipeline';
 import type { BrmStepSlug, BrmGeneScore, BrmPatientVariant } from '@/data/evo2/brm_pipeline';
+
+// ---------------------------------------------------------------------------
+// Persona chrome deck
+// ---------------------------------------------------------------------------
+
+type ChromeCopy = {
+  backLink: string;
+  headerEyebrow: string;
+  headerTitle: string;
+  bm01OverlayLabelOn: string;
+  bm01OverlayLabelOff: string;
+  stepTabPrefix: string;
+  sectionBiologyEyebrow: string;
+  sectionPositivesEyebrow: (n: number) => string;
+  sectionNegativesEyebrow: (n: number) => string;
+  columnLegendEyebrow: string;
+  metricsEyebrow: string;
+  rankingEyebrow: (n: number) => string;
+  rankingSubhead: (overlayOn: boolean) => string;
+  bm01SectionEyebrow: string;
+  bm01SectionSubhead: (n: number) => string;
+  footerEyebrow: string;
+  footerSourcePrefix: string;
+  // legend row definitions
+  legendTargetLock: string;
+  legendCalibrated: string;
+  legendLabel: string;
+  legendBbb: string;
+  // footer link labels
+  footerLinkTabbed: string;
+  footerLinkScroll: string;
+  footerLinkBm01: string;
+  footerLinkAnchor: string;
+  footerLinkAf3: string;
+};
+
+const CHROME_COPY_DECK: Record<Persona, ChromeCopy> = {
+  oncologist: {
+    backLink: 'Overview',
+    headerEyebrow: 'Workspace · Evo2 pipeline (audited)',
+    headerTitle: 'Brain-Met Cascade · 7 steps · 29 genes',
+    bm01OverlayLabelOn: 'BM01 overlay: on',
+    bm01OverlayLabelOff: 'BM01 overlay: off',
+    stepTabPrefix: 'Step',
+    sectionBiologyEyebrow: 'Step biology',
+    sectionPositivesEyebrow: (n) => `Ground-truth positives (${n})`,
+    sectionNegativesEyebrow: (n) => `Hard negatives (${n})`,
+    columnLegendEyebrow: 'Column legend',
+    metricsEyebrow: 'Validation metrics · this step',
+    rankingEyebrow: (n) => `Target-lock ranking · ${n} genes`,
+    rankingSubhead: (on) =>
+      `Sorted by target_lock_score DESC. Rows with a BM01 patient variant are highlighted ${on ? '(overlay on)' : '(overlay off)'}.`,
+    bm01SectionEyebrow: 'BM01 · variants scored on Modal (delta-LL)',
+    bm01SectionSubhead: (n) => `${n} of BM01's 4 canonical variants list this step as related.`,
+    footerEyebrow: 'Cross-links',
+    footerSourcePrefix: 'Source · brm_pipeline_',
+    legendTargetLock: 'Rank score after mission-fit weighting. Higher = better lock candidate.',
+    legendCalibrated: 'Raw pipeline probability before mission-fit discount.',
+    legendLabel: 'Ground-truth: 1 = known driver, 0 = hard negative.',
+    legendBbb: 'Blood-brain-barrier relevant flag from the anchor list.',
+    footerLinkTabbed: 'Tabbed audited view',
+    footerLinkScroll: 'Scroll audited view',
+    footerLinkBm01: 'BM01 tumor board',
+    footerLinkAnchor: 'Anchor audit map',
+    footerLinkAf3: 'AF3 teaching visual',
+  },
+  patient: {
+    backLink: 'Back',
+    headerEyebrow: 'Detailed view · pipeline receipts',
+    headerTitle: 'How a tumor moves to the brain · 7 steps · 29 genes checked',
+    bm01OverlayLabelOn: "Patient's variants: showing",
+    bm01OverlayLabelOff: "Patient's variants: hidden",
+    stepTabPrefix: 'Step',
+    sectionBiologyEyebrow: 'What this step is',
+    sectionPositivesEyebrow: (n) => `Known drivers used to check (${n})`,
+    sectionNegativesEyebrow: (n) => `Genes that should NOT flag as drivers (${n})`,
+    columnLegendEyebrow: 'What each column means',
+    metricsEyebrow: 'How the pipeline scored on this step',
+    rankingEyebrow: (n) => `Ranked genes for this step · ${n} genes`,
+    rankingSubhead: (on) =>
+      `Sorted best to worst. Rows that match a variant found in the patient are highlighted ${on ? '(showing).' : '(hidden).'}`,
+    bm01SectionEyebrow: 'Variants found in the patient — scored on the same pipeline',
+    bm01SectionSubhead: (n) => `${n} of the patient's 4 tested variants are relevant to this step.`,
+    footerEyebrow: 'Related views',
+    footerSourcePrefix: 'Source file · brm_pipeline_',
+    legendTargetLock: 'How strongly this gene is a real target for treatment. Higher is better.',
+    legendCalibrated: 'The raw pipeline score before we adjust for treatability.',
+    legendLabel: 'Whether this gene is known to drive brain-metastasis (1) or not (0).',
+    legendBbb: 'Whether the gene has been shown to matter for crossing into the brain.',
+    footerLinkTabbed: 'Same data in tabs',
+    footerLinkScroll: 'Same data as a scroll',
+    footerLinkBm01: 'The patient (BM01) full case',
+    footerLinkAnchor: 'How anchor genes were chosen',
+    footerLinkAf3: 'A separate structural view (teaching)',
+  },
+  pharma: {
+    backLink: 'Overview',
+    headerEyebrow: 'Franchise workspace · Evo2 pipeline (franchise-audit-grade)',
+    headerTitle: 'Brain-Met Cascade franchise · 7-step / 29-gene audit',
+    bm01OverlayLabelOn: 'BM01 substrate overlay: on',
+    bm01OverlayLabelOff: 'BM01 substrate overlay: off',
+    stepTabPrefix: 'Step',
+    sectionBiologyEyebrow: 'Step substrate',
+    sectionPositivesEyebrow: (n) => `Ground-truth positive substrate (${n})`,
+    sectionNegativesEyebrow: (n) => `Hard-negative substrate controls (${n})`,
+    columnLegendEyebrow: 'Column legend · audit trail',
+    metricsEyebrow: 'Franchise-audit validation metrics · this step',
+    rankingEyebrow: (n) => `Target-lock franchise-fit ranking · ${n} genes`,
+    rankingSubhead: (on) =>
+      `Sorted by target_lock_score DESC. Rows carrying a BM01 patient-variant receipt are highlighted ${on ? '(overlay on)' : '(overlay off)'}.`,
+    bm01SectionEyebrow: 'BM01 · variants scored on Modal (delta-LL) · franchise-audit substrate',
+    bm01SectionSubhead: (n) =>
+      `${n} of BM01's 4 canonical variants list this step as related on the audit trail.`,
+    footerEyebrow: 'Franchise cross-links',
+    footerSourcePrefix: 'Franchise-audit source · brm_pipeline_',
+    legendTargetLock:
+      'Rank score on the franchise-fit substrate after mission-fit weighting. Higher = better franchise-lock candidate.',
+    legendCalibrated: 'Raw pipeline probability before the mission-fit franchise discount.',
+    legendLabel: 'Ground-truth franchise-fit label: 1 = known driver substrate, 0 = hard-negative control.',
+    legendBbb: 'Blood-brain-barrier-relevant substrate flag from the anchor franchise list.',
+    footerLinkTabbed: 'Tabbed franchise-audit view',
+    footerLinkScroll: 'Scroll franchise-audit view',
+    footerLinkBm01: 'BM01 franchise tumor board',
+    footerLinkAnchor: 'Anchor franchise-audit map',
+    footerLinkAf3: 'AF3 teaching visual (structural)',
+  },
+};
 
 // ---------------------------------------------------------------------------
 // Small helpers
@@ -71,6 +207,9 @@ function bm01VariantsByGene(): Map<string, BrmPatientVariant> {
 
 export default function BrmPipelineWorkspace() {
   const { isDarkMode } = useTheme();
+  const { persona } = usePersona();
+  const chrome = CHROME_COPY_DECK[persona];
+
   const [activeStep, setActiveStep] = useState<BrmStepSlug>('cns_colonization');
   const [bm01Overlay, setBm01Overlay] = useState(true);
 
@@ -118,17 +257,17 @@ export default function BrmPipelineWorkspace() {
               }`}
             >
               <ChevronLeft className="w-3.5 h-3.5" aria-hidden />
-              Overview
+              {chrome.backLink}
             </Link>
             <div className={`w-9 h-9 rounded border flex items-center justify-center shrink-0 ${panel}`}>
               <Target className={`w-4 h-4 ${accent}`} />
             </div>
             <div className="min-w-0">
               <p className={`text-[9px] font-black uppercase tracking-[0.4em] ${accent}`}>
-                Workspace · Evo2 pipeline (audited)
+                {chrome.headerEyebrow}
               </p>
               <h1 className={`text-sm sm:text-base font-black uppercase tracking-tight ${textMain}`}>
-                Brain-Met Cascade · 7 steps · 29 genes
+                {chrome.headerTitle}
               </h1>
             </div>
           </div>
@@ -147,7 +286,7 @@ export default function BrmPipelineWorkspace() {
             }`}
           >
             <Waves className="w-3 h-3" aria-hidden />
-            BM01 overlay: {bm01Overlay ? 'on' : 'off'}
+            {bm01Overlay ? chrome.bm01OverlayLabelOn : chrome.bm01OverlayLabelOff}
           </button>
         </div>
 
@@ -204,7 +343,7 @@ export default function BrmPipelineWorkspace() {
                   active ? accent : textMuted
                 }`}
               >
-                Step {i + 1}
+                {chrome.stepTabPrefix} {i + 1}
               </p>
               <p
                 className={`text-[11px] sm:text-xs font-black uppercase tracking-tight ${
@@ -228,7 +367,7 @@ export default function BrmPipelineWorkspace() {
         {/* Left: biology narrative */}
         <section className={`lg:col-span-4 rounded border p-3 ${panel}`}>
           <p className={`text-[9px] font-black uppercase tracking-widest ${accent}`}>
-            Step biology
+            {chrome.sectionBiologyEyebrow}
           </p>
           <h2 className={`mt-1 text-sm font-black uppercase tracking-tight ${textMain}`}>
             {stepBiology?.label ?? BRM_STEP_LABEL[activeStep]}
@@ -241,7 +380,7 @@ export default function BrmPipelineWorkspace() {
             <>
               <div className="mt-3">
                 <p className={`text-[9px] font-black uppercase tracking-widest ${textMuted}`}>
-                  Ground-truth positives ({stepBiology.primaryGenes.length})
+                  {chrome.sectionPositivesEyebrow(stepBiology.primaryGenes.length)}
                 </p>
                 <div className="mt-1 flex flex-wrap gap-1">
                   {stepBiology.primaryGenes.map((g) => (
@@ -260,7 +399,7 @@ export default function BrmPipelineWorkspace() {
               </div>
               <div className="mt-3">
                 <p className={`text-[9px] font-black uppercase tracking-widest ${textMuted}`}>
-                  Hard negatives ({stepBiology.negativeControls.length})
+                  {chrome.sectionNegativesEyebrow(stepBiology.negativeControls.length)}
                 </p>
                 <div className="mt-1 flex flex-wrap gap-1">
                   {stepBiology.negativeControls.map((g) => (
@@ -295,24 +434,24 @@ export default function BrmPipelineWorkspace() {
           {/* Legend */}
           <div className={`mt-4 rounded border p-2 ${panelSubtle}`}>
             <p className={`text-[9px] font-black uppercase tracking-widest ${textMuted}`}>
-              Column legend
+              {chrome.columnLegendEyebrow}
             </p>
             <dl className={`mt-1 space-y-1 text-[10px] font-mono ${textBody}`}>
               <div className="flex gap-2">
                 <dt className={`w-20 shrink-0 ${textMuted}`}>target_lock</dt>
-                <dd>Rank score after mission-fit weighting. Higher = better lock candidate.</dd>
+                <dd>{chrome.legendTargetLock}</dd>
               </div>
               <div className="flex gap-2">
                 <dt className={`w-20 shrink-0 ${textMuted}`}>calibrated</dt>
-                <dd>Raw pipeline probability before mission-fit discount.</dd>
+                <dd>{chrome.legendCalibrated}</dd>
               </div>
               <div className="flex gap-2">
                 <dt className={`w-20 shrink-0 ${textMuted}`}>label</dt>
-                <dd>Ground-truth: 1 = known driver, 0 = hard negative.</dd>
+                <dd>{chrome.legendLabel}</dd>
               </div>
               <div className="flex gap-2">
                 <dt className={`w-20 shrink-0 ${textMuted}`}>bbb</dt>
-                <dd>Blood-brain-barrier relevant flag from the anchor list.</dd>
+                <dd>{chrome.legendBbb}</dd>
               </div>
             </dl>
           </div>
@@ -324,7 +463,7 @@ export default function BrmPipelineWorkspace() {
           {stepMetrics ? (
             <div className={`rounded border p-3 ${panel}`}>
               <p className={`text-[9px] font-black uppercase tracking-widest ${accent}`}>
-                Validation metrics · this step
+                {chrome.metricsEyebrow}
               </p>
               <div className="mt-2 grid grid-cols-2 sm:grid-cols-5 gap-2">
                 <MetricTile
@@ -363,11 +502,10 @@ export default function BrmPipelineWorkspace() {
             >
               <div>
                 <p className={`text-[9px] font-black uppercase tracking-widest ${accent}`}>
-                  Target-lock ranking · {stepScores.length} genes
+                  {chrome.rankingEyebrow(stepScores.length)}
                 </p>
                 <p className={`text-[10px] ${textMuted}`}>
-                  Sorted by target_lock_score DESC. Rows with a BM01 patient variant are highlighted{' '}
-                  {bm01Overlay ? '(overlay on)' : '(overlay off)'}.
+                  {chrome.rankingSubhead(bm01Overlay)}
                 </p>
               </div>
               <Beaker className={`w-4 h-4 shrink-0 ${textMuted}`} aria-hidden />
@@ -418,10 +556,10 @@ export default function BrmPipelineWorkspace() {
           {bm01Overlay && bm01ForStep.length > 0 ? (
             <div className={`rounded border p-3 ${panel}`}>
               <p className={`text-[9px] font-black uppercase tracking-widest ${accent}`}>
-                BM01 · variants scored on Modal (delta-LL)
+                {chrome.bm01SectionEyebrow}
               </p>
               <p className={`text-[10px] ${textMuted}`}>
-                {bm01ForStep.length} of BM01's 4 canonical variants list this step as related.
+                {chrome.bm01SectionSubhead(bm01ForStep.length)}
               </p>
               <ul className="mt-2 space-y-1.5">
                 {bm01ForStep.map((v) => (
@@ -468,31 +606,31 @@ export default function BrmPipelineWorkspace() {
         className={`relative z-10 shrink-0 flex flex-wrap items-center gap-x-3 gap-y-1 px-4 sm:px-6 py-2 border-t ${borderColor}`}
       >
         <span className={`text-[9px] font-black uppercase tracking-widest shrink-0 ${textMuted}`}>
-          Cross-links
+          {chrome.footerEyebrow}
         </span>
         <FooterLink
           href="/engine/target-lock/tabs"
-          label="Tabbed audited view"
+          label={chrome.footerLinkTabbed}
           isDark={isDarkMode}
         />
         <FooterLink
           href="/engine/target-lock/scroll"
-          label="Scroll audited view"
+          label={chrome.footerLinkScroll}
           isDark={isDarkMode}
         />
         <FooterLink
           href="/tumor-board/BM01"
-          label="BM01 tumor board"
+          label={chrome.footerLinkBm01}
           isDark={isDarkMode}
         />
-        <FooterLink href="/anchor-audit" label="Anchor audit map" isDark={isDarkMode} />
+        <FooterLink href="/anchor-audit" label={chrome.footerLinkAnchor} isDark={isDarkMode} />
         <FooterLink
           href="/engine/target-lock/workspace-af3"
-          label="AF3 teaching visual"
+          label={chrome.footerLinkAf3}
           isDark={isDarkMode}
         />
         <span className={`text-[9px] ${textMuted} ml-auto`}>
-          Source · brm_pipeline_{runInfo.timestamp}.json
+          {chrome.footerSourcePrefix}{runInfo.timestamp}.json
         </span>
       </footer>
     </div>
