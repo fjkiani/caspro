@@ -154,3 +154,68 @@ export function assertPersonaDeck(
     assertNameParity(deck, { deck: opts.deck, names: opts.names });
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// personaField — sidecar-in-place lookup for registry-shaped entries.
+//
+// Pattern: each registry entry keeps its existing English fields, and
+// optionally carries a `personaCopy?: Partial<Record<Persona, Partial<T>>>`
+// sibling that lists ONLY the string fields that should differ per persona.
+// personaField(entry, key, persona) returns the persona variant when present
+// and the English default otherwise. Non-breaking: existing entries without
+// personaCopy render exactly as before.
+//
+// This is the workhorse for the "retrofit registries in place" strategy —
+// components change one line per string:
+//     {cap.oneLiner}
+// becomes
+//     {personaField(cap, 'oneLiner', persona)}
+// and the migration proceeds field-by-field without a big-bang refactor.
+// ─────────────────────────────────────────────────────────────────────────────
+export type PersonaOverlay<T> = Partial<Record<Persona, Partial<T>>>;
+
+export interface WithPersonaCopy<T> {
+  personaCopy?: PersonaOverlay<T>;
+}
+
+export function personaField<T, K extends keyof T>(
+  entry: T & WithPersonaCopy<T>,
+  key: K,
+  persona: Persona,
+): T[K] {
+  const overlay = entry.personaCopy?.[persona];
+  if (overlay && key in overlay) {
+    const val = overlay[key as keyof typeof overlay];
+    // Only override with defined values; undefined means "no persona variant, use English".
+    if (val !== undefined && val !== null) {
+      return val as T[K];
+    }
+  }
+  return entry[key];
+}
+
+/**
+ * Assert registry-overlay parity: every declared persona variant of `entry.personaCopy`
+ * MUST carry a value for every key in `keys`. Missing keys mean a persona surface is
+ * silently falling back to English — the guard forces the author to declare it explicitly.
+ *
+ * This is looser than assertInvariants (which enforces cross-persona token parity on a
+ * PersonaCopyDeck); this one just enforces "if you opened a persona variant, you named
+ * every field you claimed to override".
+ */
+export function assertPersonaOverlay<T>(
+  entry: T & WithPersonaCopy<T>,
+  opts: { deck: string; keys: (keyof T)[]; requiredPersonas?: Persona[] },
+): void {
+  const requiredPersonas = opts.requiredPersonas ?? PERSONAS;
+  const overlays = entry.personaCopy;
+  if (!overlays) return; // no overlay declared = English-only entry; caller opted out.
+  for (const persona of requiredPersonas) {
+    const bag = overlays[persona];
+    if (!bag) continue; // this persona has no overlay at all — that's a caller choice, not drift.
+    const missing = opts.keys.filter((k) => bag[k] === undefined || bag[k] === null);
+    if (missing.length > 0) {
+      fail(opts.deck, persona, 'overlay keys', missing.map(String));
+    }
+  }
+}
