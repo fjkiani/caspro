@@ -15,16 +15,20 @@
  * Persona overlay (D15):
  *   - Each program carries a persona-varied header via `personaCopy`
  *     over LedgerProgramCopyFields (name, headline, indicationFocus, ipValue).
- *   - `keyFindings[].description`, `trials[].primaryResult`, and
- *     `transferLessons[]` remain in canonical technical form. Adapting
- *     the raw statistical evidence to plain English risks losing precision;
- *     that pass is deferred to a dedicated later chunk.
+ *   - transferLessons[] carries an optional persona-varied array via
+ *     `transferLessonsByPersona`. Read via getLedgerTransferLessons(program,
+ *     persona), which falls back to the English root array.
+ *   - `keyFindings[].description` and `trials[].primaryResult` remain
+ *     in canonical technical form. Adapting the raw statistical evidence
+ *     (HR / OS / PFS / p-values / PMIDs) to plain English risks losing
+ *     numeric precision; that pass is deferred to a dedicated later chunk.
  *   - Access at read sites via personaField(entry, key, persona) from
  *     src/lib/persona-copy-guards; English fallback keeps existing
  *     consumers working.
  */
 
 import type { PersonaOverlay } from '@/lib/persona-copy-guards';
+import type { Persona } from '@/context/PersonaContext';
 
 export type LedgerProgramFinding = {
   id: string;
@@ -60,6 +64,14 @@ export type LedgerProgram = LedgerProgramCopyFields & {
   gated: boolean;
   keyFindings: LedgerProgramFinding[];
   transferLessons: string[];
+  /**
+   * Optional persona-specific overrides for the transferLessons array.
+   * When set for a persona, that persona's array replaces the English
+   * root wholesale (arrays are not merged position-by-position — the
+   * lesson count may differ across personas). Missing personas fall
+   * back to the outer `transferLessons` array.
+   */
+  transferLessonsByPersona?: Partial<Record<Persona, string[]>>;
   trials: LedgerProgramTrial[];
   personaCopy?: PersonaOverlay<LedgerProgramCopyFields>;
 };
@@ -135,6 +147,24 @@ export const LEDGER_PROGRAMS: LedgerProgram[] = [
       "On-target/off-tumor GI toxicity is a class risk for CEACAM5 bispecifics (cibisatamab: diarrhea 55.8%, colitis 13.5%)",
       "EU clinical hold on VKG linker + Topo1i chemistry creates regulatory risk for SGN-CEACAM5C class",
     ],
+    transferLessonsByPersona: {
+      patient: [
+        "For a CEACAM5-targeted drug to have a real chance, the tumor must have a very high amount of CEACAM5 on it (called IHC \u226580%). A middle level (\u226550%) is not enough.",
+        "There is a blood test (cCEA \u2265100 ng/mL) that can stand in for the tumor test. This has been shown in lung cancer patients so far; whether it holds in colon cancer is still an assumption.",
+        "A high CEACAM5 level on the tumor is not enough by itself \u2014 the tumor also has to look immune-friendly (a signal called pTMB, plus immune cells inside the tumor). Both conditions have to be true.",
+        "One earlier drug in this class (labetuzumab govitecan, with an SN-38 chemistry payload) did NOT work in patients whose colon cancer had already been treated with irinotecan. That is a design-level failure of the drug\u2019s biology in that setting.",
+        "A different kind of CEACAM5 drug (bispecifics like cibisatamab) has a known side-effect risk of gut inflammation \u2014 diarrhea and colitis \u2014 because CEACAM5 is also on normal gut cells.",
+        "European regulators put one drug in this class (SGN-CEACAM5C) on a temporary hold, which flags a regulatory risk for similar drugs.",
+      ],
+      pharma: [
+        "CEACAM5 IHC \u226580% is the candidate franchise-fit predictive threshold; \u226550% is non-admissible on the substrate call.",
+        "cCEA \u2265100 ng/mL is a liquid-biopsy proxy for the IHC \u226580% franchise-fit gate \u2014 NSCLC evidence base; CRC transfer is currently an OPEN_ASSUMPTION on the audit trail.",
+        "IO-permissiveness (pTMB, TME immune infiltrate) is the mandatory second franchise-fit gate; single-gate CEACAM5-expression selection is non-admissible.",
+        "SN-38 payload (labetuzumab govitecan) fails post-irinotecan \u2014 D1-biology franchise failure. The CDx pathway needs to route around post-irinotecan populations for SN-38 payload chemistries.",
+        "On-target/off-tumor GI toxicity is a franchise-risk class-signal for CEACAM5 bispecifics (cibisatamab: diarrhea 55.8%, colitis 13.5%) \u2014 tolerability posture must front-load in CDx design.",
+        "EU clinical hold on VKG linker + Topo1i chemistry (SGN-CEACAM5C) is an active franchise-regulatory-risk audit item on the class.",
+      ],
+    },
     trials: [
       {
         nctId: "NCT04154956",
@@ -381,6 +411,20 @@ export const LEDGER_PROGRAMS: LedgerProgram[] = [
       "ATRi + PARPi combinations must stratify by prior PARPi exposure",
       "ITT enrollment in DDR-deficient populations dilutes the responder signal by 5\u20138x",
     ],
+    transferLessonsByPersona: {
+      patient: [
+        "Any future trial of an ATR-blocking drug must decide upfront which patients count as \u201chigh replication stress\u201d (a specific tumor property) and only enroll those patients. Not deciding upfront is why the earlier trials failed.",
+        "Any future trial of a WEE1-blocking drug must leave out patients whose tumors have lost the PTEN gene \u2014 those tumors do not respond and dilute the result.",
+        "For trials combining ATR- and PARP-blockers, patients who have already tried PARP-blockers behave differently and need to be tracked in a separate group; not doing so mixes two very different biologies.",
+        "If a trial enrolls all comers in a DNA-repair-defective population instead of picking the specific responders, the small responder signal gets diluted by a factor of 5 to 8 \u2014 which turns a real positive result into a failed trial on paper.",
+      ],
+      pharma: [
+        "Franchise-audit rule for ATR inhibitor programs: replication-stress-high (RS-High) enrollment is a pre-specified admissibility gate. Without it the franchise-fit call is non-admissible on the audit trail.",
+        "Franchise-audit rule for WEE1 inhibitor programs: PTEN-loss populations are excluded on the substrate call. PTEN-loss dilutes the franchise-fit signal on the audit trail.",
+        "ATRi + PARPi combination franchises stratify by prior PARPi exposure on the franchise-fit matrix; unstratified enrollment mixes two distinct substrate biologies on the audit trail.",
+        "ITT enrollment in DDR-deficient substrate dilutes the responder signal by 5\u20138\u00d7 on the franchise-fit read \u2014 a positive substrate call at the responder level renders negative at the ITT-level franchise footprint.",
+      ],
+    },
     trials: [
       {
         nctId: "NCT02595892",
@@ -775,6 +819,18 @@ export const LEDGER_PROGRAMS: LedgerProgram[] = [
       "Historical mFOLFOX6 \u00b1 bevacizumab benchmarks constrain the plausible efficacy window",
       "Liver-metastatic subsets consistently underperform non-liver subsets in MSS CRC IO trials",
     ],
+    transferLessonsByPersona: {
+      patient: [
+        "A vaccine for MSS colon cancer has to do two things, not one \u2014 the vaccine has to teach the immune system about the tumor, AND the tumor has to be in a state where the immune system can actually enter it. Only doing the first is not enough.",
+        "Standard chemotherapy in this cancer already produces a known survival window. A new drug added on top has to beat that window to matter \u2014 that sets a realistic bar for the trial.",
+        "Patients whose colon cancer has spread to the liver do worse with immunotherapy than patients whose cancer has spread elsewhere. Trials in this space should track those two groups separately.",
+      ],
+      pharma: [
+        "Vaccine franchises in MSS CRC layer IO-permissiveness selection ON TOP of tumor-antigen presentation. Antigen-only franchise-fit is non-admissible on the substrate call.",
+        "Historical mFOLFOX6 \u00b1 bevacizumab benchmarks constrain the plausible efficacy window on the franchise-audit trail \u2014 any 1L MSS mCRC franchise addition has to clear the backbone benchmark ceiling.",
+        "Liver-metastatic substrate consistently underperforms non-liver substrate in MSS CRC IO franchises \u2014 franchise-fit stratification requires liver-vs-non-liver split on the audit trail.",
+      ],
+    },
     trials: [
     ],
   },
@@ -782,4 +838,18 @@ export const LEDGER_PROGRAMS: LedgerProgram[] = [
 
 export function getLedgerProgram(slug: string): LedgerProgram | null {
   return LEDGER_PROGRAMS.find((p) => p.slug === slug) ?? null;
+}
+
+/**
+ * Return the transferLessons array for a program under the requested
+ * persona. Falls back to the English root (outer `transferLessons`)
+ * when no persona-specific array is present. Consumers should call
+ * this instead of reading `program.transferLessons` directly on any
+ * persona-aware surface.
+ */
+export function getLedgerTransferLessons(
+  program: LedgerProgram,
+  persona: Persona,
+): string[] {
+  return program.transferLessonsByPersona?.[persona] ?? program.transferLessons;
 }
