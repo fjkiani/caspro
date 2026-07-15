@@ -11,7 +11,20 @@
  * Editing rules and forbidden values are enforced by
  * caspro-lint/forbidden_values.py on every commit.  See
  * caspro-lint/README.md for the catalog.
+ *
+ * Persona overlay (D15):
+ *   - Each program carries a persona-varied header via `personaCopy`
+ *     over LedgerProgramCopyFields (name, headline, indicationFocus, ipValue).
+ *   - `keyFindings[].description`, `trials[].primaryResult`, and
+ *     `transferLessons[]` remain in canonical technical form. Adapting
+ *     the raw statistical evidence to plain English risks losing precision;
+ *     that pass is deferred to a dedicated later chunk.
+ *   - Access at read sites via personaField(entry, key, persona) from
+ *     src/lib/persona-copy-guards; English fallback keeps existing
+ *     consumers working.
  */
+
+import type { PersonaOverlay } from '@/lib/persona-copy-guards';
 
 export type LedgerProgramFinding = {
   id: string;
@@ -32,19 +45,23 @@ export type LedgerProgramTrial = {
   primaryMet?: string;
 };
 
-export type LedgerProgram = {
-  programId: string;
-  slug: string;
-  order: number;
+export interface LedgerProgramCopyFields {
   name: string;
   headline: string;
   indicationFocus: string;
   ipValue: string;
+}
+
+export type LedgerProgram = LedgerProgramCopyFields & {
+  programId: string;
+  slug: string;
+  order: number;
   preview: 'ddr' | 'target' | 'io' | 'benchmark' | 'active';
   gated: boolean;
   keyFindings: LedgerProgramFinding[];
   transferLessons: string[];
   trials: LedgerProgramTrial[];
+  personaCopy?: PersonaOverlay<LedgerProgramCopyFields>;
 };
 
 export const LEDGER_PROGRAMS: LedgerProgram[] = [
@@ -58,6 +75,20 @@ export const LEDGER_PROGRAMS: LedgerProgram[] = [
     ipValue: "Sanofi pitch anchor \u2014 CEACAM5 two-gate patient selection framework (IHC \u226580% + IO permissiveness) applied to SAR445953 and SAR445877. Committed to Brenus repo SHA 993aecd.",
     preview: "target",
     gated: false,
+    personaCopy: {
+      patient: {
+        name: "Why drugs aimed at the CEACAM5 marker have been failing",
+        headline: "Five clinical trials in patients tried to hit a tumor marker called CEACAM5 with different kinds of drugs. All five failed. The pattern that comes out of these failures: the test used to pick patients was picking too many people. When the test bar is raised (only patients with very high CEACAM5 on the tumor), a signal starts to appear. This corpus explains why the earlier trials could not find that signal.",
+        indicationFocus: "Failed CEACAM5 drug trials in second-line non-small-cell lung cancer (one large Phase III), third-line-or-later metastatic colon cancer (three trials), and other solid tumors including colon cancer (one Phase I paused in Europe over safety).",
+        ipValue: "This corpus explains a two-step patient-picking rule for CEACAM5: only patients whose tumors have very high CEACAM5 AND whose tumors look immune-friendly enough. It is the anchor for pitching Sanofi on the SAR445953 and SAR445877 programs.",
+      },
+      pharma: {
+        name: "CEACAM5-directed franchise failure corpus",
+        headline: "Five-trial CEACAM5 franchise failure corpus spanning ADC (DM4, SN-38, Topo1i payloads), CEA-TCB bispecific, and EU-hold safety class-signal. Includes IHC-threshold audit, CRC-transfer read, and the audit-trail-grade finding that CEACAM5 IHC is prognostic, not predictive \u2014 the substrate call every CEACAM5 franchise needs to derisk.",
+        indicationFocus: "2L+ NSCLC (1 Phase III), 3L+ mCRC (3 trials), advanced solid tumors including CRC (1 Phase I on EU clinical hold) \u2014 pan-histology CEACAM5 franchise footprint.",
+        ipValue: "Sanofi franchise pitch anchor. Two-gate patient-selection framework (CEACAM5 IHC \u226580% + IO permissiveness) applied to SAR445953 and SAR445877 CDx pathway. Committed to Brenus repo SHA 993aecd \u2014 franchise-audit receipt on the trail.",
+      },
+    },
     keyFindings: [
       {
         id: "CEACAM5-F1",
@@ -172,6 +203,20 @@ export const LEDGER_PROGRAMS: LedgerProgram[] = [
     ipValue: "Primary comparator corpus for the active 1L MSS mCRC vaccine engagement. Defines the 3 conditions for IO benefit in MSS CRC and the 4 design gaps in the active 1L MSS mCRC vaccine engagement.",
     preview: "io",
     gated: false,
+    personaCopy: {
+      patient: {
+        name: "Why immunotherapy has not worked for the common form of colon cancer",
+        headline: "Immunotherapy has been a big success for many cancers \u2014 but for the most common kind of colon cancer, called MSS, it usually does not work. Seven clinical trials tried different ways to fix that, and most of them failed. Looking at all seven together, three specific conditions matter for a patient to benefit: their cancer must NOT have spread to the liver, the tumor must carry a lot of mutations (a specific blood-test signal called pTMB above 28), and the tumor must already look 'immune-active' when examined. Without those three, immunotherapy in this cancer is unlikely to help.",
+        indicationFocus: "Failed immunotherapy trials for the common (MSS/pMMR) form of colon cancer that has spread \u2014 across first-line, later-line, and refractory settings. Includes vaccine, checkpoint-inhibitor, MEK-inhibitor combos, and multi-drug immunotherapy combinations.",
+        ipValue: "This is the primary comparator library for the active vaccine trial partner. It defines the three conditions under which immunotherapy CAN work in MSS colon cancer, and the four design gaps in the current vaccine trial.",
+      },
+      pharma: {
+        name: "MSS mCRC IO franchise-failure corpus",
+        headline: "Seven-trial MSS mCRC IO franchise-failure corpus \u2014 audit-trail-grade evidence base for MSS-CRC IO non-response, with three franchise-fit conditions extracted from convergent trial evidence: non-liver-metastatic anatomy, pTMB \u226528 gate, and immune-inflamed TME substrate.",
+        indicationFocus: "1L through refractory MSS/pMMR mCRC across 7 trials \u2014 vaccine, CPI, MEKi+CPI, and combination IO strategies. Pan-line-of-therapy IO franchise footprint.",
+        ipValue: "Primary comparator corpus for the active 1L MSS mCRC vaccine franchise engagement. Defines the three franchise-fit conditions for IO benefit in MSS CRC and the four design-gap-derisk items on the active franchise audit trail.",
+      },
+    },
     keyFindings: [
       {
         id: "IO-F1",
@@ -290,6 +335,20 @@ export const LEDGER_PROGRAMS: LedgerProgram[] = [
     ipValue: "GLB set \u2014 6-trial IP valuation graveyard corpus. ATR/DDR contributes 4 of 6 GLB trials. Estimated decoded trial value: $1.95B in failed program investment.",
     preview: "ddr",
     gated: false,
+    personaCopy: {
+      patient: {
+        name: "Trials of DNA-repair-blocking drugs that failed \u2014 but had real responders hidden inside",
+        headline: "Five clinical trials tested drugs that block a cancer's DNA-repair machinery. On paper, each trial looked like a failure \u2014 the tumors overall did not respond. But when we look inside each trial, there are patients who DID respond very well. The pattern: the trials enrolled the wrong patients. In each trial, there is a specific patient signal (a biomarker) that the trial should have used to pick who to enroll. Without that filter, the responders got hidden in a bigger group of non-responders.",
+        indicationFocus: "Failed trials in ovarian cancer (three trials), non-small-cell lung cancer (one trial), and mixed solid tumors (one trial) \u2014 all testing drugs that block a specific DNA-repair enzyme called ATR, or a related one called WEE1.",
+        ipValue: "This is the graveyard set \u2014 six trials that together represent about $1.95 billion in failed drug-program investment. This corpus is used to explain to pharma partners how a better patient-picking rule could have made these trials succeed.",
+      },
+      pharma: {
+        name: "ATR/DDR franchise-failure corpus",
+        headline: "Five-trial ATR/DDR franchise-failure corpus with decoded selection-failure modes \u2014 identifies the biomarker gate that all three completed trials missed and the responder subpopulations hidden inside each ITT failure. Audit-trail-grade franchise substrate call.",
+        indicationFocus: "Ovarian (3), NSCLC (1), mixed solid tumors (1) \u2014 ATR and WEE1 inhibitor franchises in DDR-deficient substrate populations.",
+        ipValue: "GLB set \u2014 six-trial IP-valuation graveyard corpus. ATR/DDR contributes 4 of 6 GLB trials. Estimated decoded franchise value: $1.95B in failed program investment. Franchise-audit anchor for ATR/DDR substrate re-underwrite.",
+      },
+    },
     keyFindings: [
       {
         id: "ATR-F1",
@@ -390,6 +449,20 @@ export const LEDGER_PROGRAMS: LedgerProgram[] = [
     ipValue: "Supporting evidence for the active 1L MSS mCRC vaccine engagement design gap analysis and the 3 conditions for IO benefit in MSS CRC.",
     preview: "io",
     gated: false,
+    personaCopy: {
+      patient: {
+        name: "Supporting evidence for what does and does not work with immunotherapy in colon cancer",
+        headline: "Fifteen additional colon-cancer trials that fill in the picture around immunotherapy. Some are positive controls (trials in the rarer MSI-high type where immunotherapy DOES work). Others explore the liver-metastasis question in more detail, the disconnect between what a vaccine does to blood immune cells versus what happens inside the tumor, and combinations with other drugs. Together with the core failure corpus, this gives the full map of when immunotherapy in colon cancer is likely to help and when it is not.",
+        indicationFocus: "Colon cancer across all treatment lines and both MSI types. Includes trials where immunotherapy works (MSI-high controls), trials that show how the location of the tumor's spread matters (REGONIVO, RIN), vaccine trials where the immune system responded in the blood but not in the tumor (PolyPEPI1018, GVAX + guadecitabine, PANVAC), and combinations with TGF-\u03b2 or VEGF blockers.",
+        ipValue: "Supporting evidence for the design-gap review of the active vaccine trial partner, and for the three conditions under which immunotherapy CAN work in this cancer.",
+      },
+      pharma: {
+        name: "MSS CRC IO franchise-supporting evidence corpus",
+        headline: "15-trial IO franchise-supporting corpus \u2014 boundary conditions for IO in CRC: MSI-H positive-control franchises, liver-metastasis stratification receipts, vaccine-PD-dissociation audit, TGF-\u03b2/VEGF combo franchise reads, and the ongoing Phase III landscape.",
+        indicationFocus: "CRC across all treatment lines and MSI status. Includes MSI-H positive-control franchises (KEYNOTE-177, CheckMate 142), liver-metastasis stratification substrate (REGONIVO US + JP, RIN), vaccine-PD-dissociation audit (PolyPEPI1018, GVAX+guadecitabine, PANVAC), TGF-\u03b2/VEGF combo franchises (MODUL, bintrafusp alfa), and ongoing Phase III (STELLAR-303).",
+        ipValue: "Franchise-audit supporting evidence for the active 1L MSS mCRC vaccine engagement's design-gap read, and for the three franchise-fit conditions for IO benefit in MSS CRC.",
+      },
+    },
     keyFindings: [
     ],
     transferLessons: [
@@ -572,6 +645,20 @@ export const LEDGER_PROGRAMS: LedgerProgram[] = [
     ipValue: "Control arm expectations for any 1L MSS mCRC trial",
     preview: "benchmark",
     gated: false,
+    personaCopy: {
+      patient: {
+        name: "How well standard chemotherapy already works in this cancer",
+        headline: "Six trials in the same kind of colon cancer, all using the standard chemotherapy of the field (called mFOLFOX6, sometimes with an added drug called bevacizumab). These trials tell us what the current baseline is: how long patients typically live, how often the tumor shrinks, how long the treatment holds. Any new drug added to this chemotherapy has to beat these numbers to matter \u2014 that is what a partner needs to know before adding their drug to this backbone.",
+        indicationFocus: "The standard chemotherapy backbone (mFOLFOX6, sometimes with bevacizumab) tested in first-line MSS colon cancer that has spread.",
+        ipValue: "The control-arm reference point for any first-line MSS colon-cancer trial that adds a new drug to standard chemotherapy \u2014 including the active vaccine engagement.",
+      },
+      pharma: {
+        name: "mFOLFOX6 \u00b1 bev backbone benchmark set",
+        headline: "Six-entry mFOLFOX6 \u00b1 bevacizumab backbone benchmark set \u2014 control-arm expectations for the active 1L MSS mCRC vaccine franchise engagement and for any 1L MSS mCRC trial adding an investigational agent to standard chemotherapy backbone. Franchise-audit-grade benchmark set.",
+        indicationFocus: "mFOLFOX6 \u00b1 bevacizumab benchmark set for 1L MSS mCRC franchise footprint.",
+        ipValue: "Control-arm expectation reference for any 1L MSS mCRC franchise trial adding an investigational agent to standard chemotherapy backbone \u2014 franchise-audit anchor for backbone-competition risk.",
+      },
+    },
     keyFindings: [
     ],
     transferLessons: [
@@ -655,6 +742,20 @@ export const LEDGER_PROGRAMS: LedgerProgram[] = [
     ipValue: "Confidential engagement \u2014 anchored on the CrisPRO mechanism alignment layer applied to a live 1L MSS mCRC vaccine program.",
     preview: "active",
     gated: true,
+    personaCopy: {
+      patient: {
+        name: "Live work \u2014 first-line vaccine trial in colon cancer",
+        headline: "Right now, CrisPRO is actively helping a Phase I/II clinical trial that is testing a vaccine in first-line MSS colon cancer. We are checking whether the biology of the trial's design is likely to work, listing the specific risks in the design, and comparing it against 22 other trials in the same space. The client's name, the drug's name, and the specific numbers are confidential.",
+        indicationFocus: "First-line MSS colon cancer that has spread \u2014 a live partner trial.",
+        ipValue: "Confidential engagement. The value CrisPRO brings is the mechanism-alignment layer applied to a live vaccine program \u2014 does the trial design make biological sense, what should be added, what should be dropped.",
+      },
+      pharma: {
+        name: "Active franchise engagement \u2014 1L MSS mCRC vaccine",
+        headline: "Active franchise-alignment engagement supporting a Phase I/II 1L MSS mCRC vaccine trial. Mechanism-fit read, four-gap design-risk inventory, and 22-trial franchise comparator context. Client name, asset name, and franchise specifics are gated under NDA.",
+        indicationFocus: "1L MSS/pMMR mCRC (client franchise) \u2014 confidential live engagement.",
+        ipValue: "Confidential franchise engagement \u2014 anchored on the CrisPRO mechanism-alignment audit layer applied to a live 1L MSS mCRC vaccine franchise. Franchise-audit-grade receipt trail under NDA.",
+      },
+    },
     keyFindings: [
       {
         id: "ACTIVE-F1",
