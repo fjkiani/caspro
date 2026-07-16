@@ -83,7 +83,7 @@ export function TargetLockSidebar({ isDarkMode }: { isDarkMode: boolean }) {
           {FDA_STATS.artifacts.map(a => (
             <a
               key={a.slug}
-              to={a.slug}
+              href={a.slug}
               target="_blank"
               rel="noopener noreferrer"
               className={`block px-3 py-2.5 rounded-sm border transition-all group ${

@@ -13,7 +13,7 @@ export default function RDChallengeSection() {
     { metric: 'Specificity', meaning: 'Percentage of true negatives correctly identified. 10% specificity = Only 1/10 non-toxicities correctly identified (9 false positives)', example: 'Tier 2: Conservative design, requires expert review' },
     { metric: 'PPV (Positive Predictive Value)', meaning: 'Percentage of positive predictions that are correct. 40% PPV = 6/10 flags are correct, 4/10 need expert review', example: 'Tier 2: 6/15 flags are correct' },
     { metric: 'NPV (Negative Predictive Value)', meaning: 'Percentage of negative predictions that are correct. 100% NPV = When system clears a patient, they are safe', example: 'Tier 2: 1/1 cleared cases are safe' },
-    { metric: '0.983 DDR fit', meaning: 'Mechanism alignment score (0-1 scale). 0.983 = 98.3% biological similarity', example: 'Near-perfect alignment between patient and drug mechanism' },
+    { metric: 'Mechanism Fit Score', meaning: 'Cosine of patient-mechanism vector against drug-MoA vector on a 0–1 scale — 1.0 = perfectly aligned mechanism. Numeric DDR-specific means are quarantined under DL-07 pending Figure 2 provenance walk.', example: 'Reported as Top-3 ranking accuracy, not raw cosine means' },
     { metric: 'Top-3 Accuracy: 1.00', meaning: 'Percentage of correct answers in top 3. 1.00 = 100% (all correct trials in top 3)', example: 'Perfect ranking performance' },
     { metric: 'MRR: 0.75', meaning: 'Mean Reciprocal Rank. 0.75 = Correct answer ranked #1.33 on average', example: 'Good ranking (closer to 1.0 is better)' },
   ];

@@ -4,6 +4,64 @@ import { getEngineIcon } from './engine-icons';
 import { TRIAL_CASE_FILES, VECTOR_AXIS_META } from '@/data/trial-case-files';
 import { THERAPY_AXES, EVIDENCE_MODALITIES } from '@/data/sl-engine-data';
 import { PGX_GENES } from '@/data/safety-engine-data';
+import { usePersona } from '@/context/PersonaContext';
+import type { Persona } from '@/context/PersonaContext';
+
+/**
+ * Persona overlay (D14):
+ *   Micro-labels on the six capability mini-previews carry a
+ *   persona-varied deck. Data-driven substrate (the vector bar heights,
+ *   the modality grid cell colors, the PGx gene names) remains
+ *   invariant across personas — only chip / caption text varies.
+ */
+
+type MiniPreviewCopy = {
+  targetLockLockChipText: string;
+  targetLockCaption: string;
+  mechanismAlignmentEyebrow: string;
+  syntheticLethalityEyebrow: string;
+  syntheticLethalityFooter: string;
+  safetyDosingEyebrow: string;
+  safetyDosingFooter: string;
+  safetyEyebrow: string;
+  safetyFooter: string;
+};
+
+const MINI_COPY_DECK: Record<Persona, MiniPreviewCopy> = {
+  oncologist: {
+    targetLockLockChipText: 'LOCK',
+    targetLockCaption: '9/9 FDA concordance',
+    mechanismAlignmentEyebrow: 'LATIFY · Mechanism alignment',
+    syntheticLethalityEyebrow: 'MBD4 · evidence matrix',
+    syntheticLethalityFooter: 'Ceralasertib p=0.034',
+    safetyDosingEyebrow: 'PGx gate',
+    safetyDosingFooter: '100% CPIC',
+    safetyEyebrow: 'Receipt ledger',
+    safetyFooter: '5 PubMed anchors · calibration bar',
+  },
+  patient: {
+    targetLockLockChipText: 'LOCK',
+    targetLockCaption: 'Matched 9 of 9 FDA decisions',
+    mechanismAlignmentEyebrow: 'How the drug lines up with the tumor',
+    syntheticLethalityEyebrow: 'Evidence for one gene pair',
+    syntheticLethalityFooter: 'Real published signal (statistically real)',
+    safetyDosingEyebrow: 'Dose-adjusting gene check',
+    safetyDosingFooter: 'Follows established guidelines',
+    safetyEyebrow: 'Sources for the safety call',
+    safetyFooter: '5 published studies · calibrated',
+  },
+  pharma: {
+    targetLockLockChipText: 'LOCK',
+    targetLockCaption: '9/9 FDA-decision concordance receipt',
+    mechanismAlignmentEyebrow: 'LATIFY · franchise-fit mechanism-alignment matrix',
+    syntheticLethalityEyebrow: 'MBD4 · admissibility evidence matrix',
+    syntheticLethalityFooter: 'Ceralasertib · p=0.034 franchise-fit signal',
+    safetyDosingEyebrow: 'PGx admissibility gate',
+    safetyDosingFooter: '100% CPIC-aligned franchise-fit',
+    safetyEyebrow: 'Audit-trail receipt ledger',
+    safetyFooter: '5 PubMed franchise-audit anchors · calibrated',
+  },
+};
 
 function statusColor(status: string, isDarkMode: boolean): string {
   switch (status) {
@@ -27,6 +85,9 @@ export default function EngineMiniPreview({
   slug: string;
   isDarkMode: boolean;
 }) {
+  const { persona } = usePersona();
+  const copy = MINI_COPY_DECK[persona];
+
   const panel = isDarkMode
     ? 'bg-zinc-900/80 border-zinc-800'
     : 'bg-slate-100 border-slate-200';
@@ -41,10 +102,10 @@ export default function EngineMiniPreview({
             <div className={`absolute inset-0 rounded-full border-2 border-dashed ${isDarkMode ? 'border-cyan-500/40' : 'border-cyan-400'}`} />
             <div className={`absolute inset-3 rounded-full ${isDarkMode ? 'bg-cyan-500/20' : 'bg-cyan-100'}`} />
             <div className={`absolute inset-0 flex items-center justify-center text-[10px] font-black uppercase ${isDarkMode ? 'text-cyan-400' : 'text-cyan-700'}`}>
-              LOCK
+              {copy.targetLockLockChipText}
             </div>
           </div>
-          <p className={`text-[10px] font-mono uppercase tracking-widest ${muted}`}>9/9 FDA concordance</p>
+          <p className={`text-[10px] font-mono uppercase tracking-widest ${muted}`}>{copy.targetLockCaption}</p>
         </div>
       );
     }
@@ -54,7 +115,7 @@ export default function EngineMiniPreview({
       const max = 1;
       return (
         <div className={`h-full p-3 border-b ${panel}`}>
-          <p className={`text-[9px] font-black uppercase tracking-widest mb-2 ${muted}`}>LATIFY · 8D vector</p>
+          <p className={`text-[9px] font-black uppercase tracking-widest mb-2 ${muted}`}>{copy.mechanismAlignmentEyebrow}</p>
           <div className="grid grid-cols-4 gap-1.5 h-[calc(100%-1.25rem)] items-end">
             {VECTOR_AXIS_META.map((m) => {
               const v = trial.trialVector[m.key];
@@ -78,7 +139,7 @@ export default function EngineMiniPreview({
       const axis = THERAPY_AXES[0];
       return (
         <div className={`h-full p-3 border-b ${panel}`}>
-          <p className={`text-[9px] font-black uppercase tracking-widest mb-2 ${muted}`}>MBD4 · evidence matrix</p>
+          <p className={`text-[9px] font-black uppercase tracking-widest mb-2 ${muted}`}>{copy.syntheticLethalityEyebrow}</p>
           <div className="grid grid-cols-7 gap-1 mb-2">
             {EVIDENCE_MODALITIES.map((mod) => (
               <span key={mod} className={`text-[7px] text-center truncate ${muted}`}>
@@ -94,7 +155,7 @@ export default function EngineMiniPreview({
               />
             ))}
           </div>
-          <p className={`mt-2 text-[10px] font-mono ${text}`}>Ceralasertib p=0.034</p>
+          <p className={`mt-2 text-[10px] font-mono ${text}`}>{copy.syntheticLethalityFooter}</p>
         </div>
       );
     }
@@ -103,7 +164,7 @@ export default function EngineMiniPreview({
       const genes = PGX_GENES.slice(0, 4);
       return (
         <div className={`h-full p-3 border-b flex flex-col gap-2 ${panel}`}>
-          <p className={`text-[9px] font-black uppercase tracking-widest ${muted}`}>PGx gate</p>
+          <p className={`text-[9px] font-black uppercase tracking-widest ${muted}`}>{copy.safetyDosingEyebrow}</p>
           {genes.map((g) => (
             <div
               key={g.slug}
@@ -117,7 +178,7 @@ export default function EngineMiniPreview({
               </span>
             </div>
           ))}
-          <p className={`text-[9px] mt-auto ${isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}`}>100% CPIC</p>
+          <p className={`text-[9px] mt-auto ${isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}`}>{copy.safetyDosingFooter}</p>
         </div>
       );
     }
@@ -126,7 +187,7 @@ export default function EngineMiniPreview({
       const cells = ['CRISPR', 'Pharma', 'In Vitro', 'In Vivo', 'Clinical'];
       return (
         <div className={`h-full p-3 border-b ${panel}`}>
-          <p className={`text-[9px] font-black uppercase tracking-widest mb-2 ${muted}`}>Receipt ledger</p>
+          <p className={`text-[9px] font-black uppercase tracking-widest mb-2 ${muted}`}>{copy.safetyEyebrow}</p>
           <div className="flex flex-wrap gap-2">
             {cells.map((c, i) => (
               <span
@@ -145,7 +206,7 @@ export default function EngineMiniPreview({
               </span>
             ))}
           </div>
-          <p className={`mt-3 text-[10px] ${text}`}>5 PubMed anchors · calibration bar</p>
+          <p className={`mt-3 text-[10px] ${text}`}>{copy.safetyFooter}</p>
         </div>
       );
     }

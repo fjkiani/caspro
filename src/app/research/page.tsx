@@ -1,65 +1,12 @@
-import { Suspense } from 'react';
-import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
-import { getPosts, getCategories, getDeckPosts } from '@/services';
-import { getAllUseCasesCms } from '@/lib/docs/hygraph/use-case-queries';
-import { getResearchAbstracts } from '@/lib/docs/hygraph/research-abstract-queries';
-import { RESEARCH_SECTIONS, researchHubTabFromQuery } from '@/lib/research/paths';
-import { isBlogArticlePost } from '@/lib/research/blog-posts';
-import type { PostNode } from '@/types/blog';
-import AppLoading from '@/components/ui/AppLoading';
-import ResearchHubOverview from '@/components/research/ResearchHubOverview';
-
-export const dynamic = 'force-dynamic';
+import VerticalSurface from '@/components/audience/VerticalSurface';
+import { RESEARCH_PAGE_DATA } from '@/data/research-page';
 
 export const metadata: Metadata = {
-  title: 'Research | CrisPRO.ai',
-  description: 'Knowledge base — blog, manuscripts, decks, and conference abstracts from the CrisPRO research team.',
-  openGraph: {
-    title: 'Research | CrisPRO.ai',
-    description: 'Knowledge base for CrisPRO research publications.',
-    url: 'https://crispro.ai/research',
-    siteName: 'CrisPRO',
-    type: 'website',
-  },
+  title: 'Research — CrisPRO',
+  description: 'The mechanism-alignment layer, in the open. Chapters, modules, receipts.',
 };
 
-interface PostEdge {
-  node: PostNode;
-}
-
-export default async function ResearchPage({
-  searchParams,
-}: {
-  searchParams: { tab?: string; category?: string };
-}) {
-  const tab = typeof searchParams?.tab === 'string' ? searchParams.tab : '';
-  const category = typeof searchParams?.category === 'string' ? searchParams.category : '';
-  if (category && (tab === 'articles' || tab === 'blog' || !tab)) {
-    redirect(`${RESEARCH_SECTIONS.blog}?category=${encodeURIComponent(category)}`);
-  }
-
-  const [postsData, manuscripts, deckPosts, abstractsResult] = await Promise.all([
-    getPosts().catch(() => []),
-    getAllUseCasesCms().catch(() => []),
-    getDeckPosts().catch(() => []),
-    getResearchAbstracts().catch(() => ({ source: 'local' as const, items: [] })),
-  ]);
-
-  const posts: PostNode[] = Array.isArray(postsData)
-    ? postsData.map((edge: PostEdge) => edge.node)
-    : [];
-  const blogPosts = posts.filter(isBlogArticlePost);
-
-  return (
-    <Suspense fallback={<AppLoading label="Loading research" />}>
-      <ResearchHubOverview
-        initialTab={researchHubTabFromQuery(tab || undefined)}
-        blogPosts={blogPosts}
-        manuscripts={manuscripts}
-        deckPosts={deckPosts}
-        abstracts={abstractsResult?.items ?? []}
-      />
-    </Suspense>
-  );
+export default function ResearchPage() {
+  return <VerticalSurface data={RESEARCH_PAGE_DATA} headerLink={{ label: 'Knowledge base', href: '/kb/' }} />;
 }

@@ -522,7 +522,7 @@ export default function ResistanceIntelligenceEngine() {
             {activeTab === 'artifacts' && <ArtifactsPanel isDarkMode={isDarkMode} />}
           </div>
 
-          {/* Bottom Summary: 7D Vector + Detection + EMT */}
+          {/* Bottom Summary: Mechanism alignment + Detection + EMT */}
           <div className={`p-6 xl:p-8 border rounded-sm flex flex-col lg:grid lg:grid-cols-3 gap-6 lg:gap-8 ${isDarkMode ? 'bg-zinc-950/40 border-zinc-900 shadow-2xl' : 'bg-white border-slate-200 shadow-xl'}`}>
             {/* 7D Strike Vector */}
             <div className="space-y-4">

@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { ChevronLeft, Target } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
+import { usePersona } from '@/context/PersonaContext';
+import type { Persona } from '@/context/PersonaContext';
 import { TargetLockCascadeView } from '@/components/mockups/targetLock';
 import { TARGET_LOCK_INTRO_PATH } from '@/lib/engine/paths';
 import { FDA_ARTIFACTS } from '@/data/fda-prediction-data';
@@ -10,9 +12,50 @@ import { FDA_ARTIFACTS } from '@/data/fda-prediction-data';
 /**
  * Single-viewport workspace: interactive metastatic cascade only.
  * Context (two-layer matrix, thesis, explainer) lives on the intro route.
+ *
+ * Persona overlay (D14):
+ *   Chrome copy — the back-link, the eyebrow, the title, the help text,
+ *   the receipts label — carries a persona-varied deck. Substrate
+ *   (the cascade view + FDA_ARTIFACTS labels) remains invariant.
  */
+
+type WorkspaceCopy = {
+  backLink: string;
+  eyebrow: string;
+  title: string;
+  helpText: string;
+  receiptsLabel: string;
+};
+
+const WORKSPACE_COPY_DECK: Record<Persona, WorkspaceCopy> = {
+  oncologist: {
+    backLink: 'Overview',
+    eyebrow: 'Workspace',
+    title: 'Metastatic Cascade Lock',
+    helpText: 'Click a step to lock a target',
+    receiptsLabel: 'Receipts',
+  },
+  patient: {
+    backLink: 'Back',
+    eyebrow: 'Interactive view',
+    title: 'How a tumor spreads — click a step to focus',
+    helpText: 'Click a step of the cascade to see the target',
+    receiptsLabel: 'Sources',
+  },
+  pharma: {
+    backLink: 'Overview',
+    eyebrow: 'Franchise workspace',
+    title: 'Metastatic Cascade — Target-Lock Substrate',
+    helpText: 'Click a cascade step to lock the franchise-fit target',
+    receiptsLabel: 'Audit trail',
+  },
+};
+
 export default function TargetLockWorkspace() {
   const { isDarkMode } = useTheme();
+  const { persona } = usePersona();
+  const copy = WORKSPACE_COPY_DECK[persona];
+
   const accent = isDarkMode ? 'text-cyan-400' : 'text-indigo-600';
   const panel = isDarkMode ? 'bg-zinc-950/60 border-zinc-800' : 'bg-white border-slate-200';
   const textMain = isDarkMode ? 'text-zinc-100' : 'text-slate-900';
@@ -45,20 +88,20 @@ export default function TargetLockWorkspace() {
             }`}
           >
             <ChevronLeft className="w-3.5 h-3.5" aria-hidden />
-            Overview
+            {copy.backLink}
           </Link>
           <div className={`w-9 h-9 rounded border flex items-center justify-center shrink-0 ${panel}`}>
             <Target className={`w-4 h-4 ${accent}`} />
           </div>
           <div className="min-w-0">
-            <p className={`text-[9px] font-black uppercase tracking-[0.4em] ${accent}`}>Workspace</p>
+            <p className={`text-[9px] font-black uppercase tracking-[0.4em] ${accent}`}>{copy.eyebrow}</p>
             <h1 className={`text-sm sm:text-base font-black uppercase tracking-tight truncate ${textMain}`}>
-              Metastatic Cascade Lock
+              {copy.title}
             </h1>
           </div>
         </div>
         <p className={`hidden sm:block text-[9px] font-bold uppercase tracking-widest shrink-0 ${textMuted}`}>
-          Click a step to lock a target
+          {copy.helpText}
         </p>
       </header>
 
@@ -72,7 +115,7 @@ export default function TargetLockWorkspace() {
         }`}
       >
         <span className={`text-[9px] font-black uppercase tracking-widest shrink-0 ${textMuted}`}>
-          Receipts
+          {copy.receiptsLabel}
         </span>
         {FDA_ARTIFACTS.map((a) => (
           <a

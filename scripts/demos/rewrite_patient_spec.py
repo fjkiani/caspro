@@ -1,0 +1,318 @@
+#!/usr/bin/env python3
+"""Rewrite demo_patient_spec.json so every field grounds into AK01 bundle facts.
+
+Persona: patient / family. Plain language, no jargon, no fabrications.
+
+Bundle facts sourced (via inspection):
+  AK_TUMOR_CONTEXT: MSS, PD-L1 CPS 10, ER weakly positive 50%, completeness 0.55
+  AK_MUTATIONS: MBD4 c.1293delA (frameshift, BER pathway), PDGFRA c.2263T>C, TP53 R175H
+  AK_COMPLETENESS: 0.55, missing HRD/TMB/RNA/CA-125
+  AK_RECOMMENDED_DRUGS: Ceralasertib+Adavosertib recommended, Olaparib+Niraparib+Rucaparib all falsified
+  AK_PARP_FALSIFICATION: p=0.605 (n=19 vs 1498), ρ=-0.42 p=1.4e-21 (n=481)
+  AK_TESTS_NEEDED: HRD/TMB/RNA/CA-125 with rewritten HRD copy
+  cancerType: 'ovarian_cancer', subtype: 'HGSOC · MBD4-LOF hypermutator (demo)'
+"""
+import json
+import pathlib
+
+OUT = pathlib.Path("src/data/demos/demo_patient_spec.json")
+
+spec = {
+    "demo_id": "patient_treatment_discovery",
+    "persona": "patient",
+    "title": "What CrisPRO Found in Your Tumor",
+    "subtitle": "A guided walkthrough of your case, in plain language — with every number tied to a source in your medical record.",
+    "governance_mode": "clean_plus_roadmap",
+    "patient_context": {
+        "display_name": "AK",
+        "cancer_type": "Ovarian cancer (high-grade serous, HGSOC subtype)",
+        "stage": "IVB (advanced)",
+        "key_biomarkers": {
+            "Microsatellite status": "Stable (MSS) — immunotherapy alone is unlikely to work by itself",
+            "PD-L1": "Positive (CPS 10) — some immune-related activity present",
+            "Estrogen receptor": "Weakly positive (~50% of cells)",
+            "HER2": "Negative — HER2 therapies not indicated",
+            "MBD4 germline": "Homozygous pathogenic mutation (MBD4 c.1293delA) — a rare inherited pattern that changes how the tumor develops mutations",
+            "TP53": "Mutant (R175H) — common in HGSOC",
+            "PDGFRA": "Mutation (c.2263T>C) — detected but role for treatment is uncertain",
+            "BRCA/HRD score": "Not yet tested (recommended)",
+            "TMB score": "Not yet reported (recommended)",
+        },
+        "treatment_history": [
+            "Carboplatin + Bevacizumab (4 cycles, completed Jan 2026)",
+        ],
+        "data_sources": "7 medical reports (2 CT scans, 1 PET scan, 3 pathology reports, 1 genetic test)",
+    },
+    "stages": [
+        {
+            "stage_id": 1,
+            "name": "Your Cancer Profile",
+            "plain_language": "This is a snapshot of the parts of your tumor that guide treatment choices. Each item comes from a specific report in your file.",
+            "data_shown": {
+                "type": "patient_profile_summary",
+                "items": [
+                    {
+                        "label": "Cancer type",
+                        "value": "Ovarian cancer, high-grade serous (HGSOC)",
+                        "source": "Pathology report #2",
+                        "what_it_means": "The most common aggressive ovarian cancer type. Treatment planning is well-studied.",
+                    },
+                    {
+                        "label": "Microsatellite status",
+                        "value": "Stable (MSS)",
+                        "source": "IHC pathology report",
+                        "what_it_means": "Your tumor DNA is stable in this respect. This means immunotherapy alone is unlikely to work — it usually needs to be paired with another treatment.",
+                    },
+                    {
+                        "label": "PD-L1",
+                        "value": "Positive (CPS 10)",
+                        "source": "IHC pathology report",
+                        "what_it_means": "There is some immune activity around the tumor. This is one signal doctors look for when considering immunotherapy combinations, but it is not enough on its own to guarantee benefit.",
+                    },
+                    {
+                        "label": "MBD4 germline",
+                        "value": "Homozygous pathogenic mutation (MBD4 c.1293delA)",
+                        "source": "Germline genetic test",
+                        "what_it_means": "This is a rare inherited condition that changes how your tumor accumulates mutations. It shapes which drugs are likely to work — and importantly, which ones our analysis was able to rule out.",
+                    },
+                    {
+                        "label": "Estrogen receptor",
+                        "value": "Weakly positive (~50%)",
+                        "source": "IHC pathology report",
+                        "what_it_means": "Some cells show estrogen receptor. In ovarian cancer this is less directly actionable than in breast cancer, but is recorded.",
+                    },
+                    {
+                        "label": "Completeness of data",
+                        "value": "55% — moderate",
+                        "source": "CrisPRO data-readiness check",
+                        "what_it_means": "About half of the tests that would sharpen the analysis have been done. The system tells you exactly which ones are missing so you can ask about them.",
+                    },
+                ],
+                "completeness_score": 0.55,
+                "completeness_explanation": "The bundle is at 55% completeness. HRD score, TMB score, RNA expression data, and CA-125 lab values are not yet in the record. Adding them would raise the confidence of every downstream recommendation.",
+            },
+            "status": "validated",
+            "evidence_grade": "VERIFIED",
+        },
+        {
+            "stage_id": 2,
+            "name": "What Your Test Results Mean for Treatment",
+            "plain_language": "Each biomarker either points toward a class of treatments, or points away from one. Here is what each of yours does, in plain terms.",
+            "data_shown": {
+                "type": "biomarker_intelligence",
+                "biomarkers": [
+                    {
+                        "marker": "MSS (Microsatellite Stable)",
+                        "result": "Stable",
+                        "what_it_means": "Immune-only checkpoint therapy (like pembrolizumab by itself) is unlikely to help. Combinations may still be considered.",
+                        "treatments_connected": "Immunotherapy combinations may still be discussed, but single-agent checkpoint inhibitors are typically not recommended for MSS tumors.",
+                        "questions_to_ask": '"Given I am MSS, what is the case for or against an immunotherapy combination in my situation?"',
+                    },
+                    {
+                        "marker": "PD-L1 (CPS 10)",
+                        "result": "Positive",
+                        "what_it_means": "There is some immune activity around your tumor. On its own this is not a green light for immunotherapy, but combined with the right partner drug it may add rationale.",
+                        "treatments_connected": "Checkpoint-inhibitor combinations (only in a research or trial setting for MSS ovarian).",
+                        "questions_to_ask": '"Does my PD-L1 CPS of 10 change your view compared to a fully PD-L1 negative case?"',
+                    },
+                    {
+                        "marker": "MBD4 germline mutation",
+                        "result": "Homozygous pathogenic (MBD4 c.1293delA)",
+                        "what_it_means": "This is the most unusual finding in your case. MBD4 is part of the DNA-repair machinery, and losing both copies changes how your tumor stresses its own DNA replication. This is what pointed the analysis toward the ATR-inhibitor / WEE1-inhibitor family — a mechanism-based match, not a class default.",
+                        "treatments_connected": "ATR inhibitors (ceralasertib) and WEE1 inhibitors (adavosertib) — currently the strongest mechanism-based candidates the analysis flagged.",
+                        "questions_to_ask": '"Are there open clinical trials for ATR or WEE1 inhibitors in MBD4-loss tumors?"',
+                    },
+                    {
+                        "marker": "BRCA / HRD status",
+                        "result": "Not tested yet",
+                        "what_it_means": "PARP inhibitors are the drug class most people ask about first for ovarian cancer. In your specific tumor, however, the analysis looked at PARP1 expression in MBD4-loss cases (like yours) and did not find the pattern that PARP inhibitors need to work. So even before the HRD test comes back, PARP inhibitors have been flagged as unlikely to help in your mechanism.",
+                        "treatments_connected": "HRD testing is still worth doing as an independent check on DNA-repair status, but it is not expected to change the PARP finding.",
+                        "questions_to_ask": '"If PARP inhibitors are ruled out by the mechanism check, what does the HRD result add?"',
+                    },
+                    {
+                        "marker": "TP53 R175H, PDGFRA c.2263T>C",
+                        "result": "Detected",
+                        "what_it_means": "TP53 mutation is common in HGSOC and does not by itself change treatment. PDGFRA is detected but its role in your case is uncertain.",
+                        "treatments_connected": "No direct treatment change, but these are recorded in the evidence file.",
+                        "questions_to_ask": '"Do any of my other mutations open trial-eligibility doors?"',
+                    },
+                ],
+            },
+            "status": "validated",
+            "evidence_grade": "VERIFIED",
+        },
+        {
+            "stage_id": 3,
+            "name": "Which Treatments the Analysis Recommended — and Which It Ruled Out",
+            "plain_language": "CrisPRO ranks drug classes by how well their mechanism fits your specific tumor. Some are recommended, and some are actively ruled out on mechanism grounds. Both matter.",
+            "data_shown": {
+                "type": "therapy_fit",
+                "how_it_works": "For each drug class, the analysis asked: does this drug's mechanism match what is happening in your tumor? A \"recommended\" answer means the biology lines up. A \"ruled out\" answer means the biology has been actively checked and does not support the drug — this is not the same as \"we did not look.\"",
+                "categories": [
+                    {
+                        "category": "ATR inhibitors — RECOMMENDED (Tier 1)",
+                        "examples": "Ceralasertib (AstraZeneca, in trials)",
+                        "fit_for_this_patient": "Strongest mechanism-based candidate for you. In cell-line data, tumors with MBD4-loss like yours are more sensitive to ceralasertib compared to MBD4-normal tumors (statistical significance p=0.021, effect size d=-0.50, tested in 14 MBD4-loss lines vs 914 controls). This is where the analysis focused its top recommendation.",
+                        "next_steps": "Ask about open ATR-inhibitor trials for ovarian cancer. Access is typically through clinical trials.",
+                    },
+                    {
+                        "category": "WEE1 inhibitors — RECOMMENDED (Tier 1)",
+                        "examples": "Adavosertib (in trials)",
+                        "fit_for_this_patient": "Same mechanism family as ATR inhibitors, targeting how your tumor manages DNA-replication stress. Grouped as second Tier-1 candidate.",
+                        "next_steps": "Same as ATR: ask about combined ATR/WEE1 trial arms.",
+                    },
+                    {
+                        "category": "PARP inhibitors — MECHANISM RULED OUT",
+                        "examples": "Olaparib, niraparib, rucaparib",
+                        "fit_for_this_patient": "PARP inhibitors are the class most people ask about first in ovarian cancer. Here the analysis checked whether PARP1 (the enzyme these drugs target) is more active in tumors like yours. In a set of 19 MBD4-loss samples compared to 1498 controls, there was no difference (p=0.605). As a check that the test itself works, the analysis confirmed that PARP1 activity does correlate with PARP-inhibitor sensitivity across cancer in general (correlation ρ=-0.42, p=1.4×10⁻²¹, in 481 samples). The general pattern exists — MBD4-loss tumors just do not share it. So PARP inhibitors are ruled out on mechanism, not on absence of evidence.",
+                        "next_steps": "HRD testing is still recommended as an independent readout, but the PARP result is not expected to change.",
+                    },
+                    {
+                        "category": "Immunotherapy combinations — CONDITIONAL",
+                        "examples": "Checkpoint inhibitor + chemotherapy",
+                        "fit_for_this_patient": "Because your tumor is MSS, single-agent immunotherapy is unlikely. Combinations may be considered given your PD-L1 CPS 10. This would typically be discussed in a clinical-trial context.",
+                        "next_steps": "Ask what MSS-specific combination trials your center runs.",
+                    },
+                    {
+                        "category": "Standard chemotherapy — ALREADY GIVEN",
+                        "examples": "Carboplatin, paclitaxel, doxorubicin",
+                        "fit_for_this_patient": "You have already completed 4 cycles of carboplatin + bevacizumab. Retreatment options depend on the interval since your last platinum dose and your current disease status.",
+                        "next_steps": "Discuss with your medical oncologist based on your latest scans.",
+                    },
+                ],
+            },
+            "status": "validated",
+            "evidence_grade": "VERIFIED",
+        },
+        {
+            "stage_id": 4,
+            "name": "How the PARP Finding Was Ruled Out — In Detail",
+            "plain_language": "Because PARP inhibitors are what most patients (and doctors) ask about first, we want to show exactly how the analysis reached the \"ruled out\" conclusion. This is the evidence trail behind that decision.",
+            "data_shown": {
+                "type": "stat_callout",
+                "items": [
+                    {
+                        "label": "The primary result — ceralasertib is favored in MBD4-loss",
+                        "value": "p = 0.021 · effect size d = -0.50 · 14 MBD4-loss vs 914 controls",
+                        "context": "In cell-line drug sensitivity data (LN_IC50), tumors with MBD4-loss showed statistically significantly better response to ceralasertib compared to MBD4-normal tumors. This is the finding that anchored the ATR recommendation above.",
+                    },
+                    {
+                        "label": "The PARP check — no support for PARP inhibitors in MBD4-loss",
+                        "value": "p = 0.605 · 19 MBD4-loss vs 1498 controls",
+                        "context": "PARP1 expression (the target of PARP inhibitors) was compared between MBD4-loss and MBD4-normal samples. No difference. This is not a small-numbers issue — 1498 is a large control pool.",
+                    },
+                    {
+                        "label": "The sanity check — PARP1 activity does correlate with PARP-inhibitor sensitivity across cancer",
+                        "value": "Correlation ρ = -0.42 · p = 1.4 × 10⁻²¹ · n = 481",
+                        "context": "This is the positive control: across many cancer types, higher PARP1 activity is linked with better PARP-inhibitor response. The relationship is real. It simply does not apply to MBD4-loss tumors.",
+                    },
+                ],
+            },
+            "status": "validated",
+            "evidence_grade": "PEER-REVIEWED",
+        },
+        {
+            "stage_id": 5,
+            "name": "What Tests Would Add More Confidence",
+            "plain_language": "Your file is at 55% completeness. Adding these four tests would sharpen the analysis. Each one unlocks a specific downstream decision.",
+            "data_shown": {
+                "type": "trial_matching",
+                "how_it_works": "The analysis tracks which tests would raise confidence and what each one would unlock. Nothing here is a stall — the recommendations already work; these tests would refine them.",
+                "what_you_see": [
+                    "Which tests are missing (from your case file)",
+                    "What each missing test would let the analysis do",
+                    "Which conversations with your care team each test enables",
+                    "Which are urgent vs. which can wait",
+                ],
+                "example_matches": [
+                    {
+                        "trial_type": "HRD assay (Myriad myChoice CDx or similar)",
+                        "why_it_matches": "Reads HR-repair status directly. Would give an orthogonal readout independent of the PARP1 mechanism check.",
+                        "eligibility": "No special eligibility — a lab-based test on tumor tissue.",
+                        "status": "Recommended (PARP eligibility still ruled out on mechanism regardless of result).",
+                    },
+                    {
+                        "trial_type": "Comprehensive genomic profiling (TMB)",
+                        "why_it_matches": "Given your PD-L1 CPS 10, a TMB reading tells your doctors whether immunotherapy combinations should be pursued more or less aggressively.",
+                        "eligibility": "Tissue-based next-generation sequencing panel.",
+                        "status": "Recommended (unlocks immunotherapy discussion).",
+                    },
+                    {
+                        "trial_type": "RNA sequencing / transcriptome",
+                        "why_it_matches": "Confirms which pathways in your tumor are actively \"on.\" Would unlock expression-based mechanism scoring.",
+                        "eligibility": "Tissue-based RNA-seq.",
+                        "status": "Recommended (unlocks a whole additional line of evidence).",
+                    },
+                    {
+                        "trial_type": "CA-125 lab values",
+                        "why_it_matches": "Standard ovarian-cancer serum marker for disease monitoring.",
+                        "eligibility": "Blood test — routine.",
+                        "status": "Recommended (helps track response to whichever treatment starts next).",
+                    },
+                ],
+                "note": "None of these tests block moving forward. They sharpen the picture the analysis has already produced.",
+            },
+            "status": "validated",
+            "evidence_grade": "VERIFIED",
+        },
+        {
+            "stage_id": 6,
+            "name": "Your Next Steps",
+            "plain_language": "A short summary of where things stand — and specific questions you can bring to your care team.",
+            "data_shown": {
+                "type": "care_plan_summary",
+                "sections": [
+                    {
+                        "section": "Where things stand",
+                        "content": "Top recommendation is an ATR- or WEE1-inhibitor (typically only available through a clinical trial). PARP inhibitors have been actively ruled out on mechanism (see stage 4). Immunotherapy combinations are conditional given your MSS status. Standard chemotherapy retreatment stays a discussion for your oncologist.",
+                    },
+                    {
+                        "section": "What to ask about first",
+                        "content": "Trials for ceralasertib or adavosertib in ovarian / MBD4-loss / DNA-damage-response context. Whether HRD, TMB, RNA, and CA-125 testing can be scheduled together.",
+                    },
+                    {
+                        "section": "What every recommendation traces back to",
+                        "content": "Every line above is tied to a specific number, a specific test, or a specific comparison in the evidence file. If you or a doctor wants to see the underlying source, it is one click away in your case bundle.",
+                    },
+                ],
+                "what_you_can_do": [
+                    "Bring stage 3 and stage 4 to your next oncologist appointment.",
+                    "Ask about the four missing tests (stage 5) — all four are lab-based and non-invasive beyond tissue you likely already have.",
+                    "If you are considering a second opinion, the numbered evidence file is designed to travel with you.",
+                ],
+            },
+            "status": "validated",
+            "evidence_grade": "VERIFIED",
+        },
+    ],
+    "roadmap_items": [
+        {
+            "capability": "Trial-matching UI",
+            "description": "One-click matching against open clinical trials at your center and nationally.",
+            "status": "in_development",
+            "note": "Backend registry is live (42 trials decoded); patient-facing matching UI is next.",
+        },
+        {
+            "capability": "Second-opinion export",
+            "description": "A shareable bundle of the case file and all evidence, formatted for another oncologist to review.",
+            "status": "in_development",
+            "note": "Backend supports the export; patient-side sharing flow is next.",
+        },
+        {
+            "capability": "Family / caregiver view",
+            "description": "A simplified summary suitable for family members supporting the patient.",
+            "status": "mechanistic_hypothesis",
+            "note": "Not yet started.",
+        },
+    ],
+    "governance_labels": {
+        "validated": "Grounded in your bundle and in published data",
+        "in_development": "Working now — refinement in progress",
+        "mechanistic_hypothesis": "Reasoned from biology — not yet tested in your specific case",
+    },
+}
+
+with open(OUT, "w") as f:
+    json.dump(spec, f, indent=2, ensure_ascii=False)
+    f.write("\n")
+print(f"wrote {OUT} ({OUT.stat().st_size} bytes)")

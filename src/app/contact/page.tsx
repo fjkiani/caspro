@@ -1,19 +1,12 @@
-'use client';
+import type { Metadata } from 'next';
+import VerticalSurface from '@/components/audience/VerticalSurface';
+import { CONTACT_PAGE_DATA } from '@/data/pages/contact-page';
 
-import React from 'react';
-import ContactSection from '@/components/sections/ContactSection';
-import { useTheme } from '@/context/ThemeContext';
+export const metadata: Metadata = {
+  title: 'Contact · CrisPRO',
+  description: 'Talk to the team about sponsor, clinical, advocacy, or general inquiries.',
+};
 
-export default function ContactPage() {
-  const { isDarkMode } = useTheme();
-
-  return (
-    <div
-      className={`min-h-screen transition-colors ${
-        isDarkMode ? 'bg-[#020408] text-zinc-100' : 'bg-slate-50 text-slate-900'
-      }`}
-    >
-      <ContactSection />
-    </div>
-  );
+export default function contact_Page() {
+  return <VerticalSurface data={CONTACT_PAGE_DATA} />;
 }

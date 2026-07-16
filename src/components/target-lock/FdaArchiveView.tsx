@@ -6,6 +6,7 @@ import { Target, CheckCircle2, Zap, AlertTriangle, ArrowRight } from 'lucide-rea
 import {
   FDA_RETROACTIVE, FDA_PROSPECTIVE, TWO_LAYER_MATRIX,
   FDA_STATS, LATIFY_RECEIPT, DRUG_CORRECTIONS,
+  POC_SATURATION_CAVEAT, ARCHIVE_CASCADE_NOTE,
 } from '@/data/fda-prediction-data';
 
 /** Desktop padding; tighter only below md */
@@ -15,6 +16,31 @@ const rowPad = 'px-8 py-3 max-md:px-4';
 export function FdaArchiveView({ isDarkMode }: { isDarkMode: boolean }) {
   return (
     <div className="flex flex-col gap-8 max-md:gap-6 min-w-0">
+
+      {/* POC saturation caveat — audited 2026-07-10 */}
+      <div className={`border rounded-sm px-6 py-5 max-md:px-4 max-md:py-4 ${
+        isDarkMode
+          ? 'bg-amber-500/[0.06] border-amber-500/40'
+          : 'bg-amber-50 border-amber-300'
+      }`}>
+        <div className="flex items-start gap-3">
+          <AlertTriangle className={`w-5 h-5 mt-0.5 shrink-0 ${isDarkMode ? 'text-amber-400' : 'text-amber-700'}`} />
+          <div className="flex flex-col gap-2 min-w-0">
+            <span className={`text-[11px] font-black uppercase tracking-[0.3em] ${isDarkMode ? 'text-amber-300' : 'text-amber-800'}`}>
+              POC-era archive · not current production output
+            </span>
+            <p className={`text-[12px] leading-relaxed ${isDarkMode ? 'text-amber-100/80' : 'text-amber-900'}`}>
+              Retroactive scores below sit in the {POC_SATURATION_CAVEAT.band} POC saturation band. {POC_SATURATION_CAVEAT.fixNote}
+            </p>
+            <p className={`text-[11px] leading-relaxed ${isDarkMode ? 'text-amber-100/70' : 'text-amber-900/90'}`}>
+              {POC_SATURATION_CAVEAT.directionClaim} POC AUROC = {POC_SATURATION_CAVEAT.auroc.poc.toFixed(3)} ± {POC_SATURATION_CAVEAT.auroc.pocSd.toFixed(3)} (synthetic; production rescore pending).
+            </p>
+            <p className={`text-[10px] uppercase tracking-[0.25em] ${isDarkMode ? 'text-amber-300/70' : 'text-amber-800/80'}`}>
+              Cascade note — {ARCHIVE_CASCADE_NOTE.archiveVersion} · current: {ARCHIVE_CASCADE_NOTE.currentVersion}
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Two-Layer Decision Matrix — from debrief lines 38-44 */}
       {/* <div className={`border rounded-sm overflow-hidden shadow-2xl ${isDarkMode ? 'bg-zinc-950/40 border-zinc-900' : 'bg-white border-slate-200'}`}>
@@ -102,6 +128,14 @@ export function FdaArchiveView({ isDarkMode }: { isDarkMode: boolean }) {
               <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
               <span className={`text-[12px] font-black uppercase tracking-[0.4em] ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                 Retroactive ({FDA_STATS.retroPeriod})
+              </span>
+              <span
+                className={`text-[9px] font-black uppercase tracking-[0.2em] px-2 py-0.5 rounded-sm shrink-0 ${
+                  isDarkMode ? 'bg-amber-500/10 text-amber-300 border border-amber-500/40' : 'bg-amber-100 text-amber-800 border border-amber-300'
+                }`}
+                title="Scores are from the POC saturation band (0.352–0.355). Production would rescore with step-z-score normalization; direction of the call is retained."
+              >
+                POC · archived
               </span>
             </div>
             <span className="text-lg font-black text-emerald-500 shrink-0">{FDA_STATS.retroConcordance}</span>

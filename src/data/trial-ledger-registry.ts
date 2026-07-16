@@ -1,9 +1,15 @@
 /**
  * Trial Ledger — single source of truth for decoded clinical trials.
  * Local registry today; Hygraph `TrialLedger` model will mirror these fields (see docs/HYGRAPH_TRIAL_LEDGER.md).
+ *
+ * Persona overlay (D15): LEGACY_CATEGORY_HUBS carries persona-varied nav
+ * copy via `personaCopy` over LegacyCategoryHubCopyFields
+ * (navLabel, pageTitle, pageSubtitle). Structural fields (id, legacyPath,
+ * trialSlug, accent) stay outside the overlay.
  */
 
 import { TRIAL_CASE_FILES, TRIAL_IDS, VECTOR_AXIS_META, type TrialCaseFile, type VectorAxes } from './trial-case-files';
+import type { PersonaOverlay } from '@/lib/persona-copy-guards';
 
 export type TrialReceiptPreview =
   | 'target-lock'
@@ -12,14 +18,18 @@ export type TrialReceiptPreview =
   | 'vector-map';
 
 /** Former top-level “category” pages that were really single-trial receipts */
-export interface LegacyCategoryHub {
-  id: string;
+export interface LegacyCategoryHubCopyFields {
   navLabel: string;
   pageTitle: string;
   pageSubtitle: string;
+}
+
+export interface LegacyCategoryHub extends LegacyCategoryHubCopyFields {
+  id: string;
   legacyPath: string;
   trialSlug: string;
   accent: 'cyan' | 'amber' | 'indigo';
+  personaCopy?: PersonaOverlay<LegacyCategoryHubCopyFields>;
 }
 
 export interface TrialLedgerEntry {
@@ -51,6 +61,18 @@ export const LEGACY_CATEGORY_HUBS: LegacyCategoryHub[] = [
     legacyPath: '/target-validation',
     trialSlug: 'ceacam5',
     accent: 'cyan',
+    personaCopy: {
+      patient: {
+        navLabel: 'IS THIS THE RIGHT TARGET?',
+        pageTitle: 'Is the drug actually going after the right thing?',
+        pageSubtitle: 'CHECKING THE TARGET',
+      },
+      pharma: {
+        navLabel: 'TARGET VALIDATION',
+        pageTitle: 'Target Validation Audit',
+        pageSubtitle: 'TARGET-LOCK RECEIPT',
+      },
+    },
   },
   {
     id: 'resistance',
@@ -60,6 +82,18 @@ export const LEGACY_CATEGORY_HUBS: LegacyCategoryHub[] = [
     legacyPath: '/resistance',
     trialSlug: 'capri',
     accent: 'amber',
+    personaCopy: {
+      patient: {
+        navLabel: 'WHY DRUGS STOP WORKING',
+        pageTitle: 'Why does the tumor stop responding to a drug?',
+        pageSubtitle: 'HOW TUMORS ESCAPE',
+      },
+      pharma: {
+        navLabel: 'RESISTANCE',
+        pageTitle: 'Resistance-Mechanism Audit',
+        pageSubtitle: 'KILL-CHAIN RECEIPT',
+      },
+    },
   },
   {
     id: 'moa',
@@ -69,6 +103,18 @@ export const LEGACY_CATEGORY_HUBS: LegacyCategoryHub[] = [
     legacyPath: '/moa',
     trialSlug: 'latify',
     accent: 'indigo',
+    personaCopy: {
+      patient: {
+        navLabel: 'DOES THE DRUG MATCH THE TUMOR?',
+        pageTitle: 'Does the way the drug works match the way the tumor grows?',
+        pageSubtitle: 'MATCHING DRUG TO BIOLOGY',
+      },
+      pharma: {
+        navLabel: 'MECHANISM ALIGNMENT',
+        pageTitle: 'Mechanism-Alignment Audit',
+        pageSubtitle: 'MOA-ALIGN RECEIPT',
+      },
+    },
   },
 ];
 
@@ -127,7 +173,7 @@ function buildEntry(slug: string, file: TrialCaseFile): TrialLedgerEntry {
     receiptId: slug.toUpperCase(),
     preview,
     route: ledgerSlugPath(slug),
-    proofRoute: `/proof/${slug}/`,
+    proofRoute: `/ledger/${slug}/`,
     trialId: file.trialId,
     phase: file.phase,
     cancer: file.cancer,
@@ -147,6 +193,14 @@ export const TRIAL_LEDGER_BY_SLUG: Record<string, TrialLedgerEntry> = Object.fro
 );
 
 export const TRIAL_LEDGER_SLUGS = TRIAL_LEDGER_ENTRIES.map((e) => e.slug);
+
+/**
+ * Hand-authored (5-slug) ledger entries. Nav dropdowns and any surface that
+ * displays a fixed-height list of receipts should use this, not the full
+ * 32-entry TRIAL_LEDGER_ENTRIES.
+ */
+export const HAND_AUTHORED_TRIAL_LEDGER_ENTRIES: TrialLedgerEntry[] =
+  TRIAL_LEDGER_ENTRIES.filter((e) => (ORDER[e.slug] ?? 99) < 99);
 
 export function getTrialLedgerEntry(slug: string): TrialLedgerEntry | null {
   const key = slug.trim().toLowerCase();

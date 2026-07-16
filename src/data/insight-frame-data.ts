@@ -64,7 +64,7 @@ export const INSIGHT_CONFIGS: InsightConfig[] = [
     ],
     closing: 'Different cancers. Different companies. Same root cause. Identified retroactively by the same engine.',
     ctaLabel: 'Open The Receipts',
-    ctaRoute: '/proof/latify',
+    ctaRoute: '/ledger/latify/',
   },
 
   // ─── Layer 3: Resistance Monitoring ─────────────────────────────────────────

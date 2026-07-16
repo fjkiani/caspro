@@ -1,0 +1,644 @@
+{
+  "cohort_id": "af3_metastasis_15_guide",
+  "cohort_type": "rna_dna_guide_target_complex",
+  "doctrine": {
+    "name": "RNA-DNA guide-target doctrine",
+    "plddt_floor": 50,
+    "iptm_floor": 0.3,
+    "reference": "Abramson et al. 2024, Nature - AlphaFold 3",
+    "chain_scheme": {
+      "A": {
+        "label": "guide RNA",
+        "length_nt": 96,
+        "color": "#75A025"
+      },
+      "B": {
+        "label": "target DNA strand 1",
+        "length_bp": 60,
+        "color": "#FF9400"
+      },
+      "C": {
+        "label": "target DNA strand 2",
+        "length_bp": 60,
+        "color": "#0279EE"
+      }
+    }
+  },
+  "guides": {
+    "fold_meta_micrometastasis_formation_cxcr4_06": {
+      "guide_id": "fold_meta_micrometastasis_formation_cxcr4_06",
+      "step": "Micromet",
+      "gene": "CXCR4",
+      "plddt": 68.97,
+      "iptm": 0.38,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.39,
+      "structural_confidence": 0.535,
+      "chain_iptm": [
+        0.22,
+        0.34,
+        0.32
+      ],
+      "chain_pair_iptm": [
+        [
+          0.16,
+          0.23,
+          0.2
+        ],
+        [
+          0.23,
+          0.19,
+          0.44
+        ],
+        [
+          0.2,
+          0.44,
+          0.45
+        ]
+      ],
+      "chain_ptm": [
+        0.16,
+        0.19,
+        0.45
+      ],
+      "ptm": 0.41,
+      "cif_path": "/artifacts/structural_validation/fold_meta_micrometastasis_formation_cxcr4_06.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "meta_local_invasion_twist1_10": {
+      "guide_id": "meta_local_invasion_twist1_10",
+      "step": "Local Invasion",
+      "gene": "TWIST1",
+      "plddt": 67.88,
+      "iptm": 0.38,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.39,
+      "structural_confidence": 0.529,
+      "chain_iptm": [
+        0.21,
+        0.34,
+        0.31
+      ],
+      "chain_pair_iptm": [
+        [
+          0.16,
+          0.24,
+          0.18
+        ],
+        [
+          0.24,
+          0.21,
+          0.44
+        ],
+        [
+          0.18,
+          0.44,
+          0.44
+        ]
+      ],
+      "chain_ptm": [
+        0.16,
+        0.21,
+        0.44
+      ],
+      "ptm": 0.41,
+      "cif_path": "/artifacts/structural_validation/meta_local_invasion_twist1_10.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "meta_angiogenesis_vegfa_05": {
+      "guide_id": "meta_angiogenesis_vegfa_05",
+      "step": "Angiogenesis",
+      "gene": "VEGFA",
+      "plddt": 66.73,
+      "iptm": 0.38,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.38,
+      "structural_confidence": 0.524,
+      "chain_iptm": [
+        0.19,
+        0.33,
+        0.3
+      ],
+      "chain_pair_iptm": [
+        [
+          0.16,
+          0.22,
+          0.16
+        ],
+        [
+          0.22,
+          0.19,
+          0.44
+        ],
+        [
+          0.16,
+          0.44,
+          0.44
+        ]
+      ],
+      "chain_ptm": [
+        0.16,
+        0.19,
+        0.44
+      ],
+      "ptm": 0.4,
+      "cif_path": "/artifacts/structural_validation/meta_angiogenesis_vegfa_05.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "meta_primary_growth_braf_14": {
+      "guide_id": "meta_primary_growth_braf_14",
+      "step": "Primary Growth",
+      "gene": "BRAF",
+      "plddt": 67.36,
+      "iptm": 0.37,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.38,
+      "structural_confidence": 0.522,
+      "chain_iptm": [
+        0.2,
+        0.34,
+        0.31
+      ],
+      "chain_pair_iptm": [
+        [
+          0.15,
+          0.22,
+          0.18
+        ],
+        [
+          0.22,
+          0.19,
+          0.45
+        ],
+        [
+          0.18,
+          0.45,
+          0.46
+        ]
+      ],
+      "chain_ptm": [
+        0.15,
+        0.19,
+        0.46
+      ],
+      "ptm": 0.4,
+      "cif_path": "/artifacts/structural_validation/meta_primary_growth_braf_14.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "fold_meta_primary_growth_braf_04": {
+      "guide_id": "fold_meta_primary_growth_braf_04",
+      "step": "Primary Growth",
+      "gene": "BRAF",
+      "plddt": 67.24,
+      "iptm": 0.35,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.36,
+      "structural_confidence": 0.511,
+      "chain_iptm": [
+        0.19,
+        0.31,
+        0.29
+      ],
+      "chain_pair_iptm": [
+        [
+          0.15,
+          0.22,
+          0.16
+        ],
+        [
+          0.22,
+          0.18,
+          0.41
+        ],
+        [
+          0.16,
+          0.41,
+          0.42
+        ]
+      ],
+      "chain_ptm": [
+        0.15,
+        0.18,
+        0.42
+      ],
+      "ptm": 0.38,
+      "cif_path": "/artifacts/structural_validation/fold_meta_primary_growth_braf_04.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "fold_meta_micrometastasis_formation_cxcr4_03": {
+      "guide_id": "fold_meta_micrometastasis_formation_cxcr4_03",
+      "step": "Micromet",
+      "gene": "CXCR4",
+      "plddt": 66.13,
+      "iptm": 0.36,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.36,
+      "structural_confidence": 0.511,
+      "chain_iptm": [
+        0.17,
+        0.32,
+        0.28
+      ],
+      "chain_pair_iptm": [
+        [
+          0.15,
+          0.2,
+          0.13
+        ],
+        [
+          0.2,
+          0.19,
+          0.44
+        ],
+        [
+          0.13,
+          0.44,
+          0.43
+        ]
+      ],
+      "chain_ptm": [
+        0.15,
+        0.19,
+        0.43
+      ],
+      "ptm": 0.37,
+      "cif_path": "/artifacts/structural_validation/fold_meta_micrometastasis_formation_cxcr4_03.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "fold_meta_extravasation_icam1_00": {
+      "guide_id": "fold_meta_extravasation_icam1_00",
+      "step": "Extravasation",
+      "gene": "ICAM1",
+      "plddt": 65.93,
+      "iptm": 0.36,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.36,
+      "structural_confidence": 0.51,
+      "chain_iptm": [
+        0.2,
+        0.32,
+        0.29
+      ],
+      "chain_pair_iptm": [
+        [
+          0.16,
+          0.23,
+          0.17
+        ],
+        [
+          0.23,
+          0.2,
+          0.41
+        ],
+        [
+          0.17,
+          0.41,
+          0.41
+        ]
+      ],
+      "chain_ptm": [
+        0.16,
+        0.2,
+        0.41
+      ],
+      "ptm": 0.38,
+      "cif_path": "/artifacts/structural_validation/fold_meta_extravasation_icam1_00.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "meta_metastatic_colonization_met_09": {
+      "guide_id": "meta_metastatic_colonization_met_09",
+      "step": "Colonization",
+      "gene": "MET",
+      "plddt": 65.45,
+      "iptm": 0.36,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.36,
+      "structural_confidence": 0.507,
+      "chain_iptm": [
+        0.19,
+        0.32,
+        0.3
+      ],
+      "chain_pair_iptm": [
+        [
+          0.15,
+          0.21,
+          0.17
+        ],
+        [
+          0.21,
+          0.17,
+          0.43
+        ],
+        [
+          0.17,
+          0.43,
+          0.43
+        ]
+      ],
+      "chain_ptm": [
+        0.15,
+        0.17,
+        0.43
+      ],
+      "ptm": 0.38,
+      "cif_path": "/artifacts/structural_validation/meta_metastatic_colonization_met_09.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "meta_intravasation_mmp2_07": {
+      "guide_id": "meta_intravasation_mmp2_07",
+      "step": "Intravasation",
+      "gene": "MMP2",
+      "plddt": 65.88,
+      "iptm": 0.35,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.35,
+      "structural_confidence": 0.504,
+      "chain_iptm": [
+        0.18,
+        0.31,
+        0.28
+      ],
+      "chain_pair_iptm": [
+        [
+          0.15,
+          0.21,
+          0.15
+        ],
+        [
+          0.21,
+          0.18,
+          0.41
+        ],
+        [
+          0.15,
+          0.41,
+          0.42
+        ]
+      ],
+      "chain_ptm": [
+        0.15,
+        0.18,
+        0.42
+      ],
+      "ptm": 0.37,
+      "cif_path": "/artifacts/structural_validation/meta_intravasation_mmp2_07.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "meta_local_invasion_twist1_11": {
+      "guide_id": "meta_local_invasion_twist1_11",
+      "step": "Local Invasion",
+      "gene": "TWIST1",
+      "plddt": 63.82,
+      "iptm": 0.36,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.36,
+      "structural_confidence": 0.499,
+      "chain_iptm": [
+        0.18,
+        0.32,
+        0.29
+      ],
+      "chain_pair_iptm": [
+        [
+          0.15,
+          0.2,
+          0.15
+        ],
+        [
+          0.2,
+          0.18,
+          0.44
+        ],
+        [
+          0.15,
+          0.44,
+          0.42
+        ]
+      ],
+      "chain_ptm": [
+        0.15,
+        0.18,
+        0.42
+      ],
+      "ptm": 0.36,
+      "cif_path": "/artifacts/structural_validation/meta_local_invasion_twist1_11.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "meta_extravasation_icam1_01": {
+      "guide_id": "meta_extravasation_icam1_01",
+      "step": "Extravasation",
+      "gene": "ICAM1",
+      "plddt": 65.52,
+      "iptm": 0.34,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.34,
+      "structural_confidence": 0.498,
+      "chain_iptm": [
+        0.16,
+        0.31,
+        0.26
+      ],
+      "chain_pair_iptm": [
+        [
+          0.15,
+          0.21,
+          0.12
+        ],
+        [
+          0.21,
+          0.17,
+          0.41
+        ],
+        [
+          0.12,
+          0.41,
+          0.42
+        ]
+      ],
+      "chain_ptm": [
+        0.15,
+        0.17,
+        0.42
+      ],
+      "ptm": 0.36,
+      "cif_path": "/artifacts/structural_validation/meta_extravasation_icam1_01.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "meta_survival_in_circulation_bcl2_13": {
+      "guide_id": "meta_survival_in_circulation_bcl2_13",
+      "step": "Circulation",
+      "gene": "BCL2",
+      "plddt": 63.84,
+      "iptm": 0.35,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.35,
+      "structural_confidence": 0.494,
+      "chain_iptm": [
+        0.17,
+        0.32,
+        0.28
+      ],
+      "chain_pair_iptm": [
+        [
+          0.15,
+          0.21,
+          0.13
+        ],
+        [
+          0.21,
+          0.18,
+          0.43
+        ],
+        [
+          0.13,
+          0.43,
+          0.42
+        ]
+      ],
+      "chain_ptm": [
+        0.15,
+        0.18,
+        0.42
+      ],
+      "ptm": 0.37,
+      "cif_path": "/artifacts/structural_validation/meta_survival_in_circulation_bcl2_13.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "fold_meta_angiogenesis_vegfa_02": {
+      "guide_id": "fold_meta_angiogenesis_vegfa_02",
+      "step": "Angiogenesis",
+      "gene": "VEGFA",
+      "plddt": 64.16,
+      "iptm": 0.34,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.34,
+      "structural_confidence": 0.491,
+      "chain_iptm": [
+        0.18,
+        0.31,
+        0.27
+      ],
+      "chain_pair_iptm": [
+        [
+          0.15,
+          0.22,
+          0.14
+        ],
+        [
+          0.22,
+          0.17,
+          0.4
+        ],
+        [
+          0.14,
+          0.4,
+          0.41
+        ]
+      ],
+      "chain_ptm": [
+        0.15,
+        0.17,
+        0.41
+      ],
+      "ptm": 0.36,
+      "cif_path": "/artifacts/structural_validation/fold_meta_angiogenesis_vegfa_02.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "meta_survival_in_circulation_bcl2_12": {
+      "guide_id": "meta_survival_in_circulation_bcl2_12",
+      "step": "Circulation",
+      "gene": "BCL2",
+      "plddt": 63.04,
+      "iptm": 0.35,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.35,
+      "structural_confidence": 0.49,
+      "chain_iptm": [
+        0.2,
+        0.31,
+        0.29
+      ],
+      "chain_pair_iptm": [
+        [
+          0.16,
+          0.22,
+          0.17
+        ],
+        [
+          0.22,
+          0.19,
+          0.41
+        ],
+        [
+          0.17,
+          0.41,
+          0.4
+        ]
+      ],
+      "chain_ptm": [
+        0.16,
+        0.19,
+        0.4
+      ],
+      "ptm": 0.36,
+      "cif_path": "/artifacts/structural_validation/meta_survival_in_circulation_bcl2_12.cif",
+      "rna_dna_verdict": "PASS"
+    },
+    "meta_intravasation_mmp2_08": {
+      "guide_id": "meta_intravasation_mmp2_08",
+      "step": "Intravasation",
+      "gene": "MMP2",
+      "plddt": 62.49,
+      "iptm": 0.33,
+      "fraction_disordered": 0.0,
+      "has_clash": 0.0,
+      "ranking_score": 0.34,
+      "structural_confidence": 0.477,
+      "chain_iptm": [
+        0.15,
+        0.3,
+        0.26
+      ],
+      "chain_pair_iptm": [
+        [
+          0.14,
+          0.19,
+          0.11
+        ],
+        [
+          0.19,
+          0.16,
+          0.41
+        ],
+        [
+          0.11,
+          0.41,
+          0.41
+        ]
+      ],
+      "chain_ptm": [
+        0.14,
+        0.16,
+        0.41
+      ],
+      "ptm": 0.35,
+      "cif_path": "/artifacts/structural_validation/meta_intravasation_mmp2_08.cif",
+      "rna_dna_verdict": "PASS"
+    }
+  }
+}

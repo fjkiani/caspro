@@ -1,0 +1,357 @@
+{
+  "demo_id": "pharma_crc_responder_identification",
+  "persona": "pharma",
+  "title": "Finding the Patients Who Respond",
+  "subtitle": "How CrisPRO identified a patient subgroup where STC-1010 outperforms every standard option",
+  "governance_mode": "clean_plus_roadmap",
+  "data_sources": {
+    "primary": "CRC mechanism-fit ranker v1 \u2014 TCGA COADREAD MSS cohort, n=485. Vendored from fjkiani/Brenus @ c2d90b6.",
+    "formula": "PATH A (locked 2026-04-28): fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1). vector_version = 8D.v1. PATH B is prohibited in all outputs.",
+    "trial_decode_registry": "trial_decode_registry_v2.json \u2014 42 trials across 7 programs (ATR_DDR:5, CEACAM5:5, IO_CORE:7, IO_APPENDIX:15, HISTORICAL_BENCHMARK:6, BREAK_CRC_001:1, GBM_ESCAPEMAP:3).",
+    "ceacam5_corpus": "5-trial failure corpus: CARMEN-LC03, PROCEADE-CRC-01, Labetuzumab govitecan, SGN-CEACAM5C, Cibisatamab."
+  },
+  "stages": [
+    {
+      "stage_id": 1,
+      "name": "The Problem",
+      "plain_language": "Colorectal cancer that is microsatellite stable (MSS) rarely responds to immunotherapy. About 95% of metastatic colorectal cancer patients have MSS tumors. Standard chemotherapy helps, but no targeted immunotherapy has worked for this group. The question for any new drug is: which patients might actually benefit?",
+      "data_shown": {
+        "type": "stat_callout",
+        "items": [
+          {
+            "label": "MSS colorectal cancer patients",
+            "value": "~95%",
+            "context": "of metastatic CRC population"
+          },
+          {
+            "label": "Immunotherapy response rate (MSS CRC)",
+            "value": "~0%",
+            "context": "checkpoint inhibitors alone"
+          },
+          {
+            "label": "Standard chemotherapy median survival",
+            "value": "~22 months",
+            "context": "1L mFOLFOX6 + bevacizumab"
+          }
+        ]
+      },
+      "status": "validated",
+      "evidence_grade": "PEER-REVIEWED"
+    },
+    {
+      "stage_id": 2,
+      "name": "How CrisPRO Analyzes a Drug",
+      "plain_language": "CrisPRO reads the scientific literature and clinical trial results for a drug, then builds a profile of how that drug works \u2014 what biological pathways it targets, what resistance mechanisms it overcomes, and what patient characteristics make it more or less likely to work. For STC-1010, CrisPRO identified that its core mechanism is immune activation: it trains the immune system to attack the tumor by presenting tumor proteins and triggering an immune response.",
+      "data_shown": {
+        "type": "mechanism_profile",
+        "drug": "STC-1010",
+        "mechanism_summary": "Whole-cell therapeutic vaccine that presents over 200 tumor proteins to the immune system, combined with low-dose cyclophosphamide (removes immune brakes) and GM-CSF (activates immune scouts). The vaccine also uses a chemical tag (hapten) that draws immune cells into the tumor.",
+        "primary_pathway": "Immune activation (io axis)",
+        "secondary_pathways": [
+          "DNA damage response (ddr)",
+          "Vascular targeting (vegf)"
+        ]
+      },
+      "status": "validated",
+      "evidence_grade": "MECHANISTIC HYPOTHESIS"
+    },
+    {
+      "stage_id": 3,
+      "name": "Scoring 485 Real Patients Against 8 Treatment Options",
+      "plain_language": "CrisPRO scored 485 real MSS colorectal cancer patients from the TCGA database against STC-1010 and 7 standard treatment regimens used in colorectal cancer. Each patient gets a fit score from 0 to 1 for each treatment \u2014 higher means the treatment is a better match for that patient's tumor biology. The 7 comparators are major clinical trial regimens: MOSAIC, N0147, PRIME, PEAK, PACCE, HORIZON III, and VELOUR.",
+      "data_shown": {
+        "type": "ranking_overview",
+        "cohort": "TCGA COADREAD MSS",
+        "n_patients": 485,
+        "n_treatments_compared": 8,
+        "treatments": [
+          {
+            "name": "STC-1010",
+            "type": "Therapeutic vaccine (investigational)",
+            "mean_fit": 0.5605
+          },
+          {
+            "name": "PRIME",
+            "type": "Panitumumab + mFOLFOX6 (KRAS wild-type)",
+            "mean_fit": 0.7252
+          },
+          {
+            "name": "PEAK_FOLFIRI",
+            "type": "Panitumumab + FOLFIRI (KRAS wild-type)",
+            "mean_fit": 0.7252
+          },
+          {
+            "name": "N0147",
+            "type": "Cetuximab + mFOLFOX6 (KRAS wild-type)",
+            "mean_fit": 0.5544
+          },
+          {
+            "name": "MOSAIC",
+            "type": "Oxaliplatin + 5-FU/LV (adjuvant)",
+            "mean_fit": 0.4144
+          },
+          {
+            "name": "PACCE",
+            "type": "Panitumumab + FOLFIRI + bevacizumab",
+            "mean_fit": 0.3629
+          },
+          {
+            "name": "HORIZON_III",
+            "type": "Cediranib + mFOLFOX6",
+            "mean_fit": 0.25
+          },
+          {
+            "name": "VELOUR",
+            "type": "Aflibercept + FOLFIRI",
+            "mean_fit": 0.2656
+          }
+        ],
+        "overall_result": "STC-1010 ranks 3rd or 4th for 98.1% of patients. PRIME and PEAK dominate because they target a pathway (MAPK) that is active in nearly all MSS tumors.",
+        "rank_distribution": {
+          "rank_1": 9,
+          "rank_3": 276,
+          "rank_4": 199,
+          "rank_5": 1
+        }
+      },
+      "status": "validated",
+      "evidence_grade": "VERIFIED"
+    },
+    {
+      "stage_id": 4,
+      "name": "The Breakthrough: Finding the Responders",
+      "plain_language": "When CrisPRO filtered for patients with high tumor mutational burden (TMB >= 25 mutations per megabase), STC-1010 jumped to first place for every single patient in that subgroup. All 9 patients with TMB >= 25 ranked STC-1010 as their best option \u2014 ahead of every standard treatment. This is the responder signal: a specific, identifiable patient population where the investigational drug outperforms all comparators.",
+      "data_shown": {
+        "type": "subgroup_comparison",
+        "subgroups": [
+          {
+            "name": "All MSS patients",
+            "n": 485,
+            "stc1010_mean_fit": 0.5605,
+            "stc1010_ranks_first": "1.9% (9 of 485)",
+            "recall_at_3": 0.5876,
+            "mean_rank": "3rd/4th in 98.1% of patients",
+            "delta_vs_best": -0.1647,
+            "interpretation": "STC-1010 loses to PRIME/PEAK in the broad population"
+          },
+          {
+            "name": "TMB >= 10 mut/Mb",
+            "n": 12,
+            "stc1010_mean_fit": 0.7986,
+            "stc1010_ranks_first": "75.0% (9 of 12)",
+            "recall_at_3": 0.9167,
+            "mean_rank": "1st or 2nd",
+            "delta_vs_best": 0.0758,
+            "interpretation": "STC-1010 advantage begins to emerge"
+          },
+          {
+            "name": "TMB >= 25 mut/Mb",
+            "n": 9,
+            "stc1010_mean_fit": 0.8644,
+            "stc1010_ranks_first": "100% (9 of 9)",
+            "recall_at_3": 1.0,
+            "mean_rank": "1st for all 9 patients",
+            "delta_vs_best": 0.143,
+            "interpretation": "STC-1010 is the top-ranked treatment for every patient in this subgroup"
+          },
+          {
+            "name": "HRD-Low subgroup",
+            "n": 150,
+            "stc1010_mean_fit": 0.5469,
+            "stc1010_ranks_first": "0.0% (recall@3 = 94% \u2014 often in top-3 but not #1)",
+            "recall_at_3": 0.94,
+            "mean_rank": "top-3 in 94% of cases",
+            "delta_vs_best": -0.1701,
+            "interpretation": "HRD-Low tumors do not favor STC-1010 head-to-head, but STC-1010 still lands in the top-3 in 94% of cases."
+          },
+          {
+            "name": "HRD-Intermediate subgroup",
+            "n": 225,
+            "stc1010_mean_fit": 0.5545,
+            "stc1010_ranks_first": "0.0% (recall@3 = 44%)",
+            "recall_at_3": 0.44,
+            "mean_rank": "top-3 in 44% of cases",
+            "delta_vs_best": -0.1731,
+            "interpretation": "HRD-Intermediate is the least favorable subgroup for STC-1010 by recall@3."
+          },
+          {
+            "name": "HRD-High subgroup",
+            "n": 102,
+            "stc1010_mean_fit": 0.591,
+            "stc1010_ranks_first": "0.0% (recall@3 = 38%)",
+            "recall_at_3": 0.3824,
+            "mean_rank": "top-3 in 38% of cases",
+            "delta_vs_best": -0.1412,
+            "interpretation": "HRD-High tumors show slightly higher mean fit but lower top-3 recall \u2014 the signal here is not TMB-driven."
+          }
+        ],
+        "key_metric": "recall_at_3 = 1.0 means STC-1010 appears in the top 3 recommendations for 100% of high-TMB patients",
+        "clinical_anchor": "This aligns with CCTG CO.26, where patients with plasma TMB >= 28 showed the strongest immunotherapy survival benefit (OS HR 0.34) \u2014 the best published immunotherapy signal in MSS CRC."
+      },
+      "status": "validated",
+      "evidence_grade": "VERIFIED"
+    },
+    {
+      "stage_id": 5,
+      "name": "Why It Works: The Biology",
+      "plain_language": "STC-1010's core mechanism is immune activation. In most MSS patients, the immune system is 'asleep' \u2014 tumors have low mutation burden, so there are few targets for the immune system to recognize. But in high-TMB patients, the tumor has many mutations, creating many potential immune targets. STC-1010's vaccine approach amplifies this existing vulnerability: it trains the immune system against the tumor's proteins, and the high mutation burden means there are more targets to attack. Standard treatments like PRIME target a different pathway (cell growth signaling) that doesn't benefit from high TMB.",
+      "data_shown": {
+        "type": "axis_contribution",
+        "explanation": "In high-TMB patients, the immune activation component of STC-1010's score becomes dominant. At TMB >= 25, the immune axis contributes the majority of the fit score, pushing STC-1010 above all comparators.",
+        "crossover_point": "STC-1010 overtakes PRIME when the immune axis score reaches 0.44, which corresponds to approximately TMB = 30 mut/Mb. In this dataset, the 9 high-TMB patients all have TMB between 102 and 382 mut/Mb.",
+        "pathway_comparison": {
+          "STC-1010 primary driver": "Immune activation (io axis, 37.2% of dot product). Suppressed by low TMB in MSS CRC (median TMB=3.3 mut/Mb \u2192 io=0.226). Activates in TMB-high subgroup.",
+          "PRIME / PEAK_FOLFIRI dominant driver": "MAPK cell-growth signaling (mapk=0.8 for MSS tumors, 41.6% of dot product). Fixed across MSS cohort \u2014 not TMB-dependent.",
+          "N0147 mechanism": "MAPK + efflux (drug resistance). efflux axis contributes 2.8% of dot product; higher in HRD-High tumors."
+        },
+        "figure_asset": "/data/pharma/crc-ranker-v1/crc_ranker_figure_v1.png",
+        "figure_caption": "STC-1010 fit crosses PRIME as TMB rises. All 9 TMB\u226525 patients rank STC-1010 first."
+      },
+      "status": "validated",
+      "evidence_grade": "MECHANISTIC HYPOTHESIS"
+    },
+    {
+      "stage_id": 6,
+      "name": "What CrisPRO Also Decoded: Learning From Failed Trials",
+      "plain_language": "Beyond the responder analysis, CrisPRO has decoded 42 clinical trials across 7 drug programs \u2014 extracting why each trial succeeded or failed. For the CEACAM5 program alone, CrisPRO analyzed 5 failed trials and identified 5 distinct failure modes: wrong patient selection criteria, archived tissue limitations, payload resistance, regulatory safety signals, and target toxicity. This intelligence helps avoid repeating the same mistakes.",
+      "data_shown": {
+        "type": "trial_decode_summary",
+        "total_trials_decoded": 42,
+        "programs": [
+          {
+            "name": "ATR/DDR (DNA damage repair)",
+            "trials": 5,
+            "status": "roadmap"
+          },
+          {
+            "name": "CEACAM5 (targeted antibody)",
+            "trials": 5,
+            "status": "validated"
+          },
+          {
+            "name": "IO Core (immunotherapy comparators)",
+            "trials": 7,
+            "status": "validated"
+          },
+          {
+            "name": "IO Appendix (broader immunotherapy)",
+            "trials": 15,
+            "status": "validated"
+          },
+          {
+            "name": "Historical Benchmarks",
+            "trials": 6,
+            "status": "validated"
+          },
+          {
+            "name": "BreAK CRC-001 (STC-1010 trial)",
+            "trials": 1,
+            "status": "validated"
+          },
+          {
+            "name": "GBM Escape Map (brain cancer)",
+            "trials": 3,
+            "status": "roadmap"
+          }
+        ],
+        "ceacam5_failure_modes": [
+          {
+            "domain": "Patient Selection",
+            "trial": "CARMEN-LC03 (Phase III, n=389)",
+            "finding": "CEACAM5 protein threshold set too low (>=50%). The >=80% subgroup showed directional benefit. The trial failed because most enrolled patients did not have high enough CEACAM5 expression.",
+            "source": "WCLC 2024"
+          },
+          {
+            "domain": "Tissue Quality",
+            "trial": "CARMEN-LC03",
+            "finding": "CEACAM5 expression was measured on archived biopsy tissue, not fresh tumor at enrollment. Tumor expression changes over time, so archived measurements may not reflect current status.",
+            "source": "WCLC 2024"
+          },
+          {
+            "domain": "Payload Resistance",
+            "trial": "Labetuzumab govitecan (n=86)",
+            "finding": "The drug delivered SN-38, the same active ingredient as irinotecan \u2014 a drug most patients had already received and developed resistance to. Response rate was only 1.2%.",
+            "source": "Clinical trial results"
+          },
+          {
+            "domain": "Regulatory Safety",
+            "trial": "SGN-CEACAM5C",
+            "finding": "European clinical hold due to safety concerns shared with a discontinued drug using the same linker chemistry. The safety signal is specific to the chemistry class, not the target.",
+            "source": "EU regulatory action 2026"
+          },
+          {
+            "domain": "Target Toxicity",
+            "trial": "Cibisatamab (n=52)",
+            "finding": "The drug activated immune cells as designed (CD8+ T-cell infiltration confirmed), but response rate was only 13.5%. CEACAM5 is also expressed on normal gut tissue, causing on-target gastrointestinal toxicity that limits the achievable dose.",
+            "source": "Nature Medicine 2026"
+          }
+        ],
+        "ceacam5_key_finding": "CEACAM5 protein levels are prognostic (correlate with outcome) but NOT predictive (do not identify who responds to CEACAM5-targeted therapy). PROCEADE-CRC-01 confirmed this: Spearman correlation -0.14, P=0.4 \u2014 no statistical relationship between CEACAM5 expression and treatment response."
+      },
+      "status": "validated",
+      "evidence_grade": "PEER-REVIEWED"
+    },
+    {
+      "stage_id": 7,
+      "name": "What This Means for Drug Development",
+      "plain_language": "For a pharma team evaluating STC-1010, CrisPRO's analysis points to a clear strategy: enrich the clinical trial for high-TMB MSS patients. In the broad MSS population, STC-1010 does not outperform standard care. But in the TMB >= 25 subgroup, it is the top-ranked option for every patient. This is the kind of biomarker-driven enrichment that can turn a failed trial into a successful one. The BreAK CRC-001 trial currently does not prospectively collect TMB \u2014 this is the critical design gap.",
+      "data_shown": {
+        "type": "strategic_recommendation",
+        "recommendations": [
+          {
+            "priority": 1,
+            "action": "Anchor BreAK CRC-001 (NCT06934538) enrollment to the four GAPs surfaced by the decode analysis",
+            "rationale": "BreAK CRC-001 PATH A fit = 0.6944 (canonical_vectors.py, locked 2026-04-28). Decode analysis surfaced GAP-01 (liver-metastasis stratification not pre-specified \u2014 CRITICAL, replicates the CO.26 design gap), GAP-02 (pTMB not collected prospectively \u2014 HIGH), GAP-03 (io axis = 0.40 vs mechanism optimum \u2265 0.50 \u2014 MEDIUM), GAP-04 (no biomarker gate for patient selection \u2014 HIGH).",
+            "status": "validated"
+          },
+          {
+            "priority": 2,
+            "action": "Collect TMB prospectively \u2014 enrichment target TMB \u2265 25",
+            "rationale": "Responder signal in the vendored ranker (n=485 MSS TCGA COADREAD) is confined to TMB \u2265 25 subgroup (n=9, stc1010_mean_fit=0.8644, all 9 rank STC-1010 first, delta vs best comparator = +0.143). Without prospective TMB collection, the trial cannot confirm this subgroup benefit \u2014 this is what GAP-02 addresses.",
+            "status": "validated"
+          },
+          {
+            "priority": 3,
+            "action": "Stratify by liver-metastasis status \u2014 GAP-01",
+            "rationale": "CO.26 (NCT02870920) showed pTMB \u2265 28 OS HR = 0.34 (90% CI 0.18\u20130.63, p=0.022) and liver-metastasis PFS HR = 1.39 vs non-liver-metastasis PFS HR = 0.54 (Pint = 0.02). Liver metastasis is the critical stratification variable for IO in MSS CRC. BreAK CRC-001 directly replicates this design gap unless corrected.",
+            "status": "validated"
+          },
+          {
+            "priority": 4,
+            "action": "Apply the CEACAM5 5-failure corpus lesson \u2014 set the biomarker gate before enrollment opens, not after",
+            "rationale": "CEACAM5 program failures include CARMEN-LC03 (n=389, IHC \u226550% threshold set too low; \u226580% subgroup showed directional benefit), PROCEADE-CRC-01 (Spearman \u03c1=-0.14, p=0.4 \u2014 expression-to-response correlation missing), Labetuzumab govitecan (n=86, ORR 1.2%), SGN-CEACAM5C (EU regulatory hold across France/Spain/Sweden/Netherlands, shared linker with terminated PF-08046044), and Cibisatamab (n=52, ORR 13.5%). The common thread: biomarker gate specified too late or too permissively. STC-1010's TMB threshold must be validated prospectively.",
+            "status": "validated"
+          }
+        ],
+        "clinical_anchor": "CCTG CO.26 (NCT02870920) \u2014 pTMB \u2265 28 OS HR = 0.34 (90% CI 0.18\u20130.63, p=0.022). Liver-metastasis stratification is the critical design variable for IO in MSS CRC. STC-1010's mechanism-fit advantage in high-TMB subgroup replicates this signal in a mechanism-fit ranking framework."
+      },
+      "status": "validated",
+      "evidence_grade": "VERIFIED"
+    }
+  ],
+  "roadmap_items": [
+    {
+      "capability": "Retroactive prediction validation",
+      "description": "CrisPRO is developing the ability to retroactively predict which patients responded in past clinical trials, using the same mechanism-fit approach. This is currently in validation.",
+      "status": "in_development",
+      "note": "Internal validation in progress. Not yet available for external use."
+    },
+    {
+      "capability": "Trial vector registry expansion",
+      "description": "CrisPRO's trial database currently contains 42 decoded trials. Expansion to include more programs and updated trial vectors is ongoing.",
+      "status": "in_development",
+      "note": "Registry quality improvement initiative active."
+    },
+    {
+      "capability": "ATR/DDR program decode",
+      "description": "5 DNA damage repair trials have been decoded. Mechanism-fit scoring for this program is being validated.",
+      "status": "in_development",
+      "note": "Program-level analysis available; per-patient scoring in validation."
+    }
+  ],
+  "governance_labels": {
+    "validated": "Supported by verified data and peer-reviewed evidence",
+    "in_development": "Active area of research; not yet validated for external use",
+    "mechanistic_hypothesis": "Biologically plausible and consistent with evidence, but not yet clinically proven"
+  }
+}

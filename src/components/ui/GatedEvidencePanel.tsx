@@ -127,7 +127,7 @@ export const GatedEvidencePanel: React.FC<GatedEvidencePanelProps> = ({
       <PasscodeModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
-        proofUrl={pendingProofId ? `/proof/${pendingProofId}/case` : '/contact/'}
+        proofUrl={pendingProofId ? `/ledger/${pendingProofId}/` : '/contact/'}
         targetLabel={targetLabel}
       />
     </>

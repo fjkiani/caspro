@@ -9,6 +9,8 @@ import {
   buildDualGeometryRadarData,
   DualGeometryRadar,
 } from '@/components/sections/mars/DualGeometryRadar';
+import { MoaGlyphStrip } from '@/components/sections/mars/MoaGlyphStrip';
+import { isCosineGated, toneClasses } from '@/components/sections/mars/gated-values';
 
 function buildRadarData(trial: TrialCaseFile) {
   return buildDualGeometryRadarData(trial);
@@ -73,30 +75,56 @@ export const GateStatusPanel: React.FC<GateStatusPanelProps> = ({ trial, isDarkM
         </div>
       </div>
 
-      {/* Mechanism fit */}
+      {/* Mechanism fit — numeric surface only when cosines are not gated; else glyph strip + endpoint chip */}
       <div className={`mx-4 mb-4 p-4 border rounded transition-colors ${
         isDarkMode ? 'bg-black/40 border-zinc-900' : 'bg-slate-50 border-slate-100'
       }`}>
-        <div className="flex justify-between items-center mb-2">
-          <span className={`text-[11px] font-black uppercase tracking-widest ${isDarkMode ? 'text-zinc-300' : 'text-slate-600'}`}>
-            Responder fit
-          </span>
-          <span className={`text-sm font-light tabular-nums ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-            {trial.cosineResponder.toFixed(4)}
-          </span>
-        </div>
-        <div className="flex justify-between items-center mb-2">
-          <span className={`text-[11px] font-black uppercase tracking-widest ${isDarkMode ? 'text-zinc-300' : 'text-slate-600'}`}>
-            ITT diluted
-          </span>
-          <span className="text-sm font-light text-rose-500 tabular-nums">{trial.cosineITT.toFixed(4)}</span>
-        </div>
-        <div className={`flex justify-between items-center p-2 rounded ${
-          isDarkMode ? 'bg-rose-500/5 border border-rose-500/20' : 'bg-rose-50 border border-rose-200'
-        }`}>
-          <span className="text-[9px] font-black text-rose-500 uppercase">Δ Impact</span>
-          <span className="text-sm font-black text-rose-500">{trial.deltaImpact}</span>
-        </div>
+        {!isCosineGated(trial.cosineResponder) ? (
+          <>
+            <div className="flex justify-between items-center mb-2">
+              <span className={`text-[11px] font-black uppercase tracking-widest ${isDarkMode ? 'text-zinc-300' : 'text-slate-600'}`}>
+                Responder fit
+              </span>
+              <span className={`text-sm font-light tabular-nums ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                {trial.cosineResponder.toFixed(4)}
+              </span>
+            </div>
+            <div className="flex justify-between items-center mb-2">
+              <span className={`text-[11px] font-black uppercase tracking-widest ${isDarkMode ? 'text-zinc-300' : 'text-slate-600'}`}>
+                ITT diluted
+              </span>
+              <span className="text-sm font-light text-rose-500 tabular-nums">{trial.cosineITT.toFixed(4)}</span>
+            </div>
+            {(() => {
+              const rt = trial.publishedReadout ? toneClasses(trial.publishedReadout.tone) : toneClasses('negative');
+              return (
+                <div className={`flex justify-between items-center p-2 rounded ${rt.chipBg}`}>
+                  <span className={`text-[9px] font-black uppercase ${rt.chipText}`}>{trial.publishedReadout?.endpointLabel ?? 'Δ Impact'}</span>
+                  <span className={`text-sm font-black ${rt.chipText}`}>{trial.publishedReadout?.endpointValue ?? trial.deltaImpact}</span>
+                </div>
+              );
+            })()}
+          </>
+        ) : (
+          <div className="space-y-3">
+            {trial.moaGlyphs && trial.moaGlyphs.length > 0 ? (
+              <MoaGlyphStrip rows={trial.moaGlyphs} isDarkMode={isDarkMode} />
+            ) : (
+              <p className={`text-[10px] font-black uppercase tracking-widest ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`}>
+                Mechanism glyphs gated.
+              </p>
+            )}
+            {trial.publishedReadout && (() => {
+              const rt = toneClasses(trial.publishedReadout.tone);
+              return (
+                <div className={`flex justify-between items-center p-2 rounded ${rt.chipBg}`}>
+                  <span className={`text-[9px] font-black uppercase ${rt.chipText}`}>{trial.publishedReadout.endpointLabel}</span>
+                  <span className={`text-sm font-black ${rt.chipText}`}>{trial.publishedReadout.endpointValue}</span>
+                </div>
+              );
+            })()}
+          </div>
+        )}
       </div>
 
       {/* Gate Results */}
