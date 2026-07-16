@@ -4,7 +4,7 @@ import { PRODUCTS_HUB_PAGE_DATA } from '@/data/pages/products-hub-page';
 
 export const metadata: Metadata = {
   title: 'Products · CrisPRO',
-  description: 'Seven purpose-built surfaces for the mechanism-alignment engine.',
+  description: 'One oncology-development intelligence layer expressed through three products: Interception, In-Silico Trials, and Tumor Board.',
 };
 
 export default function products_hub_Page() {

@@ -277,6 +277,9 @@ export default function VerticalSurface({ data, headerLink }: Props) {
     <SurfaceTabs>
       <main className={`h-screen flex flex-col overflow-hidden transition-colors ${shell}`}>
         <ZetaNavbar />
+        {/* Spacer: ZetaNavbar is `fixed top-0 h-14` (removed from flow); without
+            this the page title strip renders under it and is clipped. */}
+        <div className="shrink-0 h-14" aria-hidden />
 
         <div className={`shrink-0 border-b ${rail}`}>
           <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 py-4">

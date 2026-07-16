@@ -4,10 +4,43 @@
 import type { VerticalPageData } from '@/components/audience/VerticalSurface';
 export const PRODUCTS_HUB_PAGE_DATA: VerticalPageData = {
   eyebrow: 'Products',
-  title: 'One engine, seven decision surfaces.',
+  title: 'One intelligence layer, three product surfaces.',
   subtitle:
-    'CrisPRO is a mechanism-alignment engine with seven purpose-built surfaces — one per decision context. Every surface consumes the same 5-capability spine and every claim traces to the public ledger.',
+    'CrisPRO is one oncology-development intelligence layer expressed through three products — Interception, In-Silico Trials, and Tumor Board — built from the same biology intelligence, not competing silos. Every surface consumes the same spine and every claim traces to the public ledger. Research use only.',
   sections: [
+    {
+      id: 'interception',
+      label: 'Interception',
+      eyebrow: 'Product 1 · Interception',
+      headline: 'Turn a metastasis hypothesis into a target-and-experiment package.',
+      iconKey: 'target',
+      body: [
+        'For metastasis programs deciding what to test first. Prioritizes targets for the relevant step of spread, generates CRISPR perturbation candidates, and delivers a traceable experimental package with a method-version tag on every stage.',
+      ],
+      cta: { label: 'Open Interception', href: '/products/interception/' },
+    },
+    {
+      id: 'insilico-trials',
+      label: 'In-Silico Trials',
+      eyebrow: 'Product 2 · In-Silico Trials',
+      headline: 'Pressure-test a development hypothesis before protocol lock.',
+      iconKey: 'git-branch',
+      body: [
+        'For program teams facing a protocol-strategy decision. Combines mechanism fit, biomarker logic, decoded trial and comparator evidence, resistance liabilities, and named gaps into an evidence-tiered program decision package.',
+      ],
+      cta: { label: 'Open In-Silico Trials', href: '/products/insilico-trials/' },
+    },
+    {
+      id: 'tumor-board',
+      label: 'Tumor Board',
+      eyebrow: 'Product 3 · Tumor Board',
+      headline: 'Turn molecular complexity into a traceable case resolution.',
+      iconKey: 'microscope',
+      body: [
+        'The human decision surface of the platform. Organizes a patient\u2019s biology, vulnerabilities, mechanism-aligned options, trial landscape, evidence, and missing data into one reviewable research workspace. Research use only \u2014 not clinical decision support.',
+      ],
+      cta: { label: 'Open Tumor Board', href: '/products/tumor-board/' },
+    },
     {
       id: 'oncology',
       label: 'Oncology',

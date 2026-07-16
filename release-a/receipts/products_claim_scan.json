@@ -1,0 +1,12 @@
+{
+  "worker": "W5-red-team",
+  "policy": "visible copy only; code comments allow-listed",
+  "files_scanned": [
+    "products-interception-page.ts",
+    "products-insilico-trials-page.ts",
+    "products-tumor-board-page.ts"
+  ],
+  "rules_checked": 19,
+  "status": "PASS",
+  "findings": []
+}
