@@ -173,6 +173,70 @@ const nextConfig = {
         destination: '/products/oncology/match-patients-to-therapies/agentic-emr',
         permanent: true,
       },
+      // ------------------------------------------------------------------
+      // Retired routes — hard-deleted 2026-07-10 in the target-lock cleanup.
+      // /proof/* → /ledger/* (trial ledger is the durable UI).
+      // /industry/healthcare/* → /products/oncology/ (closest surviving vertical).
+      // 308 permanent to preserve any deep-linked URLs and inbound SEO.
+      // ------------------------------------------------------------------
+      {
+        source: '/proof',
+        destination: '/ledger/',
+        permanent: true,
+      },
+      {
+        source: '/proof/',
+        destination: '/ledger/',
+        permanent: true,
+      },
+      {
+        source: '/proof/:trialId',
+        destination: '/ledger/:trialId/',
+        permanent: true,
+      },
+      {
+        source: '/proof/:trialId/',
+        destination: '/ledger/:trialId/',
+        permanent: true,
+      },
+      {
+        source: '/proof/:trialId/case',
+        destination: '/ledger/:trialId/',
+        permanent: true,
+      },
+      {
+        source: '/proof/:trialId/case/',
+        destination: '/ledger/:trialId/',
+        permanent: true,
+      },
+      {
+        source: '/industry/healthcare',
+        destination: '/products/oncology/',
+        permanent: true,
+      },
+      {
+        source: '/industry/healthcare/',
+        destination: '/products/oncology/',
+        permanent: true,
+      },
+      // ------------------------------------------------------------------
+      // /tumor-board/AK01 → /tumor-board/AK.
+      // Registry key was AK01 (verbose id); the underlying bundle's
+      // meta.patientId is 'AK' and every external caller (products/oncology/*
+      // dashboards + IntelligenceCascade family) defaults patientId = 'AK'.
+      // Canonicalize the URL on 'AK' so those callers stop hitting 404.
+      // Old bookmarks keep working via this 308.
+      // ------------------------------------------------------------------
+      {
+        source: '/tumor-board/AK01',
+        destination: '/tumor-board/AK/',
+        permanent: true,
+      },
+      {
+        source: '/tumor-board/AK01/',
+        destination: '/tumor-board/AK/',
+        permanent: true,
+      },
     ];
   },
   webpack: (config) => {

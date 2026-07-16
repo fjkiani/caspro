@@ -25,7 +25,10 @@ import { RootCausePanel } from '@/components/sections/mars/RootCausePanel';
 // import { DiagnosticLog } from '@/components/sections/mars/DiagnosticLog';
 import { marsReadable } from '@/components/sections/mars/readable-text';
 import { ProofCaseFooter } from '@/components/sections/mars/ProofCaseFooter';
+import { MoaGlyphStrip } from '@/components/sections/mars/MoaGlyphStrip';
+import { GATED_SENTINEL, toneClasses } from '@/components/sections/mars/gated-values';
 import { ResponsiveContainer } from 'recharts';
+
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // Helpers
@@ -153,52 +156,86 @@ export default function TrialDeRiskMap({ initialTrialId = 'latify' }: { initialT
                     <DualGeometryRadar data={radarData} isDarkMode={isDarkMode} />
                   </ResponsiveContainer>
 
-                  {/* Floating Annotations */}
-                  <div className="absolute bottom-[35%] left-[5%] pointer-events-none text-center hidden sm:block">
-                    <p className={`text-[12px] font-black uppercase tracking-widest drop-shadow-lg ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>The Futility:</p>
-                    <p className="text-[16px] font-black text-rose-500 uppercase tracking-widest mt-1">HR 0.90 / P 0.287</p>
-                    <div className="w-full h-0.5 bg-rose-500 mt-2 opacity-50" />
-                  </div>
-                  <div className={`absolute bottom-[18%] right-[12%] pointer-events-none border px-2 py-1.5 sm:px-4 sm:py-2 rounded-sm backdrop-blur-md max-w-[45%] sm:max-w-none ${
-                    isDarkMode ? 'border-emerald-500/30 bg-emerald-500/5' : 'border-emerald-600/40 bg-emerald-50/90'
-                  }`}>
-                    <span className={`text-[10px] font-black uppercase tracking-widest ${isDarkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>Alignment Zone</span>
-                    <p className={`text-[11px] font-black mt-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Fit {trial.cosineResponder.toFixed(4)}</p>
-                  </div>
+                  {/* Floating Annotations — DATA-DRIVEN from trial.publishedReadout */}
+                  {trial.publishedReadout ? (() => {
+                    const rt = toneClasses(trial.publishedReadout.tone);
+                    return (
+                      <div className="absolute bottom-[35%] left-[5%] pointer-events-none text-center hidden sm:block">
+                        <p className={`text-[12px] font-black uppercase tracking-widest drop-shadow-lg ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                          {trial.publishedReadout.headlineLabel}
+                        </p>
+                        <p className={`text-[16px] font-black uppercase tracking-widest mt-1 ${rt.text}`}>
+                          {trial.publishedReadout.headlineValue}
+                        </p>
+                        <div className={`w-full h-0.5 mt-2 opacity-50 ${rt.text.replace('text-', 'bg-')}`} />
+                      </div>
+                    );
+                  })() : null}
+
+                  {/* Alignment-zone chip — only when a NON-gated cosine exists */}
+                  {trial.cosineResponder !== GATED_SENTINEL && (
+                    <div className={`absolute bottom-[18%] right-[12%] pointer-events-none border px-2 py-1.5 sm:px-4 sm:py-2 rounded-sm backdrop-blur-md max-w-[45%] sm:max-w-none ${
+                      isDarkMode ? 'border-emerald-500/30 bg-emerald-500/5' : 'border-emerald-600/40 bg-emerald-50/90'
+                    }`}>
+                      <span className={`text-[10px] font-black uppercase tracking-widest ${isDarkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>Alignment Zone</span>
+                      <p className={`text-[11px] font-black mt-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Fit {trial.cosineResponder.toFixed(4)}</p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Math Panel (inline right) */}
                 <div className="lg:col-span-1 flex flex-col gap-6">
-                  {/* Mechanism fit (inline) */}
-                  <div className={`p-5 border rounded transition-colors ${isDarkMode ? 'bg-zinc-950 border-zinc-800' : 'bg-white border-slate-200'}`}>
-                    <div className="flex items-center gap-2 mb-4">
-                      <Binary className={`w-4 h-4 ${isDarkMode ? 'text-cyan-500' : 'text-indigo-600'}`} />
-                      <span className={`text-[10px] font-black uppercase tracking-widest ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Mechanism Fit</span>
+                  {/* Mechanism fit — renders numeric row ONLY when non-gated;
+                      otherwise renders ranked-glyph MoA strip (governance policy). */}
+                  {trial.cosineResponder !== GATED_SENTINEL ? (
+                    <div className={`p-5 border rounded transition-colors ${isDarkMode ? 'bg-zinc-950 border-zinc-800' : 'bg-white border-slate-200'}`}>
+                      <div className="flex items-center gap-2 mb-4">
+                        <Binary className={`w-4 h-4 ${isDarkMode ? 'text-cyan-500' : 'text-indigo-600'}`} />
+                        <span className={`text-[10px] font-black uppercase tracking-widest ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Mechanism Fit</span>
+                      </div>
+                      <p className={`text-[11px] leading-relaxed mb-4 tracking-tight ${bodyText}`}>
+                        Retrospective alignment between trial mechanism and responder vs. ITT signatures.
+                      </p>
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center gap-2">
+                          <span className={`text-[10px] font-black uppercase tracking-widest ${secondaryText}`}>
+                            Responder signature
+                          </span>
+                          <span className={`text-lg font-light tabular-nums shrink-0 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                            {trial.cosineResponder.toFixed(4)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center gap-2">
+                          <span className={`text-[10px] font-black uppercase tracking-widest ${secondaryText}`}>
+                            ITT diluted
+                          </span>
+                          <span className="text-lg font-light text-rose-500 tabular-nums shrink-0">{trial.cosineITT.toFixed(4)}</span>
+                        </div>
+                        {trial.publishedReadout && (() => {
+                          const rt = toneClasses(trial.publishedReadout.tone);
+                          return (
+                            <div className={`flex justify-between items-center p-3 rounded ${rt.chipBg}`}>
+                              <span className={`text-[9px] font-black uppercase ${rt.chipText}`}>{trial.publishedReadout.endpointLabel}</span>
+                              <span className={`text-lg font-black ${rt.chipText}`}>{trial.publishedReadout.endpointValue}</span>
+                            </div>
+                          );
+                        })()}
+                      </div>
                     </div>
-                    <p className={`text-[11px] leading-relaxed mb-4 tracking-tight ${bodyText}`}>
-                      Retrospective alignment between trial mechanism and responder vs. ITT signatures.
-                    </p>
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center gap-2">
-                        <span className={`text-[10px] font-black uppercase tracking-widest ${secondaryText}`}>
-                          Responder signature
-                        </span>
-                        <span className={`text-lg font-light tabular-nums shrink-0 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                          {trial.cosineResponder.toFixed(4)}
-                        </span>
-                      </div>
-                      <div className="flex justify-between items-center gap-2">
-                        <span className={`text-[10px] font-black uppercase tracking-widest ${secondaryText}`}>
-                          ITT diluted
-                        </span>
-                        <span className="text-lg font-light text-rose-500 tabular-nums shrink-0">{trial.cosineITT.toFixed(4)}</span>
-                      </div>
-                      <div className={`flex justify-between items-center p-3 rounded ${isDarkMode ? 'bg-rose-500/5 border border-rose-500/20' : 'bg-rose-50 border border-rose-200'}`}>
-                        <span className="text-[9px] font-black text-rose-500 uppercase">Observed HR</span>
-                        <span className="text-lg font-black text-rose-500">0.90</span>
-                      </div>
+                  ) : trial.moaGlyphs && trial.moaGlyphs.length > 0 ? (
+                    <div className="flex flex-col gap-4">
+                      <MoaGlyphStrip rows={trial.moaGlyphs} isDarkMode={isDarkMode} />
+                      {trial.publishedReadout && (() => {
+                        const rt = toneClasses(trial.publishedReadout.tone);
+                        return (
+                          <div className={`flex justify-between items-center p-3 rounded ${rt.chipBg}`}>
+                            <span className={`text-[9px] font-black uppercase ${rt.chipText}`}>{trial.publishedReadout.endpointLabel}</span>
+                            <span className={`text-lg font-black ${rt.chipText}`}>{trial.publishedReadout.endpointValue}</span>
+                          </div>
+                        );
+                      })()}
                     </div>
-                  </div>
+                  ) : null}
 
                   {/* Gate Results */}
                   <div className="space-y-2">
@@ -223,11 +260,21 @@ export default function TrialDeRiskMap({ initialTrialId = 'latify' }: { initialT
                     ))}
                   </div>
 
-                  {/* Verdict */}
-                  <div className={`p-4 border rounded text-center transition-colors ${isDarkMode ? 'bg-rose-500/5 border-rose-500/20' : 'bg-rose-50 border-rose-200'}`}>
-                    <span className="text-[9px] font-black text-rose-500 uppercase tracking-[0.3em] block mb-1">VERDICT</span>
-                    <span className="text-[12px] font-black text-rose-500 uppercase tracking-widest">FAILURE_PREDICTED</span>
-                  </div>
+                  {/* Verdict — DATA-DRIVEN */}
+                  {trial.verdict ? (() => {
+                    const vt = toneClasses(trial.verdict.tone);
+                    return (
+                      <div className={`p-4 border rounded text-center transition-colors ${vt.bg} ${vt.border}`}>
+                        <span className={`text-[9px] font-black uppercase tracking-[0.3em] block mb-1 ${vt.text}`}>VERDICT</span>
+                        <span className={`text-[12px] font-black uppercase tracking-widest ${vt.text}`}>{trial.verdict.label}</span>
+                        {trial.verdict.caption && (
+                          <p className={`text-[9px] mt-2 leading-relaxed ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+                            {trial.verdict.caption}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })() : null}
                 </div>
               </div>
             </div>

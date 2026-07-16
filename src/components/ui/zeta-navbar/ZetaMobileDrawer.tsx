@@ -25,18 +25,23 @@ function linkRowClass(isDarkMode: boolean, isActive: boolean, navMuted: string) 
 function isNavItemActive(pathname: string | null, href: string, itemId: string): boolean {
   if (pathsEqual(pathname, href)) return true;
   const norm = (pathname ?? '').replace(/\/+$/, '') || '/';
+  // W5 Release-A: PRODUCTS/PLATFORM/FOR-YOU own /drug-development, /platform, /for/*
+  if (itemId === 'products' && (norm.startsWith('/drug-development') || norm.startsWith('/tumor-board'))) return true;
+  if (itemId === 'platform' && norm.startsWith('/platform')) return true;
+  if (itemId === 'for-you' && norm.startsWith('/for/')) return true;
+  // Engine capabilities
+  if (itemId === 'target-lock' && norm.startsWith('/engine/target-lock')) return true;
+  if (itemId === 'moa-align' && norm.startsWith('/engine/mechanism-alignment')) return true;
+  if (itemId === 'sl-engine' && norm.startsWith('/engine/synthetic-lethality')) return true;
+  // Board + surfaces
+  if (itemId === 'tumor-board' && norm.startsWith('/tumor-board')) return true;
   if (itemId === 'ledger' && norm.startsWith('/ledger')) return true;
-  if (
-    itemId === 'research' &&
-    ((norm.startsWith('/research') && !norm.startsWith('/research/abstracts')) ||
-      norm.startsWith('/blog') ||
-      norm.startsWith('/manuscripts') ||
-      norm.startsWith('/media'))
-  ) {
-    return true;
-  }
-  if (itemId === 'abstracts' && norm.startsWith('/research/abstracts')) return true;
-  if (itemId === 'engines' && norm.startsWith('/engine')) return true;
+  if (itemId === 'pipeline' && norm.startsWith('/pipeline')) return true;
+  if (itemId === 'governance' && norm.startsWith('/governance')) return true;
+  if (itemId === 'research' && (norm.startsWith('/research') || norm.startsWith('/blog') || norm.startsWith('/manuscripts'))) return true;
+  // Patient personas: MY TRIALS = ledger, UNDERSTAND = /for/patients/
+  if (itemId === 'my-trials' && norm.startsWith('/ledger')) return true;
+  if (itemId === 'understand' && norm.startsWith('/for/patients')) return true;
   if (itemId === 'org') return false;
   return false;
 }
@@ -72,7 +77,7 @@ export function ZetaMobileDrawer({
             <span
               className={`text-[10px] font-black uppercase tracking-[0.35em] ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}
             >
-              NAVIGATE
+              CAPABILITIES
             </span>
             {navItems.map((item) => {
               const isActive = isNavItemActive(pathname, item.href, item.id);

@@ -366,7 +366,7 @@ function normalizePostAuthor(post) {
 
 /**
  * Blog post slugs are often `capri-ceralasertib-olaparib` while the paired `MediaItem`
- * in Hygraph uses the short trial id `capri` — same pattern as `/proof/{id}/`.
+ * in Hygraph uses the short trial id `capri` — same pattern as `/ledger/{slug}/`.
  */
 function trialMediaItemFallbackSlugs(postSlug) {
   const out = [];

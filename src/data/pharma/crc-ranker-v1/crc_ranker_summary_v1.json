@@ -1,0 +1,114 @@
+{
+  "meta": {
+    "run_date": "2026-07-05",
+    "formula": "PATH A (locked 2026-04-28): fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1)",
+    "vector_version": "8D.v1",
+    "cohort": "TCGA COADREAD MSS (n=485)",
+    "trial_set": "STC-1010 + 7 PDS escape-class comparators",
+    "eligibility_score": 0.75,
+    "alpha": 0.7,
+    "beta": 0.3
+  },
+  "unselected_mss": {
+    "n": 485,
+    "stc1010_mean_fit": 0.5605,
+    "stc1010_median_fit": 0.5522,
+    "best_comparator": "PRIME / PEAK_FOLFIRI (tied)",
+    "best_comp_mean_fit": 0.7252,
+    "delta_mean": -0.1647,
+    "delta_median": -0.1737,
+    "recall_at_3": 0.5876,
+    "mrr": 0.3112,
+    "rank_1_rate": 0.0186,
+    "rank_distribution": {
+      "1": 9,
+      "3": 276,
+      "4": 199,
+      "5": 1
+    }
+  },
+  "high_tmb_subgroup": {
+    "threshold": "TMB \u2265 25 mut/Mb",
+    "n": 9,
+    "stc1010_mean_fit": 0.8644,
+    "delta_mean": 0.143,
+    "recall_at_3": 1.0,
+    "mrr": 1.0,
+    "rank_1_rate": 1.0
+  },
+  "tmb_ge10_subgroup": {
+    "threshold": "TMB \u2265 10 mut/Mb",
+    "n": 12,
+    "stc1010_mean_fit": 0.7986,
+    "delta_mean": 0.0758,
+    "recall_at_3": 0.9167,
+    "mrr": 0.8264,
+    "rank_1_rate": 0.75
+  },
+  "axis_contributions_unselected": {
+    "ddr": {
+      "mean_contribution": 0.0161,
+      "pct_of_dot_product": 3.2
+    },
+    "mapk": {
+      "mean_contribution": 0.21,
+      "pct_of_dot_product": 41.6
+    },
+    "pi3k": {
+      "mean_contribution": 0.015,
+      "pct_of_dot_product": 3.0
+    },
+    "vegf": {
+      "mean_contribution": 0.05,
+      "pct_of_dot_product": 9.9
+    },
+    "her2": {
+      "mean_contribution": 0.0,
+      "pct_of_dot_product": 0.0
+    },
+    "io": {
+      "mean_contribution": 0.1877,
+      "pct_of_dot_product": 37.2
+    },
+    "efflux": {
+      "mean_contribution": 0.0141,
+      "pct_of_dot_product": 2.8
+    },
+    "rss": {
+      "mean_contribution": 0.0115,
+      "pct_of_dot_product": 2.3
+    }
+  },
+  "hrd_subgroups": {
+    "HRD-Low": {
+      "n": 150,
+      "stc1010_mean_fit": 0.5469,
+      "delta_mean": -0.1701,
+      "recall_at_3": 0.94,
+      "mrr": 0.3639
+    },
+    "HRD-Intermediate": {
+      "n": 225,
+      "stc1010_mean_fit": 0.5545,
+      "delta_mean": -0.1731,
+      "recall_at_3": 0.44,
+      "mrr": 0.2864
+    },
+    "HRD-High": {
+      "n": 102,
+      "stc1010_mean_fit": 0.591,
+      "delta_mean": -0.1412,
+      "recall_at_3": 0.3824,
+      "mrr": 0.2819
+    }
+  },
+  "interpretation": {
+    "primary_finding": "STC-1010 ranks 3rd or 4th in 98.1% of unselected MSS CRC patients. PRIME/PEAK_FOLFIRI (mapk=0.8) dominate because mapk=0.70 is fixed for all MSS patients, and the io axis (STC-1010 primary driver) is suppressed by low TMB in MSS CRC (median TMB=3.3 mut/Mb \u2192 io=0.226).",
+    "enrichment_finding": "In TMB \u2265 25 subgroup (n=9, 1.9% of MSS cohort), STC-1010 ranks 1st for all 9 patients. \u0394=+0.143, recall@3=1.0, MRR=1.0. This is the expected enrichment signal.",
+    "clinical_implication": "STC-1010 mechanism-fit advantage is confined to the high-TMB MSS subgroup. This aligns with CO.26 pTMB \u226528 OS HR=0.34 \u2014 the strongest IO signal in MSS CRC. BreAK CRC-001 GAP-02 (no prospective pTMB collection) is the critical design gap.",
+    "governance_note": "Canonical fit 0.6944 is governance-locked from KG v2 JSON. Per-patient ranker uses canonical_vectors.py vectors (fit=0.6944 for canonical patient). Discrepancy is a known KG v2 transcription error documented in canonical_vectors.py.",
+    "crossover_finding": "STC-1010 beats PRIME at io \u2265 0.44 (TMB \u2248 30 mut/Mb). In this TCGA cohort, no patients fall in TMB 25\u201350 range \u2014 the 9 TMB-hypermutated patients all have TMB 102\u2013382 mut/Mb (io=0.60 cap). The TMB crossover threshold is clinically relevant but not testable in this cohort.",
+    "hrd_low_finding": "HRD-Low patients show higher recall@3 (0.94) than HRD-Intermediate (0.44) or HRD-High (0.38). Mechanism: HRD-Low patients have lower aneuploidy (median=7.0 vs 16.0) \u2192 lower efflux \u2192 lower N0147 fit (N0147 efflux=0.3 is its primary axis). STC-1010 beats N0147 for 141/150 HRD-Low patients."
+  },
+  "governance_note": "Canonical fit 0.6944 (canonical_vectors.py, committed code). KG v2 JSON value 0.6944 RETIRED 2026-07-05 \u2014 tie-break: committed code wins over static document. Per-patient ranker uses canonical_vectors.py vectors (fit=0.6944 for canonical patient). Discrepancy was a KG v2 transcription error; the KG v2 patient+trial vectors are retired."
+}

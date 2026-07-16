@@ -127,7 +127,7 @@ function buildEntry(slug: string, file: TrialCaseFile): TrialLedgerEntry {
     receiptId: slug.toUpperCase(),
     preview,
     route: ledgerSlugPath(slug),
-    proofRoute: `/proof/${slug}/`,
+    proofRoute: `/ledger/${slug}/`,
     trialId: file.trialId,
     phase: file.phase,
     cancer: file.cancer,
@@ -147,6 +147,14 @@ export const TRIAL_LEDGER_BY_SLUG: Record<string, TrialLedgerEntry> = Object.fro
 );
 
 export const TRIAL_LEDGER_SLUGS = TRIAL_LEDGER_ENTRIES.map((e) => e.slug);
+
+/**
+ * Hand-authored (5-slug) ledger entries. Nav dropdowns and any surface that
+ * displays a fixed-height list of receipts should use this, not the full
+ * 32-entry TRIAL_LEDGER_ENTRIES.
+ */
+export const HAND_AUTHORED_TRIAL_LEDGER_ENTRIES: TrialLedgerEntry[] =
+  TRIAL_LEDGER_ENTRIES.filter((e) => (ORDER[e.slug] ?? 99) < 99);
 
 export function getTrialLedgerEntry(slug: string): TrialLedgerEntry | null {
   const key = slug.trim().toLowerCase();

@@ -94,6 +94,10 @@ export const NAV_CATEGORIES = {
   COMPANY_LINKS: [
     // { href: ROUTES.ABOUT, label: 'About Us' },
     // { href: ROUTES.CAREERS, label: 'Careers' }
+    // W5 Release-A (2026-07-16): Investors demoted from top nav to footer.
+    // Homepage 3-audience router surfaces Pharma / Oncologists / Patients;
+    // investor content is not one of the three primary audiences.
+    { href: '/investors/', label: 'Investors' },
   ],
   SOCIAL_LINKS: [
     { href: "https://www.linkedin.com/company/crispro/", label: "LinkedIn", icon: "FiLinkedin" },

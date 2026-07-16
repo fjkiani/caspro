@@ -54,7 +54,7 @@ export default function EngineMiniPreview({
       const max = 1;
       return (
         <div className={`h-full p-3 border-b ${panel}`}>
-          <p className={`text-[9px] font-black uppercase tracking-widest mb-2 ${muted}`}>LATIFY · 8D vector</p>
+          <p className={`text-[9px] font-black uppercase tracking-widest mb-2 ${muted}`}>LATIFY · Mechanism alignment</p>
           <div className="grid grid-cols-4 gap-1.5 h-[calc(100%-1.25rem)] items-end">
             {VECTOR_AXIS_META.map((m) => {
               const v = trial.trialVector[m.key];

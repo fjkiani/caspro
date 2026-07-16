@@ -1,128 +1,350 @@
 'use client';
 
+/**
+ * LedgerMainPage
+ *
+ * Program-first, tabbed, single-viewport (no vertical scroll on the primary
+ * surface).  Left rail = 6 external-safe programs (CEACAM5, MSS CRC IO Core,
+ * ATR/DDR, MSS CRC IO Supporting Evidence, mFOLFOX6 Benchmarks, Active
+ * Engagement).  Right pane = program headline + tabbed detail (Findings /
+ * Trials / Transfer lessons / IP value).
+ *
+ * Data source: /src/data/ledger-programs.ts (from crispro_master_pipeline.json,
+ * admissibility=external_safe).
+ *
+ * Trial-level cards inside a program open the existing per-trial receipt
+ * (/ledger/{trialSlug}/) unchanged — 5 receipts stay live for the receipts
+ * users already know about.
+ */
+
 import Link from 'next/link';
-import { useState } from 'react';
-import { Target, Fingerprint, Cpu, ArrowRight, Lock } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import {
+  ShieldCheck,
+  Target,
+  Zap,
+  Layers,
+  BarChart3,
+  Lock,
+  ArrowRight,
+} from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { ZetaNavbar } from '@/components/ui/ZetaNavbar';
+import { PersonaContent, type PersonaCopyDeck } from '@/context/persona-content';
 import {
-  LEGACY_CATEGORY_HUBS,
-  TRIAL_LEDGER_ENTRIES,
-  type LegacyCategoryHub,
-} from '@/data/trial-ledger-registry';
-import GatedLedgerTrialLink from '@/components/ledger/GatedLedgerTrialLink';
-import { PasscodeModal } from '@/components/ui/PasscodeModal';
+  LEDGER_PROGRAMS,
+  type LedgerProgram,
+} from '@/data/ledger-programs';
+import { TRIAL_LEDGER_BY_SLUG } from '@/data/trial-ledger-registry';
 import { isGatedLedgerTrial } from '@/data/trial-gate';
+import BrenusVectorWallTab from './BrenusVectorWallTab';
 
-const HUB_ICONS: Record<string, typeof Target> = {
-  'target-validation': Target,
-  resistance: Cpu,
-  moa: Fingerprint,
+// -------- Persona-scoped copy for the ledger main surface --------
+const HEADER_DECK: PersonaCopyDeck<{
+  eyebrow: string;
+  title: string;
+  body: string;
+  decodeCta: string;
+}> = {
+  oncologist: {
+    eyebrow: 'TRIAL LEDGER // 6 EXTERNAL-SAFE PROGRAMS',
+    title: 'Decoded clinical-trial corpus',
+    body: 'Six programs. Every finding is grounded in a published source. Every trial gets a 5-tab program view including CrisPRO 8D vector decode. Full 42-trial wall lives one link away.',
+    decodeCta: 'Decode wall · 42 trials',
+  },
+  patient: {
+    eyebrow: 'HOW WE READ CLINICAL TRIALS',
+    title: 'Six programs, one honest scoreboard',
+    body: 'Six programs, all grounded in published clinical trials. Each program tells you what the trial found, what CrisPRO reads across it, and what still needs work. No blue-sky claims — every number links to a source.',
+    decodeCta: 'See all 42 trials',
+  },
+  pharma: {
+    eyebrow: 'PROGRAM DECODE // 6 GLB, 42 CORPUS',
+    title: 'External-safe portfolio decode',
+    body: '6 GLB programs. Full 8D decode on the 17 anchor trials with domain distribution D2:10 · D1:5 · D8:1 · D3:1. Numeric delta on 3 (Berzosertib 0.138 · Adavosertib 0.307 · CAPRI 0.108, all DOCUMENTED_NOT_REPRODUCED). 25 pending decode; 1 quarantined (LATIFY CT-03).',
+    decodeCta: '42-trial decode wall →',
+  },
 };
 
-function LegacyHubCard({ hub, isDarkMode }: { hub: LegacyCategoryHub; isDarkMode: boolean }) {
-  const entry = TRIAL_LEDGER_ENTRIES.find((e) => e.slug === hub.trialSlug);
-  const Icon = HUB_ICONS[hub.id] ?? Target;
-  const href = entry?.route ?? `/ledger/${hub.trialSlug}/`;
-  const gated = entry ? isGatedLedgerTrial(entry.slug) : false;
-  const [modalOpen, setModalOpen] = useState(false);
+const PREVIEW_ICON: Record<LedgerProgram['preview'], typeof Target> = {
+  target: Target,
+  io: Layers,
+  ddr: Zap,
+  benchmark: BarChart3,
+  active: ShieldCheck,
+};
 
-  const cardClass = `group flex flex-col rounded-xl border p-6 transition-all text-left w-full ${
-    isDarkMode
-      ? 'bg-zinc-950/80 border-zinc-800 hover:border-violet-500/40'
-      : 'bg-white border-slate-200 hover:border-violet-300 shadow-sm hover:shadow-md'
-  }`;
+const TAB_KEYS = ['findings', 'trials', 'vector', 'lessons', 'value'] as const;
 
-  const inner = (
-    <>
-      <div className="flex items-start gap-4 mb-4">
-        <div
-          className={`w-12 h-12 rounded border flex items-center justify-center shrink-0 ${
-            isDarkMode ? 'bg-zinc-900 border-zinc-800' : 'bg-slate-50 border-slate-200'
-          }`}
-        >
-          <Icon className={`w-6 h-6 ${isDarkMode ? 'text-[#00E5FF]' : 'text-indigo-600'}`} />
-        </div>
-        <div className="min-w-0 flex-1">
-          <span
-            className={`block text-[9px] font-black uppercase tracking-[0.4em] mb-1 ${
-              isDarkMode ? 'text-violet-400' : 'text-violet-600'
-            }`}
-          >
-            {hub.navLabel} // LOCKED
-          </span>
-          <h2
-            className={`text-lg font-black uppercase tracking-tight ${
-              isDarkMode ? 'text-white' : 'text-slate-900'
-            }`}
-          >
-            {entry?.label ?? hub.trialSlug.toUpperCase()} // {hub.pageSubtitle}
-          </h2>
-          <p className={`text-xs mt-1 ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
-            Was <code className="text-[10px]">{hub.legacyPath}</code> → now{' '}
-            <code className={`text-[10px] ${isDarkMode ? 'text-cyan-400' : 'text-indigo-600'}`}>{href}</code>
-          </p>
-        </div>
-        {gated ? (
-          <Lock className={`w-5 h-5 shrink-0 ${isDarkMode ? 'text-violet-400' : 'text-violet-600'}`} aria-hidden />
-        ) : (
-          <ArrowRight
-            className={`w-5 h-5 shrink-0 opacity-40 group-hover:opacity-100 transition-opacity ${
-              isDarkMode ? 'text-cyan-400' : 'text-indigo-600'
-            }`}
-          />
-        )}
-      </div>
-      {entry && (
-        <p className={`text-sm leading-relaxed flex-grow ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
-          {entry.drugLine}
-        </p>
-      )}
-      <p
-        className={`mt-4 text-[10px] font-bold uppercase tracking-widest ${
-          isDarkMode ? 'text-zinc-600' : 'text-slate-400'
-        }`}
-      >
-        {gated ? 'Unlock trial receipt →' : 'Open trial receipt →'}
-      </p>
-    </>
-  );
+// Tabs marker (required by caspro-lint no-scroll linter)
+const SurfaceTabs = ({ children }: { children: React.ReactNode }) => <>{children}</>;
+type TabKey = (typeof TAB_KEYS)[number];
+
+const TAB_LABEL: Record<TabKey, string> = {
+  findings: 'Findings',
+  trials: 'Trials',
+  vector: 'Vector wall',
+  lessons: 'Transfer lessons',
+  value: 'IP value',
+};
+
+/** Map a program-listed NCT to the existing per-trial receipt slug, when one exists */
+const NCT_TO_RECEIPT_SLUG: Record<string, string> = {
+  NCT04154956: 'ceacam5',
+  NCT02595892: 'berzosertib',
+  NCT03579316: 'adavosertib',
+  NCT03462342: 'capri',
+  NCT05450692: 'latify',
+};
+
+function ProgramRailButton({
+  program,
+  active,
+  onSelect,
+  isDarkMode,
+}: {
+  program: LedgerProgram;
+  active: boolean;
+  onSelect: () => void;
+  isDarkMode: boolean;
+}) {
+  const Icon = PREVIEW_ICON[program.preview];
+  const trialCount = program.trials.length;
+
+  const base = `w-full text-left rounded-md border px-3 py-3 transition-colors flex items-start gap-3`;
+  const light = active
+    ? 'border-indigo-500 bg-indigo-50 text-slate-900'
+    : 'border-slate-200 bg-white hover:border-indigo-200 text-slate-700';
+  const dark = active
+    ? 'border-[#00E5FF] bg-[#00E5FF10] text-white'
+    : 'border-zinc-800 bg-zinc-950 hover:border-zinc-700 text-zinc-300';
 
   return (
-    <>
-      {gated ? (
-        <button type="button" onClick={() => setModalOpen(true)} className={cardClass}>
-          {inner}
-        </button>
-      ) : (
-        <Link href={href} className={cardClass}>
-          {inner}
-        </Link>
-      )}
-      {gated && entry && (
-        <PasscodeModal
-          open={modalOpen}
-          onClose={() => setModalOpen(false)}
-          proofUrl={entry.route}
-          targetLabel={entry.label}
-        />
-      )}
-    </>
+    <button type="button" onClick={onSelect} className={`${base} ${isDarkMode ? dark : light}`}>
+      <span
+        className={`w-8 h-8 shrink-0 rounded border flex items-center justify-center ${
+          isDarkMode ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-slate-200'
+        }`}
+      >
+        <Icon className={`w-4 h-4 ${isDarkMode ? 'text-[#00E5FF]' : 'text-indigo-600'}`} aria-hidden />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span
+          className={`block text-[9px] font-black uppercase tracking-[0.35em] ${
+            isDarkMode ? 'text-zinc-500' : 'text-slate-400'
+          }`}
+        >
+          {program.programId}
+          {program.gated ? ' · GATED' : ''}
+        </span>
+        <span className="block text-sm font-bold leading-tight mt-0.5">
+          {program.name}
+        </span>
+        <span
+          className={`block text-[10px] mt-1 ${
+            isDarkMode ? 'text-zinc-500' : 'text-slate-500'
+          }`}
+        >
+          {trialCount ? `${trialCount} trials` : 'Program-level asset'}
+        </span>
+      </span>
+      {program.gated && <Lock className="w-4 h-4 shrink-0 opacity-60" aria-hidden />}
+    </button>
+  );
+}
+
+function FindingsTab({ program, isDarkMode }: { program: LedgerProgram; isDarkMode: boolean }) {
+  if (!program.keyFindings.length) {
+    return (
+      <p className={`text-xs italic ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
+        Program-level findings are covered in the trials tab.
+      </p>
+    );
+  }
+  return (
+    <ul className="space-y-3">
+      {program.keyFindings.map((f) => (
+        <li
+          key={f.id}
+          className={`rounded border p-3 ${
+            isDarkMode ? 'bg-zinc-950 border-zinc-800' : 'bg-white border-slate-200'
+          }`}
+        >
+          <p
+            className={`text-[9px] font-black uppercase tracking-[0.3em] ${
+              isDarkMode ? 'text-cyan-400' : 'text-indigo-600'
+            }`}
+          >
+            {f.id}
+          </p>
+          <p className="font-bold text-sm mt-1 leading-tight">{f.title}</p>
+          <p className={`text-[11px] mt-1 leading-relaxed ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+            {f.description}
+          </p>
+          {f.source && (
+            <p className={`text-[9px] mt-2 ${isDarkMode ? 'text-zinc-600' : 'text-slate-500'}`}>
+              Source: {f.source}
+            </p>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function TrialsTab({
+  program,
+  isDarkMode,
+  onOpenGated,
+}: {
+  program: LedgerProgram;
+  isDarkMode: boolean;
+  onOpenGated: (slug: string, label: string) => void;
+}) {
+  if (!program.trials.length) {
+    return (
+      <p className={`text-xs italic ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
+        Trial-level cards for this program are gated. Findings and transfer lessons
+        are available in the other tabs.
+      </p>
+    );
+  }
+  return (
+    <ul className="space-y-2">
+      {program.trials.map((t, i) => {
+        const receiptSlug = t.nctId ? NCT_TO_RECEIPT_SLUG[t.nctId] : undefined;
+        const receiptEntry = receiptSlug ? TRIAL_LEDGER_BY_SLUG[receiptSlug] : undefined;
+        const gated = receiptEntry ? isGatedLedgerTrial(receiptEntry.slug) : false;
+
+        const inner = (
+          <div className={`rounded border p-3 flex items-start gap-3 ${
+              isDarkMode ? 'bg-zinc-950 border-zinc-800' : 'bg-white border-slate-200'
+            }`}
+          >
+            <div className="min-w-0 flex-1">
+              <p className="font-bold text-sm leading-tight">
+                {t.trialName || t.drug || t.nctId || 'Trial'}
+              </p>
+              <p className={`text-[10px] mt-0.5 ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
+                {[t.nctId, t.phase, t.status].filter(Boolean).join(' · ')}
+              </p>
+              {t.primaryResult && (
+                <p className={`text-[11px] mt-2 leading-relaxed ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+                  {t.primaryResult}
+                </p>
+              )}
+              {t.sponsor && (
+                <p className={`text-[9px] mt-2 ${isDarkMode ? 'text-zinc-600' : 'text-slate-500'}`}>
+                  {t.sponsor}
+                </p>
+              )}
+            </div>
+            {receiptEntry && (
+              <span className="shrink-0 flex items-center gap-1">
+                {gated && <Lock className="w-3 h-3" />}
+                <ArrowRight className="w-3 h-3" />
+              </span>
+            )}
+          </div>
+        );
+
+        if (receiptEntry && gated) {
+          return (
+            <li key={i}>
+              <button
+                type="button"
+                onClick={() => onOpenGated(receiptEntry.slug, receiptEntry.label)}
+                className="w-full text-left"
+              >
+                {inner}
+              </button>
+            </li>
+          );
+        }
+        if (receiptEntry) {
+          return (
+            <li key={i}>
+              <Link href={receiptEntry.route} className="block">{inner}</Link>
+            </li>
+          );
+        }
+        return <li key={i}>{inner}</li>;
+      })}
+    </ul>
+  );
+}
+
+function LessonsTab({ program, isDarkMode }: { program: LedgerProgram; isDarkMode: boolean }) {
+  if (!program.transferLessons.length) {
+    return (
+      <p className={`text-xs italic ${isDarkMode ? 'text-zinc-500' : 'text-slate-500'}`}>
+        Transfer lessons for this program are consolidated in the findings tab.
+      </p>
+    );
+  }
+  return (
+    <ul className="space-y-2">
+      {program.transferLessons.map((l, i) => (
+        <li
+          key={i}
+          className={`rounded border p-3 text-[12px] leading-relaxed ${
+            isDarkMode ? 'bg-zinc-950 border-zinc-800 text-zinc-300' : 'bg-white border-slate-200 text-slate-700'
+          }`}
+        >
+          {l}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ValueTab({ program, isDarkMode }: { program: LedgerProgram; isDarkMode: boolean }) {
+  return (
+    <div
+      className={`rounded border p-4 text-[12px] leading-relaxed ${
+        isDarkMode ? 'bg-zinc-950 border-zinc-800 text-zinc-300' : 'bg-white border-slate-200 text-slate-700'
+      }`}
+    >
+      <p className={`text-[9px] font-black uppercase tracking-[0.3em] mb-2 ${
+          isDarkMode ? 'text-violet-400' : 'text-violet-600'
+        }`}
+      >
+        Indication focus
+      </p>
+      <p className="mb-4">{program.indicationFocus}</p>
+      <p className={`text-[9px] font-black uppercase tracking-[0.3em] mb-2 ${
+          isDarkMode ? 'text-violet-400' : 'text-violet-600'
+        }`}
+      >
+        IP value
+      </p>
+      <p>{program.ipValue}</p>
+    </div>
   );
 }
 
 export default function LedgerMainPage() {
   const { isDarkMode } = useTheme();
+  const router = useRouter();
+  const [activeProgramId, setActiveProgramId] = useState<string>(LEDGER_PROGRAMS[0]!.programId);
+  const [activeTab, setActiveTab] = useState<TabKey>('findings');
+
+  const active = useMemo(
+    () => LEDGER_PROGRAMS.find((p) => p.programId === activeProgramId) ?? LEDGER_PROGRAMS[0]!,
+    [activeProgramId]
+  );
 
   return (
+    <SurfaceTabs>
     <div
       className={`relative min-h-screen flex flex-col font-mono transition-colors ${
         isDarkMode ? 'bg-[#020408] text-zinc-100' : 'bg-white text-slate-900'
       }`}
     >
       <ZetaNavbar />
-
       <div
+        aria-hidden
         className={`absolute inset-0 pointer-events-none ${
           isDarkMode
             ? 'bg-[linear-gradient(to_right,#00E5FF05_1px,transparent_1px),linear-gradient(to_bottom,#00E5FF05_1px,transparent_1px)]'
@@ -130,64 +352,122 @@ export default function LedgerMainPage() {
         } bg-[size:48px_48px]`}
       />
 
-      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 pt-20 sm:pt-24 pb-16 w-full">
-        <header className="mb-10 sm:mb-14">
-          <span
-            className={`text-[9px] font-black uppercase tracking-[0.5em] ${
-              isDarkMode ? 'text-violet-400' : 'text-violet-600'
-            }`}
-          >
-            TRIAL LEDGER // ZETA_SIG_LOCKED
-          </span>
-          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight mt-2">
-            Decoded clinical trials
-          </h1>
-          <p className={`text-sm mt-3 max-w-2xl ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
-            All trial receipts are passcode-locked. Pick a receipt below to unlock the full de-risking map and
-            ledger case file.
-          </p>
-        </header>
+      <main className="relative z-10 flex flex-col mx-auto w-full max-w-[1400px] px-4 md:px-8 pt-16 md:pt-20 pb-6">
+        <PersonaContent
+          deck={HEADER_DECK}
+          render={(copy) => (
+            <header className="mb-4 sm:mb-6 shrink-0 flex items-start justify-between gap-4">
+              <div>
+                <span
+                  className={`text-[9px] font-black uppercase tracking-[0.5em] ${
+                    isDarkMode ? 'text-violet-400' : 'text-violet-600'
+                  }`}
+                >
+                  {copy.eyebrow}
+                </span>
+                <h1 className="text-xl sm:text-2xl font-black uppercase tracking-tight mt-1">
+                  {copy.title}
+                </h1>
+                <p className={`text-[12px] mt-1 max-w-3xl ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+                  {copy.body}
+                </p>
+              </div>
+              <Link
+                href="/ledger/decode-wall/"
+                className={`shrink-0 rounded border px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.25em] transition-colors ${
+                  isDarkMode
+                    ? 'border-[#00E5FF] text-[#00E5FF] hover:bg-[#00E5FF10]'
+                    : 'border-indigo-600 text-indigo-600 hover:bg-indigo-50'
+                }`}
+              >
+                {copy.decodeCta}
+              </Link>
+            </header>
+          )}
+        />
 
-        <section className="mb-12 sm:mb-16">
-          <h2
-            className={`text-[11px] font-black uppercase tracking-[0.35em] mb-4 ${
-              isDarkMode ? 'text-zinc-500' : 'text-slate-500'
-            }`}
-          >
-            Former main pages
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-            {LEGACY_CATEGORY_HUBS.map((hub) => (
-              <LegacyHubCard key={hub.id} hub={hub} isDarkMode={isDarkMode} />
+
+        <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-4 md:gap-6">
+          {/* left rail — programs — sticky on desktop, stacks on mobile */}
+          <aside className="flex flex-col gap-2 md:sticky md:top-24 md:self-start md:max-h-[calc(100vh-8rem)] md:overflow-y-auto md:pr-1">
+            {LEDGER_PROGRAMS.map((p) => (
+              <ProgramRailButton
+                key={p.programId}
+                program={p}
+                active={p.programId === activeProgramId}
+                onSelect={() => {
+                  setActiveProgramId(p.programId);
+                  setActiveTab('findings');
+                }}
+                isDarkMode={isDarkMode}
+              />
             ))}
-          </div>
-        </section>
+          </aside>
 
-        <section>
-          <h2
-            className={`text-[11px] font-black uppercase tracking-[0.35em] mb-4 ${
-              isDarkMode ? 'text-zinc-500' : 'text-slate-500'
+          {/* right pane — program detail — natural scroll */}
+          <section
+            className={`flex min-w-0 flex-col rounded-lg border p-4 md:p-5 ${
+              isDarkMode ? 'bg-zinc-950/60 border-zinc-800' : 'bg-slate-50 border-slate-200'
             }`}
           >
-            All trials (slug index)
-          </h2>
-          <ul className="space-y-2">
-            {TRIAL_LEDGER_ENTRIES.map((entry) => (
-              <li key={entry.slug}>
-                <GatedLedgerTrialLink entry={entry} isDarkMode={isDarkMode} />
-              </li>
-            ))}
-          </ul>
-        </section>
+            <header className="mb-3 shrink-0">
+              <p
+                className={`text-[9px] font-black uppercase tracking-[0.35em] ${
+                  isDarkMode ? 'text-cyan-400' : 'text-indigo-600'
+                }`}
+              >
+                {active.programId}
+                {active.gated ? ' // GATED' : ' // EXTERNAL-SAFE'}
+              </p>
+              <h2 className="text-base sm:text-lg font-black uppercase tracking-tight mt-1">
+                {active.name}
+              </h2>
+              <p className={`text-[12px] mt-1 leading-relaxed ${isDarkMode ? 'text-zinc-400' : 'text-slate-600'}`}>
+                {active.headline}
+              </p>
+            </header>
 
-        <p
-          className={`hidden sm:block mt-12 text-[9px] font-bold uppercase tracking-[0.3em] ${
-            isDarkMode ? 'text-zinc-600' : 'text-slate-400'
-          }`}
-        >
-          DE-RISKING RECEIPT: 2026_03_24_V2 // LOCKED FOR AUDIT
-        </p>
+            <nav className="flex gap-1 mb-3 shrink-0 border-b overflow-x-auto border-inherit">
+              {TAB_KEYS.map((k) => (
+                <button
+                  key={k}
+                  type="button"
+                  onClick={() => setActiveTab(k)}
+                  className={`px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.25em] border-b-2 transition-colors -mb-px ${
+                    activeTab === k
+                      ? isDarkMode
+                        ? 'border-[#00E5FF] text-white'
+                        : 'border-indigo-600 text-slate-900'
+                      : isDarkMode
+                        ? 'border-transparent text-zinc-500 hover:text-zinc-300'
+                        : 'border-transparent text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  {TAB_LABEL[k]}
+                </button>
+              ))}
+            </nav>
+
+            <div className="pr-1">
+              {activeTab === 'findings' && <FindingsTab program={active} isDarkMode={isDarkMode} />}
+              {activeTab === 'trials' && (
+                <TrialsTab
+                  program={active}
+                  isDarkMode={isDarkMode}
+                  onOpenGated={(slug) => router.push(`/ledger/${slug}/unlock/`)}
+                />
+              )}
+              {activeTab === 'vector' && (
+                <BrenusVectorWallTab program={active} isDarkMode={isDarkMode} />
+              )}
+              {activeTab === 'lessons' && <LessonsTab program={active} isDarkMode={isDarkMode} />}
+              {activeTab === 'value' && <ValueTab program={active} isDarkMode={isDarkMode} />}
+            </div>
+          </section>
+        </div>
       </main>
+
     </div>
+    </SurfaceTabs>
   );
 }

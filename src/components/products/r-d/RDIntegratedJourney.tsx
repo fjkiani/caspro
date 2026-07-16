@@ -12,7 +12,9 @@ const journeySteps = [
     description: 'VCF/NGS → Parse → 7D Mechanism Vector → Pathway Burden',
     example: 'MBD4 + TP53 → [0.88, 0.12, 0.15, 0.10, 0.05, 0.0, 0.0]',
     details: 'DDR-high, HRD-positive, PARP-eligible',
-    validation: 'DDR dimension validated (0.983 mean fit)',
+    // DL-07: DDR-fit mean quarantined pending Figure 2 provenance walk;
+    // report Top-3 ranking accuracy — the validated end-to-end metric.
+    validation: 'Top-3 ranking accuracy 1.00 across evaluated cohort',
     icon: Dna,
     color: 'blue'
   },

@@ -144,7 +144,7 @@ const ENGINES = [
     id: '01',
     title: 'TARGET-LOCK',
     question: 'Is the target a real metastasis driver?',
-    stats: 'AUROC 0.976 · 11/11 FDA prospective · Precision@3 = 1.000',
+    stats: 'AUROC 0.6889 (honest primary composite) · 29-gene panel · brain-met cascade data',
     color: 'text-cyan-500',
     border: 'border-cyan-500/30'
   },
@@ -152,7 +152,7 @@ const ENGINES = [
     id: '02',
     title: 'MECHANISM ALIGNMENT',
     question: 'Are the right patients enrolled?',
-    stats: 'LATIFY delta +0.3658 identified before trial failure',
+    stats: 'LATIFY delta gated identified before trial failure',
     color: 'text-cyan-500',
     border: 'border-cyan-500/30'
   },

@@ -23,7 +23,7 @@ export default function CoreQuestionSection() {
         The 8-Dimensional Biological Fingerprint
       </h2>
       <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-        Every tumor has a unique biological signature — an 8-dimensional mechanism vector covering DDR, IO, PI3K, MAPK, Efflux, and Replication Stress. CrisPRO reads this fingerprint to predict which drugs will work and which will fail.
+        Every tumor has a unique biological signature — an mechanism-alignment mechanism vector covering DDR, IO, PI3K, MAPK, Efflux, and Replication Stress. CrisPRO reads this fingerprint to predict which drugs will work and which will fail.
       </p>
     </motion.div>
   );

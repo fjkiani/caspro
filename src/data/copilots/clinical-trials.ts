@@ -87,7 +87,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
         technical: {
           title: "Technical Approach",
           keyMetric: "Pathway Burden → Mechanism Fit",
-          description: "Compute 7D mechanism vector from patient mutations (DDR, MAPK, PI3K, VEGF, HER2, IO, Efflux). Match to trial drug mechanisms via cosine similarity. Rank by 0.7×eligibility + 0.3×mechanism_fit.",
+          description: "Compute a mechanism-alignment score from patient mutations across the key pathway axes (DDR, MAPK, PI3K, VEGF, HER2, IO, Efflux). Match to trial drug mechanisms. Rank by combined eligibility and mechanism alignment.",
           icon: "Settings",
           color: "indigo",
           components: [
@@ -120,7 +120,7 @@ export const clinicalTrialsData: CoPilotDetailContent = {
           ],
           features: ["Competitive advantage", "Better outcomes", "Clinical trust"]
         },
-        genomicUseCasesParagraph: "Today: \n1. **Pathway analysis** computes 7D mechanism vector. \n2. **Mechanism matching** ranks trials by cosine similarity. \n3. **Combined scoring** surfaces mechanism-aligned trials first."
+        genomicUseCasesParagraph: "Today: \n1. **Pathway analysis** computes a mechanism-alignment score. \n2. **Mechanism matching** ranks trials by alignment. \n3. **Combined scoring** surfaces mechanism-aligned trials first."
       },
       {
         title: "Complex Queries",

@@ -12,7 +12,7 @@ export const clinicalTrialsEducationalData: EducationalCapabilityPageData = {
   hero: {
     question: "Which trials target YOUR tumor's vulnerabilities?",
     genericAnswer: "Search ClinicalTrials.gov with keywords. Manually review 50+ trials. Hope you find relevant ones.",
-    ourAnswer: "Your tumor's pathway burden (DDR, MAPK, PI3K) matched to trial drug mechanisms via cosine similarity. DDR-high patients see PARP+ATR trials ranked first. Mechanism fit: 0.92 avg.",
+    ourAnswer: "Your tumor's pathway burden (DDR, MAPK, PI3K) matched to trial drug mechanisms by mechanism alignment. DDR-high patients see PARP+ATR trials ranked first.",
     visualComparison: {
       before: "Keyword search. 50+ irrelevant trials. No pathway alignment.",
       after: "Pathway burden → Mechanism fit (0.92). 50+ → 5-12 trials. Same-day enrollment.",
@@ -69,7 +69,7 @@ export const clinicalTrialsEducationalData: EducationalCapabilityPageData = {
 
 **How it works:**
 
-1. **Mechanism-Based Matching** - Your tumor's pathway burden (DDR, MAPK, PI3K) matched to trial drug mechanisms via cosine similarity. Compute 7D mechanism vector from patient mutations. Match to trial drug mechanisms. Rank by 0.7×eligibility + 0.3×mechanism_fit.
+1. **Mechanism-Based Matching** - Your tumor's pathway burden (DDR, MAPK, PI3K) matched to trial drug mechanisms by mechanism alignment. Compute a mechanism-alignment score from patient mutations. Match to trial drug mechanisms. Rank by combined eligibility and mechanism alignment.
 
 2. **Pathway Alignment Scoring** - DDR-high patients see PARP+ATR trials ranked first. MAPK-driven patients see MEK/RAF trials first. Pathway vectors: DDR, MAPK, PI3K, VEGF, HER2, IO, Efflux.
 
@@ -114,7 +114,7 @@ export const clinicalTrialsEducationalData: EducationalCapabilityPageData = {
       {
         number: 1,
         title: "Mechanism-Based Matching",
-        description: "Your tumor's pathway burden (DDR, MAPK, PI3K) matched to trial drug mechanisms via cosine similarity",
+        description: "Your tumor's pathway burden (DDR, MAPK, PI3K) matched to trial drug mechanisms by mechanism alignment",
         icon: "Target",
         color: "purple",
         details: [
@@ -199,7 +199,7 @@ export const clinicalTrialsEducationalData: EducationalCapabilityPageData = {
       {
         number: 2,
         title: "Match to Trial Mechanisms",
-        description: "Compute cosine similarity between patient pathway vector and trial drug mechanism vectors",
+        description: "Compute a mechanism-alignment score between patient pathway signature and trial drug mechanism signatures",
         details: [
           { label: "Method", value: "Cosine similarity matching" },
           { label: "Trial Mechanisms", value: "Pre-computed drug MoA vectors" },
@@ -235,7 +235,7 @@ export const clinicalTrialsEducationalData: EducationalCapabilityPageData = {
     title: "THE MOAT: What No Competitor Has",
     question: "Which trials target MY tumor's vulnerabilities?",
     genericResponse: "Search ClinicalTrials.gov with keywords. Manually review 50+ trials. Hope you find relevant ones.",
-    ourResponse: "Your tumor's pathway burden (DDR, MAPK, PI3K) matched to trial drug mechanisms via cosine similarity. DDR-high patients see PARP+ATR trials ranked first. Mechanism fit: 0.92 avg. Shortlist: 50+ → 5-12 trials.",
+    ourResponse: "Your tumor's pathway burden (DDR, MAPK, PI3K) matched to trial drug mechanisms by mechanism alignment. DDR-high patients see PARP+ATR trials ranked first. Shortlist: 50+ → 5-12 trials.",
     comparison: [
       {
         feature: "Trial Matching",

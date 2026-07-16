@@ -32,7 +32,7 @@ import {
   Crosshair
 } from 'lucide-react';
 
-// --- Technical 7D Vector Space Background ---
+// --- Technical Mechanism alignment Space Background ---
 const VectorSpaceBackground: React.FC<{ speed?: number; isAligning?: boolean }> = ({ speed = 1, isAligning = false }) => {
   const mountRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number>();
@@ -195,7 +195,7 @@ export const MechanismAlignment: React.FC = () => {
               <Compass className={`w-6 h-6 ${isAligning ? 'text-rose-500 animate-spin' : 'text-cyan-500'}`} />
            </div>
            <div>
-              <h2 className="text-[12px] font-black text-white uppercase tracking-[0.4em]">7D Vector Mapping // Mechanism Alignment</h2>
+              <h2 className="text-[12px] font-black text-white uppercase tracking-[0.4em]">Mechanism alignment Mapping // Mechanism Alignment</h2>
               <p className="text-[9px] text-zinc-600 font-bold uppercase tracking-widest mt-1">Non-Euclidean Enrollment Optimization v6.2.2</p>
            </div>
         </div>
@@ -315,7 +315,7 @@ export const MechanismAlignment: React.FC = () => {
            </div>
         </div>
 
-        {/* Right: 7D Vector Profile Panel */}
+        {/* Right: Mechanism alignment Profile Panel */}
         <div className="col-span-3 h-full overflow-hidden">
            <AnimatePresence mode="wait">
               {selectedPatient ? (
@@ -376,7 +376,7 @@ export const MechanismAlignment: React.FC = () => {
                       <Search className="w-6 h-6 text-zinc-800" />
                    </div>
                    <p className="text-[9px] text-zinc-600 uppercase font-black leading-relaxed tracking-[0.2em]">
-                      Select a manifold point to isolate 7D vector signature and enrollment eligibility metrics.
+                      Select a manifold point to isolate Mechanism alignment signature and enrollment eligibility metrics.
                    </p>
                 </div>
               )}
@@ -391,7 +391,7 @@ export const MechanismAlignment: React.FC = () => {
               <div className="flex items-center gap-8">
                  <span className="text-xl font-light text-cyan-500 tracking-tighter leading-none">LATIFY v6.2.2</span>
                  <div className="h-5 w-px bg-zinc-800" />
-                 <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Resolution: 7D Vector Manifold // Sync: Active</span>
+                 <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Resolution: Mechanism alignment Manifold // Sync: Active</span>
               </div>
            </div>
         </div>
