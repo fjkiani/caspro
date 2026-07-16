@@ -74,13 +74,33 @@ export function buildTopNavItems(
   abstracts: AbstractNavItem[] = [],
   persona: Persona = 'oncologist',
 ): NavTopItem[] {
+  // ─── W5 Release-A additions (2026-07-16) ───────────────────────────────
+  // PRODUCTS dropdown, FOR-YOU persona landing, PLATFORM first-class.
+  // UNDERSTAND repointed from /engine/target-lock/?persona=patient to /for/patients/
+  // so patients land on the first-class persona page, not the engine.
+  // ────────────────────────────────────────────────────────────────────────
+  const productsDropdown: NavDropdownItem[] = [
+    { label: 'Drug Development', description: 'Target lock · MoA · dependency research', href: '/drug-development/', accent: 'cyan' },
+    { label: 'Tumor Board',      description: 'Case-resolution research workspace',       href: '/tumor-board/',      accent: 'cyan' },
+  ];
+
+  const forYouHref: Record<Persona, string> = {
+    oncologist: '/for/oncologists/',
+    patient:    '/for/patients/',
+    pharma:     '/for/pharma/',
+  };
+
   const all: NavTopItem[] = [
+    { id: 'products',    label: 'PRODUCTS',    href: '/drug-development/',                dropdownItems: productsDropdown,
+                                                                                          personas: ['oncologist', 'pharma'] },
+    { id: 'platform',    label: 'PLATFORM',    href: '/platform/',                        personas: ['oncologist', 'patient', 'pharma'] },
+    { id: 'for-you',     label: 'FOR YOU',     href: forYouHref[persona],                 personas: ['oncologist', 'patient', 'pharma'] },
     { id: 'tumor-board', label: 'TUMOR BOARD', href: '/tumor-board/',                     personas: ['oncologist', 'patient', 'pharma'] },
     { id: 'target-lock', label: 'TARGET LOCK', href: '/engine/target-lock/',              personas: ['oncologist', 'pharma'] },
     { id: 'moa-align',   label: 'MOA ALIGN',   href: '/engine/mechanism-alignment/',      personas: ['oncologist', 'pharma'] },
     { id: 'sl-engine',   label: 'SL ENGINE',   href: '/engine/synthetic-lethality/',      personas: ['oncologist', 'pharma'] },
     { id: 'my-trials',   label: 'MY TRIALS',   href: '/ledger/?persona=patient',          personas: ['patient'] },
-    { id: 'understand',  label: 'UNDERSTAND',  href: '/engine/target-lock/?persona=patient', personas: ['patient'] },
+    { id: 'understand',  label: 'UNDERSTAND',  href: '/for/patients/',                    personas: ['patient'] },
     { id: 'ledger',      label: 'LEDGER',      href: '/ledger/',                          personas: ['oncologist', 'pharma'] },
     { id: 'pipeline',    label: 'PIPELINE',    href: '/pipeline/',                        personas: ['pharma'] },
     { id: 'governance',  label: 'GOVERNANCE',  href: '/governance/',                      personas: ['pharma'] },

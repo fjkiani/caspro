@@ -393,6 +393,16 @@ export default function VerticalSurface({ data, headerLink }: Props) {
               </Link>
             </div>
           </div>
+          {/* Release-A substrate disclaimer strip (mounted on every VerticalSurface page)
+              Preserves h-screen overflow-hidden shell. Text mirrors Footer.tsx so
+              the substrate disavowal renders even when the site-level Footer is not
+              rendered under the current global layout. */}
+          <div className={`border-t ${rail}`}>
+            <div className={`max-w-7xl mx-auto w-full px-4 sm:px-6 py-2 text-[10px] leading-relaxed ${muted}`}>
+              <span className="font-black uppercase tracking-[0.2em]">Research Use Only</span>
+              <span> · Educational research substrate · Every finding is traced to a public source and evidence tier · CrisPRO does not provide clinical decision support, does not deliver treatment directives, and is not a companion diagnostic · The oncology team remains the decision owner</span>
+            </div>
+          </div>
         </footer>
       </main>
     </SurfaceTabs>

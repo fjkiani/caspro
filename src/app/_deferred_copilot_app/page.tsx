@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, ExternalLink } from 'lucide-react'; // Icons for cards
-import CoPilotOptionCard from '../platform/CoPilotOptionCard'; // Import the new card component
+import CoPilotOptionCard from '../platform/_deferred_copilot/CoPilotOptionCard'; // Quarantined co-pilot card
 
 const coPilotOptions = [
   {

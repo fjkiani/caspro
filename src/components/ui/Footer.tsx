@@ -255,6 +255,13 @@ const Footer = () => {
             <span className="text-slate-400">•</span>
             <span className="text-slate-300">Consult healthcare professionals</span>
           </div>
+
+          {/* Release-A substrate framing — educational research substrate */}
+          <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-lg px-4 py-2 text-xs text-slate-400 max-w-3xl text-center">
+            <span className="text-slate-300 font-medium">Educational research substrate.</span>
+            <span> Every finding is traced to a public source and evidence tier.</span>
+            <span> CrisPRO does not provide clinical decision support, does not deliver treatment directives, and is not a companion diagnostic. The oncology team remains the decision owner.</span>
+          </div>
         </div>
       </div>
     </footer>

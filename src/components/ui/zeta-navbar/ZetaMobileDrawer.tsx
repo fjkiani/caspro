@@ -25,6 +25,10 @@ function linkRowClass(isDarkMode: boolean, isActive: boolean, navMuted: string) 
 function isNavItemActive(pathname: string | null, href: string, itemId: string): boolean {
   if (pathsEqual(pathname, href)) return true;
   const norm = (pathname ?? '').replace(/\/+$/, '') || '/';
+  // W5 Release-A: PRODUCTS/PLATFORM/FOR-YOU own /drug-development, /platform, /for/*
+  if (itemId === 'products' && (norm.startsWith('/drug-development') || norm.startsWith('/tumor-board'))) return true;
+  if (itemId === 'platform' && norm.startsWith('/platform')) return true;
+  if (itemId === 'for-you' && norm.startsWith('/for/')) return true;
   // Engine capabilities
   if (itemId === 'target-lock' && norm.startsWith('/engine/target-lock')) return true;
   if (itemId === 'moa-align' && norm.startsWith('/engine/mechanism-alignment')) return true;
@@ -35,9 +39,9 @@ function isNavItemActive(pathname: string | null, href: string, itemId: string):
   if (itemId === 'pipeline' && norm.startsWith('/pipeline')) return true;
   if (itemId === 'governance' && norm.startsWith('/governance')) return true;
   if (itemId === 'research' && (norm.startsWith('/research') || norm.startsWith('/blog') || norm.startsWith('/manuscripts'))) return true;
-  // Patient personas — carry ?persona=patient onto ledger + target-lock respectively
+  // Patient personas: MY TRIALS = ledger, UNDERSTAND = /for/patients/
   if (itemId === 'my-trials' && norm.startsWith('/ledger')) return true;
-  if (itemId === 'understand' && norm.startsWith('/engine/target-lock')) return true;
+  if (itemId === 'understand' && norm.startsWith('/for/patients')) return true;
   if (itemId === 'org') return false;
   return false;
 }
