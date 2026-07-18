@@ -1,0 +1,100 @@
+{
+  "case": "AK",
+  "disease": "ovarian_cancer",
+  "status": "MSS, PD-L1 positive (CPS 10)",
+  "source": "CrisPRO backend AK case bundle (AYESHA_BASE_PROFILE)",
+  "engines": {
+    "monomers": "AlphaFold2 (monomer_ptm, reduced_dbs)",
+    "complexes": "Boltz-2 (Chai-1 fallback)",
+    "note": "AlphaFold3 unavailable on cluster; substitutes labeled per output"
+  },
+  "variants": [
+    {
+      "id": "01",
+      "gene": "MBD4",
+      "uniprot": "O95243",
+      "variant": "p.K431Nfs*54",
+      "cdna": "c.1293delA",
+      "type": "frameshift_truncation",
+      "zygosity": "homozygous",
+      "origin": "germline",
+      "classification": "pathogenic",
+      "disruption": 0.654,
+      "confidence": 0.9,
+      "pathway": "BER",
+      "pathway_state": "non-functional",
+      "wt_len": 580,
+      "mutant_len": 489,
+      "diverges_after_residue": 431,
+      "novel_fs_residues": 58,
+      "consequence": "Frameshift -> premature stop -> ablates C-terminal DNA-glycosylase catalytic domain (~426-580)"
+    },
+    {
+      "id": "02",
+      "gene": "PDGFRA",
+      "uniprot": "P16234",
+      "variant": "p.S755P",
+      "cdna": "c.2263T>C",
+      "type": "missense",
+      "zygosity": "heterozygous",
+      "origin": "germline",
+      "classification": "VUS",
+      "disruption": 0.35,
+      "confidence": null,
+      "pathway": "UNKNOWN",
+      "pathway_state": "functional",
+      "wt_len": 1089,
+      "kinase_domain": "593-954"
+    },
+    {
+      "id": "03",
+      "gene": "TP53",
+      "uniprot": "P04637",
+      "variant": "p.R175H",
+      "cdna": "c.524G>A",
+      "genomic": "chr17:7577120 G>A GRCh38",
+      "type": "missense_hotspot",
+      "origin": "somatic",
+      "classification": "pathogenic",
+      "disruption": 0.55,
+      "confidence": 0.8,
+      "pathway": "CHECKPOINT",
+      "pathway_state": "compromised",
+      "wt_len": 393,
+      "dbd_core": "94-312"
+    }
+  ],
+  "synthetic_lethality": {
+    "detected": true,
+    "double_hit": "Base Excision Repair pathway loss",
+    "broken_pathways": [
+      {
+        "pathway": "BER",
+        "gene": "MBD4",
+        "state": "non-functional",
+        "disruption": 0.654
+      },
+      {
+        "pathway": "CHECKPOINT",
+        "gene": "TP53",
+        "state": "compromised",
+        "disruption": 0.55
+      }
+    ],
+    "essential_dependencies": [
+      {
+        "pathway": "ATR",
+        "depmap_boost": 0.15,
+        "status": "COMPUTATIONAL HYPOTHESIS",
+        "rationale": "BER-loss context: ATR essentiality rises when unrepaired BER substrate stalls replication forks"
+      },
+      {
+        "pathway": "WEE1",
+        "depmap_boost": 0.15,
+        "status": "COMPUTATIONAL HYPOTHESIS",
+        "rationale": "CHECKPOINT-compromised: WEE1 loss removes remaining G2/M brake when p53 is absent"
+      }
+    ],
+    "engine_caveat": "ATR/WEE1 lever from legacy v2 engine; v3 evidence matrix does not support it for MBD4 (0 positive modalities). RUO."
+  }
+}

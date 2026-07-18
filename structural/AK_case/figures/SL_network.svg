@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1072.8pt" height="640.8pt" viewBox="0 0 1072.8 640.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2022-01-01T05:00:00+00:00</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.5, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 640.8 
+L 1072.8 640.8 
+L 1072.8 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 94.6944 239.664 
+L 371.2896 239.664 
+Q 375.5232 239.664 375.5232 235.488 
+L 375.5232 154.752 
+Q 375.5232 150.576 371.2896 150.576 
+L 94.6944 150.576 
+Q 90.4608 150.576 90.4608 154.752 
+L 90.4608 235.488 
+Q 90.4608 239.664 94.6944 239.664 
+z
+" clip-path="url(#p08d4bde060)" style="fill: #d1495b; opacity: 0.92; stroke: #000000; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 127.152 224.352 
+L 338.832 224.352 
+L 338.832 213.216 
+L 127.152 213.216 
+z
+" clip-path="url(#p08d4bde060)" style="fill: #ffffff; opacity: 0.35"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 127.152 224.352 
+L 265.59072 224.352 
+L 265.59072 213.216 
+L 127.152 213.216 
+z
+" clip-path="url(#p08d4bde060)" style="fill: #ffffff; opacity: 0.95"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 94.6944 357.984 
+L 371.2896 357.984 
+Q 375.5232 357.984 375.5232 353.808 
+L 375.5232 273.072 
+Q 375.5232 268.896 371.2896 268.896 
+L 94.6944 268.896 
+Q 90.4608 268.896 90.4608 273.072 
+L 90.4608 353.808 
+Q 90.4608 357.984 94.6944 357.984 
+z
+" clip-path="url(#p08d4bde060)" style="fill: #edae49; opacity: 0.92; stroke: #000000; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 127.152 342.672 
+L 338.832 342.672 
+L 338.832 331.536 
+L 127.152 331.536 
+z
+" clip-path="url(#p08d4bde060)" style="fill: #ffffff; opacity: 0.35"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 127.152 342.672 
+L 243.576 342.672 
+L 243.576 331.536 
+L 127.152 331.536 
+z
+" clip-path="url(#p08d4bde060)" style="fill: #ffffff; opacity: 0.95"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 94.6944 476.304 
+L 371.2896 476.304 
+Q 375.5232 476.304 375.5232 472.128 
+L 375.5232 391.392 
+Q 375.5232 387.216 371.2896 387.216 
+L 94.6944 387.216 
+Q 90.4608 387.216 90.4608 391.392 
+L 90.4608 472.128 
+Q 90.4608 476.304 94.6944 476.304 
+z
+" clip-path="url(#p08d4bde060)" style="fill: #66a182; opacity: 0.92; stroke: #000000; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 127.152 460.992 
+L 338.832 460.992 
+L 338.832 449.856 
+L 127.152 449.856 
+z
+" clip-path="url(#p08d4bde060)" style="fill: #ffffff; opacity: 0.35"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 127.152 460.992 
+L 201.24 460.992 
+L 201.24 449.856 
+L 127.152 449.856 
+z
+" clip-path="url(#p08d4bde060)" style="fill: #ffffff; opacity: 0.95"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 701.5104 267.504 
+L 963.9936 267.504 
+Q 968.2272 267.504 968.2272 263.328 
+L 968.2272 182.592 
+Q 968.2272 178.416 963.9936 178.416 
+L 701.5104 178.416 
+Q 697.2768 178.416 697.2768 182.592 
+L 697.2768 263.328 
+Q 697.2768 267.504 701.5104 267.504 
+z
+" clip-path="url(#p08d4bde060)" style="fill: #0279ee; opacity: 0.94; stroke: #000000; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 701.5104 406.704 
+L 963.9936 406.704 
+Q 968.2272 406.704 968.2272 402.528 
+L 968.2272 321.792 
+Q 968.2272 317.616 963.9936 317.616 
+L 701.5104 317.616 
+Q 697.2768 317.616 697.2768 321.792 
+L 697.2768 402.528 
+Q 697.2768 406.704 701.5104 406.704 
+z
+" clip-path="url(#p08d4bde060)" style="fill: #0279ee; opacity: 0.94; stroke: #000000; stroke-width: 1.3; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 376.0325 195.675996 
+Q 533.647837 241.108763 694.030604 223.474425 
+" clip-path="url(#p08d4bde060)" style="fill: none; stroke: #d1495b; stroke-width: 2.4; stroke-linecap: round"/>
+    <path d="M 683.963506 219.752391 
+L 694.030604 223.474425 
+L 685.012718 229.294883 
+z
+" clip-path="url(#p08d4bde060)" style="fill: #d1495b; stroke: #d1495b; stroke-width: 2.4; stroke-linecap: round"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 375.993096 314.116519 
+Q 531.584315 369.871571 694.00747 362.378243 
+" clip-path="url(#p08d4bde060)" style="fill: none; stroke: #edae49; stroke-width: 2.4; stroke-linecap: round"/>
+    <path d="M 684.19646 358.025764 
+L 694.00747 362.378243 
+L 684.638881 367.615564 
+z
+" clip-path="url(#p08d4bde060)" style="fill: #edae49; stroke: #edae49; stroke-width: 2.4; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 16px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle" x="536.4" y="35.04" transform="rotate(-0 536.4 35.04)">Synthetic-Lethality Logic — AK Case (ovarian, MSS)</text>
+   </g>
+   <g id="text_2">
+    <text style="font-style: italic; font-size: 11px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #444444" x="536.4" y="66.36" transform="rotate(-0 536.4 66.36)">Double-hit DNA-repair + checkpoint loss  →  computational backup-dependency hypotheses</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #333333" x="232.992" y="111.6" transform="rotate(-0 232.992 111.6)">BROKEN PATHWAYS</text>
+   </g>
+   <g id="text_4">
+    <text style="font-style: italic; font-size: 8.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="232.992" y="132.48" transform="rotate(-0 232.992 132.48)">(double hit + secondary damage)</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="232.992" y="168.672" transform="rotate(-0 232.992 168.672)">MBD4 — BER</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 9px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="232.992" y="186.768" transform="rotate(-0 232.992 186.768)">non-functional · conf 0.9</text>
+   </g>
+   <g id="text_7">
+    <text style="font-style: italic; font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="232.992" y="202.08" transform="rotate(-0 232.992 202.08)">p.K431Nfs*54 (frameshift)</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: start; fill: #ffffff" x="344.4768" y="220.982047" transform="rotate(-0 344.4768 220.982047)">0.654</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 6.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end; fill: #ffffff" x="125.7408" y="220.464859" transform="rotate(-0 125.7408 220.464859)">disruption</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="232.992" y="286.992" transform="rotate(-0 232.992 286.992)">TP53 — CHECKPOINT</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 9px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="232.992" y="305.088" transform="rotate(-0 232.992 305.088)">compromised · conf 0.8</text>
+   </g>
+   <g id="text_12">
+    <text style="font-style: italic; font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="232.992" y="320.4" transform="rotate(-0 232.992 320.4)">p.R175H (hotspot)</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: start; fill: #ffffff" x="344.4768" y="339.302047" transform="rotate(-0 344.4768 339.302047)">0.550</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 6.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end; fill: #ffffff" x="125.7408" y="338.784859" transform="rotate(-0 125.7408 338.784859)">disruption</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="232.992" y="405.312" transform="rotate(-0 232.992 405.312)">PDGFRA — UNKNOWN</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 9px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="232.992" y="423.408" transform="rotate(-0 232.992 423.408)">functional</text>
+   </g>
+   <g id="text_17">
+    <text style="font-style: italic; font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="232.992" y="438.72" transform="rotate(-0 232.992 438.72)">p.S755P (VUS)</text>
+   </g>
+   <g id="text_18">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: start; fill: #ffffff" x="344.4768" y="457.622047" transform="rotate(-0 344.4768 457.622047)">0.350</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 6.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end; fill: #ffffff" x="125.7408" y="457.104859" transform="rotate(-0 125.7408 457.104859)">disruption</text>
+   </g>
+   <g id="text_20">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #333333" x="832.752" y="111.6" transform="rotate(-0 832.752 111.6)">ESSENTIAL BACKUP DEPENDENCIES</text>
+   </g>
+   <g id="text_21">
+    <text style="font-style: italic; font-size: 8.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="832.752" y="132.48" transform="rotate(-0 832.752 132.48)">(computational hypotheses)</text>
+   </g>
+   <g id="text_22">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="832.752" y="199.296" transform="rotate(-0 832.752 199.296)">ATR</text>
+   </g>
+   <g id="text_23">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #e9ed4c" x="832.752" y="218.784" transform="rotate(-0 832.752 218.784)">DepMap confidence boost +0.15</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 7px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; fill: #ffffff" transform="translate(761.429656 236.300125)">BER-loss context: ATR essentiality rises when</text>
+    <text style="font-size: 7px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; fill: #ffffff" transform="translate(758.054891 243.84)">unrepaired BER substrate stalls replication forks</text>
+   </g>
+   <g id="text_25">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #ffffff" x="832.752" y="338.496" transform="rotate(-0 832.752 338.496)">WEE1</text>
+   </g>
+   <g id="text_26">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #e9ed4c" x="832.752" y="357.984" transform="rotate(-0 832.752 357.984)">DepMap confidence boost +0.15</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 7px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; fill: #ffffff" transform="translate(748.537078 375.500125)">CHECKPOINT-compromised: WEE1 loss removes the</text>
+    <text style="font-size: 7px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; fill: #ffffff" transform="translate(766.998484 383.04)">remaining G2/M brake when p53 is absent</text>
+   </g>
+   <g id="text_28">
+    <g id="patch_15">
+     <path d="M 514.451563 305.606562 
+L 558.348438 305.606562 
+Q 561.348438 305.606562 561.348438 302.606562 
+L 561.348438 282.513437 
+Q 561.348438 279.513437 558.348438 279.513437 
+L 514.451563 279.513437 
+Q 511.451563 279.513437 511.451563 282.513437 
+L 511.451563 302.606562 
+Q 511.451563 305.606562 514.451563 305.606562 
+z
+" style="fill: #ffe6e6; stroke: #b30000; stroke-linejoin: miter"/>
+    </g>
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; fill: #b30000" transform="translate(514.451563 289.760312)">synthetic</text>
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; fill: #b30000" transform="translate(517.507813 300.531562)">lethality</text>
+   </g>
+   <g id="text_29">
+    <g id="patch_16">
+     <path d="M 246.957188 589.254 
+L 825.842813 589.254 
+Q 828.722813 589.254 828.722813 586.374 
+L 828.722813 571.90695 
+Q 828.722813 569.02695 825.842813 569.02695 
+L 246.957188 569.02695 
+Q 244.077188 569.02695 244.077188 571.90695 
+L 244.077188 586.374 
+Q 244.077188 589.254 246.957188 589.254 
+z
+" style="fill: #f5f5f5; stroke: #cccccc; stroke-linejoin: miter"/>
+    </g>
+    <text style="font-size: 7.2px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; fill: #555555" transform="translate(246.957188 577.1247)">Disruption/confidence scores from CrisPRO backend (AK case bundle). Backup dependencies (ATR/WEE1) are COMPUTATIONAL HYPOTHESES from the legacy SL engine; the v3</text>
+    <text style="font-size: 7.2px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; fill: #555555" transform="translate(270.959625 584.88)">evidence matrix does not support an ATR/WEE1 therapeutic lever for MBD4 (0 positive modalities). Research use only — not a clinical or prescribing recommendation.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p08d4bde060">
+   <rect x="7.2" y="7.2" width="1058.4" height="626.4"/>
+  </clipPath>
+ </defs>
+</svg>
