@@ -1,0 +1,64 @@
+{
+  "purpose": "Provenance receipts for AK-case tumor-board structural/schematic animations. RUO.",
+  "governance": {
+    "two_acts_walled_off": true,
+    "act1_banner": "AF2 MODELING CONFIDENCE — RUO",
+    "act2_banner": "UNVALIDATED HYPOTHESIS — v3 evidence drops ATR_WEE1 (0 positive modalities for MBD4); Computational tier only; not a therapeutic claim",
+    "every_gif_caption": "illustrative morph between predicted states, not molecular dynamics",
+    "note": "Motion is scripted interpolation between REAL predicted static states (AF2). No molecular dynamics. pLDDT/pTM are modeling confidence, not experimental/functional/clinical validation."
+  },
+  "animations": [
+    {
+      "id": "MBD4_catalytic_loss_morph",
+      "act": 1,
+      "file": "animations/MBD4_catalytic_loss_morph.gif",
+      "last_still": "animations/MBD4_catalytic_loss_laststill.png",
+      "script": "analysis/mbd4_morph_pymol.py",
+      "renderer": "PyMOL 3.1.0 (conda-forge, headless, ray_trace_mode=0)",
+      "engine_source": "AlphaFold2 monomer_ptm (real folds)",
+      "structures": [
+        {"role": "WT", "sid": "MBD4_WT", "hpc_job_id": "aecdd6fb-27e1-4f23-86e0-e21b3033459a", "n_residues": 580, "mean_plddt": 56.78, "ptm": 0.3811, "pdb": "structures/MBD4_WT_ranked_0.pdb"},
+        {"role": "truncated", "sid": "MBD4_K431Nfs_trunc", "hpc_job_id": "40f3a008-18ba-4db3-9317-621ce793bd51", "n_residues": 489, "mean_plddt": 47.42, "ptm": 0.3058, "pdb": "structures/MBD4_K431Nfs_trunc_ranked_0.pdb"}
+      ],
+      "depicts": "WT (catalytic HhH-GPD DNA-glycosylase domain 426-580 present) -> dissolve -> truncated K431Nfs*54 (489 aa; catalytic domain ABSENT, ~91 C-terminal residues lost). BER -> non-functional.",
+      "color_convention": "pLDDT spectrum red_white_blue (low->red, high->blue), fixed 0-100 scale (AlphaFold convention)",
+      "focus": "resi 68-147 (MBD) or resi 426-580 (glycosylase); disordered linker 150-425 de-emphasized",
+      "frames": 62,
+      "size_mb": 3.44,
+      "media_check": "PASS"
+    },
+    {
+      "id": "ACT2_SL_hypothesis_schematic",
+      "act": 2,
+      "file": "animations/ACT2_SL_hypothesis_schematic.gif",
+      "last_still": "animations/ACT2_SL_hypothesis_laststill.png",
+      "script": "analysis/act2_sl_hypothesis_schematic.py",
+      "renderer": "matplotlib (Agg) 2D schematic",
+      "engine_source": "none (schematic diagram; NOT a molecular structure)",
+      "grounded_in": "manifest.json synthetic_lethality block",
+      "grounded_numbers": {
+        "MBD4_BER_disruption": 0.654,
+        "TP53_CHECKPOINT_disruption": 0.55,
+        "ATR_depmap_boost": 0.15,
+        "WEE1_depmap_boost": 0.15,
+        "double_hit": "Base Excision Repair pathway loss",
+        "engine_caveat": "ATR/WEE1 lever from legacy v2 engine; v3 evidence matrix does not support it for MBD4 (0 positive modalities). RUO."
+      },
+      "stages": [
+        "observed real CrisPRO calls (MBD4 BER non-functional, TP53 CHECKPOINT compromised)",
+        "double-hit annotation (BER-pathway loss)",
+        "hypothesized backup dependencies ATR/WEE1 drawn DASHED + '?'",
+        "investigational probes ceralasertib/adavosertib greyed + 'INVESTIGATIONAL — not prescribed'"
+      ],
+      "frames": 78,
+      "size_mb": 0.46,
+      "media_check": "PASS"
+    }
+  ],
+  "reel_order_so_far": ["MBD4_catalytic_loss_morph (Act 1)", "[TP53_R175H Act 1 — pending fold]", "[PDGFRA_S755P Act 1 — pending fold]", "ACT2_SL_hypothesis_schematic (Act 2, last)"],
+  "pending": {
+    "act1_folds_running": ["TP53_R175H", "PDGFRA_WT", "PDGFRA_S755P"],
+    "boltz2_complexes_staged": ["TP53_WT_core_DNA", "PDGFRA_WT_kd_imatinib"],
+    "reason_boltz_blocked": "GPU concurrency hard cap = 3; all 3 slots occupied by in-flight AF2 folds (429 on submit)."
+  }
+}
