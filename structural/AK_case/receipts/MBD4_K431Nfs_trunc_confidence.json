@@ -1,0 +1,60 @@
+{
+  "structure_id": "MBD4_K431Nfs_trunc",
+  "gene": "MBD4",
+  "uniprot": "O95243",
+  "role": "frameshift-truncation product (p.K431Nfs*54): WT through res 431, then 58 novel fs residues -> stop",
+  "n_residues": 489,
+  "n_expected": 489,
+  "length_matches_expected": true,
+  "engine": "AlphaFold2",
+  "preset": "monomer_ptm",
+  "db_preset": "reduced_dbs",
+  "af3_substitution_note": "AF2 monomer_ptm used; AlphaFold3 unavailable on cluster (disclosed).",
+  "hpc_job_id": "40f3a008-18ba-4db3-9317-621ce793bd51",
+  "best_model": "model_1_ptm_pred_0",
+  "best_model_metrics": {
+    "mean_plddt": 47.416,
+    "ptm": 0.3058,
+    "ranking_confidence": 47.4165,
+    "max_pae": 31.75,
+    "pkl_available": true
+  },
+  "per_model_metrics": {
+    "model_1_ptm_pred_0": {
+      "mean_plddt": 47.416,
+      "ptm": 0.3058,
+      "ranking_confidence": 47.4165,
+      "max_pae": 31.75,
+      "pkl_available": true
+    },
+    "model_3_ptm_pred_0": {
+      "mean_plddt": 46.441,
+      "pkl_available": false
+    },
+    "model_2_ptm_pred_0": {
+      "mean_plddt": 45.416,
+      "ptm": 0.2523,
+      "ranking_confidence": 45.4156,
+      "max_pae": 31.75,
+      "pkl_available": true
+    },
+    "model_4_ptm_pred_0": {
+      "mean_plddt": 44.973,
+      "pkl_available": false
+    },
+    "model_5_ptm_pred_0": {
+      "mean_plddt": 44.718,
+      "pkl_available": false
+    }
+  },
+  "plddt_distribution": {
+    "mean": 47.42,
+    "pct_very_high_gt90": 10.8,
+    "pct_confident_gt70": 12.7,
+    "pct_disordered_lt50": 77.7
+  },
+  "caveat": "Modeling confidence only (pLDDT/pTM); NOT experimental/functional/clinical validation. RUO.",
+  "variant": "p.K431Nfs*54 (c.1293delA)",
+  "diverges_after_residue": 431,
+  "novel_fs_residues": 58
+}

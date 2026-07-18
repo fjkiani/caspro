@@ -148,6 +148,48 @@
         "status": "QUEUED (submit when GPU slot frees)"
       }
     },
-    "caveat": "pLDDT/pTM are modeling confidence, not experimental/functional/clinical validation. RUO."
+    "caveat": "pLDDT/pTM are modeling confidence, not experimental/functional/clinical validation. RUO.",
+    "folds": {
+      "TP53_WT": {
+        "status": "COMPLETED",
+        "hpc_job_id": "de90179b-fe7b-4337-83d3-f2e9d70f7042",
+        "n_residues": 393,
+        "best_model": "model_1_ptm_pred_0",
+        "mean_plddt": 72.89,
+        "ptm": 0.5797
+      },
+      "MBD4_WT": {
+        "status": "COMPLETED",
+        "hpc_job_id": "aecdd6fb-27e1-4f23-86e0-e21b3033459a",
+        "n_residues": 580,
+        "best_model": "model_1_ptm_pred_0",
+        "mean_plddt": 56.78,
+        "ptm": 0.3811
+      },
+      "MBD4_K431Nfs_trunc": {
+        "status": "COMPLETED",
+        "hpc_job_id": "40f3a008-18ba-4db3-9317-621ce793bd51",
+        "n_residues": 489,
+        "best_model": "model_1_ptm_pred_0",
+        "mean_plddt": 47.42,
+        "ptm": 0.3058
+      },
+      "TP53_R175H": {
+        "status": "RUNNING",
+        "hpc_job_id": "f152eecf-ce99-4297-bdc1-e43eb6a720e8"
+      },
+      "PDGFRA_WT": {
+        "status": "RUNNING",
+        "hpc_job_id": "b9c54705-14d8-4e49-a981-6da623dc7b31"
+      },
+      "PDGFRA_S755P": {
+        "status": "PENDING",
+        "hpc_job_id": "e364eaf7-dcea-4b10-8379-706318002c78"
+      }
+    },
+    "preset": "monomer_ptm / reduced_dbs / max_template_date=2024-01-01",
+    "panels_built": [
+      "MBD4_truncation_impact"
+    ]
   }
 }

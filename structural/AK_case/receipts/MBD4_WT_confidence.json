@@ -1,0 +1,72 @@
+{
+  "structure_id": "MBD4_WT",
+  "gene": "MBD4",
+  "uniprot": "O95243",
+  "role": "wild-type reference (full-length monomer, contains C-terminal HhH-GPD glycosylase domain ~426-580)",
+  "n_residues": 580,
+  "n_expected": 580,
+  "length_matches_expected": true,
+  "engine": "AlphaFold2",
+  "preset": "monomer_ptm",
+  "db_preset": "reduced_dbs",
+  "af3_substitution_note": "AF2 monomer_ptm used; AlphaFold3 unavailable on cluster (disclosed).",
+  "hpc_job_id": "aecdd6fb-27e1-4f23-86e0-e21b3033459a",
+  "best_model": "model_1_ptm_pred_0",
+  "best_model_metrics": {
+    "mean_plddt": 56.775,
+    "ptm": 0.3811,
+    "ranking_confidence": 56.775,
+    "max_pae": 31.75,
+    "pkl_available": true
+  },
+  "per_model_metrics": {
+    "model_1_ptm_pred_0": {
+      "mean_plddt": 56.775,
+      "ptm": 0.3811,
+      "ranking_confidence": 56.775,
+      "max_pae": 31.75,
+      "pkl_available": true
+    },
+    "model_2_ptm_pred_0": {
+      "mean_plddt": 55.277,
+      "pkl_available": false
+    },
+    "model_3_ptm_pred_0": {
+      "mean_plddt": 54.74,
+      "pkl_available": false
+    },
+    "model_5_ptm_pred_0": {
+      "mean_plddt": 54.089,
+      "pkl_available": false
+    },
+    "model_4_ptm_pred_0": {
+      "mean_plddt": 53.294,
+      "pkl_available": false
+    }
+  },
+  "plddt_distribution": {
+    "mean": 56.78,
+    "pct_very_high_gt90": 29.7,
+    "pct_confident_gt70": 35.9,
+    "pct_disordered_lt50": 60.3
+  },
+  "caveat": "Modeling confidence only (pLDDT/pTM); NOT experimental/functional/clinical validation. RUO.",
+  "interpretation": "Full-length MBD4 WT (580 aa). Global mean pLDDT is low (56.8) ONLY because of the large intrinsically disordered central linker (~150-425, pLDDT ~35). Functional domains fold at high confidence: MBD (68-147, ~76) and the C-terminal HhH-GPD DNA-glycosylase catalytic domain (426-580, ~94). That catalytic domain is exactly the region ablated by p.K431Nfs*54 (product ends ~489 aa) -> clean structural basis for the CrisPRO 'BER -> non-functional' call.",
+  "domain_wise_plddt": {
+    "MBD_methyl_CpG_binding_68_147": {
+      "mean_plddt": 75.9,
+      "n": 80,
+      "note": "folded"
+    },
+    "central_linker_150_425": {
+      "mean_plddt": 35.2,
+      "n": 276,
+      "note": "intrinsically disordered; dominates low global mean"
+    },
+    "HhH_GPD_glycosylase_426_580": {
+      "mean_plddt": 93.9,
+      "n": 155,
+      "note": "catalytic domain; HIGH confidence; region ablated by K431Nfs*54"
+    }
+  }
+}
