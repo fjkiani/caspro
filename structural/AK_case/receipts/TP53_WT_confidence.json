@@ -1,0 +1,64 @@
+{
+  "structure_id": "TP53_WT",
+  "gene": "TP53",
+  "uniprot": "P04637",
+  "role": "wild-type reference (full-length monomer)",
+  "n_residues": 393,
+  "engine": "AlphaFold2",
+  "preset": "monomer_ptm",
+  "db_preset": "reduced_dbs",
+  "af3_substitution_note": "AF2 monomer_ptm used; AlphaFold3 unavailable on cluster (disclosed in METHODS_AND_LIMITS.md).",
+  "hpc_job_id": "de90179b-fe7b-4337-83d3-f2e9d70f7042",
+  "best_model": "model_1_ptm_pred_0",
+  "best_model_metrics": {
+    "mean_plddt": 72.893,
+    "ptm": 0.5797,
+    "ranking_confidence": 72.8934,
+    "max_pae": 31.75,
+    "pkl_available": true
+  },
+  "per_model_metrics": {
+    "model_1_ptm_pred_0": {
+      "mean_plddt": 72.893,
+      "ptm": 0.5797,
+      "ranking_confidence": 72.8934,
+      "max_pae": 31.75,
+      "pkl_available": true
+    },
+    "model_3_ptm_pred_0": {
+      "mean_plddt": 71.68,
+      "ptm": 0.5431,
+      "ranking_confidence": 71.6804,
+      "max_pae": 31.75,
+      "pkl_available": true
+    },
+    "model_5_ptm_pred_0": {
+      "mean_plddt": 71.327,
+      "pkl_available": false
+    },
+    "model_2_ptm_pred_0": {
+      "mean_plddt": 71.061,
+      "ptm": 0.5542,
+      "ranking_confidence": 71.0613,
+      "max_pae": 31.75,
+      "pkl_available": true
+    },
+    "model_4_ptm_pred_0": {
+      "mean_plddt": 70.157,
+      "ptm": 0.5412,
+      "ranking_confidence": 70.1572,
+      "max_pae": 31.75,
+      "pkl_available": true
+    }
+  },
+  "ranking_metric": "plddts",
+  "plddt_distribution": {
+    "mean": 72.89,
+    "pct_very_high_gt90": 53.4,
+    "pct_confident_gt70": 57.8,
+    "pct_low_50to70": 7.6,
+    "pct_disordered_lt50": 34.6
+  },
+  "interpretation": "Bimodal pLDDT as expected for full-length p53: the DNA-binding domain (~94-312) and tetramerization domain fold at high confidence; the N-terminal transactivation domain and C-terminal regulatory region are intrinsically disordered (low pLDDT). pTM is depressed by the disordered tails, not a folding failure of the structured core.",
+  "caveat": "Modeling confidence only (pLDDT/pTM); NOT experimental, functional, or clinical validation. RUO."
+}

@@ -96,5 +96,58 @@
       }
     ],
     "engine_caveat": "ATR/WEE1 lever from legacy v2 engine; v3 evidence matrix does not support it for MBD4 (0 positive modalities). RUO."
+  },
+  "structure_folding": {
+    "engine": "AlphaFold2",
+    "model_preset": "monomer_ptm",
+    "db_preset": "reduced_dbs",
+    "max_template_date": "2024-01-01",
+    "use_gpu_relax": false,
+    "af3_substitution": "AlphaFold3 unavailable on cluster; AF2 monomer_ptm substituted (disclosed).",
+    "planned_monomers": [
+      "TP53_WT",
+      "TP53_R175H",
+      "MBD4_WT",
+      "MBD4_K431Nfs_trunc",
+      "PDGFRA_WT",
+      "PDGFRA_S755P"
+    ],
+    "gpu_concurrency_limit": 3,
+    "jobs": {
+      "TP53_WT": {
+        "job_id": "de90179b-fe7b-4337-83d3-f2e9d70f7042",
+        "status": "COMPLETED",
+        "n_residues": 393,
+        "best_model": "model_1_ptm_pred_0",
+        "mean_plddt": 72.89,
+        "ptm": 0.5797,
+        "structure": "structures/TP53_WT_ranked_0.pdb",
+        "receipt": "receipts/TP53_WT_confidence.json"
+      },
+      "TP53_R175H": {
+        "job_id": "f152eecf-ce99-4297-bdc1-e43eb6a720e8",
+        "status": "RUNNING",
+        "n_residues": 393,
+        "variant": "p.R175H (single-residue R175->H vs WT, verified)"
+      },
+      "MBD4_WT": {
+        "job_id": "aecdd6fb-27e1-4f23-86e0-e21b3033459a",
+        "status": "RUNNING",
+        "n_residues": 580
+      },
+      "MBD4_K431Nfs_trunc": {
+        "job_id": "40f3a008-18ba-4db3-9317-621ce793bd51",
+        "status": "RUNNING",
+        "n_residues": 489,
+        "note": "frameshift truncation; compare by catalytic-domain loss, not point-mutation RMSD"
+      },
+      "PDGFRA_WT": {
+        "status": "QUEUED (submit when GPU slot frees)"
+      },
+      "PDGFRA_S755P": {
+        "status": "QUEUED (submit when GPU slot frees)"
+      }
+    },
+    "caveat": "pLDDT/pTM are modeling confidence, not experimental/functional/clinical validation. RUO."
   }
 }
