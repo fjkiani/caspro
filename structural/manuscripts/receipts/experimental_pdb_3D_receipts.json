@@ -1,0 +1,164 @@
+{
+  "wave": "experimental_pdb_3D",
+  "generated": "2026-07-19",
+  "rationale": "User: '2D is slop - i need direct biological shown in 3D'. AF2/Boltz GPU-gated (all 3 folds timed out after 16h). Pivoted to REAL deposited experimental crystal structures from RCSB (ground-truth 3D, drugs/DNA already bound, no GPU). Renders are illustrative views of deposited structures; experimental evidence is STRONGER than model confidence. Labeled honestly as experimental with PDB ID + resolution + method. RUO.",
+  "engine": {
+    "render": "analysis/pdb3d_render.py (build_drug_in_pocket / build_mutation_at_site / build_protein_dna)",
+    "compose": "analysis/pdb3d_compose.py (render: light structure-forward chrome + global-palette no-dither GIF)",
+    "render_params": {
+      "W": 1100,
+      "H": 825,
+      "DPI": 100,
+      "ray_trace_mode": 0,
+      "antialias": 1,
+      "frames_rendered": 90,
+      "gif_frame_step": 2,
+      "gif_scale": 0.82,
+      "gif_colors": 64,
+      "gif_frames_final": 45,
+      "duration_s": 0.14
+    },
+    "key_fixes": [
+      "cmd.reinitialize() at start of every render -> prevents PyMOL state leakage between structures in a batch (leaked cartoon_transparency/orient had blanked the DNA render)",
+      "NO on-atom cmd.label (collide/clip in orbit) -> all text added by matplotlib compositor at fixed positions",
+      "single stable camera per render (orient+zoom once, no re-zoom mid-orbit) -> no edge clipping",
+      "drug/mutation: single chain isolated from multi-copy AU -> one prominent protein+drug, not tiny duplicates",
+      "drug/mutation: semi-transparent cartoon -> buried drug/residue stays visible from all angles",
+      "GIF: global 64-color palette + dither=NONE + frame_step + 0.82 scale -> 25MB -> ~5MB, media-check-verified quality"
+    ]
+  },
+  "animations": [
+    {
+      "scenario": "M12_S1_KRAS_G12C_sotorasib",
+      "gif": "M12_S1_KRAS_G12C_sotorasib.gif",
+      "gif_size_mb": 3.98,
+      "pdb": "6OIM",
+      "method": "X-ray",
+      "resolution_A": 1.65,
+      "mode": "drug",
+      "gene": "KRAS",
+      "biology": "KRAS G12C  \u2014  sotorasib locked in the mutant pocket",
+      "verified": "residue 12 = CYS (G12C confirmed); ligand MOV = sotorasib/AMG510 (41 atoms) + GDP + Mg",
+      "source": "Canon et al. 2019, Nature (PDB 6OIM)",
+      "on_frame_caption": "Sotorasib (AMG 510) binds covalently to the mutant Cys12, trapping KRAS inactive \u2014 the drug\u2013target event in a real 1.65 \u00c5 crystal structure. Evo2 scores G12C as sequence-tolerated (\u0394ll \u22120.148): the oncogenic switch looks normal to a language model but is a validated drug target here.",
+      "on_frame_stat": [
+        "\u22120.148",
+        "Evo2 \u0394ll (tolerated)",
+        "#e6399b"
+      ],
+      "manuscript_number_provenance": {
+        "Evo2 dll G12C = -0.148": "M12 Evo2 panel (tolerated; oncogenic switch looks normal to LM)"
+      }
+    },
+    {
+      "scenario": "M00_S2_PARP1_olaparib",
+      "gif": "M00_S2_PARP1_olaparib.gif",
+      "gif_size_mb": 5.85,
+      "pdb": "7KK4",
+      "method": "X-ray",
+      "resolution_A": 1.96,
+      "mode": "drug",
+      "gene": "PARP1",
+      "biology": "PARP1  \u2014  olaparib in the NAD\u207a catalytic site",
+      "verified": "ligand 09L = olaparib; 2 copies in AU, chain A rendered",
+      "source": "PARP1 catalytic domain + olaparib (PDB 7KK4)",
+      "on_frame_caption": "Olaparib occupies the NAD\u207a pocket of the PARP1 catalytic domain \u2014 a real drug-binding event shown structurally. NOTE: in Manuscript 00 the MBD4-LOF \u2192 PARP-therapy axis is FALSIFIED (PARP1 not upregulated, p=0.605); this frame shows only how the PARP inhibitor engages the enzyme, not an MBD4 therapy claim.",
+      "on_frame_stat": [
+        "p=0.605",
+        "MBD4\u2192PARP: falsified",
+        "#d62728"
+      ],
+      "manuscript_number_provenance": {
+        "p=0.605": "M00 PARP1 NOT upregulated in MBD4-LOF (Mann-Whitney, n=19 LOF vs 1498 WT, DepMap 24Q2). Frame explicitly states MBD4->PARP axis is FALSIFIED; render shows only drug-enzyme engagement."
+      }
+    },
+    {
+      "scenario": "M12_S3_BACE1_inhibitor",
+      "gif": "M12_S3_BACE1_inhibitor.gif",
+      "gif_size_mb": 4.75,
+      "pdb": "4B05",
+      "method": "X-ray",
+      "resolution_A": 1.8,
+      "mode": "drug",
+      "gene": "BACE1",
+      "biology": "BACE1  \u2014  \u03b2-secretase apex driver, druggable pocket",
+      "verified": "ligand 32D = AZD3839 clinical BACE1 inhibitor; catalytic Asp32 present",
+      "source": "Preclinical BACE1 inhibitor complex (PDB 4B05)",
+      "on_frame_caption": "BACE1 is the apex brain-metastasis driver in Manuscript 12 (CRISPRa LFC +7.28; 156-fold up in brain mets; ZERO somatic mutations). Here a clinical \u03b2-secretase inhibitor (AZD3839) sits between the catalytic aspartates \u2014 an Alzheimer's-repurposable pocket, invisible to mutation-centric panels.",
+      "on_frame_stat": [
+        "0 mut",
+        "somatic mutations",
+        "#75A025"
+      ],
+      "manuscript_number_provenance": {
+        "0 somatic mutations; CRISPRa LFC +7.28; 156-fold up": "M12 BACE1 apex driver (GSE237446 / GSE205033)"
+      }
+    },
+    {
+      "scenario": "M12_S4_EGFR_L858R_drug",
+      "gif": "M12_S4_EGFR_L858R_drug.gif",
+      "gif_size_mb": 4.94,
+      "pdb": "4LQM",
+      "method": "X-ray",
+      "resolution_A": 2.5,
+      "mode": "drug",
+      "gene": "EGFR",
+      "biology": "EGFR L858R  \u2014  activating mutation + covalent inhibitor",
+      "verified": "residue 858 = ARG (L858R confirmed); ligand DJK covalent quinazoline inhibitor",
+      "source": "EGFR L858R + inhibitor (PDB 4LQM)",
+      "on_frame_caption": "The L858R activating mutation sits in the EGFR kinase activation loop; a covalent quinazoline inhibitor occupies the ATP pocket. Evo2 scores L858R as sequence-tolerated (\u0394ll +0.088) \u2014 an activating oncogenic change that looks normal to a language model, underscoring why structure + function, not sequence alone, defines driver impact.",
+      "on_frame_stat": [
+        "+0.088",
+        "Evo2 \u0394ll (tolerated)",
+        "#e6399b"
+      ],
+      "manuscript_number_provenance": {
+        "Evo2 dll L858R = +0.088": "M12 Evo2 panel (activating change, sequence-tolerated)"
+      }
+    },
+    {
+      "scenario": "M12_S5_PIK3CA_H1047R",
+      "gif": "M12_S5_PIK3CA_H1047R.gif",
+      "gif_size_mb": 5.12,
+      "pdb": "3HHM",
+      "method": "X-ray",
+      "resolution_A": 2.8,
+      "mode": "mutation",
+      "gene": "PIK3CA",
+      "biology": "PIK3CA H1047R  \u2014  hotspot at the kinase C-terminus",
+      "verified": "residue 1047 = ARG (H1047R confirmed) - true mutant structure (4JPS was WT, rejected)",
+      "source": "p110\u03b1 H1047R mutant (PDB 3HHM)",
+      "on_frame_caption": "H1047R is a recurrent PI3K\u03b1 activating hotspot in the kinase domain C-terminal tail, shown here in the real mutant crystal structure. Evo2 flags H1047R as disruptive (\u0394ll \u22120.615), consistent with a structurally consequential change to the catalytic machinery.",
+      "on_frame_stat": [
+        "\u22120.615",
+        "Evo2 \u0394ll (disruptive)",
+        "#0279EE"
+      ],
+      "manuscript_number_provenance": {
+        "Evo2 dll H1047R = -0.615": "M12 Evo2 panel (disruptive)"
+      }
+    },
+    {
+      "scenario": "M12_S6_TP53_DNA_contact",
+      "gif": "M12_S6_TP53_DNA_contact.gif",
+      "gif_size_mb": 2.73,
+      "pdb": "1TSR",
+      "method": "X-ray",
+      "resolution_A": 2.2,
+      "mode": "dna",
+      "gene": "TP53",
+      "biology": "p53  \u2014  DNA-binding domain gripping its response element",
+      "verified": "3 p53 monomers (chains A/B/C) + DNA duplex (chains E/F, 855 nucleic atoms); Arg248 & Arg273 DNA-contact arginines present; Zn structural ion; chain A rendered on DNA",
+      "source": "Cho et al. 1994, Science (PDB 1TSR)",
+      "on_frame_caption": "The p53 core domain reads DNA through direct contacts: Arg248 inserts into the minor groove and Arg273 contacts the phosphate backbone. Hotspot mutations at these arginines (e.g. R248W, R273H) abolish DNA binding \u2014 the structural basis of p53 loss-of-function. Evo2 scores the DNA-contact R248W as tolerated (\u0394ll +0.099): sequence conservation alone misses contact-residue drivers.",
+      "on_frame_stat": [
+        "+0.099",
+        "R248W Evo2 \u0394ll",
+        "#e6399b"
+      ],
+      "manuscript_number_provenance": {
+        "Evo2 dll R248W = +0.099": "M12 Evo2 panel (DNA-contact driver, sequence-tolerated)"
+      }
+    }
+  ]
+}
