@@ -1,0 +1,181 @@
+{
+  "receipt_set": "manuscript_animations_wave0",
+  "generated": "2026-07-19",
+  "generator": "Biomni Agent",
+  "purpose": "Long-form, heavily-narrated animated GIFs for Manuscript 00 (MBD4->ATR reframe) and Manuscript 12 (BRM brain-met interception), in the visual language of MBD4_catalytic_loss_morph.gif but with deep on-frame narration and strict per-claim evidence-status banners.",
+  "hard_constraints": {
+    "no_ai_generated_images": true,
+    "structural_frames": "real AlphaFold2 folds rendered in PyMOL 3.1.0 headless (ray_trace_mode=0); illustrative morph between two predicted states, NOT molecular dynamics",
+    "twoD_frames": "matplotlib (Agg) mechanistic diagrams; all numbers quoted verbatim from source manuscripts and cited on-frame",
+    "RUO": "research use only on all structural GIFs; structural confidence (pLDDT) = modeling confidence only; no clinical/prescribing claims"
+  },
+  "shared_grammar": {
+    "module": "anim_common.py",
+    "palette": {"INK": "#111111", "PAPER": "#FAF9F3", "CB_BLUE": "#0279EE", "CB_ORANGE": "#FF9400", "CB_GREEN": "#75A025", "CB_RED": "#d62728", "CB_PURPLE": "#7a3fa0"},
+    "font": "Liberation Sans",
+    "2D_dpi": 130,
+    "status_banner_vocabulary": ["VALIDATED", "STRONG", "FALSIFIED / HYPOTHESIS REMOVED", "EMERGING", "EVOLUTIONARY PREDICTION (Evo2, zero-shot)", "AF2 MODELING CONFIDENCE - RUO", "FUNCTIONAL EVIDENCE (non-mutational)"]
+  },
+  "animations": [
+    {
+      "id": "A1",
+      "file": "M00_A1_MBD4_catalytic_loss_narrated.gif",
+      "manuscript": "00 (MBD4->ATR reframe)",
+      "title": "MBD4 catalytic-domain loss (BER -> non-functional) - deep re-narration",
+      "form": "3D structural morph (real AF2 folds)",
+      "engine": "PyMOL 3.1.0 headless (ray_trace_mode=0), matplotlib narration compositor",
+      "renderer_scripts": ["a1_mbd4_morph_pymol.py", "a1_mbd4_compose.py"],
+      "frames": 124,
+      "size_mb": 2.98,
+      "chapters": 5,
+      "evidence_status": "AF2 MODELING CONFIDENCE - RUO (illustrative morph, not molecular dynamics)",
+      "structures": {
+        "WT": "MBD4_WT_ranked_0.pdb (580 aa; MBD 68-147; disordered linker 150-425; HhH-GPD glycosylase catalytic 426-580)",
+        "truncated": "MBD4_K431Nfs_trunc_ranked_0.pdb (489 aa; catalytic 426-580 absent)",
+        "variant": "p.K431Nfs*54 (c.1293delA), UniProt O95243, homozygous germline pathogenic"
+      },
+      "render_params": {
+        "plddt_spectrum": "red_white_blue (AlphaFold convention, low->red high->blue), fixed 0-100",
+        "superposition": "trunc onto WT on shared confident core resi 60-147 and b>70",
+        "focus": "resi 68-147 or resi 426-580 (transparency-based framing; catalytic domain solid, rest dimmed 0.55)",
+        "zoom": "cmd.zoom('wt', 8) - whole-molecule buffer so disordered loops do not clip"
+      },
+      "on_frame_numbers": [
+        {"value": "580 aa", "meaning": "MBD4 WT length", "source": "UniProt O95243"},
+        {"value": "489 aa", "meaning": "K431Nfs*54 truncated length", "source": "Manuscript 00 / AK-case"},
+        {"value": "~10x sensitization; IC50 2.3 nM vs 20.1 nM; P=2.82e-3", "meaning": "isogenic HAP1 MBD4-KO gemcitabine (cytidine analog) synthetic lethality", "source": "Chabot et al. 2022"},
+        {"value": "p=0.021, d=-0.50", "meaning": "ceralasertib (AZD6738, ATR inhibitor) LN_IC50 delta=-0.736, n=14 LOF vs 942 WT", "source": "Manuscript 00 (GDSC2/DepMap 24Q2)"}
+      ],
+      "media_check": "PASS (raw f090 margins PASS after zoom fix; composed intro c020 + truncated c090 PASS)",
+      "notes": "Reused proven transparency recipe from original MBD4_catalytic_loss_morph.gif; per-residue isolation avoided (disordered linker causes sprawl/clipping)."
+    },
+    {
+      "id": "A2",
+      "file": "M00_A2_MBD4_dual_axis_mechanism.gif",
+      "manuscript": "00 (MBD4->ATR reframe)",
+      "title": "Dual-axis therapeutic reframe: cytidine-analog SL (Axis 1, VALIDATED) + ATR dependency (Axis 2, STRONG)",
+      "form": "2D chaptered mechanistic animation",
+      "engine": "matplotlib (Agg)",
+      "renderer_scripts": ["a2_mbd4_dual_axis.py"],
+      "frames": 220,
+      "size_mb": 1.64,
+      "chapters": 8,
+      "evidence_status": "per-axis: Axis 1 VALIDATED (cytidine analog), Axis 2 STRONG (ATR); PARP axis FALSIFIED",
+      "on_frame_numbers": [
+        {"value": "~10x gemcitabine sensitization; IC50 2.3 nM vs 20.1 nM WT; P=2.82e-3", "meaning": "Axis 1 cytidine-analog synthetic lethality, isogenic HAP1 MBD4-KO, rescue on re-expression", "source": "Chabot et al. 2022"},
+        {"value": "ceralasertib delta=-0.736, p=0.021, Cohen d=-0.504 (n=14 LOF vs 942 WT)", "meaning": "Axis 2 ATR checkpoint dependency", "source": "Manuscript 00 (GDSC2)"},
+        {"value": "PARP1 median 6.77 vs WT 6.66, Mann-Whitney p=0.605 (n=19 LOF vs 1498 WT)", "meaning": "PARP1 NOT upregulated in MBD4-LOF (falsified axis)", "source": "Manuscript 00 (DepMap 24Q2, log1p TPM)"}
+      ],
+      "media_check": "PASS (fixed white-on-green low contrast via TINT_GREEN fills with INK text)"
+    },
+    {
+      "id": "A3",
+      "file": "M00_A3_PARP_hypothesis_falsified.gif",
+      "manuscript": "00 (MBD4->ATR reframe)",
+      "title": "Falsified-PARP contrast: PARP1 not upregulated yet still a pan-cancer PARPi predictor - marker decoupled from genotype",
+      "form": "2D chaptered mechanistic animation",
+      "engine": "matplotlib (Agg)",
+      "renderer_scripts": ["a3_parp_falsified.py"],
+      "frames": 170,
+      "size_mb": 2.18,
+      "chapters": 6,
+      "evidence_status": "FALSIFIED / HYPOTHESIS REMOVED",
+      "on_frame_numbers": [
+        {"value": "PARP1 6.77 vs 6.66, p=0.605 (n=19 LOF vs 1498 WT)", "meaning": "PARP1 not upregulated in MBD4-LOF", "source": "Manuscript 00 (DepMap 24Q2)"},
+        {"value": "RNF144A 2.15 vs 1.71, p=0.48", "meaning": "E3 ligase for PARP1 also not differentially expressed", "source": "Manuscript 00"},
+        {"value": "Spearman rho=-0.416, p=1.36e-21, n=481", "meaning": "PARP1 expression IS a pan-cancer PARPi-sensitivity predictor (GDSC2) - the marker works, but is decoupled from MBD4 genotype", "source": "Manuscript 00 (GDSC2)"},
+        {"value": "1/8 <=Q25, 4/8 mid, 3/8 >=Q75", "meaning": "8 MBD4-LOF lines scatter across the PARP1 expression distribution", "source": "Manuscript 00"}
+      ],
+      "media_check": "PASS (fixed misleading scatter: compressed vertical scale so ns PARP1 medians read as near-equal)"
+    },
+    {
+      "id": "A4",
+      "file": "M00_A4_ceralasertib_stress_tests.gif",
+      "manuscript": "00 (MBD4->ATR reframe)",
+      "title": "Four confounder stress tests hardening the ceralasertib (ATR) signal",
+      "form": "2D animated (chaptered + animated |Cohen d| bar panel)",
+      "engine": "matplotlib (Agg)",
+      "renderer_scripts": ["a4_stress_tests.py"],
+      "frames": 200,
+      "size_mb": 2.02,
+      "chapters": 7,
+      "evidence_status": "STRONG (confirmatory)",
+      "on_frame_numbers": [
+        {"value": "baseline: delta=-0.736, p=0.021, d=-0.504 (n=14 LOF vs 942 WT)", "meaning": "ceralasertib ATR signal", "source": "Manuscript 00"},
+        {"value": "MSI-H purge: n=10 MSS/LOF vs 934 WT, delta=-0.913, p=0.015, d=-0.623", "meaning": "stress test 1 - signal strengthens with MSI-H removed", "source": "Manuscript 00"},
+        {"value": "TP53-matched: LOF/TP53mut n=11 vs WT/TP53mut n=625, delta=-1.07, p=0.003, d=-0.739; AUC p=0.001 d=-0.886", "meaning": "stress test 2 - strengthens", "source": "Manuscript 00"},
+        {"value": "leave-one-out: all 14 iterations p<0.05 (weakest p=0.045)", "meaning": "stress test 3 - robust to any single line", "source": "Manuscript 00"},
+        {"value": "lineage: non-Bowel delta=-0.87, p=0.025, d=-0.60; Bowel n=5 underpowered p=0.114 (flagged, not hidden)", "meaning": "stress test 4", "source": "Manuscript 00"}
+      ],
+      "media_check": "PASS (fixed caption/axis overlap by raising bar baseline to 1.95)"
+    },
+    {
+      "id": "B1",
+      "file": "M12_B1_mutation_blind_spot.gif",
+      "manuscript": "12 (BRM brain-met interception)",
+      "title": "Mutation-centric blind spot: 13 of 36 functional-driver genes have zero somatic mutations",
+      "form": "2D chaptered mechanistic animation",
+      "engine": "matplotlib (Agg)",
+      "renderer_scripts": ["b1_blind_spot.py"],
+      "frames": 174,
+      "size_mb": 1.33,
+      "chapters": 6,
+      "evidence_status": "FUNCTIONAL EVIDENCE (non-mutational)",
+      "on_frame_numbers": [
+        {"value": "13 of 36 genes, 0 somatic mutations", "meaning": "functional drivers invisible to mutation-centric panels (MSK-MET n=1,879 brain-met patients)", "source": "Manuscript 12"},
+        {"value": "BACE1: CRISPRa LFC +7.28; 156-fold up (685 RPM MBM vs 4.4 RPM ECM); 0 somatic mutations", "meaning": "apex driver, transmembrane aspartyl protease (beta-secretase)", "source": "Manuscript 12 (GSE237446, GSE205033)"},
+        {"value": "zero-mutation genes: BACE1, NOM1, MMP9, MMP2, CLDN5, CCL2, TWIST1, ICAM1, FAM72A, VEGFB, ATP10D, SLC25A32, BACE2", "meaning": "the 13 blind-spot genes", "source": "Manuscript 12"}
+      ],
+      "media_check": "PASS (fixed faint callout: high-contrast solid box dark-red #8a1414 on TINT_RED; BACE1 tile labeled; callout repositioned)"
+    },
+    {
+      "id": "B3",
+      "file": "M12_B3_interception_cascade.gif",
+      "manuscript": "12 (BRM brain-met interception)",
+      "title": "8-step brain-metastasis interception cascade with panel genes lighting up",
+      "form": "2D animated mechanistic cascade",
+      "engine": "matplotlib (Agg)",
+      "renderer_scripts": ["b3_cascade.py"],
+      "frames": 126,
+      "size_mb": 0.71,
+      "chapters": 4,
+      "evidence_status": "FUNCTIONAL EVIDENCE",
+      "on_frame_numbers": [
+        {"value": "8-step cascade: EMT -> ECM remodeling -> BBB extravasation -> CNS colonization -> immune recruitment", "meaning": "interception model", "source": "Manuscript 12"},
+        {"value": "BACE1 highlighted at BBB extravasation (step 5)", "meaning": "cleaves adhesion molecules at the blood-brain barrier", "source": "Manuscript 12"}
+      ],
+      "media_check": "PASS (first media-check)"
+    },
+    {
+      "id": "B4",
+      "file": "M12_B4_Evo2_GOF_LOF_panel.gif",
+      "manuscript": "12 (BRM brain-met interception)",
+      "title": "Evo2 zero-shot GOF/LOF separation across the hotspot panel (evolutionary delta-log-likelihood)",
+      "form": "2D chaptered mechanistic animation",
+      "engine": "matplotlib (Agg)",
+      "renderer_scripts": ["b4_evo2_gof_lof.py"],
+      "frames": 184,
+      "size_mb": 1.25,
+      "chapters": 6,
+      "evidence_status": "EVOLUTIONARY PREDICTION (Evo2, zero-shot) - not functional/clinical validation",
+      "on_frame_numbers": [
+        {"value": "1,150 variants, 8,192 bp context", "meaning": "Evo2 zero-shot scan", "source": "Manuscript 12"},
+        {"value": "CCND1 E279*=-1.264 (most disruptive, nonsense); BRCA1 E1526*=-1.258 (2nd, BRCT nonsense)", "meaning": "truncations most disruptive", "source": "Manuscript 12"},
+        {"value": "TP53 G245D=-0.626; TP53 R175H=-0.622; PIK3CA H1047R=-0.615", "meaning": "LOF at structurally critical positions detected", "source": "Manuscript 12"},
+        {"value": "KRAS G12C=-0.148; EGFR L858R=+0.088; TP53 R248W=+0.099; KRAS G12D=+0.152; KRAS G12V=+0.259", "meaning": "oncogenic GOF hotspots look sequence-TOLERATED (Evo2 detects LOF/disruption, NOT GOF)", "source": "Manuscript 12"},
+        {"value": "disruptive Dll<-0.5 n=89 (7.7%); uncertain -0.5..+0.5 n=1020 (88.7%); benign-like >+0.5 n=41 (3.6%)", "meaning": "threshold bins", "source": "Manuscript 12"},
+        {"value": "GOF/LOF correction: signed CRISPRa LFC AUROC=0.39 -> |LFC| AUROC=0.656; Evo2 vs CRISPRa Pearson r=0.016 (n=189)", "meaning": "the two signals are orthogonal", "source": "Manuscript 12"}
+      ],
+      "media_check": "PASS (rewrote variant panel: dots on the Dll axis at correct x with leader lines to staggered labels; tied scores legitimately stack)"
+    }
+  ],
+  "manuscript_reels": {
+    "M00_MBD4_ATR": ["A1 (catalytic loss)", "A2 (dual-axis)", "A3 (falsified PARP)", "A4 (stress tests)", "[A5 drug complexes - structural wave, GPU-gated]"],
+    "M12_BRM": ["B1 (blind spot)", "[B2 BACE1 structure - structural wave, GPU-gated]", "B3 (cascade)", "B4 (Evo2 GOF/LOF)", "[B5 structural variant panel - structural wave, GPU-gated]"]
+  },
+  "pending_structural_waves": {
+    "status": "GPU-gated (hard cap 3 concurrent). In-flight folds feed both this set and the earlier AK-case reel.",
+    "in_flight": ["TP53_R175H", "PDGFRA_WT", "PDGFRA_S755P"],
+    "planned": ["A5 (ATR+ceralasertib, WEE1+adavosertib, PARP1+olaparib)", "B2 (BACE1 protease apo->inhibitor)", "B5 (KRAS/EGFR-kd/PIK3CA-kd/TP53 hotspots/CCND1 truncation variant panel)"]
+  }
+}
