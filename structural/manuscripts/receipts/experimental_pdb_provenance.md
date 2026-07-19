@@ -29,3 +29,22 @@ verification because they did not contain the claimed mutation (see below).
 - Full per-animation parameters and on-frame captions/stats: `receipts/experimental_pdb_3D_receipts.json`.
 
 Illustrative renders of deposited structures. Research use only — not for clinical decision-making.
+
+## MOA morph/reveal upgrade — additional apo/inactive endpoints (2026-07-19)
+
+All apo/inactive endpoints are real RCSB depositions, residues verified by ATOM/HETATM parse.
+Morphs interpolate between two deposited endpoints (banner names both PDBs; caption states
+intermediate frames are computed interpolation, not observed states). Go/no-go for morph vs
+guided reveal: moving-element Cα RMSD ≥ ~2.0 Å after core superposition.
+
+| Target | apo/inactive PDB | Verified content | Paired holo | Moving-element Cα RMSD | Decision |
+|---|---|---|---|---|---|
+| KRAS G12C | 4OBE | WT Gly12, GDP+Mg, no inhibitor | 6OIM | switch loops 2.71 Å | MORPH |
+| PIK3CA H1047R | 4OVU | WT His1047 p110α, drug-free | 3HHM | activation loop 8.02 Å | MORPH |
+| PARP1 | 4PJT | CAT 662–1010 (+2YQ, open ref) | 7KK4 | helical domain 2.15 Å | MORPH |
+| BACE1 | 1W50 | apo, drug-free | 4B05 | flap 1.58 Å | GUIDED REVEAL |
+| EGFR L858R | 2ITY | WT Leu858, gefitinib-bound inactive | 4LQM | actloop+αC 0.40 Å | GUIDED REVEAL |
+
+EGFR morph was **rejected** (0.40 Å — no honest inactive→active transition between the best
+available endpoints; a morph would fabricate motion). BACE1 flap (1.58 Å) below threshold →
+reveal. Both are shown as mechanism-guided reveals (establish→dolly→engage→hold), not spins.

@@ -44,22 +44,43 @@ def _compose_frame(img_path, title, evidence, caption, legend, footer, stat):
     fig = plt.figure(figsize=(12.2, 8.6), dpi=110)
     fig.patch.set_facecolor(PAPER)
 
+    # Long evidence strings (e.g. dual-endpoint morph banners naming two PDBs) collide with the
+    # title if crammed onto the right of the title bar. Detect that case and give the evidence its
+    # OWN sub-band directly under the title bar (full width, left-aligned monospace).
+    long_evidence = len(evidence) > 34
+    if long_evidence:
+        img_bottom, img_h = 0.115, 0.740      # shrink structure panel to make room for sub-band
+        bar_y, bar_h = 0.925, 0.075           # slimmer title bar
+    else:
+        img_bottom, img_h = 0.115, 0.775
+        bar_y, bar_h = 0.905, 0.095
+
     # ---- structure image panel (center) ----
-    ax = fig.add_axes([0.035, 0.115, 0.93, 0.775])
+    ax = fig.add_axes([0.035, img_bottom, 0.93, img_h])
     ax.imshow(mpimg.imread(img_path)); ax.axis("off")
 
     # ---- top title bar ----
-    bar = fig.add_axes([0, 0.905, 1, 0.095]); bar.axis("off")
+    bar = fig.add_axes([0, bar_y, 1, bar_h]); bar.axis("off")
     bar.add_patch(Rectangle((0, 0), 1, 1, transform=bar.transAxes,
                             facecolor=CB_BLUE, edgecolor="none"))
-    bar.text(0.02, 0.5, title, transform=bar.transAxes, fontsize=17, fontweight="bold",
+    title_fs = 15 if len(title) > 58 else 17
+    bar.text(0.02, 0.5, title, transform=bar.transAxes, fontsize=title_fs, fontweight="bold",
              color="white", va="center", ha="left")
-    # experimental-evidence tag (right)
-    bar.text(0.985, 0.5, evidence, transform=bar.transAxes, fontsize=11.5, color="white",
-             va="center", ha="right", family="monospace")
+    if long_evidence:
+        # dedicated evidence sub-band just below the title bar
+        sub = fig.add_axes([0, bar_y - 0.036, 1, 0.036]); sub.axis("off")
+        sub.add_patch(Rectangle((0, 0), 1, 1, transform=sub.transAxes,
+                                facecolor="#025bb0", edgecolor="none"))
+        sub.text(0.02, 0.5, evidence, transform=sub.transAxes, fontsize=11, color="white",
+                 va="center", ha="left", family="monospace")
+    else:
+        # experimental-evidence tag (right of title bar)
+        bar.text(0.985, 0.5, evidence, transform=bar.transAxes, fontsize=11.5, color="white",
+                 va="center", ha="right", family="monospace")
 
     # ---- legend chips (top-left, inside structure panel) ----
-    lx, ly = 0.045, 0.858
+    # drop below the evidence sub-band when present so chips don't collide with it
+    lx, ly = 0.045, (0.815 if long_evidence else 0.858)
     for label, color in legend:
         fig.patches.append(plt.matplotlib.patches.Circle((lx, ly), 0.008,
                            transform=fig.transFigure, facecolor=color, edgecolor="none"))
@@ -69,7 +90,7 @@ def _compose_frame(img_path, title, evidence, caption, legend, footer, stat):
     # ---- fixed stat callout (top-right corner, optional) ----
     if stat is not None:
         val, lab, color = stat
-        sx, sy = 0.955, 0.845
+        sx, sy = 0.955, (0.800 if long_evidence else 0.845)
         box = FancyBboxPatch((sx - 0.145, sy - 0.052), 0.145, 0.088,
                              boxstyle="round,pad=0.006,rounding_size=0.012",
                              transform=fig.transFigure, facecolor="white",
@@ -103,7 +124,7 @@ def _compose_frame(img_path, title, evidence, caption, legend, footer, stat):
 
 def render(frame_dir, out_gif, title, evidence, caption, legend, footer,
            stat=None, duration=0.14, still_path=None, colors=64,
-           frame_step=2, scale=0.82):
+           frame_step=2, scale=0.82, still_frame_frac=0.85):
     """Compose frames + encode a compact GIF.
 
     Size control (semi-transparent ray-traced cartoons are high-entropy -> naive GIFs hit 25 MB):
@@ -135,7 +156,11 @@ def render(frame_dir, out_gif, title, evidence, caption, legend, footer,
     q[0].save(out_gif, save_all=True, append_images=q[1:], loop=0,
               duration=int(duration * 1000), optimize=True, disposal=2)
     if still_path:
-        pil[len(pil) // 2].save(still_path)
+        # pick a representative LATE frame (default 85%): for morphs this is past the drug fade-in
+        # so the still shows the fully engaged endpoint (drug in pocket), not a mid-morph frame
+        # where the drug is still transparent.
+        si = min(len(pil) - 1, max(0, int(round(still_frame_frac * (len(pil) - 1)))))
+        pil[si].save(still_path)
     size_mb = os.path.getsize(out_gif) / 1e6
     print(f"[compose] {out_gif}  {len(q)} frames  {size_mb:.2f} MB")
     return out_gif

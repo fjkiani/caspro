@@ -1,0 +1,109 @@
+{
+  "wave": "mechanism-of-action (MOA) morph + guided-reveal upgrade",
+  "generated": "2026-07-19",
+  "rationale": "User: 'i need better 3d animations which explore/illustrate the mechanism of action - the mutation - pathway - vs just a spinning protein'. Upgraded the reel from single-structure orbits to (a) true apo->holo conformational MORPHS where a clean inactive-state endpoint exists and real motion is measurable, and (b) mechanism-guided REVEALS (establish->dolly->engage->hold) where motion is too small to honestly morph.",
+  "engine": {
+    "morph": "pdb3d_render.build_morph -- cealign core superposition + smoothstep matched-atom coordinate interpolation (matched by chain,resi,name so WT<->mutant side chains still align on shared atoms) pushed via cmd.load_coords per frame; drug fade-in; mutation highlight. Open-source substitute for Incentive PyMOL `morph`, which raises IncentiveOnlyException in this build.",
+    "guided_reveal": "pdb3d_render.build_guided_reveal -- staged narrative: establish (wide fold, drug hidden) -> dolly-in (interpolated camera view to pocket) -> engage (drug fades in, residues emphasized) -> contemplative hold. Single real structure.",
+    "compositor": "pdb3d_compose.render -- dual-endpoint banner sub-band for morphs; single-PDB banner for reveals; interpolation-honesty caption; global 64-color palette + dither=NONE + frame_step + scale for GIF size control. still_frame_frac=0.85 so the poster still is taken from a late frame (after drug fade-in), never a mid-morph frame with the drug still transparent.",
+    "honesty": "Morph intermediate frames are computed interpolation between two DEPOSITED crystal structures, not observed states -- stated on-frame. No AI-generated images. Go/no-go for morph vs reveal: moving-element Ca RMSD >= ~2.0 A after core superposition.",
+    "mechanism_forward": {
+      "rationale": "First pass read as 'orange spaghetti over a grey blob' -- the moving loop moved but the mechanism did not pop. Five upgrades make the biology legible without adding any fabricated geometry (every element is real crystal coordinates or a measured vector between them).",
+      "ghost_overlay": "The apo (starting) conformation of the moving element is drawn once as a static translucent grey60 cartoon tube (transparency 0.72) that never moves. It is the real apo crystal geometry and acts as a before->after spatial anchor so the viewer sees where the loop started vs where it ends.",
+      "motion_arrow": "A 3D CGO arrow (cylinder shaft + cone head, dark red) is drawn in the scene frame (orbits correctly with the structure -- not a 2D overlay) from the apo moving-element Ca centroid to the holo Ca centroid. GATED on centroid SHIFT >= 1.5 A (arrow_min_rmsd), NOT on per-atom RMSD: a collapse/reorganization can have high per-atom RMSD but a near-stationary centroid, where a large arrow would misrepresent the motion as net translation. Arrow therefore drawn ONLY when the loop actually translates.",
+      "explicit_drug": "Drug carbons forced to gold (N blue, O red, S yellow), stick_radius 0.33, replacing util.cbay which was tinting the whole scene. Applied in both build_morph and build_guided_reveal.",
+      "highlights": "Mutation residue = red sticks (radius 0.40) + red Ca sphere; bulk protein desaturated to grey80 + cartoon_transparency 0.55; moving element = fat opaque orange cartoon tube (cartoon_loop_radius 0.35) with NO side-chain sticks (the per-residue sticks were the 'spaghetti').",
+      "camera": "auto_zoom disabled (CGO arrow load was resetting the camera mid-morph); source apo/holo objects explicitly hidden (their default cyan/green carbons were bleeding over the grey morph); camera locked on the mechanism zone including the ghost.",
+      "arrow_gate_threshold_A": 1.5
+    }
+  },
+  "animations": [
+    {
+      "file": "M12_S1_KRAS_G12C_switch_collapse_MOA.gif",
+      "type": "morph",
+      "gene": "KRAS", "manuscript": "M12",
+      "biology": "Mechanism of inhibition: Switch-I/Switch-II collapse over the nucleotide pocket as sotorasib engages mutant Cys12, trapping KRAS inactive.",
+      "apo_endpoint": {"pdb": "4OBE", "state": "GDP-bound, WT Gly12, inactive"},
+      "holo_endpoint": {"pdb": "6OIM", "state": "G12C + sotorasib (MOV) + GDP + Mg", "resolution_A": 1.65},
+      "moving_element": "Switch-I (resi 30-40) + Switch-II (resi 60-76)",
+      "core_rmsd_A": 1.38, "core_aligned_residues": 160,
+      "moving_ca_rmsd_A": 2.71, "moving_ca_atoms": 28, "matched_atoms": 1316,
+      "mutation": "G12C", "drug": "sotorasib (AMG 510)",
+      "stat_callout": "-0.148 Evo2 dll (tolerated)",
+      "ghost_overlay": true,
+      "motion_arrow": {"drawn": false, "centroid_shift_A": 0.24, "threshold_A": 1.5, "reason": "Switch loops REORGANIZE/collapse around the pocket (per-atom Ca RMSD 2.71 A) but the loop centroid barely translates (0.24 A). Drawing a net-translation arrow would misrepresent a collapse as a directional slide, so the arrow is honestly suppressed; the ghost overlay still shows the before->after loop reorganization."},
+      "frames": 66, "size_mb": 4.2
+    },
+    {
+      "file": "M12_S5_PIK3CA_H1047R_activation_MOA.gif",
+      "type": "morph",
+      "gene": "PIK3CA", "manuscript": "M12",
+      "biology": "Mechanism of activation: H1047R at the C-terminus drives a large (~8 A) reordering of the activation loop, priming p110a for membrane engagement and constitutive PI3K signaling.",
+      "apo_endpoint": {"pdb": "4OVU", "state": "WT p110a (His1047), drug-free"},
+      "holo_endpoint": {"pdb": "3HHM", "state": "H1047R (Arg1047)", "resolution_A": 2.8},
+      "moving_element": "activation loop + C-terminus (resi 930-957, 1040-1052)",
+      "core_rmsd_A": 1.68, "core_aligned_residues": 1000,
+      "moving_ca_rmsd_A": 8.02, "moving_ca_atoms": 29, "matched_atoms": 8291,
+      "mutation": "H1047R", "drug": null,
+      "stat_callout": "-0.615 Evo2 dll (disruptive)",
+      "ghost_overlay": true,
+      "motion_arrow": {"drawn": true, "centroid_shift_A": 5.38, "threshold_A": 1.5, "reason": "Activation loop genuinely TRANSLATES (centroid shift 5.38 A, well above the 1.5 A gate), so a dark-red net-motion arrow is drawn from the apo loop centroid to the holo loop centroid -- an honest depiction of directional displacement."},
+      "frames": 28, "size_mb": 3.2,
+      "note": "Camera focused on the hotspot region (zoom_sel) so the moving loop is prominent on this large protein."
+    },
+    {
+      "file": "M00_S2_PARP1_HD_clamp_MOA.gif",
+      "type": "morph",
+      "gene": "PARP1", "manuscript": "M00",
+      "biology": "Mechanism of inhibition: the autoinhibitory helical domain folds over the active site as olaparib occupies the NAD+ catalytic pocket. Shows drug-enzyme engagement ONLY.",
+      "integrity_guard": "The MBD4-LOF -> PARP-therapy hypothesis was FALSIFIED (p=0.605, DepMap 24Q2). This animation is NEVER framed as MBD4-LOF PARP therapy; the falsification is stated on-frame (caption + stat callout).",
+      "apo_endpoint": {"pdb": "4PJT", "state": "PARP1 catalytic domain 662-1010 (carries non-target inhibitor 2YQ; used as the open/reference conformation)"},
+      "holo_endpoint": {"pdb": "7KK4", "state": "olaparib (09L) in catalytic site", "resolution_A": 1.96},
+      "moving_element": "helical (autoinhibitory) domain (resi 678-784)",
+      "core_rmsd_A": 1.81, "core_aligned_residues": 336,
+      "moving_ca_rmsd_A": 2.15, "moving_ca_atoms": 96, "matched_atoms": 2590,
+      "mutation": null, "drug": "olaparib",
+      "stat_callout": "p=0.605 MBD4->PARP: falsified",
+      "ghost_overlay": true,
+      "motion_arrow": {"drawn": false, "centroid_shift_A": 1.24, "threshold_A": 1.5, "reason": "Helical (autoinhibitory) domain clamps/folds over the site (per-atom Ca RMSD 2.15 A) but its centroid shift (1.24 A) is below the 1.5 A gate -- a clamping/hinge motion, not a net translation. Arrow suppressed; ghost overlay shows the clamp."},
+      "frames": 33, "size_mb": 2.2
+    },
+    {
+      "file": "M12_S4_EGFR_L858R_reveal_MOA.gif",
+      "type": "guided_reveal",
+      "gene": "EGFR", "manuscript": "M12",
+      "biology": "L858R sits in the activation loop (drives constitutive activity) but is distant from the ATP site where the covalent quinazoline binds. Animation dollies from the kinase fold into the pocket as the drug engages.",
+      "structure": {"pdb": "4LQM", "state": "L858R (Arg858) + covalent quinazoline (DJK)", "resolution_A": 2.5},
+      "why_reveal_not_morph": "Best available inactive->active EGFR endpoints (2ITY -> 4LQM) differ by only 0.40 A at the activation loop + aC helix -- no honest conformational transition to morph. Rendering a morph would fabricate motion absent from the data.",
+      "mutation": "L858R", "drug": "covalent quinazoline (DJK)",
+      "stat_callout": "+0.088 Evo2 dll (tolerated)",
+      "frames": 31, "size_mb": 2.6
+    },
+    {
+      "file": "M12_S3_BACE1_reveal_MOA.gif",
+      "type": "guided_reveal",
+      "gene": "BACE1", "manuscript": "M12",
+      "biology": "Animation dollies from the b-secretase fold into the catalytic cleft as AZD3839 engages the catalytic aspartate dyad (Asp32/Asp228). BACE1 is the apex BRM driver (CRISPRa LFC +7.28, 156-fold up in brain mets, 0 somatic mutations), Alzheimer's-repurposable and mutation-invisible.",
+      "structure": {"pdb": "4B05", "state": "AZD3839 (32D), catalytic Asp32", "resolution_A": 1.8},
+      "why_reveal_not_morph": "apo (1W50) -> holo (4B05) flap motion is only 1.58 A -- below the ~2 A morph threshold; shown as a guided reveal rather than overselling a small flap change.",
+      "contacts": [32, 228], "drug": "AZD3839",
+      "stat_callout": "0 mut somatic mutations",
+      "frames": 31, "size_mb": 3.0
+    }
+  ],
+  "unchanged": {
+    "M12_S6_TP53_DNA_contact.gif": "Kept from the experimental-PDB wave (PDB 1TSR, p53 DBD gripping DNA response element, Arg248/Arg273 contacts). Already a contact story, not a plain spin.",
+    "M00_A1_MBD4_catalytic_loss_narrated.gif": "Real AF2 3D morph from Wave 0, stands."
+  },
+  "superseded": {
+    "note": "The 5 single-structure spin GIFs replaced by MOA versions were moved to manuscript_animations/archive_spins/ (supersede-not-delete).",
+    "files": ["M12_S1_KRAS_G12C_sotorasib.gif", "M12_S5_PIK3CA_H1047R.gif", "M00_S2_PARP1_olaparib.gif", "M12_S4_EGFR_L858R_drug.gif", "M12_S3_BACE1_inhibitor.gif"]
+  },
+  "apo_endpoints_verified": {
+    "4OBE": "WT Gly12, GDP+Mg, no inhibitor (KRAS apo/inactive)",
+    "4OVU": "WT His1047 p110a, drug-free (PIK3CA apo)",
+    "4PJT": "PARP1 CAT 662-1010, carries 2YQ (PARP1 reference/open)",
+    "1W50": "apo BACE1, drug-free (used only for flap RMSD measurement -> reveal)",
+    "2ITY": "WT Leu858 EGFR, gefitinib-bound inactive (used only for RMSD measurement -> reveal)"
+  }
+}
