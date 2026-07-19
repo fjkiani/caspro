@@ -48,11 +48,24 @@ def _sel_centroid(sel):
     return np.mean(np.array([a.coord for a in atoms]), axis=0)
 
 
-def _make_arrow_cgo(A, B, radius=0.55, rgb=(0.84, 0.15, 0.16), head_frac=0.30, head_scale=2.2):
+def _make_arrow_cgo(A, B, radius=0.55, rgb=(0.84, 0.15, 0.16), head_frac=0.30, head_scale=2.2,
+                    lift_from=None, lift=0.0):
     """Build a 3D CGO arrow (cylinder shaft + cone head) from world point A to B.
-    Lives in the scene frame -> orbits correctly, no 2D projection needed."""
+    Lives in the scene frame -> orbits correctly, no 2D projection needed.
+
+    lift_from / lift: if given, translate BOTH endpoints radially OUTWARD from the point
+    `lift_from` (typically the protein centroid) by `lift` Angstroms. The arrow endpoints are
+    moving-loop centroids that sit INSIDE the protein cloud, so without a lift the arrow is
+    occluded by the bulk cartoon. Lifting it outward floats it clear of the surface so it reads."""
     import numpy as np
     A = np.asarray(A, float); B = np.asarray(B, float)
+    if lift_from is not None and lift > 0.0:
+        C = np.asarray(lift_from, float)
+        mid = 0.5 * (A + B)
+        out = mid - C; n = float(np.linalg.norm(out))
+        if n > 1e-3:
+            shift = (out / n) * lift
+            A = A + shift; B = B + shift
     d = B - A; L = float(np.linalg.norm(d))
     if L < 1e-3:
         return None
@@ -352,7 +365,8 @@ def build_morph(apo_pdb, holo_pdb, gene, moving_sel, frame_dir,
                 n_intro=10, n_morph=26, n_drug=12, n_hold=12, orbit_deg=32.0,
                 zoom_sel=None, zoom_buffer=8,
                 mechanism_forward=True, ghost_transp=0.72, bulk_transp=0.55,
-                arrow_radius=0.55, arrow_min_rmsd=1.5):
+                arrow_radius=0.55, arrow_min_rmsd=1.5, arrow_lift=0.0,
+                arrow_rgb=(0.11, 0.42, 0.82)):
     """TRUE mechanism-of-action morph between two REAL experimental endpoints.
 
     Open-source substitute for Incentive PyMOL `morph` (which is unavailable here):
@@ -427,9 +441,14 @@ def build_morph(apo_pdb, holo_pdb, gene, moving_sel, frame_dir,
         cmd.hide("everything", "ghost")
         cmd.show("cartoon", "ghost")
         cmd.set("cartoon_transparency", ghost_transp, "ghost")
-        cmd.color("grey60", "ghost")
-        # thin tube so the ghost reads as a faint echo, not a competing solid
-        cmd.set("cartoon_loop_radius", 0.10, "ghost")
+        # Desaturated slate-blue rather than grey60: on a large grey80 bulk a grey ghost is
+        # invisible (grey-on-grey). A cool slate tint separates the start-state echo from the
+        # bulk while still reading as a faint, non-competing reference.
+        cmd.set_color("ghostblue", [0.42, 0.52, 0.68])
+        cmd.color("ghostblue", "ghost")
+        # slightly fatter than a hairline so the echo is legible against the bulk, but still
+        # thinner than the solid moving loop (0.35) so it never competes with the live loop
+        cmd.set("cartoon_loop_radius", 0.16, "ghost")
 
     # ---- build the morph object from apo geometry ----
     cmd.create("m", "apo")
@@ -498,29 +517,49 @@ def build_morph(apo_pdb, holo_pdb, gene, moving_sel, frame_dir,
             arrow_start, arrow_end = cs, ce
             arrow_shift = float(np.linalg.norm(np.asarray(ce) - np.asarray(cs)))
             if arrow_shift >= arrow_min_rmsd:
-                arrow_cgo = _make_arrow_cgo(arrow_start, arrow_end, radius=arrow_radius)
+                # lift the arrow radially outward from the whole-protein centroid so it floats
+                # clear of the bulk cartoon instead of being buried inside it (occlusion fix).
+                prot_center = _sel_centroid("apo")
+                arrow_cgo = _make_arrow_cgo(arrow_start, arrow_end, radius=arrow_radius,
+                                            rgb=arrow_rgb, lift_from=prot_center, lift=arrow_lift)
 
     # ---- single stable camera: frame apo+holo extent so nothing clips across the morph+orbit ----
     # For large proteins, orienting on the whole chain makes the moving element a speck. zoom_sel
     # lets the camera focus on the mechanism region (moving element +/- drug) with a buffer, while
     # still showing local context. Falls back to whole-object framing.
-    # include ghost in framing so the moving loop AND its start-position echo both stay on-screen
+    # Pre-load the motion arrow BEFORE camera framing so (a) it is part of the scene extent when
+    # we orient/zoom (otherwise a tight zoom_sel crop can push the arrow off-frame) and (b) it is
+    # guaranteed on-screen. It is loaded disabled and enabled exactly when motion starts (morph i==0)
+    # so it still "pops in" as the loop begins to move, without being cropped out.
+    # NOTE: CGO objects (the arrow) cannot appear in an atom-selection `expand` expression, so we
+    # do NOT name motion_arrow in the framing selection. Instead the arrow endpoints are the moving
+    # loop centroids (inside zoom_sel) lifted a few A outward, so a buffered crop of the loop atoms
+    # already contains the (lifted) arrow. Pre-load it here so it is part of the scene, disabled
+    # until motion starts.
+    if arrow_cgo is not None:
+        cmd.load_cgo(arrow_cgo, "motion_arrow")
+        cmd.disable("motion_arrow")            # hidden until motion starts, but already in-scene
+
+    # include ghost in framing so the moving loop AND its start-position echo both stay on-screen.
+    # Give the arrow-drawn (translation) case extra buffer headroom so the lifted arrow is not
+    # clipped at the panel edge.
     ghost_bit = " or ghost" if mechanism_forward else ""
+    zb = zoom_buffer + (4 if arrow_cgo is not None else 0)
     if zoom_sel:
         focus = f"(m and ({zoom_sel}))"
         if have_drug:
             focus = f"(m and ({zoom_sel})) or drugobj"
         focus = f"({focus}{ghost_bit})"
-        cmd.orient(f"({focus}) expand {zoom_buffer}")
-        cmd.zoom(f"({focus}) expand {zoom_buffer}", 3)
+        cmd.orient(f"({focus}) expand {zb}")
+        cmd.zoom(f"({focus}) expand {zb}", 3)
     else:
         # default: frame the moving element (+ ghost + drug) tightly so the mechanism fills the panel
         base = f"(m and ({moving_sel}))"
         if have_drug:
             base = f"{base} or drugobj"
         base = f"({base}{ghost_bit})"
-        cmd.orient(f"({base}) expand {zoom_buffer}")
-        cmd.zoom(f"({base}) expand {zoom_buffer}", 3)
+        cmd.orient(f"({base}) expand {zb}")
+        cmd.zoom(f"({base}) expand {zb}", 3)
 
     def set_state(tt):
         """place morph object atoms at eased interpolation tt in [0,1]."""
@@ -541,7 +580,7 @@ def build_morph(apo_pdb, holo_pdb, gene, moving_sel, frame_dir,
         tt = (i + 1) / n_morph
         set_state(tt)
         if arrow_cgo is not None and i == 0:
-            cmd.load_cgo(arrow_cgo, "motion_arrow")   # appears exactly when motion starts
+            cmd.enable("motion_arrow")   # pre-loaded + in-frame; reveal exactly when motion starts
         cmd.turn("y", orbit_deg / max(1, (n_intro + n_morph + n_drug + n_hold)))
         frame = _save(frame_dir, frame, "morph", manifest)
 
