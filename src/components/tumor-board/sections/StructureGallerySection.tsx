@@ -21,8 +21,14 @@ import Link from 'next/link';
 import { AlertTriangle, ChevronDown, ChevronUp, Info, ExternalLink } from 'lucide-react';
 import StructureViewer from '@/components/target-lock/structure/StructureViewer';
 import RnaDnaStructureViewer from '@/components/target-lock/structure/RnaDnaStructureViewer';
+import MoaMechanismPane from '@/components/target-lock/structure/MoaMechanismPane';
 import manifest from '@/data/structure-manifest.json';
 import guideManifest from '@/data/af3-guide-manifest.json';
+import {
+  MOA_HONESTY,
+  MOA_MECHANISM_ENTRIES,
+  type MoaMechanismEntry,
+} from '@/data/moa-mechanism-manifest';
 
 interface StructureRow {
   gene: string;
@@ -198,6 +204,9 @@ export default function StructureGallerySection({ isDarkMode }: { isDarkMode: bo
         })}
       </div>
 
+      {/* Mechanism — experimental PDB 3D (receipt-backed MOA reel) */}
+      <MechanismGallery isDarkMode={isDarkMode} />
+
       {/* Cohort B — RNA-DNA guide-target gallery (AF3 3-chain) */}
       <GuideGallery isDarkMode={isDarkMode} />
 
@@ -222,6 +231,158 @@ export default function StructureGallerySection({ isDarkMode }: { isDarkMode: bo
         </span>
       </div>
     </section>
+  );
+}
+
+// ============================================================================
+// Mechanism — experimental PDB 3D (MOA reel)
+// ============================================================================
+
+function typeLabel(t: MoaMechanismEntry['type']): string {
+  if (t === 'guided_reveal') return 'reveal';
+  if (t === 'contact') return 'contact';
+  return 'morph';
+}
+
+function MechanismGallery({ isDarkMode }: { isDarkMode: boolean }) {
+  const [openId, setOpenId] = useState<string | null>(null);
+  const morphCount = MOA_MECHANISM_ENTRIES.filter((e) => e.type === 'morph').length;
+  const revealCount = MOA_MECHANISM_ENTRIES.filter((e) => e.type === 'guided_reveal').length;
+
+  return (
+    <div className="mt-12">
+      <div className="mb-6">
+        <div
+          className={`text-[10px] font-black uppercase tracking-[0.3em] mb-2 ${
+            isDarkMode ? 'text-cyan-500' : 'text-indigo-600'
+          }`}
+        >
+          Mechanism — experimental PDB
+        </div>
+        <h3
+          className={`text-2xl md:text-3xl font-black leading-tight mb-3 ${
+            isDarkMode ? 'text-white' : 'text-slate-900'
+          }`}
+        >
+          Mutation → pocket → drug —
+          <br />
+          deposited crystals, not a spin.
+        </h3>
+        <p
+          className={`max-w-3xl text-[13px] leading-relaxed ${
+            isDarkMode ? 'text-zinc-400' : 'text-slate-600'
+          }`}
+        >
+          {MOA_MECHANISM_ENTRIES.length} receipt-backed mechanisms from the manuscript MOA reel
+          ({morphCount} apo→holo morphs, {revealCount} guided reveals, plus TP53 DNA contact).
+          Click a row for the interactive 3D crystal (RCSB). Pre-rendered morph timelines stay
+          optional under the viewer. {MOA_HONESTY}
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+        <MetricTile
+          isDarkMode={isDarkMode}
+          label="Mechanisms"
+          value={String(MOA_MECHANISM_ENTRIES.length)}
+          sub="receipt-backed entries"
+        />
+        <MetricTile
+          isDarkMode={isDarkMode}
+          label="Apo→holo morphs"
+          value={String(morphCount)}
+          sub="KRAS · PIK3CA · PARP1"
+        />
+        <MetricTile
+          isDarkMode={isDarkMode}
+          label="Guided reveals"
+          value={String(revealCount)}
+          sub="EGFR · BACE1 (motion too small)"
+        />
+        <MetricTile
+          isDarkMode={isDarkMode}
+          label="Source"
+          value="RCSB"
+          sub="local /models/moa/ · no CDN"
+        />
+      </div>
+
+      <div className="flex flex-col divide-y divide-neutral-800 rounded-lg border border-neutral-800 overflow-hidden">
+        {MOA_MECHANISM_ENTRIES.map((e) => {
+          const isOpen = openId === e.id;
+          return (
+            <div key={e.id} className={isDarkMode ? 'bg-black/40' : 'bg-white'}>
+              <button
+                type="button"
+                onClick={() => setOpenId(isOpen ? null : e.id)}
+                aria-expanded={isOpen}
+                aria-label={`${isOpen ? 'Collapse' : 'Expand'} ${e.gene} mechanism`}
+                className={`w-full flex flex-wrap items-center gap-3 px-4 py-3 text-left transition-colors ${
+                  isDarkMode ? 'hover:bg-white/[0.03]' : 'hover:bg-slate-50'
+                }`}
+              >
+                <span
+                  className={`font-mono text-sm font-black w-20 ${
+                    isDarkMode ? 'text-white' : 'text-slate-900'
+                  }`}
+                >
+                  {e.gene}
+                </span>
+                <span
+                  className={`rounded border px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest ${
+                    isDarkMode
+                      ? 'text-cyan-300 border-cyan-500/40'
+                      : 'text-indigo-700 border-indigo-200'
+                  }`}
+                >
+                  {typeLabel(e.type)}
+                </span>
+                <span
+                  className={`font-mono text-[11px] ${
+                    isDarkMode ? 'text-zinc-400' : 'text-slate-500'
+                  }`}
+                >
+                  PDB {e.primary.pdb}
+                  {e.apo ? ` ← ${e.apo.pdb}` : ''}
+                </span>
+                <span
+                  className={`hidden md:inline text-[11px] flex-1 truncate ${
+                    isDarkMode ? 'text-zinc-500' : 'text-slate-500'
+                  }`}
+                >
+                  {e.mutation ?? e.drug ?? e.biology}
+                </span>
+                <span
+                  className={`ml-auto text-[10px] uppercase tracking-widest ${
+                    isDarkMode ? 'text-zinc-500' : 'text-slate-400'
+                  }`}
+                >
+                  {e.manuscript}
+                </span>
+                {e.integrityGuard && (
+                  <AlertTriangle className="w-3.5 h-3.5 text-red-400" aria-hidden="true" />
+                )}
+                {isOpen ? (
+                  <ChevronUp
+                    className={`w-4 h-4 ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`}
+                  />
+                ) : (
+                  <ChevronDown
+                    className={`w-4 h-4 ${isDarkMode ? 'text-zinc-400' : 'text-slate-500'}`}
+                  />
+                )}
+              </button>
+
+              {isOpen && (
+                <div className="px-4 pb-4">
+                  <MoaMechanismPane entry={e} height={380} isDarkMode={isDarkMode} />
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
