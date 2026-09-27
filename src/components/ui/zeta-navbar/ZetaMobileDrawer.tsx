@@ -25,16 +25,18 @@ function linkRowClass(isDarkMode: boolean, isActive: boolean, navMuted: string) 
 function isNavItemActive(pathname: string | null, href: string, itemId: string): boolean {
   if (pathsEqual(pathname, href)) return true;
   const norm = (pathname ?? '').replace(/\/+$/, '') || '/';
+  if (itemId === 'products' && norm.startsWith('/products')) return true;
   // Engine capabilities
   if (itemId === 'target-lock' && norm.startsWith('/engine/target-lock')) return true;
   if (itemId === 'moa-align' && norm.startsWith('/engine/mechanism-alignment')) return true;
   if (itemId === 'sl-engine' && norm.startsWith('/engine/synthetic-lethality')) return true;
-  // Board + surfaces
+  // Live TB workspace only — brochure lives under PRODUCTS (/products/tumor-board)
   if (itemId === 'tumor-board' && norm.startsWith('/tumor-board')) return true;
   if (itemId === 'ledger' && norm.startsWith('/ledger')) return true;
   if (itemId === 'pipeline' && norm.startsWith('/pipeline')) return true;
   if (itemId === 'governance' && norm.startsWith('/governance')) return true;
   if (itemId === 'research' && (norm.startsWith('/research') || norm.startsWith('/blog') || norm.startsWith('/manuscripts'))) return true;
+  if (itemId === 'contact' && norm.startsWith('/contact')) return true;
   // Patient personas — carry ?persona=patient onto ledger + target-lock respectively
   if (itemId === 'my-trials' && norm.startsWith('/ledger')) return true;
   if (itemId === 'understand' && norm.startsWith('/engine/target-lock')) return true;
@@ -77,7 +79,9 @@ export function ZetaMobileDrawer({
             </span>
             {navItems.map((item) => {
               const isActive = isNavItemActive(pathname, item.href, item.id);
-              const hasDropdown = item.dropdownItems && item.dropdownItems.length > 0;
+              // Mobile: flatten RESEARCH hub-only (no Blog/Manuscripts/Abstracts nest).
+              const showNested =
+                Boolean(item.dropdownItems?.length) && item.id !== 'research';
 
               return (
                 <div key={item.id} className="flex flex-col gap-1">
@@ -101,7 +105,7 @@ export function ZetaMobileDrawer({
                       {item.label}
                     </Link>
                   )}
-                  {hasDropdown &&
+                  {showNested &&
                     item.dropdownItems!.map((sub) => (
                       <button
                         key={`${sub.href}-${sub.label}`}

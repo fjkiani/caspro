@@ -1,0 +1,195 @@
+{
+  "case": "AK",
+  "disease": "ovarian_cancer",
+  "status": "MSS, PD-L1 positive (CPS 10)",
+  "source": "CrisPRO backend AK case bundle (AYESHA_BASE_PROFILE)",
+  "engines": {
+    "monomers": "AlphaFold2 (monomer_ptm, reduced_dbs)",
+    "complexes": "Boltz-2 (Chai-1 fallback)",
+    "note": "AlphaFold3 unavailable on cluster; substitutes labeled per output"
+  },
+  "variants": [
+    {
+      "id": "01",
+      "gene": "MBD4",
+      "uniprot": "O95243",
+      "variant": "p.K431Nfs*54",
+      "cdna": "c.1293delA",
+      "type": "frameshift_truncation",
+      "zygosity": "homozygous",
+      "origin": "germline",
+      "classification": "pathogenic",
+      "disruption": 0.654,
+      "confidence": 0.9,
+      "pathway": "BER",
+      "pathway_state": "non-functional",
+      "wt_len": 580,
+      "mutant_len": 489,
+      "diverges_after_residue": 431,
+      "novel_fs_residues": 58,
+      "consequence": "Frameshift -> premature stop -> ablates C-terminal DNA-glycosylase catalytic domain (~426-580)"
+    },
+    {
+      "id": "02",
+      "gene": "PDGFRA",
+      "uniprot": "P16234",
+      "variant": "p.S755P",
+      "cdna": "c.2263T>C",
+      "type": "missense",
+      "zygosity": "heterozygous",
+      "origin": "germline",
+      "classification": "VUS",
+      "disruption": 0.35,
+      "confidence": null,
+      "pathway": "UNKNOWN",
+      "pathway_state": "functional",
+      "wt_len": 1089,
+      "kinase_domain": "593-954"
+    },
+    {
+      "id": "03",
+      "gene": "TP53",
+      "uniprot": "P04637",
+      "variant": "p.R175H",
+      "cdna": "c.524G>A",
+      "genomic": "chr17:7577120 G>A GRCh38",
+      "type": "missense_hotspot",
+      "origin": "somatic",
+      "classification": "pathogenic",
+      "disruption": 0.55,
+      "confidence": 0.8,
+      "pathway": "CHECKPOINT",
+      "pathway_state": "compromised",
+      "wt_len": 393,
+      "dbd_core": "94-312"
+    }
+  ],
+  "synthetic_lethality": {
+    "detected": true,
+    "double_hit": "Base Excision Repair pathway loss",
+    "broken_pathways": [
+      {
+        "pathway": "BER",
+        "gene": "MBD4",
+        "state": "non-functional",
+        "disruption": 0.654
+      },
+      {
+        "pathway": "CHECKPOINT",
+        "gene": "TP53",
+        "state": "compromised",
+        "disruption": 0.55
+      }
+    ],
+    "essential_dependencies": [
+      {
+        "pathway": "ATR",
+        "depmap_boost": 0.15,
+        "status": "COMPUTATIONAL HYPOTHESIS",
+        "rationale": "BER-loss context: ATR essentiality rises when unrepaired BER substrate stalls replication forks"
+      },
+      {
+        "pathway": "WEE1",
+        "depmap_boost": 0.15,
+        "status": "COMPUTATIONAL HYPOTHESIS",
+        "rationale": "CHECKPOINT-compromised: WEE1 loss removes remaining G2/M brake when p53 is absent"
+      }
+    ],
+    "engine_caveat": "ATR/WEE1 lever from legacy v2 engine; v3 evidence matrix does not support it for MBD4 (0 positive modalities). RUO."
+  },
+  "structure_folding": {
+    "engine": "AlphaFold2",
+    "model_preset": "monomer_ptm",
+    "db_preset": "reduced_dbs",
+    "max_template_date": "2024-01-01",
+    "use_gpu_relax": false,
+    "af3_substitution": "AlphaFold3 unavailable on cluster; AF2 monomer_ptm substituted (disclosed).",
+    "planned_monomers": [
+      "TP53_WT",
+      "TP53_R175H",
+      "MBD4_WT",
+      "MBD4_K431Nfs_trunc",
+      "PDGFRA_WT",
+      "PDGFRA_S755P"
+    ],
+    "gpu_concurrency_limit": 3,
+    "jobs": {
+      "TP53_WT": {
+        "job_id": "de90179b-fe7b-4337-83d3-f2e9d70f7042",
+        "status": "COMPLETED",
+        "n_residues": 393,
+        "best_model": "model_1_ptm_pred_0",
+        "mean_plddt": 72.89,
+        "ptm": 0.5797,
+        "structure": "structures/TP53_WT_ranked_0.pdb",
+        "receipt": "receipts/TP53_WT_confidence.json"
+      },
+      "TP53_R175H": {
+        "job_id": "f152eecf-ce99-4297-bdc1-e43eb6a720e8",
+        "status": "RUNNING",
+        "n_residues": 393,
+        "variant": "p.R175H (single-residue R175->H vs WT, verified)"
+      },
+      "MBD4_WT": {
+        "job_id": "aecdd6fb-27e1-4f23-86e0-e21b3033459a",
+        "status": "RUNNING",
+        "n_residues": 580
+      },
+      "MBD4_K431Nfs_trunc": {
+        "job_id": "40f3a008-18ba-4db3-9317-621ce793bd51",
+        "status": "RUNNING",
+        "n_residues": 489,
+        "note": "frameshift truncation; compare by catalytic-domain loss, not point-mutation RMSD"
+      },
+      "PDGFRA_WT": {
+        "status": "QUEUED (submit when GPU slot frees)"
+      },
+      "PDGFRA_S755P": {
+        "status": "QUEUED (submit when GPU slot frees)"
+      }
+    },
+    "caveat": "pLDDT/pTM are modeling confidence, not experimental/functional/clinical validation. RUO.",
+    "folds": {
+      "TP53_WT": {
+        "status": "COMPLETED",
+        "hpc_job_id": "de90179b-fe7b-4337-83d3-f2e9d70f7042",
+        "n_residues": 393,
+        "best_model": "model_1_ptm_pred_0",
+        "mean_plddt": 72.89,
+        "ptm": 0.5797
+      },
+      "MBD4_WT": {
+        "status": "COMPLETED",
+        "hpc_job_id": "aecdd6fb-27e1-4f23-86e0-e21b3033459a",
+        "n_residues": 580,
+        "best_model": "model_1_ptm_pred_0",
+        "mean_plddt": 56.78,
+        "ptm": 0.3811
+      },
+      "MBD4_K431Nfs_trunc": {
+        "status": "COMPLETED",
+        "hpc_job_id": "40f3a008-18ba-4db3-9317-621ce793bd51",
+        "n_residues": 489,
+        "best_model": "model_1_ptm_pred_0",
+        "mean_plddt": 47.42,
+        "ptm": 0.3058
+      },
+      "TP53_R175H": {
+        "status": "RUNNING",
+        "hpc_job_id": "f152eecf-ce99-4297-bdc1-e43eb6a720e8"
+      },
+      "PDGFRA_WT": {
+        "status": "RUNNING",
+        "hpc_job_id": "b9c54705-14d8-4e49-a981-6da623dc7b31"
+      },
+      "PDGFRA_S755P": {
+        "status": "PENDING",
+        "hpc_job_id": "e364eaf7-dcea-4b10-8379-706318002c78"
+      }
+    },
+    "preset": "monomer_ptm / reduced_dbs / max_template_date=2024-01-01",
+    "panels_built": [
+      "MBD4_truncation_impact"
+    ]
+  }
+}

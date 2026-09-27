@@ -1,10 +1,16 @@
 /**
  * Top-level Zeta navigation.
- * Single dropdown: RESEARCH. Everything else is a first-class capability item.
+ * Dropdowns: PRODUCTS (brochure hub + 3 workspaces), RESEARCH.
+ * Everything else is a first-class capability / utility item.
  * Persona-aware (oncologist / patient / pharma) — items are filtered by the
  * persona from PersonaContext.
  *
- * SOURCE: user request 2026-07-10 — persona-aware nav + W4 flat capability shift.
+ * PRODUCTS vs live surfaces:
+ * - `/products/interception|insilico-trials|tumor-board/` = flagship product workspaces
+ * - `/tumor-board/` = demo fixture picker; `/tumor-board/[id]/ = same TB surface (live)
+ * - `/engine/*` = L1 engines (e.g. Target Lock) under products
+ *
+ * One-liners: product_truth/AGENT_SOURCE.md (Interception / IST / Tumor Board).
  *
  * ─── W3 reconciliation note ────────────────────────────────────────────────
  * `/proof/*` was hard-deleted 2026-07-10 in the target-lock cleanup (308
@@ -44,6 +50,28 @@ function truncateTitle(title: string, max = 52): string {
   return t.length > max ? `${t.slice(0, max - 1)}…` : t;
 }
 
+/** Brochure product doors — AGENT_SOURCE one-liners. Not engine routes. */
+const productsDropdown: NavDropdownItem[] = [
+  {
+    label: 'Interception',
+    description: 'Discover the next metastasis target worth testing.',
+    href: '/products/interception/',
+    accent: 'cyan',
+  },
+  {
+    label: 'In-Silico Trials',
+    description: 'Score who responds — before the trial starts.',
+    href: '/products/insilico-trials/',
+    accent: 'amber',
+  },
+  {
+    label: 'Tumor Board',
+    description: 'Rank the options for this case. Rule out the mismatches.',
+    href: '/products/tumor-board/',
+    accent: 'indigo',
+  },
+];
+
 const researchDropdown: NavDropdownItem[] = [
   { label: 'Blog',        description: 'Articles & series',            href: '/research/blog/',           accent: 'indigo' },
   { label: 'Manuscripts', description: 'Long-form PDFs',               href: '/research/manuscripts/',    accent: 'indigo' },
@@ -66,15 +94,22 @@ function buildResearchDropdown(abstracts: AbstractNavItem[]): NavDropdownItem[] 
  * Build nav. Persona-aware. New top-level items should be added here and
  * tagged with the personas that see them.
  *
- * MOA ALIGN sits alongside Target Lock and SL Engine as an engine capability
- * because the three form the L1/L2/L3 mechanism triad that the tumor board
- * decomposes each trial into.
+ * PRODUCTS leads: brochure doors for the three workspaces. Live engines
+ * (Target Lock / MOA Align / SL Engine) and live Tumor Board stay as
+ * capability links — engines are not products.
  */
 export function buildTopNavItems(
   abstracts: AbstractNavItem[] = [],
   persona: Persona = 'oncologist',
 ): NavTopItem[] {
   const all: NavTopItem[] = [
+    {
+      id: 'products',
+      label: 'PRODUCTS',
+      href: '/products/',
+      dropdownItems: productsDropdown,
+      personas: ['oncologist', 'patient', 'pharma'],
+    },
     { id: 'tumor-board', label: 'TUMOR BOARD', href: '/tumor-board/',                     personas: ['oncologist', 'patient', 'pharma'] },
     { id: 'target-lock', label: 'TARGET LOCK', href: '/engine/target-lock/',              personas: ['oncologist', 'pharma'] },
     { id: 'moa-align',   label: 'MOA ALIGN',   href: '/engine/mechanism-alignment/',      personas: ['oncologist', 'pharma'] },
@@ -84,9 +119,11 @@ export function buildTopNavItems(
     { id: 'ledger',      label: 'LEDGER',      href: '/ledger/',                          personas: ['oncologist', 'pharma'] },
     { id: 'pipeline',    label: 'PIPELINE',    href: '/pipeline/',                        personas: ['pharma'] },
     { id: 'governance',  label: 'GOVERNANCE',  href: '/governance/',                      personas: ['pharma'] },
+    // RESEARCH: desktop keeps section dropdown. Mobile flattens hub-only (ZetaMobileDrawer).
     { id: 'research',    label: 'RESEARCH',    href: '/research/',
       dropdownItems: buildResearchDropdown(abstracts),                                    personas: ['oncologist', 'patient', 'pharma'] },
     { id: 'demos',       label: 'DEMOS',       href: '/demo/',                            personas: ['oncologist', 'patient', 'pharma'] },
+    { id: 'contact',     label: 'CONTACT',     href: '/contact/',                         personas: ['oncologist', 'patient', 'pharma'] },
     { id: 'org',         label: 'ORG',         href: 'https://crispro.org/', external: true,
                                                                                           personas: ['oncologist', 'patient', 'pharma'] },
   ];

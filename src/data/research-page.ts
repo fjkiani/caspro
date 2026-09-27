@@ -1,7 +1,7 @@
 // Research hub — links into /research/chapters/, /engine/, /governance/, /ledger/.
 // Public science only: no trial identifiers, no asset names, no partner names.
+// Icons: string keys only (RSC → Client). Resolved in VerticalSurface VERTICAL_ICON_MAP.
 import type { VerticalPageData } from '@/components/audience/VerticalSurface';
-import { BookOpen, Layers, ClipboardCheck, ShieldCheck } from 'lucide-react';
 
 export const RESEARCH_PAGE_DATA: VerticalPageData = {
   eyebrow: 'Research',
@@ -13,7 +13,7 @@ export const RESEARCH_PAGE_DATA: VerticalPageData = {
       label: 'Why research',
       eyebrow: 'Section 1 · Framing',
       headline: 'The mechanism-alignment layer is a research question, not a marketing claim.',
-      Icon: BookOpen,
+      iconKey: 'book',
       body: [
         'CrisPRO exists because the same failure keeps happening: pivotal oncology trials run against unstratified populations, wash out on average, and hide their responders inside the negative arm.',
         'The research layer of the site is where we work in the open — chapters, capabilities, receipts.',
@@ -29,7 +29,7 @@ export const RESEARCH_PAGE_DATA: VerticalPageData = {
       label: 'Chapters',
       eyebrow: 'Section 2 · Chapters',
       headline: 'Nine chapters covering the layer end-to-end.',
-      Icon: Layers,
+      iconKey: 'layers',
       body: [
         'The chapters cover: synthetic-lethality first principles, the four-tier evidence hierarchy, the seven evidence modalities, the mechanism-alignment layer, the patient biology axes, the trial-target library, target-lock, the therapy bridge, and why trials still fail on responders.',
         'Every chapter is grounded in public science — BRCA/PARP, DepMap, CIViC, ClinicalTrials.gov, PMID-cited evidence. No chapter names a specific caspro client trial or asset.',
@@ -44,7 +44,7 @@ export const RESEARCH_PAGE_DATA: VerticalPageData = {
       label: 'Capabilities',
       eyebrow: 'Section 3 · Product capabilities',
       headline: 'The chapters underwrite five product capabilities.',
-      Icon: ClipboardCheck,
+      iconKey: 'clipboard-check',
       body: [
         'Every capability on the platform ties back to the substrate in the chapters — the axes, modalities, tiers, and guardrails that make the capability admissible.',
         'The engine surface is where each capability is described alongside the substrate that backs it.',
@@ -59,7 +59,7 @@ export const RESEARCH_PAGE_DATA: VerticalPageData = {
       label: 'Ledger',
       eyebrow: 'Section 4 · Public ledger',
       headline: 'The public ledger is what the layer produces when it runs.',
-      Icon: ShieldCheck,
+      iconKey: 'shield',
       body: [
         'Chapters and capabilities are how we work. The public ledger is what falls out — the record of decoded programs.',
         'Every case in the ledger cites its own source. Every case can be reproduced from the same substrate.',
