@@ -63,7 +63,7 @@ export const MISSION_STAGES: MissionStage[] = [
     id: 3,
     name: 'Three independent signals',
     plain:
-      'Class-aware composite: CRISPRa |LFC|, ATAC LFC, Evo2 score. TSG and ONC use different weights. Enformer is gated off in the production composite.',
+      'Class-aware composite: signed directional CRISPRa LFC (max(0, LFC) for ONC), ATAC LFC, Evo2 score. TSG and ONC use different weights. Enformer is gated off in the production composite.',
   },
   {
     id: 4,
@@ -94,9 +94,9 @@ export const MISSION_STAGES: MissionStage[] = [
 export const SIGNAL_CARDS = [
   {
     id: 'crispr',
-    label: 'CRISPRa |LFC|',
-    formula: 'TSG w=0.60 · ONC w=0.25',
-    body: `Absolute CRISPRa log-fold from GSE237446 (Chafe 2025). BACE1 canonical LFC ${BACE1.canonicalLfc}.`,
+    label: 'CRISPRa signed LFC',
+    formula: 'TSG w=0.60 · ONC w=0.25 (max(0, LFC))',
+    body: `Signed directional CRISPRa log-fold from GSE237446 (Chafe 2025; max(0, LFC) for oncogenic drivers). BACE1 canonical LFC ${BACE1.canonicalLfc}.`,
   },
   {
     id: 'atac',

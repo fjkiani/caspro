@@ -209,8 +209,8 @@ export const FORMULAS = {
   chromatin: 'C ∈ [0, 1] Enformer accessibility · 0.5 default when Enformer unavailable',
   assassin:
     'A = 0.37 · Efficacy(TL_v2) + 0.30 · Safety(GTEx_inv) + 0.30 · Mission + 0.03 · Structure',
-  compositeTsg: 'TSG = (0.60 · |CRISPR_LFC| + 0.20 · ATAC_LFC + 0.15 · Evo2_score) / 0.95',
-  compositeOnc: 'ONC = (0.25 · |CRISPR_LFC| + 0.35 · ATAC_LFC + 0.20 · Evo2_score) / 0.80',
+  compositeTsg: 'TSG = (0.60 · max(0, -CRISPR_LFC) + 0.20 · ATAC_LFC + 0.15 · Evo2_score) / 0.95',
+  compositeOnc: 'ONC = (0.25 · max(0, CRISPR_LFC) + 0.35 · ATAC_LFC + 0.20 · Evo2_score) / 0.80',
 } as const;
 
 // ── AUROC panel diagnostics (from class_aware_composite_final.json:metadata) ──

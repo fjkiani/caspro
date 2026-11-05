@@ -242,9 +242,10 @@ Gate 4 Iron Leash (`04_IRON_LEASH_AND_NEXT_STEPS.md` implied via forensic A7): a
 Quoted `04_IRON_LEASH_AND_NEXT_STEPS.md` L124–131:
 
 ```python
-if lfc * expected_sign <= 0:
+directional_lfc = lfc if expected_sign == 1 else -lfc
+if directional_lfc <= 0.0:
     return 0.0, "CONTRADICTS_HYPOTHESIS"
-signed_mag = min(abs(lfc) / 2.0, 1.0)
+signed_mag = min(max(0.0, directional_lfc) / 2.0, 1.0)
 sig_weight = min(-math.log10(max(pval, 1e-300)) / 4.0, 1.0)
 return round(0.6 * signed_mag + 0.4 * sig_weight, 6), "CONCORDANT"
 ```

@@ -104,9 +104,11 @@ Candidates 1-3 achieved zero TF motif hits — the desired outcome for a synthet
 The nanocarrier-CRISPR blueprint proposes a BBB-targeted delivery system for CRISPR-Cas9 RNPs against brain metastasis genes:
 
 - **Chassis:** PEG-b-PDPA polymersomes (~90 nm)
-- **BBB targeting:** Angiopep-2 (ANG-2) peptides → LRP1 receptor transcytosis
-- **Payload release:** pH-triggered (pH 6.8-6.0, tumor microenvironment)
-- **Proposed CRISPR targets:** TWIST1, SNAI1, MMP9
+- **3-Stage BTB Delivery Gate (`Zhang 2022`, `MOESM6_ESM.xlsx` `TIME-B vs LB`, locked in `clean_signals/zhang2022_dual_gated_nanocarrier_spec_v2.json`):**
+  1. **Stage 1 (BBB Transcytosis):** Low-avidity `Angiopep-2` (`LRP1` shuttle, calibrated against `10.20x APOE` competition in `TIME-B`, `q = 5.84e-8`).
+  2. **Stage 2 (Peritumoral De-Shielding):** **`MMP2`-cleavable PEG stealth corona** (`MMP2` is enriched `3.66x` [`+1.8732 log2FC, q = 7.82e-7`] at the `TIME-B / LB` interface) to prevent premature uptake by the **`3.50x LRP1+` (`+1.8066 log2FC, q = 1.48e-6`) `CD163+ MRC1+` peritumoral myeloid sink** (superseding single-lock `Angiopep-2` and `MMP9`, as `MMP9` is absent in `TIME-B vs LB` and only present in lung `TIME-L vs L`).
+  3. **Stage 3 (Malignant Core Endocytosis):** Secondary tumor-cell receptor lock (`EGFR` / `HER2` / `CEACAM5`) for selective internalization into `LB` tumor cells, followed by pH-triggered release (`pH 6.8–6.0`).
+- **Originally proposed blueprint CRISPR targets (rejected):** TWIST1, SNAI1, MMP9
 - **Protocol:** 8-step "genomic assassination" (encapsulation → systemic evasion → BBB breach → TME release → endosomal escape → nuclear transit → genomic cleavage → phenotype reversal)
 
 The blueprint's gene selection is based on EMT/invasion biology: TWIST1 and SNAI1 are canonical EMT transcription factors, and MMP9 is a matrix metalloproteinase that degrades BBB tight junctions.

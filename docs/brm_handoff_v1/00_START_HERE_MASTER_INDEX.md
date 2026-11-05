@@ -16,7 +16,10 @@
 ├── 01_CLEAN_SIGNALS_AND_MOLECULAR_TRUTH.md     <-- [CLEAN SIGNALS] 100% verified biological/structural signals vs. quarantined/retracted slop
 ├── 02_STRUCTURED_MAP_5708_LINES.md             <-- [TRANSCRIPT MAP] Line-by-line chronological & architectural map of docs/brm.md (L1–5708)
 ├── 03_NO_MERCY_SABOTAGE_AUDIT.md               <-- [FORENSIC AUDIT] 45+ P0/P1/P2 sabotage, math fraud, & sandbagging findings with exact receipts
-├── 04_IRON_LEASH_AND_NEXT_STEPS.md             <-- [EXECUTION GATES] 10 fail-closed programmatic gates + copy-paste Iron Leash prompt + 6-strike plan
+├── 04A_IRON_LEASH_AND_NEXT_STEPS.md            <-- [EXECUTION GATES] 10 fail-closed programmatic gates + copy-paste Iron Leash prompt + 6-strike plan
+├── 04B_BRENUS_CRC_SANOFI_CHAT_EXTRACT.md       <-- [BRENUS/CRC/SANOFI] Adversarial session + S3 bundle forensic audit & Two-Door KRAS partition
+├── 05_GBM_VECTOR_8D_GATES_FORMULAS.md          <-- [8D/7D FORMULAS] Complete 8D/7D PATH A, Mode iii-C, and Contraindication Gate G(p,t) specification
+├── 06_CHAT_MAP_BURIED_SCIENCE_MOAT.md          <-- [27 BURIED SIGNALS] Crosswalk of all 27 buried clinical/molecular signals across 28,570+ messages
 ├── brm_forensic_audit.md                       <-- Consolidated single-file forensic audit reference
 ├── MANIFEST_SHA256.csv                         <-- Cryptographic manifest of all 174 payload files from crispro_brm_full_handoff_v1.zip (175 raw files total)
 │
@@ -101,7 +104,7 @@
 | **Why will an unmasked `Angiopep-2` (`LRP1`) nanocarrier fail in brain stroma?** | `01_CLEAN_SIGNALS_AND_MOLECULAR_TRUTH.md` (§4) | `clean_signals/zhang2022_moesm6_brm_and_lrp1_sink_hits.csv` |
 | **What happened across all 5,708 lines of `docs/brm.md`?** | `02_STRUCTURED_MAP_5708_LINES.md` | `/Users/fahadkiani/Desktop/development/caspro/caspro/docs/brm.md` |
 | **What are every P0/P1/P2 sabotage, math-fraud, & sandbagging offense?** | `03_NO_MERCY_SABOTAGE_AUDIT.md` | `originals/historical_reports/manuscript_brm_interception_v1.md` |
-| **How do we lock the next agent so it cannot sandbag or fake metrics again?** | `04_IRON_LEASH_AND_NEXT_STEPS.md` | 10 Programmatic Gates + Copy-Paste Iron Leash Prompt |
+| **How do we lock the next agent so it cannot sandbag or fake metrics again?** | `04A_IRON_LEASH_AND_NEXT_STEPS.md` | 10 Programmatic Gates + Copy-Paste Iron Leash Prompt |
 
 ---
 
@@ -115,4 +118,6 @@ Every file in `clean_signals/` was generated deterministically from the raw `.ci
 | `af3_corrected_cif_chain_iptm_and_pae.json` | `5` genes × `5` models | Full JSON hierarchy with per-seed `chain_pair_iptm`, `min_pae`, 20-nt spacer-to-template vs non-template mean PAE (`16.76–17.30 Å` vs `22.65–23.88 Å`, `ΔPAE = 5.66–6.58 Å`), and exact nucleotide sequences. |
 | `gse223499_corrected_power_and_signed_scores.csv` | `10` genes | Exposes scrambled Manuscript Table S2 `baseMean` values (`FAM72A` inflated `9.1x`, `SLC45A4` deflated `16.3x`, `ATP10D` deflated `12.6x`, `TFEB` deflated `5.4x`), adds `signed_direction_flag`, and assigns clean target tiers. |
 | `zhang2022_moesm6_brm_and_lrp1_sink_hits.csv` | `37` rows (`21` DEG hits + `16` audit rows) | Extracts exact `p_value`, `q_value`, and `log2fc` across all 4 sheets of `41467_2022_33365_MOESM6_ESM.xlsx` plus NanoString IO 360 panel presence (`a2f1293b...xlsx`), proving `LRP1` `+1.8066 log2FC` (`3.50x`, `q=1.48e-6`) peritumoral sink and `MMP2` (`+1.8732 log2FC`, `q=7.82e-7`) vs `MMP9` compartment split. |
-| `bace1_verified_multimodal_dossier.json` | `1` master target | Consolidates verified Chafe 2025 in vivo CRISPRa (`>150x`), `GSE223499` (`LFC=+1.0688`, `padj=0.0708`, `immune_aggregate padj=0.0161`), `TCGA-LUAD` `EGFR`-mut (`p<0.001`), `DepMap` non-essentiality (`Chronos=-0.068`), re-indexed AF3 R-loop (`ipTM=0.418`), and `LRP1`/`MMP2` delivery constraints. |
+| `bace1_verified_multimodal_dossier.json` | `1` master target | Consolidates verified Chafe 2025 in vivo CRISPRa (`>150x`), dual-compartment `GSE223499` (`tumor_like LFC=+1.0688, p=0.0158` + `immune_aggregate LFC=+1.8268 [3.55x], p=0.00224, padj=0.0161`), `TCGA-LUAD` `EGFR`-mut (`p<0.001`), `DepMap` non-essentiality (`Chronos=-0.068`), re-indexed AF3 R-loop (`ipTM=0.418`), and `Zhang 2022` `LRP1`/`MMP2` delivery constraints. |
+| `zhang2022_dual_gated_nanocarrier_spec_v2.json` | `3` BTB stages | Canonical `MOESM6_ESM.xlsx`-verified 3-Stage BTB Delivery Gate: (Stage 1) low-avidity `Angiopep-2` (`LRP1` shuttle vs `10.20x APOE`, `q=5.84e-8`); (Stage 2) `MMP2`-cleavable PEG stealth corona (`3.66x`, `q=7.82e-7`) bypassing the `3.50x LRP1+` (`q=1.48e-6`) `CD163+ MRC1+` peritumoral myeloid sink; (Stage 3) secondary tumor-cell receptor lock (`EGFR/HER2/CEACAM5`). |
+| `real_guides.json` | `4` genes × `2` modalities | Reconciles TSS-proximal `CRISPRi_dCas9_KRAB_TSS` spacers (`BACE1: TCTTCCCATGGCAGGCAATC`, `ipTM=0.418`, `ΔPAE=6.17 Å`) with coding-exon `SpCas9_KO_coding_exon` spacers, and flags the `ATP10D` 62-nt `DNA_B` typo (`CTTCTGTCCC` → `61-nt CTTCTGCCC`). |

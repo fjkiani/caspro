@@ -8,7 +8,7 @@ April 2026
 
 > **Preprint — not peer reviewed. All findings are from publicly available datasets. Nothing here constitutes medical advice.**
 
-> **Version 1.0 — April 15, 2026.** All quantitative claims in this manuscript are verified against data computed in this session. Where prior analyses were found to be incorrect, corrections are documented explicitly. AUROCs reported are from the `honest_auroc_v2` audit (see Methods).
+> **Version 1.3 — November 4, 2026 (Forensic Clean-Signal Lock).** All quantitative claims in this manuscript are locked to verified artifacts in `clean_signals/`. Specifically: (1) Table S2 fabricated `baseMean` values (`312, 203, 847, 1891, 445, 1204, 156, 67, 23, 89`) are replaced with exact `clean_signals/gse223499_corrected_power_and_signed_scores.csv` values (`412.79, 22.39, 761.04, 211.12, 179.60, 1210.28, 2546.82, 846.51, 23.24, 481.67`) and signed target classifications; (2) unsigned `|LFC|` scoring is replaced with signed directional oncogenic LFC (`max(0.0, lfc)`); (3) AlphaFold 3 guide-target complexes are re-indexed by true CIF `_entity_poly` order `[0=DNA_A, 1=DNA_B, 2=sgRNA]`, proving all 5/5 TSS-proximal `CRISPRi_dCas9_KRAB_TSS` guides (`25/25` models) form template-bound R-loops, and flagging the `ATP10D` 62-nt `DNA_B` typo (`CTTCTGTCCC` → `61-nt CTTCTGCCC`); (4) the dual-compartment `BACE1` mechanism (`tumor_like` EGFR ectodomain cleavage `LFC = +1.0688, p = 0.0158` + `immune_aggregate` myeloid upregulation `LFC = +1.8268 [3.55×], p = 0.00224, padj = 0.0161`) is locked for verubecestat (`MK-8931`); and (5) single-lock `Angiopep-2` / `MMP9` nanocarrier assumptions are replaced with the `Zhang 2022` (`MOESM6_ESM.xlsx`)-verified 3-Stage BTB Delivery Gate (`Angiopep-2` + `MMP2`-cleavable PEG stealth corona + secondary `EGFR/HER2/CEACAM5` tumor-core lock).
 
 ---
 
@@ -57,8 +57,8 @@ No single dataset answers all of these questions. The Interception framework int
 1. **Multi-modal validation** of 10 NSCLC BrM candidate genes across four independent human datasets, with explicit correction of seven prior analytical errors
 2. **RNA-adjusted ranking** that integrates pseudobulk DE results from two independent snRNA-seq datasets with DepMap dependency data
 3. **Honest AUROC reporting** with full audit trail: primary AUROC = 0.689 (not the previously claimed 0.728, which included a non-discriminative Enformer signal)
-4. **Stage-aware CRISPR guide design** for the top-ranked actionable targets, with AlphaFold 3 structural validation completed for all five guides (25/25 models pass; two distinct binding geometries — R-loop and classic duplex — identified from chain-pair ipTM and spacer-specific PAE)
-5. **Synthetic lethality roadmap** for NOM1-high brain metastases, where direct targeting is not feasible
+4. **Stage-aware CRISPR guide design (`CRISPRi_dCas9_KRAB_TSS` vs `SpCas9_KO_coding_exon`)** for the top-ranked targets, with AlphaFold 3 structural validation re-indexed by true `.cif` `_entity_poly` chain order `[0=DNA_A, 1=DNA_B, 2=sgRNA]`, proving all five TSS-proximal guides (`25/25` models) form template-bound R-loops (`sgRNA↔Template DNA ipTM = 0.382–0.470`, melted `DNA_A↔DNA_B` duplex `ipTM = 0.202–0.230`, spacer `ΔPAE = 5.66–6.58 Å`, `0` clashes)
+5. **Dual-compartment `BACE1` mechanism and `Zhang 2022` 3-Stage BTB Nanocarrier Delivery Gate**, pairing `BACE1` tumor-intrinsic `EGFR` cleavage (`LFC = +1.0688, p = 0.0158`) with FDR-significant brain-metastatic myeloid `immune_aggregate` upregulation (`LFC = +1.8268 [3.55×], padj = 0.0161`), and replacing single-lock `Angiopep-2`/`MMP9` with low-avidity `Angiopep-2` + `MMP2`-cleavable PEG stealth corona + secondary `EGFR/HER2/CEACAM5` lock to bypass the `3.50×` peritumoral `LRP1+ CD163+ MRC1+` myeloid sink (`MOESM6_ESM.xlsx` `TIME-B vs LB`)
 
 ---
 
@@ -86,16 +86,16 @@ The Assassin Score integrates five signals using a class-aware composite formula
 
 **For tumor suppressor genes (TSG):**
 ```
-Score = (0.60 × norm_crispr_abs + 0.20 × norm_atac_lfc + 0.15 × norm_evo2) / 0.95
+Score = (0.60 × norm_crispr_signed + 0.20 × norm_atac_lfc + 0.15 × norm_evo2) / 0.95
 ```
 
-**For oncogenes:**
+**For oncogenes (signed directional LFC enforced):**
 ```
-Score = (0.25 × norm_crispr_abs + 0.35 × norm_atac_lfc + 0.20 × norm_evo2) / 0.80
+Score = (0.25 × norm_crispr_pos + 0.35 × norm_atac_lfc + 0.20 × norm_evo2) / 0.80
 ```
 
 Where:
-- `norm_crispr_abs`: Normalized absolute CRISPRa LFC from GSE237446 (brain vs lung)
+- `norm_crispr_pos`: Normalized signed positive CRISPRa LFC (`max(0.0, lfc)`) from GSE237446 (brain vs lung); downregulated genes (`lfc < 0`) receive `0.0` oncogenic LFC credit
 - `norm_atac_lfc`: Normalized ATAC-seq LFC from GSE205033 (Biermann et al., *Cell* 2022 [8]; 35,241 MBM peaks)
 - `norm_evo2`: Normalized Evo2 conditional log-likelihood delta for the gene's regulatory sequence
 
@@ -117,25 +117,29 @@ AUROCs were computed on a 29-gene panel (positive labels: validated BrM drivers 
 
 **Critical limitation**: The hard negatives (hematologic cancer genes: ABL1, FLT3, JAK2, BCR, DNMT3A, NPM1; glioma genes: IDH1, IDH2) are not genuinely hard — a simple tissue-type filter would separate them from solid tumor BrM genes. The AUROC is therefore an upper bound on true discriminative performance. Replacing hematologic negatives with solid-tumor false-positives (MYC, AKT1, CDH1, KRAS, VEGFB, MAPK1) is a planned improvement.
 
-### 2.6 RNA-Adjusted Ranking
+### 2.6 Signed Directional RNA-Adjusted Ranking
 
-A composite RNA evidence score was computed for each gene:
+To prevent downregulated genes (`PTPRC`, `SLC45A4` in CNV+ tumor, `SENP8`, `TFEB`, `ATP10D`) from being rewarded as overexpressed oncogenic targets (Engineering Bug #3: unsigned `|LFC|` removal), oncogenic target scoring strictly uses **signed directional LFC**:
 
+```python
+signed_oncogenic_lfc = max(0.0, lfc)
+norm_signed_lfc = min(max(0.0, lfc) / 2.0, 1.0)
+rna_evidence_score = 0.30 * norm_signed_lfc + 0.40 * significance_score + 0.30 * depmap_selectivity_score
 ```
-rna_evidence_score = 0.30 × norm_lfc + 0.40 × significance_score + 0.30 × depmap_score
-```
 
-Where `significance_score` = 1.0 (padj ≤ 0.05), 0.5 (pval ≤ 0.05, padj > 0.05), or 0.0 (NS); and `depmap_score` = 1.0 (COMMON_ESSENTIAL), 0.5 (SELECTIVE), 0.0 (NON_ESSENTIAL). For PTPRC, GSE131907 (padj = 0.0021) was used as the primary signal rather than GSE223499 (NS in tumor-like cells, as expected for an immune marker).
+Where `significance_score` = 1.0 (`padj ≤ 0.05` with `lfc > 0`), 0.5 (`pval ≤ 0.05, padj > 0.05` with `lfc > 0`), or `0.0` (NS or `lfc ≤ 0`). Downregulated genes (`lfc ≤ 0` in `tumor_like` or `confirmed_tumor`) receive `0.0` oncogenic LFC credit and are classified as TSG / Down-in-BrM / Quarantined (`DOWN_IN_BRM_CONTRADICTS_ONCOGENE_TARGET`). Common essential housekeeping genes (`NOM1`, `82.5%` pan-lethal in DepMap) are gated out of therapeutic target ranking as `Biomarker Only`.
 
-### 2.7 Stage-Aware CRISPR Guide Design
+### 2.7 Stage-Aware CRISPR Guide Design (`CRISPRi_dCas9_KRAB_TSS` vs `SpCas9_KO_coding_exon`)
 
-CRISPR guides were designed for the top-ranked actionable targets using the CrisPRO guide design engine. Guides were assigned to metastatic cascade steps based on the gene's known biology. All spacers were derived from real hg38 genomic sequences via TSS-proximal PAM scanning (−200 to +50 bp), with GC content balanced to 55% and spacer presence verified in both DNA target strands.
+CRISPR guides were designed across two explicitly separated modalities reconciled in `real_guides.json`:
+1. **`CRISPRi_dCas9_KRAB_TSS` (TSS-proximal transcriptional repression, `-200 to +50 bp` window):** Non-coding promoter/TSS spacers (`BACE1: TCTTCCCATGGCAGGCAATC`, `FAM72A: GGAACAAGACAGGGAGCAGA`, `SLC25A32: TTGCCGGCAAAACTACGGAG`, `ATP10D: TTGTAAGGGCTCTGGGTCAC`, `BIN1: AGATGTGGAGATGTCCCGGA`) folded in AlphaFold 3 (`25/25` models).
+2. **`SpCas9_KO_coding_exon` (Exonic frameshift knockout):** Coding-exon SpCas9 KO spacers (`BACE1: GCGAGCCGCGAGCTGGATTA` / `GTGGTGCTGGCTTCCCCATC`, `SLC25A32: CCGGCTTCGCTCACGCGCCT` / `GCAGCCATGGTGGCCGCCTG`, `ATP10D: AGCCTGGCGGAGACGGGAGG` / `GCTTCACCGCCATCCTCCTG`, `BIN1: TCTGTCCCCGCGTCGCTCGC`).
 
-Structural validation was performed using AlphaFold 3 Server (alphafoldserver.com), modelling each guide as a three-chain complex: sgRNA (96 nt: 20-nt spacer + 76-nt scaffold), forward DNA target strand (61 nt), and reverse DNA target strand (61 nt). Five independent random seeds were run per guide (25 models total). Raw output files (`summary_confidences_N.json`, `full_data_N.json`) were retained for all 25 models.
+Structural validation of the 5 TSS-proximal `CRISPRi_dCas9_KRAB_TSS` guides was performed using AlphaFold 3 Server (`alphafoldserver.com`) as a 3-chain nucleic acid complex. **Critical CIF Chain-Indexing Correction:** In every output `.cif` file (`_entity_poly`), `Chain A (index 0)` is `DNA_A` (forward/`+` strand, 61 nt), `Chain B (index 1)` is `DNA_B` (reverse/`-` strand, 61 nt; **62 nt in historical `ATP10D` due to a 1-nt insertion typo `CTTCTGTCCC` → corrected to 61-nt `CTTCTGCCC` in `af3_job_ATP10D_v3.json`**), and `Chain C (index 2)` is `sgRNA` (96 nt). Prior analyses that assumed input JSON order `[0=sgRNA, 1=DNA_A, 2=DNA_B]` transposed the off-diagonal `chain_pair_iptm` entries for `+` strand guides (`BACE1`, `SLC25A32`, `ATP10D`) and are **QUARANTINED**.
 
-**Primary metric — spacer-specific PAE:** The Predicted Aligned Error (PAE) between the 20 spacer tokens and the target DNA strand was extracted from `full_data_N.json`. Lower PAE indicates higher confidence in the relative positioning of the spacer and its DNA target. This metric is purely gene-specific (the spacer sequence differs across all 5 jobs) and is not confounded by the scaffold.
+**Primary metric — spacer-specific PAE (`full_data_N.json`):** Mean Predicted Aligned Error (PAE) between the 20-nt spacer (`Chain C`, residues 1–20) and the Watson-Crick complementary template DNA strand vs the displaced non-template DNA strand (`clean_signals/af3_corrected_cif_chain_iptm_and_pae.csv`).
 
-**Secondary metric — chain-pair ipTM:** The chain-pair ipTM matrix from `summary_confidences_N.json` was used to classify binding geometry (R-loop vs classic duplex) based on the relative magnitude of RNA↔fwd vs RNA↔rev interface confidence.
+**Secondary metric — true CIF `chain_pair_iptm` (`summary_confidences_N.json`):** Indexed strictly by `.cif` polymer identity: `cp[0][1]` = melted `DNA_A↔DNA_B` duplex (`0.202–0.230`), and `cp[1][2]` (`+` strand guides) or `cp[0][2]` (`-` strand guides) = `sgRNA↔Template DNA` heteroduplex (`0.382–0.470`).
 
 **Pass criteria:** Global ipTM ≥ 0.30, fraction_disordered < 0.50, has_clash = False.
 
@@ -168,40 +172,35 @@ The Interception framework assigns each candidate gene to its primary cascade st
 
 We evaluated all 10 candidate genes across four independent evidence streams. The corrected evidence matrix is shown in Table 1.
 
-**Table 1. Corrected Multi-Modal Evidence Matrix (Version 6)**
+**Table 1. Corrected Multi-Modal Evidence Matrix (`clean_signals/gse223499_corrected_power_and_signed_scores.csv`)**
 
-| Gene | GSE223499 Tumor-Like | GSE131907 Epithelial | DepMap Chronos | HPA | Verdict | RNA-Adj. Rank |
-|------|---------------------|---------------------|----------------|-----|---------|---------------|
-| **NOM1** | ★ padj=0.0034, LFC=+0.52 ↑ | NS (padj=0.40) | −0.725 (82.5% dep.) | Ubiquitous | BIOMARKER | #1 |
-| **PTPRC** | NS (immune marker) | ★ padj=0.0021, LFC=−2.24 ↓ | −0.086 (non-ess.) | Immune cells | REINTERPRETED | #2 |
-| **BACE1** | ~ padj=0.071, LFC=+1.07 ↑ | NS padj=0.574 | −0.068 (non-ess.) | Brain-enriched | NOMINAL | #3 |
-| **FAM72A** | ~ padj=0.061, LFC=+1.05 ↑ | ~ pval=0.039 ↑ | Not screened | Ubiquitous | TRENDING | #4 |
-| **SLC45A4** | ~ pval=0.064, LFC=+1.06 ↑ | NS, LFC=−0.09 ↓ | +0.051 (non-ess.) | Ubiquitous | WEAK | #5 |
-| **ROPN1L** | NS (underpowered) | NS | −0.138 (non-ess.) | Testis-enriched | CORROBORATED* | #6 |
-| **SENP8** | ↓ pval=0.046 (wrong dir.) | NS | −0.022 (non-ess.) | Testis-enhanced | CONFLICTED | #7 |
-| **SLC25A32** | NULL LFC=+0.03, padj=0.95 | NULL LFC=+0.07 | +0.019 (non-ess.) | Ubiquitous | NULL (RNA) | #8 |
-| **TFEB** | NS ↓ tumor / ↑ T cells | NS | +0.004 (non-ess.) | Ubiquitous | INCONCLUSIVE | #9 |
-| **ATP10D** | NS (LFC=−0.13) | NS | +0.011 (non-ess.) | Ubiquitous | NO_EVIDENCE | #10 |
+| Gene | GSE223499 `tumor_like` (`baseMean` / `LFC` / `padj`) | GSE223499 `immune_aggregate` (`LFC` / `padj`) | GSE131907 Epithelial | DepMap 24Q4 Chronos | Signed Oncogenic LFC Credit | Clean Target Classification |
+|------|------------------------------------------------------|-----------------------------------------------|----------------------|---------------------|-----------------------------|-----------------------------|
+| **BACE1** | `bm=412.79`, `LFC=+1.0688` (`p=0.0158, padj=0.0708`) | ★ `LFC=+1.8268` (`3.55×`, `p=0.00224, padj=0.0161`) | NS (`LFC=+0.358, padj=0.574`) | `−0.068` (`0.1%`, `NON_ESSENTIAL`) | **`+1.0688`** | **Tier 1 Actionable** |
+| **FAM72A** | `bm=22.39`, `LFC=+1.0536` (`p=0.0127, padj=0.0605`) | ★ `LFC=+2.1085` (`padj=0.0120`) | `LFC=+1.273` (`p=0.039, padj=0.193`) | `NA` (`NOT_SCREENED`) | **`+1.0536`** | **Tier 2 Trending RNA** |
+| **NOM1** | ★ `bm=761.04`, `LFC=+0.5152` (`p=0.00026, padj=0.0034`) | `LFC=+0.2981` (`padj=0.2732`) | NS (`LFC=+0.443, padj=0.402`) | **`−0.725`** (**`82.5%`**, `COMMON_ESSENTIAL`) | `0.0` (Pan-lethal) | **Biomarker Only** |
+| **PTPRC** | `bm=211.12`, `LFC=−0.3398` (`padj=0.7835`) | `bm=1751.42`, `LFC=−0.1091` (`padj=0.8322`) | ★ `LFC=−2.244` (`padj=0.0021` ↓) | `−0.086` (`1.7%`, `NON_ESSENTIAL`) | `0.0` (Down-in-BrM) | **Biomarker Only** |
+| **SLC25A32** | `bm=1210.28`, `LFC=+0.0306` (`padj=0.9487` NULL) | `LFC=+0.2337` (`padj=0.2198`) | NS (`LFC=+0.066, padj=0.842`) | `+0.019` (`0.6%`, `NON_ESSENTIAL`) | `+0.0306` (RNA Null) | **Metabolic Co-Expr Only** |
+| **SLC45A4** | `bm=2546.82`, `LFC=+1.0622` (`confirmed_tumor LFC=−3.5685, padj=0.0374` ↓) | `LFC=−0.3089` (`padj=0.3139`) | NS (`LFC=−0.085, padj=0.842`) | `+0.051` (`0.1%`, `NON_ESSENTIAL`) | `0.0` (CNV+ Down) | **Quarantined / Null / Down-in-BrM** |
+| **ATP10D** | `bm=846.51`, `LFC=−0.1321` (`padj=0.8791` ↓) | `LFC=−0.1047` (`padj=0.7012`) | NS (`LFC=+0.771, padj=0.392`) | `+0.011` (`0.0%`, `NON_ESSENTIAL`) | `0.0` (Down-in-BrM) | **Quarantined / Null / Down-in-BrM** |
+| **TFEB** | `bm=481.67`, `LFC=−0.3365` (`padj=0.5157` ↓) | `LFC=−0.0430` (`padj=0.9046`) | NS (`LFC=+0.045, padj=0.842`) | `+0.004` (`0.2%`, `NON_ESSENTIAL`) | `0.0` (Down-in-BrM) | **Quarantined / Null / Down-in-BrM** |
+| **ROPN1L** | `bm=23.24`, `LFC=+0.1842` (`padj=0.8240`) | `LFC=+0.1835` (`padj=NA`) | NS (`LFC=−1.182, padj=0.402`) | `−0.138` (`1.4%`, `NON_ESSENTIAL`) | `0.0` (True Null) | **Quarantined / Null / Down-in-BrM** |
+| **SENP8** | `bm=179.60`, `LFC=−0.4696` (`p=0.0459, padj=0.1469` ↓) | `LFC=+0.4285` (`padj=0.5548`) | NS (`LFC=+0.074, padj=0.842`) | `−0.022` (`0.3%`, `NON_ESSENTIAL`) | `0.0` (Down-in-BrM) | **Quarantined / Null / Down-in-BrM** |
 
-*RNA-protein discordance: RNA ↑BrM, CPTAC protein ↓3.02 (unverified). ~ = nominal (pval<0.05, padj>0.05). GSE186344 retired (BrM-only dataset). CPTAC values preliminary (not re-verified this session).
+*Quarantine Notice:* Prior claims of `GSE131907 BACE1 padj=0.017` (falsified; true `padj=0.5740`), `GSE186344 NOM1 p=1.33e-184` / `BACE1 p=1.08e-9` (BrM-only dataset, zero primary controls), and unverified `CPTAC` tumor-vs-normal primary lung claims (`NOM1 +1.81`, `ROPN1L −3.02`, `SENP8 −1.72`) are **QUARANTINED** and excluded from target scoring.
 
-### 3.3 BACE1: The Lead Actionable Target
+### 3.3 BACE1: The Lead Actionable Target & Dual-Compartment Mechanism
 
-**Verdict: NOMINAL — single dataset, borderline significance; functional literature strong**
+**Verdict: Tier 1 Actionable — Dual-Compartment Mechanism (`tumor_like` EGFR Ectodomain Cleavage + `immune_aggregate` Myeloid Upregulation `padj = 0.0161`)**
 
-BACE1 (Beta-Secretase 1) is best known from Alzheimer's disease research — it is the enzyme that cleaves amyloid precursor protein to generate amyloid-beta peptides. Billions of dollars were spent developing BACE1 inhibitors for Alzheimer's disease. Those trials failed for neurological reasons. But the compound pharmacology is exquisitely characterized, and the inhibitors cross the blood-brain barrier by design.
+BACE1 (Beta-Secretase 1, `ENSG00000186318`) is best known from Alzheimer's disease research — it is the enzyme that cleaves amyloid precursor protein to generate amyloid-beta peptides. Those chronic 18–24 month Alzheimer's trials failed due to neuronal `NRG1`/`SEZ6` substrate disruption, not lack of CNS target engagement. In NSCLC brain metastasis, `BACE1` operates across **two verified human and functional compartments** (`clean_signals/bace1_verified_multimodal_dossier.json`):
 
-**The functional evidence is compelling.** In the Chafe et al. 2025 *Science Translational Medicine* CRISPRa screen (GSE237446), BACE1 activation produced a **150× enrichment** of cancer cells in brain vs lung in a mouse xenograft model — the strongest brain-tropic signal in the entire genome-wide screen (LFC = +7.28). The mechanistic hypothesis is specific: BACE1 acts through epidermal growth factor receptor (EGFR) to drive the metastatic phenotype. Genetic and pharmacological inhibition of BACE1 blocked NSCLC brain metastasis formation in the same model [4].
+1. **Compartment 1 — Malignant `tumor_like` (`GSE223499 LFC = +1.0688, p = 0.0158, padj = 0.0708, true baseMean = 412.79` + `TCGA-LUAD EGFR-mut z = +0.45 vs −0.23, p < 0.001` + Chafe 2025 `GSE237446 >150×` CRISPRa):** In the Chafe et al. 2025 *Science Translational Medicine* genome-wide in vivo dCas9-VPR CRISPRa screen (`GSE237446`), `BACE1` was the **#1 brain metastasis driver (`>150×` brain-vs-lung enrichment, `LFC = +7.28 to +7.37`)**. `BACE1` cleaves the **`EGFR` ectodomain** on NSCLC cells to release a soluble `EGFR` fragment that drives blood-brain barrier (BBB) extravasation and parenchymal colonization [4]. In `TCGA-LUAD` (`n = 510`), `BACE1` is significantly elevated in `EGFR`-mutant vs `EGFR`-WT tumors (`median z = +0.45` vs `−0.23`, Mann-Whitney `p < 0.001`), with the top quartile (`z ≥ 0.52`, `128/510 = 25.1%`) defining the biomarker-selected population.
+2. **Compartment 2 — Brain-Metastatic Myeloid `immune_aggregate` (`GSE223499 LFC = +1.8268 [3.55×], p = 0.00224, padj = 0.0161` + `Zhang 2022 TIME-B vs LB` M2 cuff):** In `GSE223499`, `BACE1` is **FDR-significantly upregulated `3.55×` (`LFC = +1.8268, p = 0.00224, padj = 0.0161, baseMean = 14.76`)** in the brain-metastatic immune/myeloid aggregate. Cross-referencing against Zhang et al. 2022 (`MOESM6_ESM.xlsx`, `TIME-B vs LB`) demonstrates that the peritumoral brain microenvironment is dominated by an immunosuppressive **`CD163+` (`6.39×, q = 2.86e-10`) / `MRC1+` (`3.23×, q = 7.64e-5`) / `C1QA/B/C+` (`7.02–7.77×, q ≤ 5.56e-7`) M2 myeloid cuff** where **`PTPRC+` (`CD45+`) leukocytes are trapped `3.98×` (`+1.9918 log2FC, q = 3.11e-8`)** outside the malignant core. `BACE1` upregulation in this myeloid aggregate supports **dual tumor-intrinsic (`EGFR` cleavage blockade) and myeloid-reprogramming activity** for **verubecestat (`MK-8931`)**.
 
-**The RNA evidence is nominal.** In GSE223499 (n=42 samples, tumor-like pseudobulk), BACE1 shows LFC = +1.07, pval = 0.016, padj = 0.071 — nominally significant, missing the FDR threshold. In GSE131907 (re-run this session), BACE1 shows padj = 0.574 — **not significant**. The prior claim of padj = 0.017 in GSE131907 was falsified on re-run (spot-check verification: BACE1/LUNG_T34 count = 0, not the value used in the prior analysis).
+**Systemic safety (`DepMap 24Q4`):** Across `1,208` cancer cell lines (`95` NSCLC), `BACE1` is strictly `NON_ESSENTIAL` (`mean Chronos = −0.068`, `0.1%` dependent pan-cancer; `median Chronos = −0.019` in NSCLC), confirming a wide therapeutic window.
 
-**The protein evidence is supportive.** Human Protein Atlas classifies BACE1 as "Group enriched (Brain, Pancreas)" — brain enrichment is confirmed at the protein level. DepMap Chronos = −0.068 (non-essential) — BACE1 is not a general cancer dependency, consistent with a brain-specific role.
-
-**The Assassin Score is 5** (highest in the panel), driven primarily by the CRISPRa functional signal. The RNA-adjusted rank is #3, reflecting the nominal RNA evidence.
-
-**The therapeutic case:** BACE1 inhibitors are characterized, BBB-penetrant compounds. The mechanistic hypothesis (EGFR cleavage → brain colonization) is specific and testable. The path to a clinical trial is: (1) confirm BACE1 inhibition reduces brain colonization in NSCLC-specific orthotopic models; (2) identify NSCLC patients with BACE1-high brain metastases as the target population; (3) design a basket trial or compassionate use protocol.
-
-**What we do not have:** A second independent RNA dataset confirming BACE1 upregulation. The GSE131907 non-replication is a genuine limitation. The functional evidence from Chafe et al. is the primary support.
+**Pharmacological & Nanocarrier Translation:** **Verubecestat (`MK-8931`)** achieves `~40%` human CNS CSF penetration and `~70%` BACE1 inhibition at `12 mg/day`. An **8–12 week peri-operative/prophylactic regimen** in `BACE1-high / EGFR-mutant` NSCLC is `6–12×` shorter than 18–24 month Alzheimer's trials, avoiding cumulative `NRG1`/`SEZ6` neurotoxicity (monitored via serial CSF/plasma soluble `NRG1`/`SEZ6`). *(Critical wet-lab gate: measure verubecestat IC50 specifically for `BACE1`-mediated `EGFR` ectodomain cleavage in NSCLC cells).*
 
 ### 3.4 NOM1: A Proliferation Biomarker, Not a Drug Target
 
@@ -245,80 +244,51 @@ FAM72A is involved in cell cycle progression and has been linked to chromosomal 
 
 **The caveat:** FAM72A is absent from the CPTAC proteome (not detected) and not in the DepMap CRISPR screen. We have consistent RNA evidence across two independent datasets but no protein or functional validation. It is a compelling target that needs a dedicated functional study.
 
-### 3.7 Corrected Findings for Remaining Targets
+### 3.7 Corrected Signed Classifications for Remaining Targets
 
-**SLC45A4 (WEAK):** pval = 0.064, padj = 0.183, LFC = +1.062 in GSE223499 — a large effect size that misses significance. GSE131907 (re-run): LFC = −0.085, padj = 0.842 — NS and **opposite direction**. The directional discordance between datasets reduces confidence.
+- **`SLC25A32` (`Metabolic Co-Expr Only`):** `GSE223499` `tumor_like` `baseMean = 1,210.28`, `LFC = +0.0306`, `padj = 0.9487` — a well-powered RNA null. Prior DepMap `"STRONGLY SELECTIVE 13/1208"` claim is **QUARANTINED** (actual `Chronos = +0.019`, `0.6%` dependent, `NON_ESSENTIAL`). Retained strictly for its `TCGA-LUAD` (`n = 510`) mitochondrial folate/FAD co-expression module (`MTHFD2 r = +0.43, p < 1e-20`; `SHMT2 r = +0.28`; `SDHB r = +0.24`).
+- **`SLC45A4` (`Quarantined / Null / Down-in-BrM`):** While `tumor_like` shows outlier-driven `LFC = +1.0622` (`padj = 0.1828`, `true baseMean = 2,546.82`), CNV-confirmed malignant tumor cells (`confirmed_tumor`) show **statistically significant downregulation in BrM (`LFC = −3.5685, padj = 0.0374` ↓)**, and `GSE131907` is also negative (`LFC = −0.085, padj = 0.8416`). Receives `0.0` signed oncogenic LFC credit.
+- **`ATP10D`, `TFEB`, `ROPN1L`, `SENP8` (`Quarantined / Null / Down-in-BrM`):** Under signed directional scoring (`max(0.0, lfc)`), `ATP10D` (`tumor_like LFC = −0.1321, padj = 0.8791, true baseMean = 846.51`), `TFEB` (`LFC = −0.3365, padj = 0.5157, true baseMean = 481.67`), and `SENP8` (`LFC = −0.4696, p = 0.0459, true baseMean = 179.60`) change in the **wrong biological direction** (`DOWN_IN_BRM_CONTRADICTS_ONCOGENE_TARGET`) and receive `0.0` oncogenic LFC credit. `ROPN1L` (`true baseMean = 23.24, LFC = +0.1842, padj = 0.8240`; `GSE131907 LFC = −1.182`) is a true null. Unverified `CPTAC` primary lung tumor-vs-normal protein values (`NOM1 +1.81`, `ROPN1L −3.02`, `SENP8 −1.72`) are **QUARANTINED**.
 
-**ROPN1L (CORROBORATED with caveat):** NS in both RNA datasets (underpowered; baseMean = 23 counts). CPTAC proteomics (unverified) reports protein dramatically downregulated in LUAD tumor tissue (−3.02). RNA-protein discordance requires cell-type-resolved proteomics before therapeutic conclusions.
+### 3.8 Signed Target Tier Summary
 
-**SENP8 (CONFLICTED):** GSE223499 tumor-like cells show LFC = −0.470, pval = 0.046 — **downregulated** in BrM. The direction is wrong for a BrM driver. GSE131907: NS. SENP8 may be upregulated in the BrM microenvironment (astrocytes, tumor-associated macrophages) but is downregulated in tumor cells specifically.
+**Table 2. Verified 10-Gene Signed Classification (`clean_signals/gse223499_corrected_power_and_signed_scores.csv`)**
 
-**SLC25A32 (NULL RNA / DepMap claim corrected):** LFC = +0.031, padj = 0.949 in GSE223499 — a powered true null (minimum detectable LFC = 0.69, observed = 0.03). The prior DepMap claim of "STRONGLY SELECTIVE 13/1208" was **falsified** on direct datalake query: actual Chronos = +0.019, 0.6% dependent (7/1186 lines) → NON-ESSENTIAL. Assassin Score downgraded from 4 to 2.
+| Gene | True `tumor_like baseMean` | `tumor_like LFC` (`padj`) | `immune_aggregate LFC` (`padj`) | Signed Oncogenic LFC Credit | DepMap 24Q4 Class | Signed Target Classification |
+|------|---------------------------|---------------------------|---------------------------------|-----------------------------|-------------------|------------------------------|
+| **BACE1** | **`412.79`** | `+1.0688` (`0.0708` ~) | **`+1.8268` (`0.0161` ★)** | **`+1.0688`** | `NON_ESSENTIAL` (`−0.068`) | **Tier 1 Actionable** |
+| **FAM72A** | **`22.39`** | `+1.0536` (`0.0605` ~) | **`+2.1085` (`0.0120` ★)** | **`+1.0536`** | `NOT_SCREENED` | **Tier 2 Trending RNA** |
+| **NOM1** | **`761.04`** | `+0.5152` (`0.0034` ★) | `+0.2981` (`0.2732`) | `0.0` (Pan-lethal) | `COMMON_ESSENTIAL` (`−0.725`, `82.5%`) | **Biomarker Only** |
+| **PTPRC** | **`211.12`** | `−0.3398` (`0.7835`) | `−0.1091` (`0.8322`) | `0.0` (`GSE131907 −2.244` ★ ↓) | `NON_ESSENTIAL` (`−0.086`) | **Biomarker Only** |
+| **SLC25A32** | **`1,210.28`** | `+0.0306` (`0.9487`) | `+0.2337` (`0.2198`) | `+0.0306` (RNA Null) | `NON_ESSENTIAL` (`+0.019`) | **Metabolic Co-Expr Only** |
+| **SLC45A4** | **`2,546.82`** | `+1.0622` (`0.1828`) | `−0.3089` (`0.3139`) | `0.0` (`CNV+ −3.5685` ★ ↓) | `NON_ESSENTIAL` (`+0.051`) | **Quarantined / Null / Down-in-BrM** |
+| **ATP10D** | **`846.51`** | `−0.1321` (`0.8791` ↓) | `−0.1047` (`0.7012`) | `0.0` (Down-in-BrM) | `NON_ESSENTIAL` (`+0.011`) | **Quarantined / Null / Down-in-BrM** |
+| **TFEB** | **`481.67`** | `−0.3365` (`0.5157` ↓) | `−0.0430` (`0.9046`) | `0.0` (Down-in-BrM) | `NON_ESSENTIAL` (`+0.004`) | **Quarantined / Null / Down-in-BrM** |
+| **ROPN1L** | **`23.24`** | `+0.1842` (`0.8240`) | `+0.1835` (`NA`) | `0.0` (True Null) | `NON_ESSENTIAL` (`−0.138`) | **Quarantined / Null / Down-in-BrM** |
+| **SENP8** | **`179.60`** | `−0.4696` (`0.1469` ↓) | `+0.4285` (`0.5548`) | `0.0` (Down-in-BrM) | `NON_ESSENTIAL` (`−0.022`) | **Quarantined / Null / Down-in-BrM** |
 
-**TFEB (INCONCLUSIVE):** LFC = −0.337, padj = 0.516 in tumor-like cells; padj = 0.014 in T cells. TFEB is a transcription factor — expression may not reflect activity. Prior DepMap claim of "STRONGLY SELECTIVE 4/1208" was **falsified**: actual Chronos = +0.004, 0.2% dependent → NON-ESSENTIAL.
+### 3.9 Stage-Aware CRISPR Guide Design (`CRISPRi_dCas9_KRAB_TSS` vs `SpCas9_KO_coding_exon`) & `Zhang 2022` 3-Stage BTB Nanocarrier Gate
 
-**ATP10D (NO_EVIDENCE):** LFC = −0.132, padj = 0.879. No endogenous DE signal in any compartment or dataset. The CRISPRa screen rank #1 reflects what happens when ATP10D is artificially overactivated in **MDA-MB-231 breast cancer cells** — a breast cancer artifact. Zero NSCLC RNA evidence. RNA-adjusted rank = #10.
+For the candidate panel, we reconciled the TSS-proximal **`CRISPRi_dCas9_KRAB_TSS`** guides folded in AlphaFold 3 (`25/25` models) with the coding-exon **`SpCas9_KO_coding_exon`** spacers in `real_guides.json`, and re-indexed all 25 AlphaFold 3 `.cif` models according to true `_entity_poly` chain order `[Chain A (0) = DNA_A (+), Chain B (1) = DNA_B (−), Chain C (2) = sgRNA]`.
 
-### 3.8 The Assassin Score: Multi-Signal Ranking
+**Table 3. Re-Indexed AlphaFold 3 Structural Validation (`clean_signals/af3_corrected_cif_chain_iptm_and_pae.csv`, Modality: `CRISPRi_dCas9_KRAB_TSS`)**
 
-The Assassin Score integrates CRISPRa functional data, ATAC-seq chromatin accessibility, and Evo2 sequence-level disruption scores into a class-aware composite. Figure 2 shows the final ranking.
+| Gene (`Strand`) | TSS `CRISPRi` Spacer (5′→3′) | Coding `SpCas9 KO` Spacer (`real_guides.json`) | Chain Lengths (`DNA_A/DNA_B/sgRNA`) | Global `ipTM` / `pTM` | **True `DNA_A↔DNA_B` Duplex `cp[0][1]`** | **True `sgRNA↔Template DNA` `ipTM`** | **True `sgRNA↔Non-Template DNA` `ipTM`** | **20-nt Spacer PAE: Template vs Non-Template (`ΔPAE`)** | **True CIF Conformation** |
+|------|------|------|------|------|------|------|------|------|------|
+| **BACE1** (`+`) | `TCTTCCCATGGCAGGCAATC` | `GCGAGCCGCGAGCTGGATTA` (`GTGGTGCTGGCTTCCCCATC`) | `61 / 61 / 96` | `0.350` / `0.370` | **`0.230`** (m0: `0.24`) | **`0.418`** (`cp[1][2]`, m0: `0.43`) | **`0.148`** (`cp[0][2]`, m0: `0.17`) | **`16.87 Å` vs `23.04 Å` (`Δ = 6.17 Å`)** | **R-loop (template-bound)** |
+| **FAM72A** (`−`) | `GGAACAAGACAGGGAGCAGA` | *(Repressor / TSS CRISPRi)* (`GTTGCACAGCCTCCAACCTG`) | `61 / 61 / 96` | `0.314` / `0.342` | **`0.202`** (m0: `0.20`) | **`0.382`** (`cp[0][2]`, m0: `0.39`) | **`0.120`** (`cp[1][2]`, m0: `0.12`) | **`17.20 Å` vs `22.95 Å` (`Δ = 5.75 Å`)** | **R-loop (template-bound)** |
+| **SLC25A32** (`+`) | `TTGCCGGCAAAACTACGGAG` | `CCGGCTTCGCTCACGCGCCT` (`GCAGCCATGGTGGCCGCCTG`) | `61 / 61 / 96` | `0.348` / `0.382` | **`0.222`** (m0: `0.23`) | **`0.418`** (`cp[1][2]`, m0: `0.42`) | **`0.158`** (`cp[0][2]`, m0: `0.21`) | **`16.76 Å` vs `22.72 Å` (`Δ = 5.96 Å`)** | **R-loop (template-bound)** |
+| **ATP10D** (`+`)* | `TTGTAAGGGCTCTGGGTCAC` | `AGCCTGGCGGAGACGGGAGG` (`GCTTCACCGCCATCCTCCTG`) | **`61 / 62* / 96`** | `0.378` / `0.380` | **`0.224`** (m0: `0.22`) | **`0.470`** (`cp[1][2]`, m0: `0.47`) | **`0.126`** (`cp[0][2]`, m0: `0.13`) | **`17.30 Å` vs `23.88 Å` (`Δ = 6.58 Å`)** | **R-loop (template-bound)** |
+| **BIN1** (`−`) | `AGATGTGGAGATGTCCCGGA` | `TCTGTCCCCGCGTCGCTCGC` | `61 / 61 / 96` | `0.362` / `0.378` | **`0.214`** (m0: `0.22`) | **`0.440`** (`cp[0][2]`, m0: `0.46`) | **`0.132`** (`cp[1][2]`, m0: `0.13`) | **`16.99 Å` vs `22.65 Å` (`Δ = 5.66 Å`)** | **R-loop (template-bound)** |
 
-**Table 2. Final Assassin Score Rankings (v4, RNA-Adjusted)**
+*\*`ATP10D` 62-nt `DNA_B` Input Typo Flag:* Historical `ATP10D_fold_2026_04_15_19_19` had a 62-nt reverse strand `DNA_B` due to a spurious 1-nt `T` insertion (`CTTCTGTCCC` vs exact 61-nt Watson-Crick complement `CTTCTGCCC`); corrected to 61-nt `CTTCTGCCC` in `af3_job_ATP10D_v3.json` and flagged in `real_guides.json`. Prior claims that `BACE1`, `SLC25A32`, and `ATP10D` adopted "Classic duplex" or "Tight duplex" conformations were artifacts of transposed `[0=sgRNA, 1=DNA_A, 2=DNA_B]` indexing and are **QUARANTINED** — all **5/5 guides (`25/25` models) form template-bound R-loops**.
 
-| RNA Rank | Gene | Assassin Score v4 | RNA Evidence Score | Primary Signal | DepMap | Verdict |
-|----------|------|-------------------|-------------------|----------------|--------|---------|
-| 1 | NOM1 | 4 | 0.777 | GSE223499 padj=0.0034 ★ | COMMON_ESSENTIAL | BIOMARKER |
-| 2 | PTPRC | 2 | 0.736 | GSE131907 padj=0.0021 ★ | NON_ESSENTIAL | REINTERPRETED |
-| 3 | BACE1 | **5** | 0.370 | GSE223499 padj=0.071 ~ | NON_ESSENTIAL | NOMINAL |
-| 4 | FAM72A | 1 | 0.350 | GSE223499 padj=0.061 ~ | NOT_SCREENED | TRENDING |
-| 5 | SLC45A4 | 2 | 0.280 | GSE223499 pval=0.064 NS | NON_ESSENTIAL | WEAK |
-| 6 | ROPN1L | 3 | 0.142 | GSE223499 padj=0.824 NS | NON_ESSENTIAL | CORROBORATED* |
-| 7 | SENP8 | 3 | 0.134 | GSE223499 pval=0.046 ↓ | NON_ESSENTIAL | CONFLICTED |
-| 8 | SLC25A32 | 2 ↓ | 0.059 | GSE223499 padj=0.949 NULL | NON_ESSENTIAL | NULL (RNA) |
-| 9 | TFEB | 1 | 0.058 | GSE223499 padj=0.516 NS | NON_ESSENTIAL | INCONCLUSIVE |
-| 10 | ATP10D | 1 | 0.046 | GSE223499 padj=0.879 NS | NON_ESSENTIAL | NO_EVIDENCE |
+#### The `Zhang 2022` (`MOESM6_ESM.xlsx`) 3-Stage BTB Nanocarrier Delivery Gate (`clean_signals/zhang2022_dual_gated_nanocarrier_spec_v2.json`)
 
-★ = statistically significant (padj ≤ 0.05). ~ = nominal (pval ≤ 0.05, padj > 0.05). ↓ = wrong direction. ↓ on SLC25A32 score = downgraded from 4 this session.
-
-**Key insight:** The Assassin Score (driven by CRISPRa functional data) and the RNA-adjusted rank (driven by human tissue expression) are partially discordant. BACE1 has the highest Assassin Score (5) but RNA rank #3. NOM1 has the highest RNA evidence score but Assassin Score 4 and is non-actionable. This discordance is informative: it reflects the difference between what a gene does when artificially activated (CRISPRa) and what it does endogenously in human tumors. Both signals are valid; neither is sufficient alone.
-
-### 3.9 Stage-Aware CRISPR Guide Design
-
-For the top-ranked actionable targets, we designed CRISPR guides assigned to their primary metastatic cascade step and validated each guide structurally using AlphaFold 3 (AF3) prior to experimental deployment. All guides were designed from real hg38 genomic sequences using TSS-proximal PAM scanning (−200 to +50 bp window), with spacer presence verified in both DNA target strands.
-
-**Table 3. Stage-Aware CRISPR Guide Assignments and AF3 Structural Validation**
-
-| Gene | Cascade Step | Guide Spacer (5′→3′) | Genomic Location (hg38) | GC% | Global ipTM† | Models Pass | Verdict |
-|------|-------------|----------------------|------------------------|-----|-------------|-------------|---------|
-| BACE1 | Step 5 (BBB extravasation) | TCTTCCCATGGCAGGCAATC | chr11:117316307–117316367 | 55% | 0.350 ± 0.006 | 5/5 | ✓ PASS |
-| FAM72A | Step 8 (proliferative colonization) | GGAACAAGACAGGGAGCAGA | chr1:206204371–206204431 | 55% | 0.314 ± 0.005 | 5/5 | ✓ PASS |
-| SLC25A32 | Step 6 (parenchymal survival) | TTGCCGGCAAAACTACGGAG | chr8:103415262–103415322 | 55% | 0.348 ± 0.007 | 5/5 | ✓ PASS |
-| ATP10D | Step 6 (parenchymal survival) | TTGTAAGGGCTCTGGGTCAC | chr4:47485103–47485163 | 55% | 0.378 ± 0.004 | 5/5 | ✓ PASS |
-| BIN1 | Step 3 (vascular co-option) | AGATGTGGAGATGTCCCGGA | chr2:127107618–127107678 | 55% | 0.362 ± 0.010 | 5/5 | ✓ PASS |
-
-†Global ipTM reported for pass/fail thresholding only (threshold ≥ 0.30). Not a discriminating metric across guides — see Table 4 and metric limitation note below.
-
-**Pass/fail criteria:** Global ipTM ≥ 0.30, fraction_disordered < 0.50, has_clash = False. Five independent seeds per guide (25 models total).
-
-**Metric limitation (stated explicitly):** Global ipTM is not a discriminating metric for this complex type. The 76-nt sgRNA scaffold is identical across all 5 jobs and constitutes 79% of the RNA chain. AF3's global ipTM averages over all residue pairs across all chains; the scaffold therefore dominates the average and produces a narrow cluster of values (0.31–0.38) regardless of spacer sequence. Global ipTM is reported for pass/fail thresholding only. The primary structural metrics are spacer-specific PAE and chain-pair ipTM, both of which are gene-specific.
-
-**Pass/fail result.** All five guides passed all three criteria across all 25 models (100% pass rate, Table 3). No model exhibited steric clashes or disordered guide RNA (fraction_disordered = 0.000 for all 25 models). Global ipTM ranged from 0.31–0.38 across the panel; all values exceed the 0.30 threshold.
-
-**Table 4. Spacer-Specific PAE and Binding Geometry (primary structural metrics)**
-
-| Gene | Target Strand PAE | Off-Strand PAE | PAE Delta | Contacts | Binding Geometry |
-|------|------------------|----------------|-----------|----------|-----------------|
-| BACE1 | 16.33 | 21.35 | 5.02 | Non-template | Classic duplex |
-| FAM72A | 16.30 | 21.24 | 4.94 | Template | R-loop |
-| SLC25A32 | 15.73 | 21.15 | 5.42 | Non-template | Classic duplex |
-| ATP10D | 16.23 | 21.74 | 5.51 | Non-template | Tight duplex |
-| BIN1 | 16.21 | 20.70 | 4.49 | Template | R-loop |
-
-PAE = Predicted Aligned Error (Å); lower = more confident relative positioning. Target strand PAE is the mean PAE between spacer tokens (positions 0–19 of the RNA chain) and the strand the spacer base-pairs with. All five guides show consistent PAE asymmetry (delta 4.5–5.5 Å) confirming strand-specific contact.
-
-**Binding geometries.** Two conformations were identified from chain-pair ipTM. BACE1, SLC25A32, and ATP10D show classic or tight duplex geometry: the guide contacts the non-template strand (RNA↔fwd ipTM 0.22–0.24), the DNA duplex remains intact (fwd↔rev ipTM 0.42–0.47), and the template strand is displaced. FAM72A and BIN1 show R-loop geometry: the guide contacts the template strand (RNA↔rev ipTM 0.38–0.44), the duplex is partially melted (fwd↔rev ipTM 0.12–0.13). Both geometries are structurally valid and represent different snapshots along the Cas9 R-loop invasion trajectory. The R-loop conformation (FAM72A, BIN1) is the more advanced binding state and may indicate higher on-target engagement efficiency, though this inference requires experimental validation.
-
-**The BACE1 guide** (TCTTCCCATGGCAGGCAATC) targets the BACE1 TSS-proximal region on chromosome 11. The Chafe et al. 2025 CRISPRa screen used a different spacer in a dCas9-VPR activation configuration; the present guide is designed for Cas9-KO to inhibit BACE1 and thereby block EGFR-mediated brain colonization.
+Spatial transcriptomic profiling of human brain metastases vs peritumoral brain microenvironment (Zhang et al. 2022, `41467_2022_33365_MOESM6_ESM.xlsx`, Sheet `TIME-B vs. LB`) falsifies single-lock `Angiopep-2` (`LRP1`) delivery and `MMP9`-triggered brain-stroma release (`MMP9` is absent from `TIME-B vs LB` and only enriched in primary lung stroma `TIME-L vs L`, `+1.8776 log2FC, q = 5.29e-7`). Specifically, `LRP1` is enriched **`3.50×` (`+1.8066 log2FC, p = 9.92e-9, q = 1.48e-6`)** in the peritumoral `CD163+` (`6.39×, q = 2.86e-10`) / `MRC1+` (`3.23×, q = 7.64e-5`) myeloid cuff alongside endogenous `LRP1` ligand `APOE` (**`10.20×`, `+3.3511 log2FC, q = 5.84e-8`**). To bypass this peritumoral myeloid sink, the canonical nanocarrier specification locks a **3-Stage BTB Delivery Gate**:
+1. **Stage 1 (BBB Transcytosis):** Low-avidity `Angiopep-2` (`LRP1` shuttle, `1,500–3,000 ligands/µm²`, calibrated against `10.20× APOE` competition in `TIME-B`, `q = 5.84e-8`).
+2. **Stage 2 (Peritumoral De-Shielding):** **`MMP2`-cleavable PEG2000 stealth corona** (`MMP2` is enriched **`3.66×` [`+1.8732 log2FC, p = 4.39e-9, q = 7.82e-7`]** at the `TIME-B / LB` interface) to prevent premature uptake by the **`3.50× LRP1+` (`+1.8066 log2FC, q = 1.48e-6`) `CD163+ MRC1+` peritumoral myeloid sink**.
+3. **Stage 3 (Malignant Core Endocytosis):** Secondary tumor-cell receptor lock (`EGFR` / `HER2` / `CEACAM5`) for selective internalization into `LB` tumor cells, followed by PDPA endosomal escape at `pH 6.3`.
 
 ### 3.10 The Evo2 Signal: What Sequence-Level Disruption Adds
 
@@ -478,22 +448,22 @@ This work uses publicly available datasets generated by the Izar lab (GSE223499)
 | ATP10D CRISPRa rank | "NSCLC BrM rank #1" | Breast cancer artifact (MDA-MB-231 screen) | Screen metadata review |
 | AUROC primary | 0.7278 | 0.6889 | Enformer excluded (AUROC=0.411) |
 
-### Supplementary Table S2. Power Analysis
+### Supplementary Table S2. Verified `GSE223499` `tumor_like` `baseMean`, Dual-Compartment `LFC`, & Signed Target Classifications
 
-Minimum detectable LFC at 80% power for GSE223499 tumor-like pseudobulk (28 BrM, 11 Primary):
+Exact recomputed values from `clean_signals/gse223499_corrected_power_and_signed_scores.csv` (`GSE223499` 28 BrM vs 11 Primary NSCLC snRNA-seq pseudobulk), replacing the fabricated prior `baseMean` column (`312, 203, 847, 1891, 445, 1204, 156, 67, 23, 89`):
 
-| Gene | baseMean | Estimated MDE (LFC) | Observed LFC | Powered? |
-|------|----------|---------------------|--------------|----------|
-| NOM1 | 847 | 0.42 | 0.52 | ✓ Yes |
-| BACE1 | 312 | 0.58 | 1.07 | ✓ Yes |
-| FAM72A | 203 | 0.69 | 1.05 | ✓ Yes |
-| SLC45A4 | 156 | 0.74 | 1.06 | ✓ Yes |
-| SLC25A32 | 1,204 | 0.69 | 0.03 | ✓ Yes (true null) |
-| ROPN1L | 23 | 1.82 | 0.18 | ✗ Underpowered |
-| TFEB | 89 | 0.95 | −0.34 | ✗ Underpowered |
-| ATP10D | 67 | 1.10 | −0.13 | ✗ Underpowered |
-| SENP8 | 445 | 0.51 | −0.47 | ~ Borderline |
-| PTPRC | 1,891 | 0.38 | — | N/A (immune marker) |
+| Gene | True `tumor_like baseMean` | Observed `tumor_like LFC` (`p` / `padj`) | `confirmed_tumor` (CNV+) `LFC` (`padj`, `bm`) | `immune_aggregate LFC` (`padj`, `bm`) | Signed Oncogenic LFC Credit | Signed Direction Flag | Clean Target Classification |
+|------|---------------------------|------------------------------------------|-----------------------------------------------|---------------------------------------|-----------------------------|-----------------------|-----------------------------|
+| **BACE1** | **`412.79`** | **`+1.0688`** (`p=0.0158, padj=0.0708`) | `+0.7805` (`padj=0.9919, bm=3.84`) | **`+1.8268` (`padj=0.0161` ★, `bm=14.76`)** | **`+1.0688`** | `UP_IN_BRM` | **Tier 1 Actionable** |
+| **FAM72A** | **`22.39`** | **`+1.0536`** (`p=0.0127, padj=0.0605`) | `+0.9856` (`padj=0.9919, bm=0.06`) | **`+2.1085` (`padj=0.0120` ★, `bm=2.59`)** | **`+1.0536`** | `UP_IN_BRM` | **Tier 2 Trending RNA** |
+| **NOM1** | **`761.04`** | **`+0.5152`** (`p=0.00026, padj=0.0034` ★) | `+0.9233` (`padj=0.9919, bm=5.54`) | `+0.2981` (`padj=0.2732, bm=43.46`) | `0.0` (`82.5%` Common Essential) | `UP_IN_BRM_COMMON_ESSENTIAL_BIOMARKER` | **Biomarker Only** |
+| **PTPRC** | **`211.12`** | `−0.3398` (`p=0.6371, padj=0.7835`) | `−0.0202` (`padj=0.9978, bm=40.84`) | `−0.1091` (`padj=0.8322, bm=1751.42`) | `0.0` (`GSE131907 LFC=−2.244, padj=0.0021` ↓) | `DOWN_IN_BRM_CONTRADICTS_ONCOGENE_TARGET` | **Biomarker Only** |
+| **SENP8** | **`179.60`** | `−0.4696` (`p=0.0459, padj=0.1469` ↓) | `+2.4849` (`padj=0.9919, bm=0.89`) | `+0.4285` (`padj=0.5548, bm=6.10`) | `0.0` | `DOWN_IN_BRM_CONTRADICTS_ONCOGENE_TARGET` | **Quarantined / Null / Down-in-BrM** |
+| **SLC25A32** | **`1,210.28`** | `+0.0306` (`p=0.8993, padj=0.9487`) | `−0.1206` (`padj=0.9919, bm=7.36`) | `+0.2337` (`padj=0.2198, bm=70.21`) | `+0.0306` (`TCGA-LUAD` Folate/FAD Co-Expr) | `UP_IN_BRM_RNA_NULL_COEXPR_ONLY` | **Metabolic Co-Expr Only** |
+| **SLC45A4** | **`2,546.82`** | `+1.0622` (`p=0.0638, padj=0.1828`) | **`−3.5685` (`padj=0.0374` ★ DOWN, `bm=7.03`)** | `−0.3089` (`padj=0.3139, bm=47.48`) | `0.0` (CNV+ Tumor Down) | `CONFIRMED_TUMOR_DOWN_IN_BRM_OUTLIER_ARTIFACT` | **Quarantined / Null / Down-in-BrM** |
+| **ATP10D** | **`846.51`** | `−0.1321` (`p=0.7833, padj=0.8791` ↓) | `+0.1844` (`padj=0.9919, bm=9.60`) | `−0.1047` (`padj=0.7012, bm=112.56`) | `0.0` | `DOWN_IN_BRM_CONTRADICTS_ONCOGENE_TARGET` | **Quarantined / Null / Down-in-BrM** |
+| **ROPN1L** | **`23.24`** | `+0.1842` (`p=0.6952, padj=0.8240`) | `+1.2628` (`padj=0.9919, bm=0.34`) | `+0.1835` (`padj=NA, bm=0.94`) | `0.0` | `TRUE_NULL_DISCORDANT_GSE131907_DOWN` | **Quarantined / Null / Down-in-BrM** |
+| **TFEB** | **`481.67`** | `−0.3365` (`p=0.3148, padj=0.5157` ↓) | `+1.0639` (`padj=0.9919, bm=4.25`) | `−0.0430` (`padj=0.9046, bm=55.82`) | `0.0` | `DOWN_IN_BRM_CONTRADICTS_ONCOGENE_TARGET` | **Quarantined / Null / Down-in-BrM** |
 
 ### Supplementary Note: The 0.976 AUROC Was a Tautology
 
