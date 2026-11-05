@@ -1,0 +1,398 @@
+{
+  "worker": "W1",
+  "dataset": "GSE165897",
+  "source": "Zhang et al. Sci Adv 2022",
+  "method_note": "pseudobulk sum UMI -> CPM -> log2(CPM+1) -> mean over manuscript gene sets",
+  "checks": [
+    {
+      "id": "W1-01",
+      "claim": "post_ddr rho=-0.711 p=0.014 (manuscript, 8R/3S implicit)",
+      "reproduced_manuscript_labels": {
+        "rho": -0.2091,
+        "p": 0.5372
+      },
+      "reproduced_corrected_labels": {
+        "rho": -0.2091,
+        "p": 0.5372
+      }
+    },
+    {
+      "id": "W1-02",
+      "claim": "post_pi3k rho=-0.683 p=0.020",
+      "reproduced_manuscript_labels": {
+        "rho": 0.1091,
+        "p": 0.7495
+      },
+      "reproduced_corrected_labels": {
+        "rho": 0.1091,
+        "p": 0.7495
+      }
+    },
+    {
+      "id": "W1-03",
+      "claim": "post_pi3k AUC=0.750 (binary R/S)",
+      "reproduced_manuscript_labels": 0.5,
+      "reproduced_corrected_labels": 0.3571
+    },
+    {
+      "id": "W1-04",
+      "claim": "post_ddr AUC=0.714",
+      "reproduced_manuscript_labels": 0.75,
+      "reproduced_corrected_labels": 0.5714
+    },
+    {
+      "id": "W1-05",
+      "claim": "delta pathways NOT predictive (rho<0.3,p>0.3)",
+      "reproduced_corrected_labels": {
+        "delta_ddr": {
+          "rho": -0.1091,
+          "p": 0.7495
+        },
+        "delta_pi3k": {
+          "rho": 0.0545,
+          "p": 0.8734
+        },
+        "delta_vegf": {
+          "rho": -0.0364,
+          "p": 0.9155
+        }
+      }
+    },
+    {
+      "id": "W1-06",
+      "claim": "KM high vs low post_ddr log-rank p=0.0124",
+      "reproduced_manuscript_labels": {
+        "logrank_p": 0.0721,
+        "median": 2.3847
+      },
+      "reproduced_corrected_labels": {
+        "logrank_p": 0.0721,
+        "median": 2.3847
+      }
+    },
+    {
+      "id": "W1-07",
+      "claim": "resistance split 8R/3S (manuscript) vs 7R/4S (corrected)",
+      "manuscript": {
+        "n_res": 8,
+        "n_sens": 3,
+        "EOC227": "resistant",
+        "map": {
+          "EOC1005": "resistant",
+          "EOC136": "sensitive",
+          "EOC153": "sensitive",
+          "EOC227": "resistant",
+          "EOC3": "resistant",
+          "EOC349": "resistant",
+          "EOC372": "sensitive",
+          "EOC443": "resistant",
+          "EOC540": "resistant",
+          "EOC733": "resistant",
+          "EOC87": "resistant"
+        }
+      },
+      "corrected": {
+        "n_res": 7,
+        "n_sens": 4,
+        "EOC227": "sensitive",
+        "map": {
+          "EOC1005": "resistant",
+          "EOC136": "sensitive",
+          "EOC153": "sensitive",
+          "EOC227": "sensitive",
+          "EOC3": "resistant",
+          "EOC349": "resistant",
+          "EOC372": "sensitive",
+          "EOC443": "resistant",
+          "EOC540": "resistant",
+          "EOC733": "resistant",
+          "EOC87": "resistant"
+        }
+      },
+      "verdict": "DISCREPANT: EOC227 PFI=230d>=180d is Sensitive per corrected labels"
+    }
+  ],
+  "pfi_days": {
+    "EOC1005": 65,
+    "EOC136": 520,
+    "EOC153": 393,
+    "EOC227": 230,
+    "EOC3": 14,
+    "EOC349": 36,
+    "EOC372": 460,
+    "EOC443": 177,
+    "EOC540": 126,
+    "EOC733": 83,
+    "EOC87": 30
+  },
+  "labels_corrected": {
+    "n_res": 7,
+    "n_sens": 4,
+    "EOC227": "sensitive",
+    "map": {
+      "EOC1005": "resistant",
+      "EOC136": "sensitive",
+      "EOC153": "sensitive",
+      "EOC227": "sensitive",
+      "EOC3": "resistant",
+      "EOC349": "resistant",
+      "EOC372": "sensitive",
+      "EOC443": "resistant",
+      "EOC540": "resistant",
+      "EOC733": "resistant",
+      "EOC87": "resistant"
+    }
+  },
+  "labels_manuscript": {
+    "n_res": 8,
+    "n_sens": 3,
+    "EOC227": "resistant",
+    "map": {
+      "EOC1005": "resistant",
+      "EOC136": "sensitive",
+      "EOC153": "sensitive",
+      "EOC227": "resistant",
+      "EOC3": "resistant",
+      "EOC349": "resistant",
+      "EOC372": "sensitive",
+      "EOC443": "resistant",
+      "EOC540": "resistant",
+      "EOC733": "resistant",
+      "EOC87": "resistant"
+    }
+  },
+  "umi_sha16": "d604a459df7e5e70",
+  "cellinfo_sha16": "7366ec57d7de3613",
+  "cellinfo_columns": [
+    "cell",
+    "sample",
+    "patient_id",
+    "treatment_phase",
+    "anatomical_location",
+    "cell_type",
+    "cell_subtype",
+    "nCount_RNA",
+    "nFeature_RNA",
+    "percent.mt"
+  ],
+  "phase_values": {
+    "post-NACT": 30025,
+    "treatment-naive": 21761
+  },
+  "n_cells": 51786,
+  "n_patients_cellinfo": 11,
+  "n_genes_matrix": 32847,
+  "pathway_genes_found": {
+    "AKT1": true,
+    "AKT2": true,
+    "AKT3": true,
+    "ANGPT1": true,
+    "ANGPT2": true,
+    "ATM": true,
+    "ATR": true,
+    "BRCA1": true,
+    "BRCA2": true,
+    "CHEK1": true,
+    "CHEK2": true,
+    "FANCA": true,
+    "FANCC": true,
+    "FANCD2": true,
+    "FLT1": true,
+    "FLT4": true,
+    "KDR": true,
+    "MTOR": true,
+    "PALB2": true,
+    "PARP1": true,
+    "PIK3CA": true,
+    "PIK3CB": true,
+    "PIK3CD": true,
+    "PTEN": true,
+    "RAD51": true,
+    "TP53": true,
+    "TSC1": true,
+    "TSC2": true,
+    "VEGFA": true,
+    "VEGFB": true,
+    "VEGFC": true,
+    "XRCC1": true
+  },
+  "pathway_genes_missing": [],
+  "pseudobulk_groups": 22,
+  "raw_patient_ids": [
+    "EOC1005",
+    "EOC136",
+    "EOC153",
+    "EOC227",
+    "EOC3",
+    "EOC349",
+    "EOC372",
+    "EOC443",
+    "EOC540",
+    "EOC733",
+    "EOC87"
+  ],
+  "patients_matched": [
+    "EOC1005",
+    "EOC136",
+    "EOC153",
+    "EOC227",
+    "EOC3",
+    "EOC349",
+    "EOC372",
+    "EOC443",
+    "EOC540",
+    "EOC733",
+    "EOC87"
+  ],
+  "n_paired_final": 11,
+  "stats_corrected_7R4S": {
+    "tag": "corrected_7R4S",
+    "n": 11,
+    "n_res": 7,
+    "n_sens": 4,
+    "corr": {
+      "pre_ddr": {
+        "rho": -0.2364,
+        "p": 0.4841
+      },
+      "post_ddr": {
+        "rho": -0.2091,
+        "p": 0.5372
+      },
+      "delta_ddr": {
+        "rho": -0.1091,
+        "p": 0.7495
+      },
+      "pre_pi3k": {
+        "rho": -0.0091,
+        "p": 0.9788
+      },
+      "post_pi3k": {
+        "rho": 0.1091,
+        "p": 0.7495
+      },
+      "delta_pi3k": {
+        "rho": 0.0545,
+        "p": 0.8734
+      },
+      "pre_vegf": {
+        "rho": -0.1364,
+        "p": 0.6893
+      },
+      "post_vegf": {
+        "rho": -0.1545,
+        "p": 0.65
+      },
+      "delta_vegf": {
+        "rho": -0.0364,
+        "p": 0.9155
+      },
+      "post_composite_equal": {
+        "rho": -0.1636,
+        "p": 0.6307
+      },
+      "post_composite_weighted": {
+        "rho": -0.2545,
+        "p": 0.45
+      }
+    },
+    "auc": {
+      "pre_ddr": 0.6786,
+      "post_ddr": 0.5714,
+      "delta_ddr": 0.5,
+      "pre_pi3k": 0.5357,
+      "post_pi3k": 0.3571,
+      "delta_pi3k": 0.4643,
+      "pre_vegf": 0.4643,
+      "post_vegf": 0.5357,
+      "delta_vegf": 0.6071,
+      "post_composite_equal": 0.4643,
+      "post_composite_weighted": 0.5357
+    },
+    "km": {
+      "post_ddr": {
+        "logrank_p": 0.0721,
+        "median": 2.3847
+      },
+      "post_composite_equal": {
+        "logrank_p": 0.8869,
+        "median": 2.7116
+      }
+    }
+  },
+  "stats_manuscript_8R3S": {
+    "tag": "manuscript_8R3S",
+    "n": 11,
+    "n_res": 8,
+    "n_sens": 3,
+    "corr": {
+      "pre_ddr": {
+        "rho": -0.2364,
+        "p": 0.4841
+      },
+      "post_ddr": {
+        "rho": -0.2091,
+        "p": 0.5372
+      },
+      "delta_ddr": {
+        "rho": -0.1091,
+        "p": 0.7495
+      },
+      "pre_pi3k": {
+        "rho": -0.0091,
+        "p": 0.9788
+      },
+      "post_pi3k": {
+        "rho": 0.1091,
+        "p": 0.7495
+      },
+      "delta_pi3k": {
+        "rho": 0.0545,
+        "p": 0.8734
+      },
+      "pre_vegf": {
+        "rho": -0.1364,
+        "p": 0.6893
+      },
+      "post_vegf": {
+        "rho": -0.1545,
+        "p": 0.65
+      },
+      "delta_vegf": {
+        "rho": -0.0364,
+        "p": 0.9155
+      },
+      "post_composite_equal": {
+        "rho": -0.1636,
+        "p": 0.6307
+      },
+      "post_composite_weighted": {
+        "rho": -0.2545,
+        "p": 0.45
+      }
+    },
+    "auc": {
+      "pre_ddr": 0.875,
+      "post_ddr": 0.75,
+      "delta_ddr": 0.4167,
+      "pre_pi3k": 0.7083,
+      "post_pi3k": 0.5,
+      "delta_pi3k": 0.4167,
+      "pre_vegf": 0.375,
+      "post_vegf": 0.4167,
+      "delta_vegf": 0.5,
+      "post_composite_equal": 0.5417,
+      "post_composite_weighted": 0.6667
+    },
+    "km": {
+      "post_ddr": {
+        "logrank_p": 0.0721,
+        "median": 2.3847
+      },
+      "post_composite_equal": {
+        "logrank_p": 0.8869,
+        "median": 2.7116
+      }
+    }
+  }
+}

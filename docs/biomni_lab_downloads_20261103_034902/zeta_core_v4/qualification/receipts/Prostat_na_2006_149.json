@@ -1,0 +1,5443 @@
+{
+  "caslib": "Prostat_na_2006_149",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "PSA"
+  ],
+  "indication": "prostate",
+  "longitudinal_aggregates": [
+    {
+      "analyte_columns": [
+        "LBTEST",
+        "LBTESTCD"
+      ],
+      "path": "dataFiles_857/LabValue_validation.csv",
+      "patient_column": null,
+      "reason": "missing patient, numeric value, or time column",
+      "status": "BLOCKED",
+      "time_column": null,
+      "unit_column": "LBSTRESU",
+      "value_column": "LBSTRESN"
+    },
+    {
+      "analyte_columns": [
+        "LBTEST",
+        "LBTESTCD"
+      ],
+      "path": "dataFiles_858/LabValue_leaderboard.csv",
+      "patient_column": null,
+      "reason": "missing patient, numeric value, or time column",
+      "status": "BLOCKED",
+      "time_column": null,
+      "unit_column": "LBSTRESU",
+      "value_column": "LBSTRESN"
+    },
+    {
+      "analyte_columns": [
+        "LBTEST",
+        "LBTESTCD"
+      ],
+      "path": "dataFiles_859/LabValue_training.csv",
+      "patient_column": null,
+      "reason": "missing patient, numeric value, or time column",
+      "status": "BLOCKED",
+      "time_column": null,
+      "unit_column": "LBSTRESU",
+      "value_column": "LBSTRESN"
+    }
+  ],
+  "marker_ids_found": [
+    "PSA"
+  ],
+  "n_tables_failed": 3,
+  "n_tables_scanned": 18,
+  "n_tabular_files": 18,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "c6dd3c479709ebe672deab9de52580c9be8272223394a8dc43f950155b5b3ac5",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LKADT_P",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DEATH",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DISCONT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ENDTRS_C",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ENTRT_PC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PER_REF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LKADT_REF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LKADT_PER",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GLEAS_DX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TSTAG_DX",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AGEGRP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AGEGRP2",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RACE_C",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BMI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HEIGHTBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HGTBLCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "WEIGHTBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "WGTBLCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "REGION_C",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SMOKE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SMOKFREQ",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SMOKSTAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ECOG_C",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TRT1_ID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TRT2_ID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TRT3_ID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ALP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ALT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AST",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CREAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LDH",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "NEU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PLT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PSA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TBILI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TESTO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "WBC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CREACL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "NA.",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PHOS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ALB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TPRO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RBC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LYM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BUN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CCRC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GLU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CREACLCA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "NON_TARGET",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TARGET",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BONE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RECTAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LYMPH_NODES",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "KIDNEYS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LUNGS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LIVER",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PLEURA",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "OTHER",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PROSTATE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ADRENAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BLADDER",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PERITONEUM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "COLON",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HEAD_AND_NECK",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SOFT_TISSUE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STOMACH",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PANCREAS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "THYROID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ABDOMINAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ORCHIDECTOMY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PROSTATECTOMY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TURP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LYMPHADENECTOMY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SPINAL_CORD_SURGERY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BILATERAL_ORCHIDECTOMY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PRIOR_RADIOTHERAPY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ANALGESICS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ANTI_ANDROGENS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GLUCOCORTICOID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GONADOTROPIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BISPHOSPHONATE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CORTICOSTEROID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "IMIDAZOLE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ACE_INHIBITORS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BETA_BLOCKING",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HMG_COA_REDUCT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ESTROGENS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ANTI_ESTROGENS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ARTTHROM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CEREBACC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CHF",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DVT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DIAB",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GASTREFL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GIBLEED",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MI",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PUD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PULMEMB",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PATHFRAC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SPINCOMP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "COPD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHBLOOD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHCARD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHCONGEN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHEAR",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHENDO",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHEYE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHGASTRO",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHGEN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHHEPATO",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHIMMUNE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHINFECT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHINJURY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHINVEST",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHMETAB",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHMUSCLE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHNEOPLA",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHNERV",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHPSYCH",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHRENAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHRESP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSKIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSOCIAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSURG",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHVASC",
+          "type": "varchar"
+        }
+      ],
+      "field_candidates": {
+        "age": [
+          "AGEGRP",
+          "AGEGRP2"
+        ],
+        "analyte": [],
+        "ecog": [
+          "ECOG_C"
+        ],
+        "endpoint": [
+          "DEATH"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [
+          "ENTRT_PC",
+          "TRT1_ID",
+          "TRT2_ID",
+          "TRT3_ID"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 313,
+      "path": "dataFiles_857/CoreTable_validation.csv",
+      "size": 158533,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LBTEST",
+          "n_unique": 51,
+          "values": [
+            "ACID URATE CRYSTALS",
+            "ALBUMIN",
+            "ALKALINE PHOSPHATASE",
+            "ALT",
+            "AMORPHOUS CRYSTALS",
+            "AMORPHOUS URATE CRYSTALS",
+            "AST",
+            "BACTERIA",
+            "BASOPHILS",
+            "BASOPHILS/LEUKOCYTES",
+            "BNP",
+            "CALCIUM",
+            "CALCIUM OXALATE CRYSTALS",
+            "CREATININE",
+            "CREATININE CLEARANCE",
+            "EOSINOPHILS",
+            "EOSINOPHILS/LEUKOCYTES",
+            "EPITHELIAL CELLS",
+            "FREE PROSTATE SPECIFIC ANTIGEN",
+            "GRANULAR CASTS",
+            "HEMATOCRIT",
+            "HEMOGLOBIN",
+            "HYALINE CASTS",
+            "LACTATE DEHYDROGENASE",
+            "LYMPHOCYTES",
+            "LYMPHOCYTES/LEUKOCYTES",
+            "MAGNESIUM",
+            "MCH",
+            "MCV",
+            "MONOCYTES",
+            "MONOCYTES/LEUKOCYTES",
+            "NEUTROPHILS",
+            "NEUTROPHILS/LEUKOCYTES",
+            "PHOSPHORUS",
+            "PLATELET COUNT",
+            "POTASIUM",
+            "PROSTATE SPECIFIC ANTIGEN",
+            "RED BLOOD CELLS",
+            "RED BLOOD CELLS (URINE)",
+            "SODIUM",
+            "SPECIFIC GRAVITY",
+            "SULFA CRYSTALS",
+            "TESTOSTERONE",
+            "TOTAL BILIRUBIN",
+            "TOTAL PROTEIN",
+            "TRIPLE PHOSPHATE CRYSTALS",
+            "UREA",
+            "URIC ACID CRYSTALS",
+            "URINE MICROSCOPIC",
+            "WHITE BLOOD CELLS",
+            "YEAST (URINE)"
+          ]
+        },
+        {
+          "column": "LBTESTCD",
+          "n_unique": 52,
+          "values": [
+            ".",
+            "ALB",
+            "ALP",
+            "ALT",
+            "AST",
+            "BACT",
+            "BASO",
+            "BASOLE",
+            "BNP",
+            "CA",
+            "CREACL",
+            "CREAT",
+            "CSGRAN",
+            "CSHYAL",
+            "CYACIDU",
+            "CYAMORPH",
+            "CYAMPURT",
+            "CYCAOXA",
+            "CYSULFA",
+            "CYTRPHOS",
+            "CYURIAC",
+            "EOS",
+            "EOSLE",
+            "EPIC",
+            "HB",
+            "HCT",
+            "K",
+            "LDH",
+            "LYM",
+            "LYMLE",
+            "MCH",
+            "MCV",
+            "MG",
+            "MICRO",
+            "MONO",
+            "MONOLE",
+            "NEU",
+            "NEULE",
+            "PHOS",
+            "PLT",
+            "PSA",
+            "PSAFR",
+            "RBC",
+            "RBCUR",
+            "SPGRV",
+            "TBILI",
+            "TESTO",
+            "TPRO",
+            "UREA",
+            "WBC",
+            "WBCUR",
+            "YEAST"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTEST",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORRES",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTOXGRC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORNRLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORNRHI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBMETHOD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRESC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTNRLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTNRHI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTESTCD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBBLFL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTOXGR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTOXGRN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBNRIND",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBNRIND2",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBACPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTX",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBDRVFL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRECI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTREIU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRENI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORNRU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTNRC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBDT_PC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PER_REF_C",
+          "type": "varchar"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LBTEST",
+          "LBTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [
+          "LBORRESU",
+          "LBSTRESU"
+        ],
+        "value": [
+          "LBSTRESN"
+        ]
+      },
+      "marker_hits": [
+        {
+          "column": "LBTEST",
+          "marker_id": "PSA",
+          "matched_value": "FREE PROSTATE SPECIFIC ANTIGEN"
+        },
+        {
+          "column": "LBTEST",
+          "marker_id": "PSA",
+          "matched_value": "PROSTATE SPECIFIC ANTIGEN"
+        },
+        {
+          "column": "LBTESTCD",
+          "marker_id": "PSA",
+          "matched_value": "PSA"
+        }
+      ],
+      "n_rows": 12065,
+      "path": "dataFiles_857/LabValue_validation.csv",
+      "size": 2202754,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LSTESTCD",
+          "n_unique": 2,
+          "values": [
+            "LENGTH",
+            "PRESENCE"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "PER_REF_C",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSTEST",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSLOC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSLOC2",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSORRES",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSORRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSMETHOD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSDT_P",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSEDT_P",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSNO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSTAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSREASND",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSLOC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSTRESC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSTRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSTESTCD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSCOM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSDT_PC",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LSTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "LSSTRESN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 1124,
+      "path": "dataFiles_857/LesionMeasure_validation.csv",
+      "size": 188105,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHTERM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHDECOD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHBODSYS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSTDT_P",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHLLT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHHLT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHHLGT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHDICTV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHOCCUR",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHPRESP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHENRF",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHENRFO",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISIT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHCONTR",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHPTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSOC1FL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSOCCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHHLGTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHHLTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHLLTCD",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1834,
+      "path": "dataFiles_857/MedHistory_validation.csv",
+      "size": 490960,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMTRT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDECOD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMINTENT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMSCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMSSCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMPRE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cmatc4",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cmatc3",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cmatc2",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMATC1",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDICTV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDURN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDURU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDOSFRQ",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDOSTOT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDOSTXT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDOSU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMROUTE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMPREREP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMPRN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CM_AE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMATC1CD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMATC2CD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMATC3CD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMATC4CD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMATCCD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMRECNO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMSEQ1",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMSEQ2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMMODIFY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMSTDT_PC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMENDT_PC",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [
+          "CMTRT"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2145,
+      "path": "dataFiles_857/PriorMed_validation.csv",
+      "size": 492814,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "VSTESTCD",
+          "n_unique": 3,
+          "values": [
+            "DIABP",
+            "PULSE",
+            "SYSBP"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "PER_REF_C",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSTEST",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSORRES",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSORRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSSTRESC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSSTRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSBLFL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSACTPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSACTPTN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSDRVFL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSTESTCD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSDT_PC",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "VSTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "VSSTRESN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 915,
+      "path": "dataFiles_857/VitalSign_validation.csv",
+      "size": 106560,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LKADT_P",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DEATH",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DISCONT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ENDTRS_C",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ENTRT_PC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PER_REF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LKADT_REF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LKADT_PER",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GLEAS_DX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TSTAG_DX",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AGEGRP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AGEGRP2",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RACE_C",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BMI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HEIGHTBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HGTBLCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "WEIGHTBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "WGTBLCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "REGION_C",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SMOKE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SMOKFREQ",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SMOKSTAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ECOG_C",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TRT1_ID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TRT2_ID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TRT3_ID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ALP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ALT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AST",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CREAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LDH",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "NEU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PLT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PSA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TBILI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TESTO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "WBC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CREACL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "NA.",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PHOS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ALB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TPRO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RBC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LYM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BUN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CCRC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GLU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CREACLCA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "NON_TARGET",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TARGET",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BONE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RECTAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LYMPH_NODES",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "KIDNEYS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LUNGS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LIVER",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PLEURA",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "OTHER",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PROSTATE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ADRENAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BLADDER",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PERITONEUM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "COLON",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HEAD_AND_NECK",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SOFT_TISSUE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STOMACH",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PANCREAS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "THYROID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ABDOMINAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ORCHIDECTOMY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PROSTATECTOMY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TURP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LYMPHADENECTOMY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SPINAL_CORD_SURGERY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BILATERAL_ORCHIDECTOMY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PRIOR_RADIOTHERAPY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ANALGESICS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ANTI_ANDROGENS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GLUCOCORTICOID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GONADOTROPIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BISPHOSPHONATE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CORTICOSTEROID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "IMIDAZOLE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ACE_INHIBITORS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BETA_BLOCKING",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HMG_COA_REDUCT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ESTROGENS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ANTI_ESTROGENS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ARTTHROM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CEREBACC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CHF",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DVT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DIAB",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GASTREFL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GIBLEED",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MI",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PUD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PULMEMB",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PATHFRAC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SPINCOMP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "COPD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHBLOOD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHCARD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHCONGEN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHEAR",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHENDO",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHEYE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHGASTRO",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHGEN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHHEPATO",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHIMMUNE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHINFECT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHINJURY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHINVEST",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHMETAB",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHMUSCLE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHNEOPLA",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHNERV",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHPSYCH",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHRENAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHRESP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSKIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSOCIAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSURG",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHVASC",
+          "type": "varchar"
+        }
+      ],
+      "field_candidates": {
+        "age": [
+          "AGEGRP",
+          "AGEGRP2"
+        ],
+        "analyte": [],
+        "ecog": [
+          "ECOG_C"
+        ],
+        "endpoint": [
+          "DEATH"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [
+          "ENTRT_PC",
+          "TRT1_ID",
+          "TRT2_ID",
+          "TRT3_ID"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 157,
+      "path": "dataFiles_858/CoreTable_leaderboard.csv",
+      "size": 79842,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LBTEST",
+          "n_unique": 48,
+          "values": [
+            "ALBUMIN",
+            "ALKALINE PHOSPHATASE",
+            "ALT",
+            "AMORPHOUS CRYSTALS",
+            "AMORPHOUS URATE CRYSTALS",
+            "AST",
+            "BACTERIA",
+            "BASOPHILS",
+            "BASOPHILS/LEUKOCYTES",
+            "BNP",
+            "CALCIUM",
+            "CALCIUM OXALATE CRYSTALS",
+            "CREATININE",
+            "CREATININE CLEARANCE",
+            "EOSINOPHILS",
+            "EOSINOPHILS/LEUKOCYTES",
+            "EPITHELIAL CELLS",
+            "FREE PROSTATE SPECIFIC ANTIGEN",
+            "HEMATOCRIT",
+            "HEMOGLOBIN",
+            "HYALINE CASTS",
+            "LACTATE DEHYDROGENASE",
+            "LYMPHOCYTES",
+            "LYMPHOCYTES/LEUKOCYTES",
+            "MAGNESIUM",
+            "MCH",
+            "MCV",
+            "MONOCYTES",
+            "MONOCYTES/LEUKOCYTES",
+            "NEUTROPHILS",
+            "NEUTROPHILS/LEUKOCYTES",
+            "PHOSPHORUS",
+            "PLATELET COUNT",
+            "POTASIUM",
+            "PROSTATE SPECIFIC ANTIGEN",
+            "RED BLOOD CELLS",
+            "RED BLOOD CELLS (URINE)",
+            "SODIUM",
+            "SPECIFIC GRAVITY",
+            "TESTOSTERONE",
+            "TOTAL BILIRUBIN",
+            "TOTAL PROTEIN",
+            "TRIPLE PHOSPHATE CRYSTALS",
+            "UREA",
+            "URIC ACID CRYSTALS",
+            "URINE MICROSCOPIC",
+            "WHITE BLOOD CELLS",
+            "YEAST (URINE)"
+          ]
+        },
+        {
+          "column": "LBTESTCD",
+          "n_unique": 49,
+          "values": [
+            ".",
+            "ALB",
+            "ALP",
+            "ALT",
+            "AST",
+            "BACT",
+            "BASO",
+            "BASOLE",
+            "BNP",
+            "CA",
+            "CREACL",
+            "CREAT",
+            "CSHYAL",
+            "CYAMORPH",
+            "CYAMPURT",
+            "CYCAOXA",
+            "CYTRPHOS",
+            "CYURIAC",
+            "EOS",
+            "EOSLE",
+            "EPIC",
+            "HB",
+            "HCT",
+            "K",
+            "LDH",
+            "LYM",
+            "LYMLE",
+            "MCH",
+            "MCV",
+            "MG",
+            "MICRO",
+            "MONO",
+            "MONOLE",
+            "NEU",
+            "NEULE",
+            "PHOS",
+            "PLT",
+            "PSA",
+            "PSAFR",
+            "RBC",
+            "RBCUR",
+            "SPGRV",
+            "TBILI",
+            "TESTO",
+            "TPRO",
+            "UREA",
+            "WBC",
+            "WBCUR",
+            "YEAST"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTEST",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORRES",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTOXGRC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORNRLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORNRHI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBMETHOD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRESC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTNRLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTNRHI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTESTCD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBBLFL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTOXGR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTOXGRN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBNRIND",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBNRIND2",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBACPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTX",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBDRVFL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRECI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTREIU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRENI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORNRU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTNRC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBDT_PC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PER_REF_C",
+          "type": "varchar"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LBTEST",
+          "LBTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [
+          "LBORRESU",
+          "LBSTRESU"
+        ],
+        "value": [
+          "LBSTRESN"
+        ]
+      },
+      "marker_hits": [
+        {
+          "column": "LBTEST",
+          "marker_id": "PSA",
+          "matched_value": "FREE PROSTATE SPECIFIC ANTIGEN"
+        },
+        {
+          "column": "LBTEST",
+          "marker_id": "PSA",
+          "matched_value": "PROSTATE SPECIFIC ANTIGEN"
+        },
+        {
+          "column": "LBTESTCD",
+          "marker_id": "PSA",
+          "matched_value": "PSA"
+        }
+      ],
+      "n_rows": 6144,
+      "path": "dataFiles_858/LabValue_leaderboard.csv",
+      "size": 1121340,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LSTESTCD",
+          "n_unique": 2,
+          "values": [
+            "LENGTH",
+            "PRESENCE"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "PER_REF_C",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSTEST",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSLOC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSLOC2",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSORRES",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSORRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSMETHOD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSDT_P",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSEDT_P",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSNO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSTAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSREASND",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSLOC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSTRESC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSTRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSTESTCD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSCOM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSDT_PC",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LSTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "LSSTRESN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 575,
+      "path": "dataFiles_858/LesionMeasure_leaderboard.csv",
+      "size": 96266,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHTERM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHDECOD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHBODSYS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSTDT_P",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHLLT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHHLT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHHLGT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHDICTV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHOCCUR",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHPRESP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHENRF",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHENRFO",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISIT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHCONTR",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHPTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSOC1FL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSOCCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHHLGTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHHLTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHLLTCD",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 820,
+      "path": "dataFiles_858/MedHistory_leaderboard.csv",
+      "size": 218400,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMTRT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDECOD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMINTENT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMSCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMSSCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMPRE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cmatc4",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cmatc3",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cmatc2",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMATC1",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDICTV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDURN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDURU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDOSFRQ",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDOSTOT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDOSTXT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMDOSU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMROUTE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMPREREP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMPRN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CM_AE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMATC1CD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMATC2CD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMATC3CD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMATC4CD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMATCCD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMRECNO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMSEQ1",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMSEQ2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMMODIFY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMSTDT_PC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CMENDT_PC",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [
+          "CMTRT"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1064,
+      "path": "dataFiles_858/PriorMed_leaderboard.csv",
+      "size": 244348,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "VSTESTCD",
+          "n_unique": 3,
+          "values": [
+            "DIABP",
+            "PULSE",
+            "SYSBP"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "PER_REF_C",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSTEST",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSORRES",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSORRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSSTRESC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSSTRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSBLFL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSACTPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSACTPTN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSDRVFL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSTESTCD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VSDT_PC",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "VSTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "VSSTRESN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 462,
+      "path": "dataFiles_858/VitalSign_leaderboard.csv",
+      "size": 53908,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LKADT_P",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DEATH",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DISCONT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ENDTRS_C",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ENTRT_PC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PER_REF",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LKADT_REF",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LKADT_PER",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GLEAS_DX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TSTAG_DX",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AGEGRP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AGEGRP2",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RACE_C",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BMI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HEIGHTBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HGTBLCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "WEIGHTBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "WGTBLCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "REGION_C",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SMOKE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SMOKFREQ",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SMOKSTAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ECOG_C",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TRT1_ID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TRT2_ID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TRT3_ID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ALP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ALT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AST",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CREAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LDH",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "NEU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PLT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PSA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TBILI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TESTO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "WBC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CREACL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "NA.",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PHOS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ALB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TPRO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RBC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LYM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BUN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CCRC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GLU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CREACLCA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "NON_TARGET",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TARGET",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BONE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RECTAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LYMPH_NODES",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "KIDNEYS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LUNGS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LIVER",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PLEURA",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "OTHER",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PROSTATE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ADRENAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BLADDER",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PERITONEUM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "COLON",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HEAD_AND_NECK",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SOFT_TISSUE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STOMACH",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PANCREAS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "THYROID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ABDOMINAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ORCHIDECTOMY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PROSTATECTOMY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "TURP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LYMPHADENECTOMY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SPINAL_CORD_SURGERY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BILATERAL_ORCHIDECTOMY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PRIOR_RADIOTHERAPY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ANALGESICS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ANTI_ANDROGENS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GLUCOCORTICOID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GONADOTROPIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BISPHOSPHONATE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CORTICOSTEROID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "IMIDAZOLE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ACE_INHIBITORS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BETA_BLOCKING",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HMG_COA_REDUCT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ESTROGENS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ANTI_ESTROGENS",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ARTTHROM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CEREBACC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CHF",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DVT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DIAB",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GASTREFL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GIBLEED",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MI",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PUD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PULMEMB",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PATHFRAC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SPINCOMP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "COPD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHBLOOD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHCARD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHCONGEN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHEAR",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHENDO",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHEYE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHGASTRO",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHGEN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHHEPATO",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHIMMUNE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHINFECT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHINJURY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHINVEST",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHMETAB",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHMUSCLE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHNEOPLA",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHNERV",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHPSYCH",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHRENAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHRESP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSKIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSOCIAL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHSURG",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MHVASC",
+          "type": "varchar"
+        }
+      ],
+      "field_candidates": {
+        "age": [
+          "AGEGRP",
+          "AGEGRP2"
+        ],
+        "analyte": [],
+        "ecog": [
+          "ECOG_C"
+        ],
+        "endpoint": [
+          "DEATH"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [
+          "ENTRT_PC",
+          "TRT1_ID",
+          "TRT2_ID",
+          "TRT3_ID"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1600,
+      "path": "dataFiles_859/CoreTable_training.csv",
+      "size": 883200,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LBTEST",
+          "n_unique": 102,
+          "values": [
+            "ABS ATYPICAL LYMPHS",
+            "ABS BANDS",
+            "ABS METAMYELOCYTES",
+            "ABS MYELOCYTES",
+            "ALBUMIN",
+            "ALBUMIN (URINE)",
+            "ALKALINE PHOSPHATASE",
+            "ALPHA 1 GLOBULIN",
+            "ALPHA 2 GLOBULIN",
+            "ALT",
+            "AMORPHOUS PHOSPHATE CRYSTAL",
+            "AMORPHOUS URATE CRYSTALS",
+            "AST",
+            "ATYPICAL LYMPHS",
+            "BACTERIA",
+            "BASOPHILS",
+            "BASOPHILS/LEUKOCYTES",
+            "BETA GLOBULIN",
+            "BICARBONATE",
+            "BLOOD",
+            "BLOOD UREA NITROGEN",
+            "C-REACTIVE PROTEIN",
+            "CALCIUM",
+            "CALCIUM IONIZED",
+            "CALCIUM OXALATE CRYSTALS",
+            "CALCULATED CREATININE CLEARANCE",
+            "CHLORIDE",
+            "CHLORIDE (URINE)",
+            "COARSELY GRANULAR CAST",
+            "CORRECTED CALCIUM",
+            "CPK",
+            "CREATINE KINASE MB FRACTION",
+            "CREATINE KINASE MB FRACTION (MASS)",
+            "CREATININE",
+            "CREATININE (URINE)",
+            "CREATININE CLEARANCE",
+            "CREATININE CLEARANCE CALCUL. (COCKCROFT AND GAULT)",
+            "EOSINOPHILS",
+            "EOSINOPHILS/LEUKOCYTES",
+            "FERRITIN",
+            "FINELY GRANULAR CAST",
+            "FOLATE",
+            "GAMMA GLOBULIN",
+            "GLUCOSE",
+            "HAPTOGLOBIN",
+            "HEMATOCRIT",
+            "HEMOGLOBIN",
+            "HEMOGLOBIN (QUALITATIVE)",
+            "HYALINE CASTS",
+            "INR",
+            "IRON",
+            "KETONES",
+            "LACTATE DEHYDROGENASE",
+            "LYMPHOCYTES",
+            "LYMPHOCYTES/LEUKOCYTES",
+            "MAGNESIUM",
+            "METAMYELOCYTES",
+            "MONOCYTES",
+            "MONOCYTES/LEUKOCYTES",
+            "MUCOUS",
+            "MYELOCYTES",
+            "MYOGLOBIN",
+            "NEUTROPHILS",
+            "NEUTROPHILS BAND FORM/LEUKOCYTES",
+            "NEUTROPHILS/LEUKOCYTES",
+            "pH",
+            "PHOSPHORUS",
+            "PLATELET COUNT",
+            "POTASIUM",
+            "POTASSIUM (URINE)",
+            "PROSTATE SPECIFIC ANTIGEN",
+            "PROTEIN (URINE)",
+            "PROTHROMBIN TIME",
+            "RED BLOOD CELLS",
+            "RED BLOOD CELLS (QUALITATIVE)",
+            "RED BLOOD CELLS (URINE)",
+            "RETICULOCYTES",
+            "SODIUM",
+            "SODIUM (URINE)",
+            "SPECIFIC GRAVITY",
+            "SQUAMOUS EPITHELIAL CELLS",
+            "TESTOSTERONE",
+            "TOTAL BILIRUBIN",
+            "TOTAL IRON BINDING CAPACITY",
+            "TOTAL PROTEIN",
+            "TRANSFERRIN SATURATION",
+            "TRIPLE PHOSPHATE CRYSTALS",
+            "TROPONIN I",
+            "TROPONIN T",
+            "TSH",
+            "UREA",
+            "URIC ACID",
+            "URIC ACID CRYSTALS",
+            "URINARY VOLUME",
+            "URINE MICROSCOPIC",
+            "URINE PROTEIN CREATININE RATIO",
+            "UROBILINOGEN",
+            "VITAMIN B12",
+            "WHITE BLOOD CELL COUNT (URINE)",
+            "WHITE BLOOD CELLS",
+            "WHITE BLOOD CELLS (QUALITATIVE)",
+            "YEAST (URINE)"
+          ]
+        },
+        {
+          "column": "LBTESTCD",
+          "n_unique": 103,
+          "values": [
+            ".",
+            "A1G",
+            "A2G",
+            "ALB",
+            "ALBUR",
+            "ALP",
+            "ALT",
+            "AST",
+            "BACT",
+            "BASO",
+            "BASOLE",
+            "BG",
+            "BUN",
+            "CA",
+            "CAI",
+            "CCA",
+            "CCRC",
+            "CL",
+            "CLUR",
+            "CPK",
+            "CPKMB",
+            "CPKMBM",
+            "CREACL",
+            "CREACLCA",
+            "CREAT",
+            "CREATUR",
+            "CRP",
+            "CSGRANC",
+            "CSGRANF",
+            "CSHYAL",
+            "CYAMPPH",
+            "CYAMPURT",
+            "CYCAOXA",
+            "CYTRPHOS",
+            "CYURIAC",
+            "EOS",
+            "EOSLE",
+            "EPISQCE",
+            "FERRITIN",
+            "FOLATE",
+            "GG",
+            "GLU",
+            "GLUUR",
+            "HB",
+            "HBQL",
+            "HCO3",
+            "HCT",
+            "HP",
+            "IBCT",
+            "INR",
+            "IRON",
+            "K",
+            "KETONES",
+            "KUR",
+            "LDH",
+            "LYM",
+            "LYMAT",
+            "LYMATLE",
+            "LYMLE",
+            "MB",
+            "METAMY",
+            "METAMYLE",
+            "MG",
+            "MICRO",
+            "MONO",
+            "MONOLE",
+            "MUCTHR",
+            "MYCY",
+            "MYCYLE",
+            "NAUR",
+            "NEU",
+            "NEULE",
+            "NEUTB",
+            "NEUTBLE",
+            "OCCBLD",
+            "PH",
+            "PHOS",
+            "PLT",
+            "PROTUR",
+            "PSA",
+            "PTIM",
+            "RBC",
+            "RBCQL",
+            "RBCUR",
+            "RETI",
+            "SPGRV",
+            "TBILI",
+            "TESTO",
+            "TPRO",
+            "TRANSSAT",
+            "TROPI",
+            "TROPT",
+            "TSH",
+            "UPCR",
+            "URAC",
+            "UREA",
+            "UROBIL",
+            "UVOL",
+            "VITB12",
+            "WBC",
+            "WBCQL",
+            "WBCUR",
+            "YEAST"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTEST",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORRES",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTOXGRC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORNRLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORNRHI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBMETHOD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISIT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRESC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTNRLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTNRHI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTESTCD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBBLFL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTOXGR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTOXGRN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBNRIND",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBNRIND2",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBACPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBTX",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBDRVFL",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRECI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTREIU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRENI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBORNRU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBSTNRC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LBDT_PC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PER_REF_C",
+          "type": "varchar"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LBTEST",
+          "LBTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [
+          "LBORRESU",
+          "LBSTRESU"
+        ],
+        "value": [
+          "LBSTRESN"
+        ]
+      },
+      "marker_hits": [
+        {
+          "column": "LBTEST",
+          "marker_id": "PSA",
+          "matched_value": "PROSTATE SPECIFIC ANTIGEN"
+        },
+        {
+          "column": "LBTESTCD",
+          "marker_id": "PSA",
+          "matched_value": "PSA"
+        }
+      ],
+      "n_rows": 210442,
+      "path": "dataFiles_859/LabValue_training.csv",
+      "size": 45884897,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LSTESTCD",
+          "n_unique": 5,
+          "values": [
+            "LENGTH",
+            "PRESENCE",
+            "STATUS",
+            "SUMNTAR",
+            "SYMPDET"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "PER_REF_C",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DOMAIN",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STUDYID",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RPT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISIT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSTEST",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSLOC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSLOC2",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSORRES",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSORRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSMETHOD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSDT_P",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSEDT_P",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSNO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSTAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSREASND",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSLOC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSTRESC",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSSTRESU",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSTESTCD",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSCOM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LSDT_PC",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LSTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "LSSTRESN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 10009,
+      "path": "dataFiles_859/LesionMeasure_training.csv",
+      "size": 2036214,
+      "status": "OK"
+    },
+    {
+      "error": "'numrows'",
+      "error_type": "KeyError",
+      "path": "dataFiles_859/MedHistory_training.csv",
+      "size": 2259331,
+      "status": "FAILED"
+    },
+    {
+      "error": "'numrows'",
+      "error_type": "KeyError",
+      "path": "dataFiles_859/PriorMed_training.csv",
+      "size": 48791496,
+      "status": "FAILED"
+    },
+    {
+      "error": "'numrows'",
+      "error_type": "KeyError",
+      "path": "dataFiles_859/VitalSign_training.csv",
+      "size": 4771961,
+      "status": "FAILED"
+    }
+  ]
+}

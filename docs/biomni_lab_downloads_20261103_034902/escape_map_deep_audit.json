@@ -1,0 +1,493 @@
+{
+  "escape_map_audit": {
+    "generated": "2026-06-18",
+    "scope": "Full EscapeMap War Board — all lanes, all signals, all artifacts, governance state, product readiness",
+    "source_sessions": [
+      "sess_cd8c1a2152de (Ovarian Cancer Synthetic Lethality — 2026-04-13)",
+      "sess_be00d436f181 (Brenus Pharma Research Organization — 2026-04-28)"
+    ]
+  },
+
+  "known_signals": {
+    "OV_ZEB1_ICON7": {
+      "lane": "OV / Bevacizumab / ICON7",
+      "dataset": "GSE140082",
+      "trial": "ICON7 (NCT00262847)",
+      "indication": "HGSOC",
+      "N": 380,
+      "bev_arm_N": 199,
+      "platform": "Illumina HumanHT-12 WG-DASL V4.0 R2 microarray (FFPE)",
+      "verdict": "ANCHOR_CANDIDATE",
+      "signal_type": "PROGNOSTIC_NOT_ARM_SPECIFIC",
+      "primary_result": {
+        "endpoint": "OS",
+        "arm": "bevacizumab",
+        "HR": 1.4803,
+        "CI_lower": 1.1188,
+        "CI_upper": 1.9586,
+        "p_value": 0.006042,
+        "c_stat": 0.6444,
+        "log_rank_p": 0.0036,
+        "log_rank_FDR": 0.0499,
+        "median_split_HR": 2.500,
+        "median_split_CI": [1.322, 4.727]
+      },
+      "multivariable_cox": {
+        "ZEB1_HR": 1.5247,
+        "ZEB1_CI": [1.1256, 2.0652],
+        "ZEB1_p": 0.006447,
+        "covariates": ["age", "figo_stage_IV", "figo_stage_III", "debulking_optimal"],
+        "BRCA_status": "NOT_AVAILABLE"
+      },
+      "arm_interaction_test": {
+        "interaction_HR": 1.243,
+        "interaction_CI": [0.8608, 1.7948],
+        "interaction_p": 0.245949,
+        "tag": "PROGNOSTIC_NOT_ARM_SPECIFIC",
+        "arm_specificity_confirmed": false
+      },
+      "tertile_analysis": {
+        "T3_vs_T1_HR": 2.4932,
+        "T3_vs_T1_CI": [1.1767, 5.2824],
+        "T3_vs_T1_p": 0.017093,
+        "dose_response_tag": "MODERATE_DOSE_RESPONSE"
+      },
+      "PFS_result": {
+        "bev_arm_HR": 1.632,
+        "bev_arm_CI": [1.135, 2.346],
+        "bev_arm_p": 0.0082,
+        "tag": "EARLY_ESCAPE"
+      },
+      "supporting_signal_HIF1A": {
+        "bev_arm_OS_HR": 2.245,
+        "bev_arm_OS_CI": [1.172, 4.300],
+        "bev_arm_OS_p": 0.0147,
+        "caveat": "PLATFORM_COMPRESSION — SD=0.29, near-ubiquitous expression, limited dynamic range"
+      },
+      "markers_not_supported": ["SOX2", "ABCB1", "VEGFC"],
+      "markers_wrong_direction": ["BCL2 (high = better OS)", "MMP9 (high = better PFS in bev arm)"],
+      "forbidden_claims": [
+        "ZEB1 is a validated biomarker for bevacizumab resistance in OV",
+        "Median split threshold (8.64 log2) is clinically actionable",
+        "FDR-corrected results confirm these associations (only ZEB1 OS bev arm approaches FDR=0.050)",
+        "Arm-specific effect confirmed (interaction p=0.246)"
+      ],
+      "artifacts": [
+        "gse140082_verification.json",
+        "gse140082_escape_marker_summary.csv",
+        "gse140082_os_pfs_association.csv",
+        "gse140082_bev_arm_association.csv",
+        "gse140082_multivariable_cox.csv",
+        "gse140082_arm_interaction_test.csv",
+        "gse140082_phase1b_continuous_cox.csv",
+        "gse140082_tertile_analysis.csv",
+        "gse140082_phase1b_verdict.json",
+        "gse140082_phase1_summary.md",
+        "gse140082_km_ZEB1_os.png",
+        "gse140082_km_ZEB1_bev_os.png",
+        "gse140082_km_HIF1A_os.png",
+        "gse140082_km_HIF1A_bev_os.png"
+      ],
+      "governance": {
+        "lane_owner": "L8 EscapeMap War Board",
+        "registry_entry": "EM-01 (inferred — not confirmed in REGISTRY.yaml)",
+        "admissibility": "T1-SCI (GSE140082 is GEO public; ICON7 trial is NCT-registered)",
+        "quarantine_flags": "NONE",
+        "access_status": "PUBLIC_DATA_ANALYZED — full ICON7 expression matrix (N=745) still requires Roche data-sharing portal request"
+      }
+    },
+
+    "GBM_ZEB1_GLASS_BULK": {
+      "lane": "GBM / Bulk RNA-seq / GLASS",
+      "dataset": "GLASS syn17038081",
+      "indication": "GBM (IDH-wt, Stupp-treated)",
+      "N_pairs": 123,
+      "platform": "RNA-seq, kallisto TPM, gene-symbol indexed",
+      "release": "2025-09-30",
+      "verdict": "PERMANENTLY_CLOSED",
+      "closure_reason": "ZEB1 DOWN at recurrence (delta=-0.34, p=0.000184, d=-0.31) — opposite of escape hypothesis",
+      "per_marker_results": {
+        "ZEB1": {"mean_delta": -0.34, "wilcoxon_p": 0.000184, "cohen_d": -0.31, "direction": "DOWN"},
+        "SOX2": {"mean_delta": -0.37, "wilcoxon_p": 0.000713, "cohen_d": -0.32, "direction": "DOWN"},
+        "CDH2": {"mean_delta": -0.39, "wilcoxon_p": 0.00222, "cohen_d": -0.28, "direction": "DOWN"},
+        "VIM": {"mean_delta": 0.02, "wilcoxon_p": 0.964, "direction": "NULL"},
+        "FN1": {"mean_delta": -0.25, "wilcoxon_p": 0.181, "direction": "NULL"},
+        "SNAI1": {"mean_delta": 0.05, "wilcoxon_p": 0.277, "direction": "NULL"},
+        "TWIST1": {"mean_delta": -0.09, "wilcoxon_p": 0.286, "direction": "NULL"},
+        "CDH1": {"mean_delta": -0.03, "wilcoxon_p": 0.724, "direction": "NULL"},
+        "EMT_score": {"mean_delta": -0.14, "wilcoxon_p": 0.555, "direction": "NULL"}
+      },
+      "supporting_dataset_GSE222515": {
+        "N_pairs": 39,
+        "ZEB1_delta": -0.431,
+        "ZEB1_p": 0.0334,
+        "ZEB1_direction": "DOWN",
+        "SOX2_delta": -0.949,
+        "SOX2_p": 0.0640,
+        "confidence": "LOWER — no paired Wilcoxon per-gene EMT panel, no file-size/header confirmation",
+        "verdict": "DIRECTIONALLY_CONSISTENT_NOT_INDEPENDENTLY_REPLICATED_AT_GLASS_RIGOR"
+      },
+      "scientific_interpretation": [
+        "Subclonal EMT: EMT-driven escape present in minority subclone diluted in bulk signal",
+        "Microenvironmental remodeling: ZEB1+ stromal/immune cells depleted at recurrence by TMZ",
+        "Alternative resistance mechanism: MGMT methylation loss, IDH-independent epigenetic reprogramming"
+      ],
+      "closure_scope": {
+        "CLOSED": ["Bulk RNA-seq ZEB1/SOX2/EMT upregulation as GBM recurrence escape marker", "Further bulk GBM cohort re-analysis for this hypothesis", "GSE222515 rescue attempts"],
+        "NOT_CLOSED": ["GBM escape hypothesis in general", "Single-cell or spatial resolution of EMT in GBM recurrence", "Non-Stupp GBM recurrence mechanisms", "ZEB1/SOX2 as OV or CRC escape markers"]
+      },
+      "artifacts": [
+        "glass_bulk_recurrence_closure.md",
+        "glass_firstpass_verdict.json",
+        "glass_zeb1_sox2_delta.csv",
+        "glass_emt_shift_summary.csv",
+        "glass_zeb1_delta_plot.png",
+        "gse222515_phase1_results.csv",
+        "gse222515_phase1_summary.md",
+        "gse222515_sample_manifest.csv",
+        "gse222515_sample_manifest_39pairs.csv",
+        "gse222515_qc_report.md"
+      ],
+      "governance": {
+        "lane_owner": "L8 EscapeMap War Board",
+        "registry_entry": "EM-02 (inferred — PERMANENTLY_CLOSED)",
+        "admissibility": "T1-SCI (GLASS Synapse public processed data; GSE222515 GEO public)",
+        "quarantine_flags": "NONE — lane closed, not quarantined",
+        "access_status": "PUBLIC_DATA_ANALYZED — GLASS raw sequencing NOT available via Synapse (jurisdictional constraints)"
+      }
+    },
+
+    "GBM_ZEB1_GSE174554_SCRNA": {
+      "lane": "GBM / snRNA-seq / GSE174554",
+      "dataset": "GSE174554 (Wang et al. 2022, Nature Cancer)",
+      "indication": "GBM (Stupp-treated, paired primary/recurrent)",
+      "N_patients_paired": 8,
+      "N_patients_skipped_low_tumor": 5,
+      "N_tumor_cells_total": 12189,
+      "platform": "10x Chromium snRNA-seq",
+      "verdict": "SC_ESCAPE_NOT_CONFIRMED",
+      "ZEB1_result": {
+        "direction": "DOWN",
+        "delta": -0.076,
+        "wilcoxon_p": 0.742,
+        "cohen_d": -0.070,
+        "patients_UP": 5,
+        "patients_DOWN": 3
+      },
+      "EMT_score_result": {
+        "direction": "UP",
+        "delta": 0.076,
+        "wilcoxon_p": 0.461,
+        "cohen_d": 0.331
+      },
+      "partial_MES_shift": {
+        "VIM": {"direction": "UP", "delta": 0.118, "p": 0.109, "patients_UP": 6},
+        "FN1": {"direction": "UP", "delta": 0.256, "p": 0.148, "patients_UP": 6},
+        "HIF1A": {"direction": "UP", "delta": 0.187, "p": 0.250, "patients_UP": 6},
+        "CDH2": {"direction": "UP", "delta": 0.166, "p": 0.461, "patients_UP": 5},
+        "MES_fraction": {"direction": "UP", "delta": 0.118, "p": 0.195, "patients_UP": 6},
+        "interpretation": "Partial mesenchymal shift (VIM/FN1/HIF1A UP in 6/8 patients) is ZEB1-INDEPENDENT — MES shift without canonical ZEB1 driver"
+      },
+      "dilution_artifact": "NOT_CONFIRMED",
+      "tumor_fraction_primary": 0.347,
+      "tumor_fraction_recurrent": 0.280,
+      "key_finding": "ZEB1 NULL at single-cell resolution in tumor cells. Partial MES shift exists but is ZEB1-independent. N=8 is underpowered.",
+      "artifacts": [
+        "gbm_gse174554_sc_emt_full.csv",
+        "gbm_gse174554_sc_escape_final.json",
+        "gbm_gse174554_bulk_vs_sc_dilution.json",
+        "gse174554_cell_metadata_summary.json",
+        "gse174554_emt_score_comparison.csv",
+        "gse174554_mes_fraction_shift.csv",
+        "gse174554_verdict.json",
+        "gse174554_zeb1_tumor_comparison.csv",
+        "gse174554_zeb1_tumor_plot.png"
+      ],
+      "governance": {
+        "lane_owner": "L8 EscapeMap War Board",
+        "registry_entry": "EM-03 (inferred — SC_ESCAPE_NOT_CONFIRMED)",
+        "admissibility": "T1-SCI (GEO public processed data)",
+        "quarantine_flags": "NONE",
+        "access_status": "PUBLIC_DATA_ANALYZED — raw data not available (privacy)"
+      }
+    },
+
+    "CRC_M2_CALGB80405": {
+      "lane": "CRC / Bevacizumab / CALGB80405",
+      "dataset": "GSE196576 (public expression only)",
+      "trial": "CALGB/SWOG 80405 (NCT00265850)",
+      "indication": "mCRC (1L, KRAS-wt)",
+      "N_GEO": 235,
+      "N_published_bev_arm": 203,
+      "platform": "RNA-seq",
+      "verdict": "BLOCKED_PENDING_ACCESS",
+      "signal_extracted": {
+        "M2_macrophage_panel": {
+          "name": "M2-15",
+          "genes": ["C1QA", "C1QB", "C1QC", "MS4A4A", "FPR3", "LILRB4", "MARCO", "CD163", "CLEC7A", "MRC1", "APOC1", "CLEC5A", "CLEC4A", "CLEC12A", "CLEC6A"],
+          "derivation": "1000-draw random-assignment Cox regression on GSE196576 bev arm",
+          "robustness": "100% significant, 100% sign-consistent across all 1000 draws for top genes (C1QA, C1QB, C1QC, MS4A4A)",
+          "epistemic_label": "PREPARATORY — NOT VALIDATED until dbGaP-linked patient-level outcomes available",
+          "mandatory_wording": "Preparatory M2-bevacizumab biomarker panel for downstream descriptive and conditioning analyses — not a validated prognostic signature until dbGaP-linked patient-level outcomes are available."
+        },
+        "M2_stratum_calibration": {
+          "M2_beneficial_pct_GEO": 74.0,
+          "M2_beneficial_pct_published": 73.9,
+          "calibration_gate": "PASS — within 0.1%",
+          "reference": "Innocenti et al. 2022 (PMID 35176136)"
+        },
+        "inter_feature_correlation": {
+          "gate": "FAIL — 4/6 pairs wrong direction",
+          "root_cause": "Reconstructed gene sets (TGF-beta, plasma cell, CD4+) are approximations; exact Innocenti 2022 Supplementary Table 1 gene sets unavailable"
+        }
+      },
+      "survival_analysis": {
+        "method": "Parametric IPD reconstruction from published summary statistics (Innocenti 2022 Figure 4C)",
+        "M2_beneficial_median_OS_months": 34.4,
+        "M2_beneficial_OS_CI": [32.7, 38.8],
+        "published_p_value": "9.52e-5",
+        "epistemic_status": "HYPOTHESIS-GENERATING ONLY — reconstructed IPD, not ground-truth OS",
+        "caveat": "Guyot 2012 digitization not possible (PMC proof-of-work restriction); parametric reconstruction used instead"
+      },
+      "access_blocker": {
+        "controlled_access_required": "dbGaP phs003428.v1.p1",
+        "consent_group": "DS-CA-COL",
+        "data_needed": "Individual-level OS, PFS, treatment arm assignment",
+        "ctep_email_status": "DRAFT_COMPLETE — 5 Fahad fields to fill",
+        "ctep_email_to": "NCICTEPDAR@mail.nih.gov",
+        "ctep_email_cc": "ncidac@mail.nih.gov",
+        "human_action_required": true
+      },
+      "artifacts": [
+        "gse196576_bev_calibration_report.json",
+        "gse196576_bev_guyot_ipd.csv",
+        "gse196576_bev_immune_scores.csv",
+        "gse196576_bev_stratum_linked_analysis_set.csv",
+        "gse196576_bev_subset_manifest.csv",
+        "gse196576_bev_survival_simulation.csv",
+        "gse196576_endpoint_memo.md",
+        "gse196576_score_calibration.md",
+        "gse196576_sensitivity_cox_1000draws.csv",
+        "gse196576_subsetting_plan.md",
+        "gse196576_survival_simulation_metadata.json",
+        "innocenti2022_immune_genesets.json",
+        "dbgap_phs003428_ctep_email_final.md",
+        "dbgap_phs003428_access_status.json",
+        "dbgap_phs003428_application_draft.md",
+        "dbgap_phs003428_blocker_table.csv",
+        "dbgap_phs003428_dar_checklist.csv",
+        "dbgap_phs003428_dependency_graph.json",
+        "dbgap_phs003428_fahad_fields_only.json",
+        "dbgap_phs003428_variable_dictionary.csv",
+        "crc_access_top_memo.md",
+        "crc_controlled_access_ledger.csv"
+      ],
+      "governance": {
+        "lane_owner": "L8 EscapeMap War Board",
+        "registry_entry": "EM-04 (inferred — BLOCKED_PENDING_ACCESS)",
+        "admissibility": "T1-SCI (GSE196576 public expression; phs003428 controlled)",
+        "quarantine_flags": "M2-15 panel PREPARATORY label — mandatory wording locked 2026-05-12",
+        "access_status": "BLOCKED — individual-level outcomes require dbGaP phs003428 approval"
+      }
+    },
+
+    "CRC_VELOUR_MOSAIC": {
+      "lane": "CRC / VELOUR + MOSAIC / Vivli",
+      "datasets": ["VELOUR (aflibercept + FOLFIRI 2L mCRC)", "MOSAIC (FOLFOX adjuvant stage II/III CRC)"],
+      "verdict": "BLOCKED_PENDING_ACCESS",
+      "signal_extracted": "NONE — access not yet obtained",
+      "access_blocker": {
+        "platform": "Vivli",
+        "dar_draft_status": "COMPLETE — 18 Fahad fields to fill",
+        "human_action_required": true
+      },
+      "artifacts": [
+        "velour_mosaic_vivli_dar_draft.md",
+        "velour_mosaic_vivli_intake_fields.json",
+        "velour_endpoint_table_resolution.json",
+        "mosaic_endpoint_qc.json"
+      ],
+      "governance": {
+        "lane_owner": "L8 EscapeMap War Board",
+        "registry_entry": "EM-05 (inferred — BLOCKED_PENDING_ACCESS)",
+        "admissibility": "T1-SCI (NCT-registered trials; Sanofi/Vivli controlled access)",
+        "quarantine_flags": "NONE",
+        "access_status": "BLOCKED — Vivli DAR submission pending Fahad action"
+      }
+    },
+
+    "CRC_N0147_ALLIANCE": {
+      "lane": "CRC / N0147 / Alliance SDMC",
+      "dataset": "N0147 (NCT00079274) — adjuvant FOLFOX ± cetuximab stage III CRC",
+      "N": "2720+ (KRAS/BRAF); 2260 (ctDNA subset)",
+      "verdict": "BLOCKED_PENDING_ACCESS",
+      "signal_extracted": "NONE — access not yet obtained",
+      "scientific_value": "Largest adjuvant CRC trial with ctDNA (739-gene panel), Immunoscore, TIL density, MMR, KRAS/BRAF, DFS/OS/TTR/SAR — uniquely deep multi-omic coverage",
+      "access_blocker": {
+        "contact": "DataSharing@AllianceNCTN.org",
+        "cc": "Mandrekar.Sumithra@mayo.edu",
+        "optional_cc": "sinicrope.frank@mayo.edu",
+        "outreach_draft_status": "COMPLETE — 5 Fahad fields to fill",
+        "human_action_required": true
+      },
+      "artifacts": [
+        "n0147_alliance_outreach_draft.md",
+        "n0147_alliance_contact_info.json",
+        "n0147_molecular_anchor_scan.json"
+      ],
+      "governance": {
+        "lane_owner": "L8 EscapeMap War Board",
+        "registry_entry": "EM-06 (inferred — BLOCKED_PENDING_ACCESS)",
+        "admissibility": "T1-SCI (NCT-registered trial; Alliance SDMC controlled access)",
+        "quarantine_flags": "NONE",
+        "access_status": "BLOCKED — Alliance outreach pending Fahad action"
+      }
+    }
+  },
+
+  "known_artifacts_governance": {
+    "total_result_files_sess_cd8c1a2152de": "~120 files",
+    "total_result_files_sess_be00d436f181": "~20 GBM-related files",
+    "repo_commit_status": "UNVERIFIED — files exist in session results; whether committed to fjkiani/Brenus engagements/brenus/escape_map/ is NOT confirmed in this session",
+    "registry_yaml_entries": {
+      "status": "INFERRED — REGISTRY.yaml entries EM-01 through EM-06 referenced in session summary but not directly verified against current REGISTRY.yaml in this session",
+      "confirmed_entries": "NONE confirmed by direct file read in this session",
+      "warning": "Do not treat EM-0x IDs as authoritative without re-reading REGISTRY.yaml"
+    },
+    "lane_definitions": {
+      "L8_EscapeMap_War_Board": {
+        "status": "ACTIVE",
+        "owner": "biomni",
+        "last_updated": "2026-05-13 (per session summary)"
+      }
+    },
+    "admissibility_classifications": {
+      "GSE140082": "T1-SCI — GEO public, ICON7 NCT-registered",
+      "GLASS_syn17038081": "T1-SCI — Synapse public processed data, GLASS consortium",
+      "GSE222515": "T1-SCI — GEO public",
+      "GSE174554": "T1-SCI — GEO public processed data",
+      "GSE196576": "T1-SCI — GEO public expression layer",
+      "phs003428": "T1-SCI — dbGaP controlled, NCT-registered trial",
+      "VELOUR_MOSAIC": "T1-SCI — NCT-registered trials, Vivli controlled",
+      "N0147": "T1-SCI — NCT-registered trial, Alliance SDMC controlled"
+    },
+    "quarantine_flags": {
+      "M2_15_panel": {
+        "status": "PREPARATORY_LABEL_LOCKED",
+        "wording_locked": "2026-05-12",
+        "approved_by": "Fahad Kiani",
+        "mandatory_label": "Preparatory M2-bevacizumab biomarker panel for downstream descriptive and conditioning analyses — not a validated prognostic signature until dbGaP-linked patient-level outcomes are available."
+      }
+    }
+  },
+
+  "anchors": {
+    "confirmed_anchor": {
+      "signal": "OV_ZEB1_ICON7",
+      "anchor_type": "ANCHOR_CANDIDATE",
+      "strength": "PROGNOSTIC (not arm-specific)",
+      "key_numbers": {
+        "continuous_Cox_bev_arm_OS_HR": 1.48,
+        "continuous_Cox_bev_arm_OS_p": 0.0060,
+        "multivariable_Cox_HR": 1.52,
+        "multivariable_Cox_p": 0.0064,
+        "arm_interaction_p": 0.246,
+        "tertile_T3_vs_T1_HR": 2.49,
+        "tertile_p": 0.017
+      },
+      "what_it_means": "ZEB1 high expression is a significant prognostic marker in bevacizumab-treated HGSOC. High ZEB1 = worse OS. Effect is real but not bevacizumab-specific (arm interaction not significant). This is the strongest validated signal in the EscapeMap to date.",
+      "next_step": "Formal interaction test in full ICON7 N=745 dataset (requires Roche data-sharing portal request) + TCGA-OV cross-validation"
+    },
+    "closed_lanes": [
+      {
+        "signal": "GBM_ZEB1_BULK",
+        "status": "PERMANENTLY_CLOSED",
+        "reason": "ZEB1 DOWN at recurrence across 3 independent datasets (GLASS N=123, GSE222515 N=39, GSE174554 N=8 snRNA-seq). Opposite of escape hypothesis.",
+        "reopen_condition": "Single-cell or spatial data with ≥10 Stupp-treated paired primary/recurrent GBM patients"
+      }
+    ],
+    "blocked_anchors_pending_access": [
+      {
+        "signal": "CRC_M2_CALGB80405",
+        "blocker": "dbGaP phs003428 — CTEP email draft complete, 5 Fahad fields needed",
+        "potential": "M2-15 panel validated in largest mCRC bevacizumab RCT (N=554 RNA-seq)"
+      },
+      {
+        "signal": "CRC_VELOUR_MOSAIC",
+        "blocker": "Vivli DAR — draft complete, 18 Fahad fields needed",
+        "potential": "Aflibercept + adjuvant FOLFOX escape signatures"
+      },
+      {
+        "signal": "CRC_N0147",
+        "blocker": "Alliance SDMC outreach — draft complete, 5 Fahad fields needed",
+        "potential": "Deepest multi-omic adjuvant CRC dataset (ctDNA + Immunoscore + KRAS/BRAF + DFS/OS)"
+      }
+    ],
+    "next_resolution_GBM": {
+      "target_dataset": "GSE174554 spatial transcriptomics (snATAC + Visium — same study, not yet analyzed)",
+      "alternative_priority_1": "Leeds/GLASS EGA EGAD00001005224 — 22 paired primary/recurrent RNA-seq (EGA DAC access required)",
+      "alternative_priority_2": "GBMatch EGA EGAS00001002538 — 37 RNA-seq + 349 RRBS methylation, up to 6 serial resections",
+      "minimum_viable": "≥5 matched primary/recurrent pairs, Stupp-treated, scRNA-seq, tumor cells annotatable",
+      "predeclared_marker_panel": ["ZEB1", "SOX2", "VIM", "CDH2", "FN1", "SNAI1", "TWIST1", "CDH1"],
+      "SOX2_caveat": "SOX2 is a GSC/neural progenitor marker in GBM, not canonical EMT. Interpret separately."
+    }
+  },
+
+  "product_readiness": {
+    "overall_status": "EARLY_STAGE — one anchor candidate confirmed, three lanes blocked on data access, one lane permanently closed",
+    "what_exists": {
+      "analytical_pipeline": "BUILT — full Cox regression, KM, arm interaction, multivariable, tertile, continuous Cox, FDR correction pipeline executed on GSE140082",
+      "signal_extraction": "COMPLETE for OV/ICON7 (ZEB1 anchor candidate) and GBM (closed)",
+      "M2_panel": "PREPARATORY — 15-gene panel derived, robustness confirmed across 1000 draws, epistemic label locked",
+      "access_infrastructure": "COMPLETE — CTEP email, Vivli DAR, Alliance outreach all drafted and ready to send",
+      "data_access_ledger": "COMPLETE — 15 GBM trial sources catalogued with access routes, DAC contacts, priority tiers",
+      "KM_plots": "GENERATED — ZEB1 and HIF1A OS/PFS plots for ICON7 full cohort and bev arm"
+    },
+    "what_is_missing": {
+      "arm_specificity_for_ZEB1": "Interaction test not significant (p=0.246) — ZEB1 is prognostic, not predictive of bev benefit",
+      "independent_OV_validation": "No second HGSOC bevacizumab dataset analyzed yet",
+      "CRC_signal": "Zero validated CRC signals — all three CRC lanes blocked on controlled data access",
+      "GBM_signal": "Zero validated GBM signals — bulk closed, snRNA-seq null, spatial not yet analyzed",
+      "survival_linkage_for_CRC": "GSE196576 has expression but no individual-level outcomes — M2-15 panel unvalidated",
+      "BRCA_status": "Not available in GSE140082 — major confounder for HGSOC survival analysis",
+      "TCGA_OV_cross_validation": "Not yet executed"
+    },
+    "product_definition": {
+      "what_EscapeMap_is": "A computational pipeline that systematically tests candidate escape markers (ZEB1, SOX2, HIF1A, ABCB1, BCL2, VEGFC, MMP9, M2 macrophage programs) across treatment-annotated clinical trial datasets to identify which signals are associated with treatment resistance and poor outcomes",
+      "current_output": "One ANCHOR_CANDIDATE signal (ZEB1/OV/ICON7) + one PREPARATORY panel (M2-15/CRC) + three access-blocked lanes + one permanently closed lane",
+      "clinical_utility_today": "NONE — all signals are exploratory/hypothesis-generating; no validated predictive biomarker exists",
+      "path_to_product": [
+        "1. Send CTEP email → unlock phs003428 → validate M2-15 in CALGB80405 with individual outcomes",
+        "2. Submit Vivli DAR → unlock VELOUR/MOSAIC → test escape signatures in 2L CRC",
+        "3. Send Alliance outreach → unlock N0147 → test in adjuvant CRC with ctDNA + Immunoscore",
+        "4. Request Roche ICON7 full dataset (N=745) → run formal arm interaction test for ZEB1",
+        "5. Acquire Leeds/GLASS EGA dataset → test ZEB1/EMT in paired GBM RNA-seq at higher N",
+        "6. Analyze GSE174554 spatial transcriptomics → test subclonal EMT in GBM at spatial resolution"
+      ]
+    },
+    "human_actions_blocking_progress": [
+      {
+        "action": "Send CTEP pre-notification email",
+        "to": "NCICTEPDAR@mail.nih.gov",
+        "draft": "dbgap_phs003428_ctep_email_final.md",
+        "fields_needed": 5,
+        "unlocks": "CRC_M2_CALGB80405 lane"
+      },
+      {
+        "action": "Submit Vivli DAR",
+        "platform": "vivli.org",
+        "draft": "velour_mosaic_vivli_intake_fields.json",
+        "fields_needed": 18,
+        "unlocks": "CRC_VELOUR_MOSAIC lane"
+      },
+      {
+        "action": "Send Alliance outreach",
+        "to": "DataSharing@AllianceNCTN.org",
+        "cc": "Mandrekar.Sumithra@mayo.edu",
+        "draft": "n0147_alliance_outreach_draft.md",
+        "fields_needed": 5,
+        "unlocks": "CRC_N0147 lane"
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "dataset_id": "GSE174554",
+  "source_db": "GEO",
+  "access_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE174554",
+  "matched_structure": true,
+  "matched_structure_detail": "40 primary + 40 patient-matched recurrent IDH-wildtype GBM specimens (80 total human tumors); longitudinal pairs confirmed in study design",
+  "treatment_annotated": true,
+  "treatment_detail": "All patients treated with standard-of-care only: temozolomide (TMZ) + radiation + surgical resection; no bevacizumab or experimental agents",
+  "cell_count_approx": "~200000+ nuclei (snRNA-seq); 113 GEO samples including snATAC-seq, spatial transcriptomics, spatial proteomics",
+  "assay_types": [
+    "snRNA-seq (Illumina NovaSeq 6000)",
+    "snATAC-seq",
+    "Spatial transcriptomics (10x Visium)",
+    "Spatial proteomics (NanoString GeoMx DSP)"
+  ],
+  "organism": "Homo sapiens (primary); Mus musculus (mouse IR model, subset)",
+  "publication": {
+    "pmid": "36539501",
+    "doi": "10.1038/s43018-022-00475-x",
+    "journal": "Nature Cancer",
+    "year": 2022,
+    "title": "A single-cell atlas of glioblastoma evolution under therapy reveals cell-intrinsic and cell-extrinsic therapeutic targets",
+    "authors": "Wang L, Jung J, Babikir H, et al. (Diaz Lab, UCSF)"
+  },
+  "geo_status": "Public on Jul 05 2022",
+  "bioproject": "PRJNA730532",
+  "sra_available": true,
+  "raw_data_note": "Authors state raw data not available due to privacy concerns; processed data + metadata downloadable from GEO FTP",
+  "recommended_analysis": [
+    "Differential cell-state abundance (primary vs recurrent): proneural-to-mesenchymal shift quantification",
+    "TME immune cell dynamics: monocyte-derived macrophage expansion at recurrence",
+    "T-cell outlier analysis: identify hypermutated/T-cell-high recurrent tumors",
+    "Spatial co-localization of cell states using Visium data",
+    "snATAC-seq chromatin accessibility changes at recurrence (AP-1/mesenchymal regulators)",
+    "Cell-cell communication networks (paracrine/autocrine) primary vs recurrent",
+    "Integration with GLASS bulk WGS for mutation-phenotype correlation"
+  ],
+  "rationale": "GSE174554 is the single best available dataset for GLASS GBM next-resolution analysis. It is the only GEO dataset with: (1) fully public processed data, (2) confirmed patient-matched primary-recurrent pairs (40 pairs), (3) explicit standard-of-care treatment annotation (TMZ+RT), (4) multimodal single-cell resolution (snRNA + snATAC + spatial), and (5) high-impact publication (Nature Cancer 2022). GSE163120 was disqualified: human raw data is EGA-restricted, only 2 human conditions (not matched pairs), no treatment annotation, and is primarily a mouse dataset."
+}

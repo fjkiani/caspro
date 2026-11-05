@@ -1,0 +1,128 @@
+{
+  "authority": "Completion Directive: STOP AT THE ENGINEERING GATE, NOT MID-WORK",
+  "binding_rule": "These rules are frozen BEFORE being evaluated on VENICE or on any patient series. No threshold in this addendum may be revised after seeing its own result.",
+  "document": "Audit correction prespecification -- ADDENDUM v2 (completion directive)",
+  "extends": {
+    "bytes": 12593,
+    "file": "audit_correction_prespecification_v1.json",
+    "note": "v1 is unchanged. Every v1 threshold remains binding. This addendum only adds rules that v1 did not define.",
+    "sha256": "b666481b1414e850fef419547ef830f6176c3fdfcbbcb73634b1ff4bd6673322"
+  },
+  "frozen_utc": "2026-08-13T20:21:38.691773+00:00",
+  "refusal_schema_item1": {
+    "boundary_statement": "This is a schema and endorsement boundary, NOT an information-theoretic one. Because the reference CDF artifact is committed and k_day is released, any consumer can compute a percentile themselves. What a refused response guarantees is that the API surface carries no field in the percentile lineage and therefore endorses no percentile, interval or band value.",
+    "boundary_type": "SCHEMA_AND_ENDORSEMENT",
+    "forbidden_roots": [
+      "percentile",
+      "centile",
+      "quantile",
+      "pctile",
+      "pct",
+      "z_rank",
+      "zrank",
+      "zscore",
+      "z_score",
+      "normit",
+      "probit",
+      "multiplier",
+      "hazard_ratio",
+      "hazardratio",
+      "hr",
+      "relative_hazard",
+      "interval",
+      "ci",
+      "confidence_interval",
+      "credible_interval",
+      "band",
+      "tier",
+      "stratum",
+      "category",
+      "quartile",
+      "decile"
+    ],
+    "forbidden_transform_suffixes": [
+      "_log",
+      "_log10",
+      "_logit",
+      "_exp",
+      "_z",
+      "_scaled",
+      "_norm",
+      "_normalised",
+      "_normalized",
+      "_transformed",
+      "_derived",
+      "_rounded",
+      "_binned",
+      "_rank",
+      "_pct",
+      "_proxy",
+      "_est",
+      "_hat"
+    ],
+    "mechanism": [
+      "explicit allow-list of field names permitted in a refused block",
+      "forbidden field-name set (percentile / z-rank / multiplier / interval / band)",
+      "forbidden alias set covering synonyms and abbreviations",
+      "forbidden transform-suffix set covering transformed descendants",
+      "recursive validation of the ENTIRE payload before serialization returns"
+    ],
+    "replaces": {
+      "reason_for_retirement": "A numeric-proximity check is not a non-leakage proof. It tests one distance against one hand-picked target, it is trivially defeated by any monotone transform of the percentile, and it cannot enumerate the fields it did not think to look at. It is retained ONLY as exploratory defence-in-depth and may not be cited as proof of non-leakage.",
+      "retired_rule": "no number in a refused response lies within 0.01 of the withheld percentile"
+    },
+    "test_requirement": "Each prohibited field name and each alias must be injected INDIVIDUALLY and serialization must either raise or remove it. A single bulk assertion is not sufficient."
+  },
+  "release_contract_item2": {
+    "decision": "CONTRACT_A_RUO_SCIENTIFIC_WITHHOLDING",
+    "landmark_scope_reclassification": {
+      "disclosure_requirement": "The reversal must be stated in the delivery receipt, not silently re-baselined.",
+      "new_behaviour": "landmark scope is an ANNOTATION. The percentile is released with landmark_scope_verified = false and an explicit statement that the OS association was estimated only in the week-15 landmark cohort (n = 446, 296 events) and that this request's membership in that cohort is unverified.",
+      "previous_behaviour": "landmark_confirmed false/absent produced ineligibility OUTSIDE_VALIDATED_LANDMARK_SCOPE and nulled every prognostic numeric",
+      "this_is_a_reversal": true
+    },
+    "null_on_every_path": [
+      "relative_prognostic_band",
+      "absolute survival probability (all forms)",
+      "treatment benefit / priority / recommendation (all forms)"
+    ],
+    "percentile_release_gate": "fit sign stable (bootstrap decline_sign_stability >= 0.95 at n_distinct_days >= 4, OR the deterministic LOO rule below at n_distinct_days == 3)",
+    "rationale": "reference_percentile is a deterministic function of k_day and the committed reference CDF artifact. Releasing k_day while redacting the percentile withheld nothing and misrepresented the guarantee.",
+    "rejected_alternative": "CONTRACT_B_STRICT_INDEX_WITHHOLDING (would have required withholding k_day whenever the percentile is refused)",
+    "released_always_when_index_is_computable": [
+      "k_day",
+      "reference_percentile",
+      "z_rank",
+      "prognostic_log_hazard_index",
+      "relative_hazard_multiplier",
+      "coefficient_conditional_relative_hazard_interval"
+    ],
+    "released_when_estimable": [
+      "percentile_uncertainty_interval",
+      "multiplier_uncertainty_interval",
+      "k_day_uncertainty_interval"
+    ]
+  },
+  "standing_constraint": "The categorical band remains suppressed, absolute risk remains structurally disabled, treatment recommendation remains unavailable, and no result in this addendum activates anything.",
+  "supersedes": null,
+  "three_observation_rule_item3": {
+    "deterministic_sign_rule": {
+      "definition": "Median-collapse per day, take log of the floored value, and form all 3 leave-one-out 2-point OLS slopes. The decline sign is INDEPENDENTLY ESTABLISHED if and only if every leave-one-out slope is strictly negative in log space (equivalently every leave-one-out k > 0).",
+      "fail_consequence": "FAIL CLOSED with typed reason DECLINE_SIGN_NOT_INDEPENDENTLY_ESTABLISHED.",
+      "frozen_before_evaluation_on_venice": true,
+      "name": "LOO_SIGN_ESTABLISHMENT",
+      "pass_consequence": "RUO point estimate RELEASED with the four mandatory disclosures below."
+    },
+    "explicitly_not_implied": "RELIABLE. A released 3-day point estimate carries fit_precision_status INSUFFICIENT_FOR_UNCERTAINTY and must never be presented as a precision-qualified value.",
+    "fit_precision_status": "INSUFFICIENT_FOR_UNCERTAINTY",
+    "mandatory_disclosures_when_released": [
+      "uncertainty unavailable",
+      "no categorical band",
+      "no patient-level interval",
+      "not suitable for individual decision-making"
+    ],
+    "trigger": "n_distinct_days == 3 within the locked 0-105 day window",
+    "why_bootstrap_cannot_decide": "v1 sets min_distinct_days_for_uncertainty = 4, so decline_sign_stability is not defined at n = 3. A 3-day day-level bootstrap draws at most 3 distinct days and its replicate slopes are not independent of the point fit in a usable way."
+  },
+  "version": "v2-addendum"
+}

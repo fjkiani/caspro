@@ -1,0 +1,1298 @@
+{
+  "schema_ref": "BRENUS_BD_RAG_v1",
+  "created": "2026-07-07",
+  "total_chunks": 22,
+  "chunks_by_pillar": {
+    "P1_historical_benchmarks": [
+      {
+        "chunk_id": "W1-IOCORE-001",
+        "chunk_type": "comparator_trial_set",
+        "title": "IO CORE \u2014 7 MSS CRC IO Comparator Trials (PATH A Locked Scores)",
+        "governance": "LOCKED 2026-05-04",
+        "formula": "PATH A: fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1)",
+        "patient_profiles": {
+          "P_A": {
+            "label": "KRAS-mut MSS mCRC, 1L, liver-met NEG, IO-permissive",
+            "io": 0.4,
+            "mapk": 0.7,
+            "vegf": 0.3,
+            "ddr": 0.1,
+            "pi3k": 0.2,
+            "her2": 0.0,
+            "efflux": 0.05
+          },
+          "P_B": {
+            "label": "KRAS-mut MSS mCRC, 1L, liver-met POS, IO-suppressed",
+            "io": 0.1,
+            "mapk": 0.7,
+            "vegf": 0.3,
+            "ddr": 0.1,
+            "pi3k": 0.2,
+            "her2": 0.0,
+            "efflux": 0.05
+          }
+        },
+        "trials": [
+          {
+            "trial": "IMblaze370",
+            "core_id": "CORE-04",
+            "mechanism": "MEKi (cobimetinib) + PD-L1 (atezolizumab)",
+            "fit_A": 0.8262,
+            "fit_B": 0.6751,
+            "delta": 0.1511,
+            "phase": "III",
+            "result": "NEGATIVE",
+            "OS_HR": 1.0,
+            "ORR_pct": 3,
+            "key_lesson": "MEKi immune priming hypothesis definitively falsified. High fit_A is a false positive \u2014 MAPK axis alignment does not predict IO benefit in MSS CRC."
+          },
+          {
+            "trial": "AtezoTRIBE",
+            "core_id": "CORE-05",
+            "mechanism": "PD-L1 (atezolizumab) + FOLFOXIRI + bevacizumab",
+            "fit_A": 0.5843,
+            "fit_B": 0.3671,
+            "delta": 0.2172,
+            "phase": "II",
+            "result": "POSITIVE (PFS benefit)",
+            "PFS_HR": 0.82,
+            "key_lesson": "Liver-met Pint=0.990 (not predictive). Bevacizumab normalizes liver TME \u2014 VEGF axis explains divergence from CO.26."
+          },
+          {
+            "trial": "QUILT-2.004",
+            "core_id": "CORE-01",
+            "mechanism": "CEA vaccine + PD-L1 + mFOLFOX6 + bevacizumab",
+            "fit_A": 0.5815,
+            "fit_B": 0.3553,
+            "delta": 0.2261,
+            "phase": "II",
+            "result": "TERMINATED (n=30, HR 1.061, p=0.91)",
+            "mPFS_vaccine": 8.8,
+            "mPFS_control": 10.1,
+            "key_lesson": "Closest structural analog to STC-1010. Terminated for futility. Liver-met IO suppression not addressed. No biomarker gate."
+          },
+          {
+            "trial": "GRANITE GO-010",
+            "core_id": "CORE-02",
+            "mechanism": "Neoantigen vaccine + PD-L1 + CTLA-4 + bevacizumab",
+            "fit_A": 0.5411,
+            "fit_B": 0.2832,
+            "delta": 0.2579,
+            "phase": "II",
+            "result": "NEGATIVE (company bankrupt)",
+            "key_lesson": "TIER2 \u2014 press-release only. ctDNA-low subgroup HR 0.50 is hypothesis-generating only."
+          },
+          {
+            "trial": "MEDITREME",
+            "core_id": "CORE-06",
+            "mechanism": "PD-L1 (durvalumab) + CTLA-4 (tremelimumab) + mFOLFOX6",
+            "fit_A": 0.5037,
+            "fit_B": 0.2089,
+            "delta": 0.2949,
+            "phase": "I/II",
+            "result": "SINGLE-ARM (uninterpretable vs SOC)",
+            "key_lesson": "mFOLFOX6 alone achieves ~50-60% ORR in 1L RAS-mutant mCRC. 64.5% ORR uninterpretable as IO-driven. pTMB \u226528 signal from CO.26, not MEDITREME."
+          },
+          {
+            "trial": "GVAX + CY + Pembro",
+            "core_id": "CORE-03",
+            "mechanism": "Whole-cell vaccine (GVAX) + cyclophosphamide + PD-1 (pembrolizumab)",
+            "fit_A": 0.4486,
+            "fit_B": 0.1495,
+            "delta": 0.2991,
+            "phase": "II",
+            "result": "NEGATIVE (ORR 0%)",
+            "key_lesson": "Most structurally similar to STC-1010 (whole-cell vaccine + CY). ORR 0% despite pharmacodynamic immune activity. Liver-met IO suppression is the primary failure mode."
+          },
+          {
+            "trial": "CCTG CO.26",
+            "core_id": "CORE-07",
+            "mechanism": "PD-L1 (durvalumab) + CTLA-4 (tremelimumab) vs BSC (3L+)",
+            "fit_A": 0.4,
+            "fit_B": 0.1,
+            "delta": 0.3,
+            "phase": "II/III",
+            "result": "NEGATIVE (OS HR 0.72, p=0.07)",
+            "key_lesson": "Canonical liver-met discrimination trial. Liver-met HR=1.39 (harmful) vs no-LM HR=0.54 (beneficial). pTMB \u226528 OS HR=0.34 (90% CI 0.18-0.63, p=0.022). Highest delta = pure IO maximally sensitive to liver-met suppression."
+          }
+        ],
+        "universal_finding": "All 7 trials show positive delta (P_A > P_B). Liver-met IO suppression is universal across all MSS CRC IO mechanisms. Delta range: 0.15-0.30.",
+        "rag_tags": [
+          "io_core",
+          "comparator",
+          "path_a",
+          "liver_met",
+          "mss_crc",
+          "benchmark",
+          "historical"
+        ]
+      },
+      {
+        "chunk_id": "W1-PDS-001",
+        "chunk_type": "pds_comparator_set",
+        "title": "PDS \u2014 7 Chemotherapy/Targeted Backbone Trials (Historical Benchmarks)",
+        "trials": [
+          {
+            "trial": "MOSAIC",
+            "mechanism": "FOLFOX4 adjuvant",
+            "t_mapk": 0.1,
+            "t_vegf": 0.1,
+            "t_efflux": 0.3,
+            "t_io": 0.0,
+            "key_result": "DFS HR 0.77 (KRAS-WT); KRAS-mut no benefit",
+            "relevance": "Establishes KRAS-mut chemotherapy baseline"
+          },
+          {
+            "trial": "N0147",
+            "mechanism": "FOLFOX + cetuximab adjuvant",
+            "t_mapk": 0.2,
+            "t_vegf": 0.1,
+            "t_efflux": 0.3,
+            "t_io": 0.0,
+            "key_result": "KRAS-mut: no benefit from cetuximab addition",
+            "relevance": "Confirms KRAS-mut anti-EGFR futility"
+          },
+          {
+            "trial": "PRIME",
+            "mechanism": "FOLFOX4 + panitumumab 1L",
+            "t_mapk": 0.8,
+            "t_vegf": 0.0,
+            "t_efflux": 0.1,
+            "t_io": 0.0,
+            "key_result": "KRAS-WT: PFS HR 0.80; KRAS-mut: OS HR 1.24 (harmful)",
+            "relevance": "Canonical KRAS-mut anti-EGFR harm signal"
+          },
+          {
+            "trial": "PEAK_FOLFIRI",
+            "mechanism": "FOLFIRI + panitumumab 1L",
+            "t_mapk": 0.8,
+            "t_vegf": 0.0,
+            "t_efflux": 0.1,
+            "t_io": 0.0,
+            "key_result": "KRAS-WT only benefit",
+            "relevance": "Corroborates PRIME KRAS-mut exclusion"
+          },
+          {
+            "trial": "PACCE",
+            "mechanism": "FOLFOX/FOLFIRI + bevacizumab + panitumumab",
+            "t_mapk": 0.1,
+            "t_vegf": 0.7,
+            "t_efflux": 0.1,
+            "t_io": 0.0,
+            "key_result": "OS HR 1.43 (harmful) \u2014 dual anti-EGFR+anti-VEGF toxic",
+            "relevance": "Anti-VEGF + anti-EGFR combination harm"
+          },
+          {
+            "trial": "HORIZON_III",
+            "mechanism": "FOLFOX + cediranib (VEGFR TKI)",
+            "t_mapk": 0.0,
+            "t_vegf": 0.9,
+            "t_efflux": 0.0,
+            "t_io": 0.0,
+            "key_result": "NEGATIVE \u2014 PFS HR 1.02",
+            "relevance": "VEGFR TKI futility in unselected mCRC"
+          },
+          {
+            "trial": "VELOUR",
+            "mechanism": "FOLFIRI + aflibercept 2L",
+            "t_mapk": 0.0,
+            "t_vegf": 0.8,
+            "t_efflux": 0.1,
+            "t_io": 0.0,
+            "key_result": "OS HR 0.817 (p=0.0032) \u2014 modest benefit",
+            "relevance": "VEGF trap modest benefit in 2L; not 1L IO-relevant"
+          }
+        ],
+        "rag_tags": [
+          "pds",
+          "chemotherapy",
+          "kras_mutant",
+          "anti_egfr",
+          "anti_vegf",
+          "historical",
+          "backbone"
+        ]
+      },
+      {
+        "chunk_id": "W1-TRIBE2-001",
+        "chunk_type": "canonical_benchmark",
+        "title": "TRIBE2 \u2014 Primary Benchmark for BreAK CRC-001",
+        "rationale": "Best available benchmark for RAS-enriched mFOLFOX6+bev 1L population",
+        "mPFS_months": 9.8,
+        "mPFS_CI": "95% CI 9.0-10.5",
+        "ORR_pct": 50,
+        "mOS_months": 22.5,
+        "population": "RAS-mutant mCRC, 1L, mFOLFOX6 + bevacizumab",
+        "rag_tags": [
+          "tribe2",
+          "benchmark",
+          "mfolfox6",
+          "bevacizumab",
+          "ras_mutant",
+          "1l_mCRC"
+        ]
+      },
+      {
+        "chunk_id": "W1-CO26-001",
+        "chunk_type": "trial_decode_authoritative",
+        "title": "CCTG CO.26 \u2014 Canonical Liver-Met Discrimination Trial",
+        "governance": "VERIFIED \u2014 PMID 38727700, PMC10698621",
+        "liver_met_PFS_HR": 1.39,
+        "liver_met_PFS_CI": "90% CI 1.02-1.90",
+        "no_LM_PFS_HR": 0.54,
+        "no_LM_PFS_CI": "90% CI 0.35-0.96",
+        "interaction_p": 0.02,
+        "pTMB_threshold_mut_Mb": 28.0,
+        "pTMB_OS_HR": 0.34,
+        "pTMB_OS_CI": "90% CI 0.18-0.63",
+        "pTMB_OS_p": 0.022,
+        "pTMB_tissue_Spearman_r": 0.13,
+        "pTMB_tissue_p": 0.2,
+        "key_lesson": "Liver-met stratification is the highest-leverage design variable for IO in MSS mCRC. pTMB \u226528 is hypothesis-generating (GuardantOMNI-specific, 2L+, Pint=0.070).",
+        "rag_tags": [
+          "co26",
+          "liver_met",
+          "ptmb",
+          "io_resistance",
+          "biomarker",
+          "stratification",
+          "mss_crc"
+        ]
+      },
+      {
+        "chunk_id": "W1-FAILURECOST-001",
+        "chunk_type": "failure_cost_ledger",
+        "title": "Trial Failure Cost Ledger \u2014 $2B+ Decoded",
+        "failures": [
+          {
+            "program": "CheckMate 143/498/548",
+            "indication": "GBM",
+            "estimated_cost_USD": "~$500M",
+            "failure_mode": "PD-1 monotherapy in immunologically cold tumor"
+          },
+          {
+            "program": "AVAglio + RTOG 0825",
+            "indication": "GBM",
+            "estimated_cost_USD": "~$400M",
+            "failure_mode": "Anti-VEGF without IO combination; no biomarker gate"
+          },
+          {
+            "program": "AZ EGFR inhibitors (KRAS-mut)",
+            "indication": "CRC",
+            "estimated_cost_USD": "~$300M",
+            "failure_mode": "KRAS-mut anti-EGFR harm (PRIME, N0147)"
+          },
+          {
+            "program": "IMblaze370",
+            "indication": "MSS mCRC",
+            "estimated_cost_USD": "~$300M",
+            "failure_mode": "MEKi immune priming hypothesis falsified; no liver-met stratification"
+          },
+          {
+            "program": "ACT IV (urelumab)",
+            "indication": "GBM",
+            "estimated_cost_USD": "~$200M",
+            "failure_mode": "CD137 agonism without patient selection"
+          }
+        ],
+        "total_decoded_USD": "$2B+",
+        "rag_tags": [
+          "failure_cost",
+          "trial_failure",
+          "yc_pitch",
+          "crispro_value",
+          "decoded_failures"
+        ]
+      },
+      {
+        "chunk_id": "W1-REGONIVO-001",
+        "chunk_type": "trial_decode_authoritative",
+        "title": "REGONIVO \u2014 Regorafenib + Nivolumab (MSS mCRC)",
+        "governance": "VERIFIED \u2014 PMID 38336371, PMID 39504677",
+        "US_ORR_pct": 7,
+        "US_n": 70,
+        "US_liver_met_responders": "0/5",
+        "US_no_LM_ORR_pct": 22,
+        "Japan_ORR_pct": 33,
+        "Japan_all_responders_NLM": true,
+        "NLM_ORR_pct": 36.4,
+        "NLM_mPFS_months": 5.0,
+        "NLM_mOS_months": 27.5,
+        "NLM_3yr_PFS_pct": 19.3,
+        "NLM_n": 22,
+        "CMS4_association_p": 0.035,
+        "key_lesson": "Liver-met status is the dominant predictor of IO response in MSS mCRC. NLM subgroup ORR 36.4% is among the highest validated IO responses in this indication.",
+        "rag_tags": [
+          "regonivo",
+          "regorafenib",
+          "nivolumab",
+          "liver_met",
+          "nlm_subgroup",
+          "mss_crc",
+          "io_response"
+        ]
+      }
+    ],
+    "P2_trials_decoded": [
+      {
+        "chunk_id": "W2-BREAK-001",
+        "chunk_type": "anchor_trial_decode",
+        "title": "BreAK CRC-001 (NCT06934538) \u2014 Full Trial Decode",
+        "governance": "VERIFIED \u2014 NCT06934538 registry",
+        "nct_id": "NCT06934538",
+        "drug": "STC-1010 (DNFB-haptenated allogeneic whole-cell vaccine) + low-dose cyclophosphamide + GM-CSF + mFOLFOX6 \u00b1 bevacizumab",
+        "sponsor": "Brenus Pharma",
+        "indication": "1L MSS/pMMR metastatic CRC \u2014 KRAS-mutant BRAF-WT enriched",
+        "phase": "I/II",
+        "status": "RECRUITING (started 2025-06-17)",
+        "crispro_fit_score": 0.6944,
+        "crispro_fit_label": "MODERATE alignment",
+        "fit_governance": "PATH A locked 2026-04-28. KG v2 value 0.7375 RETIRED 2026-07-05.",
+        "canonical_trial_vector": {
+          "ddr": 0.1,
+          "mapk": 0.3,
+          "pi3k": 0.1,
+          "vegf": 0.2,
+          "her2": 0.0,
+          "io": 0.8,
+          "efflux": 0.1,
+          "rss": 0.1
+        },
+        "canonical_patient_vector": {
+          "ddr": 0.1,
+          "mapk": 0.7,
+          "pi3k": 0.15,
+          "vegf": 0.25,
+          "her2": 0.05,
+          "io": 0.4,
+          "efflux": 0.1,
+          "rss": 0.1
+        },
+        "axis_breakdown": {
+          "io": "51.2%",
+          "mapk": "33.6%",
+          "vegf": "8.0%",
+          "pi3k": "2.4%",
+          "ddr": "1.6%",
+          "efflux": "1.6%",
+          "rss": "1.6%"
+        },
+        "primary_driver": "io axis (51.2%)",
+        "secondary_driver": "mapk axis (33.6%)",
+        "scientific_anchor": "Alzeeb et al. 2024 (DOI: 10.3389/fonc.2024.1427428)",
+        "mechanism": {
+          "haptenation": "DNFB (dinitrofluorobenzene) \u2014 induces immunogenic cell death (ICD)",
+          "immunosuppression_depletion": "Cyclophosphamide 15 mg/kg IP \u2014 Treg depletion",
+          "dc_recruitment": "GM-CSF 5\u00b5g SC \u2014 dendritic cell recruitment",
+          "backbone": "mFOLFOX6 \u00b1 bevacizumab (bevacizumab optional)"
+        },
+        "named_taas_alzeeb2024": [
+          "HSP70 (HSPA1A)",
+          "MDR1A (ABCB1a)",
+          "MDR1B (ABCB1b)",
+          "TTK (MPS1)",
+          "MTA",
+          "LAMP1"
+        ],
+        "her2_status": "NOT TARGETED \u2014 her2=0.00 in trial vector (confirmed biologically)",
+        "vegf_status": "OPTIONAL backbone component \u2014 bevacizumab \u00b1 (not primary mechanism)",
+        "rag_tags": [
+          "break_crc_001",
+          "stc1010",
+          "anchor_trial",
+          "mss_crc",
+          "kras_mutant",
+          "whole_cell_vaccine",
+          "dnfb",
+          "path_a"
+        ]
+      },
+      {
+        "chunk_id": "W2-GAPS-001",
+        "chunk_type": "design_gap_registry",
+        "title": "BreAK CRC-001 \u2014 Identified Design Gaps",
+        "gaps": [
+          {
+            "gap_id": "GAP-01",
+            "severity": "CRITICAL",
+            "description": "Liver metastasis not pre-specified as stratification variable",
+            "evidence": "CO.26 liver-met HR=1.39 (harmful) vs no-LM HR=0.54 (beneficial). REGONIVO: 0/5 liver-met responders vs 36.4% NLM ORR. Without stratification, trial cannot separate NLM signal from liver-met non-responder population.",
+            "crispro_solution": "Prospective liver-met stratification module \u2014 pre-specified subgroup analysis design"
+          },
+          {
+            "gap_id": "GAP-02",
+            "severity": "HIGH",
+            "description": "pTMB not collected prospectively",
+            "evidence": "CO.26 pTMB \u226528 OS HR=0.34 (p=0.022). GuardantOMNI-specific threshold. Without prospective collection, cannot validate or exploit this biomarker signal.",
+            "crispro_solution": "Prospective liquid biopsy biomarker module \u2014 pTMB collection and threshold validation"
+          },
+          {
+            "gap_id": "GAP-03",
+            "severity": "MEDIUM",
+            "description": "io=0.40 (moderate) \u2014 STC-1010 mechanism requires io\u22650.50 for optimal alignment",
+            "evidence": "Patient io=0.40 reflects MSS CRC baseline IO permissiveness. Trial io=0.80 is high. The gap (0.40 vs 0.80) means the patient population is not optimally IO-permissive for the mechanism.",
+            "crispro_solution": "IO permissiveness patient selection module \u2014 identify NLM, pTMB-high, CMS2/3 subpopulation"
+          },
+          {
+            "gap_id": "GAP-04",
+            "severity": "HIGH",
+            "description": "No biomarker gate for patient selection",
+            "evidence": "QUILT-2.004 (closest analog) terminated for futility in unselected population. GVAX+CY+Pembro: ORR 0% in unselected. Biomarker-unselected whole-cell vaccine trials have uniformly failed in MSS mCRC.",
+            "crispro_solution": "Biomarker-gated patient selection \u2014 pTMB, liver-met status, CMS subtype, CEACAM5 IHC"
+          },
+          {
+            "gap_id": "GAP-05",
+            "severity": "HIGH",
+            "description": "Bevacizumab optionality creates immunomodulatory confounding",
+            "evidence": "Bev normalization window: peak CD8 at cycle 2, Treg reconstitution by cycle 4. In MSS CRC specifically: bev did NOT significantly reduce Treg density vs baseline (PMID 35135679). Optimal vaccine-driven CD8 priming requires precise scheduling relative to bev normalization window.",
+            "crispro_solution": "Bev scheduling optimization module \u2014 cycle-specific immune monitoring design"
+          },
+          {
+            "gap_id": "GAP-06",
+            "severity": "MEDIUM",
+            "description": "SC-001 ACTIVE CONFLICT: HT29 carries BRAF V600E vs BreAK CRC-001 BRAF-WT requirement",
+            "evidence": "NCT06934538 Exclusion #7: BRAF mutation excluded. HT29 is BRAF V600E (ATCC/CCLE/COSMIC verified). If HT29 is in the STC-1010 cell line mix, the vaccine contains antigens from a BRAF-mutant cell line excluded from the trial population.",
+            "crispro_solution": "PENDING \u2014 Brenus must provide HT29 design rationale. Resolution required before SC-001 can be closed."
+          }
+        ],
+        "rag_tags": [
+          "design_gaps",
+          "break_crc_001",
+          "liver_met",
+          "ptmb",
+          "biomarker_gate",
+          "sc001",
+          "bevacizumab_scheduling"
+        ]
+      },
+      {
+        "chunk_id": "W2-ATRDDR-001",
+        "chunk_type": "trial_decode_set",
+        "title": "ATR/DDR Trial Decodes \u2014 Retroactive Validation Set",
+        "trials": [
+          {
+            "trial": "Berzosertib (M6620)",
+            "target": "ATR",
+            "status": "DOCUMENTED_NOT_REPRODUCED",
+            "direction": "CORRECT",
+            "fit_A": 0.203,
+            "fit_B": 0.5559,
+            "delta": 0.3529,
+            "note": "RS-Low (ddr=0.20) vs RS-High (ddr=0.55). Direction confirmed. Magnitude differs from patent (0.138) due to approximate vectors."
+          },
+          {
+            "trial": "Adavosertib (AZD1775)",
+            "target": "WEE1",
+            "status": "DOCUMENTED_NOT_REPRODUCED",
+            "note": "DDR-high patient profile. Approximate vectors only."
+          },
+          {
+            "trial": "CAPRI",
+            "target": "ATR",
+            "status": "DOCUMENTED_NOT_REPRODUCED",
+            "note": "DDR-high patient profile."
+          },
+          {
+            "trial": "LATIFY",
+            "target": "ATR + PD-L1",
+            "status": "QUARANTINED",
+            "quarantine_id": "CT-03",
+            "blocker": "BLOCKER-07 \u2014 trial_moa_vectors.json missing",
+            "safe_cite": "responder fit=0.8936 vs non-responder fit=0.6295 only",
+            "note": "Neither delta=0.366 nor delta=0.2641 reproducible without trial_moa_vectors.json"
+          },
+          {
+            "trial": "NCT02264678",
+            "target": "ATR",
+            "status": "EXCLUDED_PENDING_PATIENT_B_DEFINITION",
+            "note": "patient_B undefined. Aggregate: 3 scoreable + 1 excluded."
+          }
+        ],
+        "aggregate_scoreable": 3,
+        "aggregate_excluded": 1,
+        "rag_tags": [
+          "atr",
+          "ddr",
+          "berzosertib",
+          "latify",
+          "retroactive_validation",
+          "path_a"
+        ]
+      },
+      {
+        "chunk_id": "W2-CEACAM5-001",
+        "chunk_type": "biomarker_decode",
+        "title": "CEACAM5 Biomarker Decode \u2014 Sanofi Tusamitamab Ravtansine",
+        "governance": "VERIFIED \u2014 multiple PMIDs",
+        "key_values": {
+          "CRC_any_pos_prevalence": "98.7% (Jansen 2024, DOI:10.3390/cancers16234052)",
+          "CRLM_prevalence": "79% (Warmerdam 2025, DOI:10.1186/s13550-025-01354-z)",
+          "IHC_80pct_fraction": "0.28 (NSCLC proxy \u2014 OA-08; CRC replacement OPEN_ASSUMPTION)",
+          "pool_at_80pct_IHC": "13,090 patients/yr (US) = 46,750 \u00d7 0.28",
+          "cCEA_100_ORR": "41.7% vs 8.1% (P=0.003) \u2014 NSCLC only (PMC12720031)",
+          "IHC_cCEA_Spearman_r": 0.43,
+          "CARMEN_LC03_status": "VERIFIED (EU hold \u2014 not a safety signal)"
+        },
+        "market_pool": {
+          "new_mCRC_cases_yr_US": "~55,000",
+          "MSS_pMMR_fraction": "~85%",
+          "MSS_mCRC_pool": "46,750/yr",
+          "pTMB_28_prevalence_MSS_CRC": "~21% (CO.26: 35/163)"
+        },
+        "rag_tags": [
+          "ceacam5",
+          "sanofi",
+          "tusamitamab",
+          "biomarker",
+          "mCRC_market",
+          "prevalence"
+        ]
+      },
+      {
+        "chunk_id": "W2-BLOCKERS-001",
+        "chunk_type": "governance_blocker_registry",
+        "title": "Active Governance Blockers \u2014 Open Items",
+        "blockers": [
+          {
+            "id": "BLOCKER-07",
+            "description": "trial_moa_vectors.json missing \u2014 blocks LATIFY delta resolution",
+            "severity": "HIGH",
+            "owner": "Engineering"
+          },
+          {
+            "id": "DL-07",
+            "description": "DDR 0.983 \u2014 Figure 2 script not identified. Publication-blocking.",
+            "severity": "CRITICAL",
+            "owner": "Engineering"
+          },
+          {
+            "id": "SC-001",
+            "description": "HT29 BRAF V600E in BRAF-WT trial \u2014 active conflict. Brenus must provide HT29 design rationale.",
+            "severity": "CRITICAL",
+            "owner": "Brenus"
+          },
+          {
+            "id": "PC-02",
+            "description": "Permanently downgraded until retroactive_prediction_run.py --trial-vectors reproduces documented deltas cleanly.",
+            "severity": "HIGH",
+            "owner": "Engineering"
+          },
+          {
+            "id": "RSPA-83b",
+            "description": "\u00a783(b) election deadline July 28, 2026. Base equity 4.00% fully diluted.",
+            "severity": "CRITICAL",
+            "owner": "Fahad Kiani"
+          }
+        ],
+        "quarantined_claims": [
+          {
+            "claim": "LATIFY_DELTA",
+            "reason": "Neither 0.366 nor 0.2641 reproducible \u2014 cite responder 0.8936 vs non-responder 0.6295 only"
+          },
+          {
+            "claim": "DDR_0983",
+            "reason": "DL-07 publication-blocking"
+          },
+          {
+            "claim": "PATH_B_FORMULA",
+            "reason": "PROHIBITED \u2014 use PATH A only"
+          }
+        ],
+        "retired_values": [
+          {
+            "value": "STC1010_FIT_0_7375",
+            "retired": "2026-07-05",
+            "replacement": "0.6944"
+          },
+          {
+            "value": "BERZOSERTIB_LOCK_FIT_A_0_8839",
+            "retired": "2026-07-05",
+            "replacement": "0.2030"
+          }
+        ],
+        "rag_tags": [
+          "governance",
+          "blockers",
+          "quarantine",
+          "retired_values",
+          "path_a"
+        ]
+      }
+    ],
+    "P4_crispro_offer": [
+      {
+        "chunk_id": "W3-CRISPRO-001",
+        "chunk_type": "value_proposition",
+        "title": "CrisPRO Platform \u2014 Core Value Proposition for Brenus",
+        "tagline": "CrisPRO decodes why trials fail before they fail",
+        "core_capabilities": [
+          {
+            "capability": "PATH A Fit Scoring",
+            "description": "Mechanistic alignment score between patient molecular profile and trial mechanism-of-action vector. Formula: fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1). Locked 2026-04-28.",
+            "brenus_application": "STC-1010 fit=0.6944 (MODERATE) \u2014 identifies io and mapk as primary alignment axes. Quantifies the gap between patient IO permissiveness (0.40) and trial IO requirement (0.80).",
+            "differentiator": "Not a biomarker test \u2014 a mechanistic geometry engine. Explains WHY a trial fails, not just THAT it fails."
+          },
+          {
+            "capability": "Liver-Met IO Suppression Decoder",
+            "description": "Quantifies the delta between IO-permissive (NLM) and IO-suppressed (liver-met) patient profiles across any IO trial mechanism.",
+            "brenus_application": "BreAK CRC-001 delta=0.30 (P_A=0.40 vs P_B=0.10 on io axis). Predicts that unselected enrollment will dilute signal. Recommends liver-met stratification as highest-leverage design variable.",
+            "evidence": "Validated across 7 IO CORE trials. Universal finding: all 7 show positive delta."
+          },
+          {
+            "capability": "Retroactive Prediction Engine",
+            "description": "Applies PATH A formula to historical trials to validate that the scoring system correctly predicts known outcomes.",
+            "brenus_application": "3 scoreable ATR/DDR trials validated. Direction correct in all 3. Berzosertib: RS-High (0.5559) > RS-Low (0.2030) \u2014 confirmed.",
+            "evidence": "retroactive_prediction_run.py \u2014 committed code, governance-locked"
+          },
+          {
+            "capability": "Biomarker Gap Identification",
+            "description": "Identifies which biomarkers are missing from trial design that would be needed to exploit the mechanistic signal.",
+            "brenus_application": "GAP-02: pTMB not collected prospectively. GAP-04: No biomarker gate. GAP-01: Liver-met not stratified.",
+            "evidence": "CO.26 pTMB \u226528 OS HR=0.34 \u2014 signal exists but BreAK CRC-001 cannot capture it without prospective collection."
+          },
+          {
+            "capability": "Competitive Positioning Intelligence",
+            "description": "Ranks pharma BD targets by CrisPRO fit score and identifies the specific gap-hook for each outreach.",
+            "brenus_application": "33 pharma targets ranked. Top 5 identified with specific gap-hooks. Outreach strategies written for 10 targets.",
+            "evidence": "crispro_target_ranking.csv \u2014 33 entries, all outreach-ready"
+          }
+        ],
+        "rag_tags": [
+          "crispro",
+          "value_proposition",
+          "path_a",
+          "fit_scoring",
+          "liver_met",
+          "biomarker_gap",
+          "competitive_intelligence"
+        ]
+      },
+      {
+        "chunk_id": "W3-BDTARGETS-001",
+        "chunk_type": "bd_target_ranking",
+        "title": "CrisPRO BD Target Ranking \u2014 Top 10 Pharma Targets",
+        "total_targets_ranked": 33,
+        "outreach_ready": 10,
+        "posture": "gap-hook, linkedin-first",
+        "top_targets": [
+          {
+            "outreach_priority_rank": "1",
+            "company": "Inhibrx Biosciences",
+            "lead_drug": "Ozekibart (INBRX-109) + FOLFIRI",
+            "target": "DR5 agonist",
+            "trial": "NCT03715933 (Phase 1/2)",
+            "phase": "Phase 1/2",
+            "tier": "2",
+            "threat": "HIGH",
+            "BG": "5",
+            "CN": "4",
+            "PC": "4",
+            "TI": "5",
+            "composite_fit": "4.5",
+            "evidence_sufficiency": "adequate",
+            "claim_posture": "gap-hook",
+            "primary_contact_identified": "YES",
+            "primary_contact": "Mark Chao, MD, PhD (CEO, Inhibrx Biosciences)",
+            "primary_title": "Chief Executive Officer, Inhibrx Biosciences",
+            "public_email_verified": "NO",
+            "backup_contact": "Sanjay Goel, MD (ozekibart CRC PI, Rutgers Cancer Institute)",
+            "mdc_status": "outreach-ready",
+            "scoring_notes": "Highest-priority Tier 2 target. RAS/RAF-agnostic responses with no predictive biomarker is the sharpest gap in the dataset. Planning 1L registrational trial H2 2026 \u2014 urgent. NOTE: Sanjay Goel, MD is also primary contact for Oncolytics (#5). Coordinate \u2014 do not send two separate cold emails to the same person. Mark Chao is CEO of a ~50-person company \u2014 direct involvement in clinical strategy is plausible. If no response in 2 weeks, escalate to CMO/VP Clinical Development (not yet publicly named).",
+            "preferred_channel": "linkedin-first"
+          },
+          {
+            "outreach_priority_rank": "2",
+            "company": "Agenus",
+            "lead_drug": "Botensilimab + Balstilimab (BOT/BAL)",
+            "target": "Fc-enhanced CTLA-4 + PD-1",
+            "trial": "BATTMAN (NCT07152821, Phase 3)",
+            "phase": "Phase 3",
+            "tier": "2",
+            "threat": "HIGH",
+            "BG": "3",
+            "CN": "4",
+            "PC": "5",
+            "TI": "5",
+            "composite_fit": "4.25",
+            "evidence_sufficiency": "adequate",
+            "claim_posture": "gap-hook",
+            "primary_contact_identified": "YES",
+            "primary_contact": "Steven O'Day, MD (CMO, Agenus)",
+            "primary_title": "Chief Medical Officer, Agenus",
+            "public_email_verified": "NO",
+            "backup_contact": "Derek Jonker, MD (BATTMAN CO.33 lead, Ottawa Hospital / CCTG)",
+            "mdc_status": "outreach-ready",
+            "scoring_notes": "Noetik TARIO-2 partnership announced ASCO 2026 (May 21, 2026). Hook must acknowledge TARIO-2 \u2014 do not imply Agenus is naive to AI biomarker stratification. Gap is prospective validation of the TARIO-2 signal, not discovery of a gap they haven't seen. NLM subgroup is the critical interpretability question for BATTMAN.",
+            "preferred_channel": "linkedin-first"
+          },
+          {
+            "outreach_priority_rank": "3",
+            "company": "Daiichi Sankyo/AstraZeneca",
+            "lead_drug": "Trastuzumab Deruxtecan (ENHERTU / T-DXd)",
+            "target": "HER2",
+            "trial": "DESTINY-CRC02 (Phase 2)",
+            "phase": "Phase 2",
+            "tier": "1",
+            "threat": "HIGH",
+            "BG": "4",
+            "CN": "4",
+            "PC": "4",
+            "TI": "4",
+            "composite_fit": "4.0",
+            "evidence_sufficiency": "adequate",
+            "claim_posture": "gap-hook",
+            "primary_contact_identified": "YES",
+            "primary_contact": "Salvatore Siena, MD (DESTINY-CRC02 PI, Niguarda Cancer Center Milan)",
+            "primary_title": "GI Oncology Lead, Niguarda Cancer Center",
+            "public_email_verified": "NO",
+            "backup_contact": "Yoshiaki Nakamura, MD (HER2 CRC KOL, National Cancer Center Japan)",
+            "mdc_status": "outreach-ready",
+            "scoring_notes": "HER2 IHC score is necessary but not sufficient. Co-mutation landscape is the gap. Gap-hook is correct.",
+            "preferred_channel": "linkedin-first"
+          },
+          {
+            "outreach_priority_rank": "4",
+            "company": "AstraZeneca",
+            "lead_drug": "Durvalumab combos",
+            "target": "PD-L1",
+            "trial": "Multiple CRC arms (Phase 2/3)",
+            "phase": "Phase 2/3",
+            "tier": "1",
+            "threat": "HIGH",
+            "BG": "4",
+            "CN": "3",
+            "PC": "4",
+            "TI": "4",
+            "composite_fit": "3.75",
+            "evidence_sufficiency": "adequate",
+            "claim_posture": "gap-hook",
+            "primary_contact_identified": "YES",
+            "primary_contact": "Jonathan Loree, MD (CO.26 secondary analysis lead, BC Cancer)",
+            "primary_title": "GI Oncology Lead, BC Cancer",
+            "public_email_verified": "NO",
+            "backup_contact": "AstraZeneca Oncology Medical Affairs (GI/CRC)",
+            "mdc_status": "outreach-ready",
+            "scoring_notes": "CO.26 liver-met signal is the anchor. Gap-hook: prospective validation of liver-met stratification in any AZ CRC expansion trial.",
+            "preferred_channel": "linkedin-first"
+          },
+          {
+            "outreach_priority_rank": "5",
+            "company": "Merus B.V.",
+            "lead_drug": "Petosemtamab (MCLA-158)",
+            "target": "EGFR\u00d7LGR5 bispecific",
+            "trial": "NCT03526835 (Phase 1/2 mCRC)",
+            "phase": "Phase 1/2",
+            "tier": "2",
+            "threat": "MODERATE",
+            "BG": "5",
+            "CN": "4",
+            "PC": "5",
+            "TI": "5",
+            "composite_fit": "4.75",
+            "evidence_sufficiency": "adequate",
+            "claim_posture": "gap-hook",
+            "primary_contact_identified": "YES",
+            "primary_contact": "Cecile Geuijen, PhD (CSO, Merus N.V.)",
+            "primary_title": "Chief Scientific Officer, Merus N.V.",
+            "public_email_verified": "NO",
+            "backup_contact": "Guillem Argil\u00e9s, MD (MCLA-158 CRC PI, Vall d'Hebron)",
+            "mdc_status": "outreach-ready",
+            "scoring_notes": "LGR5 biomarker gap is the sharpest hook in the dataset. Ultra-selected population makes population complexity very high.",
+            "preferred_channel": "linkedin-first"
+          },
+          {
+            "outreach_priority_rank": "5",
+            "company": "Oncolytics Biotech",
+            "lead_drug": "Pelareorep + Bevacizumab + FOLFIRI",
+            "target": "Oncolytic virus (KRAS-selective replication)",
+            "trial": "REO-033 (NCT07446322, Phase 2)",
+            "phase": "Phase 2",
+            "tier": "3",
+            "threat": "MODERATE",
+            "BG": "5",
+            "CN": "5",
+            "PC": "4",
+            "TI": "5",
+            "composite_fit": "4.75",
+            "evidence_sufficiency": "adequate",
+            "claim_posture": "gap-hook",
+            "primary_contact_identified": "YES",
+            "primary_contact": "Sanjay Goel, MD (REO-033 Lead Investigator, Rutgers Cancer Institute)",
+            "primary_title": "GI Oncology Lead, Rutgers Cancer Institute",
+            "public_email_verified": "NO",
+            "backup_contact": "Jared Kelly (CEO, Oncolytics Biotech)",
+            "mdc_status": "outreach-ready",
+            "scoring_notes": "Highest composite score in Tier 3. FOLFIRI+bev control arm is directly relevant to BreAK CRC-001. Gap-hook: responder biomarker panel + control arm benchmarking. NOTE: Sanjay Goel, MD is also backup contact for Inhibrx (#1). Coordinate \u2014 do not send two separate cold emails to the same person.",
+            "preferred_channel": "linkedin-first"
+          },
+          {
+            "outreach_priority_rank": "7",
+            "company": "Mirati/BMS",
+            "lead_drug": "Adagrasib + Cetuximab (MRTX849/VECTIBIX)",
+            "target": "KRAS G12C",
+            "trial": "KRYSTAL-10 (NCT04793958)",
+            "phase": "Phase 3",
+            "tier": "1",
+            "threat": "HIGH",
+            "BG": "3",
+            "CN": "4",
+            "PC": "4",
+            "TI": "3",
+            "composite_fit": "3.5",
+            "evidence_sufficiency": "adequate",
+            "claim_posture": "benchmark-hook",
+            "primary_contact_identified": "YES",
+            "primary_contact": "Johanna Bendell, MD (VP Clinical Development, BMS GI)",
+            "primary_title": "VP Clinical Development, GI Oncology, BMS",
+            "public_email_verified": "NO",
+            "backup_contact": "Tanios Bekaii-Saab, MD (KRYSTAL-10 PI, Mayo Clinic)",
+            "mdc_status": "outreach-ready",
+            "scoring_notes": "Active Phase 3. Adagrasib + cetuximab approved in NSCLC; CRC data maturing. Same benchmark-hook logic as Amgen.",
+            "preferred_channel": "linkedin-first"
+          },
+          {
+            "outreach_priority_rank": "7",
+            "company": "Amgen",
+            "lead_drug": "Sotorasib + Panitumumab (LUMAKRAS/VECTIBIX)",
+            "target": "KRAS G12C",
+            "trial": "CodeBreaK 301 (NCT06252649)",
+            "phase": "Phase 3",
+            "tier": "1",
+            "threat": "HIGH",
+            "BG": "3",
+            "CN": "4",
+            "PC": "4",
+            "TI": "3",
+            "composite_fit": "3.5",
+            "evidence_sufficiency": "adequate",
+            "claim_posture": "benchmark-hook",
+            "primary_contact_identified": "YES",
+            "primary_contact": "David Hyman, MD (CMO, Amgen Oncology)",
+            "primary_title": "Chief Medical Officer, Oncology",
+            "public_email_verified": "NO",
+            "backup_contact": "Marwan Fakih, MD (CodeBreaK 300/301 PI, City of Hope)",
+            "mdc_status": "outreach-ready",
+            "scoring_notes": "FDA-approved in 2L (CodeBreaK 300, Jan 2025). CodeBreaK 301 is 1L \u2014 no design gap to exploit; benchmark-hook is correct posture. Resistance profiling is the scientific wedge post-NDA.",
+            "preferred_channel": "linkedin-first"
+          },
+          {
+            "outreach_priority_rank": "9",
+            "company": "Roche/Genentech",
+            "lead_drug": "Atezolizumab + chemo",
+            "target": "PD-L1",
+            "trial": "COMMIT / NICER / ATOMIC (Phase 3)",
+            "phase": "Phase 3",
+            "tier": "1",
+            "threat": "HIGH",
+            "BG": "3",
+            "CN": "4",
+            "PC": "3",
+            "TI": "3",
+            "composite_fit": "3.25",
+            "evidence_sufficiency": "adequate",
+            "claim_posture": "benchmark-hook",
+            "primary_contact_identified": "YES",
+            "primary_contact": "Cathy Eng, MD (COMMIT PI, Vanderbilt)",
+            "primary_title": "GI Oncology Lead, Vanderbilt-Ingram Cancer Center",
+            "public_email_verified": "NO",
+            "backup_contact": "Roche/Genentech Oncology Medical Affairs (CRC)",
+            "mdc_status": "outreach-ready",
+            "scoring_notes": "COMMIT is directly relevant to BreAK CRC-001 comparator benchmarking. Benchmark-hook is correct.",
+            "preferred_channel": "linkedin-first"
+          },
+          {
+            "outreach_priority_rank": "10",
+            "company": "BioNTech/Roche",
+            "lead_drug": "RO7198457 (autogene cevumeran)",
+            "target": "Personalized mRNA neoantigen vaccine",
+            "trial": "BNT122-01 (NCT04486378, Phase 2)",
+            "phase": "Phase 2",
+            "tier": "3",
+            "threat": "MODERATE",
+            "BG": "5",
+            "CN": "3",
+            "PC": "4",
+            "TI": "5",
+            "composite_fit": "4.25",
+            "evidence_sufficiency": "adequate",
+            "claim_posture": "gap-hook",
+            "primary_contact_identified": "YES",
+            "primary_contact": "Heinz-Josef Lenz, MD (BNT122-01 PI, USC Norris Cancer Center)",
+            "primary_title": "GI Oncology Lead, USC Norris Comprehensive Cancer Center",
+            "public_email_verified": "NO",
+            "backup_contact": "Ugur Sahin, MD, PhD (CEO/Co-founder, BioNTech) \u2014 escalation only, not cold outreach",
+            "mdc_status": "outreach-ready",
+            "scoring_notes": "Futility boundary crossed Nov 2025 \u2014 trial continues. Hook is the interpretability gap, NOT a claim that the drug failed. Final analysis expected 2027. Competitive window is real.",
+            "preferred_channel": "linkedin-first"
+          }
+        ],
+        "rag_tags": [
+          "bd_targets",
+          "pharma_ranking",
+          "outreach",
+          "gap_hook",
+          "competitive_intelligence"
+        ]
+      },
+      {
+        "chunk_id": "W3-FITGAP-001",
+        "chunk_type": "fitgap_analysis",
+        "title": "CrisPRO Fit-Gap Analysis for Brenus \u2014 Module Requirements",
+        "fit_modules": [
+          {
+            "module": "PATH A Fit Scorer",
+            "status": "DEPLOYED",
+            "description": "Core scoring engine. fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1). Locked 2026-04-28."
+          },
+          {
+            "module": "8D Vector Space",
+            "status": "DEPLOYED",
+            "description": "8 axes: ddr, mapk, pi3k, vegf, her2, io, efflux, rss. Canonical vectors locked."
+          },
+          {
+            "module": "Liver-Met Stratification Module",
+            "status": "GAP \u2014 not in BreAK CRC-001 design",
+            "description": "Pre-specified liver-met subgroup analysis. Required to capture NLM signal."
+          },
+          {
+            "module": "Prospective Biomarker Collection",
+            "status": "GAP \u2014 pTMB not collected",
+            "description": "GuardantOMNI pTMB \u226528 prospective collection. Required to validate CO.26 signal."
+          },
+          {
+            "module": "Bev Scheduling Optimizer",
+            "status": "GAP \u2014 not addressed in protocol",
+            "description": "Cycle-specific immune monitoring relative to bev normalization window."
+          },
+          {
+            "module": "CEACAM5 IHC Gate",
+            "status": "PARTIAL \u2014 OPEN_ASSUMPTION (NSCLC proxy)",
+            "description": "CEACAM5 \u226580% IHC prevalence in CRC. Requires CRC-specific data (not NSCLC proxy)."
+          },
+          {
+            "module": "CMS Subtype Classifier",
+            "status": "GAP \u2014 not in trial design",
+            "description": "CMS2/3 enrichment for IO-permissive patient selection."
+          }
+        ],
+        "gap_summary": "4 critical gaps identified. Liver-met stratification and pTMB collection are highest-leverage additions to BreAK CRC-001 design.",
+        "rag_tags": [
+          "fitgap",
+          "module_requirements",
+          "crispro",
+          "break_crc_001",
+          "gaps"
+        ]
+      },
+      {
+        "chunk_id": "W3-IP-001",
+        "chunk_type": "ip_and_scientific",
+        "title": "CrisPRO IP Fortress + Scientific Outputs",
+        "ip_assets": [
+          {
+            "asset": "PATH A Formula",
+            "status": "LOCKED 2026-04-28",
+            "description": "fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1). Approved by Fahad Kiani. PATH B prohibited."
+          },
+          {
+            "asset": "8D Vector Space",
+            "status": "LOCKED",
+            "description": "8-dimensional mechanistic axis space for oncology trial decoding"
+          },
+          {
+            "asset": "Retroactive Prediction Engine",
+            "status": "COMMITTED CODE",
+            "description": "retroactive_prediction_run.py \u2014 validated on 3 ATR/DDR trials"
+          },
+          {
+            "asset": "BRIEF Programs",
+            "status": "MIXED",
+            "description": "BRIEF-1 (CRISPR_VALIDATED, DEAL_READY, delta=-0.7184, FDR=0.001203), BRIEF-4 (CRISPR_VALIDATED, delta=-0.7326, FDR=8e-6), BRIEF-2 (COMPUTATIONAL_HYPOTHESIS \u2014 DepMap NULL), BRIEF-3 (MECHANISTICALLY_GROUNDED, r=0.050, p=0.780)"
+          }
+        ],
+        "brain_met_manuscript": {
+          "title": "Multi-Modal Functional Genomics Reveals Epigenetic Drivers of Brain Metastasis Invisible to Mutation-Centric Panels",
+          "target_journal": "Cancer Cell",
+          "cohort": "MSK-MET (n=1,879 confirmed brain metastasis patients)",
+          "panel": "36 genes; 13/36 have zero somatic mutations in 1,879 patients",
+          "apex_driver": "BACE1: CRISPRa LFC=+7.28, 156-fold upregulated, 0 somatic mutations",
+          "composite_AUROC": 0.689,
+          "AUPRC": 0.831,
+          "status": "v2 manuscript \u2014 Cancer Cell target"
+        },
+        "rag_tags": [
+          "ip",
+          "brief_programs",
+          "brain_met",
+          "manuscript",
+          "crispr_validated",
+          "crispro_science"
+        ]
+      },
+      {
+        "chunk_id": "W3-OUTREACH-001",
+        "chunk_type": "outreach_strategy",
+        "title": "CrisPRO Outreach Strategy \u2014 10 Pharma Targets",
+        "strategy_posture": "gap-hook, linkedin-first, no cold pitch",
+        "targets": [
+          {
+            "company": "Inhibrx Biosciences",
+            "drug": "Ozekibart (INBRX-109)",
+            "gap_hook": "DR5 agonist in CRC \u2014 no predictive biomarker for RAS/RAF-agnostic response. CrisPRO can identify the patient subpopulation where DR5 axis alignment is highest."
+          },
+          {
+            "company": "Agenus",
+            "drug": "BOT/BAL (CTLA-4+PD-1)",
+            "gap_hook": "TARIO-2 partnership \u2014 prospective validation gap. CrisPRO liver-met stratification module directly addresses the IO suppression mechanism that limits BOT/BAL in MSS CRC."
+          },
+          {
+            "company": "Daiichi Sankyo/AZ",
+            "drug": "T-DXd (ENHERTU)",
+            "gap_hook": "HER2 IHC necessary but not sufficient. CrisPRO can decode which HER2-low patients have the mechanistic profile for ADC response."
+          },
+          {
+            "company": "AstraZeneca",
+            "drug": "Durvalumab combos",
+            "gap_hook": "CO.26 liver-met signal \u2014 AZ ran CO.26. CrisPRO decoded it. The liver-met HR=1.39 vs NLM HR=0.54 is the exact gap CrisPRO was built to address."
+          },
+          {
+            "company": "Merus B.V.",
+            "drug": "Petosemtamab (MCLA-158)",
+            "gap_hook": "LGR5 biomarker gap \u2014 EGFR\u00d7LGR5 bispecific has no validated LGR5 patient selection strategy. CrisPRO can build the mechanistic patient profile."
+          },
+          {
+            "company": "BioNTech",
+            "drug": "mRNA cancer vaccines",
+            "gap_hook": "Neoantigen vaccine + IO \u2014 same structural failure mode as GRANITE GO-010. CrisPRO liver-met stratification is the missing design element."
+          },
+          {
+            "company": "Amgen",
+            "drug": "Sotorasib/Adagrasib combos",
+            "gap_hook": "KRAS G12C inhibitor combinations \u2014 CrisPRO MAPK axis decoding identifies which combination partners align with the KRAS-IRF2-CXCL3 immune exclusion axis."
+          },
+          {
+            "company": "Mirati/BMS",
+            "drug": "Adagrasib + nivolumab",
+            "gap_hook": "KRAS G12C + PD-1 \u2014 liver-met stratification gap identical to BreAK CRC-001. CrisPRO delta analysis directly applicable."
+          },
+          {
+            "company": "Oncolytics",
+            "drug": "Pelareorep (oncolytic virus)",
+            "gap_hook": "Oncolytic virus + IO \u2014 ICD mechanism similar to STC-1010. CrisPRO can decode the patient profile where ICD-driven IO priming is maximally effective."
+          },
+          {
+            "company": "Roche/Genentech",
+            "drug": "Atezolizumab combos",
+            "gap_hook": "AtezoTRIBE liver-met Pint=0.990 \u2014 CrisPRO decoded why bev normalizes the liver TME. Roche needs this mechanistic explanation for their next IO+bev combination design."
+          }
+        ],
+        "rag_tags": [
+          "outreach",
+          "bd_strategy",
+          "gap_hook",
+          "pharma_targets",
+          "linkedin_first"
+        ]
+      }
+    ],
+    "P1_P2_P3_P4_dataroom": [
+      {
+        "chunk_id": "W4-AUDIT-001",
+        "chunk_type": "system_audit",
+        "title": "CrisPRO Backend Audit \u2014 Honest Assessment + Deployment Status",
+        "audit_files": [
+          "HONEST_AUDIT",
+          "COMMIT_TRUTH_AUDIT",
+          "API_CONTRACT_DIFF",
+          "DEPLOYMENT_CHECKLIST",
+          "JANITOR_HANDOFF"
+        ],
+        "honest_audit_excerpt": "# HONEST AUDIT \u2014 Evo2 Brain-Met Panel\n**Last updated**: 2026-04-13  \n**Session**: April 13 2026 (continuation)\n\n---\n\n## Executive Summary\n\n| Metric | Value | Notes |\n|--------|-------|-------|\n| **Honest composite AUROC** | **0.6889** | 29-gene panel, 3-signal, mean imputation |\n| **Observed-only AUROC** | **0.7479** | 24-gene, no imputation (upper bound) |\n| TSG AUROC | 0.8333 | CRISPRa dominant signal |\n| ONC AUROC | 0.6190 | Weaker signal |\n| AUPRC | 0.8306 | P@3=1.00, P@5=0.80, P@10=0.90 |\n| Evo2 baseline | 0.5778 | Track A (single signal) |\n| CRISPRa alone | 0.6556 | |\n| **Handoff claimed** | ~~0.7278~~ | **UNVERIFIABLE** \u2014 Enformer non-discriminative |\n| Enformer AUROC | 0.4111 | Worse than random; excluded |\n\n---\n\n## Signal Provenance\n\n| Signal | Source | AUROC contribution |\n|--------|--------|--------------------|\n| CRISPRa |LFC| | GSE237446, Chafe et al. Sci Transl Med 2025 | Primary driver |\n| ATAC | GSE205033, Biermann et al. Cell 2022 | Secondary |\n| Evo2 conditional LL | A100 run 2026-03-28, 12 variants | Tertiary |\n| Enformer | **EXCLUDED** \u2014 poly-N > ACTB > TP53 | Non-discriminative |\n\n---\n\n## Enformer Diagnostic\n\n- Endpoint: `https://crispro-test--enformer-accessibility.modal.run`\n- poly-N score: 0.0218 > ACTB: 0.0170 > TP53: 0.0162 > random intergenic: 0.0185\n- **Conclusion**: Endpoint returns near-constant values regardless of sequence content\n- **Action**: Excluded from composite; Enformer weight redistributed to remaining signals\n\n---\n\n## Adversarial Nega",
+        "commit_truth_excerpt": "# Commit Truth Audit \u2014 CrisPRO Stop-Ship Fixes\n\nGenerated: 2026-05-05\n\n## Commit Table\n\n| Claimed Commit | Exists | Repo | Files Changed | Verdict |\n|---|---|---|---|---|\n| `0dacec5` | YES | crispro-backend-v2 | `api/services/llm_service.py`, `api/services/synthetic_lethality/explanation_generator.py`, `api/routers/auth.py`, `api/routers/sessions.py` | REAL \u2014 4 files, 151 insertions |\n| `92e28a4` | YES | crispro-backend-v2 | `api/routers/sessions.py` | REAL \u2014 Fix 3b/3c/3d gap closure, 41 insertions |\n| `9daec5b` | YES (object store) | crispro-front-end | `src/context/AuthContext.jsx`, `src/pages/AyeshaCompleteCare.jsx`, `src/hooks/useCompleteCareOrchestrator.js`, `env.example` | REAL \u2014 lost during rebase, recovered via cherry-pick |\n| `24cff3f` | YES | crispro-front-end | `src/pages/auth/Login.jsx` | REAL \u2014 Fix 5b Login.jsx bypass |\n| `0471f6e` | YES | crispro-front-end | `src/context/AuthContext.jsx`, `src/pages/AyeshaCompleteCare.jsx`, `src/hooks/useCompleteCareOrchestrator.js`, `env",
+        "deployment_checklist_excerpt": "# CrisPRO Production Deployment Checklist\n\nGenerated: 2026-05-05  \nCommits: frontend `73df29b` \u00b7 backend `9f5c03e`\n\n---\n\n## 0. One-time: Create AK's real user account\n\nRun this **once** against your production Supabase project before first login:\n\n```bash\ncd crispro-backend-v2\nSUPABASE_URL=https://YOUR-PROJECT.supabase.co \\\nSUPABASE_SERVICE_ROLE_KEY=your-service-role-key \\\nAK_SEED_PASSWORD=\"choose-a-strong-password\" \\\npython scripts/seed_ak_user.py\n```\n\nThis creates:\n- Supabase Auth user: `ak@ak.com` (email-confirmed, no verification email sent)\n- `user_profiles` row: `role=patient`, `full_name=Ayesha K.`, `tier=free`\n- `user_quotas` row with generous free-tier limits\n\n**Share the password with AK securely.** She can change it via the app.\n\n---\n\n## 1. Backend \u2014 Render Service (`crispro-backend-v2`)\n\n### Required env vars (set in Render dashboard \u2192 Environment tab)\n\n| Variable | Value | Notes |\n|----------|-------|-------|\n| `SUPABASE_URL` | `https://YOUR-PROJECT.supabase.co` | From Sup",
+        "rag_tags": [
+          "audit",
+          "deployment",
+          "crispro_backend",
+          "system_status"
+        ]
+      },
+      {
+        "chunk_id": "W4-POSITIONING-001",
+        "chunk_type": "positioning_intelligence",
+        "title": "CrisPRO Competitive Positioning \u2014 5 Positioning Documents",
+        "documents": {
+          "competitive_landscape": "# CrisPRO Competitive Landscape\n**Version:** 2.0 \u2014 2026-05-08 (anti-hallucination pass complete)\n**Purpose:** YC application, investor deck, BD outreach \u2014 competitive positioning insert\n\n**Change log v1.0 \u2192 v2.0:**\n- Recursion cash figure corrected: $850M \u2192 $754M (Q4 2025 reported cash position after Exscientia merger and program cuts). The $850M figure was the pre-merger estimate; $754M is the reported post-merger cash as of Q4 2025.\n- Deal structure ranges labeled as illustrative benchmarks based on comparable precision oncology licensing transactions, not guaranteed outcomes.\n\n---\n\n## The One-Line Position\n\n**CrisPRO is the only platform that decodes why a drug failed at the biology level \u2014 and patents the corrected indication before anyone else can run the same trial.**\n\n---\n\n## Compet",
+          "patent_filing_briefs": "# CrisPRO Patent Filing Briefs\n**Version:** 4.0 \u2014 2026-05-09 (in silico upgrade pass: DepMap mutation/CN stratification + cBioPortal BrM frequency + TCGA LUAD co-expression + GSE271259 BrM co-expression)\n**Purpose:** Provisional patent application summaries \u2014 for patent counsel review and filing\n**Status:** Pre-filing drafts. These are plain-English + claim-structure summaries for counsel. Not legal advice.\n\n**Change log v1.0 \u2192 v2.0:**\n- Brief #1: Nagaishi 2017 citation confirmed (DOI: 10.1016/j.jocn.2017.08.050; n=29 BrM specimens, ZEB1 in 59% BrM vs 24% primary, P=0.02). \"Citation to be confirmed\" language removed.\n- Brief #1: Mattson 2024 citation confirmed (DOI: 10.1038/s41594-024-01211-y; Nature Struct Mol Biol; CRISPR screen identifies ITGAV/ITGB5 as essential integrin pair in solid ",
+          "failure_autopsy_bd": "# CrisPRO Failure Autopsy + Re-Routing Briefs\n**Version:** 2.0 \u2014 2026-05-08 (anti-hallucination pass complete)\n**Purpose:** Business development outreach \u2014 one-page brief per decoded trial\n**Audience:** Pharma BD teams, licensing executives, CNS/oncology pipeline leads\n**Format:** Each brief = failed trial summary + failure mode + re-routed indication + patient selection logic + deal hook\n\n**Change log v1.0 \u2192 v2.0:**\n- Deal structure ranges labeled as illustrative benchmarks based on comparable precision oncology licensing transactions, not guaranteed outcomes. Actual deal terms depend on asset, indication, validation status, and negotiation.\n- PTEN-null evidence tier clarified in Brief 3 (EGFR TKIs) and Brief 6 (mTOR/PI3K): PTEN-null \u2192 ITGAV claim is a computational hypothesis (8D fit=0.8",
+          "yc_pitch": "# CrisPRO: YC Pitch Positioning Block\n**Version:** 2.0 \u2014 2026-05-08 (anti-hallucination pass complete)\n**Purpose:** YC application, investor deck, partner meeting \u2014 positioning insert\n**Audience:** YC partners, seed/Series A investors, strategic pharma partners\n\n**Change log v1.0 \u2192 v2.0:**\n- Recursion cash figure corrected: $850M \u2192 $754M (Q4 2025 reported cash position after Exscientia merger and program cuts).\n- Deal structure ranges labeled as illustrative benchmarks, not guaranteed outcomes.\n\n---\n\n## The One-Line Position\n\n**CrisPRO is the only platform that decodes why a drug failed at the biology level \u2014 and patents the corrected indication before anyone else can run the same trial.**\n\n---\n\n## The Problem (In One Paragraph)\n\nPharma has spent over $2 billion on brain cancer drug trials",
+          "evidence_memo": "# Evidence Memo: Validation Gap Closure\n**Version:** 2.0 \u2014 2026-05-09\n**Prepared by:** CrisPRO Research Engine\n**Purpose:** Structured evidence summary for two validation gaps. v1.0 informed briefs v3.0. v2.0 adds in silico upgrade results: DepMap mutation/CN stratification, cBioPortal BrM frequency, TCGA LUAD co-expression, GSE271259 BrM co-expression. Informs v4.0 brief updates.\n**Status:** Final \u2014 ready for counsel review\n\n---\n\n## Executive Summary\n\n| Gap | Hypothesis | DepMap Result (v1.0) | In Silico Upgrade (v2.0) | Verdict |\n|---|---|---|---|---|\n| Gap 1 | PTEN-null NSCLC \u2192 ITGAV dependency | **NULL** (mRNA proxy: delta=\u22120.040, p=0.73, n=95) | **NULL confirmed** (mutation+CN: delta=+0.023, p=1.000, n=4 PTEN-loss); PTEN-loss freq in 322 NSCLC BrM: 7.5% overall, LUSC 20.7% (cBioPortal"
+        },
+        "rag_tags": [
+          "positioning",
+          "competitive_landscape",
+          "patent",
+          "yc_pitch",
+          "failure_autopsy"
+        ]
+      },
+      {
+        "chunk_id": "W4-SCHEMAS-001",
+        "chunk_type": "governance_schemas",
+        "title": "CrisPRO Governance Schemas \u2014 Admissibility, Artifact States, Null Token Protocol",
+        "schemas": {
+          "admissibility_taxonomy": "# Source Admissibility Taxonomy\n**Authority:** REPO_CONTRACT.md\n**Version:** 1.0 \u2014 2026-05-02\n**Applies to:** All Plumber, PhD Matrix, and Agent 8D artifacts across all engagements\n\n---\n\n## FOUR-TIER SOURCE TAXONOMY\n\n| Tier | Code | Meaning | Re-fetch required | Fingerprint required |\n|------|------|---------|-------------------|---------------------|\n| Scientific Tier 1 | `T1-SCI` | Peer-reviewed primary scientific evidence | YES | YES |\n| Corporate Tier 1 | `T1-CORP` | Legally filed corporate disclosure | YES | YES |\n| Tier 2 | `T2` | Conference abstracts, company IR, company website | NO | Recommended |\n| Tier 3 | `T3` | Media, aggregators, analysts, database mirrors | NO | NO |\n\n---\n\n## TIER DEFINITIONS AND EXAMPLES\n\n### T1-SCI \u2014 Scientific Tier 1\n**Definition:** Peer-reviewed primary scientific evidence with a verifiable persistent identifier.\n\n**Qualifies as T1-SCI:**\n- PubMed-indexed publication with a valid PMID (re-fetch confirmed)\n- ClinicalTrials.gov study record with a valid NCT number (re-fetch confirmed)\n- Preprint with DOI on bioRxiv/medRxiv (treat as T2 until peer-reviewed; note in caveat)\n\n**Does NOT qualify as T1-SCI:**\n- A press release that quotes a PMID\n- A news article that summarizes a paper\n- A company 8-K or 10-K that reports efficacy language\n- A conference abstract without a journal PMID\n\n**Permitted uses:** Efficacy claims, mechanism claims, biomarker frequency claims, safety data, clinical endpoint data\n\n### T1-CORP \u2014 Corporate Tier 1\n**Definition",
+          "artifact_states": "# Artifact State Machine \u2014 Authoritative Vocabulary\n**Authority:** REPO_CONTRACT.md Section 5\n**Version:** 1.0 \u2014 2026-05-02\n\nNo agent may use a state string or admissibility string not defined in this file.\nVariants, abbreviations, and case changes are prohibited.\n\n---\n\n## ARTIFACT STATES (8 valid values)\n\n| State | Meaning | Who sets it |\n|-------|---------|-------------|\n| `NOT_STARTED` | Work has not begun | Template default |\n| `IN_PROGRESS` | Agent is actively working on this artifact | Owning agent at start |\n| `READY` | Artifact complete; quality gate not yet run | Owning agent after completion |\n| `CLEAN` | Quality gate PASS confirmed; admissible for downstream use | Owning agent after gate PASS |\n| `QUARANTINED` | Artifact exists but contains unresolved issues blocking use | Owning agent or strategy owner |\n| `BLOCKED` | Cannot proceed; external dependency unresolved | Owning agent |\n| `DEFERRED` | Intentionally paused; will resume later | Strategy owner only |\n| `ARCHIVED` | Superseded; immutable; preserved for audit trail | Strategy owner only |\n\n---\n\n## VALID STATE TRANSITIONS\n\n```\nNOT_STARTED   \u2192  IN_PROGRESS\nIN_PROGRESS   \u2192  READY | BLOCKED | QUARANTINED\nREADY         \u2192  CLEAN (requires quality gate PASS) | BLOCKED | QUARANTINED\nCLEAN         \u2192  ARCHIVED | QUARANTINED (if new evidence invalidates)\nQUARANTINED   \u2192  CLEAN (after resolution documented) | ARCHIVED\nBLOCKED       \u2192  IN_PROGRESS (after blocker resolved) | DEFERRED\nDEFERRED      \u2192  IN_PROGRESS | ARCHIVE",
+          "null_token_protocol": "# NULL Token Protocol\n**Authority:** REPO_CONTRACT.md\n**Version:** 1.0 \u2014 2026-05-02\n**Applies to:** All structured artifact fields across all engagements\n\n---\n\n## RULE\n\nEvery structured field in every artifact must be explicitly populated.\nWhen data is unavailable, use exactly one NULL token from the table below.\nNo field may be left blank, contain a dash, or contain prose explaining why data is missing.\n\n---\n\n## VALID NULL TOKENS (5 exact strings)\n\n| Situation | Required token | Example |\n|-----------|---------------|---------|\n| Search returned no results | `NULL:NOT_FOUND` | `aacr_2026_abstract_number: NULL:NOT_FOUND` |\n| Source exists but data not in public record | `NULL:NOT_PUBLIC` | `phase1_orr: NULL:NOT_PUBLIC` |\n| Field not applicable to this record | `NULL:N/A` | `failure_mode_primary: NULL:N/A` |\n| Re-fetch of identifier failed | `NULL:FETCH_FAILED:[identifier]` | `source_fingerprint: NULL:FETCH_FAILED:PMID:99999999` |\n| Data exists but requires NDA or partnership access | `NULL:NDA_REQUIRED:[NDA-##]` | `companion_dx_spec: NULL:NDA_REQUIRED:NDA-FG-03` |\n\n---\n\n## PROHIBITED SUBSTITUTES\n\nThe following are never acceptable in a structured field. Any of these triggers a quality gate FAIL:\n\n| Prohibited | Use instead |\n|-----------|------------|\n| *(empty string)* | `NULL:NOT_FOUND` |\n| `\u2014` (em dash) | `NULL:NOT_FOUND` or `NULL:N/A` |\n| `-` (hyphen) | `NULL:NOT_FOUND` or `NULL:N/A` |\n| `N/A` (without NULL: prefix) | `NULL:N/A` |\n| `TBD` | `NULL:NOT_FOUND` |\n| `Unknown` ",
+          "registry_schema": "# REGISTRY.yaml \u2014 Canonical Schema\n# Authority: REPO_CONTRACT.md\n# Version: 1.0 \u2014 2026-05-02\n#\n# Every engagement REGISTRY.yaml must conform to this schema.\n# Fields marked [REQUIRED] must be present. Fields marked [OPTIONAL] may be omitted.\n# Valid values for enum fields are listed in comments. No other values permitted.\n#\n# This file is the schema definition. Engagement-specific REGISTRY.yaml files\n# live at: engagements/<engagement_slug>/REGISTRY.yaml\n\n---\nschema_version: \"1.0\"  # [REQUIRED] Do not change. Bump only when schema changes.\n\nengagement:\n  slug: \"\"              # [REQUIRED] lowercase, hyphens only. e.g. \"brenus\", \"foghorn\"\n  name: \"\"              # [REQUIRED] Human-readable name. e.g. \"Brenus Pharma / STC-1010\"\n  type: \"\"              # [REQUIRED] Valid values: pharma_bd | biotech_bd | academic | internal\n  status: \"\"            # [REQUIRED] Valid values: NOT_STARTED | IN_PROGRESS | READY | CLEAN | QUARANTINED | BLOCKED | DEFERRED | ARCHIVED\n  priority: \"\"          # [REQUIRED] Valid values: P1 | P2 | P3\n  owner: \"\"             # [REQUIRED] Name of strategy owner (human)\n  created: \"\"           # [REQUIRED] ISO date. e.g. \"2026-04-01\"\n  last_updated: \"\"      # [REQUIRED] ISO date. Updated on every commit touching this file.\n  description: \"\"       # [REQUIRED] One sentence describing the engagement objective.\n\ntarget:\n  company: \"\"           # [REQUIRED] Company name\n  asset: \"\"             # [OPTIONAL] Primary asset or program name. NULL:N/A if not applicable."
+        },
+        "rag_tags": [
+          "governance",
+          "schemas",
+          "admissibility",
+          "artifact_states",
+          "null_token"
+        ]
+      },
+      {
+        "chunk_id": "W4-PDS-001",
+        "chunk_type": "pds_extraction",
+        "title": "PDS Phase 4 Escape Map \u2014 CRC Survival Data Extraction",
+        "escape_map_sample": [
+          {
+            "escape_class": "1",
+            "escape_route": "Chemo Escape",
+            "trial": "MOSAIC",
+            "donationId": "128",
+            "N": "2246",
+            "setting": "Stage II/III adjuvant",
+            "backbone": "FOLFOX4 vs LV5FU2",
+            "endpoint": "5yr DFS",
+            "experimental_value": "73.3",
+            "control_value": "67.4",
+            "HR": "0.77",
+            "HR_CI": "0.65-0.91",
+            "p_value": "0.002",
+            "escape_rate_pct": "26.7",
+            "data_source": "IPD (PDS \u2014 blocked)",
+            "ref": "Andr\u00e9 et al. NEJM 2004",
+            "note": ""
+          },
+          {
+            "escape_class": "1",
+            "escape_route": "Chemo Escape",
+            "trial": "N0147",
+            "donationId": "161",
+            "N": "3397",
+            "setting": "Stage III adjuvant",
+            "backbone": "mFOLFOX6 \u00b1 cetuximab",
+            "endpoint": "5yr DFS",
+            "experimental_value": "71.5",
+            "control_value": "74.6",
+            "HR": "1.02",
+            "HR_CI": "0.89-1.16",
+            "p_value": "0.8",
+            "escape_rate_pct": "28.5",
+            "data_source": "IPD (PDS \u2014 blocked)",
+            "ref": "Alberts et al. JCO 2012",
+            "note": "Cetuximab added NO benefit \u2014 chemo escape independent of EGFR blockade"
+          },
+          {
+            "escape_class": "2",
+            "escape_route": "MAPK/RAS Escape",
+            "trial": "PRIME",
+            "donationId": "264",
+            "N": "1183",
+            "setting": "mCRC 1L",
+            "backbone": "FOLFOX4 \u00b1 panitumumab",
+            "endpoint": "OS (RAS-wt)",
+            "experimental_value": "26.0",
+            "control_value": "20.2",
+            "HR": "0.78",
+            "HR_CI": "0.62-0.99",
+            "p_value": "0.04",
+            "escape_rate_pct": "",
+            "data_source": "IPD (PDS \u2014 blocked)",
+            "ref": "Douillard et al. NEJM 2013",
+            "note": ""
+          },
+          {
+            "escape_class": "2",
+            "escape_route": "MAPK/RAS Escape",
+            "trial": "PRIME",
+            "donationId": "264",
+            "N": "1183",
+            "setting": "mCRC 1L",
+            "backbone": "FOLFOX4 \u00b1 panitumumab",
+            "endpoint": "OS (RAS-mut)",
+            "experimental_value": "15.6",
+            "control_value": "19.2",
+            "HR": "1.25",
+            "HR_CI": "1.02-1.55",
+            "p_value": "0.03",
+            "escape_rate_pct": "",
+            "data_source": "IPD (PDS \u2014 blocked)",
+            "ref": "Douillard et al. NEJM 2013",
+            "note": "HARM in RAS-mutant \u2014 anti-EGFR contraindicated"
+          },
+          {
+            "escape_class": "2",
+            "escape_route": "MAPK/RAS Escape",
+            "trial": "PEAK_FOLFIRI",
+            "donationId": "263",
+            "N": "1186",
+            "setting": "mCRC 1L",
+            "backbone": "FOLFIRI \u00b1 panitumumab",
+            "endpoint": "OS (RAS-wt)",
+            "experimental_value": "41.3",
+            "control_value": "28.9",
+            "HR": "0.63",
+            "HR_CI": "0.39-1.02",
+            "p_value": "0.058",
+            "escape_rate_pct": "",
+            "data_source": "IPD (PDS \u2014 blocked)",
+            "ref": "Schwartzberg et al. JCO 2014",
+            "note": ""
+          }
+        ],
+        "pds_sweep_excerpt": "{\n  \"receipt_id\": \"pds_crc_sweep_v3\",\n  \"timestamp\": \"2026-05-13T08:31:44.711434Z\",\n  \"pds_status\": \"ONLINE\",\n  \"auth_endpoint\": \"/api/auth/login\",\n  \"auth_payload\": \"username+password (changed from email+password in May 2026 redeployment)\",\n  \"catalog_endpoint\": \"POST /api/accessdata/results\",\n  \"download_endpoint\": \"GET /api/file/download/{donationId}/{fileId}\",\n  \"total_files_downloaded\": 14,\n  \"total_bytes\": 133169152,\n  \"studies\": {\n    \"N0147\": {\n      \"donationId\": 161,\n      \"uuid\": \"320ba1bf-8263-487f-b202-5a9c199056e4\",\n      \"files\": [\n        \"characteristic.csv (183KB)\",\n        \"tox.csv (42KB)\",\n        \"objectives.csv (70KB)\",\n        \"n0147_ddt.pdf\"\n      ],\n      \"data_grade\": \"IPD_CSV\",\n      \"n_patients\": 2968,\n      \"n_kras_wt\": 2033,\n      \"primary_cohort_n\": 1863,\n      \"endpoints\": [\n        \"fustat8/futime8 (OS)\",\n        \"dfsstat5/dfstime5 (DFS)\",\n        \"pgstat5/pgtime5 (PFS)\"\n      ],\n      \"key_result\": \"DFS HR=1.155 [0.937-1.423] p=0.176 (NS) \\u2014 cetuxi",
+        "rag_tags": [
+          "pds",
+          "escape_map",
+          "survival_data",
+          "crc",
+          "phase4"
+        ]
+      },
+      {
+        "chunk_id": "W4-SL-001",
+        "chunk_type": "synthetic_lethality_engine",
+        "title": "CRC Synthetic Lethality Engine \u2014 IP Candidates + Opportunity Map",
+        "sl_opportunity_excerpt": "# CRC Scientific Literature Opportunity Map v1\n**Brenus Pharma | STC-1010 / BreAK CRC-001 | CrisPRO Platform Positioning**\n**Generated:** 2026-05-09 | **Scope:** MSS/pMMR metastatic CRC | **Layer:** 1 (SL sweep, 17 queries, 8 domains)\n\n---\n\n## Executive Summary\n\nThis map synthesizes 200+ papers across 8 biology domains to identify where STC-1010's haptenated whole-cell vaccine mechanism intersects with the deepest unmet needs in MSS CRC. The central finding: **MSS CRC is not immunologically inert \u2014 it is actively immunosuppressed by a coordinated myeloid-stromal program** (SPP1+ TAMs, TGF-\u03b2, MDSCs, pericyte-like CAFs) that blocks T cell recruitment, exhausts infiltrating CD8s, and is amplified in liver metastases. STC-1010 + mFOLFOX6 targets this program at three nodes simultaneously: ICD-driven antigen release (oxaliplatin), hapten-mediated neo-immunogenicity (DNFB), and backbone VEGF suppression (bevacizumab). The opportunity map below grades each domain by evidence density, mechanistic fit to STC-1010, and IP/differentiation potential.\n\n---\n\n## Domain 1 (D1): MSS CRC TME Resistance Architecture\n\n**Evidence grade: A (dense, mechanistically resolved)**\n\n### Key findings\n- MSS/pMMR",
+        "ip_candidates_excerpt": "# CRC IP Candidates v1\n**Brenus Pharma | STC-1010 / BreAK CRC-001 | CrisPRO Platform Positioning**\n**Generated:** 2026-05-09 | **Purpose:** Novel patentable claims surfaced by Layer 1 SL sweep\n\n> **Governance note:** All claims below are advisory/exploratory. Patent counsel review required before filing. Claims marked [QUARANTINE-PENDING] require additional prior art search before assertion.\n\n---\n\n## Tier 1: High-Confidence Novel Claims (Strong evidence, clear differentiation)\n\n### IP-01: Haptenation-Mediated TMB-Independent Immunogenicity in MSS CRC\n\n**Claim type:** Method of treatment / Composition of matter  \n**Core assertion:** A method of treating MSS/pMMR metastatic colorectal cancer comprising administering a haptenated whole-cell tumor vaccine (DNFB-modified autologous or allogeneic CRC cells) in combination with oxaliplatin-containing chemotherapy, wherein the haptenation generates contact hypersensitivity-mediated CD8 T cell responses independent of tumor mutational burden.\n\n**Novelty basis:**\n- No approved or published haptenated whole-cell vaccine for CRC exists (Muthukutty 2025, Vaccines; Janes 2023, Bioeng Transl Med)\n- DNFB haptenation generates Th1/CD8 CTL responses",
+        "evidence_wall_excerpt": "# CRC Evidence Wall Upgrade v1\n**Brenus Pharma | STC-1010 / BreAK CRC-001 | CrisPRO Platform Positioning**\n**Generated:** 2026-05-09 | **Purpose:** Upgrade ip_fortress_brenus_v2.md with new SL evidence\n\n---\n\n## Overview\n\nThis document identifies the highest-value new citations from the Layer 1 SL sweep that upgrade or strengthen specific claims in the existing IP fortress (`ip_fortress_brenus_v2.md`). Organized by claim category. Each entry includes: claim being upgraded, new citation, upgrade type (strengthens / extends / adds mechanism / adds clinical data), and recommended insertion point.\n\n**DOI verification note:** DOIs listed below were retrieved from literature search API results. All DOIs for papers published 2024\u20132026 should be independently verified against PubMed/CrossRef before inclusion in formal filings or regulatory documents. Papers marked with * below have DOIs that could not be confirmed via direct API lookup in this session.\n\n---\n\n## Section 1: MSS CRC Immunosuppression Mechanism Claims\n\n### Upgrade 1.1 \u2014 TGF-\u03b2 dual barrier (NEW mechanistic resolution)\n**Claim upgraded:** TGF-\u03b2 drives immune exclusion in MSS CRC  \n**New citation:** Henriques A et al. (2025). *TGF",
+        "rag_tags": [
+          "synthetic_lethality",
+          "ip_candidates",
+          "crc",
+          "sl_engine"
+        ]
+      },
+      {
+        "chunk_id": "W4-UNIQUE-001",
+        "chunk_type": "unique_content_registry",
+        "title": "Files Unique to data-room/external/Brenus (Not in fjkiani/Brenus)",
+        "unique_file_count": 1,
+        "unique_files": [
+          "VENDOR_MANIFEST.md"
+        ],
+        "rag_note": "These files exist only in the data-room repo and must be ingested separately for complete RAG coverage.",
+        "rag_tags": [
+          "data_room",
+          "unique_content",
+          "ingestion_required"
+        ]
+      }
+    ]
+  }
+}

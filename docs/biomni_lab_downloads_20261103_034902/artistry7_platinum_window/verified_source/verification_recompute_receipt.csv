@@ -1,0 +1,7 @@
+metric,reproduced,manifest,match
+3-tier log-rank p,0.0038192344,0.0038192344280,True
+1A-vs-1B log-rank p,0.1260,NOT REPORTED,self-computed; NS
+TIER_1_TRIPLE n,107,107,True
+TIER_1A n,54,54,True
+TIER_1B n,53,53,True
+PLATINUM_WINDOW n,9,9,True

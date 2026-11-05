@@ -1,0 +1,164 @@
+{
+  "workstream": "W2_dbGaP_GOG0218_PFI_HRR",
+  "generated_by": "discovery-only; no controlled data downloaded",
+  "dbgap_searches": {
+    "gog0218_direct": {
+      "term": "GOG-0218",
+      "uids": [
+        "1796991",
+        "1748942"
+      ]
+    },
+    "gog218_alt": {
+      "term": "GOG 218 ovarian",
+      "uids": [
+        "1898207",
+        "1405917",
+        "1748942",
+        "1909958",
+        "1680487",
+        "1893995",
+        "1701698",
+        "1254800",
+        "1223943",
+        "968368",
+        "968357",
+        "222493",
+        "222450"
+      ]
+    },
+    "ovarian_platinum": {
+      "term": "ovarian platinum resistance",
+      "uids": []
+    },
+    "ovarian_hgsoc": {
+      "term": "high grade serous ovarian carcinoma",
+      "uids": [
+        "1330018",
+        "1330017",
+        "1330016",
+        "1330015",
+        "1324374",
+        "1324367",
+        "1324352",
+        "1324349",
+        "1324343",
+        "1324338",
+        "1324337",
+        "1324323",
+        "1324316",
+        "1324312",
+        "1324311",
+        "1324306",
+        "1324300",
+        "1324299",
+        "1324286",
+        "1324262"
+      ]
+    },
+    "ovarian_survival": {
+      "term": "ovarian carcinoma survival",
+      "uids": [
+        "1953364",
+        "1953362",
+        "1898207",
+        "1883662",
+        "1889128",
+        "1889127",
+        "1723650",
+        "1723649",
+        "1723648",
+        "1723647",
+        "1723646",
+        "1723645",
+        "1723644",
+        "1723643",
+        "1723642",
+        "1723641",
+        "1723640",
+        "1723639",
+        "1723638",
+        "1723637"
+      ]
+    }
+  },
+  "resolved_accessions": [],
+  "curated_anchor_targets": [
+    {
+      "study": "GOG-0218 (NRG/GOG-0218 biomarker/germline)",
+      "phs_candidate": "resolve_via_study_report",
+      "nct": "NCT00262847",
+      "publication": "Norquist BM et al. Mutations in Homologous Recombination Genes and Outcomes in Ovarian Carcinoma Patients in GOG 218 (NRG Oncology/GOG). Clin Cancer Res 2018;24(4):777-783 (pub. online 2017; DOI 10.1158/1078-0432.CCR-17-1327).",
+      "enables": "true Platinum-Free Interval (PFI/PFS) linked to germline+somatic HRR mutation status",
+      "claim_it_cures": "validate on true PFI (not OS/early-relapse proxy) + HRR->platinum-PFS link",
+      "note": "GOG specimen data are deposited under NRG Oncology dbGaP submissions; exact phs is assigned per submission and requires the dbGaP study report / DAR to confirm. String 'GOG-0218' is not a dbGaP search key."
+    },
+    {
+      "study": "TCGA-OV (controlled tier)",
+      "phs_candidate": "phs000178.v11.p8",
+      "nct": null,
+      "publication": "TCGA ovarian (Nature 2011)",
+      "enables": "PFS/PFI + germline + somatic + methylation on ~580 HGSOC (controlled tier adds germline)",
+      "claim_it_cures": "true-PFI validation + somatic/germline HRR at scale (vetted ALTERNATE)",
+      "note": "phs000178 is the umbrella TCGA controlled study; OV substudy accessible via the same DAR.",
+      "confirmed_reachable": true
+    },
+    {
+      "study": "AACR Project GENIE (BPC ovarian) / MSK-IMPACT ovarian",
+      "phs_candidate": "genie_synapse_or_cbioportal",
+      "nct": null,
+      "publication": "AACR GENIE BPC",
+      "enables": "somatic HRR + treatment/PFI (BPC clinico-genomic)",
+      "claim_it_cures": "somatic HRR->PFI (vetted ALTERNATE; partly open via Synapse/cBioPortal)",
+      "note": "GENIE main panel is open (Synapse syn7222066); BPC outcome tier is controlled."
+    }
+  ],
+  "phs000178_esummary_reachable": true,
+  "pfi_hrr_data_dictionary_template": {
+    "subject_id": "dbGaP submitted subject id",
+    "pfs_time_days": "progression-free interval time",
+    "pfs_event": "progression/recurrence indicator",
+    "platinum_free_interval_days": "time from last platinum to progression (PFI; resistant if <182d)",
+    "germline_BRCA1_BRCA2": "germline HRR pathogenic status",
+    "somatic_HRR_genes": "somatic BRCA1/2/RAD51C/D/PALB2/etc status",
+    "treatment_arm": "regimen (carbo/taxol +/- bev)",
+    "os_time": "overall survival",
+    "os_event": "death indicator"
+  },
+  "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+  "access_requirements": [
+    "dbGaP account + approved Data Access Request (DAR) for the specific phs study",
+    "dbGaP repository key (.ngc / prj_XXXXX.ngc) downloaded after DAR approval",
+    "SRA Toolkit (prefetch/fasterq-dump) or dbGaP file selector to pull controlled files"
+  ],
+  "honest_access_summary": "GOG-0218 specimen/germline data are on dbGaP under NRG Oncology submissions; the exact phs accession is confirmed from the dbGaP study report once a DAR is filed (the literal 'GOG-0218' is not a dbGaP search token). TCGA-OV controlled tier (phs000178, esummary-reachable) is the vetted alternate that already carries PFI + germline + somatic HRR at n~580. No controlled genotype/phenotype files were downloaded here.",
+  "verified_resolution_facts": {
+    "eutils_gap_esummary_verdict": "DEAD END for phs resolution: DocSum d_study_name is empty for gap UIDs; phs accession is NOT exposed via esummary. Do not rely on e-utils to resolve phs.",
+    "correct_resolution_route": "dbGaP study browser (study.cgi?study_id=phsXXXXXX) + the specific submission's study report; DAR is filed against the resolved phs.",
+    "phs000178_confirmed": {
+      "accession_current": "phs000178.v11.p8",
+      "title_tokens_seen": [
+        "Ovarian",
+        "Serous",
+        "The Cancer Genome Atlas"
+      ],
+      "version_history_seen": [
+        "v1.p1",
+        "v2.p2",
+        "v3.p3",
+        "v4.p4",
+        "v5.p5",
+        "v10.p8",
+        "v11.p8"
+      ],
+      "study_cgi_http": 200,
+      "role": "vetted ALTERNATE for true-PFI + germline + somatic HRR (TCGA-OV controlled tier)"
+    },
+    "gog0218_resolution": "GOG-0218 specimen/germline deposit is under NRG Oncology dbGaP submissions; the exact phs is confirmed from the NRG/GOG study report at DAR time. 'GOG-0218' is not a dbGaP search token."
+  },
+  "gog0218_hrr_reference": {
+    "outcomes_paper": "Norquist BM et al. Mutations in Homologous Recombination Genes and Outcomes in Ovarian Carcinoma Patients in GOG 218 (NRG Oncology/GOG). Clin Cancer Res 2018;24(4):777-783 (pub. online 2017; DOI 10.1158/1078-0432.CCR-17-1327).",
+    "doi": "10.1158/1078-0432.CCR-17-1327",
+    "key_finding": "Germline/somatic HRR mutations significantly prolong PFS and OS in GOG-0218; adding bevacizumab to platinum is NOT significantly modified by mutation status."
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "program": "STC-1010 / BreAK CRC-001",
+  "data_source": "Alzeeb et al. 2024, Front. Oncol. DOI: 10.3389/fonc.2024.1427428",
+  "stc1010_mechanism_summary": {
+    "platform": "Stimulated Tumor Cells (STC) — allogeneic whole-cell therapeutic vaccine",
+    "cell_lines": "3 cell lines (CT26 CRC + CMT-93 rectal carcinoma + LTPA pancreatic adenocarcinoma) selected for shared tumor-associated antigen coverage",
+    "stimulation": "Thermal stress (42°C 1h + 37°C 14h) + low-dose irradiation (10 Gy) → HSP70 overexpression, DAMPs induction",
+    "haptenation": "Dinitrofluorobenzene (DFNB) covalent conjugation to proteins/antigens → DC maturation, TNF-α/IL-1β proinflammatory signaling",
+    "inactivation": "Final 25 Gy irradiation → dead cells with intact membranes, non-proliferating",
+    "adjuvants": "Cyclophosphamide (CP, 15 mg/kg) + GM-CSF (5 µg) as immunostimulants",
+    "target_population": "pMMR/MSS CRC (95% of mCRC) — explicitly excluded from ICI benefit",
+    "key_antigens_upregulated": ["HSP70", "CDK1", "CDK4", "CDK13", "EPHA2", "FAS", "MDR1A/B", "LAMP1/2", "PCNA", "MTA1", "TTK", "BIRC6"],
+    "immune_mechanism": "Multi-specific CD8+ T cell priming + M1 macrophage polarization in TME",
+    "preclinical_endpoints": "Tumor growth inhibition, overall survival (Kaplan-Meier), TME immunophenotyping (CD8+, M1 TAM)",
+    "key_results": {
+      "CT26_MSS_model": "3CL-SH + IS: avg tumor volume 150 mm3 vs 341 mm3 (1CL-SH+IS) at D24; mOS 38 days vs 31.5 days (p=0.05)",
+      "MC38_PD1R_model": "3CL-SH + IS: significant survival improvement vs control (p=0.0368); 60% responders including 1 complete response; CD8+ infiltration p=0.045; M1 TAM p=0.02",
+      "safety": "No side effects or inflammatory reactions in any of 3 studies"
+    },
+    "clinical_trial": "BreAK CRC-001 — Phase I/II, backbone mFOLFOX6 +/- bevacizumab, MSS/pMMR mCRC"
+  },
+  "oracle_fit": [
+    {
+      "use_case": "MSS/pMMR vs dMMR/MSI-H patient stratification for BreAK CRC-001 enrollment",
+      "fit_score": "high",
+      "rationale": "Oracle (0.957 AUROC variant classifier) can classify MMR gene variants (MLH1, MSH2, MSH6, PMS2) and integrate IHC + methylation signals to confirm pMMR/MSS status — the primary inclusion criterion for STC-1010. Directly maps to N0147-style MMR classification pipeline."
+    },
+    {
+      "use_case": "KRAS/NRAS/BRAF mutation status classification for backbone chemotherapy eligibility and subgroup analysis",
+      "fit_score": "high",
+      "rationale": "Oracle's variant classification engine covers KRAS exon 2/3/4, NRAS exon 2/3/4, BRAF V600E/exon 15 — identical to PRIME expanded RAS panel. Enables RAS-WT vs RAS-mut subgroup stratification relevant to bevacizumab arm eligibility and OS/PFS subgroup analyses."
+    },
+    {
+      "use_case": "Tumor mutation burden (TMB) scoring to confirm low-TMB MSS phenotype and exclude borderline MSI-L cases",
+      "fit_score": "medium",
+      "rationale": "Oracle can classify pathogenicity of somatic variants contributing to TMB calculation. However, TMB is a continuous metric requiring WES/panel sequencing integration beyond single-variant classification; Oracle provides variant-level input but not direct TMB scoring."
+    },
+    {
+      "use_case": "Immune checkpoint gene variant classification (PD-L1, CD274, PDCD1LG2) for ICI resistance profiling",
+      "fit_score": "medium",
+      "rationale": "STC-1010 targets ICI-resistant/naive MSS CRC. Oracle can classify variants in PD-L1/PD-1 pathway genes to identify acquired resistance mutations, supporting patient selection and mechanism-of-resistance analysis in the MC38-PD1R-analogous clinical setting."
+    },
+    {
+      "use_case": "Neoantigen-generating somatic variant identification for proteomic cross-validation with STC vaccine antigens",
+      "fit_score": "medium",
+      "rationale": "Oracle can flag variants likely to generate neoantigens (missense, frameshift) for cross-referencing against the STC vaccine's proteomic antigen catalog (CDK1, EPHA2, FAS, MDR1, etc.). Fit is medium because STC uses shared tumor-associated antigens, not patient-specific neoantigens."
+    },
+    {
+      "use_case": "MLH1 promoter methylation classification as epigenetic MSI driver",
+      "fit_score": "low",
+      "rationale": "Oracle is a variant (DNA sequence) classifier; MLH1 methylation is an epigenetic mark requiring bisulfite sequencing or methylation array analysis. Oracle cannot directly classify methylation status — this is a capability gap."
+    }
+  ],
+  "forge_fit": [
+    {
+      "use_case": "Hapten-antigen conjugate optimization — DFNB haptenation site prediction and immunogenicity scoring",
+      "fit_score": "high",
+      "rationale": "Forge's generative protein design capability can model DFNB (dinitrofluorobenzene) conjugation sites on STC vaccine antigens (HSP70, CDK1, EPHA2, FAS), predict optimal haptenation positions that maximize DC activation epitope exposure, and generate improved hapten-linker designs. This is the highest-value Forge application for STC-1010."
+    },
+    {
+      "use_case": "Multi-specific neoantigen peptide library design for STC vaccine antigen expansion",
+      "fit_score": "high",
+      "rationale": "Forge can generate synthetic peptide sequences covering the 12+ upregulated STC antigens (CDK13, PCNA, LAMP2, MTA1, TTK, MDR1A/B) and design optimized MHC-I/II binding variants to broaden T cell priming. Directly addresses the paper's stated challenge of covering tumor heterogeneity with limited cell lines."
+    },
+    {
+      "use_case": "Guide RNA design for CRISPR-based cell line engineering to enhance antigen expression in STC manufacturing",
+      "fit_score": "medium",
+      "rationale": "Forge can design guide RNAs targeting promoter regions of key STC antigens (HSP70, CDK1, EPHA2) to engineer CT26/CMT-93/LTPA cell lines with constitutively elevated antigen expression, improving vaccine lot consistency. Applicable to manufacturing optimization, not direct clinical use."
+    },
+    {
+      "use_case": "HDR template design for knock-in of human tumor antigen orthologs into murine STC cell lines",
+      "fit_score": "medium",
+      "rationale": "Forge's HDR design capability can generate repair templates to humanize murine STC cell lines (replacing murine CDK1, EPHA2, FAS with human orthologs), enabling better translational relevance of preclinical models to BreAK CRC-001 patient tumors."
+    },
+    {
+      "use_case": "GM-CSF adjuvant protein engineering for enhanced DC recruitment at vaccine injection site",
+      "fit_score": "medium",
+      "rationale": "Forge can design GM-CSF variants with improved half-life or receptor affinity to optimize the immunostimulant component of STC-1010 (currently 5 µg mGM-CSF SC). Applicable to formulation optimization."
+    },
+    {
+      "use_case": "Patient-specific neoantigen vaccine personalization (autologous component)",
+      "fit_score": "low",
+      "rationale": "STC-1010 is explicitly allogeneic — the platform avoids patient-specific manufacturing. Forge's personalized neoantigen design capability is architecturally misaligned with the STC allogeneic strategy, though it could inform a hybrid approach."
+    }
+  ],
+  "boltz_fit": [
+    {
+      "use_case": "Structural validation of hapten-antigen conjugates — DFNB binding pose and epitope accessibility",
+      "fit_score": "high",
+      "rationale": "Boltz can model 3D structures of DFNB-conjugated STC antigens (HSP70, CDK1, EPHA2) to confirm that haptenation does not occlude MHC-I/II binding grooves or TCR contact residues, validating immunogenic epitope accessibility post-haptenation."
+    },
+    {
+      "use_case": "MHC-peptide-TCR complex structural modeling for STC antigen immunogenicity prediction",
+      "fit_score": "high",
+      "rationale": "Boltz can structurally validate predicted MHC-I/II binding of STC vaccine-derived peptides (CDK13, PCNA, FAS, MDR1 epitopes) to confirm stable pMHC complex formation, supporting the proteomic cross-validation approach described in the paper."
+    },
+    {
+      "use_case": "EPHA2 receptor tyrosine kinase structural analysis for vaccine antigen target validation",
+      "fit_score": "high",
+      "rationale": "EPHA2 is 582-689x upregulated in STC vaccine cell lines and is a key tumor-associated antigen. Boltz can validate EPHA2 epitope surface exposure, glycosylation effects on antibody/TCR accessibility, and structural basis for cross-reactivity with patient tumor EPHA2."
+    },
+    {
+      "use_case": "MDR1 (ABCB1/P-gp) structural modeling for treatment resistance antigen validation",
+      "fit_score": "medium",
+      "rationale": "MDR1A/B are 254-291x upregulated in STC vaccine and are implicated in multidrug resistance. Boltz can model MDR1 transmembrane epitope accessibility for immune recognition, though the large membrane protein structure presents modeling complexity."
+    },
+    {
+      "use_case": "Cyclophosphamide metabolite-protein adduct structural modeling",
+      "fit_score": "low",
+      "rationale": "CP is used as immunostimulant in STC-1010. Boltz could model CP alkylation adducts on regulatory T cell proteins, but this is a peripheral application with limited direct clinical utility for BreAK CRC-001."
+    }
+  ],
+  "gaps": [
+    {
+      "need": "Whole-tumor proteome-to-patient biopsy cross-validation pipeline",
+      "gap_description": "STC-1010 validation relies on LC-MS/MS proteomic cross-analysis of vaccine cell lines vs patient tumor biopsies (described in paper). CrisPRO has no proteomics data integration or mass spectrometry analysis module. Oracle/Forge/Boltz operate on genomic/protein sequence inputs, not raw proteomics data.",
+      "potential_solution": "Integrate a proteomics preprocessing layer (MaxQuant/Proline output → CrisPRO API) to feed identified peptides into Oracle for variant annotation and Boltz for structural validation."
+    },
+    {
+      "need": "MLH1 promoter methylation classification for MSS confirmation",
+      "gap_description": "Oracle classifies DNA sequence variants but cannot assess CpG methylation status. MLH1 methylation is a key N0147-validated mechanism of sporadic MSI-H that must be excluded from STC-1010 enrollment. No CrisPRO module handles epigenetic marks.",
+      "potential_solution": "Add methylation array or bisulfite sequencing interpretation module to Oracle, or integrate with external methylation classifiers (e.g., DKFZ methylation classifier) as a preprocessing step."
+    },
+    {
+      "need": "Tumor mutation burden (TMB) continuous scoring",
+      "gap_description": "Oracle classifies individual variants but does not aggregate them into a TMB score. BreAK CRC-001 may require TMB as a continuous biomarker to confirm low-TMB MSS phenotype and exclude borderline cases.",
+      "potential_solution": "Add a TMB aggregation module to Oracle that sums pathogenic/likely-pathogenic somatic variant calls per megabase from panel sequencing inputs."
+    },
+    {
+      "need": "Immune cell infiltration / TME phenotyping (CD8+, M1 TAM quantification)",
+      "gap_description": "STC-1010 efficacy is mechanistically linked to CD8+ T cell and M1 macrophage infiltration (key endpoints in Alzeeb et al.). CrisPRO has no image analysis or flow cytometry data interpretation capability for TME immunophenotyping.",
+      "potential_solution": "Partner with digital pathology AI (e.g., QuPath integration) or flow cytometry analysis platforms; CrisPRO could provide variant-level context for TME composition but cannot replace spatial/phenotypic analysis."
+    },
+    {
+      "need": "Allogeneic HLA matching and cross-reactivity risk assessment",
+      "gap_description": "STC-1010 is allogeneic — vaccine cell line antigens must be immunogenic across diverse patient HLA types without inducing alloreactivity. CrisPRO lacks an HLA population genetics module to assess cross-population antigen coverage or alloreactivity risk.",
+      "potential_solution": "Extend Forge with HLA-aware peptide design that optimizes antigen coverage across HLA-A/B/C supertype frequencies in the target MSS CRC population."
+    },
+    {
+      "need": "Clinical trial endpoint modeling (OS/DFS/PFS) with molecular subgroup integration",
+      "gap_description": "BreAK CRC-001 requires survival endpoint modeling with molecular subgroups (RAS-WT vs RAS-mut, BRAF status). CrisPRO has no biostatistics or survival analysis module to integrate variant classifications with clinical outcomes.",
+      "potential_solution": "Add a clinical data integration layer that maps Oracle variant outputs to trial endpoint databases (N0147, PRIME, MOSAIC) for subgroup-level OS/DFS HR estimation."
+    }
+  ],
+  "overall_fit_score": "medium",
+  "overall_fit_rationale": "CrisPRO provides strong fit for variant classification (MSS confirmation, RAS/BRAF stratification) and structural validation of vaccine antigens/hapten conjugates. Forge's generative design is highly applicable to hapten optimization and antigen library expansion. However, STC-1010's core validation pipeline is proteomics-driven (not genomics-driven), and critical needs — TME immunophenotyping, methylation classification, TMB scoring, HLA population coverage — fall outside current CrisPRO capabilities. Medium fit reflects strong genomic/structural utility with significant gaps in proteomics, epigenomics, and clinical endpoint integration.",
+  "top_3_value_propositions": [
+    "Oracle-powered MSS/pMMR patient stratification: Oracle's 0.957 AUROC variant classifier can automate MMR gene variant classification (MLH1/MSH2/MSH6/PMS2) for BreAK CRC-001 enrollment screening, replacing manual IHC review with a validated genomic confirmation layer — directly addressing the primary inclusion criterion for 95% of mCRC patients.",
+    "Forge-driven hapten-antigen conjugate optimization: Forge can model DFNB haptenation sites on STC-1010's 12+ upregulated antigens (HSP70, CDK1, EPHA2, FAS, MDR1) to identify optimal conjugation positions that maximize DC activation epitope exposure, potentially improving vaccine immunogenicity beyond the current empirical DFNB protocol.",
+    "Boltz structural validation of STC vaccine antigen immunogenicity: Boltz can validate MHC-I/II binding of STC-derived peptides (CDK13, PCNA, LAMP2, EPHA2 epitopes) and confirm haptenation does not occlude TCR contact residues — providing structural evidence to support the proteomic cross-validation approach and de-risking antigen selection for the human STC-1010 vaccine."
+  ]
+}

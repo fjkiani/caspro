@@ -1,0 +1,22 @@
+{
+  "signal": "SERIAL_SAE_STRUCTURAL_DIVERGENCE",
+  "definition": "dx->relapse change in genome-wide breakpoint count and fraction genome altered",
+  "data_source": "EGA:EGAD00001011049 BriTROC-1 pilot (n=4 matched dx/relapse pairs, real sWGS/QDNAseq)",
+  "n_pairs": 4,
+  "breakpoint_delta_values": [
+    -7,
+    18,
+    101,
+    253
+  ],
+  "breakpoint_delta_median": 59.5,
+  "breakpoint_delta_range": [
+    -7,
+    253
+  ],
+  "empirical_divergence_threshold_breakpoint_delta": 50,
+  "threshold_rationale": "Data-anchored on the pilot: 3/4 pairs (subj 191:+253, subj 6:+101, subj 119:+18* ) show breakpoint gain; subj 109 (-7) is near-clonal/stable. Threshold +50 separates the two clearly divergent (191,6) from the stable (109). This is a DEMONSTRATION threshold from n=4 with a WIDE confidence interval \u2014 it MUST be re-estimated on the full 182-pair cohort before any clinical use.",
+  "calibration_status": "PILOT_DEMONSTRATION_N4_NOT_CLINICAL",
+  "subject_191_role": "extreme divergence exemplar (delta +253, 65% genome altered) \u2014 the audit's 'smoking gun'",
+  "subject_109_role": "stable/near-clonal counter-example (delta -7) \u2014 critical negative control"
+}

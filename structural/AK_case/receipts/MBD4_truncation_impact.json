@@ -1,0 +1,27 @@
+{
+  "gene": "MBD4",
+  "variant": "p.K431Nfs*54",
+  "mode": "truncation",
+  "wt_length": 580,
+  "trunc_length": 489,
+  "diverge_after_residue": 431,
+  "n_shared_nterm_residues_total": 431,
+  "n_residues_used_for_superposition": 61,
+  "superposition_basis": "shared N-terminal residues with pLDDT>=70 in both",
+  "retained_region_ca_rmsd": 0.34,
+  "retained_rmsd_note": "RMSD computed over well-folded shared residues only; disordered linker excluded because independent folds place it arbitrarily (including it inflates RMSD to ~40 A, a superposition artifact).",
+  "lost_domain": {
+    "name": "HhH-GPD DNA-glycosylase (catalytic)",
+    "range": [
+      426,
+      580
+    ],
+    "wt_mean_plddt_in_domain": 93.9,
+    "residues_lost": 91
+  },
+  "wt_mean_plddt": 56.78,
+  "trunc_mean_plddt": 47.42,
+  "figure": "/workspace/caspro/structural/AK_case/figures/MBD4_truncation_impact.png",
+  "interpretation": "p.K431Nfs*54 truncates MBD4 after residue 431; the product stops at 489 aa. The WT HhH-GPD DNA-glycosylase catalytic domain (426-580), which folds at high confidence in WT, is physically ABSENT in the truncated product -> structural basis for BER loss.",
+  "caveat": "Modeling confidence only (pLDDT/pTM); NOT experimental/functional/clinical validation. RUO."
+}

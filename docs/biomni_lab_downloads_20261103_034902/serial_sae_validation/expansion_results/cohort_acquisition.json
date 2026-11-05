@@ -1,0 +1,59 @@
+{
+  "generated_utc": "2026-07-19T15:23:26.410277+00:00",
+  "executable_open_access": {
+    "GSE160626": {
+      "file": "GSE160626_TPM.txt.gz",
+      "sha16": "8cf85f888ac7efeb",
+      "design": "cross-sectional bulk RNA-seq; 9 Resistance + Sensitive + 7 Normal (excluded)",
+      "labels": "explicit categorical Resistance/Sensitive in column names",
+      "role": "external discrimination (resistant vs sensitive) \u2014 post-treatment-state analogue; NOT paired",
+      "caveat": "single-timepoint; resistance vs sensitive comparison, no PFI continuous"
+    },
+    "GSE109934": {
+      "file": "GSE109934_series_matrix.txt.gz",
+      "sha16": "ff856f6fa251987e",
+      "design": "paired pre/post-NACT NanoString PanCancer 770; 20 patients (Patient 35 excluded -> 19)",
+      "labels": "pre/post NACT per sample; NO platinum-response/PFI labels",
+      "role": "paired delta-null replication + pre-vs-post pathway shift direction",
+      "caveat": "targeted 770-gene panel (partial pathway coverage); no resistance labels"
+    },
+    "GSE241908": {
+      "file": "GSE241908_TPM.csv.gz",
+      "sha16": "83ddf414511214c4",
+      "design": "paired before/after chemo primary CELL CULTURES from ascites; 7 patients; matrix has 13 of 14 samples",
+      "labels": "before/after NACT; NO direct resistance labels (some 'relapse after N months' notes)",
+      "role": "secondary paired delta-null check (LOW WEIGHT)",
+      "caveat": "in-vitro primary cultures (passage 2-4), not tumor tissue; ShV->GSM mapping unpublished (order-based, flagged assumption); 13 vs 14 sample mismatch; Ensembl IDs need symbol mapping"
+    }
+  },
+  "carried_forward": {
+    "BriTROC-1": {
+      "role": "external anchor (already reproduced exactly in W2)",
+      "status": "cached w2_britroc_cohort.csv"
+    },
+    "GSE165897": {
+      "role": "discovery re-derivation",
+      "status": "cached w1_discovery_features.csv (frozen-pipeline pseudobulk pathway scores)"
+    }
+  },
+  "prognostic_context_only": {
+    "TCGA-OV": {
+      "role": "baseline pathway vs survival (CANNOT test serial hypothesis)",
+      "status": "prior scripts exist; attempt if time"
+    }
+  },
+  "documented_unavailable_next_steps": {
+    "HERCULES": {
+      "reason": "project-hercules.eu returns HTTP 410 (portal decommissioned); paper's own bulk validation (18 pre/post + 8 relapse) not openly retrievable",
+      "recommendation": "request via authors / EGA if applicable"
+    },
+    "MSK-SPECTRUM": {
+      "reason": "dbGaP phs002857 controlled-access (application required)",
+      "recommendation": "submit dbGaP application (justification in report)"
+    },
+    "GSE318490": {
+      "reason": "only RAW.tar scRNA (2026); heavy extraction for 6 patients",
+      "recommendation": "process if scRNA re-analysis prioritized later"
+    }
+  }
+}

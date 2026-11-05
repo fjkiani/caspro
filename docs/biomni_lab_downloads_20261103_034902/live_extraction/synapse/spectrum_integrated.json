@@ -1,0 +1,14 @@
+{
+  "merged_patients": 39,
+  "ddr14_vs_fga": {
+    "n": 39,
+    "rho": 0.1231,
+    "p": 0.455393935027411
+  },
+  "ddr14_vs_breakpoints": {
+    "n": 39,
+    "rho": -0.0547,
+    "p": 0.7409959199966455
+  },
+  "note": "Transcriptomic DDR14 (corrected) vs genomic HRD proxy (FGA). Biological-substrate validation; no clinical outcome. Bridge via isabl SHAH prefix."
+}

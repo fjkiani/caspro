@@ -368,12 +368,12 @@ export default function VerticalSurface({ data, headerLink }: Props) {
                 <ArrowRight className="h-3 w-3" />
               </Link>
               <Link
-                href="/engine/target-lock/tabs"
+                href="/engine/target-lock/"
                 className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider transition-colors ${
                   isDarkMode ? 'border-zinc-800 text-zinc-300 hover:border-cyan-500/50' : 'border-slate-300 text-slate-700 hover:border-indigo-400'
                 }`}
               >
-                Target-Lock · Tabs
+                Target-Lock · Brain-Met
                 <ArrowRight className="h-3 w-3" />
               </Link>
               <Link

@@ -1,0 +1,17 @@
+# SHA-256 of the CI and change-inventory payload for this review branch.
+# This file cannot contain its own digest, and the inventory it lists cannot
+# contain the digest of this file. Every other path added by the CI and
+# inventory commits is covered.
+# Generated (UTC): 2026-08-14T04:00:52+00:00
+fbbc0b0f6a754c43580884fa3297610359540db316b19f32c6babf44c093ba62  .github/workflows/zeta_core_v4_release.yml
+c09d1415ba4cddc6cb0da41a1abff55c55aebcde76d31f811f75d1803dfe01ce  ci/requirements.ci.txt
+d28da1602206aa9979a2919b6c21a81173d95e726ddec668b4f023093849c3f0  ci/environment_lock.comparison_env.txt
+f693384567842b6dcc8a703a7277db8392a7316bdb4472018902138a9e873f54  ci/environment_drift_report.json
+cd429d670e1a990b10e300a444041bcec3495b65e55d5f3d6a3154ad98989dc9  scripts/ci/assert_no_unexpected_skips.py
+abf668778f92a6ccc76af9187ebeacdc8e77fe46043d497e013a6144dbb3d2f7  scripts/ci/branch_scope.py
+c736df50d0edbe4a99504af2cb71a932a10346498b32ebad5091e9ad50b07881  scripts/ci/environment_drift.py
+665081cac6beba98b8dc51e001cd2fe383812ac3373f207c398cdbcae70c90da  scripts/ci/gen_ci_pins.py
+af4079202124595a39db45ef15527c2f1e7e211bda24180fda5bbe3b957e3876  scripts/ci/node_diff_receipt.py
+24dc863b52724f70cb1feaf885ef1c4c590b970ff23c869f4cae767044c590b0  scripts/ci/verify_frozen_artifacts.py
+d9703c1fe26db7cf31c49827af6365d3c2c54188bb933acd3f725ba01461842e  release_inventory/build_inventory.py
+97ecc4454386febb45e9be8b16d54fb7607d7dce24a2db5fc621070bfe32360b  release_inventory/inventory_pr_a.json

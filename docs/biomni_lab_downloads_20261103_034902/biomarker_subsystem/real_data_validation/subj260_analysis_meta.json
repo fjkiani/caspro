@@ -1,0 +1,61 @@
+{
+  "subject": "260",
+  "dataset": "EGAD00001011049",
+  "study": "EGAS00001007292",
+  "dx_file": "EGAF00008095344/IM_426.bam",
+  "relapse_file": "EGAF00008095415/JBLAB-19323.bam",
+  "method": "QDNAseq hg19 30kb bins, ~0.1x sWGS; breakpoint = segmented rel-CN shift >= 0.1 between adjacent bins",
+  "architecture": {
+    "subject": "260",
+    "dx_sample": "IM_426",
+    "relapse_sample": "JBLAB-19323",
+    "dx_breakpoints": 75,
+    "relapse_breakpoints": 135,
+    "breakpoint_delta": 60,
+    "net_gained_breakpoints": 66,
+    "n_chromosomes_gained": 16,
+    "top_focus_chrom": "1",
+    "top_focus_fraction": 0.212,
+    "top_chrom_cn_levels": 5,
+    "architecture_signature": "dispersed_stochastic_CIN"
+  },
+  "delta_by_chrom": {
+    "1": 14,
+    "2": 4,
+    "3": 2,
+    "4": 2,
+    "5": 1,
+    "6": 6,
+    "7": 10,
+    "8": 2,
+    "9": 5,
+    "10": 4,
+    "11": -4,
+    "12": 4,
+    "13": 1,
+    "14": -2,
+    "16": 3,
+    "17": 3,
+    "19": 4,
+    "21": 1
+  },
+  "user_asserted_delta": "+58 (UNVERIFIED premise; superseded by computed value above)",
+  "computed_breakpoint_delta": 60,
+  "qc": [
+    {
+      "sample": "IM_426",
+      "used_reads": 7766083,
+      "n_bins": 103199,
+      "median_cn": 0.978608523724137,
+      "mad_cn": 0.198454187841172
+    },
+    {
+      "sample": "JBLAB-19323",
+      "used_reads": 7745920,
+      "n_bins": 103199,
+      "median_cn": 0.939806956717646,
+      "mad_cn": 0.224494741310232
+    }
+  ],
+  "honest_ceiling": "sWGS resolves LARGE CNA breakpoints only; architecture signature is descriptive/hypothesis-generating, NOT a chromothripsis diagnosis (needs WGS SV resolution)."
+}

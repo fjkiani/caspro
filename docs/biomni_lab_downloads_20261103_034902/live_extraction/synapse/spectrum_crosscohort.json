@@ -1,0 +1,20 @@
+{
+  "tumor_n": 41,
+  "dc_n": 41,
+  "tumor_ddr14_median": 3.7538,
+  "tumor_sd": 0.3763,
+  "dc_ddr14_median": 3.4845,
+  "dc_sd": 0.1442,
+  "paired_n": 41,
+  "tumor_vs_dc_wilcox_p": 0,
+  "tumor_vs_dc_spearman": {
+    "rho": 0.1981,
+    "p": 0.2144
+  },
+  "gse165897_reference": {
+    "n": 11,
+    "ddr14_approx_range": [1.85, 2.68],
+    "note": "GSE165897 post-NACT, W1 14-gene, audit scale"
+  },
+  "interpretation": "If tumor DDR14 >> DC DDR14, score is tumor-cell-driven (biologically specific). SPECTRUM n=41 gives tighter distribution than GSE165897 n=11 -> power context for the audit."
+}

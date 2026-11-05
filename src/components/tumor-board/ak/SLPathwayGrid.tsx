@@ -1,135 +1,94 @@
 'use client';
 
 /**
- * SL pathway grid — 2 columns of substrate:
- *  left  = broken pathways (BER, CHECKPOINT, UNKNOWN) with disruption scores
- *  right = essential backups (ATR, WEE1, HR, PARP) with lineage grounding
- *
- * Theme-aware (dark tokens preserved; light tokens use zinc/rose/emerald)
- * Mobile-safe (px-4 → md:px-8, grid stays 1-col below md).
+ * Compact biology chips. TabSurface uses mode broken|essential.
+ * Legacy scroll surfaces pass mode="both".
  */
 import { usePatient } from '@/context/PatientContext';
 import { useTheme } from '@/context/ThemeContext';
 
-export default function SLPathwayGrid() {
+export type PathwayMode = 'broken' | 'essential' | 'both';
+
+export default function SLPathwayGrid({ mode = 'both' }: { mode?: PathwayMode }) {
   const patient = usePatient();
   const { isDarkMode } = useTheme();
 
-  const heading   = isDarkMode ? 'text-white' : 'text-zinc-900';
-  const sub       = isDarkMode ? 'text-white/50' : 'text-zinc-600';
-  const detected  = isDarkMode ? 'text-emerald-300' : 'text-emerald-700';
-  const monoLabel = isDarkMode ? 'text-white/70' : 'text-zinc-700';
-  const pathTag   = isDarkMode ? 'text-white/30' : 'text-zinc-400';
+  const muted = isDarkMode ? 'text-zinc-500' : 'text-slate-500';
+  const danger = isDarkMode
+    ? 'border-rose-500/30 bg-rose-500/10 text-rose-100'
+    : 'border-rose-200 bg-rose-50 text-rose-900';
+  const ok = isDarkMode
+    ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-100'
+    : 'border-emerald-200 bg-emerald-50 text-emerald-900';
 
-  return (
-    <section className="mx-auto w-full max-w-[1400px] px-4 py-8 md:px-8 md:py-10">
-      <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
-        <div>
-          <h2 className={`text-lg font-semibold ${heading}`}>SL pathway map</h2>
-          <p className={`mt-1 text-xs ${sub}`}>
-            Detection <span className={detected}>DETECTED</span> ·{' '}
-            {patient.doubleHit?.description ?? 'no double-hit detected'} · method{' '}
-            <span className={`font-mono ${monoLabel}`}>
-              {patient.slProvenance.detectionMethod}
-            </span>
-          </p>
-        </div>
-        <span className={`font-mono text-[10px] ${pathTag}`}>
-          synthetic_lethality.broken_pathways[] · essential_pathways[]
-        </span>
-      </div>
+  const broken = patient.brokenPathways.map((p) => ({
+    id: p.pathwayId,
+    label: p.pathwayId.replace(/_/g, ' '),
+    meta: p.genesAffected.join(', '),
+    tone: danger,
+  }));
+  const essential = patient.essentialPathways.map((p) => ({
+    id: p.pathwayId,
+    label: p.pathwayId.replace(/_/g, ' '),
+    meta: p.genesAffected?.join(', ') || (p.description ? p.description.slice(0, 80) : ''),
+    tone: ok,
+  }));
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <Column
-          title="Broken pathways"
-          subtitle="Double-hit + secondary damage"
-          tone="danger"
-          isDarkMode={isDarkMode}
-          rows={patient.brokenPathways.map((p) => ({
-            id: p.pathwayId,
-            head: p.pathwayId,
-            tag: p.status,
-            sub: `${p.genesAffected.join(', ')} · disruption ${p.disruptionScore.toFixed(3)}`,
-            path: p.path,
-          }))}
-        />
-        <Column
-          title="Essential backup dependencies"
-          subtitle="Where the tumor must lean when BER + checkpoint fail"
-          tone="opportunity"
-          isDarkMode={isDarkMode}
-          rows={patient.essentialPathways.map((p) => ({
-            id: p.pathwayId,
-            head: p.pathwayId,
-            tag: `disruption ${p.disruptionScore.toFixed(2)}`,
-            sub: p.description,
-            path: p.path,
-          }))}
-        />
-      </div>
+  const Pane = ({
+    title,
+    blurb,
+    rows,
+  }: {
+    title: string;
+    blurb: string;
+    rows: typeof broken;
+  }) => (
+    <section className="flex h-full min-h-0 flex-col">
+      <p className={`shrink-0 text-[11px] leading-snug line-clamp-2 ${muted}`}>{blurb}</p>
+      <p className={`mt-2 shrink-0 text-[10px] font-black uppercase tracking-widest ${muted}`}>{title}</p>
+      <ul className="mt-2 min-h-0 flex-1 space-y-1.5 overflow-y-auto pr-1">
+        {rows.map((r) => (
+          <li key={r.id} className={`rounded border px-2.5 py-1.5 text-[12px] ${r.tone}`}>
+            <span className="font-semibold">{r.label}</span>
+            {r.meta ? <span className={`ml-2 ${muted}`}>{r.meta}</span> : null}
+          </li>
+        ))}
+        {rows.length === 0 ? <li className={`text-[12px] ${muted}`}>None on this fixture.</li> : null}
+      </ul>
     </section>
   );
-}
 
-function Column({
-  title,
-  subtitle,
-  tone,
-  isDarkMode,
-  rows,
-}: {
-  title: string;
-  subtitle: string;
-  tone: 'danger' | 'opportunity';
-  isDarkMode: boolean;
-  rows: { id: string; head: string; tag: string; sub: string; path: string }[];
-}) {
-  const border = isDarkMode
-    ? tone === 'danger' ? 'border-rose-400/30' : 'border-emerald-400/30'
-    : tone === 'danger' ? 'border-rose-200' : 'border-emerald-200';
-  const wrapBg = isDarkMode
-    ? 'bg-white/[0.02]'
-    : tone === 'danger' ? 'bg-rose-50' : 'bg-emerald-50';
-  const tagStyle = isDarkMode
-    ? tone === 'danger'
-      ? 'border-rose-400/40 bg-rose-500/10 text-rose-200'
-      : 'border-emerald-400/40 bg-emerald-500/10 text-emerald-200'
-    : tone === 'danger'
-      ? 'border-rose-300 bg-rose-100 text-rose-800'
-      : 'border-emerald-300 bg-emerald-100 text-emerald-800';
-  const headLabel = isDarkMode ? 'text-white/40' : 'text-zinc-500';
-  const subLabel  = isDarkMode ? 'text-white/60' : 'text-zinc-600';
-  const rowBox    = isDarkMode
-    ? 'border-white/10 bg-black/30'
-    : 'border-zinc-200 bg-white';
-  const rowHead   = isDarkMode ? 'text-white' : 'text-zinc-900';
-  const rowBody   = isDarkMode ? 'text-white/70' : 'text-zinc-700';
-  const rowPath   = isDarkMode ? 'text-white/30' : 'text-zinc-400';
+  if (mode === 'broken') {
+    return (
+      <Pane
+        title="Broken pathways"
+        blurb={patient.doubleHit?.description ?? 'No double-hit pattern on this fixture.'}
+        rows={broken}
+      />
+    );
+  }
+  if (mode === 'essential') {
+    return (
+      <Pane
+        title="Dependencies to lean on"
+        blurb="Where the tumor must lean when primary pathways fail."
+        rows={essential}
+      />
+    );
+  }
 
   return (
-    <div className={`rounded-lg border ${border} ${wrapBg} p-4`}>
-      <div className="mb-3">
-        <div className={`text-[10px] uppercase tracking-[0.24em] ${headLabel}`}>
-          {title}
-        </div>
-        <div className={`text-xs ${subLabel}`}>{subtitle}</div>
-      </div>
-      <div className="space-y-3">
-        {rows.map((r) => (
-          <div key={r.id} className={`rounded border p-3 ${rowBox}`}>
-            <div className="flex items-baseline justify-between gap-2">
-              <span className={`font-mono text-sm ${rowHead}`}>{r.head}</span>
-              <span
-                className={`rounded border px-2 py-0.5 text-[10px] uppercase tracking-widest ${tagStyle}`}
-              >
-                {r.tag}
-              </span>
-            </div>
-            <div className={`mt-1 text-[12px] leading-relaxed ${rowBody}`}>{r.sub}</div>
-            <div className={`mt-1 font-mono text-[9px] ${rowPath}`}>{r.path}</div>
-          </div>
-        ))}
-      </div>
+    <div className="grid min-h-0 gap-3 md:grid-cols-2">
+      <Pane
+        title="Broken pathways"
+        blurb={patient.doubleHit?.description ?? 'No double-hit pattern on this fixture.'}
+        rows={broken}
+      />
+      <Pane
+        title="Dependencies to lean on"
+        blurb="Where the tumor must lean when primary pathways fail."
+        rows={essential}
+      />
     </div>
   );
 }

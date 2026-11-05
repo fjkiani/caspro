@@ -1,0 +1,133 @@
+{
+  "artifact": "kelim_psa_proxy_reparameterization_correction",
+  "date": "2026-08-11",
+  "supersedes": "kelim_psa_validation.json A1-RSE and A3 rows (verdict MACHINERY_NOT_VALIDATED)",
+  "trigger": "External audit asserted the A1-RSE failure was a parameterization artifact and that criterion validity had been prematurely abandoned.",
+  "audit_claim_adjudication": {
+    "claim_5param_model_blamed_for_31.3pct": "INCORRECT. Prior primary estimator was already a 3-parameter mono-exponential (A, k, plateau). The 5-param language in honesty_notes[0] explained why bi-exponential was DEMOTED to sensitivity, not the source of the 31.3%.",
+    "claim_reducing_parameters_fixes_identifiability": "CORRECT AND MATERIAL. Fixing the asymptote (3 -> 2 free parameters) raised RSE<0.5 from 32.2% to 66.5%.",
+    "claim_no_signal_to_rescue_was_wrong": "CORRECT. Prior conclusion that the elimination rate fails to predict PSA response is FALSIFIED by the correctly-parameterized estimator."
+  },
+  "cohort": {
+    "eligible_ge3obs_0to15wk": 281,
+    "decline_cohort": 169,
+    "labeled_for_A3": 150,
+    "responders": 43
+  },
+  "variants": {
+    "V0_mono3_free_plateau": {
+      "n_params": 3,
+      "n_decline": 169,
+      "n_converged": 169,
+      "conv_pct": 100.0,
+      "rse_lt_0p5_pct": 32.19,
+      "A1": "FAIL",
+      "median_r2": 0.9057,
+      "A2": "PASS",
+      "n_labeled": 152,
+      "n_responders": 45,
+      "auc": 0.5512,
+      "auc_ci95": [
+        0.4621,
+        0.6471
+      ],
+      "mwu_p": 0.3208,
+      "A3": "FAIL"
+    },
+    "V1_mono2_plateau0_OLS": {
+      "n_params": 2,
+      "n_decline": 169,
+      "n_converged": 167,
+      "conv_pct": 98.82,
+      "rse_lt_0p5_pct": 66.47,
+      "A1": "FAIL",
+      "median_r2": 0.8175,
+      "A2": "PASS",
+      "n_labeled": 150,
+      "n_responders": 43,
+      "auc": 0.637,
+      "auc_ci95": [
+        0.5447,
+        0.7227
+      ],
+      "mwu_p": 0.0088,
+      "A3": "PASS"
+    },
+    "V2_mono2_plateau_fixed_min": {
+      "n_params": 2,
+      "n_decline": 169,
+      "n_converged": 169,
+      "conv_pct": 100.0,
+      "rse_lt_0p5_pct": 54.44,
+      "A1": "FAIL",
+      "median_r2": 0.8412,
+      "A2": "PASS",
+      "n_labeled": 152,
+      "n_responders": 45,
+      "auc": 0.5126,
+      "auc_ci95": [
+        0.4158,
+        0.6131
+      ],
+      "mwu_p": 0.8087,
+      "A3": "FAIL"
+    }
+  },
+  "selected_primary": "V1_mono2_plateau0_OLS",
+  "selected_primary_note": "plateau fixed at 0 reduces the model to log-linear decline, i.e. the canonical first-order elimination estimator. This is arguably MORE faithful to published KELIM (an effective first-order elimination rate) than the free-plateau form, which was absorbing decline signal into the asymptote.",
+  "robustness_V1": {
+    "primary": {
+      "n": 150,
+      "responders": 43,
+      "auc": 0.637,
+      "ci95": [
+        0.545,
+        0.723
+      ],
+      "mwu_p": 0.0088,
+      "ci_excludes_0.5": true
+    },
+    "permutation_2000x": {
+      "obs_auc": 0.637,
+      "null_mean": 0.4991,
+      "null_sd": 0.0508,
+      "p_two_sided": 0.0065
+    },
+    "spearman_k_vs_psars": {
+      "rho": 0.215,
+      "p": 0.00834
+    },
+    "median_k_days_inv": {
+      "responders": 0.01158,
+      "non_responders": 0.00782
+    },
+    "SENSITIVITY_well_identified_only": {
+      "n": 99,
+      "responders": 34,
+      "auc": 0.595,
+      "ci95": [
+        0.479,
+        0.706
+      ],
+      "mwu_p": 0.1244,
+      "ci_excludes_0.5": false,
+      "interpretation": "FRAGILITY: restricting to RSE<0.5 rates loses significance. Direction preserved, power reduced (n 150->99). Signal is not carried exclusively by well-identified fits."
+    },
+    "decline_selection_check": "AUC identical (0.637) on all-eligible vs decline cohort, because k>0 already restricts to decliners. No decline-selection artifact."
+  },
+  "gate_status_revised": {
+    "A1_convergence": "PASS (98.8% >= 80%)",
+    "A1_rse_lt_0.5": "FAIL (66.5% < 80%) - improved from 32.2%, not cleared",
+    "A2_median_r2": "PASS (0.817 >= 0.70)",
+    "A3_criterion_validity": "PASS (AUC 0.637, 95% CI [0.545,0.723] excludes 0.50; permutation p=0.0065)"
+  },
+  "multiplicity_disclosure": "Two reduced-parameter variants were pre-specified by the directive before results were seen (plateau=0 and plateau=fixed-min). V1 passed A3; V2 did not (AUC 0.513). One of two, not one of many. No post hoc grid search over asymptote values was performed.",
+  "revised_verdict": "PROXY_PARTIALLY_VALIDATED_PSA_RESPONSE_ANCHOR",
+  "revised_label": "KELIM-proxy machinery RUNS on real serial-marker kinetics AND shows criterion validity against PSA response (AUC 0.637, CI excludes 0.50) once correctly parameterized as a 2-parameter first-order elimination fit. Rate-precision gate (A1-RSE 66.5%) still FAILS, and significance does not survive restriction to well-identified rates. NOT OS-anchored: no survival endpoint was tested. Ovarian CA-125 module remains UNCALIBRATED.",
+  "what_this_does_NOT_establish": [
+    "Not validated against overall survival or PFS. No Cox model was run. The published KELIM standard is survival-anchored (C-index ~0.60-0.61), and that remains untested here.",
+    "PSA is a proxy marker; this is not CA-125 and not ovarian cancer.",
+    "A1-RSE still fails its pre-registered 80% threshold.",
+    "Does not calibrate the ovarian CA-125 module. A prostate-PSA result cannot supply ovarian CA-125 calibration constants regardless of outcome."
+  ]
+}

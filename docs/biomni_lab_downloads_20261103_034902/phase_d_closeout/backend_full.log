@@ -1,0 +1,40 @@
+........................................................................ [  4%]
+........................................................................ [  9%]
+........................................................................ [ 13%]
+........................................................................ [ 18%]
+........................................................................ [ 22%]
+........................................................................ [ 27%]
+..................................................................s..... [ 32%]
+........................................................................ [ 36%]
+........................................................................ [ 41%]
+........................................................................ [ 45%]
+........................................................................ [ 50%]
+........................................................................ [ 55%]
+...............ss..........ssssss....................................... [ 59%]
+........................................................................ [ 64%]
+........................................................................ [ 68%]
+........................................................................ [ 73%]
+........................................................................ [ 78%]
+........................................................................ [ 82%]
+........................................................................ [ 87%]
+........................................................................ [ 91%]
+........................................................................ [ 96%]
+........................................................                 [100%]
+=============================== warnings summary ===============================
+../../opt/conda/lib/python3.11/site-packages/pydantic/fields.py:1093
+  /opt/conda/lib/python3.11/site-packages/pydantic/fields.py:1093: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'example'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.11/migration/
+    warn(
+
+tests/test_ayesha_e2e.py::test_ayesha_tumor_board
+tests/test_ayesha_e2e.py::test_ayesha_tumor_board
+tests/test_ayesha_e2e.py::test_ayesha_tumor_board
+tests/test_ayesha_e2e.py::test_ayesha_tumor_board
+tests/test_ayesha_e2e.py::test_ayesha_tumor_board
+tests/test_ayesha_e2e.py::test_ayesha_tumor_board
+tests/test_ayesha_e2e.py::test_ayesha_tumor_board
+tests/test_ayesha_e2e.py::test_ayesha_tumor_board
+  /workspace/backend/layer0_contracts/case_resolution.py:31: PydanticDeprecatedSince211: Accessing the 'model_fields' attribute on the instance is deprecated. Instead, you should access this attribute from the model class. Deprecated in Pydantic V2.11 to be removed in V3.0.
+    if name.startswith("_") or name in self.model_fields:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+1559 passed, 9 skipped, 9 warnings in 42.39s

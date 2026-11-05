@@ -1,0 +1,333 @@
+{
+  "config": {
+    "n": 98,
+    "events": 20,
+    "prevalence": 0.20408163265306123,
+    "m_imputations": 10,
+    "folds": "5x20 seed=42",
+    "imputation": "IterativeImputer(sample_posterior=True) fitted INSIDE each training fold; held-out outcomes set to NaN; estimator firth; num_lines '4+'->5.0",
+    "sensitivity": "KNNImputer(k=5) single imputation, same folds"
+  },
+  "missingness": {
+    "n_missing_all_five_jointly": 31,
+    "n_sporadic": 0,
+    "pattern": "block monotone: every incomplete subject is missing ALL five covariates; no sporadic cells",
+    "resistant_rate_complete": 0.13432835820895522,
+    "resistant_rate_incomplete": 0.3548387096774194,
+    "mechanism_note": "MCAR rejected (outcome-selective). MAR plausible given outcome + s3 are imputation predictors; MNAR not excludable -- stated as a limitation, not resolved by imputation."
+  },
+  "mice": {
+    "per_imputation_rubin": {
+      "M0_clinical": {
+        "auroc": {
+          "estimate": 0.5171378205128205,
+          "se": 0.023212496416080017,
+          "ci_lo": 0.4690794491662417,
+          "ci_hi": 0.5651961918593994,
+          "within_var": 0.00019926031718225544,
+          "between_var": 0.0003086906115311565,
+          "df": 22.661971845916693
+        },
+        "auprc": {
+          "estimate": 0.23751273269222556,
+          "se": 0.01565704923717127,
+          "ci_lo": 0.2048213695666548,
+          "ci_hi": 0.2702040958177963,
+          "within_var": 7.947142103781522e-05,
+          "between_var": 0.00015061069979762748,
+          "df": 19.705395484549378
+        },
+        "brier": {
+          "estimate": 0.16924852745281452,
+          "se": 0.0023928302688894,
+          "ci_lo": 0.16423643182672923,
+          "ci_hi": 0.1742606230788998,
+          "within_var": 1.7627166384827979e-06,
+          "between_var": 3.6026545974822914e-06,
+          "df": 18.787087652392604
+        }
+      },
+      "M3a_clinical_plus_s3": {
+        "auroc": {
+          "estimate": 0.7007564102564102,
+          "se": 0.01192148043944145,
+          "ci_lo": 0.6758646044504405,
+          "ci_hi": 0.72564821606238,
+          "within_var": 4.606826793314649e-05,
+          "between_var": 8.732129812258059e-05,
+          "df": 19.703234882713094
+        },
+        "auprc": {
+          "estimate": 0.3538219128980441,
+          "se": 0.015550327228057948,
+          "ci_lo": 0.32169197839978425,
+          "ci_hi": 0.38595184739630395,
+          "within_var": 9.21894071165408e-05,
+          "between_var": 0.0001360211543483087,
+          "df": 23.50727870041455
+        },
+        "brier": {
+          "estimate": 0.15501396686900337,
+          "se": 0.0025508803020033556,
+          "ci_lo": 0.14978739663841426,
+          "ci_hi": 0.1602405370995925,
+          "within_var": 2.807478695896898e-06,
+          "between_var": 3.36319238113803e-06,
+          "df": 27.84287250850994
+        }
+      }
+    },
+    "pooled_prediction": {
+      "M0_clinical": {
+        "auroc": {
+          "mean": 0.5380448717948718,
+          "sd": 0.04788153052154136
+        },
+        "auprc": {
+          "mean": 0.2327764598771241,
+          "sd": 0.026837305430453123
+        },
+        "brier": {
+          "mean": 0.16524356378718727,
+          "sd": 0.0027149224714320074
+        }
+      },
+      "M3a_clinical_plus_s3": {
+        "auroc": {
+          "mean": 0.7197115384615383,
+          "sd": 0.015092072119249395
+        },
+        "auprc": {
+          "mean": 0.35187238545628813,
+          "sd": 0.0273851469102698
+        },
+        "brier": {
+          "mean": 0.15010903427036187,
+          "sd": 0.003931285503679756
+        }
+      }
+    },
+    "delta_M3a_minus_M0": {
+      "auroc": {
+        "estimate": 0.18361858974358974,
+        "se": 0.013477843214231218,
+        "ci_lo": 0.1563229225963043,
+        "ci_hi": 0.2109142568908752,
+        "within_var": 9.269801182566869e-05,
+        "between_var": 8.086749625611801e-05,
+        "df": 37.53105259965106,
+        "excludes_zero": true
+      },
+      "auprc": {
+        "estimate": 0.11630918020581862,
+        "se": 0.009399427865836935,
+        "ci_lo": 0.09742157000855117,
+        "ci_hi": 0.13519679040308608,
+        "within_var": 5.053474106841702e-05,
+        "between_var": 3.437682103332259e-05,
+        "df": 49.12826081397323,
+        "excludes_zero": true
+      },
+      "brier": {
+        "estimate": -0.014234560583811142,
+        "se": 0.0015429294773456005,
+        "ci_lo": -0.017370214683376427,
+        "ci_hi": -0.011098906484245857,
+        "within_var": 1.1555726084692615e-06,
+        "between_var": 1.1136897850842784e-06,
+        "df": 33.98701095358217,
+        "excludes_zero": true
+      }
+    },
+    "imputation_diagnostics_fold0": {
+      "age": {
+        "mean_of_imputed_means": 62.08832348328807,
+        "sd_of_imputed_means": 1.7378938418821228
+      },
+      "stage": {
+        "mean_of_imputed_means": 2.8304347826086955,
+        "sd_of_imputed_means": 0.14992121434405803
+      },
+      "nlines": {
+        "mean_of_imputed_means": 2.4531306014530383,
+        "sd_of_imputed_means": 0.118108044372315
+      },
+      "brca": {
+        "mean_of_imputed_means": 0.4521739130434782,
+        "sd_of_imputed_means": 0.08952721861727826
+      },
+      "hr": {
+        "mean_of_imputed_means": 0.4478260869565217,
+        "sd_of_imputed_means": 0.10298016767240879
+      }
+    },
+    "observed_complete_case_distribution": {
+      "age": {
+        "mean": 61.76119402985075,
+        "sd": 9.542710294502932
+      },
+      "stage": {
+        "mean": 2.8805970149253732,
+        "sd": 0.7286847441483801
+      },
+      "nlines": {
+        "mean": 2.3134328358208953,
+        "sd": 0.7629479354705706
+      },
+      "brca": {
+        "mean": 0.2835820895522388,
+        "sd": 0.45413821648739866
+      },
+      "hr": {
+        "mean": 0.3880597014925373,
+        "sd": 0.4909861406609369
+      }
+    }
+  },
+  "knn_sensitivity": {
+    "per_imputation_rubin": {
+      "M0_clinical": {
+        "auroc": {
+          "estimate": 0.6367467948717949,
+          "se": 0.0063633266522380005,
+          "ci_lo": 0.6242746746334084,
+          "ci_hi": 0.6492189151101814,
+          "within_var": 4.0491926083082476e-05,
+          "between_var": 0.0,
+          "df": null
+        },
+        "auprc": {
+          "estimate": 0.2924802009872868,
+          "se": 0.005154943607251536,
+          "ci_lo": 0.28237651151707377,
+          "ci_hi": 0.3025838904574998,
+          "within_var": 2.6573443593943473e-05,
+          "between_var": 0.0,
+          "df": null
+        },
+        "brier": {
+          "estimate": 0.17087221762028865,
+          "se": 0.0011844971685094122,
+          "ci_lo": 0.1685506031700102,
+          "ci_hi": 0.1731938320705671,
+          "within_var": 1.403033542206815e-06,
+          "between_var": 0.0,
+          "df": null
+        }
+      },
+      "M3a_clinical_plus_s3": {
+        "auroc": {
+          "estimate": 0.7322596153846154,
+          "se": 0.0047523965258252695,
+          "ci_lo": 0.7229449181939979,
+          "ci_hi": 0.7415743125752329,
+          "within_var": 2.258527273867609e-05,
+          "between_var": 0.0,
+          "df": null
+        },
+        "auprc": {
+          "estimate": 0.395014689956248,
+          "se": 0.008766868899546313,
+          "ci_lo": 0.3778316269131372,
+          "ci_hi": 0.4121977529993588,
+          "within_var": 7.685799030183237e-05,
+          "between_var": 0.0,
+          "df": null
+        },
+        "brier": {
+          "estimate": 0.1559156200860355,
+          "se": 0.0016466175032856063,
+          "ci_lo": 0.1526882497795957,
+          "ci_hi": 0.1591429903924753,
+          "within_var": 2.7113492021265236e-06,
+          "between_var": 0.0,
+          "df": null
+        }
+      }
+    },
+    "pooled_prediction": {
+      "M0_clinical": {
+        "auroc": {
+          "mean": 0.6367467948717949,
+          "sd": 0.028457661914880666
+        },
+        "auprc": {
+          "mean": 0.2924802009872868,
+          "sd": 0.023053608651984824
+        },
+        "brier": {
+          "mean": 0.17087221762028865,
+          "sd": 0.005297232375886138
+        }
+      },
+      "M3a_clinical_plus_s3": {
+        "auroc": {
+          "mean": 0.7322596153846154,
+          "sd": 0.021253363375558273
+        },
+        "auprc": {
+          "mean": 0.395014689956248,
+          "sd": 0.03920662961842866
+        },
+        "brier": {
+          "mean": 0.1559156200860355,
+          "sd": 0.007363897340575198
+        }
+      }
+    },
+    "delta_M3a_minus_M0": {
+      "auroc": {
+        "estimate": 0.09551282051282052,
+        "se": 0.003750136968789427,
+        "ci_lo": 0.08816255205399325,
+        "ci_hi": 0.1028630889716478,
+        "within_var": 1.406352728468115e-05,
+        "between_var": 0.0,
+        "df": null,
+        "excludes_zero": true
+      },
+      "auprc": {
+        "estimate": 0.10253448896896127,
+        "se": 0.006816485227051885,
+        "ci_lo": 0.08917417792393957,
+        "ci_hi": 0.11589480001398296,
+        "within_var": 4.646447085061659e-05,
+        "between_var": 0.0,
+        "df": null,
+        "excludes_zero": true
+      },
+      "brier": {
+        "estimate": -0.014956597534253185,
+        "se": 0.00113719097380163,
+        "ci_lo": -0.01718549184290438,
+        "ci_hi": -0.01272770322560199,
+        "within_var": 1.2932033108958997e-06,
+        "between_var": 0.0,
+        "df": null,
+        "excludes_zero": true
+      }
+    }
+  },
+  "verdict": {
+    "complete_case_reference": {
+      "n": 67,
+      "events": 9,
+      "delta_auroc": 0.3525,
+      "ci": [
+        0.1494,
+        0.548
+      ]
+    },
+    "imputed_full_set": {
+      "n": 98,
+      "events": 20,
+      "delta_auroc": 0.18361858974358974,
+      "ci": [
+        0.1563229225963043,
+        0.2109142568908752
+      ],
+      "excludes_zero": true
+    },
+    "gate_b5_statement": "PASS_WITH_CAVEATS: the M0 -> M3a incremental signal survives multiple imputation on the full n=98 (delta AUROC 0.184 [0.156, 0.211]). The complete-case delta (0.3525) was not an artifact of outcome-selective covariate missingness. Caveats: MNAR not excludable; 20 events; imputation model uncertainty included via Rubin pooling."
+  }
+}

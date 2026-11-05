@@ -1,0 +1,7 @@
+test,auroc,ci95,wilcoxon_p,design,direction,ci_excludes_0.5,nominal_sig
+"GSE165897 disc (DDR, corr)",0.5714,"[0.125, 0.9333]",0.7879,post-state (serial),predicted (>0.5),False,False
+"GSE165897 disc (PI3K, corr)",0.3571,"[0.0, 0.7667]",0.5273,post-state (serial),opposite (<0.5),False,False
+BriTROC-1 (s7 relapse),0.8739,"[0.7622, 0.9717]",0.035,relapse-state (serial),predicted (>0.5),True,True
+GSE160626 (DDR),0.375,"[0.1169, 0.6769]",0.4082,cross-sectional,opposite (<0.5),False,False
+GSE160626 (PI3K),0.2125,"[0.025, 0.475]",0.0434,cross-sectional,opposite (<0.5),True,True
+GSE160626 (VEGF),0.35,"[0.0863, 0.6111]",0.3154,cross-sectional,opposite (<0.5),False,False

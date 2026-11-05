@@ -1,0 +1,134 @@
+{
+  "trial": "MOSAIC",
+  "pmid": "19451431",
+  "pmc": "PMC2720979",
+  "citation": "André T, Boni C, Navarro M, et al. Improved overall survival with oxaliplatin, fluorouracil, and leucovorin as adjuvant treatment in stage II or III colon cancer in the MOSAIC trial. J Clin Oncol. 2009;27(19):3109-16.",
+  "data_source": "PubMed abstract (PMID 19451431) + literature search: André 2015 JCO (PMID 26324362, 10-year update) + Teixeira 2010 ASCO abstract (PMID 20458040) + Chibaudel 2024 JCO (PMID 38635929)",
+  "n_total": 2246,
+  "n_stage_II": 899,
+  "n_stage_III": 1347,
+  "stage_subgroups": [
+    {
+      "stage": "Overall (Stage II + III)",
+      "n": 2246,
+      "dfs_hr": 0.80,
+      "dfs_ci": "0.68-0.93",
+      "dfs_p": 0.003,
+      "dfs_timepoint": "5-year",
+      "os_hr": 0.84,
+      "os_ci": "0.71-1.00",
+      "os_p": 0.046,
+      "os_timepoint": "6-year",
+      "notes": "Primary endpoint. FOLFOX4 vs LV5FU2. 5-yr DFS rates: 73.3% vs 67.4%. 6-yr OS rates: 78.5% vs 76.0%."
+    },
+    {
+      "stage": "Stage III",
+      "n": 1347,
+      "dfs_hr": "not_reported_in_abstract",
+      "dfs_ci": "not_reported_in_abstract",
+      "dfs_p": "not_reported_in_abstract",
+      "dfs_timepoint": "5-year",
+      "os_hr": 0.80,
+      "os_ci": "0.65-0.97",
+      "os_p": 0.023,
+      "os_timepoint": "6-year",
+      "os_rates": "72.9% (FOLFOX4) vs 68.7% (LV5FU2)",
+      "notes": "Stage III OS HR=0.80 (95%CI 0.65-0.97, P=0.023) from abstract. 10-year update (André 2015, PMID 26324362): Stage III OS HR=0.80 (95%CI not reported in abstract, P=0.016); 10-yr OS 67.1% vs 59.0%."
+    },
+    {
+      "stage": "Stage II (all)",
+      "n": 899,
+      "dfs_hr": "not_reported_in_abstract",
+      "dfs_ci": "not_reported_in_abstract",
+      "dfs_p": "not_reported_in_abstract",
+      "os_hr": "no_difference",
+      "os_ci": "not_reported_in_abstract",
+      "os_p": "not_significant",
+      "notes": "Abstract states 'No difference in OS was seen in the stage II population.' 10-year update (André 2015): Stage II OS HR=1.00 (P=0.980); 10-yr OS 78.4% vs 79.5%."
+    },
+    {
+      "stage": "Stage II high-risk (T4 and/or LN <12)",
+      "n_folfox4": 253,
+      "n_lv5fu2": 250,
+      "n_total": 503,
+      "dfs_hr": 0.72,
+      "dfs_ci": "0.49-1.06",
+      "dfs_p": "not_significant",
+      "os_hr": 0.81,
+      "os_ci": "0.52-1.26",
+      "os_p": "not_significant",
+      "notes": "From Teixeira 2010 ASCO abstract (PMID 20458040). Median follow-up 6 years. DFS HR=0.72 (95%CI 0.49-1.06), OS HR=0.81 (95%CI 0.52-1.26). Trend favoring FOLFOX4 but not statistically significant. Chibaudel 2024 JCO pooled MOSAIC+C07 confirms OS HR=0.86 (95%CI 0.63-1.18, P=0.349) for high-risk stage II — no significant benefit."
+    },
+    {
+      "stage": "Stage II low-risk",
+      "n_folfox4": 198,
+      "n_lv5fu2": 198,
+      "n_total": 396,
+      "dfs_hr": 1.39,
+      "dfs_ci": "not_reported",
+      "dfs_p": "not_significant",
+      "os_hr": "not_reported",
+      "os_ci": "not_reported",
+      "os_p": "not_significant",
+      "notes": "From Teixeira 2010 ASCO abstract. DFS HR=1.39 (numerically worse with FOLFOX4 in low-risk stage II, not significant). Confirms no benefit of oxaliplatin in low-risk stage II."
+    },
+    {
+      "stage": "Stage II (10-year OS update)",
+      "n": 899,
+      "dfs_hr": "not_reported",
+      "dfs_ci": "not_reported",
+      "dfs_p": "not_reported",
+      "os_hr": 1.00,
+      "os_ci": "not_reported_in_abstract",
+      "os_p": 0.980,
+      "os_timepoint": "10-year",
+      "os_rates": "78.4% (FOLFOX4) vs 79.5% (LV5FU2)",
+      "notes": "From André 2015 JCO (PMID 26324362). 10-year OS HR=1.00, P=0.980 — no benefit in stage II at 10 years."
+    },
+    {
+      "stage": "Stage III (10-year OS update)",
+      "n": 1347,
+      "dfs_hr": "not_reported",
+      "dfs_ci": "not_reported",
+      "dfs_p": "not_reported",
+      "os_hr": 0.80,
+      "os_ci": "not_reported_in_abstract",
+      "os_p": 0.016,
+      "os_timepoint": "10-year",
+      "os_rates": "67.1% (FOLFOX4) vs 59.0% (LV5FU2)",
+      "notes": "From André 2015 JCO (PMID 26324362). Confirmed OS benefit at 10 years for stage III."
+    }
+  ],
+  "high_risk_stage2_definition": {
+    "criteria_used_in_mosaic": [
+      "T4 tumor stage",
+      "Fewer than 12 lymph nodes examined (inadequate nodal harvest)",
+      "Tumor perforation",
+      "Tumor obstruction"
+    ],
+    "primary_criteria_in_mosaic_subanalysis": "T4 and/or LN <12 (used in Teixeira 2010 ASCO subanalysis)",
+    "additional_criteria_in_broader_definitions": [
+      "Poorly differentiated histology (grade 3/4)",
+      "Perineural invasion",
+      "Lymphovascular invasion",
+      "Elevated preoperative CEA"
+    ],
+    "notes": "MOSAIC trial itself did not prospectively stratify by high-risk stage II. The T4/LN<12 definition was used in post-hoc subanalyses. Chibaudel 2024 JCO pooled analysis used T4, perforation/obstruction, and LN<12 as the 'old definition' of high-risk stage II. No benefit of oxaliplatin was found regardless of high-risk definition used."
+  },
+  "molecular_data_in_mosaic": {
+    "available": "YES — in 10-year update (André 2015, PMID 26324362)",
+    "n_with_molecular_data": 1008,
+    "dmmr_prevalence": "9.4% (95 patients)",
+    "braf_mutation_prevalence": "10.4% (94 patients)",
+    "dmmr_dfs_hr_folfox4_benefit": 0.48,
+    "dmmr_dfs_ci": "0.20-1.12",
+    "dmmr_os_hr_folfox4_benefit": 0.41,
+    "dmmr_os_ci": "0.16-1.07",
+    "braf_dfs_hr_folfox4_benefit": 0.50,
+    "braf_dfs_ci": "0.25-1.00",
+    "braf_os_hr_folfox4_benefit": 0.66,
+    "braf_os_ci": "0.31-1.42",
+    "notes": "dMMR was independent prognostic factor (HR=2.02, 95%CI 1.15-3.55, P=0.014 for OS). BRAF mutation not prognostic for OS (P=0.965). These are treatment effect HRs (FOLFOX4 vs LV5FU2) within molecular subgroups."
+  },
+  "notes": "MOSAIC primary paper (PMID 19451431) does not report stage-specific DFS HRs in abstract — only OS HRs by stage. Stage-specific DFS HRs available in full text (not accessible). High-risk stage II DFS HR=0.72 from Teixeira 2010 ASCO post-hoc analysis. PMC full text (PMC2720979) blocked by reCAPTCHA."
+}

@@ -1,0 +1,24 @@
+Gene,Prior_Claim,Source,Status,Verified_Value,Notes
+NOM1,"padj=0.0034, LFC=+0.515",GSE223499 DESeq2,VERIFIED,"padj=0.0034, LFC=+0.515",Only padj<0.05 target
+FAM72A,"padj=0.061, LFC=+1.054",GSE223499 DESeq2,VERIFIED,"padj=0.0605, LFC=+1.054",Nominal
+BACE1,"padj=0.071, LFC=+1.069",GSE223499 DESeq2,VERIFIED,"padj=0.0708, LFC=+1.069",Nominal
+SLC45A4,"padj=0.183, LFC=+1.062",GSE223499 DESeq2,VERIFIED,"padj=0.1828, LFC=+1.062",NS
+SENP8,"padj=0.147, LFC=-0.470",GSE223499 DESeq2,VERIFIED,"padj=0.1469, LFC=-0.470",Wrong direction vs hypothesis
+ROPN1L,"padj=0.824, LFC=+0.184",GSE223499 DESeq2,VERIFIED,"padj=0.8240, LFC=+0.184",NS
+SLC25A32,"padj=0.949, LFC=+0.031",GSE223499 DESeq2,VERIFIED,"padj=0.9487, LFC=+0.031",True null
+PTPRC,"padj=0.784, LFC=-0.340",GSE223499 DESeq2,VERIFIED,"padj=0.7835, LFC=-0.340",NS
+PTPRC,"padj=0.017, LFC=-1.308",GSE131907 (prior),CONFIRMED+,"padj=0.0021, LFC=-2.244",More significant than claimed
+BACE1,"padj=0.017, LFC=+1.218",GSE131907 (prior),FALSIFIED,"padj=0.574, LFC=+0.358",NOT significant in epithelial cells
+FAM72A,padj=0.611 (NS),GSE131907 (prior),DIRECTION_OK,"padj=0.193, pval=0.039",Stronger signal than claimed
+NOM1,padj=0.226 (NS),GSE131907 (prior),CONSISTENT,padj=0.402 (NS),"Both NS, same direction"
+NOM1,p=1.33e-184,GSE186344 (prior),INVALID,N/A,"BrM-only dataset, wrong comparison type"
+BACE1,p=1.08e-9,GSE186344 (prior),INVALID,N/A,"BrM-only dataset, wrong comparison type"
+FAM72A,p=1.25e-34,GSE186344 (prior),INVALID,N/A,"BrM-only dataset, wrong comparison type"
+NOM1,COMMON ESSENTIAL,DepMap Chronos,VERIFIED,"Mean=-0.725, 82.5% dep","Pan-lethal, no therapeutic window"
+BACE1,non-essential,DepMap Chronos,VERIFIED,"Mean=-0.068, 0.1% dep",NON-ESSENTIAL
+FAM72A,not in DepMap,DepMap Chronos,CONFIRMED,Absent from CRISPR screen,Not screened
+SENP8,non-essential,DepMap Chronos,VERIFIED,"Mean=-0.022, 0.3% dep",NON-ESSENTIAL
+PTPRC,non-essential,DepMap Chronos,VERIFIED,"Mean=-0.086, 1.7% dep",NON-ESSENTIAL
+SENP8,testis-enriched 14.6 nTPM,HPA,PARTIAL,Tissue ENHANCED (Testis),Enhanced not Enriched; nTPM unverified
+BACE1,brain 45.5 nTPM,HPA,PLAUSIBLE,Group enriched Brain+Pancreas,Direction correct; exact value unverified
+NOM1,drug target,Prior framing,WRONG,Proliferation biomarker,Common essential = no therapeutic window

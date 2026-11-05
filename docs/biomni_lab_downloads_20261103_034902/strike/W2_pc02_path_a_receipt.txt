@@ -1,0 +1,31 @@
+PC-02 PATH A Receipt
+=====================
+Substrate:      /mnt/shared-workspace/shared/strike/W2/clinical_trials_unified.db
+Substrate sha:  ac96437f9bb0fe28ec205f3b714b6dca2e864f1520707c39653fefb39bcdf034
+Formula:        PATH_A: fit = clip((p·t) / ||t||_2, 0, 1)
+Axes order:     ddr, mapk, pi3k, vegf, her2, io, efflux, rss
+Total scored:   283
+Anchor NCTs declared in docs: []
+Anchor NCTs in registry:      []
+
+Top-20 by PATH A fit (HGSOC-like patient vector — see W1):
+   NCT05450692  fit=0.6347  dot=0.8650  |t|=1.3629  src=retroactive_validation
+   NCT02595892  fit=0.6210  dot=0.7275  |t|=1.1715  src=retroactive_validation
+   NCT03579316  fit=0.5808  dot=1.0850  |t|=1.8682  src=None
+   NCT06014528  fit=0.4950  dot=0.4200  |t|=0.8485  src=cohere_batch_tagging
+   NCT06334432  fit=0.4609  dot=0.4700  |t|=1.0198  src=cohere_batch_tagging
+   NCT06232863  fit=0.4410  dot=0.3500  |t|=0.7937  src=cohere_batch_tagging
+   NCT06994195  fit=0.4336  dot=0.3950  |t|=0.9110  src=cohere_batch_tagging
+   NCT06799637  fit=0.4290  dot=0.2350  |t|=0.5477  src=cohere_batch_tagging
+   NCT07023484  fit=0.4290  dot=0.2350  |t|=0.5477  src=cohere_batch_tagging
+   NCT06526819  fit=0.4290  dot=0.2350  |t|=0.5477  src=cohere_batch_tagging
+   NCT06533059  fit=0.4254  dot=0.3350  |t|=0.7874  src=cohere_batch_tagging
+   NCT05797168  fit=0.4131  dot=0.2300  |t|=0.5568  src=cohere_batch_tagging
+   NCT05489211  fit=0.4097  dot=0.3200  |t|=0.7810  src=cohere_batch_tagging
+   NCT06468254  fit=0.4094  dot=0.3450  |t|=0.8426  src=cohere_batch_tagging
+   NCT03067181  fit=0.4022  dot=0.2900  |t|=0.7211  src=cohere_batch_tagging
+   NCT05952453  fit=0.4022  dot=0.2900  |t|=0.7211  src=cohere_batch_tagging
+   NCT04633239  fit=0.4022  dot=0.2900  |t|=0.7211  src=cohere_batch_tagging
+   NCT05327010  fit=0.4022  dot=0.2900  |t|=0.7211  src=cohere_batch_tagging
+   NCT05891093  fit=0.4022  dot=0.2900  |t|=0.7211  src=cohere_batch_tagging
+   NCT06173037  fit=0.4022  dot=0.2900  |t|=0.7211  src=cohere_batch_tagging

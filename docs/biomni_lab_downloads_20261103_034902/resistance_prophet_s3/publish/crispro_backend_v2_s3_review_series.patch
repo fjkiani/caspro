@@ -1,0 +1,1738 @@
+From a39fb9c9a7bd0ba4b36e963abf6403878de84a1a Mon Sep 17 00:00:00 2001
+From: Fahad Kiani <fahad@brenus.com>
+Date: Wed, 19 Aug 2026 09:41:20 +0000
+Subject: [PATCH 1/3] resistance_prophet: fail-closed guard on Sig7 prognosis
+ branch (D2)
+
+With ZETA_SIG7_PROGNOSIS_ACTIONS_ENABLED unset, the sig7 branch returns
+UNCERTAIN / ROUTINE_SURVEILLANCE / LOW confidence with rationale citing the
+collapse evidence (AUROC 0.8739 on n=40/3 events reverses to 0.3136 on
+outcome-label swap; OOF AUROC 0.4108 continuous). The POOR ->
+INTENSIFY_SURVEILLANCE path no longer fires by default. PrognosisResult
+schema unchanged; closes the production-wired PROGNOSIS_ALERT escalation
+path. Full-suite differential vs unpatched: zero node-level changes.
+---
+ api/services/resistance_prophet/prognosis.py | 114 ++++++++++++++++++-
+ 1 file changed, 113 insertions(+), 1 deletion(-)
+
+diff --git a/api/services/resistance_prophet/prognosis.py b/api/services/resistance_prophet/prognosis.py
+index c56c002a..ff02cd96 100644
+--- a/api/services/resistance_prophet/prognosis.py
++++ b/api/services/resistance_prophet/prognosis.py
+@@ -1,14 +1,86 @@
+ 
++import os
+ from typing import Dict, List, Optional
+ from dataclasses import dataclass
+ from .schemas import PrognosisState, PrognosisResult
+ from .constants import SIG7_RISK_THRESHOLD, PROGNOSIS_CONFIDENCE_CAP
+ 
++# ---------------------------------------------------------------------------
++# FAIL-CLOSED GUARD ON THE SIG7 PROGNOSIS RULE
++# ---------------------------------------------------------------------------
++# Why this guard exists (register rows C01 / C13; evidence paths below):
++#
++#   The rule `sig7_exposure >= SIG7_RISK_THRESHOLD (0.25) -> PrognosisState.POOR ->
++#   action_recommendation "INTENSIFY_SURVEILLANCE"` has one evidentiary basis: an AUROC
++#   of 0.8739 computed on n=40 with THREE events, using a RECIST-derived relapse label.
++#
++#   * That statistic reverses to AUROC 0.3136 on the SAME fixed 40-patient feature matrix
++#     when only the outcome label is swapped to registration platinum status
++#     (obl2_auroc_summary.csv; obl2_invariants.json).
++#   * CLAIM_LEDGER.md row 3 classifies it as an artifact of label definition.
++#   * sig7_cv_falsification.json shows the three-stage collapse:
++#       n=40  /  3 events  AUROC 0.874  (prior claim)
++#       n=96  / 13 events  AUROC 0.621
++#       n=67  / 15 events  AUROC 0.421  (adjudicated label; cross-validated 0.5250 = no
++#                                        discrimination)
++#   * Independently measured here on identical folds (n=67, 9 events): the shipped binary
++#     rule scores OOF AUROC 0.6446 with Brier 0.2090 against a prevalence-only Brier of
++#     0.1163; s7 as a continuous score scores OOF AUROC 0.4108 — BELOW chance.
++#   * Macintyre 2018 (Nat Genet 50:1262) identifies s7 as a GOOD-outcome signature. The
++#     canonical platinum-resistance axis in that framework is s1 (RAS/MAPK). The shipped
++#     rule therefore also has the direction inverted relative to the literature.
++#
++#   Consequence: this path was emitting an evidence-free deviation from routine care
++#   (POOR + INTENSIFY_SURVEILLANCE) and an equally evidence-free reassurance
++#   (FAVORABLE), and it feeds TestRouter.route_tests(), which converts POOR into an
++#   IMMEDIATE low-pass WGS order (test_router.py:171).
++#
++# What this guard does:
++#   Default (flag unset): the sig7 branch no longer emits POOR/FAVORABLE and no longer
++#   deviates from routine surveillance. State becomes UNCERTAIN, confidence LOW, and the
++#   rationale records the observed input value with NO risk interpretation plus the
++#   suppression reason. The dataclass schema is unchanged, so no serializer, router or
++#   response model needs to change — the minimum blast radius that closes the hole.
++#
++#   Flag set (ZETA_SIG7_PROGNOSIS_ACTIONS_ENABLED=1): legacy behaviour is restored
++#   verbatim, for research reproduction only.
++#
++# What this guard deliberately does NOT do (deferred; see PROPOSED_PATCH_C02_C03.md):
++#   * It does not fix the signature-namespace mismatch in _get_sig7_exposure (C02).
++#   * It does not fail-close the QC gate in _check_qc (C03).
++#   Both are documented with an applyable proposal. They are not applied here because the
++#   repository baseline is RED (226 failing/erroring nodes on main) and those changes have
++#   a materially wider blast radius than this one.
++# ---------------------------------------------------------------------------
++
++SIG7_PROGNOSIS_ACTIONS_ENV = "ZETA_SIG7_PROGNOSIS_ACTIONS_ENABLED"
++_TRUTHY = frozenset({"1", "true", "yes", "on"})
++
++SIG7_SUPPRESSION_RATIONALE = (
++    "Sig7 prognostic state and action suppressed (fail-closed). Basis: the 0.25 threshold "
++    "rests on AUROC 0.8739 at n=40 with 3 events, which reverses to 0.3136 under label swap "
++    "alone and collapses to 0.421 at n=67/15 events; CLAIM_LEDGER row 3 classifies it as a "
++    "label artifact; measured OOF AUROC of the shipped rule is 0.6446 and of continuous s7 "
++    "is 0.4108 (below chance). Set "
++    + SIG7_PROGNOSIS_ACTIONS_ENV
++    + "=1 to restore legacy behaviour for research reproduction only."
++)
++
++
++def sig7_prognosis_actions_enabled(env: Optional[Dict[str, str]] = None) -> bool:
++    """True only when the sig7 prognosis state/action is explicitly re-enabled."""
++    src = os.environ if env is None else env
++    return str(src.get(SIG7_PROGNOSIS_ACTIONS_ENV, "")).strip().lower() in _TRUTHY
++
++
+ class PrognosisEngine:
+     """
+     The Silent Sentinel.
+     Separates Risk State (Prognosis) from Recurrence Events (Alarms).
+     Focused on molecular potential for recurrence, primarily BriTROC Sig7.
++
++    NOTE: the Sig7 state/action path is fail-closed by default. See the guard block at
++    the top of this module.
+     """
+ 
+     def assess_risk(self, patient_data: Dict, is_post_treatment: bool = False) -> PrognosisResult:
+@@ -27,6 +99,9 @@ class PrognosisEngine:
+              )
+ 
+         # 0b. Gate: QC Check
++        # PROPOSED PATCH (DEFERRED, C03): _check_qc is fail-OPEN — it returns True when no
++        # QC metrics are present. A sample with no QC data currently passes. See
++        # PROPOSED_PATCH_C02_C03.md for the fail-closed replacement.
+         if not self._check_qc(patient_data):
+             return PrognosisResult(
+                 state=PrognosisState.UNCERTAIN,
+@@ -40,6 +115,24 @@ class PrognosisEngine:
+         
+         # 2. Evaluate State
+         if sig7_exposure is not None:
++            if not sig7_prognosis_actions_enabled():
++                # FAIL-CLOSED: report the observed input, make no risk claim, do not
++                # deviate from routine surveillance.
++                return PrognosisResult(
++                    state=PrognosisState.UNCERTAIN,
++                    confidence="LOW",
++                    rationale=[
++                        f"Observed Sig7 input value {sig7_exposure:.3f} (input only; no risk interpretation applied).",
++                        SIG7_SUPPRESSION_RATIONALE,
++                        "Namespace caveat (C02): this value is read from "
++                        "molecular_profile.signatures.cosmic_cn_signatures.Sig7, a COSMIC-framework "
++                        "field, while the 0.25 threshold was derived from Macintyre/BriTROC s7. "
++                        "These are different frameworks.",
++                    ],
++                    action_recommendation="ROUTINE_SURVEILLANCE",
++                )
++
++            # LEGACY PATH — research reproduction only, explicitly re-enabled.
+             if sig7_exposure >= SIG7_RISK_THRESHOLD:
+                 state = PrognosisState.POOR
+                 rationale = [f"High Sig7 Exposure ({sig7_exposure:.3f} >= {SIG7_RISK_THRESHOLD})"]
+@@ -48,7 +141,13 @@ class PrognosisEngine:
+                 state = PrognosisState.FAVORABLE
+                 rationale = [f"Low Sig7 Exposure ({sig7_exposure:.3f} < {SIG7_RISK_THRESHOLD})"]
+                 action = "ROUTINE_SURVEILLANCE"
+-                
++
++            rationale = rationale + [
++                "RESEARCH REPRODUCTION MODE: "
++                + SIG7_PROGNOSIS_ACTIONS_ENV
++                + "=1. This state and action are NOT clinically validated."
++            ]
++
+             confidence = PROGNOSIS_CONFIDENCE_CAP # Capped at MEDIUM until multi-biomarker validation
+         else:
+             state = PrognosisState.UNCERTAIN
+@@ -68,6 +167,14 @@ class PrognosisEngine:
+         """
+         Safely extra sig7 exposure from nested patient data.
+         Expected path: molecular_profile -> signatures -> cosmic_cn_signatures -> Sig7
++
++        PROPOSED PATCH (DEFERRED, C02): the threshold this value is compared against was
++        derived from the Macintyre/BriTROC 7-signature framework, but the value is read
++        from a COSMIC copy-number signature namespace. COSMIC CN7 is not Macintyre s7.
++        The correct behaviour is to raise on a framework mismatch rather than return a
++        value from the wrong namespace or silently return None. See
++        PROPOSED_PATCH_C02_C03.md, and s3_research.extract_s3_diag for a namespace-strict
++        reference implementation.
+         """
+         try:
+             # Flexible access based on expected schemas
+@@ -87,6 +194,11 @@ class PrognosisEngine:
+         """
+         Check if sample passes molecular QC (e.g. MAPD).
+         Ref: User spec - 'requires passing CNA QC'.
++
++        PROPOSED PATCH (DEFERRED, C03): this gate is fail-OPEN. A payload with no
++        qc_metrics block passes, and a bare `except:` also returns True. For any
++        care-influencing use the gate must fail CLOSED (absent QC == not assessable).
++        See PROPOSED_PATCH_C02_C03.md.
+         """
+         # Placeholder for platform-specific QC logic
+         # If 'qc_metrics' block exists, check it.
+-- 
+2.39.5
+
+
+From 710c109d68d9f286185663e8d04ac2a8c2cc8b4b Mon Sep 17 00:00:00 2001
+From: Fahad Kiani <fahad@brenus.com>
+Date: Wed, 19 Aug 2026 09:41:21 +0000
+Subject: [PATCH 2/3] resistance_prophet: S3 research candidate v0.2.0 shadow
+ scorer + adversarial suite
+
+Research-only scoring behind ZETA_S3_RESEARCH_ENABLED (default off).
+v0.2.0: LOCKED_THRESHOLD = 0.075 with six-field provenance (0.10 permanently
+refused); GATE_E_DESIGNATED_DECISION hardcoded; care-influencing fields
+structurally excluded from output; provenance/direction/namespace asserted
+at scoring time. 85 adversarial tests green.
+---
+ .../resistance_prophet/s3_research.py         | 603 ++++++++++++++++++
+ .../test_adversarial_s3_research.py           | 586 +++++++++++++++++
+ 2 files changed, 1189 insertions(+)
+ create mode 100644 api/services/resistance_prophet/s3_research.py
+ create mode 100644 api/services/resistance_prophet/test_adversarial_s3_research.py
+
+diff --git a/api/services/resistance_prophet/s3_research.py b/api/services/resistance_prophet/s3_research.py
+new file mode 100644
+index 00000000..5268eb59
+--- /dev/null
++++ b/api/services/resistance_prophet/s3_research.py
+@@ -0,0 +1,603 @@
++"""
++S3 research scorer — RESEARCH USE ONLY. RANKING ONLY. NOT A CLINICAL PRODUCT.
++
++Copy-number signature 3 exposure at diagnosis (`s3_diag`) as a *ranking* variable for
++platinum-sensitivity enrichment in high-grade serous ovarian carcinoma.
++
++Governing specification
++-----------------------
++  spec            RESISTANCE_PROPHET_S3_CANDIDATE v0.1.0  (candidate_spec_v0.1.0.json)
++  endpoint        ENDPOINT_CONTRACT v1.0.0                (ENDPOINT_CONTRACT_v1.md)
++  model card      MODEL_CARD.md
++  evidence        s3_reproduction_report.md, w3_analysis.json, w3f_reconciliation.json
++
++What the evidence supports (measured, reproduced from public source data)
++------------------------------------------------------------------------
++  * n=98, 20 events : AUROC(raw s3 vs resistance) = 0.2715 [0.1532, 0.4058]
++                      protective orientation      = 0.7285 [0.5942, 0.8468]
++                      permutation p (10,000)      = 0.0014
++  * n=67,  9 events : protective AUROC            = 0.887  [0.8017, 0.9579]
++  * incremental OOF AUROC over a clinical baseline  +0.3525 [0.1494, 0.5480]
++  * incremental OOF AUROC over BRCA/HR mutation     +0.6571 [0.4713, 0.8257]
++
++What the evidence does NOT support — enforced by this module
++-----------------------------------------------------------
++  * No per-patient probability. Calibration slope 1.537, 95% CI [0.3394, 2.7345];
++    Brier 0.1484 vs prevalence-only 0.1163 => skill -0.2762. Absolute risk is worse
++    than quoting the base rate. This module therefore emits a *rank score only* and
++    deliberately does not apply a sigmoid.
++  * No AUROC -> "confidence" conversion. 0.8807 is not "88% confidence".
++  * No locked decision threshold. The candidate 0.10 is REJECTED_AS_LOCK: it lies
++    outside the in-fold cutpoint envelope [0.0502, 0.0798] over 100 training folds,
++    and its provenance is UNSOURCED_IN_REPOSITORY.
++  * No action_recommendation, no treatment_recommendation, no risk_level.
++  * No external validity. Gate C is BLOCKED — no independent cohort has been tested.
++
++Deployment contract
++-------------------
++  Flag ZETA_S3_RESEARCH_ENABLED, default OFF.
++    OFF -> score_for_research() returns None. No S3-derived value reaches any field.
++    ON  -> every output carries research_only=True and intended_use="RANKING_ONLY".
++
++Failure mode policy: fail CLOSED and LOUD. A wrong-namespace signature field, a
++reversed direction declaration, a missing provenance manifest or a substituted
++threshold all raise. None of them silently degrade to None or to a default.
++"""
++
++from __future__ import annotations
++
++import math
++import os
++from dataclasses import dataclass, field
++from typing import Any, Dict, Iterable, Mapping, Optional
++
++# ---------------------------------------------------------------------------
++# Identity and contract constants
++# ---------------------------------------------------------------------------
++
++SPEC_ID = "RESISTANCE_PROPHET_S3_CANDIDATE"
++SPEC_VERSION = "0.2.0"
++ENDPOINT_CONTRACT_ID = "ENDPOINT_CONTRACT"
++ENDPOINT_CONTRACT_VERSION = "1.0.0"
++
++INTENDED_USE = "RANKING_ONLY"
++REGULATORY_STATUS = "Research Use Only. Not for diagnostic procedures."
++
++RESEARCH_FLAG_ENV = "ZETA_S3_RESEARCH_ENABLED"
++_TRUTHY = frozenset({"1", "true", "yes", "on"})
++
++# The direction constant. Higher s3 exposure at diagnosis == more platinum SENSITIVE.
++# Source: Macintyre 2018 Nat Genet 50:1262 (s3 = BRCA1/2-related HRD axis, positively
++# prognostic); Smith 2023 Nat Commun 14:4387 ("s3 ... significantly lower ... in the
++# primary resistant population at diagnosis"). Verified in both denominators here.
++DIRECTION_CONSTANT = "HIGHER_S3_IS_PLATINUM_SENSITIVE"
++
++# ---------------------------------------------------------------------------
++# Feature namespace contract
++# ---------------------------------------------------------------------------
++
++FEATURE_NAME = "s3_diag"
++FEATURE_FRAMEWORK = "MACINTYRE_2018_7_SIGNATURE"
++FEATURE_FRAMEWORK_CITATION = (
++    "Macintyre G, Goranova TE, De Silva D, et al. Nat Genet 50, 1262-1270 (2018). "
++    "DOI 10.1038/s41588-018-0179-8"
++)
++
++# The ONLY accepted nested path, plus a flattened alias for already-extracted features.
++ACCEPTED_NESTED_PATH = ("molecular_profile", "signatures", "macintyre_cn_signatures", "s3_diag")
++ACCEPTED_FLAT_KEYS = ("s3_diag",)
++
++# Namespaces that are a DIFFERENT framework. Reading one of these as a Macintyre
++# exposure is an error, not a fallback. This is the live defect recorded as C02:
++# prognosis.py derives a threshold from Macintyre/BriTROC s7 but reads
++# molecular_profile.signatures.cosmic_cn_signatures.Sig7.
++FORBIDDEN_SIGNATURE_NAMESPACES = ("cosmic_cn_signatures", "cosmic_sbs_signatures", "sbs_signatures")
++FORBIDDEN_FEATURE_ALIASES = frozenset(
++    {"Sig3", "Sig7", "SBS3", "SBS7", "cosmic_cn_sig3", "cosmic_sig3", "s3", "s7"}
++)
++
++# ---------------------------------------------------------------------------
++# Pinned numeric constants (rank use only)
++# ---------------------------------------------------------------------------
++# Standardisation and linear predictor pinned from the frozen scorer receipt
++# (Brenus clinical_validation/trackA/cn_resistance_scorer_frozen_model.json).
++# BETA1 < 0 encodes the protective direction. The sigmoid is intentionally NOT applied.
++PINNED_MU = 0.1767425892802721
++PINNED_SD = 0.13804070487798628
++PINNED_BETA0 = -1.5244530417837185
++PINNED_BETA1 = -2.349692574868657
++
++# Scaling denominator used by the pinned adjusted-analysis contract (n=98 modeling set).
++ADJUSTED_ANALYSIS_SD_N98 = 0.133721
++
++FEATURE_MIN = 0.0
++FEATURE_MAX = 1.0
++
++# ---------------------------------------------------------------------------
++# Threshold record
++# ---------------------------------------------------------------------------
++CANDIDATE_THRESHOLD = 0.10  # historical record only; never admissible
++CANDIDATE_THRESHOLD_PROVENANCE = "UNSOURCED_IN_REPOSITORY"
++CANDIDATE_THRESHOLD_VERDICT = "REJECTED_AS_LOCK"
++CUTPOINT_FOLD_ENVELOPE = (0.0502, 0.0798)
++CUTPOINT_BOOTSTRAP_CI = (0.0467, 0.2084)
++
++# Locked in v0.2.0: the Youden-J grid optimum on the n=98 primary analysis set.
++# 0.075 lies inside the 100-fold in-fold cutpoint envelope and the bootstrap CI;
++# the directive's 0.10 is rejected (unsourced, outside the envelope, and grid-
++# optimal only on the n=67 subset via a zero false-negative cell).
++LOCKED_THRESHOLD: Optional[float] = 0.075
++LOCKED_THRESHOLD_PROVENANCE = {
++    "value": 0.075,
++    "spec_version": "0.2.0",
++    "dataset": ("BriTROC-1 diagnosis primary analysis set "
++                "(n=98, 20 resistant events, prevalence 0.2041)"),
++    "analysis": ("Youden-J optimum over the prespecified grid [0.025..0.150] on "
++                 "out-of-fold predictions (J=0.4564); inside the 100-fold in-fold "
++                 "cutpoint envelope [0.0502, 0.0798] and the bootstrap cutpoint CI "
++                 "[0.0467, 0.2084]"),
++    "oof_sensitivity": 0.70,
++    "oof_specificity": 0.7564,
++}
++
++# Gate E designated clinical decision (the decision the clinical-utility gate
++# will evaluate; a research-use screening hypothesis, not a live recommendation).
++GATE_E_DESIGNATED_DECISION = (
++    "Prioritize s3_diag <= 0.075 patients for non-platinum clinical-trial screening."
++)
++
++_REQUIRED_THRESHOLD_PROVENANCE_KEYS = frozenset(
++    {"value", "spec_version", "dataset", "analysis", "oof_sensitivity", "oof_specificity"}
++)
++
++# ---------------------------------------------------------------------------
++# Provenance pins (source data)
++# ---------------------------------------------------------------------------
++SOURCE_ARCHIVE_SHA256 = "2f7f15417e3a5076633dd75abbad75a26285d94ec1e26f8f22ebf10d337a0a3f"
++SOURCE_ARCHIVE_BYTES = 10603503
++SOURCE_MEMBER_SHA256 = {
++    "figure_4A.tsv": "0441d719edea4377c2ad1cc4f9e922a44edbc7481729194dce3bfbb2069a0187",
++    "figure_1B_layer_1.tsv": "3c65ef5921b6d9a2a311fab4070f2f2af99c90b5e14a8e0629eae2b62f3b9b1d",
++    "figure_2.tsv": "9e653d2b10b25c668bc508da9b1a667d94a7f99bd0500ba53aaeb53d51a9a3eb",
++}
++
++# ---------------------------------------------------------------------------
++# Care-influencing field names this module must never populate
++# ---------------------------------------------------------------------------
++CARE_INFLUENCING_FIELDS = frozenset(
++    {
++        "probability",
++        "risk_level",
++        "urgency",
++        "action_recommendation",
++        "recommended_actions",
++        "treatment_recommendation",
++        "next_line_options",
++        "prognosis",
++        "confidence",
++        "confidence_cap",
++        "state",
++    }
++)
++
++
++# ---------------------------------------------------------------------------
++# Exceptions — all fail closed
++# ---------------------------------------------------------------------------
++class S3ResearchError(RuntimeError):
++    """Base class. Every failure in this module is loud."""
++
++
++class SignatureNamespaceError(S3ResearchError):
++    """A signature field from a different framework was offered as a Macintyre exposure."""
++
++
++class DirectionContractViolation(S3ResearchError):
++    """A caller declared a direction that contradicts the locked direction constant."""
++
++
++class ThresholdSubstitutionError(S3ResearchError):
++    """A threshold was supplied without a version bump and a complete provenance record."""
++
++
++class ProvenanceMismatchError(S3ResearchError):
++    """Source-data checksums or spec version do not match the pinned values."""
++
++
++class FeatureRangeError(S3ResearchError):
++    """The offered exposure value is not a finite number inside the declared range."""
++
++
++class CareInfluenceViolation(S3ResearchError):
++    """An S3-derived value was about to be written into a care-influencing field."""
++
++
++# ---------------------------------------------------------------------------
++# Flag
++# ---------------------------------------------------------------------------
++def research_enabled(env: Optional[Mapping[str, str]] = None) -> bool:
++    """True only when ZETA_S3_RESEARCH_ENABLED is explicitly truthy."""
++    src = os.environ if env is None else env
++    return str(src.get(RESEARCH_FLAG_ENV, "")).strip().lower() in _TRUTHY
++
++
++# ---------------------------------------------------------------------------
++# Provenance enforcement
++# ---------------------------------------------------------------------------
++def assert_provenance(manifest: Optional[Mapping[str, Any]]) -> None:
++    """
++    Refuse to score unless the caller presents a manifest matching the pinned
++    source-data checksums and spec version. A missing manifest is a failure, not
++    a permission to proceed.
++    """
++    if manifest is None:
++        raise ProvenanceMismatchError(
++            "no provenance manifest supplied; scoring refused (fail-closed). "
++            f"required: archive_sha256={SOURCE_ARCHIVE_SHA256}, spec_version={SPEC_VERSION}"
++        )
++    if manifest.get("spec_version") != SPEC_VERSION:
++        raise ProvenanceMismatchError(
++            f"spec_version mismatch: got {manifest.get('spec_version')!r}, pinned {SPEC_VERSION!r}"
++        )
++    if manifest.get("archive_sha256") != SOURCE_ARCHIVE_SHA256:
++        raise ProvenanceMismatchError(
++            f"source archive SHA256 mismatch: got {manifest.get('archive_sha256')!r}, "
++            f"pinned {SOURCE_ARCHIVE_SHA256!r}"
++        )
++    members = manifest.get("member_sha256") or {}
++    for name, digest in SOURCE_MEMBER_SHA256.items():
++        if members.get(name) != digest:
++            raise ProvenanceMismatchError(
++                f"source member SHA256 mismatch for {name}: got {members.get(name)!r}, pinned {digest!r}"
++            )
++
++
++# ---------------------------------------------------------------------------
++# Direction enforcement
++# ---------------------------------------------------------------------------
++def assert_direction(declared_direction: str) -> None:
++    """A declared direction contradicting the locked constant must refuse."""
++    if declared_direction != DIRECTION_CONSTANT:
++        raise DirectionContractViolation(
++            f"declared direction {declared_direction!r} contradicts locked constant "
++            f"{DIRECTION_CONSTANT!r}; scoring refused"
++        )
++
++
++# ---------------------------------------------------------------------------
++# Threshold enforcement
++# ---------------------------------------------------------------------------
++def assert_threshold_admissible(
++    threshold: Optional[float],
++    threshold_provenance: Optional[Mapping[str, Any]] = None,
++) -> None:
++    """
++    v0.2.0 locks 0.075. The only admissible threshold is the lock itself, presented
++    with its complete provenance record. Any other value -- including the rejected
++    candidate 0.10 -- refuses, no matter how complete its provenance.
++    """
++    if threshold is None:
++        return
++    if LOCKED_THRESHOLD is None:
++        # Pre-lock governance (v0.1.0 behaviour, retained for provenance): any
++        # threshold must arrive with a version BUMP and a complete provenance record.
++        if threshold_provenance is None:
++            raise ThresholdSubstitutionError(
++                f"threshold {threshold!r} supplied without a provenance record; rejected. "
++                f"candidate {CANDIDATE_THRESHOLD} is {CANDIDATE_THRESHOLD_VERDICT} "
++                f"(provenance {CANDIDATE_THRESHOLD_PROVENANCE}; outside fold envelope "
++                f"{CUTPOINT_FOLD_ENVELOPE})"
++            )
++        missing = _REQUIRED_THRESHOLD_PROVENANCE_KEYS - set(threshold_provenance)
++        if missing:
++            raise ThresholdSubstitutionError(
++                f"threshold provenance incomplete; missing {sorted(missing)}"
++            )
++        if threshold_provenance.get("value") != threshold:
++            raise ThresholdSubstitutionError(
++                f"threshold provenance value {threshold_provenance.get('value')!r} does not match "
++                f"the supplied threshold {threshold!r}"
++            )
++        if threshold_provenance.get("spec_version") == SPEC_VERSION:
++            raise ThresholdSubstitutionError(
++                f"locking a threshold requires a spec version bump; got {SPEC_VERSION!r} unchanged"
++            )
++        return
++    if threshold != LOCKED_THRESHOLD:
++        raise ThresholdSubstitutionError(
++            f"threshold {threshold!r} is not the locked threshold {LOCKED_THRESHOLD!r}; "
++            f"substitution requires a spec version bump and a new provenance record. "
++            f"candidate {CANDIDATE_THRESHOLD} remains {CANDIDATE_THRESHOLD_VERDICT} "
++            f"(provenance {CANDIDATE_THRESHOLD_PROVENANCE})"
++        )
++    if threshold_provenance is None:
++        raise ThresholdSubstitutionError(
++            f"the locked threshold {LOCKED_THRESHOLD!r} must be accompanied by its "
++            f"provenance record"
++        )
++    missing = _REQUIRED_THRESHOLD_PROVENANCE_KEYS - set(threshold_provenance)
++    if missing:
++        raise ThresholdSubstitutionError(
++            f"threshold provenance incomplete; missing {sorted(missing)}"
++        )
++    if threshold_provenance.get("value") != LOCKED_THRESHOLD:
++        raise ThresholdSubstitutionError(
++            f"threshold provenance value {threshold_provenance.get('value')!r} does not match "
++            f"the locked threshold {LOCKED_THRESHOLD!r}"
++        )
++    if threshold_provenance.get("spec_version") != SPEC_VERSION:
++        raise ThresholdSubstitutionError(
++            f"threshold provenance spec_version {threshold_provenance.get('spec_version')!r} "
++            f"does not match the locked spec version {SPEC_VERSION!r}"
++        )
++
++
++# ---------------------------------------------------------------------------
++# Feature extraction — namespace-strict
++# ---------------------------------------------------------------------------
++def _iter_signature_blocks(payload: Mapping[str, Any]) -> Iterable[str]:
++    sig = (payload.get("molecular_profile") or {}).get("signatures") or {}
++    if isinstance(sig, Mapping):
++        for key in sig:
++            yield str(key)
++
++
++def extract_s3_diag(payload: Mapping[str, Any]) -> Optional[float]:
++    """
++    Return the Macintyre s3 diagnosis-stage exposure, or None when it is genuinely absent.
++
++    Raises SignatureNamespaceError when a DIFFERENT signature framework is offered in
++    place of the Macintyre exposure. Silently returning None in that case is the C02
++    defect; this function refuses to reproduce it.
++    """
++    if not isinstance(payload, Mapping):
++        raise FeatureRangeError(f"payload must be a mapping, got {type(payload).__name__}")
++
++    node: Any = payload
++    for part in ACCEPTED_NESTED_PATH[:-1]:
++        node = (node or {}).get(part) if isinstance(node, Mapping) else None
++    accepted_block = node if isinstance(node, Mapping) else {}
++    raw = accepted_block.get(ACCEPTED_NESTED_PATH[-1])
++
++    if raw is None:
++        for key in ACCEPTED_FLAT_KEYS:
++            if key in payload:
++                raw = payload[key]
++                break
++
++    if raw is None:
++        # Nothing on the accepted path. If a forbidden namespace is present, this is a
++        # framework mismatch and must be loud.
++        present_blocks = set(_iter_signature_blocks(payload))
++        offending = [b for b in FORBIDDEN_SIGNATURE_NAMESPACES if b in present_blocks]
++        if offending:
++            raise SignatureNamespaceError(
++                f"signature block(s) {offending} present but the required "
++                f"{FEATURE_FRAMEWORK} path {'.'.join(ACCEPTED_NESTED_PATH)} is absent. "
++                "COSMIC CN/SBS signatures are a different framework with different "
++                "definitions and must not be substituted for a Macintyre exposure. "
++                f"Framework citation: {FEATURE_FRAMEWORK_CITATION}"
++            )
++        forbidden_flat = FORBIDDEN_FEATURE_ALIASES & set(map(str, payload.keys()))
++        if forbidden_flat:
++            raise SignatureNamespaceError(
++                f"flattened key(s) {sorted(forbidden_flat)} present but ambiguous; "
++                f"{FEATURE_NAME} must be supplied explicitly under {FEATURE_FRAMEWORK}"
++            )
++        return None
++
++    try:
++        value = float(raw)
++    except (TypeError, ValueError) as exc:
++        raise FeatureRangeError(f"{FEATURE_NAME} is not numeric: {raw!r}") from exc
++    if not math.isfinite(value):
++        raise FeatureRangeError(f"{FEATURE_NAME} is not finite: {value!r}")
++    if not (FEATURE_MIN <= value <= FEATURE_MAX):
++        raise FeatureRangeError(
++            f"{FEATURE_NAME}={value!r} outside declared range [{FEATURE_MIN}, {FEATURE_MAX}]"
++        )
++    return value
++
++
++# ---------------------------------------------------------------------------
++# Rank score
++# ---------------------------------------------------------------------------
++def rank_score(s3_diag: float) -> float:
++    """
++    Monotone-DECREASING rank score in s3_diag (higher score == relatively more likely
++    platinum-resistant *within the scored set*).
++
++    This is a linear predictor on the logit scale. It is NOT a probability and no
++    sigmoid is applied, because calibration fails (slope CI [0.3394, 2.7345], Brier
++    skill -0.2762). Only the ordering it induces is supported.
++    """
++    if not isinstance(s3_diag, (int, float)) or isinstance(s3_diag, bool):
++        raise FeatureRangeError(f"s3_diag must be a real number, got {type(s3_diag).__name__}")
++    value = float(s3_diag)
++    if not math.isfinite(value):
++        raise FeatureRangeError(f"s3_diag is not finite: {value!r}")
++    z = (value - PINNED_MU) / PINNED_SD
++    return PINNED_BETA0 + PINNED_BETA1 * z
++
++
++# ---------------------------------------------------------------------------
++# Output record
++# ---------------------------------------------------------------------------
++@dataclass(frozen=True)
++class S3ResearchOutput:
++    """Research-only S3 output. Carries no probability and no action."""
++
++    research_only: bool = True
++    intended_use: str = INTENDED_USE
++    regulatory_status: str = REGULATORY_STATUS
++    spec_id: str = SPEC_ID
++    spec_version: str = SPEC_VERSION
++    endpoint_contract: str = f"{ENDPOINT_CONTRACT_ID} v{ENDPOINT_CONTRACT_VERSION}"
++    feature_name: str = FEATURE_NAME
++    feature_framework: str = FEATURE_FRAMEWORK
++    feature_value: float = float("nan")
++    direction: str = DIRECTION_CONSTANT
++    rank_score: float = float("nan")
++    rank_score_scale: str = "logit-scale linear predictor; monotone decreasing in s3_diag; NOT a probability"
++    threshold_applied: Optional[float] = None
++    below_locked_threshold: Optional[bool] = None
++    gate_e_designated_decision: str = GATE_E_DESIGNATED_DECISION
++    threshold_status: str = (f"LOCKED at {LOCKED_THRESHOLD} in v{SPEC_VERSION} "
++                             f"(Youden-optimal on n=98, in-fold envelope "
++                             f"{CUTPOINT_FOLD_ENVELOPE}); candidate "
++                             f"{CANDIDATE_THRESHOLD} {CANDIDATE_THRESHOLD_VERDICT}")
++    evidence_denominators: str = "n=98/20 events (primary); n=67/9 events (covariate-complete, outcome-depleted, Fisher p=0.0162)"
++    calibration_status: str = "FAILS - slope 1.537 CI [0.3394, 2.7345]; Brier skill -0.2762 vs prevalence"
++    external_validity: str = "NONE - Gate C BLOCKED, no independent cohort tested"
++    prohibitions: tuple = (
++        "no probability",
++        "no AUROC-to-confidence conversion",
++        "no action_recommendation",
++        "no treatment_recommendation",
++        "no threshold substitution without a spec version bump and provenance record",
++        "no durable or independent biomarker language",
++    )
++
++    def to_dict(self) -> Dict[str, Any]:
++        out = {
++            "research_only": self.research_only,
++            "intended_use": self.intended_use,
++            "regulatory_status": self.regulatory_status,
++            "spec_id": self.spec_id,
++            "spec_version": self.spec_version,
++            "endpoint_contract": self.endpoint_contract,
++            "feature_name": self.feature_name,
++            "feature_framework": self.feature_framework,
++            "feature_value": self.feature_value,
++            "direction": self.direction,
++            "rank_score": self.rank_score,
++            "rank_score_scale": self.rank_score_scale,
++            "threshold_applied": self.threshold_applied,
++            "below_locked_threshold": self.below_locked_threshold,
++            "gate_e_designated_decision": self.gate_e_designated_decision,
++            "threshold_status": self.threshold_status,
++            "evidence_denominators": self.evidence_denominators,
++            "calibration_status": self.calibration_status,
++            "external_validity": self.external_validity,
++            "prohibitions": list(self.prohibitions),
++        }
++        # Structural guarantee: no care-influencing key can appear in an S3 payload.
++        leaked = CARE_INFLUENCING_FIELDS & set(out)
++        if leaked:
++            raise CareInfluenceViolation(f"S3 output must not contain {sorted(leaked)}")
++        return out
++
++
++# ---------------------------------------------------------------------------
++# Public entry point
++# ---------------------------------------------------------------------------
++def score_for_research(
++    payload: Mapping[str, Any],
++    *,
++    declared_direction: str = DIRECTION_CONSTANT,
++    provenance_manifest: Optional[Mapping[str, Any]] = None,
++    threshold: Optional[float] = None,
++    threshold_provenance: Optional[Mapping[str, Any]] = None,
++    env: Optional[Mapping[str, str]] = None,
++) -> Optional[Dict[str, Any]]:
++    """
++    Research-only S3 ranking. Returns None when the research flag is off, or when the
++    feature is genuinely absent. Raises on any contract violation.
++    """
++    if not research_enabled(env):
++        return None
++
++    assert_direction(declared_direction)
++    # A locked threshold is part of the spec: it is applied by default. A caller
++    # may pass it explicitly (with its provenance record); any other value refuses.
++    effective_threshold = threshold
++    effective_provenance = threshold_provenance
++    if effective_threshold is None and LOCKED_THRESHOLD is not None:
++        effective_threshold = LOCKED_THRESHOLD
++        effective_provenance = LOCKED_THRESHOLD_PROVENANCE
++    assert_threshold_admissible(effective_threshold, effective_provenance)
++    assert_provenance(provenance_manifest)
++
++    value = extract_s3_diag(payload)
++    if value is None:
++        return None
++
++    out = S3ResearchOutput(
++        feature_value=value,
++        rank_score=rank_score(value),
++        threshold_applied=effective_threshold,
++        below_locked_threshold=(
++            bool(value <= effective_threshold) if effective_threshold is not None else None
++        ),
++    )
++    return out.to_dict()
++
++
++def verify_no_care_influence(response: Mapping[str, Any]) -> None:
++    """
++    Assert that no S3-derived value has reached a care-influencing field.
++
++    Called by the adversarial suite with the flag both off and on. Detection is by
++    exact identity against the S3 rank score / feature value present in the response's
++    own `s3_research` block, so it does not depend on guessing field names beyond
++    CARE_INFLUENCING_FIELDS.
++    """
++    block = response.get("s3_research")
++    if not block:
++        return
++    tainted = {block.get("rank_score"), block.get("feature_value")}
++    tainted.discard(None)
++
++    def _walk(node: Any, path: str = "") -> None:
++        if isinstance(node, Mapping):
++            for key, val in node.items():
++                if str(key) == "s3_research":
++                    continue
++                child = f"{path}.{key}" if path else str(key)
++                if str(key) in CARE_INFLUENCING_FIELDS and _contains(val, tainted):
++                    raise CareInfluenceViolation(
++                        f"S3-derived value reached care-influencing field {child!r}"
++                    )
++                _walk(val, child)
++        elif isinstance(node, (list, tuple)):
++            for i, val in enumerate(node):
++                _walk(val, f"{path}[{i}]")
++
++    def _contains(node: Any, needles: set) -> bool:
++        if isinstance(node, (int, float)) and not isinstance(node, bool):
++            return float(node) in {float(n) for n in needles if isinstance(n, (int, float))}
++        if isinstance(node, Mapping):
++            return any(_contains(v, needles) for v in node.values())
++        if isinstance(node, (list, tuple)):
++            return any(_contains(v, needles) for v in node)
++        return False
++
++    _walk(response)
++
++
++def module_provenance() -> Dict[str, Any]:
++    """Machine-readable identity for receipts and logs."""
++    return {
++        "spec_id": SPEC_ID,
++        "spec_version": SPEC_VERSION,
++        "endpoint_contract_version": ENDPOINT_CONTRACT_VERSION,
++        "direction_constant": DIRECTION_CONSTANT,
++        "intended_use": INTENDED_USE,
++        "regulatory_status": REGULATORY_STATUS,
++        "research_flag_env": RESEARCH_FLAG_ENV,
++        "research_enabled": research_enabled(),
++        "feature_framework": FEATURE_FRAMEWORK,
++        "source_archive_sha256": SOURCE_ARCHIVE_SHA256,
++        "source_archive_bytes": SOURCE_ARCHIVE_BYTES,
++        "source_member_sha256": dict(SOURCE_MEMBER_SHA256),
++        "locked_threshold": LOCKED_THRESHOLD,
++        "locked_threshold_provenance": dict(LOCKED_THRESHOLD_PROVENANCE) if LOCKED_THRESHOLD is not None else None,
++        "gate_e_designated_decision": GATE_E_DESIGNATED_DECISION if LOCKED_THRESHOLD is not None else None,
++        "candidate_threshold": CANDIDATE_THRESHOLD,
++        "candidate_threshold_verdict": CANDIDATE_THRESHOLD_VERDICT,
++        "pinned_mu": PINNED_MU,
++        "pinned_sd": PINNED_SD,
++        "pinned_beta0": PINNED_BETA0,
++        "pinned_beta1": PINNED_BETA1,
++        "adjusted_analysis_sd_n98": ADJUSTED_ANALYSIS_SD_N98,
++    }
+diff --git a/api/services/resistance_prophet/test_adversarial_s3_research.py b/api/services/resistance_prophet/test_adversarial_s3_research.py
+new file mode 100644
+index 00000000..67e3af5f
+--- /dev/null
++++ b/api/services/resistance_prophet/test_adversarial_s3_research.py
+@@ -0,0 +1,586 @@
++"""
++Adversarial test suite for the S3 research scorer and the Sig7 prognosis guard.
++
++These are REFUSAL tests. Each one asserts that a specific way of overselling or
++mis-wiring the S3 signal is blocked by the code, not merely discouraged by a docstring.
++
++Five families, mandated by the review directive:
++
++  1. LEAKAGE                 outcome-derived features must not be scoreable; the pinned
++                             scoring constants must not be re-derived from the payload
++  2. DIRECTION REVERSAL      the protective direction is a locked constant; a contradicting
++                             declaration must refuse, and the induced ordering must flip
++                             when the feature is flipped
++  3. SCHEMA DRIFT            a COSMIC signature namespace offered as a Macintyre exposure
++                             must RAISE, not silently return None (the live C02 defect)
++  4. THRESHOLD SUBSTITUTION  v0.2.0 locks 0.075 (Youden-optimal on n=98, inside the
++                             fold envelope); the only admissible threshold is the lock
++                             with its provenance record; 0.10 is permanently refused
++  5. CLINICAL-ROUTE INFLUENCE flag off -> nothing; flag on -> research_only on every output
++                             and no S3-derived value in any care-influencing field
++
++Baseline note: the repository baseline on `main` is RED (231 failing/erroring collected
++nodes, measured 2026-08-19 over 1,873 nodes; supersedes the earlier unverifiable 226).
++These tests passing does NOT mean the repository is green.
++
++Run: PYTHONPATH=. pytest api/services/resistance_prophet/test_adversarial_s3_research.py -q
++"""
++
++from __future__ import annotations
++
++import math
++
++import pytest
++
++from api.services.resistance_prophet import s3_research as S
++from api.services.resistance_prophet.prognosis import (
++    SIG7_PROGNOSIS_ACTIONS_ENV,
++    PrognosisEngine,
++)
++from api.services.resistance_prophet.schemas import PrognosisState
++
++# ---------------------------------------------------------------------------
++# Fixtures / helpers
++# ---------------------------------------------------------------------------
++
++VALID_MANIFEST = {
++    "spec_version": S.SPEC_VERSION,
++    "archive_sha256": S.SOURCE_ARCHIVE_SHA256,
++    "member_sha256": dict(S.SOURCE_MEMBER_SHA256),
++}
++
++FLAG_ON = {S.RESEARCH_FLAG_ENV: "1"}
++FLAG_OFF: dict = {}
++
++
++def macintyre(value):
++    """A payload on the one accepted path."""
++    return {
++        "molecular_profile": {
++            "signatures": {"macintyre_cn_signatures": {"s3_diag": value}}
++        }
++    }
++
++
++def cosmic(value, key="Sig7"):
++    """A payload using the wrong signature framework (the live C02 shape)."""
++    return {"molecular_profile": {"signatures": {"cosmic_cn_signatures": {key: value}}}}
++
++
++# ===========================================================================
++# FAMILY 1 — LEAKAGE
++# ===========================================================================
++class TestLeakage:
++    def test_outcome_field_in_payload_is_never_read_as_the_feature(self):
++        """
++        The outcome itself, offered under the accepted signatures block, must not be
++        picked up. Only the declared feature name is read.
++        """
++        payload = {
++            "molecular_profile": {
++                "signatures": {
++                    "macintyre_cn_signatures": {
++                        "pt_sensitivity_at_reg": 1.0,
++                        "resistant": 1,
++                        "platinum_resistant": True,
++                    }
++                }
++            }
++        }
++        assert S.extract_s3_diag(payload) is None
++
++    def test_outcome_labels_at_top_level_are_not_flat_aliases(self):
++        for key in ("resistant", "pt_status", "pt_sensitivity_at_reg", "y", "label"):
++            assert S.extract_s3_diag({key: 0.9}) is None, key
++
++    def test_score_depends_on_the_feature_and_nothing_else(self):
++        """
++        Scoring constants are pinned, not fitted at call time. Adding outcome information
++        to the payload must not move the score by a single float.
++        """
++        clean = macintyre(0.20)
++        contaminated = macintyre(0.20)
++        contaminated["outcome"] = {"resistant": 1, "os_event": 1, "os_time": 40.0}
++        contaminated["molecular_profile"]["signatures"]["macintyre_cn_signatures"][
++            "resistant"
++        ] = 1
++
++        a = S.score_for_research(
++            clean, provenance_manifest=VALID_MANIFEST, env=FLAG_ON
++        )
++        b = S.score_for_research(
++            contaminated, provenance_manifest=VALID_MANIFEST, env=FLAG_ON
++        )
++        assert a["rank_score"] == b["rank_score"]
++
++    def test_pinned_constants_match_the_frozen_receipt(self):
++        """
++        Guards against silent refitting. These four values are the frozen scorer receipt
++        (Brenus clinical_validation/trackA/cn_resistance_scorer_frozen_model.json).
++        """
++        assert S.PINNED_MU == pytest.approx(0.1767425892802721, abs=1e-15)
++        assert S.PINNED_SD == pytest.approx(0.13804070487798628, abs=1e-15)
++        assert S.PINNED_BETA0 == pytest.approx(-1.5244530417837185, abs=1e-15)
++        assert S.PINNED_BETA1 == pytest.approx(-2.349692574868657, abs=1e-15)
++        assert S.PINNED_BETA1 < 0, "negative slope encodes the protective direction"
++
++    def test_missing_provenance_manifest_refuses(self):
++        with pytest.raises(S.ProvenanceMismatchError):
++            S.score_for_research(macintyre(0.20), provenance_manifest=None, env=FLAG_ON)
++
++    def test_altered_source_checksum_refuses(self):
++        bad = dict(VALID_MANIFEST, archive_sha256="0" * 64)
++        with pytest.raises(S.ProvenanceMismatchError):
++            S.score_for_research(macintyre(0.20), provenance_manifest=bad, env=FLAG_ON)
++
++    def test_altered_member_checksum_refuses(self):
++        members = dict(S.SOURCE_MEMBER_SHA256)
++        members["figure_2.tsv"] = "f" * 64
++        bad = dict(VALID_MANIFEST, member_sha256=members)
++        with pytest.raises(S.ProvenanceMismatchError):
++            S.score_for_research(macintyre(0.20), provenance_manifest=bad, env=FLAG_ON)
++
++    def test_omitted_member_checksums_refuse(self):
++        bad = {k: v for k, v in VALID_MANIFEST.items() if k != "member_sha256"}
++        with pytest.raises(S.ProvenanceMismatchError):
++            S.score_for_research(macintyre(0.20), provenance_manifest=bad, env=FLAG_ON)
++
++
++# ===========================================================================
++# FAMILY 2 — DIRECTION REVERSAL
++# ===========================================================================
++class TestDirectionReversal:
++    def test_locked_direction_constant(self):
++        assert S.DIRECTION_CONSTANT == "HIGHER_S3_IS_PLATINUM_SENSITIVE"
++
++    def test_contradicting_declaration_refuses(self):
++        with pytest.raises(S.DirectionContractViolation):
++            S.score_for_research(
++                macintyre(0.20),
++                declared_direction="HIGHER_S3_IS_PLATINUM_RESISTANT",
++                provenance_manifest=VALID_MANIFEST,
++                env=FLAG_ON,
++            )
++
++    @pytest.mark.parametrize(
++        "declared",
++        ["", "higher_s3_is_platinum_sensitive", "PROTECTIVE", None, "HIGHER_S3_IS_SENSITIVE"],
++    )
++    def test_any_non_identical_declaration_refuses(self, declared):
++        with pytest.raises(S.DirectionContractViolation):
++            S.assert_direction(declared)
++
++    def test_rank_score_is_monotone_decreasing_in_s3(self):
++        xs = [0.0, 0.02, 0.05, 0.10, 0.18, 0.35, 0.60, 1.0]
++        scores = [S.rank_score(x) for x in xs]
++        assert all(b < a for a, b in zip(scores, scores[1:])), scores
++
++    def test_flipping_the_feature_flips_the_induced_ordering(self):
++        """A sign flip of the feature must reverse the rank ordering, not preserve it."""
++        low, high = 0.02, 0.40
++        assert S.rank_score(low) > S.rank_score(high)
++        # flipped feature: emulate by exchanging the two values
++        assert S.rank_score(high) < S.rank_score(low)
++        # and the ordering is strict, not a tie
++        assert S.rank_score(low) != S.rank_score(high)
++
++    def test_no_sigmoid_is_applied(self):
++        """
++        Calibration fails (slope 1.537 CI [0.3394, 2.7345]; Brier skill -0.2762), so the
++        output must be an unbounded linear predictor, never a 0-1 probability.
++        """
++        assert S.rank_score(0.0) > 1.0, "score at s3=0 must escape the probability range"
++        assert S.rank_score(1.0) < 0.0
++        out = S.score_for_research(
++            macintyre(0.02), provenance_manifest=VALID_MANIFEST, env=FLAG_ON
++        )
++        assert out["rank_score"] > 1.0
++        assert "NOT a probability" in out["rank_score_scale"]
++
++
++# ===========================================================================
++# FAMILY 3 — SCHEMA DRIFT (the live C02 defect)
++# ===========================================================================
++class TestSchemaDrift:
++    def test_cosmic_namespace_raises_and_does_not_return_none(self):
++        with pytest.raises(S.SignatureNamespaceError):
++            S.extract_s3_diag(cosmic(0.40, key="Sig3"))
++
++    @pytest.mark.parametrize(
++        "block", ["cosmic_cn_signatures", "cosmic_sbs_signatures", "sbs_signatures"]
++    )
++    def test_every_forbidden_namespace_raises(self, block):
++        payload = {"molecular_profile": {"signatures": {block: {"Sig3": 0.4}}}}
++        with pytest.raises(S.SignatureNamespaceError):
++            S.extract_s3_diag(payload)
++
++    @pytest.mark.parametrize("alias", ["Sig3", "SBS3", "cosmic_cn_sig3", "s3", "s7"])
++    def test_flattened_framework_ambiguous_aliases_raise(self, alias):
++        with pytest.raises(S.SignatureNamespaceError):
++            S.extract_s3_diag({alias: 0.4})
++
++    def test_genuine_absence_returns_none(self):
++        assert S.extract_s3_diag({}) is None
++        assert S.extract_s3_diag({"molecular_profile": {}}) is None
++        assert S.extract_s3_diag({"molecular_profile": {"signatures": {}}}) is None
++
++    def test_accepted_path_is_read(self):
++        assert S.extract_s3_diag(macintyre(0.1767)) == pytest.approx(0.1767)
++
++    def test_explicit_flat_feature_name_is_accepted(self):
++        assert S.extract_s3_diag({"s3_diag": 0.25}) == pytest.approx(0.25)
++
++    @pytest.mark.parametrize("bad", [-0.01, 1.01, 42.0])
++    def test_out_of_range_raises(self, bad):
++        with pytest.raises(S.FeatureRangeError):
++            S.extract_s3_diag(macintyre(bad))
++
++    @pytest.mark.parametrize("bad", ["high", None, [0.2], {"v": 0.2}])
++    def test_non_numeric_raises_or_is_absent(self, bad):
++        payload = macintyre(bad)
++        if bad is None:
++            # None on the accepted path is indistinguishable from absent
++            assert S.extract_s3_diag(payload) is None
++        else:
++            with pytest.raises(S.FeatureRangeError):
++                S.extract_s3_diag(payload)
++
++    def test_nan_and_inf_raise(self):
++        for bad in (float("nan"), float("inf"), float("-inf")):
++            with pytest.raises(S.FeatureRangeError):
++                S.extract_s3_diag(macintyre(bad))
++
++    def test_non_mapping_payload_raises(self):
++        with pytest.raises(S.FeatureRangeError):
++            S.extract_s3_diag([("s3_diag", 0.2)])  # type: ignore[arg-type]
++
++    def test_cosmic_block_present_alongside_accepted_path_is_ignored(self):
++        """
++        If the Macintyre path IS present, a stray COSMIC block must not change the value.
++        Precedence is explicit, not incidental.
++        """
++        payload = macintyre(0.30)
++        payload["molecular_profile"]["signatures"]["cosmic_cn_signatures"] = {"Sig3": 0.99}
++        assert S.extract_s3_diag(payload) == pytest.approx(0.30)
++
++
++# ===========================================================================
++# FAMILY 4 — THRESHOLD SUBSTITUTION
++# ===========================================================================
++class TestThresholdSubstitution:
++    def test_threshold_is_locked_in_this_version(self):
++        assert S.LOCKED_THRESHOLD == 0.075
++        prov = S.LOCKED_THRESHOLD_PROVENANCE
++        assert prov["value"] == S.LOCKED_THRESHOLD
++        assert prov["spec_version"] == S.SPEC_VERSION
++        assert {"value", "spec_version", "dataset", "analysis",
++                "oof_sensitivity", "oof_specificity"} <= set(prov)
++        assert S.CANDIDATE_THRESHOLD == 0.10
++        assert S.CANDIDATE_THRESHOLD_VERDICT == "REJECTED_AS_LOCK"
++        assert S.CANDIDATE_THRESHOLD_PROVENANCE == "UNSOURCED_IN_REPOSITORY"
++
++    def test_locked_threshold_lies_inside_the_measured_fold_envelope(self):
++        lo, hi = S.CUTPOINT_FOLD_ENVELOPE
++        assert lo <= S.LOCKED_THRESHOLD <= hi, (
++            f"the locked threshold {S.LOCKED_THRESHOLD} must lie inside the in-fold "
++            f"cutpoint envelope [{lo}, {hi}] measured over 100 training folds"
++        )
++        blo, bhi = S.CUTPOINT_BOOTSTRAP_CI
++        assert blo <= S.LOCKED_THRESHOLD <= bhi
++
++    def test_candidate_threshold_lies_outside_the_measured_fold_envelope(self):
++        lo, hi = S.CUTPOINT_FOLD_ENVELOPE
++        assert not (lo <= S.CANDIDATE_THRESHOLD <= hi), (
++            "0.10 must remain recorded as outside the in-fold cutpoint envelope "
++            f"[{lo}, {hi}] measured over 100 training folds"
++        )
++
++    def test_locked_threshold_without_provenance_is_rejected(self):
++        with pytest.raises(S.ThresholdSubstitutionError):
++            S.assert_threshold_admissible(S.LOCKED_THRESHOLD, None)
++
++    def test_incomplete_provenance_is_rejected(self):
++        partial = {"value": 0.075, "spec_version": S.SPEC_VERSION, "dataset": "BriTROC-1"}
++        with pytest.raises(S.ThresholdSubstitutionError):
++            S.assert_threshold_admissible(S.LOCKED_THRESHOLD, partial)
++
++    def test_provenance_value_must_match_the_locked_threshold(self):
++        prov = dict(S.LOCKED_THRESHOLD_PROVENANCE, value=0.10)
++        with pytest.raises(S.ThresholdSubstitutionError):
++            S.assert_threshold_admissible(S.LOCKED_THRESHOLD, prov)
++
++    def test_provenance_spec_version_must_match_the_lock(self):
++        prov = dict(S.LOCKED_THRESHOLD_PROVENANCE, spec_version="0.1.0")
++        with pytest.raises(S.ThresholdSubstitutionError):
++            S.assert_threshold_admissible(S.LOCKED_THRESHOLD, prov)
++
++    def test_substituting_a_non_locked_threshold_is_rejected(self):
++        # 0.10 with a complete provenance record and a version bump is STILL refused:
++        # it is not the lock.
++        prov = {
++            "value": 0.10,
++            "spec_version": "9.9.9",
++            "dataset": "BriTROC-1 n=67",
++            "analysis": "OOF Youden over 100 folds",
++            "oof_sensitivity": 1.0,
++            "oof_specificity": 0.7069,
++        }
++        with pytest.raises(S.ThresholdSubstitutionError):
++            S.assert_threshold_admissible(0.10, prov)
++
++    def test_the_locked_threshold_with_its_record_is_admissible(self):
++        S.assert_threshold_admissible(S.LOCKED_THRESHOLD, S.LOCKED_THRESHOLD_PROVENANCE)
++
++    def test_scoring_path_enforces_the_same_rule(self):
++        with pytest.raises(S.ThresholdSubstitutionError):
++            S.score_for_research(
++                macintyre(0.05),
++                provenance_manifest=VALID_MANIFEST,
++                threshold=0.10,
++                env=FLAG_ON,
++            )
++
++    def test_the_locked_threshold_is_applied_by_default(self):
++        out = S.score_for_research(
++            macintyre(0.05), provenance_manifest=VALID_MANIFEST, env=FLAG_ON
++        )
++        assert out["threshold_applied"] == 0.075
++        assert out["below_locked_threshold"] is True
++        assert "LOCKED" in out["threshold_status"]
++        assert "REJECTED_AS_LOCK" in out["threshold_status"]
++
++    def test_above_threshold_payload_flags_false(self):
++        out = S.score_for_research(
++            macintyre(0.30), provenance_manifest=VALID_MANIFEST, env=FLAG_ON
++        )
++        assert out["below_locked_threshold"] is False
++
++    def test_gate_e_designated_decision_is_hardcoded(self):
++        assert S.GATE_E_DESIGNATED_DECISION == (
++            "Prioritize s3_diag <= 0.075 patients for non-platinum "
++            "clinical-trial screening."
++        )
++        out = S.score_for_research(
++            macintyre(0.05), provenance_manifest=VALID_MANIFEST, env=FLAG_ON
++        )
++        assert out["gate_e_designated_decision"] == S.GATE_E_DESIGNATED_DECISION
++
++
++# ===========================================================================
++# FAMILY 5 — CLINICAL-ROUTE INFLUENCE
++# ===========================================================================
++class TestClinicalRouteInfluence:
++    def test_flag_off_returns_nothing(self, monkeypatch):
++        monkeypatch.delenv(S.RESEARCH_FLAG_ENV, raising=False)
++        assert S.research_enabled() is False
++        assert (
++            S.score_for_research(macintyre(0.20), provenance_manifest=VALID_MANIFEST)
++            is None
++        )
++
++    @pytest.mark.parametrize("val", ["0", "false", "no", "off", "", "maybe", "2"])
++    def test_only_explicit_truthy_values_enable(self, val):
++        assert S.research_enabled({S.RESEARCH_FLAG_ENV: val}) is False
++
++    @pytest.mark.parametrize("val", ["1", "true", "TRUE", "Yes", "on"])
++    def test_truthy_values_enable(self, val):
++        assert S.research_enabled({S.RESEARCH_FLAG_ENV: val}) is True
++
++    def test_flag_off_refuses_before_any_contract_check(self, monkeypatch):
++        """
++        With the flag off the function must return None even for a payload that would
++        otherwise raise, so a disabled feature cannot become a denial-of-service surface.
++        """
++        monkeypatch.delenv(S.RESEARCH_FLAG_ENV, raising=False)
++        assert S.score_for_research(cosmic(0.4, key="Sig3")) is None
++
++    def test_every_output_is_labelled_research_only(self):
++        out = S.score_for_research(
++            macintyre(0.20), provenance_manifest=VALID_MANIFEST, env=FLAG_ON
++        )
++        assert out["research_only"] is True
++        assert out["intended_use"] == "RANKING_ONLY"
++        assert out["regulatory_status"].startswith("Research Use Only")
++        assert out["external_validity"].startswith("NONE")
++        assert "FAILS" in out["calibration_status"]
++
++    def test_output_contains_no_care_influencing_key(self):
++        out = S.score_for_research(
++            macintyre(0.20), provenance_manifest=VALID_MANIFEST, env=FLAG_ON
++        )
++        assert not (S.CARE_INFLUENCING_FIELDS & set(out)), sorted(
++            S.CARE_INFLUENCING_FIELDS & set(out)
++        )
++        for banned in ("probability", "risk_level", "action_recommendation", "confidence"):
++            assert banned not in out
++
++    def test_prohibitions_are_carried_on_the_payload(self):
++        out = S.score_for_research(
++            macintyre(0.20), provenance_manifest=VALID_MANIFEST, env=FLAG_ON
++        )
++        assert "no probability" in out["prohibitions"]
++        assert "no AUROC-to-confidence conversion" in out["prohibitions"]
++        assert ("no threshold substitution without a spec version bump and "
++                "provenance record") in out["prohibitions"]
++
++    def test_care_influence_detector_catches_a_deliberate_leak(self):
++        out = S.score_for_research(
++            macintyre(0.20), provenance_manifest=VALID_MANIFEST, env=FLAG_ON
++        )
++        response = {
++            "s3_research": out,
++            "prediction": {"probability": out["rank_score"]},  # deliberate violation
++        }
++        with pytest.raises(S.CareInfluenceViolation):
++            S.verify_no_care_influence(response)
++
++    def test_care_influence_detector_catches_a_nested_leak(self):
++        out = S.score_for_research(
++            macintyre(0.20), provenance_manifest=VALID_MANIFEST, env=FLAG_ON
++        )
++        response = {
++            "s3_research": out,
++            "plan": {"steps": [{"recommended_actions": [out["feature_value"]]}]},
++        }
++        with pytest.raises(S.CareInfluenceViolation):
++            S.verify_no_care_influence(response)
++
++    def test_clean_response_passes_the_detector(self):
++        out = S.score_for_research(
++            macintyre(0.20), provenance_manifest=VALID_MANIFEST, env=FLAG_ON
++        )
++        response = {
++            "s3_research": out,
++            "prediction": {"probability": 0.42, "risk_level": "MEDIUM"},
++            "prognosis": {"state": "UNCERTAIN", "action_recommendation": "ROUTINE_SURVEILLANCE"},
++        }
++        S.verify_no_care_influence(response)  # must not raise
++
++    def test_module_provenance_is_self_describing(self):
++        p = S.module_provenance()
++        assert p["intended_use"] == "RANKING_ONLY"
++        assert p["locked_threshold"] == 0.075
++        assert p["locked_threshold_provenance"]["value"] == 0.075
++        assert p["gate_e_designated_decision"] == S.GATE_E_DESIGNATED_DECISION
++        assert p["candidate_threshold_verdict"] == "REJECTED_AS_LOCK"
++        assert p["source_archive_sha256"] == S.SOURCE_ARCHIVE_SHA256
++        assert p["source_archive_bytes"] == 10603503
++
++
++# ===========================================================================
++# FAMILY 5b — the Sig7 prognosis guard (C01/C13), same family: care influence
++# ===========================================================================
++class TestSig7PrognosisGuard:
++    HIGH = {"molecular_profile": {"signatures": {"cosmic_cn_signatures": {"Sig7": 0.90}}}}
++    LOW = {"molecular_profile": {"signatures": {"cosmic_cn_signatures": {"Sig7": 0.01}}}}
++
++    def _assess(self, payload):
++        return PrognosisEngine().assess_risk(payload, is_post_treatment=True)
++
++    def test_flag_unset_never_returns_poor(self, monkeypatch):
++        monkeypatch.delenv(SIG7_PROGNOSIS_ACTIONS_ENV, raising=False)
++        for payload in (self.HIGH, self.LOW):
++            r = self._assess(payload)
++            assert r.state == PrognosisState.UNCERTAIN
++            assert r.action_recommendation == "ROUTINE_SURVEILLANCE"
++            assert r.confidence == "LOW"
++
++    def test_flag_unset_never_intensifies_surveillance(self, monkeypatch):
++        monkeypatch.delenv(SIG7_PROGNOSIS_ACTIONS_ENV, raising=False)
++        for exposure in [0.0, 0.24, 0.25, 0.26, 0.5, 0.99, 1.0]:
++            payload = {
++                "molecular_profile": {
++                    "signatures": {"cosmic_cn_signatures": {"Sig7": exposure}}
++                }
++            }
++            r = self._assess(payload)
++            assert r.action_recommendation != "INTENSIFY_SURVEILLANCE", exposure
++            assert r.state != PrognosisState.POOR, exposure
++
++    def test_suppression_rationale_states_the_falsification_evidence(self, monkeypatch):
++        monkeypatch.delenv(SIG7_PROGNOSIS_ACTIONS_ENV, raising=False)
++        text = " ".join(self._assess(self.HIGH).rationale)
++        assert "0.8739" in text or "0.874" in text
++        assert "0.3136" in text
++        assert "0.421" in text
++        assert "0.6446" in text
++        assert "C02" in text  # namespace caveat is disclosed on every output
++
++    def test_observed_value_is_reported_without_interpretation(self, monkeypatch):
++        monkeypatch.delenv(SIG7_PROGNOSIS_ACTIONS_ENV, raising=False)
++        text = " ".join(self._assess(self.HIGH).rationale)
++        assert "0.900" in text
++        assert "High Sig7 Exposure" not in text
++
++    def test_research_flag_restores_legacy_behaviour_with_a_disclaimer(self, monkeypatch):
++        monkeypatch.setenv(SIG7_PROGNOSIS_ACTIONS_ENV, "1")
++        hi = self._assess(self.HIGH)
++        assert hi.state == PrognosisState.POOR
++        assert hi.action_recommendation == "INTENSIFY_SURVEILLANCE"
++        assert any("NOT clinically validated" in r for r in hi.rationale)
++        lo = self._assess(self.LOW)
++        assert lo.state == PrognosisState.FAVORABLE
++        assert any("NOT clinically validated" in r for r in lo.rationale)
++
++    def test_absent_signature_is_uncertain_under_both_flag_states(self, monkeypatch):
++        for value in ("1", None):
++            if value is None:
++                monkeypatch.delenv(SIG7_PROGNOSIS_ACTIONS_ENV, raising=False)
++            else:
++                monkeypatch.setenv(SIG7_PROGNOSIS_ACTIONS_ENV, value)
++            r = self._assess({"molecular_profile": {"signatures": {}}})
++            assert r.state == PrognosisState.UNCERTAIN
++            assert r.action_recommendation == "ROUTINE_SURVEILLANCE"
++
++    def test_pre_treatment_gate_is_unchanged(self, monkeypatch):
++        monkeypatch.setenv(SIG7_PROGNOSIS_ACTIONS_ENV, "1")
++        r = PrognosisEngine().assess_risk(self.HIGH, is_post_treatment=False)
++        assert r.state == PrognosisState.UNCERTAIN
++        assert r.action_recommendation == "ROUTINE_SURVEILLANCE"
++
++    def test_dataclass_schema_is_unchanged(self):
++        """The guard must not have altered the wire contract."""
++        r = self._assess(self.HIGH)
++        assert set(r.__dataclass_fields__) == {
++            "state",
++            "confidence",
++            "rationale",
++            "action_recommendation",
++        }
++
++    def test_no_s3_value_reaches_prognosis(self, monkeypatch):
++        """
++        S3 and the Sig7 prognosis branch are disjoint. Supplying an s3 exposure must not
++        change the prognosis result in any way.
++        """
++        monkeypatch.delenv(SIG7_PROGNOSIS_ACTIONS_ENV, raising=False)
++        payload = {
++            "molecular_profile": {
++                "signatures": {
++                    "cosmic_cn_signatures": {"Sig7": 0.90},
++                    "macintyre_cn_signatures": {"s3_diag": 0.02},
++                }
++            }
++        }
++        with_s3 = self._assess(payload)
++        without_s3 = self._assess(self.HIGH)
++        assert with_s3.state == without_s3.state
++        assert with_s3.action_recommendation == without_s3.action_recommendation
++        assert "0.02" not in " ".join(with_s3.rationale)
++
++
++# ===========================================================================
++# Numeric sanity of the pinned linear predictor
++# ===========================================================================
++def test_rank_score_matches_hand_computation():
++    x = 0.05
++    z = (x - S.PINNED_MU) / S.PINNED_SD
++    expected = S.PINNED_BETA0 + S.PINNED_BETA1 * z
++    assert S.rank_score(x) == pytest.approx(expected, abs=1e-12)
++    assert math.isfinite(S.rank_score(x))
++
++
++def test_rank_score_rejects_non_numeric():
++    for bad in ("0.2", None, True, [0.2]):
++        with pytest.raises(S.FeatureRangeError):
++            S.rank_score(bad)  # type: ignore[arg-type]
+-- 
+2.39.5
+
+
+From 0c0dde62fc8cdaeaa5f3c4f1322b7f8fc28e1b48 Mon Sep 17 00:00:00 2001
+From: Fahad Kiani <fahad@brenus.com>
+Date: Wed, 19 Aug 2026 09:41:22 +0000
+Subject: [PATCH 3/3] resistance_prophet: document proposed C02/C03 patches
+ (NOT applied)
+
+Namespace-strict sig7 reader (C02) and fail-closed QC gate (C03) supplied as
+unified diffs with caller-blast-radius analysis. Deferred: five enumerated
+caller sites would begin raising; QC fix needs a NOT_ASSESSED schema field.
+Records the status/state latent shape trap.
+---
+ .../PROPOSED_PATCH_C02_C03.md                 | 302 ++++++++++++++++++
+ 1 file changed, 302 insertions(+)
+ create mode 100644 api/services/resistance_prophet/PROPOSED_PATCH_C02_C03.md
+
+diff --git a/api/services/resistance_prophet/PROPOSED_PATCH_C02_C03.md b/api/services/resistance_prophet/PROPOSED_PATCH_C02_C03.md
+new file mode 100644
+index 00000000..8d1c22ac
+--- /dev/null
++++ b/api/services/resistance_prophet/PROPOSED_PATCH_C02_C03.md
+@@ -0,0 +1,302 @@
++# PROPOSED PATCH — C02 (signature namespace mismatch) and C03 (fail-open QC gate)
++
++**Status: PROPOSED, NOT APPLIED.** Code change deliberately deferred.
++**Applies to:** `api/services/resistance_prophet/prognosis.py`
++**Author of this note:** Resistance Prophet / S3 candidate review (`review/resistance-prophet-s3-research`)
++**Companion evidence:** `resistance_prophet_s3/contradiction_register.csv` rows C02, C03;
++`MODEL_CARD.md`; `s3_reproduction_report.md`; reference implementation in
++`api/services/resistance_prophet/s3_research.py::extract_s3_diag`.
++
++---
++
++## 0. Why these two are documented rather than patched
++
++The active *safety* hole in `prognosis.py` was the care-influencing output: an unvalidated
++Sig7 threshold drove `PrognosisState.POOR` + `action_recommendation="INTENSIFY_SURVEILLANCE"`,
++and that state is consumed downstream to raise a CRITICAL alert and queue an IMMEDIATE
++low-pass WGS order (see §3). That hole **is closed in this branch** by a fail-closed guard
++behind `ZETA_SIG7_PROGNOSIS_ACTIONS_ENABLED`, which leaves the dataclass schema unchanged.
++
++C02 and C03 are *correctness* defects in the input path, not the output path. Fixing them
++changes which payloads produce a result at all, which changes the behaviour of every caller
++that supplies a `cosmic_cn_signatures` block or omits `qc_metrics` — and the repository
++baseline on `main` is **RED (226 failing/erroring collected nodes)**, so a behavioural change
++in the input path cannot be distinguished from pre-existing breakage by the current suite.
++Documenting them with an exact, reviewable patch and a test plan is the minimum-blast-radius
++action. They must be applied before any Sig7-derived output is re-enabled for care use.
++
++---
++
++## 1. C02 — signature namespace mismatch (threshold framework ≠ value framework)
++
++### 1.1 Evidence
++
++| Artifact | Fact |
++|---|---|
++| `constants.py:29` | `SIG7_RISK_THRESHOLD = 0.25  # BriTROC Midpoint (Res=0.333, Sens=0.166). Draft Heuristic.` |
++| `prognosis.py:181` | value read from `molecular_profile.signatures.cosmic_cn_signatures.Sig7` |
++| `prognosis.py:186-187` | flattened fallback `patient_data['sig7_exposure']` with no framework assertion |
++| `prognosis.py:190-191` | `except (ValueError, TypeError, AttributeError): return None` — a malformed value is indistinguishable from an absent one |
++
++The threshold is derived from the **Macintyre 2018 seven-signature copy-number framework**
++(Nat Genet 50:1262, DOI 10.1038/s41588-018-0179-8) as applied to BriTROC-1. The value is read
++from a **COSMIC copy-number signature** namespace. `COSMIC CN7` and `Macintyre s7` are
++different quantities: different reference catalogues, different fitting procedures, different
++numbers of components, and no published exposure-to-exposure mapping. Comparing one against a
++midpoint computed from the other is a category error regardless of what the number is.
++
++Independent reason this matters: the Macintyre s7 axis on which 0.25 was built **does not
++discriminate resistance in the source cohort at all**. From
++`Brenus/clinical_validation/trackA/sig7_cv_falsification.json`:
++
++| stage | n | resistant events | AUROC | p |
++|---|---|---|---|---|
++| `prior_claim_paired_resplabel` | 40 | 3 | 0.874 | 0.035 |
++| `full_relapse_resplabel` | 96 | 13 | 0.621 | 0.164 |
++| `adjudicated_label` | 67 | 15 | **0.421** | 0.359 |
++
++Cross-validated s7: AUROC **0.5250**, percentile band [0.4333, 0.5673] — "NO discrimination".
++Measured out-of-fold performance of the shipped rule itself (`s7_diag >= 0.25` as a binary
++feature, RepeatedStratifiedKFold 5x20, n=67, 9 events): OOF AUROC **0.6446**, OOF Brier
++**0.2090** against a prevalence-only Brier of **0.1163** — i.e. worse than quoting the base
++rate. The continuous form is **0.4108**. Under Macintyre 2018, s7 is a *good-outcome*
++signature; the resistance-associated axis in that framework is s1 (RAS/MAPK).
++
++So C02 is not merely "reads the wrong key": it is a wrong-framework read feeding a threshold
++whose own axis is null. The namespace fix does not rescue the threshold; it makes the failure
++visible instead of silent.
++
++### 1.2 Proposed change
++
++Replace the permissive extractor with a namespace-strict one that fails closed and loud, and
++declare the framework explicitly. `s3_research.extract_s3_diag` is the reference
++implementation of exactly this pattern and is already in this branch.
++
++```diff
++--- a/api/services/resistance_prophet/prognosis.py
+++++ b/api/services/resistance_prophet/prognosis.py
++@@
+++# Framework contract for the Sig7 prognostic input.
+++# SIG7_RISK_THRESHOLD (constants.py:29) was derived from the Macintyre 2018 seven-signature
+++# copy-number framework as applied to BriTROC-1. Only an exposure from that framework may be
+++# compared against it. COSMIC CN/SBS signatures are a different framework.
+++SIG7_FRAMEWORK = "MACINTYRE_2018_7_SIGNATURE"
+++SIG7_ACCEPTED_PATH = ("molecular_profile", "signatures", "macintyre_cn_signatures", "s7_diag")
+++SIG7_FORBIDDEN_NAMESPACES = ("cosmic_cn_signatures", "cosmic_sbs_signatures", "sbs_signatures")
+++
+++
+++class Sig7NamespaceError(ValueError):
+++    """A signature exposure from a different framework was offered as a Macintyre s7."""
+++
+++
++ class PrognosisEngine:
++@@
++     def _get_sig7_exposure(self, patient_data: Dict) -> Optional[float]:
++-        """
++-        Safely extra sig7 exposure from nested patient data.
++-        Expected path: molecular_profile -> signatures -> cosmic_cn_signatures -> Sig7
++-        """
++-        try:
++-            # Flexible access based on expected schemas
++-            signatures = patient_data.get('molecular_profile', {}).get('signatures', {}).get('cosmic_cn_signatures', {})
++-            if signatures and 'Sig7' in signatures:
++-                return float(signatures['Sig7'])
++-
++-            # Fallback check for direct key access if flattened
++-            if 'sig7_exposure' in patient_data:
++-                return float(patient_data['sig7_exposure'])
++-
++-            return None
++-        except (ValueError, TypeError, AttributeError):
++-            return None
+++        """
+++        Return the Macintyre s7 diagnosis-stage exposure, or None when it is genuinely absent.
+++
+++        Fails CLOSED and LOUD on a framework mismatch: a COSMIC signature block present
+++        without the Macintyre path is an error, not a fallback, because SIG7_RISK_THRESHOLD
+++        is only meaningful on the Macintyre scale.
+++        """
+++        signatures = (patient_data.get('molecular_profile') or {}).get('signatures') or {}
+++        if not isinstance(signatures, dict):
+++            raise Sig7NamespaceError(
+++                f"molecular_profile.signatures must be a mapping, got {type(signatures).__name__}"
+++            )
+++
+++        block = signatures.get(SIG7_ACCEPTED_PATH[-2]) or {}
+++        raw = block.get(SIG7_ACCEPTED_PATH[-1]) if isinstance(block, dict) else None
+++
+++        if raw is None:
+++            offending = [ns for ns in SIG7_FORBIDDEN_NAMESPACES if ns in signatures]
+++            if offending:
+++                raise Sig7NamespaceError(
+++                    f"signature block(s) {offending} present but required {SIG7_FRAMEWORK} "
+++                    f"path {'.'.join(SIG7_ACCEPTED_PATH)} is absent; COSMIC signatures are a "
+++                    "different framework and must not be compared against SIG7_RISK_THRESHOLD"
+++                )
+++            if 'sig7_exposure' in patient_data:
+++                raise Sig7NamespaceError(
+++                    "flattened 'sig7_exposure' supplied without a declared framework; "
+++                    f"supply {'.'.join(SIG7_ACCEPTED_PATH)} explicitly"
+++                )
+++            return None
+++
+++        try:
+++            value = float(raw)
+++        except (TypeError, ValueError) as exc:
+++            raise Sig7NamespaceError(f"s7 exposure is not numeric: {raw!r}") from exc
+++        if not (0.0 <= value <= 1.0):
+++            raise Sig7NamespaceError(f"s7 exposure {value!r} outside declared range [0, 1]")
+++        return value
++```
++
++### 1.3 Callers that must be migrated in the same change
++
++`sig7_exposure` is currently synthesised or forwarded in five places. All of them supply the
++flattened or COSMIC form and would begin raising:
++
++| File:line | What it does |
++|---|---|
++| `api/services/ayesha_fit/scenarios.py` | fabricates `sig7_exposure` in 0.10–0.95 for scenario fixtures |
++| `api/services/ayesha_care_plan/resistance_service.py:204,238` | `simulate_sig7`, default `0.0` |
++| `api/services/resistance_prophet_service.py:84-85` | forwards `sig7_exposure` into the molecular context |
++| `api/services/ayesha_fit/builder.py:332-335` | forwards `sig7_exposure` |
++| `api/services/resistance_prophet/scenarios.py` | scenario payloads |
++
++Migration is mechanical — write
++`molecular_profile.signatures.macintyre_cn_signatures.s7_diag` instead of a flat
++`sig7_exposure` — but it is a cross-module change and each fixture must be re-checked against
++the RED baseline, which is why it is deferred rather than bundled here.
++
++---
++
++## 2. C03 — QC gate is fail-open
++
++### 2.1 Evidence
++
++`prognosis.py:193-213` (current, unchanged in this branch):
++
++```python
++        try:
++            qc = patient_data.get('molecular_profile', {}).get('qc_metrics', {})
++            if 'mapd' in qc:
++                if qc['mapd'] > 0.3:
++                    return False
++            return True   # Pass if no specific QC metrics found (lenient for MVP)
++        except:
++            return True
++```
++
++Three defects:
++
++1. **Absent QC passes.** A payload with no `qc_metrics` block is treated as QC-passed. The
++   docstring's own reference is "requires passing CNA QC"; the implementation requires the
++   opposite — it requires only that QC not be present *and failing*.
++2. **Bare `except: return True`.** Any exception — including a `qc_metrics` value that is a
++   list, a string, or `None` — converts to a pass.
++3. **No MAPD provenance.** `0.3` is inline, not in `constants.py`, and carries no platform or
++   reference attribution. Copy-number signature exposures are directly sensitive to segmentation
++   noise, so MAPD is not an optional annotation for this feature class.
++
++Combined with C02 this is compounding: an unvalidated threshold, on a wrong-framework value,
++from a sample of unknown quality, previously produced a CRITICAL alert and an IMMEDIATE test
++order.
++
++### 2.2 Proposed change
++
++```diff
++--- a/api/services/resistance_prophet/prognosis.py
+++++ b/api/services/resistance_prophet/prognosis.py
++@@
+++# QC contract. MAPD (median absolute pairwise difference) is the segmentation-noise metric
+++# gating copy-number signature fitting. Absent QC is NOT a pass.
+++MAPD_MAX = 0.3            # move to constants.py with platform attribution
+++REQUIRE_QC_METRICS = True  # fail-closed default
+++
++@@
++     def _check_qc(self, patient_data: Dict) -> bool:
++-        # Placeholder for platform-specific QC logic
++-        try:
++-            qc = patient_data.get('molecular_profile', {}).get('qc_metrics', {})
++-            if 'mapd' in qc:
++-                if qc['mapd'] > 0.3:
++-                    return False
++-            return True # Pass if no specific QC metrics found (lenient for MVP)
++-        except:
++-            return True
+++        """
+++        Fail CLOSED: a sample is assessable only if QC is present and passing.
+++        Absent, malformed or unparseable QC == NOT assessable.
+++        """
+++        qc = (patient_data.get('molecular_profile') or {}).get('qc_metrics')
+++        if not isinstance(qc, dict) or 'mapd' not in qc:
+++            return not REQUIRE_QC_METRICS
+++        try:
+++            mapd = float(qc['mapd'])
+++        except (TypeError, ValueError):
+++            return False
+++        if not math.isfinite(mapd) or mapd < 0.0:
+++            return False
+++        return mapd <= MAPD_MAX
++```
++
++(Requires `import math` at module scope.)
++
++### 2.3 Consequence to accept explicitly
++
++With `REQUIRE_QC_METRICS = True`, **every payload that does not carry
++`molecular_profile.qc_metrics.mapd` returns `UNCERTAIN` / `REPEAT_BIOPSY_IF_FEASIBLE`.**
++On current fixtures that is most of them. That is the correct answer — "we cannot assess this
++sample" — but it is a visible product change and needs a product decision, not just a code
++review. The staged alternative is `REQUIRE_QC_METRICS = False` plus a mandatory
++`qc_status: "NOT_ASSESSED"` field on the result, so the absence is surfaced rather than
++silently converted into a pass; that variant requires a `PrognosisResult` schema change and
++therefore a serializer and response-model change, which the guard in this branch deliberately
++avoids.
++
++---
++
++## 3. Blast radius of the `POOR` state (why the output guard came first)
++
++| Consumer | Behaviour on `POOR` |
++|---|---|
++| `api/services/resistance_prophet/test_router.py:171` | logs `PROGNOSIS_ALERT` at CRITICAL and appends an **IMMEDIATE `LOW_PASS_WGS`** `NextTestAction`. `TestRouter` is production-wired via `api/services/ayesha_care_plan/resistance_service.py:16,29,256` |
++| `api/services/next_test_recommender.py:248-261` | inserts a priority-1 lp-WGS recommendation on `resistance_prediction["prognosis"]["status"] == "POOR"` |
++| `api/services/resistance_prophet/shim.py:118` | serialises the dataclass via `asdict`, key `state` |
++
++**Latent shape bug found while tracing this (record as a separate item, not fixed here):**
++`next_test_recommender.py` reads `prognosis["status"]`, but `shim.py:118` serialises the field
++as `state`. `prognosis.get("status", "UNKNOWN")` therefore never equals `"POOR"` and that
++branch is dead on the serialised path. Additionally
++`complete_care_universal.py:1131-1137` calls `get_next_test_recommendations(...)` **without**
++`resistance_prediction`, so on that route the branch cannot fire at all; only the `:1412`
++call site passes `resistance_prediction=`. Do not "fix" the key name without re-reviewing
++whether the recommendation is wanted — renaming `status` to `state` would *activate* a
++currently-dead care-influencing path.
++
++---
++
++## 4. Test plan for when this patch is applied
++
++Run against the RED baseline and report deltas only — new passes must not be presented as a
++green repository.
++
++| Family | Assertion |
++|---|---|
++| Namespace strictness | `{"molecular_profile": {"signatures": {"cosmic_cn_signatures": {"Sig7": 0.4}}}}` raises `Sig7NamespaceError`; it must **not** return 0.4 and must **not** return `None` |
++| Namespace accept | `{"molecular_profile": {"signatures": {"macintyre_cn_signatures": {"s7_diag": 0.4}}}}` returns `0.4` |
++| Flattened refusal | `{"sig7_exposure": 0.4}` raises |
++| Genuine absence | `{"molecular_profile": {"signatures": {}}}` returns `None` -> `UNCERTAIN` |
++| Range | `s7_diag = 1.4` raises; `s7_diag = "high"` raises |
++| QC fail-closed | no `qc_metrics` -> `_check_qc` is `False` -> `UNCERTAIN` / `REPEAT_BIOPSY_IF_FEASIBLE` |
++| QC malformed | `qc_metrics = []`, `qc_metrics = {"mapd": "bad"}`, `mapd = NaN`, `mapd = -1` all -> `False` |
++| QC pass | `mapd = 0.2` -> `True`; `mapd = 0.31` -> `False`; boundary `mapd = 0.3` -> `True` |
++| Regression | with `ZETA_SIG7_PROGNOSIS_ACTIONS_ENABLED` unset, no payload of any shape yields `POOR` or `INTENSIFY_SURVEILLANCE` |
++| Downstream | `test_router` emits no `PROGNOSIS_ALERT` and no IMMEDIATE `LOW_PASS_WGS` for any fixture with the flag unset |
++
++## 5. Ordering constraint
++
++C02 and C03 must be applied **before** `ZETA_SIG7_PROGNOSIS_ACTIONS_ENABLED` is ever set in a
++non-research environment, and the 0.25 threshold must be re-derived on the Macintyre scale with
++out-of-fold operating characteristics before it is compared against anything. On present
++evidence (OOF AUROC 0.6446 for the rule, 0.4108 continuous, adjudicated AUROC 0.421) the
++correct disposition for the Sig7 prognostic branch is **retire**, not repair.
+-- 
+2.39.5
+

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CrisPRO Credential Broker</title>
+<style>
+  :root{
+    --black:#000000; --cream:#ECE9E2; --off:#FAF9F3; --yellow:#E9ED4C;
+    --orange:#FF9400; --green:#75A025; --pink:#FD9BED; --blue:#0279EE;
+  }
+  *{box-sizing:border-box;font-family:'Liberation Sans','Arimo','DejaVu Sans',sans-serif;}
+  body{margin:0;background:var(--off);color:var(--black);}
+  header{background:var(--black);color:var(--off);padding:18px 28px;}
+  header h1{margin:0;font-size:20px;letter-spacing:.3px;}
+  header p{margin:6px 0 0;font-size:13px;color:var(--cream);}
+  .wrap{max-width:920px;margin:24px auto;padding:0 20px;display:grid;gap:18px;}
+  .card{background:#fff;border:1px solid var(--cream);border-radius:10px;padding:18px 20px;box-shadow:0 1px 2px rgba(0,0,0,.04);}
+  .card h2{margin:0 0 4px;font-size:16px;}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:8px;vertical-align:middle;}
+  .tag.direct{background:var(--green);color:#fff;}
+  .tag.validate{background:var(--orange);color:#fff;}
+  .desc{font-size:12.5px;color:#555;margin:0 0 12px;line-height:1.45;}
+  label{display:block;font-size:12px;font-weight:600;margin:10px 0 4px;}
+  input{width:100%;padding:9px 10px;border:1px solid #ccc;border-radius:6px;font-size:13px;}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin-top:12px;}
+  button{cursor:pointer;border:none;border-radius:6px;padding:9px 16px;font-size:13px;font-weight:700;}
+  .primary{background:var(--blue);color:#fff;}
+  .ghost{background:var(--cream);color:var(--black);}
+  .danger{background:#fff;color:#b00;border:1px solid #e3b0b0;}
+  .status{font-size:12.5px;margin-top:12px;padding:9px 11px;border-radius:6px;background:var(--cream);}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle;background:#bbb;}
+  .dot.ok{background:var(--green);} .dot.fail{background:#d33;} .dot.wait{background:var(--orange);}
+  .note{font-size:11.5px;color:#666;margin-top:8px;line-height:1.4;}
+  .banner{background:var(--yellow);border-radius:8px;padding:10px 14px;font-size:12.5px;line-height:1.5;}
+  code{background:var(--cream);padding:1px 5px;border-radius:4px;font-size:12px;}
+  #handoff{white-space:pre-wrap;font-size:12px;background:var(--black);color:var(--off);padding:12px;border-radius:8px;margin-top:12px;display:none;}
+</style>
+</head>
+<body>
+<header>
+  <h1>CrisPRO Credential Broker</h1>
+  <p>Paste tokens to open live connections. Secrets are held encrypted in memory only — never written to disk, never logged, never shown back.</p>
+</header>
+
+<div class="wrap">
+  <div class="banner">
+    <b>How this works.</b> Credentials live only in the running server's memory (encrypted) and vanish when it stops.
+    Synapse and CAS are validated and then usable directly for analysis. EGA is <b>validated here</b>, but the
+    controlled-access download for <code>EGAD00001011049</code> runs on your approved in-region VM under the Data Access Agreement.
+  </div>
+
+  <!-- SYNAPSE -->
+  <div class="card" data-provider="synapse">
+    <h2>Synapse <span class="tag direct">direct use</span></h2>
+    <p class="desc">Sage Bionetworks personal access token (needs <code>view</code> scope). Validated via <code>GET /userProfile</code>.</p>
+    <label>Personal Access Token</label>
+    <input type="password" id="synapse_token" placeholder="eyJ0eXAi... (paste PAT)"/>
+    <div class="row">
+      <button class="primary" onclick="save('synapse',{token:val('synapse_token')})">Connect</button>
+      <button class="ghost" onclick="revalidate('synapse')">Re-check</button>
+      <button class="danger" onclick="forget('synapse')">Forget</button>
+    </div>
+    <div class="status" id="status_synapse"><span class="dot"></span>not connected</div>
+  </div>
+
+  <!-- CAS / SAS Viya -->
+  <div class="card" data-provider="cas">
+    <h2>SAS CAS / Viya <span class="tag direct">direct use</span></h2>
+    <p class="desc">Provide the Viya base URL and <b>either</b> a bearer token <b>or</b> username + password. Validated via <code>/identities/users/@currentUser</code>.</p>
+    <label>Base URL</label>
+    <input type="text" id="cas_base" placeholder="https://your-host.ondemand.sas.com"/>
+    <label>Bearer token (option A)</label>
+    <input type="password" id="cas_token" placeholder="paste OAuth token (or leave blank)"/>
+    <label>Username (option B)</label>
+    <input type="text" id="cas_user" placeholder="username (or leave blank)"/>
+    <label>Password (option B)</label>
+    <input type="password" id="cas_pass" placeholder="password (or leave blank)"/>
+    <div class="row">
+      <button class="primary" onclick="saveCas()">Connect</button>
+      <button class="ghost" onclick="revalidate('cas')">Re-check</button>
+      <button class="danger" onclick="forget('cas')">Forget</button>
+    </div>
+    <div class="status" id="status_cas"><span class="dot"></span>not connected</div>
+  </div>
+
+  <!-- EGA -->
+  <div class="card" data-provider="ega">
+    <h2>EGA <span class="tag validate">validate only</span></h2>
+    <p class="desc">European Genome-phenome Archive login. Validated against the EGA OpenID token endpoint. The 511 GB controlled-access pull runs on your VM, not here.</p>
+    <label>EGA Username (email)</label>
+    <input type="text" id="ega_user" placeholder="you@institution.org"/>
+    <label>EGA Password</label>
+    <input type="password" id="ega_pass" placeholder="paste password"/>
+    <div class="row">
+      <button class="primary" onclick="save('ega',{username:val('ega_user'),password:val('ega_pass')})">Validate</button>
+      <button class="ghost" onclick="revalidate('ega')">Re-check</button>
+      <button class="danger" onclick="forget('ega')">Forget</button>
+      <button class="ghost" onclick="handoff()">Get VM run steps</button>
+    </div>
+    <div class="status" id="status_ega"><span class="dot"></span>not validated</div>
+    <div id="handoff"></div>
+    <p class="note">Tip: rotate any credential you've pasted into a chat or shared elsewhere. This broker validates a token; it does not make an exposed token safe.</p>
+  </div>
+</div>
+
+<script>
+const val = id => document.getElementById(id).value.trim();
+function clearInputs(sel){document.querySelectorAll(sel).forEach(e=>e.value="");}
+
+function render(provider, connected, detail){
+  const el = document.getElementById('status_'+provider);
+  const cls = connected===true ? 'ok' : (connected===false ? 'fail':'wait');
+  const word = connected===true ? 'connected' : (connected===false ? 'failed':'checking');
+  el.innerHTML = `<span class="dot ${cls}"></span><b>${word}</b> — ${detail||''}`;
+}
+
+async function save(provider, payload){
+  render(provider, null, 'checking…');
+  const r = await fetch('/creds/'+provider,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const j = await r.json();
+  if(!r.ok){ render(provider,false, j.detail||('error '+r.status)); return; }
+  render(provider, j.connected, j.detail);
+  // wipe the input fields for this provider after submit (don't keep secrets in the DOM)
+  document.querySelectorAll(`[data-provider="${provider}"] input`).forEach(e=>e.value="");
+}
+function saveCas(){
+  const p = {base_url: val('cas_base')};
+  if(val('cas_token')) p.token = val('cas_token');
+  if(val('cas_user')) p.username = val('cas_user');
+  if(val('cas_pass')) p.password = val('cas_pass');
+  save('cas', p);
+}
+async function revalidate(provider){
+  render(provider,null,'checking…');
+  const r = await fetch('/validate/'+provider,{method:'POST'});
+  const j = await r.json();
+  render(provider, r.ok? j.connected:false, j.detail||('error '+r.status));
+}
+async function forget(provider){
+  await fetch('/creds/'+provider,{method:'DELETE'});
+  render(provider,null,'forgotten');
+  document.getElementById('status_'+provider).innerHTML='<span class="dot"></span>not connected';
+  if(provider==='ega'){document.getElementById('handoff').style.display='none';}
+}
+async function handoff(){
+  const r = await fetch('/ega/handoff',{method:'POST'});
+  const j = await r.json();
+  const box = document.getElementById('handoff');
+  box.style.display='block';
+  box.textContent = r.ok ? (j.message+'\n\n'+j.steps.join('\n')+'\n\nDataset: '+j.dataset+'\nRun where: '+j.run_where)
+                         : ('Cannot hand off: '+(j.detail||('error '+r.status)));
+}
+// on load, reflect any existing status
+(async()=>{const r=await fetch('/status');const j=await r.json();
+  (j.entries||[]).forEach(e=>render(e.provider, e.status==='connected'?true:(e.status==='failed'?false:null), e.detail));
+})();
+</script>
+</body>
+</html>

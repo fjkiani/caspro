@@ -1,0 +1,55 @@
+{
+  "artifact": "tcga_ov_fga_replication",
+  "cohort": "TCGA-OV (ov_tcga_pan_can_atlas_2018) labels on disk + public cBioPortal FGA/aneuploidy",
+  "n": 158,
+  "resistant": 19,
+  "sensitive": 139,
+  "note_platform": "BriTROC FGA=shallow-WGS segments (abs scale differs); TCGA-OV FGA=SNP-array GISTIC. Standardized WITHIN cohort, so replication tests DIRECTION+significance of instability->resistance, not identical absolute scale.",
+  "no_ca125_attribute_in_tcga_ov": true,
+  "tcga_ov": {
+    "FGA_logit_per_SD": {
+      "OR_per_SD": 0.805820816074808,
+      "CI_lo": 0.49540342141576454,
+      "CI_hi": 1.3107442531659639,
+      "logOR": -0.21589387375288238,
+      "SE": 0.24820866419781124,
+      "p": 0.384405356527481
+    },
+    "aneuploidy_logit_per_SD": {
+      "OR_per_SD": 1.2360770469636333,
+      "CI_lo": 0.7714316206814276,
+      "CI_hi": 1.9805857383454288,
+      "logOR": 0.21194269282380296,
+      "SE": 0.2405356814191407,
+      "p": 0.37824861366186546
+    },
+    "FGA_median_resistant": 0.5868,
+    "FGA_median_sensitive": 0.5758,
+    "MWU_p": 0.6727950427759046,
+    "FGA_OOF_AUC": {
+      "mean": 0.5004179894179894,
+      "ci_lo": 0.1992559523809524,
+      "ci_hi": 0.7457589285714283,
+      "perm_p": 0.5369261477045908,
+      "ci_excludes_0.5": false
+    }
+  },
+  "meta_FGA_per_SD": {
+    "britroc_OR": 2.566087807490648,
+    "britroc_p": 0.011617338905567858,
+    "tcga_ov_OR": 0.805820816074808,
+    "tcga_ov_p": 0.384405356527481,
+    "pooled_OR": 1.1491543145185605,
+    "pooled_CI": [
+      0.7663406434842317,
+      1.7231966616994323
+    ],
+    "pooled_p": 0.5012262758791626,
+    "I2_pct": 85.01381790802014,
+    "pooled_n": 256,
+    "pooled_resistant": 39
+  },
+  "verdict": "DID_NOT_REPLICATE",
+  "still_below_calibration_gate": true,
+  "random_seed": 20260805
+}

@@ -1,0 +1,22 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.13, pytest-8.4.1, pluggy-1.6.0 -- /workspace/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /workspace/crispro-backend-v3-push
+plugins: asyncio-1.4.0, anyio-4.14.1, typeguard-4.4.4, fast-array-utils-1.2.1, langsmith-0.4.10, jaxtyping-0.3.2
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 12 items
+
+tests/test_layer3/test_predictive_simulation_gate.py::TestDefaultOff::test_flag_off_simulation_disabled_and_no_leak PASSED [  8%]
+tests/test_layer3/test_predictive_simulation_gate.py::TestDefaultOff::test_backward_compatible_no_kwargs PASSED [ 16%]
+tests/test_layer3/test_predictive_simulation_gate.py::TestDefaultOff::test_prognostic_baseline_present_even_when_flag_off PASSED [ 25%]
+tests/test_layer3/test_predictive_simulation_gate.py::TestIneligibleTier3::test_tier3_ineligible_all_gates_fail PASSED [ 33%]
+tests/test_layer3/test_predictive_simulation_gate.py::TestIneligibleTier1B::test_tier1b_ineligible_tier_passes_refined_and_window_fail PASSED [ 41%]
+tests/test_layer3/test_predictive_simulation_gate.py::TestEligibleSimulation::test_eligible_runs_and_transitions_universe PASSED [ 50%]
+tests/test_layer3/test_predictive_simulation_gate.py::TestEligibleSimulation::test_no_patient_predicted_os_anywhere PASSED [ 58%]
+tests/test_layer3/test_predictive_simulation_gate.py::TestEligibleSimulation::test_prereq_flag_is_faithful_control_failure_signal PASSED [ 66%]
+tests/test_layer3/test_predictive_simulation_gate.py::TestPrognosticIntegritySnapshot::test_prognostic_and_core_identical_flag_on_vs_off PASSED [ 75%]
+tests/test_layer3/test_predictive_simulation_gate.py::TestPrognosticIntegritySnapshot::test_env_flag_channel_also_enables PASSED [ 83%]
+tests/test_layer3/test_predictive_simulation_gate.py::TestDeterminismAndProvenance::test_repeated_runs_identical_scores PASSED [ 91%]
+tests/test_layer3/test_predictive_simulation_gate.py::TestDeterminismAndProvenance::test_provenance_stamp_complete PASSED [100%]
+
+============================== 12 passed in 0.15s ==============================

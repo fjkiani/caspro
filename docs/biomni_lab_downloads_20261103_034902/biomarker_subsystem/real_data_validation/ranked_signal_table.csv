@@ -1,0 +1,5 @@
+rank,signal,category,status,replication,best_ext_cindex,best_ext_cindex_cohort,best_ext_HR,ext_HR_p,ph_violated,oof_cindex,other_cohort,note
+1,Riester 3-gene risk score,Prognostic,discovery_only,REPLICATES_1of2,0.625,GSE9891,1.361,0.00098,True,0.539,GSE32062 C=0.509 HR=0.971 p=0.76 (null),Signal in 1 of 2 independent cohorts; PH violated in both. Fails >=2-cohort gate.
+2,PI3K/mTOR panel (own),Prognostic (scan),discovery_only,NEAR_NULL,0.56,best of 4 (0.51-0.56),,,,,TCGAOVARIAN/GSE9891/GSE32062/GSE49997,Unsupervised mean-z scan; C-indices cluster near 0.5 across 4 cohorts. Weak/null.
+3,DDR panel (own),Prognostic (scan),discovery_only,NEAR_NULL,0.53,best of 4 (0.45-0.53),,,,,TCGAOVARIAN/GSE9891/GSE32062/GSE49997,Unsupervised mean-z scan; C-indices cluster near 0.5 across 4 cohorts. Weak/null.
+4,consensusOV molecular subtype,Diagnostic,discovery_only,DESCRIPTIVE,,TCGA+GSE9891 (distributional),,,,,cross-cohort TV distance 0.025 (mixtures reproducible),"Reproducible subtype MIXTURE, but composition-confounded (MES tracks low purity 76v82% p=6.3e-6, high stroma 18.4v10% p=2.5e-7). Not a per-patient validated call."

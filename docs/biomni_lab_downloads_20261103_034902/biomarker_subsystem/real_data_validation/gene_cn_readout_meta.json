@@ -1,0 +1,23 @@
+{
+  "method": "QDNAseq relative CN, hg19, 30kb bins, ~0.1x sWGS (BriTROC-1 pilot n=4 subjects, 8 samples)",
+  "honest_ceiling": "Detects LARGE CNA only (broad/focal amp & loss >= ~bin size). No SNV/indel, no LOH-without-CN, no sub-bin focal. n=4 = PILOT not validation cohort. Can establish 'OV CN metric present (pilot)'; cannot confer mutation-based VALIDATED tier.",
+  "cn_call_bands_relative": {
+    "high_amp": ">=2.5",
+    "gain": ">=1.5",
+    "loss": "<=0.8",
+    "deep_loss": "<=0.5",
+    "neutral": "else"
+  },
+  "genes": [
+    "CCNE1",
+    "PALB2",
+    "PTEN",
+    "KEAP1",
+    "CUL3",
+    "SLC31A1"
+  ],
+  "source_files": [
+    "/mnt/shared-workspace/shared/data_acq/w3/cn_out_full/pilot_segmented_cn.csv",
+    "/mnt/shared-workspace/shared/data_acq/w3/cn_out_full/pilot_bin_relative_cn.csv"
+  ]
+}

@@ -39,9 +39,7 @@ export default function EvidenceAnchorTable() {
             <AnchorSubtitle />
           </p>
         </div>
-        <span className={`font-mono text-[10px] ${pathTag}`}>
-          synthetic_lethality.provenance.tumor_board_evidence_chain.anchors[]
-        </span>
+        
       </div>
 
       <div className={`overflow-x-auto rounded-lg border ${wrap}`}>
@@ -50,7 +48,7 @@ export default function EvidenceAnchorTable() {
             <tr className={`text-left text-[10px] uppercase tracking-widest ${thead}`}>
               <th className="px-4 py-3">#</th>
               <th className="px-4 py-3">Anchor</th>
-              <th className="px-4 py-3">Canonical (JSON)</th>
+              <th className="px-4 py-3">Citation</th>
               <th className="px-4 py-3">Script (UI)</th>
               <th className="px-4 py-3">Match</th>
             </tr>

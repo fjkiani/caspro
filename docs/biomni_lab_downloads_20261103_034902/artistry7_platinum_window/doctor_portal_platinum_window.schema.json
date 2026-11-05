@@ -1,0 +1,433 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://brenus/crispro/doctor-portal/platinum-window.schema.json",
+  "title": "DoctorPortalPlatinumWindowPayload",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "patient_ref",
+    "platinum_window",
+    "immune_access",
+    "stromal_cage_tier",
+    "display",
+    "global_verification",
+    "disclaimers"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "patient_ref": {
+      "type": "object",
+      "required": [
+        "patient_id",
+        "cohort_context"
+      ],
+      "properties": {
+        "patient_id": {
+          "type": "string"
+        },
+        "cohort_context": {
+          "enum": [
+            "TCGA_OV_PROXY",
+            "TRIAL_PATIENT",
+            "REAL_WORLD"
+          ],
+          "description": "CRITICAL: TCGA_OV_PROXY means the score is a research proxy, NOT a validated per-patient clinical result"
+        }
+      },
+      "additionalProperties": true
+    },
+    "platinum_window": {
+      "type": "object",
+      "required": [
+        "status",
+        "definition",
+        "components",
+        "verification_status",
+        "provenance"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "OPEN",
+            "CLOSED",
+            "INDETERMINATE"
+          ],
+          "description": "OPEN only if TIER_1A_ACCESSIBLE AND platinum_status==sensitive"
+        },
+        "definition": {
+          "const": "(TIER_REFINED == TIER_1A_ACCESSIBLE) AND (PLATINUM_STATUS == sensitive)"
+        },
+        "components": {
+          "type": "object",
+          "required": [
+            "tier_refined",
+            "platinum_status"
+          ],
+          "properties": {
+            "tier_refined": {
+              "enum": [
+                "TIER_1A_ACCESSIBLE",
+                "TIER_1B_CAGED",
+                "NOT_TIER_1",
+                "UNKNOWN"
+              ]
+            },
+            "platinum_status": {
+              "enum": [
+                "sensitive",
+                "resistant",
+                "unknown"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "verification_status": {
+          "enum": [
+            "VERIFIED",
+            "UNVERIFIED_QUARANTINED",
+            "SPEC_ONLY_NOT_COMPUTED"
+          ]
+        },
+        "provenance": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "immune_access": {
+      "type": "object",
+      "required": [
+        "composite",
+        "equation",
+        "components"
+      ],
+      "properties": {
+        "composite": {
+          "type": "object",
+          "required": [
+            "value",
+            "verification_status",
+            "provenance"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "description": "Numeric score; null if not computed for this patient"
+            },
+            "range": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 2,
+              "description": "Theoretical [min,max] for gauge rendering"
+            },
+            "verification_status": {
+              "enum": [
+                "VERIFIED",
+                "UNVERIFIED_QUARANTINED",
+                "SPEC_ONLY_NOT_COMPUTED"
+              ]
+            },
+            "provenance": {
+              "type": "string",
+              "description": "Where this value came from (pipeline+commit, or 'spec-only')"
+            },
+            "computed_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        },
+        "equation": {
+          "type": "string",
+          "enum": [
+            "IMMUNE_ACCESS = 0.40*TCELL_GPS - 0.35*MYELOID_FLOOD - 0.25*STROMAL_CAGE",
+            "IMMUNE_ACCESS = 0.40*TCELL_GPS - 0.35*MYELOID_FLOOD - 0.25*STROMAL_CAGE (z-scored signature means)"
+          ],
+          "description": "Locked IMMUNE_ACCESS equation (base form or z-score-annotated equivalent)."
+        },
+        "components": {
+          "type": "object",
+          "required": [
+            "tcell_gps",
+            "myeloid_flood",
+            "stromal_cage"
+          ],
+          "properties": {
+            "tcell_gps": {
+              "type": "object",
+              "required": [
+                "value",
+                "verification_status",
+                "provenance"
+              ],
+              "properties": {
+                "value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "description": "Numeric score; null if not computed for this patient"
+                },
+                "range": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "description": "Theoretical [min,max] for gauge rendering"
+                },
+                "verification_status": {
+                  "enum": [
+                    "VERIFIED",
+                    "UNVERIFIED_QUARANTINED",
+                    "SPEC_ONLY_NOT_COMPUTED"
+                  ]
+                },
+                "provenance": {
+                  "type": "string",
+                  "description": "Where this value came from (pipeline+commit, or 'spec-only')"
+                },
+                "computed_at": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date-time"
+                }
+              },
+              "additionalProperties": false
+            },
+            "myeloid_flood": {
+              "type": "object",
+              "required": [
+                "value",
+                "verification_status",
+                "provenance"
+              ],
+              "properties": {
+                "value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "description": "Numeric score; null if not computed for this patient"
+                },
+                "range": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "description": "Theoretical [min,max] for gauge rendering"
+                },
+                "verification_status": {
+                  "enum": [
+                    "VERIFIED",
+                    "UNVERIFIED_QUARANTINED",
+                    "SPEC_ONLY_NOT_COMPUTED"
+                  ]
+                },
+                "provenance": {
+                  "type": "string",
+                  "description": "Where this value came from (pipeline+commit, or 'spec-only')"
+                },
+                "computed_at": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date-time"
+                }
+              },
+              "additionalProperties": false
+            },
+            "stromal_cage": {
+              "type": "object",
+              "required": [
+                "value",
+                "verification_status",
+                "provenance"
+              ],
+              "properties": {
+                "value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "description": "Numeric score; null if not computed for this patient"
+                },
+                "range": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "description": "Theoretical [min,max] for gauge rendering"
+                },
+                "verification_status": {
+                  "enum": [
+                    "VERIFIED",
+                    "UNVERIFIED_QUARANTINED",
+                    "SPEC_ONLY_NOT_COMPUTED"
+                  ]
+                },
+                "provenance": {
+                  "type": "string",
+                  "description": "Where this value came from (pipeline+commit, or 'spec-only')"
+                },
+                "computed_at": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date-time"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "io_eligibility_gate": {
+          "type": "object",
+          "description": "IMMUNE_ACCESS>threshold IO-eligibility gate. Threshold is a design constant per repo audit, NOT data-derived.",
+          "properties": {
+            "threshold": {
+              "type": "number"
+            },
+            "passes": {
+              "type": "boolean"
+            },
+            "provenance": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "threshold",
+            "passes",
+            "provenance"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "stromal_cage_tier": {
+      "type": "object",
+      "required": [
+        "tier",
+        "warning_level",
+        "clinician_message",
+        "verification_status",
+        "provenance"
+      ],
+      "properties": {
+        "tier": {
+          "enum": [
+            "TIER_1A_ACCESSIBLE",
+            "TIER_1B_CAGED",
+            "NOT_TIER_1",
+            "UNKNOWN"
+          ]
+        },
+        "warning_level": {
+          "enum": [
+            "NONE",
+            "INFO",
+            "CAUTION",
+            "CONTRA_IO"
+          ],
+          "description": "CONTRA_IO = caged tumor; T-cell-engaging IO unlikely to reach tumor"
+        },
+        "clinician_message": {
+          "type": "string"
+        },
+        "verification_status": {
+          "enum": [
+            "VERIFIED",
+            "UNVERIFIED_QUARANTINED",
+            "SPEC_ONLY_NOT_COMPUTED"
+          ]
+        },
+        "provenance": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "display": {
+      "type": "object",
+      "required": [
+        "badge",
+        "banner",
+        "show_research_use_only"
+      ],
+      "properties": {
+        "badge": {
+          "type": "object",
+          "required": [
+            "label",
+            "color"
+          ],
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "color": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "banner": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "show_research_use_only": {
+          "type": "boolean",
+          "description": "MUST be true whenever any consumed field is UNVERIFIED_QUARANTINED or cohort is TCGA_OV_PROXY"
+        }
+      },
+      "additionalProperties": true
+    },
+    "global_verification": {
+      "enum": [
+        "VERIFIED",
+        "UNVERIFIED_QUARANTINED",
+        "SPEC_ONLY_NOT_COMPUTED"
+      ],
+      "description": "Rolls up to the weakest field: UNVERIFIED if ANY consumed input is unverified"
+    },
+    "disclaimers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "provenance_note": {
+      "type": "string",
+      "description": "Free-text roll-up note on verification status and statistical caveats."
+    }
+  },
+  "additionalProperties": false,
+  "description": " | v1.1: adds io_eligibility_gate + provenance_note; equation accepts z-score-annotated form (post-verification 2026-07-18)."
+}

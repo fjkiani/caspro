@@ -1,0 +1,111 @@
+{
+  "audited_utc": "2026-07-25T18:18:01.717939+00:00",
+  "endpoint_public_index": "https://api.platform.icgc-argo.org/graphql",
+  "endpoint_controlled_download": "https://api.platform.icgc-argo.org/storage-api (Overture Score/Song)",
+  "n_programs": 9,
+  "totals": {
+    "files": 179956,
+    "distinct_donors": 7056,
+    "controlled_files": 175544,
+    "pct_controlled": 97.5,
+    "relapse_proxy_donors": 1003,
+    "relapse_proxy_files": 26304,
+    "cn_comparable_files": 6293,
+    "aligned_reads_bam_files": 12825
+  },
+  "resistance_relevant_fields": {
+    "PUBLIC_in_file_index": {
+      "specimen_type": "present (Primary/Metastatic/Recurrent/Normal + subtypes) \u2014 used as the relapse/progression PROXY",
+      "tumour_normal_designation": "present",
+      "note": "specimen_type is a specimen-provenance proxy for relapse/progression, NOT a treatment-response label"
+    },
+    "GATED_membership_or_DACO_required": {
+      "treatment_response": "NOT in public file index (programDonorSummary/clinicalData; membership-gated)",
+      "disease_progression_status": "NOT in public file index (gated)",
+      "recurrence_interval_days": "NOT in public file index (gated)",
+      "vital_status_survival": "NOT in public file index (gated)",
+      "primary_site_value": "returns __missing__ in public file index for every program"
+    }
+  },
+  "access_model_measured": {
+    "public_metadata": "no credential required (this audit)",
+    "controlled_molecular_payloads": "REQUIRE DACO approval + Overture Score API token (30-day). CONFIRMED WORKING this session: score-client 5.11.0 resolved signed URLs and downloaded a controlled ASCAT CNV supplement (checksum verified).",
+    "token_tested": "1273a8af-... authenticates at storage-api gateway for controlled download (DACO entitlement live); does NOT authenticate at the platform GraphQL (self=null) \u2014 different service."
+  },
+  "ovarian_program_present": false,
+  "ovarian_note": "ARGO has NO ovarian program. Prior BriTROC/HGSOC resistance line has no direct tumour-type match here; cross-tumour CN methodology transfer is possible but is not same-indication replication.",
+  "per_program": {
+    "POG-CA": {
+      "distinct_donors": 931,
+      "relapse_proxy_donors": 807,
+      "relapse_proxy_files": 25365,
+      "cn_comparable_files": 1218,
+      "aligned_reads_bam_files": 4244,
+      "pct_controlled": 100.0
+    },
+    "MONSTAR-JP": {
+      "distinct_donors": 2152,
+      "relapse_proxy_donors": 186,
+      "relapse_proxy_files": 459,
+      "cn_comparable_files": 889,
+      "aligned_reads_bam_files": 0,
+      "pct_controlled": 100.0
+    },
+    "P1000-US": {
+      "distinct_donors": 275,
+      "relapse_proxy_donors": 5,
+      "relapse_proxy_files": 150,
+      "cn_comparable_files": 50,
+      "aligned_reads_bam_files": 999,
+      "pct_controlled": 100.0
+    },
+    "PACA-CA": {
+      "distinct_donors": 136,
+      "relapse_proxy_donors": 4,
+      "relapse_proxy_files": 295,
+      "cn_comparable_files": 304,
+      "aligned_reads_bam_files": 349,
+      "pct_controlled": 89.6
+    },
+    "APGI-AU": {
+      "distinct_donors": 97,
+      "relapse_proxy_donors": 1,
+      "relapse_proxy_files": 35,
+      "cn_comparable_files": 96,
+      "aligned_reads_bam_files": 290,
+      "pct_controlled": 91.1
+    },
+    "MUTO-INTL": {
+      "distinct_donors": 2659,
+      "relapse_proxy_donors": 0,
+      "relapse_proxy_files": 0,
+      "cn_comparable_files": 2850,
+      "aligned_reads_bam_files": 5318,
+      "pct_controlled": 100.0
+    },
+    "OCCAMS-GB": {
+      "distinct_donors": 400,
+      "relapse_proxy_donors": 0,
+      "relapse_proxy_files": 0,
+      "cn_comparable_files": 826,
+      "aligned_reads_bam_files": 813,
+      "pct_controlled": 89.0
+    },
+    "PTC-SA": {
+      "distinct_donors": 239,
+      "relapse_proxy_donors": 0,
+      "relapse_proxy_files": 0,
+      "cn_comparable_files": 0,
+      "aligned_reads_bam_files": 478,
+      "pct_controlled": 85.2
+    },
+    "LUCA-KR": {
+      "distinct_donors": 167,
+      "relapse_proxy_donors": 0,
+      "relapse_proxy_files": 0,
+      "cn_comparable_files": 60,
+      "aligned_reads_bam_files": 334,
+      "pct_controlled": 86.0
+    }
+  }
+}

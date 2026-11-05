@@ -1,0 +1,7353 @@
+{
+  "caslib": "Breast_SanofiU_2004_135",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CA15_3",
+    "CA27_29"
+  ],
+  "indication": "breast",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 52,
+  "n_tabular_files": 52,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "3f081654d32f1273e75201ff9b81bd8322b24926c8238cb003fcc06e90bb2b2d",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "AE end time (24hr clock)",
+          "name": "AEETM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE desc (modified reported term)",
+          "name": "AEMODIFY",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "NCI code (oncology)",
+          "name": "AENCICD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "NCI Term (mod rptd term onco)",
+          "name": "AENCIMOD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "NCI select term (oncology)",
+          "name": "AENCISEL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "NCI short name (oncology)",
+          "name": "AENCISN",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "NCI Term (rptd term onco)",
+          "name": "AENCITRM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "NCI workflow item",
+          "name": "AENCIWF",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Specify if reason is other",
+          "name": "AENROTH",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE number",
+          "name": "AENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE desc (onco term derived)",
+          "name": "AEONCMOD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE start time (24hr clock)",
+          "name": "AESTM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE desc (reported term)",
+          "name": "AETERM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE coding workflow item",
+          "name": "AEWF",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Meddra LLT code",
+          "name": "LLT_CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Meddra PT and SOC code",
+          "name": "PT_SOC_C",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Subset key",
+          "name": "SBKEY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "AE end day",
+          "name": "AEEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "AE start day",
+          "name": "AESDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Other significant intervention",
+          "name": "AEACTOTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Action taken with study tx",
+          "name": "AEACTTRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE relationship to study tx",
+          "name": "AECAUSAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE previously reported",
+          "name": "AECONT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Additional treatment given",
+          "name": "AECONTRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE grade (oncology)",
+          "name": "AEGRADE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason not related to study tx",
+          "name": "AENOTREL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Mark if no AE occurred",
+          "name": "AEOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE outcome",
+          "name": "AEOUT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE serious",
+          "name": "AESER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE intensity",
+          "name": "AESEV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE status (oncology)",
+          "name": "AESTAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE is an alert term",
+          "name": "ALERT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Most likely cause (oncology)",
+          "name": "CAUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE represents a lab result",
+          "name": "LBRESYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment phase",
+          "name": "PSID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Resulted in death",
+          "name": "SAETYP1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Life-threatening",
+          "name": "SAETYP2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Persis/signif/disable/incapacity",
+          "name": "SAETYP3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Require/prolong hospitalization",
+          "name": "SAETYP4",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Congenital anomaly/birth defect",
+          "name": "SAETYP5",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Other medically important",
+          "name": "SAETYP6",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Week of Start of Adverse Event for Deaths",
+          "name": "AESWK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Week of End of Adverse Event for Deaths",
+          "name": "AEEWK",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "SAETYP1",
+          "AESWK",
+          "AEEWK"
+        ],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "AEEDY",
+          "AESDY",
+          "RSUBJID",
+          "RUSUBJID",
+          "AESWK",
+          "AEEWK"
+        ],
+        "treatment": [
+          "CYCLE",
+          "AEACTTRT",
+          "AECONTRT",
+          "PSID"
+        ],
+        "unit": [],
+        "value": [
+          "LBRESYN",
+          "SAETYP1"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 9702,
+      "path": "dataFiles_801/ae.sas7bdat",
+      "size": 19791872,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Cycle day",
+          "name": "BNCYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Batch drug",
+          "name": "BNDR",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Batch interval",
+          "name": "BNIT",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Type of Number",
+          "name": "BNTYP",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Treatment arm",
+          "name": "TRTARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "BNCYCLE",
+          "CYCLE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE",
+          "TRTARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2797,
+      "path": "dataFiles_801/batchnum.sas7bdat",
+      "size": 720896,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Histological type (text)",
+          "name": "CDHISTTX",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Result other - specify",
+          "name": "CDHSTLTX",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "TNM Lymph nodes",
+          "name": "CDLN",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "TNM Metastasis",
+          "name": "CDMET",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Obsolete:First R/P date - month",
+          "name": "CDRFPMM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "TNM Stage",
+          "name": "CDSTAGE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Primary tumor subsite",
+          "name": "CDSUBSIT",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "TNM Tumor size",
+          "name": "CDTUM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Diagnosis day - from date derived",
+          "name": "CDDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Relapse/Prog day",
+          "name": "CDFRPDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Relapse day - from date derived",
+          "name": "CDRELDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Histological type result",
+          "name": "CDHISTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Histopathological grade",
+          "name": "CDHISTGR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Cancer diagnosis method",
+          "name": "CDMTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Operable disease",
+          "name": "CDOPDIS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Metastasis primary tumor(yes/no)",
+          "name": "CDPTMET",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary tumor site code",
+          "name": "CDSITECD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease extent at study entry",
+          "name": "EXTDIS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CDRFPMM",
+          "CYCLE",
+          "CDDY",
+          "CDFRPDY",
+          "CDRELDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": [
+          "CDHSTLTX",
+          "CDHISTCD"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 217,
+      "path": "dataFiles_801/cadiag.sas7bdat",
+      "size": 196608,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Cumulative dose",
+          "name": "CRDO",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Prior radiotherapy site",
+          "name": "CRSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Prior radiotherapy subsite",
+          "name": "CRSUBSIT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose end day - from date derived",
+          "name": "CREDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose start day - from date derived",
+          "name": "CRSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Mark if no prior radiotherapy",
+          "name": "CROCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response of Prior Radiotherapy",
+          "name": "CRRSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Prior radiotherapy site code",
+          "name": "CRSITECD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Cumulative dose unit",
+          "name": "CRUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Intent",
+          "name": "INTENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "CREDY",
+          "CRSDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [
+          "CRUNIT"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 503,
+      "path": "dataFiles_801/caradio.sas7bdat",
+      "size": 262144,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Cancer surgery verbatim term",
+          "name": "CSTERM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CS end day - from date derived",
+          "name": "CSEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Cancer surgery not done",
+          "name": "CSND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Mark if no cancer surgery",
+          "name": "CSOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Cancer surgery site",
+          "name": "CSSITE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Cancer surgery site code",
+          "name": "CSSITECD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "CSEDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1167,
+      "path": "dataFiles_801/casurg.sas7bdat",
+      "size": 589824,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Number of cycles",
+          "name": "CTCYCLE",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Chemo dose",
+          "name": "CTDO",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Chemo who-drl code",
+          "name": "CTDRLCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "CT modify term (entry field)",
+          "name": "CTMODIFY",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "CT term as reported (derived)",
+          "name": "CTTERM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Chemo unit",
+          "name": "CTUNIT",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Chemo work flow item",
+          "name": "CTWF",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Regimen number",
+          "name": "REGNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Chemo end day - from date derived",
+          "name": "CTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Relapse/Prog day - from date derived",
+          "name": "CTRELDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Chemo start day - from date derived",
+          "name": "CTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Chemo previously reported",
+          "name": "CTCONT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Mark if no chemo therapy",
+          "name": "CTOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Chemo ongoing",
+          "name": "CTON",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for Chemotherapy Discont",
+          "name": "CTREADIS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Chemo best response per regimen",
+          "name": "CTRSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Intent",
+          "name": "INTENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "CTDRLCD"
+        ],
+        "endpoint": [
+          "CTTERM"
+        ],
+        "patient": [],
+        "time": [
+          "CTCYCLE",
+          "CYCLE",
+          "CTEDY",
+          "CTRELDY",
+          "CTSDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE",
+          "REGNUM",
+          "CTRSP"
+        ],
+        "unit": [
+          "CTUNIT"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1651,
+      "path": "dataFiles_801/chemo.sas7bdat",
+      "size": 1310720,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Recorded age",
+          "name": "AGEREC",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Call time",
+          "name": "CALLTM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Kit code",
+          "name": "KITCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Kit label",
+          "name": "KITLBL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Assigned kit number",
+          "name": "KITNUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Obsolete: Corrected kit number",
+          "name": "KITNUMCO",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Kit number reported by site",
+          "name": "KITRPTD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Randomization number",
+          "name": "RNNUM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Stratification label",
+          "name": "STRATLBL",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Stratification number",
+          "name": "STRATNUM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Stratification criteria X",
+          "name": "STRATX",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Stratification criteria Y",
+          "name": "STRATY",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Stratification criteria Z",
+          "name": "STRATZ",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Stratification X label",
+          "name": "STRAXLBL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Stratification Y label",
+          "name": "STRAYLBL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Stratification Z label",
+          "name": "STRAZLBL",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Treatment group code",
+          "name": "TRTCD",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Treatment group code for kit",
+          "name": "TRTKIT",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Treatment group label for kit",
+          "name": "TRTKITLB",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Treatment group label",
+          "name": "TRTLBL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Treatment group code for RandNo",
+          "name": "TRTRND",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Treatment group label for RandNo",
+          "name": "TRTRNDLB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Call day",
+          "name": "CALLDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Kit change day",
+          "name": "KITCHGDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age unit",
+          "name": "AGEUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Call type",
+          "name": "CALLTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Forced randomization",
+          "name": "RNFORCED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "CALLDY",
+          "KITCHGDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE",
+          "TRTCD",
+          "TRTKIT",
+          "TRTKITLB",
+          "TRTLBL",
+          "TRTRND",
+          "TRTRNDLB"
+        ],
+        "unit": [
+          "AGEUNIT"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 217,
+      "path": "dataFiles_801/clinph.sas7bdat",
+      "size": 294912,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Med dose",
+          "name": "CMDO",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Med dose-unit-frequency-route",
+          "name": "CMDOTX",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Who-drl code",
+          "name": "CMDRLCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Med frequency",
+          "name": "CMFQ",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Med modify term (entry field)",
+          "name": "CMMODIFY",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned time crf label",
+          "name": "CMPTMLBL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Med route",
+          "name": "CMRO",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Med term as reported (derived)",
+          "name": "CMTERM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Med dose unit",
+          "name": "CMUNIT",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Med coding workflow item",
+          "name": "CMWF",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Regimen number",
+          "name": "REGNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Med end day",
+          "name": "CMEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Med start day",
+          "name": "CMSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Conmed previously reported",
+          "name": "CMCONT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Mark if no med present",
+          "name": "CMOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Conmed ongoing",
+          "name": "CMON",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Conmed period of use (1)",
+          "name": "CMPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Conmed period of use (2)",
+          "name": "CMPE2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Conmed period of use (3)",
+          "name": "CMPE3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Conmed period of use (4)",
+          "name": "CMPE4",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Conmed period of use (5)",
+          "name": "CMPE5",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason/indication for med",
+          "name": "CMREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ongoing from previous collection",
+          "name": "CMSTAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "CMDRLCD"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "CMEDY",
+          "CMSDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE",
+          "REGNUM"
+        ],
+        "unit": [
+          "CMDOTX",
+          "CMUNIT"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 9892,
+      "path": "dataFiles_801/conmeds.sas7bdat",
+      "size": 10362880,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Calculated result",
+          "name": "CALCRES",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Result in original units",
+          "name": "ORGRES",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "If creatinine is abnormal",
+          "name": "CCNR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Laboratory test not applicable",
+          "name": "LBOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [
+          "ORGRES"
+        ],
+        "value": [
+          "CALCRES",
+          "ORGRES"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 3210,
+      "path": "dataFiles_801/creaclea.sas7bdat",
+      "size": 589824,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Calculated age",
+          "name": "AGE",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Recorded age",
+          "name": "AGEREC",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age unit",
+          "name": "AGEUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Region of the world",
+          "name": "REGION",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [
+          "AGEUNIT"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 217,
+      "path": "dataFiles_801/demo.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study comp/disc day",
+          "name": "DSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last dose day",
+          "name": "WDDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Primary reason for study discont",
+          "name": "DSREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject completed the study",
+          "name": "DSSTAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study comp/disc week, for Death",
+          "name": "DSWK",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "DSWK"
+        ],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "DSDY",
+          "WDDY",
+          "DSSTAT",
+          "RSUBJID",
+          "RUSUBJID",
+          "DSWK"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 216,
+      "path": "dataFiles_801/disposit.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "ECG actual time-24hr clock",
+          "name": "EGACTTM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "ECG finding",
+          "name": "EGFIND",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "ECG heart rate",
+          "name": "EGHR",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ECG day",
+          "name": "EGDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Interpretation clin signif abn",
+          "name": "EGINTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Same as visit date indicator",
+          "name": "SAMEDATE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "EGDY",
+          "SAMEDATE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 229,
+      "path": "dataFiles_801/ecg.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient on disability",
+          "name": "EMDIS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disability type",
+          "name": "EMDISTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Employment status",
+          "name": "EMSTAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "EMDIS"
+        ],
+        "time": [
+          "CYCLE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 560,
+      "path": "dataFiles_801/emplstat.sas7bdat",
+      "size": 196608,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 217,
+      "path": "dataFiles_801/enroll.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Subset key",
+          "name": "SBKEY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last menses day",
+          "name": "LSMENDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sterilization day",
+          "name": "SURGDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Childbearing potential",
+          "name": "CBPO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Method of contraception",
+          "name": "MTHCCP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason no childbearing potential",
+          "name": "NCBSTAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "LSMENDY",
+          "SURGDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 217,
+      "path": "dataFiles_801/ferccp.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "HER-2 Receptors Positive Value",
+          "name": "HER2POS",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Hormonal Receptor Type",
+          "name": "HRRECTYP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Horm recept day - from date derived",
+          "name": "HRDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Estrogen receptors",
+          "name": "HRESTREC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Progesterone receptors",
+          "name": "HRPROREC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Hormonal Receptor Status",
+          "name": "HRRECSTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "HRDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": [
+          "HER2POS"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 1059,
+      "path": "dataFiles_801/hormrec.sas7bdat",
+      "size": 327680,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Body mass index (reported)",
+          "name": "BMI",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Body mass index (derived)",
+          "name": "BMIDV",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Body surface area (reported)",
+          "name": "BSA",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Body surface area sq meter (drv)",
+          "name": "BSADV",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Height (reported)",
+          "name": "HT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Height in centimeters (derived)",
+          "name": "HTDV",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Actual time (24hr clock)",
+          "name": "HTWTTM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned dose reference",
+          "name": "HWPRFDO",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned start time (elapsed)",
+          "name": "HWPTM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned end time (elapsed)",
+          "name": "HWPTME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned time crf label",
+          "name": "HWPTMLBL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Subset key",
+          "name": "SBKEY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Weight (reported)",
+          "name": "WT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Weight in kilograms (derived)",
+          "name": "WTDV",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Weight estimated",
+          "name": "WTEST",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation day",
+          "name": "HTWTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Body surface area units",
+          "name": "BSAUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Frame",
+          "name": "FRAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Height unit",
+          "name": "HTUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned ref event qualifier",
+          "name": "HWPRFEQ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned reference event",
+          "name": "HWPRFET",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Same as visit date indicator",
+          "name": "SAMEDATE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Weight unit",
+          "name": "WTUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "HWPRFEQ",
+          "HWPRFET"
+        ],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "HTWTDY",
+          "SAMEDATE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [
+          "BSAUNIT",
+          "HTUNIT",
+          "WTUNIT"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1720,
+      "path": "dataFiles_801/htwt.sas7bdat",
+      "size": 917504,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Criterion number per protocol",
+          "name": "CRNUM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Subset key",
+          "name": "SBKEY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Waiver day",
+          "name": "WAIVERDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subj meet all incl/excl criteria",
+          "name": "INEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Waiver obtained",
+          "name": "WAIVER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "WAIVERDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 225,
+      "path": "dataFiles_801/incexc.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time consent obtain (24hr clock)",
+          "name": "IFCNTM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Subset key",
+          "name": "SBKEY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day consent obtained",
+          "name": "IFCNDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Consent obtained from",
+          "name": "CNOTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 218,
+      "path": "dataFiles_801/infcon.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Signature day",
+          "name": "INVSIGDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Investigator signature indicator",
+          "name": "INVSIG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "INVSIGDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 215,
+      "path": "dataFiles_801/invsig.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Signature day",
+          "name": "INVSIGDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Investigator signature indicator",
+          "name": "INVSIG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "INVSIGDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 216,
+      "path": "dataFiles_801/invsigs.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Number of Emergency Room visits",
+          "name": "ERVSNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Number of Gen Practitioner visit",
+          "name": "GPVSNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Number of Nurse visits",
+          "name": "NURVSNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Number of Other Physician visits",
+          "name": "ODRVSNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Number of Oth health prof visits",
+          "name": "OHPVSNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Number of Onco/Internist visits",
+          "name": "OIVSNUM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Number of Physiotherapy visits",
+          "name": "PTXVSNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Number of Rehabilitation visits",
+          "name": "RHBVSNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Admission/Transfer - day",
+          "name": "IPAODY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Discharge/Transfer - day",
+          "name": "IPDCDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Physician visits not applicable",
+          "name": "DROCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Emerg room visits not applicable",
+          "name": "EROCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Seen by General Practioner?",
+          "name": "GPVS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Admission/Transfer - ongoing",
+          "name": "IPAOON",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for Admission",
+          "name": "IPAOREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Admission Unit",
+          "name": "IPAOU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Discharge/Transfer - ongoing",
+          "name": "IPDCON",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Patient admitted to hospital?",
+          "name": "IPHOAO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Any major procedures performed?",
+          "name": "IPHOPROC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Seen by Nurse?",
+          "name": "NURVS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Seen by Other Physician?",
+          "name": "ODRVS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Other health prof not applicable",
+          "name": "OHPOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Seen by Other health prof?",
+          "name": "OHPVS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Seen by Oncologist/Internist?",
+          "name": "OIVS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Were there Out-patient visits?",
+          "name": "OPVS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Any major procedures performed?",
+          "name": "PROCPERF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Seen by Physiotherapy prof?",
+          "name": "PTXVS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Seen by Rehabilitation prof?",
+          "name": "RHBVS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "IPHOPROC",
+          "PROCPERF"
+        ],
+        "endpoint": [
+          "IPHOAO"
+        ],
+        "patient": [
+          "IPHOAO",
+          "OPVS"
+        ],
+        "time": [
+          "CYCLE",
+          "IPAODY",
+          "IPDCDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [
+          "IPAOU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2429,
+      "path": "dataFiles_801/ipopcare.sas7bdat",
+      "size": 1441792,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LBTEST",
+          "n_unique": 29,
+          "values": [
+            "Albumin",
+            "Alkaline phosphatase",
+            "Basophils",
+            "Blood urea nitrogen",
+            "Calcium",
+            "Creatinine",
+            "Eosinophils",
+            "Glucose (random)",
+            "Hematocrit",
+            "Hemoglobin",
+            "International normalized ratio",
+            "Leukocytes",
+            "Lymphocytes",
+            "Monocytes",
+            "Neutrophils",
+            "Partial thromboplastin time",
+            "pH",
+            "Platelets",
+            "Potassium",
+            "Prothrombin time subject",
+            "Serum phosphate",
+            "SGOT",
+            "SGPT",
+            "Sodium",
+            "Total bilirubin",
+            "Total protein",
+            "Urea",
+            "Urine glucose",
+            "Urine protein"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Specimen collect time 24hr clock",
+          "name": "LBACTTM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Data file identification",
+          "name": "LBDFID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned dose reference",
+          "name": "LBPRFDO",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned start time (elapsed)",
+          "name": "LBPTM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned end time (elapsed)",
+          "name": "LBPTME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned time crf label",
+          "name": "LBPTMLBL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Lab sample id/accession id",
+          "name": "LBSMNUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Lab sample comment",
+          "name": "LBSMTX",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Result in original units",
+          "name": "ORGRES",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Subset key",
+          "name": "SBKEY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Norm Rng char result std unit",
+          "name": "STDNRC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Norm Rng upper limit std unit SI",
+          "name": "STDNRHI",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Norm Rng lower limit std unit SI",
+          "name": "STDNRLO",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Analysis char result std unit",
+          "name": "STDRESC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Analysis numeric result std unit",
+          "name": "STDRESN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Norm Rng char result orig unit",
+          "name": "ORGNRC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Norm Rng upper limit orig unit",
+          "name": "ORGNRHI",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Norm Rng lower limit orig unit",
+          "name": "ORGNRLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Normal range indicator",
+          "name": "NRIND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Specimen collect day",
+          "name": "LBDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day results reported by lab",
+          "name": "LBRPTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sample taken fasting",
+          "name": "LBFAST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned ref event qualifier",
+          "name": "LBPRFEQ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned reference event",
+          "name": "LBPRFET",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Retransmission flag",
+          "name": "LBRETFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab test name",
+          "name": "LBTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test methodology",
+          "name": "LBTSMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test panel",
+          "name": "LBTSPA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Original unit",
+          "name": "ORGUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Same as previous lab indicator",
+          "name": "SAMELAB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Standard unit (SI)",
+          "name": "STDUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified lab id",
+          "name": "RANDLBID",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LBTEST"
+        ],
+        "ecog": [],
+        "endpoint": [
+          "LBPRFEQ",
+          "LBPRFET"
+        ],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "LBDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [
+          "ORGRES",
+          "STDNRC",
+          "STDNRHI",
+          "STDNRLO",
+          "STDRESC",
+          "STDRESN",
+          "ORGNRC",
+          "ORGNRHI",
+          "ORGNRLO",
+          "ORGUNIT",
+          "STDUNIT"
+        ],
+        "value": [
+          "ORGRES",
+          "STDNRC",
+          "STDRESC",
+          "STDRESN",
+          "ORGNRC",
+          "LBRPTDY"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 133814,
+      "path": "dataFiles_801/labs.sas7bdat",
+      "size": 150847488,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Medical/surg hx (reported term)",
+          "name": "MHTERM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Subset key",
+          "name": "SBKEY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Level of imputation, Medhist start date",
+          "name": "MHSDTIMP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Level of imputation, Medhist end date",
+          "name": "MHEDTIMP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Med/sur hx end day",
+          "name": "MHEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Medical hx start day",
+          "name": "MHSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Mark if no relevant med/surg hx",
+          "name": "MHOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Medical history status",
+          "name": "MHSTAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "MHSDTIMP",
+          "MHEDTIMP",
+          "MHEDY",
+          "MHSDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 855,
+      "path": "dataFiles_801/medhist.sas7bdat",
+      "size": 327680,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Neurological exam type",
+          "name": "NEEXAM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned dose reference",
+          "name": "NEPRFDO",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Planned ref event qualifier",
+          "name": "NEPRFEQ",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Planned reference event",
+          "name": "NEPRFET",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Planned start time (elapsed)",
+          "name": "NEPTM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned end time (elapsed)",
+          "name": "NEPTME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned time crf label",
+          "name": "NEPTMLBL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Other NE exam - specify",
+          "name": "NETX",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day neuro exam - from date derived",
+          "name": "NEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Neurological exam result",
+          "name": "NERESULT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sensory symptom response",
+          "name": "NESYMPYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Same as visit date indicator",
+          "name": "SAMEDATE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "NEPRFEQ",
+          "NEPRFET"
+        ],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "NEDY",
+          "SAMEDATE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": [
+          "NERESULT"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 1720,
+      "path": "dataFiles_801/neuroexm.sas7bdat",
+      "size": 786432,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LBTEST",
+          "n_unique": 25,
+          "values": [
+            "Albumin",
+            "Alkaline phosphatase",
+            "Blood urea nitrogen",
+            "Calcium",
+            "Glucose (fasting)",
+            "Glucose (random)",
+            "Hematocrit",
+            "Hemoglobin",
+            "International normalized ratio",
+            "Leukocytes",
+            "Lymphocytes",
+            "Neutrophils",
+            "Partial thromboplastin time",
+            "pH",
+            "Platelets",
+            "Potassium",
+            "Protein",
+            "Prothrombin time subject",
+            "Serum phosphate",
+            "SGOT",
+            "SGPT",
+            "Sodium",
+            "Total bilirubin",
+            "Total protein",
+            "Urine glucose"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Upper limit of age range",
+          "name": "AGEMAX",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Lower limit of age range",
+          "name": "AGEMN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Norm Rng char result orig unit",
+          "name": "ORGNRC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Norm Rng upper limit orig unit",
+          "name": "ORGNRHI",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Norm Rng lower limit orig unit",
+          "name": "ORGNRLO",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Norm Rng char result std unit",
+          "name": "STDNRC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Norm Rng upper limit std unit SI",
+          "name": "STDNRHI",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Norm Rng lower limit std unit SI",
+          "name": "STDNRLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age unit",
+          "name": "AGEUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab test name",
+          "name": "LBTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test methodology",
+          "name": "LBTSMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test panel",
+          "name": "LBTSPA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Original unit",
+          "name": "ORGUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Population (code)",
+          "name": "POTERMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Stage of life",
+          "name": "STAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Standard unit (SI)",
+          "name": "STDUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified lab id",
+          "name": "RANDLBID",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LBTEST"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [
+          "ORGNRC",
+          "ORGNRHI",
+          "ORGNRLO",
+          "STDNRC",
+          "STDNRHI",
+          "STDNRLO",
+          "AGEUNIT",
+          "ORGUNIT",
+          "STDUNIT"
+        ],
+        "value": [
+          "ORGNRC",
+          "STDNRC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 72,
+      "path": "dataFiles_801/normals.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LBTEST",
+          "n_unique": 30,
+          "values": [
+            "Albumin",
+            "Alkaline phosphatase",
+            "Basophils",
+            "Blood urea nitrogen",
+            "Calcium",
+            "Creatinine",
+            "Creatinine clearance",
+            "Eosinophils",
+            "Glucose (random)",
+            "Hematocrit",
+            "Hemoglobin",
+            "International normalized ratio",
+            "Leukocytes",
+            "Lymphocytes",
+            "Monocytes",
+            "Neutrophils",
+            "Partial thromboplastin time",
+            "pH",
+            "Platelets",
+            "Potassium",
+            "Prothrombin time subject",
+            "Serum phosphate",
+            "SGOT",
+            "SGPT",
+            "Sodium",
+            "Total bilirubin",
+            "Total protein",
+            "Urea",
+            "Urine glucose",
+            "Urine protein"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Upper limit of age range",
+          "name": "AGEMAX",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Lower limit of age range",
+          "name": "AGEMN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Norm Rng char result orig unit",
+          "name": "ORGNRC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Norm Rng upper limit orig unit",
+          "name": "ORGNRHI",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Norm Rng lower limit orig unit",
+          "name": "ORGNRLO",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Norm Rng char result std unit",
+          "name": "STDNRC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Norm Rng upper limit std unit SI",
+          "name": "STDNRHI",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Norm Rng lower limit std unit SI",
+          "name": "STDNRLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age unit",
+          "name": "AGEUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab test name",
+          "name": "LBTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test methodology",
+          "name": "LBTSMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test panel",
+          "name": "LBTSPA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Original unit",
+          "name": "ORGUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Population (code)",
+          "name": "POTERMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Stage of life",
+          "name": "STAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Standard unit (SI)",
+          "name": "STDUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified lab id",
+          "name": "RANDLBID",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LBTEST"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [
+          "ORGNRC",
+          "ORGNRHI",
+          "ORGNRLO",
+          "STDNRC",
+          "STDNRHI",
+          "STDNRLO",
+          "AGEUNIT",
+          "ORGUNIT",
+          "STDUNIT"
+        ],
+        "value": [
+          "ORGNRC",
+          "STDNRC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 11555,
+      "path": "dataFiles_801/normals2.sas7bdat",
+      "size": 5963776,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Diluting solution",
+          "name": "OADILSOL",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Dose given per administration",
+          "name": "OADOSE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Frequency of dosing",
+          "name": "OADOSFRQ",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Intended Dose",
+          "name": "OADOSINT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Total daily dose given",
+          "name": "OADOSTOT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Dose unit",
+          "name": "OADOUNIT",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "End time of dose - 24 hr clock",
+          "name": "OAETM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Dosage form at this exposure",
+          "name": "OAFORM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned time crf label",
+          "name": "OAPTMLBL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Route of admin at this exposure",
+          "name": "OAROUTE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Start time of dose - 24 hr clock",
+          "name": "OASTM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Nb of Tablets taken-lower dose",
+          "name": "OATABMN",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Nb of Tablets taken-higher dose",
+          "name": "OATABMX",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Total Dose unit",
+          "name": "OATDOSUN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Numeric assignment from random",
+          "name": "OATRTCD",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Sequence of treatment identifier",
+          "name": "OATRTGRP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Active treatment received",
+          "name": "OATRTNM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Subset key",
+          "name": "SBKEY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Act end dose day - from date derived",
+          "name": "OAEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Act start day - from date derived",
+          "name": "OASDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment delayed",
+          "name": "OADELAY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason treatment delayed",
+          "name": "OADEREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Infusion completed per schedule",
+          "name": "OAINCP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose increased?",
+          "name": "OAINCR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for dose increased",
+          "name": "OAINCREA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason infusion not per schedule",
+          "name": "OAINREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose interrupted",
+          "name": "OAINTER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason dose interrupted",
+          "name": "OAITREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not applicable",
+          "name": "OANA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose omitted",
+          "name": "OAOMIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for dose omission",
+          "name": "OAOMREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose reduced yes/no",
+          "name": "OAREDUCE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason dose reduced",
+          "name": "OAREREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Administration site",
+          "name": "OASITE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "OAOMIT"
+        ],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "OAEDY",
+          "OASDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE",
+          "OATRTCD",
+          "OATRTGRP",
+          "OATRTNM",
+          "OADELAY",
+          "OADEREAS"
+        ],
+        "unit": [
+          "OADOUNIT",
+          "OATDOSUN"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 5144,
+      "path": "dataFiles_801/oncadmin.sas7bdat",
+      "size": 6815744,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Cause of death code",
+          "name": "DECAUSCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Death not applicable",
+          "name": "DEOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Week of Death",
+          "name": "DEATHWK",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "DECAUSCD",
+          "DEOCCUR",
+          "DEATHWK"
+        ],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "RSUBJID",
+          "RUSUBJID",
+          "DEATHWK"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 211,
+      "path": "dataFiles_801/oncdeath.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day assessed - from date derived",
+          "name": "OPDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Type of procedure",
+          "name": "OPTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "OPDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 373,
+      "path": "dataFiles_801/othproc.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Overall response",
+          "name": "OVRSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1894,
+      "path": "dataFiles_801/ovrsp.sas7bdat",
+      "size": 327680,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Percent Change from Base-Bone",
+          "name": "B_PCBSLD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Percent Change from Nadir-Bone",
+          "name": "B_PCNSLD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Sum of the longest diameter-Bone",
+          "name": "B_SLD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Comment 5",
+          "name": "GCOM5",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Percent Change from Base-NBone",
+          "name": "NB_PCBSL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Percent Change from Nadir-NBone",
+          "name": "NB_PCNSL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Sum of the longest diamet-NBone",
+          "name": "NB_SLD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "New lesions",
+          "name": "NEWLES",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Overall response - specify",
+          "name": "ORTX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Overall Response Criteria",
+          "name": "OVRSCRIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Percent Change from Baseline",
+          "name": "PCBSLD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Percent Change from Nadir",
+          "name": "PCNSLD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Type of person",
+          "name": "REVTYPE",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "First response",
+          "name": "RPFRE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Sum of the longest diameters",
+          "name": "SLD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned clinical encounter",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Integrated Resp-Bone",
+          "name": "B_INTRS1_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Best Overall Resp-Bone",
+          "name": "B_OVRSP1_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Overall Response-Bone",
+          "name": "B_OVRSPD_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Disease Progression-Bone",
+          "name": "B_RPDPDT_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of First Response-Bone",
+          "name": "B_RPFRED_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Integrated Response",
+          "name": "INTRSPDT_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Integrated Resp-NBone",
+          "name": "NB_INTR1_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Best Overall Resp-NBone",
+          "name": "NB_OVRS2_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Overall Response-NBone",
+          "name": "NB_OVRS3_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Disease Progress-NBone",
+          "name": "NB_RPDPD_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of First Response-NBone",
+          "name": "NB_RPFRE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Overall Response",
+          "name": "OVRSPDT_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Best Overall Response",
+          "name": "OVRSPBDT_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Disease Progression",
+          "name": "RPDPDT_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of First Response",
+          "name": "RPFREDT_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Integrated Response-Bone",
+          "name": "B_INTRSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Over NonTarget lesion resp-Bone",
+          "name": "B_ORNTL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Overall Target lesion resp-Bone",
+          "name": "B_ORTL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Overall Response-Bone",
+          "name": "B_OVRSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Best Overall Response-Bone",
+          "name": "B_OVRSPB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease Progression-Bone",
+          "name": "B_RPDP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Integrated Response",
+          "name": "INTRSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Integrated Response-NBone",
+          "name": "NB_INTRS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Over NonTarget lesion resp-NBone",
+          "name": "NB_ORNTL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Overall Target lesion resp-NBone",
+          "name": "NB_ORTL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Best Overall Response-NBone",
+          "name": "NB_OVRS1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Overall Response-NBone",
+          "name": "NB_OVRSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease Progression-NBone",
+          "name": "NB_RPDP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Overall resp non-target lesion",
+          "name": "ORNTL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Film reader",
+          "name": "ORREADR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response of target lesion",
+          "name": "ORTL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Overall response",
+          "name": "OVRSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Best Overall Response",
+          "name": "OVRSPB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease Progression",
+          "name": "RPDP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 878,
+      "path": "dataFiles_801/ovrspirc.sas7bdat",
+      "size": 1376256,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last contact day - from date derived",
+          "name": "PFDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Patient status",
+          "name": "PFPTSTAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Source of patient status inform",
+          "name": "PFSOURCE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Stdy week Last contact,when status Dead",
+          "name": "PFWK",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "PFSOURCE"
+        ],
+        "patient": [
+          "PFPTSTAT",
+          "PFSOURCE"
+        ],
+        "time": [
+          "CYCLE",
+          "PFDY",
+          "RSUBJID",
+          "RUSUBJID",
+          "PFWK"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 466,
+      "path": "dataFiles_801/pafustat.sas7bdat",
+      "size": 196608,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Type of evaluation",
+          "name": "PWEVTYP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Label of Method of evaluation",
+          "name": "PWMTHLB",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Other method of eval - specify",
+          "name": "PWMTHSP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Site Assessed",
+          "name": "PWSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Evaluation comment",
+          "name": "PWTX",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Type of person",
+          "name": "REVTYPE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Reconstruction interval",
+          "name": "RI",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Sequence number char",
+          "name": "SEQNUC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Planned clinical encounter",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day assessed - from date derived",
+          "name": "PWDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Method of evaluation",
+          "name": "PWMTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Patient workup eval not done",
+          "name": "PWND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Tumor involvement yes/no",
+          "name": "PWTUMINV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "PWND"
+        ],
+        "time": [
+          "CYCLE",
+          "PWDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 3233,
+      "path": "dataFiles_801/patwkirc.sas7bdat",
+      "size": 1769472,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Type of evaluation",
+          "name": "PWEVTYP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Other method of eval - specify",
+          "name": "PWMTHTX",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Site Assessed",
+          "name": "PWSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Evaluation comment",
+          "name": "PWTX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day assessed - from date derived",
+          "name": "PWDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Method of evaluation",
+          "name": "PWMTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Patient workup eval not done",
+          "name": "PWND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Tumor involvement yes/no",
+          "name": "PWTUMINV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "PWND"
+        ],
+        "time": [
+          "CYCLE",
+          "PWDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 8031,
+      "path": "dataFiles_801/patwork.sas7bdat",
+      "size": 3014656,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Performance status",
+          "name": "PSSTAT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "WHO Performance status",
+          "name": "PSWHOST",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Subset key",
+          "name": "SBKEY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day performed - from date derived",
+          "name": "PSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Performance status not applic",
+          "name": "PSNA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Same as visit date indicator",
+          "name": "SAMEDATE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "PSSTAT",
+          "PSWHOST",
+          "PSDY",
+          "PSNA"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "PSDY",
+          "SAMEDATE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1720,
+      "path": "dataFiles_801/perfstat.sas7bdat",
+      "size": 327680,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Subset key",
+          "name": "SBKEY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Specimen collect day",
+          "name": "PGSMDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Pregnancy test result",
+          "name": "PGRES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Pregnancy test type",
+          "name": "PGTSTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Same as visit date indicator",
+          "name": "SAMEDATE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "PGSMDY",
+          "SAMEDATE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": [
+          "PGRES"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 217,
+      "path": "dataFiles_801/preg.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "EQ5D linear health scale result",
+          "name": "EYLHEALR",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Assessment day",
+          "name": "EYDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "EQ5D anxiety depression result",
+          "name": "EYANXR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "EQ5D mobility result",
+          "name": "EYMOBR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "EQ5D pain result",
+          "name": "EYPAINR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "EQ5D self care result",
+          "name": "EYSELFR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "EQ5D usual activities result",
+          "name": "EYUSACTR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "EYDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": [
+          "EYLHEALR",
+          "EYANXR",
+          "EYMOBR",
+          "EYPAINR",
+          "EYSELFR",
+          "EYUSACTR"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 2391,
+      "path": "dataFiles_801/qoleq5d.sas7bdat",
+      "size": 786432,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "QOL question description",
+          "name": "QCDDESC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "QOL numeric overall result",
+          "name": "QCOVER",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "QOL question group",
+          "name": "QCQGRP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "QOL question identifier",
+          "name": "QCQID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Subset key",
+          "name": "SBKEY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "QOL day",
+          "name": "QCDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "QOL numeric result",
+          "name": "QCRESN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "QCDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": [
+          "QCOVER",
+          "QCRESN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 67990,
+      "path": "dataFiles_801/qolgen.sas7bdat",
+      "size": 36044800,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "QOL completion day",
+          "name": "QOLDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Questionnaire Completed?",
+          "name": "QOLCP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary reason not completed",
+          "name": "QOLREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "QOLDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 3279,
+      "path": "dataFiles_801/qolq.sas7bdat",
+      "size": 589824,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Kit number",
+          "name": "KITNUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Open label treatment arm",
+          "name": "OLBLTRT",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Randomization number",
+          "name": "RNNUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Randomization time",
+          "name": "RNTM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Subset key",
+          "name": "SBKEY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Randomization day",
+          "name": "RNDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "RNDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE",
+          "OLBLTRT"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 217,
+      "path": "dataFiles_801/random.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease Progression day",
+          "name": "RPDPDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Response day",
+          "name": "RPFREDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Mark if not applicable",
+          "name": "RPOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "RPDPDY",
+          "RPFREDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 431,
+      "path": "dataFiles_801/response.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Last dose day",
+          "name": "WDDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary reason tx discontinued",
+          "name": "REASWD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject completed all study tx",
+          "name": "WDYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "WDDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 215,
+      "path": "dataFiles_801/smw.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Disease site other - specify",
+          "name": "DSSITETX",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Site of death - specify",
+          "name": "ODSITETX",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Autopsy performed no/yes",
+          "name": "AUTOPSY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Drug treatment toxicity",
+          "name": "DRTOX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease site at autopsy 1",
+          "name": "DSSITE1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease site at autopsy 2",
+          "name": "DSSITE2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease site at autopsy 3",
+          "name": "DSSITE3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease site at autopsy 4",
+          "name": "DSSITE4",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease site at autopsy 5",
+          "name": "DSSITE5",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease site at autopsy 6",
+          "name": "DSSITE6",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease site at autopsy 7",
+          "name": "DSSITE7",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Site of death (location)",
+          "name": "ODLOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Source of info 1",
+          "name": "SOURCE1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Source of info 2",
+          "name": "SOURCE2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Source of info 3",
+          "name": "SOURCE3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Source of info 4",
+          "name": "SOURCE4",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Source of info 5",
+          "name": "SOURCE5",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Source of info 6",
+          "name": "SOURCE6",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "AUTOPSY"
+        ],
+        "endpoint": [
+          "ODSITETX",
+          "ODLOC"
+        ],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE",
+          "DRTOX"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 211,
+      "path": "dataFiles_801/source.sas7bdat",
+      "size": 262144,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Nb of days patient missed usual",
+          "name": "DDLOSOTH",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Nb of days patient missed work",
+          "name": "DDLOSWRK",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "No loss of days of work occured",
+          "name": "LOSOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "DDLOSOTH",
+          "DDLOSWRK"
+        ],
+        "time": [
+          "CYCLE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 560,
+      "path": "dataFiles_801/timeloss.sas7bdat",
+      "size": 196608,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Image Number",
+          "name": "IMAGENO",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Type of person",
+          "name": "REVTYPE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Sequence number char",
+          "name": "SEQNUC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Measurement of target lesion",
+          "name": "TALESMES",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Lesion number",
+          "name": "TALESNUM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Lesion Measurement",
+          "name": "TAMEAS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Measurement other - specify",
+          "name": "TAMTHTX",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Lesion number",
+          "name": "TANUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Label of the lesion site code",
+          "name": "TASITELB",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Description of subsite",
+          "name": "TASUBSIT",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned clinical encounter",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Assessment day - from date derived",
+          "name": "TADY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Measurement method",
+          "name": "TAMTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Tumor assessment not done",
+          "name": "TAND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Measureability recist criteria",
+          "name": "TAREMES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response non-target lesion",
+          "name": "TARSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Location of lesions code",
+          "name": "TASITECD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "TADY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 4293,
+      "path": "dataFiles_801/tumasirc.sas7bdat",
+      "size": 2686976,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Measurement of target lesion",
+          "name": "TALESMES",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Lesion number",
+          "name": "TALESNUM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Measurement of target lesion",
+          "name": "TAMEAS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Measurement other - specify",
+          "name": "TAMTHTX",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Lesion number",
+          "name": "TANUM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Assessment day - from date derived",
+          "name": "TADY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Measurement method",
+          "name": "TAMTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Tumor assessment not done",
+          "name": "TAND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Patient did not have non target",
+          "name": "TAOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Measureability recist criteria",
+          "name": "TAREMES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response non-target lesion",
+          "name": "TARSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Location of lesions code",
+          "name": "TASITECD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "TAOCCUR"
+        ],
+        "time": [
+          "CYCLE",
+          "TADY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 7283,
+      "path": "dataFiles_801/tumasses.sas7bdat",
+      "size": 2686976,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Regimen number",
+          "name": "REGNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Who-drl code",
+          "name": "TTDRLCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Med modify term (entry field)",
+          "name": "TTMODIFY",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Med term as reported (derived)",
+          "name": "TTREGDR",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Site/procedure",
+          "name": "TTSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Med coding workflow item",
+          "name": "TTWF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy end day - from date derived",
+          "name": "TTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Relapse/Progression Day",
+          "name": "TTRELDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Therapy start day - from date derived",
+          "name": "TTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Intent",
+          "name": "INTENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Previously reported",
+          "name": "TTCONT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Further therapy occurred",
+          "name": "TTOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ongoing",
+          "name": "TTON",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for Anti-Tumor Discont",
+          "name": "TTREADIS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Best response",
+          "name": "TTRSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy type",
+          "name": "TTTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "TTDRLCD"
+        ],
+        "endpoint": [
+          "TTEDY"
+        ],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "TTEDY",
+          "TTRELDY",
+          "TTSDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE",
+          "REGNUM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 890,
+      "path": "dataFiles_801/tumther.sas7bdat",
+      "size": 786432,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Diastolic blood pressure",
+          "name": "DIABP",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Heart rate",
+          "name": "HR",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Pulse rate",
+          "name": "PR",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Respiratory rate",
+          "name": "RESP",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Sequence number",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Systolic blood pressure",
+          "name": "SYSBP",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Temperature",
+          "name": "TEMP",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Temperature in celsius (derived)",
+          "name": "TEMPDV",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Clock time of vital signs exam",
+          "name": "VSATMCL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned dose reference",
+          "name": "VSPRFDO",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Planned ref event qualifier",
+          "name": "VSPRFEQ",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Planned reference event",
+          "name": "VSPRFET",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Planned start time (elapsed)",
+          "name": "VSPTM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned end time (elapsed)",
+          "name": "VSPTME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Planned time crf label",
+          "name": "VSPTMLBL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vital signs day",
+          "name": "VSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Blood pressure position",
+          "name": "BPPOS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Heart rate method",
+          "name": "HRMTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Respiration rate unit",
+          "name": "RESPUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Same as visit date indicator",
+          "name": "SAMEDATE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Temperature source",
+          "name": "TEMPSO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Temperature unit",
+          "name": "TEMPUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Position measurement taken",
+          "name": "VSPOS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "VSPRFEQ",
+          "VSPRFET"
+        ],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "VSDY",
+          "SAMEDATE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [
+          "RESPUNIT",
+          "TEMPUNIT"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1720,
+      "path": "dataFiles_801/vital.sas7bdat",
+      "size": 917504,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit day",
+          "name": "VISDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "VISDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2329,
+      "path": "dataFiles_801/vsdt.sas7bdat",
+      "size": 262144,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Subset key",
+          "name": "SBKEY",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Waiver criterion number 1",
+          "name": "WACRNUM1",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Waiver Criterion Number 2",
+          "name": "WACRNUM2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Waiver Criterion Number 3",
+          "name": "WACRNUM3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Waiver Criterion Number 4",
+          "name": "WACRNUM4",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Waiver Request Day",
+          "name": "WAREQDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Interference",
+          "name": "WAANALY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Benefit Risk Impact",
+          "name": "WARATIO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Waiver Submission Required",
+          "name": "WASUBMIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "WAREQDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 31,
+      "path": "dataFiles_801/waiver.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Treatment cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Page number",
+          "name": "PAGENUM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Project code",
+          "name": "PROJCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Invest Waiver Sign Day",
+          "name": "WSINVDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Med Exp Waiver Sign day",
+          "name": "WSMEDDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluation not done",
+          "name": "EVALND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Waiver Granted Y/N",
+          "name": "WSGRANT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Invest Waiver Sign Y/N",
+          "name": "WSINVSIG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Med Expert Waiver Sign Y/N",
+          "name": "WSMEDSIG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE",
+          "WSINVDY",
+          "WSMEDDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CYCLE"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 31,
+      "path": "dataFiles_801/waivsig.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    }
+  ]
+}

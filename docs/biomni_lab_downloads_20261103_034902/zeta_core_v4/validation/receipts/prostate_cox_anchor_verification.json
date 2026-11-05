@@ -1,0 +1,96 @@
+{
+  "analysis": "recompute_frozen_tax327_venice_os_anchor",
+  "analysis_counts": [
+    {
+      "events": 77,
+      "n": 166,
+      "trial": "TAX327"
+    },
+    {
+      "events": 296,
+      "n": 446,
+      "trial": "VENICE"
+    }
+  ],
+  "core_keys_compared": [
+    "flow",
+    "trial_specific",
+    "external_only",
+    "all_cohort",
+    "fixed_effect_meta",
+    "promotion",
+    "rank_transform",
+    "landmark_weeks",
+    "model",
+    "rate_feature",
+    "rate_units",
+    "boundaries"
+  ],
+  "credentials_persisted": false,
+  "frozen_receipt_hash_expected": "21f3a2674368b4d95e3d1e283466fb511fa87bcb4be12354383f6b23d248e9c2",
+  "frozen_receipt_hash_valid": true,
+  "generated_utc": "2026-08-12T06:56:30.778472+00:00",
+  "mismatches": [],
+  "n_mismatches": 0,
+  "numeric_absolute_tolerance": 1e-12,
+  "passed": true,
+  "patient_level_data_persisted": false,
+  "recomputed_primary_results": {
+    "all_cohort_z_rank": {
+      "HR": 0.8416982786956889,
+      "ci_high": 0.929746427500396,
+      "ci_low": 0.761988399637044,
+      "coef": -0.17233366779973933,
+      "p": 0.0006863292321327803,
+      "se": 0.05076127927341066,
+      "z": -3.394982755881995
+    },
+    "external_only_z_rank": {
+      "HR": 0.8413191567940249,
+      "ci_high": 0.9403600722668988,
+      "ci_low": 0.7527094614749995,
+      "coef": -0.17278419421744848,
+      "p": 0.0023430274966805002,
+      "se": 0.05678256010479415,
+      "z": -3.04290954649754
+    },
+    "fixed_effect_meta": {
+      "HR": 0.8449434943250309,
+      "I2_pct": 0.0,
+      "Q": 0.03082642419886752,
+      "Q_df": 1,
+      "Q_p": 0.8606281943259352,
+      "ci_high": 0.9341961539616327,
+      "ci_low": 0.7642179916655005,
+      "coef": -0.16848552448216803,
+      "p": 0.0010068221701408009,
+      "se": 0.051232998279100196,
+      "trials": [
+        "TAX327",
+        "VENICE"
+      ],
+      "z": -3.2886133964738
+    },
+    "promotion": {
+      "checks": {
+        "all_cohort_hr_lt_1_p_lt_0p05": true,
+        "epv_ge_10": true,
+        "external_direction_consistent": true,
+        "external_hr_lt_1_p_lt_0p05": true,
+        "heterogeneity_acceptable": true,
+        "influence_diagnostics_passed": true,
+        "os_sanity_passed": true,
+        "rank_ph_ok": true
+      },
+      "label": "ALGORITHM-VALIDATED (prostate PSA proxy, OS-anchored, early-decline population)",
+      "passed": true,
+      "verdict": "ALGORITHM_VALIDATED_PROSTATE_PSA_PROXY_OS_ANCHORED_EARLY_DECLINE"
+    }
+  },
+  "schema_version": "zeta_core_v4_prostate_cox_anchor_verification_v1",
+  "source_sha256": {
+    "analysis_cohort": "5c4220c24b1d056c0b61d045f6f45f22d13a9effc90570f8ee67f1b33b62011f",
+    "frozen_receipt": "21f3a2674368b4d95e3d1e283466fb511fa87bcb4be12354383f6b23d248e9c2",
+    "reference_script": "25521a5d5545b5e5aa973648b15ed688ba69895657fec3c9d4a3eff59b853cd7"
+  }
+}

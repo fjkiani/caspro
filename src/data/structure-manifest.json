@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-04-28",
   "anchor": "brain-met cascade + BrM ranker targets (29 canonical genes)",
-  "coverage": "28/29 AF DB + 1 PDB fallback",
+  "coverage": "31 genes — BrM 29 + AK case MBD4/PDGFRA/WEE1 AFDB WT",
   "lowConfidenceThreshold": 70,
   "structures": {
     "ABL1": {
@@ -208,6 +208,18 @@
       ],
       "residueRange": "4754-4911"
     },
+    "MBD4": {
+      "gene": "MBD4",
+      "uniprot": "O95243",
+      "aa": 580,
+      "plddt": null,
+      "source": "AF DB",
+      "entryId": "AF-O95243-F1",
+      "modelPath": "/models/afdb/O95243.pdb",
+      "paeImageUrl": "https://alphafold.ebi.ac.uk/files/AF-O95243-F1-predicted_aligned_error_v6.png",
+      "name": "Methyl-CpG-binding domain protein 4",
+      "note": "AK case WT monomer (AFDB). Truncation mutant AF2 fold pending structural/AK_case/structures."
+    },
     "MMP2": {
       "gene": "MMP2",
       "uniprot": "P08253",
@@ -251,6 +263,18 @@
       "modelPath": "/models/afdb/P42336.pdb",
       "paeImageUrl": "https://alphafold.ebi.ac.uk/files/AF-P42336-F1-predicted_aligned_error_v6.png",
       "name": "Phosphatidylinositol 4,5-bisphosphate 3-kinase catalytic subunit alpha isoform"
+    },
+    "PDGFRA": {
+      "gene": "PDGFRA",
+      "uniprot": "P16234",
+      "aa": 1089,
+      "plddt": null,
+      "source": "AF DB",
+      "entryId": "AF-P16234-F1",
+      "modelPath": "/models/afdb/P16234.pdb",
+      "paeImageUrl": "https://alphafold.ebi.ac.uk/files/AF-P16234-F1-predicted_aligned_error_v6.png",
+      "name": "Platelet-derived growth factor receptor alpha",
+      "note": "AK case WT monomer (AFDB). Boltz-2 WT/mut ± imatinib folds pending structural/AK_case/structures."
     },
     "PTEN": {
       "gene": "PTEN",
@@ -328,6 +352,18 @@
       "modelPath": "/models/afdb/P15692.pdb",
       "paeImageUrl": "https://alphafold.ebi.ac.uk/files/AF-P15692-F1-predicted_aligned_error_v6.png",
       "name": "Vascular endothelial growth factor A, long form"
+    },
+    "WEE1": {
+      "gene": "WEE1",
+      "uniprot": "P30291",
+      "aa": 646,
+      "plddt": null,
+      "source": "AF DB",
+      "entryId": "AF-P30291-F1",
+      "modelPath": "/models/afdb/P30291.pdb",
+      "paeImageUrl": "https://alphafold.ebi.ac.uk/files/AF-P30291-F1-predicted_aligned_error_v6.png",
+      "name": "Wee1-like protein kinase",
+      "note": "AK case SL probe (AFDB WT). Boltz-2 WEE1–adavosertib fold pending structural/AK_case/structures."
     }
   }
 }

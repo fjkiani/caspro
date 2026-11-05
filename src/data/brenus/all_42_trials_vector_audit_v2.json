@@ -1,0 +1,1733 @@
+{
+  "meta": {
+    "version": "v2",
+    "run_date": "2026-11-03",
+    "closes_ledger_item": "U9",
+    "source_registry": "src/data/brenus/trial_decode_registry_v2.json",
+    "source_registry_sha256": "f6ff9294d6080d1ffddcdca483ca71d83f9eded6c399f776d5a5b933f5543198",
+    "pathway_8d_ranker_sha256": "3335184774f6493e6f812dd7e3c8908b0e590d7c70092e7e53fe3f3a4b50dc9e",
+    "total_registry_entries": 42,
+    "registry_audit_status_counts": {
+      "LOCKED_VERIFIED": 8,
+      "APPROXIMATE_QUARANTINED": 5,
+      "METADATA_ONLY": 29
+    },
+    "total_locked_computational_vectors_across_repos": 21,
+    "locked_computational_vector_breakdown": {
+      "crc_ranker_8d_v1_trials": 8,
+      "io_core_7d_v1_trials": 7,
+      "gbm_brm_8d_v1_trial_classes": 6,
+      "unique_trials_note": "STC_1010 appears in both the 42-row registry (#39 BREAK_CRC_001) and the 8-trial CRC ranker; the 7 IO_CORE trials appear in both (#11-#17). The 7 CRC comparator trials (MOSAIC, N0147, PRIME, PEAK_FOLFIRI, PACCE, HORIZON_III, VELOUR) and 6 GBM trial classes live in pathway_8d_ranker.py."
+    }
+  },
+  "registry_42_entries_audit": [
+    {
+      "registry_index": 1,
+      "id": "NCT02595892",
+      "name": "Berzosertib (M6620) Phase I/II",
+      "program": "ATR_DDR",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Advanced solid tumors (ovarian expansion cohort)",
+      "drug_or_regimen": "Berzosertib (ATR inhibitor) + gemcitabine",
+      "phase": "I/II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "D2",
+      "8d_primary_label": "Selection",
+      "vector_dimension": "8D.v1 (unreleased trade-secret in trial_moa_vectors.json)",
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Requires high replication stress (rss >= 0.15 / FGA >= 0.2671); registry delta 0.138 DOCUMENTED_NOT_REPRODUCED (direction match FALSE)",
+      "axis_mask_g_rule": "g_efflux penalty when post-PARPi / MDR1-high; g_pi3k bypass when PTEN-loss (Adavosertib)",
+      "audit_status": "APPROXIMATE_QUARANTINED",
+      "verification_receipt": "Registry status: delta_status=DOCUMENTED_NOT_REPRODUCED, vector_version=APPROXIMATE, blocker=BLOCKED_ENGINEERING \u2014 trial_moa_vectors.json (trade secret)."
+    },
+    {
+      "registry_index": 2,
+      "id": "NCT03579316",
+      "name": "Adavosertib (AZD1775) Phase II",
+      "program": "ATR_DDR",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Platinum-resistant ovarian cancer",
+      "drug_or_regimen": "Adavosertib (WEE1 inhibitor) + gemcitabine",
+      "phase": "II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "D2",
+      "8d_primary_label": "Selection",
+      "vector_dimension": "8D.v1 (unreleased trade-secret in trial_moa_vectors.json)",
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Requires PTEN-intact + replication stress (PTEN-intact ORR 23% vs PTEN-loss 0%, PFS HR 0.55 vs 1.82); delta 0.307 DOCUMENTED_NOT_REPRODUCED",
+      "axis_mask_g_rule": "g_efflux penalty when post-PARPi / MDR1-high; g_pi3k bypass when PTEN-loss (Adavosertib)",
+      "audit_status": "APPROXIMATE_QUARANTINED",
+      "verification_receipt": "Registry status: delta_status=DOCUMENTED_NOT_REPRODUCED, vector_version=APPROXIMATE, blocker=BLOCKED_ENGINEERING \u2014 trial_moa_vectors.json (trade secret)."
+    },
+    {
+      "registry_index": 3,
+      "id": "NCT03462342",
+      "name": "CAPRI Phase II",
+      "program": "ATR_DDR",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Platinum-resistant ovarian cancer",
+      "drug_or_regimen": "Ceralasertib (ATR inhibitor) + olaparib (PARPi)",
+      "phase": "II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "D2",
+      "8d_primary_label": "Selection",
+      "vector_dimension": "8D.v1 (unreleased trade-secret in trial_moa_vectors.json)",
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Requires PARPi-naive / low efflux (p_efflux <= 0.15; PARPi-naive ORR 36% vs post-PARPi 4%, PFS HR 0.42 vs 1.31); delta 0.108 DOCUMENTED_NOT_REPRODUCED",
+      "axis_mask_g_rule": "g_efflux penalty when post-PARPi / MDR1-high; g_pi3k bypass when PTEN-loss (Adavosertib)",
+      "audit_status": "APPROXIMATE_QUARANTINED",
+      "verification_receipt": "Registry status: delta_status=DOCUMENTED_NOT_REPRODUCED, vector_version=APPROXIMATE, blocker=BLOCKED_ENGINEERING \u2014 trial_moa_vectors.json (trade secret)."
+    },
+    {
+      "registry_index": 4,
+      "id": "NCT05450692",
+      "name": "LATIFY",
+      "program": "ATR_DDR",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "IO-refractory NSCLC",
+      "drug_or_regimen": "Ceralasertib (ATR inhibitor) + durvalumab (PD-L1)",
+      "phase": "II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "D2",
+      "8d_primary_label": "Selection",
+      "vector_dimension": "8D.v1 (unreleased trade-secret in trial_moa_vectors.json)",
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Requires STK11/KEAP1-loss or DDR-high (CT-03 QUARANTINED in Brenus registry: +0.366 patent vs +0.2641 receipt; website proof receipt latify_curl_receipts.json locks +0.3658)",
+      "axis_mask_g_rule": "g_efflux penalty when post-PARPi / MDR1-high; g_pi3k bypass when PTEN-loss (Adavosertib)",
+      "audit_status": "APPROXIMATE_QUARANTINED",
+      "verification_receipt": "Registry status: delta_status=QUARANTINED, vector_version=CONFLICTED \u2014 two versions (CT-03), blocker=BLOCKED_ENGINEERING \u2014 vector version commit required (CT-03)."
+    },
+    {
+      "registry_index": 5,
+      "id": "NCT02264678",
+      "name": "Ceralasertib + Olaparib Phase I/Ib",
+      "program": "ATR_DDR",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Advanced solid tumors",
+      "drug_or_regimen": "Ceralasertib (ATR inhibitor) + olaparib (PARPi)",
+      "phase": "I/Ib",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "D2",
+      "8d_primary_label": "Selection",
+      "vector_dimension": "8D.v1 (unreleased trade-secret in trial_moa_vectors.json)",
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Requires PARPi-naive / low efflux + DDR deficiency; CT-04 MISSING patient_B vector",
+      "axis_mask_g_rule": "g_efflux penalty when post-PARPi / MDR1-high; g_pi3k bypass when PTEN-loss (Adavosertib)",
+      "audit_status": "APPROXIMATE_QUARANTINED",
+      "verification_receipt": "Registry status: delta_status=MISSING, vector_version=UNDEFINED \u2014 patient_b vector not stated (CT-04), blocker=BLOCKED_ENGINEERING \u2014 patient B vector not defined (CT-04)."
+    },
+    {
+      "registry_index": 6,
+      "id": "NCT04154956",
+      "name": "CARMEN-LC03",
+      "program": "CEACAM5",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "2L+ advanced nonsquamous NSCLC, CEACAM5 IHC \u22652+ in \u226550% of cells",
+      "drug_or_regimen": "Tusamitamab ravtansine (SAR408701) \u2014 anti-CEACAM5 ADC, DM4 payload",
+      "phase": "III",
+      "trial_status": "FAILED \u2014 terminated December 2023",
+      "8d_primary_domain": "D2",
+      "8d_primary_label": "Selection",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Requires CEACAM5 IHC >= 2+/3+ in >= 80% cells + cCEA >= 100 ng/mL (50-79% IHC subgroup OS HR=1.02 failed; >=80% OS HR=0.71)",
+      "axis_mask_g_rule": "Decode-wall qualitative domain classification only (no numerical 8D trial vector in registry)",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Decoded in 8d_vector_decode/ceacam5_8d_decode.mdc under primary domain D2 (Selection)."
+    },
+    {
+      "registry_index": 7,
+      "id": "NCT05464030",
+      "name": "PROCEADE-CRC-01",
+      "program": "CEACAM5",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "3L+ irinotecan-refractory metastatic CRC",
+      "drug_or_regimen": "Precemtabart tocentecan (M9140) \u2014 anti-CEACAM5 ADC, exatecan (Topo1i) payload, \u03b2-glucuronide linker",
+      "phase": "I (Phase 3 planned Q2/Q3 2026)",
+      "trial_status": "ACTIVE \u2014 Phase 1 dose escalation complete",
+      "8d_primary_domain": "D2",
+      "8d_primary_label": "Selection",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Requires Topo1i-sensitive / low-efflux + validated CEACAM5 expression gate (Phase 1 IHC rho=-0.14 NS)",
+      "axis_mask_g_rule": "Decode-wall qualitative domain classification only (no numerical 8D trial vector in registry)",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Decoded in 8d_vector_decode/ceacam5_8d_decode.mdc under primary domain D2 (Selection)."
+    },
+    {
+      "registry_index": 8,
+      "id": "NCT01270698",
+      "name": "Labetuzumab govitecan (IMMU-130) Phase I/II",
+      "program": "CEACAM5",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "3L+ relapsed/refractory mCRC, all patients had prior irinotecan",
+      "drug_or_regimen": "Labetuzumab govitecan \u2014 anti-CEACAM5 ADC, SN-38 (irinotecan metabolite) payload",
+      "phase": "I/II",
+      "trial_status": "COMPLETED \u2014 no Phase 3 pursued",
+      "8d_primary_domain": "D1",
+      "8d_primary_label": "Biology",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "G = 0.0 in prior-irinotecan-refractory mCRC (SN-38 payload cross-resistance -> ORR 1.2%)",
+      "axis_mask_g_rule": "Decode-wall qualitative domain classification only (no numerical 8D trial vector in registry)",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Decoded in 8d_vector_decode/ceacam5_8d_decode.mdc under primary domain D1 (Biology)."
+    },
+    {
+      "registry_index": 9,
+      "id": "NCT04826003",
+      "name": "Cibisatamab + FAP-4-1BBL (BP42675)",
+      "program": "CEACAM5",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "3L+ pMMR/MSS mCRC",
+      "drug_or_regimen": "Cibisatamab (CEA-TCB, CEA/CEACAM5-directed CD3 T-cell engaging bispecific) + FAP-4-1BBL (FAP-targeted 4-1BB ligand)",
+      "phase": "Ib",
+      "trial_status": "COMPLETED \u2014 results published Nature Medicine 2026",
+      "8d_primary_domain": "D1",
+      "8d_primary_label": "Biology",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Requires high CEA IHC H-score + GI toxicity mitigation (CRS 57.7%, diarrhea 55.8%)",
+      "axis_mask_g_rule": "Decode-wall qualitative domain classification only (no numerical 8D trial vector in registry)",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Decoded in 8d_vector_decode/ceacam5_8d_decode.mdc under primary domain D1 (Biology)."
+    },
+    {
+      "registry_index": 10,
+      "id": "NCT06131840",
+      "name": "Tusamitamab sonditecan (SGN-CEACAM5C) Phase I",
+      "program": "CEACAM5",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Solid tumors including CRC",
+      "drug_or_regimen": "Tusamitamab sonditecan \u2014 anti-CEACAM5 ADC, Topo1i payload, VKG linker (same antibody as CARMEN-LC03)",
+      "phase": "I",
+      "trial_status": "ON HOLD in EU (France, Spain, Sweden, Netherlands) \u2014 2026",
+      "8d_primary_domain": "D8",
+      "8d_primary_label": "Systemic",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "G = 0.0 (ON HOLD in EU; shared VKG linker + Topo1i toxicity with discontinued PF-08046044)",
+      "axis_mask_g_rule": "Decode-wall qualitative domain classification only (no numerical 8D trial vector in registry)",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Decoded in 8d_vector_decode/ceacam5_8d_decode.mdc under primary domain D8 (Systemic)."
+    },
+    {
+      "registry_index": 11,
+      "id": "NCT03050814",
+      "name": "QUILT-2.004",
+      "program": "IO_CORE",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "1L MSS/pMMR mCRC",
+      "drug_or_regimen": "Adenoviral CEA vaccine + avelumab (anti-PD-L1) + mFOLFOX6 + bevacizumab",
+      "phase": "II",
+      "trial_status": "TERMINATED for futility",
+      "8d_primary_domain": "D1",
+      "8d_primary_label": "Biology",
+      "vector_dimension": "7D.v1",
+      "stored_vector": [
+        0.0,
+        0.1,
+        0.05,
+        0.6,
+        0.0,
+        0.7,
+        0.0
+      ],
+      "l2_norm": 0.928709,
+      "contraindication_gate_G_rule": "G = 1.0 (negative benchmark reference; terminated for futility HR=1.061, p=0.91)",
+      "axis_mask_g_rule": "[1, 1, 1, 1, 1, 1, 1]",
+      "audit_status": "LOCKED_VERIFIED",
+      "verification_receipt": "Locked in path_a_scores.yaml and pathway_8d_ranker.py IO_CORE_TRIAL_VECTORS_7D[QUILT-2.004]: fit_P_A=0.5815, fit_P_B=0.3553, delta=0.2262."
+    },
+    {
+      "registry_index": 12,
+      "id": "NCT05141721",
+      "name": "GRANITE GO-010",
+      "program": "IO_CORE",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "1L MSS mCRC maintenance",
+      "drug_or_regimen": "Personalized neoantigen vaccine (ChAd68 + saRNA) + nivolumab + ipilimumab + FP + bevacizumab (maintenance)",
+      "phase": "II",
+      "trial_status": "INTERIM \u2014 company filed Chapter 11 bankruptcy Oct 2024",
+      "8d_primary_domain": "D2",
+      "8d_primary_label": "Selection",
+      "vector_dimension": "7D.v1",
+      "stored_vector": [
+        0.0,
+        0.05,
+        0.05,
+        0.5,
+        0.0,
+        0.85,
+        0.0
+      ],
+      "l2_norm": 0.988686,
+      "contraindication_gate_G_rule": "G = 1.0 (unselected MSS maintenance PFS HR=0.73 NS; ctDNA-low exploratory)",
+      "axis_mask_g_rule": "[1, 1, 1, 1, 1, 1, 1]",
+      "audit_status": "LOCKED_VERIFIED",
+      "verification_receipt": "Locked in path_a_scores.yaml and pathway_8d_ranker.py IO_CORE_TRIAL_VECTORS_7D[GRANITE_GO-010]: fit_P_A=0.5411, fit_P_B=0.2832, delta=0.2579."
+    },
+    {
+      "registry_index": 13,
+      "id": "NCT02981524",
+      "name": "GVAX + Cyclophosphamide + Pembrolizumab",
+      "program": "IO_CORE",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Refractory MSS mCRC",
+      "drug_or_regimen": "Allogeneic whole-cell vaccine (GVAX) + low-dose cyclophosphamide + pembrolizumab",
+      "phase": "II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "D1",
+      "8d_primary_label": "Biology",
+      "vector_dimension": "7D.v1",
+      "stored_vector": [
+        0.0,
+        0.05,
+        0.05,
+        0.0,
+        0.0,
+        0.9,
+        0.0
+      ],
+      "l2_norm": 0.902774,
+      "contraindication_gate_G_rule": "G = 1.0 (0/22 ORR in refractory MSS mCRC; unhaptenated whole-cell vaccine without oxaliplatin/bev)",
+      "axis_mask_g_rule": "[1, 1, 1, 1, 1, 1, 1]",
+      "audit_status": "LOCKED_VERIFIED",
+      "verification_receipt": "Locked in path_a_scores.yaml and pathway_8d_ranker.py IO_CORE_TRIAL_VECTORS_7D[GVAX_CY_Pembro]: fit_P_A=0.4486, fit_P_B=0.1495, delta=0.2991."
+    },
+    {
+      "registry_index": 14,
+      "id": "NCT02788279",
+      "name": "IMblaze370",
+      "program": "IO_CORE",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "3L+ MSS mCRC",
+      "drug_or_regimen": "Atezolizumab + cobimetinib (MEKi) vs. atezolizumab mono vs. regorafenib",
+      "phase": "III",
+      "trial_status": "COMPLETED \u2014 FAILED",
+      "8d_primary_domain": "D1",
+      "8d_primary_label": "Biology",
+      "vector_dimension": "7D.v1",
+      "stored_vector": [
+        0.05,
+        0.85,
+        0.1,
+        0.0,
+        0.0,
+        0.5,
+        0.0
+      ],
+      "l2_norm": 0.992472,
+      "contraindication_gate_G_rule": "G = 0.0 in MSS CRC (FALSIFIED_MEKI_PDL1_IN_MSS_CRC_OS_HR_1_00: raw 0.8262/0.6751 -> gated 0.0000)",
+      "axis_mask_g_rule": "g_mapk = 0.0 in MSS CRC (axis_masked fit_A = 0.2267); g_mapk = 0.0, g_io = 0.0 in liver_met/tgfb_high (axis_masked fit_B = 0.0252)",
+      "audit_status": "LOCKED_VERIFIED",
+      "verification_receipt": "Locked in path_a_scores.yaml and pathway_8d_ranker.py IO_CORE_TRIAL_VECTORS_7D[IMblaze370]: fit_P_A=0.8262, fit_P_B=0.6751, delta=0.1511."
+    },
+    {
+      "registry_index": 15,
+      "id": "NCT03721653",
+      "name": "AtezoTRIBE",
+      "program": "IO_CORE",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "1L mCRC",
+      "drug_or_regimen": "FOLFOXIRI + bevacizumab \u00b1 atezolizumab",
+      "phase": "II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "D2",
+      "8d_primary_label": "Selection",
+      "vector_dimension": "7D.v1",
+      "stored_vector": [
+        0.1,
+        0.1,
+        0.05,
+        0.65,
+        0.0,
+        0.7,
+        0.0
+      ],
+      "l2_norm": 0.966954,
+      "contraindication_gate_G_rule": "G = 1.0 in Gate-2 Hot / Immunoscore-IC-high; requires immune-inflamed selection in pMMR",
+      "axis_mask_g_rule": "[1, 1, 1, 1, 1, 1, 1]",
+      "audit_status": "LOCKED_VERIFIED",
+      "verification_receipt": "Locked in path_a_scores.yaml and pathway_8d_ranker.py IO_CORE_TRIAL_VECTORS_7D[AtezoTRIBE]: fit_P_A=0.5843, fit_P_B=0.3671, delta=0.2172."
+    },
+    {
+      "registry_index": 16,
+      "id": "NCT03202758",
+      "name": "MEDITREME",
+      "program": "IO_CORE",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "1L MSS mCRC",
+      "drug_or_regimen": "Durvalumab + tremelimumab + mFOLFOX6",
+      "phase": "Ib/II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "D3",
+      "8d_primary_label": "Architecture",
+      "vector_dimension": "7D.v1",
+      "stored_vector": [
+        0.1,
+        0.1,
+        0.05,
+        0.0,
+        0.0,
+        0.8,
+        0.0
+      ],
+      "l2_norm": 0.813941,
+      "contraindication_gate_G_rule": "G = 1.0 in CD8-high / TGFB-low RAS-mut MSS; single-arm D3 Architecture caveat",
+      "axis_mask_g_rule": "[1, 1, 1, 1, 1, 1, 1]",
+      "audit_status": "LOCKED_VERIFIED",
+      "verification_receipt": "Locked in path_a_scores.yaml and pathway_8d_ranker.py IO_CORE_TRIAL_VECTORS_7D[MEDITREME]: fit_P_A=0.5037, fit_P_B=0.2089, delta=0.2948."
+    },
+    {
+      "registry_index": 17,
+      "id": "NCT02870920",
+      "name": "CCTG CO.26",
+      "program": "IO_CORE",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Refractory MSS mCRC",
+      "drug_or_regimen": "Durvalumab + tremelimumab + BSC vs. BSC alone",
+      "phase": "II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "D2",
+      "8d_primary_label": "Selection",
+      "vector_dimension": "7D.v1",
+      "stored_vector": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.9,
+        0.0
+      ],
+      "l2_norm": 0.9,
+      "contraindication_gate_G_rule": "G = 1.0 in pTMB >= 28 / NLM; liver metastases abolish benefit",
+      "axis_mask_g_rule": "[1, 1, 1, 1, 1, 1, 1]",
+      "audit_status": "LOCKED_VERIFIED",
+      "verification_receipt": "Locked in path_a_scores.yaml and pathway_8d_ranker.py IO_CORE_TRIAL_VECTORS_7D[CCTG_CO.26]: fit_P_A=0.4, fit_P_B=0.1, delta=0.3."
+    },
+    {
+      "registry_index": 18,
+      "id": "NCT02563002",
+      "name": "KEYNOTE-177",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "1L mCRC, MSI-H/dMMR only",
+      "drug_or_regimen": "Pembrolizumab vs. mFOLFOX6 or FOLFIRI \u00b1 bev/cetux",
+      "phase": "III",
+      "trial_status": "COMPLETED \u2014 POSITIVE",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "MSI-H only \u2014 not applicable to 1L MSS CRC frame. Relevant to BreAK CRC-001 Arm 2A-2 context only.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 19,
+      "id": "NCT02060188",
+      "name": "CheckMate 142",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Phase II multi-cohort; MSI-H and MSS cohorts",
+      "drug_or_regimen": "Nivolumab mono; nivo+ipi; MSS cohort enrolled separately",
+      "phase": "II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "MSS cohort ORR 0% is a useful negative control but is monotherapy CPI only.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 20,
+      "id": "EPOC1603",
+      "name": "REGONIVO (EPOC1603)",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Refractory MSS mCRC and gastric cancer",
+      "drug_or_regimen": "Regorafenib 80mg + nivolumab 3mg/kg Q2W",
+      "phase": "Ib",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Regorafenib backbone \u2014 not relevant to 1L mFOLFOX6 + vaccine design. Liver metastasis lesson is the only applicable element.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 21,
+      "id": "NCT04126733",
+      "name": "REGONIVO Phase 2 (US)",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Refractory MSS/pMMR mCRC",
+      "drug_or_regimen": "Regorafenib 80\u2013120mg + nivolumab 480mg Q4W",
+      "phase": "II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Regorafenib backbone. Liver metastasis lesson confirmed in Western population.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 22,
+      "id": "NCT04362839",
+      "name": "RIN (Regorafenib + Ipilimumab + Nivolumab)",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Refractory MSS mCRC",
+      "drug_or_regimen": "Regorafenib 80mg + ipilimumab 1mg/kg Q6W + nivolumab 240mg Q2W",
+      "phase": "I",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Regorafenib backbone. Phase I non-randomized. Strongest IO signal in MSS CRC to date but in refractory setting.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 23,
+      "id": "NCT02291289",
+      "name": "MODUL Cohort 2",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "1L mCRC maintenance, BRAFwt",
+      "drug_or_regimen": "FP + bevacizumab \u00b1 atezolizumab (maintenance after FOLFOX+bev induction)",
+      "phase": "II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Maintenance IO after chemo induction \u2014 not concurrent. Superseded by MEDITREME (concurrent mFOLFOX6 + IO) in CORE-06.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 24,
+      "id": "NCT03374254",
+      "name": "KEYNOTE-651 Cohorts B & D",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "MSS/pMMR mCRC",
+      "drug_or_regimen": "Pembrolizumab + mFOLFOX7 (Cohort B, 1L) or FOLFIRI (Cohort D, 2L)",
+      "phase": "Ib",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Phase Ib safety/ORR only. No randomized comparison. ORR consistent with chemo alone.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 25,
+      "id": "NCT03539822",
+      "name": "CAMILLA CRC",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Refractory pMMR/MSS mCRC",
+      "drug_or_regimen": "Cabozantinib (MET/VEGFR2/AXL inhibitor) + durvalumab",
+      "phase": "II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Cabozantinib backbone \u2014 not relevant to mFOLFOX6 + vaccine design. Small n.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 26,
+      "id": "NCT03391232",
+      "name": "PolyPEPI1018",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "MSS mCRC maintenance",
+      "drug_or_regimen": "Multi-peptide TAA vaccine (7 antigens) + Montanide + maintenance chemo",
+      "phase": "Ib",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "No mFOLFOX6 backbone. Maintenance setting. Small n.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 27,
+      "id": "NCT02998879",
+      "name": "GVAX + Guadecitabine",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Advanced CRC",
+      "drug_or_regimen": "GVAX + guadecitabine (DNMT inhibitor)",
+      "phase": "I/II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "No mFOLFOX6 backbone. Epigenetic priming strategy \u2014 not directly relevant to STC-1010 design.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 28,
+      "id": "NCT00103142",
+      "name": "PANVAC (CEA/MUC1 poxviral vaccine) + DC vaccine",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Resected metastatic CRC (adjuvant)",
+      "drug_or_regimen": "Poxviral vaccine (PANVAC) \u00b1 dendritic cells modified with PANVAC",
+      "phase": "II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Adjuvant setting \u2014 not metastatic. Poxviral platform \u2014 different from whole-cell haptenated vaccine.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 29,
+      "id": "NCT04853017",
+      "name": "AMPLIFY-201 (ELI-002 mKRAS amphiphile vaccine)",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Minimal residual disease (ctDNA+) post-surgery CRC",
+      "drug_or_regimen": "ELI-002 2P (amphiphile-modified KRAS G12D/G12R peptides + CpG adjuvant)",
+      "phase": "I",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Minimal residual disease setting \u2014 not metastatic. Only 5 CRC patients.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 30,
+      "id": "NCT02562755",
+      "name": "PexaVec (oncolytic vaccinia) + Durvalumab \u00b1 Tremelimumab",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Refractory pMMR mCRC",
+      "drug_or_regimen": "Pexastimogene devacirepvec (JX-594) + durvalumab \u00b1 tremelimumab",
+      "phase": "I/II",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Oncolytic virus platform \u2014 different from whole-cell haptenated vaccine. Refractory setting.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 31,
+      "id": "NCT02517398",
+      "name": "Bintrafusp Alfa (M7824) in CRC",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Pretreated CRC",
+      "drug_or_regimen": "Bintrafusp alfa (anti-PD-L1/TGF-\u03b2 trap bifunctional)",
+      "phase": "I expansion",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "No vaccine component. No mFOLFOX6 backbone.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (VERIFIED)."
+    },
+    {
+      "registry_index": 32,
+      "id": "NCT05425940",
+      "name": "STELLAR-303 (zanzalintinib + atezolizumab)",
+      "program": "IO_APPENDIX",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Refractory MSS/MSI-low mCRC",
+      "drug_or_regimen": "Zanzalintinib (XL092, VEGFR/MET/AXL TKI) + atezolizumab vs. regorafenib",
+      "phase": "III",
+      "trial_status": "ONGOING",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Results not yet available. Refractory setting.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: comparator_analysis/candidate_appendix_trials.md (ONGOING)."
+    },
+    {
+      "registry_index": 33,
+      "id": "NCT02339116",
+      "name": "TRIBE2 (control arm)",
+      "program": "HISTORICAL_BENCHMARK",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Unresectable mCRC; 64% RAS-mutant",
+      "drug_or_regimen": "mFOLFOX6 + bevacizumab \u2192 FOLFIRI + bevacizumab (maintenance)",
+      "phase": "III",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "HIGH \u2014 Best available benchmark for RAS-enriched mFOLFOX6+bev population",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: historical_comparator_pack/brenus_historical_comparator_table.csv (VERIFIED)."
+    },
+    {
+      "registry_index": 34,
+      "id": "NOT_SEPARATELY_REGISTERED",
+      "name": "BECOME (bevacizumab arm)",
+      "program": "HISTORICAL_BENCHMARK",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "RAS-mutant; unresectable colorectal liver-limited metastases; single Chinese institution",
+      "drug_or_regimen": "mFOLFOX6 + bevacizumab",
+      "phase": "RCT",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "MODERATE-HIGH \u2014 Most molecularly aligned benchmark (RAS-mutant required). Liver-limited disease only.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: historical_comparator_pack/brenus_historical_comparator_table.csv (VERIFIED)."
+    },
+    {
+      "registry_index": 35,
+      "id": "NCT00069095",
+      "name": "NO16966 (FOLFOX4 + bevacizumab arm)",
+      "program": "HISTORICAL_BENCHMARK",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Unresectable mCRC; unselected (no RAS/BRAF stratification)",
+      "drug_or_regimen": "FOLFOX4 + bevacizumab",
+      "phase": "III",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "MODERATE \u2014 Established regulatory benchmark. FOLFOX4 not mFOLFOX6; no RAS/BRAF stratification; enrolled 2003-2005.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: historical_comparator_pack/brenus_historical_comparator_table.csv (VERIFIED)."
+    },
+    {
+      "registry_index": 36,
+      "id": "NCT00052910",
+      "name": "OPTIMOX1 (FOLFOX4 arm)",
+      "program": "HISTORICAL_BENCHMARK",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Unresectable mCRC; unselected; French multicenter; enrolled 2000-2003",
+      "drug_or_regimen": "FOLFOX4 until progression",
+      "phase": "III",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "LOW-MODERATE \u2014 Historical floor for FOLFOX backbone activity. No bevacizumab; FOLFOX4 not mFOLFOX6; enrolled 2000-2003.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: historical_comparator_pack/brenus_historical_comparator_table.csv (VERIFIED)."
+    },
+    {
+      "registry_index": 37,
+      "id": "UMIN000005616",
+      "name": "WJOG4407G (mFOLFOX6 + bev arm)",
+      "program": "HISTORICAL_BENCHMARK",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "Unresectable mCRC; unselected; Japanese multicenter; enrolled 2010-2013",
+      "drug_or_regimen": "mFOLFOX6 + bevacizumab",
+      "phase": "III",
+      "trial_status": "COMPLETED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "LOW-MODERATE \u2014 Japanese population; higher OS likely reflects patient selection and post-progression treatment access differences.",
+      "axis_mask_g_rule": "No computational 8D/7D vector assigned",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Source: historical_comparator_pack/brenus_historical_comparator_table.csv (VERIFIED)."
+    },
+    {
+      "registry_index": 38,
+      "id": "NCT03050814",
+      "name": "QUILT-2.004 \u2014 DESIGN PRECEDENT ONLY",
+      "program": "HISTORICAL_BENCHMARK",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "1L MSS/pMMR mCRC",
+      "drug_or_regimen": "mFOLFOX6 + bevacizumab + AdCEA vaccine + avelumab vs. SOC alone",
+      "phase": "II",
+      "trial_status": "TERMINATED for futility",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Duplicate design-precedent entry of CORE-01 (QUILT-2.004; locked 7D vector in IO_CORE entry #11)",
+      "axis_mask_g_rule": "See IO_CORE entry #11",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Listed in HISTORICAL_BENCHMARK as design precedent only; computational 7D vector is locked on row #11."
+    },
+    {
+      "registry_index": 39,
+      "id": "NCT06934538",
+      "name": "BreAK CRC-001 (STC-1010)",
+      "program": "BREAK_CRC_001",
+      "entry_type": "CLINICAL_TRIAL",
+      "indication": "1L MSS/pMMR mCRC (KRAS-mutant BRAF-WT enriched)",
+      "drug_or_regimen": "STC-1010 (DNFB-haptenated whole-cell vaccine) + low-dose cyclophosphamide + GM-CSF + mFOLFOX6 \u00b1 bevacizumab",
+      "phase": "I/II",
+      "trial_status": "RECRUITING (started 2025-06-17)",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": "8D.v1",
+      "stored_vector": [
+        0.1,
+        0.3,
+        0.1,
+        0.2,
+        0.0,
+        0.8,
+        0.1,
+        0.1
+      ],
+      "l2_norm": 0.9,
+      "contraindication_gate_G_rule": "G = 1.0 in Gate-2 Immune-Hot (gate2_z >= -0.0257) or POLE (TMB >= 25); Mode iii-C suppresses io=0.10 in Gate-2 Cold (0/327 Cold rank-1 vs 146/146 Hot rank-1)",
+      "axis_mask_g_rule": "[1, 1, 1, 1, 1, 1, 1, 1]",
+      "audit_status": "LOCKED_VERIFIED",
+      "verification_receipt": "Locked in pathway_8d_ranker.py CRC_TRIAL_VECTORS_8D[STC_1010] and brenus_vector_master_v2.json. Note: registry JSON L948-957 still prints the retired KGv2 vector [0.1,0.3,0.1,0.3,0.05,0.8,0.1,0.1] (norm 0.9288); canonical_vectors.py / ranker vector [0.10,0.30,0.10,0.20,0.00,0.80,0.10,0.10] (norm 0.9000) is authoritative."
+    },
+    {
+      "registry_index": 40,
+      "id": "EM-02-A",
+      "name": "GLASS Bulk RNA-seq \u2014 GBM Recurrence (Stupp-treated)",
+      "program": "GBM_ESCAPEMAP",
+      "entry_type": "DATASET_ANALYSIS",
+      "indication": "GBM (glioblastoma)",
+      "drug_or_regimen": "Stupp (TMZ + concurrent TMZ + radiotherapy)",
+      "phase": null,
+      "trial_status": "PERMANENTLY_CLOSED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Dataset analysis (NOT_SUPPORTED_YET): ZEB1 recurrence upregulation hypothesis falsified/null; PERMANENTLY_CLOSED",
+      "axis_mask_g_rule": "N/A (DATASET_ANALYSIS entry, not a drug trial)",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Verified dataset closure in engagements/brenus/escape_map/gbm/glass_bulk_recurrence_closure.md (VERIFIED \u2014 GLASS 2025-09-30 release, N=123 Stupp pairs)."
+    },
+    {
+      "registry_index": 41,
+      "id": "EM-02-B",
+      "name": "GSE222515 Bulk RNA-seq \u2014 GBM Recurrence (directional support)",
+      "program": "GBM_ESCAPEMAP",
+      "entry_type": "DATASET_ANALYSIS",
+      "indication": "GBM (glioblastoma)",
+      "drug_or_regimen": "Stupp backbone",
+      "phase": null,
+      "trial_status": "PERMANENTLY_CLOSED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Dataset analysis (DIRECTIONALLY_CONSISTENT \u2014 lower confidence than GLASS): ZEB1 recurrence upregulation hypothesis falsified/null; PERMANENTLY_CLOSED",
+      "axis_mask_g_rule": "N/A (DATASET_ANALYSIS entry, not a drug trial)",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Verified dataset closure in engagements/brenus/escape_map/gbm/glass_bulk_recurrence_closure.md (VERIFIED (lower confidence) \u2014 directional support only)."
+    },
+    {
+      "registry_index": 42,
+      "id": "EM-02-C",
+      "name": "GSE174554 snRNA-seq \u2014 GBM Recurrence (tumor-cell pairs)",
+      "program": "GBM_ESCAPEMAP",
+      "entry_type": "DATASET_ANALYSIS",
+      "indication": "GBM (glioblastoma)",
+      "drug_or_regimen": "Stupp (TMZ + RT)",
+      "phase": null,
+      "trial_status": "PERMANENTLY_CLOSED",
+      "8d_primary_domain": "NOT_DECODED",
+      "8d_primary_label": "NOT_DECODED",
+      "vector_dimension": null,
+      "stored_vector": null,
+      "l2_norm": null,
+      "contraindication_gate_G_rule": "Dataset analysis (SC_ESCAPE_NOT_CONFIRMED): ZEB1 recurrence upregulation hypothesis falsified/null; PERMANENTLY_CLOSED",
+      "axis_mask_g_rule": "N/A (DATASET_ANALYSIS entry, not a drug trial)",
+      "audit_status": "METADATA_ONLY",
+      "verification_receipt": "Verified dataset closure in engagements/brenus/escape_map/gbm/gbm_gse174554_sc_escape_final.json (VERIFIED \u2014 GSE174554 snRNA-seq, N=8 tumor-cell pairs, 12,189 tumor cells)."
+    }
+  ],
+  "locked_computational_vector_registries": {
+    "crc_ranker_8d_v1": {
+      "STC_1010": {
+        "vector": [
+          0.1,
+          0.3,
+          0.1,
+          0.2,
+          0.0,
+          0.8,
+          0.1,
+          0.1
+        ],
+        "l2_norm": 0.9
+      },
+      "MOSAIC": {
+        "vector": [
+          0.0,
+          0.1,
+          0.0,
+          0.1,
+          0.0,
+          0.0,
+          0.3,
+          0.0
+        ],
+        "l2_norm": 0.331662
+      },
+      "N0147": {
+        "vector": [
+          0.0,
+          0.2,
+          0.0,
+          0.1,
+          0.0,
+          0.0,
+          0.3,
+          0.0
+        ],
+        "l2_norm": 0.374166
+      },
+      "PRIME": {
+        "vector": [
+          0.0,
+          0.8,
+          0.1,
+          0.0,
+          0.0,
+          0.0,
+          0.1,
+          0.0
+        ],
+        "l2_norm": 0.812404
+      },
+      "PEAK_FOLFIRI": {
+        "vector": [
+          0.0,
+          0.8,
+          0.1,
+          0.0,
+          0.0,
+          0.0,
+          0.1,
+          0.0
+        ],
+        "l2_norm": 0.812404
+      },
+      "PACCE": {
+        "vector": [
+          0.0,
+          0.1,
+          0.0,
+          0.7,
+          0.0,
+          0.0,
+          0.1,
+          0.0
+        ],
+        "l2_norm": 0.714143
+      },
+      "HORIZON_III": {
+        "vector": [
+          0.0,
+          0.0,
+          0.0,
+          0.9,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "l2_norm": 0.9
+      },
+      "VELOUR": {
+        "vector": [
+          0.0,
+          0.0,
+          0.0,
+          0.8,
+          0.0,
+          0.0,
+          0.1,
+          0.0
+        ],
+        "l2_norm": 0.806226
+      }
+    },
+    "brenus_io_core_7d_yaml": {
+      "axes": [
+        "ddr",
+        "mapk",
+        "pi3k",
+        "vegf",
+        "her2",
+        "io",
+        "efflux"
+      ],
+      "QUILT-2.004": {
+        "vector": [
+          0.0,
+          0.1,
+          0.05,
+          0.6,
+          0.0,
+          0.7,
+          0.0
+        ],
+        "l2_norm": 0.928709,
+        "fit_A": 0.5815,
+        "fit_B": 0.3553
+      },
+      "GRANITE_GO-010": {
+        "vector": [
+          0.0,
+          0.05,
+          0.05,
+          0.5,
+          0.0,
+          0.85,
+          0.0
+        ],
+        "l2_norm": 0.988686,
+        "fit_A": 0.5411,
+        "fit_B": 0.2832
+      },
+      "GVAX_CY_Pembro": {
+        "vector": [
+          0.0,
+          0.05,
+          0.05,
+          0.0,
+          0.0,
+          0.9,
+          0.0
+        ],
+        "l2_norm": 0.902774,
+        "fit_A": 0.4486,
+        "fit_B": 0.1495
+      },
+      "IMblaze370": {
+        "vector": [
+          0.05,
+          0.85,
+          0.1,
+          0.0,
+          0.0,
+          0.5,
+          0.0
+        ],
+        "l2_norm": 0.992472,
+        "fit_A": 0.8262,
+        "fit_B": 0.6751
+      },
+      "AtezoTRIBE": {
+        "vector": [
+          0.1,
+          0.1,
+          0.05,
+          0.65,
+          0.0,
+          0.7,
+          0.0
+        ],
+        "l2_norm": 0.966954,
+        "fit_A": 0.5843,
+        "fit_B": 0.3671
+      },
+      "MEDITREME": {
+        "vector": [
+          0.1,
+          0.1,
+          0.05,
+          0.0,
+          0.0,
+          0.8,
+          0.0
+        ],
+        "l2_norm": 0.813941,
+        "fit_A": 0.5037,
+        "fit_B": 0.2089
+      },
+      "CCTG_CO.26": {
+        "vector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.9,
+          0.0
+        ],
+        "l2_norm": 0.9,
+        "fit_A": 0.4,
+        "fit_B": 0.1
+      }
+    },
+    "gbm_trial_classes_8d_v1": {
+      "axes": [
+        "ddr",
+        "mapk",
+        "pi3k",
+        "vegf",
+        "her2",
+        "io",
+        "efflux",
+        "rss"
+      ],
+      "resolution_note": "In 8d_vector_run_results.json, full_alignment stores unnormalized p_i * t_i (not p_i * t_i / ||t||_2). Dividing full_alignment by p_i across all 3 patient profiles recovers exact t and reproduces all 18/18 reported fit scores to 4 decimal places.",
+      "egfr_tkis_erlotinib": {
+        "vector": [
+          0.0,
+          0.7,
+          0.5,
+          0.0,
+          0.3,
+          0.0,
+          0.6,
+          0.0
+        ],
+        "l2_norm": 1.090871,
+        "fits": {
+          "ZEB1_high_KRAS_mut": 0.6325,
+          "EGFR_mut_BrM": 0.9625,
+          "PTEN_null_ZEB1_high": 0.7334
+        }
+      },
+      "checkpoint_CheckMate": {
+        "vector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.9,
+          0.0,
+          0.3
+        ],
+        "l2_norm": 0.948683,
+        "fits": {
+          "ZEB1_high_KRAS_mut": 0.5692,
+          "EGFR_mut_BrM": 0.1581,
+          "PTEN_null_ZEB1_high": 0.3162
+        }
+      },
+      "cilengitide_CENTRIC": {
+        "vector": [
+          0.0,
+          0.1,
+          0.6,
+          0.5,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "l2_norm": 0.787401,
+        "fits": {
+          "ZEB1_high_KRAS_mut": 0.5207,
+          "EGFR_mut_BrM": 0.5461,
+          "PTEN_null_ZEB1_high": 0.8763
+        }
+      },
+      "mtor_pi3k_inhibitors": {
+        "vector": [
+          0.0,
+          0.1,
+          0.9,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "l2_norm": 0.905539,
+        "fits": {
+          "ZEB1_high_KRAS_mut": 0.4749,
+          "EGFR_mut_BrM": 0.5853,
+          "PTEN_null_ZEB1_high": 0.9497
+        }
+      },
+      "rindopepimut_ACTIV": {
+        "vector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.7,
+          0.0,
+          0.0
+        ],
+        "l2_norm": 0.7,
+        "fits": {
+          "ZEB1_high_KRAS_mut": 0.4,
+          "EGFR_mut_BrM": 0.1,
+          "PTEN_null_ZEB1_high": 0.2
+        }
+      },
+      "bevacizumab_AVAglio": {
+        "vector": [
+          0.0,
+          0.0,
+          0.0,
+          0.9,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "l2_norm": 0.9,
+        "fits": {
+          "ZEB1_high_KRAS_mut": 0.2,
+          "EGFR_mut_BrM": 0.1,
+          "PTEN_null_ZEB1_high": 0.2
+        }
+      }
+    }
+  },
+  "secondary_atr_ddr_and_ceacam5_rescue_in_485_mss_crc": {
+    "note": "Evaluates secondary ATR/DDR rescue eligibility among the 327 Gate-2 Immune-Cold non-POLE MSS CRC patients (and all 485 MSS patients) without altering the primary 8-trial Mode iii-C rankings.",
+    "all_mss_n485": {
+      "n": 485,
+      "hrd_high_ddr_035": {
+        "count": 102,
+        "pct": 21.03
+      },
+      "high_rss_ge_015_fga_ge_0375": {
+        "count": 125,
+        "pct": 25.77
+      },
+      "fga_raw_ge_02671_median": {
+        "count": 241,
+        "pct": 49.69
+      },
+      "fga_imputed_ge_02671_median": {
+        "count": 248,
+        "pct": 51.13
+      },
+      "ddr_ge_015_hrd_int_or_high": {
+        "count": 335,
+        "pct": 69.07
+      },
+      "high_rss_ge_015_and_low_efflux_le_015": {
+        "count": 14,
+        "pct": 2.89
+      },
+      "fga_raw_ge_02671_and_low_efflux_le_015": {
+        "count": 83,
+        "pct": 17.11
+      },
+      "brca_somatic_mut": {
+        "count": 0,
+        "pct": 0.0
+      }
+    },
+    "non_pole_tmb_lt_10_n473": {
+      "n": 473,
+      "hrd_high_ddr_035": {
+        "count": 102,
+        "pct": 21.56
+      },
+      "high_rss_ge_015_fga_ge_0375": {
+        "count": 125,
+        "pct": 26.43
+      },
+      "fga_raw_ge_02671_median": {
+        "count": 240,
+        "pct": 50.74
+      },
+      "fga_imputed_ge_02671_median": {
+        "count": 246,
+        "pct": 52.01
+      },
+      "ddr_ge_015_hrd_int_or_high": {
+        "count": 333,
+        "pct": 70.4
+      },
+      "high_rss_ge_015_and_low_efflux_le_015": {
+        "count": 14,
+        "pct": 2.96
+      },
+      "fga_raw_ge_02671_and_low_efflux_le_015": {
+        "count": 82,
+        "pct": 17.34
+      },
+      "brca_somatic_mut": {
+        "count": 0,
+        "pct": 0.0
+      }
+    },
+    "gate2_cold_non_pole_n327": {
+      "n": 327,
+      "hrd_high_ddr_035": {
+        "count": 76,
+        "pct": 23.24
+      },
+      "high_rss_ge_015_fga_ge_0375": {
+        "count": 90,
+        "pct": 27.52
+      },
+      "fga_raw_ge_02671_median": {
+        "count": 176,
+        "pct": 53.82
+      },
+      "fga_imputed_ge_02671_median": {
+        "count": 179,
+        "pct": 54.74
+      },
+      "ddr_ge_015_hrd_int_or_high": {
+        "count": 227,
+        "pct": 69.42
+      },
+      "high_rss_ge_015_and_low_efflux_le_015": {
+        "count": 10,
+        "pct": 3.06
+      },
+      "fga_raw_ge_02671_and_low_efflux_le_015": {
+        "count": 64,
+        "pct": 19.57
+      },
+      "brca_somatic_mut": {
+        "count": 0,
+        "pct": 0.0
+      }
+    },
+    "gate2_cold_triple_wt_n169": {
+      "n": 169,
+      "hrd_high_ddr_035": {
+        "count": 45,
+        "pct": 26.63
+      },
+      "high_rss_ge_015_fga_ge_0375": {
+        "count": 56,
+        "pct": 33.14
+      },
+      "fga_raw_ge_02671_median": {
+        "count": 102,
+        "pct": 60.36
+      },
+      "fga_imputed_ge_02671_median": {
+        "count": 104,
+        "pct": 61.54
+      },
+      "ddr_ge_015_hrd_int_or_high": {
+        "count": 132,
+        "pct": 78.11
+      },
+      "high_rss_ge_015_and_low_efflux_le_015": {
+        "count": 8,
+        "pct": 4.73
+      },
+      "fga_raw_ge_02671_and_low_efflux_le_015": {
+        "count": 39,
+        "pct": 23.08
+      },
+      "brca_somatic_mut": {
+        "count": 0,
+        "pct": 0.0
+      }
+    },
+    "gate2_cold_ras_raf_mut_n158": {
+      "n": 158,
+      "hrd_high_ddr_035": {
+        "count": 31,
+        "pct": 19.62
+      },
+      "high_rss_ge_015_fga_ge_0375": {
+        "count": 34,
+        "pct": 21.52
+      },
+      "fga_raw_ge_02671_median": {
+        "count": 74,
+        "pct": 46.84
+      },
+      "fga_imputed_ge_02671_median": {
+        "count": 75,
+        "pct": 47.47
+      },
+      "ddr_ge_015_hrd_int_or_high": {
+        "count": 95,
+        "pct": 60.13
+      },
+      "high_rss_ge_015_and_low_efflux_le_015": {
+        "count": 2,
+        "pct": 1.27
+      },
+      "fga_raw_ge_02671_and_low_efflux_le_015": {
+        "count": 25,
+        "pct": 15.82
+      },
+      "brca_somatic_mut": {
+        "count": 0,
+        "pct": 0.0
+      }
+    },
+    "gate2_cold_kras_nras_braf_wt_n148": {
+      "n": 148,
+      "hrd_high_ddr_035": {
+        "count": 30,
+        "pct": 20.27
+      },
+      "high_rss_ge_015_fga_ge_0375": {
+        "count": 33,
+        "pct": 22.3
+      },
+      "fga_raw_ge_02671_median": {
+        "count": 70,
+        "pct": 47.3
+      },
+      "fga_imputed_ge_02671_median": {
+        "count": 71,
+        "pct": 47.97
+      },
+      "ddr_ge_015_hrd_int_or_high": {
+        "count": 91,
+        "pct": 61.49
+      },
+      "high_rss_ge_015_and_low_efflux_le_015": {
+        "count": 2,
+        "pct": 1.35
+      },
+      "fga_raw_ge_02671_and_low_efflux_le_015": {
+        "count": 23,
+        "pct": 15.54
+      },
+      "brca_somatic_mut": {
+        "count": 0,
+        "pct": 0.0
+      }
+    },
+    "gate2_cold_braf_mut_n10": {
+      "n": 10,
+      "hrd_high_ddr_035": {
+        "count": 1,
+        "pct": 10.0
+      },
+      "high_rss_ge_015_fga_ge_0375": {
+        "count": 1,
+        "pct": 10.0
+      },
+      "fga_raw_ge_02671_median": {
+        "count": 4,
+        "pct": 40.0
+      },
+      "fga_imputed_ge_02671_median": {
+        "count": 4,
+        "pct": 40.0
+      },
+      "ddr_ge_015_hrd_int_or_high": {
+        "count": 4,
+        "pct": 40.0
+      },
+      "high_rss_ge_015_and_low_efflux_le_015": {
+        "count": 0,
+        "pct": 0.0
+      },
+      "fga_raw_ge_02671_and_low_efflux_le_015": {
+        "count": 2,
+        "pct": 20.0
+      },
+      "brca_somatic_mut": {
+        "count": 0,
+        "pct": 0.0
+      }
+    },
+    "gate2_cold_by_cms": {
+      "CMS1": {
+        "n": 2,
+        "hrd_high_ddr_035": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "high_rss_ge_015_fga_ge_0375": {
+          "count": 1,
+          "pct": 50.0
+        },
+        "fga_raw_ge_02671_median": {
+          "count": 2,
+          "pct": 100.0
+        },
+        "fga_imputed_ge_02671_median": {
+          "count": 2,
+          "pct": 100.0
+        },
+        "ddr_ge_015_hrd_int_or_high": {
+          "count": 2,
+          "pct": 100.0
+        },
+        "high_rss_ge_015_and_low_efflux_le_015": {
+          "count": 1,
+          "pct": 50.0
+        },
+        "fga_raw_ge_02671_and_low_efflux_le_015": {
+          "count": 2,
+          "pct": 100.0
+        },
+        "brca_somatic_mut": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "CMS2": {
+        "n": 53,
+        "hrd_high_ddr_035": {
+          "count": 14,
+          "pct": 26.42
+        },
+        "high_rss_ge_015_fga_ge_0375": {
+          "count": 16,
+          "pct": 30.19
+        },
+        "fga_raw_ge_02671_median": {
+          "count": 34,
+          "pct": 64.15
+        },
+        "fga_imputed_ge_02671_median": {
+          "count": 34,
+          "pct": 64.15
+        },
+        "ddr_ge_015_hrd_int_or_high": {
+          "count": 45,
+          "pct": 84.91
+        },
+        "high_rss_ge_015_and_low_efflux_le_015": {
+          "count": 1,
+          "pct": 1.89
+        },
+        "fga_raw_ge_02671_and_low_efflux_le_015": {
+          "count": 12,
+          "pct": 22.64
+        },
+        "brca_somatic_mut": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "CMS3": {
+        "n": 20,
+        "hrd_high_ddr_035": {
+          "count": 2,
+          "pct": 10.0
+        },
+        "high_rss_ge_015_fga_ge_0375": {
+          "count": 2,
+          "pct": 10.0
+        },
+        "fga_raw_ge_02671_median": {
+          "count": 2,
+          "pct": 10.0
+        },
+        "fga_imputed_ge_02671_median": {
+          "count": 2,
+          "pct": 10.0
+        },
+        "ddr_ge_015_hrd_int_or_high": {
+          "count": 6,
+          "pct": 30.0
+        },
+        "high_rss_ge_015_and_low_efflux_le_015": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "fga_raw_ge_02671_and_low_efflux_le_015": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "brca_somatic_mut": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "CMS4": {
+        "n": 20,
+        "hrd_high_ddr_035": {
+          "count": 2,
+          "pct": 10.0
+        },
+        "high_rss_ge_015_fga_ge_0375": {
+          "count": 3,
+          "pct": 15.0
+        },
+        "fga_raw_ge_02671_median": {
+          "count": 9,
+          "pct": 45.0
+        },
+        "fga_imputed_ge_02671_median": {
+          "count": 9,
+          "pct": 45.0
+        },
+        "ddr_ge_015_hrd_int_or_high": {
+          "count": 16,
+          "pct": 80.0
+        },
+        "high_rss_ge_015_and_low_efflux_le_015": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "fga_raw_ge_02671_and_low_efflux_le_015": {
+          "count": 3,
+          "pct": 15.0
+        },
+        "brca_somatic_mut": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "NOLBL": {
+        "n": 10,
+        "hrd_high_ddr_035": {
+          "count": 2,
+          "pct": 20.0
+        },
+        "high_rss_ge_015_fga_ge_0375": {
+          "count": 2,
+          "pct": 20.0
+        },
+        "fga_raw_ge_02671_median": {
+          "count": 5,
+          "pct": 50.0
+        },
+        "fga_imputed_ge_02671_median": {
+          "count": 5,
+          "pct": 50.0
+        },
+        "ddr_ge_015_hrd_int_or_high": {
+          "count": 7,
+          "pct": 70.0
+        },
+        "high_rss_ge_015_and_low_efflux_le_015": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "fga_raw_ge_02671_and_low_efflux_le_015": {
+          "count": 2,
+          "pct": 20.0
+        },
+        "brca_somatic_mut": {
+          "count": 0,
+          "pct": 0.0
+        }
+      },
+      "UNLABELED": {
+        "n": 222,
+        "hrd_high_ddr_035": {
+          "count": 56,
+          "pct": 25.23
+        },
+        "high_rss_ge_015_fga_ge_0375": {
+          "count": 66,
+          "pct": 29.73
+        },
+        "fga_raw_ge_02671_median": {
+          "count": 124,
+          "pct": 55.86
+        },
+        "fga_imputed_ge_02671_median": {
+          "count": 127,
+          "pct": 57.21
+        },
+        "ddr_ge_015_hrd_int_or_high": {
+          "count": 151,
+          "pct": 68.02
+        },
+        "high_rss_ge_015_and_low_efflux_le_015": {
+          "count": 8,
+          "pct": 3.6
+        },
+        "fga_raw_ge_02671_and_low_efflux_le_015": {
+          "count": 45,
+          "pct": 20.27
+        },
+        "brca_somatic_mut": {
+          "count": 0,
+          "pct": 0.0
+        }
+      }
+    },
+    "ceacam5_adc_rescue_gate_requirements": {
+      "expression_gate_required": "CEACAM5 IHC >= 2+/3+ in >= 80% of tumor cells (per CARMEN-LC03 >=80% subgroup OS HR=0.71 vs 50-79% OS HR=1.02) + serum cCEA >= 100 ng/mL",
+      "payload_resistance_gate": "Must not be prior-irinotecan/SN-38 refractory when using SN-38 payload (IMMU-130 NCT01270698 ORR 1.2% in irinotecan-refractory mCRC) and requires low efflux (p_efflux <= 0.15; 178/327 = 54.43% of Gate-2 Cold non-POLE MSS patients have p_efflux <= 0.15)",
+      "tcga_coadread_status": "CEACAM5 IHC H-score / % 2+/3+ membrane staining is not present in the 485-row genomic CSV; requires IHC/RNA companion gate prior to ADC routing."
+    }
+  }
+}

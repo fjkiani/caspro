@@ -1,0 +1,629 @@
+{
+  "manifest": "CONTROLLED_DATA_MANIFEST",
+  "generated": "2026-07-20T22:45:38.901812Z",
+  "purpose": "Controlled/authenticated clinical-trial datasets to replace watered-down proxy endpoints in the HGSOC true-resistance framework",
+  "honesty_boundary": "Controlled-access DATA cannot be pulled from this environment; only user's signed-DUA/DAC login can. Each record carries a truthful access_state. Nothing is labeled downloaded/reviewed unless its metadata was genuinely retrieved this run (see verified_metadata_bool and connection_status).",
+  "access_state_enum": [
+    "REQUEST_FROM_NRG_OR_PDS",
+    "SCRIPT_READY_PENDING_USER_AUTH",
+    "OPEN_PULLABLE_NOW",
+    "METADATA_VERIFIED_PUBLIC",
+    "UNAVAILABLE",
+    "REQUEST_FROM_AUTHORS"
+  ],
+  "n_records": 17,
+  "records": [
+    {
+      "dataset_id": "PDS::GOG-0218 (NCT00262847)",
+      "source": "Project Data Sphere",
+      "trial": "GOG-0218",
+      "nct": "NCT00262847",
+      "n": 1873,
+      "data_types": [
+        "longitudinal_serum_CA125",
+        "PFS/PFI",
+        "OS",
+        "treatment_arm"
+      ],
+      "key_variables": [
+        "subject_id",
+        "ca125_value",
+        "ca125_date_or_day",
+        "cycle_number",
+        "treatment_arm",
+        "platinum_start_date",
+        "pfs_event",
+        "pfs_time",
+        "os_event",
+        "os_time"
+      ],
+      "endpoint_it_enables": "KELIM (CA-125 elimination-rate) validated on in-treatment chemo-response; PFI linkage",
+      "claim_it_cures": "KELIM Convergence Model validated on real in-treatment chemo-response (was pointed at PLCO screening)",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "PDS Research Access account (free registration + approval)",
+        "Signed PDS Data Use Agreement",
+        "Dataset must be located in PDS catalog by trial sponsor/NCT (dataset IDs are assigned per deposit inside the portal)"
+      ],
+      "ingest_script": "ingest_master.py --source pds --trial GOG-0218",
+      "verified_metadata_bool": true,
+      "fallback_for": null,
+      "live_auth_state": "NO_PUBLIC_LOGIN_API_2026-07-20: PDS is a browser SPA portal; uploaded credential is an EGA account, not verifiable vs PDS here. Needs PDS Research Access acct + signed DUA."
+    },
+    {
+      "dataset_id": "PDS::ICON7 (NCT00483782)",
+      "source": "Project Data Sphere",
+      "trial": "ICON7",
+      "nct": "NCT00483782",
+      "n": 1520,
+      "data_types": [
+        "longitudinal_serum_CA125",
+        "PFS/PFI",
+        "OS",
+        "treatment_arm"
+      ],
+      "key_variables": [
+        "subject_id",
+        "ca125_value",
+        "ca125_date_or_day",
+        "cycle_number",
+        "treatment_arm",
+        "platinum_start_date",
+        "pfs_event",
+        "pfs_time",
+        "os_event",
+        "os_time"
+      ],
+      "endpoint_it_enables": "KELIM (CA-125 elimination-rate) validated on in-treatment chemo-response; PFI linkage",
+      "claim_it_cures": "KELIM Convergence Model validated on real in-treatment chemo-response (was pointed at PLCO screening)",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "PDS Research Access account (free registration + approval)",
+        "Signed PDS Data Use Agreement",
+        "Dataset must be located in PDS catalog by trial sponsor/NCT (dataset IDs are assigned per deposit inside the portal)"
+      ],
+      "ingest_script": "ingest_master.py --source pds --trial ICON7",
+      "verified_metadata_bool": true,
+      "fallback_for": null,
+      "live_auth_state": "NO_PUBLIC_LOGIN_API_2026-07-20: PDS is a browser SPA portal; uploaded credential is an EGA account, not verifiable vs PDS here. Needs PDS Research Access acct + signed DUA."
+    },
+    {
+      "dataset_id": "PDS::OCEANS (NCT00434642)",
+      "source": "Project Data Sphere",
+      "trial": "OCEANS",
+      "nct": "NCT00434642",
+      "n": 484,
+      "data_types": [
+        "longitudinal_serum_CA125",
+        "PFS/PFI",
+        "OS",
+        "treatment_arm"
+      ],
+      "key_variables": [
+        "subject_id",
+        "ca125_value",
+        "ca125_date_or_day",
+        "cycle_number",
+        "treatment_arm",
+        "platinum_start_date",
+        "pfs_event",
+        "pfs_time",
+        "os_event",
+        "os_time"
+      ],
+      "endpoint_it_enables": "KELIM (CA-125 elimination-rate) validated on in-treatment chemo-response; PFI linkage",
+      "claim_it_cures": "KELIM Convergence Model validated on real in-treatment chemo-response (was pointed at PLCO screening)",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "PDS Research Access account (free registration + approval)",
+        "Signed PDS Data Use Agreement",
+        "Dataset must be located in PDS catalog by trial sponsor/NCT (dataset IDs are assigned per deposit inside the portal)"
+      ],
+      "ingest_script": "ingest_master.py --source pds --trial OCEANS",
+      "verified_metadata_bool": true,
+      "fallback_for": "GOG-0218",
+      "live_auth_state": "NO_PUBLIC_LOGIN_API_2026-07-20: PDS is a browser SPA portal; uploaded credential is an EGA account, not verifiable vs PDS here. Needs PDS Research Access acct + signed DUA."
+    },
+    {
+      "dataset_id": "PDS::AGO-OVAR16 (NCT00866697)",
+      "source": "Project Data Sphere",
+      "trial": "AGO-OVAR16",
+      "nct": "NCT00866697",
+      "n": 940,
+      "data_types": [
+        "longitudinal_serum_CA125",
+        "PFS/PFI",
+        "OS",
+        "treatment_arm"
+      ],
+      "key_variables": [
+        "subject_id",
+        "ca125_value",
+        "ca125_date_or_day",
+        "cycle_number",
+        "treatment_arm",
+        "platinum_start_date",
+        "pfs_event",
+        "pfs_time",
+        "os_event",
+        "os_time"
+      ],
+      "endpoint_it_enables": "KELIM (CA-125 elimination-rate) validated on in-treatment chemo-response; PFI linkage",
+      "claim_it_cures": "KELIM Convergence Model validated on real in-treatment chemo-response (was pointed at PLCO screening)",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "PDS Research Access account (free registration + approval)",
+        "Signed PDS Data Use Agreement",
+        "Dataset must be located in PDS catalog by trial sponsor/NCT (dataset IDs are assigned per deposit inside the portal)"
+      ],
+      "ingest_script": "ingest_master.py --source pds --trial AGO-OVAR16",
+      "verified_metadata_bool": true,
+      "fallback_for": null,
+      "live_auth_state": "NO_PUBLIC_LOGIN_API_2026-07-20: PDS is a browser SPA portal; uploaded credential is an EGA account, not verifiable vs PDS here. Needs PDS Research Access acct + signed DUA."
+    },
+    {
+      "dataset_id": "PDS::GOG-0262 (NCT01167712)",
+      "source": "Project Data Sphere",
+      "trial": "GOG-0262",
+      "nct": "NCT01167712",
+      "n": 692,
+      "data_types": [
+        "longitudinal_serum_CA125",
+        "PFS/PFI",
+        "OS",
+        "treatment_arm"
+      ],
+      "key_variables": [
+        "subject_id",
+        "ca125_value",
+        "ca125_date_or_day",
+        "cycle_number",
+        "treatment_arm",
+        "platinum_start_date",
+        "pfs_event",
+        "pfs_time",
+        "os_event",
+        "os_time"
+      ],
+      "endpoint_it_enables": "KELIM (CA-125 elimination-rate) validated on in-treatment chemo-response; PFI linkage",
+      "claim_it_cures": "KELIM Convergence Model validated on real in-treatment chemo-response (was pointed at PLCO screening)",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "PDS Research Access account (free registration + approval)",
+        "Signed PDS Data Use Agreement",
+        "Dataset must be located in PDS catalog by trial sponsor/NCT (dataset IDs are assigned per deposit inside the portal)"
+      ],
+      "ingest_script": "ingest_master.py --source pds --trial GOG-0262",
+      "verified_metadata_bool": true,
+      "fallback_for": null,
+      "live_auth_state": "NO_PUBLIC_LOGIN_API_2026-07-20: PDS is a browser SPA portal; uploaded credential is an EGA account, not verifiable vs PDS here. Needs PDS Research Access acct + signed DUA."
+    },
+    {
+      "dataset_id": "dbGaP::GOG-0218 (NRG submission, phs TBD via study report)",
+      "source": "dbGaP",
+      "trial": "GOG-0218",
+      "nct": "NCT00262847",
+      "n": 1873,
+      "data_types": [
+        "true_PFI/PFS",
+        "germline_HRR",
+        "somatic_HRR",
+        "treatment_arm",
+        "OS"
+      ],
+      "key_variables": [
+        "subject_id",
+        "pfs_time_days",
+        "pfs_event",
+        "platinum_free_interval_days",
+        "germline_BRCA1_BRCA2",
+        "somatic_HRR_genes",
+        "treatment_arm",
+        "os_time",
+        "os_event"
+      ],
+      "endpoint_it_enables": "true Platinum-Free Interval + HRR->platinum-PFS link",
+      "claim_it_cures": "validate on true PFI (not OS/early-relapse proxy) + HRR->PFS",
+      "access_state": "REQUEST_FROM_NRG_OR_PDS",
+      "access_requirements": [
+        "dbGaP account + approved Data Access Request (DAR) for the specific phs study",
+        "dbGaP repository key (.ngc / prj_XXXXX.ngc) downloaded after DAR approval",
+        "SRA Toolkit (prefetch/fasterq-dump) or dbGaP file selector to pull controlled files"
+      ],
+      "ingest_script": "see W1 (PDS) \u2014 not a dbGaP DAR",
+      "verified_metadata_bool": false,
+      "fallback_for": null,
+      "live_auth_state": "RESOLVED_NEGATIVE_2026-07-20: GOG-0218 has NO dbGaP phs (only esearch hit = phs000280/ARIC via text match). Clinical+HRR via NRG/PDS, not dbGaP."
+    },
+    {
+      "dataset_id": "dbGaP::TCGA-OV phs000178.v11.p8",
+      "source": "dbGaP",
+      "trial": "TCGA-OV",
+      "nct": null,
+      "n": 580,
+      "data_types": [
+        "PFS/PFI",
+        "germline",
+        "somatic",
+        "methylation"
+      ],
+      "key_variables": [
+        "subject_id",
+        "pfs_time_days",
+        "pfs_event",
+        "platinum_free_interval_days",
+        "germline_BRCA1_BRCA2",
+        "somatic_HRR_genes",
+        "treatment_arm",
+        "os_time",
+        "os_event"
+      ],
+      "endpoint_it_enables": "true-PFI + somatic/germline HRR at n~580",
+      "claim_it_cures": "true-PFI validation + HRR at scale",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "dbGaP account + approved Data Access Request (DAR) for the specific phs study",
+        "dbGaP repository key (.ngc / prj_XXXXX.ngc) downloaded after DAR approval",
+        "SRA Toolkit (prefetch/fasterq-dump) or dbGaP file selector to pull controlled files"
+      ],
+      "ingest_script": "w2_dbgap_ingest.sh (DBGAP_PHS=phs000178.v11.p8)",
+      "verified_metadata_bool": true,
+      "fallback_for": "GOG-0218",
+      "live_auth_state": "METADATA_RESOLVED_2026-07-20: study.cgi phs000178.v11.p8 HTTP 200 (Ovarian/TCGA confirmed). Controlled data needs signed DAR + user .ngc.",
+      "live_execution": {
+        "variable_map": "w2_dbgap_pfi_hrr_manifest.json \u2014 true-PFI via TCGA-CDR (Liu 2018), HRR via MC3+germline"
+      }
+    },
+    {
+      "dataset_id": "EGA::BriTROC-1 EGAD00001011049",
+      "source": "EGA",
+      "trial": "BriTROC-1",
+      "nct": null,
+      "n": 265,
+      "data_types": [
+        "shallow-WGS BAM",
+        "relative copy-number",
+        "paired diagnosis+relapse tumour DNA"
+      ],
+      "key_variables": [
+        "subject_id",
+        "sample_title(diagnosis|relapse)",
+        "EGAF file accession",
+        "md5",
+        "relative_CN"
+      ],
+      "endpoint_it_enables": "Sig7 (CN signatures) + Serial-SAE on 182 paired diagnosis/relapse subjects; true ACQUIRED platinum resistance",
+      "claim_it_cures": "Sig7 + Serial-SAE on real acquired-resistance endpoint (not screening/proxy)",
+      "access_state": "OPEN_PULLABLE_NOW",
+      "access_requirements": [
+        "EGA account + DAC-approved Data Access Agreement for EGAD00001011049 (BriTROC-1 DAC)",
+        "pyega3 client with an EGA credentials JSON (username/password)"
+      ],
+      "ingest_script": "w3_ega_ingest.sh (EGA_CREDENTIALS=<json> EGA_DATASET=EGAD00001011049)",
+      "verified_metadata_bool": true,
+      "fallback_for": null,
+      "extra": {
+        "n_files": 679,
+        "total_gib": 475.8,
+        "serial_sae_pairs": 182,
+        "sample_breakdown": {
+          "diagnosis tumour DNA": 385,
+          "relapse tumour DNA": 294
+        }
+      },
+      "live_auth_state": "AUTHENTICATED_2026-07-20 (user fahad@jedilabs.org; entitled to EGAD00001011049)",
+      "live_execution": {
+        "auth": "pyega3 live auth SUCCESS; 679 files listed, reconciled 679/679 vs metadata (0 mismatch, filenames match), 510.8 GB",
+        "cohort_built": "182 diagnosis+relapse pairs (w3_britroc_cohort_182pairs.csv), every EGAF live-verified w/ MD5",
+        "pilot_pull": "8 BAMs (4 matched pairs) fetched + MD5-verified via pyega3",
+        "pilot_analysis": "QDNAseq hg19 30kb relative-CN on real BAMs; Serial-SAE deltas + Sig7 CN-feature basis computed; figure generated",
+        "full_pull_script": "w3_full_cohort_pull.sh (run on EU VM; paired=281GB, all=511GB)"
+      }
+    },
+    {
+      "dataset_id": "EGA/ICGC::AOCS / OV-AU (ICGC)",
+      "source": "EGA/ICGC",
+      "trial": "AOCS / OV-AU (ICGC)",
+      "nct": null,
+      "n": null,
+      "data_types": [
+        "WGS",
+        "CN/mutational signatures"
+      ],
+      "key_variables": [
+        "somatic_variants",
+        "CN_profile"
+      ],
+      "endpoint_it_enables": "primary HGSOC WGS somatic + CN signatures; some primary-resistance annotation",
+      "claim_it_cures": "Sig7 primary-resistance signature (ALTERNATE)",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "ICGC DACO / EGA DAC controlled"
+      ],
+      "ingest_script": "ingest_master.py --source ega --dataset <accession>",
+      "verified_metadata_bool": false,
+      "fallback_for": "BriTROC-1"
+    },
+    {
+      "dataset_id": "EGA/ICGC::PCAWG ovarian (EGAD00001001800-family)",
+      "source": "EGA/ICGC",
+      "trial": "PCAWG ovarian (EGAD00001001800-family)",
+      "nct": null,
+      "n": null,
+      "data_types": [
+        "WGS",
+        "CN/mutational signatures"
+      ],
+      "key_variables": [
+        "somatic_variants",
+        "CN_profile"
+      ],
+      "endpoint_it_enables": "WGS mutational + CN signatures",
+      "claim_it_cures": "mutational-signature validation (ALTERNATE)",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "controlled"
+      ],
+      "ingest_script": "ingest_master.py --source ega --dataset <accession>",
+      "verified_metadata_bool": false,
+      "fallback_for": "BriTROC-1"
+    },
+    {
+      "dataset_id": "ctDNA::BriTROC-1 ctDNA (Goranova/Smith)",
+      "source": "literature/consortium",
+      "trial": "BriTROC-1 ctDNA (Goranova/Smith)",
+      "nct": null,
+      "n": null,
+      "data_types": [
+        "longitudinal ctDNA tumor fraction",
+        "relapse after platinum (acquired resistance) \u2014 real endpoint"
+      ],
+      "key_variables": [
+        "subject_id",
+        "ctdna_tumor_fraction",
+        "timepoint_day",
+        "platinum_resistance_label",
+        "pfi_days"
+      ],
+      "endpoint_it_enables": "ctDNA-TF -> resistance-probability calibration",
+      "claim_it_cures": "wire ctDNA-TF directly into predict_resistance (remove WIRED_PROGNOSTIC_ONLY_V1)",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "EGA DAC controlled (links to W3 EGAD00001011049 sample set)"
+      ],
+      "ingest_script": "w3_ega_ingest.sh (BriTROC-1 plasma)",
+      "verified_metadata_bool": false,
+      "fallback_for": null,
+      "extra": {
+        "directness": "TIER1_DIRECT"
+      },
+      "live_execution": {
+        "calibration_spec": "w4_ctdna_calibration_spec.json (monotone TF->resistance; unlock needs TIER1 controlled ctDNA + explicit auth; WIRED_PROGNOSTIC_ONLY_V1 lock preserved)"
+      }
+    },
+    {
+      "dataset_id": "ctDNA::PLD-monitoring PROC ctDNA trial (Fudan)",
+      "source": "literature/consortium",
+      "trial": "PLD-monitoring PROC ctDNA trial (Fudan)",
+      "nct": "NCT05976932",
+      "n": null,
+      "data_types": [
+        "longitudinal ctDNA tumor fraction",
+        "response/progression in platinum-resistant setting (routing-relevant)"
+      ],
+      "key_variables": [
+        "subject_id",
+        "ctdna_tumor_fraction",
+        "timepoint_day",
+        "platinum_resistance_label",
+        "pfi_days"
+      ],
+      "endpoint_it_enables": "ctDNA-TF -> resistance-probability calibration",
+      "claim_it_cures": "supporting ctDNA-response evidence (not sufficient alone)",
+      "access_state": "REQUEST_FROM_AUTHORS",
+      "access_requirements": [
+        "REQUEST_FROM_AUTHORS / trial team (ongoing)"
+      ],
+      "ingest_script": "author/consortium data request",
+      "verified_metadata_bool": false,
+      "fallback_for": null,
+      "extra": {
+        "directness": "TIER2_RESPONSE"
+      }
+    },
+    {
+      "dataset_id": "ctDNA::Christie/Manchester HGSOC ctDNA (tumour fraction vs CA-125)",
+      "source": "literature/consortium",
+      "trial": "Christie/Manchester HGSOC ctDNA (tumour fraction vs CA-125)",
+      "nct": null,
+      "n": null,
+      "data_types": [
+        "longitudinal ctDNA tumor fraction",
+        "progression detection vs CA-125 (response/progression)"
+      ],
+      "key_variables": [
+        "subject_id",
+        "ctdna_tumor_fraction",
+        "timepoint_day",
+        "platinum_resistance_label",
+        "pfi_days"
+      ],
+      "endpoint_it_enables": "ctDNA-TF -> resistance-probability calibration",
+      "claim_it_cures": "supporting ctDNA-response evidence (not sufficient alone)",
+      "access_state": "REQUEST_FROM_AUTHORS",
+      "access_requirements": [
+        "REQUEST_FROM_AUTHORS"
+      ],
+      "ingest_script": "author/consortium data request",
+      "verified_metadata_bool": false,
+      "fallback_for": null,
+      "extra": {
+        "directness": "TIER2_RESPONSE"
+      }
+    },
+    {
+      "dataset_id": "ctDNA::TRACE / DETECTIVE-style HGSOC MRD ctDNA",
+      "source": "literature/consortium",
+      "trial": "TRACE / DETECTIVE-style HGSOC MRD ctDNA",
+      "nct": null,
+      "n": null,
+      "data_types": [
+        "longitudinal ctDNA tumor fraction",
+        "relapse timing (resistance surrogate)"
+      ],
+      "key_variables": [
+        "subject_id",
+        "ctdna_tumor_fraction",
+        "timepoint_day",
+        "platinum_resistance_label",
+        "pfi_days"
+      ],
+      "endpoint_it_enables": "ctDNA-TF -> resistance-probability calibration",
+      "claim_it_cures": "supporting ctDNA-response evidence (not sufficient alone)",
+      "access_state": "REQUEST_FROM_AUTHORS",
+      "access_requirements": [
+        "REQUEST_FROM_AUTHORS / consortium"
+      ],
+      "ingest_script": "author/consortium data request",
+      "verified_metadata_bool": false,
+      "fallback_for": null,
+      "extra": {
+        "directness": "TIER2_RESPONSE"
+      }
+    },
+    {
+      "dataset_id": "ctDNA::MITO16a/MaNGO-OV2a (Paracchini 2026)",
+      "source": "literature/consortium",
+      "trial": "MITO16a/MaNGO-OV2a (Paracchini 2026)",
+      "nct": null,
+      "n": 167,
+      "data_types": [
+        "longitudinal ctDNA tumor fraction",
+        "PFS/OS prognostic (first-line bev)"
+      ],
+      "key_variables": [
+        "subject_id",
+        "ctdna_tumor_fraction",
+        "timepoint_day",
+        "platinum_resistance_label",
+        "pfi_days"
+      ],
+      "endpoint_it_enables": "ctDNA-TF -> resistance-probability calibration",
+      "claim_it_cures": "supporting ctDNA-response evidence (not sufficient alone)",
+      "access_state": "REQUEST_FROM_AUTHORS",
+      "access_requirements": [
+        "REQUEST_FROM_AUTHORS (Italian MITO/MaNGO consortium)"
+      ],
+      "ingest_script": "author/consortium data request",
+      "verified_metadata_bool": false,
+      "fallback_for": null,
+      "extra": {
+        "directness": "TIER3_PROGNOSTIC"
+      }
+    },
+    {
+      "dataset_id": "MSK-SPECTRUM::2022 (10.1038/s41586-022-05496-1)",
+      "source": "Synapse/dbGaP/GEO",
+      "trial": "MSK SPECTRUM",
+      "nct": null,
+      "n": "42 treatment-naive HGSOC patients; 160 multi-site biopsies",
+      "data_types": [
+        "scRNA-seq (CD45+/CD45-)",
+        "tumour-normal WGS (n=40)",
+        "MSK-IMPACT 468-gene panel",
+        "H&E",
+        "mpIF"
+      ],
+      "key_variables": [
+        "mutational_signature_class",
+        "HRD/BRCA status",
+        "CN profile",
+        "cell types"
+      ],
+      "endpoint_it_enables": "WGS mutational-signature classes (HRD-Dup n=16, HRD-Del n=6, FBI n=14), CCNE1/MYC amplification, BRCA1/2 + clinical HRD \u2014 directly feeds Sig7 (mutational/CN signatures) biology",
+      "claim_it_cures": "Sig7 mutational/CN-signature biology from a connected HGSOC cohort",
+      "access_state": "OPEN_PULLABLE_NOW (open tier) + SCRIPT_READY_PENDING_USER_AUTH (dbGaP controlled tier)",
+      "access_requirements": [
+        "Synapse account (open tier)",
+        "dbGaP DAR for phs002857 (controlled raw)"
+      ],
+      "ingest_script": "acquire_synapse.py (open tier) / w2_dbgap_ingest.sh DBGAP_PHS=phs002857.v3.p1 (controlled)",
+      "verified_metadata_bool": true,
+      "fallback_for": null,
+      "extra": {
+        "connection_status": "CONNECTED_AND_VERIFIED: Synapse syn25569736 opened live via in-session token (Sage Project 'MSK SPECTRUM', created 2021-04-19), child folder syn52458607 = this 2022 paper. Open-tier = OPEN_PULLABLE_NOW with Synapse creds; raw WGS/scRNA = controlled via dbGaP phs002857 DAC.",
+        "accessions": {
+          "synapse_project_open_tier": "syn25569736",
+          "synapse_2022_subfolder": "syn52458607",
+          "dbgap_controlled_tier": "phs002857.v1.p1 (umbrella now at v3.p1)",
+          "cbioportal": "msk_spectrum_tme_2022",
+          "cellxgene_collection": "4796c91c-9d8f-4692-be43-347b1727f9d8"
+        }
+      }
+    },
+    {
+      "dataset_id": "MSK-SPECTRUM::2025 (10.1038/s41586-025-09240-3)",
+      "source": "Synapse/dbGaP/GEO",
+      "trial": "MSK SPECTRUM (single-cell WGS extension)",
+      "nct": null,
+      "n": null,
+      "data_types": [
+        "single-cell WGS (scWGS)",
+        "10x 3' scRNA-seq"
+      ],
+      "key_variables": [
+        "scWGS CN",
+        "WGD status",
+        "scRNA cell states"
+      ],
+      "endpoint_it_enables": "whole-genome-doubling dynamics + evolvability in HGSOC \u2014 CN-evolution substrate for Sig7 / Serial-SAE analogues",
+      "claim_it_cures": "Sig7 mutational/CN-signature biology from a connected HGSOC cohort",
+      "access_state": "OPEN_PULLABLE_NOW (GEO + processed Synapse) + SCRIPT_READY_PENDING_USER_AUTH (dbGaP raw)",
+      "access_requirements": [
+        "Synapse account (open tier)",
+        "dbGaP DAR for phs002857 (controlled raw)"
+      ],
+      "ingest_script": "acquire_synapse.py (open tier) / w2_dbgap_ingest.sh DBGAP_PHS=phs002857.v3.p1 (controlled)",
+      "verified_metadata_bool": true,
+      "fallback_for": null,
+      "extra": {
+        "connection_status": "VERIFIED: accessions read verbatim from the paper's Data availability statement; parent Synapse project syn25569736 connected live (child folder syn66309959 = this 2025 paper). GEO GSE180661 is open; scWGS raw is dbGaP-controlled.",
+        "accessions": {
+          "synapse_documentation": "syn66366718",
+          "synapse_processed_scWGS": "syn66366960",
+          "synapse_processed_scRNA": [
+            "syn33521743",
+            "syn66477498"
+          ],
+          "dbgap_raw_scWGS": "phs002857.v3.p1",
+          "geo_raw_scRNA": "GSE180661",
+          "synapse_2025_subfolder": "syn66309959"
+        }
+      }
+    }
+  ],
+  "claim_cure_index": {
+    "KELIM-on-real-chemo-response": [
+      "PDS::GOG-0218",
+      "PDS::ICON7",
+      "PDS::AGO-OVAR16"
+    ],
+    "true-PFI + HRR->PFS": [
+      "dbGaP::GOG-0218",
+      "dbGaP::TCGA-OV phs000178.v11.p8"
+    ],
+    "Sig7 + Serial-SAE (acquired resistance)": [
+      "EGA::BriTROC-1 EGAD00001011049 (182 pairs)",
+      "MSK-SPECTRUM::2022",
+      "MSK-SPECTRUM::2025"
+    ],
+    "ctDNA-TF -> predict_resistance (remove WIRED_PROGNOSTIC_ONLY_V1)": [
+      "ctDNA::BriTROC-1 ctDNA (TIER1_DIRECT, EGA-controlled)"
+    ]
+  },
+  "live_execution_run": {
+    "date": "2026-07-20",
+    "summary": "Live EGA auth proven + 182-pair cohort built + 8-BAM pilot pulled (MD5-verified) + real QDNAseq CN + Serial-SAE/Sig7-feature demo. W1/W2/W4 recorded with truthful access + auth states. NO framework code changed; NO commits.",
+    "honesty": "Only EGA BriTROC tumour-DNA is AUTHENTICATED/pulled. dbGaP + PDS remain user-gated (signed DAR/DUA). ctDNA calibration is spec-only pending TIER1 data."
+  }
+}

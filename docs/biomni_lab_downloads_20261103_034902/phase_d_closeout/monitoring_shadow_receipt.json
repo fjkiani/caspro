@@ -1,0 +1,447 @@
+{
+  "artifact": "Resistance Prophet + Kill Chain bounded shadow validation",
+  "artifact_status": "SHADOW_ONLY",
+  "deterministic_repeat": true,
+  "forbidden_visible_fields_found": [],
+  "observations": {
+    "kc_active_signals": {
+      "CA125_RISING": true,
+      "CTDNA_MRD": true
+    },
+    "kc_intake_state": "NOT_EVALUATED",
+    "kc_longitudinal_state": "resistance_detected",
+    "rp_detected_signal_count": 2,
+    "rp_longitudinal_state": "EVALUATED",
+    "rp_missing_state": "INSUFFICIENT_EVIDENCE"
+  },
+  "output_sha256": "4697a4248d9ec2c2da32e0934c68cce36fb8baf701286c1fab8418bbcb27f609",
+  "outputs": {
+    "intake_kill_chain": {
+      "active_signals": {
+        "HRD_BASELINE": true,
+        "SLFN11_PRIOR": true
+      },
+      "artifact": "KILL_CHAIN",
+      "artifact_status": "SHADOW_ONLY",
+      "evidence_state": "INSUFFICIENT_EVIDENCE",
+      "input_channels_used": [
+        "hrd_score",
+        "slfn11_methylation_beta"
+      ],
+      "internal_validation_trace": {
+        "artifact_version": "kill-chain-shadow.1.0.0",
+        "authorized_only": true,
+        "events": [
+          {
+            "active_signals": {
+              "CA125_RISING": false,
+              "CTDNA_MRD": false,
+              "HRD_BASELINE": true,
+              "HRD_SHIFT": false,
+              "NRF2_ACTIVATION": false,
+              "REPAIR_SHIFT": false,
+              "SLC31A1_LOSS": false,
+              "SLFN11_PRIOR": false
+            },
+            "confidence": "WATCH",
+            "hr_proficient": true,
+            "hrd_baseline_flag": true,
+            "hrd_sum": 20.0,
+            "resistance_event": null,
+            "state": "monitoring"
+          },
+          {
+            "active_signals": {
+              "CA125_RISING": false,
+              "CTDNA_MRD": false,
+              "HRD_BASELINE": true,
+              "HRD_SHIFT": false,
+              "NRF2_ACTIVATION": false,
+              "REPAIR_SHIFT": false,
+              "SLC31A1_LOSS": false,
+              "SLFN11_PRIOR": true
+            },
+            "confidence": "INTAKE_RISK",
+            "methylation_beta": 0.8,
+            "population_prior": null,
+            "resistance_event": {
+              "baseline_signals": [
+                "HRD_BASELINE",
+                "SLFN11_PRIOR"
+              ],
+              "intake_risk": true,
+              "note": "Multiple intake risk factors detected but no temporal resistance signal yet. Patient should be monitored closely.",
+              "state": "monitoring"
+            },
+            "signal_source": "patient_methylation",
+            "slfn11_flag": true,
+            "slfn11_silenced": true,
+            "state": "monitoring"
+          }
+        ],
+        "resistance_risk_score": 0.5,
+        "score_is_default": true,
+        "score_provenance": {
+          "note": "Neutral placeholder; not patient-derived until trigger fires",
+          "ruo": true,
+          "source": "default"
+        },
+        "trace_id": "KC-dddf156181307425cf6f6c7b"
+      },
+      "limitations": [
+        "2-of-N deterministic research state machine; not a treatment decision",
+        "Static intake signals cannot independently trigger resistance",
+        "No response, benefit, or treatment recommendation is emitted"
+      ],
+      "signal_count": 2,
+      "state": "NOT_EVALUATED",
+      "trace_id": "KC-dddf156181307425cf6f6c7b"
+    },
+    "longitudinal": {
+      "kill_chain": {
+        "active_signals": {
+          "CA125_RISING": true,
+          "CTDNA_MRD": true
+        },
+        "artifact": "KILL_CHAIN",
+        "artifact_status": "SHADOW_ONLY",
+        "evidence_state": "EVALUATED",
+        "input_channels_used": [
+          "ca125_trajectory",
+          "ctdna"
+        ],
+        "internal_validation_trace": {
+          "artifact_version": "kill-chain-shadow.1.0.0",
+          "authorized_only": true,
+          "events": [
+            {
+              "active_signals": {
+                "CA125_RISING": false,
+                "CTDNA_MRD": false,
+                "HRD_BASELINE": false,
+                "HRD_SHIFT": false,
+                "NRF2_ACTIVATION": false,
+                "REPAIR_SHIFT": false,
+                "SLC31A1_LOSS": false,
+                "SLFN11_PRIOR": false
+              },
+              "ca125_added": {
+                "date": "T1",
+                "value": 20.0
+              },
+              "confidence": null,
+              "resistance_event": null,
+              "resistance_risk_provenance": {
+                "note": "Neutral placeholder; not patient-derived until trigger fires",
+                "ruo": true,
+                "source": "default"
+              },
+              "state": "monitoring"
+            },
+            {
+              "active_signals": {
+                "CA125_RISING": false,
+                "CTDNA_MRD": false,
+                "HRD_BASELINE": false,
+                "HRD_SHIFT": false,
+                "NRF2_ACTIVATION": false,
+                "REPAIR_SHIFT": false,
+                "SLC31A1_LOSS": false,
+                "SLFN11_PRIOR": false
+              },
+              "ca125_added": {
+                "date": "T2",
+                "value": 30.0
+              },
+              "confidence": null,
+              "resistance_event": null,
+              "resistance_risk_provenance": {
+                "note": "Neutral placeholder; not patient-derived until trigger fires",
+                "ruo": true,
+                "source": "default"
+              },
+              "state": "monitoring"
+            },
+            {
+              "active_signals": {
+                "CA125_RISING": true,
+                "CTDNA_MRD": false,
+                "HRD_BASELINE": false,
+                "HRD_SHIFT": false,
+                "NRF2_ACTIVATION": false,
+                "REPAIR_SHIFT": false,
+                "SLC31A1_LOSS": false,
+                "SLFN11_PRIOR": false
+              },
+              "ca125_added": {
+                "date": "T3",
+                "value": 50.0
+              },
+              "confidence": "WATCH",
+              "resistance_event": null,
+              "resistance_risk_provenance": {
+                "note": "Neutral placeholder; not patient-derived until trigger fires",
+                "ruo": true,
+                "source": "default"
+              },
+              "state": "monitoring"
+            },
+            {
+              "active_signals": {
+                "CA125_RISING": true,
+                "CTDNA_MRD": true,
+                "HRD_BASELINE": false,
+                "HRD_SHIFT": false,
+                "NRF2_ACTIVATION": false,
+                "REPAIR_SHIFT": false,
+                "SLC31A1_LOSS": false,
+                "SLFN11_PRIOR": false
+              },
+              "confidence": "HIGH",
+              "ctdna_flagged": true,
+              "ctdna_signal": {
+                "detected": true,
+                "tier": "HIGH",
+                "trend": "rising"
+              },
+              "resistance_event": {
+                "action": "rerank_trials",
+                "concordance": "CONCORDANT",
+                "confidence": "HIGH",
+                "resistance_risk_score": 0.2,
+                "state": "resistance_detected",
+                "triggers": [
+                  "CA125_RISING",
+                  "CTDNA_MRD"
+                ]
+              },
+              "resistance_risk_provenance": {
+                "ca125_values": [
+                  20.0,
+                  30.0,
+                  50.0
+                ],
+                "concordance": "CONCORDANT",
+                "confidence": "HIGH",
+                "hrd_delta": null,
+                "repair_delta": null,
+                "rise_magnitude": 1.5,
+                "ruo": true,
+                "source": "kill_chain_v1",
+                "triggers": [
+                  "CA125_RISING",
+                  "CTDNA_MRD"
+                ]
+              },
+              "state": "resistance_detected"
+            }
+          ],
+          "resistance_risk_score": 0.2,
+          "score_is_default": false,
+          "score_provenance": {
+            "ca125_values": [
+              20.0,
+              30.0,
+              50.0
+            ],
+            "concordance": "CONCORDANT",
+            "confidence": "HIGH",
+            "hrd_delta": null,
+            "repair_delta": null,
+            "rise_magnitude": 1.5,
+            "ruo": true,
+            "source": "kill_chain_v1",
+            "triggers": [
+              "CA125_RISING",
+              "CTDNA_MRD"
+            ]
+          },
+          "trace_id": "KC-7dfd4a014fa9932e19948d59"
+        },
+        "limitations": [
+          "2-of-N deterministic research state machine; not a treatment decision",
+          "Static intake signals cannot independently trigger resistance",
+          "No response, benefit, or treatment recommendation is emitted"
+        ],
+        "signal_count": 2,
+        "state": "resistance_detected",
+        "trace_id": "KC-7dfd4a014fa9932e19948d59"
+      },
+      "resistance_prophet": {
+        "artifact": "RESISTANCE_PROPHET",
+        "artifact_status": "SHADOW_ONLY",
+        "detected_signal_count": 2,
+        "evidence_state": "EVALUATED",
+        "internal_validation_trace": {
+          "artifact_version": "resistance-prophet-shadow.1.0.0",
+          "authorized_only": true,
+          "provenance": {
+            "certified_by": "Zo_Audit_2026_01_29",
+            "engine": "ClinicalHeuristicEngine",
+            "model_version": "resistance_prophet_v2.0_engine",
+            "probability_components": {
+              "blended": 0.8,
+              "clinical": 0.8,
+              "driver": 0.0
+            },
+            "risk_drivers": {
+              "clinical_signal_count": 2,
+              "driven_by": "blended_probability"
+            },
+            "sae_mode": "heuristic"
+          },
+          "raw_confidence": 0.6,
+          "raw_probability": 0.8032803895879659,
+          "raw_risk_level": "NOT_APPLICABLE",
+          "raw_urgency": "ROUTINE",
+          "trace_id": "RP-0aeb3aef3b41c1f1124c9007"
+        },
+        "limitations": [
+          "Heuristic research artifact; not clinically calibrated",
+          "No resistance, response, benefit, or treatment recommendation is emitted",
+          "Requires longitudinal confirmation"
+        ],
+        "signals": [
+          {
+            "confidence": 0.85,
+            "detected": true,
+            "provenance": {
+              "baseline_deficiency": 0.8,
+              "baseline_source": "patient",
+              "current_deficiency": 0.3,
+              "note": "Positive delta = Deficiency Dropping = Restoration",
+              "restoration_delta": 0.5,
+              "threshold": 0.15
+            },
+            "rationale": "DNA repair deficiency change: +0.50 (baseline=0.80 \u2192 current=0.30). Restoration detected (threshold=+0.15). Baselined against Patient History.",
+            "signal_type": "DNA_REPAIR_RESTORATION"
+          },
+          {
+            "confidence": 0.7,
+            "detected": true,
+            "provenance": {
+              "baseline_source": "patient",
+              "ca125_rebound_flag": false,
+              "ctdna_rise_flag": true,
+              "note": "Phenotype-level escape warning; does not assert targeted-axis drop",
+              "status": "longitudinal_flags"
+            },
+            "rationale": "Longitudinal escape markers observed: ctDNA_rise_flag=True, ca125_rebound_flag=None. This is a phenotype-level warning (RUO), independent of mechanism-vector drift.",
+            "signal_type": "PATHWAY_ESCAPE"
+          },
+          {
+            "confidence": 0.0,
+            "detected": false,
+            "provenance": {
+              "resistance_genes": [],
+              "sensitivity_genes": [
+                {
+                  "effect": "SENSITIVITY",
+                  "gene": "BRCA1",
+                  "mechanism": "HRD \u2192 PARP sensitivity",
+                  "rationale": "Classic HRD marker"
+                }
+              ],
+              "validation_source": "OV_Knowledge_Base"
+            },
+            "rationale": "Sensitivity marker(s) detected: BRCA1 (Positive Prognosis).",
+            "signal_type": "GENE_LEVEL_RESISTANCE"
+          },
+          {
+            "confidence": 0.0,
+            "detected": false,
+            "provenance": {
+              "status": "insufficient_data"
+            },
+            "rationale": "Insufficient CA-125 history (need >= 2 points) and no Engine KELIM.",
+            "signal_type": "CA125_KINETICS"
+          },
+          {
+            "confidence": 0.0,
+            "detected": false,
+            "provenance": {
+              "status": "missing_kelim"
+            },
+            "rationale": "Cannot compute convergence. Missing KELIM kinetics. (Genotype: BRCA1/2 Mutant)",
+            "signal_type": "KELIM_GENOTYPE_CONVERGENCE"
+          },
+          {
+            "confidence": 0.0,
+            "detected": false,
+            "provenance": {
+              "active_features": [],
+              "diamond_source": "Phase 2 Postmortem"
+            },
+            "rationale": "No Diamond SAE features detected.",
+            "signal_type": "GENE_LEVEL_RESISTANCE"
+          },
+          {
+            "confidence": 0.0,
+            "detected": false,
+            "provenance": {
+              "status": "missing_expression_data"
+            },
+            "rationale": "Expression data unavailable",
+            "signal_type": "GENE_LEVEL_RESISTANCE"
+          },
+          {
+            "confidence": 0.0,
+            "detected": false,
+            "provenance": {
+              "status": "missing_context"
+            },
+            "rationale": "Engine timing context unavailable",
+            "signal_type": "DRUG_CLASS_RESISTANCE"
+          }
+        ],
+        "trace_id": "RP-0aeb3aef3b41c1f1124c9007"
+      }
+    },
+    "missing": {
+      "kill_chain": {
+        "active_signals": {},
+        "artifact": "KILL_CHAIN",
+        "artifact_status": "SHADOW_ONLY",
+        "evidence_state": "INSUFFICIENT_EVIDENCE",
+        "input_channels_used": [],
+        "internal_validation_trace": {
+          "artifact_version": "kill-chain-shadow.1.0.0",
+          "authorized_only": true,
+          "events": [],
+          "resistance_risk_score": 0.5,
+          "score_is_default": true,
+          "score_provenance": {
+            "note": "Neutral placeholder; not patient-derived until trigger fires",
+            "ruo": true,
+            "source": "default"
+          },
+          "trace_id": "KC-46f3a71148e1534f505875e4"
+        },
+        "limitations": [
+          "2-of-N deterministic research state machine; not a treatment decision",
+          "Static intake signals cannot independently trigger resistance",
+          "No response, benefit, or treatment recommendation is emitted"
+        ],
+        "signal_count": 0,
+        "state": "NOT_EVALUATED",
+        "trace_id": "KC-46f3a71148e1534f505875e4"
+      },
+      "resistance_prophet": {
+        "artifact": "RESISTANCE_PROPHET",
+        "artifact_status": "SHADOW_ONLY",
+        "evidence_state": "INSUFFICIENT_EVIDENCE",
+        "internal_validation_trace": {
+          "authorized_only": true,
+          "failure_reason": "MISSING_LONGITUDINAL_INPUT",
+          "trace_id": "RP-f182f251c7abdc3264b40dd6"
+        },
+        "limitations": [
+          "Longitudinal SAE baseline/current pair or validated timing context required",
+          "No resistance, response, benefit, or treatment recommendation is emitted"
+        ],
+        "signals": [],
+        "trace_id": "RP-f182f251c7abdc3264b40dd6"
+      }
+    }
+  }
+}

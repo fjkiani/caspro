@@ -1,0 +1,40 @@
+{
+  "panel": "core13",
+  "hyperparams": {
+    "C": 0.1,
+    "l1_ratio": 0.7,
+    "penalty": "elasticnet",
+    "solver": "saga",
+    "class_weight": "balanced",
+    "max_iter": 5000,
+    "random_state": 42
+  },
+  "n_samples": 58,
+  "class_balance": {
+    "resistant_0": 10,
+    "sensitive_1": 48
+  },
+  "n_bootstrap": 2000,
+  "n_valid": 2000,
+  "CXCL12_selection_freq": 0.6525,
+  "POSTN_selection_freq": 0.5845,
+  "both_cxcl12_postn_coselected_freq": 0.38,
+  "either_cxcl12_postn_freq": 0.857,
+  "mean_n_nonzero_genes_per_fit": 3.201,
+  "median_n_nonzero_genes_per_fit": 3.0,
+  "top3_by_selection_freq": [
+    [
+      "CXCL12",
+      0.6525
+    ],
+    [
+      "POSTN",
+      0.5845
+    ],
+    [
+      "CCL5",
+      0.4515
+    ]
+  ],
+  "caveat": "Discovery-only. EPV~0.36 (10 minority events / 13 features). Low-EPV drives wide fold spread; bootstrap stability quantifies fragility honestly."
+}

@@ -1,0 +1,33 @@
+{
+  "endpoint": "pds",
+  "n_trials": 92,
+  "n_trial_patients": 16865,
+  "n_ae_terms": 4417,
+  "n_serial_escalation_signals": 1945,
+  "n_genomic_features": 31,
+  "trial_cancer_types": {
+    "Breast": 17,
+    "Colorec": 16,
+    "Gastric": 3,
+    "Glioma": 2,
+    "HeadNe": 4,
+    "Kidney": 1,
+    "Liver": 1,
+    "LungNo": 9,
+    "LungSm": 6,
+    "Lymphom": 1,
+    "Melanom": 1,
+    "Multiple": 6,
+    "Pancrea": 6,
+    "Prostat": 19
+  },
+  "ovarian_gyn_trials": 0,
+  "genomic_ae_hypothesis_edges_minted": 13,
+  "top_trials_by_escalation_signal": [
+    [
+      "?",
+      1945
+    ]
+  ],
+  "note": "PDS is a solid-tumor safety warehouse with NO ovarian arm; it cannot serve as an HGSOC external control. Value mined here = genomic<->AE toxicity hypotheses and serial-escalation signal structure, enriched into the KG as RUO hypotheses."
+}

@@ -1,0 +1,6 @@
+step,n_patients,n_resistant,n_sensitive,n_unlabelled,prevalence_among_labelled,reason_for_attrition
+A_source_clinical_cohort,273,66,207,0,0.2418,-- all patients in figure_1B_layer_1
+B_with_platinum_label,273,66,207,0,0.2418,platinum status at registration recorded
+C_complete_diagnosis_exposures,98,20,78,0,0.2041,evaluable diagnosis-stage CN sample for all 7 signatures
+D_analysis_set_98_equivalent,98,20,78,0,0.2041,+ platinum label present (OBL#3 primary analysis set)
+E_analysis_set_67_equivalent,67,9,58,0,0.1343,+ age/stage/num_lines complete (Brenus trackA + OBL#3 adjusted set)

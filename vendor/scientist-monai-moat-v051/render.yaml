@@ -1,0 +1,127 @@
+# Render.com blueprint for the oncology-arbiter tumor board API.
+#
+# Free-tier deployment posture (2026-07):
+#   - 512 MB RAM, 0.1 CPU, spins down after 15 min idle, ~1 min cold start.
+#   - No persistent disk; ephemeral filesystem.
+#   - Docker language: Render's BuildKit builds ./Dockerfile then runs the
+#     resulting image behind their proxy on port 8080 (via HEALTHCHECK).
+#
+# Backend enablement flags are intentionally lightweight:
+#   - MONAI heuristic and MedSigLIP would OOM the 512 MB dyno the moment a
+#     real DICOM lands (MONAI ~500 MB, MedSigLIP ~2 GB with torch loaded).
+#     They stay OFF by default; endpoints return placeholder envelopes
+#     with model_state="placeholder" + honest warnings.
+#   - Therapy rules-lite (~20 MB, pure Python) IS enabled — fits free tier
+#     and demonstrates the real NCCN-lite recommendation surface.
+#   - Co-Scientist (L5) IS enabled — it operates over stage envelopes, no
+#     ML runtime; free tier can handle it.
+#   - Frontend (SPA) IS enabled — bundle is ~170 KB static assets, mounted
+#     under /ui/. Served from FastAPI's StaticFiles.
+#
+# No secrets in this file. HUGGINGFACE token is deliberately absent —
+# gated preflights will return 401, and the gate_report envelope will
+# populate with has_token=false, which itself proves the honesty gate
+# works in production.
+services:
+  - type: web
+    name: oncology-arbiter
+    runtime: docker
+    plan: free
+    region: oregon
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      # Serve the SPA at /ui/ (bundle shipped at
+      # src/oncology_arbiter/api/static/dist/ via worker-3-frontend).
+      - key: ONCOLOGY_ARBITER_SERVE_FRONTEND
+        value: "1"
+      # Enable the deterministic NCCN-lite therapy rules engine as the
+      # therapy backend on free tier (TxGemma is gated + too large).
+      - key: ONCOLOGY_ARBITER_ENABLE_THERAPY_RULES_PROXY
+        value: "1"
+      # Enable the L5 Co-Scientist 4-phase ranker on /v1/case/full.
+      # Operates over envelopes, no ML runtime — fits 512 MB.
+      - key: ONCOLOGY_ARBITER_ENABLE_CO_SCIENTIST
+        value: "1"
+      # ClinicalBERT report parser — the free-tier Render dyno cannot host
+      # the fine-tuned model (~430 MB safetensors + torch runtime blows the
+      # 512 MB budget). Instead the parser is deployed to Modal and Render
+      # calls it over HTTP via a stdlib-only urllib client. The Modal app
+      # keeps 1 warm container (min_containers=1) for sub-second latency.
+      # Fine-tuned on SYNTHETIC-v0.3.1 across 5 seeds (42/123/456/789/1234);
+      # best seed = 42 (test micro-F1 = 0.9716, mean ± sd = 0.9716 ± 0.0001).
+      - key: CLINICALBERT_BACKEND
+        value: modal
+      - key: CLINICALBERT_MODAL_URL
+        value: https://crispro-test--clinicalbert
+      # DELIBERATELY NOT SET (would OOM the free tier dyno):
+      #   ONCOLOGY_ARBITER_ENABLE_MEDSIGLIP
+      #   ONCOLOGY_ARBITER_ENABLE_MONAI_DETECTOR
+      #   ONCOLOGY_ARBITER_ENABLE_BIOPSY_MEDSIGLIP
+      #   ONCOLOGY_ARBITER_ENABLE_THERAPY_TXGEMMA
+      # These backends are exercised locally on worker-1/32GB via the
+      # generated capability proofs. Free tier ships the honest lightweight
+      # surface — gated / placeholder / rules-lite — which itself demonstrates
+      # the model_state contract to any client.
+    autoDeploy: true
+
+  # ─────────────────────────────────────────────────────────────────────
+  # v0.3.0-alpha demo deployment
+  #
+  # A second read-only service that ships the same image but with
+  # ONCOLOGY_ARBITER_DEMO_MODE=1. Behaviour differences vs the main service:
+  #   - All POST endpoints (screening/analyze, biopsy/analyze, therapy/…,
+  #     case/full, nsclc/analyze) return HTTP 403 with contact_url and
+  #     demo_endpoint pointing at /v1/demo/samples/{kind}.
+  #   - New GET endpoints /v1/demo/samples and /v1/demo/samples/{kind}
+  #     serve four pre-computed JSON envelopes (screening, biopsy, nsclc,
+  #     case_full) that were generated on worker-nsclc against live weights:
+  #       * MedSigLIP-448 via Modal (crispro-test--medsiglip, cuda,
+  #         embedding_dim=1152)
+  #       * CBIS-DDSM logreg probe v1 (test AUC 0.7526, n_test=641)
+  #       * ClinicalBERT report parser v1 (micro F1 0.9546)
+  #       * MONAI lung_nodule_ct_detection 0.6.9 (LUNA16, mAP 0.852)
+  #     The samples ship in the repo under
+  #     src/oncology_arbiter/api/static/demo_samples/*.json (~44 KB total)
+  #     so the demo container never needs to load any real weights.
+  #   - /health advertises demo_mode:true, contact_url, and lists the four
+  #     available demo sample kinds.
+  #   - The React SPA sees demo_mode from /health and lands on the
+  #     "Demo samples" tab. All live workflow tabs render a read-only
+  #     placeholder that routes visitors to https://crispro.ai/contact.
+  #
+  # Plan sizing: Free (512 MB / 0.1 CPU, spins down after 15 min idle,
+  # ~1 min cold start). Fits because DEMO_MODE blocks POSTs — no
+  # ClinicalBERT/MedSigLIP/LUNA16 are ever loaded in-process. Container
+  # just serves ~44 KB of static JSON.
+  #
+  # Cold-start UX: Render displays its own loading page during spin-up
+  # (~1 min), and the SPA additionally renders a "warming up backend"
+  # banner when /health takes longer than 2 s to respond (see
+  # frontend/src/components/ColdStartBanner.tsx). Together those cover
+  # both first-hit and mid-session spin-down cases.
+  - type: web
+    name: oncology-arbiter-demo
+    runtime: docker
+    plan: free
+    region: oregon
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      # Flip the whole service into demo/read-only mode.
+      - key: ONCOLOGY_ARBITER_DEMO_MODE
+        value: "1"
+      # Contact URL surfaced in every 403 body + on the SPA placeholder.
+      - key: ONCOLOGY_ARBITER_CONTACT_URL
+        value: "https://crispro.ai/contact"
+      # Serve the SPA at /ui/ — same as the main service.
+      - key: ONCOLOGY_ARBITER_SERVE_FRONTEND
+        value: "1"
+      # Deliberately NOT setting any heavy backend flag. Demo mode blocks
+      # the POST paths that would ever trigger a real weight load; leaving
+      # them off keeps memory usage tight so 512 MB is comfortable.
+    autoDeploy: true

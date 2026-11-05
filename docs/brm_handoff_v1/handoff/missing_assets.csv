@@ -1,0 +1,27 @@
+missing_id,asset_or_validation,expected_source,status,consequence
+M01,services/gtex_client.py,crispro-backend-v3 c85eb33,Not recovered,Cannot audit ETL HTTP pagination/schema/cache/error handling/upsert implementation
+M02,services/celery_app.py,crispro-backend-v3 c85eb33,Not recovered,"Cannot inspect broker/backend settings, retry/timeout/durability"
+M03,services/nanocarrier_tasks.py,crispro-backend-v3 c85eb33,Not recovered,Cannot verify use of dynamic GTEx for final target designs
+M04,layer1_engines/brm_engine/api/nanocarrier_routes.py,crispro-backend-v3 c85eb33,Not recovered,"Cannot verify required /v1 route, auth, job status, nonblocking queue contract"
+M05,main.py; requirements.txt; services/__init__.py; BrM engine updates,crispro-backend-v3 recorded commits,Not recovered,Cannot construct/install the original application from this archive
+M06,tests/test_nanocarrier_infra.py and original backend tests,crispro-backend-v3 c85eb33,Not recovered,Prior 21 tests and full-suite totals cannot be rerun here
+M07,core/evo2_client/modal_evo2_deploy.py; patches.py,evo2-e2e 53191c4,Not recovered,Cannot deploy or validate original image/model compatibility from archive
+M08,core/nanocarrier_payload.py; core/evo2_capability_audit.py,evo2-e2e 4dd376c,Not recovered,"Saved report describes modules, but module source is absent"
+M09,bbb_receptor_brain_expression.json; GTEx responses; gtex_brain_safety.json,Prior ETL/cache and BrM engine,Not recovered,Cannot independently reconstruct source TPM medians/tissue set/timestamps
+M10,BrM_Assassin_Scored_v3_realdata.csv; real_guides.json; original assay matrices,Original backend dataset store,Not recovered,Cannot rebuild the original integrated ranking or establish guide identity continuity
+M11,GSE223499 raw counts/cell annotations/full DE output,Original downloaded data and pipeline,Not recovered,Only target-level summaries available; normalization/covariate checks not reproducible
+M12,GSE131907 raw UMI matrix/cell annotations/pseudobulk counts,Original downloaded data and pipeline,Not recovered,10-gene target results cannot substitute for full-transcriptome reanalysis
+M13,"GSE200563 ROI expression, patient pairing and sample annotations",Original spatial dataset,Not recovered,Cannot check pairing/normalization/tissue composition or rerun Wilcoxon
+M14,GSE237446 CRISPRa screen metadata/counts and paper-to-accession mapping,Original screen dataset,Not recovered,Cancer lineage conflict cannot be resolved from packaged records
+M15,GSE205033 peaks/counts/peak-to-gene maps,Original chromatin integration,Not recovered,Cannot reproduce ATAC ranking or verify disease/sample context
+M16,TCGA-LUAD expression/mutation/clinical exports and cBioPortal study/profile IDs,Prior API analysis,Not recovered,"Cannot recompute statistics, sample joins, missing mutation status, 117/510 or 17/510 counts"
+M17,DepMap 23Q2/23Q4/24Q4 matrices and release/sample manifests,Prior downloads/datalake extraction,Not recovered,Release/subset/threshold discrepancies remain unresolved
+M18,CPTAC/HPA/UALCAN original exports and model specifications,Prior reference queries,Not recovered,Some protein/survival claims remain preliminary or unverifiable
+M19,"29-gene benchmark labels, feature matrix, evaluation code",honest_auroc_v2 described in manuscript,Not recovered,"Cannot reproduce AUROC, imputation, or label/circularity audit"
+M20,"FAM72A generated FASTA, prompts/seeds/logs and motif-scoring implementation",Reported Evo2 generation experiment,Not recovered,Candidate identity and claimed motif suppression cannot be audited
+M21,Per-final-guide Evo2 likelihood and CFD/off-target outputs,Proposed guide validation,Not demonstrated,No guide-specific validated disruption or off-target specificity claim supported
+M22,Successful production Postgres ETL integration evidence,GTEx persistence,Not demonstrated,No schema migration/table/row/persistence integration test evidence
+M23,Real Redis broker + Celery worker + durable job/result evidence,Async design service,Not demonstrated,Local synchronous fallback does not establish queued production execution
+M24,"Modal build/deploy URL, live health and model inference response",Evo2 GPU service,Not demonstrated,A deployment script or syntax test is not an online service
+M25,"Nanocarrier delivery, editing, toxicity and phenotype-reversal experiments",Proposed 8-step therapeutic protocol,Not performed in this work,"No therapeutic efficacy, BBB crossing, safe dose or prevention trial eligibility established"
+M26,Independent clinical validation cohort and held-out benchmark,Patient selection/performance,Not performed in this work,Exploratory ranking and within-cohort thresholds are not clinical prediction

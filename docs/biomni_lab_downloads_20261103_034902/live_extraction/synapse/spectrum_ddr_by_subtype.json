@@ -1,0 +1,60 @@
+{
+  "ddr8": {
+    "n_HRD": 24,
+    "n_FBI": 15,
+    "HRD_median": 3.7933,
+    "FBI_median": 3.895,
+    "HRD_sd": 0.4121,
+    "FBI_sd": 0.3603,
+    "U": 131.0,
+    "p": 0.16149103934710152,
+    "rank_biserial": -0.2722,
+    "median_diff": -0.1017,
+    "median_diff_CI95": [
+      -0.4871,
+      0.2211
+    ]
+  },
+  "ddr14": {
+    "n_HRD": 24,
+    "n_FBI": 15,
+    "HRD_median": 3.6568,
+    "FBI_median": 3.7753,
+    "HRD_sd": 0.3905,
+    "FBI_sd": 0.3203,
+    "U": 118.0,
+    "p": 0.07583977149448295,
+    "rank_biserial": -0.3444,
+    "median_diff": -0.1185,
+    "median_diff_CI95": [
+      -0.5373,
+      0.1183
+    ]
+  },
+  "ddr26": {
+    "n_HRD": 24,
+    "n_FBI": 15,
+    "HRD_median": 3.155,
+    "FBI_median": 3.4201,
+    "HRD_sd": 0.3756,
+    "FBI_sd": 0.3031,
+    "U": 130.0,
+    "p": 0.1530209285429938,
+    "rank_biserial": -0.2778,
+    "median_diff": -0.2651,
+    "median_diff_CI95": [
+      -0.5493,
+      0.1605
+    ]
+  },
+  "ddr14_3group_KW": {
+    "n_dup": 17,
+    "n_del": 7,
+    "n_fbi": 15,
+    "dup_median": 3.7538,
+    "del_median": 3.3537,
+    "fbi_median": 3.7753,
+    "H": 5.2046369316957595,
+    "p": 0.07410157692644628
+  }
+}

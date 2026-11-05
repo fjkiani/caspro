@@ -1,0 +1,17 @@
+{
+  "caslib": "LungNo_Celgene_2007_108",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CYFRA21_1"
+  ],
+  "indication": "lung_nsclc",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 0,
+  "n_tabular_files": 0,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "3b4ea3100ebf97533bc59274923873c15483f0a86ec98c7184bef47bc29071a9",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": []
+}

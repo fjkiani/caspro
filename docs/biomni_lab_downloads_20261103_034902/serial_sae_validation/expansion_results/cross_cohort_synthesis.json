@@ -1,0 +1,180 @@
+{
+  "generated_utc": "2026-07-19T15:32:31.294343+00:00",
+  "success_criterion": "signal replicated if post-treatment-state -> resistance holds SAME DIRECTION with frozen pipeline in >=2 independent cohorts beyond BriTROC-1, with effect sizes+CIs; non-replication reported honestly.",
+  "success_criterion_met": false,
+  "success_criterion_evaluation": "NOT MET. Requires >=2 independent cohorts BEYOND BriTROC-1 showing the predicted direction (higher post-treatment pathway score -> resistant, AUROC>0.5) with effect sizes+CIs. Result: 0 such cohorts. BriTROC-1 is the sole positive external cohort (s7 relapse AUROC 0.874, p=0.035) but rests on only 3 resistant patients (EPV=3). The independent expression cohort GSE160626 points in the OPPOSITE direction (all pathways higher in sensitive; PI3K nominally significant opposite, p=0.043). The discovery cohort's published headline statistics do not reproduce.",
+  "reproducibility_matrix": [
+    {
+      "cohort": "GSE165897 (discovery)",
+      "role": "Discovery re-derivation",
+      "design": "Paired scRNA pre/post-NACT",
+      "tests_serial_hypothesis": "Yes (post-state vs PFI)",
+      "pathway": "DDR",
+      "primary_metric": "post-DDR AUROC (corr 7R/4S)",
+      "effect": 0.5714,
+      "ci_low": 0.125,
+      "ci_high": 0.9333,
+      "p": 0.7879,
+      "n": 11,
+      "events": 7,
+      "direction": ">0.5 (pred)",
+      "verdict": "Weak/uninformative (CI spans 0.5; published headline NOT reproduced)"
+    },
+    {
+      "cohort": "BriTROC-1",
+      "role": "External anchor (CN signatures)",
+      "design": "Paired CN diag/relapse",
+      "tests_serial_hypothesis": "Yes (relapse-state -> resistant)",
+      "pathway": "s7 (CN signature)",
+      "primary_metric": "s7 relapse AUROC",
+      "effect": 0.8739,
+      "ci_low": 0.7622,
+      "ci_high": 0.9717,
+      "p": 0.035,
+      "n": 40,
+      "events": 3,
+      "direction": ">0.5 (pred)",
+      "verdict": "POSITIVE but fragile (only 3 resistant; EPV=3)"
+    },
+    {
+      "cohort": "GSE160626",
+      "role": "External, cross-sectional",
+      "design": "Bulk resistant vs sensitive (single-timepoint)",
+      "tests_serial_hypothesis": "No (post-state analogue only)",
+      "pathway": "DDR",
+      "primary_metric": "DDR AUROC (resistant vs sensitive)",
+      "effect": 0.375,
+      "ci_low": 0.1169,
+      "ci_high": 0.6769,
+      "p": 0.4082,
+      "n": 18,
+      "events": 8,
+      "direction": "<0.5 (opp)",
+      "verdict": "OPPOSITE direction (all pathways higher in SENSITIVE; PI3K nominally sig opposite p=0.043)"
+    },
+    {
+      "cohort": "GSE109934",
+      "role": "External, paired dynamics",
+      "design": "Paired NanoString pre/post-NACT",
+      "tests_serial_hypothesis": "No labels (dynamics only)",
+      "pathway": "DDR",
+      "primary_metric": "DDR post-vs-pre signed-rank",
+      "effect": -0.6577,
+      "ci_low": NaN,
+      "ci_high": NaN,
+      "p": 0.0003,
+      "n": 19,
+      "events": 0,
+      "direction": "DDR decreases post-NACT",
+      "verdict": "Cannot test prediction (no resistance labels); DDR significantly modulated by chemo"
+    },
+    {
+      "cohort": "TCGA-OV",
+      "role": "Prognostic context only",
+      "design": "Bulk single-timepoint (survival)",
+      "tests_serial_hypothesis": "No (prognostic OS, not serial)",
+      "pathway": "PI3K",
+      "primary_metric": "PI3K Cox HR (per z, OS)",
+      "effect": 1.298,
+      "ci_low": NaN,
+      "ci_high": NaN,
+      "p": 0.0227,
+      "n": 299,
+      "events": 180,
+      "direction": "HR>1 (higher PI3K -> worse OS)",
+      "verdict": "PI3K prognostic (HR=1.30, p=0.023); DDR/VEGF NS; prognostic != serial resistance"
+    }
+  ],
+  "direction_vote": [
+    {
+      "test": "GSE165897 disc (DDR, corr)",
+      "auroc": 0.5714,
+      "ci95": [
+        0.125,
+        0.9333
+      ],
+      "wilcoxon_p": 0.7879,
+      "design": "post-state (serial)",
+      "direction": "predicted (>0.5)",
+      "ci_excludes_0.5": false,
+      "nominal_sig": false
+    },
+    {
+      "test": "GSE165897 disc (PI3K, corr)",
+      "auroc": 0.3571,
+      "ci95": [
+        0.0,
+        0.7667
+      ],
+      "wilcoxon_p": 0.5273,
+      "design": "post-state (serial)",
+      "direction": "opposite (<0.5)",
+      "ci_excludes_0.5": false,
+      "nominal_sig": false
+    },
+    {
+      "test": "BriTROC-1 (s7 relapse)",
+      "auroc": 0.8739,
+      "ci95": [
+        0.7622,
+        0.9717
+      ],
+      "wilcoxon_p": 0.035,
+      "design": "relapse-state (serial)",
+      "direction": "predicted (>0.5)",
+      "ci_excludes_0.5": true,
+      "nominal_sig": true
+    },
+    {
+      "test": "GSE160626 (DDR)",
+      "auroc": 0.375,
+      "ci95": [
+        0.1169,
+        0.6769
+      ],
+      "wilcoxon_p": 0.4082,
+      "design": "cross-sectional",
+      "direction": "opposite (<0.5)",
+      "ci_excludes_0.5": false,
+      "nominal_sig": false
+    },
+    {
+      "test": "GSE160626 (PI3K)",
+      "auroc": 0.2125,
+      "ci95": [
+        0.025,
+        0.475
+      ],
+      "wilcoxon_p": 0.0434,
+      "design": "cross-sectional",
+      "direction": "opposite (<0.5)",
+      "ci_excludes_0.5": true,
+      "nominal_sig": true
+    },
+    {
+      "test": "GSE160626 (VEGF)",
+      "auroc": 0.35,
+      "ci95": [
+        0.0863,
+        0.6111
+      ],
+      "wilcoxon_p": 0.3154,
+      "design": "cross-sectional",
+      "direction": "opposite (<0.5)",
+      "ci_excludes_0.5": false,
+      "nominal_sig": false
+    }
+  ],
+  "descriptive_meta_DDR_AUROC": {
+    "pooled_auroc": 0.799,
+    "ci95": [
+      0.704,
+      0.895
+    ],
+    "I2_percent": 83.3,
+    "Q": 11.99,
+    "Q_p": 0.0025,
+    "WARNING": "I^2=83% (Q p=0.0025): extreme between-cohort heterogeneity. Pooled value is an artifact of BriTROC-1's dominant weight (a CN signature, not an expression score) and MUST NOT be reported as a pooled result. Report per-cohort only."
+  },
+  "bottom_line": "The expansion does NOT broadly strengthen the resistance-PREDICTION claim; it defines the evidentiary boundary. Positive serial signal: BriTROC-1 only (fragile, EPV=3). Independent expression replication: FAILS (GSE160626 opposite direction). Discovery headline stats: NOT reproduced (only delta-null reproduces). Pathway dynamics (GSE109934): DDR is significantly modulated by chemo (mechanism plausibility) but unlabeled. Prognostic context (TCGA-OV): only PI3K associates with OS (HR=1.30, p=0.023), a different pathway emphasis and a different (prognostic, not serial) claim. Tiering remains RUO / hypothesis-generating."
+}

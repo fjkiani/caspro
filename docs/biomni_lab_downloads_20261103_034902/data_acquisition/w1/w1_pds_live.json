@@ -1,0 +1,35 @@
+{
+  "worker": "W1",
+  "source": "Project Data Sphere (PDS)",
+  "purpose": "KELIM Convergence Model validation \u2014 needs >=3 serial CA-125 in first ~100d of platinum (t0 = first platinum dose)",
+  "credential_tested": "fahad@jedilabs.org (uploaded)",
+  "live_auth_state": "NOT_APPLICABLE_NO_PUBLIC_API",
+  "auth_finding": "PDS is a browser-driven SPA portal (all endpoints return identical 654-byte app shell). No public programmatic login API exists. The uploaded credential is an EGA (ega-archive.org) account and authenticated successfully against the EGA IDP \u2014 it is NOT an established PDS credential and cannot be validated against PDS from this environment.",
+  "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+  "access_requirements": "PDS Research Access account + signed Data Use Agreement (DUA), obtained via the PDS web portal by the user. Controlled CA-125/outcome data is then downloaded through the portal (not a CLI).",
+  "kelim_target_trials": [
+    {
+      "short_name": "GOG-0218",
+      "nct": "NCT00262847",
+      "rationale": "First-line HGSOC carbo/taxol +/- bevacizumab; per-cycle CA-125; KELIM-validation anchor. HRR outcomes: Norquist BM et al., Clin Cancer Res 2018;24(4):777-783, DOI 10.1158/1078-0432.CCR-17-1327."
+    },
+    {
+      "short_name": "ICON7",
+      "nct": "NCT00483782",
+      "rationale": "First-line carbo/taxol +/- bevacizumab; serial CA-125; KELIM developed on first-line trial data."
+    },
+    {
+      "short_name": "MITO-7",
+      "nct": "NCT00660842",
+      "rationale": "First-line weekly carbo/taxol; serial CA-125; KELIM literature cohort."
+    }
+  ],
+  "kelim_computation_spec": {
+    "inputs_required": ">=3 CA-125 measurements within first ~100 days of platinum start per patient; t0 = first platinum dose date",
+    "model": "KELIM = modeled elimination rate constant of CA-125 from a kinetic (semi-mechanistic exponential-decline) model fit to early serial CA-125",
+    "readout": "standardized KELIM (favorable >= threshold) as an on-chemo response biomarker; validated vs PFS/OS",
+    "endpoint_it_enables": "KELIM-on-chemo-response",
+    "claim_it_cures": "chemo-response modeling (in-treatment CA-125 kinetics)"
+  },
+  "verified_metadata_bool": true
+}

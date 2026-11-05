@@ -1,0 +1,86 @@
+{
+  "analysis": "universal_first_order_fitter_vs_frozen_psa_v1",
+  "cohorts": {
+    "TAX327": {
+      "checks": {
+        "frozen_policy_disagreements_are_floor_affected": true,
+        "harmonized_eligible_sets_identical": true,
+        "harmonized_reference_patients_subset_of_universal": true,
+        "k_within_tolerance": true,
+        "r2_within_tolerance": true,
+        "rse_within_tolerance": true,
+        "universal_only_patients_are_ineligible": true
+      },
+      "floor_policy_note": "frozen V1 clips to floor; universal fitter rejects values at or below the configured floor",
+      "max_abs_k_day_difference_harmonized": 3.469446951953614e-18,
+      "max_abs_r_squared_difference_harmonized": 5.551115123125783e-16,
+      "max_abs_rse_difference_harmonized": 1.4210854715202004e-14,
+      "n_frozen_reference_eligible": 167,
+      "n_frozen_vs_universal_eligibility_disagreements": 0,
+      "n_harmonized_eligible_both": 167,
+      "n_harmonized_reference_eligible": 167,
+      "n_harmonized_vs_universal_eligibility_disagreements": 0,
+      "n_patients_affected_by_floor_policy": 0,
+      "n_patients_frozen_reference": 333,
+      "n_patients_harmonized_reference": 333,
+      "n_patients_universal": 337,
+      "n_source_rows": 3234,
+      "n_universal_eligible": 167,
+      "n_values_at_or_below_floor_in_early_window": 0,
+      "passed": true
+    },
+    "VENICE": {
+      "checks": {
+        "frozen_policy_disagreements_are_floor_affected": true,
+        "harmonized_eligible_sets_identical": true,
+        "harmonized_reference_patients_subset_of_universal": true,
+        "k_within_tolerance": true,
+        "r2_within_tolerance": true,
+        "rse_within_tolerance": true,
+        "universal_only_patients_are_ineligible": true
+      },
+      "floor_policy_note": "frozen V1 clips to floor; universal fitter rejects values at or below the configured floor",
+      "max_abs_k_day_difference_harmonized": 1.3877787807814457e-17,
+      "max_abs_r_squared_difference_harmonized": 2.1094237467877974e-15,
+      "max_abs_rse_difference_harmonized": 6.039613253960852e-14,
+      "n_frozen_reference_eligible": 454,
+      "n_frozen_vs_universal_eligibility_disagreements": 0,
+      "n_harmonized_eligible_both": 454,
+      "n_harmonized_reference_eligible": 454,
+      "n_harmonized_vs_universal_eligibility_disagreements": 0,
+      "n_patients_affected_by_floor_policy": 2,
+      "n_patients_frozen_reference": 604,
+      "n_patients_harmonized_reference": 603,
+      "n_patients_universal": 612,
+      "n_source_rows": 10177,
+      "n_universal_eligible": 454,
+      "n_values_at_or_below_floor_in_early_window": 6,
+      "passed": true
+    }
+  },
+  "configuration": {
+    "duplicate_policy": "median by patient and elapsed day",
+    "minimum_distinct_times": 3,
+    "model": "log(marker_t) = intercept - k_day * t_day",
+    "positive_floor": 0.01,
+    "primary_population": "positive estimable k_day",
+    "window_end_day": 105.0,
+    "window_start_day": 0.0
+  },
+  "credentials_persisted": false,
+  "generated_utc": "2026-08-12T06:53:38.796176+00:00",
+  "passed": true,
+  "patient_level_data_persisted": false,
+  "schema_version": "zeta_core_v4_prostate_fitter_bridge_v1",
+  "source_sha256": {
+    "reference_script": "25521a5d5545b5e5aa973648b15ed688ba69895657fec3c9d4a3eff59b853cd7",
+    "tax327_psa": "b5ced5a7584ece2c36027ca9c3e4c00d54a358920c2e6345c9a3e0b83d809c05",
+    "venice_addm": "75d9e8539264290b08e92580f035423a2d6a5a3df081b97b69f96fc97132889c",
+    "venice_adlb": "4fae44c8437ee85be4bc57ceeee7953832cb9d3c254986231ea55ea9f836548c"
+  },
+  "tolerances": {
+    "k_absolute": 1e-12,
+    "r_squared_absolute": 1e-12,
+    "rse_absolute": 1e-10
+  }
+}

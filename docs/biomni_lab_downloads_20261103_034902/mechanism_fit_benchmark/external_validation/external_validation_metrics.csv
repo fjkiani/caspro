@@ -1,0 +1,9 @@
+cohort,signature,endpoint,n,n_pos,n_neg,AUROC,DeLong_lo,DeLong_hi,boot_lo,boot_hi,prereg_verdict,CI_crosses_0.5
+GSE30161,IPR_(Li2022),chemoresponse_primary,55,54,1,0.7407,0.0,1.0,0.6111,0.8519,DEGENERATE_UNINTERPRETABLE,True
+GSE30161,IndividCRS_(Sun2019),chemoresponse_primary,55,54,1,0.5741,0.0,1.0,0.4444,0.7037,DEGENERATE_UNINTERPRETABLE,True
+GSE30161,IPR_(Li2022),PFI_platinum_secondary,58,48,10,0.4667,0.2262,0.7071,0.225,0.6896,NOT_SUPPORTED,True
+GSE30161,IndividCRS_(Sun2019),PFI_platinum_secondary,58,48,10,0.5604,0.3304,0.7904,0.327,0.7729,NOT_SUPPORTED,True
+GSE63885,IPR_(Li2022),chemoresponse_primary,75,65,10,0.6923,0.4633,0.9214,0.4646,0.9062,INCONCLUSIVE,True
+GSE63885,IndividCRS_(Sun2019),chemoresponse_primary,75,65,10,0.6523,0.4554,0.8492,0.46,0.8354,INCONCLUSIVE,True
+GSE63885,IPR_(Li2022),platinum_sensitivity_primary,75,41,34,0.5624,0.4256,0.6992,0.4247,0.6973,NOT_SUPPORTED,True
+GSE63885,IndividCRS_(Sun2019),platinum_sensitivity_primary,75,41,34,0.6198,0.4896,0.75,0.4864,0.7468,INCONCLUSIVE,True

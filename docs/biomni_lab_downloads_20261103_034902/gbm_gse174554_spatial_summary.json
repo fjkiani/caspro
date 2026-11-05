@@ -1,0 +1,133 @@
+{
+  "spatial_transcriptomics": {
+    "n_samples": 10,
+    "n_genes": 1825,
+    "n_spots_total": 118,
+    "spots_per_sample_approx": 12,
+    "sample_ids": [
+      "SF11331B2",
+      "SF11720D2",
+      "SF6621A2",
+      "SF11082_B5",
+      "SF12407_D1",
+      "SF10592D1",
+      "SF11857B1",
+      "SF11873_A2",
+      "SF12754_C1",
+      "SF4297A2"
+    ],
+    "matched_pairs_represented": [
+      {
+        "primary": "SF10592D1",
+        "recurrent": "SF11857B1"
+      },
+      {
+        "primary": "SF4297A2",
+        "recurrent": "SF6621A2"
+      },
+      {
+        "primary": "SF11331B2",
+        "recurrent": "SF11720D2"
+      },
+      {
+        "primary": "SF12407_D1",
+        "recurrent": "SF12754_C1"
+      },
+      {
+        "primary": "SF11082_B5",
+        "recurrent": "SF11873_A2"
+      }
+    ],
+    "platform": "10x Visium",
+    "top_genes_by_variance": [
+      "LAMP1",
+      "ACTB",
+      "CD74",
+      "CLU",
+      "EGFR",
+      "SPP1",
+      "FN1",
+      "SSX1",
+      "MDM2",
+      "SOD2"
+    ]
+  },
+  "spatial_proteomics": {
+    "n_samples": 6,
+    "n_rois": 72,
+    "n_proteins": 25,
+    "proteins": [
+      "CD11c",
+      "HLA-DR",
+      "SMA",
+      "Ms IgG2a",
+      "Ki-67",
+      "GAPDH",
+      "CD68",
+      "CD3",
+      "PD-1",
+      "Histone H3",
+      "S6",
+      "PD-L1",
+      "CD4",
+      "CD8",
+      "CD56",
+      "HYB-NEG",
+      "GZMB",
+      "Beta-2-microglobulin",
+      "CD45",
+      "Ms IgG1",
+      "Fibronectin",
+      "Rb IgG",
+      "PanCk",
+      "HYB-POS",
+      "CD20"
+    ],
+    "sample_ids": [
+      "SF4297 A2",
+      "SF10592 D1",
+      "SF11331 B2",
+      "SF11857 B1",
+      "SF6621 A2",
+      "SF11720 D2"
+    ],
+    "matched_pairs_represented": [
+      {
+        "primary": "SF4297 A2",
+        "recurrent": "SF6621 A2"
+      },
+      {
+        "primary": "SF11331 B2",
+        "recurrent": "SF11720 D2"
+      },
+      {
+        "primary": "SF10592 D1",
+        "recurrent": "SF11857 B1"
+      }
+    ],
+    "platform": "NanoString GeoMx DSP",
+    "immune_markers_present": [
+      "CD3",
+      "CD4",
+      "CD8",
+      "CD68",
+      "CD11c",
+      "CD45",
+      "PD-1",
+      "PD-L1",
+      "GZMB",
+      "HLA-DR",
+      "CD56",
+      "CD20"
+    ],
+    "tumor_markers_present": [
+      "PanCk",
+      "Ki-67",
+      "Beta-2-microglobulin"
+    ],
+    "structural_markers_present": [
+      "SMA",
+      "Fibronectin"
+    ]
+  }
+}

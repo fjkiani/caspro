@@ -1,0 +1,8 @@
+signature,auroc,ci_lo,ci_hi,mwu_p,direction,bh_q
+s1_diag,0.5833,0.4487,0.7218,0.2536,higher=resistant,0.2959
+s2_diag,0.5955,0.4647,0.7276,0.1902,higher=resistant,0.2959
+s3_diag,0.2715,0.1532,0.4058,0.0017,higher=sensitive(protective),0.0118
+s4_diag,0.6487,0.5224,0.7699,0.0396,higher=resistant,0.1387
+s5_diag,0.4103,0.2974,0.5276,0.2115,higher=sensitive(protective),0.2959
+s6_diag,0.5936,0.4602,0.724,0.1664,higher=resistant,0.2959
+s7_diag,0.4929,0.3404,0.6391,0.9262,higher=sensitive(protective),0.9262

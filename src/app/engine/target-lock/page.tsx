@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
-import TargetLockIntroPage from '@/components/engine/TargetLockIntroPage';
+import TargetLockBrainMetTabSurface from '@/components/tumor-board/TargetLockBrainMetTabSurface';
 
 export const metadata: Metadata = {
-  title: 'Target Lock | CrisPRO Engine',
+  title: 'Target Lock · Brain-Met Cascade | CrisPRO Engine',
   description:
-    'L1 Target-Lock and L2 mechanism fit — two-layer prediction before enrollment. CEACAM5, LATIFY, and FDA archive context.',
+    'Target Lock Brain-Met: nested Score this step (7 BrM cascade) · Assassin · Mission Fit · Live variants · Scoring · Structures · Next Steps. WEIGHTS_BRAIN_MET.',
 };
 
-export default function TargetLockIntroRoute() {
-  return <TargetLockIntroPage />;
+/** Canonical Target Lock route — tab surface (retired intro brochure). */
+export default function TargetLockRoute() {
+  return <TargetLockBrainMetTabSurface />;
 }

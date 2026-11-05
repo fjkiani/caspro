@@ -1,0 +1,86 @@
+{
+  "run_timestamp_utc": "2026-04-12T22:08:19.385638Z",
+  "study_id": "hgsoc_tcga_gdc",
+  "n_samples_total_in_study": 604,
+  "n_samples_with_mrna_profile": 427,
+  "n_samples_after_serous_high_grade_filter": 427,
+  "n_samples_with_platinum_label": 99,
+  "n_samples_with_ccne1_cna": 410,
+  "missingness_by_column": {
+    "CCNE1_CNA": 0.03981264637002342,
+    "MBD4_expression": 0.0,
+    "IL4_expression": 0.0,
+    "IL13_expression": 0.0,
+    "OS_MONTHS": 0.00234192037470726,
+    "OS_STATUS": 0.0,
+    "PLATINUM_STATUS": 0.0,
+    "IMMUNE_ACCESS_SCORE": 0.0,
+    "STROMAL_ARM_SCORE": 0.0,
+    "TIER_REFINED": 0.0,
+    "PLATINUM_WINDOW": 0.0
+  },
+  "tier_counts": {
+    "TIER_3_NONE": 213,
+    "TIER_1_TRIPLE": 107,
+    "TIER_2_DUAL": 107
+  },
+  "median_os_months_by_tier": {
+    "TIER_1_TRIPLE": 36.333771353482256,
+    "TIER_2_DUAL": 42.01708278580814,
+    "TIER_3_NONE": 48.75164257555847
+  },
+  "raw_median_os_months_by_tier": {
+    "TIER_1_TRIPLE": 25.0,
+    "TIER_2_DUAL": 31.274638633377133,
+    "TIER_3_NONE": 38.30486202365309
+  },
+  "survival_filter_audit": {
+    "cohort": "merged_after_serous_high_grade_filter",
+    "n_merged_after_histology": 427,
+    "n_os_months_present": 426,
+    "n_os_months_gt_zero": 426,
+    "n_os_status_present": 427,
+    "n_with_os_months_and_os_status": 426,
+    "n_with_both_and_os_months_gt_zero": 426,
+    "n_after_dropna_os_months": 426,
+    "n_km_cohort_os_months_gt_zero": 426,
+    "note": "KM and log-rank use rows with non-null OS_MONTHS; OS_EVENT is derived from OS_STATUS text."
+  },
+  "km_tier_medians_receipt_path": "data/km_tier_medians_receipt.json",
+  "logrank_p_value": 0.0038192344280122883,
+  "tier1_subtypes": {
+    "TIER_1A_ACCESSIBLE": 54,
+    "TIER_1B_CAGED": 53,
+    "median_immune_access_tier1": -0.01403861030714304
+  },
+  "platinum_window_patients": {
+    "count": 9,
+    "pct_of_tier1": 0.08411214953271028,
+    "PLATINUM_WINDOW_KM_MEDIAN_OS": 84.13272010512483,
+    "PLATINUM_WINDOW_KM_N": 9,
+    "PLATINUM_WINDOW_KM_EVENTS": 5,
+    "PLATINUM_WINDOW_KM_CI_LOWER": 15.177398160315374,
+    "PLATINUM_WINDOW_KM_CI_UPPER": null,
+    "PLATINUM_WINDOW_RAW_MEDIAN_OS": 45.959264126149804,
+    "PLATINUM_WINDOW_RAW_MEAN_OS": 51.10965104394802,
+    "note": "Highest priority intervention target. IMPORTANT: RAW_* summaries are naive summaries of observed OS_MONTHS and are not KM estimates. Use PLATINUM_WINDOW_KM_MEDIAN_OS (and its CI) in external communications. If PLATINUM_WINDOW_KM_CI_UPPER is null, the upper bound is not estimable due to limited events."
+  },
+  "score_thresholds": {
+    "m2_risk_q75": 0.27015367203049434,
+    "metformin_q75": 0.1457158342959351,
+    "spe_composite_p50": 0.5863124496273246,
+    "spe_composite_p75": 0.6780641936804825,
+    "m2_risk_min": -5.685405481207688,
+    "m2_risk_max": 4.071524654531012,
+    "metformin_min": -0.9094129701767772,
+    "metformin_max": 0.8821480156199859
+  },
+  "notes": [
+    "RUO: computational hypothesis-generating proxy cohort.",
+    "Configured study: hgsoc_tcga_gdc.",
+    "Platinum labels joined from tools/benchmarks/tcga_ov_platinum_response_with_genomics.json (subset).",
+    "Some genes could not be resolved to Entrez IDs and were skipped: ['SEPP1']",
+    "Expression source: cBioPortal full mRNA sample list (hgsoc_tcga_gdc_tpm, n=427).",
+    "OS backfill: Xena survival.tsv.gz used when cBio/labels missing."
+  ]
+}

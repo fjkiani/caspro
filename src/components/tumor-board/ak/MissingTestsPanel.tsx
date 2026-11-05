@@ -43,7 +43,6 @@ export default function MissingTestsPanel() {
   const ledgerBar = isDarkMode ? 'bg-white/10' : 'bg-zinc-200';
   const ledgerPct = isDarkMode ? 'text-white/70' : 'text-zinc-700';
   const ledgerBody = isDarkMode ? 'text-white/55' : 'text-zinc-600';
-  const capHi = isDarkMode ? 'text-cyan-300' : 'text-indigo-600';
 
   return (
     <section className="mx-auto w-full max-w-[1400px] px-4 py-8 md:px-8 md:py-10">
@@ -55,9 +54,7 @@ export default function MissingTestsPanel() {
             Anchor SL still ships; cap is a trust ceiling, not a filter.
           </p>
         </div>
-        <span className={`font-mono text-[10px] ${pathTag}`}>
-          completeness.missing_tests[] · completeness.confidence_cap
-        </span>
+        
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -109,9 +106,9 @@ export default function MissingTestsPanel() {
             <div className={`mt-1 font-mono text-xs ${ledgerPct}`}>{capPct}%</div>
           </div>
           <p className={`mt-4 text-[11px] leading-relaxed ${ledgerBody}`}>
-            Rule: any drug scoring above the cap is truncated in UI to the cap. Ceralasertib
-            at 0.85 shows as <span className={capHi}>0.60</span> until HRD + TMB + RNA-seq
-            land.
+            Completeness {compPct}% caps therapy-fit confidence at {capPct}%. SL ranking uses the
+            evidence matrix once gene identity resolves — missing HRD / TMB / RNA / CA-125 leave
+            modality cells empty; they do not wipe the matrix.
           </p>
         </div>
       </div>

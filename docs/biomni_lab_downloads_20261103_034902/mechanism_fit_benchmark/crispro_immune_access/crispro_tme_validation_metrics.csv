@@ -1,0 +1,10 @@
+cohort,endpoint,scaling,probe,n_pos,n_neg,AUROC,DeLong_CI_lo,DeLong_CI_hi,DeLong_p,Boot_CI_lo,Boot_CI_hi,n_boot,Fisher_TIER_p,C_index,verdict
+GSE63885,GSE63885_platinum_sensitivity,z,cached,41,34,0.5488,0.4153,0.6823,0.474,0.4218,0.6772,2000,1.0,0.5115,NOT-SUPPORTED
+GSE63885,GSE63885_platinum_sensitivity,raw,cached,41,34,0.5789,0.4476,0.7102,0.2388,0.4469,0.7023,2000,0.1647,0.5251,NOT-SUPPORTED
+GSE63885,GSE63885_chemoresponse,z,cached,65,10,0.3738,0.1701,0.5776,0.2249,0.1923,0.5754,2000,0.5063,,NOT-SUPPORTED
+GSE63885,GSE63885_chemoresponse,raw,cached,65,10,0.4462,0.2666,0.6257,0.5566,0.2784,0.62,2000,1.0,,NOT-SUPPORTED
+GSE30161,GSE30161_platinum_sensitivity_censaware,z,cached,44,9,0.5354,0.239,0.8317,0.8151,0.2374,0.7955,2000,1.0,0.6237,NOT-SUPPORTED
+GSE30161,GSE30161_platinum_sensitivity_censaware,raw,cached,44,9,0.5657,0.2723,0.8591,0.6609,0.2702,0.8308,2000,1.0,0.6449,NOT-SUPPORTED
+GSE63885,GSE63885_platinum_sensitivity,z,locked_shared,41,34,0.5825,,,0.2143,0.4569,0.7052,2000,,,NOT-SUPPORTED
+GSE63885,GSE63885_chemoresponse,z,locked_shared,65,10,0.4062,,,0.357,0.2277,0.6016,2000,,,NOT-SUPPORTED
+GSE30161,GSE30161_platinum_sensitivity_censaware,z,locked_shared,44,9,0.5126,,,0.9337,0.2348,0.7879,2000,,,NOT-SUPPORTED

@@ -1,0 +1,13 @@
+{
+  "cohort": "GSE241908",
+  "status": "EXCLUDED_FROM_QUANTITATIVE_ANALYSIS",
+  "role": "was: secondary paired delta-null check",
+  "exclusion_reasons": [
+    "Processed TPM matrix uses internal 'ShV-*' sample IDs (13 columns) with NO published mapping to GEO GSM accessions (14 samples, patients 2-8); ShV tokens absent from series matrix.",
+    "Sample-count mismatch: 13 TPM columns vs 14 GSMs -> one sample unaccounted; cannot assign pre/post per patient without an unverifiable positional guess.",
+    "Biological model limitation: primary CELL CULTURES from ascites (passage 2-4), not tumor tissue; lacks immune/stromal compartment central to the serial-SAE stress-state biology.",
+    "No platinum-resistance/PFI labels -> cannot test the predictive claim regardless."
+  ],
+  "integrity_note": "Forcing an order-based ShV->GSM mapping would inject an unverified assumption of exactly the kind that produced the non-reproducible discovery numbers. Excluded to preserve evidentiary integrity.",
+  "recommendation": "If the authors publish the ShV->GSM key, revisit as a low-weight in-vitro paired check only."
+}

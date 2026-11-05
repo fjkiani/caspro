@@ -1,0 +1,27 @@
+analysis_id,analysis,status,evidence,not_done_or_limitations
+A01,GSE223499 compartment pseudobulk DE,Artifact-supported prior result,40 saved gene-compartment rows,Raw counts and runnable DE workflow absent; no new DE run
+A02,GSE131907 targeted epithelial reanalysis,Artifact-supported prior result,10-row DE table and correction ledger,10-gene normalization; no full-transcriptome reanalysis or cell proportion validation
+A03,GSE200563 paired spatial comparison,Artifact-supported prior result,10-row CSV; 23 reported matched pairs,Pairing/raw ROI matrix absent; FAM72A not in matrix
+A04,Cross-dataset RNA evidence synthesis,Artifact-supported prior summaries with conflicts,Multiple versions of evidence tables and blogs,Historical claims not harmonized; invalid GSE186344 evidence must remain retired
+A05,CRISPRa blueprint-vs-payload comparison,Previously reported; supporting screen absent,7-gene table and figure in nanocarrier report,Screen cancer lineage/accession-paper mapping contradictory; activation is not knockout validation
+A06,ATAC integration,Previously reported; supporting peak data absent,Report LFC summaries and comparison figure,"No raw ATAC, covariate model or verified gene mapping"
+A07,TCGA expression/receptor/EGFR statistics,Previously reported; sample-level data absent,Report tables and figures,No statistical recomputation; z-scores not TPM or expression positivity
+A08,TCGA exploratory multi-target stratification,Previously reported; sample-level data absent,117/510 and 17/510 in report,"Cohort-relative heuristic, no predictive validation or clinical eligibility"
+A09,BACE1 NSCLC DepMap 23Q4 summary,Previously reported; line-level data absent,95-line figure/report summary,Not equivalent to pan-cancer 24Q4; no metastasis assay
+A10,Pan-cancer DepMap correction,Artifact-supported target extracts,Updated score CSV has 10 genes and corrected SLC25A32/TFEB,Release matrix/threshold code absent; older v6 table remains stale
+A11,HPA/UALCAN/CPTAC reference interpretation,Previously reported summaries; partly unverified,Historical evidence tables and report caveats,Portal exports/raw proteomics absent; survival and safety not validated
+A12,Supplementary workbook target checks,Prior annotations plus inspected source workbooks,Two XLSX files preserved; four DEG sheets and panel annotations inspected,No new DE; NOT_FOUND does not mean biologically absent
+A13,Evo2 capability mapping,Prior literature/software audit,11 capability records summarized in report,No new benchmark replication; claimed validation status overstated
+A14,FAM72A sequence generation,Previously reported; candidate files absent,4-candidate summary table,"No FASTA, seed, endpoint response, motif pipeline or wet-lab validation"
+A15,Composite benchmark AUROC,Previously reported; evaluation panel absent,0.689 composite / 0.748 observed-only in manuscript,Not held-out clinical validation; not Evo2-alone performance
+A16,Five-target AF3 structural modeling,Artifact-supported generated predictions,"25 CIF models, 25 full-data JSONs and 25 confidence JSONs",No Cas9; one seed/job; low global confidence; no editing/binding validation
+A17,Genomic guide/PAM design,Artifact-supported design inputs; contradictory later set,Corrected hg38 manifest and job specs; alternate guides in later report,"No fresh alignment, off-target audit, or proof of coding-exon disruption"
+A18,GTEx dynamic receptor retrieval,Previously reported executed; cache/source absent,4 receptor mean TPM values reported in previous delivery,Not donor-level raw TPM; underlying response unavailable in archive
+A19,Postgres async GTEx upsert,Reported implemented; production behavior unverified,Expected gtex_client.py unavailable; no DB artifacts,No executed Postgres integration test or persistent row evidence
+A20,Modal Evo2 deployment,Reported implemented; deployment not demonstrated,Recorded evo2-e2e commit 53191c4; script unavailable,"No deployment URL, build success, live health/inference or auth validation"
+A21,FastAPI/Celery design service,Reported implemented; only local/fallback test evidence recorded,Recorded backend commit c85eb33; 21 tests and 721 full-suite passes previously reported,No source/test files or fresh rerun; no real Redis-worker result; /v1 route mismatch unresolved
+A22,Eight-step protocol execution,Reported software mapping; NOT a biological delivery experiment,Protocol labels and target-specific proposed effects in report,"No physical simulations, transport, editing, or phenotype-reversal measurements"
+A23,Guide-site Evo2/CFD validation,Not demonstrated for final payload set,Existing guide strings and methodology described,No per-guide live likelihood results or genome-wide CFD/off-target outputs retained
+A24,Nanocarrier pharmacology and safety,Not performed,Proposed chassis and risk categories only,"No size distribution, release, BBB flux, biodistribution, toxicology or therapeutic-window study"
+A25,Prospective/independent clinical validation,Not performed,No independent prevention cohort or clinical outcome study,"No efficacy, predictive accuracy, trial eligibility or safe dosing established"
+A26,Archive audit and validation,Performed for this handoff,"Inventories, checksums, selected schema checks and ZIP integrity/credential scans",Only packaging/evidence audit; no new biological analyses or service deployment

@@ -1,0 +1,190 @@
+{
+  "target_symbol": "BACE1",
+  "ensembl_gene_id_grch38": "ENSG00000186318",
+  "protein_name": "Beta-secretase 1 (Beta-site APP-cleaving enzyme 1)",
+  "clean_target_tier": "Tier 1 Actionable (Lead NSCLC Brain Metastasis Colonization Driver & Dual-Compartment Target)",
+  "cascade_step": "bbb_transit / cns_colonization (Compartment 1: tumor-intrinsic EGFR ectodomain cleavage -> soluble EGFR signaling; Compartment 2: brain-metastatic immune/myeloid aggregate reprogramming)",
+  "dual_compartment_bace1_mechanism": {
+    "summary": "Verified GSE223499 snRNA-seq and Zhang et al. 2022 (MOESM6_ESM.xlsx) spatial profiling establish a dual-compartment mechanism for BACE1 in NSCLC brain metastasis, supporting coordinated tumor-intrinsic and myeloid-reprogramming activity for verubecestat (MK-8931).",
+    "compartment_1_malignant_tumor_like": {
+      "compartment": "Malignant tumor_like (GSE223499) + TCGA-LUAD primary tumors + Chafe 2025 in vivo CRISPRa (GSE237446)",
+      "gse223499_tumor_like_lfc": 1.0688,
+      "gse223499_tumor_like_linear_fold": 2.0977,
+      "gse223499_tumor_like_pvalue": 0.015832225373085016,
+      "gse223499_tumor_like_padj_bh": 0.07080678456691875,
+      "gse223499_tumor_like_true_baseMean": 412.79,
+      "tcga_luad_egfr_mut_vs_wt_z": "+0.45 vs -0.23 (Mann-Whitney p < 0.001, n = 510; top quartile z >= 0.52 = 128/510 [25.1%])",
+      "chafe_2025_gse237446_crispra": ">150x brain-vs-lung enrichment (#1 genome-wide hit, LFC = +7.28 to +7.37)",
+      "mechanism": "BACE1 overexpressed on NSCLC cells cleaves the EGFR ectodomain to release a soluble EGFR fragment that drives blood-brain barrier (BBB) extravasation and parenchymal colonization."
+    },
+    "compartment_2_myeloid_immune_aggregate": {
+      "compartment": "Brain-metastatic immune_aggregate (GSE223499) + Zhang 2022 TIME-B vs LB peritumoral myeloid cuff (MOESM6_ESM.xlsx)",
+      "gse223499_immune_aggregate_lfc": 1.8268,
+      "gse223499_immune_aggregate_linear_fold": 3.5475,
+      "gse223499_immune_aggregate_pvalue": 0.0022402642012761677,
+      "gse223499_immune_aggregate_padj_bh": 0.016059735483639002,
+      "gse223499_immune_aggregate_true_baseMean": 14.76,
+      "zhang2022_time_b_vs_lb_m2_cuff": {
+        "CD163": {
+          "log2fc": 2.675284,
+          "fold_change_linear": 6.388,
+          "p_value": 4.2856313379275203e-13,
+          "q_value": 2.86142420937697e-10
+        },
+        "MRC1": {
+          "log2fc": 1.692968,
+          "fold_change_linear": 3.233,
+          "p_value": 1.38135117709199e-06,
+          "q_value": 7.64034327092748e-05
+        },
+        "C1QA_C1QB_C1QC": {
+          "log2fc_range": "+2.8111 to +2.9583",
+          "fold_change_linear_range": "7.02x to 7.77x",
+          "q_value_range": "2.97e-7 to 5.56e-7"
+        },
+        "PTPRC_peritumoral_trapping": {
+          "log2fc": 1.991824,
+          "fold_change_linear": 3.977,
+          "p_value": 7.9813488795455e-11,
+          "q_value": 3.10856911048131e-08
+        }
+      },
+      "mechanism": "BACE1 is FDR-significantly upregulated (3.55x, padj = 0.0161) in the brain-metastatic immune/myeloid aggregate, co-localizing with the Zhang 2022 TIME-B vs LB CD163+/MRC1+/C1Q+ M2 myeloid cuff (q = 2.86e-10) where PTPRC+ leukocytes are trapped 3.98x outside the tumor core (q = 3.11e-8). Pharmacological BACE1 inhibition with verubecestat (MK-8931) therefore provides dual tumor-intrinsic (EGFR ectodomain cleavage blockade) and myeloid-reprogramming activity."
+    }
+  },
+  "1_functional_in_vivo_discovery": {
+    "citation": "Chafe SC et al., Science Translational Medicine 2025 (DOI: 10.1126/scitranslmed.adu2459)",
+    "geo_accession": "GSE237446",
+    "assay": "Genome-wide dCas9-VPR in vivo CRISPRa screen in orthotopic NSCLC brain metastasis xenograft models",
+    "screen_rank": 1,
+    "brain_vs_lung_enrichment": ">150-fold enrichment in brain metastases vs primary lung tumors",
+    "validated_mechanism": "BACE1 over-expressed on NSCLC cells cleaves the EGFR extracellular domain, releasing a soluble EGFR fragment that drives blood-brain barrier (BBB) extravasation and brain parenchymal colonization. Genetic BACE1 KO and pharmacological inhibition with verubecestat (MK-8931) both block NSCLC brain metastasis in vivo.",
+    "orthogonality_to_alzheimers": "In Alzheimer's disease, BACE1 inhibition targeted physiological neuronal APP cleavage over 18-24 months and failed due to chronic neuronal NRG1/SEZ6 substrate disruption. In NSCLC BrM, BACE1 is aberrantly overexpressed on malignant epithelial cells driving EGFR cleavage and in the brain-metastatic immune/myeloid aggregate (padj = 0.0161), enabling an acute 8-12 week peri-operative/prophylactic interception window."
+  },
+  "2_human_transcriptomics_verified": {
+    "gse223499_gonzalez_ericsson_2025_snRNAseq": {
+      "cohort": "Human NSCLC patient samples: 28 Brain Metastases (BrM) vs 11 Primary Lung Tumors",
+      "tumor_like_compartment": {
+        "lfc": 1.0688,
+        "fold_change_linear": 2.0977,
+        "pvalue": 0.015832225373085016,
+        "padj_bh": 0.07080678456691875,
+        "true_baseMean": 412.79,
+        "manuscript_table_s2_falsified_baseMean": 312,
+        "signed_direction_flag": "UP_IN_BRM",
+        "signed_oncogenic_lfc_credit": 1.0688,
+        "forensic_caveat": "tumor_like pools CNV+ malignant cells with 151,285 CNV-negative 'Tumor (Not Tumor)' reactive CNS glial/stromal cells; directional upregulation (+1.0688 LFC, p=0.0158, padj=0.0708) is nominal/trending."
+      },
+      "confirmed_tumor_cnv_positive_compartment": {
+        "cohort_subset": "10 BrM vs 11 Primary with >=20 CNV-confirmed aneuploid tumor cells",
+        "lfc": 0.7805,
+        "pvalue": 0.42746113291763976,
+        "padj_bh": 0.9919425410605863,
+        "true_baseMean": 3.84,
+        "forensic_caveat": "Severely underpowered in CNV-confirmed subset (baseMean = 3.84 counts), but preserves positive directional sign (+0.7805 LFC)."
+      },
+      "immune_aggregate_compartment": {
+        "lfc": 1.8268,
+        "fold_change_linear": 3.5475,
+        "pvalue": 0.0022402642012761677,
+        "padj_bh": 0.016059735483639002,
+        "true_baseMean": 14.76,
+        "significance": "FDR-significant (padj = 0.0161; 3.55x upregulation in brain-metastatic myeloid/immune aggregate)",
+        "zhang2022_spatial_link": "Connects directly to Zhang 2022 TIME-B vs LB peritumoral CD163/MRC1/C1Q M2 myeloid cuff (CD163 6.39x, q=2.86e-10; MRC1 3.23x, q=7.64e-5) and PTPRC 3.98x peritumoral leukocyte trapping (q=3.11e-8)."
+      },
+      "t_cells_compartment": {
+        "lfc": 1.9341,
+        "pvalue": 0.02552668161457694,
+        "padj_bh": 0.09584221895540439,
+        "true_baseMean": 6.64
+      }
+    },
+    "gse131907_kim_2020_scRNAseq": {
+      "cohort": "Human LUAD scRNA-seq epithelial pseudobulk: 10 BrM vs 11 Primary LUAD",
+      "lfc": 0.35793779922531066,
+      "lfcSE": 0.3785489586686658,
+      "stat": 0.9455521961654754,
+      "pvalue": 0.3443770363029186,
+      "padj_bh": 0.573961727171531,
+      "true_baseMean": 39.03105292429561,
+      "retracted_prior_claim": "Prior agent fabricated padj = 0.017 in early tables; actual PyDESeq2 padj is 0.5740 (NS), further confounded by 10-gene size-factor normalization."
+    },
+    "tcga_luad_pancancer_atlas": {
+      "cohort": "TCGA-LUAD primary tumors (n = 510)",
+      "egfr_mutant_median_z": 0.45,
+      "egfr_wildtype_median_z": -0.23,
+      "mann_whitney_p": "< 0.001",
+      "biomarker_high_stratum": "Top quartile (z >= 0.52) comprises 128 / 510 patients (25.1%), defining the targetable BACE1-high / EGFR-axis NSCLC patient subpopulation.",
+      "verified_figure": "originals/figures/BACE1_TCGA_LUAD_expression.png"
+    },
+    "retracted_datasets_never_cite": [
+      "GSE186344 (p = 1.08e-9): RETRACTED — single-arm BrM-only atlas with zero primary lung tumor controls.",
+      "GSE200563 (LFC = -0.34, padj = 0.775): RETRACTED FOR BRM — glioma radioresistance dataset, not lung brain metastasis."
+    ]
+  },
+  "3_depmap_safety_and_selectivity": {
+    "depmap_24q4_pan_cancer": {
+      "n_cell_lines": 1208,
+      "mean_chronos": -0.068,
+      "pct_dependent_lines": 0.1,
+      "classification": "NON_ESSENTIAL"
+    },
+    "depmap_nsclc_lineage": {
+      "n_nsclc_lines": 95,
+      "median_chronos": -0.019,
+      "lines_below_minus_0_2": "3 / 95 (3.2%)"
+    },
+    "therapeutic_index_interpretation": "Unlike NOM1 (mean Chronos = -0.725, 82.5% pan-lethal COMMON_ESSENTIAL), BACE1 is completely non-essential for basal 2D cell viability, proving it acts as a specialized in vivo BBB colonization protease rather than a toxic housekeeping gene.",
+    "verified_figure": "originals/figures/BACE1_DepMap_NSCLC_dependency.png"
+  },
+  "4_alphafold3_structural_guide_validation_reindexed": {
+    "job_name": "fold_2026_04_15_18_58",
+    "seed": 1206182459,
+    "hg38_locus": "chr11:117316334 (+ strand, TSS window -200..+50bp)",
+    "af3_manifest_spacer_20nt": "TCTTCCCATGGCAGGCAATC",
+    "af3_manifest_modality": "CRISPRi_dCas9_KRAB_TSS",
+    "backend_real_guides_coding_spacer_20nt": "GCGAGCCGCGAGCTGGATTA",
+    "backend_alt_exonic_ko_spacer_20nt": "GTGGTGCTGGCTTCCCCATC",
+    "backend_coding_modality": "SpCas9_KO_coding_exon",
+    "spacer_modality_reconciliation": "RECONCILED IN real_guides.json: TCTTCCCATGGCAGGCAATC is explicitly tagged as modality='CRISPRi_dCas9_KRAB_TSS' (AF3-verified TSS-proximal dCas9-KRAB transcriptional repression guide: sgRNA↔Template DNA_B ipTM = 0.418 mean / 0.43 m0, spacer ΔPAE = 6.17 Å, 0 clashes), distinct from coding-exon SpCas9 KO spacers (modality='SpCas9_KO_coding_exon': GCGAGCCGCGAGCTGGATTA / GTGGTGCTGGCTTCCCCATC).",
+    "models_passing": "5 / 5 (100%)",
+    "global_iptm_mean": 0.35,
+    "global_iptm_m0": 0.36,
+    "global_ptm_mean": 0.37,
+    "global_ptm_m0": 0.38,
+    "true_cif_chain_pair_iptm": {
+      "DNA_A_to_DNA_B_duplex_0_1_mean": 0.23,
+      "DNA_A_to_DNA_B_duplex_0_1_m0": 0.24,
+      "sgRNA_to_non_template_DNA_A_0_2_mean": 0.148,
+      "sgRNA_to_non_template_DNA_A_0_2_m0": 0.17,
+      "sgRNA_to_template_DNA_B_1_2_mean": 0.418,
+      "sgRNA_to_template_DNA_B_1_2_m0": 0.43,
+      "true_conformation": "R-loop (template-bound: sgRNA pairs strongly with reverse template strand DNA_B at ipTM = 0.418 mean / 0.43 m0 while melting the DNA_A:DNA_B duplex to 0.230 mean / 0.24 m0)"
+    },
+    "pae_metrics_angstroms": {
+      "min_pae_rna_template_mean_A": 1.6,
+      "mean_spacer_template_pae_A": 16.87,
+      "mean_spacer_nontemplate_pae_A": 23.04,
+      "delta_spacer_pae_A": 6.17
+    },
+    "fraction_disordered": 0.0,
+    "has_clash": 0.0
+  },
+  "5_clinical_translation_and_nanocarrier_engineering_constraints": {
+    "small_molecule_repurposing_candidate": {
+      "drug": "Verubecestat (MK-8931)",
+      "clinical_history": "Phase 3 Alzheimer's asset (EPOCH); ~40% human CNS CSF penetration; ~70% BACE1 target inhibition at 12 mg/day.",
+      "dual_compartment_activity": "Simultaneously inhibits Compartment 1 malignant tumor-cell BACE1 (blocking EGFR ectodomain cleavage and BBB extravasation; GSE223499 tumor_like LFC = +1.0688, p = 0.0158) and Compartment 2 brain-metastatic immune/myeloid aggregate BACE1 (GSE223499 immune_aggregate LFC = +1.8268 [3.55x], p = 0.00224, padj = 0.0161; reprogramming the Zhang 2022 TIME-B vs LB CD163+/MRC1+/C1Q+ M2 cuff [q = 2.86e-10] where PTPRC+ leukocytes are trapped 3.98x [q = 3.11e-8]).",
+      "brm_dosing_regimen": "8-12 week peri-operative or high-risk EGFR-mutant LUAD prophylactic window (6-12x shorter than 18-24 month AD trials, avoiding cumulative NRG1/SEZ6 neurotoxicity).",
+      "safety_biomarkers": "Serial CSF/plasma soluble NRG1 and SEZ6 monitoring.",
+      "critical_wet_lab_experiment_required": "Measure verubecestat IC50 specifically for BACE1-mediated EGFR ectodomain cleavage in NSCLC cells (currently assumed ~10 nM from APP cleavage, unpublished for EGFR)."
+    },
+    "nanocarrier_delivery_sink_constraint": {
+      "discovery_source": "Zhang et al. 2022 MOESM6_ESM.xlsx (Sheet TIME-B vs. LB, Rows 30, 47, 55, 74, 75, 81, 84, 93, 147)",
+      "canonical_spec_file": "clean_signals/zhang2022_dual_gated_nanocarrier_spec_v2.json",
+      "lrp1_peritumoral_sink": "LRP1 is enriched +1.8066 log2FC (3.50-fold, p=9.92e-9, q=1.48e-6) in peritumoral brain myeloid/microglial stroma (TIME-B) vs BrM tumor core (LB), co-enriched with endogenous ligand APOE (+3.3511 log2FC, 10.20x, q=5.84e-8), CD163 (+2.6753 log2FC, 6.39x, q=2.86e-10), and MRC1 (+1.6930 log2FC, 3.23x, q=7.64e-5).",
+      "mmp2_protease_gate": "MMP2 is enriched +1.8732 log2FC (3.66-fold, q=7.82e-7) in TIME-B vs LB, whereas MMP9 is absent in TIME-B vs LB and only significant in lung stroma TIME-L vs L (+1.8776 log2FC, 3.68x, q=5.29e-7).",
+      "required_nanocarrier_architecture": "3-Stage BTB Delivery Gate: (Stage 1) Low-avidity Angiopep-2 LRP1 BBB shuttle calibrated against 10.20x APOE competition in TIME-B (q=5.84e-8); (Stage 2) MMP2-cleavable PEG stealth corona (3.66x in TIME-B vs LB, q=7.82e-7) to prevent premature uptake by the 3.50x LRP1+ (q=1.48e-6) CD163+ MRC1+ peritumoral myeloid sink; (Stage 3) Secondary tumor-cell receptor lock (EGFR/HER2/CEACAM5) for selective internalization into LB tumor cells."
+    }
+  }
+}

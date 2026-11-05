@@ -1,0 +1,60 @@
+{
+  "cohort": "GSE160626",
+  "role": "external_discrimination_crosssectional",
+  "n_resistant": 8,
+  "n_sensitive": 10,
+  "tests": {
+    "ddr": {
+      "auroc": 0.375,
+      "ci95": [
+        0.1169,
+        0.6769
+      ],
+      "wilcoxon_p": 0.4082,
+      "mean_resistant": -0.2589,
+      "mean_sensitive": 0.2072,
+      "direction": "higher_in_sensitive"
+    },
+    "pi3k": {
+      "auroc": 0.2125,
+      "ci95": [
+        0.025,
+        0.475
+      ],
+      "wilcoxon_p": 0.0434,
+      "mean_resistant": -0.3179,
+      "mean_sensitive": 0.2543,
+      "direction": "higher_in_sensitive"
+    },
+    "vegf": {
+      "auroc": 0.35,
+      "ci95": [
+        0.0863,
+        0.6111
+      ],
+      "wilcoxon_p": 0.3154,
+      "mean_resistant": -0.1302,
+      "mean_sensitive": 0.1041,
+      "direction": "higher_in_sensitive"
+    }
+  },
+  "coverage": {
+    "ddr": {
+      "matched": 14,
+      "total": 14,
+      "missing": []
+    },
+    "pi3k": {
+      "matched": 10,
+      "total": 10,
+      "missing": []
+    },
+    "vegf": {
+      "matched": 8,
+      "total": 8,
+      "missing": []
+    }
+  },
+  "EPV_single_feature": 8.0,
+  "interpretation": "Cross-sectional. Full gene coverage. All three pathways score HIGHER IN SENSITIVE (AUROC<0.5), OPPOSITE to the serial-SAE prediction (higher DDR/PI3K -> resistant). PI3K nominally significant in the opposite direction (p=0.043). Caveat: single-timepoint (not post-vs-baseline serial design), so it tests direction of the post-treatment-state analogue, not the serial hypothesis directly. Does NOT replicate."
+}

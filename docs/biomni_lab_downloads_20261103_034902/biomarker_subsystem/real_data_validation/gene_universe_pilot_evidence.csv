@@ -1,0 +1,7 @@
+gene,n_samples,n_nonneutral,max_rel_cn,min_rel_cn,events,pilot_metric_available
+CCNE1,8,3,3.508,0.75,109/diagnosis:high_amp;109/relapse:gain;119/relapse:loss,True
+PALB2,8,2,1.11,0.676,109/diagnosis:loss;6/relapse:loss,True
+PTEN,8,2,1.182,0.605,191/diagnosis:loss;191/relapse:loss,True
+KEAP1,8,3,1.978,0.733,109/diagnosis:gain;119/relapse:loss;191/diagnosis:gain,True
+CUL3,8,2,1.338,0.59,191/diagnosis:loss;191/relapse:loss,True
+SLC31A1,8,2,1.253,0.725,109/diagnosis:loss;119/relapse:loss,True

@@ -1,0 +1,54 @@
+{
+  "datasets": [
+    {
+      "dataset_id": "GSE163120",
+      "access_status": "public (processed mouse data) / controlled (human raw data)",
+      "download_method": "GEO FTP for processed mouse data; EGA application required for human raw data",
+      "geo_ftp_path_or_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE163nnn/GSE163120/suppl/",
+      "geo_supplementary_files": [
+        "GSE163120_Mouse.GBM.KO1_2_3.WT1_2_3.filtered.gene.bc.matrix.csv.gz (94.0 Mb)",
+        "GSE163120_Citeseq_Mouse.GBM.KO4_WT4.filtered.RNA.feature.bc.matrix.csv.gz (55.2 Mb)",
+        "GSE163120_Citeseq_Mouse.GBM.KO4_WT4.filtered.ADT.feature.bc.matrix.csv.gz (1.3 Mb)",
+        "GSE163120_RAW.tar (183.9 Mb)"
+      ],
+      "requires_dbgap": false,
+      "human_raw_data_repository": "EGA",
+      "human_raw_data_accession": "EGAS00001004871",
+      "requires_ega_application": true,
+      "blocker_if_any": "Human raw data requires EGA data access application (restricted). GEO only contains processed mouse data + minimal human processed output. Human data is NOT freely downloadable. This is a critical blocker for human single-cell analysis."
+    },
+    {
+      "dataset_id": "GSE174554",
+      "access_status": "public",
+      "download_method": "GEO FTP (processed data) + SRA (raw reads via SRA Toolkit)",
+      "geo_ftp_path_or_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE174nnn/GSE174554/suppl/",
+      "geo_supplementary_files": [
+        "GSE174554_RAW.tar (1.5 Gb) — contains BED, MTX, TAR, TSV, TXT, ZIP files",
+        "GSE174554_Tumor_normal_metadata.txt.gz (1.4 Mb)",
+        "GSE174554_Spatial_transcriptomic_matrix.txt.gz (472.0 Kb)",
+        "GSE174554_Spatial_proteomics_matrix.txt.gz (6.6 Kb)"
+      ],
+      "sra_bioproject": "PRJNA730532",
+      "sra_download_command": "prefetch PRJNA730532 && fastq-dump --split-files <SRR_accession>",
+      "requires_dbgap": false,
+      "requires_ega_application": false,
+      "blocker_if_any": "Authors note raw data 'not available due to privacy concerns' — raw FASTQ may be absent from SRA despite BioProject listing. Processed count matrices ARE available via GEO FTP. Recommend downloading processed data (GSE174554_RAW.tar) directly."
+    },
+    {
+      "dataset_id": "GSE182109",
+      "access_status": "public",
+      "download_method": "GEO FTP (processed data) + SRA (raw reads)",
+      "geo_ftp_path_or_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE182nnn/GSE182109/suppl/",
+      "geo_supplementary_files": [
+        "GSE182109_RAW.tar (2.3 Gb) — contains MTX, TSV files"
+      ],
+      "sra_bioproject": "PRJNA754533",
+      "sra_accession": "SRP332536",
+      "requires_dbgap": false,
+      "requires_ega_application": false,
+      "blocker_if_any": "None. Fully public. Raw data available in SRA (SRP332536)."
+    }
+  ],
+  "recommended_download_target": "GSE174554",
+  "recommended_download_command": "wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE174nnn/GSE174554/suppl/GSE174554_RAW.tar && wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE174nnn/GSE174554/suppl/GSE174554_Tumor_normal_metadata.txt.gz && wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE174nnn/GSE174554/suppl/GSE174554_Spatial_transcriptomic_matrix.txt.gz"
+}

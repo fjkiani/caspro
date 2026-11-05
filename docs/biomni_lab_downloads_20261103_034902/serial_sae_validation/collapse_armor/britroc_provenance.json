@@ -1,0 +1,69 @@
+{
+  "tier0_source": "Nat Commun 2023, DOI 10.1038/s41467-023-39867-7, Supplementary Data 10 (source_data)",
+  "n_patients_published": 159,
+  "n_samples": 265,
+  "label_field": "pt_status (published) == pt_sensitivity_at_reg (BriTROC-1 clinical master)",
+  "label_concordance": "98/98",
+  "original_analysis": {
+    "n": 40,
+    "n_resistant": 3,
+    "label": "RECIST-derived rclass",
+    "s7_relapse_auroc": 0.8739,
+    "ci": "0.757-0.973",
+    "p": 0.035
+  },
+  "corrected": {
+    "diagnosis": {
+      "n": 98,
+      "n_resistant": 20,
+      "s3_auroc": 0.2715,
+      "s3_q": 0.0118,
+      "s7_auroc": 0.4929,
+      "s7_p": 0.9262
+    },
+    "relapse": {
+      "n": 108,
+      "n_resistant": 28,
+      "s7_auroc": 0.4295,
+      "s7_p": 0.2693
+    }
+  },
+  "logistic_s3": {
+    "OR": 0.3641,
+    "ci": [
+      0.1666,
+      0.7959
+    ],
+    "p": 0.01134
+  },
+  "cox_os_s3_adjusted": {
+    "HR": 0.6989,
+    "ci": [
+      0.494,
+      0.9889
+    ],
+    "p": 0.0431,
+    "schoenfeld_min_p": 0.3271,
+    "n": 98,
+    "events": 50
+  },
+  "km_s3_tertile": {
+    "logrank_p": 0.0254,
+    "median_os_low": 1482.0,
+    "median_os_high": 2794.0
+  },
+  "ccne1": {
+    "table": {
+      "resistant": {
+        "amplified": 6,
+        "neutral": 14
+      },
+      "sensitive": {
+        "amplified": 7,
+        "neutral": 71
+      }
+    },
+    "OR": 4.347,
+    "fisher_p": 0.0233
+  }
+}

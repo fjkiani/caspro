@@ -1,0 +1,57 @@
+{
+  "n_queries": 3,
+  "avg_faithfulness": 0.583,
+  "avg_answer_relevancy": 0.52,
+  "pass_rate": 0.667,
+  "results": [
+    {
+      "query": "What are the best IO benchmark results for MSS colorectal cancer, and what does the liver-met data show?",
+      "answer": "(a) The best IO benchmark results for MSS colorectal cancer come from the IO CORE analysis of 7 comparator trials, which universally show a positive delta (P_A > P_B) with a delta range of 0.15\u20130.30 across all MSS CRC IO mechanisms. Liver-met data indicates that IO suppression in liver metastases is universal across all MSS CRC IO mechanisms.\n\n(b) Supporting evidence:\n- IO CORE analysis of 7 MSS CRC IO comparator trials (IMblaze370, Atezo",
+      "citations": [],
+      "guardrail_violations": [],
+      "faithfulness": 0.75,
+      "answer_relevancy": 0.831,
+      "composite": 0.79,
+      "pass": true,
+      "latency_ms": {
+        "retrieval_ms": 832,
+        "generation_ms": 127456,
+        "eval_ms": 17570
+      }
+    },
+    {
+      "query": "Compare the BreAK CRC-001 trial design against the TRIBE2 benchmark. What are the critical gaps?",
+      "answer": "(a) TRIBE2 is established as the primary benchmark for BreAK CRC-001. Critical design gaps identified for BreAK CRC-001 include liver metastasis considerations, PTMB (presumably tumor mutational burden), biomarker gating strategy, SC001 (likely a specific cohort or sub-study), and bevacizumab scheduling.\n\n(b) TRIBE2 serves as the primary benchmark for BreAK CRC-001 [W1-TRIBE2-001]. The BreAK CRC-001 trial has identified design gaps spanning liver metastasis, PTMB, biomarker gate, SC001, and bevacizumab scheduling [W2-GAPS-001]. A fit-gap analysis module exists for BreAK CRC-001 requirements [W3-FITGAP-001].\n\n(c) The documents confirm the benchmark relationship and list gap categories but do not provide detailed comparative specifications between BreAK CRC-001 and TRIBE2 (e",
+      "citations": [
+        "W1-TRIBE2-001",
+        "W2-GAPS-001",
+        "W3-FITGAP-001"
+      ],
+      "guardrail_violations": [],
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.695,
+      "composite": 0.847,
+      "pass": true,
+      "latency_ms": {
+        "retrieval_ms": 725,
+        "generation_ms": 150359,
+        "eval_ms": 13446
+      }
+    },
+    {
+      "query": "How does CrisPRO help Brenus Pharma address the design gaps in BreAK CRC-001?",
+      "answer": "INSUFFICIENT DATA",
+      "citations": [],
+      "guardrail_violations": [],
+      "faithfulness": 0.0,
+      "answer_relevancy": 0.033,
+      "composite": 0.017,
+      "pass": false,
+      "latency_ms": {
+        "retrieval_ms": 700,
+        "generation_ms": 147269,
+        "eval_ms": 6163
+      }
+    }
+  ]
+}

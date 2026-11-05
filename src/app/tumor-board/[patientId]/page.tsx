@@ -2,15 +2,10 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
 import { PATIENT_IDS, loadPatient } from '@/data/patients/registry';
-import { usesNewSurface } from '@/data/patients/new-surface-registry';
 import { PatientProvider } from '@/context/PatientContext';
-import TumorBoardSurface from '@/components/tumor-board/TumorBoardSurface';
-import PatientBoardWalker from '@/components/tumor-board/PatientBoardWalker';
-import BenchCoverageCard from '@/components/tumor-board/ak/BenchCoverageCard';
+import TumorBoardTabSurface from '@/components/tumor-board/TumorBoardTabSurface';
 import DiscoveryOnlyBanner from '@/components/tumor-board/ak/DiscoveryOnlyBanner';
 
-// Static params so /tumor-board/[patientId] pre-renders one page per known
-// patient at build time. Unknown ids fall through to notFound().
 export function generateStaticParams() {
   return PATIENT_IDS.map((patientId) => ({ patientId }));
 }
@@ -25,10 +20,11 @@ export async function generateMetadata({
   if (!p) return { title: 'Patient not found · Tumor Board' };
   return {
     title: `${p.meta.displayName ?? p.meta.patientId} · Tumor Board`,
-    description: `CrisPRO tumor-board demo bundle for ${p.meta.displayName ?? p.meta.patientId} — ${p.tumorContext.subtype ?? p.tumorContext.cancerType}.`,
+    description: `CrisPRO tumor-board workspace for ${p.meta.displayName ?? p.meta.patientId} — ${p.tumorContext.subtype ?? p.tumorContext.cancerType}.`,
   };
 }
 
+/** Canonical patient surface — tab panes only, no page scroll. */
 export default async function PatientTumorBoardPage({
   params,
 }: {
@@ -38,17 +34,14 @@ export default async function PatientTumorBoardPage({
   const bundle = loadPatient(patientId);
   if (!bundle) notFound();
 
-  // Route-level bridge: bundle renders with the new mobile-first walker
-  // when NEW_SURFACE_ENABLED[patientId] is true (see new-surface-registry.ts).
-  // Legacy surface stays wired for any bundle not yet flipped, so this switch
-  // is fully reversible per-patient.
-  const Surface = usesNewSurface(patientId) ? PatientBoardWalker : TumorBoardSurface;
-
   return (
     <PatientProvider bundle={bundle}>
-      {bundle.discoveryOnly ? <DiscoveryOnlyBanner /> : null}
-      <BenchCoverageCard />
-      <Surface />
+      <div className="flex h-[calc(100dvh-3.5rem)] flex-col overflow-hidden">
+        {bundle.discoveryOnly ? <DiscoveryOnlyBanner /> : null}
+        <div className="min-h-0 flex-1 overflow-hidden">
+          <TumorBoardTabSurface />
+        </div>
+      </div>
     </PatientProvider>
   );
 }

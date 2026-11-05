@@ -1,0 +1,17 @@
+{
+  "caslib": "Prostat_Asociac_484",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "PSA"
+  ],
+  "indication": "prostate",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 0,
+  "n_tabular_files": 0,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "b81fd9837a776cabc12ed42fad6c2c378940a35b050e835b20f0b35d8986dd4e",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": []
+}

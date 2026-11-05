@@ -1,0 +1,30 @@
+{
+  "mean_abs_shift_active_genes_log2": 4.842075899682655,
+  "mean_abs_shift_core13_log2": 4.636435753980092,
+  "CXCL12_shift": [
+    {
+      "train_mean": 4.382,
+      "test_mean": 8.953,
+      "delta_mean_log2": 4.571
+    }
+  ],
+  "POSTN_shift": [
+    {
+      "train_mean": 3.974,
+      "test_mean": 9.087,
+      "delta_mean_log2": 5.113
+    }
+  ],
+  "quantile_norm_sensitivity": {
+    "n_scored": 75,
+    "n_pos": 41,
+    "n_neg": 34,
+    "auroc_raw_frozen": 0.6384505021520803,
+    "auroc_quantile_normalized": 0.6348637015781923,
+    "auroc_delta_qn_minus_raw": -0.0035868005738880493,
+    "spearman_rho_raw_vs_qn_scores": 0.9849217638691322,
+    "interpretation": "AUROC is rank-based; quantile normalization of active genes changes absolute scores but should barely move AUROC, confirming discrimination survives the batch shift while the operating threshold does not."
+  },
+  "composite_context": "Prior frozen composite IMMUNE_ACCESS=0.40*TCELL_GPS-0.35*MYELOID_FLOOD-0.25*STROMAL_CAGE was NOT_SUPPORTED across 9 configs (GSE63885 platinum AUROC 0.549z/0.579raw, p=0.474/0.239). Core-13 Elastic Net (0.638) is a DIFFERENT model; both verdicts real.",
+  "caveat": "Batch shift ~4.5 log2 on CXCL12/POSTN breaks frozen Youden threshold (sens 0.00-0.07, spec 1.0) but not rank-based AUROC. Deployment needs cross-cohort calibration."
+}

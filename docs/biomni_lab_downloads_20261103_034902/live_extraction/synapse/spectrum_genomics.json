@@ -1,0 +1,217 @@
+{
+  "maf": {
+    "n_rows": 87,
+    "hugo_col": "Hugo_Symbol",
+    "sample_col": "Tumor_Sample_Barcode",
+    "n_brca_mutations": 2,
+    "brca_per_patient": {
+      "SHAH_H001753_T04_01_WG01": "BRCA1"
+    },
+    "brca_carriers": [
+      "SHAH_H001753_T04_01_WG01"
+    ]
+  },
+  "hrd": {
+    "SHAH_H000004_T09_01_WG01": {
+      "fga": 0.4477,
+      "n_segments": 666,
+      "n_breakpoints": 665
+    },
+    "SHAH_H000005_T26_01_WG01": {
+      "fga": 0.653,
+      "n_segments": 1116,
+      "n_breakpoints": 1115
+    },
+    "SHAH_H000006_T15_01_WG01": {
+      "fga": 0.4926,
+      "n_segments": 860,
+      "n_breakpoints": 859
+    },
+    "SHAH_H000009_T15_02_WG01": {
+      "fga": 0.5991,
+      "n_segments": 958,
+      "n_breakpoints": 957
+    },
+    "SHAH_H000011_T08_01_WG01": {
+      "fga": 0.6413,
+      "n_segments": 1032,
+      "n_breakpoints": 1031
+    },
+    "SHAH_H000013_T17_01_WG01": {
+      "fga": 0.431,
+      "n_segments": 666,
+      "n_breakpoints": 665
+    },
+    "SHAH_H000019_T10_01_WG01": {
+      "fga": 0.4073,
+      "n_segments": 529,
+      "n_breakpoints": 528
+    },
+    "SHAH_H000020_T07_02_WG01": {
+      "fga": 0.6386,
+      "n_segments": 2240,
+      "n_breakpoints": 2239
+    },
+    "SHAH_H000021_T07_01_WG01": {
+      "fga": 0.6516,
+      "n_segments": 500,
+      "n_breakpoints": 499
+    },
+    "SHAH_H000022_T10_01_WG01": {
+      "fga": 0.5048,
+      "n_segments": 1123,
+      "n_breakpoints": 1122
+    },
+    "SHAH_H000023_T06_01_WG01": {
+      "fga": 0.948,
+      "n_segments": 483,
+      "n_breakpoints": 482
+    },
+    "SHAH_H000024_T08_01_WG01": {
+      "fga": 0.4756,
+      "n_segments": 768,
+      "n_breakpoints": 767
+    },
+    "SHAH_H000025_T04_02_WG01": {
+      "fga": 0.4694,
+      "n_segments": 800,
+      "n_breakpoints": 799
+    },
+    "SHAH_H000026_T01_02_WG01": {
+      "fga": 0.6216,
+      "n_segments": 666,
+      "n_breakpoints": 665
+    },
+    "SHAH_H000031_T08_01_WG01": {
+      "fga": 0.7169,
+      "n_segments": 635,
+      "n_breakpoints": 634
+    },
+    "SHAH_H000033_T16_01_WG01": {
+      "fga": 0.5489,
+      "n_segments": 774,
+      "n_breakpoints": 773
+    },
+    "SHAH_H000034_T07_01_WG01": {
+      "fga": 0.6833,
+      "n_segments": 900,
+      "n_breakpoints": 899
+    },
+    "SHAH_H000035_T13_01_WG01": {
+      "fga": 0.4973,
+      "n_segments": 583,
+      "n_breakpoints": 582
+    },
+    "SHAH_H000036_T06_01_WG01": {
+      "fga": 0.6661,
+      "n_segments": 1275,
+      "n_breakpoints": 1274
+    },
+    "SHAH_H000037_T18_01_WG01": {
+      "fga": 0.6215,
+      "n_segments": 523,
+      "n_breakpoints": 522
+    },
+    "SHAH_H000038_T14_01_WG01": {
+      "fga": 0.4007,
+      "n_segments": 555,
+      "n_breakpoints": 554
+    },
+    "SHAH_H000039_T10_01_WG01": {
+      "fga": 0.5668,
+      "n_segments": 1483,
+      "n_breakpoints": 1482
+    },
+    "SHAH_H000041_T02_05_WG01": {
+      "fga": 0.5646,
+      "n_segments": 801,
+      "n_breakpoints": 800
+    },
+    "SHAH_H000149_T02_02_WG01": {
+      "fga": 0.6409,
+      "n_segments": 197,
+      "n_breakpoints": 196
+    },
+    "SHAH_H000180_T02_02_WG01": {
+      "fga": 0.4123,
+      "n_segments": 1697,
+      "n_breakpoints": 1696
+    },
+    "SHAH_H000181_T10_01_WG01": {
+      "fga": 0.4838,
+      "n_segments": 882,
+      "n_breakpoints": 881
+    },
+    "SHAH_H000213_T13_01_WG01": {
+      "fga": 0.5339,
+      "n_segments": 701,
+      "n_breakpoints": 700
+    },
+    "SHAH_H000214_T11_01_WG01": {
+      "fga": 0.6497,
+      "n_segments": 973,
+      "n_breakpoints": 972
+    },
+    "SHAH_H000222_T01_07_WG01": {
+      "fga": 0.3159,
+      "n_segments": 514,
+      "n_breakpoints": 513
+    },
+    "SHAH_H000338_T05_01_WG01": {
+      "fga": 0.3124,
+      "n_segments": 297,
+      "n_breakpoints": 296
+    },
+    "SHAH_H000339_T03_03_WG01": {
+      "fga": 0.6658,
+      "n_segments": 3290,
+      "n_breakpoints": 3289
+    },
+    "SHAH_H000340_T05_01_WG01": {
+      "fga": 0.5476,
+      "n_segments": 13962,
+      "n_breakpoints": 13961
+    },
+    "SHAH_H000342_T04_03_WG01": {
+      "fga": 0.6036,
+      "n_segments": 1719,
+      "n_breakpoints": 1718
+    },
+    "SHAH_H000705_T02_03_WG01": {
+      "fga": 0.5099,
+      "n_segments": 1017,
+      "n_breakpoints": 1016
+    },
+    "SHAH_H000706_T04_01_WG01": {
+      "fga": 0.7683,
+      "n_segments": 303,
+      "n_breakpoints": 302
+    },
+    "SHAH_H000707_T08_01_WG01": {
+      "fga": 0.725,
+      "n_segments": 592,
+      "n_breakpoints": 591
+    },
+    "SHAH_H000708_T06_01_WG01": {
+      "fga": 0.6805,
+      "n_segments": 428,
+      "n_breakpoints": 427
+    },
+    "SHAH_H001749_T06_01_WG01": {
+      "fga": 0.5535,
+      "n_segments": 481,
+      "n_breakpoints": 480
+    },
+    "SHAH_H001750_T06_01_WG01": {
+      "fga": 0.6996,
+      "n_segments": 1637,
+      "n_breakpoints": 1636
+    },
+    "SHAH_H001753_T04_01_WG01": {
+      "fga": 0.5428,
+      "n_segments": 994,
+      "n_breakpoints": 993
+    }
+  },
+  "hrd_note": "FGA = fraction of genome with |seg.mean log2|>0.3 (HRD/genomic-instability proxy). Higher = more unstable."
+}

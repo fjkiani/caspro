@@ -1,0 +1,144 @@
+{
+  "receipt_type": "w1_tcga_ov_prognostic_cox",
+  "data_source": "cBioPortal ov_tcga_pan_can_atlas_2018",
+  "expression_profile": "ov_tcga_pan_can_atlas_2018_rna_seq_v2_mrna_median_Zscores",
+  "gene_panel": [
+    "PIK3CA",
+    "PIK3CB",
+    "PIK3R1",
+    "AKT1",
+    "AKT2",
+    "AKT3",
+    "MTOR",
+    "RPTOR",
+    "RICTOR",
+    "PTEN",
+    "TSC1",
+    "TSC2",
+    "STK11"
+  ],
+  "n_samples_expr": 300,
+  "n_analysis_cohort": 299,
+  "events_deaths": 180,
+  "epv_note": "events/covariate must be >=10; events=180",
+  "claim_under_test": "HR=1.30, p=0.023, n=299 (PI3K/mTOR prognostic in TCGA-OV)",
+  "univariate_pi3k_score_dir": {
+    "HR_per_1SD": 1.0120305926348259,
+    "coef": 0.011958800284670359,
+    "ci95_low": 0.8638867199681802,
+    "ci95_high": 1.1855789616334436,
+    "p": 0.882270476430147,
+    "n": 299,
+    "events": 180,
+    "ph_test_p": 0.6190395378667202,
+    "ph_violated": false
+  },
+  "univariate_pi3k_score_unsigned": {
+    "HR_per_1SD": 1.1594497238393933,
+    "coef": 0.14794551656585925,
+    "ci95_low": 0.9906483191333287,
+    "ci95_high": 1.357014024197134,
+    "p": 0.06534009609141887,
+    "n": 299,
+    "events": 180,
+    "ph_test_p": 0.620751094700717,
+    "ph_violated": false
+  },
+  "adjusted_age": {
+    "HR_per_1SD": 0.9797292313776276,
+    "ci95_low": 0.8371505030214764,
+    "ci95_high": 1.1465911605516557,
+    "p": 0.7985574765511427,
+    "n": 280,
+    "covariates": [
+      "pi3k_score_dir",
+      "age"
+    ]
+  },
+  "per_gene_univariate_cox": {
+    "AKT1": {
+      "HR_per_1SD": 0.7473191256807425,
+      "p": 0.01375793628209227,
+      "q_bh": 0.0963959712340251,
+      "sig_fdr05": false
+    },
+    "AKT2": {
+      "HR_per_1SD": 1.1139916014743996,
+      "p": 0.09188013274711963,
+      "q_bh": 0.3559116558816484,
+      "sig_fdr05": false
+    },
+    "AKT3": {
+      "HR_per_1SD": 0.9598028875813127,
+      "p": 0.6239625102590803,
+      "q_bh": 0.718731644578266,
+      "sig_fdr05": false
+    },
+    "MTOR": {
+      "HR_per_1SD": 1.1796611083255657,
+      "p": 0.014830149420619247,
+      "q_bh": 0.0963959712340251,
+      "sig_fdr05": false
+    },
+    "PIK3CA": {
+      "HR_per_1SD": 1.0559946750582836,
+      "p": 0.4788452432270275,
+      "q_bh": 0.6916653513279286,
+      "sig_fdr05": false
+    },
+    "PIK3CB": {
+      "HR_per_1SD": 1.0485015649044174,
+      "p": 0.5416005809985642,
+      "q_bh": 0.7040807552981334,
+      "sig_fdr05": false
+    },
+    "PIK3R1": {
+      "HR_per_1SD": 1.036868498956973,
+      "p": 0.6634445949953225,
+      "q_bh": 0.718731644578266,
+      "sig_fdr05": false
+    },
+    "PTEN": {
+      "HR_per_1SD": 1.0981043714552647,
+      "p": 0.18154972439202124,
+      "q_bh": 0.3933577361827127,
+      "sig_fdr05": false
+    },
+    "RICTOR": {
+      "HR_per_1SD": 1.128766652497673,
+      "p": 0.10951127873281491,
+      "q_bh": 0.3559116558816484,
+      "sig_fdr05": false
+    },
+    "RPTOR": {
+      "HR_per_1SD": 0.9452360648022434,
+      "p": 0.4669349832845531,
+      "q_bh": 0.6916653513279286,
+      "sig_fdr05": false
+    },
+    "STK11": {
+      "HR_per_1SD": 0.994569855458338,
+      "p": 0.9393348115105872,
+      "q_bh": 0.9393348115105872,
+      "sig_fdr05": false
+    },
+    "TSC1": {
+      "HR_per_1SD": 1.1057673926497436,
+      "p": 0.17510363961448186,
+      "q_bh": 0.3933577361827127,
+      "sig_fdr05": false
+    },
+    "TSC2": {
+      "HR_per_1SD": 1.0768732158692857,
+      "p": 0.34859249698842154,
+      "q_bh": 0.6473860658356401,
+      "sig_fdr05": false
+    }
+  },
+  "verdict": {
+    "significant_prognostic_p05": false,
+    "direction_higher_score_worse": true,
+    "reproduces_claim_hr130_p023": false,
+    "note": "Claim HR expressed 'per 1.30'; we report HR per 1 SD of pathway score. Not directly comparable unless claim's scaling matches; verdict flags significance+direction, and whether magnitude coincidentally matches."
+  }
+}

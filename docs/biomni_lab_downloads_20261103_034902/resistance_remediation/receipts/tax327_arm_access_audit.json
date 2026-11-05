@@ -1,0 +1,15 @@
+{
+  "generated_utc": "2026-08-11T19:56:57.766797+00:00",
+  "study": "TAX327",
+  "caslib": "Prostat_Sanofi_2000_80",
+  "trial_total_reported": 1006,
+  "released_control_patients": 337,
+  "released_experimental_patients": 0,
+  "local_patient_rows": 337,
+  "local_unique_patients": 337,
+  "local_treatment_codes": {
+    "3": 337
+  },
+  "three_arm_harvest_possible": false,
+  "reason": "Experimental arms are not present in the provider release."
+}

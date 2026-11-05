@@ -1,0 +1,28 @@
+{
+  "name": "BrM_BACE1",
+  "sequences": [
+    {
+      "rnaSequence": {
+        "sequence": "UCUUCCCAUGGCAGGCAAUCGUUUUAGAGCUAGAAAUAGCAAGUUAAAAUAAGGCUAGUCCGUUAUCAACUUGAAAAAGUGGCACCGAGUCGGUGC",
+        "count": 1
+      }
+    },
+    {
+      "dnaSequence": {
+        "sequence": "GGAAGTGTAGTCTTCCCATGGCAGGCAATCCGGCTTCCGGGGCTGGAGAGGGGTCTGGGAT",
+        "count": 1
+      }
+    },
+    {
+      "dnaSequence": {
+        "sequence": "ATCCCAGACCCCTCTCCAGCCCCGGAAGCCGGATTGCCTGCCATGGGAAGACTACACTTCC",
+        "count": 1
+      }
+    }
+  ],
+  "modelSeeds": [
+    42
+  ],
+  "dialect": "alphafold3",
+  "version": 2
+}

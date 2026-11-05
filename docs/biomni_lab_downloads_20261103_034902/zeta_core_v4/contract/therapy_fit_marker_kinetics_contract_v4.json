@@ -1,0 +1,1088 @@
+{
+  "as_served_in_therapy_fit_axes": {
+    "BREAST_CA153_KINETICS": {
+      "axis_id": "BREAST_CA153_KINETICS",
+      "biomarker": "CA15_3",
+      "calibrated_probability": null,
+      "calibrated_response_probability": null,
+      "calibrated_survival_probability": null,
+      "claim_boundary": "No numerical activation.",
+      "contract_version": "v4.0",
+      "data_needed": "Breast comparator-arm cohorts carrying longitudinal CA 15-3 with matched response / PFS / OS endpoints.",
+      "definition_needed": "Confirm CA 15-3 as a released longitudinal lab value, then define a pre-registered early-decline metric with explicit decision thresholds.",
+      "evidence_receipts": [
+        {
+          "path": "clinical_validation/universal_kinetics/receipts/zeta_core_v4_axis_evidence_state_v1.json",
+          "receipt_id": "zeta_core_v4_axis_evidence_state_v1",
+          "repository": "fjkiani/Brenus",
+          "sha256": "c538e5408b25c3935fa6d93745e86514a1d69fc5ed93e7e95526998fec21a286"
+        }
+      ],
+      "implementation_state": "NO_QUALIFYING_RELEASED_DATA",
+      "label": "Breast CA 15-3 Kinetics Therapy-Fit",
+      "marker_separation": "CA15-3 and CA27-29 are distinct and must not be pooled.",
+      "predicted_treatment_benefit": null,
+      "probability": null,
+      "reason": "Neither CA 15-3 nor CA 27-29 was detected as a released longitudinal lab value in the 17 target breast cohorts, so no kinetics axis can be built without fabricating data.",
+      "released_inventory_result": "Neither CA15-3 nor CA27-29 was detected in the 17 target breast caslibs.",
+      "released_outputs": [],
+      "risk_score": null,
+      "ruo": true,
+      "ruo_scope": "Research use only. Not validated for clinical decision-making. No calibrated score or probability is emitted by this axis.",
+      "score": null,
+      "separate_markers_not_aliased": [
+        "CA15_3",
+        "CA27_29"
+      ],
+      "status": "NOT_IMPLEMENTED_NO_RELEASED_LONGITUDINAL_MARKER",
+      "therapy_fit_score": null,
+      "treatment_priority": null,
+      "treatment_recommendation": null,
+      "tumor": "breast"
+    },
+    "BREAST_MARKER_KINETICS": {
+      "biomarker": null,
+      "data_needed": "Breast comparator-arm trials carrying longitudinal CA 15-3 / CA 27-29 with matched response/PFS/OS; marker presence must be confirmed before an axis is built.",
+      "definition_needed": "First confirm a canonical breast serum marker (CA 15-3 / CA 27-29) as longitudinal lab values, then define a pre-registered kinetics metric with thresholds.",
+      "label": "Breast Serum-Marker Kinetics Therapy-Fit",
+      "reason": "Breast comparator-arm data supplies endpoints and generic labs but no canonical serum tumor marker (CA 15-3 / CA 27-29) was auto-confirmed as a real lab value in the authorized source, so a marker-specific kinetics axis is deferred rather than prototyped.",
+      "ruo": true,
+      "score": null,
+      "separate_marker_note": "BREAST_MARKER_KINETICS is retained for backward compatibility and is a distinct analyte from BREAST_CA153_KINETICS; the two must not be aliased or pooled.",
+      "status": "NOT_IMPLEMENTED",
+      "superseded_by": "BREAST_CA153_KINETICS",
+      "tumor": "breast"
+    },
+    "CRC_CEA_KINETICS": {
+      "axis_id": "CRC_CEA_KINETICS",
+      "biomarker": "CEA",
+      "calibrated_probability": null,
+      "calibrated_response_probability": null,
+      "calibrated_survival_probability": null,
+      "claim_boundary": "Fit and QC outputs only; no numeric CRC score or response probability.",
+      "contract_version": "v4.0",
+      "data_needed": "A frozen external holdout with matched response labels and the archived modeling frame, so calibration is reproducible rather than artifact-verified only.",
+      "definition_needed": "A pre-registered calibration of the CEA early-decline rate to a decision endpoint, clearing the frozen gate (AUROC >= 0.70, CI lower > 0.60, calibration slope 0.8-1.2, ECE <= 0.10) on a held-out cohort.",
+      "evidence_receipts": [
+        {
+          "path": "clinical_validation/universal_kinetics/receipts/zeta_core_v4_axis_evidence_state_v1.json",
+          "receipt_id": "zeta_core_v4_axis_evidence_state_v1",
+          "repository": "fjkiani/Brenus",
+          "sha256": "c538e5408b25c3935fa6d93745e86514a1d69fc5ed93e7e95526998fec21a286"
+        },
+        {
+          "path": "clinical_validation/universal_kinetics/receipts/crc_cea_legacy_ols_landmark_validation.json",
+          "receipt_id": "crc_cea_legacy_ols_landmark_validation",
+          "repository": "fjkiani/Brenus",
+          "sha256": "f5cfa3606c36c65266b215dc84d063235d6b9fb1ff044f471b2e640698708dbc"
+        },
+        {
+          "path": "clinical_validation/universal_kinetics/receipts/crc_cea_adam_landmark_validation.json",
+          "receipt_id": "crc_cea_adam_landmark_validation",
+          "repository": "fjkiani/Brenus",
+          "sha256": "7869ec5bb91c8100e6a60236f9ea23b553947e8f70e0539e62e52e8610d532e0"
+        },
+        {
+          "path": "clinical_validation/universal_kinetics/receipts/crc_legacy_reconstruction.json",
+          "receipt_id": "crc_legacy_reconstruction",
+          "repository": "fjkiani/Brenus",
+          "sha256": "42c84c40c1e75bd8ff5fc2e8f7c9614657c4d19872c4c4157ae5988ec00e39aa"
+        }
+      ],
+      "implementation_state": "VALIDATION_FIT_QC_ONLY",
+      "label": "Colorectal CEA Kinetics Therapy-Fit",
+      "landmark_prognostic_association": {
+        "design": "day-154 landmark, control/comparator arms only",
+        "ecog_harmonization": "Binary ECOG>=2; trial 264 released only grouped 0-or-1 versus 2",
+        "effect_scale": "per within-trial inverse-normal midrank unit of k_day",
+        "endpoint": "PFS",
+        "fixed_effect_meta": {
+          "HR": 0.8367420901402063,
+          "I2_pct": 0.0,
+          "ci_high": 0.9388641824690467,
+          "ci_low": 0.7457280174124481,
+          "p": 0.002415490556634957,
+          "trials": [
+            "263",
+            "264"
+          ]
+        },
+        "landmark_day": 154.0,
+        "pooled_trial_stratified": {
+          "HR": 0.8713238031524584,
+          "ci_high": 0.9556007321046551,
+          "ci_low": 0.794479477080306,
+          "p": 0.0034549415967748197
+        },
+        "source_measurement_cutoff_week": 20.0,
+        "trial_262_model_status": "MODEL_NOT_IDENTIFIABLE_CONSTANT_COVARIATE",
+        "trial_263": {
+          "HR": 0.8094642143577957,
+          "ci_high": 0.9855482897080503,
+          "ci_low": 0.6648403951063457,
+          "p": 0.03529807455891434
+        },
+        "trial_264": {
+          "HR": 0.8512995640017005,
+          "ci_high": 0.9811773946223803,
+          "ci_low": 0.7386135796049402,
+          "p": 0.026265717527340544
+        }
+      },
+      "legacy_status": "NOT_YET_CALIBRATED",
+      "legacy_two_point_mode": {
+        "note": "The legacy CRC two-point landmark rate is reported in week^-1 and is deliberately not named k_day; it must not be pooled with the >=3-observation day-scale OLS estimate.",
+        "rate_unit": "week^-1",
+        "separate_from_primary_model": true
+      },
+      "predicted_treatment_benefit": null,
+      "probability": null,
+      "prototype": {
+        "axis_id": "pds_cea_kinetics_crc_v0_ruo",
+        "evidence_class": "single-trial internal-consistency check on RUO comparator-arm data; NOT a validation, NOT a calibrated score",
+        "metric": "cea_elim_rate (-slope of ln(CEA) vs week over <=25wk early window)",
+        "n": 857,
+        "single_trial_auroc_ci95": [
+          0.715,
+          0.779
+        ],
+        "single_trial_auroc_oof": 0.747,
+        "source": "Project Data Sphere colorectal comparator arm (no ovarian, no AOCS/TCGA)",
+        "spec_sha256": "db7449a71adaa13ef2c5cd5262635dc45f1a6fe37c99b75dc00c974e11a60413"
+      },
+      "qualification_counts_are_endpoint_filtered": false,
+      "qualified_longitudinal_cohorts": [
+        "Colorec_Amgen_2004_310",
+        "Colorec_Amgen_2005_262",
+        "Colorec_Amgen_2006_263",
+        "Colorec_Amgen_2006_264",
+        "Colorec_Amgen_2006_309"
+      ],
+      "reason": "The CEA first-order early-decline rate replicates as a landmark prognostic association across independent colorectal comparator arms, but the frozen response-calibration gate FAILS. A prognostic association is not a calibrated response probability, so no numeric score is emitted.",
+      "released_outputs": [
+        "k_day",
+        "fit_qc"
+      ],
+      "response_calibration_gate_pass": false,
+      "response_calibration_gate_status": "NOT_YET_CALIBRATED",
+      "risk_score": null,
+      "ruo": true,
+      "ruo_scope": "Research use only. Not validated for clinical decision-making. No calibrated score or probability is emitted by this axis.",
+      "score": null,
+      "status": "MULTITRIAL_PROGNOSTIC_ASSOCIATION_NOT_CALIBRATED",
+      "status_derivation": "Composite of (a) the frozen CRC response-calibration gate, which FAILS and remains NOT_YET_CALIBRATED, and (b) replicated landmark prognostic associations in legacy trials 263 and 264, their trial-stratified pool, and the fixed-effect meta-analysis. A prognostic association is not a calibrated response probability and confers no clinical utility claim.",
+      "therapy_fit_score": null,
+      "treatment_priority": null,
+      "treatment_recommendation": null,
+      "tumor": "colorectal"
+    },
+    "LUNG_CYFRA_KINETICS": {
+      "axis_id": "LUNG_CYFRA_KINETICS",
+      "biomarker": "CYFRA21_1",
+      "calibrated_probability": null,
+      "calibrated_response_probability": null,
+      "calibrated_survival_probability": null,
+      "claim_boundary": "No numerical activation.",
+      "contract_version": "v4.0",
+      "data_needed": "NSCLC comparator-arm cohorts carrying longitudinal CYFRA 21-1 with matched response / PFS / OS endpoints.",
+      "definition_needed": "Confirm CYFRA 21-1 as a released longitudinal NSCLC lab value, then define a pre-registered early-decline metric with explicit decision thresholds. SCLC NSE / ProGRP would require their own separate axes.",
+      "evidence_receipts": [
+        {
+          "path": "clinical_validation/universal_kinetics/receipts/zeta_core_v4_axis_evidence_state_v1.json",
+          "receipt_id": "zeta_core_v4_axis_evidence_state_v1",
+          "repository": "fjkiani/Brenus",
+          "sha256": "c538e5408b25c3935fa6d93745e86514a1d69fc5ed93e7e95526998fec21a286"
+        }
+      ],
+      "implementation_state": "NO_QUALIFYING_RELEASED_DATA",
+      "label": "NSCLC CYFRA 21-1 Kinetics Therapy-Fit",
+      "marker_separation": "NSCLC CYFRA 21-1 is distinct from SCLC NSE and ProGRP.",
+      "predicted_treatment_benefit": null,
+      "probability": null,
+      "reason": "CYFRA 21-1, NSE and ProGRP were not detected as released longitudinal lab values in the 9 NSCLC and 6 SCLC target cohorts, so no kinetics axis can be built without fabricating data.",
+      "released_inventory_result": "CYFRA 21-1, NSE, and ProGRP were not detected in the 9 NSCLC and 6 SCLC target caslibs.",
+      "released_outputs": [],
+      "risk_score": null,
+      "ruo": true,
+      "ruo_scope": "Research use only. Not validated for clinical decision-making. No calibrated score or probability is emitted by this axis.",
+      "score": null,
+      "separate_markers_not_aliased": [
+        "CYFRA21_1",
+        "NSE",
+        "PROGRP"
+      ],
+      "status": "NOT_IMPLEMENTED_NO_RELEASED_LONGITUDINAL_MARKER",
+      "therapy_fit_score": null,
+      "treatment_priority": null,
+      "treatment_recommendation": null,
+      "tumor": "lung_nsclc"
+    },
+    "LUNG_LDH_KINETICS": {
+      "biomarker": "LDH",
+      "data_needed": "Longitudinal LDH + response/PFS/OS from lung comparator-arm trials; build and freeze a prototype before any predictive language.",
+      "definition_needed": "A pre-registered LDH-kinetics metric with explicit thresholds, scoped as a generic tumor-burden proxy rather than a lineage-specific marker.",
+      "label": "Lung LDH Kinetics Therapy-Fit",
+      "reason": "LDH is present as a generic serum lab value across authorized lung comparator-arm data (NSCLC and SCLC), making a generic burden-kinetics axis data-feasible, but no metric or prototype exists yet. LDH is a non-specific prognostic marker, not a lung-specific tumor antigen; any PSA co-listed under a lung lab panel is a false-positive and is explicitly excluded.",
+      "ruo": true,
+      "score": null,
+      "separate_marker_note": "LUNG_LDH_KINETICS is retained for backward compatibility and is a distinct analyte from LUNG_CYFRA_KINETICS; the two must not be aliased or pooled.",
+      "status": "NOT_IMPLEMENTED",
+      "superseded_by": "LUNG_CYFRA_KINETICS",
+      "tumor": "lung"
+    },
+    "PROSTATE_PSA_KINETICS": {
+      "axis_id": "PROSTATE_PSA_KINETICS",
+      "biomarker": "PSA",
+      "calibrated_probability": null,
+      "calibrated_response_probability": null,
+      "calibrated_survival_probability": null,
+      "claim_boundary": "Raw k_day and fit QC only, under an externally OS-associated label. No calibrated survival probability and no Therapy-Fit score.",
+      "contract_version": "v4.0",
+      "data_needed": "Additional released prostate cohorts carrying ECOG/WHO/Karnofsky performance status so the locked Cox model is estimable beyond TAX327 and VENICE.",
+      "definition_needed": "A calibrated mapping from k_day to an absolute survival probability with a pre-registered gate, plus clearance of the A1-RSE precision requirement.",
+      "eligibility_scope": [
+        "positive estimable k_day",
+        "survived through the week-15 landmark",
+        "complete age and ECOG covariates",
+        "TAX327 and VENICE OS anchor"
+      ],
+      "evidence_receipts": [
+        {
+          "path": "clinical_validation/universal_kinetics/receipts/zeta_core_v4_axis_evidence_state_v1.json",
+          "receipt_id": "zeta_core_v4_axis_evidence_state_v1",
+          "repository": "fjkiani/Brenus",
+          "sha256": "c538e5408b25c3935fa6d93745e86514a1d69fc5ed93e7e95526998fec21a286"
+        },
+        {
+          "path": "clinical_validation/universal_kinetics/receipts/prostate_cox_anchor_verification.json",
+          "receipt_id": "prostate_cox_anchor_verification",
+          "repository": "fjkiani/Brenus",
+          "sha256": "c3f6380f70460bc7d266cc93ae6029231d86a3532c007162f33831f0b0e1d721"
+        },
+        {
+          "path": "clinical_validation/universal_kinetics/receipts/prostate_universal_fitter_bridge.json",
+          "receipt_id": "prostate_universal_fitter_bridge",
+          "repository": "fjkiani/Brenus",
+          "sha256": "111c33a3634890727d81d38a532eea2b78313377184ac5c7904dfbf96aed5eac"
+        },
+        {
+          "path": "clinical_validation/kelim/kelim_multicohort_rank_cox.json",
+          "receipt_id": "kelim_multicohort_rank_cox",
+          "repository": "fjkiani/Brenus",
+          "sha256": "21f3a2674368b4d95e3d1e283466fb511fa87bcb4be12354383f6b23d248e9c2"
+        }
+      ],
+      "excluded_from_confirmatory_cox": {
+        "TROPIC": "Released cohort lacks ECOG required by the locked Cox model."
+      },
+      "external_os_association": {
+        "cohort_counts": {
+          "TAX327": {
+            "events": 77,
+            "n": 166
+          },
+          "VENICE": {
+            "events": 296,
+            "n": 446
+          }
+        },
+        "discovery_and_external_trial_stratified_z_rank": {
+          "HR": 0.8416982786956889,
+          "ci_high": 0.929746427500396,
+          "ci_low": 0.761988399637044,
+          "p": 0.0006863292321327803
+        },
+        "effect_scale": "per within-trial inverse-normal midrank unit of k_day",
+        "external_only_z_rank": {
+          "HR": 0.8413191567940249,
+          "ci_high": 0.9403600722668988,
+          "ci_low": 0.7527094614749995,
+          "p": 0.0023430274966805002
+        },
+        "external_validation_cohort": "VENICE",
+        "fixed_effect_meta_z_rank": {
+          "HR": 0.8449434943250309,
+          "I2_pct": 0.0,
+          "ci_high": 0.9341961539616327,
+          "ci_low": 0.7642179916655005,
+          "p": 0.0010068221701408009,
+          "trials": [
+            "TAX327",
+            "VENICE"
+          ]
+        }
+      },
+      "implementation_state": "OS_ANCHORED_EARLY_DECLINE_PROXY",
+      "label": "Prostate PSA Kinetics Therapy-Fit",
+      "label_qualifiers": [
+        "prostate PSA early-decline proxy",
+        "week-15 landmark population",
+        "not a calibrated survival probability",
+        "A1-RSE precision gate failed: 66.5% vs 80%"
+      ],
+      "legacy_status": "NOT_IMPLEMENTED",
+      "precision_gate": {
+        "frozen_boundary_statement": "FAILED at 66.5% with RSE<0.5; unchanged",
+        "gate": "A1-RSE",
+        "observed_pct": 66.5,
+        "passed": false,
+        "requirement_pct": 80.0
+      },
+      "predicted_treatment_benefit": null,
+      "probability": null,
+      "qualification_counts_are_endpoint_filtered": false,
+      "qualified_longitudinal_cohorts": [
+        "Prostat_Sanofi_2007_79",
+        "Prostat_Sanofi_2007_83"
+      ],
+      "reason": "The first-order PSA decline rate is independently associated with overall survival in an external cohort among week-15 landmark survivors with a positive, estimable k_day. This is an association, not a calibrated survival probability, and the A1-RSE precision gate failed.",
+      "released_outputs": [
+        "k_day",
+        "fit_qc",
+        "reference_percentile",
+        "z_rank",
+        "prognostic_log_hazard_index",
+        "relative_hazard_multiplier",
+        "coefficient_conditional_relative_hazard_interval",
+        "relative_prognostic_band",
+        "band_status",
+        "band_gate_observed",
+        "band_gate_required",
+        "band_gate_pass",
+        "exploratory_band_definition",
+        "fit_precision_status",
+        "k_day_uncertainty_interval",
+        "percentile_uncertainty_interval",
+        "multiplier_uncertainty_interval",
+        "decline_sign_stability",
+        "boundary_crossing_probability",
+        "landmark_scope_source",
+        "landmark_scope_verified",
+        "reference_artifact_version",
+        "reference_artifact_sha256",
+        "validated_population_scope",
+        "evidence_status",
+        "limitations"
+      ],
+      "risk_score": null,
+      "ruo": true,
+      "ruo_scope": "Research use only. Not validated for clinical decision-making. No calibrated score or probability is emitted by this axis.",
+      "score": null,
+      "status": "EXTERNALLY_OS_ASSOCIATED",
+      "status_derivation": "Independently replicated external association between the first-order PSA decline rate and overall survival among week-15 landmark survivors with a positive, estimable k_day. This is an association, not calibration, not treatment-effect prediction, and not production readiness.",
+      "superseded_upstream_promotion": {
+        "label": "ALGORITHM-VALIDATED (prostate PSA proxy, OS-anchored, early-decline population)",
+        "superseded_because": "'ALGORITHM-VALIDATED' overstates an external prognostic association. It is replaced by EXTERNALLY_OS_ASSOCIATED throughout the contract.",
+        "verdict": "ALGORITHM_VALIDATED_PROSTATE_PSA_PROXY_OS_ANCHORED_EARLY_DECLINE"
+      },
+      "therapy_fit_score": null,
+      "treatment_priority": null,
+      "treatment_recommendation": null,
+      "tumor": "prostate"
+    }
+  },
+  "contract": {
+    "axes": {
+      "BREAST_CA153_KINETICS": {
+        "axis_id": "BREAST_CA153_KINETICS",
+        "biomarker": "CA15_3",
+        "calibrated_probability": null,
+        "calibrated_response_probability": null,
+        "calibrated_survival_probability": null,
+        "claim_boundary": "No numerical activation.",
+        "contract_version": "v4.0",
+        "data_needed": "Breast comparator-arm cohorts carrying longitudinal CA 15-3 with matched response / PFS / OS endpoints.",
+        "definition_needed": "Confirm CA 15-3 as a released longitudinal lab value, then define a pre-registered early-decline metric with explicit decision thresholds.",
+        "evidence_receipts": [
+          {
+            "path": "clinical_validation/universal_kinetics/receipts/zeta_core_v4_axis_evidence_state_v1.json",
+            "receipt_id": "zeta_core_v4_axis_evidence_state_v1",
+            "repository": "fjkiani/Brenus",
+            "sha256": "c538e5408b25c3935fa6d93745e86514a1d69fc5ed93e7e95526998fec21a286"
+          }
+        ],
+        "implementation_state": "NO_QUALIFYING_RELEASED_DATA",
+        "label": "Breast CA 15-3 Kinetics Therapy-Fit",
+        "marker_separation": "CA15-3 and CA27-29 are distinct and must not be pooled.",
+        "predicted_treatment_benefit": null,
+        "probability": null,
+        "reason": "Neither CA 15-3 nor CA 27-29 was detected as a released longitudinal lab value in the 17 target breast cohorts, so no kinetics axis can be built without fabricating data.",
+        "released_inventory_result": "Neither CA15-3 nor CA27-29 was detected in the 17 target breast caslibs.",
+        "released_outputs": [],
+        "risk_score": null,
+        "ruo": true,
+        "ruo_scope": "Research use only. Not validated for clinical decision-making. No calibrated score or probability is emitted by this axis.",
+        "score": null,
+        "separate_markers_not_aliased": [
+          "CA15_3",
+          "CA27_29"
+        ],
+        "status": "NOT_IMPLEMENTED_NO_RELEASED_LONGITUDINAL_MARKER",
+        "therapy_fit_score": null,
+        "treatment_priority": null,
+        "treatment_recommendation": null,
+        "tumor": "breast"
+      },
+      "CRC_CEA_KINETICS": {
+        "axis_id": "CRC_CEA_KINETICS",
+        "biomarker": "CEA",
+        "calibrated_probability": null,
+        "calibrated_response_probability": null,
+        "calibrated_survival_probability": null,
+        "claim_boundary": "Fit and QC outputs only; no numeric CRC score or response probability.",
+        "contract_version": "v4.0",
+        "data_needed": "A frozen external holdout with matched response labels and the archived modeling frame, so calibration is reproducible rather than artifact-verified only.",
+        "definition_needed": "A pre-registered calibration of the CEA early-decline rate to a decision endpoint, clearing the frozen gate (AUROC >= 0.70, CI lower > 0.60, calibration slope 0.8-1.2, ECE <= 0.10) on a held-out cohort.",
+        "evidence_receipts": [
+          {
+            "path": "clinical_validation/universal_kinetics/receipts/zeta_core_v4_axis_evidence_state_v1.json",
+            "receipt_id": "zeta_core_v4_axis_evidence_state_v1",
+            "repository": "fjkiani/Brenus",
+            "sha256": "c538e5408b25c3935fa6d93745e86514a1d69fc5ed93e7e95526998fec21a286"
+          },
+          {
+            "path": "clinical_validation/universal_kinetics/receipts/crc_cea_legacy_ols_landmark_validation.json",
+            "receipt_id": "crc_cea_legacy_ols_landmark_validation",
+            "repository": "fjkiani/Brenus",
+            "sha256": "f5cfa3606c36c65266b215dc84d063235d6b9fb1ff044f471b2e640698708dbc"
+          },
+          {
+            "path": "clinical_validation/universal_kinetics/receipts/crc_cea_adam_landmark_validation.json",
+            "receipt_id": "crc_cea_adam_landmark_validation",
+            "repository": "fjkiani/Brenus",
+            "sha256": "7869ec5bb91c8100e6a60236f9ea23b553947e8f70e0539e62e52e8610d532e0"
+          },
+          {
+            "path": "clinical_validation/universal_kinetics/receipts/crc_legacy_reconstruction.json",
+            "receipt_id": "crc_legacy_reconstruction",
+            "repository": "fjkiani/Brenus",
+            "sha256": "42c84c40c1e75bd8ff5fc2e8f7c9614657c4d19872c4c4157ae5988ec00e39aa"
+          }
+        ],
+        "implementation_state": "VALIDATION_FIT_QC_ONLY",
+        "label": "Colorectal CEA Kinetics Therapy-Fit",
+        "landmark_prognostic_association": {
+          "design": "day-154 landmark, control/comparator arms only",
+          "ecog_harmonization": "Binary ECOG>=2; trial 264 released only grouped 0-or-1 versus 2",
+          "effect_scale": "per within-trial inverse-normal midrank unit of k_day",
+          "endpoint": "PFS",
+          "fixed_effect_meta": {
+            "HR": 0.8367420901402063,
+            "I2_pct": 0.0,
+            "ci_high": 0.9388641824690467,
+            "ci_low": 0.7457280174124481,
+            "p": 0.002415490556634957,
+            "trials": [
+              "263",
+              "264"
+            ]
+          },
+          "landmark_day": 154.0,
+          "pooled_trial_stratified": {
+            "HR": 0.8713238031524584,
+            "ci_high": 0.9556007321046551,
+            "ci_low": 0.794479477080306,
+            "p": 0.0034549415967748197
+          },
+          "source_measurement_cutoff_week": 20.0,
+          "trial_262_model_status": "MODEL_NOT_IDENTIFIABLE_CONSTANT_COVARIATE",
+          "trial_263": {
+            "HR": 0.8094642143577957,
+            "ci_high": 0.9855482897080503,
+            "ci_low": 0.6648403951063457,
+            "p": 0.03529807455891434
+          },
+          "trial_264": {
+            "HR": 0.8512995640017005,
+            "ci_high": 0.9811773946223803,
+            "ci_low": 0.7386135796049402,
+            "p": 0.026265717527340544
+          }
+        },
+        "legacy_two_point_mode": {
+          "note": "The legacy CRC two-point landmark rate is reported in week^-1 and is deliberately not named k_day; it must not be pooled with the >=3-observation day-scale OLS estimate.",
+          "rate_unit": "week^-1",
+          "separate_from_primary_model": true
+        },
+        "predicted_treatment_benefit": null,
+        "probability": null,
+        "qualification_counts_are_endpoint_filtered": false,
+        "qualified_longitudinal_cohorts": [
+          "Colorec_Amgen_2004_310",
+          "Colorec_Amgen_2005_262",
+          "Colorec_Amgen_2006_263",
+          "Colorec_Amgen_2006_264",
+          "Colorec_Amgen_2006_309"
+        ],
+        "reason": "The CEA first-order early-decline rate replicates as a landmark prognostic association across independent colorectal comparator arms, but the frozen response-calibration gate FAILS. A prognostic association is not a calibrated response probability, so no numeric score is emitted.",
+        "released_outputs": [
+          "k_day",
+          "fit_qc"
+        ],
+        "response_calibration_gate_pass": false,
+        "response_calibration_gate_status": "NOT_YET_CALIBRATED",
+        "risk_score": null,
+        "ruo": true,
+        "ruo_scope": "Research use only. Not validated for clinical decision-making. No calibrated score or probability is emitted by this axis.",
+        "score": null,
+        "status": "MULTITRIAL_PROGNOSTIC_ASSOCIATION_NOT_CALIBRATED",
+        "status_derivation": "Composite of (a) the frozen CRC response-calibration gate, which FAILS and remains NOT_YET_CALIBRATED, and (b) replicated landmark prognostic associations in legacy trials 263 and 264, their trial-stratified pool, and the fixed-effect meta-analysis. A prognostic association is not a calibrated response probability and confers no clinical utility claim.",
+        "therapy_fit_score": null,
+        "treatment_priority": null,
+        "treatment_recommendation": null,
+        "tumor": "colorectal"
+      },
+      "LUNG_CYFRA_KINETICS": {
+        "axis_id": "LUNG_CYFRA_KINETICS",
+        "biomarker": "CYFRA21_1",
+        "calibrated_probability": null,
+        "calibrated_response_probability": null,
+        "calibrated_survival_probability": null,
+        "claim_boundary": "No numerical activation.",
+        "contract_version": "v4.0",
+        "data_needed": "NSCLC comparator-arm cohorts carrying longitudinal CYFRA 21-1 with matched response / PFS / OS endpoints.",
+        "definition_needed": "Confirm CYFRA 21-1 as a released longitudinal NSCLC lab value, then define a pre-registered early-decline metric with explicit decision thresholds. SCLC NSE / ProGRP would require their own separate axes.",
+        "evidence_receipts": [
+          {
+            "path": "clinical_validation/universal_kinetics/receipts/zeta_core_v4_axis_evidence_state_v1.json",
+            "receipt_id": "zeta_core_v4_axis_evidence_state_v1",
+            "repository": "fjkiani/Brenus",
+            "sha256": "c538e5408b25c3935fa6d93745e86514a1d69fc5ed93e7e95526998fec21a286"
+          }
+        ],
+        "implementation_state": "NO_QUALIFYING_RELEASED_DATA",
+        "label": "NSCLC CYFRA 21-1 Kinetics Therapy-Fit",
+        "marker_separation": "NSCLC CYFRA 21-1 is distinct from SCLC NSE and ProGRP.",
+        "predicted_treatment_benefit": null,
+        "probability": null,
+        "reason": "CYFRA 21-1, NSE and ProGRP were not detected as released longitudinal lab values in the 9 NSCLC and 6 SCLC target cohorts, so no kinetics axis can be built without fabricating data.",
+        "released_inventory_result": "CYFRA 21-1, NSE, and ProGRP were not detected in the 9 NSCLC and 6 SCLC target caslibs.",
+        "released_outputs": [],
+        "risk_score": null,
+        "ruo": true,
+        "ruo_scope": "Research use only. Not validated for clinical decision-making. No calibrated score or probability is emitted by this axis.",
+        "score": null,
+        "separate_markers_not_aliased": [
+          "CYFRA21_1",
+          "NSE",
+          "PROGRP"
+        ],
+        "status": "NOT_IMPLEMENTED_NO_RELEASED_LONGITUDINAL_MARKER",
+        "therapy_fit_score": null,
+        "treatment_priority": null,
+        "treatment_recommendation": null,
+        "tumor": "lung_nsclc"
+      },
+      "PROSTATE_PSA_KINETICS": {
+        "axis_id": "PROSTATE_PSA_KINETICS",
+        "biomarker": "PSA",
+        "calibrated_probability": null,
+        "calibrated_response_probability": null,
+        "calibrated_survival_probability": null,
+        "claim_boundary": "Raw k_day and fit QC only, under an externally OS-associated label. No calibrated survival probability and no Therapy-Fit score.",
+        "contract_version": "v4.0",
+        "data_needed": "Additional released prostate cohorts carrying ECOG/WHO/Karnofsky performance status so the locked Cox model is estimable beyond TAX327 and VENICE.",
+        "definition_needed": "A calibrated mapping from k_day to an absolute survival probability with a pre-registered gate, plus clearance of the A1-RSE precision requirement.",
+        "eligibility_scope": [
+          "positive estimable k_day",
+          "survived through the week-15 landmark",
+          "complete age and ECOG covariates",
+          "TAX327 and VENICE OS anchor"
+        ],
+        "evidence_receipts": [
+          {
+            "path": "clinical_validation/universal_kinetics/receipts/zeta_core_v4_axis_evidence_state_v1.json",
+            "receipt_id": "zeta_core_v4_axis_evidence_state_v1",
+            "repository": "fjkiani/Brenus",
+            "sha256": "c538e5408b25c3935fa6d93745e86514a1d69fc5ed93e7e95526998fec21a286"
+          },
+          {
+            "path": "clinical_validation/universal_kinetics/receipts/prostate_cox_anchor_verification.json",
+            "receipt_id": "prostate_cox_anchor_verification",
+            "repository": "fjkiani/Brenus",
+            "sha256": "c3f6380f70460bc7d266cc93ae6029231d86a3532c007162f33831f0b0e1d721"
+          },
+          {
+            "path": "clinical_validation/universal_kinetics/receipts/prostate_universal_fitter_bridge.json",
+            "receipt_id": "prostate_universal_fitter_bridge",
+            "repository": "fjkiani/Brenus",
+            "sha256": "111c33a3634890727d81d38a532eea2b78313377184ac5c7904dfbf96aed5eac"
+          },
+          {
+            "path": "clinical_validation/kelim/kelim_multicohort_rank_cox.json",
+            "receipt_id": "kelim_multicohort_rank_cox",
+            "repository": "fjkiani/Brenus",
+            "sha256": "21f3a2674368b4d95e3d1e283466fb511fa87bcb4be12354383f6b23d248e9c2"
+          }
+        ],
+        "excluded_from_confirmatory_cox": {
+          "TROPIC": "Released cohort lacks ECOG required by the locked Cox model."
+        },
+        "external_os_association": {
+          "cohort_counts": {
+            "TAX327": {
+              "events": 77,
+              "n": 166
+            },
+            "VENICE": {
+              "events": 296,
+              "n": 446
+            }
+          },
+          "discovery_and_external_trial_stratified_z_rank": {
+            "HR": 0.8416982786956889,
+            "ci_high": 0.929746427500396,
+            "ci_low": 0.761988399637044,
+            "p": 0.0006863292321327803
+          },
+          "effect_scale": "per within-trial inverse-normal midrank unit of k_day",
+          "external_only_z_rank": {
+            "HR": 0.8413191567940249,
+            "ci_high": 0.9403600722668988,
+            "ci_low": 0.7527094614749995,
+            "p": 0.0023430274966805002
+          },
+          "external_validation_cohort": "VENICE",
+          "fixed_effect_meta_z_rank": {
+            "HR": 0.8449434943250309,
+            "I2_pct": 0.0,
+            "ci_high": 0.9341961539616327,
+            "ci_low": 0.7642179916655005,
+            "p": 0.0010068221701408009,
+            "trials": [
+              "TAX327",
+              "VENICE"
+            ]
+          }
+        },
+        "implementation_state": "OS_ANCHORED_EARLY_DECLINE_PROXY",
+        "label": "Prostate PSA Kinetics Therapy-Fit",
+        "label_qualifiers": [
+          "prostate PSA early-decline proxy",
+          "week-15 landmark population",
+          "not a calibrated survival probability",
+          "A1-RSE precision gate failed: 66.5% vs 80%"
+        ],
+        "precision_gate": {
+          "frozen_boundary_statement": "FAILED at 66.5% with RSE<0.5; unchanged",
+          "gate": "A1-RSE",
+          "observed_pct": 66.5,
+          "passed": false,
+          "requirement_pct": 80.0
+        },
+        "predicted_treatment_benefit": null,
+        "probability": null,
+        "qualification_counts_are_endpoint_filtered": false,
+        "qualified_longitudinal_cohorts": [
+          "Prostat_Sanofi_2007_79",
+          "Prostat_Sanofi_2007_83"
+        ],
+        "reason": "The first-order PSA decline rate is independently associated with overall survival in an external cohort among week-15 landmark survivors with a positive, estimable k_day. This is an association, not a calibrated survival probability, and the A1-RSE precision gate failed.",
+        "released_outputs": [
+          "k_day",
+          "fit_qc",
+          "reference_percentile",
+          "z_rank",
+          "prognostic_log_hazard_index",
+          "relative_hazard_multiplier",
+          "coefficient_conditional_relative_hazard_interval",
+          "relative_prognostic_band",
+          "band_status",
+          "band_gate_observed",
+          "band_gate_required",
+          "band_gate_pass",
+          "exploratory_band_definition",
+          "fit_precision_status",
+          "k_day_uncertainty_interval",
+          "percentile_uncertainty_interval",
+          "multiplier_uncertainty_interval",
+          "decline_sign_stability",
+          "boundary_crossing_probability",
+          "landmark_scope_source",
+          "landmark_scope_verified",
+          "reference_artifact_version",
+          "reference_artifact_sha256",
+          "validated_population_scope",
+          "evidence_status",
+          "limitations"
+        ],
+        "risk_score": null,
+        "ruo": true,
+        "ruo_scope": "Research use only. Not validated for clinical decision-making. No calibrated score or probability is emitted by this axis.",
+        "score": null,
+        "status": "EXTERNALLY_OS_ASSOCIATED",
+        "status_derivation": "Independently replicated external association between the first-order PSA decline rate and overall survival among week-15 landmark survivors with a positive, estimable k_day. This is an association, not calibration, not treatment-effect prediction, and not production readiness.",
+        "superseded_upstream_promotion": {
+          "label": "ALGORITHM-VALIDATED (prostate PSA proxy, OS-anchored, early-decline population)",
+          "superseded_because": "'ALGORITHM-VALIDATED' overstates an external prognostic association. It is replaced by EXTERNALLY_OS_ASSOCIATED throughout the contract.",
+          "verdict": "ALGORITHM_VALIDATED_PROSTATE_PSA_PROXY_OS_ANCHORED_EARLY_DECLINE"
+        },
+        "therapy_fit_score": null,
+        "treatment_priority": null,
+        "treatment_recommendation": null,
+        "tumor": "prostate"
+      }
+    },
+    "calibrated_axis_statuses": [],
+    "capability_separation": {
+      "absolute_risk_calibrated": {
+        "authorized_axis_statuses": [],
+        "blocking_gap": "No baseline hazard is transported and no calibration gate has passed.",
+        "meaning": "An absolute survival or response probability. Requires a transported baseline hazard and a passing calibration gate.",
+        "status": "NOT_AVAILABLE_IN_THIS_RELEASE"
+      },
+      "relative_prognostic_index": {
+        "authorized_axis_statuses": [
+          "EXTERNALLY_OS_ASSOCIATED"
+        ],
+        "band_semantics": "Exploratory definition only. The prespecified band stability gate failed, so no categorical band is emitted and none may be reconstructed from reference_percentile. Retained for audit reproduction of the failed gate.",
+        "band_status": "UNSTABLE_NOT_FOR_RENDERING",
+        "band_suppression_statement": "The categorical band is suppressed because its prespecified stability gate failed. No category is emitted, and a category must not be inferred from reference_percentile, z_rank, prognostic_log_hazard_index or relative_hazard_multiplier.",
+        "disclosure": "Externally associated with overall survival in comparator cohorts. Relative prognostic index only. Not an absolute survival probability, treatment-benefit estimate, or therapy recommendation. Validated among week-15 survivors with positive estimable early PSA decline. A1-RSE precision gate failed: 66.5% versus 80%. The categorical band is suppressed because its prespecified stability gate failed.",
+        "exploratory_band_definition": {
+          "gate": {
+            "estimator": "joint bootstrap of the reference cohort, B=2000",
+            "observed_concordance": 0.6662,
+            "passed": false,
+            "required_concordance": 0.9
+          },
+          "lower_percentile_cut": 0.25,
+          "mapping": {
+            "percentile_above_upper_cut": "LOWER_RELATIVE_HAZARD",
+            "percentile_below_lower_cut": "HIGHER_RELATIVE_HAZARD",
+            "percentile_between_cuts_inclusive": "REFERENCE_RANGE_RELATIVE_HAZARD"
+          },
+          "must_not_be_used_for": "rendering a category, or inferring a category from any emitted continuous field",
+          "retained_for": "audit reproduction of the failed gate",
+          "status": "EXPLORATORY_ONLY_NOT_FOR_RENDERING",
+          "upper_percentile_cut": 0.75
+        },
+        "fit_precision_design": {
+          "component": "individual_rate_estimation_only",
+          "duplicate_days_collapsed_before_resampling": true,
+          "excludes": [
+            "frozen Cox coefficient uncertainty",
+            "frozen reference distribution uncertainty",
+            "assay measurement bias",
+            "model misspecification",
+            "observation-schedule effects"
+          ],
+          "interval_percentiles": [
+            2.5,
+            97.5
+          ],
+          "intervals_computed_over": "positive finite replicates only",
+          "not_a_band_activation_gate": true,
+          "not_a_joint_interval": true,
+          "random_stream": "CPython random.Random (Mersenne Twister)",
+          "replicate_rejected_if": "non-finite k_day, or fewer than 2 distinct days drawn",
+          "replicates": 1000,
+          "resampling_unit": "distinct analysis day within the locked early window",
+          "seed": 20260813,
+          "status_order": [
+            "INSUFFICIENT_FOR_UNCERTAINTY",
+            "SIGN_UNSTABLE",
+            "IMPRECISE",
+            "RELIABLE"
+          ],
+          "thresholds": {
+            "max_boundary_crossing_probability": 0.1,
+            "max_percentile_interval_width": 0.2,
+            "min_decline_sign_stability": 0.95,
+            "min_distinct_days_for_uncertainty": 4,
+            "min_finite_replicate_fraction": 0.8
+          },
+          "with_replacement": true
+        },
+        "fit_precision_semantics": "fit_precision_status annotates the quality of this patient's rate estimate. It is an output-quality annotation, not a cohort filter: the frozen reference population was not filtered on precision and is unchanged. The uncertainty intervals propagate resampling of this patient's own analysis days only, holding the frozen coefficient and reference distribution fixed. They are not a joint interval and not a band activation gate.",
+        "interval_semantics": "This interval propagates Cox coefficient uncertainty only. It does not include uncertainty in the patient's PSA-rate fit, reference CDF or assay measurements.",
+        "meaning": "Hazard ratio relative to a reference patient at z_rank = 0, from a frozen external Cox coefficient and a frozen reference distribution.",
+        "released_outputs_prostate_psa": [
+          "k_day",
+          "fit_qc",
+          "reference_percentile",
+          "z_rank",
+          "prognostic_log_hazard_index",
+          "relative_hazard_multiplier",
+          "coefficient_conditional_relative_hazard_interval",
+          "relative_prognostic_band",
+          "band_status",
+          "band_gate_observed",
+          "band_gate_required",
+          "band_gate_pass",
+          "exploratory_band_definition",
+          "fit_precision_status",
+          "k_day_uncertainty_interval",
+          "percentile_uncertainty_interval",
+          "multiplier_uncertainty_interval",
+          "decline_sign_stability",
+          "boundary_crossing_probability",
+          "landmark_scope_source",
+          "landmark_scope_verified",
+          "reference_artifact_version",
+          "reference_artifact_sha256",
+          "validated_population_scope",
+          "evidence_status",
+          "limitations"
+        ]
+      },
+      "treatment_predictive": {
+        "authorized_axis_statuses": [],
+        "blocking_gap": "All released prostate cohorts are comparator/control arms, so no treatment-by-kinetics interaction is estimable.",
+        "meaning": "A treatment-by-marker interaction supporting a therapy choice.",
+        "status": "NOT_AVAILABLE_IN_THIS_RELEASE"
+      }
+    },
+    "contract_version": "v4.0",
+    "engine": "zeta_core_v4_universal_tumor_marker_kinetics",
+    "fail_closed_keys": [
+      "score",
+      "therapy_fit_score",
+      "probability",
+      "calibrated_probability",
+      "calibrated_survival_probability",
+      "calibrated_response_probability",
+      "risk_score",
+      "treatment_recommendation",
+      "treatment_priority",
+      "predicted_treatment_benefit"
+    ],
+    "ruo": true,
+    "ruo_scope": "Research use only. Not validated for clinical decision-making. No calibrated score or probability is emitted by this axis."
+  },
+  "contract_version": "v4.0",
+  "evidence_receipts": [
+    {
+      "path": "clinical_validation/universal_kinetics/receipts/zeta_core_v4_axis_evidence_state_v1.json",
+      "pinned_sha256": "c538e5408b25c3935fa6d93745e86514a1d69fc5ed93e7e95526998fec21a286",
+      "receipt_id": "zeta_core_v4_axis_evidence_state_v1",
+      "repository": "fjkiani/Brenus"
+    },
+    {
+      "path": "clinical_validation/universal_kinetics/receipts/crc_cea_adam_landmark_validation.json",
+      "pinned_sha256": "7869ec5bb91c8100e6a60236f9ea23b553947e8f70e0539e62e52e8610d532e0",
+      "receipt_id": "crc_cea_adam_landmark_validation",
+      "repository": "fjkiani/Brenus"
+    },
+    {
+      "path": "clinical_validation/universal_kinetics/receipts/crc_cea_legacy_ols_landmark_validation.json",
+      "pinned_sha256": "f5cfa3606c36c65266b215dc84d063235d6b9fb1ff044f471b2e640698708dbc",
+      "receipt_id": "crc_cea_legacy_ols_landmark_validation",
+      "repository": "fjkiani/Brenus"
+    },
+    {
+      "path": "clinical_validation/universal_kinetics/receipts/crc_legacy_reconstruction.json",
+      "pinned_sha256": "42c84c40c1e75bd8ff5fc2e8f7c9614657c4d19872c4c4157ae5988ec00e39aa",
+      "receipt_id": "crc_legacy_reconstruction",
+      "repository": "fjkiani/Brenus"
+    },
+    {
+      "path": "clinical_validation/universal_kinetics/receipts/prostate_cox_anchor_verification.json",
+      "pinned_sha256": "c3f6380f70460bc7d266cc93ae6029231d86a3532c007162f33831f0b0e1d721",
+      "receipt_id": "prostate_cox_anchor_verification",
+      "repository": "fjkiani/Brenus"
+    },
+    {
+      "path": "clinical_validation/universal_kinetics/receipts/prostate_universal_fitter_bridge.json",
+      "pinned_sha256": "111c33a3634890727d81d38a532eea2b78313377184ac5c7904dfbf96aed5eac",
+      "receipt_id": "prostate_universal_fitter_bridge",
+      "repository": "fjkiani/Brenus"
+    },
+    {
+      "path": "clinical_validation/kelim/kelim_multicohort_rank_cox.json",
+      "pinned_sha256": "21f3a2674368b4d95e3d1e283466fb511fa87bcb4be12354383f6b23d248e9c2",
+      "receipt_id": "kelim_multicohort_rank_cox",
+      "repository": "fjkiani/Brenus"
+    }
+  ],
+  "fail_closed": {
+    "calibrated_axis_statuses": [],
+    "nulled_keys": [
+      "score",
+      "therapy_fit_score",
+      "probability",
+      "calibrated_probability",
+      "calibrated_survival_probability",
+      "calibrated_response_probability",
+      "risk_score",
+      "treatment_recommendation",
+      "treatment_priority",
+      "predicted_treatment_benefit"
+    ]
+  },
+  "model": {
+    "equation": "log(marker_t) = intercept - k_day * t_day",
+    "family": "FIRST_ORDER_LOG_LINEAR_OLS",
+    "k_day_unit": "day^-1",
+    "legacy_crc_landmark_rate_unit": "week^-1",
+    "log_base": "natural",
+    "min_distinct_early_observations": 3,
+    "plateau": "fixed_at_zero"
+  },
+  "reference_artifact": {
+    "artifact_type": "FROZEN_EMPIRICAL_REFERENCE_CDF",
+    "artifact_version": "v1",
+    "bytes": 25209,
+    "cdf_convention": "Frozen empirical midrank plotting position F(k) = (L + E/2)/n with L = #{k_i < k} and E = #{k_i == k}. For a distinct value at 1-indexed rank r this equals (r - 0.5)/n, which is exactly the transformation the locked Cox model was fitted on. The naive i/n ECDF is deliberately NOT used: it would return 1.0 at the reference maximum and be inconsistent with the fitted coefficient.",
+    "content_sha256": "a1acb23232c13a4089f6eb78a426292816864b2345e4651ccf01eaa7abd9d51f",
+    "deidentification_attestations": {
+      "contains_dates": false,
+      "contains_patient_identifiers": false,
+      "contains_source_rows": false
+    },
+    "eligibility_cascade": {
+      "complete_model_covariates": 449,
+      "positive_finite_rate": 449,
+      "source_rows_total": 621,
+      "trial_rows": 454,
+      "week15_landmark_survivors": 446
+    },
+    "file_sha256": "2302bfaba3acdb48dbcc731406cded140ce68169fb922ae516215bc8e80e62da",
+    "filename": "venice_psa_k_day_reference_cdf_v1.json",
+    "generated_utc": "2026-08-13T00:00:00Z",
+    "generator": "scripts/generate_venice_psa_reference_cdf.py",
+    "generator_sha256": "6eea4fd7f14cae0d2b7c12b8368aad03b57bda2627c06f3b34f55ed1400d6e66",
+    "generator_version": "1.0.0",
+    "lower_extrapolation_policy": "k below the lowest knot returns the lowest knot's plotting position 0.5/n. Never 0.",
+    "n_events_reference": 296,
+    "n_knots": 446,
+    "n_reference": 446,
+    "n_tied_reference_values": 0,
+    "path_in_repo": "api/services/tumor_marker_kinetics/data/venice_psa_k_day_reference_cdf_v1.json",
+    "percentile_bounds": [
+      0.0011210762331838565,
+      0.9988789237668162
+    ],
+    "reference_rate_max": 0.08947089486936483,
+    "reference_rate_min": 8.691943994773028e-05,
+    "source_cohort_digest": "5c4220c24b1d056c0b61d045f6f45f22d13a9effc90570f8ee67f1b33b62011f",
+    "upper_extrapolation_policy": "k above the highest knot returns the highest knot's plotting position (n - 0.5)/n. Never 1.",
+    "validated_population_criteria": [
+      "trial VENICE (independent external cohort; placebo + docetaxel + prednisone comparator arm)",
+      "at least three distinct PSA observations in the locked 0-105 day early window",
+      "positive, estimable first-order PSA decline rate (k_day > 0, finite)",
+      "survived through the week-15 landmark (os_weeks strictly greater than 15.0)",
+      "complete age_ge65 and ECOG covariates used by the locked Cox model"
+    ]
+  },
+  "relative_prognostic_index": {
+    "band_rules": [
+      "percentile > 0.75 -> LOWER_RELATIVE_HAZARD",
+      "0.25 <= percentile <= 0.75 -> REFERENCE_RANGE_RELATIVE_HAZARD",
+      "percentile < 0.25 -> HIGHER_RELATIVE_HAZARD"
+    ],
+    "band_thresholds": {
+      "lower": 0.25,
+      "upper": 0.75
+    },
+    "beta": -0.17278419421744848,
+    "beta_ci_95": [
+      -0.28407596697282594,
+      -0.061492421462071026
+    ],
+    "beta_standard_error": 0.05678256010479415,
+    "block_metadata_keys": [
+      "eligible",
+      "ineligible_reason",
+      "beta",
+      "beta_standard_error",
+      "reference_z_rank",
+      "interpretation",
+      "band_semantics",
+      "band_suppression_statement",
+      "interval_semantics",
+      "fit_precision_semantics",
+      "fit_precision_design",
+      "landmark_scope_statement",
+      "landmark_scope_annotation",
+      "release_contract",
+      "refusal_boundary_statement",
+      "three_observation_disclosure",
+      "disclosure"
+    ],
+    "direction": {
+      "monotonicity_violations": {
+        "k_day_monotone_nonincreasing_violations": 0,
+        "percentile_monotone_decreasing_violations": 0,
+        "z_rank_monotone_increasing_violations": 0
+      },
+      "n_grid": 2001,
+      "reverse_mapping_possible": false,
+      "statement": "Higher k_day (faster PSA elimination) maps to a higher reference percentile, a higher z_rank, a lower prognostic log hazard index and a lower relative hazard multiplier. The reverse mapping is structurally impossible while beta < 0."
+    },
+    "evidence_status": "EXTERNALLY_OS_ASSOCIATED",
+    "exp_beta_ci_95": [
+      0.7527094614749995,
+      0.9403600722668989
+    ],
+    "exp_beta_per_unit_z_rank": 0.8413191567940249,
+    "landmark_comparison": "strictly_greater_than",
+    "landmark_day": 105.0,
+    "landmark_weeks": 15.0,
+    "limitations_emitted_with_every_payload": [
+      "Relative prognostic index only; not an absolute survival probability.",
+      "Not a treatment-benefit estimate and not a therapy recommendation.",
+      "No absolute-risk calibration exists; no baseline hazard is transported.",
+      "Derived from comparator/control arms only, so no treatment-by-kinetics interaction is estimable and treatment prediction is out of scope.",
+      "A1-RSE precision gate failed: 66.5% versus 80% with RSE<0.5.",
+      "Defined only among week-15 survivors with a positive estimable early PSA decline; other patients fail closed with a typed reason.",
+      "The prespecified band stability gate FAILED: quartile-knot concordance 0.6662 against a required 0.90 in the B6 joint bootstrap (B=2000). The same bootstrap gave concordance 0.9456 on the full knot grid and 96.7% population-wide, but only 49-51% for values sitting exactly on the 0.25 / 0.75 cut points; the prespecified evaluation is the quartile-knot one, and the higher figures do not replace it. relative_prognostic_band is therefore null on every code path and no category may be inferred from any emitted continuous field.",
+      "coefficient_conditional_relative_hazard_interval propagates Cox coefficient uncertainty only. It does not include uncertainty in the patient's PSA-rate fit, reference CDF or assay measurements, and it is not a patient-level confidence interval. Its width is proportional to |z_rank|, so it approaches zero at the reference median.",
+      "percentile_uncertainty_interval, k_day_uncertainty_interval and multiplier_uncertainty_interval propagate resampling of this patient's own analysis days only, holding the frozen coefficient and reference distribution fixed. Neither interval emitted by this service is a joint interval over all three uncertainty components.",
+      "In the frozen reference cohort the individual-rate component was the widest of the three components for 292 of 412 patients with estimable uncertainty, and the median joint interval was about twice the width of the coefficient-only interval.",
+      "fit_precision_status is an output-quality annotation, not a cohort filter. The n=446 frozen reference population is unchanged and was not filtered on fit precision. In that population only 12.6% of patients were RELIABLE.",
+      "An unstable resampled decline sign fails closed with reason UNSTABLE_DECLINE_SIGN. Fewer than four distinct analysis days yields fit_precision_status INSUFFICIENT_FOR_UNCERTAINTY, in which case the point index is still served and every uncertainty field is null.",
+      "The reference distribution is a single external trial (VENICE); portability of a within-trial rank transform to other populations is untested."
+    ],
+    "n_block_keys": 43,
+    "reference_z_rank": 0.0,
+    "released_outputs_in_order": [
+      "k_day",
+      "fit_qc",
+      "reference_percentile",
+      "z_rank",
+      "prognostic_log_hazard_index",
+      "relative_hazard_multiplier",
+      "coefficient_conditional_relative_hazard_interval",
+      "relative_prognostic_band",
+      "band_status",
+      "band_gate_observed",
+      "band_gate_required",
+      "band_gate_pass",
+      "exploratory_band_definition",
+      "fit_precision_status",
+      "k_day_uncertainty_interval",
+      "percentile_uncertainty_interval",
+      "multiplier_uncertainty_interval",
+      "decline_sign_stability",
+      "boundary_crossing_probability",
+      "landmark_scope_source",
+      "landmark_scope_verified",
+      "reference_artifact_version",
+      "reference_artifact_sha256",
+      "validated_population_scope",
+      "evidence_status",
+      "limitations"
+    ],
+    "supported_rate_units": [
+      "day^-1",
+      "days^-1"
+    ],
+    "typed_ineligibility_reasons": [
+      "DECLINE_SIGN_NOT_INDEPENDENTLY_ESTABLISHED",
+      "FIT_PRECISION_UNVERIFIABLE",
+      "FIT_QC_FAILED",
+      "INCOMPATIBLE_RATE_UNIT",
+      "INSUFFICIENT_DISTINCT_OBSERVATIONS",
+      "INVALID_CDF_OUTPUT",
+      "INVALID_MARKER_VALUE",
+      "MARKER_AXIS_MISMATCH",
+      "NONPOSITIVE_DECLINE_RATE",
+      "REFERENCE_ARTIFACT_MISSING",
+      "REFERENCE_CHECKSUM_MISMATCH",
+      "REFERENCE_VERSION_UNSUPPORTED",
+      "UNSTABLE_DECLINE_SIGN"
+    ]
+  },
+  "ruo": "Research use only. Not validated for clinical decision-making. No calibrated score or probability is emitted by this axis."
+}

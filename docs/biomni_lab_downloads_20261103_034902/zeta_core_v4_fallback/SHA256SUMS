@@ -1,0 +1,3 @@
+cc21d92be80bcb36b7e3f7f9a2dcd878559312f8672f2041b18465d459b96446  0001-Zeta-Core-v4-PSA-audit-correction-and-closure-diagno.patch
+34fdd9cb6dbdba55c5bb59259400201fd1bff084615ff1e731aec65926493f9a  0002-Isolate-Cohere-live-key-pytest-harness-repair.patch
+40ca00442481354d44c37fbaa277861c0bf5008dabc14f9954887d29aa72ca2b  zeta_core_v4_split_commits.bundle

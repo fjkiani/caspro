@@ -1,0 +1,11 @@
+model,kind,features,n,events,oof_auroc_mean,oof_auroc_fold_sd,oof_auprc_mean,oof_brier_mean,preprocessing_varies_across_folds,note,auprc_prevalence_null,brier_prevalence_only
+M0_clinical,fitted,age_z;stage_adv;num_lines_n,67,9,0.5867,0.0437,0.22,0.1212,True,"age, advanced stage, prior lines",0.1343,0.1163
+M1_s3_only,fitted,s3_diag,67,9,0.8747,0.0062,0.4041,0.091,True,fitted single-feature,0.1343,0.1163
+M2a_shipped_s7_rule,fixed,(fixed rule),67,9,0.6446,0.0,0.2114,0.209,,"backend constants.py SIG7_RISK_THRESHOLD=0.25, binary; timepoint substituted to diagnosis",0.1343,0.1163
+M2b_s7_continuous,fitted,s7_diag,67,9,0.4108,0.0792,0.1453,0.1221,True,fitted s7 exposure,0.1343,0.1163
+M2c_frozen_s3_scorer,fixed,(fixed rule),67,9,0.887,0.0,0.4179,0.1484,,Brenus pinned production scorer; constants derived on THIS set -> not out-of-sample,0.1343,0.1163
+M3a_clinical_plus_s3,fitted,age_z;stage_adv;num_lines_n;s3_diag,67,9,0.8752,0.0182,0.4325,0.1005,True,,0.1343,0.1163
+M3b_s7_plus_s3,fitted,s7_diag;s3_diag,67,9,0.8581,0.016,0.4033,0.0984,True,,0.1343,0.1163
+M4a_hrd_only,fitted,brca_mut_i;hr_gene_mut_i,67,9,0.3139,0.0607,0.1011,0.1257,True,BRCA/HR mutation axis,0.1343,0.1163
+M4b_hrd_plus_s3,fitted,brca_mut_i;hr_gene_mut_i;s3_diag,67,9,0.8507,0.0162,0.4129,0.1001,True,,0.1343,0.1163
+M5_full,fitted,age_z;stage_adv;num_lines_n;brca_mut_i;hr_gene_mut_i;s3_diag,67,9,0.8372,0.0303,0.3602,0.1155,True,all covariates + s3; 6 params on 9 events -- reported for completeness only,0.1343,0.1163

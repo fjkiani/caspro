@@ -1,0 +1,183 @@
+{
+  "artifact": "serial_sae_multicohort_ledger",
+  "version": "1.0",
+  "generated_utc": "2026-07-19T15:36:13.141348+00:00",
+  "tiering": "RUO / hypothesis-generating; no clinical or regulatory claim",
+  "pipeline": {
+    "name": "serial_sae_frozen_v1",
+    "seed": 42,
+    "bootstrap_iters": 2000,
+    "note": "Single frozen pipeline applied identically across all cohorts."
+  },
+  "hypothesis_under_test": "Higher post-treatment (or relapse) pathway activation (DDR primary; PI3K, VEGF secondary) predicts platinum resistance (AUROC>0.5; Spearman rho<0 vs PFI).",
+  "success_criterion": "signal replicated if post-treatment-state -> resistance holds SAME DIRECTION with frozen pipeline in >=2 independent cohorts beyond BriTROC-1, with effect sizes+CIs; non-replication reported honestly.",
+  "success_criterion_met": false,
+  "cohorts": [
+    {
+      "cohort": "GSE165897",
+      "role": "discovery_rederivation",
+      "design": "paired scRNA pre/post-NACT",
+      "tests_serial_hypothesis": true,
+      "n": 11,
+      "events_resistant": 7,
+      "EPV": 7.0,
+      "gene_coverage": "32/32",
+      "key_result": {
+        "post_DDR_rho_vs_PFI": -0.2091,
+        "post_DDR_rho_p": 0.5372,
+        "post_DDR_AUROC_corrected": 0.5714,
+        "post_DDR_AUROC_corrected_CI": [
+          0.125,
+          0.9333
+        ],
+        "post_DDR_AUROC_manuscript_8R3S": 0.75,
+        "post_DDR_AUROC_manuscript_CI": [
+          0.375,
+          1.0
+        ],
+        "post_PI3K_AUROC_corrected": 0.3571,
+        "delta_DDR_rho": -0.1091
+      },
+      "published_headline": {
+        "post_DDR_rho": -0.711,
+        "post_DDR_rho_p": 0.014,
+        "post_DDR_AUROC": 0.75
+      },
+      "verdict": "PARTIAL/NON-REPRODUCTION: published headline correlation & p NOT reproduced; only delta-null reproduces; post-DDR AUROC 0.75 reproduces ONLY under manuscript 8R/3S labels but CI (0.375-1.0) is uninformative.",
+      "direction": "post-DDR predicted direction under corrected labels but non-significant and CI spans 0.5"
+    },
+    {
+      "cohort": "BriTROC-1",
+      "role": "external_anchor",
+      "design": "paired CN signatures diagnosis/relapse",
+      "tests_serial_hypothesis": true,
+      "n": 40,
+      "events_resistant": 3,
+      "EPV": 3.0,
+      "key_result": {
+        "s7_relapse_AUROC": 0.8739,
+        "s7_relapse_CI": [
+          0.7622,
+          0.9717
+        ],
+        "s7_relapse_wilcoxon_p": 0.035,
+        "s7_diagnosis_AUROC": 0.6937,
+        "serial_improvement_diag_to_relapse": 0.1802,
+        "mean_s7_resistant": 0.3282,
+        "mean_s7_sensitive": 0.1566
+      },
+      "verdict": "POSITIVE (reproduces published exactly) BUT FRAGILE: rests on only 3 resistant patients (EPV=3). Sole positive external cohort.",
+      "direction": "predicted (relapse-state s7 higher -> resistant)"
+    },
+    {
+      "cohort": "GSE160626",
+      "role": "external_crosssectional_discrimination",
+      "design": "bulk RNA-seq resistant vs sensitive (single-timepoint)",
+      "tests_serial_hypothesis": false,
+      "n": 18,
+      "events_resistant": 8,
+      "EPV": 8.0,
+      "gene_coverage": "32/32",
+      "key_result": {
+        "DDR_AUROC": 0.375,
+        "DDR_CI": [
+          0.1169,
+          0.6769
+        ],
+        "DDR_p": 0.4082,
+        "PI3K_AUROC": 0.2125,
+        "PI3K_CI": [
+          0.025,
+          0.475
+        ],
+        "PI3K_p": 0.0434,
+        "VEGF_AUROC": 0.35,
+        "VEGF_CI": [
+          0.0863,
+          0.6111
+        ],
+        "VEGF_p": 0.3154
+      },
+      "verdict": "DOES NOT REPLICATE (OPPOSITE DIRECTION): all pathways higher in SENSITIVE (AUROC<0.5); PI3K nominally significant in opposite direction (p=0.043).",
+      "direction": "OPPOSITE to prediction",
+      "caveat": "single-timepoint cross-sectional; tests post-state analogue, not serial design directly"
+    },
+    {
+      "cohort": "GSE109934",
+      "role": "external_paired_dynamics",
+      "design": "paired NanoString PanCancer-770 pre/post-NACT",
+      "tests_serial_hypothesis": false,
+      "n": 19,
+      "events_resistant": null,
+      "EPV": null,
+      "gene_coverage": "DDR 10/14, PI3K 9/10, VEGF 4/8",
+      "key_result": {
+        "DDR_post_minus_pre_mean": -0.6577,
+        "DDR_signedrank_p": 0.0003,
+        "PI3K_post_minus_pre_mean": 0.2103,
+        "PI3K_signedrank_p": 0.1336,
+        "VEGF_post_minus_pre_mean": 0.0514,
+        "VEGF_signedrank_p": 0.8596
+      },
+      "verdict": "CANNOT TEST PREDICTION (no resistance labels). DDR significantly DECREASES post-NACT (p=0.0003) -> pathways dynamically modulated by chemo (mechanistic plausibility only).",
+      "direction": "n/a (dynamics, no labels)"
+    },
+    {
+      "cohort": "TCGA-OV",
+      "role": "prognostic_context_only",
+      "design": "bulk single-timepoint (survival)",
+      "tests_serial_hypothesis": false,
+      "n": 299,
+      "events_deaths": 180,
+      "EPV": 60.0,
+      "gene_coverage": "32/32",
+      "key_result": {
+        "DDR_cox_HR": 0.941,
+        "DDR_cox_p": 0.6508,
+        "PI3K_cox_HR": 1.298,
+        "PI3K_cox_p": 0.0227,
+        "VEGF_cox_HR": 1.126,
+        "VEGF_cox_p": 0.4769
+      },
+      "verdict": "PROGNOSTIC ONLY (not serial). Only PI3K associates with worse OS (HR=1.30, p=0.023); DDR/VEGF NS. Different pathway emphasis than discovery; prognostic != serial resistance.",
+      "direction": "PI3K higher -> worse OS (adequately powered, but a different claim)"
+    },
+    {
+      "cohort": "GSE241908",
+      "role": "excluded",
+      "design": "paired in-vitro primary ascites cultures pre/post chemo",
+      "tests_serial_hypothesis": false,
+      "n": null,
+      "status": "EXCLUDED",
+      "verdict": "EXCLUDED: unpublished ShV->GSM sample mapping (13 vs 14 mismatch); in-vitro cultures not tumor tissue; no resistance labels. Forcing a positional mapping would inject an unverifiable assumption.",
+      "direction": "n/a"
+    }
+  ],
+  "cross_cohort_summary": {
+    "independent_external_cohorts_supporting_prediction_with_informative_CI": 0,
+    "positive_serial_cohorts": [
+      "BriTROC-1 (fragile, EPV=3)"
+    ],
+    "opposite_direction_cohorts": [
+      "GSE160626 (PI3K nominally sig opposite)"
+    ],
+    "unlabeled_dynamics_cohorts": [
+      "GSE109934"
+    ],
+    "prognostic_only_cohorts": [
+      "TCGA-OV (PI3K only)"
+    ],
+    "descriptive_DDR_meta": {
+      "pooled_auroc": 0.799,
+      "ci95": [
+        0.704,
+        0.895
+      ],
+      "I2_percent": 83.3,
+      "Q": 11.99,
+      "Q_p": 0.0025,
+      "WARNING": "I^2=83% (Q p=0.0025): extreme between-cohort heterogeneity. Pooled value is an artifact of BriTROC-1's dominant weight (a CN signature, not an expression score) and MUST NOT be reported as a pooled result. Report per-cohort only."
+    },
+    "verdict": "NON-REPLICATION of the resistance-PREDICTION claim across independent cohorts. BriTROC-1 remains the sole positive and is fragile. Discovery headline stats not reproduced."
+  }
+}

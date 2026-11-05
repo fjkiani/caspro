@@ -1,0 +1,127 @@
+{
+  "dataset": "GSE174554",
+  "publication": "Wang et al. Nature Cancer 2022, PMID 36539501",
+  "canonical_verdict_date": "2026-05-13",
+  "canonical_verdict": "SC_UNDERPOWERED",
+  "canonical_verdict_rationale": "Two independent modalities analyzed. Neither supports SC_ESCAPE_SUPPORTED. Spatial (Visium): SC_NOT_SUPPORTED_YET \u2014 assay structurally incapable of per-cell EMT scoring (mixed-cell spots, 1825-gene panel, cross-sectional n=5). snRNA-seq (matched pairs, n=8): SC_UNDERPOWERED \u2014 correct assay, correct normalization (CP10K + log1p), correct test (Wilcoxon signed-rank), but n=8 provides ~20% power to detect Cohen's d=0.5. Mesenchymal shift present in 4/8 pairs (50%), directionally consistent with Wang et al. ~60% rate. The biology is not absent; the analysis is underpowered.",
+  "verdict_taxonomy": {
+    "SC_ESCAPE_SUPPORTED": "\u22653/4 signatures p<0.05 by Wilcoxon signed-rank (one-sided) in snRNA-seq matched pairs",
+    "SC_MIXED_SIGNAL": "\u22651 signature significantly UP and \u22651 significantly DOWN (p<0.05) \u2014 directionally inconsistent",
+    "SC_UNDERPOWERED": "Correct assay, correct analysis, p>0.05 due to insufficient n \u2014 biology not excluded",
+    "SC_NOT_SUPPORTED_YET": "Assay structurally incapable of answering the question (wrong modality, missing genes, bulk resolution)",
+    "SC_ESCAPE_ABSENT": "\u22653/4 signatures significantly DOWN (p<0.05) in adequately powered analysis \u2014 NOT assigned here"
+  },
+  "sc_mixed_signal_divergence_record": {
+    "original_verdict": "SC_MIXED_SIGNAL",
+    "assigned_by": "background agent 3884c4ac (hit iteration limit before writing files)",
+    "divergence_cause": "Agent summary text stated 'all three signatures trend upward' but stored per_signature_results showed DOWN for all three (EMT -0.069, stemness -0.111, mesenchymal -0.127). Agent was in an intermediate state when it wrote its summary. A subsequent reconciliation note accepted the summary without cross-checking stored numbers \u2014 second error. SC_MIXED_SIGNAL requires \u22651 UP and \u22651 DOWN; all-DOWN does not qualify.",
+    "correction_chain": [
+      "SC_MIXED_SIGNAL (agent 3884c4ac, incorrect)",
+      "SC_NOT_SUPPORTED_YET (verification audit 2026-05-13, correct for spatial)",
+      "SC_UNDERPOWERED (board fix 2026-05-13, correct for snRNA-seq lane)"
+    ]
+  },
+  "modality_results": {
+    "visium_spatial": {
+      "verdict": "SC_NOT_SUPPORTED_YET",
+      "n_primary": 5,
+      "n_recurrent": 5,
+      "design": "cross-sectional (unmatched)",
+      "panel_size_genes": 1825,
+      "failure_mode": "mixed-cell spots + targeted panel + cross-sectional design",
+      "visium_mixed_cell_limitation": "Visium spots (~55 \u00b5m, 1-10 cells) capture expression from all cell types. Mesenchymal markers (CD44, VIM, TGFB1) are expressed by macrophages AND tumor cells \u2014 spot-level scoring cannot distinguish tumor-cell EMT from macrophage infiltration. Wang et al. reported the mesenchymal shift is driven by macrophage infiltration, making this confound critical.",
+      "key_results": {
+        "emt_delta": -0.069,
+        "stemness_delta": -0.111,
+        "mesenchymal_delta": -0.127,
+        "macrophage_delta": 0.154,
+        "all_p_gt_05": true
+      },
+      "source_file": "gbm_gse174554_sc_escape_verdict.json"
+    },
+    "snrna_seq_matched_pairs": {
+      "verdict": "SC_UNDERPOWERED",
+      "n_valid_pairs": 8,
+      "pairs_analyzed": [
+        1,
+        9,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "pairs_excluded_qc": [
+        {
+          "pair": 10,
+          "sample": "SF6118",
+          "reason": "median_lib_size=83 counts/cell"
+        },
+        {
+          "pair": 11,
+          "sample": "SF9715",
+          "reason": "median_lib_size=101 counts/cell"
+        }
+      ],
+      "normalization": "CP10K + log1p",
+      "test": "Wilcoxon signed-rank, one-sided (alternative=greater)",
+      "key_results": {
+        "emt": {
+          "mean_delta": -0.022,
+          "wilcoxon_p": 0.727,
+          "up_pairs": 4,
+          "down_pairs": 4
+        },
+        "stemness": {
+          "mean_delta": -0.045,
+          "wilcoxon_p": 0.875,
+          "up_pairs": 2,
+          "down_pairs": 6
+        },
+        "mesenchymal": {
+          "mean_delta": 0.019,
+          "wilcoxon_p": 0.371,
+          "up_pairs": 4,
+          "down_pairs": 4
+        },
+        "macrophage": {
+          "mean_delta": 0.018,
+          "wilcoxon_p": 0.578,
+          "up_pairs": 3,
+          "down_pairs": 5
+        }
+      },
+      "power_analysis": {
+        "cohens_d_mesenchymal": 0.1035,
+        "observed_sd_mesenchymal": 0.1817,
+        "power_at_n8_d05": "~20%",
+        "n_needed_80pct_power_d05": 34,
+        "n_needed_80pct_power_d07": 18
+      },
+      "biological_consistency": "Mesenchymal UP in 4/8 pairs (50%) \u2014 directionally consistent with Wang et al. reported ~60% rate. Macrophage UP in 3/8 pairs. High inter-patient heterogeneity is the expected biology, not noise.",
+      "source_file": "gbm_gse174554_snrna_emt_expansion.json"
+    }
+  },
+  "open_blockers": [
+    {
+      "id": "GBM-01",
+      "description": "Expand snRNA-seq to n\u226520 matched pairs to achieve 80% power for d=0.5",
+      "pairs_available": "32 complete pairs in GEO metadata; 8 analyzed; 24 remaining",
+      "action": "Download Pairs 19, 20 + remaining unanalyzed pairs from GEO FTP",
+      "blocking": "SC_ESCAPE_SUPPORTED or SC_ESCAPE_ABSENT verdict"
+    },
+    {
+      "id": "GBM-02",
+      "description": "Stratify by mesenchymal subtype (MES1 vs MES2 per Wang et al.) for subgroup analysis",
+      "action": "Requires cell-type annotation from full snRNA-seq analysis (Seurat/Scanpy)",
+      "blocking": "Tumor-cell-specific EMT scoring (vs macrophage-driven mesenchymal signal)"
+    }
+  ],
+  "stale_actions_removed": [
+    "Download RAW.tar (1.58 GB) \u2014 superseded by targeted GSM MTX downloads",
+    "snRNA-seq pilot download \u2014 COMPLETED",
+    "snRNA-seq expansion (Pairs 12-17) \u2014 COMPLETED",
+    "next_executable_action in spatial verdict JSON \u2014 RETIRED"
+  ]
+}

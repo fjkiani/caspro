@@ -1,0 +1,6 @@
+subject,dx_sample,relapse_sample,dx_breakpoints,relapse_breakpoints,breakpoint_delta,net_gained_breakpoints,n_chromosomes_gained,top_focus_chrom,top_focus_fraction,top_chrom_cn_levels,architecture_signature
+191,IM_280,JBLAB-4944,127,380,253,253,21,1,0.115,5,dispersed_stochastic_CIN
+6,IM_274,JBLAB-4110,17,118,101,101,20,8,0.119,9,dispersed_stochastic_CIN
+260,IM_426,JBLAB-19323,75,135,60,66,16,1,0.212,5,dispersed_stochastic_CIN
+119,IM_249,JBLAB-4232,148,166,18,48,11,7,0.25,2,intermediate_rearrangement
+109,IM_373,JBLAB-4225,59,52,-7,7,3,14,0.571,2,modest_gain

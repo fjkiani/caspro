@@ -1,0 +1,72 @@
+{
+  "coverage_table": {
+    "clinical_trials_total_rows": 2979,
+    "moa_vectors_total_rows": 283,
+    "moa_vectors_oncology_eligible": 283,
+    "moa_vectors_oncology_populated": 160,
+    "moa_vectors_oncology_zero_dropped": 123,
+    "path_a_scoreable_after_join": 42,
+    "exclusions_by_reason": {
+      "non_oncology_dropped": 0,
+      "onco_but_zero_vector_dropped": 123,
+      "onco_populated_no_ct_metadata": 118
+    },
+    "source_distribution": {
+      "cohere_batch_tagging": 226,
+      "null": 21,
+      "manual_keyword_matching": 15,
+      "gemini_batch_tagging": 5,
+      "manual_intelligence_report": 3,
+      "manual_zo_addition": 3,
+      "openai_batch_tagging": 3,
+      "gemini_batch_v2": 2,
+      "manual_zo_correction": 2,
+      "retroactive_validation": 2,
+      "manual_zo_update": 1
+    },
+    "vector_state_distribution": {
+      "POPULATED": 160,
+      "ZERO_UNDECLARED": 123
+    },
+    "db_path": "/workspace/crispro-backend-v3-push/data/clinical_trials.db"
+  },
+  "drift_test": {
+    "drift_test_summary": {
+      "passed": 3,
+      "total": 3,
+      "verdict": "PASS"
+    },
+    "steps": [
+      {
+        "step": "baseline_orch_init",
+        "status": "PASS",
+        "registry_receipt": {
+          "status": "OK",
+          "db_path": "/workspace/crispro-backend-v3-push/data/clinical_trials.db",
+          "prohibited_paths_checked": [
+            "api/resources/trial_moa_vectors.json",
+            "layer1_engines/mechanism_fit/trial_moa_vectors.json",
+            "data/trial_moa_vectors.json"
+          ],
+          "message": "SQLite unified DB is sole runtime registry; no legacy JSON present."
+        }
+      },
+      {
+        "step": "plant_legacy_json_should_raise",
+        "status": "PASS",
+        "raised_msg": "Registry contract violation: legacy JSON file(s) present in production tree: /workspace/crispro-backend-v3-push/api/resources/trial_moa_vectors.json. Delete or move; unified SQLite DB is the sole runtime source."
+      },
+      {
+        "step": "post_cleanup_orch_init",
+        "status": "PASS",
+        "receipt_status": "OK"
+      }
+    ]
+  },
+  "runtime_reads_sqlite_only": {
+    "reader_reported": "sqlite_unified",
+    "sqlite_only": true,
+    "trials_scored": 42,
+    "status": "OK"
+  }
+}

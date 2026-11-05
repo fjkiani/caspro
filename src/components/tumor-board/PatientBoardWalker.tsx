@@ -1,6 +1,12 @@
 'use client';
 
 /**
+ * RETIRED (2026-07-18): no longer mounted at /tumor-board/[patientId]/.
+ * Canonical surface is TumorBoardTabSurface (Target Lock tab chrome).
+ * Kept for reference — do not re-wire as the default route.
+ */
+
+/**
  * PatientBoardWalker — new tumor-board shell.
  *
  * Visually mirrors src/components/demos/DemoWalker.tsx (sticky header, stage

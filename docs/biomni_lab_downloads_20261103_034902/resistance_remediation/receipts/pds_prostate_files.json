@@ -1,0 +1,400 @@
+{
+  "ts_utc": "2026-08-05T16:02:41.130814+00:00",
+  "purpose": "Enumerate all prostate caslib files; hunt serial PSA + dates.",
+  "report": [
+    {
+      "caslib": "Prostat_Amgen_2004_154",
+      "all_files": [
+        "dataFiles_898"
+      ],
+      "tabular": [],
+      "loaded_tables": [],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_Amgen_2006_155",
+      "all_files": [
+        "dataFiles_900"
+      ],
+      "tabular": [],
+      "loaded_tables": [],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_AmgenI_2006_121",
+      "all_files": [
+        "dataFiles_668"
+      ],
+      "tabular": [],
+      "loaded_tables": [],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_Asociac_484",
+      "all_files": [
+        "BBDD_Spain_IAD_v4.xlsx",
+        "DataDescription_v1.xlsx"
+      ],
+      "tabular": [
+        "BBDD_Spain_IAD_v4.xlsx",
+        "DataDescription_v1.xlsx"
+      ],
+      "loaded_tables": [
+        {
+          "table": "BBDD_Spain_IAD_v4.xlsx",
+          "loaded": true,
+          "n_rows": 48186,
+          "psa_cols": [],
+          "date_cols": [],
+          "n_cols": 11
+        },
+        {
+          "table": "DataDescription_v1.xlsx",
+          "loaded": true,
+          "n_rows": 22,
+          "psa_cols": [],
+          "date_cols": [],
+          "n_cols": 2
+        }
+      ],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_AstraZe_1995_102",
+      "all_files": [
+        "dataFiles_506",
+        "7054IL_0023 data variables.xlsx"
+      ],
+      "tabular": [
+        "7054IL_0023 data variables.xlsx"
+      ],
+      "loaded_tables": [
+        {
+          "table": "7054IL_0023 data variables.xlsx",
+          "loaded": true,
+          "n_rows": 23,
+          "psa_cols": [],
+          "date_cols": [
+            "Datasets for Study 7054IL/0023"
+          ],
+          "n_cols": 3
+        }
+      ],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_AstraZe_1995_105",
+      "all_files": [
+        "dataFiles_513",
+        "7054IL_0024 data variables.xlsx"
+      ],
+      "tabular": [
+        "7054IL_0024 data variables.xlsx"
+      ],
+      "loaded_tables": [
+        {
+          "table": "7054IL_0024 data variables.xlsx",
+          "loaded": true,
+          "n_rows": 19,
+          "psa_cols": [],
+          "date_cols": [
+            "Datasets for Study 7054IL/0024"
+          ],
+          "n_cols": 3
+        }
+      ],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_AstraZe_1995_106",
+      "all_files": [
+        "dataFiles_512",
+        "7054IL_0025 data variables.xlsx"
+      ],
+      "tabular": [
+        "7054IL_0025 data variables.xlsx"
+      ],
+      "loaded_tables": [
+        {
+          "table": "7054IL_0025 data variables.xlsx",
+          "loaded": true,
+          "n_rows": 20,
+          "psa_cols": [],
+          "date_cols": [
+            "Datasets for Study 7054IL/0025"
+          ],
+          "n_cols": 3
+        }
+      ],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_AstraZe_2009_144",
+      "all_files": [
+        "dataFiles_835",
+        "De indentification RDB standards STUDY14.xlsx"
+      ],
+      "tabular": [
+        "De indentification RDB standards STUDY14.xlsx"
+      ],
+      "loaded_tables": [
+        {
+          "table": "De indentification RDB standards STUDY14.xlsx",
+          "loaded": true,
+          "n_rows": 41,
+          "psa_cols": [],
+          "date_cols": [],
+          "n_cols": 7
+        }
+      ],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_Celgene_2009_90",
+      "all_files": [
+        "dataFiles_412"
+      ],
+      "tabular": [],
+      "loaded_tables": [],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_Multipl_2008_406",
+      "all_files": [
+        "Dataset Contents and Variable Crosswalk.xlsx",
+        "Descriptive_Stats_Linked_Prostat_AstraZe_2008_103.xlsx",
+        "linked_prostate103.sas7bdat"
+      ],
+      "tabular": [
+        "Dataset Contents and Variable Crosswalk.xlsx",
+        "Descriptive_Stats_Linked_Prostat_AstraZe_2008_103.xlsx",
+        "linked_prostate103.sas7bdat"
+      ],
+      "loaded_tables": [
+        {
+          "table": "Dataset Contents and Variable Crosswalk.xlsx",
+          "loaded": true,
+          "n_rows": 57,
+          "psa_cols": [],
+          "date_cols": [],
+          "n_cols": 3
+        },
+        {
+          "table": "Descriptive_Stats_Linked_Prostat_AstraZe_2008_103.xlsx",
+          "loaded": true,
+          "n_rows": 46,
+          "psa_cols": [],
+          "date_cols": [
+            "Study"
+          ],
+          "n_cols": 18
+        },
+        {
+          "table": "linked_prostate103.sas7bdat",
+          "loaded": true,
+          "n_rows": 31641,
+          "psa_cols": [],
+          "date_cols": [],
+          "n_cols": 46
+        }
+      ],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_Multipl_2008_420",
+      "all_files": [
+        "Dataset Contents and Variable Crosswalk.xlsx",
+        "Descriptive_Stats_Linked_Prostat_AstraZe_2008_104.xlsx",
+        "linked_prostate104.sas7bdat"
+      ],
+      "tabular": [
+        "Dataset Contents and Variable Crosswalk.xlsx",
+        "Descriptive_Stats_Linked_Prostat_AstraZe_2008_104.xlsx",
+        "linked_prostate104.sas7bdat"
+      ],
+      "loaded_tables": [
+        {
+          "table": "Dataset Contents and Variable Crosswalk.xlsx",
+          "loaded": true,
+          "n_rows": 56,
+          "psa_cols": [],
+          "date_cols": [],
+          "n_cols": 3
+        },
+        {
+          "table": "Descriptive_Stats_Linked_Prostat_AstraZe_2008_104.xlsx",
+          "loaded": true,
+          "n_rows": 45,
+          "psa_cols": [],
+          "date_cols": [
+            "Study"
+          ],
+          "n_cols": 18
+        },
+        {
+          "table": "linked_prostate104.sas7bdat",
+          "loaded": true,
+          "n_rows": 25049,
+          "psa_cols": [],
+          "date_cols": [],
+          "n_cols": 45
+        }
+      ],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_Multipl_2009_417",
+      "all_files": [
+        "Dataset Contents and Variable Crosswalk.xlsx",
+        "Descriptive_Stats_Linked_Prostat_AstraZe_2009_144.xlsx",
+        "linked_prostate144.sas7bdat"
+      ],
+      "tabular": [
+        "Dataset Contents and Variable Crosswalk.xlsx",
+        "Descriptive_Stats_Linked_Prostat_AstraZe_2009_144.xlsx",
+        "linked_prostate144.sas7bdat"
+      ],
+      "loaded_tables": [
+        {
+          "table": "Dataset Contents and Variable Crosswalk.xlsx",
+          "loaded": true,
+          "n_rows": 56,
+          "psa_cols": [],
+          "date_cols": [],
+          "n_cols": 3
+        },
+        {
+          "table": "Descriptive_Stats_Linked_Prostat_AstraZe_2009_144.xlsx",
+          "loaded": true,
+          "n_rows": 45,
+          "psa_cols": [],
+          "date_cols": [
+            "Study"
+          ],
+          "n_cols": 18
+        },
+        {
+          "table": "linked_prostate144.sas7bdat",
+          "loaded": true,
+          "n_rows": 6868,
+          "psa_cols": [],
+          "date_cols": [],
+          "n_cols": 45
+        }
+      ],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_Multipl_2018_234",
+      "all_files": [
+        "MEPS Variable Crosswalk_20171109.xlsx",
+        "linked_pds90_20171109.sas7bdat"
+      ],
+      "tabular": [
+        "MEPS Variable Crosswalk_20171109.xlsx",
+        "linked_pds90_20171109.sas7bdat"
+      ],
+      "loaded_tables": [
+        {
+          "table": "MEPS Variable Crosswalk_20171109.xlsx",
+          "loaded": true,
+          "n_rows": 60,
+          "psa_cols": [],
+          "date_cols": [],
+          "n_cols": 3
+        },
+        {
+          "table": "linked_pds90_20171109.sas7bdat",
+          "loaded": true,
+          "n_rows": 13465,
+          "psa_cols": [],
+          "date_cols": [],
+          "n_cols": 49
+        }
+      ],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_na_2006_149",
+      "all_files": [
+        "dataFiles_857",
+        "dataFiles_858",
+        "dataFiles_859",
+        "Challenge_data_dictionary v2.xlsx"
+      ],
+      "tabular": [
+        "Challenge_data_dictionary v2.xlsx"
+      ],
+      "loaded_tables": [
+        {
+          "table": "Challenge_data_dictionary v2.xlsx",
+          "loaded": true,
+          "n_rows": 131,
+          "psa_cols": [],
+          "date_cols": [],
+          "n_cols": 7
+        }
+      ],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_Pfizer_2008_81",
+      "all_files": [
+        "dataFiles_394",
+        "Pfizer Data Descriptors Sunitinib.xlsx"
+      ],
+      "tabular": [
+        "Pfizer Data Descriptors Sunitinib.xlsx"
+      ],
+      "loaded_tables": [
+        {
+          "table": "Pfizer Data Descriptors Sunitinib.xlsx",
+          "loaded": true,
+          "n_rows": 206,
+          "psa_cols": [],
+          "date_cols": [],
+          "n_cols": 5
+        }
+      ],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_Researc_2016_167",
+      "all_files": [
+        "dataFiles_996"
+      ],
+      "tabular": [],
+      "loaded_tables": [],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_Sanofi_2000_80",
+      "all_files": [
+        "dataFiles_397"
+      ],
+      "tabular": [],
+      "loaded_tables": [],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_Sanofi_2007_79",
+      "all_files": [
+        "dataFiles_398",
+        "dataFiles_399"
+      ],
+      "tabular": [],
+      "loaded_tables": [],
+      "psa_hits": []
+    },
+    {
+      "caslib": "Prostat_Sanofi_2007_83",
+      "all_files": [
+        "dataFiles_402",
+        "dataFiles_403"
+      ],
+      "tabular": [],
+      "loaded_tables": [],
+      "psa_hits": []
+    }
+  ]
+}

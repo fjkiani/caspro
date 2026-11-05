@@ -1,0 +1,19 @@
+{
+  "changed_files": [
+    "scripts/validation/d11_functional_form_validation.py",
+    "scripts/validation/d12_selection_analysis.py",
+    "scripts/validation/d12_selection_core.py"
+  ],
+  "diffstat": " 3 files changed, 11 insertions(+), 3 deletions(-)",
+  "head": "1d9ce4f5964c3e3d1fc198969c722256cd23e694",
+  "import_probe_rc": 0,
+  "import_probe_stderr": "",
+  "import_probe_stdout": "IMPORT_OK inside",
+  "parent": "0159b9610d4e094de5e134458c05c4d87e78849d",
+  "sha256sums_ok_lines": 12,
+  "sha256sums_selfcheck_rc": 0,
+  "targeted_tests_rc": 0,
+  "targeted_tests_tail": "2 passed in 0.56s",
+  "tree": "09a1e53de75d3dcefb45d158f1c4830834bc69ad",
+  "worktree_clean": true
+}

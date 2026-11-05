@@ -1,0 +1,5 @@
+subject_id,dx_sample,relapse_sample,dx_site,relapse_site,n_bins_compared,mean_abs_log2_CN_change,frac_genome_altered_gt0.3log2,net_log2_shift,dx_breakpoints,relapse_breakpoints,breakpoint_delta
+191,IM_280,JBLAB-4944,Ovary,Trachea,83607,0.3361,0.6501,0.2968,127,380,253
+109,IM_373,JBLAB-4225,Ovary,Para-aortic LN,83607,0.1578,0.1214,-0.0004,59,52,-7
+119,IM_249,JBLAB-4232,Ovary;FT;Uterus,Sigmoid Mesentery,83607,0.3008,0.5491,-0.1123,148,166,18
+6,IM_274,JBLAB-4110,Omentum,Chest Wall,83607,0.3056,0.5164,-0.0384,17,118,101

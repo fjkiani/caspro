@@ -1,0 +1,4 @@
+archetype,up_weight_axes,down_weight_axes,definition
+HR_PROFICIENT_CCNE1_ARMOR,atr_replication_stress;wee1_g2m_checkpoint;ccne1_cdk2_axis;chk1_replication_checkpoint;pkmyt1_mitotic_checkpoint,platinum_dna_crosslink;parp_synthetic_lethality,"Intact homologous recombination (low HRD-axis / low s3) AND/OR CCNE1 amplification (19q12) — a replication-stress-tolerant, HR-proficient genome present at diagnosis, before platinum selection."
+HRD_PLATINUM_TRACTABLE,platinum_dna_crosslink;parp_synthetic_lethality,,"HR-deficient genome (high HRD-axis / high s3), e.g. BRCA1/2 or HR-pathway loss — the platinum/PARP-sensitive state."
+INDETERMINATE,,,Structural state does not clearly meet either archetype.

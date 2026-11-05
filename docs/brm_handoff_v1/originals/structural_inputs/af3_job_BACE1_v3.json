@@ -1,0 +1,28 @@
+{
+  "name": "BrM_BACE1",
+  "modelSeeds": [
+    42
+  ],
+  "sequences": [
+    {
+      "rna": {
+        "id": "A",
+        "sequence": "UCUUCCCAUGGCAGGCAAUCGUUUUAGAGCUAGAAAUAGCAAGUUAAAAUAAGGCUAGUCCGUUAUCAACUUGAAAAAGUGGCACCGAGUCGGUGC"
+      }
+    },
+    {
+      "dna": {
+        "id": "B",
+        "sequence": "GGAAGTGTAGTCTTCCCATGGCAGGCAATCCGGCTTCCGGGGCTGGAGAGGGGTCTGGGAT"
+      }
+    },
+    {
+      "dna": {
+        "id": "C",
+        "sequence": "ATCCCAGACCCCTCTCCAGCCCCGGAAGCCGGATTGCCTGCCATGGGAAGACTACACTTCC"
+      }
+    }
+  ],
+  "dialect": "alphafoldserver",
+  "version": 1
+}

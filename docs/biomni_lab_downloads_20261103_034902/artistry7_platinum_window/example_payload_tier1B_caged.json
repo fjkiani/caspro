@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "patient_ref": {
+    "patient_id": "TCGA-04-1337-01",
+    "cohort_context": "TCGA_OV_PROXY"
+  },
+  "platinum_window": {
+    "status": "CLOSED",
+    "definition": "(TIER_REFINED == TIER_1A_ACCESSIBLE) AND (PLATINUM_STATUS == sensitive)",
+    "components": {
+      "tier_refined": "TIER_1B_CAGED",
+      "platinum_status": "unknown"
+    },
+    "verification_status": "VERIFIED",
+    "provenance": "VERIFIED: recomputed from run_artistry7_proxy_pipeline.py output (data-room@a54b8a11be7d); one real TCGA-OV sample"
+  },
+  "immune_access": {
+    "composite": {
+      "value": -0.4118,
+      "range": [
+        -1.5,
+        1.5
+      ],
+      "verification_status": "VERIFIED",
+      "provenance": "VERIFIED: recomputed from run_artistry7_proxy_pipeline.py output (data-room@a54b8a11be7d); one real TCGA-OV sample | recompute 0.40*0.3491 -0.35*-0.0831 -0.25*2.3224 = -0.4118",
+      "computed_at": "2026-07-18T18:50:44Z"
+    },
+    "equation": "IMMUNE_ACCESS = 0.40*TCELL_GPS - 0.35*MYELOID_FLOOD - 0.25*STROMAL_CAGE (z-scored signature means)",
+    "io_eligibility_gate": {
+      "threshold": 0.4,
+      "passes": false,
+      "provenance": "threshold 0.40 is a HARDCODED DESIGN CONSTANT per repo audit (api/sequence_engine.py), NOT data-derived; Cox on split p=0.057 (NS)"
+    },
+    "components": {
+      "tcell_gps": {
+        "value": 0.3491,
+        "range": [
+          -4.0,
+          4.0
+        ],
+        "verification_status": "VERIFIED",
+        "provenance": "VERIFIED: recomputed from run_artistry7_proxy_pipeline.py output (data-room@a54b8a11be7d); one real TCGA-OV sample",
+        "computed_at": "2026-07-18T18:50:44Z"
+      },
+      "myeloid_flood": {
+        "value": -0.0831,
+        "range": [
+          -6.0,
+          5.0
+        ],
+        "verification_status": "VERIFIED",
+        "provenance": "VERIFIED: recomputed from run_artistry7_proxy_pipeline.py output (data-room@a54b8a11be7d); one real TCGA-OV sample",
+        "computed_at": "2026-07-18T18:50:44Z"
+      },
+      "stromal_cage": {
+        "value": 2.3224,
+        "range": [
+          -4.0,
+          4.0
+        ],
+        "verification_status": "VERIFIED",
+        "provenance": "VERIFIED: recomputed from run_artistry7_proxy_pipeline.py output (data-room@a54b8a11be7d); one real TCGA-OV sample",
+        "computed_at": "2026-07-18T18:50:44Z"
+      }
+    }
+  },
+  "stromal_cage_tier": {
+    "tier": "TIER_1B_CAGED",
+    "warning_level": "CONTRA_IO",
+    "clinician_message": "Stromal cage CLOSED (Tier 1B): tumor is immunologically caged (high stromal-cage score). Immune-access-dependent regimens (e.g., IL-2-variant + checkpoint) are unlikely to reach tumor; CONTRA-indicated as monotherapy rationale.",
+    "verification_status": "VERIFIED",
+    "provenance": "VERIFIED: recomputed from run_artistry7_proxy_pipeline.py output (data-room@a54b8a11be7d); one real TCGA-OV sample"
+  },
+  "display": {
+    "badge": {
+      "label": "PLATINUM WINDOW: CLOSED",
+      "color": "#FF9400"
+    },
+    "banner": "RESEARCH USE ONLY \u2014 verified proxy-cohort score (TCGA-OV); not a validated clinical test",
+    "show_research_use_only": true
+  },
+  "global_verification": "VERIFIED",
+  "provenance_note": "All scores are VERIFIED reproductions from the real 427-patient pipeline output. RESEARCH USE ONLY still applies because cohort_context=TCGA_OV_PROXY: these are real TCGA-OV proxy-cohort patients, NOT a prospectively validated clinical test. The significant survival signal in this pipeline is a 3-tier PROGNOSTIC log-rank (p=0.0038); the 1A/1B split itself is not significant (p=0.126); PLATINUM_WINDOW n=9 is underpowered.",
+  "disclaimers": [
+    "IMMUNE_ACCESS, Stromal-Cage tier, and PLATINUM_WINDOW are VERIFIED reproductions from a research stratifier, NOT a validated per-patient clinical test.",
+    "TCGA-OV context indicates a research proxy cohort, not a prospectively validated clinical population.",
+    "The equation weights (0.40/0.35/0.25) are verified-in-code; the IMMUNE_ACCESS 0.40 IO-gate is a design constant, not a data-derived cutoff; the 1A/1B cutpoint is not prespecified.",
+    "PLATINUM_WINDOW eligibility (Tier-1A AND platinum-sensitive) is DECOUPLED from the IMMUNE_ACCESS>0.40 IO gate; a window-open patient can still fail the IO gate (as in this example)."
+  ]
+}

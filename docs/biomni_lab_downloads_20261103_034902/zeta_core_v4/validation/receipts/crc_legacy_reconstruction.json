@@ -1,0 +1,177 @@
+{
+  "artifact": "crc_cea_legacy_reconstruction_receipt",
+  "discrimination_reconstruction": {
+    "263_to_264": {
+      "difference": 0.0,
+      "difference_in_ordered_pairs": 0.0,
+      "exact_within_1e_12": true,
+      "frozen_auroc": 0.7139422297976034,
+      "one_ordered_pair_auc": 6.4808393983188705e-06,
+      "reconstructed_auroc": 0.7139422297976034
+    },
+    "264_to_263": {
+      "difference": 0.0,
+      "difference_in_ordered_pairs": 0.0,
+      "exact_within_1e_12": true,
+      "frozen_auroc": 0.7965482489292013,
+      "one_ordered_pair_auc": 9.690485880962072e-06,
+      "reconstructed_auroc": 0.7965482489292013
+    },
+    "w8_pool_to_262": {
+      "difference": 1.349017914942241e-05,
+      "difference_in_ordered_pairs": 0.9999999999883844,
+      "exact_within_1e_12": false,
+      "frozen_auroc": 0.6657538312108785,
+      "one_ordered_pair_auc": 1.3490179149579106e-05,
+      "reconstructed_auroc": 0.6657673213900279
+    }
+  },
+  "evidence_state": {
+    "axis_status": "NOT_YET_CALIBRATED",
+    "claim_boundary": "Exact model counts and same-schedule AUROCs are source-reconstructed; the stress split differs by one ordered pair and calibration remains artifact-only.",
+    "gate_pass": false,
+    "score_emitted": false
+  },
+  "frozen_artifact": {
+    "axis_id": "crc_cea_kinetics_multitrial_v2",
+    "modeling_csv_available": false,
+    "sha256": "7582ab22e8fd3b9b21d5b67abf9167633cbc250e4c50e779690f937143e0e66f",
+    "version": "v2_multitrial_holdout"
+  },
+  "frozen_calibration_metrics": {
+    "263_to_264": {
+      "calibration_slope": 0.5375440995926407,
+      "ece": 0.24314242853055956,
+      "reason": "The referenced frozen crc_multitrial_modeling_table.csv is absent; exploratory reconstructions did not exactly reproduce these values.",
+      "source_reproduced": false,
+      "status": "VERIFIED_ARTIFACT_ONLY"
+    },
+    "264_to_263": {
+      "calibration_slope": 2.0132482544962413,
+      "ece": 0.28286216398983544,
+      "reason": "The referenced frozen crc_multitrial_modeling_table.csv is absent; exploratory reconstructions did not exactly reproduce these values.",
+      "source_reproduced": false,
+      "status": "VERIFIED_ARTIFACT_ONLY"
+    },
+    "w8_pool_to_262": {
+      "calibration_slope": 0.8089449695403427,
+      "ece": 0.09024492754355826,
+      "reason": "The referenced frozen crc_multitrial_modeling_table.csv is absent; exploratory reconstructions did not exactly reproduce these values.",
+      "source_reproduced": false,
+      "status": "VERIFIED_ARTIFACT_ONLY"
+    }
+  },
+  "generated_date": "2026-08-12",
+  "not_universal_ols": true,
+  "patient_identifiers_persisted": false,
+  "patient_level_data_persisted": false,
+  "same_schedule_aurocs_exact_within_1e_12": true,
+  "scope": "Legacy two-point scheduled-visit CRC CEA response validation only",
+  "source_construction": {
+    "baseline_visit": "SCR",
+    "cea_filter": {
+      "LBSTUNIT": "ug/L",
+      "LBTESTCD": "CEA",
+      "positive_only": true
+    },
+    "cea_table": "lab.sas7bdat",
+    "duplicate_policy": "median within patient and scheduled visit",
+    "feature": "-ln(CEA_landmark / CEA_baseline) / scheduled_weeks",
+    "landmark_visits": {
+      "262": "W12",
+      "263": "W8",
+      "264": "W8"
+    },
+    "responder_definition": "Complete response or Partial response versus Stable disease or Progressive disease",
+    "response_filter": {
+      "RSTYPE": "Central",
+      "field": "RSBR"
+    },
+    "response_table": "respeval.sas7bdat",
+    "scheduled_weeks": {
+      "262": 12.0,
+      "263": 8.0,
+      "264": 8.0
+    }
+  },
+  "stress_split_interpretation": {
+    "difference_in_ordered_pairs": 0.9999999999883844,
+    "reason": "The frozen patient-level modeling CSV referenced by the validation artifact is absent.",
+    "resolved": false,
+    "status": "ONE_ORDERED_PAIR_DISCREPANCY"
+  },
+  "trial_aggregate_receipts": {
+    "262": {
+      "cea_pre_filtered": true,
+      "n_baseline_patients": 815,
+      "n_cea_rows": 2770,
+      "n_landmark_patients": 585,
+      "n_modeled": 554,
+      "n_rejected_incompatible_unit": 0,
+      "n_responders": 328,
+      "patient_identifiers_persisted": false,
+      "response_counts": {
+        "COMPLETE RESPONSE": 1,
+        "PARTIAL RESPONSE": 327,
+        "PROGRESSIVE DISEASE": 54,
+        "STABLE DISEASE": 172
+      },
+      "scheduled_weeks_to_landmark": 12.0,
+      "target_visit": "W12",
+      "trial": "262"
+    },
+    "263": {
+      "cea_pre_filtered": true,
+      "n_baseline_patients": 917,
+      "n_cea_rows": 4074,
+      "n_landmark_patients": 762,
+      "n_modeled": 735,
+      "n_rejected_incompatible_unit": 0,
+      "n_responders": 189,
+      "patient_identifiers_persisted": false,
+      "response_counts": {
+        "COMPLETE RESPONSE": 4,
+        "PARTIAL RESPONSE": 185,
+        "PROGRESSIVE DISEASE": 124,
+        "STABLE DISEASE": 422
+      },
+      "scheduled_weeks_to_landmark": 8.0,
+      "target_visit": "W8",
+      "trial": "263"
+    },
+    "264": {
+      "cea_pre_filtered": true,
+      "n_baseline_patients": 919,
+      "n_cea_rows": 4966,
+      "n_landmark_patients": 820,
+      "n_modeled": 798,
+      "n_rejected_incompatible_unit": 0,
+      "n_responders": 469,
+      "patient_identifiers_persisted": false,
+      "response_counts": {
+        "COMPLETE RESPONSE": 32,
+        "PARTIAL RESPONSE": 437,
+        "PROGRESSIVE DISEASE": 52,
+        "STABLE DISEASE": 277
+      },
+      "scheduled_weeks_to_landmark": 8.0,
+      "target_visit": "W8",
+      "trial": "264"
+    }
+  },
+  "trial_count_reproduction": {
+    "262": {
+      "n_modeled_matches_frozen": true,
+      "n_responders_matches_frozen": true
+    },
+    "263": {
+      "n_modeled_matches_frozen": true,
+      "n_responders_matches_frozen": true
+    },
+    "264": {
+      "n_modeled_matches_frozen": true,
+      "n_responders_matches_frozen": true
+    }
+  },
+  "version": "1.0.0"
+}

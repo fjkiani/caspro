@@ -1,0 +1,8 @@
+component,interception_use,insilico_trials_use,tumor_board_use
+MoA / pathway map,Metastasis-step context; target-mission framing.,Asset/population mechanism fit.,Patient vulnerability context.
+Synthetic lethality (SL),Target hypothesis support.,Biomarker-dependent program logic.,Candidate dependency exploration for the individual profile.
+Trial decoding,Downstream translational context.,Core trial strategy layer.,Mechanism-aligned trial exploration.
+Resistance / escape logic,Metastasis escape rationale.,Program risk and combination design.,Patient-level hypothesis + risk exploration.
+Target Lock,Metastatic target selection.,Asset target coherence check.,Optional research annotation on the biology map.
+PGx layer,Experimental / asset safety context.,Exposure and protocol context.,Research safety flag on options exploration.
+Governance / claim ledger,"Bounds on product claims (POC vs CFD, AF3 gates).",Bounds on program-decision claims.,"Bounds on case-output framing (research, not clinical)."

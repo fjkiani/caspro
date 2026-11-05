@@ -1,0 +1,261 @@
+{
+  "evidence_pack_version": "1.0.0",
+  "generated_utc": "2026-07-26T07:58:31.482110+00:00",
+  "title": "Armor Targeting Evidence Pack (HGSOC pre-treatment CN structure \u2192 axis targeting)",
+  "ruo": true,
+  "ruo_disclaimer": "Research Use Only. Not cleared for clinical decision-making.",
+  "hypothesis": {
+    "statement": "In HGSOC, platinum resistance is a property of an intact, HR-proficient genome \u2014 often CCNE1-amplified and replication-stress-tolerant \u2014 present at diagnosis, before selection. The therapeutic corollary (NOT proven in our data) is that this state is synthetically lethal with agents attacking the replication-stress checkpoint (ATR/WEE1/CHK1) or the CCNE1/CDK2 axis, rather than DNA-damaging agents HR repairs.",
+    "proven_boundary": "PROVEN: the resistance-associated state (low-s3/HR-proficient/CCNE1-amp \u2194 resistance & worse OS). HYPOTHESIS: which drug beats the armor.",
+    "negative_bridge": "The clonal bottleneck is real, but does NOT select for an emergent armor state (clean negative). Armor is pre-existing."
+  },
+  "provenance_receipts": {
+    "britroc_provenance_json_md5": "d1d162d3da7ed985179ed87d296c580c",
+    "bottleneck_paired_tests_csv_md5": "605c91c73ba0f93d9e473654ef41e614",
+    "bridge_paired_tests_csv_md5": "6d88635ad11dd6adf1703499e921bad1",
+    "feature_outcome_tests_csv_md5": "4ad62f0d71ca6d217ad07f57f2defed3",
+    "zetabridge_receipts_json_md5": "920c0a812d0ae836627dba6684abce38",
+    "tier0_source": "Nat Commun 2023, DOI 10.1038/s41467-023-39867-7, Supplementary Data 10 (source_data)"
+  },
+  "ega_entitlement_byteproof": {
+    "n_authorized_datasets": 1,
+    "authorized_dataset_ids": [
+      "EGAD00001011049"
+    ],
+    "dac_stable_id": "EGAC00001000388",
+    "byteproof_file_id": "EGAF00008095623",
+    "byteproof_display_name": "JBLAB-4927.bam",
+    "byteproof_published_full_md5": "a9430a9b58057f11f45351433ba8c067",
+    "access_probe_can_download": true,
+    "access_probe_byte_status": 206,
+    "ranged_pull_http": 200,
+    "ranged_pull_bytes": 1000000,
+    "ranged_pull_md5_prefix": "b41f151168f0b77d137f255fae28241c",
+    "ranged_pull_is_bam_magic": true
+  },
+  "data_acquisition_verdict": "HONEST-NULL for drug response. EGA is byte-authorized for EGAD00001011049 (BriTROC-1 shallow-WGS CN, 679 BAMs); Synapse+ARGO live; SAS/PDS unreachable. No authorized HGSOC cohort with CCNE1/HR annotation AND ATR/WEE1/CDK2i drug-response outcomes is exposed. Therefore every armor drug target stays HYPOTHESIS.",
+  "archetypes": {
+    "HR_PROFICIENT_CCNE1_ARMOR": {
+      "definition": "Intact homologous recombination (low HRD-axis / low s3) AND/OR CCNE1 amplification (19q12) \u2014 a replication-stress-tolerant, HR-proficient genome present at diagnosis, before platinum selection.",
+      "structural_read": {
+        "ccne1_amp": true,
+        "hrd_axis_s3": "LOW",
+        "hr_pathway_integrity": "INTACT"
+      },
+      "up_weight_axes": [
+        "atr_replication_stress",
+        "wee1_g2m_checkpoint",
+        "ccne1_cdk2_axis",
+        "chk1_replication_checkpoint",
+        "pkmyt1_mitotic_checkpoint"
+      ],
+      "down_weight_axes": [
+        "platinum_dna_crosslink",
+        "parp_synthetic_lethality"
+      ],
+      "rationale": "A competent HR machine repairs the DNA crosslinks (platinum) and single-ended breaks (PARPi) these agents create, so DNA-damaging therapy is disfavored. The replication-stress checkpoint (ATR/WEE1/CHK1) and the CCNE1/CDK2 axis are the mechanism-rational alternatives (HYPOTHESIS tier \u2014 no drug-response cohort in hand)."
+    },
+    "HRD_PLATINUM_TRACTABLE": {
+      "definition": "HR-deficient genome (high HRD-axis / high s3), e.g. BRCA1/2 or HR-pathway loss \u2014 the platinum/PARP-sensitive state.",
+      "structural_read": {
+        "ccne1_amp": false,
+        "hrd_axis_s3": "HIGH",
+        "hr_pathway_integrity": "DEFICIENT"
+      },
+      "up_weight_axes": [
+        "platinum_dna_crosslink",
+        "parp_synthetic_lethality"
+      ],
+      "down_weight_axes": [],
+      "rationale": "HR deficiency makes the tumor unable to repair platinum crosslinks / PARPi-induced breaks \u2014 the validated sensitive state. Platinum and PARP retain weight."
+    },
+    "INDETERMINATE": {
+      "definition": "Structural state does not clearly meet either archetype.",
+      "structural_read": {},
+      "up_weight_axes": [],
+      "down_weight_axes": [],
+      "rationale": "Insufficient structural signal to classify; no re-weighting applied."
+    }
+  },
+  "axis_drug_sl_map": [
+    {
+      "axis": "ccne1_cdk2_axis",
+      "therapy_class": "CDK2_INHIBITOR",
+      "drugs": [
+        "BLU-222",
+        "ECI830",
+        "dinaciclib"
+      ],
+      "tier": "HYPOTHESIS",
+      "moa": "CDK2 inhibition removes the CCNE1/CDK2-driven proliferative dependency and impairs CDK2-mediated collapsed-fork HR repair in CCNE1-amplified HGSOC.",
+      "sl_partner": "CCNE1_AMP",
+      "citations": [
+        5,
+        6,
+        11
+      ],
+      "rationale": "CCNE1-amplified HGSOC is HR-proficient and platinum-resistant; CDK2 inhibition (BLU-222, dinaciclib) is selectively active in this context."
+    },
+    {
+      "axis": "wee1_g2m_checkpoint",
+      "therapy_class": "WEE1_INHIBITOR",
+      "drugs": [
+        "adavosertib",
+        "azenosertib"
+      ],
+      "tier": "HYPOTHESIS",
+      "moa": "WEE1 inhibition abrogates the G2/M checkpoint, forcing replication-stressed CCNE1-high cells into premature mitosis and mitotic catastrophe.",
+      "sl_partner": "CCNE1_AMP",
+      "citations": [
+        4,
+        8
+      ],
+      "rationale": "Cyclin E1 overexpression sensitizes HGSOC to WEE1 inhibition; CCNE1 copy number is a biomarker for WEE1-ATR response."
+    },
+    {
+      "axis": "atr_replication_stress",
+      "therapy_class": "ATR_INHIBITOR",
+      "drugs": [
+        "ceralasertib",
+        "berzosertib",
+        "elimusertib"
+      ],
+      "tier": "HYPOTHESIS",
+      "moa": "ATR inhibition removes the replication-stress checkpoint that a replication-stress-tolerant, HR-proficient genome relies on, causing fork collapse and double-strand breaks.",
+      "sl_partner": "CCNE1_AMP",
+      "citations": [
+        8,
+        12
+      ],
+      "rationale": "ATR inhibition (+/- PARP) overcomes platinum/PARP resistance in HR-proficient and CCNE1-amplified HGSOC models."
+    },
+    {
+      "axis": "chk1_replication_checkpoint",
+      "therapy_class": "CHK1_INHIBITOR",
+      "drugs": [
+        "SRA737",
+        "prexasertib"
+      ],
+      "tier": "HYPOTHESIS",
+      "moa": "CHK1 inhibition disables the intra-S/G2 checkpoint, converting endogenous replication stress in CCNE1-high tumors into lethal DNA damage.",
+      "sl_partner": "CCNE1_AMP",
+      "citations": [
+        9,
+        13
+      ],
+      "rationale": "CHK1 inhibitor SRA737 is active in PARPi-resistant and CCNE1-amplified HGSOC."
+    },
+    {
+      "axis": "pkmyt1_mitotic_checkpoint",
+      "therapy_class": "PKMYT1_INHIBITOR",
+      "drugs": [
+        "lunresertib"
+      ],
+      "tier": "HYPOTHESIS",
+      "moa": "PKMYT1 inhibition drives CCNE1-amplified cells into premature, catastrophic mitosis (synthetic lethal with CCNE1 amplification).",
+      "sl_partner": "CCNE1_AMP",
+      "citations": [
+        3
+      ],
+      "rationale": "CCNE1 amplification is synthetic lethal with PKMYT1 inhibition (Nature 2022)."
+    }
+  ],
+  "evidence_items": [
+    {
+      "item": "CCNE1_amplification_vs_platinum_resistance",
+      "claim_type": "ASSOCIATION_DIAGNOSIS",
+      "tier": "COHORT_VALIDATED_RUO",
+      "effect": "Fisher OR 4.347, p=0.0233 (amp 6R/7S vs neutral 14R/71S)",
+      "cohort": "BriTROC-1 diagnosis n=98 (20 resistant)",
+      "note": "Consistent with report registry CCNE1 COHORT_VALIDATED_RUO (CNA channel).",
+      "citations": []
+    },
+    {
+      "item": "HRD_axis_s3_vs_platinum_resistance",
+      "claim_type": "ASSOCIATION_DIAGNOSIS",
+      "tier": "COHORT_VALIDATED_RUO",
+      "effect": "s3 AUROC 0.2715 (inverted 0.7285), BH-q=0.0118 (only sig of 7); logistic OR 0.3641/SD (CI 0.1666-0.7959, p=0.01134)",
+      "cohort": "BriTROC-1 diagnosis n=98 (20 resistant)",
+      "note": "Low s3 (HR-proficient) associates with resistance; only signature surviving FDR.",
+      "citations": []
+    },
+    {
+      "item": "HRD_axis_s3_vs_overall_survival",
+      "claim_type": "ASSOCIATION_PROGNOSTIC",
+      "tier": "COHORT_VALIDATED_RUO",
+      "effect": "adjusted Cox OS HR 0.6989 (CI 0.494-0.9889, p=0.0431, 50 events); KM low-s3 median OS 1482.0d vs high-s3 2794.0d, log-rank p=0.0254",
+      "cohort": "BriTROC-1 n=98",
+      "note": "Prognostic association on OS.",
+      "citations": []
+    },
+    {
+      "item": "s7_resistance_signal",
+      "claim_type": "NEGATIVE_CONTROL",
+      "tier": "COHORT_TESTED_NULL",
+      "effect": "artifact of label sourcing; corrected AUROC 0.4929 (dx, p=0.9262), 0.4295 (relapse, p=0.2693). Original 0.874 was 3R/40 RECIST-label artifact.",
+      "cohort": "BriTROC-1 up to 159 pts",
+      "note": "Reported as a null; not a resistance signal.",
+      "citations": []
+    },
+    {
+      "item": "clonal_bottleneck_clonal_shannon_diversity",
+      "claim_type": "ASSOCIATION_PAIRED",
+      "tier": "COHORT_VALIDATED_RUO",
+      "effect": "delta -0.4681 (-27.1%), Wilcoxon p=0.0322, BH-q=0.0859",
+      "cohort": "GSE165897, 11 paired pre/post",
+      "note": "Clones collapse and survivors scatter post-treatment; raw p<0.05 but BH-q does not cross 0.05 \u2014 reported honestly.",
+      "citations": []
+    },
+    {
+      "item": "clonal_bottleneck_clonal_simpson_diversity",
+      "claim_type": "ASSOCIATION_PAIRED",
+      "tier": "COHORT_VALIDATED_RUO",
+      "effect": "delta -0.1805 (-24.1%), Wilcoxon p=0.0322, BH-q=0.0859",
+      "cohort": "GSE165897, 11 paired pre/post",
+      "note": "Clones collapse and survivors scatter post-treatment; raw p<0.05 but BH-q does not cross 0.05 \u2014 reported honestly.",
+      "citations": []
+    },
+    {
+      "item": "clonal_bottleneck_transcriptional_dispersion",
+      "claim_type": "ASSOCIATION_PAIRED",
+      "tier": "COHORT_VALIDATED_RUO",
+      "effect": "delta 1.7109 (14.3%), Wilcoxon p=0.0137, BH-q=0.0859",
+      "cohort": "GSE165897, 11 paired pre/post",
+      "note": "Clones collapse and survivors scatter post-treatment; raw p<0.05 but BH-q does not cross 0.05 \u2014 reported honestly.",
+      "citations": []
+    },
+    {
+      "item": "bottleneck_selects_amp19q12_CCNE1",
+      "claim_type": "NEGATIVE_RESULT",
+      "tier": "COHORT_TESTED_NULL",
+      "effect": "delta 0.0079, Wilcoxon p=0.7646, BH-q=0.7646 \u2014 NO selection for this armor feature",
+      "cohort": "GSE165897, 11 paired pre/post",
+      "note": "Clean negative: the bottleneck does NOT select for an emergent armor state. The armor is pre-existing at diagnosis, not selected post-treatment.",
+      "citations": []
+    },
+    {
+      "item": "bottleneck_selects_amp8q24_MYC",
+      "claim_type": "NEGATIVE_RESULT",
+      "tier": "COHORT_TESTED_NULL",
+      "effect": "delta 0.0525, Wilcoxon p=0.123, BH-q=0.2051 \u2014 NO selection for this armor feature",
+      "cohort": "GSE165897, 11 paired pre/post",
+      "note": "Clean negative: the bottleneck does NOT select for an emergent armor state. The armor is pre-existing at diagnosis, not selected post-treatment.",
+      "citations": []
+    },
+    {
+      "item": "bottleneck_selects_CCNE1_expr",
+      "claim_type": "NEGATIVE_RESULT",
+      "tier": "COHORT_TESTED_NULL",
+      "effect": "delta -0.0209, Wilcoxon p=0.3652, BH-q=0.4565 \u2014 NO selection for this armor feature",
+      "cohort": "GSE165897, 11 paired pre/post",
+      "note": "Clean negative: the bottleneck does NOT select for an emergent armor state. The armor is pre-existing at diagnosis, not selected post-treatment.",
+      "citations": []
+    }
+  ],
+  "citations_index_note": "Citation integers are LiteratureSearch document indices from the session references.jsonl.",
+  "governance_notes": [
+    "LATIFY delta is QUARANTINED \u2014 do not cite the delta; responder 0.8936 vs non-responder 0.6295 only.",
+    "DDR 0.983 figure is QUARANTINED (DL-07 publication-blocking) \u2014 do not cite.",
+    "No efficacy claim is derived from the two session cohorts (BriTROC-1, GSE165897)."
+  ]
+}

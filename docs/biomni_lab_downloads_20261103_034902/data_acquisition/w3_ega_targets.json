@@ -1,0 +1,157 @@
+{
+  "workstream": "W3_EGA_BriTROC1_Sig7_SerialSAE",
+  "generated_by": "discovery-only; EGA metadata is PUBLIC and retrieved; no controlled BAMs downloaded",
+  "primary_dataset": {
+    "accession": "EGAD00001011049",
+    "metadata_http_status": 200,
+    "title": "Shallow whole genome sequencing",
+    "description": "This dataset contains a collection of tumour samples from high grade serous ovarian carcinoma patients with recurrent disease collected near the point of diagnosis as well as tumour samples collected after patient relapse upon or some time after study entry. The majority of diagnosis samples were preserved in neutral buffered formalin whereas the majority of post-relapse samples were preserved in universal molecular fixative (UMFIX, Sakura Finetek USA, Inc). DNA was extracted and whole genome sequencing libraries were prepared either using the TruSeq DNA Nano kit (Illumina) or the ThruPLEX DNA-Seq Kit (Takara Bio), which were respectively sequenced  at low depth (~0.1-0.5X) on illumina HiSeq 2500 and HiSeq 4000 sequencing platforms. Sequenced reads were aligned to the GRCh37 reference genome (release hs37d5).",
+    "n_files_enumerated": 679,
+    "file_extension_counts": {
+      "1686226522866": 35,
+      "1686225624218": 68,
+      "bam": 349,
+      "1686225624217": 17,
+      "1686224724563": 88,
+      "1686227421296": 3,
+      "1686228321056": 1,
+      "1686223823627": 70,
+      "1686222924909": 27,
+      "1686295822423": 9,
+      "1686301221654": 1,
+      "1686296723275": 5,
+      "1686299422183": 1,
+      "1686298522622": 1,
+      "1686297621622": 1,
+      "1686294922420": 3
+    },
+    "total_bytes_enumerated": 510904669401,
+    "total_gib_enumerated": 475.8,
+    "sample_file_records": [
+      {
+        "accession_id": "EGAF00008095047",
+        "filesize": 795045329,
+        "md5": "c4ddcc36f80d8ed53df3a6a0a9246228",
+        "locations": [
+          "crg",
+          "ebi"
+        ]
+      },
+      {
+        "accession_id": "EGAF00008095048",
+        "filesize": 849831916,
+        "md5": "f7ca45f03e68c3601701a9f1b700d597",
+        "locations": [
+          "crg",
+          "ebi"
+        ]
+      },
+      {
+        "accession_id": "EGAF00008095049",
+        "filesize": 1283561990,
+        "md5": "f3789ee85386d6b7b762d6d46978efe4",
+        "locations": [
+          "crg",
+          "ebi"
+        ]
+      },
+      {
+        "accession_id": "EGAF00008095050",
+        "filesize": 826148821,
+        "md5": "53535e0fb3baebccf0c2fe62f71d2258",
+        "locations": [
+          "crg",
+          "ebi"
+        ]
+      },
+      {
+        "accession_id": "EGAF00008095051",
+        "filesize": 959835990,
+        "md5": "291664789a4a05231dfce27fff1ed410",
+        "locations": [
+          "crg",
+          "ebi"
+        ]
+      },
+      {
+        "accession_id": "EGAF00008095052",
+        "filesize": 928105122,
+        "md5": "a5ef2ea9991a72e9ebd576042d17320e",
+        "locations": [
+          "crg",
+          "ebi"
+        ]
+      },
+      {
+        "accession_id": "EGAF00008095053",
+        "filesize": 1202359644,
+        "md5": "0114bd35afba21852a58501587aebbad",
+        "locations": [
+          "crg",
+          "ebi"
+        ]
+      },
+      {
+        "accession_id": "EGAF00008095054",
+        "filesize": 652677721,
+        "md5": "17af6898c6704447fcc629b12e69633a",
+        "locations": [
+          "crg",
+          "ebi"
+        ]
+      }
+    ],
+    "access_state": "METADATA_VERIFIED_PUBLIC (files) + SCRIPT_READY_PENDING_USER_AUTH (download)",
+    "serial_sae_pairs": 182
+  },
+  "pairing_schema_sig7_serialSAE": {
+    "goal": "pair diagnosis (pre-treatment) vs relapse (post-platinum) tumour samples per patient",
+    "join_key": "EGA sample/subject id via /datasets/{ds}/samples (sample metadata carries case + timepoint)",
+    "timepoint_field": "sample attribute distinguishing 'diagnosis'/'archival' vs 'relapse'/'post-relapse'",
+    "sig7_inputs": "shallow-WGS BAM/relative-CN -> copy-number signatures (Macintyre 2018 / BriTROC CN signatures); Sig7 = one CN signature component",
+    "serial_sae_inputs": "paired pre/post BAMs for the same patient -> serial structural/CN alteration events (SAE) tracking acquired resistance",
+    "endpoint": "true acquired platinum resistance (relapse after platinum) \u2014 the real-resistance endpoint"
+  },
+  "alternates": [
+    {
+      "dataset": "AOCS / OV-AU (ICGC)",
+      "portal": "https://dcc.icgc.org (OV-AU) / PCAWG via EGA",
+      "enables": "primary HGSOC WGS somatic + CN signatures; some primary-resistance annotation",
+      "access": "ICGC DACO / EGA DAC controlled",
+      "claim_it_cures": "Sig7 primary-resistance signature (ALTERNATE)"
+    },
+    {
+      "dataset": "PCAWG ovarian (EGAD00001001800-family)",
+      "portal": "EGA/GDC PCAWG",
+      "enables": "WGS mutational + CN signatures",
+      "access": "controlled",
+      "claim_it_cures": "mutational-signature validation (ALTERNATE)"
+    }
+  ],
+  "access_requirements": [
+    "EGA account + DAC-approved Data Access Agreement for EGAD00001011049 (BriTROC-1 DAC)",
+    "pyega3 client with an EGA credentials JSON (username/password)"
+  ],
+  "honest_access_summary": "BriTROC-1 EGAD00001011049 dataset + file metadata are public and were retrieved here (679 files enumerated with accessions, sizes, MD5s, CRG/EBI mirrors). Actual sWGS BAM/CRAM download requires the BriTROC-1 DAC to approve your EGA application; the pyega3 manifest below pulls them once your EGA credentials are active. No sequence data was downloaded.",
+  "verified_pairing_facts": {
+    "total_samples": 679,
+    "sample_title_breakdown": {
+      "diagnosis tumour DNA": 385,
+      "relapse tumour DNA": 294
+    },
+    "distinct_subjects": 265,
+    "serial_sae_pairs_diagnosis_AND_relapse": 182,
+    "join_key_confirmed": "subject_id (e.g. '1') + title ('diagnosis tumour DNA' vs 'relapse tumour DNA')",
+    "sample_metadata_endpoint": "https://metadata.ega-archive.org/datasets/EGAD00001011049/samples (PUBLIC, verified)",
+    "bam_record_example": {
+      "accession_id": "EGAF00008095049",
+      "md5": "f3789ee85386d6b7b762d6d46978efe4",
+      "filesize": 1283561990,
+      "locations": [
+        "crg",
+        "ebi"
+      ]
+    },
+    "file_extension_note": "349 records have extension='bam'; the remaining records show numeric 'extension' strings (EGA metadata quirk for index/aux files) \u2014 these are companion files, not a parsing error."
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "branches": {
+    "A": {
+      "branch": "review/zeta-core-v4-psa-feature",
+      "commit_rc": 0,
+      "commit_stat": [
+        "37cc35f6 ci: do not count an expected failure as an unexpected skip",
+        " release_inventory/SHA256SUMS             |  4 ++--",
+        " scripts/ci/assert_no_unexpected_skips.py | 33 +++++++++++++++++++++++++++-----",
+        " 2 files changed, 30 insertions(+), 7 deletions(-)"
+      ],
+      "commit_stderr": "",
+      "commit_stdout": "[review/zeta-core-v4-psa-feature 37cc35f6] ci: do not count an expected failure as an unexpected skip\n 2 files changed, 30 insertions(+), 7 deletions(-)",
+      "dirty_after": [
+        "?? .cache/"
+      ],
+      "dirty_before": [
+        "?? .cache/"
+      ],
+      "gate_sha256_after": "2a0681360926bde85e257b50cdcd72cd5b0417a28ab64ec58a7a01b1fc800311",
+      "head_after": "37cc35f653a09ca8c828fe76c4beb3049df302ea",
+      "head_before": "711f01885430a2e4d3e7a6450dcdfc7102322b29",
+      "previous_gate_sha256": "cd429d670e1a990b10e300a444041bcec3495b65e55d5f3d6a3154ad98989dc9",
+      "sha256sums_selfcheck": {
+        "failed_lines": 0,
+        "ok_lines": 12,
+        "rc": 0
+      },
+      "tree": "/workspace/pr_a_build",
+      "tree_after": "d680f974505daba61680d93ccb08ee4a5d0f0c2f"
+    },
+    "B": {
+      "branch": "review/cohere-key-harness",
+      "commit_rc": 0,
+      "commit_stat": [
+        "57e6c312 ci: do not count an expected failure as an unexpected skip",
+        " release_inventory/SHA256SUMS             |  4 ++--",
+        " scripts/ci/assert_no_unexpected_skips.py | 33 +++++++++++++++++++++++++++-----",
+        " 2 files changed, 30 insertions(+), 7 deletions(-)"
+      ],
+      "commit_stderr": "",
+      "commit_stdout": "[review/cohere-key-harness 57e6c312] ci: do not count an expected failure as an unexpected skip\n 2 files changed, 30 insertions(+), 7 deletions(-)",
+      "dirty_after": [
+        "?? .cache/"
+      ],
+      "dirty_before": [
+        "?? .cache/"
+      ],
+      "gate_sha256_after": "2a0681360926bde85e257b50cdcd72cd5b0417a28ab64ec58a7a01b1fc800311",
+      "head_after": "57e6c312822af0decc8acca6e5bd34d4410522b0",
+      "head_before": "91b0df34ef042f6bc4d2c7771677a072bd9cb949",
+      "previous_gate_sha256": "cd429d670e1a990b10e300a444041bcec3495b65e55d5f3d6a3154ad98989dc9",
+      "sha256sums_selfcheck": {
+        "failed_lines": 0,
+        "ok_lines": 12,
+        "rc": 0
+      },
+      "tree": "/workspace/pr_b_build",
+      "tree_after": "9d8d221d078be6c34770cee68bd1df3436957c1a"
+    }
+  },
+  "fixed_gate_sha256": "2a0681360926bde85e257b50cdcd72cd5b0417a28ab64ec58a7a01b1fc800311",
+  "gate_byte_identical_across_branches": true,
+  "generated_utc": "2026-08-14T04:42:54+00:00"
+}

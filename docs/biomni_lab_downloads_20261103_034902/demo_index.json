@@ -1,0 +1,28 @@
+{
+  "description": "Persona-specific landing page demo specifications for CrisPRO",
+  "governance_mode": "clean_plus_roadmap",
+  "language": "plain_english_no_jargon",
+  "demos": {
+    "pharma": {
+      "file": "demo_pharma_spec.json",
+      "title": "Finding the Patients Who Respond",
+      "stages": 7,
+      "roadmap_items": 3,
+      "key_data": "CRC ranker (485 MSS patients, TMB>=25 subgroup n=9, STC-1010 ranks 1st for all 9)"
+    },
+    "patient": {
+      "file": "demo_patient_spec.json",
+      "title": "Understanding Your Treatment Options",
+      "stages": 6,
+      "roadmap_items": 3,
+      "key_data": "Ayesha profile (HGS ovarian cancer Stage IVB, MSS, PD-L1 CPS 10, MBD4 mutation)"
+    },
+    "tumor_board": {
+      "file": "demo_tumor_board_spec.json",
+      "title": "Multi-Disciplinary Case Review",
+      "stages": 7,
+      "roadmap_items": 4,
+      "key_data": "Multi-level analysis (L1/L2/L3), drug ranking, resistance forecast, synthetic lethality"
+    }
+  }
+}

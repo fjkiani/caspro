@@ -834,7 +834,7 @@ export default function TargetLockBrainMetScrollSurface() {
               className={`h-4 w-px ${isDarkMode ? 'bg-zinc-800' : 'bg-slate-300'}`}
             />
             <Link
-              href="/engine/target-lock/tabs/"
+              href="/engine/target-lock/"
               className={`text-[9px] font-black uppercase tracking-widest flex items-center gap-2 transition-colors ${
                 isDarkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-indigo-600 hover:text-indigo-700'
               }`}
@@ -967,7 +967,7 @@ export default function TargetLockBrainMetScrollSurface() {
         </p>
         <div className="flex items-center justify-center gap-4">
           <Link
-            href="/engine/target-lock/tabs/"
+            href="/engine/target-lock/"
             className={`px-6 py-3 rounded-sm border text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3 transition-colors ${
               isDarkMode
                 ? 'border-cyan-500/40 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20'

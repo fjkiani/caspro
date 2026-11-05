@@ -1,0 +1,476 @@
+{
+  "analysis_id": "B6_JOINT_BOOTSTRAP_CDF_AND_BETA",
+  "band_stability": {
+    "concordance_by_distance_to_band_cut": [
+      {
+        "distance_to_band_cut": "[0.0, 0.02)",
+        "mean_band_concordance": 0.66875,
+        "n_reference_knots": 34
+      },
+      {
+        "distance_to_band_cut": "[0.02, 0.05)",
+        "mean_band_concordance": 0.93925,
+        "n_reference_knots": 56
+      },
+      {
+        "distance_to_band_cut": "[0.05, 0.1)",
+        "mean_band_concordance": 0.9991363636363636,
+        "n_reference_knots": 88
+      },
+      {
+        "distance_to_band_cut": "[0.1, 0.25)",
+        "mean_band_concordance": 1.0,
+        "n_reference_knots": 268
+      }
+    ],
+    "full_grid_concordance": 0.9455789473684211,
+    "knife_edge_note": "The frozen Q1 and Q3 knots sit exactly on the band cut points (111.5/446 = 0.25 and 334.5/446 = 0.75), so the prespecified quartile grid measures stability at the least stable possible points. Read it together with the population-wide concordance and the distance-to-cut strata.",
+    "population_wide_concordance_all_446_knots": 0.9669495515695067,
+    "prespecified_criterion": ">= 90% band concordance at the frozen quartile knots",
+    "prespecified_criterion_met": false,
+    "quartile_knot_concordance": 0.6661666666666667
+  },
+  "beta": {
+    "bootstrap_ci": [
+      -0.2897001249917215,
+      -0.0652229293447069
+    ],
+    "bootstrap_mean": -0.17529805959509517,
+    "bootstrap_sd": 0.055602672220444856,
+    "bootstrap_se_vs_analytic_se_ratio": 0.9792209459705274,
+    "direction_stability": 1.0,
+    "frozen_analytic_se": 0.05678256010479415,
+    "frozen_beta": -0.17278419421744848,
+    "mean_model_se": 0.05728624613985672,
+    "note": "beta < 0 in a replicate means the deployed direction holds: faster PSA elimination -> higher percentile -> lower relative hazard.",
+    "replicates_with_nonnegative_beta": 0
+  },
+  "bootstrap": {
+    "elapsed_seconds": 49.78,
+    "replicates_failed_to_fit": 0,
+    "replicates_fitted": 2000,
+    "replicates_requested": 2000,
+    "resamples_cdf_and_beta_jointly": true,
+    "seed": 20260813
+  },
+  "does_not_activate_any_absolute_risk_or_treatment_field": true,
+  "frozen_artifact": {
+    "content_sha256": "a1acb23232c13a4089f6eb78a426292816864b2345e4651ccf01eaa7abd9d51f",
+    "n_events_reference": 296,
+    "n_knots": 446,
+    "n_reference": 446,
+    "percentile_bounds": [
+      0.0011210762331838565,
+      0.9988789237668162
+    ]
+  },
+  "interpretation_constraints": [
+    "Relative prognostic index only; no absolute survival probability.",
+    "Bands are deterministic display categories, not decision thresholds.",
+    "This analysis cannot and does not create absolute-risk calibration."
+  ],
+  "not_a_calibration_analysis": true,
+  "purpose": "Quantify joint uncertainty of the frozen reference CDF and the Cox coefficient, and the stability of the descriptive display bands.",
+  "query_grid": [
+    {
+      "band_concordance": 1.0,
+      "bootstrap_multiplier_ci": [
+        1.113101330040186,
+        1.6123142326765207
+      ],
+      "bootstrap_multiplier_mean": 1.3401393596888949,
+      "bootstrap_percentile_ci": [
+        0.030269058295964126,
+        0.0717488789237668
+      ],
+      "bootstrap_percentile_mean": 0.05068025920447073,
+      "distance_to_nearest_band_cut": 0.19955156950672645,
+      "frozen_band": "HIGHER_RELATIVE_HAZARD",
+      "frozen_multiplier": 1.3277106186751508,
+      "frozen_percentile": 0.05044843049327354,
+      "frozen_z_rank": -1.640521119241173,
+      "is_quartile_knot": false,
+      "k_day": 0.0019470501424616595,
+      "target_percentile": 0.05
+    },
+    {
+      "band_concordance": 1.0,
+      "bootstrap_multiplier_ci": [
+        1.0857897528107088,
+        1.4587829238515273
+      ],
+      "bootstrap_multiplier_mean": 1.2562500417803721,
+      "bootstrap_percentile_ci": [
+        0.07324836342615376,
+        0.12857078164358418
+      ],
+      "bootstrap_percentile_mean": 0.09987839342891258,
+      "distance_to_nearest_band_cut": 0.15022421524663676,
+      "frozen_band": "HIGHER_RELATIVE_HAZARD",
+      "frozen_multiplier": 1.2481379282354255,
+      "frozen_percentile": 0.09977578475336323,
+      "frozen_z_rank": -1.2828302048327225,
+      "is_quartile_knot": false,
+      "k_day": 0.0034892855546352617,
+      "target_percentile": 0.1
+    },
+    {
+      "band_concordance": 1.0,
+      "bootstrap_multiplier_ci": [
+        1.06897849404329,
+        1.3599194187562496
+      ],
+      "bootstrap_multiplier_mean": 1.2026678559992856,
+      "bootstrap_percentile_ci": [
+        0.11627295647537456,
+        0.18273943354434705
+      ],
+      "bootstrap_percentile_mean": 0.14937071239392627,
+      "distance_to_nearest_band_cut": 0.1008968609865471,
+      "frozen_band": "HIGHER_RELATIVE_HAZARD",
+      "frozen_multiplier": 1.1969124277945677,
+      "frozen_percentile": 0.1491031390134529,
+      "frozen_z_rank": -1.0402876546457702,
+      "is_quartile_knot": false,
+      "k_day": 0.004624547402405561,
+      "target_percentile": 0.15
+    },
+    {
+      "band_concordance": 0.991,
+      "bootstrap_multiplier_ci": [
+        1.0542757856869833,
+        1.2841895765544689
+      ],
+      "bootstrap_multiplier_mean": 1.1598323799386168,
+      "bootstrap_percentile_ci": [
+        0.1641787966736929,
+        0.23878923766816143
+      ],
+      "bootstrap_percentile_mean": 0.20108498731333665,
+      "distance_to_nearest_band_cut": 0.04932735426008969,
+      "frozen_band": "HIGHER_RELATIVE_HAZARD",
+      "frozen_multiplier": 1.15604434291841,
+      "frozen_percentile": 0.2006726457399103,
+      "frozen_z_rank": -0.8392210242215428,
+      "is_quartile_knot": false,
+      "k_day": 0.005923076824966684,
+      "target_percentile": 0.2
+    },
+    {
+      "band_concordance": 0.493,
+      "bootstrap_multiplier_ci": [
+        1.0421668473120753,
+        1.2249919011483135
+      ],
+      "bootstrap_multiplier_mean": 1.1268231122973809,
+      "bootstrap_percentile_ci": [
+        0.20964125560538116,
+        0.2897916250199362
+      ],
+      "bootstrap_percentile_mean": 0.24962711209459004,
+      "distance_to_nearest_band_cut": 0.0,
+      "frozen_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "frozen_multiplier": 1.123603766029922,
+      "frozen_percentile": 0.25,
+      "frozen_z_rank": -0.6744897501960817,
+      "is_quartile_knot": true,
+      "k_day": 0.007266565079515904,
+      "target_percentile": 0.25
+    },
+    {
+      "band_concordance": 0.9915,
+      "bootstrap_multiplier_ci": [
+        1.033524667768059,
+        1.1735791334146275
+      ],
+      "bootstrap_multiplier_mean": 1.0974475565871364,
+      "bootstrap_percentile_ci": [
+        0.2582275556014547,
+        0.3421412965872588
+      ],
+      "bootstrap_percentile_mean": 0.2991021310547025,
+      "distance_to_nearest_band_cut": 0.04932735426008966,
+      "frozen_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "frozen_multiplier": 1.0952060926505367,
+      "frozen_percentile": 0.29932735426008966,
+      "frozen_z_rank": -0.5263360947848771,
+      "is_quartile_knot": false,
+      "k_day": 0.008608603133116968,
+      "target_percentile": 0.3
+    },
+    {
+      "band_concordance": 1.0,
+      "bootstrap_multiplier_ci": [
+        1.0234669246845802,
+        1.1260989131299317
+      ],
+      "bootstrap_multiplier_mean": 1.069709425464928,
+      "bootstrap_percentile_ci": [
+        0.30829596412556054,
+        0.3957399103139013
+      ],
+      "bootstrap_percentile_mean": 0.35107976089438353,
+      "distance_to_nearest_band_cut": 0.1008968609865471,
+      "frozen_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "frozen_multiplier": 1.0683966984833413,
+      "frozen_percentile": 0.3508968609865471,
+      "frozen_z_rank": -0.38290025542070094,
+      "is_quartile_knot": false,
+      "k_day": 0.009798992272698257,
+      "target_percentile": 0.35
+    },
+    {
+      "band_concordance": 1.0,
+      "bootstrap_multiplier_ci": [
+        1.0144143090828397,
+        1.0889364659995409
+      ],
+      "bootstrap_multiplier_mean": 1.045577490449299,
+      "bootstrap_percentile_ci": [
+        0.35538116591928254,
+        0.4449848140040122
+      ],
+      "bootstrap_percentile_mean": 0.40026465927196486,
+      "distance_to_nearest_band_cut": 0.15022421524663676,
+      "frozen_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "frozen_multiplier": 1.044641857442383,
+      "frozen_percentile": 0.40022421524663676,
+      "frozen_z_rank": -0.2527667922507325,
+      "is_quartile_knot": false,
+      "k_day": 0.010692566378774374,
+      "target_percentile": 0.4
+    },
+    {
+      "band_concordance": 1.0,
+      "bootstrap_multiplier_ci": [
+        1.0022170415335103,
+        1.0545155608293388
+      ],
+      "bootstrap_multiplier_mean": 1.0228102829801158,
+      "bootstrap_percentile_ci": [
+        0.40248859130424836,
+        0.49327354260089684
+      ],
+      "bootstrap_percentile_mean": 0.4492137060170215,
+      "distance_to_nearest_band_cut": 0.19955156950672648,
+      "frozen_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "frozen_multiplier": 1.0221498096836679,
+      "frozen_percentile": 0.4495515695067265,
+      "frozen_z_rank": -0.1267943862337074,
+      "is_quartile_knot": false,
+      "k_day": 0.011698750471815322,
+      "target_percentile": 0.45
+    },
+    {
+      "band_concordance": 1.0,
+      "bootstrap_multiplier_ci": [
+        0.9789257485746798,
+        1.0227650285231118
+      ],
+      "bootstrap_multiplier_mean": 0.999789701724336,
+      "bootstrap_percentile_ci": [
+        0.45403587443946186,
+        0.5443829462839189
+      ],
+      "bootstrap_percentile_mean": 0.5008336022546588,
+      "distance_to_nearest_band_cut": 0.2488789237668162,
+      "frozen_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "frozen_multiplier": 0.9995145726599445,
+      "frozen_percentile": 0.5011210762331838,
+      "frozen_z_rank": 0.0028101250826116472,
+      "is_quartile_knot": true,
+      "k_day": 0.01342055450463369,
+      "target_percentile": 0.5
+    },
+    {
+      "band_concordance": 1.0,
+      "bootstrap_multiplier_ci": [
+        0.951268199782194,
+        0.9977860700394404
+      ],
+      "bootstrap_multiplier_mean": 0.9782621657855896,
+      "bootstrap_percentile_ci": [
+        0.5056053811659192,
+        0.5964175701348482
+      ],
+      "bootstrap_percentile_mean": 0.5502532949737511,
+      "distance_to_nearest_band_cut": 0.19955156950672648,
+      "frozen_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "frozen_multiplier": 0.9783301728632883,
+      "frozen_percentile": 0.5504484304932735,
+      "frozen_z_rank": 0.1267943862337074,
+      "is_quartile_knot": false,
+      "k_day": 0.014987211730129646,
+      "target_percentile": 0.55
+    },
+    {
+      "band_concordance": 1.0,
+      "bootstrap_multiplier_ci": [
+        0.92064517191943,
+        0.9856598319771886
+      ],
+      "bootstrap_multiplier_mean": 0.9565867749348819,
+      "bootstrap_percentile_ci": [
+        0.5567157159296856,
+        0.6435755257618122
+      ],
+      "bootstrap_percentile_mean": 0.6004021323503628,
+      "distance_to_nearest_band_cut": 0.15022421524663676,
+      "frozen_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "frozen_multiplier": 0.95726587334756,
+      "frozen_percentile": 0.5997757847533632,
+      "frozen_z_rank": 0.2527667922507325,
+      "is_quartile_knot": false,
+      "k_day": 0.016229535554924037,
+      "target_percentile": 0.6
+    },
+    {
+      "band_concordance": 1.0,
+      "bootstrap_multiplier_ci": [
+        0.8886370142006866,
+        0.9762994960745172
+      ],
+      "bootstrap_multiplier_mean": 0.9350913457770952,
+      "bootstrap_percentile_ci": [
+        0.6053811659192825,
+        0.6917040358744395
+      ],
+      "bootstrap_percentile_mean": 0.6498353521955915,
+      "distance_to_nearest_band_cut": 0.10089686098654704,
+      "frozen_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "frozen_multiplier": 0.935981926394536,
+      "frozen_percentile": 0.649103139013453,
+      "frozen_z_rank": 0.38290025542070105,
+      "is_quartile_knot": false,
+      "k_day": 0.017740052611661568,
+      "target_percentile": 0.65
+    },
+    {
+      "band_concordance": 0.9905,
+      "bootstrap_multiplier_ci": [
+        0.8559071369471942,
+        0.9663713316242415
+      ],
+      "bootstrap_multiplier_mean": 0.9120692102195452,
+      "bootstrap_percentile_ci": [
+        0.6603139013452914,
+        0.7430259249463975
+      ],
+      "bootstrap_percentile_mean": 0.7013453826345518,
+      "distance_to_nearest_band_cut": 0.04932735426008972,
+      "frozen_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "frozen_multiplier": 0.9130701579461397,
+      "frozen_percentile": 0.7006726457399103,
+      "frozen_z_rank": 0.5263360947848769,
+      "is_quartile_knot": false,
+      "k_day": 0.019652394406045,
+      "target_percentile": 0.7
+    },
+    {
+      "band_concordance": 0.5055,
+      "bootstrap_multiplier_ci": [
+        0.8240254221941609,
+        0.9565905477325981
+      ],
+      "bootstrap_multiplier_mean": 0.8894529369763858,
+      "bootstrap_percentile_ci": [
+        0.7084833523759813,
+        0.7881165919282511
+      ],
+      "bootstrap_percentile_mean": 0.7497431388184017,
+      "distance_to_nearest_band_cut": 0.0,
+      "frozen_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "frozen_multiplier": 0.8899934569758015,
+      "frozen_percentile": 0.75,
+      "frozen_z_rank": 0.6744897501960817,
+      "is_quartile_knot": true,
+      "k_day": 0.021118830402140517,
+      "target_percentile": 0.75
+    },
+    {
+      "band_concordance": 0.9945,
+      "bootstrap_multiplier_ci": [
+        0.7878324355641293,
+        0.9465753570892986
+      ],
+      "bootstrap_multiplier_mean": 0.8645470015830449,
+      "bootstrap_percentile_ci": [
+        0.7613180598644398,
+        0.8342840277768119
+      ],
+      "bootstrap_percentile_mean": 0.7988988611750535,
+      "distance_to_nearest_band_cut": 0.04932735426008972,
+      "frozen_band": "LOWER_RELATIVE_HAZARD",
+      "frozen_multiplier": 0.8650187219250784,
+      "frozen_percentile": 0.7993273542600897,
+      "frozen_z_rank": 0.8392210242215428,
+      "is_quartile_knot": false,
+      "k_day": 0.023377358318619874,
+      "target_percentile": 0.8
+    },
+    {
+      "band_concordance": 1.0,
+      "bootstrap_multiplier_ci": [
+        0.741643910551522,
+        0.9349436380115068
+      ],
+      "bootstrap_multiplier_mean": 0.8348102373713493,
+      "bootstrap_percentile_ci": [
+        0.8172645739910314,
+        0.8811659192825112
+      ],
+      "bootstrap_percentile_mean": 0.8507739432838706,
+      "distance_to_nearest_band_cut": 0.10089686098654704,
+      "frozen_band": "LOWER_RELATIVE_HAZARD",
+      "frozen_multiplier": 0.835483011771046,
+      "frozen_percentile": 0.850896860986547,
+      "frozen_z_rank": 1.0402876546457698,
+      "is_quartile_knot": false,
+      "k_day": 0.02640045708862468,
+      "target_percentile": 0.85
+    },
+    {
+      "band_concordance": 1.0,
+      "bootstrap_multiplier_ci": [
+        0.6907751596877464,
+        0.9196631630594055
+      ],
+      "bootstrap_multiplier_mean": 0.8006881798077999,
+      "bootstrap_percentile_ci": [
+        0.8721973094170403,
+        0.926013262650797
+      ],
+      "bootstrap_percentile_mean": 0.9002180056266632,
+      "distance_to_nearest_band_cut": 0.15022421524663676,
+      "frozen_band": "LOWER_RELATIVE_HAZARD",
+      "frozen_multiplier": 0.8011935038411705,
+      "frozen_percentile": 0.9002242152466368,
+      "frozen_z_rank": 1.2828302048327225,
+      "is_quartile_knot": false,
+      "k_day": 0.03061593560707544,
+      "target_percentile": 0.9
+    },
+    {
+      "band_concordance": 1.0,
+      "bootstrap_multiplier_ci": [
+        0.6266750214277262,
+        0.8968413075765439
+      ],
+      "bootstrap_multiplier_mean": 0.7532186026703019,
+      "bootstrap_percentile_ci": [
+        0.9271300448430493,
+        0.9681181956254028
+      ],
+      "bootstrap_percentile_mean": 0.949325875691564,
+      "distance_to_nearest_band_cut": 0.19955156950672648,
+      "frozen_band": "LOWER_RELATIVE_HAZARD",
+      "frozen_multiplier": 0.7531761710227526,
+      "frozen_percentile": 0.9495515695067265,
+      "frozen_z_rank": 1.640521119241173,
+      "is_quartile_knot": false,
+      "k_day": 0.03729493163659476,
+      "target_percentile": 0.95
+    }
+  ],
+  "source_basename": "kelim_multicohort_standardized.parquet"
+}

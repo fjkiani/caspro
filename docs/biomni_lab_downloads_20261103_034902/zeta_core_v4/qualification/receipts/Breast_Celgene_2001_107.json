@@ -1,0 +1,18 @@
+{
+  "caslib": "Breast_Celgene_2001_107",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CA15_3",
+    "CA27_29"
+  ],
+  "indication": "breast",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 0,
+  "n_tabular_files": 0,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "9b13522163097d3c9c39d03cdc93fde0d0a3046cec3e56fb8c60c05a79af9c5a",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": []
+}

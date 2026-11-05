@@ -1,0 +1,123 @@
+{
+  "cohort": "BriTROC-1",
+  "modality": "shallow-WGS copy-number signatures (sig1-7)",
+  "n_patients": 40,
+  "n_resistant": 3,
+  "n_sensitive": 37,
+  "EPV_single_feature": 3,
+  "sig7_relapse": {
+    "feature": "sig7_relapse",
+    "auroc": 0.8739,
+    "ci": [
+      0.75,
+      0.973
+    ],
+    "wilcoxon_p": 0.035,
+    "n": 40,
+    "events": 3,
+    "direction": "pred(>0.5)",
+    "q_bh": 0.245,
+    "sig_fdr05": false
+  },
+  "all_features": [
+    {
+      "feature": "sig1_relapse",
+      "auroc": 0.3063,
+      "ci": [
+        0.0513,
+        0.5315
+      ],
+      "wilcoxon_p": 0.2957,
+      "n": 40,
+      "events": 3,
+      "direction": "opp(<0.5)",
+      "q_bh": 0.345,
+      "sig_fdr05": false
+    },
+    {
+      "feature": "sig2_relapse",
+      "auroc": 0.4505,
+      "ci": [
+        0.1538,
+        0.7027
+      ],
+      "wilcoxon_p": 0.7973,
+      "n": 40,
+      "events": 3,
+      "direction": "opp(<0.5)",
+      "q_bh": 0.7973,
+      "sig_fdr05": false
+    },
+    {
+      "feature": "sig3_relapse",
+      "auroc": 0.2523,
+      "ci": [
+        0.0263,
+        0.5385
+      ],
+      "wilcoxon_p": 0.1751,
+      "n": 40,
+      "events": 3,
+      "direction": "opp(<0.5)",
+      "q_bh": 0.3357,
+      "sig_fdr05": false
+    },
+    {
+      "feature": "sig4_relapse",
+      "auroc": 0.7297,
+      "ci": [
+        0.359,
+        1.0
+      ],
+      "wilcoxon_p": 0.1915,
+      "n": 40,
+      "events": 3,
+      "direction": "pred(>0.5)",
+      "q_bh": 0.3357,
+      "sig_fdr05": false
+    },
+    {
+      "feature": "sig5_relapse",
+      "auroc": 0.2793,
+      "ci": [
+        0.1184,
+        0.5385
+      ],
+      "wilcoxon_p": 0.2055,
+      "n": 40,
+      "events": 3,
+      "direction": "opp(<0.5)",
+      "q_bh": 0.3357,
+      "sig_fdr05": false
+    },
+    {
+      "feature": "sig6_relapse",
+      "auroc": 0.7027,
+      "ci": [
+        0.5,
+        0.875
+      ],
+      "wilcoxon_p": 0.2398,
+      "n": 40,
+      "events": 3,
+      "direction": "pred(>0.5)",
+      "q_bh": 0.3357,
+      "sig_fdr05": false
+    },
+    {
+      "feature": "sig7_relapse",
+      "auroc": 0.8739,
+      "ci": [
+        0.75,
+        0.973
+      ],
+      "wilcoxon_p": 0.035,
+      "n": 40,
+      "events": 3,
+      "direction": "pred(>0.5)",
+      "q_bh": 0.245,
+      "sig_fdr05": false
+    }
+  ],
+  "fragility_note": "EPV=3. With only 3 resistant patients any single-feature AUROC is high-variance; CI width reflects this. Prior positive result (sig7 relapse AUROC~0.874) is reproduced in TENDENCY here but remains fragile and must not be over-read."
+}

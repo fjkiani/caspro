@@ -44,8 +44,9 @@ export const AK_MUTATIONS: Mutation[] = [
     alt: 'A',
     consequence: 'frameshift_variant',
     assembly: 'GRCh38',
-    scoredByEvo2: true,
-    normalizationNote: 'left_pad_deletion — original AT→A normalized for indel VCF form',
+    scoredByEvo2: false,
+    normalizationNote:
+      'left_pad_deletion — original A→— left-padded to AT→A for indel VCF; live SL evo2_called:false',
     path: 'levels.L1.inputs_used.mutations[0]',
   },
   {

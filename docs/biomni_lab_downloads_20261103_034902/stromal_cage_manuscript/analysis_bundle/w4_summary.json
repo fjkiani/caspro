@@ -1,0 +1,71 @@
+{
+  "n": 75,
+  "n_pos": 41,
+  "n_neg": 34,
+  "top5_by_abs_deviation": [
+    {
+      "gene": "POSTN",
+      "auroc_raw": 0.3232,
+      "p_vs_0.5": 0.0041,
+      "p_bh_fdr": 0.1156
+    },
+    {
+      "gene": "LGALS1",
+      "auroc_raw": 0.3931,
+      "p_vs_0.5": 0.1149,
+      "p_bh_fdr": 0.7715
+    },
+    {
+      "gene": "FAP",
+      "auroc_raw": 0.3967,
+      "p_vs_0.5": 0.1226,
+      "p_bh_fdr": 0.7715
+    },
+    {
+      "gene": "CXCL12",
+      "auroc_raw": 0.4014,
+      "p_vs_0.5": 0.1367,
+      "p_bh_fdr": 0.7715
+    },
+    {
+      "gene": "PDGFRB",
+      "auroc_raw": 0.4082,
+      "p_vs_0.5": 0.1724,
+      "p_bh_fdr": 0.7715
+    }
+  ],
+  "apex_candidates": [
+    {
+      "gene": "POSTN",
+      "auroc_raw": 0.3232,
+      "auroc_abs_dev": 0.1768,
+      "p_vs_0.5": 0.0041,
+      "p_bh_fdr": 0.1156
+    },
+    {
+      "gene": "FAP",
+      "auroc_raw": 0.3967,
+      "auroc_abs_dev": 0.1033,
+      "p_vs_0.5": 0.1226,
+      "p_bh_fdr": 0.7715
+    },
+    {
+      "gene": "CXCL12",
+      "auroc_raw": 0.4014,
+      "auroc_abs_dev": 0.0986,
+      "p_vs_0.5": 0.1367,
+      "p_bh_fdr": 0.7715
+    },
+    {
+      "gene": "CXCL10",
+      "auroc_raw": 0.4684,
+      "auroc_abs_dev": 0.0316,
+      "p_vs_0.5": 0.6406,
+      "p_bh_fdr": 0.7715
+    }
+  ],
+  "n_genes_fdr_sig_0.05": 0,
+  "n_genes_nominal_sig_0.05": 1,
+  "interpretation": "Univariate out-of-distribution screen. Identifies which single genes carry standalone platinum-sensitivity signal after BH-FDR. Contextualizes whether the 2-gene Elastic Net core reflects the strongest individual drivers.",
+  "caveat": "Discovery-only, out-of-distribution, RUO. Raw-gene AUROC without orientation correction; |AUROC-0.5| measures discrimination magnitude in either direction."
+}

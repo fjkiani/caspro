@@ -1,0 +1,188 @@
+{
+  "dataset": "GSE165897 (Zhang 2022 Sci Adv)",
+  "n_patients": 11,
+  "gene_sets": {
+    "HR": [
+      "BRCA1",
+      "BRCA2",
+      "PALB2",
+      "RAD51",
+      "RAD51B",
+      "RAD51C",
+      "RAD51D",
+      "ATM",
+      "ATR",
+      "CHEK1",
+      "CHEK2",
+      "FANCA",
+      "FANCC",
+      "FANCD2",
+      "BARD1",
+      "BRIP1",
+      "XRCC2",
+      "XRCC3",
+      "RAD54L",
+      "MRE11",
+      "NBN",
+      "RAD50",
+      "EXO1",
+      "BLM"
+    ],
+    "prolif_A_G2M": [
+      "CCNB1",
+      "CCNB2",
+      "CDK1",
+      "CDC20",
+      "PLK1",
+      "AURKA",
+      "AURKB",
+      "BUB1",
+      "BUB1B",
+      "CENPA",
+      "CENPE",
+      "CENPF",
+      "KIF11",
+      "KIF23",
+      "TOP2A",
+      "TPX2",
+      "UBE2C",
+      "NUSAP1"
+    ],
+    "prolif_B_S": [
+      "MCM2",
+      "MCM3",
+      "MCM4",
+      "MCM5",
+      "MCM6",
+      "MCM7",
+      "PCNA",
+      "RRM1",
+      "RRM2",
+      "TYMS",
+      "CDC6",
+      "CDC45",
+      "GINS2",
+      "DTL",
+      "CDCA7",
+      "SLBP",
+      "USP1",
+      "CLSPN"
+    ],
+    "disjoint_verified": true,
+    "present_counts": {
+      "HR_n": 23,
+      "prolifA_n": 18,
+      "prolifB_n": 18
+    }
+  },
+  "independent_malignant_call": {
+    "n_cells": 51786,
+    "author_EOC": 8806,
+    "independent_malignant": 8808,
+    "both_agree_malignant": 8796,
+    "independent_only": 12,
+    "author_only": 10,
+    "jaccard": 0.9975051031980039
+  },
+  "clonal_diversity_rarefied": {
+    "n_patients_evaluated": 11,
+    "mean_shannon_pct_change": -13.61,
+    "mean_dispersion_pct_change": 14.26,
+    "median_shannon_pct_change": -20.99,
+    "median_dispersion_pct_change": 12.36
+  },
+  "proliferation_arrest_regression": {
+    "hr_vs_prolifA": {
+      "before_wilcoxon_p": 0.1475,
+      "corr_with_proliferation_rho": 0.5636,
+      "corr_with_proliferation_p": 0.071,
+      "residual_shift_intercept": 0.0028,
+      "residual_shift_p_after_adjust": 0.4071,
+      "prolif_beta": 0.1969,
+      "prolif_beta_p": 0.0224
+    },
+    "hr_vs_prolifB": {
+      "before_wilcoxon_p": 0.1475,
+      "corr_with_proliferation_rho": 0.5727,
+      "corr_with_proliferation_p": 0.0655,
+      "residual_shift_intercept": 0.0,
+      "residual_shift_p_after_adjust": 0.9922,
+      "prolif_beta": 0.1434,
+      "prolif_beta_p": 0.1009
+    },
+    "ccG2M_vs_prolifB_Sphase": {
+      "before_wilcoxon_p": 0.0068,
+      "corr_with_proliferation_rho": 0.9,
+      "corr_with_proliferation_p": 0.0002,
+      "residual_shift_intercept": -0.0116,
+      "residual_shift_p_after_adjust": 0.1032,
+      "prolif_beta": 0.8293,
+      "prolif_beta_p": 0.0004
+    },
+    "ccSphase_vs_prolifA_G2M": {
+      "before_wilcoxon_p": 0.0322,
+      "corr_with_proliferation_rho": 0.9,
+      "corr_with_proliferation_p": 0.0002,
+      "residual_shift_intercept": 0.0047,
+      "residual_shift_p_after_adjust": 0.5621,
+      "prolif_beta": 0.9258,
+      "prolif_beta_p": 0.0004
+    },
+    "cellcycle_vs_prolifA_CIRCULAR": {
+      "before_wilcoxon_p": 0.0186,
+      "corr_with_proliferation_rho": 0.9909,
+      "corr_with_proliferation_p": 0.0,
+      "residual_shift_intercept": 0.003,
+      "residual_shift_p_after_adjust": 0.5317,
+      "prolif_beta": 0.9867,
+      "prolif_beta_p": 0.0
+    },
+    "cellcycle_vs_prolifB_CIRCULAR": {
+      "before_wilcoxon_p": 0.0186,
+      "corr_with_proliferation_rho": 0.9273,
+      "corr_with_proliferation_p": 0.0,
+      "residual_shift_intercept": -0.0049,
+      "residual_shift_p_after_adjust": 0.1481,
+      "prolif_beta": 0.9536,
+      "prolif_beta_p": 0.0
+    }
+  },
+  "proliferation_arrest_regression_noncircular_keys": [
+    "hr_vs_prolifA",
+    "hr_vs_prolifB",
+    "ccG2M_vs_prolifB_Sphase",
+    "ccSphase_vs_prolifA_G2M"
+  ],
+  "proliferation_arrest_regression_circular_keys": [
+    "cellcycle_vs_prolifA_CIRCULAR",
+    "cellcycle_vs_prolifB_CIRCULAR"
+  ],
+  "circularity_note": "cellcycle_score = PROLIF_A U PROLIF_B, so regressing it on PROLIF_A or PROLIF_B shares genes between predictor and outcome (circular, correlation inflated by construction). Those two pairings are reported ONLY for transparency. The PRIMARY, non-circular evidence is: (1) the HR-only score (disjoint from both proliferation sets) vs each proliferation set, and (2) cross-scored composites (scored on one proliferation set, regressed on the OTHER disjoint set: ccG2M_vs_prolifB_Sphase, ccSphase_vs_prolifA_G2M).",
+  "leave_one_patient_out": {
+    "ccG2M_vs_prolifB_Sphase": {
+      "beta_min": 0.6601,
+      "beta_max": 0.929,
+      "residual_p_min": 0.0232,
+      "residual_p_max": 0.3364
+    },
+    "ccSphase_vs_prolifA_G2M": {
+      "beta_min": 0.8094,
+      "beta_max": 1.0321,
+      "residual_p_min": 0.3872,
+      "residual_p_max": 0.79
+    },
+    "cellcycle_vs_prolifA_CIRCULAR": {
+      "beta_min": 0.9384,
+      "beta_max": 1.0244,
+      "residual_p_min": 0.2961,
+      "residual_p_max": 0.7476
+    },
+    "cellcycle_vs_prolifB_CIRCULAR": {
+      "beta_min": 0.8651,
+      "beta_max": 1.0262,
+      "residual_p_min": 0.0229,
+      "residual_p_max": 0.4249
+    }
+  },
+  "scope_statement": "Finding stated only at tested resolution: in this NACT single-cell cohort, apparent post-treatment collapse of HR/cell-cycle MEAN-EXPRESSION scores is substantially explained by proliferative arrest, not a change in DNA-repair status. No universal claim about RNA biomarkers."
+}

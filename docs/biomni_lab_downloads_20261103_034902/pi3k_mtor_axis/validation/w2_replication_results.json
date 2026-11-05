@@ -1,0 +1,37 @@
+{
+  "receipt_type": "w2_same_cohort_cross_pipeline_sensitivity_check",
+  "attempts": [
+    {
+      "study": "ov_tcga",
+      "ok": true
+    }
+  ],
+  "verdict": {
+    "dir_significant_p05": false,
+    "uns_significant_p05": false,
+    "concordant_with_w1_null": true
+  },
+  "scope_note": "This is NOT independent replication. The cohort used here (ov_tcga / ov_tcga_pub, n=303) is the SAME TCGA ovarian patient set as W1 (ov_tcga_pan_can_atlas_2018, n=299), reprocessed by a different cBioPortal pipeline. It demonstrates the prognostic null is stable to reprocessing/normalization, not that it replicates in an external cohort.",
+  "same_cohort_reprocessing": {
+    "study": "ov_tcga",
+    "zprofile": "ov_tcga_rna_seq_v2_mrna_median_Zscores",
+    "n": 303,
+    "events": 184,
+    "score_dir": {
+      "HR_per_1SD": 1.006716457086349,
+      "ci95_low": 0.8594693973351716,
+      "ci95_high": 1.1791903564115613,
+      "p": 0.9338773044101589,
+      "ph_test_p": 0.6123452657376145
+    },
+    "score_uns": {
+      "HR_per_1SD": 1.1645576207104094,
+      "ci95_low": 0.996351122266864,
+      "ci95_high": 1.3611611626121547,
+      "p": 0.05561566089612922,
+      "ph_test_p": 0.5712383044981502
+    },
+    "is_independent_of_w1": false,
+    "relationship_to_w1": "same TCGA-OV patients, different cBioPortal pipeline"
+  }
+}

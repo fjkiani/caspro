@@ -1,0 +1,81 @@
+{
+  "generated_utc": "2026-07-24T05:35:55.755135+00:00",
+  "frozen_version": "serial_sae_frozen_v1",
+  "success_criterion": "predicted direction (higher post-treatment pathway score -> resistant, AUROC>0.5) in >=2 independent cohorts BEYOND BriTROC-1",
+  "cohorts_beyond_britroc_supporting": 1,
+  "success_criterion_met": false,
+  "live_reproduction_confirmed": true,
+  "table": [
+    {
+      "cohort": "GSE165897 (discovery, live re-derived)",
+      "tests_prediction": "Yes",
+      "key": "post-DDR AUROC / post-DDR rho",
+      "auroc": 0.5714,
+      "extra": "rho=-0.2091 p=0.5372",
+      "events": 7,
+      "direction": "uninformative / headline NOT reproduced (pub rho -0.711)",
+      "verdict": "FAIL to reproduce headline"
+    },
+    {
+      "cohort": "BriTROC-1 (open CN, carried)",
+      "tests_prediction": "Yes",
+      "key": "CN sig7 relapse AUROC",
+      "auroc": 0.8739,
+      "extra": "p=0.035 CI0.7622-0.9717",
+      "events": 3,
+      "direction": ">0.5 (pred)",
+      "verdict": "POSITIVE but fragile (EPV=3; CN not expression)"
+    },
+    {
+      "cohort": "GSE160626 (DDR, live)",
+      "tests_prediction": "post-state analogue",
+      "key": "DDR AUROC R-vs-S",
+      "auroc": 0.375,
+      "extra": "p=0.4082 CI0.1169-0.6769",
+      "events": 8,
+      "direction": "OPPOSITE(<0.5)",
+      "verdict": "OPPOSITE direction"
+    },
+    {
+      "cohort": "GSE160626 (PI3K, live)",
+      "tests_prediction": "post-state analogue",
+      "key": "PI3K AUROC R-vs-S",
+      "auroc": 0.2125,
+      "extra": "p=0.0434 CI0.025-0.475",
+      "events": 8,
+      "direction": "OPPOSITE(<0.5)",
+      "verdict": "OPPOSITE direction"
+    },
+    {
+      "cohort": "GSE160626 (VEGF, live)",
+      "tests_prediction": "post-state analogue",
+      "key": "VEGF AUROC R-vs-S",
+      "auroc": 0.35,
+      "extra": "p=0.3154 CI0.0863-0.6111",
+      "events": 8,
+      "direction": "OPPOSITE(<0.5)",
+      "verdict": "OPPOSITE direction"
+    },
+    {
+      "cohort": "GSE109934 (live)",
+      "tests_prediction": "No labels",
+      "key": "paired dynamics only (NO resistance labels)",
+      "auroc": null,
+      "extra": "paired pre/post NanoString; no resistance labels -> tests DY",
+      "events": 0,
+      "direction": "n/a",
+      "verdict": "Cannot test prediction (no resistance labels)"
+    },
+    {
+      "cohort": "GSE241908 (live)",
+      "tests_prediction": "No labels",
+      "key": "secondary paired delta-null check only (cannot test prediction)",
+      "auroc": null,
+      "extra": "in-vitro before/after chemo primary cultures; NO resistance ",
+      "events": 0,
+      "direction": "n/a",
+      "verdict": "Cannot test prediction (no resistance labels)"
+    }
+  ],
+  "bottom_line": "Re-pulled live and re-scored under the frozen pipeline: the discovery headline does NOT reproduce (post-DDR rho -0.209 vs published -0.711); the only positive external cohort remains BriTROC-1 (CN sig7, 3 resistant, EPV=3); the independent expression cohort GSE160626 is OPPOSITE direction (PI3K p=0.043); paired cohorts lack resistance labels and cannot test prediction. The resistance-PREDICTION claim does not replicate in openly obtainable data. A paired serial cohort WITH platinum-response outcomes (the HERCULES/MSK-SPECTRUM design) is required to test it, and is behind controlled access."
+}

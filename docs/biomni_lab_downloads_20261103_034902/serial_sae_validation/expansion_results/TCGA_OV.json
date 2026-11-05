@@ -1,0 +1,36 @@
+{
+  "cohort": "TCGA-OV",
+  "role": "prognostic_context_ONLY_not_serial",
+  "study": "ov_tcga_pan_can_atlas_2018",
+  "n": 299,
+  "events": 180,
+  "coverage": "32/32 pathway genes",
+  "caveat": "single-timepoint baseline; tests prognostic association with OS, NOT the serial post-vs-baseline resistance hypothesis",
+  "tests": {
+    "ddr": {
+      "cox_HR_per_unit": 0.941,
+      "cox_p": 0.6508,
+      "logrank_median_split_p": 0.2703,
+      "median_OS_high": 30.2,
+      "median_OS_low": 31.7,
+      "direction": "higher_score_better_OS"
+    },
+    "pi3k": {
+      "cox_HR_per_unit": 1.298,
+      "cox_p": 0.0227,
+      "logrank_median_split_p": 0.3266,
+      "median_OS_high": 25.4,
+      "median_OS_low": 35.2,
+      "direction": "higher_score_worse_OS"
+    },
+    "vegf": {
+      "cox_HR_per_unit": 1.126,
+      "cox_p": 0.4769,
+      "logrank_median_split_p": 0.9871,
+      "median_OS_high": 33.0,
+      "median_OS_low": 30.4,
+      "direction": "higher_score_worse_OS"
+    }
+  },
+  "EPV_3feature_model": 60.0
+}

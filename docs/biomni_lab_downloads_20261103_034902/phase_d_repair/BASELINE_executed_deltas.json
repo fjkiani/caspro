@@ -1,0 +1,190 @@
+{
+  "generated_at": "2026-07-16T05:06:28.693137+00:00",
+  "pre_head": "965ed20bce652aff7eb078f3c0e839f03bddc5ca",
+  "post_head": "4f1748a6194436c560a5388c7576cde087985948",
+  "pre_raw_summary": {
+    "count": 5,
+    "stderr_tail": ""
+  },
+  "post_raw_summary": {
+    "count": 5,
+    "stderr_tail": ""
+  },
+  "deltas": [
+    {
+      "anchor_id": "A_HGSOC_HRDlow",
+      "pre": {
+        "mf_status": null,
+        "trials_scored": null,
+        "patient_vector": null,
+        "io_gate": "RULE_OUT",
+        "io_p_resp": null,
+        "io_regimen": null
+      },
+      "post": {
+        "mf_status": "OK",
+        "trials_scored": 42,
+        "patient_vector": {
+          "ddr": 0.6,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "io_gate": "RULE_OUT",
+        "io_p_resp": 0.1,
+        "io_regimen": "neopembrov_nactp",
+        "io_p_resp_status": "RULE_BASED_HEURISTIC"
+      },
+      "notes": {
+        "pre_returned_placeholder_p_resp": false,
+        "pre_returned_ovarian_regimen_for_nonovarian": false,
+        "post_returned_not_applicable_for_unsupported_lineage": false,
+        "post_labeled_heuristic": true
+      }
+    },
+    {
+      "anchor_id": "B_MSS_CRC_STC1010",
+      "pre": {
+        "mf_status": null,
+        "trials_scored": null,
+        "patient_vector": null,
+        "io_gate": "RULE_OUT",
+        "io_p_resp": null,
+        "io_regimen": null
+      },
+      "post": {
+        "mf_status": "OK",
+        "trials_scored": 42,
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.65,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_regimen": null,
+        "io_p_resp_status": "RULE_BASED_HEURISTIC_QUARANTINED"
+      },
+      "notes": {
+        "pre_returned_placeholder_p_resp": false,
+        "pre_returned_ovarian_regimen_for_nonovarian": false,
+        "post_returned_not_applicable_for_unsupported_lineage": true,
+        "post_labeled_heuristic": true
+      }
+    },
+    {
+      "anchor_id": "C_HER2plus_gastric",
+      "pre": {
+        "mf_status": null,
+        "trials_scored": null,
+        "patient_vector": null,
+        "io_gate": "RULE_OUT",
+        "io_p_resp": null,
+        "io_regimen": null
+      },
+      "post": {
+        "mf_status": "OK",
+        "trials_scored": 42,
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.8,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_regimen": null,
+        "io_p_resp_status": "RULE_BASED_HEURISTIC_QUARANTINED"
+      },
+      "notes": {
+        "pre_returned_placeholder_p_resp": false,
+        "pre_returned_ovarian_regimen_for_nonovarian": false,
+        "post_returned_not_applicable_for_unsupported_lineage": true,
+        "post_labeled_heuristic": true
+      }
+    },
+    {
+      "anchor_id": "D_TNBC_BRCA1_germline",
+      "pre": {
+        "mf_status": null,
+        "trials_scored": null,
+        "patient_vector": null,
+        "io_gate": "RULE_OUT",
+        "io_p_resp": null,
+        "io_regimen": null
+      },
+      "post": {
+        "mf_status": "OK",
+        "trials_scored": 42,
+        "patient_vector": {
+          "ddr": 0.6,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_regimen": null,
+        "io_p_resp_status": "RULE_BASED_HEURISTIC_QUARANTINED"
+      },
+      "notes": {
+        "pre_returned_placeholder_p_resp": false,
+        "pre_returned_ovarian_regimen_for_nonovarian": false,
+        "post_returned_not_applicable_for_unsupported_lineage": true,
+        "post_labeled_heuristic": true
+      }
+    },
+    {
+      "anchor_id": "E_MSI_H_OVARIAN",
+      "pre": {
+        "mf_status": null,
+        "trials_scored": null,
+        "patient_vector": null,
+        "io_gate": "RULE_OUT",
+        "io_p_resp": null,
+        "io_regimen": null
+      },
+      "post": {
+        "mf_status": "OK",
+        "trials_scored": 42,
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.95,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "io_gate": "JUSTIFIED",
+        "io_p_resp": 0.765,
+        "io_regimen": "neopembrov_nactp",
+        "io_p_resp_status": "RULE_BASED_HEURISTIC"
+      },
+      "notes": {
+        "pre_returned_placeholder_p_resp": false,
+        "pre_returned_ovarian_regimen_for_nonovarian": false,
+        "post_returned_not_applicable_for_unsupported_lineage": false,
+        "post_labeled_heuristic": true
+      }
+    }
+  ]
+}

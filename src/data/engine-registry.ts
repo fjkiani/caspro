@@ -48,8 +48,8 @@ export const ENGINE_REGISTRY: EngineEntry[] = [
     keyMetric: 'Structural fit',
     active: true,
     subroutes: [
-      { label: 'Brain-Met · Scroll', route: '/engine/target-lock/scroll',   description: '7-step BrM cascade — Evo2 delta_ll variants — AUROC 0.6889 on 29-gene panel.' },
-      { label: 'Brain-Met · Tabs',   route: '/engine/target-lock/tabs',    description: 'Per-step tab strip covering primary_tumor_escape → brm_angiogenesis.' },
+      { label: 'Brain-Met · Workspace', route: '/engine/target-lock/workspace', description: 'Audited evo2 pipeline workspace — per-step AUROC + BM01 overlay.' },
+      { label: 'Brain-Met · Scroll', route: '/engine/target-lock/scroll', description: '7-step BrM cascade long-scroll — Evo2 delta_ll variants — AUROC 0.6889 on 29-gene panel.' },
     ],
   },
   {

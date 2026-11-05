@@ -1,0 +1,53 @@
+{
+  "query_1_benchmark": [
+    {
+      "chunk_id": "W1-IOCORE-001",
+      "score": 0.5738,
+      "title": "IO CORE \u2014 7 MSS CRC IO Comparator Trials (PATH A Locked Scores)"
+    },
+    {
+      "chunk_id": "W1-CO26-001",
+      "score": 0.5322,
+      "title": "CCTG CO.26 \u2014 Canonical Liver-Met Discrimination Trial"
+    },
+    {
+      "chunk_id": "W1-REGONIVO-001",
+      "score": 0.4774,
+      "title": "REGONIVO \u2014 Regorafenib + Nivolumab (MSS mCRC)"
+    }
+  ],
+  "query_2_gaps": [
+    {
+      "chunk_id": "W2-GAPS-001",
+      "score": 0.5489,
+      "title": "BreAK CRC-001 \u2014 Identified Design Gaps"
+    },
+    {
+      "chunk_id": "W1-TRIBE2-001",
+      "score": 0.4906,
+      "title": "TRIBE2 \u2014 Primary Benchmark for BreAK CRC-001"
+    },
+    {
+      "chunk_id": "W3-FITGAP-001",
+      "score": 0.452,
+      "title": "CrisPRO Fit-Gap Analysis for Brenus \u2014 Module Requirements"
+    }
+  ],
+  "query_3_pitch": [
+    {
+      "chunk_id": "W3-CRISPRO-001",
+      "score": 0.7737,
+      "title": "CrisPRO Platform \u2014 Core Value Proposition for Brenus"
+    },
+    {
+      "chunk_id": "W3-BDTARGETS-001",
+      "score": 0.7352,
+      "title": "CrisPRO BD Target Ranking \u2014 Top 10 Pharma Targets"
+    },
+    {
+      "chunk_id": "W3-OUTREACH-001",
+      "score": 0.7214,
+      "title": "CrisPRO Outreach Strategy \u2014 10 Pharma Targets"
+    }
+  ]
+}

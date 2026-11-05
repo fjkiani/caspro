@@ -1,0 +1,7016 @@
+{
+  "caslib": "Colorec_SanofiU_2005_136",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CEA"
+  ],
+  "indication": "colorectal",
+  "longitudinal_aggregates": [
+    {
+      "analyte_columns": [
+        "LABTEST"
+      ],
+      "path": "dataFiles_788/factor.sas7bdat",
+      "patient_column": null,
+      "reason": "missing patient, numeric value, or time column",
+      "status": "BLOCKED",
+      "time_column": null,
+      "unit_column": "LAUNIT",
+      "value_column": null
+    },
+    {
+      "analyte_columns": [
+        "LABTEST"
+      ],
+      "path": "dataFiles_788/labextra.sas7bdat",
+      "patient_column": null,
+      "reason": "missing patient, numeric value, or time column",
+      "status": "BLOCKED",
+      "time_column": "RSUBJID",
+      "unit_column": "LAVALUE",
+      "value_column": "LAVALHI"
+    },
+    {
+      "analyte_columns": [
+        "LABTEST"
+      ],
+      "path": "dataFiles_788/tmarker.sas7bdat",
+      "patient_column": null,
+      "reason": "missing patient, numeric value, or time column",
+      "status": "BLOCKED",
+      "time_column": "RSUBJID",
+      "unit_column": "LAVALUE",
+      "value_column": "LAVALHI"
+    }
+  ],
+  "marker_ids_found": [
+    "CEA"
+  ],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 43,
+  "n_tabular_files": 43,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "6a320454bdaa1dc9e360df82719082a445003d28e7efd468ad15473d0bad8edf",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Primary SOC abbreviation",
+          "name": "ABBREV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Acute symptoms",
+          "name": "ACSYMP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Confidence level",
+          "name": "CONFLEV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary version",
+          "name": "DICTV",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "High level group term",
+          "name": "HLGT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Secondary high level group term",
+          "name": "HLGT2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Secondary high level group term decode",
+          "name": "HLGT2N",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High level group term decode",
+          "name": "HLGTN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "High level term",
+          "name": "HLT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Secondary high level term",
+          "name": "HLT2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Secondary high level term decode",
+          "name": "HLT2N",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High level term decode",
+          "name": "HLTN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lowest level term",
+          "name": "LLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LLT currency",
+          "name": "LLTCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LLT decode",
+          "name": "LLTN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred term",
+          "name": "PT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred term decode",
+          "name": "PTN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary SOC",
+          "name": "SELSOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Secondary SOC",
+          "name": "SELSOC2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Secondary SOC decode",
+          "name": "SELSOC2N",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary SOC decode",
+          "name": "SELSOCN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Choosen SOC",
+          "name": "SOCHOICE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "List of SOC",
+          "name": "SOCLIST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of last coding done",
+          "name": "CODDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Acute symptom response",
+          "name": "ACYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 23992,
+      "path": "dataFiles_788/acsympto.sas7bdat",
+      "size": 34217984,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Last AE dictionary version",
+          "name": "ADAEDV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Last MED dictionary version",
+          "name": "ADMEDV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Product identifier",
+          "name": "COMPOUND",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "CTI - Nb days allowed from visit to index",
+          "name": "CTISLACK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CTI - Use of offset for projection",
+          "name": "CTISET",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CTI - Force switch to FUP visits after EOT",
+          "name": "CTISWFUP",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2,
+      "path": "dataFiles_788/admin.sas7bdat",
+      "size": 24576,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Primary SOC abbreviation",
+          "name": "ABBREV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE Reference number",
+          "name": "AEREFER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE Form number",
+          "name": "AEREFER2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Recovered with sequelae - specify",
+          "name": "AESEQUCM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Confidence level",
+          "name": "CONFLEV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary version",
+          "name": "DICTV",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "High level group term",
+          "name": "HLGT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Secondary high level group term",
+          "name": "HLGT2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Secondary high level group term decode",
+          "name": "HLGT2N",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High level group term decode",
+          "name": "HLGTN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "High level term",
+          "name": "HLT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Secondary high level term",
+          "name": "HLT2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Secondary high level term decode",
+          "name": "HLT2N",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High level term decode",
+          "name": "HLTN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lowest level term",
+          "name": "LLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LLT currency",
+          "name": "LLTCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LLT decode",
+          "name": "LLTN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred term",
+          "name": "PT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred term decode",
+          "name": "PTN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary SOC",
+          "name": "SELSOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Secondary SOC",
+          "name": "SELSOC2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Secondary SOC decode",
+          "name": "SELSOC2N",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary SOC decode",
+          "name": "SELSOCN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Choosen SOC",
+          "name": "SOCHOICE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "List of SOC",
+          "name": "SOCLIST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of recovery",
+          "name": "AEOUTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day event became serious",
+          "name": "AESERDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of start",
+          "name": "AESTRDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of worsening",
+          "name": "AEWORSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of last coding done",
+          "name": "CODDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Action taken with study treatment",
+          "name": "AEACTION",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Action taken with investigational product",
+          "name": "AEACTYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Corrective treatment therapy",
+          "name": "AECORYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Toxicity grade",
+          "name": "AEGRADE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Intensity",
+          "name": "AEINTENS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Outcome",
+          "name": "AEOUT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Relationship to chemotherapy",
+          "name": "AEREL2YN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Relationship to investigational product",
+          "name": "AERELAYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious - resulting in death",
+          "name": "AESER1TK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious - lifethreatening",
+          "name": "AESER2TK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious - hospitalization",
+          "name": "AESER3TK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious - persistent disability",
+          "name": "AESER4TK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious - congenital anomaly",
+          "name": "AESER5TK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious - other medically event",
+          "name": "AESER6TK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious",
+          "name": "AESERYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Status of Adverse event",
+          "name": "AESTATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Recode",
+          "name": "RECODETK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Week of Start of Adverse Event for Deaths",
+          "name": "AESTRWK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Week of Outcome for Deaths",
+          "name": "AEOUTWK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Week of Start of Seriousness for Deaths",
+          "name": "AESERWK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Week of Start of Worsening for Deaths",
+          "name": "AEWORSWK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Week of Death",
+          "name": "AEDEATWK",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AESERDY",
+          "AESER1TK",
+          "AESER6TK",
+          "AESTATUS",
+          "AESTRWK",
+          "AEOUTWK",
+          "AESERWK",
+          "AEWORSWK",
+          "AEDEATWK"
+        ],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID",
+          "AESTRWK",
+          "AEOUTWK",
+          "AESERWK",
+          "AEWORSWK",
+          "AEDEATWK"
+        ],
+        "treatment": [
+          "TRTNAME",
+          "AEACTION",
+          "AECORYN"
+        ],
+        "unit": [],
+        "value": [
+          "AESER1TK"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 20818,
+      "path": "dataFiles_788/ae.sas7bdat",
+      "size": 36904960,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Other test method, specify",
+          "name": "ASMETCM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Other abnormality, specify",
+          "name": "ASOTHCM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day performed",
+          "name": "ASDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Test method",
+          "name": "ASMETHOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Assessment normal abnormal",
+          "name": "ASNAB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Other abnormality",
+          "name": "ASOTHTK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test not performed",
+          "name": "ASTK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Tumoral abnormality",
+          "name": "ASTUTK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "ASDY",
+          "ASTK"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 3467,
+      "path": "dataFiles_788/assess.sas7bdat",
+      "size": 2170880,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Block key",
+          "name": "BLKKEY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Block repeat",
+          "name": "BLKRKEY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Block type",
+          "name": "BLKTYPE",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Offset (days)",
+          "name": "OFFSET",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 42,
+      "path": "dataFiles_788/blktype.sas7bdat",
+      "size": 16384,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Title/Function",
+          "name": "CBFUNCT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Title/Function of requester",
+          "name": "CBFUNCT2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Title/Function (different of requester)",
+          "name": "CBFUNCT3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Other reason - specify",
+          "name": "CBRSONCM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "If other, specify",
+          "name": "CBWHOCM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day performed",
+          "name": "CBSTRDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Time performed (char)",
+          "name": "CBSTRTX",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time performed (num)",
+          "name": "CBSTRTM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reason of code breaking",
+          "name": "CBRSON",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Who has broken the code",
+          "name": "CBWHO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "CBWHOCM",
+          "CBSTRDY",
+          "CBSTRTX",
+          "CBSTRTM",
+          "CBWHO"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME",
+          "CBSTRTX",
+          "CBSTRTM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2,
+      "path": "dataFiles_788/codebrk.sas7bdat",
+      "size": 73728,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of clinical progression",
+          "name": "CPDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 51,
+      "path": "dataFiles_788/cprog.sas7bdat",
+      "size": 24576,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Criteria identifier",
+          "name": "CRITID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Criteria response",
+          "name": "CRITYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 14748,
+      "path": "dataFiles_788/crit.sas7bdat",
+      "size": 1794048,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Criteria (next)",
+          "name": "CRITER2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Criteria (next2)",
+          "name": "CRITER3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Criteria",
+          "name": "CRITERIA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Criteria identifier",
+          "name": "CRITID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 38,
+      "path": "dataFiles_788/critlb.sas7bdat",
+      "size": 57344,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for death",
+          "name": "DEAREA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Week of Death",
+          "name": "AEDEATWK",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "DEAREA",
+          "AEDEATWK"
+        ],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID",
+          "AEDEATWK"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 210,
+      "path": "dataFiles_788/death.sas7bdat",
+      "size": 40960,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of consent",
+          "name": "CONSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age (year)",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 434,
+      "path": "dataFiles_788/demog.sas7bdat",
+      "size": 106496,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Criteria identifier",
+          "name": "CRITID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Deviation criteria",
+          "name": "DVCRIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study period label",
+          "name": "DVEPOCH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Deviation number",
+          "name": "DVNUM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Theoretical time",
+          "name": "THEOTM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Theoretical time",
+          "name": "THEOTX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of deviation stop",
+          "name": "DVSTODY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of deviation start",
+          "name": "DVSTRDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Deviation Status",
+          "name": "DVCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Deviation classification",
+          "name": "DVCLASS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 136,
+      "path": "dataFiles_788/deviat.sas7bdat",
+      "size": 106496,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Actual Intended dose",
+          "name": "DODIACT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Intended dose",
+          "name": "DODIACTX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Daily Intended dose",
+          "name": "DODIDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Daily Intended dose",
+          "name": "DODIDAYX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Number (Unit of Drug)",
+          "name": "DONBDRUG",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Number (unit of Time)",
+          "name": "DONBT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Number (unit of Time)",
+          "name": "DONBTX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Unit (unit of Time)",
+          "name": "DONBUN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Actual dose",
+          "name": "DOSACNB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual dose",
+          "name": "DOSACNBX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Scheduled time",
+          "name": "DOSCH",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Daily dose",
+          "name": "DOSDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Daily dose",
+          "name": "DOSDAYX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Dose level",
+          "name": "DOSLEV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose level",
+          "name": "DOSLEVX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Name",
+          "name": "DRUG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Scheduled Day/Period",
+          "name": "LABELID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "End day of IP Administration",
+          "name": "DOSTODY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start day of IP Administration",
+          "name": "DOSTRDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Intended Dose unit",
+          "name": "DODIUN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose regimen modified",
+          "name": "DOREGMYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual dose unit",
+          "name": "DOSACUN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Daily dose unit",
+          "name": "DOSDAYUN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose level unit",
+          "name": "DOSLEVUN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for delay/reduction/interruption",
+          "name": "DOSREA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Administred/Taken",
+          "name": "DOTK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DRUG",
+          "TRTNAME",
+          "DOREGMYN"
+        ],
+        "unit": [
+          "DONBDRUG",
+          "DONBT",
+          "DONBTX",
+          "DONBUN",
+          "DODIUN",
+          "DOSACUN",
+          "DOSDAYUN",
+          "DOSLEVUN"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 25017,
+      "path": "dataFiles_788/dose.sas7bdat",
+      "size": 13426688,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Expert identifier",
+          "name": "ECGID",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Heart rate (beats/min)",
+          "name": "ECHR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Heart rate (beats/min)",
+          "name": "ECHRX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Interpretation code 1",
+          "name": "ECINT1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Interpretation code 2",
+          "name": "ECINT2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Interpretation code 3",
+          "name": "ECINT3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Interpretation code 4",
+          "name": "ECINT4",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "PR (ms)",
+          "name": "ECPR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PR (ms)",
+          "name": "ECPRX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "QRS (ms)",
+          "name": "ECQRS",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "QRS Axis (\u00b0)",
+          "name": "ECQRSAX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "QRS Axis (\u00b0)",
+          "name": "ECQRSAXX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "QRS (ms)",
+          "name": "ECQRSX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "QT (ms)",
+          "name": "ECQT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "QTC (ms)",
+          "name": "ECQTC",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "QTC Bazett (ms)",
+          "name": "ECQTCB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "QTC Bazett (ms)",
+          "name": "ECQTCBX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "QTC Fridericia (ms)",
+          "name": "ECQTCF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "QTC Fridericia (ms)",
+          "name": "ECQTCFX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "QTC (ms)",
+          "name": "ECQTCX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "QT (ms)",
+          "name": "ECQTX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Theoretical time",
+          "name": "ECTHEOTM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Theoretical time",
+          "name": "ECTHEOTX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "T-wave amplitude (uV)",
+          "name": "ECTWAVE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "T-wave amplitude (uV)",
+          "name": "ECTWAVEX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day performed",
+          "name": "ECSTRDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Left bundle branch block ?",
+          "name": "ECLBBYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ECG normal abnormal",
+          "name": "ECNAB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Non specific disorders ?",
+          "name": "ECNSCYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ST depression ?",
+          "name": "ECSTDYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ST elevation ?",
+          "name": "ECSTELYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Transient ST elevation ?",
+          "name": "ECSTTYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "T wave inversion ?",
+          "name": "ECTWAVYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "ECSTRDY"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 427,
+      "path": "dataFiles_788/ecg.sas7bdat",
+      "size": 253952,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "LVEF (%)",
+          "name": "CVTLVEF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LVEF (%)",
+          "name": "CVTLVEFX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "LA (mm)",
+          "name": "EGLA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LA (mm)",
+          "name": "EGLAX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "LVEDD (mm)",
+          "name": "EGLVEDD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LVEDD (mm)",
+          "name": "EGLVEDDX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "LVESD (mm)",
+          "name": "EGLVESD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LVESD (mm)",
+          "name": "EGLVESDX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "PWTED (mm)",
+          "name": "EGPWTED",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PWTED (mm)",
+          "name": "EGPWTEDX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "STED (mm)",
+          "name": "EGSTED",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "STED (mm)",
+          "name": "EGSTEDX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day performed",
+          "name": "EGDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Clinically relevant abnormalities",
+          "name": "EGABNYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "EGDY"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 71,
+      "path": "dataFiles_788/echocard.sas7bdat",
+      "size": 32768,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "CMAP (mV)",
+          "name": "EMCMAP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CMAP (mV)",
+          "name": "EMCMAPX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Conduction",
+          "name": "EMCOND",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Conduction velocity (m/s)",
+          "name": "EMCOVEL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Conduction velocity (m/s)",
+          "name": "EMCOVELX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Distal latency (ms)",
+          "name": "EMDILA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Distal latency (ms)",
+          "name": "EMDILAX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Fwave Latency (ms)",
+          "name": "EMFWLA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Fwave Latency (ms)",
+          "name": "EMFWLAX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Nerve",
+          "name": "EMNERVE",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "SAP (\u00b5V)",
+          "name": "EMSAP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAP (\u00b5V)",
+          "name": "EMSAPX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Skin Temperature (celsius)",
+          "name": "TEMP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Skin Temperature (celsius)",
+          "name": "TEMPX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day performed",
+          "name": "EMDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "EMDY"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 3296,
+      "path": "dataFiles_788/emg.sas7bdat",
+      "size": 1482752,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment Name",
+          "name": "DRUG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of end of study",
+          "name": "ENDSTUDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of last drug administration",
+          "name": "ENDTRTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of last Xaliproden administration",
+          "name": "ENDTRXDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Broken code",
+          "name": "ENDBRKYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for discontinuation",
+          "name": "ENDRSON",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Type of end",
+          "name": "ENDTYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Week of end of trial for Deaths",
+          "name": "ENDSTUWK",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "ENDSTUWK"
+        ],
+        "patient": [],
+        "time": [
+          "ENDSTUDY",
+          "RSUBJID",
+          "RUSUBJID",
+          "ENDSTUWK"
+        ],
+        "treatment": [
+          "DRUG",
+          "TRTNAME",
+          "ENDTRTDY"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1034,
+      "path": "dataFiles_788/endst.sas7bdat",
+      "size": 278528,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Region of the world",
+          "name": "REGION",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 434,
+      "path": "dataFiles_788/enroll.sas7bdat",
+      "size": 73728,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LABTEST",
+          "n_unique": 443,
+          "values": [
+            "11TXB2",
+            "15AG",
+            "17OHCS",
+            "23D6KPGF1",
+            "25HOD3",
+            "2AG",
+            "3233PINSU",
+            "5-HIAA",
+            "5NUC",
+            "6BHCOR",
+            "A1AT",
+            "A1G",
+            "A1M",
+            "A1MG",
+            "A1MGUR",
+            "A2G",
+            "ACSDKP",
+            "ACTH",
+            "ACTII",
+            "ADIPO",
+            "ADRE",
+            "ADREUR",
+            "AEA",
+            "AFETO",
+            "AG",
+            "AGP",
+            "AGRATIO",
+            "AGST",
+            "AGSTCREA",
+            "AGSTEXC",
+            "AII",
+            "AIIC",
+            "ALB",
+            "ALBCREA",
+            "ALBG",
+            "ALBSPE",
+            "ALBUR",
+            "ALDO",
+            "ALKRES",
+            "ALP",
+            "ALPB",
+            "ALT",
+            "AMMON",
+            "AMYL",
+            "ANC",
+            "ANP",
+            "APOA1",
+            "APOA2",
+            "APOB",
+            "APOB48",
+            "APOBA1",
+            "APOC",
+            "APOC2",
+            "APOC3",
+            "APOE",
+            "APTT",
+            "APTTC",
+            "APTTR",
+            "AST",
+            "AT1",
+            "AT2",
+            "AT3A",
+            "AT3AA",
+            "AT3AF",
+            "AVP",
+            "AXA",
+            "B2M",
+            "B2MCR",
+            "B2MUR",
+            "BAS",
+            "BEVT",
+            "BEVV",
+            "BG",
+            "BHCG",
+            "BJPROT",
+            "BJPROTUR",
+            "BLAST",
+            "BTI",
+            "BTRS",
+            "BTSUR",
+            "BUN",
+            "C199A",
+            "C3",
+            "C4",
+            "CA",
+            "CA125",
+            "CA15-3",
+            "CA19-9",
+            "CACO",
+            "CACREA",
+            "CAMP",
+            "CAUR",
+            "CBG",
+            "CBILI",
+            "CD19LYM",
+            "CD20LYM",
+            "CD3LYM",
+            "CD40L",
+            "CD4LYM",
+            "CD5LYM",
+            "CD8LYM",
+            "CDT",
+            "CEA",
+            "CERUPL",
+            "CETP",
+            "CGMP",
+            "CH50",
+            "CHOL",
+            "CHOLHDLC",
+            "CHOLIN",
+            "CHROA",
+            "CIC",
+            "CL",
+            "CLUR",
+            "CO",
+            "CO2",
+            "COLU4CR",
+            "CORCREA",
+            "CORTI",
+            "CORTIAM",
+            "CORTIPM",
+            "CORTIS",
+            "CORTIUR",
+            "COTI",
+            "CPEP",
+            "CPK",
+            "CPKMB",
+            "CPKMBM",
+            "CPKMM",
+            "CREACL",
+            "CREACLCA",
+            "CREACLUR",
+            "CREAT",
+            "CREATJA",
+            "CREATUR",
+            "CRP",
+            "CYSC",
+            "DDIM",
+            "DHEA",
+            "DHEASO4",
+            "DHPG",
+            "DHTESTO",
+            "DIGITOX",
+            "DIGOX",
+            "DOPAC",
+            "DPP4",
+            "DSDNAAB",
+            "ECHO",
+            "ECT",
+            "ECTC",
+            "ECTCO",
+            "ECTCOC",
+            "EOS",
+            "EPICRET",
+            "EPICSQ",
+            "EPICTR",
+            "ERYBL",
+            "ESEL",
+            "ESR",
+            "ESR1",
+            "ESR2",
+            "ESTRA",
+            "ET",
+            "ETHA",
+            "ETPAUC",
+            "ETPHTP",
+            "ETPSTG",
+            "ETPTTP",
+            "FACT10",
+            "FACT2",
+            "FACT5",
+            "FACT7",
+            "FACT9",
+            "FBILI",
+            "FE",
+            "FERRITIN",
+            "FFA",
+            "FIB",
+            "FLUID",
+            "FN",
+            "FOLAC",
+            "FRUCTM",
+            "FSH",
+            "FT3",
+            "FT4",
+            "FTESTO",
+            "FVEGF",
+            "GADAB",
+            "GG",
+            "GGT",
+            "GGTUR",
+            "GH",
+            "GHRELIN",
+            "GLP1",
+            "GLP1T",
+            "GLU",
+            "GLU120",
+            "GLU30",
+            "GLU60",
+            "GLUCAG",
+            "GLUCREA",
+            "GLUPF",
+            "GLUSF",
+            "GLUUR",
+            "GRA",
+            "GST",
+            "GSTPI",
+            "GSTPICREA",
+            "GSTPIEXC",
+            "HB",
+            "HBA1C",
+            "HCG",
+            "HCO3",
+            "HCT",
+            "HCVAB",
+            "HCY",
+            "HDLC",
+            "HDLC2",
+            "HDLC23",
+            "HDLC3",
+            "HDLFR",
+            "HDLSIZE",
+            "HIVRNA",
+            "HOMA",
+            "HP",
+            "HSCRP",
+            "HSIL6",
+            "HTLV1",
+            "HYAL",
+            "IFNA",
+            "IFNG",
+            "IGE",
+            "IGEABAA",
+            "IGEF1",
+            "IGEF75",
+            "IGET",
+            "IGF1",
+            "IGF1R",
+            "IGF2",
+            "IGFBP3",
+            "IGTABAA",
+            "IL10",
+            "IL12",
+            "IL18",
+            "IL1B",
+            "IL2",
+            "IL6",
+            "IL8",
+            "INCLUCEL",
+            "INR",
+            "INSU",
+            "INSU120",
+            "INSU30",
+            "INSU60",
+            "IP10",
+            "K",
+            "KCREA",
+            "KUR",
+            "LACT",
+            "LDH",
+            "LDLC",
+            "LDLCC",
+            "LDLFR",
+            "LDLLARC",
+            "LDLLARP",
+            "LDLMEAN",
+            "LDLMEDC",
+            "LDLMEDP",
+            "LDLPEAK",
+            "LDLSMAC",
+            "LDLSMAP",
+            "LDLWEIG",
+            "LEPTIN",
+            "LH",
+            "LI",
+            "LIPASE",
+            "LIPOA",
+            "LIPOA1",
+            "LIPOA1A2",
+            "LYM",
+            "LYMA",
+            "LYMCO",
+            "LYSO",
+            "MALB",
+            "MALBCRUR",
+            "MALBUR",
+            "MAO-B",
+            "MB",
+            "MCH",
+            "MCHC",
+            "MCP1",
+            "MCV",
+            "MEMYCY",
+            "METHAQUA",
+            "MG",
+            "MGUR",
+            "MONO",
+            "MPROT",
+            "MPV",
+            "MYBL",
+            "MYCY",
+            "NA",
+            "NACREA",
+            "NAG",
+            "NAGCR",
+            "NAGL",
+            "NAGUR",
+            "NAK",
+            "NAUR",
+            "NEU",
+            "NEUB",
+            "NHDLC",
+            "NMN",
+            "NO3",
+            "NORAD",
+            "NSE",
+            "OCE",
+            "OEA",
+            "OSMO",
+            "OSMOLAR",
+            "OSMOUR",
+            "OXLDL",
+            "OXYT",
+            "PAH",
+            "PAI",
+            "PCO2",
+            "PEA",
+            "PFACA",
+            "PFACE",
+            "PH",
+            "PHOS",
+            "PHOSCREA",
+            "PHOSUR",
+            "PINSU",
+            "PIP",
+            "PL",
+            "PLA2",
+            "PLAFAL",
+            "PLASMO",
+            "PLT",
+            "PLTADP",
+            "PLTCOL",
+            "PLTTRAP",
+            "PMN",
+            "PMYCY",
+            "PNEU",
+            "PO2",
+            "PR",
+            "PRA",
+            "PREG",
+            "PREGSO4",
+            "PRIVASP",
+            "PROCREA",
+            "PROGES",
+            "PROL",
+            "PROT",
+            "PSA",
+            "PT",
+            "PTC",
+            "PTDIL",
+            "PTF12",
+            "PTH",
+            "PTPROL",
+            "QUICK",
+            "RBC",
+            "RBCUR",
+            "RCD",
+            "RENACT",
+            "RETI",
+            "RF",
+            "RLPC",
+            "RSTI",
+            "RUSVV",
+            "SAA",
+            "SALI",
+            "SAO2",
+            "SDAB",
+            "SDABSB",
+            "SDCT",
+            "SFVOL",
+            "SHBG",
+            "SINIS",
+            "SPAGR",
+            "SPGR",
+            "SSDNAAB",
+            "T25HOD",
+            "T3",
+            "T3RU",
+            "T4",
+            "TAT",
+            "TBG",
+            "TBILI",
+            "TCC",
+            "TCELC",
+            "TELEC",
+            "TESTO",
+            "TGLOB",
+            "TGT",
+            "TGTHTP",
+            "TGTLG",
+            "TGTSTT",
+            "TGTTTP",
+            "TGTV",
+            "THEO",
+            "THT",
+            "THTC",
+            "THTCO",
+            "THTCOC",
+            "TNFA",
+            "TNFNK1",
+            "TNFNK2",
+            "TNFNKM",
+            "TNFWB1",
+            "TNFWB2",
+            "TNFWBM",
+            "TPHA",
+            "TPOAB",
+            "TPRO",
+            "TPROSPE",
+            "TPROUR",
+            "TRANSF",
+            "TRIG",
+            "TROPI",
+            "TROPT",
+            "TSH",
+            "TXB2",
+            "UAACREAT",
+            "UN",
+            "URAC",
+            "URACUR",
+            "UREA",
+            "UREAUR",
+            "URICCL",
+            "UROBILUR",
+            "UVOL",
+            "VFTI",
+            "VITB12",
+            "VLDLCC",
+            "VLDLCHOL",
+            "VLDLFR",
+            "VWAG",
+            "WBC",
+            "WBCUR"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "$",
+          "label": "LABTEST",
+          "name": "LABTEST",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "LAUNIT",
+          "name": "LAUNIT",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "LAUNITI",
+          "name": "LAUNITI",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "FACTOR",
+          "name": "FACTOR",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "SIGDIGIT",
+          "name": "SIGDIGIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "TESTREF",
+          "name": "TESTREF",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "STSOURCE",
+          "name": "STSOURCE",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LABTEST"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [
+          "LAUNIT",
+          "LAUNITI"
+        ],
+        "value": []
+      },
+      "marker_hits": [
+        {
+          "column": "LABTEST",
+          "marker_id": "CEA",
+          "matched_value": "CEA"
+        }
+      ],
+      "n_rows": 1334,
+      "path": "dataFiles_788/factor.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of status",
+          "name": "FUDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of progression",
+          "name": "PROGDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reason for death",
+          "name": "FUDEAREA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject condition",
+          "name": "FUSCOND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Progression",
+          "name": "PROG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Week of Status for Deaths",
+          "name": "FUWK",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "FUDEAREA",
+          "FUWK"
+        ],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID",
+          "FUWK"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1658,
+      "path": "dataFiles_788/followup.sas7bdat",
+      "size": 352256,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LABTEST",
+          "n_unique": 18,
+          "values": [
+            "ALKALINE PHOSPHATASE",
+            "ALT (SGPT-ALAT)",
+            "AST (SGOT-ASAT)",
+            "BLOOD UREA NITROGEN",
+            "CHLORIDE",
+            "CREATININE",
+            "GLUCOSE",
+            "GLYCOSYLATED HEMOGLOBIN",
+            "HEMOGLOBIN",
+            "LACTATE DEHYDROGENASE",
+            "NEUTROPHILS",
+            "PLATELET COUNT (THROMBOCYTE COUNT)",
+            "POTASSIUM",
+            "SODIUM",
+            "TOTAL BILIRUBIN",
+            "TOTAL CHOLESTEROL",
+            "UREA",
+            "WHITE BLOOD CELL COUNT (LEUKOCYTE COUNT)"
+          ]
+        },
+        {
+          "column": "LATYPE",
+          "n_unique": 2,
+          "values": [
+            "BIOCHEMISTRY",
+            "HAEMATOLOGY"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Scheduled Day/Period",
+          "name": "LABELID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Qualitative textual result",
+          "name": "LARESULT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Value upper range",
+          "name": "LAVALHI",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Value upper range (international)",
+          "name": "LAVALHII",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Value lower range",
+          "name": "LAVALLO",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Value lower range (international)",
+          "name": "LAVALLOI",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Quantitative value",
+          "name": "LAVALUE",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "International value",
+          "name": "LAVALUEI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF value",
+          "name": "LAVALUEX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "End day of collection",
+          "name": "LACOLEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start day of collection",
+          "name": "LACOLSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of sampling",
+          "name": "LASAMPDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Laboratory test",
+          "name": "LABTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Fasting",
+          "name": "LAFASTYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Qualitative coded result",
+          "name": "LARESULC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Type of laboratory result",
+          "name": "LARETYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sample status",
+          "name": "LASAMPST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Type of test",
+          "name": "LATYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Unit",
+          "name": "LAUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "International unit",
+          "name": "LAUNITI",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LABTEST",
+          "LATYPE"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [
+          "LAVALUE",
+          "LAVALUEI",
+          "LAVALUEX",
+          "LAUNIT",
+          "LAUNITI"
+        ],
+        "value": [
+          "LARESULT",
+          "LAVALHI",
+          "LAVALHII",
+          "LAVALLO",
+          "LAVALLOI",
+          "LAVALUE",
+          "LAVALUEI",
+          "LAVALUEX",
+          "LARESULC",
+          "LARETYPE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 86987,
+      "path": "dataFiles_788/lab.sas7bdat",
+      "size": 52846592,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LABTEST",
+          "n_unique": 58,
+          "values": [
+            "ABSOLUTE NEUTROPHIL COUNT",
+            "ACTIVATED PARTIAL THROMBOPLASTIN TIME",
+            "ALBUMIN",
+            "ALKALINE PHOSPHATASE",
+            "ALT (SGPT-ALAT)",
+            "AMYLASE",
+            "ANTINUCLEAR ANTIBODY",
+            "AST (SGOT-ASAT)",
+            "BICARBONATES",
+            "BLOOD",
+            "BLOOD UREA NITROGEN",
+            "C-REACTIVE PROTEIN",
+            "CA19-9",
+            "CALCIUM",
+            "CARBON DIOXYDE PARTIAL PRESSURE",
+            "CARCINOEMBRYONIC ANTIGEN",
+            "CHLORIDE",
+            "CHORIONIC GONADOTROPIN BETA SUBUNIT",
+            "COMPLEMENT COMPONENTS C3",
+            "COMPLEMENT COMPONENTS C4",
+            "CONJUGATED BILIRUBIN (DIRECT)",
+            "CREATININE",
+            "CYTOMEGALOVIRUS",
+            "D-DIMER",
+            "FERRITIN",
+            "FREE BILIRUBIN (INDIRECT)",
+            "GAMMA GT",
+            "GLUCOSE",
+            "GLUCOSE (URINE)",
+            "GLYCOSYLATED HEMOGLOBIN",
+            "GRANULOCYTES",
+            "HAPTOGLOBIN",
+            "HEMATOCRIT",
+            "HEMOGLOBIN",
+            "INTERNATIONAL NORMALIZED RATIO",
+            "LACTATE (LACTIC ACID)",
+            "LACTATE DEHYDROGENASE",
+            "MAGNESIUM",
+            "PHOSPHORUS",
+            "PLATELET COUNT (THROMBOCYTE COUNT)",
+            "POTASSIUM",
+            "PROTEIN",
+            "PROTHROMBIN TIME",
+            "PROTHROMBIN TIME ACTIVITY",
+            "RHEUMATOID FACTOR",
+            "SODIUM",
+            "TOTAL BILIRUBIN",
+            "TOTAL BILIRUBIN (URINE)",
+            "TOTAL CHOLESTEROL",
+            "TOTAL PROTEINS",
+            "TRANSFERRIN",
+            "TROPONIN I",
+            "TROPONIN T",
+            "UREA",
+            "UREA (URINE)",
+            "URIC ACID",
+            "WHITE BLOOD CELL COUNT (LEUKOCYTE COUNT)",
+            "WHITE BLOOD CELL COUNT (URINE)"
+          ]
+        },
+        {
+          "column": "LATYPE",
+          "n_unique": 7,
+          "values": [
+            "BACTERIOLOGY",
+            "BIOCHEMISTRY",
+            "HAEMATOLOGY",
+            "IMMUNOCHEMISTRY",
+            "QUALITATIVE URINALYSIS",
+            "QUANTITATIVE URINALYSIS",
+            "SEROLOGY"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Test description",
+          "name": "LABT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Value upper range",
+          "name": "LAVALHI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Value upper range",
+          "name": "LAVALHIX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Value lower range",
+          "name": "LAVALLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Value lower range",
+          "name": "LAVALLOX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Value",
+          "name": "LAVALUE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Value",
+          "name": "LAVALUEX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of sampling",
+          "name": "LASAMPDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Laboratory test",
+          "name": "LABTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Type of test",
+          "name": "LATYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Unit",
+          "name": "LAUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LABTEST",
+          "LATYPE"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [
+          "LAVALUE",
+          "LAVALUEX",
+          "LAUNIT"
+        ],
+        "value": [
+          "LAVALHI",
+          "LAVALHIX",
+          "LAVALLO",
+          "LAVALLOX",
+          "LAVALUE",
+          "LAVALUEX"
+        ]
+      },
+      "marker_hits": [
+        {
+          "column": "LABTEST",
+          "marker_id": "CEA",
+          "matched_value": "CARCINOEMBRYONIC ANTIGEN"
+        }
+      ],
+      "n_rows": 697,
+      "path": "dataFiles_788/labextra.sas7bdat",
+      "size": 270336,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Initial pathology cell type - specify",
+          "name": "MACTYPCM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Other primary site - specify",
+          "name": "MAPSITCM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of initial diagnosis",
+          "name": "MADIADY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Initial pathology cell type",
+          "name": "MACTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Histology",
+          "name": "MAHISTOL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary site",
+          "name": "MAPSIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 434,
+      "path": "dataFiles_788/malign.sas7bdat",
+      "size": 204800,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Dimension (first) of lesion (mm)",
+          "name": "MSDIM1",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dimension (first) of lesion (mm)",
+          "name": "MSDIM1X",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Second dimension of lesion (mm)",
+          "name": "MSDIM2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Second dimension of lesion (mm)",
+          "name": "MSDIM2X",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Target lesion identifier",
+          "name": "TLESID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test day",
+          "name": "MSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Evaluability",
+          "name": "MSEVAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test method",
+          "name": "MSMETHOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Type of lesion",
+          "name": "TLTYPLOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "MSDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 7461,
+      "path": "dataFiles_788/measur.sas7bdat",
+      "size": 1654784,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "AE reference number",
+          "name": "AEREFER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Choosen ATC code",
+          "name": "ATCCHO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "List of ATCNUM1 to ATCNUM9",
+          "name": "ATCLIST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Selected ATC code",
+          "name": "ATCSEL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Confidence level",
+          "name": "CONFLEV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary version",
+          "name": "DICTV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Drug name",
+          "name": "DRUGNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Dosage",
+          "name": "MEDOSAG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dosage",
+          "name": "MEDOSAGX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Indication",
+          "name": "MEINDIC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line of therapy",
+          "name": "MELINE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Line of therapy",
+          "name": "MELINEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Schedule",
+          "name": "MESCHED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Medication",
+          "name": "METERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Drug record number",
+          "name": "RECNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Selected ATC name level 1",
+          "name": "SATCNL1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Selected ATC name level 2",
+          "name": "SATCNL2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Selected ATC name level 3",
+          "name": "SATCNL3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence number 1",
+          "name": "SEQ1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence number 2",
+          "name": "SEQ2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of last coding done",
+          "name": "CODDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "End day",
+          "name": "MESTODY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start day",
+          "name": "MESTRDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "After first study treatment",
+          "name": "MEAFTETK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dosage unit",
+          "name": "MEDOSUN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Medication label identifier",
+          "name": "MELBID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ongoing from baseline",
+          "name": "MEONGBTK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ongoing",
+          "name": "MEONGOTK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Prior to first study treatment",
+          "name": "MEPRIOTK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Route",
+          "name": "MEROUTE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy type",
+          "name": "METXTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Medication unknown",
+          "name": "UNKTK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "MESTODY",
+          "MESTRDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME",
+          "MEAFTETK",
+          "MEPRIOTK"
+        ],
+        "unit": [
+          "MEDOSUN"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 10248,
+      "path": "dataFiles_788/med.sas7bdat",
+      "size": 14360576,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Primary  SOC abbreviation",
+          "name": "ABBREV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Confidence level",
+          "name": "CONFLEV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary version",
+          "name": "DICTV",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "High level group term",
+          "name": "HLGT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Secondary high level group term",
+          "name": "HLGT2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Secondary high level group term decode",
+          "name": "HLGT2N",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High level group term decode",
+          "name": "HLGTN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "High level term",
+          "name": "HLT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Secondary high level term",
+          "name": "HLT2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Secondary high level term decode",
+          "name": "HLT2N",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High level term decode",
+          "name": "HLTN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lowest level term",
+          "name": "LLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LLT currency",
+          "name": "LLTCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LLT decode",
+          "name": "LLTN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred term",
+          "name": "PT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred term decode",
+          "name": "PTN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary SOC",
+          "name": "SELSOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Secondary SOC",
+          "name": "SELSOC2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Secondary SOC decode",
+          "name": "SELSOC2N",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary SOC decode",
+          "name": "SELSOCN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Choosen SOC",
+          "name": "SOCHOICE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "List of SOC",
+          "name": "SOCLIST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of last coding done",
+          "name": "CODDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Level of imputation, Medhist start date",
+          "name": "MHSDTIMP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of diagnosis/intervention",
+          "name": "MHACTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Persistence of symptoms",
+          "name": "MHYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Recode",
+          "name": "RECODETK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "MHSDTIMP",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1817,
+      "path": "dataFiles_788/medhist.sas7bdat",
+      "size": 2367488,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test day",
+          "name": "NEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Test method",
+          "name": "NEMETHOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Location",
+          "name": "TLOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "NEDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 203,
+      "path": "dataFiles_788/newl.sas7bdat",
+      "size": 57344,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Non-target lesion identifier",
+          "name": "NTLESID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test day",
+          "name": "NTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Test method",
+          "name": "NTMETHOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Type of lesion",
+          "name": "NTTYPLOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Location",
+          "name": "TLOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "NTDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 612,
+      "path": "dataFiles_788/ntlesion.sas7bdat",
+      "size": 139264,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Actual Intended dose",
+          "name": "DODIACT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Intended dose",
+          "name": "DODIACTX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Daily Intended dose",
+          "name": "DODIDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Daily Intended dose",
+          "name": "DODIDAYX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Number (Unit of Drug)",
+          "name": "DONBDRUG",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Treatment duration",
+          "name": "DONBT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment duration",
+          "name": "DONBTX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Unit (unit of Treatment duration)",
+          "name": "DONBUN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Actual dose",
+          "name": "DOSACNB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual dose",
+          "name": "DOSACNBX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Scheduled time",
+          "name": "DOSCH",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Daily dose",
+          "name": "DOSDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Daily dose",
+          "name": "DOSDAYX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Name",
+          "name": "DRUG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Scheduled Day/Period",
+          "name": "LABELID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "End day of Avastin Administration",
+          "name": "DOSTODY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start day of Avastin Administration",
+          "name": "DOSTRDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Intended Dose unit",
+          "name": "DODIUN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose regimen modified",
+          "name": "DOREGMYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual dose unit",
+          "name": "DOSACUN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for delay/reduction/interruption",
+          "name": "DOSREA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Administred/Taken",
+          "name": "DOTK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DONBT",
+          "DONBTX",
+          "DONBUN",
+          "DRUG",
+          "TRTNAME",
+          "DOREGMYN"
+        ],
+        "unit": [
+          "DONBDRUG",
+          "DONBUN",
+          "DODIUN",
+          "DOSACUN"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 463,
+      "path": "dataFiles_788/othdose.sas7bdat",
+      "size": 253952,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day performed",
+          "name": "PEACTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Clinically significant changes",
+          "name": "PECSIGYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Findings",
+          "name": "PENAB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Physical examination system",
+          "name": "PEPHYSYS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "PEACTDY"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 6076,
+      "path": "dataFiles_788/physexam.sas7bdat",
+      "size": 1040384,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Procedure",
+          "name": "PROCTERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Other cancer - specify",
+          "name": "PROTHCM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Other method of measurement - specify",
+          "name": "PROTHER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason",
+          "name": "PRREACM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of procedure",
+          "name": "PRPRODY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Cancer site",
+          "name": "PRCASITE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Presence of cancer (Y/N)",
+          "name": "PRCAYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Result",
+          "name": "PRRESULT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Any signs or symptoms",
+          "name": "PRSYMP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Procedure performed",
+          "name": "PRTK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "PRTK"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": [
+          "PRRESULT"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 3188,
+      "path": "dataFiles_788/procedur.sas7bdat",
+      "size": 3284992,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Description site of radiation therapy",
+          "name": "RACM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Radiation total dose (gray)",
+          "name": "RADOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Radiation total dose (gray)",
+          "name": "RADOSEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Radiotherapy label identifier",
+          "name": "RALBID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Radiation stop day",
+          "name": "RASTODY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Radiation start day",
+          "name": "RASTRDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Location",
+          "name": "RALOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Radiation therapy ongoing",
+          "name": "RAONGOTK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Type of radiation therapy",
+          "name": "RATYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Radiation therapy unknown",
+          "name": "UNKTK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RASTODY",
+          "RASTRDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 80,
+      "path": "dataFiles_788/radtx.sas7bdat",
+      "size": 90112,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Non-target lesion identifier",
+          "name": "NTLESID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test day",
+          "name": "RCTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Type of lesion",
+          "name": "NTTYPLOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test method",
+          "name": "RCMETHOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Non-target lesion status",
+          "name": "RCSTATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RCTEDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2334,
+      "path": "dataFiles_788/recist.sas7bdat",
+      "size": 434176,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of deterioration",
+          "name": "RLDETDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Symptomatic deterioration",
+          "name": "RLDETYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Integrated response",
+          "name": "RLINT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "New lesions (Y/N)",
+          "name": "RLNEWLYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Non-target lesion response",
+          "name": "RLNTL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Target lesion response",
+          "name": "RLTL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1599,
+      "path": "dataFiles_788/resples.sas7bdat",
+      "size": 450560,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Surgery label identifier",
+          "name": "SULBID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Surgery day",
+          "name": "SUDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Surgery type",
+          "name": "SUTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Surgery unknown",
+          "name": "UNKTK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "SUDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 554,
+      "path": "dataFiles_788/surgery.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Primary SOC abbreviation",
+          "name": "ABBREV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Confidence level",
+          "name": "CONFLEV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary version",
+          "name": "DICTV",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "High level group term",
+          "name": "HLGT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Secondary high level group term",
+          "name": "HLGT2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Secondary high level group term decode",
+          "name": "HLGT2N",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High level group term decode",
+          "name": "HLGTN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "High level term",
+          "name": "HLT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Secondary high level term",
+          "name": "HLT2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Secondary high level term decode",
+          "name": "HLT2N",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High level term decode",
+          "name": "HLTN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lowest level term",
+          "name": "LLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LLT currency",
+          "name": "LLTCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LLT decode",
+          "name": "LLTN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred term",
+          "name": "PT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred term decode",
+          "name": "PTN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary SOC",
+          "name": "SELSOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Secondary SOC",
+          "name": "SELSOC2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Secondary SOC decode",
+          "name": "SELSOC2N",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary SOC decode",
+          "name": "SELSOCN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Choosen SOC",
+          "name": "SOCHOICE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "List of SOC",
+          "name": "SOCLIST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of last coding done",
+          "name": "CODDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Symptom day",
+          "name": "SYMPDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Symptom grade",
+          "name": "SYGRADE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "SYMPDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 694,
+      "path": "dataFiles_788/symptoms.sas7bdat",
+      "size": 925696,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Tumor deposits",
+          "name": "TDEPOSIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Tumor deposits code",
+          "name": "TDEPOS_C",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "TDEPOS_C"
+        ],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 996,
+      "path": "dataFiles_788/tdeposit.sas7bdat",
+      "size": 155648,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Target lesion identifier",
+          "name": "TLESID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Location",
+          "name": "TLOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Type of lesion",
+          "name": "TLTYPLOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1606,
+      "path": "dataFiles_788/tlesion.sas7bdat",
+      "size": 270336,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LABTEST",
+          "n_unique": 1,
+          "values": [
+            "CARCINOEMBRYONIC ANTIGEN"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Value upper limit",
+          "name": "LAVALHI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Value upper limit",
+          "name": "LAVALHIX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Value lower limit",
+          "name": "LAVALLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Value lower limit",
+          "name": "LAVALLOX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Quantitative value",
+          "name": "LAVALUE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF value",
+          "name": "LAVALUEX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of evaluation",
+          "name": "TMDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Laboratory test",
+          "name": "LABTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Unit",
+          "name": "LAUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LABTEST"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [
+          "LAVALUE",
+          "LAVALUEX",
+          "LAUNIT"
+        ],
+        "value": [
+          "LAVALHI",
+          "LAVALHIX",
+          "LAVALLO",
+          "LAVALLOX",
+          "LAVALUE",
+          "LAVALUEX"
+        ]
+      },
+      "marker_hits": [
+        {
+          "column": "LABTEST",
+          "marker_id": "CEA",
+          "matched_value": "CARCINOEMBRYONIC ANTIGEN"
+        }
+      ],
+      "n_rows": 2182,
+      "path": "dataFiles_788/tmarker.sas7bdat",
+      "size": 729088,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Strata 1 -  Metastatic organ number",
+          "name": "TTSTR1",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of treatment allocation",
+          "name": "TTALLODY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Strata 2 - Receiving bevacizumab",
+          "name": "TTSTR2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Strata3-Prior adjuvant therapy oxali",
+          "name": "TTSTR3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME",
+          "TTALLODY"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1187,
+      "path": "dataFiles_788/treatno.sas7bdat",
+      "size": 188416,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of visit",
+          "name": "VISITDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 11023,
+      "path": "dataFiles_788/visit.sas7bdat",
+      "size": 1171456,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "CTI - Visit Type (S/N/A)",
+          "name": "BLKTYPE",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Cross-over period identifier",
+          "name": "COPERIOD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Cross-over visit label",
+          "name": "COVISLB",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "CTI - Nb days since reference visit",
+          "name": "OFFSET",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Study phase identifier",
+          "name": "PHASEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study phase label",
+          "name": "PHASELB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Randomization period code",
+          "name": "RANDOMIZ",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Theoretical visit day",
+          "name": "VISITDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit label (long)",
+          "name": "VISLOLB",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Maximum value for the visit day",
+          "name": "VISMAX",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Minimum value for the visit day",
+          "name": "VISMIN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit label (short)",
+          "name": "VISSHLB",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITDAY",
+          "VISMAX",
+          "VISMIN"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "VISMAX",
+          "VISMIN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 56,
+      "path": "dataFiles_788/visitlb.sas7bdat",
+      "size": 57344,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Protocol identifier",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier (X100)",
+          "name": "VISID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Page identifier",
+          "name": "PAGEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Page repetition",
+          "name": "PAGERPT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit repetition",
+          "name": "VISRPT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit identifier",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Diastolic BP (mmHg)",
+          "name": "DIABP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Diastolic BP (mmHg)",
+          "name": "DIABPX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Height (cm)",
+          "name": "HEIGHT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Height (cm)",
+          "name": "HEIGHTX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Heart rate (beats/min)",
+          "name": "HR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Heart rate (beats/min)",
+          "name": "HRX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Line identifier",
+          "name": "LINEID",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Respiratory rate (cycles/min)",
+          "name": "RESP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Respiratory rate (cycles/min)",
+          "name": "RESPX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Systolic BP (mmHg)",
+          "name": "SYSBP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Systolic BP (mmHg)",
+          "name": "SYSBPX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Temperature (celsius)",
+          "name": "TEMP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Temperature (celsius)",
+          "name": "TEMPX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Time of position",
+          "name": "VSAFTER",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Theoretical time",
+          "name": "VSTHEOTM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Theoretical time",
+          "name": "VSTHEOTX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Weight (kg)",
+          "name": "WEIGHT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Weight (kg)",
+          "name": "WEIGHTX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment group",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day performed",
+          "name": "VSACTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ECOG",
+          "name": "ECOG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Karnofsky",
+          "name": "KARNOF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Temperature type",
+          "name": "TEMPTYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Position",
+          "name": "VSPOS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "VSACTDY",
+          "ECOG",
+          "KARNOF"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RESP",
+          "RESPX",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "TRTNAME"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 5896,
+      "path": "dataFiles_788/vital.sas7bdat",
+      "size": 2301952,
+      "status": "OK"
+    }
+  ]
+}

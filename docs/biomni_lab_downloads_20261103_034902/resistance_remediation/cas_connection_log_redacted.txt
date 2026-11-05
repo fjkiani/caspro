@@ -1,0 +1,91 @@
+=== LIVE CAS SESSION: VENICE ===
+started_utc=2026-08-11T19:41:53.307302+00:00
+endpoint=https://mpmprodvdmml.ondemand.sas.com/cas-shared-default-http/
+username=<REDACTED_USER>
+password=<REDACTED>
+authentication=SUCCESS candidates_tested<= 2
+server_status=CONNECTED
+caslib_query=VENICE:Prostat_Sanofi_2007_83
+table=VENICE:dataFiles_402/adae.sas7bdat rows=32602 columns=110 status=OK
+table=VENICE:dataFiles_402/adan.sas7bdat rows=15845 columns=64 status=OK
+table=VENICE:dataFiles_402/adcd.sas7bdat rows=4548 columns=50 status=OK
+table=VENICE:dataFiles_402/adce.sas7bdat rows=47729 columns=62 status=OK
+table=VENICE:dataFiles_402/adcm.sas7bdat rows=168774 columns=116 status=OK
+table=VENICE:dataFiles_402/addm.sas7bdat rows=936 columns=41 status=OK
+table=VENICE:dataFiles_402/adds.sas7bdat rows=5217 columns=55 status=OK
+table=VENICE:dataFiles_402/addv.sas7bdat rows=138 columns=49 status=OK
+table=VENICE:dataFiles_402/adeg.sas7bdat rows=639 columns=47 status=OK
+table=VENICE:dataFiles_402/ades.sas7bdat rows=2416 columns=72 status=OK
+table=VENICE:dataFiles_402/adevt.sas7bdat rows=1830 columns=62 status=OK
+table=VENICE:dataFiles_402/adex.sas7bdat rows=18503 columns=105 status=OK
+table=VENICE:dataFiles_402/adie.sas7bdat rows=404 columns=46 status=OK
+table=VENICE:dataFiles_402/adivrs.sas7bdat rows=6855 columns=23 status=OK
+table=VENICE:dataFiles_402/adlb.sas7bdat rows=197599 columns=111 status=OK
+table=VENICE:dataFiles_402/adls.sas7bdat rows=20504 columns=59 status=OK
+table=VENICE:dataFiles_402/admh.sas7bdat rows=10897 columns=74 status=OK
+table=VENICE:dataFiles_402/adpat.sas7bdat rows=936 columns=48 status=OK
+table=VENICE:dataFiles_402/adpc.sas7bdat rows=4547 columns=80 status=OK
+table=VENICE:dataFiles_402/adpd.sas7bdat rows=936 columns=46 status=OK
+table=VENICE:dataFiles_402/adpp.sas7bdat rows=0 columns=47 status=OK
+table=VENICE:dataFiles_402/adpr.sas7bdat rows=7582 columns=72 status=OK
+table=VENICE:dataFiles_402/adpran.sas7bdat rows=48253 columns=62 status=OK
+table=VENICE:dataFiles_402/adqs.sas7bdat rows=359074 columns=69 status=OK
+table=VENICE:dataFiles_402/adqspn.sas7bdat rows=61029 columns=61 status=OK
+table=VENICE:dataFiles_402/adra.sas7bdat rows=885 columns=55 status=OK
+table=VENICE:dataFiles_402/adrand.sas7bdat rows=612 columns=9 status=OK
+table=VENICE:dataFiles_402/adsg.sas7bdat rows=3385 columns=61 status=OK
+table=VENICE:dataFiles_402/adsl.sas7bdat rows=936 columns=93 status=OK
+table=VENICE:dataFiles_402/adsv.sas7bdat rows=12295 columns=49 status=OK
+table=VENICE:dataFiles_402/adtte.sas7bdat rows=1836 columns=20 status=OK
+table=VENICE:dataFiles_402/advs.sas7bdat rows=51120 columns=61 status=OK
+caslib_complete=VENICE files=32 loaded=32
+connection_close=SUCCESS
+ended_utc=2026-08-11T19:42:48.332000+00:00
+elapsed_seconds=55.0
+
+=== LIVE CAS SESSION: TROPIC ===
+started_utc=2026-08-11T19:43:09.699669+00:00
+endpoint=https://mpmprodvdmml.ondemand.sas.com/cas-shared-default-http/
+username=<REDACTED_USER>
+password=<REDACTED>
+authentication=SUCCESS candidates_tested<= 2
+server_status=CONNECTED
+caslib_query=TROPIC:Prostat_Sanofi_2007_79
+table=TROPIC:dataFiles_399/ae.sas7bdat rows=5428 columns=29 status=OK
+table=TROPIC:dataFiles_399/cd.sas7bdat rows=3339 columns=14 status=OK
+table=TROPIC:dataFiles_399/cm.sas7bdat rows=24534 columns=18 status=OK
+table=TROPIC:dataFiles_399/cx.sas7bdat rows=2516 columns=21 status=OK
+table=TROPIC:dataFiles_399/dm.sas7bdat rows=371 columns=12 status=OK
+table=TROPIC:dataFiles_399/ds.sas7bdat rows=2842 columns=14 status=OK
+table=TROPIC:dataFiles_399/eg.sas7bdat rows=558 columns=15 status=OK
+table=TROPIC:dataFiles_399/ex.sas7bdat rows=3485 columns=16 status=OK
+table=TROPIC:dataFiles_399/ie.sas7bdat rows=42 columns=13 status=OK
+table=TROPIC:dataFiles_399/lb.sas7bdat rows=80788 columns=27 status=OK
+table=TROPIC:dataFiles_399/ls.sas7bdat rows=5774 columns=21 status=OK
+table=TROPIC:dataFiles_399/mh.sas7bdat rows=2292 columns=13 status=OK
+table=TROPIC:dataFiles_399/pe.sas7bdat rows=3614 columns=17 status=OK
+table=TROPIC:dataFiles_399/pn.sas7bdat rows=26982 columns=18 status=OK
+table=TROPIC:dataFiles_399/pr.sas7bdat rows=151 columns=10 status=OK
+table=TROPIC:dataFiles_399/sc.sas7bdat rows=11 columns=11 status=OK
+table=TROPIC:dataFiles_399/suppae.sas7bdat rows=53153 columns=11 status=OK
+table=TROPIC:dataFiles_399/suppcm.sas7bdat rows=108333 columns=11 status=OK
+table=TROPIC:dataFiles_399/suppdm.sas7bdat rows=2597 columns=11 status=OK
+table=TROPIC:dataFiles_399/suppds.sas7bdat rows=1083 columns=11 status=OK
+table=TROPIC:dataFiles_399/suppeg.sas7bdat rows=164 columns=11 status=OK
+table=TROPIC:dataFiles_399/suppex.sas7bdat rows=18137 columns=11 status=OK
+table=TROPIC:dataFiles_399/suppie.sas7bdat rows=21 columns=11 status=OK
+table=TROPIC:dataFiles_399/supplb.sas7bdat rows=80788 columns=11 status=OK
+table=TROPIC:dataFiles_399/suppls.sas7bdat rows=5610 columns=11 status=OK
+table=TROPIC:dataFiles_399/suppmh.sas7bdat rows=2025 columns=11 status=OK
+table=TROPIC:dataFiles_399/supppe.sas7bdat rows=1134 columns=11 status=OK
+table=TROPIC:dataFiles_399/supppr.sas7bdat rows=151 columns=11 status=OK
+table=TROPIC:dataFiles_399/sv.sas7bdat rows=3930 columns=9 status=OK
+table=TROPIC:dataFiles_399/te.sas7bdat rows=4 columns=6 status=OK
+table=TROPIC:dataFiles_399/ti.sas7bdat rows=48 columns=5 status=OK
+table=TROPIC:dataFiles_399/ts.sas7bdat rows=16 columns=6 status=OK
+table=TROPIC:dataFiles_399/tv.sas7bdat rows=24 columns=7 status=OK
+table=TROPIC:dataFiles_399/vs.sas7bdat rows=18388 columns=19 status=OK
+caslib_complete=TROPIC files=34 loaded=34
+connection_close=SUCCESS
+ended_utc=2026-08-11T19:43:47.180434+00:00
+elapsed_seconds=37.5

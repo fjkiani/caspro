@@ -1,0 +1,3354 @@
+{
+  "caslib": "LungNo_ELiLill_2006_116",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CYFRA21_1"
+  ],
+  "indication": "lung_nsclc",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 11,
+  "n_tabular_files": 11,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "3467bf7e381dacbac9c56c0a3dc04bc26b6da5f72bc0ccaec9057af98921f1fc",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Research Project Code",
+          "name": "RESPROJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Facility Code",
+          "name": "FACILITY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "SDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Investigator ID",
+          "name": "INVID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier",
+          "name": "SUBJID",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit Forward Identifier",
+          "name": "VISFWDID",
+          "type": "double"
+        },
+        {
+          "format": "DATE",
+          "label": "Response Date",
+          "name": "BORDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Response Date Character",
+          "name": "BORDTC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Best Overall Response Result Numeric",
+          "name": "BORRN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Best Overall Response Result Character",
+          "name": "BORRC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Unique Study Identifier",
+          "name": "USDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Country Code",
+          "name": "COUNTRY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment",
+          "name": "TRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Sort Order",
+          "name": "TRTSORT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age in Years at Consent",
+          "name": "AGEYR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "BORDT",
+          "BORDTC"
+        ],
+        "treatment": [
+          "TRT",
+          "TRTSORT"
+        ],
+        "unit": [],
+        "value": [
+          "BORRN",
+          "BORRC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 387,
+      "path": "dataFiles_655/bor.sas7bdat",
+      "size": 270336,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Research Project Code",
+          "name": "RESPROJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Facility Code",
+          "name": "FACILITY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "SDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Investigator ID",
+          "name": "INVID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier",
+          "name": "SUBJID",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit Forward Identifier",
+          "name": "VISFWDID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment Type Short Name",
+          "name": "TRTTPSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy Identifier",
+          "name": "CMID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Concomitant Therapy ATC code",
+          "name": "TRTCLASX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Identifier - Indication for Use",
+          "name": "AEID",
+          "type": "double"
+        },
+        {
+          "format": "DATE",
+          "label": "Therapy End Date",
+          "name": "CMENDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Therapy End Date Character",
+          "name": "CMENDTC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy Continuing Flag",
+          "name": "CMFLG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Therapy Continuing Flag Long Name",
+          "name": "CMFLGLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy Continuing Flag Short Name",
+          "name": "CMFLGSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy Indication for Use",
+          "name": "CMIFU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Therapy Indication for Use Long Name",
+          "name": "CMIFULNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy Indication for Use Short Name",
+          "name": "CMIFUSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy Missing Data",
+          "name": "CMMD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Therapy Missing Data Long Name",
+          "name": "CMMDLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy Missing Data Short Name",
+          "name": "CMMDSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy Name Modified",
+          "name": "CMMODIFY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy Name",
+          "name": "CMNAME",
+          "type": "char"
+        },
+        {
+          "format": "DATE",
+          "label": "Therapy Start Date",
+          "name": "CMSTDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Therapy Start Date Character",
+          "name": "CMSTDTC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy Dictionary Term",
+          "name": "CMTERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Therapy Usage Class",
+          "name": "CMUSECLAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary",
+          "name": "DICT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary Type",
+          "name": "DICTTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Type",
+          "name": "TRTTP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment Type Long Name",
+          "name": "TRTTPLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WHODrug Reference Identifier",
+          "name": "WHODRGID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Unique Study Identifier",
+          "name": "USDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Country Code",
+          "name": "COUNTRY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment",
+          "name": "TRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Sort Order",
+          "name": "TRTSORT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age in Years at Consent",
+          "name": "AGEYR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "WHODRGID"
+        ],
+        "endpoint": [
+          "AEID"
+        ],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "CMENDT",
+          "CMENDTC",
+          "CMSTDT",
+          "CMSTDTC"
+        ],
+        "treatment": [
+          "TRTTPSNM",
+          "TRTCLASX",
+          "TRTTP",
+          "TRTTPLNM",
+          "TRT",
+          "TRTSORT"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 24267,
+      "path": "dataFiles_655/cmtpy.sas7bdat",
+      "size": 69214208,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Research Project Code",
+          "name": "RESPROJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Facility Code",
+          "name": "FACILITY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "SDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Investigator ID",
+          "name": "INVID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier",
+          "name": "SUBJID",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit Forward Identifier",
+          "name": "VISFWDID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Identifier - Reason Discontinued",
+          "name": "AEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Disposition",
+          "name": "DS",
+          "type": "double"
+        },
+        {
+          "format": "DATE",
+          "label": "Subject Disposition Date",
+          "name": "DSDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Disposition Date Character",
+          "name": "DSDTC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Disposition Long Name",
+          "name": "DSLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Disposition Short Name",
+          "name": "DSSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Disposition Type",
+          "name": "DSTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term",
+          "name": "HLGTERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Term",
+          "name": "HLTERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term Code",
+          "name": "LLTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term",
+          "name": "LLTERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary Cause of Death",
+          "name": "PRICOD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Primary Cause of Death Long Name",
+          "name": "PRICODLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary Cause of Death Short Name",
+          "name": "PRICODSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred Term",
+          "name": "PTERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "System Organ Class Term",
+          "name": "SOCTERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Time from Enrollment to Trt Disc",
+          "name": "TFENRL2DS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Time from Enrollment to Trt Disc UOM",
+          "name": "TFENRL2DSU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Tm from Enrollment to Trt Disc UOM LNM",
+          "name": "TFENRL2DSULNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Tm from Enrollment to Trt Disc UOM SNM",
+          "name": "TFENRL2DSUSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Time from Start of Therapy to Trt Disc",
+          "name": "TFSTPY2DS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Tm from Start of Tpy to Trt Disc UOM",
+          "name": "TFSTPY2DSU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Tm from Start of Tpy to Trt Disc UOM LNM",
+          "name": "TFSTPY2DSULNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Tm from Start of Tpy to Trt Disc UOM SNM",
+          "name": "TFSTPY2DSUSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Unique Study Identifier",
+          "name": "USDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Country Code",
+          "name": "COUNTRY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment",
+          "name": "TRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Sort Order",
+          "name": "TRTSORT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age in Years at Consent",
+          "name": "AGEYR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AEID",
+          "PRICOD",
+          "PRICODLNM",
+          "PRICODSNM"
+        ],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "DSDT",
+          "DSDTC"
+        ],
+        "treatment": [
+          "TFENRL2DS",
+          "TFENRL2DSU",
+          "TFENRL2DSULNM",
+          "TFENRL2DSUSNM",
+          "TFSTPY2DS",
+          "TFSTPY2DSU",
+          "TFSTPY2DSULNM",
+          "TFSTPY2DSUSNM",
+          "TRT",
+          "TRTSORT"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 455,
+      "path": "dataFiles_655/disposit.sas7bdat",
+      "size": 1712128,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Research Project Code",
+          "name": "RESPROJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Facility Code",
+          "name": "FACILITY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "SDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Investigator ID",
+          "name": "INVID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier",
+          "name": "SUBJID",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit Forward Identifier",
+          "name": "VISFWDID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Identifier",
+          "name": "AEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Sequence Identifier",
+          "name": "AESEQID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event CTC Code",
+          "name": "AECTC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event CTC Grade",
+          "name": "AECTCGRD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event CTC Grade Long Name",
+          "name": "AECTCGRDLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event CTC Grade Short Name",
+          "name": "AECTCGRDSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event CTC Code Long Name",
+          "name": "AECTCLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event CTC Code Short Name",
+          "name": "AECTCSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Duration",
+          "name": "AEDUR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Duration UOM",
+          "name": "AEDURU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Duration UOM Long Name",
+          "name": "AEDURULNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Duration UOM Short Name",
+          "name": "AEDURUSNM",
+          "type": "char"
+        },
+        {
+          "format": "DATE",
+          "label": "Event End Date",
+          "name": "AEENDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event End Date Character",
+          "name": "AEENDTC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Continuing Flag",
+          "name": "AEFLG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Continuing Flag Long Name",
+          "name": "AEFLGLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Continuing Flag Short Name",
+          "name": "AEFLGSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Lab Flag",
+          "name": "AELBFLG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Lab Flag Long Name",
+          "name": "AELBFLGLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Lab Flag Short Name",
+          "name": "AELBFLGSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Outcome",
+          "name": "AEOUT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Outcome Long Name",
+          "name": "AEOUTLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Outcome Short Name",
+          "name": "AEOUTSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Relationship Assessor",
+          "name": "AERELASR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Relationship Assessor Long Name",
+          "name": "AERELASRLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Relationship Assessor Short Name",
+          "name": "AERELASRSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Related to Study Treatment Flag",
+          "name": "AEREL6",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Related to Study Treatment Flg LNM",
+          "name": "AEREL6LNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Related to Study Treatment Flg SNM",
+          "name": "AEREL6SNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Related to Study Procedure Flag",
+          "name": "AEREL7",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Related to Study Procedure Flg LNM",
+          "name": "AEREL7LNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Related to Study Procedure Flg SNM",
+          "name": "AEREL7SNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Severity Changed Visit Number",
+          "name": "AESEVVIS",
+          "type": "double"
+        },
+        {
+          "format": "DATE",
+          "label": "Event Start Date",
+          "name": "AESTDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Start Date Character",
+          "name": "AESTDTC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Term",
+          "name": "AETERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Type",
+          "name": "AETP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Type Long Name",
+          "name": "AETPLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Type Short Name",
+          "name": "AETPSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary",
+          "name": "DICT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary Type",
+          "name": "DICTTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary Type 2",
+          "name": "DICTTP2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary Version",
+          "name": "DICTVER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary Version Used for Analysis",
+          "name": "DICTVERANL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary Version 2",
+          "name": "DICTVER2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary 2",
+          "name": "DICT2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term",
+          "name": "HLGTERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Term",
+          "name": "HLTERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term Code",
+          "name": "LLTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term Current Flag",
+          "name": "LLTCURRFLG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term",
+          "name": "LLTERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary System Organ Class Flag",
+          "name": "PRISOCFLG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred Term",
+          "name": "PTERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Assessment Flag",
+          "name": "SAEASFLG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Assessment Flag Long Name",
+          "name": "SAEASFLGLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Assessment Flag Short Name",
+          "name": "SAEASFLGSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 1",
+          "name": "SAEASTP1",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 1 Long Name",
+          "name": "SAEASTP1LNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 1 Short Name",
+          "name": "SAEASTP1SNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 2",
+          "name": "SAEASTP2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 2 Long Name",
+          "name": "SAEASTP2LNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 2 Short Name",
+          "name": "SAEASTP2SNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 3",
+          "name": "SAEASTP3",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 3 Long Name",
+          "name": "SAEASTP3LNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 3 Short Name",
+          "name": "SAEASTP3SNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 4",
+          "name": "SAEASTP4",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 4 Long Name",
+          "name": "SAEASTP4LNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 4 Short Name",
+          "name": "SAEASTP4SNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 5",
+          "name": "SAEASTP5",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 5 Long Name",
+          "name": "SAEASTP5LNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 5 Short Name",
+          "name": "SAEASTP5SNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 6",
+          "name": "SAEASTP6",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 6 Long Name",
+          "name": "SAEASTP6LNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Outcome Code 6 Short Name",
+          "name": "SAEASTP6SNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Congenital Anomaly",
+          "name": "SAECONG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Congenital Anomaly LNM",
+          "name": "SAECONGLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Congenital Anomaly SNM",
+          "name": "SAECONGSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Disability",
+          "name": "SAEDISAB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Disability Long Name",
+          "name": "SAEDISABLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Disability Short Name",
+          "name": "SAEDISABSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Death",
+          "name": "SAEDTH",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Death Long Name",
+          "name": "SAEDTHLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Death Short Name",
+          "name": "SAEDTHSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Hospitalization",
+          "name": "SAEHOSP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Hospitalization Long Name",
+          "name": "SAEHOSPLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Hospitalization Short Name",
+          "name": "SAEHOSPSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Life-threatening",
+          "name": "SAELIFE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Life-threatening Long NM",
+          "name": "SAELIFELNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Life-threatening Short NM",
+          "name": "SAELIFESNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Other",
+          "name": "SAEOTH",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Other Long Name",
+          "name": "SAEOTHLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event Other Short Name",
+          "name": "SAEOTHSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "System Organ Class Abbreviation",
+          "name": "SOCABR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "System Organ Class Term",
+          "name": "SOCTERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Emergent AE LLT Flag",
+          "name": "TEAELTFLG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment Emergent AE PT Flag",
+          "name": "TEAEPTFLG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Tm from Enrollment to Onset of Event",
+          "name": "TFENRL2ONS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Tm from Enrollment to Onset of AE UOM",
+          "name": "TFENRL2ONSU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Tm from Enrl to Onset of AE UOM LNM",
+          "name": "TFENRL2ONSULNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Tm from Enrl to Onset of AE UOM SNM",
+          "name": "TFENRL2ONSUSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Tm from Start Tpy to Onset of Event",
+          "name": "TFSTPY2ONS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Tm from Start Tpy to Onset of AE UOM",
+          "name": "TFSTPY2ONSU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Tm from Start Tpy to Onset of AE UOM LNM",
+          "name": "TFSTPY2ONSULNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Tm from Start Tpy to Onset of AE UOM SNM",
+          "name": "TFSTPY2ONSUSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Unique Study Identifier",
+          "name": "USDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Country Code",
+          "name": "COUNTRY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment",
+          "name": "TRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Sort Order",
+          "name": "TRTSORT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age in Years at Consent",
+          "name": "AGEYR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AEID",
+          "AESEQID",
+          "AECTC",
+          "AECTCGRD",
+          "AECTCGRDLNM",
+          "AECTCGRDSNM",
+          "AECTCLNM",
+          "AECTCSNM",
+          "AEDUR",
+          "AEDURU",
+          "AEDURULNM",
+          "AEDURUSNM",
+          "AEENDT",
+          "AEENDTC",
+          "AEFLG",
+          "AEFLGLNM",
+          "AEFLGSNM",
+          "AELBFLG",
+          "AELBFLGLNM",
+          "AELBFLGSNM",
+          "AEOUT",
+          "AEOUTLNM",
+          "AEOUTSNM",
+          "AERELASR",
+          "AERELASRLNM",
+          "AERELASRSNM",
+          "AEREL6",
+          "AEREL6LNM",
+          "AEREL6SNM",
+          "AEREL7",
+          "AEREL7LNM",
+          "AEREL7SNM",
+          "AESEVVIS",
+          "AESTDT",
+          "AESTDTC",
+          "AETERM",
+          "AETP",
+          "AETPLNM",
+          "AETPSNM",
+          "SAEASFLG",
+          "SAEASFLGLNM",
+          "SAEASFLGSNM",
+          "SAEASTP1",
+          "SAEASTP1LNM",
+          "SAEASTP1SNM",
+          "SAEASTP2",
+          "SAEASTP2LNM",
+          "SAEASTP2SNM",
+          "SAEASTP3",
+          "SAEASTP3LNM",
+          "SAEASTP3SNM",
+          "SAEASTP4",
+          "SAEASTP4LNM",
+          "SAEASTP4SNM",
+          "SAEASTP5",
+          "SAEASTP5LNM",
+          "SAEASTP5SNM",
+          "SAEASTP6",
+          "SAEASTP6LNM",
+          "SAEASTP6SNM",
+          "SAECONG",
+          "SAECONGLNM",
+          "SAECONGSNM",
+          "SAEDISAB",
+          "SAEDISABLNM",
+          "SAEDISABSNM",
+          "SAEDTH",
+          "SAEDTHLNM",
+          "SAEDTHSNM",
+          "SAEHOSP",
+          "SAEHOSPLNM",
+          "SAEHOSPSNM",
+          "SAELIFE",
+          "SAELIFELNM",
+          "SAELIFESNM",
+          "SAEOTH",
+          "SAEOTHLNM",
+          "SAEOTHSNM",
+          "TFENRL2ONS",
+          "TFSTPY2ONS"
+        ],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "AEENDT",
+          "AEENDTC",
+          "AESTDT",
+          "AESTDTC"
+        ],
+        "treatment": [
+          "AEREL6",
+          "AEREL6LNM",
+          "AEREL6SNM",
+          "TEAELTFLG",
+          "TEAEPTFLG",
+          "TRT",
+          "TRTSORT"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 23467,
+      "path": "dataFiles_655/events.sas7bdat",
+      "size": 384507904,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Research Project Code",
+          "name": "RESPROJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Facility Code",
+          "name": "FACILITY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "SDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Investigator ID",
+          "name": "INVID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier",
+          "name": "SUBJID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment Name",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reporting Interval",
+          "name": "RPTIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Exposure Dose UOM",
+          "name": "EXDOSEU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Exposure Dose UOM Long Name",
+          "name": "EXDOSEULNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Exposure Dose UOM Short Name",
+          "name": "EXDOSEUSNM",
+          "type": "char"
+        },
+        {
+          "format": "DATE",
+          "label": "Exposure End Date",
+          "name": "EXENDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Exposure for Reporting Interval",
+          "name": "EXRPTIN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Exposure for Reporting Interval UOM",
+          "name": "EXRPTINU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Exposure for Reporting Interval UOM LNM",
+          "name": "EXRPTINULNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Exposure for Reporting Interval UOM SNM",
+          "name": "EXRPTINUSNM",
+          "type": "char"
+        },
+        {
+          "format": "DATE",
+          "label": "Exposure Start Date",
+          "name": "EXSTDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Mean Delivered Dose",
+          "name": "MEANDOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Mean Scheduled Dose",
+          "name": "MEANSCDOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Unique Study Identifier",
+          "name": "USDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Country Code",
+          "name": "COUNTRY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment",
+          "name": "TRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Sort Order",
+          "name": "TRTSORT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age in Years at Consent",
+          "name": "AGEYR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "EXENDT",
+          "EXSTDT"
+        ],
+        "treatment": [
+          "TRTNAME",
+          "TRT",
+          "TRTSORT"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 895,
+      "path": "dataFiles_655/exsumm.sas7bdat",
+      "size": 1384448,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LBTESTCD",
+          "n_unique": 11,
+          "values": [
+            "A02",
+            "A10",
+            "A13",
+            "A20",
+            "D06",
+            "E01",
+            "E03",
+            "E13",
+            "F77",
+            "G01",
+            "H35"
+          ]
+        },
+        {
+          "column": "LBTEST",
+          "n_unique": 11,
+          "values": [
+            "ALKALINE PHOSPHATASE",
+            "ALT/SGPT",
+            "AST/SGOT",
+            "BILIRUBIN, TOTAL",
+            "CREATININE",
+            "CREATININE CLEARANCE - ESTIMATED",
+            "HEMOGLOBIN",
+            "LEUKOCYTE COUNT",
+            "NEUTROPHILS, SEGMENTED",
+            "PLATELET COUNT",
+            "SERUM BETA HCG"
+          ]
+        },
+        {
+          "column": "LBTESTABR",
+          "n_unique": 11,
+          "values": [
+            "ALKPH",
+            "ALT",
+            "AST",
+            "CREACL",
+            "CREAT",
+            "HGB",
+            "PLTCT",
+            "POLYS",
+            "PREG-S",
+            "T.BILI",
+            "WBC"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Research Project Code",
+          "name": "RESPROJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Facility Code",
+          "name": "FACILITY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "SDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Investigator ID",
+          "name": "INVID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier",
+          "name": "SUBJID",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit Forward Identifier",
+          "name": "VISFWDID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lab Test Code",
+          "name": "LBTESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Test Result Type",
+          "name": "LBRESTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Sequence Number",
+          "name": "LBSEQID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lab Procedure",
+          "name": "LBPROC",
+          "type": "char"
+        },
+        {
+          "format": "DATE",
+          "label": "Actual Collection Start Date",
+          "name": "LBACSTDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Collection Start Date Character",
+          "name": "LBACSTDTC",
+          "type": "char"
+        },
+        {
+          "format": "DATETIME",
+          "label": "Actual Collection Start Datetime",
+          "name": "LBACSTDTTM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Collection Start Datetime Char",
+          "name": "LBACSTDTTMC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age at Lab Collection",
+          "name": "LBAGE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Baseline Flag",
+          "name": "LBBLFLG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Result Blinded",
+          "name": "LBBLIND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Blinded During Study",
+          "name": "LBBLINDFLG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Value",
+          "name": "LBBLVAL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Change from Baseline to Visit",
+          "name": "LBCHGBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lab Test Delta",
+          "name": "LBDLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Test Delta Range High",
+          "name": "LBDLTHI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lab Test Delta Range Low",
+          "name": "LBDLTLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Delta Range Code",
+          "name": "LBDLTRNGCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Delta Range Name",
+          "name": "LBDLTRNGNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Test Result SAS Format",
+          "name": "LBFMT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Index Data Point Reference",
+          "name": "LBIDPR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Imputation Flag",
+          "name": "LBIMPUTFLG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Test Normality",
+          "name": "LBNORM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Normal Range High",
+          "name": "LBNRHI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lab Normal Range Low",
+          "name": "LBNRLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lab Occurrence Number",
+          "name": "LBOCC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Pct Chg Baseline to Visit",
+          "name": "LBPCTCHGBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Pct Chg from Previous Visit",
+          "name": "LBPCTCHGPRV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lab Test Result Character",
+          "name": "LBRC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Lab  Reference Range Age High",
+          "name": "LBREFAGEHI",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Lab  Reference Range Age Low",
+          "name": "LBREFAGELO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lab  Analysis Reference Range Code",
+          "name": "LBREFCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lab  Analysis Reference Range Name",
+          "name": "LBREFNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab  Reference Range Origin",
+          "name": "LBREFOR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Requisition Number",
+          "name": "LBREQ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Test Result Numeric",
+          "name": "LBRN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lab Test Result UOM",
+          "name": "LBRU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Test Result UOM Code",
+          "name": "LBRUCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lab Sample Condition",
+          "name": "LBSMCND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Test Name",
+          "name": "LBTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Abbreviated Lab Test Name",
+          "name": "LBTESTABR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "GLS Unscheduled Visit Identifier",
+          "name": "LBUNVIS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Performing Lab Code",
+          "name": "PERFLBCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Performing Lab Name",
+          "name": "PERFLBNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Unique Study Identifier",
+          "name": "USDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Country Code",
+          "name": "COUNTRY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment",
+          "name": "TRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Sort Order",
+          "name": "TRTSORT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age in Years at Consent",
+          "name": "AGEYR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LBTESTCD",
+          "LBTEST",
+          "LBTESTABR"
+        ],
+        "ecog": [
+          "PERFLBCD",
+          "PERFLBNM"
+        ],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "LBACSTDT",
+          "LBACSTDTC",
+          "LBACSTDTTM",
+          "LBACSTDTTMC",
+          "LBBLINDFLG"
+        ],
+        "treatment": [
+          "TRT",
+          "TRTSORT"
+        ],
+        "unit": [],
+        "value": [
+          "LBRESTP",
+          "LBBLIND",
+          "LBBLVAL",
+          "LBFMT",
+          "LBRC",
+          "LBRN",
+          "LBRU",
+          "LBRUCD"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 100445,
+      "path": "dataFiles_655/labs.sas7bdat",
+      "size": 68624384,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Research Project Code",
+          "name": "RESPROJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Facility Code",
+          "name": "FACILITY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "SDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Investigator ID",
+          "name": "INVID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier",
+          "name": "SUBJID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Medical History Item Detail Short Name",
+          "name": "MHDSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease Code",
+          "name": "DISCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Disease Code Long Name",
+          "name": "DISCDLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease Code Short Name",
+          "name": "DISCDSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Medical History Item Detail",
+          "name": "MHD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Medical History Item Detail Long Name",
+          "name": "MHDLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Medical History Name",
+          "name": "MHNAME",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Medical History Name  Long Name",
+          "name": "MHNAMELNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Medical History Name Short Name",
+          "name": "MHNAMESNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "MH Occurrence Flag",
+          "name": "MHOCCUR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MH Occurrence Flag Long Name",
+          "name": "MHOCCURLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "MH Occurrence Flag Short Name",
+          "name": "MHOCCURSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Observation Name",
+          "name": "OBSNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Unique Study Identifier",
+          "name": "USDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Country Code",
+          "name": "COUNTRY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment",
+          "name": "TRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Sort Order",
+          "name": "TRTSORT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age in Years at Consent",
+          "name": "AGEYR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [],
+        "treatment": [
+          "TRT",
+          "TRTSORT"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 908,
+      "path": "dataFiles_655/medhist.sas7bdat",
+      "size": 2105344,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Research Project Code",
+          "name": "RESPROJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Facility Code",
+          "name": "FACILITY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "SDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Investigator ID",
+          "name": "INVID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier",
+          "name": "SUBJID",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit Forward Identifier",
+          "name": "VISFWDID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Treatment Dose Type",
+          "name": "SDYDOSETP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment Name",
+          "name": "TRTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Treatment Dose Description",
+          "name": "SDYDOSEDESC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Protocol Time Label",
+          "name": "SDYPTLBL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Identifier for Dose Adjustment",
+          "name": "ADJAEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dictionary",
+          "name": "DICT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary Type",
+          "name": "DICTTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Identifier for Cycle Delay",
+          "name": "DLYAEID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Treatment Dose",
+          "name": "SDYDOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose Adjustment Type",
+          "name": "SDYDOSEADJTP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose Adjustment Type Long Name",
+          "name": "SDYDOSEADJTPLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose Adjustment Type Short Name",
+          "name": "SDYDOSEADJTPSNM",
+          "type": "char"
+        },
+        {
+          "format": "DATE",
+          "label": "Study Treatment Dose Date",
+          "name": "SDYDOSEDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Treatment Dose Date Character",
+          "name": "SDYDOSEDTC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Treatment Dose Type Long Name",
+          "name": "SDYDOSETPLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Treatment Dose Type Short Name",
+          "name": "SDYDOSETPSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Treatment Dose UOM",
+          "name": "SDYDOSEU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Treatment Dose UOM Long Name",
+          "name": "SDYDOSEULNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Treatment Dose UOM Short Name",
+          "name": "SDYDOSEUSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason Dose Adjusted",
+          "name": "SDYREASADJ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reason Dose Adjusted Long Name",
+          "name": "SDYREASADJLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason Dose Adjusted Short Name",
+          "name": "SDYREASADJSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason Dose Delayed",
+          "name": "SDYREASDLY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reason Dose Delayed Long Name",
+          "name": "SDYREASDLYLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason Dose Delayed Short Name",
+          "name": "SDYREASDLYSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary Treatment Term",
+          "name": "TRTTERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Type",
+          "name": "TRTTP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment Type Long Name",
+          "name": "TRTTPLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Type Short Name",
+          "name": "TRTTPSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WHODrug Reference Identifier",
+          "name": "WHODRGID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Unique Study Identifier",
+          "name": "USDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Country Code",
+          "name": "COUNTRY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment",
+          "name": "TRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Sort Order",
+          "name": "TRTSORT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age in Years at Consent",
+          "name": "AGEYR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "WHODRGID"
+        ],
+        "endpoint": [
+          "ADJAEID",
+          "DLYAEID",
+          "TRTTERM"
+        ],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "DLYAEID",
+          "SDYDOSEDT",
+          "SDYDOSEDTC"
+        ],
+        "treatment": [
+          "SDYDOSETP",
+          "TRTNAME",
+          "SDYDOSEDESC",
+          "SDYDOSE",
+          "SDYDOSEDT",
+          "SDYDOSEDTC",
+          "SDYDOSETPLNM",
+          "SDYDOSETPSNM",
+          "SDYDOSEU",
+          "SDYDOSEULNM",
+          "SDYDOSEUSNM",
+          "TRTTERM",
+          "TRTTP",
+          "TRTTPLNM",
+          "TRTTPSNM",
+          "TRT",
+          "TRTSORT"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 9782,
+      "path": "dataFiles_655/sdytrt.sas7bdat",
+      "size": 37756928,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Research Project Code",
+          "name": "RESPROJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Facility Code",
+          "name": "FACILITY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "SDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Investigator ID",
+          "name": "INVID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier",
+          "name": "SUBJID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Brain Metastatses History Category LNM",
+          "name": "BMHCATLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Brain Metastases History Category SNM",
+          "name": "BMHCATSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Category at Consent",
+          "name": "AGECATBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age Category at Consent Long Name",
+          "name": "AGECATBLLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Category at Consent Short Name",
+          "name": "AGECATBLSNM",
+          "type": "char"
+        },
+        {
+          "format": "DATE",
+          "label": "Birth Date",
+          "name": "BIRTHDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Birth Date Character",
+          "name": "BIRTHDTC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Result Blinded",
+          "name": "BLINDED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Brain Metastases History Category",
+          "name": "BMHCAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Discontinuation Date Character",
+          "name": "DISCDTC",
+          "type": "char"
+        },
+        {
+          "format": "DATE",
+          "label": "Enrollment Date",
+          "name": "ENRLDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Enrollment Date Character",
+          "name": "ENRLDTC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Height in Cm at Baseline",
+          "name": "HGTCMBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LDH Category at Baseline",
+          "name": "LDHCATBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LDH Category at Baseline LNM",
+          "name": "LDHCATBLLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LDH Category at Baseline SNM",
+          "name": "LDHCATBLSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Metastatic Sites Category",
+          "name": "MSCAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Metastatic Sites Category Long Name",
+          "name": "MSCATLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Metastatic Sites Category Short Name",
+          "name": "MSCATSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Number of Metastatic Sites at Baseline",
+          "name": "MSNUMBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Performance Status  at Baseline",
+          "name": "PFSCATBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Performance Status  at Baseline Long N",
+          "name": "PFSCATBLLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Performance Status   at Baseline Short N",
+          "name": "PFSCATBLSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race Long Name",
+          "name": "RACELNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race Short Name",
+          "name": "RACESNM",
+          "type": "char"
+        },
+        {
+          "format": "DATE",
+          "label": "Randomization Date",
+          "name": "RNDMDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Randomization Date Character",
+          "name": "RNDMDTC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex Long Name",
+          "name": "SEXLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex Short Name",
+          "name": "SEXSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Enrolled Set",
+          "name": "SUBJENRL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subj. Intent to Treat Set",
+          "name": "SUBJITT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Qualified for Tumor Response Set",
+          "name": "SUBJRESP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Randomized and Treated Set",
+          "name": "SUBJTRT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment Code",
+          "name": "TRTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Description",
+          "name": "TRTDESC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Weight in Kg at Baseline",
+          "name": "WGTKGBL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Unique Study Identifier",
+          "name": "USDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Country Code",
+          "name": "COUNTRY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment",
+          "name": "TRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Sort Order",
+          "name": "TRTSORT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age in Years at Consent",
+          "name": "AGEYR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "PFSCATBL",
+          "PFSCATBLLNM",
+          "PFSCATBLSNM"
+        ],
+        "endpoint": [
+          "PFSCATBL",
+          "PFSCATBLLNM",
+          "PFSCATBLSNM"
+        ],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "BIRTHDT",
+          "BIRTHDTC",
+          "DISCDTC",
+          "ENRLDT",
+          "ENRLDTC",
+          "RNDMDT",
+          "RNDMDTC"
+        ],
+        "treatment": [
+          "SUBJITT",
+          "SUBJTRT",
+          "TRTCD",
+          "TRTDESC",
+          "TRT",
+          "TRTSORT"
+        ],
+        "unit": [],
+        "value": [
+          "BLINDED"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 455,
+      "path": "dataFiles_655/subjinfo.sas7bdat",
+      "size": 1908736,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Research Project Code",
+          "name": "RESPROJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Facility Code",
+          "name": "FACILITY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "SDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Investigator ID",
+          "name": "INVID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier",
+          "name": "SUBJID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Time to Event Code",
+          "name": "TTECD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Time to Event Variable Name",
+          "name": "TTETEST",
+          "type": "char"
+        },
+        {
+          "format": "DATE",
+          "label": "Time to Event Start Date",
+          "name": "TTESTDT",
+          "type": "double"
+        },
+        {
+          "format": "DATE",
+          "label": "Time to Event End Date",
+          "name": "TTEENDT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Time to Event Result Numeric (Time)",
+          "name": "TTERN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Time to Event RN Unit of Measure",
+          "name": "TTERU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Time to Event RN Unit of Measure LNM",
+          "name": "TTERULNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Time to Event RN Unit of Measure SNM",
+          "name": "TTERUSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Time to Event Censoring Indicator",
+          "name": "TTECENSFLG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Time to Event Censoring Indicator LNM",
+          "name": "TTECENSFLGLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Time to Event Censoring Indicator SNM",
+          "name": "TTECENSFLGSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Unique Study Identifier",
+          "name": "USDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Country Code",
+          "name": "COUNTRY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment",
+          "name": "TRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Sort Order",
+          "name": "TRTSORT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age in Years at Consent",
+          "name": "AGEYR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "TTECD",
+          "TTETEST",
+          "TTESTDT",
+          "TTEENDT",
+          "TTERN",
+          "TTERU",
+          "TTERULNM",
+          "TTERUSNM",
+          "TTECENSFLG",
+          "TTECENSFLGLNM",
+          "TTECENSFLGSNM"
+        ],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "TTESTDT",
+          "TTEENDT"
+        ],
+        "treatment": [
+          "TRT",
+          "TRTSORT"
+        ],
+        "unit": [
+          "TTERU",
+          "TTERULNM",
+          "TTERUSNM"
+        ],
+        "value": [
+          "TTERN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 2052,
+      "path": "dataFiles_655/ttevent.sas7bdat",
+      "size": 3481600,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "VSTESTCD",
+          "n_unique": 8,
+          "values": [
+            "BSA",
+            "BSACAP",
+            "DIA",
+            "HGT",
+            "PFSTGRD",
+            "PLS",
+            "SYS",
+            "WGT"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Research Project Code",
+          "name": "RESPROJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Facility Code",
+          "name": "FACILITY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "SDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Investigator ID",
+          "name": "INVID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier",
+          "name": "SUBJID",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Visit Forward Identifier",
+          "name": "VISFWDID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Vital Sign Name",
+          "name": "VSTESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vital Sign Result UOM Short Name",
+          "name": "VSRUSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vital Sign Position",
+          "name": "VSPOS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Original Result Flag",
+          "name": "ORRESFLG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Standardized Result Flag",
+          "name": "STDRESFLG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Vital Sign Detail",
+          "name": "VSD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Vital Sign Detail Long Name",
+          "name": "VSDLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vital Sign Detail Short Name",
+          "name": "VSDSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vital Sign Observation Name",
+          "name": "VSNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vital Sign Position Long Name",
+          "name": "VSPOSLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vital Sign Position Short Name",
+          "name": "VSPOSSNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vital Sign Result Numeric",
+          "name": "VSRN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Vital Sign Result UOM",
+          "name": "VSRU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Vital Sign Result UOM Long Name",
+          "name": "VSRULNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vital Sign Name Label",
+          "name": "VSTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Unique Study Identifier",
+          "name": "USDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Country Code",
+          "name": "COUNTRY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment",
+          "name": "TRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Sort Order",
+          "name": "TRTSORT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age in Years at Consent",
+          "name": "AGEYR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "VSTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [],
+        "treatment": [
+          "TRT",
+          "TRTSORT"
+        ],
+        "unit": [],
+        "value": [
+          "VSRUSNM",
+          "ORRESFLG",
+          "STDRESFLG",
+          "VSRN",
+          "VSRU",
+          "VSRULNM"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 15690,
+      "path": "dataFiles_655/vitals.sas7bdat",
+      "size": 34349056,
+      "status": "OK"
+    }
+  ]
+}

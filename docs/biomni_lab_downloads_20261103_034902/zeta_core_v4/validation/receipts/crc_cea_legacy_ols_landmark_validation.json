@@ -1,0 +1,637 @@
+{
+  "analysis": "Universal first-order CRC CEA validation in legacy-schema control arms",
+  "cohorts": {
+    "262": "Colorec_Amgen_2005_262",
+    "263": "Colorec_Amgen_2006_263",
+    "264": "Colorec_Amgen_2006_264"
+  },
+  "credentials_persisted": false,
+  "ecog_harmonization": "Binary ECOG>=2; trial 264 released only grouped 0-or-1 versus 2",
+  "endpoint_validation": {
+    "OS": {
+      "fixed_effect_meta_z_rank": {
+        "HR": 0.8222202431882146,
+        "I2_pct": 0.0,
+        "Q": 0.9900912301006006,
+        "Q_df": 1,
+        "Q_p": 0.31972007808217107,
+        "ci_high": 0.9233213994722255,
+        "ci_low": 0.732189385727351,
+        "coef": -0.19574698406224442,
+        "p": 0.000938539532051449,
+        "se": 0.05916790344414993,
+        "trials": [
+          "263",
+          "264"
+        ],
+        "z": -3.3083305756644714
+      },
+      "flow": {
+        "262": {
+          "control_treatment": "BEVACIZUMAB WITH CHEMOTHERAPY",
+          "endpoint": "OS",
+          "event_codes": [
+            0.0,
+            1.0
+          ],
+          "events_post_landmark": 91,
+          "landmark_day": 154.0,
+          "missing_age": 0,
+          "missing_ecog_ge2": 0,
+          "n_control": 421,
+          "n_control_at_risk_after_landmark": 361,
+          "n_control_positive_fit": 159,
+          "n_endpoint_table": 842,
+          "n_model": 155,
+          "trial": "262"
+        },
+        "263": {
+          "control_treatment": "FOLFIRI ALONE",
+          "endpoint": "OS",
+          "event_codes": [
+            0.0,
+            1.0
+          ],
+          "events_post_landmark": 121,
+          "landmark_day": 154.0,
+          "missing_age": 0,
+          "missing_ecog_ge2": 0,
+          "n_control": 475,
+          "n_control_at_risk_after_landmark": 377,
+          "n_control_positive_fit": 141,
+          "n_endpoint_table": 946,
+          "n_model": 139,
+          "trial": "263"
+        },
+        "264": {
+          "control_treatment": "FOLFOX ALONE",
+          "endpoint": "OS",
+          "event_codes": [
+            0.0,
+            1.0
+          ],
+          "events_post_landmark": 168,
+          "landmark_day": 154.0,
+          "missing_age": 0,
+          "missing_ecog_ge2": 1,
+          "n_control": 467,
+          "n_control_at_risk_after_landmark": 425,
+          "n_control_positive_fit": 242,
+          "n_endpoint_table": 935,
+          "n_model": 234,
+          "trial": "264"
+        }
+      },
+      "pooled_trial_stratified": {
+        "c_index": 0.5722881537327277,
+        "epv": 126.66666666666667,
+        "events": 380,
+        "influence": {
+          "max_abs_delta_beta": 0.012626862264759906,
+          "n_over_threshold": 0,
+          "threshold": 0.08703882797784893
+        },
+        "label": "Pooled trial-stratified control-arm OS",
+        "log_likelihood": -1716.2774469755755,
+        "n": 528,
+        "n_trials": 3,
+        "ph_test_p": {
+          "age_ge65": 0.694197273197475,
+          "ecog": 0.7403431795939166,
+          "z_rank": 0.5707050726717484
+        },
+        "status": "ESTIMATED",
+        "stratified_by_trial": true,
+        "terms": {
+          "age_ge65": {
+            "HR": 1.343684755564609,
+            "ci_high": 1.6598838489729428,
+            "ci_low": 1.0877199169411,
+            "coef": 0.29541565771662187,
+            "p": 0.006147948987336966,
+            "se": 0.10782441584259359,
+            "z": 2.7397844487085514
+          },
+          "ecog": {
+            "HR": 2.6716579126387687,
+            "ci_high": 4.4968152016045835,
+            "ci_low": 1.5872913789337841,
+            "coef": 0.9826992207712332,
+            "p": 0.00021629337109238078,
+            "se": 0.26565293881624935,
+            "z": 3.699184451525909
+          },
+          "z_rank": {
+            "HR": 0.8657409806586578,
+            "ci_high": 0.9555175182375977,
+            "ci_low": 0.7843994812091378,
+            "coef": -0.14416951370517783,
+            "p": 0.004185447020838198,
+            "se": 0.05034140071902285,
+            "z": -2.863835960978724
+          }
+        }
+      },
+      "role": "SENSITIVITY",
+      "trial_specific": {
+        "262": {
+          "constant_terms": [
+            "ecog"
+          ],
+          "epv": 30.333333333333332,
+          "events": 91,
+          "label": "Trial 262 control arm OS",
+          "n": 155,
+          "n_trials": 1,
+          "status": "MODEL_NOT_IDENTIFIABLE_CONSTANT_COVARIATE",
+          "stratified_by_trial": false,
+          "terms": null
+        },
+        "263": {
+          "c_index": 0.5836672804072349,
+          "epv": 40.333333333333336,
+          "events": 121,
+          "influence": {
+            "max_abs_delta_beta": 0.043949279802087876,
+            "n_over_threshold": 0,
+            "threshold": 0.16963778593599418
+          },
+          "label": "Trial 263 control arm OS",
+          "log_likelihood": -497.68354227775745,
+          "n": 139,
+          "n_trials": 1,
+          "ph_test_p": {
+            "age_ge65": 0.9634034920774366,
+            "ecog": 0.8835769264766803,
+            "z_rank": 0.4101958782588583
+          },
+          "status": "ESTIMATED",
+          "stratified_by_trial": false,
+          "terms": {
+            "age_ge65": {
+              "HR": 1.1946741433798602,
+              "ci_high": 1.7247907516303962,
+              "ci_low": 0.8274895418538551,
+              "coef": 0.1778734648344718,
+              "p": 0.34245145799375876,
+              "se": 0.18736684846507942,
+              "z": 0.9493326396404808
+            },
+            "ecog": {
+              "HR": 3.402872661617441,
+              "ci_high": 8.696855924897024,
+              "ci_low": 1.3314630541405086,
+              "coef": 1.2246199753703455,
+              "p": 0.010529763263527295,
+              "se": 0.47875450999736785,
+              "z": 2.557928854554453
+            },
+            "z_rank": {
+              "HR": 0.7664059986270798,
+              "ci_high": 0.9181173644323625,
+              "ci_low": 0.639763691970607,
+              "coef": -0.2660432253374848,
+              "p": 0.0038890070472372947,
+              "se": 0.09215127328572045,
+              "z": -2.8870271223773774
+            }
+          }
+        },
+        "264": {
+          "c_index": 0.5741640586394333,
+          "epv": 56.0,
+          "events": 168,
+          "influence": {
+            "max_abs_delta_beta": 0.02238283418483731,
+            "n_over_threshold": 0,
+            "threshold": 0.13074409009212268
+          },
+          "label": "Trial 264 control arm OS",
+          "log_likelihood": -813.0792724996875,
+          "n": 234,
+          "n_trials": 1,
+          "ph_test_p": {
+            "age_ge65": 0.636098761541984,
+            "ecog": 0.3265907919096266,
+            "z_rank": 0.48875001496669723
+          },
+          "status": "ESTIMATED",
+          "stratified_by_trial": false,
+          "terms": {
+            "age_ge65": {
+              "HR": 1.3121209196159396,
+              "ci_high": 1.8127770604788422,
+              "ci_low": 0.949736923104601,
+              "coef": 0.2716448506164427,
+              "p": 0.09950791651800286,
+              "se": 0.16490869676765924,
+              "z": 1.6472439352253485
+            },
+            "ecog": {
+              "HR": 2.6092693415626984,
+              "ci_high": 4.930890200303125,
+              "ci_low": 1.3807418580118658,
+              "coef": 0.9590702363810545,
+              "p": 0.0031420843623834803,
+              "se": 0.3247249992378115,
+              "z": 2.9534844518659367
+            },
+            "z_rank": {
+              "HR": 0.8637782470656277,
+              "ci_high": 1.0048383934250238,
+              "ci_low": 0.7425202549841063,
+              "coef": -0.14643920160936505,
+              "p": 0.057772035776099774,
+              "se": 0.07717791185005794,
+              "z": -1.897423733021809
+            }
+          }
+        }
+      }
+    },
+    "PFS": {
+      "fixed_effect_meta_z_rank": {
+        "HR": 0.8367420901402063,
+        "I2_pct": 0.0,
+        "Q": 0.165610033358912,
+        "Q_df": 1,
+        "Q_p": 0.6840431497580959,
+        "ci_high": 0.9388641824690467,
+        "ci_low": 0.7457280174124481,
+        "coef": -0.1782393920095301,
+        "p": 0.002415490556634957,
+        "se": 0.05875252100313798,
+        "trials": [
+          "263",
+          "264"
+        ],
+        "z": -3.0337318121210544
+      },
+      "flow": {
+        "262": {
+          "control_treatment": "BEVACIZUMAB WITH CHEMOTHERAPY",
+          "endpoint": "PFS",
+          "event_codes": [
+            0.0,
+            1.0
+          ],
+          "events_post_landmark": 125,
+          "landmark_day": 154.0,
+          "missing_age": 0,
+          "missing_ecog_ge2": 0,
+          "n_control": 421,
+          "n_control_at_risk_after_landmark": 329,
+          "n_control_positive_fit": 159,
+          "n_endpoint_table": 842,
+          "n_model": 152,
+          "trial": "262"
+        },
+        "263": {
+          "control_treatment": "FOLFIRI ALONE",
+          "endpoint": "PFS",
+          "event_codes": [
+            0.0,
+            1.0
+          ],
+          "events_post_landmark": 106,
+          "landmark_day": 154.0,
+          "missing_age": 0,
+          "missing_ecog_ge2": 0,
+          "n_control": 475,
+          "n_control_at_risk_after_landmark": 227,
+          "n_control_positive_fit": 141,
+          "n_endpoint_table": 946,
+          "n_model": 109,
+          "trial": "263"
+        },
+        "264": {
+          "control_treatment": "FOLFOX ALONE",
+          "endpoint": "PFS",
+          "event_codes": [
+            0.0,
+            1.0
+          ],
+          "events_post_landmark": 185,
+          "landmark_day": 154.0,
+          "missing_age": 0,
+          "missing_ecog_ge2": 1,
+          "n_control": 467,
+          "n_control_at_risk_after_landmark": 348,
+          "n_control_positive_fit": 242,
+          "n_endpoint_table": 935,
+          "n_model": 214,
+          "trial": "264"
+        }
+      },
+      "pooled_trial_stratified": {
+        "c_index": 0.5686517899963326,
+        "epv": 138.66666666666666,
+        "events": 416,
+        "influence": {
+          "max_abs_delta_beta": 0.016622037459943322,
+          "n_over_threshold": 0,
+          "threshold": 0.0917662935482247
+        },
+        "label": "Pooled trial-stratified control-arm PFS",
+        "log_likelihood": -1720.7453726955664,
+        "n": 475,
+        "n_trials": 3,
+        "ph_test_p": {
+          "age_ge65": 0.26608690280769765,
+          "ecog": 0.584103223289153,
+          "z_rank": 0.8345153994017511
+        },
+        "status": "ESTIMATED",
+        "stratified_by_trial": true,
+        "terms": {
+          "age_ge65": {
+            "HR": 1.128300687216006,
+            "ci_high": 1.3841887031586904,
+            "ci_low": 0.9197174040410884,
+            "coef": 0.12071268423413845,
+            "p": 0.24707260231360295,
+            "se": 0.10428840095647621,
+            "z": 1.1574890699927096
+          },
+          "ecog": {
+            "HR": 1.9917953034399538,
+            "ci_high": 3.3956422390600327,
+            "ci_low": 1.1683352519209016,
+            "coef": 0.6890363945650139,
+            "p": 0.011355072543952429,
+            "se": 0.27217669548933815,
+            "z": 2.531577486184908
+          },
+          "z_rank": {
+            "HR": 0.8713238031524584,
+            "ci_high": 0.9556007321046551,
+            "ci_low": 0.794479477080306,
+            "coef": -0.13774161099438095,
+            "p": 0.0034549415967748197,
+            "se": 0.047106229661496676,
+            "z": -2.9240635895546343
+          }
+        }
+      },
+      "role": "PRIMARY",
+      "trial_specific": {
+        "262": {
+          "constant_terms": [
+            "ecog"
+          ],
+          "epv": 41.666666666666664,
+          "events": 125,
+          "label": "Trial 262 control arm PFS",
+          "n": 152,
+          "n_trials": 1,
+          "status": "MODEL_NOT_IDENTIFIABLE_CONSTANT_COVARIATE",
+          "stratified_by_trial": false,
+          "terms": null
+        },
+        "263": {
+          "c_index": 0.5714534681073545,
+          "epv": 35.333333333333336,
+          "events": 106,
+          "influence": {
+            "max_abs_delta_beta": 0.05873408429467118,
+            "n_over_threshold": 0,
+            "threshold": 0.19156525704423027
+          },
+          "label": "Trial 263 control arm PFS",
+          "log_likelihood": -393.9733047927005,
+          "n": 109,
+          "n_trials": 1,
+          "ph_test_p": {
+            "age_ge65": 0.7449362491413825,
+            "ecog": 0.776964573815164,
+            "z_rank": 0.4203818818243069
+          },
+          "status": "ESTIMATED",
+          "stratified_by_trial": false,
+          "terms": {
+            "age_ge65": {
+              "HR": 1.042537599660345,
+              "ci_high": 1.546832254515991,
+              "ci_low": 0.7026519155728645,
+              "coef": 0.041657740860902154,
+              "p": 0.8360582874154691,
+              "se": 0.20130542969165174,
+              "z": 0.206937989326523
+            },
+            "ecog": {
+              "HR": 1.9659538392249722,
+              "ci_high": 5.5371687594504335,
+              "ci_low": 0.6980055450480812,
+              "coef": 0.6759775419096375,
+              "p": 0.2007339547786351,
+              "se": 0.5283289806006314,
+              "z": 1.2794633017124135
+            },
+            "z_rank": {
+              "HR": 0.8094642143577957,
+              "ci_high": 0.9855482897080503,
+              "ci_low": 0.6648403951063457,
+              "coef": -0.21138271393512947,
+              "p": 0.03529807455891434,
+              "se": 0.10042304966261748,
+              "z": -2.1049222727779475
+            }
+          }
+        },
+        "264": {
+          "c_index": 0.5788553104654552,
+          "epv": 61.666666666666664,
+          "events": 185,
+          "influence": {
+            "max_abs_delta_beta": 0.0393982090279733,
+            "n_over_threshold": 0,
+            "threshold": 0.13671718540493266
+          },
+          "label": "Trial 264 control arm PFS",
+          "log_likelihood": -827.4797175388555,
+          "n": 214,
+          "n_trials": 1,
+          "ph_test_p": {
+            "age_ge65": 0.2982311018097139,
+            "ecog": 0.519490311401954,
+            "z_rank": 0.4224583369937267
+          },
+          "status": "ESTIMATED",
+          "stratified_by_trial": false,
+          "terms": {
+            "age_ge65": {
+              "HR": 0.9939089794155442,
+              "ci_high": 1.3544977092315742,
+              "ci_low": 0.729314677042365,
+              "coef": -0.0061096465228344995,
+              "p": 0.9691412257657565,
+              "se": 0.15793164582510605,
+              "z": -0.038685385002574714
+            },
+            "ecog": {
+              "HR": 2.165341233011531,
+              "ci_high": 4.074950583210848,
+              "ci_low": 1.1506158319312538,
+              "coef": 0.7725779624350115,
+              "p": 0.016626617293011767,
+              "se": 0.32259809994071803,
+              "z": 2.3948620980005266
+            },
+            "z_rank": {
+              "HR": 0.8512995640017005,
+              "ci_high": 0.9811773946223803,
+              "ci_low": 0.7386135796049402,
+              "coef": -0.1609911982481355,
+              "p": 0.026265717527340544,
+              "se": 0.07244479694702967,
+              "z": -2.2222603283138382
+            }
+          }
+        }
+      }
+    }
+  },
+  "fit_receipts": {
+    "262": {
+      "configuration": {
+        "duplicate_policy": "median by patient and elapsed day",
+        "minimum_distinct_times": 3,
+        "model": "log(CEA_t) = intercept - k_day * elapsed_day",
+        "positive_floor": 0.0,
+        "primary_population": "positive estimable k_day"
+      },
+      "fitter": {
+        "k_day_distribution_eligible": {
+          "max": 0.05019409399700508,
+          "median": 0.013668951679527887,
+          "min": 0.00018614932095022314,
+          "q25": 0.007253529303965871,
+          "q75": 0.023120560319078675
+        },
+        "n_fit_eligible": 302,
+        "n_insufficient_observations": 454,
+        "n_invalid_input": 0,
+        "n_nondeclining": 44,
+        "n_patients_fit_attempted": 800
+      },
+      "normalization": {
+        "allowed_visits": [
+          "SCR",
+          "W12",
+          "W18"
+        ],
+        "followup_elapsed_day": "(DOSREFWK - patient median screening DOSREFWK) * 7",
+        "n_normalized_rows": 1752,
+        "n_patients_with_screening_baseline": 800,
+        "n_rows_rejected_incompatible_unit": 0,
+        "n_rows_rejected_nonfinite_time": 15,
+        "n_rows_rejected_nonpositive_or_nonfinite_value": 29,
+        "n_source_rows": 2770,
+        "screening_duplicate_policy": "median value and median source week, mapped to elapsed day 0",
+        "source_week_cutoff": 20.0,
+        "trial": "262"
+      }
+    },
+    "263": {
+      "configuration": {
+        "duplicate_policy": "median by patient and elapsed day",
+        "minimum_distinct_times": 3,
+        "model": "log(CEA_t) = intercept - k_day * elapsed_day",
+        "positive_floor": 0.0,
+        "primary_population": "positive estimable k_day"
+      },
+      "fitter": {
+        "k_day_distribution_eligible": {
+          "max": 0.0626720765475425,
+          "median": 0.008184432055285469,
+          "min": 9.200484310007484e-05,
+          "q25": 0.0035178655237340537,
+          "q75": 0.016622018696661117
+        },
+        "n_fit_eligible": 348,
+        "n_insufficient_observations": 409,
+        "n_invalid_input": 0,
+        "n_nondeclining": 160,
+        "n_patients_fit_attempted": 917
+      },
+      "normalization": {
+        "allowed_visits": [
+          "SCR",
+          "W16",
+          "W8"
+        ],
+        "followup_elapsed_day": "(DOSREFWK - patient median screening DOSREFWK) * 7",
+        "n_normalized_rows": 2205,
+        "n_patients_with_screening_baseline": 917,
+        "n_rows_rejected_incompatible_unit": 0,
+        "n_rows_rejected_nonfinite_time": 349,
+        "n_rows_rejected_nonpositive_or_nonfinite_value": 396,
+        "n_source_rows": 4074,
+        "screening_duplicate_policy": "median value and median source week, mapped to elapsed day 0",
+        "source_week_cutoff": 20.0,
+        "trial": "263"
+      }
+    },
+    "264": {
+      "configuration": {
+        "duplicate_policy": "median by patient and elapsed day",
+        "minimum_distinct_times": 3,
+        "model": "log(CEA_t) = intercept - k_day * elapsed_day",
+        "positive_floor": 0.0,
+        "primary_population": "positive estimable k_day"
+      },
+      "fitter": {
+        "k_day_distribution_eligible": {
+          "max": 0.06910394339215782,
+          "median": 0.015089232615840458,
+          "min": 3.42851789800837e-05,
+          "q25": 0.0074624766281098116,
+          "q75": 0.023333471251600228
+        },
+        "n_fit_eligible": 489,
+        "n_insufficient_observations": 303,
+        "n_invalid_input": 0,
+        "n_nondeclining": 127,
+        "n_patients_fit_attempted": 919
+      },
+      "normalization": {
+        "allowed_visits": [
+          "SCR",
+          "W16",
+          "W8"
+        ],
+        "followup_elapsed_day": "(DOSREFWK - patient median screening DOSREFWK) * 7",
+        "n_normalized_rows": 2377,
+        "n_patients_with_screening_baseline": 919,
+        "n_rows_rejected_incompatible_unit": 0,
+        "n_rows_rejected_nonfinite_time": 364,
+        "n_rows_rejected_nonpositive_or_nonfinite_value": 380,
+        "n_source_rows": 4966,
+        "screening_duplicate_policy": "median value and median source week, mapped to elapsed day 0",
+        "source_week_cutoff": 20.0,
+        "trial": "264"
+      }
+    }
+  },
+  "generated_utc": "2026-08-12T08:19:32.168791+00:00",
+  "interpretation": {
+    "association_does_not_override_failed_legacy_response_calibration": true,
+    "axis_status": "NOT_YET_CALIBRATED",
+    "calibrated_probability_emitted": false,
+    "evidence_level": "MULTITRIAL_PROGNOSTIC_ASSOCIATION_ANALYSIS",
+    "n_primary_trial_models_estimated": 2,
+    "primary_direction_consistent_hr_lt_1": true,
+    "promotion_from_p_value_alone_prohibited": true,
+    "score_emitted": false
+  },
+  "landmark_policy": {
+    "kinetics_window_ends_before_landmark": true,
+    "landmark_day": 154.0,
+    "source_measurement_cutoff_week": 20.0
+  },
+  "model": "endpoint_landmark ~ within-trial inverse-normal midrank(k_day) + age_ge65 + ECOG>=2",
+  "patient_identifiers_persisted": false,
+  "patient_level_data_persisted": false,
+  "population": "Released randomized comparator/control arms only",
+  "schema_version": "zeta_core_v4_crc_cea_legacy_ols_landmark_v1"
+}

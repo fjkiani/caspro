@@ -1,0 +1,1555 @@
+{
+  "meta": {
+    "document": "brenus_vector_master_v1.json",
+    "date": "2026-07-05",
+    "version": "v2",
+    "workers": [
+      "W1",
+      "W2",
+      "W3",
+      "W4",
+      "W5"
+    ],
+    "total_vector_entries": 33,
+    "governance_summary": {
+      "LOCKED": 19,
+      "QUARANTINED": 1,
+      "APPROXIMATE": 8,
+      "MISSING": 1,
+      "CLEAN": 1,
+      "PARTIAL": 2,
+      "SUPERSEDED_BY_V2": 1
+    },
+    "formula": {
+      "name": "PATH A",
+      "expression": "fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1)",
+      "signed_by": "Fahad Kiani",
+      "signed_date": "2026-04-28",
+      "path_b_status": "PROHIBITED"
+    },
+    "created": "2026-07-05",
+    "governance_status": "ZERO_LOCKED_VS_LOCKED_CONFLICTS",
+    "supersedes": "brenus_vector_master_v1.json",
+    "changelog": "governance_changelog_v2.md",
+    "reconciliation_date": "2026-07-05",
+    "reconciliation_authority": "Fahad Kiani \u2014 tie-break: committed code wins over static document"
+  },
+  "vector_inventory": [
+    {
+      "id": "DELTA_NCT02595892",
+      "type": "delta_score",
+      "trial_id": "NCT02595892",
+      "trial_name": "Berzosertib (M6620) Phase I/II",
+      "delta_approx": 0.138,
+      "delta_status": "DOCUMENTED_NOT_REPRODUCED",
+      "delta_direction_match": "FALSE",
+      "formula": "PATH_A_CLAIMED",
+      "vector_version": "APPROXIMATE",
+      "governance": "APPROXIMATE",
+      "source": "trial_decode_registry_v2.json",
+      "notes": "GLB trial #1. Delta DOCUMENTED_NOT_REPRODUCED \u2014 direction mismatch (RS-High should be lower fit, not higher)."
+    },
+    {
+      "id": "DELTA_NCT03579316",
+      "type": "delta_score",
+      "trial_id": "NCT03579316",
+      "trial_name": "Adavosertib (AZD1775) Phase II",
+      "delta_approx": 0.307,
+      "delta_status": "DOCUMENTED_NOT_REPRODUCED",
+      "delta_direction_match": "TRUE",
+      "formula": "PATH_A_CLAIMED",
+      "vector_version": "APPROXIMATE",
+      "governance": "APPROXIMATE",
+      "source": "trial_decode_registry_v2.json",
+      "notes": "GLB trial #2. Delta DOCUMENTED_NOT_REPRODUCED \u2014 direction match TRUE."
+    },
+    {
+      "id": "DELTA_NCT03462342",
+      "type": "delta_score",
+      "trial_id": "NCT03462342",
+      "trial_name": "CAPRI Phase II",
+      "delta_approx": 0.108,
+      "delta_status": "DOCUMENTED_NOT_REPRODUCED",
+      "delta_direction_match": "FALSE",
+      "formula": "PATH_A_CLAIMED",
+      "vector_version": "APPROXIMATE",
+      "governance": "APPROXIMATE",
+      "source": "trial_decode_registry_v2.json",
+      "notes": "GLB trial #3. Delta DOCUMENTED_NOT_REPRODUCED \u2014 direction mismatch."
+    },
+    {
+      "id": "DELTA_NCT04154956",
+      "type": "delta_score",
+      "trial_id": "NCT04154956",
+      "trial_name": "CARMEN-LC03",
+      "delta_approx": "N/A \u2014 CEACAM5 program",
+      "delta_status": "N/A",
+      "delta_direction_match": null,
+      "formula": "?",
+      "vector_version": "?",
+      "governance": "LOCKED",
+      "source": "trial_decode_registry_v2.json",
+      "notes": "GLB trial #5. Phase 3 failure. Docetaxel arm overperformed historical benchmarks (PFS 5.9 vs. 2.0\u20134.2 months historical). OS HR 0.85 (P=0.112) \u2014 directional but not significant."
+    },
+    {
+      "id": "DELTA_NCT05464030",
+      "type": "delta_score",
+      "trial_id": "NCT05464030",
+      "trial_name": "PROCEADE-CRC-01",
+      "delta_approx": "N/A \u2014 CEACAM5 program",
+      "delta_status": "N/A",
+      "delta_direction_match": null,
+      "formula": "?",
+      "vector_version": "?",
+      "governance": "LOCKED",
+      "source": "trial_decode_registry_v2.json",
+      "notes": "Merck KGaA. KRAS/NRAS/BRAF mutation status does not predict response. Phase 3 planned Q2/Q3 2026. MTD 2.8 mg/kg Q3W."
+    },
+    {
+      "id": "DELTA_NCT01270698",
+      "type": "delta_score",
+      "trial_id": "NCT01270698",
+      "trial_name": "Labetuzumab govitecan (IMMU-130) Phase I/II",
+      "delta_approx": "N/A \u2014 CEACAM5 program",
+      "delta_status": "N/A",
+      "delta_direction_match": null,
+      "formula": "?",
+      "vector_version": "?",
+      "governance": "LOCKED",
+      "source": "trial_decode_registry_v2.json",
+      "notes": "Immunomedics. 86 patients, median 5 prior therapies. 38% showed tumor reduction without RECIST response. No Phase 3 initiated."
+    },
+    {
+      "id": "DELTA_NCT04826003",
+      "type": "delta_score",
+      "trial_id": "NCT04826003",
+      "trial_name": "Cibisatamab + FAP-4-1BBL (BP42675)",
+      "delta_approx": "N/A \u2014 CEACAM5 program",
+      "delta_status": "N/A",
+      "delta_direction_match": null,
+      "formula": "?",
+      "vector_version": "?",
+      "governance": "LOCKED",
+      "source": "trial_decode_registry_v2.json",
+      "notes": "Roche. CEACAM5 selection criterion removed mid-trial after 11 patients. Liver metastases: partial mitigation of immune suppression observed. Fatal CMV colitis (1 patient). Responses in CMS2/immune-exc"
+    },
+    {
+      "id": "DELTA_NCT06131840",
+      "type": "delta_score",
+      "trial_id": "NCT06131840",
+      "trial_name": "Tusamitamab sonditecan (SGN-CEACAM5C) Phase I",
+      "delta_approx": "N/A \u2014 CEACAM5 program",
+      "delta_status": "N/A",
+      "delta_direction_match": null,
+      "formula": "?",
+      "vector_version": "?",
+      "governance": "LOCKED",
+      "source": "trial_decode_registry_v2.json",
+      "notes": "Seagen/Pfizer. Same antibody as CARMEN-LC03 (tusamitamab). VKG linker + Topo1i shared with discontinued PF-08046044. Competitor: Merck KGaA PROCEADE-CRC-01 advancing to Phase 3."
+    },
+    {
+      "id": "TV_NCT06934538",
+      "type": "trial_vector",
+      "trial_id": "NCT06934538",
+      "trial_name": "BreAK CRC-001 (STC-1010)",
+      "vector": {
+        "ddr": 0.1,
+        "mapk": 0.3,
+        "pi3k": 0.1,
+        "vegf": 0.3,
+        "her2": 0.05,
+        "io": 0.8,
+        "efflux": 0.1,
+        "rss": 0.1
+      },
+      "vector_version": "?",
+      "formula": "?",
+      "governance": "LOCKED_UPDATED_2026-07-05",
+      "path_a_score": 0.6944,
+      "path_a_dot": 0.625,
+      "path_a_norm": 0.9,
+      "source": "trial_decode_registry_v2.json",
+      "notes": "Anchor program. Alzeeb et al. 2024 (DOI: 10.3389/fonc.2024.1427428) is the key scientific anchor. PATH A score 0.6944 (canonical_vectors.py). KG v2 value 0.7375 RETIRED 2026-07-05."
+    },
+    {
+      "id": "PV_NCT06934538",
+      "type": "patient_vector",
+      "trial_id": "NCT06934538",
+      "trial_name": "BreAK CRC-001 (STC-1010)",
+      "vector": {
+        "ddr": 0.2,
+        "mapk": 0.7,
+        "pi3k": 0.3,
+        "vegf": 0.2,
+        "her2": 0.1,
+        "io": 0.4,
+        "efflux": 0.2,
+        "rss": 0.2
+      },
+      "vector_version": "?",
+      "formula": "?",
+      "governance": "LOCKED_UPDATED_2026-07-05",
+      "path_a_score": 0.6944,
+      "source": "trial_decode_registry_v2.json",
+      "notes": "Anchor program. Alzeeb et al. 2024 (DOI: 10.3389/fonc.2024.1427428) is the key scientific anchor. PATH A score 0.6944 (canonical_vectors.py). KG v2 value 0.7375 RETIRED 2026-07-05.",
+      "path_a_dot": 0.625,
+      "path_a_norm": 0.9
+    },
+    {
+      "id": "V1_NCT06934538",
+      "type": "registry_v1_entry",
+      "trial_id": "NCT06934538",
+      "trial_name": "BreAK CRC-001 (STC-1010)",
+      "trial_vector": {
+        "ddr": 0.1,
+        "mapk": 0.3,
+        "pi3k": 0.1,
+        "vegf": 0.3,
+        "her2": 0.05,
+        "io": 0.8,
+        "efflux": 0.1,
+        "rss": 0.1
+      },
+      "patient_vector": {
+        "ddr": 0.2,
+        "mapk": 0.7,
+        "pi3k": 0.3,
+        "vegf": 0.2,
+        "her2": 0.1,
+        "io": 0.4,
+        "efflux": 0.2,
+        "rss": 0.2
+      },
+      "governance": "SUPERSEDED_BY_V2",
+      "source": "trial_decode_registry_v1.json"
+    },
+    {
+      "id": "PA_NLM",
+      "type": "patient_vector",
+      "trial_id": "CANONICAL",
+      "trial_name": "P_A \u2014 Liver-met NEG, IO-permissive",
+      "vector": {
+        "ddr": 0.1,
+        "mapk": 0.7,
+        "pi3k": 0.2,
+        "vegf": 0.3,
+        "her2": 0.0,
+        "io": 0.4,
+        "efflux": 0.05
+      },
+      "vector_version": "7D",
+      "formula": "PATH_A",
+      "governance": "LOCKED",
+      "norm": 0.8902,
+      "source": "path_a_recomputation_lock_v1.md",
+      "notes": "Canonical patient profile for IO CORE comparator scoring"
+    },
+    {
+      "id": "PB_LM",
+      "type": "patient_vector",
+      "trial_id": "CANONICAL",
+      "trial_name": "P_B \u2014 Liver-met POS, IO-suppressed",
+      "vector": {
+        "ddr": 0.1,
+        "mapk": 0.7,
+        "pi3k": 0.2,
+        "vegf": 0.3,
+        "her2": 0.0,
+        "io": 0.1,
+        "efflux": 0.05
+      },
+      "vector_version": "7D",
+      "formula": "PATH_A",
+      "governance": "LOCKED",
+      "norm": 0.8016,
+      "source": "path_a_recomputation_lock_v1.md",
+      "notes": "Canonical patient profile for IO CORE comparator scoring"
+    },
+    {
+      "id": "CORE_CORE-04",
+      "type": "path_a_score_pair",
+      "trial_id": "CORE-04",
+      "trial_name": "IMblaze370",
+      "fit_A": 0.8262,
+      "fit_B": 0.6751,
+      "delta": 0.1511,
+      "rank_A": 1,
+      "rank_delta": 7,
+      "tier": "T1",
+      "patient_A": "PA_NLM",
+      "patient_B": "PB_LM",
+      "vector_version": "7D",
+      "formula": "PATH_A",
+      "governance": "LOCKED",
+      "source": "path_a_recomputation_lock_v1.md",
+      "notes": "FALSE POSITIVE \u2014 Phase III negative (OS HR=1.00). MEKi immune priming falsified."
+    },
+    {
+      "id": "CORE_CORE-05",
+      "type": "path_a_score_pair",
+      "trial_id": "CORE-05",
+      "trial_name": "AtezoTRIBE",
+      "fit_A": 0.5843,
+      "fit_B": 0.3671,
+      "delta": 0.2172,
+      "rank_A": 2,
+      "rank_delta": 6,
+      "tier": "T1",
+      "patient_A": "PA_NLM",
+      "patient_B": "PB_LM",
+      "vector_version": "7D",
+      "formula": "PATH_A",
+      "governance": "LOCKED",
+      "source": "path_a_recomputation_lock_v1.md",
+      "notes": ""
+    },
+    {
+      "id": "CORE_CORE-01",
+      "type": "path_a_score_pair",
+      "trial_id": "CORE-01",
+      "trial_name": "QUILT-2.004",
+      "fit_A": 0.5815,
+      "fit_B": 0.3553,
+      "delta": 0.2261,
+      "rank_A": 3,
+      "rank_delta": 5,
+      "tier": "T1",
+      "patient_A": "PA_NLM",
+      "patient_B": "PB_LM",
+      "vector_version": "7D",
+      "formula": "PATH_A",
+      "governance": "LOCKED",
+      "source": "path_a_recomputation_lock_v1.md",
+      "notes": "Most structurally similar to STC-1010"
+    },
+    {
+      "id": "CORE_CORE-02",
+      "type": "path_a_score_pair",
+      "trial_id": "CORE-02",
+      "trial_name": "GRANITE GO-010",
+      "fit_A": 0.5411,
+      "fit_B": 0.2832,
+      "delta": 0.2579,
+      "rank_A": 4,
+      "rank_delta": 4,
+      "tier": "T2",
+      "patient_A": "PA_NLM",
+      "patient_B": "PB_LM",
+      "vector_version": "7D",
+      "formula": "PATH_A",
+      "governance": "LOCKED",
+      "source": "path_a_recomputation_lock_v1.md",
+      "notes": "TIER2 \u2014 directional only"
+    },
+    {
+      "id": "CORE_CORE-06",
+      "type": "path_a_score_pair",
+      "trial_id": "CORE-06",
+      "trial_name": "MEDITREME",
+      "fit_A": 0.5037,
+      "fit_B": 0.2089,
+      "delta": 0.2949,
+      "rank_A": 5,
+      "rank_delta": 3,
+      "tier": "T1",
+      "patient_A": "PA_NLM",
+      "patient_B": "PB_LM",
+      "vector_version": "7D",
+      "formula": "PATH_A",
+      "governance": "LOCKED",
+      "source": "path_a_recomputation_lock_v1.md",
+      "notes": ""
+    },
+    {
+      "id": "CORE_CORE-03",
+      "type": "path_a_score_pair",
+      "trial_id": "CORE-03",
+      "trial_name": "GVAX+CY+Pembro",
+      "fit_A": 0.4486,
+      "fit_B": 0.1495,
+      "delta": 0.2991,
+      "rank_A": 6,
+      "rank_delta": 2,
+      "tier": "T1",
+      "patient_A": "PA_NLM",
+      "patient_B": "PB_LM",
+      "vector_version": "7D",
+      "formula": "PATH_A",
+      "governance": "LOCKED",
+      "source": "path_a_recomputation_lock_v1.md",
+      "notes": ""
+    },
+    {
+      "id": "CORE_CORE-07",
+      "type": "path_a_score_pair",
+      "trial_id": "CORE-07",
+      "trial_name": "CCTG CO.26",
+      "fit_A": 0.4,
+      "fit_B": 0.1,
+      "delta": 0.3,
+      "rank_A": 7,
+      "rank_delta": 1,
+      "tier": "T1",
+      "patient_A": "PA_NLM",
+      "patient_B": "PB_LM",
+      "vector_version": "7D",
+      "formula": "PATH_A",
+      "governance": "LOCKED",
+      "source": "path_a_recomputation_lock_v1.md",
+      "notes": "Pure IO trial \u2014 maximally sensitive to liver-met suppression"
+    },
+    {
+      "id": "ATR_NCT02595892",
+      "type": "atr_ddr_validation_case",
+      "trial_id": "NCT02595892",
+      "trial_name": "Berzosertib (M6620)",
+      "drug_class": "ATR inhibitor",
+      "patient_a_label": "RS-Low",
+      "patient_b_label": "RS-High",
+      "patient_a_vector": {
+        "ddr": 0.2,
+        "mapk": 0.05,
+        "pi3k": 0.02,
+        "vegf": 0.01,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0
+      },
+      "patient_b_vector": {
+        "ddr": 0.55,
+        "mapk": 0.1,
+        "pi3k": 0.05,
+        "vegf": 0.02,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0
+      },
+      "trial_vector_approx": {
+        "ddr": 0.9,
+        "mapk": 0.05,
+        "pi3k": 0.02,
+        "vegf": 0.01,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0
+      },
+      "documented_delta": 0.138,
+      "documented_delta_receipt": null,
+      "direction_match": false,
+      "governance": "APPROXIMATE",
+      "fit_score_status": "DOCUMENTED_NOT_REPRODUCED",
+      "vector_version": "7D_APPROXIMATE",
+      "formula": "PATH_A",
+      "source": "retroactive_prediction_run.py",
+      "notes": "Direction INVERTED in approx run"
+    },
+    {
+      "id": "ATR_NCT03579316",
+      "type": "atr_ddr_validation_case",
+      "trial_id": "NCT03579316",
+      "trial_name": "Adavosertib (AZD1775)",
+      "drug_class": "WEE1 inhibitor",
+      "patient_a_label": "PTEN-intact",
+      "patient_b_label": "PTEN-loss (pi3k=0.8)",
+      "patient_a_vector": {
+        "ddr": 0.6,
+        "mapk": 0.1,
+        "pi3k": 0.15,
+        "vegf": 0.05,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0
+      },
+      "patient_b_vector": {
+        "ddr": 0.3,
+        "mapk": 0.1,
+        "pi3k": 0.8,
+        "vegf": 0.05,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0
+      },
+      "trial_vector_approx": {
+        "ddr": 0.7,
+        "mapk": 0.05,
+        "pi3k": 0.2,
+        "vegf": 0.02,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0
+      },
+      "documented_delta": 0.307,
+      "documented_delta_receipt": null,
+      "direction_match": true,
+      "governance": "APPROXIMATE",
+      "fit_score_status": "DOCUMENTED_NOT_REPRODUCED",
+      "vector_version": "7D_APPROXIMATE",
+      "formula": "PATH_A",
+      "source": "retroactive_prediction_run.py",
+      "notes": "Direction correct; magnitude off"
+    },
+    {
+      "id": "ATR_NCT03462342",
+      "type": "atr_ddr_validation_case",
+      "trial_id": "NCT03462342",
+      "trial_name": "CAPRI (Ceralasertib+Olaparib Phase II)",
+      "drug_class": "ATR+PARP inhibitor",
+      "patient_a_label": "Pre-PARPi (efflux-na\u00efve)",
+      "patient_b_label": "Post-PARPi (efflux=0.4)",
+      "patient_a_vector": {
+        "ddr": 0.7,
+        "mapk": 0.05,
+        "pi3k": 0.1,
+        "vegf": 0.02,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0
+      },
+      "patient_b_vector": {
+        "ddr": 0.7,
+        "mapk": 0.05,
+        "pi3k": 0.1,
+        "vegf": 0.02,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.4
+      },
+      "trial_vector_approx": {
+        "ddr": 0.8,
+        "mapk": 0.05,
+        "pi3k": 0.1,
+        "vegf": 0.02,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0
+      },
+      "documented_delta": 0.108,
+      "documented_delta_receipt": null,
+      "direction_match": false,
+      "governance": "APPROXIMATE",
+      "fit_score_status": "DOCUMENTED_NOT_REPRODUCED",
+      "vector_version": "7D_APPROXIMATE",
+      "formula": "PATH_A",
+      "source": "retroactive_prediction_run.py",
+      "notes": "Approx gives \u0394=0.0 (efflux not in trial vec)"
+    },
+    {
+      "id": "ATR_NCT05450692",
+      "type": "atr_ddr_validation_case",
+      "trial_id": "NCT05450692",
+      "trial_name": "LATIFY (Ceralasertib+Durvalumab)",
+      "drug_class": "ATR+PD-L1 inhibitor",
+      "patient_a_label": "STK11-loss (IO=0.75)",
+      "patient_b_label": "STK11-intact (IO=0.10)",
+      "patient_a_vector": {
+        "ddr": 0.5,
+        "mapk": 0.05,
+        "pi3k": 0.05,
+        "vegf": 0.02,
+        "her2": 0.0,
+        "io": 0.75,
+        "efflux": 0.0
+      },
+      "patient_b_vector": {
+        "ddr": 0.5,
+        "mapk": 0.05,
+        "pi3k": 0.05,
+        "vegf": 0.02,
+        "her2": 0.0,
+        "io": 0.1,
+        "efflux": 0.0
+      },
+      "trial_vector_approx": {
+        "ddr": 0.6,
+        "mapk": 0.05,
+        "pi3k": 0.05,
+        "vegf": 0.02,
+        "her2": 0.0,
+        "io": 0.5,
+        "efflux": 0.0
+      },
+      "documented_delta": 0.366,
+      "documented_delta_receipt": 0.2641,
+      "direction_match": true,
+      "governance": "QUARANTINED",
+      "fit_score_status": "QUARANTINED",
+      "vector_version": "7D_APPROXIMATE",
+      "formula": "PATH_A",
+      "source": "retroactive_prediction_run.py",
+      "notes": "CT-03: two conflicting values. Vector version unresolved."
+    },
+    {
+      "id": "ATR_NCT02264678",
+      "type": "atr_ddr_validation_case",
+      "trial_id": "NCT02264678",
+      "trial_name": "Ceralasertib+Olaparib Phase I/Ib",
+      "drug_class": "ATR+PARP inhibitor",
+      "patient_a_label": "PARPi-na\u00efve (efflux-low)",
+      "patient_b_label": "NOT STATED",
+      "patient_a_vector": {
+        "ddr": 0.7,
+        "mapk": 0.05,
+        "pi3k": 0.1,
+        "vegf": 0.02,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0
+      },
+      "patient_b_vector": null,
+      "trial_vector_approx": {
+        "ddr": 0.8,
+        "mapk": 0.05,
+        "pi3k": 0.1,
+        "vegf": 0.02,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0
+      },
+      "documented_delta": null,
+      "documented_delta_receipt": null,
+      "direction_match": null,
+      "governance": "MISSING",
+      "fit_score_status": "MISSING",
+      "vector_version": "7D_APPROXIMATE",
+      "formula": "PATH_A",
+      "source": "retroactive_prediction_run.py",
+      "notes": "CT-04: Patient B not defined. Delta not stated."
+    },
+    {
+      "id": "TV_NCT06934538_KGv2",
+      "type": "trial_vector",
+      "trial_id": "NCT06934538",
+      "trial_name": "BreAK CRC-001 (STC-1010)",
+      "vector": {
+        "ddr": 0.1,
+        "mapk": 0.3,
+        "pi3k": 0.1,
+        "vegf": 0.3,
+        "her2": 0.05,
+        "io": 0.8,
+        "efflux": 0.1,
+        "rss": 0.1
+      },
+      "vector_version": "8D_KGv2",
+      "formula": "PATH_A",
+      "governance": "LOCKED_UPDATED_2026-07-05",
+      "path_a_score": 0.6944,
+      "path_a_dot": 0.625,
+      "path_a_norm": 0.9,
+      "source": "program_asset_break_crc_001.json",
+      "notes": "KG v2 vectors RETIRED 2026-07-05. Canonical: dot=0.6250, norm=0.9000, fit=0.6944 (canonical_vectors.py)."
+    },
+    {
+      "id": "PV_NCT06934538_KGv2",
+      "type": "patient_vector",
+      "trial_id": "NCT06934538",
+      "trial_name": "BreAK CRC-001 canonical patient (KG v2)",
+      "vector": {
+        "ddr": 0.2,
+        "mapk": 0.7,
+        "pi3k": 0.3,
+        "vegf": 0.2,
+        "her2": 0.1,
+        "io": 0.4,
+        "efflux": 0.2,
+        "rss": 0.2
+      },
+      "vector_version": "8D_KGv2",
+      "formula": "PATH_A",
+      "governance": "LOCKED_UPDATED_2026-07-05",
+      "path_a_score": 0.6944,
+      "source": "program_asset_break_crc_001.json",
+      "notes": "KG v2 patient vector RETIRED 2026-07-05. Canonical: canonical_vectors.py BREAK_CRC_PATIENT_VECTOR_8D.",
+      "path_a_dot": 0.625,
+      "path_a_norm": 0.9
+    },
+    {
+      "id": "PREF_7D",
+      "type": "patient_vector",
+      "trial_id": "MANUSCRIPT",
+      "trial_name": "p_ref \u2014 DDR-dominant reference patient",
+      "vector": {
+        "ddr": 0.88,
+        "mapk": 0.12,
+        "pi3k": 0.05,
+        "vegf": 0.02,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0
+      },
+      "vector_version": "7D",
+      "formula": "PATH_A",
+      "governance": "LOCKED",
+      "norm": 0.889775,
+      "source": "retroactive_prediction_run.py + MANUSCRIPT_DRAFT.md \u00a72.5",
+      "notes": "PATH A ceiling = \u2016p_ref\u2016\u2082 = 0.8898. Used to prove DDR mean 0.983 is impossible."
+    },
+    {
+      "id": "CRC_RANKER_V1",
+      "type": "derived_cohort_vectors",
+      "trial_id": "TCGA_COADREAD_MSS",
+      "trial_name": "TCGA COADREAD MSS cohort (n=485)",
+      "vector_version": "8D.v1",
+      "formula": "PATH_A",
+      "governance": "CLEAN",
+      "n_patients": 485,
+      "stc1010_mean_fit": 0.5605,
+      "stc1010_median_fit": 0.5522,
+      "delta_unselected": -0.1647,
+      "recall_at_3_unselected": 0.5876,
+      "mrr_unselected": 0.3112,
+      "delta_tmb_ge25": 0.143,
+      "recall_at_3_tmb_ge25": 1.0,
+      "mrr_tmb_ge25": 1.0,
+      "source": "data/ranker_results/crc_ranker_results_v1.csv",
+      "notes": "Per-patient vectors derived from TCGA biomarkers. See crc_ranker_summary_v1.json for full breakdown."
+    },
+    {
+      "id": "PC05_Berzosertib",
+      "type": "pc05_validation_score",
+      "trial_name": "Berzosertib (NCT02595892)",
+      "fit_A": 0.8839,
+      "fit_B": 0.5051,
+      "computed_delta": 0.3788,
+      "documented_delta": 0.138,
+      "direction_match": "CORRECT",
+      "governance": "PARTIAL",
+      "vector_version": "7D_APPROXIMATE",
+      "formula": "PATH_A",
+      "source": "path_a_recomputation_lock_v1.md \u00a75 (PC-05 resolution)",
+      "notes": "DISCREPANCY: different patient vectors than retroactive_prediction_run.py. Direction=CORRECT"
+    },
+    {
+      "id": "PC05_Adavosertib",
+      "type": "pc05_validation_score",
+      "trial_name": "Adavosertib (NCT03579316)",
+      "fit_A": 0.7052,
+      "fit_B": 0.7491,
+      "computed_delta": -0.0439,
+      "documented_delta": 0.307,
+      "direction_match": "INVERTED",
+      "governance": "APPROXIMATE",
+      "vector_version": "7D_APPROXIMATE",
+      "formula": "PATH_A",
+      "source": "path_a_recomputation_lock_v1.md \u00a75 (PC-05 resolution)",
+      "notes": "DISCREPANCY: different patient vectors than retroactive_prediction_run.py. Direction=INVERTED"
+    },
+    {
+      "id": "PC05_CAPRI",
+      "type": "pc05_validation_score",
+      "trial_name": "CAPRI (NCT03462342)",
+      "fit_A": 0.8003,
+      "fit_B": 0.8003,
+      "computed_delta": 0.0,
+      "documented_delta": 0.108,
+      "direction_match": "ZERO",
+      "governance": "APPROXIMATE",
+      "vector_version": "7D_APPROXIMATE",
+      "formula": "PATH_A",
+      "source": "path_a_recomputation_lock_v1.md \u00a75 (PC-05 resolution)",
+      "notes": "DISCREPANCY: different patient vectors than retroactive_prediction_run.py. Direction=ZERO"
+    },
+    {
+      "id": "PC05_LATIFY",
+      "type": "pc05_validation_score",
+      "trial_name": "LATIFY (NCT05450692)",
+      "fit_A": 0.75,
+      "fit_B": 0.3,
+      "computed_delta": 0.45,
+      "documented_delta": 0.366,
+      "direction_match": "CORRECT",
+      "governance": "PARTIAL",
+      "vector_version": "7D_APPROXIMATE",
+      "formula": "PATH_A",
+      "source": "path_a_recomputation_lock_v1.md \u00a75 (PC-05 resolution)",
+      "notes": "DISCREPANCY: different patient vectors than retroactive_prediction_run.py. Direction=CORRECT"
+    }
+  ],
+  "vector_key_findings": [
+    "33 total vector/score entries across 7 types",
+    "Only 1 trial has a fully locked 8D trial vector: BreAK CRC-001 (STC-1010)",
+    "7 IO CORE trials have locked PATH A fit scores under P_A/P_B patient profiles (7D)",
+    "5 ATR/DDR trials have APPROXIMATE patient vectors \u2014 exact vectors are trade secrets in trial_moa_vectors.json",
+    "LATIFY (NCT05450692) is QUARANTINED: two conflicting deltas (+0.366 patent vs +0.2641 receipt)",
+    "NCT02264678 is MISSING: patient_B vector not defined (CT-04 blocker)",
+    "DISCREPANCY: Berzosertib patient vectors differ between retroactive_prediction_run.py (fit_A=0.2030) and path_a_recomputation_lock_v1.md \u00a75 (fit_A=0.8839) \u2014 governance inconsistency",
+    "p_ref (DDR-dominant, 7D) is the manuscript reference patient \u2014 ceiling 0.8898 proves DDR mean 0.983 is impossible",
+    "485 MSS TCGA patient vectors derived and scored (CRC ranker v1) \u2014 all CLEAN"
+  ],
+  "canonical_values": {
+    "STC1010_trial_vector_ranker": {
+      "source": "canonical_vectors.py",
+      "axes": [
+        "ddr",
+        "mapk",
+        "pi3k",
+        "vegf",
+        "her2",
+        "io",
+        "efflux",
+        "rss"
+      ],
+      "values": [
+        0.1,
+        0.3,
+        0.1,
+        0.2,
+        0.0,
+        0.8,
+        0.1,
+        0.1
+      ],
+      "norm": 0.9,
+      "note": "Correct for per-patient ranker"
+    },
+    "STC1010_trial_vector_KGv2": {
+      "source": "KG v2 JSON (governance-locked for BD materials)",
+      "axes": [
+        "ddr",
+        "mapk",
+        "pi3k",
+        "vegf",
+        "her2",
+        "io",
+        "efflux",
+        "rss"
+      ],
+      "values": [
+        0.1,
+        0.3,
+        0.1,
+        0.3,
+        0.05,
+        0.8,
+        0.1,
+        0.1
+      ],
+      "norm": 0.9288,
+      "fit": 0.6944,
+      "note": "Transcription error \u2014 governance-locked for BD materials only",
+      "_governance_note": "KG v2 RETIRED 2026-07-05 \u2014 fit updated to canonical 0.6944"
+    },
+    "canonical_patient_vector": {
+      "source": "canonical_vectors.py",
+      "axes": [
+        "ddr",
+        "mapk",
+        "pi3k",
+        "vegf",
+        "her2",
+        "io",
+        "efflux",
+        "rss"
+      ],
+      "values": [
+        0.1,
+        0.7,
+        0.15,
+        0.25,
+        0.05,
+        0.4,
+        0.1,
+        0.1
+      ],
+      "fit_vs_ranker_vector": 0.6944
+    },
+    "KGv2_patient_vector": {
+      "source": "KG v2 JSON",
+      "axes": [
+        "ddr",
+        "mapk",
+        "pi3k",
+        "vegf",
+        "her2",
+        "io",
+        "efflux",
+        "rss"
+      ],
+      "values": [
+        0.2,
+        0.7,
+        0.3,
+        0.2,
+        0.1,
+        0.4,
+        0.2,
+        0.2
+      ],
+      "fit": 0.6944,
+      "note": "Governance-locked for BD materials",
+      "_governance_note": "KG v2 RETIRED 2026-07-05 \u2014 fit updated to canonical 0.6944"
+    },
+    "P_A_profile": {
+      "label": "Liver-met NEG, IO-permissive",
+      "axes": [
+        "ddr",
+        "mapk",
+        "pi3k",
+        "vegf",
+        "her2",
+        "io",
+        "efflux"
+      ],
+      "values": [
+        0.1,
+        0.7,
+        0.2,
+        0.3,
+        0.0,
+        0.4,
+        0.05
+      ],
+      "norm": 0.8902,
+      "status": "LOCKED"
+    },
+    "P_B_profile": {
+      "label": "Liver-met POS, IO-suppressed",
+      "axes": [
+        "ddr",
+        "mapk",
+        "pi3k",
+        "vegf",
+        "her2",
+        "io",
+        "efflux"
+      ],
+      "values": [
+        0.1,
+        0.7,
+        0.2,
+        0.3,
+        0.0,
+        0.1,
+        0.05
+      ],
+      "norm": 0.8016,
+      "status": "LOCKED"
+    },
+    "p_ref": {
+      "label": "DDR-dominant reference patient",
+      "axes": [
+        "ddr",
+        "mapk",
+        "pi3k",
+        "vegf",
+        "her2",
+        "io",
+        "efflux"
+      ],
+      "values": [
+        0.88,
+        0.12,
+        0.05,
+        0.02,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ceiling_under_PATH_A": 0.8898,
+      "note": "Proves DDR mean 0.983 (DL-07) is mathematically impossible"
+    },
+    "stc1010": {
+      "program": "STC-1010 / BreAK CRC-001",
+      "governance_status": "LOCKED",
+      "path_a_fit": 0.6944,
+      "dot": 0.625,
+      "norm_t": 0.9,
+      "fit_label": "MODERATE",
+      "source": "canonical_vectors.py (committed code) \u2014 authoritative",
+      "retired_value": 0.7375,
+      "retired_source": "KG v2 JSON \u2014 RETIRED 2026-07-05 (loses tie-break)",
+      "patient_vector_8d": {
+        "ddr": 0.1,
+        "mapk": 0.7,
+        "pi3k": 0.15,
+        "vegf": 0.25,
+        "her2": 0.05,
+        "io": 0.4,
+        "efflux": 0.1,
+        "rss": 0.1
+      },
+      "trial_vector_8d": {
+        "ddr": 0.1,
+        "mapk": 0.3,
+        "pi3k": 0.1,
+        "vegf": 0.2,
+        "her2": 0.0,
+        "io": 0.8,
+        "efflux": 0.1,
+        "rss": 0.1
+      },
+      "axis_breakdown_pct": {
+        "io": 51.2,
+        "mapk": 33.6,
+        "vegf": 8.0,
+        "pi3k": 2.4,
+        "ddr": 1.6,
+        "efflux": 1.6,
+        "rss": 1.6,
+        "her2": 0.0
+      },
+      "primary_driver": "io axis (51.2%)",
+      "secondary_driver": "mapk axis (33.6%)"
+    },
+    "latify": {
+      "governance_status": "QUARANTINED",
+      "quarantine_id": "CT-03",
+      "blocker": "BLOCKER-07 \u2014 trial_moa_vectors.json missing",
+      "delta_approximate": 0.4143,
+      "delta_documented_v1": 0.366,
+      "delta_documented_v2": 0.2641,
+      "reproducibility": "NEITHER_REPRODUCIBLE \u2014 delta=0.366 requires t_io\u22480.412; delta=0.2641 requires t_io\u22480.269",
+      "safe_cite": "responder fit=0.8936 vs non-responder fit=0.6295 only",
+      "resolution": "PENDING \u2014 requires trial_moa_vectors.json (BLOCKER-07)"
+    },
+    "berzosertib": {
+      "governance_status": "DOCUMENTED_NOT_REPRODUCED",
+      "direction": "CORRECT",
+      "source": "retroactive_prediction_run.py (committed code) \u2014 authoritative",
+      "patient_a": {
+        "label": "RS-Low (low DDR)",
+        "ddr": 0.2,
+        "fit_a": 0.203
+      },
+      "patient_b": {
+        "label": "RS-High",
+        "ddr": 0.55,
+        "fit_b": 0.5559
+      },
+      "delta_canonical": 0.3529,
+      "delta_documented": 0.138,
+      "delta_note": "Documented delta=0.138 from patent uses approximate vectors \u2014 magnitude differs, direction confirmed",
+      "retired_lock_file": {
+        "source": "path_a_recomputation_lock_v1.md \u00a75",
+        "status": "RETIRED_2026-07-05",
+        "error": "Mislabeled p_ref (ddr=0.88, fit_A=0.8839) as RS-Low (DDR-high) \u2014 biologically inverted",
+        "retired_fit_a": 0.8839
+      }
+    },
+    "nct02264678": {
+      "governance_status": "EXCLUDED_PENDING_PATIENT_B_DEFINITION",
+      "reason": "patient_B undefined \u2014 cannot score",
+      "aggregate_note": "3 scoreable retroactive validation trials + 1 excluded (NCT02264678)",
+      "resolution": "PENDING \u2014 requires patient_B vector definition"
+    }
+  },
+  "io_core_locked_scores": {
+    "lock_date": "2026-05-04",
+    "lock_file": "formula_governance/path_a_recomputation_lock_v1.md",
+    "status": "LOCKED",
+    "trials": [
+      {
+        "id": "CORE-04",
+        "trial": "IMblaze370",
+        "fit_A": 0.8262,
+        "fit_B": 0.6751,
+        "delta": 0.1511,
+        "rank_A": 1,
+        "note": "FALSE POSITIVE \u2014 Phase III negative"
+      },
+      {
+        "id": "CORE-05",
+        "trial": "AtezoTRIBE",
+        "fit_A": 0.5843,
+        "fit_B": 0.3671,
+        "delta": 0.2172,
+        "rank_A": 2
+      },
+      {
+        "id": "CORE-01",
+        "trial": "QUILT-2.004",
+        "fit_A": 0.5815,
+        "fit_B": 0.3553,
+        "delta": 0.2261,
+        "rank_A": 3,
+        "note": "Most similar to STC-1010"
+      },
+      {
+        "id": "CORE-02",
+        "trial": "GRANITE GO-010",
+        "fit_A": 0.5411,
+        "fit_B": 0.2832,
+        "delta": 0.2579,
+        "rank_A": 4,
+        "note": "TIER2 \u2014 directional only"
+      },
+      {
+        "id": "CORE-06",
+        "trial": "MEDITREME",
+        "fit_A": 0.5037,
+        "fit_B": 0.2089,
+        "delta": 0.2949,
+        "rank_A": 5
+      },
+      {
+        "id": "CORE-03",
+        "trial": "GVAX+CY+Pembro",
+        "fit_A": 0.4486,
+        "fit_B": 0.1495,
+        "delta": 0.2991,
+        "rank_A": 6
+      },
+      {
+        "id": "CORE-07",
+        "trial": "CCTG CO.26",
+        "fit_A": 0.4,
+        "fit_B": 0.1,
+        "delta": 0.3,
+        "rank_A": 7,
+        "note": "Pure IO \u2014 max liver-met sensitivity"
+      }
+    ]
+  },
+  "crc_ranker_results": {
+    "cohort": "TCGA COADREAD MSS (n=485)",
+    "trials_scored": 8,
+    "commit": "c9d9a72",
+    "metrics": {
+      "unselected_MSS": {
+        "n": 485,
+        "STC1010_mean_fit": 0.5605,
+        "delta_vs_best_comparator": -0.1647,
+        "recall_at_3": 0.5876,
+        "MRR": 0.3112,
+        "rank1_rate": 0.019
+      },
+      "TMB_hypermutated_ge25": {
+        "n": 9,
+        "STC1010_mean_fit": 0.8644,
+        "delta_vs_best_comparator": 0.143,
+        "recall_at_3": 1.0,
+        "MRR": 1.0,
+        "rank1_rate": 1.0
+      }
+    },
+    "io_crossover_TMB": 30.1,
+    "best_comparator": "PRIME (dominates 476/485 patients)"
+  },
+  "brain_met_manuscript": {
+    "title": "Multi-Modal Functional Genomics Reveals Epigenetic Drivers of Brain Metastasis Invisible to Mutation-Centric Panels",
+    "target_journal": "Cancer Cell",
+    "status": "v2 \u2014 ready for co-author review",
+    "date": "May 2026",
+    "cohort": {
+      "name": "MSK-MET",
+      "n": 1879,
+      "confirmed_brain_mets": true
+    },
+    "panel": {
+      "total_genes": 36,
+      "zero_mutation_genes": 13,
+      "zero_mutation_gene_list": [
+        "BACE1",
+        "NOM1",
+        "MMP9",
+        "MMP2",
+        "CLDN5",
+        "CCL2",
+        "TWIST1",
+        "ICAM1",
+        "FAM72A",
+        "VEGFB",
+        "ATP10D",
+        "SLC25A32",
+        "BACE2"
+      ]
+    },
+    "apex_driver": {
+      "gene": "BACE1",
+      "CRISPRa_LFC": 7.28,
+      "expression_fold_change": 156,
+      "brain_met_rpm": 685,
+      "ecm_rpm": 4.4,
+      "somatic_mutations_in_cohort": 0,
+      "mechanism": "BBB extravasation via APP cleavage",
+      "repurposing_opportunity": "BACE1 inhibitors (Alzheimer's disease trials)"
+    },
+    "evo2_scores": {
+      "KRAS_G12C": -0.148,
+      "KRAS_G12D": 0.152,
+      "KRAS_G12V": 0.259,
+      "EGFR_L858R": 0.088,
+      "PIK3CA_H1047R": -0.615,
+      "TP53_R175H": -0.622,
+      "TP53_G245D": -0.626,
+      "TP53_R248W": 0.099,
+      "CCND1_E279_stop": -1.264,
+      "BRCA1_E1526_stop": -1.258
+    },
+    "auroc_metrics": {
+      "composite_overall": {
+        "auroc": 0.689,
+        "ci_95": [
+          0.447,
+          0.9
+        ],
+        "n_genes": 29,
+        "n_pos": 19,
+        "n_neg": 10
+      },
+      "TSG_subpanel": {
+        "auroc": 0.833,
+        "ci_95": [
+          0.375,
+          1.0
+        ],
+        "n_genes": 9
+      },
+      "ONC_subpanel": {
+        "auroc": 0.619,
+        "ci_95": [
+          0.306,
+          0.901
+        ],
+        "n_genes": 20
+      },
+      "CRISPRa_alone": {
+        "auroc": 0.656,
+        "ci_95": [
+          0.405,
+          0.882
+        ]
+      },
+      "Evo2_alone": {
+        "auroc": 0.578,
+        "ci_95": [
+          0.338,
+          0.811
+        ]
+      },
+      "signed_LFC_alone": {
+        "auroc": 0.39
+      },
+      "AUPRC": 0.831,
+      "precision_at_3": 1.0,
+      "precision_at_5": 0.8,
+      "precision_at_10": 0.9
+    },
+    "variant_distribution": {
+      "total_variants": 1150,
+      "disruptive_below_neg05": {
+        "n": 89,
+        "pct": 7.7
+      },
+      "uncertain_neg05_to_pos05": {
+        "n": 1020,
+        "pct": 88.7
+      },
+      "benign_like_above_pos05": {
+        "n": 41,
+        "pct": 3.6
+      }
+    },
+    "composite_weights": {
+      "TSG": {
+        "CRISPRa_abs": 0.6,
+        "ATAC": 0.2,
+        "Evo2": 0.15,
+        "denominator": 0.95
+      },
+      "ONC": {
+        "CRISPRa_abs": 0.25,
+        "ATAC": 0.35,
+        "Evo2": 0.2,
+        "denominator": 0.8
+      }
+    },
+    "key_finding": "13/36 panel genes with strongest functional evidence have zero somatic mutations in 1,879 brain met patients \u2014 structural blind spot in mutation-centric paradigm",
+    "evo2_crispr_correlation": {
+      "pearson_r": 0.016,
+      "n_genes": 189,
+      "interpretation": "orthogonal \u2014 independent axes of biological information"
+    }
+  },
+  "bd_intelligence": {
+    "target_ranking_total": 33,
+    "top_5_targets": [
+      {
+        "rank": 1,
+        "company": "Inhibrx Biosciences",
+        "drug": "Ozekibart (INBRX-109) + FOLFIRI",
+        "target": "DR5",
+        "tier": 2,
+        "fit": 4.5,
+        "status": "outreach-ready",
+        "contact": "Mark Chao, MD, PhD (CEO)",
+        "hook": "RAS/RAF-agnostic responses with no predictive biomarker"
+      },
+      {
+        "rank": 2,
+        "company": "Agenus",
+        "drug": "Botensilimab + Balstilimab (BOT/BAL)",
+        "target": "CTLA-4+PD-1",
+        "tier": 2,
+        "fit": 4.25,
+        "status": "outreach-ready",
+        "contact": "Steven O'Day, MD (CMO)",
+        "hook": "Noetik TARIO-2 partnership \u2014 prospective validation gap"
+      },
+      {
+        "rank": 3,
+        "company": "Daiichi Sankyo/AstraZeneca",
+        "drug": "T-DXd (ENHERTU)",
+        "target": "HER2",
+        "tier": 1,
+        "fit": 4.0,
+        "status": "outreach-ready",
+        "contact": "Salvatore Siena, MD (DESTINY-CRC02 PI)",
+        "hook": "HER2 IHC necessary but not sufficient \u2014 co-mutation landscape gap"
+      },
+      {
+        "rank": 4,
+        "company": "AstraZeneca",
+        "drug": "Durvalumab combos",
+        "target": "PD-L1",
+        "tier": 1,
+        "fit": 3.75,
+        "status": "outreach-ready",
+        "contact": "Jonathan Loree, MD (CO.26 lead)",
+        "hook": "CO.26 liver-met signal \u2014 prospective validation gap"
+      },
+      {
+        "rank": 5,
+        "company": "Merus B.V.",
+        "drug": "Petosemtamab (MCLA-158)",
+        "target": "EGFR\u00d7LGR5",
+        "tier": 2,
+        "fit": 4.75,
+        "status": "outreach-ready",
+        "contact": "Cecile Geuijen, PhD (CSO)",
+        "hook": "LGR5 biomarker gap"
+      }
+    ],
+    "yc_ledger": {
+      "date": "2026-05-17",
+      "application_submitted": "2026-05-04",
+      "period_covered": "2026-04-20 to 2026-05-17",
+      "key_traction": [
+        "Live pharma partner: Brenus Pharma using engine on active Phase I/II CRC trial",
+        "$2B+ in decoded trial failures across 8 programs; 6 repurposable assets identified",
+        "42-lead qualified pipeline from AACR 2026; AstraZeneca in active discussions",
+        "3 indications covered"
+      ],
+      "trial_failure_ledger": [
+        {
+          "failure": "BMS CheckMate 143/498/548",
+          "waste": "~$500M",
+          "finding": "Brain tumor vs lung cancer brain met \u2014 different immune environments"
+        },
+        {
+          "failure": "Roche Bevacizumab (AVAglio + RTOG 0825)",
+          "waste": "~$400M",
+          "finding": "Tumor adapted via invasion-escape; MMP9 signal flagged"
+        },
+        {
+          "failure": "AZ EGFR inhibitors (erlotinib/gefitinib/depatuxizumab)",
+          "waste": "~$300M",
+          "finding": "BBB efflux + PTEN deletion downstream bypass"
+        },
+        {
+          "failure": "Roche IMblaze370",
+          "waste": "~$300M",
+          "finding": "High MF score but immune exclusion escape \u2014 canonical FALSE POSITIVE"
+        },
+        {
+          "failure": "Roche ACT IV (EGFRvIII vaccine)",
+          "waste": "~$200M",
+          "finding": "Antigen escape \u2014 tumor silenced EGFRvIII under immune pressure"
+        }
+      ],
+      "total_decoded_waste": ">$2B",
+      "repurposable_assets_identified": 6
+    },
+    "outreach_companies": [
+      "Inhibrx",
+      "Agenus",
+      "Daiichi Sankyo/AZ",
+      "AstraZeneca",
+      "BioNTech",
+      "Amgen",
+      "Mirati/BMS",
+      "Oncolytics",
+      "Roche/Genentech",
+      "Merus"
+    ]
+  },
+  "governance": {
+    "lane_status": {
+      "L1_Corporate_Dossier": "CLEAN",
+      "L2_Trial_Protocol": "CLEAN",
+      "L3_Comparator_Trials": "CLEAN (lifted 2026-05-09, LIFT-001)",
+      "L4_Biomarker_Biology": "QUARANTINED (SC-001 HT29 BRAF V600E conflict)",
+      "L5_CrisPRO_Fit_Gap": "PARTIAL (DL-07 + PC-02 still quarantined)",
+      "L6_Outreach_Drafting": "BLOCKED (L5 not CLEAN)",
+      "L7_SL_Engine": "CLEAN",
+      "L8_EscapeMap_War_Board": "ACTIVE (EM-03/04/05 BLOCKED_PENDING_ACCESS \u2014 human DARs required)"
+    },
+    "quarantine_log": [
+      {
+        "id": "Q-001",
+        "artifact": "CT-01",
+        "reason": "Formula-dependent",
+        "status": "RESOLVED \u2014 CLEAN",
+        "date": "2026-05-09"
+      },
+      {
+        "id": "Q-002",
+        "artifact": "CT-02",
+        "reason": "Formula-dependent",
+        "status": "RESOLVED \u2014 CLEAN",
+        "date": "2026-05-09"
+      },
+      {
+        "id": "Q-003",
+        "artifact": "DL-03",
+        "reason": "Formula-dependent",
+        "status": "PARTIAL \u2014 scores clean, narrative pending",
+        "date": "2026-05-09"
+      },
+      {
+        "id": "Q-004",
+        "artifact": "DL-07",
+        "reason": "DDR 0.983 \u2014 publication-blocking",
+        "status": "QUARANTINED \u2014 unresolved",
+        "date": null
+      },
+      {
+        "id": "Q-005",
+        "artifact": "PC-02",
+        "reason": "retroactive_prediction_run.py not clean",
+        "status": "PERMANENTLY DOWNGRADED",
+        "date": null
+      },
+      {
+        "id": "Q-006",
+        "artifact": "PC-05",
+        "reason": "Formula-dependent",
+        "status": "PARTIAL \u2014 scores clean, design pending",
+        "date": "2026-05-09"
+      }
+    ],
+    "blockers": [
+      {
+        "id": "B-001",
+        "domain": "Human cell line identity for STC-1010",
+        "status": "RESOLVED",
+        "resolution": "ASCO 2023 e14661 \u2014 HCT116, HT29, LoVo"
+      },
+      {
+        "id": "B-002",
+        "domain": "Clinical GMP manufacturing parameters",
+        "status": "BLOCKED",
+        "resolution_path": "Brenus data room / IND CMC section"
+      },
+      {
+        "id": "B-003",
+        "domain": "Human clinical efficacy and safety data",
+        "status": "PARTIALLY CLOSED \u2014 PRESS-RELEASE-ONLY",
+        "data": "n=6, DCR=100%, 0 DLTs, ~6mo follow-up, AACR 2026 CT051"
+      },
+      {
+        "id": "B-004",
+        "domain": "Bevacizumab arm assignment in BreAK CRC-001",
+        "status": "PROVISIONAL",
+        "resolution_path": "Protocol document from Brenus"
+      },
+      {
+        "id": "B-005",
+        "domain": "ASCO 2024 abstract-specific claims",
+        "status": "CLOSED \u2014 CLAIM INVALIDATED",
+        "finding": "ASCO 2024 = trial design only, no patient data; first patients dosed Sept 2025"
+      },
+      {
+        "id": "B-006",
+        "domain": "HT29 BRAF V600E scientific conflict resolution",
+        "status": "BLOCKED",
+        "resolution_path": "Brenus internal data"
+      },
+      {
+        "id": "SC-001",
+        "domain": "HT29 BRAF V600E vs BRAF WT eligibility conflict",
+        "status": "ACTIVE CONFLICT",
+        "facts": [
+          "HT29 confirmed in STC-1010 (ASCO 2023 e14661)",
+          "HT29 carries BRAF V600E",
+          "BreAK CRC-001 excludes BRAF-mutant patients (NCT06934538 Exclusion #7)"
+        ]
+      }
+    ],
+    "key_decisions": [
+      {
+        "date": "2026-04-28",
+        "decision": "PATH A formula signed as production ranker",
+        "authority": "Fahad Kiani"
+      },
+      {
+        "date": "2026-04-28",
+        "decision": "8D remediation approved; immediate downgrades applied",
+        "authority": "Fahad Kiani"
+      },
+      {
+        "date": "2026-04-28",
+        "decision": "PC-02 permanently downgraded until retroactive_prediction_run.py clean",
+        "authority": "Fahad Kiani"
+      },
+      {
+        "date": "2026-05-09",
+        "decision": "LIFT-001: CT-01/CT-02 CLEAN, DL-03/PC-05 PARTIAL; L3 CLEAN, L5 PARTIAL",
+        "authority": "Fahad Kiani"
+      }
+    ],
+    "grounding_receipts_summary": {
+      "CEACAM5_80_FRAC": "OPEN_ASSUMPTION \u2014 NSCLC proxy (0.28), CRC replacement pending",
+      "MSS_mCRC_pool": "46,750/yr (SOURCED: 55,000 \u00d7 0.85)",
+      "gate1b_pool_80pct": "13,090/yr (COMPUTED \u2014 inherits G02 OPEN_ASSUMPTION)",
+      "pTMB_28_prevalence": "21% (SOURCED: CO.26 35/163 evaluable)",
+      "CEACAM5_any_pos_CRC": "98.7% (SOURCED: Jansen 2024)",
+      "CRLM_CEACAM5": "79% (SOURCED: Warmerdam 2025)"
+    },
+    "escape_map_status": {
+      "OV_anchor": "ANCHOR_CANDIDATE (GSE140082, ZEB1 HR=1.48 p=0.006)",
+      "GBM_ZEB1": "PERMANENTLY CLOSED",
+      "CRC_access_tracks": "3 tracks DRAFT_COMPLETE (dbGaP phs003428, Vivli, Alliance N0147) \u2014 human DARs required",
+      "last_updated": "2026-05-13"
+    },
+    "blocked_claims": {
+      "STC1010_FIT_0_7375": "RETIRED 2026-07-05 \u2014 canonical_vectors.py wins tie-break; use 0.6944",
+      "BERZOSERTIB_LOCK_FIT_A_0_8839": "RETIRED 2026-07-05 \u2014 lock file \u00a75 mislabeled p_ref as RS-Low; use retroactive_prediction_run.py (fit_A=0.2030)",
+      "NCT02264678": "EXCLUDED_PENDING_PATIENT_B_DEFINITION"
+    },
+    "reconciliation_summary": {
+      "date": "2026-07-05",
+      "conflicts_resolved": 4,
+      "conflicts_remaining": 0,
+      "locked_vs_locked_conflicts": 0,
+      "resolutions": [
+        "STC-1010 fit: 0.7375 RETIRED \u2192 0.6944 (canonical_vectors.py wins tie-break)",
+        "LATIFY delta: QUARANTINED unchanged (BLOCKER-07 unresolved)",
+        "Berzosertib patient_A: lock file \u00a75 RETIRED \u2192 retroactive_prediction_run.py canonical (fit_A=0.2030)",
+        "NCT02264678: EXCLUDED_PENDING_PATIENT_B_DEFINITION"
+      ]
+    }
+  },
+  "sanofi_dossier": {
+    "stress_test_verdict": "SOURCE OF TRUTH ESTABLISHED \u2014 ALL FILES CLEAN",
+    "anchor_claims_verified": 20,
+    "resolved_discrepancy": "pTMB CI was 95% CI 0.16\u20130.73 (old error) in 2 files; fixed to 90% CI 0.18\u20130.63 (PMID 38727700)",
+    "single_source_of_truth": {
+      "pTMB_CI": "90% CI 0.18\u20130.63 (PMID 38727700)",
+      "CO26_liver_met_HR": "1.39 (90% CI 1.02\u20131.90, Pint=0.02) \u2014 PMC10698621 Table 2",
+      "CO26_noLM_HR": "0.54 (90% CI 0.35\u20130.96, Pint=0.02) \u2014 PMC10698621 Table 2",
+      "pTMB_HR": "0.34 (p=0.022) \u2014 PMID 38727700",
+      "AtezoTRIBE_Pint": "0.990 \u2014 Antoniotti Lancet Oncol 2022",
+      "REGONIVO_liver_met": "0/5 responders \u2014 NCT04126733",
+      "CRC_CEACAM5_any_pos": "98.7% \u2014 Jansen 2024 DOI:10.3390/cancers16234052",
+      "CRLM_CEACAM5": "79% \u2014 Warmerdam 2025 DOI:10.1186/s13550-025-01354-z",
+      "cCEA_ORR": "41.7% vs 8.1% (P=0.003) \u2014 PMC12720031 (NSCLC only)",
+      "IHC_cCEA_rho": "0.43 \u2014 PMC12720031",
+      "CEACAM5_80_FRAC": "0.28 (NSCLC proxy, OA-08) \u2014 conservative floor, CRC replacement pending",
+      "pool_80pct": "13,090 patients/yr (US) \u2014 46,750 \u00d7 0.28",
+      "pool_cCEA": "5,275 patients/yr (US) \u2014 13,090 \u00d7 0.403",
+      "CARMEN_LC03_5079": "HR=1.38 \u2014 Besse IASLC 2024 WCLC",
+      "CARMEN_LC03_80plus": "OS HR=0.71 (post-hoc trend) \u2014 Besse IASLC 2024 WCLC"
+    }
+  }
+}

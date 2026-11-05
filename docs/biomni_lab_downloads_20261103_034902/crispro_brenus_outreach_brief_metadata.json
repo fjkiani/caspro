@@ -1,0 +1,15 @@
+{
+  "recipient_org": "Brenus Pharma",
+  "program": "STC-1010",
+  "trial": "BreAK CRC-001",
+  "fit_score": "MEDIUM",
+  "value_props_count": 3,
+  "gaps_count": 5,
+  "data_sources_used": [
+    "Alzeeb et al. 2024 (DOI: 10.3389/fonc.2024.1427428)",
+    "N0147 pMMR/MSS subgroup (KRAS-mut, FOLFOX-treated, ICI-ineligible)",
+    "PRIME expanded RAS trial (KRAS-mut OS HR=0.78, FOLFOX4)",
+    "VELOUR trial (OS HR=0.817, anti-angiogenic benchmark)"
+  ],
+  "draft_version": "1.0"
+}

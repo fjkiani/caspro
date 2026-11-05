@@ -1286,7 +1286,7 @@ export default function SyntheticLethalityTabSurface() {
                 Mechanism Alignment <ChevronRight className="w-3 h-3" />
               </Link>
               <Link
-                href="/engine/target-lock/tabs"
+                href="/engine/target-lock/"
                 className={`text-[10px] font-black uppercase tracking-widest hover:underline flex items-center gap-1 ${
                   isDarkMode ? 'text-cyan-300' : 'text-indigo-600'
                 }`}

@@ -1,0 +1,791 @@
+{
+  "base_branch": "main",
+  "base_sha": "99dd39c657064839fd25c37a69851178bc5e6d9d",
+  "dependency_additions_total": [],
+  "frozen_source_commit": "286dab7d213601220282d8f0dac652c98946c138",
+  "generated_utc": "2026-08-14T04:00:25+00:00",
+  "head_ref": "review/zeta-core-v4-psa-feature",
+  "head_sha": "ab5bf932184e7bfbb9351c3ace34d620794a98ce",
+  "head_tree": "b2bf3e41bf74d1be7f89f6fa7bb8dc47aaefcfb6",
+  "pr": "A",
+  "record_count": 56,
+  "records": [
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": ".github/workflows/zeta_core_v4_release.yml",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "config",
+      "change": "modified",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": ".gitignore",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "role": "ignore rules for generated validation output",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "production",
+      "change": "modified",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": true,
+      "path": "api/routers/ayesha_therapy_fit.py",
+      "public_api_fields_affected": [
+        "prognostic",
+        "axes",
+        "fail_closed_keys"
+      ],
+      "reviewer_required": "backend_api_reviewer",
+      "role": "HTTP router surfacing the prognostic block on the Therapy-Fit response",
+      "runtime_behavior_affected": true
+    },
+    {
+      "artifact_class": "production",
+      "change": "modified",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "api/services/synthetic_lethality/v3_contract/translate.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "backend_api_reviewer",
+      "role": "v3 contract translation touched by the additive axis change",
+      "runtime_behavior_affected": true
+    },
+    {
+      "artifact_class": "production",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "api/services/tumor_marker_kinetics/__init__.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "backend_api_reviewer",
+      "role": "package export surface for the tumour-marker-kinetics subsystem",
+      "runtime_behavior_affected": true
+    },
+    {
+      "artifact_class": "artifact",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": true,
+      "notes": "File and content digests are pinned in reference_cdf.py and in a committed .sha256 sidecar; a mismatch must refuse the request rather than degrade.",
+      "path": "api/services/tumor_marker_kinetics/data/venice_psa_k_day_reference_cdf_v1.json",
+      "public_api_fields_affected": [
+        "reference_artifact_sha256",
+        "reference_artifact_version"
+      ],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "frozen reference CDF artifact: n=446 week-15 survivors, 296 events",
+      "runtime_behavior_affected": true
+    },
+    {
+      "artifact_class": "artifact",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": true,
+      "path": "api/services/tumor_marker_kinetics/data/venice_psa_k_day_reference_cdf_v1.json.sha256",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "role": "committed checksum sidecar for the frozen reference CDF",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "production",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": true,
+      "notes": "The A1-RSE precision gate failed at 66.5 percent against a prespecified 80 percent, so precision status is disclosed and the percentile is withheld when the decline sign is not independently established.",
+      "path": "api/services/tumor_marker_kinetics/fit_precision.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "per-fit precision status and leave-one-out decline-sign establishment: assign_fit_precision_status, loo_sign_establishment, released_fit_precision_receipt",
+      "runtime_behavior_affected": true
+    },
+    {
+      "artifact_class": "production",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": true,
+      "notes": "The status sets that would permit an absolute survival probability or a treatment-benefit score are deliberately empty.",
+      "path": "api/services/tumor_marker_kinetics/models.py",
+      "public_api_fields_affected": [
+        "reference_artifact_sha256",
+        "fail_closed_keys"
+      ],
+      "reviewer_required": "backend_api_reviewer",
+      "role": "typed models plus the capability sets that would authorize absolute risk",
+      "runtime_behavior_affected": true
+    },
+    {
+      "artifact_class": "production",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": true,
+      "notes": "Emits a relative index only. The categorical band is constructed null on every path because the prespecified band-stability gate failed (quartile-knot concordance 0.6662 against a required 0.90).",
+      "path": "api/services/tumor_marker_kinetics/prognostic_index.py",
+      "public_api_fields_affected": [
+        "k_day",
+        "percentile",
+        "z_rank",
+        "log_hazard_index",
+        "relative_hazard_multiplier",
+        "relative_prognostic_band"
+      ],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "continuous PSA prognostic-index computation (z-rank, log-hazard index)",
+      "runtime_behavior_affected": true
+    },
+    {
+      "artifact_class": "production",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": true,
+      "path": "api/services/tumor_marker_kinetics/reference_cdf.py",
+      "public_api_fields_affected": [
+        "reference_artifact_sha256"
+      ],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "artifact loader and checksum enforcement for the frozen CDF",
+      "runtime_behavior_affected": true
+    },
+    {
+      "artifact_class": "production",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": true,
+      "notes": "Rejects unknown keys and any percentile-lineage value inside a refusal.",
+      "path": "api/services/tumor_marker_kinetics/refusal_schema.py",
+      "public_api_fields_affected": [
+        "refusal_reason",
+        "refusal_block",
+        "refusal_receipt"
+      ],
+      "reviewer_required": "backend_api_reviewer",
+      "role": "typed refusal schema with an explicit key allow-list",
+      "runtime_behavior_affected": true
+    },
+    {
+      "artifact_class": "production",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": true,
+      "notes": "Receipt checksums are pinned and asserted by a named test rather than recomputed.",
+      "path": "api/services/tumor_marker_kinetics/registry.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "role": "pinned evidence-receipt registry: AXIS_EVIDENCE_STATE_RECEIPT, PINNED_RECEIPT_PATHS",
+      "runtime_behavior_affected": true
+    },
+    {
+      "artifact_class": "production",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": true,
+      "notes": "Raises rather than serializes when a categorical band, an absolute-risk field or a treatment-benefit field is populated, and scans the assembled body for band-derived descendants and aliases.",
+      "path": "api/services/tumor_marker_kinetics/serializer.py",
+      "public_api_fields_affected": [
+        "relative_prognostic_band",
+        "band_status",
+        "band_gate_pass",
+        "absolute_risk_calibrated",
+        "exploratory_band_definition"
+      ],
+      "reviewer_required": "backend_api_reviewer",
+      "role": "response serializer and prohibited-field enforcement",
+      "runtime_behavior_affected": true
+    },
+    {
+      "artifact_class": "production",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "api/services/tumor_marker_kinetics/universal_decay_fitter.py",
+      "public_api_fields_affected": [
+        "k_day"
+      ],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "first-order decay fitter: fit_first_order_decay, summarize_fit_results, legacy_crc_landmark_rate",
+      "runtime_behavior_affected": true
+    },
+    {
+      "artifact_class": "production",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "api/services/tumor_marker_kinetics/universal_kinetics_parser.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "cohort marker-frame normalization and per-patient grouping: CohortParserSpec, normalize_marker_frame, group_by_patient",
+      "runtime_behavior_affected": true
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "ci/environment_drift_report.json",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "ci/environment_lock.comparison_env.txt",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "ci/requirements.ci.txt",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "report",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "release_inventory/build_inventory.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/ci/assert_no_unexpected_skips.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/ci/branch_scope.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/ci/environment_drift.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/ci/gen_ci_pins.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/ci/node_diff_receipt.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/ci/verify_frozen_artifacts.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "script_evidence_only",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/generate_venice_psa_reference_cdf.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "reference CDF generator, evidence-only",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "script_evidence_only",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/validation/b6_bootstrap_band_stability.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "B6 band-stability gate, evidence-only",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "script_evidence_only",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/validation/d10_transport_core.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "D10 absolute-risk transport, evidence-only",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "script_evidence_only",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/validation/d11_functional_form_validation.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "D11 functional form, evidence-only",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "script_evidence_only",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/validation/d12_selection_analysis.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "D12 selection bias, evidence-only",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "script_evidence_only",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/validation/d12_selection_core.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "D12 selection bias core, evidence-only",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "script_evidence_only",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/validation/d5_runtime_equivalence.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "D5 runtime equivalence, evidence-only",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "script_evidence_only",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/validation/qualify_zeta_d10_d11_d12.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "diagnostic qualifier, evidence-only",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "script_evidence_only",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/validation/retire_zeta_delivery_report.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "report retirement tool, evidence-only",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "script_evidence_only",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/validation/survival_metrics.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "D9 survival metrics used by D10, evidence-only",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "script_evidence_only",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/validation/verify_zeta_core_delivery.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "delivery manifest verifier, evidence-only",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "modified",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/efficacy/test_therapy_fit_axes.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "role": "existing Therapy-Fit axis tests extended for the additive prognostic axis",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "fixture",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/fixtures/d9_survival_metric_equivalence.json",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "role": "D9 survival-metric equivalence fixture consumed by the runtime-equivalence test",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "fixture",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/fixtures/generate_tumor_marker_kinetics_reference.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "fixture",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/fixtures/tumor_marker_kinetics_reference_fits.json",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_audit_correction_d13.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_contract_a_release.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_prognostic_direction_negative.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_prostate_prognostic_index.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_refusal_schema_lineage.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_tumor_marker_kinetics_contract.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_tumor_marker_kinetics_equivalence.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_tumor_marker_kinetics_fitter.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_tumor_marker_kinetics_parser.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_tumor_marker_kinetics_router.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_venice_psa_reference_cdf.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_zeta_closure_diagnostics.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_zeta_delivery_manifest.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "tests/unit/test_zeta_report_retirement.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "artifact",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": true,
+      "notes": "This failed gate is the reason the categorical band is null on every path.",
+      "path": "tumor_marker_kinetics_validation/b6_bootstrap_band_stability.json",
+      "public_api_fields_affected": [],
+      "reviewer_required": "clinical_biostatistics_reviewer",
+      "role": "B6 band-stability gate output: FAILED, quartile-knot concordance 0.6661666666666667 against a prespecified 0.90",
+      "runtime_behavior_affected": false
+    }
+  ],
+  "release_assertions": {
+    "diagnostic_classification": {
+      "D10": {
+        "classification": "evidence_only",
+        "gate_state": "NOT_MET: 0 PASS, 0 CLEAR_FAIL, 8 INDETERMINATE",
+        "paths": [
+          "scripts/validation/d10_transport_core.py"
+        ],
+        "runtime_consequence": "absolute-risk keys stay null"
+      },
+      "D11": {
+        "classification": "evidence_only",
+        "paths": [
+          "scripts/validation/d11_functional_form_validation.py"
+        ]
+      },
+      "D12": {
+        "classification": "evidence_only",
+        "paths": [
+          "scripts/validation/d12_selection_analysis.py",
+          "scripts/validation/d12_selection_core.py"
+        ]
+      },
+      "D9": {
+        "classification": "evidence_only",
+        "paths": [
+          "scripts/validation/survival_metrics.py",
+          "tests/fixtures/d9_survival_metric_equivalence.json"
+        ],
+        "runtime_consumer": "tests/unit/test_tumor_marker_kinetics_equivalence.py"
+      },
+      "note": "No runtime module imports any path under scripts/validation/, so D9 through D12 ship no runtime code. Their conclusions reach runtime only as frozen constants and null-by-construction fields."
+    },
+    "fields_that_stay_null": {
+      "absolute_risk_and_treatment_keys": [
+        "score",
+        "therapy_fit_score",
+        "probability",
+        "calibrated_probability",
+        "calibrated_survival_probability",
+        "calibrated_response_probability",
+        "risk_score",
+        "treatment_recommendation",
+        "treatment_priority",
+        "predicted_treatment_benefit"
+      ],
+      "authorizing_capability_sets_are_empty": [
+        "CALIBRATED_AXIS_STATUSES",
+        "ABSOLUTE_RISK_CALIBRATED_AXIS_STATUSES",
+        "TREATMENT_PREDICTIVE_AXIS_STATUSES"
+      ],
+      "categorical_band": {
+        "band_gate_pass": false,
+        "band_status": "UNSTABLE_NOT_FOR_RENDERING",
+        "field": "relative_prognostic_band",
+        "reason": "the prespecified band-stability gate failed: quartile-knot concordance 0.6661666666666667 against a required 0.90",
+        "value": null
+      },
+      "source": "api/services/tumor_marker_kinetics/models.py"
+    },
+    "frozen_artifact": {
+      "content_sha256": "a1acb23232c13a4089f6eb78a426292816864b2345e4651ccf01eaa7abd9d51f",
+      "events": 296,
+      "file_sha256": "2302bfaba3acdb48dbcc731406cded140ce68169fb922ae516215bc8e80e62da",
+      "n_reference": 446,
+      "path": "api/services/tumor_marker_kinetics/data/venice_psa_k_day_reference_cdf_v1.json",
+      "pinned_in": "api/services/tumor_marker_kinetics/reference_cdf.py",
+      "sidecar": "api/services/tumor_marker_kinetics/data/venice_psa_k_day_reference_cdf_v1.json.sha256",
+      "unhashed_fields": [
+        "content_sha256",
+        "generated_utc"
+      ],
+      "verified_by": "scripts/ci/verify_frozen_artifacts.py"
+    },
+    "prognostic_index_computation": {
+      "emits": "relative index only",
+      "form": "log hazard index equals beta_z times the z-rank of the released k_day percentile",
+      "locked_beta_z": -0.17278419421744848,
+      "path": "api/services/tumor_marker_kinetics/prognostic_index.py"
+    },
+    "refusal_schema": {
+      "enforcement": "unknown keys rejected; percentile lineage rejected inside a refusal",
+      "path": "api/services/tumor_marker_kinetics/refusal_schema.py"
+    },
+    "release_contract": "CONTRACT_A_RUO_SCIENTIFIC_WITHHOLDING, 14 reasons, 13 active",
+    "serializer_and_router": {
+      "enforcement": "the serializer raises rather than emitting a populated band, an absolute-risk field or a treatment-benefit field, and scans the assembled body for band-derived descendants and aliases",
+      "router": "api/routers/ayesha_therapy_fit.py",
+      "serializer": "api/services/tumor_marker_kinetics/serializer.py"
+    }
+  },
+  "self_reference_caveat": "This inventory cannot contain its own digest. It covers every path in the diff except itself and the SHA256SUMS file that records its digest.",
+  "title": "Zeta-Core v4 PSA tumour-marker-kinetics feature (Cohere harness excluded)"
+}

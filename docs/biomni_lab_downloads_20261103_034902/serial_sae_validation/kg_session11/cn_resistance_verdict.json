@@ -1,0 +1,156 @@
+{
+  "analysis": "Copy-number arm of the HGSOC platinum-resistance hypothesis (Serial SAE manuscript)",
+  "generated": "2026-07-24T14:52:01.561407",
+  "classification": "Research Use Only / hypothesis-generating. No clinical or regulatory claim.",
+  "pre_set_criterion": "Pre-specified direction (CN instability / HRD-gene loss / CCNE1 amplification -> platinum-resistant) holds with AUROC>0.5 and bootstrap 95% CI excluding 0.5 in >=2 INDEPENDENT cohorts, with effect sizes + CIs. Non-replication/opposite/fragility reported exactly.",
+  "modality_note": "Both on-target ZetaBridge sources are DNA copy-number, not RNA. The expression Serial SAE score is NOT computable from them and was not computed. This is the copy-number arm - the same modality as the one prior positive result (BriTROC-1 sig7).",
+  "acquisition_note": "Raw BriTROC-1 sWGS BAMs (679 files, 511 GB) were NOT downloaded: the ZetaBridge broker is metadata-only (no download/stream/byte-range route in its 34-endpoint OpenAPI), and it was not bypassed with pasted credentials. File-level provenance (accession, MD5, bytes, timepoint, phenotype) for all 679 files was harvested into the KG as AcquisitionReceipts. The CN analyses use already-acquired open-access BriTROC CN objects + MSK KG panel_cna.",
+  "cohorts": {
+    "BriTROC-1 (CN signatures, sWGS)": {
+      "modality": "shallow-WGS copy-number signatures (Macintyre sig1-7)",
+      "n": 40,
+      "n_resistant": 3,
+      "EPV": 3,
+      "primary_feature": "sig7_relapse",
+      "auroc": 0.8739,
+      "ci": [
+        0.75,
+        0.973
+      ],
+      "wilcoxon_p": 0.035,
+      "q_bh": 0.245,
+      "sig_fdr05": false,
+      "meets_criterion": true,
+      "interpretation": "sig7 at relapse AUROC 0.874 with bootstrap CI [0.75,0.97] excluding 0.5 and nominal p=0.035 SUPPORTS the predicted direction, BUT rests on EPV=3 (3 resistant patients), is NOT significant after BH-FDR (q=0.245), and is high-variance. Reproduces the prior positive in tendency; fragile.",
+      "labeled": true
+    },
+    "BriTROC-1 (breakpoint burden / purity / ploidy, absolute CN)": {
+      "modality": "shallow-WGS absolute copy-number (breakpoints, purity, ploidy, TP53freq)",
+      "n": 167,
+      "n_resistant": 12,
+      "EPV": 12,
+      "features": [
+        {
+          "feature": "breakpoints_max",
+          "auroc": 0.4446,
+          "ci": [
+            0.2966,
+            0.6012
+          ],
+          "direction": "opp(<0.5)",
+          "supports_criterion": false,
+          "q_bh": "0.5253",
+          "sig_fdr05": "False"
+        },
+        {
+          "feature": "breakpoints_mean",
+          "auroc": 0.4011,
+          "ci": [
+            0.254,
+            0.5534
+          ],
+          "direction": "opp(<0.5)",
+          "supports_criterion": false,
+          "q_bh": "0.4258",
+          "sig_fdr05": "False"
+        },
+        {
+          "feature": "purity_mean",
+          "auroc": 0.3976,
+          "ci": [
+            0.2005,
+            0.6171
+          ],
+          "direction": "opp(<0.5)",
+          "supports_criterion": false,
+          "q_bh": "0.4258",
+          "sig_fdr05": "False"
+        },
+        {
+          "feature": "ploidy_mean",
+          "auroc": 0.6505,
+          "ci": [
+            0.4927,
+            0.8015
+          ],
+          "direction": "pred(>0.5)",
+          "supports_criterion": false,
+          "q_bh": "0.415",
+          "sig_fdr05": "False"
+        },
+        {
+          "feature": "tp53freq_mean",
+          "auroc": 0.4444,
+          "ci": [
+            0.2435,
+            0.6595
+          ],
+          "direction": "opp(<0.5)",
+          "supports_criterion": false,
+          "q_bh": "0.5253",
+          "sig_fdr05": "False"
+        }
+      ],
+      "meets_criterion": false,
+      "interpretation": "On a LARGER sample (N=167, EPV=12) genome-wide breakpoint burden and purity trend OPPOSITE the resistance prediction (AUROC 0.40-0.45); ploidy leans positive (AUROC 0.65) but its CI [0.49,0.80] CROSSES 0.5 and q=0.42 (not significant). No absolute-CN feature meets the criterion. This larger-N test does NOT support CN instability predicting primary platinum resistance.",
+      "labeled": true
+    },
+    "MSK-SPECTRUM (WGS panel_cna)": {
+      "modality": "WGS copy-number/mutation panel (panel_cna)",
+      "n": 40,
+      "n_resistant": null,
+      "EPV": null,
+      "ccne1_amp_n": 6,
+      "hrd_loss_burden": {
+        "4": 10,
+        "6": 12,
+        "5": 13,
+        "3": 3,
+        "0": 1,
+        "2": 1
+      },
+      "meets_criterion": null,
+      "labeled": false,
+      "interpretation": "40-specimen CN landscape assembled (CCNE1 amplified 6/40; HRD-gene loss burden distributed 0-6). NO per-specimen platinum-resistance labels are present in the KG layer, and no SPECTRUM clinical/outcome TABLE is reachable via the broker (the referenced Synapse ids are Datasets/Files/Folders: mpIF, scRNA, H&E, Bulk WGS, MSK-IMPACT, cna.tsv, cohort.maf, segments.seg - none queryable for labels). Association is therefore NOT runnable; landscape reported, nothing fabricated."
+    },
+    "PDS solid-tumor safety warehouse": {
+      "modality": "clinical-trial adverse-event + genomic-feature warehouse",
+      "n_trials": 92,
+      "n_trial_patients": 16865,
+      "ovarian_gyn_trials": 0,
+      "meets_criterion": null,
+      "labeled": "n/a",
+      "interpretation": "92 trials / 16,865 patients across 15 solid-tumor types with ZERO ovarian/gyn arm; cannot serve as an HGSOC external control. Mined value = 13 genomic<->AE toxicity hypothesis edges (RUO), enriched into the KG."
+    }
+  },
+  "labeled_cohorts_total": 2,
+  "labeled_cohorts_meeting_criterion": 1,
+  "criterion_met": false,
+  "verdict": "CN ARM: CRITERION NOT MET. Only ONE labeled cohort (BriTROC-1) yields a feature meeting the pre-set threshold (sig7 relapse, AUROC 0.874, CI excluding 0.5), and it is fragile (EPV=3, not FDR-significant). The independent, larger-N absolute-CN test on the SAME cohort (breakpoint burden, N=167, EPV=12) does NOT support the hypothesis and trends opposite. MSK-SPECTRUM has CN data but NO reachable resistance labels, so it cannot be the required 2nd labeled cohort. PDS has no ovarian arm. The >=2-independent-cohort criterion is therefore NOT satisfied on labeled data. The copy-number resistance-prediction claim does not replicate beyond a single fragile signal - consistent with the manuscript's own honest verdict.",
+  "kg_enrichment": {
+    "base": {
+      "entities": 26312,
+      "edges": 98609,
+      "session": 10
+    },
+    "session11": {
+      "entities": 27044,
+      "edges": 99340
+    },
+    "net_new": {
+      "entities": 732,
+      "edges": 731
+    },
+    "entity_type_delta": {
+      "DataVault": 1,
+      "CNFeatureProfile": 40,
+      "ResistanceAssociation": 12,
+      "AcquisitionReceipt": 679
+    },
+    "edge_relation_delta": {
+      "specimen_has_cn_profile": 40,
+      "cn_feature_associates_resistance": 12,
+      "acquired_from_vault": 679
+    }
+  }
+}

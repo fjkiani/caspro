@@ -1,0 +1,14 @@
+{
+  "snapshot_utc": "2026-07-25T04:32:26Z",
+  "cn_ok_profiles": 94,
+  "labeled_profiles": 86,
+  "n_resistant": 9,
+  "n_sensitive": 77,
+  "paired_patients": 8,
+  "cohort": "BriTROC-1 (EGAD00001011049), shallow-WGS HGSC, hg19/GRCh37",
+  "pipeline_concordance": {"metric": "Spearman rho vs published breakpoints", "rho": 0.830, "p": 5.77e-23, "n": 86},
+  "paired_delta": {"test": "Wilcoxon signed-rank (relapse-diagnosis breakpoints)", "W": 14.0, "p": 0.641, "n_pairs": 8},
+  "prespecified_direction": "higher CN instability -> resistant",
+  "verdict": "prespecified criterion NOT met; direction OPPOSITE; underpowered (EPV=9); discovery-only",
+  "note": "Siphon still running at freeze; numbers may increase in later refresh. This snapshot is immutable and is the cited source for the manuscript and the v3 cn_resistance engine frozen_stats.json."
+}

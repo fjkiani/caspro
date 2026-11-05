@@ -1,0 +1,992 @@
+{
+  "schema_id": "BRENUS_BD_RAG_v1",
+  "created": "2026-07-07",
+  "authority": "Fahad Kiani \u2014 CrisPRO / Brenus Pharma engagement",
+  "description": "Architectural knowledge base schema for the Brenus BD RAG application. Defines chunking strategy, storage layers, retrieval logic, and all source intelligence across 4 operational pillars.",
+  "governance": {
+    "path_a_formula": "fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1)",
+    "path_a_locked": "2026-04-28",
+    "path_b": "PROHIBITED",
+    "retired_values": [
+      "STC1010_FIT_0_7375",
+      "BERZOSERTIB_LOCK_FIT_A_0_8839"
+    ],
+    "quarantined_claims": [
+      "LATIFY_DELTA",
+      "DDR_0983",
+      "GBM_ZEB1_ESCAPE"
+    ],
+    "canonical_vectors_source": "canonical_vectors.py (crispro-backend-v3, committed code)"
+  },
+  "layer_0_sources": {
+    "description": "Raw source repositories to ingest. Both must be fully crawled.",
+    "repositories": [
+      {
+        "repo_id": "BRENUS_MAIN",
+        "url": "https://github.com/fjkiani/Brenus",
+        "branch": "main",
+        "file_count_approx": 200,
+        "structured_files": 152,
+        "priority": "PRIMARY",
+        "ingest_paths": [
+          "engagements/brenus/",
+          "data/synthesis/",
+          "data/ranker_results/",
+          "data/pds/",
+          "master_intelligence/",
+          "positioning/",
+          "framework/"
+        ],
+        "exclude_paths": [
+          ".git/",
+          "src/",
+          "node_modules/",
+          "*.png",
+          "*.pdf",
+          "*.tsx",
+          "*.ts"
+        ]
+      },
+      {
+        "repo_id": "DATA_ROOM_EXTERNAL",
+        "url": "https://github.com/fjkiani/data-room/tree/main/external/Brenus",
+        "branch": "main",
+        "root_path": "external/Brenus/",
+        "file_count_approx": 198,
+        "structured_files": 152,
+        "priority": "SECONDARY",
+        "unique_content": [
+          "engagements/brenus/audit/",
+          "positioning/05_evidence_memo_gap_closure.md",
+          "framework/schemas/",
+          "engagements/brenus/pds_extraction/"
+        ],
+        "ingest_paths": [
+          "external/Brenus/engagements/brenus/",
+          "external/Brenus/positioning/",
+          "external/Brenus/framework/schemas/",
+          "external/Brenus/data/"
+        ]
+      }
+    ]
+  },
+  "layer_1_knowledge_base": {
+    "description": "How the RAG chunks, tags, and stores all Brenus intelligence. Four pillars, each with defined chunk types, metadata schema, and retrieval priority.",
+    "chunking_strategy": {
+      "method": "Semantic + structural hybrid",
+      "rules": [
+        "Each trial = 1 chunk minimum. Trials with subgroup data get 1 additional chunk per subgroup.",
+        "Each design gap = 1 chunk (gap_id, severity, evidence, crispro_solution)",
+        "Each governance decision = 1 chunk (decision, retired value, canonical value, authority)",
+        "Each BD target = 1 chunk (company, drug, gap_hook, fit_score, outreach_channel)",
+        "Each biomarker = 1 chunk (biomarker, prevalence, source, admissibility_tier)",
+        "Narrative documents (MD files >2000 chars) = chunked at section headers (##)",
+        "JSON files = chunked at top-level array entries or named objects",
+        "CSV files = chunked at 50-row blocks with header preserved in each chunk"
+      ],
+      "chunk_size_target": "512-1024 tokens",
+      "overlap": "64 tokens (preserve context across section boundaries)",
+      "metadata_required_fields": [
+        "chunk_id",
+        "chunk_type",
+        "pillar",
+        "governance_status",
+        "admissibility_tier",
+        "rag_tags",
+        "source_file",
+        "source_repo"
+      ]
+    },
+    "pillars": {
+      "pillar_1_historical_benchmarks": {
+        "pillar_id": "P1",
+        "description": "All historical trial data that establishes the performance baseline for BreAK CRC-001 and validates CrisPRO's decoding capability",
+        "chunk_count": 6,
+        "chunk_types": [
+          "comparator_trial_set",
+          "pds_comparator_set",
+          "canonical_benchmark",
+          "trial_decode_authoritative",
+          "failure_cost_ledger"
+        ],
+        "source_chunks": [
+          "W1-IOCORE-001",
+          "W1-PDS-001",
+          "W1-TRIBE2-001",
+          "W1-CO26-001",
+          "W1-FAILURECOST-001",
+          "W1-REGONIVO-001"
+        ],
+        "key_content": {
+          "io_core_7_trials": {
+            "description": "7 MSS CRC IO comparator trials with PATH A locked scores",
+            "governance": "LOCKED 2026-05-04",
+            "trials": [
+              "IMblaze370",
+              "AtezoTRIBE",
+              "QUILT-2.004",
+              "GRANITE GO-010",
+              "MEDITREME",
+              "GVAX+CY+Pembro",
+              "CCTG CO.26"
+            ],
+            "fit_A_range": [
+              0.4,
+              0.8262
+            ],
+            "delta_range": [
+              0.1511,
+              0.3
+            ],
+            "universal_finding": "All 7 show positive delta. Liver-met IO suppression is universal."
+          },
+          "pds_7_trials": {
+            "description": "7 chemotherapy/targeted backbone trials establishing KRAS-mut treatment landscape",
+            "trials": [
+              "MOSAIC",
+              "N0147",
+              "PRIME",
+              "PEAK_FOLFIRI",
+              "PACCE",
+              "HORIZON_III",
+              "VELOUR"
+            ],
+            "key_finding": "KRAS-mut anti-EGFR is harmful (PRIME OS HR=1.24). Anti-VEGF alone insufficient."
+          },
+          "tribe2_benchmark": {
+            "mPFS_months": 9.8,
+            "ORR_pct": 50,
+            "mOS_months": 22.5,
+            "population": "RAS-mutant mCRC, 1L, mFOLFOX6+bev"
+          },
+          "co26_authoritative": {
+            "liver_met_HR": 1.39,
+            "no_LM_HR": 0.54,
+            "pTMB_28_OS_HR": 0.34,
+            "pTMB_28_OS_CI": "90% CI 0.18-0.63",
+            "pTMB_28_OS_p": 0.022
+          },
+          "failure_cost_ledger": {
+            "total_decoded": "$2B+",
+            "programs": [
+              "CheckMate 143/498/548 (~$500M)",
+              "AVAglio+RTOG 0825 (~$400M)",
+              "AZ EGFR inhibitors (~$300M)",
+              "IMblaze370 (~$300M)",
+              "ACT IV (~$200M)"
+            ]
+          },
+          "regonivo": {
+            "US_ORR_pct": 7,
+            "NLM_ORR_pct": 36.4,
+            "liver_met_responders": "0/5"
+          }
+        },
+        "retrieval_triggers": [
+          "benchmark",
+          "historical",
+          "comparator",
+          "what happened before",
+          "prior trials",
+          "failure",
+          "ORR",
+          "PFS",
+          "OS",
+          "HR",
+          "fit score",
+          "delta"
+        ],
+        "admissibility": "TIER 1 \u2014 all values VERIFIED or LOCKED"
+      },
+      "pillar_2_trials_decoded": {
+        "pillar_id": "P2",
+        "description": "Full decode of BreAK CRC-001 and all retroactive validation trials. Includes design gaps, governance blockers, and biomarker intelligence.",
+        "chunk_count": 5,
+        "chunk_types": [
+          "anchor_trial_decode",
+          "design_gap_registry",
+          "trial_decode_set",
+          "biomarker_decode",
+          "governance_blocker_registry"
+        ],
+        "source_chunks": [
+          "W2-BREAK-001",
+          "W2-GAPS-001",
+          "W2-ATRDDR-001",
+          "W2-CEACAM5-001",
+          "W2-BLOCKERS-001"
+        ],
+        "key_content": {
+          "break_crc_001": {
+            "nct_id": "NCT06934538",
+            "crispro_fit": 0.6944,
+            "fit_label": "MODERATE",
+            "primary_driver": "io axis (51.2%)",
+            "secondary_driver": "mapk axis (33.6%)",
+            "her2": "NOT TARGETED (0.00)",
+            "vegf": "OPTIONAL backbone (0.20)",
+            "scientific_anchor": "Alzeeb et al. 2024 (DOI: 10.3389/fonc.2024.1427428)"
+          },
+          "design_gaps": {
+            "GAP-01": {
+              "severity": "CRITICAL",
+              "issue": "No liver-met stratification"
+            },
+            "GAP-02": {
+              "severity": "HIGH",
+              "issue": "pTMB not collected prospectively"
+            },
+            "GAP-03": {
+              "severity": "MEDIUM",
+              "issue": "Patient io=0.40 vs trial io=0.80 \u2014 permissiveness gap"
+            },
+            "GAP-04": {
+              "severity": "HIGH",
+              "issue": "No biomarker gate for patient selection"
+            },
+            "GAP-05": {
+              "severity": "HIGH",
+              "issue": "Bev optionality creates immunomodulatory confounding"
+            },
+            "GAP-06": {
+              "severity": "MEDIUM",
+              "issue": "SC-001: HT29 BRAF V600E in BRAF-WT trial \u2014 ACTIVE CONFLICT"
+            }
+          },
+          "retroactive_validation": {
+            "scoreable_trials": 3,
+            "excluded": 1,
+            "direction_correct": "All 3",
+            "latify_status": "QUARANTINED \u2014 cite responder 0.8936 vs non-responder 0.6295 only"
+          },
+          "ceacam5": {
+            "CRC_any_pos": "98.7%",
+            "IHC_80pct_fraction": "0.28 (NSCLC proxy \u2014 OPEN_ASSUMPTION)",
+            "pool_US": "13,090 patients/yr"
+          }
+        },
+        "retrieval_triggers": [
+          "BreAK CRC",
+          "STC-1010",
+          "NCT06934538",
+          "design gap",
+          "liver met",
+          "pTMB",
+          "biomarker",
+          "CEACAM5",
+          "ATR",
+          "DDR",
+          "berzosertib",
+          "LATIFY",
+          "governance",
+          "blocker"
+        ],
+        "admissibility": "MIXED \u2014 TIER 1 (VERIFIED) + TIER 2 (COMPANY_CLAIM with caveat) + QUARANTINED items flagged"
+      },
+      "pillar_3_gaps_identified": {
+        "pillar_id": "P3",
+        "description": "Structured gap registry \u2014 design gaps in BreAK CRC-001, module gaps in CrisPRO fit for Brenus, and open governance blockers. This is the 'why CrisPRO' layer.",
+        "gap_taxonomy": {
+          "trial_design_gaps": {
+            "count": 6,
+            "critical": [
+              "GAP-01 (liver-met stratification)",
+              "GAP-06 (SC-001 BRAF conflict)"
+            ],
+            "high": [
+              "GAP-02 (pTMB)",
+              "GAP-04 (biomarker gate)",
+              "GAP-05 (bev scheduling)"
+            ],
+            "medium": [
+              "GAP-03 (io permissiveness)",
+              "GAP-06 (SC-001)"
+            ]
+          },
+          "crispro_module_gaps": {
+            "count": 7,
+            "deployed": [
+              "PATH A Fit Scorer",
+              "8D Vector Space"
+            ],
+            "gaps": [
+              "Liver-Met Stratification Module",
+              "Prospective Biomarker Collection",
+              "Bev Scheduling Optimizer",
+              "CEACAM5 IHC Gate (CRC-specific)",
+              "CMS Subtype Classifier"
+            ]
+          },
+          "governance_blockers": {
+            "count": 5,
+            "critical": [
+              "DL-07 (DDR 0.983 \u2014 publication-blocking)",
+              "SC-001 (HT29 BRAF V600E)",
+              "RSPA \u00a783(b) deadline July 28 2026"
+            ],
+            "high": [
+              "BLOCKER-07 (trial_moa_vectors.json)",
+              "PC-02 (permanently downgraded)"
+            ]
+          }
+        },
+        "retrieval_triggers": [
+          "gap",
+          "missing",
+          "not collected",
+          "not stratified",
+          "blocker",
+          "quarantine",
+          "what's missing",
+          "what CrisPRO solves",
+          "module"
+        ],
+        "admissibility": "TIER 1 \u2014 all gaps sourced from VERIFIED registry data or committed code"
+      },
+      "pillar_4_crispro_offer": {
+        "pillar_id": "P4",
+        "description": "CrisPRO's full value proposition for Brenus \u2014 capabilities, BD targets, outreach strategy, IP assets, and scientific outputs.",
+        "chunk_count": 5,
+        "chunk_types": [
+          "value_proposition",
+          "bd_target_ranking",
+          "fitgap_analysis",
+          "ip_and_scientific",
+          "outreach_strategy"
+        ],
+        "source_chunks": [
+          "W3-CRISPRO-001",
+          "W3-BDTARGETS-001",
+          "W3-FITGAP-001",
+          "W3-IP-001",
+          "W3-OUTREACH-001"
+        ],
+        "key_content": {
+          "core_pitch": "CrisPRO decodes why trials fail before they fail. PATH A fit scoring quantifies mechanistic alignment between patient molecular profile and trial MoA. Applied to BreAK CRC-001: fit=0.6944 (MODERATE), primary gap = liver-met IO suppression not addressed in trial design.",
+          "bd_targets_ranked": 33,
+          "outreach_ready": 10,
+          "top_gap_hooks": [
+            "Inhibrx (DR5): No predictive biomarker for RAS/RAF-agnostic response",
+            "Agenus (BOT/BAL): TARIO-2 prospective validation gap",
+            "AZ (CO.26): CrisPRO decoded their own trial \u2014 liver-met HR=1.39 vs NLM HR=0.54",
+            "Merus (MCLA-158): LGR5 biomarker gap \u2014 no validated patient selection",
+            "BioNTech (mRNA vaccines): Same structural failure mode as GRANITE GO-010"
+          ],
+          "ip_assets": {
+            "BRIEF_1": {
+              "status": "CRISPR_VALIDATED",
+              "delta": -0.7184,
+              "FDR": 0.001203,
+              "deal_status": "DEAL_READY"
+            },
+            "BRIEF_4": {
+              "status": "CRISPR_VALIDATED",
+              "delta": -0.7326,
+              "FDR": 8e-06
+            },
+            "BRIEF_2": {
+              "status": "COMPUTATIONAL_HYPOTHESIS",
+              "depmap": "NULL"
+            },
+            "BRIEF_3": {
+              "status": "MECHANISTICALLY_GROUNDED",
+              "r": 0.05,
+              "p": 0.78
+            }
+          },
+          "brain_met_manuscript": {
+            "target": "Cancer Cell",
+            "cohort_n": 1879,
+            "apex_driver": "BACE1 (LFC=+7.28, 0 somatic mutations)",
+            "composite_AUROC": 0.689,
+            "AUPRC": 0.831
+          }
+        },
+        "retrieval_triggers": [
+          "what does CrisPRO offer",
+          "value proposition",
+          "pitch",
+          "BD target",
+          "outreach",
+          "gap hook",
+          "BRIEF",
+          "IP",
+          "manuscript",
+          "Cancer Cell",
+          "why CrisPRO"
+        ],
+        "admissibility": "MIXED \u2014 TIER 1 (VERIFIED capabilities) + TIER 2 (BD targets with gap-hook framing)"
+      }
+    }
+  },
+  "layer_2_vector_store": {
+    "description": "Embedding and retrieval architecture for the Brenus BD RAG",
+    "embedding_model": "text-embedding-3-large (OpenAI) or equivalent \u2014 3072 dimensions",
+    "vector_db": "Pinecone (recommended) or Weaviate \u2014 namespace: brenus_bd_rag_v1",
+    "namespaces": {
+      "benchmarks": "P1 \u2014 historical benchmarks, IO CORE, PDS, TRIBE2, CO.26",
+      "trials_decoded": "P2 \u2014 BreAK CRC-001, ATR/DDR, CEACAM5, governance",
+      "gaps": "P3 \u2014 design gaps, module gaps, blockers",
+      "crispro_offer": "P4 \u2014 value prop, BD targets, outreach, IP"
+    },
+    "metadata_index_fields": [
+      "chunk_id",
+      "chunk_type",
+      "pillar",
+      "governance_status",
+      "admissibility_tier",
+      "rag_tags",
+      "source_file",
+      "source_repo",
+      "trial_name",
+      "company",
+      "fit_score",
+      "severity"
+    ],
+    "retrieval_strategy": {
+      "primary": "Semantic similarity (cosine) \u2014 top-k=5",
+      "secondary": "Metadata filter \u2014 admissibility_tier IN ['TIER1', 'TIER2'] (exclude QUARANTINED from external-facing responses)",
+      "reranking": "Cross-encoder reranker on top-10 candidates \u2192 return top-3",
+      "governance_filter": "MANDATORY: any chunk with governance_status=QUARANTINED must append caveat string before returning"
+    },
+    "chunk_count_estimate": {
+      "P1_benchmarks": 6,
+      "P2_trials_decoded": 5,
+      "P3_gaps": 8,
+      "P4_crispro_offer": 5,
+      "raw_document_chunks": "~300-400 (from full MD/JSON/CSV ingestion)",
+      "total_estimated": "~320-420 chunks"
+    }
+  },
+  "layer_3_retrieval_generation": {
+    "description": "Query routing, retrieval logic, and generation guardrails",
+    "query_router": {
+      "description": "Classify incoming query into pillar before retrieval",
+      "routes": {
+        "benchmark_query": {
+          "triggers": [
+            "what happened",
+            "prior trials",
+            "ORR",
+            "PFS",
+            "OS",
+            "HR",
+            "fit score",
+            "delta",
+            "TRIBE2",
+            "CO.26",
+            "REGONIVO"
+          ],
+          "namespace": "benchmarks"
+        },
+        "trial_decode_query": {
+          "triggers": [
+            "BreAK CRC",
+            "STC-1010",
+            "NCT06934538",
+            "CEACAM5",
+            "ATR",
+            "DDR",
+            "berzosertib",
+            "LATIFY"
+          ],
+          "namespace": "trials_decoded"
+        },
+        "gap_query": {
+          "triggers": [
+            "gap",
+            "missing",
+            "not collected",
+            "blocker",
+            "quarantine",
+            "what's missing",
+            "SC-001",
+            "DL-07"
+          ],
+          "namespace": "gaps"
+        },
+        "pitch_query": {
+          "triggers": [
+            "pitch",
+            "value prop",
+            "BD target",
+            "outreach",
+            "gap hook",
+            "BRIEF",
+            "IP",
+            "why CrisPRO",
+            "what do you offer"
+          ],
+          "namespace": "crispro_offer"
+        },
+        "cross_pillar": {
+          "triggers": [
+            "full picture",
+            "everything",
+            "summary",
+            "dossier"
+          ],
+          "namespace": "ALL"
+        }
+      }
+    },
+    "generation_guardrails": {
+      "mandatory_checks": [
+        "NEVER cite LATIFY delta values (0.366 or 0.2641) \u2014 cite responder 0.8936 vs non-responder 0.6295 only",
+        "NEVER use fit=0.7375 for STC-1010 \u2014 canonical value is 0.6944",
+        "NEVER use PATH B formula \u2014 PATH A only: fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1)",
+        "NEVER cite DDR_0983 \u2014 QUARANTINED (DL-07 publication-blocking)",
+        "ALWAYS attach caveat tag to TIER 2 claims (COMPANY_CLAIM, PROVISIONAL, PRESS-RELEASE-ONLY)",
+        "NEVER cite CT051 quantitative DTH values \u2014 PRESS-RELEASE-ONLY, not in public record",
+        "NEVER state HT29 is confirmed in STC-1010 cell line mix \u2014 SC-001 ACTIVE CONFLICT"
+      ],
+      "safe_external_claims": [
+        "STC-1010 fit=0.6944 (MODERATE alignment) \u2014 PATH A formula, canonical_vectors.py",
+        "CO.26 liver-met HR=1.39 (90% CI 1.02-1.90) \u2014 PMID 38727700",
+        "CO.26 pTMB \u226528 OS HR=0.34 (90% CI 0.18-0.63, p=0.022) \u2014 PMID 38727700",
+        "REGONIVO NLM ORR 36.4%, liver-met responders 0/5 \u2014 PMID 39504677",
+        "TRIBE2: mPFS 9.8mo, ORR 50%, mOS 22.5mo \u2014 canonical benchmark",
+        "CEACAM5 any-pos in CRC: 98.7% \u2014 Jansen 2024 DOI:10.3390/cancers16234052",
+        "BRIEF-1: CRISPR_VALIDATED, delta=-0.7184, FDR=0.001203, DEAL_READY"
+      ]
+    },
+    "response_templates": {
+      "benchmark_response": "When asked about historical benchmarks: lead with the IO CORE delta table, anchor to TRIBE2 as the performance baseline, cite CO.26 as the canonical liver-met discrimination trial.",
+      "trial_decode_response": "When asked about BreAK CRC-001: lead with fit=0.6944 (MODERATE), primary driver io=51.2%, then surface the 4 critical design gaps. Always cite Alzeeb et al. 2024.",
+      "gap_response": "When asked about gaps: lead with GAP-01 (liver-met stratification \u2014 CRITICAL), then GAP-02 (pTMB), then GAP-04 (biomarker gate). Map each gap to the CrisPRO module that addresses it.",
+      "pitch_response": "When asked what CrisPRO offers: lead with the tagline ('CrisPRO decodes why trials fail before they fail'), then the specific gap-hook for the target company, then the BRIEF-1/BRIEF-4 CRISPR-validated assets."
+    }
+  },
+  "layer_4_governance": {
+    "description": "Admissibility taxonomy, quarantine flags, and claim lifecycle management",
+    "admissibility_tiers": {
+      "TIER_1": {
+        "label": "VERIFIED / CROSS_REFERENCED",
+        "use": "Cite without caveat tag",
+        "count_approx": 45
+      },
+      "TIER_2": {
+        "label": "COMPANY_CLAIM / PROVISIONAL / CONFERENCE",
+        "use": "Cite WITH explicit caveat tag",
+        "count_approx": 15
+      },
+      "TIER_3": {
+        "label": "BLOCKED / NOT_RETRIEVED / CONTRADICTED",
+        "use": "DO NOT USE \u2014 remove from RAG retrieval",
+        "count_approx": 15
+      }
+    },
+    "quarantined_chunks": [
+      {
+        "claim": "LATIFY_DELTA",
+        "reason": "Neither 0.366 nor 0.2641 reproducible \u2014 BLOCKER-07",
+        "safe_substitute": "responder fit=0.8936 vs non-responder fit=0.6295"
+      },
+      {
+        "claim": "DDR_0983",
+        "reason": "DL-07 \u2014 Figure 2 script not identified, publication-blocking",
+        "safe_substitute": "None \u2014 do not cite"
+      },
+      {
+        "claim": "STC1010_FIT_0_7375",
+        "reason": "RETIRED 2026-07-05 \u2014 KG v2 JSON loses tie-break",
+        "safe_substitute": "0.6944 (canonical_vectors.py)"
+      },
+      {
+        "claim": "BERZOSERTIB_LOCK_FIT_A_0_8839",
+        "reason": "RETIRED 2026-07-05 \u2014 lock file \u00a75 mislabeled p_ref",
+        "safe_substitute": "fit_A=0.2030 (retroactive_prediction_run.py)"
+      },
+      {
+        "claim": "NCT02264678",
+        "reason": "EXCLUDED_PENDING_PATIENT_B_DEFINITION",
+        "safe_substitute": "3 scoreable trials + 1 excluded"
+      },
+      {
+        "claim": "SC001_HT29_CONFIRMED",
+        "reason": "ACTIVE CONFLICT \u2014 HT29 BRAF V600E vs BRAF-WT trial requirement",
+        "safe_substitute": "Pending Brenus clarification"
+      }
+    ],
+    "open_blockers_for_rag_update": [
+      "BLOCKER-07: trial_moa_vectors.json \u2014 unblocks LATIFY delta chunk",
+      "DL-07: Figure 2 script \u2014 unblocks DDR_0983 chunk",
+      "SC-001: Brenus HT29 rationale \u2014 unblocks SC001 chunk",
+      "RSPA \u00a783(b): July 28 2026 deadline \u2014 no RAG impact but governance-critical"
+    ],
+    "update_cadence": "Re-ingest on every commit to fjkiani/Brenus main. Governance layer reviewed on every blocker closure."
+  },
+  "layer_5_chunk_manifest": {
+    "description": "Complete manifest of all structured chunks from 4 workers. Each chunk is a RAG-ready unit.",
+    "total_structured_chunks": 22,
+    "chunks": [
+      {
+        "chunk_id": "W1-IOCORE-001",
+        "chunk_type": "comparator_trial_set",
+        "title": "IO CORE \u2014 7 MSS CRC IO Comparator Trials (PATH A Locked Scores)",
+        "pillar": "P1",
+        "source_agent": "W1",
+        "rag_tags": [
+          "io_core",
+          "comparator",
+          "path_a",
+          "liver_met",
+          "mss_crc",
+          "benchmark",
+          "historical"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1"
+      },
+      {
+        "chunk_id": "W1-PDS-001",
+        "chunk_type": "pds_comparator_set",
+        "title": "PDS \u2014 7 Chemotherapy/Targeted Backbone Trials (Historical Benchmarks)",
+        "pillar": "P1",
+        "source_agent": "W1",
+        "rag_tags": [
+          "pds",
+          "chemotherapy",
+          "kras_mutant",
+          "anti_egfr",
+          "anti_vegf",
+          "historical",
+          "backbone"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W1-TRIBE2-001",
+        "chunk_type": "canonical_benchmark",
+        "title": "TRIBE2 \u2014 Primary Benchmark for BreAK CRC-001",
+        "pillar": "P1",
+        "source_agent": "W1",
+        "rag_tags": [
+          "tribe2",
+          "benchmark",
+          "mfolfox6",
+          "bevacizumab",
+          "ras_mutant",
+          "1l_mCRC"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W1-CO26-001",
+        "chunk_type": "trial_decode_authoritative",
+        "title": "CCTG CO.26 \u2014 Canonical Liver-Met Discrimination Trial",
+        "pillar": "P1",
+        "source_agent": "W1",
+        "rag_tags": [
+          "co26",
+          "liver_met",
+          "ptmb",
+          "io_resistance",
+          "biomarker",
+          "stratification",
+          "mss_crc"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1"
+      },
+      {
+        "chunk_id": "W1-FAILURECOST-001",
+        "chunk_type": "failure_cost_ledger",
+        "title": "Trial Failure Cost Ledger \u2014 $2B+ Decoded",
+        "pillar": "P1",
+        "source_agent": "W1",
+        "rag_tags": [
+          "failure_cost",
+          "trial_failure",
+          "yc_pitch",
+          "crispro_value",
+          "decoded_failures"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W1-REGONIVO-001",
+        "chunk_type": "trial_decode_authoritative",
+        "title": "REGONIVO \u2014 Regorafenib + Nivolumab (MSS mCRC)",
+        "pillar": "P1",
+        "source_agent": "W1",
+        "rag_tags": [
+          "regonivo",
+          "regorafenib",
+          "nivolumab",
+          "liver_met",
+          "nlm_subgroup",
+          "mss_crc",
+          "io_response"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1"
+      },
+      {
+        "chunk_id": "W2-BREAK-001",
+        "chunk_type": "anchor_trial_decode",
+        "title": "BreAK CRC-001 (NCT06934538) \u2014 Full Trial Decode",
+        "pillar": "P2",
+        "source_agent": "W2",
+        "rag_tags": [
+          "break_crc_001",
+          "stc1010",
+          "anchor_trial",
+          "mss_crc",
+          "kras_mutant",
+          "whole_cell_vaccine",
+          "dnfb",
+          "path_a"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1"
+      },
+      {
+        "chunk_id": "W2-GAPS-001",
+        "chunk_type": "design_gap_registry",
+        "title": "BreAK CRC-001 \u2014 Identified Design Gaps",
+        "pillar": "P2",
+        "source_agent": "W2",
+        "rag_tags": [
+          "design_gaps",
+          "break_crc_001",
+          "liver_met",
+          "ptmb",
+          "biomarker_gate",
+          "sc001",
+          "bevacizumab_scheduling"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W2-ATRDDR-001",
+        "chunk_type": "trial_decode_set",
+        "title": "ATR/DDR Trial Decodes \u2014 Retroactive Validation Set",
+        "pillar": "P2",
+        "source_agent": "W2",
+        "rag_tags": [
+          "atr",
+          "ddr",
+          "berzosertib",
+          "latify",
+          "retroactive_validation",
+          "path_a"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W2-CEACAM5-001",
+        "chunk_type": "biomarker_decode",
+        "title": "CEACAM5 Biomarker Decode \u2014 Sanofi Tusamitamab Ravtansine",
+        "pillar": "P2",
+        "source_agent": "W2",
+        "rag_tags": [
+          "ceacam5",
+          "sanofi",
+          "tusamitamab",
+          "biomarker",
+          "mCRC_market",
+          "prevalence"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1"
+      },
+      {
+        "chunk_id": "W2-BLOCKERS-001",
+        "chunk_type": "governance_blocker_registry",
+        "title": "Active Governance Blockers \u2014 Open Items",
+        "pillar": "P2",
+        "source_agent": "W2",
+        "rag_tags": [
+          "governance",
+          "blockers",
+          "quarantine",
+          "retired_values",
+          "path_a"
+        ],
+        "governance_status": "MIXED",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W3-CRISPRO-001",
+        "chunk_type": "value_proposition",
+        "title": "CrisPRO Platform \u2014 Core Value Proposition for Brenus",
+        "pillar": "P4",
+        "source_agent": "W3",
+        "rag_tags": [
+          "crispro",
+          "value_proposition",
+          "path_a",
+          "fit_scoring",
+          "liver_met",
+          "biomarker_gap",
+          "competitive_intelligence"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W3-BDTARGETS-001",
+        "chunk_type": "bd_target_ranking",
+        "title": "CrisPRO BD Target Ranking \u2014 Top 10 Pharma Targets",
+        "pillar": "P4",
+        "source_agent": "W3",
+        "rag_tags": [
+          "bd_targets",
+          "pharma_ranking",
+          "outreach",
+          "gap_hook",
+          "competitive_intelligence"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W3-FITGAP-001",
+        "chunk_type": "fitgap_analysis",
+        "title": "CrisPRO Fit-Gap Analysis for Brenus \u2014 Module Requirements",
+        "pillar": "P4",
+        "source_agent": "W3",
+        "rag_tags": [
+          "fitgap",
+          "module_requirements",
+          "crispro",
+          "break_crc_001",
+          "gaps"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W3-IP-001",
+        "chunk_type": "ip_and_scientific",
+        "title": "CrisPRO IP Fortress + Scientific Outputs",
+        "pillar": "P4",
+        "source_agent": "W3",
+        "rag_tags": [
+          "ip",
+          "brief_programs",
+          "brain_met",
+          "manuscript",
+          "crispr_validated",
+          "crispro_science"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W3-OUTREACH-001",
+        "chunk_type": "outreach_strategy",
+        "title": "CrisPRO Outreach Strategy \u2014 10 Pharma Targets",
+        "pillar": "P4",
+        "source_agent": "W3",
+        "rag_tags": [
+          "outreach",
+          "bd_strategy",
+          "gap_hook",
+          "pharma_targets",
+          "linkedin_first"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W4-AUDIT-001",
+        "chunk_type": "system_audit",
+        "title": "CrisPRO Backend Audit \u2014 Honest Assessment + Deployment Status",
+        "pillar": "P1_P2_P3_P4",
+        "source_agent": "W4",
+        "rag_tags": [
+          "audit",
+          "deployment",
+          "crispro_backend",
+          "system_status"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W4-POSITIONING-001",
+        "chunk_type": "positioning_intelligence",
+        "title": "CrisPRO Competitive Positioning \u2014 5 Positioning Documents",
+        "pillar": "P1_P2_P3_P4",
+        "source_agent": "W4",
+        "rag_tags": [
+          "positioning",
+          "competitive_landscape",
+          "patent",
+          "yc_pitch",
+          "failure_autopsy"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W4-SCHEMAS-001",
+        "chunk_type": "governance_schemas",
+        "title": "CrisPRO Governance Schemas \u2014 Admissibility, Artifact States, Null Token Protocol",
+        "pillar": "P1_P2_P3_P4",
+        "source_agent": "W4",
+        "rag_tags": [
+          "governance",
+          "schemas",
+          "admissibility",
+          "artifact_states",
+          "null_token"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W4-PDS-001",
+        "chunk_type": "pds_extraction",
+        "title": "PDS Phase 4 Escape Map \u2014 CRC Survival Data Extraction",
+        "pillar": "P1_P2_P3_P4",
+        "source_agent": "W4",
+        "rag_tags": [
+          "pds",
+          "escape_map",
+          "survival_data",
+          "crc",
+          "phase4"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W4-SL-001",
+        "chunk_type": "synthetic_lethality_engine",
+        "title": "CRC Synthetic Lethality Engine \u2014 IP Candidates + Opportunity Map",
+        "pillar": "P1_P2_P3_P4",
+        "source_agent": "W4",
+        "rag_tags": [
+          "synthetic_lethality",
+          "ip_candidates",
+          "crc",
+          "sl_engine"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      },
+      {
+        "chunk_id": "W4-UNIQUE-001",
+        "chunk_type": "unique_content_registry",
+        "title": "Files Unique to data-room/external/Brenus (Not in fjkiani/Brenus)",
+        "pillar": "P1_P2_P3_P4",
+        "source_agent": "W4",
+        "rag_tags": [
+          "data_room",
+          "unique_content",
+          "ingestion_required"
+        ],
+        "governance_status": "CLEAN",
+        "admissibility_tier": "TIER_1_TIER_2_MIXED"
+      }
+    ]
+  }
+}

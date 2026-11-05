@@ -1,0 +1,11 @@
+tests/test_layer1/test_therapy_fit/test_brm_bundle.py::test_t1_egfr_nsclc_brm_happy_path PASSED [ 10%]
+tests/test_layer1/test_therapy_fit/test_brm_bundle.py::test_t2_degraded_path_all_adapters PASSED [ 20%]
+tests/test_layer1/test_therapy_fit/test_brm_bundle.py::test_t3_verubecestat_quarantined PASSED [ 30%]
+tests/test_layer1/test_therapy_fit/test_brm_bundle.py::test_t4_biomarker_filter_egfr_excludes_alectinib PASSED [ 40%]
+tests/test_layer1/test_therapy_fit/test_brm_bundle.py::test_t5_sl_ingest_annotation_only_no_score_inflation PASSED [ 50%]
+tests/test_layer1/test_therapy_fit/test_brm_bundle.py::test_t10_sl_support_class_no_sl_support_for_11_candidates PASSED [ 60%]
+tests/test_layer1/test_therapy_fit/test_brm_bundle.py::test_t11_sl_support_class_calibration_only_for_bace1_candidates PASSED [ 70%]
+tests/test_layer1/test_therapy_fit/test_brm_bundle.py::test_t12_calibration_only_no_score_inflation PASSED [ 80%]
+tests/test_layer1/test_therapy_fit/test_brm_bundle.py::test_t13_closed_world_no_pathway_adjacency PASSED [ 90%]
+tests/test_layer1/test_therapy_fit/test_brm_bundle.py::test_t6_sl_wiring_populates_sl_tier PASSED [100%]
+============================== 10 passed in 0.82s ==============================

@@ -1,0 +1,117 @@
+{
+  "adjudicated_utc": "2026-08-14T07:04:07+00:00",
+  "all_draft": true,
+  "any_merged": false,
+  "audit_branch_unchanged": true,
+  "final_remote_refs": {
+    "agent/prove-framework-5ws": "88cc337e86a110fcc74b3efcac681d9d7422f272",
+    "agent/stc1010-mechanism-map-max-merge": "e76e62493ef515a4ca5625fb8003c2f98d792605",
+    "analysis/britroc-bridge-classification-correction-20260813": "818a5b5c75426bd3d46adc776611b858440d03d7",
+    "audit/therapy-fit-hardening-20260509": "05b75228be48ba98bc012c273b95248319c0aaf8",
+    "auth-endpoints-only": "531678ff0fb4f3e820eef898e971d90374fad826",
+    "backup/pre-purge-agent-prove-framework-5ws": "23a4457465c1ad90abada91f64e0193d8df78737",
+    "feat/patent-submission-v0.5": "7708d4be17ab2701397a9412d8d2911a82db6591",
+    "feat/v3-sl-therapy-bridge": "975ae98087142c02e7963c0ffb5d7e1b39d8880c",
+    "feature/armor-targeting-v1.0": "adb6f0a7c48de6b55e4298117c15cf1b4e3a8323",
+    "feature/biomarker-subsystem": "0169ca4b37c042874914aeca154e8949581ef5c3",
+    "feature/mbd4-lof-sl-targeting-v1.0": "edcbc7c1c789e6497cb3e78f86030bf30abc8f4b",
+    "feature/zeta-core-v4-tumor-marker-kinetics": "80531e7f3fc0461ed7d72aa798fd7f6a92c4cc87",
+    "fix/ca125-kelim-standardization": "3bf9e6d0761c6adc5c4be0409836c8418bdd935e",
+    "fix/max-merge-engine": "03d6c8fa2ee2f6f027060c59e157f9c434a17c1b",
+    "fix/mbd4-atr-strong-tier": "bfd6d11fc872c11a13365b0682cea776a136c7f3",
+    "fix/moa-rebuild-path-a-lift005": "f2be52c9ab34cc3772aae2156504e853fc5e245b",
+    "fix/oncology-arbiter-sl-bridge": "e55cb59808ab7ac2f786bd63d64c2177231fe278",
+    "fix/res-ov-p0-009-to-main": "52f48ee5fabb6a5b06188989fa9d2ef3adf858b9",
+    "fix/resistance-p0-007-008-closures": "26e4e7d410e30ba68b24ba7bc542fddaaa6a349b",
+    "fix/tmb-guard-provenance-contracts": "778f7b5585ca95fdae79e2dc3d960248a59f2fc4",
+    "fix/v2-p0-closures": "e14b3057b617a82d0f3a1561bcf0577bbc429e45",
+    "main": "99dd39c657064839fd25c37a69851178bc5e6d9d",
+    "review/cohere-key-harness": "a266d23fa992b9dad9d7d65b7bcdf71aeba0154c",
+    "review/zeta-core-v4-psa-feature": "1d9ce4f5964c3e3d1fc198969c722256cd23e694",
+    "security/untrack-credentials-and-venv": "d3c6d0feca789d4b5beb258e41a2762277edd700"
+  },
+  "generated_utc": "2026-08-14T07:02:45+00:00",
+  "main_unchanged": true,
+  "mergeable_state_note": "GitHub reports mergeable_state=unstable on both pull requests. Every required job succeeded on each head; the only non-success check present is the never-required cohere-live-optional job, which is skipped on the pull_request event. The derivation of that field was not independently re-queried because the credential had already been destroyed, so treat the attribution as inference from the recorded per-job conclusions. Draft status blocks merge regardless.",
+  "published_evidence_credential_shaped_matches": 0,
+  "published_evidence_hit_adjudication": [
+    {
+      "classification": "SCAN_RULE_NAME_NOT_A_CREDENTIAL",
+      "context_samples": [
+        " \"matches\": 0 }, \"github_pat_classic_ghp\": { \"f",
+        " \"matches\": 0 }, \"github_pat_fine_grained\": { \"",
+        " \"matches\": 0 }, \"github_pat_classic_ghp\": { \"f",
+        " \"matches\": 0 }, \"github_pat_fine_grained\": { \""
+      ],
+      "credential_shaped_matches": 0,
+      "explanation": "these are the identifiers of the credential-scan rules recorded inside the clean-clone scan receipt, each reporting files: 0 and matches: 0. They are rule names, not secrets.",
+      "file": "clean_clone/clean_clone_receipt.json",
+      "prefix_occurrences": 4
+    }
+  ],
+  "published_evidence_token_prefix_hits": [
+    "clean_clone/clean_clone_receipt.json"
+  ],
+  "pull_requests": {
+    "pr_a": {
+      "base": "main",
+      "body_bytes": 14283,
+      "body_contains_token_prefix": false,
+      "draft": true,
+      "head_matches_disposition": true,
+      "head_matches_remote_branch": true,
+      "head_sha": "1d9ce4f5964c3e3d1fc198969c722256cd23e694",
+      "mergeable_state": "unstable",
+      "merged": false,
+      "number": 18,
+      "review_gating": "draft \u2014 GitHub blocks merge while a pull request is draft; review_comments=0, requested_reviewers=0",
+      "state": "open",
+      "url": "https://github.com/fjkiani/crispro-backend-v2/pull/18"
+    },
+    "pr_b": {
+      "base": "main",
+      "body_bytes": 12586,
+      "body_contains_token_prefix": false,
+      "draft": true,
+      "head_matches_disposition": true,
+      "head_matches_remote_branch": true,
+      "head_sha": "a266d23fa992b9dad9d7d65b7bcdf71aeba0154c",
+      "mergeable_state": "unstable",
+      "merged": false,
+      "number": 19,
+      "review_gating": "draft \u2014 GitHub blocks merge while a pull request is draft; review_comments=0, requested_reviewers=0",
+      "state": "open",
+      "url": "https://github.com/fjkiani/crispro-backend-v2/pull/19"
+    }
+  },
+  "repository_scan": {
+    "pr_a": {
+      "core_askpass_set": false,
+      "credential_helper_set": false,
+      "head": "1d9ce4f5964c3e3d1fc198969c722256cd23e694",
+      "hit_samples": [],
+      "remote_url": "https://github.com/fjkiani/crispro-backend-v2.git",
+      "remote_url_contains_credential": false,
+      "token_prefix_hits_in_tracked_content": 0
+    },
+    "pr_b": {
+      "core_askpass_set": false,
+      "credential_helper_set": false,
+      "head": "a266d23fa992b9dad9d7d65b7bcdf71aeba0154c",
+      "hit_samples": [],
+      "remote_url": "https://github.com/fjkiani/crispro-backend-v2.git",
+      "remote_url_contains_credential": false,
+      "token_prefix_hits_in_tracked_content": 0
+    }
+  },
+  "scrub": {
+    "askpass_leftovers_after_scrub": [],
+    "askpass_leftovers_before_scrub": [],
+    "further_authenticated_remote_calls_possible_from_here": false,
+    "rotation": "authorized use does not undo the exposure. The token was printed in plaintext chat and must be revoked and reissued; it carries repo, workflow, admin:org and delete_repo scopes.",
+    "token_file": "/workspace/.zc4_tok",
+    "token_file_deleted": true
+  },
+  "verdict": "CLEAN",
+  "verdict_note": "the earlier REVIEW_REQUIRED verdict was produced solely by the prefix-only scan matching scan-rule names in the clean-clone receipt; it is adjudicated above rather than deleted."
+}

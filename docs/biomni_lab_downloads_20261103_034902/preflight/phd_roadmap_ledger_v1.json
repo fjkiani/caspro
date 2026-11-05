@@ -1,0 +1,308 @@
+{
+  "kb": "crispro_capability_kb",
+  "total": 129,
+  "contaminated": 57,
+  "by_type": {
+    "orchestrator": 1,
+    "layer": 4,
+    "data_provenance_protocol": 1,
+    "engine": 2,
+    "scoring_framework": 1,
+    "contract_model": 5,
+    "closed_gap": 5,
+    "evidence_modality": 7,
+    "strategic_roadmap": 1,
+    "engine_component": 2,
+    "cancer_context": 8,
+    "candidate_axis": 8,
+    "invariant": 8,
+    "evidence_tier": 4
+  },
+  "entities": [
+    {
+      "id": "component:orchestrator",
+      "type": "orchestrator",
+      "file": "crispro_capability_kb/entities/orchestrator/component_orchestrator.json"
+    },
+    {
+      "id": "layer:contracts",
+      "type": "layer",
+      "file": "crispro_capability_kb/entities/layer/layer_contracts.json"
+    },
+    {
+      "id": "layer:orchestrator",
+      "type": "layer",
+      "file": "crispro_capability_kb/entities/layer/layer_orchestrator.json"
+    },
+    {
+      "id": "layer:engines",
+      "type": "layer",
+      "file": "crispro_capability_kb/entities/layer/layer_engines.json"
+    },
+    {
+      "id": "layer:output",
+      "type": "layer",
+      "file": "crispro_capability_kb/entities/layer/layer_output.json"
+    },
+    {
+      "id": "protocol:mars",
+      "type": "data_provenance_protocol",
+      "file": "crispro_capability_kb/entities/data_provenance_protocol/protocol_mars.json"
+    },
+    {
+      "id": "engine:lineage_dependency",
+      "type": "engine",
+      "file": "crispro_capability_kb/entities/engine/engine_lineage_dependency.json"
+    },
+    {
+      "id": "engine:synthetic_lethality",
+      "type": "engine",
+      "file": "crispro_capability_kb/entities/engine/engine_synthetic_lethality.json"
+    },
+    {
+      "id": "framework:rs",
+      "type": "scoring_framework",
+      "file": "crispro_capability_kb/entities/scoring_framework/framework_rs.json"
+    },
+    {
+      "id": "contract:CaseResolution",
+      "type": "contract_model",
+      "file": "crispro_capability_kb/entities/contract_model/contract_CaseResolution.json"
+    },
+    {
+      "id": "contract:RSFeatureSet",
+      "type": "contract_model",
+      "file": "crispro_capability_kb/entities/contract_model/contract_RSFeatureSet.json"
+    },
+    {
+      "id": "contract:RankedIntervention",
+      "type": "contract_model",
+      "file": "crispro_capability_kb/entities/contract_model/contract_RankedIntervention.json"
+    },
+    {
+      "id": "contract:PatientState",
+      "type": "contract_model",
+      "file": "crispro_capability_kb/entities/contract_model/contract_PatientState.json"
+    },
+    {
+      "id": "contract:SomaticMutation",
+      "type": "contract_model",
+      "file": "crispro_capability_kb/entities/contract_model/contract_SomaticMutation.json"
+    },
+    {
+      "id": "gap:ruo_middleware",
+      "type": "closed_gap",
+      "file": "crispro_capability_kb/entities/closed_gap/gap_ruo_middleware.json"
+    },
+    {
+      "id": "gap:validated_guard",
+      "type": "closed_gap",
+      "file": "crispro_capability_kb/entities/closed_gap/gap_validated_guard.json"
+    },
+    {
+      "id": "gap:mbd4_cytidine_tier_fix",
+      "type": "closed_gap",
+      "file": "crispro_capability_kb/entities/closed_gap/gap_mbd4_cytidine_tier_fix.json"
+    },
+    {
+      "id": "gap:pole_guard",
+      "type": "closed_gap",
+      "file": "crispro_capability_kb/entities/closed_gap/gap_pole_guard.json"
+    },
+    {
+      "id": "gap:rs_score_wiring",
+      "type": "closed_gap",
+      "file": "crispro_capability_kb/entities/closed_gap/gap_rs_score_wiring.json"
+    },
+    {
+      "id": "modality:gdsc",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb/entities/evidence_modality/modality_gdsc.json"
+    },
+    {
+      "id": "modality:in_vivo",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb/entities/evidence_modality/modality_in_vivo.json"
+    },
+    {
+      "id": "modality:expression",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb/entities/evidence_modality/modality_expression.json"
+    },
+    {
+      "id": "modality:prism",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb/entities/evidence_modality/modality_prism.json"
+    },
+    {
+      "id": "modality:clinical",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb/entities/evidence_modality/modality_clinical.json"
+    },
+    {
+      "id": "modality:crispr",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb/entities/evidence_modality/modality_crispr.json"
+    },
+    {
+      "id": "modality:in_vitro",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb/entities/evidence_modality/modality_in_vitro.json"
+    },
+    {
+      "id": "doc:computational_cancer_cure_roadmap",
+      "type": "strategic_roadmap",
+      "file": "crispro_capability_kb/entities/strategic_roadmap/doc_computational_cancer_cure_roadmap.json"
+    },
+    {
+      "id": "component:modality_fuser",
+      "type": "engine_component",
+      "file": "crispro_capability_kb/entities/engine_component/component_modality_fuser.json"
+    },
+    {
+      "id": "component:tier_promotion",
+      "type": "engine_component",
+      "file": "crispro_capability_kb/entities/engine_component/component_tier_promotion.json"
+    },
+    {
+      "id": "cancer:heme",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb/entities/cancer_context/cancer_heme.json"
+    },
+    {
+      "id": "cancer:ovarian",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb/entities/cancer_context/cancer_ovarian.json"
+    },
+    {
+      "id": "cancer:breast",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb/entities/cancer_context/cancer_breast.json"
+    },
+    {
+      "id": "cancer:lung",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb/entities/cancer_context/cancer_lung.json"
+    },
+    {
+      "id": "cancer:prostate",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb/entities/cancer_context/cancer_prostate.json"
+    },
+    {
+      "id": "cancer:bladder",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb/entities/cancer_context/cancer_bladder.json"
+    },
+    {
+      "id": "cancer:crc",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb/entities/cancer_context/cancer_crc.json"
+    },
+    {
+      "id": "cancer:pdac",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb/entities/cancer_context/cancer_pdac.json"
+    },
+    {
+      "id": "axis:PKMYT1",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb/entities/candidate_axis/axis_PKMYT1.json"
+    },
+    {
+      "id": "axis:IMMUNOTHERAPY",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb/entities/candidate_axis/axis_IMMUNOTHERAPY.json"
+    },
+    {
+      "id": "axis:PARP_INHIBITORS",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb/entities/candidate_axis/axis_PARP_INHIBITORS.json"
+    },
+    {
+      "id": "axis:CYTIDINE_ANALOGS",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb/entities/candidate_axis/axis_CYTIDINE_ANALOGS.json"
+    },
+    {
+      "id": "axis:TP53_REPLICATION_STRESS",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb/entities/candidate_axis/axis_TP53_REPLICATION_STRESS.json"
+    },
+    {
+      "id": "axis:ATR_WEE1",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb/entities/candidate_axis/axis_ATR_WEE1.json"
+    },
+    {
+      "id": "axis:WRN",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb/entities/candidate_axis/axis_WRN.json"
+    },
+    {
+      "id": "axis:CCNE1_AMP",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb/entities/candidate_axis/axis_CCNE1_AMP.json"
+    },
+    {
+      "id": "invariant:audit_trail",
+      "type": "invariant",
+      "file": "crispro_capability_kb/entities/invariant/invariant_audit_trail.json"
+    },
+    {
+      "id": "invariant:receipt_immutability",
+      "type": "invariant",
+      "file": "crispro_capability_kb/entities/invariant/invariant_receipt_immutability.json"
+    },
+    {
+      "id": "invariant:validated_never_auto",
+      "type": "invariant",
+      "file": "crispro_capability_kb/entities/invariant/invariant_validated_never_auto.json"
+    },
+    {
+      "id": "invariant:pole_guard",
+      "type": "invariant",
+      "file": "crispro_capability_kb/entities/invariant/invariant_pole_guard.json"
+    },
+    {
+      "id": "invariant:kb_read_only",
+      "type": "invariant",
+      "file": "crispro_capability_kb/entities/invariant/invariant_kb_read_only.json"
+    },
+    {
+      "id": "invariant:ruo_middleware",
+      "type": "invariant",
+      "file": "crispro_capability_kb/entities/invariant/invariant_ruo_middleware.json"
+    },
+    {
+      "id": "invariant:tier_clamp_no_clinical",
+      "type": "invariant",
+      "file": "crispro_capability_kb/entities/invariant/invariant_tier_clamp_no_clinical.json"
+    },
+    {
+      "id": "invariant:underpowered_guard",
+      "type": "invariant",
+      "file": "crispro_capability_kb/entities/invariant/invariant_underpowered_guard.json"
+    },
+    {
+      "id": "tier:MECHANISTIC",
+      "type": "evidence_tier",
+      "file": "crispro_capability_kb/entities/evidence_tier/tier_MECHANISTIC.json"
+    },
+    {
+      "id": "tier:NOT_SUPPORTED",
+      "type": "evidence_tier",
+      "file": "crispro_capability_kb/entities/evidence_tier/tier_NOT_SUPPORTED.json"
+    },
+    {
+      "id": "tier:VALIDATED",
+      "type": "evidence_tier",
+      "file": "crispro_capability_kb/entities/evidence_tier/tier_VALIDATED.json"
+    },
+    {
+      "id": "tier:STRONG",
+      "type": "evidence_tier",
+      "file": "crispro_capability_kb/entities/evidence_tier/tier_STRONG.json"
+    }
+  ]
+}

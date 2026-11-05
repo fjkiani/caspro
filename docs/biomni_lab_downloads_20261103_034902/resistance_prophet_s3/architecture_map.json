@@ -1,0 +1,245 @@
+{
+  "artifact": "resistance_prophet_s3/architecture_map.json",
+  "version": "1.0.0",
+  "generated_utc": "2026-08-19",
+  "scope": "Executable architecture of the Resistance Prophet system as it exists on disk, traced from raw assay inputs to served API response fields. Built from an all-refs sweep of 16 on-disk clones (4 distinct remotes), not from guessed paths.",
+  "sweep": {
+    "method": "git grep over every ref (local + origin/*) in every clone; hits deduplicated by repo|path",
+    "clones_scanned": 16,
+    "distinct_remotes": {
+      "fjkiani/Brenus": ["Brenus"],
+      "fjkiani/crispro": ["crispro"],
+      "fjkiani/zetabridge": ["zetabridge"],
+      "fjkiani/crispro-backend-v2": ["crispro-backend-v2", "base_pristine", "branch_head_8308c88b", "clean_clone", "committed_ca56de30", "pr_a_build", "pr_b_build", "pr_d_build", "zc4_mut_a", "zc4_mut_b", "zc4_remote_verify"],
+      "local /workspace/crispro-backend-v2": ["zc4_clone_a", "zc4_clone_b"]
+    },
+    "deduplicated_hit_counts_by_repo_path": {
+      "resistance_prophet|predict_resistance|Resistance Prophet": 1937,
+      "s3_diag|cn_signature_3|s3@diagnosis": 15,
+      "HRD|BRCA feature keys": 7235,
+      "platinum response|resistance|refractory|PFI|progression": 730,
+      "03_resistance_association": 10,
+      "s3_diag_cv_validation": 4,
+      "synthetic_lethality/ovarian": 0,
+      "ERBB2": 783,
+      "zeta-core scoring": 455,
+      "threshold|calibration|recommendation|refusal": 15097,
+      "literal 0.8807": 3081
+    },
+    "key_negative_results": [
+      "s3_diag appears in 0 lines of fjkiani/crispro-backend-v2 on every ref. There is no code path from S3 to the served API.",
+      "api/services/synthetic_lethality/ovarian.py does not exist in any commit of any clone.",
+      "No file in any repository contains a rule of the form s3_diag < 0.10."
+    ]
+  },
+  "nodes": [
+    {
+      "id": "N01_raw_swgs",
+      "layer": "raw_assay",
+      "name": "Shallow whole-genome sequencing, BriTROC-1",
+      "location": "EGA EGAD00001011049 (controlled access); not in this workspace",
+      "status": "EXTERNAL_CONTROLLED",
+      "note": "Only entry point at which analytical (Gate A) reproducibility of s3 could be tested. Absent here."
+    },
+    {
+      "id": "N02_published_source_data",
+      "layer": "raw_assay_surrogate",
+      "name": "Nature Communications MOESM10 source data",
+      "location": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-023-39867-7/MediaObjects/41467_2023_39867_MOESM10_ESM.zip",
+      "status": "LIVE_VERIFIED",
+      "sha256": "2f7f15417e3a5076633dd75abbad75a26285d94ec1e26f8f22ebf10d337a0a3f",
+      "bytes": 10603503,
+      "members_used": {
+        "figure_4A.tsv": "0441d719edea4377c2ad1cc4f9e922a44edbc7481729194dce3bfbb2069a0187",
+        "figure_1B_layer_1.tsv": "3c65ef5921b6d9a2a311fab4070f2f2af99c90b5e14a8e0629eae2b62f3b9b1d",
+        "figure_2.tsv": "9e653d2b10b25c668bc508da9b1a667d94a7f99bd0500ba53aaeb53d51a9a3eb"
+      },
+      "note": "Signature exposures are already-computed. s3 itself is not recomputable from these files."
+    },
+    {
+      "id": "N03_build_patient_table",
+      "layer": "feature_generation",
+      "name": "obl3_build_patient_table.py",
+      "location": "/mnt/results/serial_sae_validation/obligations/scripts/obl3_build_patient_table.py",
+      "status": "LIVE",
+      "outputs": ["obl3_patient_master.csv (159 patients, 26 columns)"],
+      "reproduced_by": "s3_pipeline/build_cohort.py",
+      "reproduction_result": "0 mismatched cells"
+    },
+    {
+      "id": "N04_s3_pipeline",
+      "layer": "feature_generation",
+      "name": "s3_pipeline (this audit)",
+      "location": "resistance_prophet_s3/code/s3_pipeline/",
+      "status": "NEW",
+      "modules": ["provenance.py", "build_cohort.py", "metrics.py", "models.py", "firth.py"]
+    },
+    {
+      "id": "N05_quantification",
+      "layer": "model_fitting_and_validation",
+      "name": "obl3_s3_quantification.py",
+      "location": "/mnt/results/serial_sae_validation/obligations/scripts/obl3_s3_quantification.py",
+      "status": "LIVE",
+      "emits": ["obl3_report.json", "obl3_all7_signatures_bh.csv"],
+      "reproduction_result": "exact: AUROC 0.2715, MLE OR/SD 0.0252 p 0.0141, Firth OR/SD 0.0825 p 0.0095, Cox OS HR/SD 0.6869 p 0.043, Schoenfeld 0.2251"
+    },
+    {
+      "id": "N06_cv_receipt",
+      "layer": "validation",
+      "name": "s3_diag_cv_validation.json",
+      "location": "/workspace/Brenus/clinical_validation/trackA/s3_diag_cv_validation.json",
+      "status": "LIVE_RECEIPT_ONLY",
+      "present_on_refs": ["feature/zeta-core-v4-universal-kinetics", "main", "20+ origin/* refs"],
+      "problem": "Receipt exists; the script that produced it does not. No fold assignments, no OOF prediction file, no seed record beyond the text description.",
+      "reproduced": true,
+      "reproduction_note": "CV AUROC 0.881710 vs documented 0.880723; LOO 0.871648 exact match. Within-fold AUROC of the fitted model equals 1 - AUROC(raw s3) to 1.1e-16 across 1000 folds, so cross-validation adds no information beyond the raw ranking."
+    },
+    {
+      "id": "N07_frozen_scorer",
+      "layer": "api_scoring_candidate",
+      "name": "score_cn_resistance.py (frozen production scorer)",
+      "location": "/workspace/Brenus/clinical_validation/pipeline/score_cn_resistance.py",
+      "status": "LIVE_BUT_UNWIRED",
+      "form": "sigmoid(BETA0 + BETA1 * z(s3_diag))",
+      "constants": {"mu": 0.1767425892802721, "sd": 0.13804070487798628, "PINNED_BETA0": -1.5244530417837185, "PINNED_BETA1": -2.349692574868657},
+      "receipt": "trackA/cn_resistance_scorer_frozen_model.json (generated_utc 2026-07-21T05:56:08Z)",
+      "tests": "test_score_cn_resistance.py, 10 tests pass",
+      "self_labels": ["RUO", "NOT clinically proven", "MISCALIBRATED (over-predicts absolute risk); use rank/threshold not probability", "RE-DERIVES a known HRD/platinum-sensitivity axis"],
+      "dead_edge": "score_from_cn_features() raises NotImplementedError by design: there is no path from raw CN features to s3 exposure in this repository.",
+      "consumers": []
+    },
+    {
+      "id": "N08_resistance_association",
+      "layer": "validation",
+      "name": "03_resistance_association.py",
+      "location": "/workspace/crispro/publications/14-hgsoc-biomarker-subsystem/04-serial-sae/scripts/03_resistance_association.py",
+      "status": "DEAD",
+      "reason": "Tests breakpoint-delta, not S3. Requires subject_ledger_FILLED.csv which exists nowhere. Self-gates at MIN_N=40 and MIN_EVENTS=15 per arm and returns tier=discovery_only.",
+      "referenced_from": ["04_fill_ledger.py", "run_all.sh", "scripts/README.md", "DATA_CODE_AVAILABILITY.md", "MANUSCRIPT.md", "SUBMISSION_CHECKLIST.md", "SUPPLEMENT.md", "TABLES.md", "receipts/preregistration.json"]
+    },
+    {
+      "id": "N09_backend_engine",
+      "layer": "api_scoring",
+      "name": "resistance_prophet engine",
+      "location": "crispro-backend-v2:api/services/resistance_prophet/engine.py",
+      "status": "LIVE_SHIPPED",
+      "lines": 181,
+      "is_fitted_model": false,
+      "evidence_not_fitted": "No .fit(), predict_proba, coef_, joblib or pickle anywhere in api/services/resistance_prophet/. compute_probability() in aggregation.py is a hand-weighted confidence x baseline_reliability mean.",
+      "provenance_emitted": {"model_version": "resistance_prophet_v2.0_engine", "engine": "deterministic"}
+    },
+    {
+      "id": "N10_prognosis",
+      "layer": "api_scoring",
+      "name": "PrognosisEngine (s7 rule)",
+      "location": "crispro-backend-v2:api/services/resistance_prophet/prognosis.py",
+      "status": "LIVE_SHIPPED_UNSAFE",
+      "rule": "sig7_exposure >= SIG7_RISK_THRESHOLD (0.25) => PrognosisState.POOR, action_recommendation = INTENSIFY_SURVEILLANCE",
+      "rule_lines": "prognosis.py:43-51",
+      "threshold_source": "constants.py:29  SIG7_RISK_THRESHOLD = 0.25  # BriTROC Midpoint (Res=0.333, Sens=0.166). Draft Heuristic.",
+      "confidence_cap": "constants.py:30 PROGNOSIS_CONFIDENCE_CAP = MEDIUM",
+      "feature_read_path": "prognosis.py:74  molecular_profile.signatures.cosmic_cn_signatures.Sig7",
+      "namespace_defect": "Threshold was derived from Macintyre/BriTROC 7-signature s7; the value is read from COSMIC CN signature CN7. Different frameworks, different definitions. Missing key returns None silently (prognosis.py:67-84).",
+      "qc_defect": "prognosis.py:86-101 _check_qc returns True when no QC metrics are found ('lenient for MVP'); bare except also returns True. Fail-open.",
+      "empirical_status_of_the_rule": "Measured in this audit as M2a on identical folds: OOF AUROC 0.6446, OOF Brier 0.2090 vs 0.1163 for predicting prevalence. Continuous s7 (M2b) OOF AUROC 0.4108."
+    },
+    {
+      "id": "N11_shim",
+      "layer": "api_response",
+      "name": "legacy response shim",
+      "location": "crispro-backend-v2:api/services/resistance_prophet/shim.py:118",
+      "status": "LIVE_SHIPPED",
+      "code": "\"prognosis\": asdict(prediction.prognosis) if prediction.prognosis else None",
+      "consequence": "The care-influencing state and action_recommendation reach the served API response."
+    },
+    {
+      "id": "N12_routers",
+      "layer": "routing",
+      "name": "consumers of calculate_resistance_prediction",
+      "location": "crispro-backend-v2:api/services/resistance_prophet_service.py:12",
+      "status": "LIVE_SHIPPED",
+      "consumers": [
+        "routers/complete_care_universal.py:49,1287",
+        "routers/ayesha.py:143,189",
+        "routers/ayesha_therapy_fit.py:1501-1503",
+        "routers/resistance_predict.py:22,146",
+        "services/ayesha_care_plan/resistance_service.py:15-18,140,198,261",
+        "services/holistic_score/service.py:72-73",
+        "services/resistance.py:167 (imports signals.ovarian.detect_mrd_signal)"
+      ]
+    },
+    {
+      "id": "N13_signals_ovarian",
+      "layer": "feature_generation",
+      "name": "signals/ovarian.py",
+      "location": "crispro-backend-v2:api/services/resistance_prophet/signals/ovarian.py",
+      "status": "LIVE_SHIPPED",
+      "lines": 1084,
+      "note": "The real path that the directive's 'api/services/synthetic_lethality/ovarian.py' refers to. Contains MRD/CA-125 signal logic, not S3."
+    },
+    {
+      "id": "N14_s3_research",
+      "layer": "api_scoring",
+      "name": "s3_research.py (delivered by this audit)",
+      "location": "resistance_prophet_s3/backend_patch/s3_research.py",
+      "status": "NEW_FLAG_GATED",
+      "flag": "ZETA_S3_RESEARCH_ENABLED=1",
+      "intended_use": "RANKING_ONLY",
+      "emits_probability": false,
+      "emits_action_recommendation": false
+    },
+    {
+      "id": "N15_erbb2_bridge",
+      "layer": "unrelated_subsystem",
+      "name": "ERBB2 bridge / Zeta-Core scoring",
+      "location": "crispro-backend-v2: services/holistic_score/utils.py, services/ayesha_fit/expected_mechanism.py, services/rss_service.py, services/canine/tcc_gene_panels.py, services/canine/tcc_scorer.py",
+      "status": "LIVE_SHIPPED_DISCONNECTED",
+      "note": "783 deduplicated ERBB2 references and 455 zeta-core scoring references exist, but none of them read any CN-signature exposure. No edge to the S3 axis."
+    }
+  ],
+  "edges": [
+    {"from": "N01_raw_swgs", "to": "N02_published_source_data", "via": "Smith 2023 Nat Commun 14:4387 publication pipeline (QDNAseq + CNsignatures)", "status": "OUTSIDE_REPOSITORY"},
+    {"from": "N02_published_source_data", "to": "N03_build_patient_table", "via": "figure_4A.tsv + figure_1B_layer_1.tsv + figure_2.tsv", "status": "LIVE"},
+    {"from": "N03_build_patient_table", "to": "N05_quantification", "via": "obl3_patient_master.csv", "status": "LIVE"},
+    {"from": "N02_published_source_data", "to": "N04_s3_pipeline", "via": "checksum-verified re-download", "status": "LIVE"},
+    {"from": "N04_s3_pipeline", "to": "N05_quantification", "via": "independent rebuild, 0 mismatched cells", "status": "VERIFIED"},
+    {"from": "N05_quantification", "to": "N06_cv_receipt", "via": "UNKNOWN - producing script absent", "status": "BROKEN_PROVENANCE"},
+    {"from": "N06_cv_receipt", "to": "N07_frozen_scorer", "via": "pinned coefficients fitted on the same n=67", "status": "LIVE_NOT_OUT_OF_SAMPLE"},
+    {"from": "N07_frozen_scorer", "to": "N09_backend_engine", "via": "none", "status": "DEAD", "note": "S3 has no consumer in the served API."},
+    {"from": "N08_resistance_association", "to": "N05_quantification", "via": "none", "status": "DEAD", "note": "Disconnected validator: tests a different feature on a table that does not exist."},
+    {"from": "N10_prognosis", "to": "N09_backend_engine", "via": "engine.py:150-151 assess_risk(), engine.py:173 prognosis=", "status": "LIVE"},
+    {"from": "N09_backend_engine", "to": "N11_shim", "via": "ResistancePrediction.prognosis (schemas.py:126, 189-191)", "status": "LIVE"},
+    {"from": "N11_shim", "to": "N12_routers", "via": "resistance_prophet_service.calculate_resistance_prediction", "status": "LIVE"},
+    {"from": "N14_s3_research", "to": "N11_shim", "via": "flag-gated research field, no care-influencing key", "status": "NEW_GATED"}
+  ],
+  "duplicated_calculations": [
+    {
+      "calculation": "s3-based resistance score",
+      "implementations": [
+        "obl3_s3_quantification.py (raw AUROC, unfitted ranking)",
+        "s3_diag_cv_validation.json (CV'd logistic; producing script absent)",
+        "score_cn_resistance.py (pinned sigmoid; fitted on the same 67 patients)"
+      ],
+      "verdict": "Three representations of one monotone function. The CV'd model's ranking is identical to the raw feature reversed (max deviation 1.1e-16 across 1000 folds), so the three differ only in scaling and in whether a probability is emitted."
+    },
+    {
+      "calculation": "platinum-resistance label",
+      "implementations": [
+        "figure_1B_layer_1.tsv pt_sensitivity_at_reg (273 patients, labels all)",
+        "figure_2.tsv pt_sensitivity_at_reg (134 patients)"
+      ],
+      "verdict": "Labels agree 134/134 where both are present. britroc_master_published.csv takes the label only from figure_2 and therefore carries NaN for 64 patients, losing 19 resistance labels that figure_1B supplies. Not a labelling conflict; an avoidable join loss."
+    }
+  ],
+  "dead_endpoints_and_disconnected_validators": [
+    "score_from_cn_features() in score_cn_resistance.py raises NotImplementedError: no raw-CN-to-s3 path exists.",
+    "03_resistance_association.py: input table absent, feature is not S3, self-gated to discovery_only.",
+    "s3_diag_cv_validation.json: receipt without a producing script or fold record.",
+    "ERBB2 bridge and Zeta-Core scoring: large, live, and entirely disconnected from the CN-signature axis."
+  ],
+  "buried_implementations": [
+    "The only fitted S3 model in the organisation is 4 pinned floats in Brenus/clinical_validation/pipeline/score_cn_resistance.py, outside any service package and unreachable from the API.",
+    "The only CV receipt for S3 sits in a clinical_validation/trackA directory alongside published CSVs, not with code.",
+    "s3_feat references are confined to 15 files, all under Brenus/clinical_validation/."
+  ]
+}

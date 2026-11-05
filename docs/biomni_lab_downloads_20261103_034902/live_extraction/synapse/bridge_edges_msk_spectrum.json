@@ -1,0 +1,92 @@
+[
+  {
+    "source": "vault:synapse_msk_spectrum",
+    "target": "genomicfeature:msk:file:syn51091882",
+    "relation": "HAS_FILE",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "genomicfeature:msk:file:syn51091882",
+    "target": "cohort:msk",
+    "relation": "PART_OF_COHORT",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "genomicfeature:msk:file:syn51091882",
+    "target": "compartment:msk:full_cohort",
+    "relation": "HAS_COMPARTMENT",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "vault:synapse_msk_spectrum",
+    "target": "genomicfeature:msk:file:syn51091852",
+    "relation": "HAS_FILE",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "genomicfeature:msk:file:syn51091852",
+    "target": "cohort:msk",
+    "relation": "PART_OF_COHORT",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "genomicfeature:msk:file:syn51091852",
+    "target": "compartment:msk:dendritic_cells",
+    "relation": "HAS_COMPARTMENT",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "vault:synapse_msk_spectrum",
+    "target": "genomicfeature:msk:file:syn51091853",
+    "relation": "HAS_FILE",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "genomicfeature:msk:file:syn51091853",
+    "target": "cohort:msk",
+    "relation": "PART_OF_COHORT",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "genomicfeature:msk:file:syn51091853",
+    "target": "compartment:msk:macrophages",
+    "relation": "HAS_COMPARTMENT",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "vault:synapse_msk_spectrum",
+    "target": "genomicfeature:msk:file:syn51091849",
+    "relation": "HAS_FILE",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "genomicfeature:msk:file:syn51091849",
+    "target": "cohort:msk",
+    "relation": "PART_OF_COHORT",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "genomicfeature:msk:file:syn51091849",
+    "target": "compartment:msk:tumor",
+    "relation": "HAS_COMPARTMENT",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "vault:synapse_msk_spectrum",
+    "target": "genomicfeature:msk:file:syn51091851",
+    "relation": "HAS_FILE",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "genomicfeature:msk:file:syn51091851",
+    "target": "cohort:msk",
+    "relation": "PART_OF_COHORT",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  },
+  {
+    "source": "genomicfeature:msk:file:syn51091851",
+    "target": "compartment:msk:t_cells",
+    "relation": "HAS_COMPARTMENT",
+    "_mint_timestamp": "2026-07-30T01:30:49.140890+00:00"
+  }
+]

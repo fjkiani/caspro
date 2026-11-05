@@ -1,0 +1,336 @@
+{
+  "generated_at": "2026-07-16T05:12:48.593087+00:00",
+  "verdict": "NOGO_FOR_CLINICAL_FACING_OUTPUTS",
+  "verdict_lead_sentence": "This build is NOGO for any clinical-facing, patient-facing, or trial-recommendation-facing output. It is APPROVED for RESEARCH_ONLY exploration of the mechanism-fit ranker within the 42-trial scored population and for SAFE_TO_DEMO exposure of the ovarian/melanoma IO gate as exploratory context.",
+  "p0_blockers": [
+    {
+      "id": "P0-B1_ELIGIBILITY_NOT_EVALUATED",
+      "issue": "The mechanism-fit ranker does not evaluate patient-vs-trial clinical eligibility. Line/stage/comorbidity/prior-therapy constraints are not scored.",
+      "severity": "P0",
+      "user_impact": "A caller reading top_options might assume the patient is eligible for those trials. That inference is not supported.",
+      "affected_routes": [
+        "resolve_case().engines.mechanism_fit.top_options",
+        "/api/resolve",
+        "/api/analyze_patient"
+      ],
+      "containment": "top_options entries now emit eligibility_status=NOT_EVALUATED and NO eligibility_score field. See W1B post-strict-pipeline receipts and EXT fixture assertions 'no_eligibility_score_placeholder' + 'eligibility_status_labeled'.",
+      "owner": "Ranker / trials service owners",
+      "exact_test_required": "Introduce a patient-vs-trial eligibility scorer with independent unit tests covering line-of-therapy, ECOG, prior IO, active brain metastases, EF/renal thresholds. Only then may an eligibility_score reappear.",
+      "release_condition": "May not be emitted as an eligibility judgement until the eligibility scorer exists and its unit tests pass."
+    },
+    {
+      "id": "P0-B2_P_RESP_HEURISTIC",
+      "issue": "p_resp is derived by the closed-form rule p = clip(0.10 + 0.70*io_axis, 0.05, 0.85). It is not a fitted response probability.",
+      "severity": "P0",
+      "user_impact": "A caller reading the number 0.765 (melanoma MSI-H) or 0.10 (HGSOC baseline) might treat it as a patient-level probability of response. It is not.",
+      "affected_routes": [
+        "resolve_case().engines.io_engine.p_resp",
+        "/api/analyze_patient  (io_engine payload)"
+      ],
+      "containment": "io_engine emits p_resp_status=RULE_BASED_HEURISTIC together with p_resp_prohibited_uses = [patient_level_response_probability_claim, therapy_recommendation, benefit_risk_decision, trial_ranking_tiebreaker] and p_resp_allowed_uses = [exploratory_mechanism_context_only]. Unsupported lineages return p_resp=None. See EXT F4 / F5 / F7 assertions.",
+      "owner": "IO risk-benefit gate owners",
+      "exact_test_required": "Replace p_resp with a calibrated predictor whose calibration curve, Brier score, and subgroup performance are held out. The estimator must not be trained on the same data used to define the axes.",
+      "release_condition": "May not be surfaced as a patient response probability, or used to tie-break trial ranking, until a calibrated model exists AND the prohibited_uses list is honored on all consumer surfaces."
+    },
+    {
+      "id": "P0-B3_UNMEASURED_TRIAL_MATCH",
+      "issue": "trials_scored (=42) reflects the mechanism-fit projection surface. It does not represent the trial universe that a clinician / trial-finder team would enumerate.",
+      "severity": "P0",
+      "user_impact": "The system emits top_options with tier + tier_position + fit but the population it draws from is not the full oncology trial universe. Callers must not be led to conclude a trial is 'the best available' from these outputs.",
+      "affected_routes": [
+        "resolve_case().engines.mechanism_fit.top_options",
+        "/api/resolve"
+      ],
+      "containment": "W2B coverage: total_trials=2979, moa_vectors=283, onco_populated=160, path_a_scoreable_after_join=42 (coverage number in W2B receipts). The 42 must be surfaced to callers in payload metadata as scoring_population_size.",
+      "owner": "Mechanism-fit + registry owners",
+      "exact_test_required": "Grow the joined scoring population from 42 to a documented target with per-lineage minimums. Every ranking payload MUST include scoring_population_size and the eligibility coverage of that scored subset.",
+      "release_condition": "top_options may not be presented as clinically recommended trials. Presentation must show 'mechanism-fit ranking, N=42 scored trials' until scope + eligibility are widened AND audited."
+    }
+  ],
+  "p1_quarantined": [
+    {
+      "id": "P1-Q1_TIE_ARBITRATION_IS_DETERMINISTIC_BUT_NOT_INFORMATIVE",
+      "issue": "At tier=1, multiple trials share identical clipped_fit (HGSOC/TNBC tie_size=4; MSI-H ovarian tie_size=11). The ranker breaks ties by nct_id ASC. That is deterministic and reproducible but is not clinically meaningful.",
+      "severity": "P1",
+      "user_impact": "Rank=1 within a tier says nothing beyond 'this trial's nct_id sorts earliest among ties'.",
+      "containment": "PC-02 tie-safe receipts assert on (tier, tier_position, clipped_fit, tie_size_at_tier_1). Exact anchor rank is not used as a success criterion.",
+      "next_step": "Add a second-tier tie-breaker feature (e.g., feasibility, trial phase, geographic proximity) or explicitly render tier=1 trials as a co-equal set on consumer surfaces."
+    },
+    {
+      "id": "P1-Q2_B_MSS_CRC_LOW_FIT_NOT_A_LEAD",
+      "issue": "NCT03579316 (STC-1010 MSS CRC anchor) currently sits at tier=6, tier_position=9, clipped_fit=0.348 for the reference MSS + KRAS_G12C + liver-met patient.",
+      "severity": "P1",
+      "user_impact": "If a caller expected the STC-1010 program's anchor trial to lead for this patient class, it does not.",
+      "containment": "PC-02 tie-safe reports STRICT_FAIL for this anchor (tier > 2). No output masks the low position.",
+      "next_step": "Either enrich the MSS-CRC mechanism vector (haptenation, MSS-specific IO adjuvants) or confirm that STC-1010 is not expected to lead the ranking for this patient class."
+    },
+    {
+      "id": "P1-Q3_LATIFY_DELTAS_QUARANTINED",
+      "issue": "LATIFY-derived delta features remain in the data lake and are referenced by parts of the mechanism-fit surface, but have not been retroactively predicted via trial vectors.",
+      "severity": "P1",
+      "user_impact": "Any callers relying on LATIFY delta features may see values that have not been reproduced end-to-end.",
+      "containment": "Per PATH A governance decision (2026-04-28), LATIFY delta quarantine remains in force pending retroactive_prediction_run.py --trial-vectors. Not resolved in this remediation.",
+      "next_step": "Execute retroactive_prediction_run.py --trial-vectors; reconcile against DL-05/CT-03/PC-06 receipts."
+    }
+  ],
+  "feature_classification": {
+    "eligibility_scoring": {
+      "class": "BLOCKED",
+      "reason": "Feature is not implemented. top_options entries emit eligibility_status=NOT_EVALUATED and no eligibility_score. The number 0.75 is no longer in the codepath."
+    },
+    "p_resp_patient_level_probability": {
+      "class": "BLOCKED",
+      "reason": "Not a fitted response model. Callers must not read io_engine.p_resp as a patient-level probability. RULE_BASED_HEURISTIC label is attached and prohibited_uses list enumerates disallowed reads."
+    },
+    "trial_recommendation": {
+      "class": "BLOCKED",
+      "reason": "Ranker scores mechanism-fit within a 42-trial scored population. Not the trial universe. Ranking may not be phrased as a clinical trial recommendation."
+    },
+    "mechanism_fit_ranking_within_scored_set": {
+      "class": "RESEARCH_ONLY",
+      "reason": "Executed on strict pipeline. PC-02 tie-safe: 4/5 anchors pass tier<=2 + fit>=0.20 + primary axis populated. Ties are reported. Rank=1 not used as success. Payload must render scoring_population_size and tier_position, not rank."
+    },
+    "patient_vector_axes_from_biomarkers": {
+      "class": "RESEARCH_ONLY",
+      "reason": "18/18 W1B counterfactuals pass with the strict pipeline. P0/P1 rules fire deterministically. Fail-closed reasons are attached to fail_closed_axes."
+    },
+    "io_regimen_gate_ovarian": {
+      "class": "SAFE_TO_DEMO",
+      "reason": "neopembrov_nactp regimen entry has p_low/p_high plus threshold_provenance. IO gate returns JUSTIFIED / INDETERMINATE / RULE_OUT with rationale. p_resp is a labelled heuristic."
+    },
+    "io_regimen_gate_melanoma": {
+      "class": "SAFE_TO_DEMO",
+      "reason": "nivo_monotherapy_melanoma regimen entry populated with thresholds and rule-based provenance. EXT F4 emits regimen=nivo_monotherapy_melanoma with p_resp_status=RULE_BASED_HEURISTIC."
+    },
+    "io_gate_unsupported_lineage_refusal": {
+      "class": "SAFE_FOR_PRODUCTION",
+      "reason": "Unknown lineage returns FAIL_CLOSED; supported-but-unregistered lineage returns NOT_APPLICABLE with p_resp=None, regimen=None, fail_closed_axes += io_regimen. EXT F2/F3/F5 all pass this contract."
+    },
+    "input_validation_reject": {
+      "class": "SAFE_FOR_PRODUCTION",
+      "reason": "Malformed SomaticMutation entries are rejected by the Pydantic schema (ValidationError). Empty-vector patients route through the mechanism-fit engine without crashing (EXT F6 + F7)."
+    }
+  },
+  "permitted_today": [
+    "Explore mechanism-fit vectors and axis provenance for a patient case.",
+    "Read io_engine gate = JUSTIFIED / INDETERMINATE / RULE_OUT for the two registered lineages (ovarian, melanoma) AS EXPLORATORY CONTEXT ONLY.",
+    "Inspect trial ranking within the 42-trial scored population as a mechanism-fit ordering, treating tier + tier_position (not rank) as the signal.",
+    "Verify that unsupported lineages return NOT_APPLICABLE with p_resp=None and no regimen \u2014 refusal is the safe path.",
+    "Run W1B counterfactuals, EXT fixture suite, and PC-02 tie-safe against any subsequent build to detect axis-motion regressions."
+  ],
+  "prohibited_today": [
+    "Presenting the ranker's top_options as clinically eligible trials.",
+    "Presenting io_engine.p_resp as a patient-level probability of response.",
+    "Using p_resp to tie-break trial ranking on any consumer surface.",
+    "Emitting any eligibility_score field. It has been removed from the codepath \u2014 surface layers may not re-derive one from other fields.",
+    "Rendering rank=1 as clinically meaningful when tier_position=1 co-occurs with tie_size > 1.",
+    "Using LATIFY delta features until retroactive_prediction_run.py --trial-vectors reconciles CT-03 / DL-05 / PC-06."
+  ],
+  "measured_evidence": {
+    "W1B": {
+      "counterfactuals_total": 18,
+      "counterfactuals_pass": 18,
+      "verdict": "PASS"
+    },
+    "W2B": {
+      "coverage": {
+        "clinical_trials_total_rows": 2979,
+        "moa_vectors_total_rows": 283,
+        "moa_vectors_oncology_eligible": 283,
+        "moa_vectors_oncology_populated": 160,
+        "moa_vectors_oncology_zero_dropped": 123,
+        "path_a_scoreable_after_join": 42,
+        "exclusions_by_reason": {
+          "non_oncology_dropped": 0,
+          "onco_but_zero_vector_dropped": 123,
+          "onco_populated_no_ct_metadata": 118
+        },
+        "source_distribution": {
+          "cohere_batch_tagging": 226,
+          "null": 21,
+          "manual_keyword_matching": 15,
+          "gemini_batch_tagging": 5,
+          "manual_intelligence_report": 3,
+          "manual_zo_addition": 3,
+          "openai_batch_tagging": 3,
+          "gemini_batch_v2": 2,
+          "manual_zo_correction": 2,
+          "retroactive_validation": 2,
+          "manual_zo_update": 1
+        },
+        "vector_state_distribution": {
+          "POPULATED": 160,
+          "ZERO_UNDECLARED": 123
+        },
+        "db_path": "/workspace/crispro-backend-v3-push/data/clinical_trials.db"
+      },
+      "drift_status": "PASS",
+      "runtime_reads": "sqlite_unified",
+      "sqlite_only": true
+    },
+    "PC02_tiesafe": {
+      "pass": 4,
+      "total": 5,
+      "receipts": [
+        [
+          "A_HGSOC_HRDlow",
+          "STRICT_PASS",
+          1,
+          3,
+          0.582086,
+          4
+        ],
+        [
+          "B_MSS_CRC_STC1010",
+          "STRICT_FAIL",
+          6,
+          9,
+          0.347937,
+          1
+        ],
+        [
+          "C_HER2plus_gastric",
+          "STRICT_PASS",
+          1,
+          2,
+          0.8,
+          2
+        ],
+        [
+          "D_TNBC_BRCA1_germline",
+          "STRICT_PASS",
+          1,
+          3,
+          0.582086,
+          4
+        ],
+        [
+          "E_MSI_H_OVARIAN",
+          "STRICT_PASS",
+          1,
+          1,
+          0.95,
+          11
+        ]
+      ]
+    },
+    "W3B": {
+      "bench_pass": 5,
+      "bench_total": 5,
+      "red_team_pass": 10,
+      "red_team_total": 10
+    },
+    "EXT_fixtures": {
+      "verdict": "PASS",
+      "pass": 7,
+      "total": 7,
+      "per_fixture": [
+        [
+          "F1_HGSOC_BRCA1_TP53",
+          "PASS",
+          6,
+          6
+        ],
+        [
+          "F2_MSS_CRC_LIVERMET_CPS50_G12C",
+          "PASS",
+          8,
+          8
+        ],
+        [
+          "F3_HER2plus_gastric",
+          "PASS",
+          5,
+          5
+        ],
+        [
+          "F4_melanoma_MSI_H",
+          "PASS",
+          4,
+          4
+        ],
+        [
+          "F5_unsupported_lineage",
+          "PASS",
+          4,
+          4
+        ],
+        [
+          "F6_malformed_somatic",
+          "PASS",
+          1,
+          1
+        ],
+        [
+          "F7_empty_vector",
+          "PASS",
+          3,
+          3
+        ]
+      ]
+    },
+    "BASELINE_executed": {
+      "pre_head": "965ed20bce652aff7eb078f3c0e839f03bddc5ca",
+      "post_head": "4f1748a6194436c560a5388c7576cde087985948",
+      "deltas": [
+        [
+          "A_HGSOC_HRDlow",
+          "RULE_OUT",
+          null,
+          null,
+          null,
+          "RULE_OUT",
+          0.1,
+          "neopembrov_nactp",
+          42
+        ],
+        [
+          "B_MSS_CRC_STC1010",
+          "RULE_OUT",
+          null,
+          null,
+          null,
+          "NOT_APPLICABLE",
+          null,
+          null,
+          42
+        ],
+        [
+          "C_HER2plus_gastric",
+          "RULE_OUT",
+          null,
+          null,
+          null,
+          "NOT_APPLICABLE",
+          null,
+          null,
+          42
+        ],
+        [
+          "D_TNBC_BRCA1_germline",
+          "RULE_OUT",
+          null,
+          null,
+          null,
+          "NOT_APPLICABLE",
+          null,
+          null,
+          42
+        ],
+        [
+          "E_MSI_H_OVARIAN",
+          "RULE_OUT",
+          null,
+          null,
+          null,
+          "JUSTIFIED",
+          0.765,
+          "neopembrov_nactp",
+          42
+        ]
+      ],
+      "pre_head_source_verbatim_note": "Pre-remediation _run_io_engine (commit 965ed20) returned only {risk_benefit_gate, rationale}. The values p_resp=0.15 and regimen_key='neopembrov_nactp' were passed into evaluate_io_risk_benefit for every patient regardless of lineage or biomarkers, but were NOT surfaced on the wire. 'io_p_resp: None' and 'io_regimen: None' in the pre column reflect the wire payload, not the internal argument."
+    }
+  },
+  "gate_lines_all_measurements_present": true
+}

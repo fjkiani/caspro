@@ -1,0 +1,1792 @@
+{
+  "b5_addendum_reason": "B5 is the corrected form of B3. B3 is retained as measured because its result is a real coverage observation: the duplicate guard inside run_cohere_probe is unreachable from every released test path.",
+  "baselines": {
+    "A": {
+      "cohere_api_key_env": "<empty>",
+      "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/baseline_a.junit.xml",
+      "counts": {
+        "errors": 0,
+        "failed": 0,
+        "passed": 933,
+        "skipped": 0,
+        "xfailed": 0
+      },
+      "cwd": "/workspace/zc4_mut_a",
+      "error_nodes": [],
+      "failed_nodes": [],
+      "inexact_node_ids": 0,
+      "junit_present": true,
+      "junit_xml": "/workspace/zc4_mut/baseline_a.junit.xml",
+      "rc": 0,
+      "seconds": 12.5,
+      "skip_gate": {
+        "rc": 0,
+        "stderr": "",
+        "stdout": "SKIP_GATE_PASS: 933 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+      },
+      "skipped_nodes": [],
+      "stderr_tail": "",
+      "stdout_tail": "........................................................................ [  7%]\n........................................................................ [ 15%]\n........................................................................ [ 23%]\n........................................................................ [ 30%]\n........................................................................ [ 38%]\n........................................................................ [ 46%]\n........................................................................ [ 54%]\n........................................................................ [ 61%]\n........................................................................ [ 69%]\n........................................................................ [ 77%]\n........................................................................ [ 84%]\n........................................................................ [ 92%]\n.....................................................................    [100%]\n--------- generated xml file: /workspace/zc4_mut/baseline_a.junit.xml ----------\n933 passed in 6.84s\n",
+      "total_cases": 933,
+      "xfailed_nodes": []
+    },
+    "B": {
+      "cohere_api_key_env": "<empty>",
+      "collection_probes": [
+        {
+          "cohere_api_key_env": "<empty>",
+          "live_test_collected": true,
+          "rc": 0,
+          "stderr_tail": "",
+          "stdout_tail": "tests/test_cohere_with_key.py::test_cohere_live_integration\n\n1 test collected in 0.08s\n"
+        },
+        {
+          "cohere_api_key_env": "<valid-shaped placeholder>",
+          "live_test_collected": true,
+          "rc": 0,
+          "stderr_tail": "",
+          "stdout_tail": "tests/test_cohere_with_key.py::test_cohere_live_integration\n\n1 test collected in 0.08s\n"
+        }
+      ],
+      "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/baseline_b.junit.xml",
+      "counts": {
+        "errors": 0,
+        "failed": 0,
+        "passed": 13,
+        "skipped": 0,
+        "xfailed": 0
+      },
+      "cwd": "/workspace/zc4_mut_b",
+      "error_nodes": [],
+      "failed_nodes": [],
+      "inexact_node_ids": 0,
+      "junit_present": true,
+      "junit_xml": "/workspace/zc4_mut/baseline_b.junit.xml",
+      "rc": 0,
+      "seconds": 26.5,
+      "skip_gate": {
+        "rc": 0,
+        "stderr": "",
+        "stdout": "SKIP_GATE_PASS: 13 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+      },
+      "skipped_nodes": [],
+      "stderr_tail": "",
+      "stdout_tail": ".............                                                            [100%]\n--------- generated xml file: /workspace/zc4_mut/baseline_b.junit.xml ----------\n13 passed in 21.56s\n",
+      "total_cases": 13,
+      "xfailed_nodes": []
+    }
+  },
+  "generated_utc": "2026-08-14T04:43:27+00:00",
+  "method": "disposable detached worktree per PR; one minimal source mutation at a time; named failing node ids from xunit1 JUnit XML; revert; clean-tree proof; post-revert re-run",
+  "mutations": [
+    {
+      "applied_paths": [
+        "api/services/tumor_marker_kinetics/prognostic_index.py",
+        "api/services/tumor_marker_kinetics/models.py"
+      ],
+      "diff_is_nonempty": true,
+      "diff_numstat": "1\t1\tapi/services/tumor_marker_kinetics/models.py\n1\t1\tapi/services/tumor_marker_kinetics/prognostic_index.py",
+      "diff_patch": "diff --git a/api/services/tumor_marker_kinetics/models.py b/api/services/tumor_marker_kinetics/models.py\nindex 1179dea0..ac2def26 100644\n--- a/api/services/tumor_marker_kinetics/models.py\n+++ b/api/services/tumor_marker_kinetics/models.py\n@@ -827,3 +827,3 @@ class RelativePrognosticIndex:\n         \"\"\"A category must not be constructible, not even by a direct caller.\"\"\"\n-        if self.relative_prognostic_band is not None:\n+        if False and self.relative_prognostic_band is not None:\n             raise ValueError(\ndiff --git a/api/services/tumor_marker_kinetics/prognostic_index.py b/api/services/tumor_marker_kinetics/prognostic_index.py\nindex 33eb6104..4dfe1fa4 100644\n--- a/api/services/tumor_marker_kinetics/prognostic_index.py\n+++ b/api/services/tumor_marker_kinetics/prognostic_index.py\n@@ -737,3 +737,3 @@ def compute_relative_prognostic_index(\n         coefficient_conditional_relative_hazard_interval=coefficient_interval,\n-        relative_prognostic_band=None,\n+        relative_prognostic_band=exploratory_relative_prognostic_band(p_clamped),\n         reference_artifact_version=cdf.artifact_version,\n",
+      "dirty_paths_after_revert": [],
+      "expect": "caught",
+      "id": "A1",
+      "mutated_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_A1.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 49,
+          "passed": 884,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [],
+        "failed_nodes": [
+          "tests/unit/test_audit_correction_d13.py::test_an_eligible_index_still_emits_a_null_band",
+          "tests/unit/test_audit_correction_d13.py::test_no_released_output_reconstructs_a_category_for_the_consumer",
+          "tests/unit/test_audit_correction_d13.py::test_the_dataclass_refuses_to_be_constructed_with_a_populated_band",
+          "tests/unit/test_audit_correction_d13.py::test_the_interval_is_renamed_and_the_retired_name_is_gone",
+          "tests/unit/test_contract_a_release.py::test_no_interval_and_no_band_accompany_a_three_observation_estimate",
+          "tests/unit/test_contract_a_release.py::test_the_band_and_the_unavailable_capabilities_are_not_reactivated",
+          "tests/unit/test_contract_a_release.py::test_the_chosen_contract_is_named_and_the_alternative_is_recorded",
+          "tests/unit/test_contract_a_release.py::test_the_continuous_index_is_released_regardless_of_landmark_scope[landmark0]",
+          "tests/unit/test_contract_a_release.py::test_the_continuous_index_is_released_regardless_of_landmark_scope[landmark1]",
+          "tests/unit/test_contract_a_release.py::test_the_continuous_index_is_released_regardless_of_landmark_scope[landmark2]",
+          "tests/unit/test_contract_a_release.py::test_the_disclosures_are_absent_when_the_series_has_more_than_three_days",
+          "tests/unit/test_contract_a_release.py::test_the_loo_rule_requires_all_three_leave_one_out_slopes_to_decline",
+          "tests/unit/test_contract_a_release.py::test_the_loo_verdict_is_none_rather_than_false_when_the_rule_does_not_apply",
+          "tests/unit/test_contract_a_release.py::test_the_point_fit_alone_cannot_detect_the_centred_non_monotone_series",
+          "tests/unit/test_contract_a_release.py::test_the_released_percentile_is_exactly_the_committed_cdf_of_the_released_rate",
+          "tests/unit/test_contract_a_release.py::test_the_three_observation_point_estimate_is_released_with_all_four_disclosures",
+          "tests/unit/test_contract_a_release.py::test_three_observations_are_insufficient_for_uncertainty_and_never_reliable",
+          "tests/unit/test_prognostic_direction_negative.py::test_no_eligible_index_on_the_knot_grid_reports_a_contradictory_band",
+          "tests/unit/test_prognostic_direction_negative.py::test_the_extrapolated_tails_keep_the_validated_direction",
+          "tests/unit/test_prostate_prognostic_index.py::test_released_payload_emits_exactly_the_authorized_keys_in_order",
+          "tests/unit/test_prostate_prognostic_index.py::test_released_payload_keeps_k_day_and_fit_qc_informational",
+          "tests/unit/test_prostate_prognostic_index.py::test_released_payload_refuses_to_drift_from_the_authorized_set",
+          "tests/unit/test_prostate_prognostic_index.py::test_silence_is_never_treated_as_verified_scope_end_to_end",
+          "tests/unit/test_prostate_prognostic_index.py::test_the_fastest_reference_rate_carries_the_lowest_relative_hazard",
+          "tests/unit/test_prostate_prognostic_index.py::test_the_reference_median_maps_to_a_unit_multiplier",
+          "tests/unit/test_prostate_prognostic_index.py::test_the_slowest_reference_rate_carries_the_highest_relative_hazard",
+          "tests/unit/test_prostate_prognostic_index.py::test_the_worked_anchor_reproduces_the_recorded_index",
+          "tests/unit/test_refusal_schema_lineage.py::test_the_injection_probe_is_only_armed_on_a_refused_path",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_a_prognostic_payload_is_json_serializable_and_stable",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_a_prostate_payload_with_a_prognostic_block_still_nulls_every_fail_closed_key",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_an_unverified_scope_still_releases_the_raw_rate",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_no_banned_claim_phrasing_appears_in_a_prognostic_payload",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_no_identifier_key_appears_anywhere_in_a_prognostic_payload",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_no_prohibited_claim_token_appears_in_a_prognostic_payload",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_the_prognostic_block_carries_fit_qc_without_gating_on_it",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_the_prognostic_block_repeats_the_disclosure_and_band_semantics",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_the_prostate_fit_payload_carries_the_forty_three_key_prognostic_block",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_the_prostate_fit_payload_states_eligibility_and_the_frozen_coefficient",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_the_serializer_rejects_a_block_whose_key_set_drifted",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides0-silence]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides1-false]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides2-confirmed but no day]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides3-day == 105]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides4-day < 105]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_the_attested_prostate_fit_releases_the_relative_prognostic_index",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_the_crc_fit_payload_key_set_is_disjoint_from_the_prognostic_surface",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_the_endpoint_direction_is_faster_decline_lower_relative_hazard",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_the_prostate_response_carries_the_landmark_attestation_record",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_the_prostate_response_still_nulls_every_fail_closed_key"
+        ],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/mut_A1.junit.xml",
+        "rc": 1,
+        "seconds": 14.0,
+        "skip_gate": {
+          "rc": 0,
+          "stderr": "",
+          "stdout": "SKIP_GATE_PASS: 933 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+        },
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": "rtainty_and_never_reliable\nFAILED tests/unit/test_contract_a_release.py::test_the_three_observation_point_estimate_is_released_with_all_four_disclosures\nFAILED tests/unit/test_contract_a_release.py::test_no_interval_and_no_band_accompany_a_three_observation_estimate\nFAILED tests/unit/test_contract_a_release.py::test_the_disclosures_are_absent_when_the_series_has_more_than_three_days\nFAILED tests/unit/test_contract_a_release.py::test_the_loo_rule_requires_all_three_leave_one_out_slopes_to_decline\nFAILED tests/unit/test_contract_a_release.py::test_the_loo_verdict_is_none_rather_than_false_when_the_rule_does_not_apply\nFAILED tests/unit/test_contract_a_release.py::test_the_point_fit_alone_cannot_detect_the_centred_non_monotone_series\nFAILED tests/unit/test_audit_correction_d13.py::test_an_eligible_index_still_emits_a_null_band\nFAILED tests/unit/test_audit_correction_d13.py::test_the_dataclass_refuses_to_be_constructed_with_a_populated_band\nFAILED tests/unit/test_audit_correction_d13.py::test_no_released_output_reconstructs_a_category_for_the_consumer\nFAILED tests/unit/test_audit_correction_d13.py::test_the_interval_is_renamed_and_the_retired_name_is_gone\n49 failed, 884 passed in 8.89s\n",
+        "total_cases": 933,
+        "xfailed_nodes": []
+      },
+      "new_error_nodes": [],
+      "new_failed_nodes": [
+        "tests/unit/test_audit_correction_d13.py::test_an_eligible_index_still_emits_a_null_band",
+        "tests/unit/test_audit_correction_d13.py::test_no_released_output_reconstructs_a_category_for_the_consumer",
+        "tests/unit/test_audit_correction_d13.py::test_the_dataclass_refuses_to_be_constructed_with_a_populated_band",
+        "tests/unit/test_audit_correction_d13.py::test_the_interval_is_renamed_and_the_retired_name_is_gone",
+        "tests/unit/test_contract_a_release.py::test_no_interval_and_no_band_accompany_a_three_observation_estimate",
+        "tests/unit/test_contract_a_release.py::test_the_band_and_the_unavailable_capabilities_are_not_reactivated",
+        "tests/unit/test_contract_a_release.py::test_the_chosen_contract_is_named_and_the_alternative_is_recorded",
+        "tests/unit/test_contract_a_release.py::test_the_continuous_index_is_released_regardless_of_landmark_scope[landmark0]",
+        "tests/unit/test_contract_a_release.py::test_the_continuous_index_is_released_regardless_of_landmark_scope[landmark1]",
+        "tests/unit/test_contract_a_release.py::test_the_continuous_index_is_released_regardless_of_landmark_scope[landmark2]",
+        "tests/unit/test_contract_a_release.py::test_the_disclosures_are_absent_when_the_series_has_more_than_three_days",
+        "tests/unit/test_contract_a_release.py::test_the_loo_rule_requires_all_three_leave_one_out_slopes_to_decline",
+        "tests/unit/test_contract_a_release.py::test_the_loo_verdict_is_none_rather_than_false_when_the_rule_does_not_apply",
+        "tests/unit/test_contract_a_release.py::test_the_point_fit_alone_cannot_detect_the_centred_non_monotone_series",
+        "tests/unit/test_contract_a_release.py::test_the_released_percentile_is_exactly_the_committed_cdf_of_the_released_rate",
+        "tests/unit/test_contract_a_release.py::test_the_three_observation_point_estimate_is_released_with_all_four_disclosures",
+        "tests/unit/test_contract_a_release.py::test_three_observations_are_insufficient_for_uncertainty_and_never_reliable",
+        "tests/unit/test_prognostic_direction_negative.py::test_no_eligible_index_on_the_knot_grid_reports_a_contradictory_band",
+        "tests/unit/test_prognostic_direction_negative.py::test_the_extrapolated_tails_keep_the_validated_direction",
+        "tests/unit/test_prostate_prognostic_index.py::test_released_payload_emits_exactly_the_authorized_keys_in_order",
+        "tests/unit/test_prostate_prognostic_index.py::test_released_payload_keeps_k_day_and_fit_qc_informational",
+        "tests/unit/test_prostate_prognostic_index.py::test_released_payload_refuses_to_drift_from_the_authorized_set",
+        "tests/unit/test_prostate_prognostic_index.py::test_silence_is_never_treated_as_verified_scope_end_to_end",
+        "tests/unit/test_prostate_prognostic_index.py::test_the_fastest_reference_rate_carries_the_lowest_relative_hazard",
+        "tests/unit/test_prostate_prognostic_index.py::test_the_reference_median_maps_to_a_unit_multiplier",
+        "tests/unit/test_prostate_prognostic_index.py::test_the_slowest_reference_rate_carries_the_highest_relative_hazard",
+        "tests/unit/test_prostate_prognostic_index.py::test_the_worked_anchor_reproduces_the_recorded_index",
+        "tests/unit/test_refusal_schema_lineage.py::test_the_injection_probe_is_only_armed_on_a_refused_path",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_a_prognostic_payload_is_json_serializable_and_stable",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_a_prostate_payload_with_a_prognostic_block_still_nulls_every_fail_closed_key",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_an_unverified_scope_still_releases_the_raw_rate",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_no_banned_claim_phrasing_appears_in_a_prognostic_payload",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_no_identifier_key_appears_anywhere_in_a_prognostic_payload",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_no_prohibited_claim_token_appears_in_a_prognostic_payload",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_the_prognostic_block_carries_fit_qc_without_gating_on_it",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_the_prognostic_block_repeats_the_disclosure_and_band_semantics",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_the_prostate_fit_payload_carries_the_forty_three_key_prognostic_block",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_the_prostate_fit_payload_states_eligibility_and_the_frozen_coefficient",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_the_serializer_rejects_a_block_whose_key_set_drifted",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides0-silence]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides1-false]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides2-confirmed but no day]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides3-day == 105]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides4-day < 105]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_the_attested_prostate_fit_releases_the_relative_prognostic_index",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_the_crc_fit_payload_key_set_is_disjoint_from_the_prognostic_surface",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_the_endpoint_direction_is_faster_decline_lower_relative_hazard",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_the_prostate_response_carries_the_landmark_attestation_record",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_the_prostate_response_still_nulls_every_fail_closed_key"
+      ],
+      "new_skipped_nodes": [],
+      "post_revert_diff_numstat": "",
+      "post_revert_matches_baseline": true,
+      "post_revert_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/postrevert_A1.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 933,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/postrevert_A1.junit.xml",
+        "rc": 0,
+        "seconds": 11.1,
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": "........................................................................ [  7%]\n........................................................................ [ 15%]\n........................................................................ [ 23%]\n........................................................................ [ 30%]\n........................................................................ [ 38%]\n........................................................................ [ 46%]\n........................................................................ [ 54%]\n........................................................................ [ 61%]\n........................................................................ [ 69%]\n........................................................................ [ 77%]\n........................................................................ [ 84%]\n........................................................................ [ 92%]\n.....................................................................    [100%]\n-------- generated xml file: /workspace/zc4_mut/postrevert_A1.junit.xml --------\n933 passed in 5.76s\n",
+        "total_cases": 933,
+        "xfailed_nodes": []
+      },
+      "pr": "A",
+      "reverted_clean": true,
+      "selection": [
+        "tests/unit/test_venice_psa_reference_cdf.py",
+        "tests/unit/test_tumor_marker_kinetics_contract.py",
+        "tests/unit/test_tumor_marker_kinetics_router.py",
+        "tests/unit/test_tumor_marker_kinetics_equivalence.py",
+        "tests/unit/test_tumor_marker_kinetics_fitter.py",
+        "tests/unit/test_tumor_marker_kinetics_parser.py",
+        "tests/unit/test_prostate_prognostic_index.py",
+        "tests/efficacy/test_therapy_fit_axes.py",
+        "tests/efficacy/test_v3_contract_axes.py",
+        "tests/unit/test_prognostic_direction_negative.py",
+        "tests/unit/test_refusal_schema_lineage.py",
+        "tests/unit/test_contract_a_release.py",
+        "tests/unit/test_audit_correction_d13.py"
+      ],
+      "session_aborted_without_junit": false,
+      "skip_gate_rcs": [
+        0
+      ],
+      "title": "Emit a categorical relative prognostic band on the released path",
+      "verdict": "CAUGHT_BY_NAMED_TEST",
+      "why": "The prespecified band-stability gate FAILED (quartile-knot concordance 0.6661666666666667 vs required 0.90); the category must stay null."
+    },
+    {
+      "applied_paths": [
+        "api/services/tumor_marker_kinetics/serializer.py"
+      ],
+      "diff_is_nonempty": true,
+      "diff_numstat": "1\t0\tapi/services/tumor_marker_kinetics/serializer.py",
+      "diff_patch": "diff --git a/api/services/tumor_marker_kinetics/serializer.py b/api/services/tumor_marker_kinetics/serializer.py\nindex d45617d0..302c2247 100644\n--- a/api/services/tumor_marker_kinetics/serializer.py\n+++ b/api/services/tumor_marker_kinetics/serializer.py\n@@ -739,2 +739,3 @@ def serialize_fit(\n                 )\n+    payload[\"calibrated_survival_probability\"] = 0.87\n     return payload\n",
+      "dirty_paths_after_revert": [],
+      "expect": "caught",
+      "id": "A2",
+      "mutated_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_A2.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 11,
+          "passed": 922,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [],
+        "failed_nodes": [
+          "tests/unit/test_contract_a_release.py::test_the_band_and_the_unavailable_capabilities_are_not_reactivated",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_a_prostate_payload_with_a_prognostic_block_still_nulls_every_fail_closed_key",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_every_fail_closed_key_is_null_on_a_fit_payload[calibrated_survival_probability]",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_no_banned_claim_phrasing_appears_in_a_prognostic_payload",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides0-silence]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides1-false]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides2-confirmed but no day]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides3-day == 105]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides4-day < 105]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_fit_endpoint_releases_k_day_and_never_a_score",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_the_prostate_response_still_nulls_every_fail_closed_key"
+        ],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/mut_A2.junit.xml",
+        "rc": 1,
+        "seconds": 11.7,
+        "skip_gate": {
+          "rc": 0,
+          "stderr": "",
+          "stdout": "SKIP_GATE_PASS: 933 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+        },
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": "nit/test_tumor_marker_kinetics_contract.py::test_a_prostate_payload_with_a_prognostic_block_still_nulls_every_fail_closed_key\nFAILED tests/unit/test_tumor_marker_kinetics_router.py::test_fit_endpoint_releases_k_day_and_never_a_score\nFAILED tests/unit/test_tumor_marker_kinetics_router.py::test_the_prostate_response_still_nulls_every_fail_closed_key\nFAILED tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides0-silence]\nFAILED tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides1-false]\nFAILED tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides2-confirmed but no day]\nFAILED tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides3-day == 105]\nFAILED tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides4-day < 105]\nFAILED tests/unit/test_contract_a_release.py::test_the_band_and_the_unavailable_capabilities_are_not_reactivated\n11 failed, 922 passed in 6.55s\n",
+        "total_cases": 933,
+        "xfailed_nodes": []
+      },
+      "new_error_nodes": [],
+      "new_failed_nodes": [
+        "tests/unit/test_contract_a_release.py::test_the_band_and_the_unavailable_capabilities_are_not_reactivated",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_a_prostate_payload_with_a_prognostic_block_still_nulls_every_fail_closed_key",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_every_fail_closed_key_is_null_on_a_fit_payload[calibrated_survival_probability]",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_no_banned_claim_phrasing_appears_in_a_prognostic_payload",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides0-silence]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides1-false]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides2-confirmed but no day]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides3-day == 105]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides4-day < 105]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_fit_endpoint_releases_k_day_and_never_a_score",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_the_prostate_response_still_nulls_every_fail_closed_key"
+      ],
+      "new_skipped_nodes": [],
+      "post_revert_diff_numstat": "",
+      "post_revert_matches_baseline": true,
+      "post_revert_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/postrevert_A2.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 933,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/postrevert_A2.junit.xml",
+        "rc": 0,
+        "seconds": 11.2,
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": "........................................................................ [  7%]\n........................................................................ [ 15%]\n........................................................................ [ 23%]\n........................................................................ [ 30%]\n........................................................................ [ 38%]\n........................................................................ [ 46%]\n........................................................................ [ 54%]\n........................................................................ [ 61%]\n........................................................................ [ 69%]\n........................................................................ [ 77%]\n........................................................................ [ 84%]\n........................................................................ [ 92%]\n.....................................................................    [100%]\n-------- generated xml file: /workspace/zc4_mut/postrevert_A2.junit.xml --------\n933 passed in 5.62s\n",
+        "total_cases": 933,
+        "xfailed_nodes": []
+      },
+      "pr": "A",
+      "reverted_clean": true,
+      "selection": [
+        "tests/unit/test_venice_psa_reference_cdf.py",
+        "tests/unit/test_tumor_marker_kinetics_contract.py",
+        "tests/unit/test_tumor_marker_kinetics_router.py",
+        "tests/unit/test_tumor_marker_kinetics_equivalence.py",
+        "tests/unit/test_tumor_marker_kinetics_fitter.py",
+        "tests/unit/test_tumor_marker_kinetics_parser.py",
+        "tests/unit/test_prostate_prognostic_index.py",
+        "tests/efficacy/test_therapy_fit_axes.py",
+        "tests/efficacy/test_v3_contract_axes.py",
+        "tests/unit/test_prognostic_direction_negative.py",
+        "tests/unit/test_refusal_schema_lineage.py",
+        "tests/unit/test_contract_a_release.py",
+        "tests/unit/test_audit_correction_d13.py"
+      ],
+      "session_aborted_without_junit": false,
+      "skip_gate_rcs": [
+        0
+      ],
+      "title": "Populate an absolute calibrated survival probability in the served payload",
+      "verdict": "CAUGHT_BY_NAMED_TEST",
+      "why": "No absolute-risk capability is authorized on this axis; the field must stay null. The edit lands AFTER every internal fail-closed guard, so only a test can catch it."
+    },
+    {
+      "applied_paths": [
+        "api/services/tumor_marker_kinetics/serializer.py"
+      ],
+      "diff_is_nonempty": true,
+      "diff_numstat": "1\t0\tapi/services/tumor_marker_kinetics/serializer.py",
+      "diff_patch": "diff --git a/api/services/tumor_marker_kinetics/serializer.py b/api/services/tumor_marker_kinetics/serializer.py\nindex d45617d0..d044c897 100644\n--- a/api/services/tumor_marker_kinetics/serializer.py\n+++ b/api/services/tumor_marker_kinetics/serializer.py\n@@ -739,2 +739,3 @@ def serialize_fit(\n                 )\n+    payload[\"treatment_recommendation\"] = \"escalate systemic therapy\"\n     return payload\n",
+      "dirty_paths_after_revert": [],
+      "expect": "caught",
+      "id": "A3",
+      "mutated_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_A3.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 10,
+          "passed": 923,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [],
+        "failed_nodes": [
+          "tests/unit/test_contract_a_release.py::test_the_band_and_the_unavailable_capabilities_are_not_reactivated",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_a_prostate_payload_with_a_prognostic_block_still_nulls_every_fail_closed_key",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_every_fail_closed_key_is_null_on_a_fit_payload[treatment_recommendation]",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::test_no_banned_claim_phrasing_appears_in_a_prognostic_payload",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides0-silence]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides1-false]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides2-confirmed but no day]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides3-day == 105]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides4-day < 105]",
+          "tests/unit/test_tumor_marker_kinetics_router.py::test_the_prostate_response_still_nulls_every_fail_closed_key"
+        ],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/mut_A3.junit.xml",
+        "rc": 1,
+        "seconds": 11.7,
+        "skip_gate": {
+          "rc": 0,
+          "stderr": "",
+          "stdout": "SKIP_GATE_PASS: 933 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+        },
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": "r_marker_kinetics_contract.py::test_no_banned_claim_phrasing_appears_in_a_prognostic_payload\nFAILED tests/unit/test_tumor_marker_kinetics_contract.py::test_a_prostate_payload_with_a_prognostic_block_still_nulls_every_fail_closed_key\nFAILED tests/unit/test_tumor_marker_kinetics_router.py::test_the_prostate_response_still_nulls_every_fail_closed_key\nFAILED tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides0-silence]\nFAILED tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides1-false]\nFAILED tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides2-confirmed but no day]\nFAILED tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides3-day == 105]\nFAILED tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides4-day < 105]\nFAILED tests/unit/test_contract_a_release.py::test_the_band_and_the_unavailable_capabilities_are_not_reactivated\n10 failed, 923 passed in 6.58s\n",
+        "total_cases": 933,
+        "xfailed_nodes": []
+      },
+      "new_error_nodes": [],
+      "new_failed_nodes": [
+        "tests/unit/test_contract_a_release.py::test_the_band_and_the_unavailable_capabilities_are_not_reactivated",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_a_prostate_payload_with_a_prognostic_block_still_nulls_every_fail_closed_key",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_every_fail_closed_key_is_null_on_a_fit_payload[treatment_recommendation]",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_no_banned_claim_phrasing_appears_in_a_prognostic_payload",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides0-silence]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides1-false]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides2-confirmed but no day]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides3-day == 105]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides4-day < 105]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_the_prostate_response_still_nulls_every_fail_closed_key"
+      ],
+      "new_skipped_nodes": [],
+      "post_revert_diff_numstat": "",
+      "post_revert_matches_baseline": true,
+      "post_revert_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/postrevert_A3.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 933,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/postrevert_A3.junit.xml",
+        "rc": 0,
+        "seconds": 10.4,
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": "........................................................................ [  7%]\n........................................................................ [ 15%]\n........................................................................ [ 23%]\n........................................................................ [ 30%]\n........................................................................ [ 38%]\n........................................................................ [ 46%]\n........................................................................ [ 54%]\n........................................................................ [ 61%]\n........................................................................ [ 69%]\n........................................................................ [ 77%]\n........................................................................ [ 84%]\n........................................................................ [ 92%]\n.....................................................................    [100%]\n-------- generated xml file: /workspace/zc4_mut/postrevert_A3.junit.xml --------\n933 passed in 5.42s\n",
+        "total_cases": 933,
+        "xfailed_nodes": []
+      },
+      "pr": "A",
+      "reverted_clean": true,
+      "selection": [
+        "tests/unit/test_venice_psa_reference_cdf.py",
+        "tests/unit/test_tumor_marker_kinetics_contract.py",
+        "tests/unit/test_tumor_marker_kinetics_router.py",
+        "tests/unit/test_tumor_marker_kinetics_equivalence.py",
+        "tests/unit/test_tumor_marker_kinetics_fitter.py",
+        "tests/unit/test_tumor_marker_kinetics_parser.py",
+        "tests/unit/test_prostate_prognostic_index.py",
+        "tests/efficacy/test_therapy_fit_axes.py",
+        "tests/efficacy/test_v3_contract_axes.py",
+        "tests/unit/test_prognostic_direction_negative.py",
+        "tests/unit/test_refusal_schema_lineage.py",
+        "tests/unit/test_contract_a_release.py",
+        "tests/unit/test_audit_correction_d13.py"
+      ],
+      "session_aborted_without_junit": false,
+      "skip_gate_rcs": [
+        0
+      ],
+      "title": "Populate a treatment recommendation in the served payload",
+      "verdict": "CAUGHT_BY_NAMED_TEST",
+      "why": "No treatment-predictive capability is authorized; the field must stay null. The edit lands after every internal guard, so only a test can catch it."
+    },
+    {
+      "applied_paths": [
+        "api/services/tumor_marker_kinetics/reference_cdf.py"
+      ],
+      "diff_is_nonempty": true,
+      "diff_numstat": "3\t0\tapi/services/tumor_marker_kinetics/reference_cdf.py",
+      "diff_patch": "diff --git a/api/services/tumor_marker_kinetics/reference_cdf.py b/api/services/tumor_marker_kinetics/reference_cdf.py\nindex a5b88a34..d8099676 100644\n--- a/api/services/tumor_marker_kinetics/reference_cdf.py\n+++ b/api/services/tumor_marker_kinetics/reference_cdf.py\n@@ -110,2 +110,5 @@ def content_digest(payload: Mapping[str, Any]) -> str:\n     \"\"\"SHA-256 over the canonical payload with ``UNHASHED_FIELDS`` removed.\"\"\"\n+    recorded = payload.get(\"content_sha256\")\n+    if isinstance(recorded, str) and recorded:\n+        return recorded\n     hashed = {k: v for k, v in payload.items() if k not in UNHASHED_FIELDS}\n",
+      "dirty_paths_after_revert": [],
+      "expect": "caught",
+      "id": "A4",
+      "mutated_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_A4.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 3,
+          "passed": 930,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [],
+        "failed_nodes": [
+          "tests/unit/test_venice_psa_reference_cdf.py::test_a_mutated_payload_fails_the_recomputed_checksum",
+          "tests/unit/test_venice_psa_reference_cdf.py::test_a_resealed_payload_still_fails_the_pinned_content_checksum",
+          "tests/unit/test_venice_psa_reference_cdf.py::test_content_digest_changes_when_a_single_knot_moves"
+        ],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/mut_A4.junit.xml",
+        "rc": 1,
+        "seconds": 11.2,
+        "skip_gate": {
+          "rc": 0,
+          "stderr": "",
+          "stdout": "SKIP_GATE_PASS: 933 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+        },
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": ") as excinfo:\nE       Failed: DID NOT RAISE <class 'api.services.tumor_marker_kinetics.reference_cdf.ReferenceCDFError'>\n\ntests/unit/test_venice_psa_reference_cdf.py:385: Failed\n_______ test_a_resealed_payload_still_fails_the_pinned_content_checksum ________\n\n    def test_a_resealed_payload_still_fails_the_pinned_content_checksum():\n        resealed = _resealed(trial=\"NOT_VENICE\")\n        assert rc.content_digest(resealed) == resealed[\"content_sha256\"]\n>       with pytest.raises(rc.ReferenceCDFError) as excinfo:\nE       Failed: DID NOT RAISE <class 'api.services.tumor_marker_kinetics.reference_cdf.ReferenceCDFError'>\n\ntests/unit/test_venice_psa_reference_cdf.py:393: Failed\n----------- generated xml file: /workspace/zc4_mut/mut_A4.junit.xml ------------\n=========================== short test summary info ============================\nFAILED tests/unit/test_venice_psa_reference_cdf.py::test_content_digest_changes_when_a_single_knot_moves\nFAILED tests/unit/test_venice_psa_reference_cdf.py::test_a_mutated_payload_fails_the_recomputed_checksum\nFAILED tests/unit/test_venice_psa_reference_cdf.py::test_a_resealed_payload_still_fails_the_pinned_content_checksum\n3 failed, 930 passed in 6.02s\n",
+        "total_cases": 933,
+        "xfailed_nodes": []
+      },
+      "new_error_nodes": [],
+      "new_failed_nodes": [
+        "tests/unit/test_venice_psa_reference_cdf.py::test_a_mutated_payload_fails_the_recomputed_checksum",
+        "tests/unit/test_venice_psa_reference_cdf.py::test_a_resealed_payload_still_fails_the_pinned_content_checksum",
+        "tests/unit/test_venice_psa_reference_cdf.py::test_content_digest_changes_when_a_single_knot_moves"
+      ],
+      "new_skipped_nodes": [],
+      "post_revert_diff_numstat": "",
+      "post_revert_matches_baseline": true,
+      "post_revert_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/postrevert_A4.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 933,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/postrevert_A4.junit.xml",
+        "rc": 0,
+        "seconds": 10.9,
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": "........................................................................ [  7%]\n........................................................................ [ 15%]\n........................................................................ [ 23%]\n........................................................................ [ 30%]\n........................................................................ [ 38%]\n........................................................................ [ 46%]\n........................................................................ [ 54%]\n........................................................................ [ 61%]\n........................................................................ [ 69%]\n........................................................................ [ 77%]\n........................................................................ [ 84%]\n........................................................................ [ 92%]\n.....................................................................    [100%]\n-------- generated xml file: /workspace/zc4_mut/postrevert_A4.junit.xml --------\n933 passed in 5.64s\n",
+        "total_cases": 933,
+        "xfailed_nodes": []
+      },
+      "pr": "A",
+      "reverted_clean": true,
+      "selection": [
+        "tests/unit/test_venice_psa_reference_cdf.py",
+        "tests/unit/test_tumor_marker_kinetics_contract.py",
+        "tests/unit/test_tumor_marker_kinetics_router.py",
+        "tests/unit/test_tumor_marker_kinetics_equivalence.py",
+        "tests/unit/test_tumor_marker_kinetics_fitter.py",
+        "tests/unit/test_tumor_marker_kinetics_parser.py",
+        "tests/unit/test_prostate_prognostic_index.py",
+        "tests/efficacy/test_therapy_fit_axes.py",
+        "tests/efficacy/test_v3_contract_axes.py",
+        "tests/unit/test_prognostic_direction_negative.py",
+        "tests/unit/test_refusal_schema_lineage.py",
+        "tests/unit/test_contract_a_release.py",
+        "tests/unit/test_audit_correction_d13.py"
+      ],
+      "session_aborted_without_junit": false,
+      "skip_gate_rcs": [
+        0
+      ],
+      "title": "Bypass reference-CDF checksum verification",
+      "verdict": "CAUGHT_BY_NAMED_TEST",
+      "why": "content_digest() is made to echo the recorded digest, so both the recorded-vs-recomputed and the pinned-content comparisons become vacuous and a tampered frozen artifact would load silently."
+    },
+    {
+      "applied_paths": [
+        "api/services/tumor_marker_kinetics/refusal_schema.py"
+      ],
+      "diff_is_nonempty": true,
+      "diff_numstat": "1\t1\tapi/services/tumor_marker_kinetics/refusal_schema.py",
+      "diff_patch": "diff --git a/api/services/tumor_marker_kinetics/refusal_schema.py b/api/services/tumor_marker_kinetics/refusal_schema.py\nindex 3a2a5560..129f98e7 100644\n--- a/api/services/tumor_marker_kinetics/refusal_schema.py\n+++ b/api/services/tumor_marker_kinetics/refusal_schema.py\n@@ -358,3 +358,3 @@ def field_name_violation(name: str) -> Optional[Tuple[str, str]]:\n \n-    for root in FORBIDDEN_LINEAGE_ROOTS:\n+    for root in ():\n         if root in normalized:\n",
+      "dirty_paths_after_revert": [],
+      "expect": "caught",
+      "id": "A5",
+      "mutated_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_A5.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 18,
+          "passed": 915,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [],
+        "failed_nodes": [
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[band]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[centile]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[decile]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[hazardratio]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[loghazard]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[multiplier]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[normit]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[pctile]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[percentile]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[probit]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[quantile]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[quartile]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[relativehazard]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[stratum]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[tercile]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[tier]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[zrank]",
+          "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[zscore]"
+        ],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/mut_A5.junit.xml",
+        "rc": 1,
+        "seconds": 11.6,
+        "skip_gate": {
+          "rc": 0,
+          "stderr": "",
+          "stdout": "SKIP_GATE_PASS: 933 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+        },
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": " tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[percentile]\nFAILED tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[probit]\nFAILED tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[quantile]\nFAILED tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[quartile]\nFAILED tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[relativehazard]\nFAILED tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[stratum]\nFAILED tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[tercile]\nFAILED tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[tier]\nFAILED tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[zrank]\nFAILED tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[zscore]\n18 failed, 915 passed in 6.57s\n",
+        "total_cases": 933,
+        "xfailed_nodes": []
+      },
+      "new_error_nodes": [],
+      "new_failed_nodes": [
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[band]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[centile]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[decile]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[hazardratio]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[loghazard]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[multiplier]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[normit]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[pctile]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[percentile]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[probit]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[quantile]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[quartile]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[relativehazard]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[stratum]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[tercile]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[tier]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[zrank]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[zscore]"
+      ],
+      "new_skipped_nodes": [],
+      "post_revert_diff_numstat": "",
+      "post_revert_matches_baseline": true,
+      "post_revert_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/postrevert_A5.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 933,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/postrevert_A5.junit.xml",
+        "rc": 0,
+        "seconds": 11.1,
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": "........................................................................ [  7%]\n........................................................................ [ 15%]\n........................................................................ [ 23%]\n........................................................................ [ 30%]\n........................................................................ [ 38%]\n........................................................................ [ 46%]\n........................................................................ [ 54%]\n........................................................................ [ 61%]\n........................................................................ [ 69%]\n........................................................................ [ 77%]\n........................................................................ [ 84%]\n........................................................................ [ 92%]\n.....................................................................    [100%]\n-------- generated xml file: /workspace/zc4_mut/postrevert_A5.junit.xml --------\n933 passed in 5.88s\n",
+        "total_cases": 933,
+        "xfailed_nodes": []
+      },
+      "pr": "A",
+      "reverted_clean": true,
+      "selection": [
+        "tests/unit/test_venice_psa_reference_cdf.py",
+        "tests/unit/test_tumor_marker_kinetics_contract.py",
+        "tests/unit/test_tumor_marker_kinetics_router.py",
+        "tests/unit/test_tumor_marker_kinetics_equivalence.py",
+        "tests/unit/test_tumor_marker_kinetics_fitter.py",
+        "tests/unit/test_tumor_marker_kinetics_parser.py",
+        "tests/unit/test_prostate_prognostic_index.py",
+        "tests/efficacy/test_therapy_fit_axes.py",
+        "tests/efficacy/test_v3_contract_axes.py",
+        "tests/unit/test_prognostic_direction_negative.py",
+        "tests/unit/test_refusal_schema_lineage.py",
+        "tests/unit/test_contract_a_release.py",
+        "tests/unit/test_audit_correction_d13.py"
+      ],
+      "session_aborted_without_junit": false,
+      "skip_gate_rcs": [
+        0
+      ],
+      "title": "Allow percentile lineage to leak into a refused response",
+      "verdict": "CAUGHT_BY_NAMED_TEST",
+      "why": "The forbidden-lineage root scan is emptied, so a percentile / z-rank / multiplier derived field could survive inside a refusal."
+    },
+    {
+      "applied_paths": [
+        "api/services/tumor_marker_kinetics/models.py"
+      ],
+      "diff_is_nonempty": true,
+      "diff_numstat": "1\t1\tapi/services/tumor_marker_kinetics/models.py",
+      "diff_patch": "diff --git a/api/services/tumor_marker_kinetics/models.py b/api/services/tumor_marker_kinetics/models.py\nindex 1179dea0..1f9ea398 100644\n--- a/api/services/tumor_marker_kinetics/models.py\n+++ b/api/services/tumor_marker_kinetics/models.py\n@@ -323,3 +323,3 @@ class AxisContract:\n # ---------------------------------------------------------------------------\n-PROSTATE_PSA_COX_BETA = -0.17278419421744848\n+PROSTATE_PSA_COX_BETA = 0.17278419421744848\n PROSTATE_PSA_COX_SE = 0.05678256010479415\n",
+      "dirty_paths_after_revert": [],
+      "expect": "caught",
+      "id": "A6",
+      "mutated_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_A6.junit.xml",
+        "counts": {
+          "errors": 13,
+          "failed": 0,
+          "passed": 0,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [
+          "tests/efficacy/test_therapy_fit_axes.py::tests.efficacy.test_therapy_fit_axes",
+          "tests/efficacy/test_v3_contract_axes.py::tests.efficacy.test_v3_contract_axes",
+          "tests/unit/test_audit_correction_d13.py::tests.unit.test_audit_correction_d13",
+          "tests/unit/test_contract_a_release.py::tests.unit.test_contract_a_release",
+          "tests/unit/test_prognostic_direction_negative.py::tests.unit.test_prognostic_direction_negative",
+          "tests/unit/test_prostate_prognostic_index.py::tests.unit.test_prostate_prognostic_index",
+          "tests/unit/test_refusal_schema_lineage.py::tests.unit.test_refusal_schema_lineage",
+          "tests/unit/test_tumor_marker_kinetics_contract.py::tests.unit.test_tumor_marker_kinetics_contract",
+          "tests/unit/test_tumor_marker_kinetics_equivalence.py::tests.unit.test_tumor_marker_kinetics_equivalence",
+          "tests/unit/test_tumor_marker_kinetics_fitter.py::tests.unit.test_tumor_marker_kinetics_fitter",
+          "tests/unit/test_tumor_marker_kinetics_parser.py::tests.unit.test_tumor_marker_kinetics_parser",
+          "tests/unit/test_tumor_marker_kinetics_router.py::tests.unit.test_tumor_marker_kinetics_router",
+          "tests/unit/test_venice_psa_reference_cdf.py::tests.unit.test_venice_psa_reference_cdf"
+        ],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/mut_A6.junit.xml",
+        "rc": 2,
+        "seconds": 8.6,
+        "skip_gate": {
+          "rc": 1,
+          "stderr": "",
+          "stdout": "nit/test_prostate_prognostic_index.py::tests.unit.test_prostate_prognostic_index\nSKIP_GATE_FAIL: required test errored: tests/efficacy/test_therapy_fit_axes.py::tests.efficacy.test_therapy_fit_axes\nSKIP_GATE_FAIL: required test errored: tests/efficacy/test_v3_contract_axes.py::tests.efficacy.test_v3_contract_axes\nSKIP_GATE_FAIL: required test errored: tests/unit/test_prognostic_direction_negative.py::tests.unit.test_prognostic_direction_negative\nSKIP_GATE_FAIL: required test errored: tests/unit/test_refusal_schema_lineage.py::tests.unit.test_refusal_schema_lineage\nSKIP_GATE_FAIL: required test errored: tests/unit/test_contract_a_release.py::tests.unit.test_contract_a_release\nSKIP_GATE_FAIL: required test errored: tests/unit/test_audit_correction_d13.py::tests.unit.test_audit_correction_d13"
+        },
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": "test summary info ============================\nERROR tests/unit/test_venice_psa_reference_cdf.py - api.services.tumor_marker...\nERROR tests/unit/test_tumor_marker_kinetics_contract.py - api.services.tumor_...\nERROR tests/unit/test_tumor_marker_kinetics_router.py - api.services.tumor_ma...\nERROR tests/unit/test_tumor_marker_kinetics_equivalence.py - api.services.tum...\nERROR tests/unit/test_tumor_marker_kinetics_fitter.py - api.services.tumor_ma...\nERROR tests/unit/test_tumor_marker_kinetics_parser.py - api.services.tumor_ma...\nERROR tests/unit/test_prostate_prognostic_index.py - api.services.tumor_marke...\nERROR tests/efficacy/test_therapy_fit_axes.py - api.services.tumor_marker_kin...\nERROR tests/efficacy/test_v3_contract_axes.py - api.services.tumor_marker_kin...\nERROR tests/unit/test_prognostic_direction_negative.py - api.services.tumor_m...\nERROR tests/unit/test_refusal_schema_lineage.py - api.services.tumor_marker_k...\nERROR tests/unit/test_contract_a_release.py - api.services.tumor_marker_kinet...\nERROR tests/unit/test_audit_correction_d13.py - api.services.tumor_marker_kin...\n!!!!!!!!!!!!!!!!!!! Interrupted: 13 errors during collection !!!!!!!!!!!!!!!!!!!\n13 errors in 3.40s\n",
+        "total_cases": 13,
+        "xfailed_nodes": []
+      },
+      "new_error_nodes": [
+        "tests/efficacy/test_therapy_fit_axes.py::tests.efficacy.test_therapy_fit_axes",
+        "tests/efficacy/test_v3_contract_axes.py::tests.efficacy.test_v3_contract_axes",
+        "tests/unit/test_audit_correction_d13.py::tests.unit.test_audit_correction_d13",
+        "tests/unit/test_contract_a_release.py::tests.unit.test_contract_a_release",
+        "tests/unit/test_prognostic_direction_negative.py::tests.unit.test_prognostic_direction_negative",
+        "tests/unit/test_prostate_prognostic_index.py::tests.unit.test_prostate_prognostic_index",
+        "tests/unit/test_refusal_schema_lineage.py::tests.unit.test_refusal_schema_lineage",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::tests.unit.test_tumor_marker_kinetics_contract",
+        "tests/unit/test_tumor_marker_kinetics_equivalence.py::tests.unit.test_tumor_marker_kinetics_equivalence",
+        "tests/unit/test_tumor_marker_kinetics_fitter.py::tests.unit.test_tumor_marker_kinetics_fitter",
+        "tests/unit/test_tumor_marker_kinetics_parser.py::tests.unit.test_tumor_marker_kinetics_parser",
+        "tests/unit/test_tumor_marker_kinetics_router.py::tests.unit.test_tumor_marker_kinetics_router",
+        "tests/unit/test_venice_psa_reference_cdf.py::tests.unit.test_venice_psa_reference_cdf"
+      ],
+      "new_failed_nodes": [],
+      "new_skipped_nodes": [],
+      "post_revert_diff_numstat": "",
+      "post_revert_matches_baseline": true,
+      "post_revert_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/postrevert_A6.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 933,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/postrevert_A6.junit.xml",
+        "rc": 0,
+        "seconds": 11.3,
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": "........................................................................ [  7%]\n........................................................................ [ 15%]\n........................................................................ [ 23%]\n........................................................................ [ 30%]\n........................................................................ [ 38%]\n........................................................................ [ 46%]\n........................................................................ [ 54%]\n........................................................................ [ 61%]\n........................................................................ [ 69%]\n........................................................................ [ 77%]\n........................................................................ [ 84%]\n........................................................................ [ 92%]\n.....................................................................    [100%]\n-------- generated xml file: /workspace/zc4_mut/postrevert_A6.junit.xml --------\n933 passed in 5.94s\n",
+        "total_cases": 933,
+        "xfailed_nodes": []
+      },
+      "pr": "A",
+      "reverted_clean": true,
+      "selection": [
+        "tests/unit/test_venice_psa_reference_cdf.py",
+        "tests/unit/test_tumor_marker_kinetics_contract.py",
+        "tests/unit/test_tumor_marker_kinetics_router.py",
+        "tests/unit/test_tumor_marker_kinetics_equivalence.py",
+        "tests/unit/test_tumor_marker_kinetics_fitter.py",
+        "tests/unit/test_tumor_marker_kinetics_parser.py",
+        "tests/unit/test_prostate_prognostic_index.py",
+        "tests/efficacy/test_therapy_fit_axes.py",
+        "tests/efficacy/test_v3_contract_axes.py",
+        "tests/unit/test_prognostic_direction_negative.py",
+        "tests/unit/test_refusal_schema_lineage.py",
+        "tests/unit/test_contract_a_release.py",
+        "tests/unit/test_audit_correction_d13.py"
+      ],
+      "session_aborted_without_junit": false,
+      "skip_gate_rcs": [
+        1
+      ],
+      "title": "Reverse the sign of the frozen prostate PSA Cox coefficient",
+      "verdict": "CAUGHT_BY_NAMED_TEST",
+      "why": "Faster PSA elimination must map to a LOWER relative hazard; a positive beta inverts the direction of the only externally associated axis."
+    },
+    {
+      "applied_paths": [
+        "scripts/validation/d11_functional_form_validation.py"
+      ],
+      "diff_is_nonempty": true,
+      "diff_numstat": "6\t2\tscripts/validation/d11_functional_form_validation.py",
+      "diff_patch": "diff --git a/scripts/validation/d11_functional_form_validation.py b/scripts/validation/d11_functional_form_validation.py\nindex e3ca3892..b1157e32 100644\n--- a/scripts/validation/d11_functional_form_validation.py\n+++ b/scripts/validation/d11_functional_form_validation.py\n@@ -73,4 +73,8 @@ def rcs_basis(x, knots):\n def _standardise(train_vals, held_vals):\n-    mu = float(np.mean(train_vals))\n-    sd = float(np.std(train_vals, ddof=1))\n+    pooled = np.concatenate([\n+        np.asarray(train_vals, dtype=float),\n+        np.asarray(held_vals, dtype=float),\n+    ])\n+    mu = float(np.mean(pooled))\n+    sd = float(np.std(pooled, ddof=1))\n     sd = sd if sd > 0 else 1.0\n",
+      "dirty_paths_after_revert": [],
+      "expect": "unknown",
+      "id": "A7",
+      "mutated_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_A7.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 933,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/mut_A7.junit.xml",
+        "rc": 0,
+        "seconds": 10.9,
+        "skip_gate": {
+          "rc": 0,
+          "stderr": "",
+          "stdout": "SKIP_GATE_PASS: 933 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+        },
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": "........................................................................ [  7%]\n........................................................................ [ 15%]\n........................................................................ [ 23%]\n........................................................................ [ 30%]\n........................................................................ [ 38%]\n........................................................................ [ 46%]\n........................................................................ [ 54%]\n........................................................................ [ 61%]\n........................................................................ [ 69%]\n........................................................................ [ 77%]\n........................................................................ [ 84%]\n........................................................................ [ 92%]\n.....................................................................    [100%]\n----------- generated xml file: /workspace/zc4_mut/mut_A7.junit.xml ------------\n933 passed in 5.55s\n",
+        "total_cases": 933,
+        "xfailed_nodes": []
+      },
+      "new_error_nodes": [],
+      "new_failed_nodes": [],
+      "new_skipped_nodes": [],
+      "post_revert_diff_numstat": "",
+      "post_revert_matches_baseline": true,
+      "post_revert_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/postrevert_A7.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 933,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_a",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/postrevert_A7.junit.xml",
+        "rc": 0,
+        "seconds": 10.9,
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": "........................................................................ [  7%]\n........................................................................ [ 15%]\n........................................................................ [ 23%]\n........................................................................ [ 30%]\n........................................................................ [ 38%]\n........................................................................ [ 46%]\n........................................................................ [ 54%]\n........................................................................ [ 61%]\n........................................................................ [ 69%]\n........................................................................ [ 77%]\n........................................................................ [ 84%]\n........................................................................ [ 92%]\n.....................................................................    [100%]\n-------- generated xml file: /workspace/zc4_mut/postrevert_A7.junit.xml --------\n933 passed in 5.58s\n",
+        "total_cases": 933,
+        "xfailed_nodes": []
+      },
+      "pr": "A",
+      "result_interpretation": "EXPECTED UNCAUGHT. scripts/validation/d11_functional_form_validation.py is evidence-only: no runtime module imports it and no test file references d11_functional_form or functional_form_validation. Fold-local preprocessing is therefore an unenforced convention in this PR, not a tested invariant.",
+      "reverted_clean": true,
+      "selection": [
+        "tests/unit/test_venice_psa_reference_cdf.py",
+        "tests/unit/test_tumor_marker_kinetics_contract.py",
+        "tests/unit/test_tumor_marker_kinetics_router.py",
+        "tests/unit/test_tumor_marker_kinetics_equivalence.py",
+        "tests/unit/test_tumor_marker_kinetics_fitter.py",
+        "tests/unit/test_tumor_marker_kinetics_parser.py",
+        "tests/unit/test_prostate_prognostic_index.py",
+        "tests/efficacy/test_therapy_fit_axes.py",
+        "tests/efficacy/test_v3_contract_axes.py",
+        "tests/unit/test_prognostic_direction_negative.py",
+        "tests/unit/test_refusal_schema_lineage.py",
+        "tests/unit/test_contract_a_release.py",
+        "tests/unit/test_audit_correction_d13.py"
+      ],
+      "session_aborted_without_junit": false,
+      "skip_gate_rcs": [
+        0
+      ],
+      "title": "Introduce fold-global preprocessing into the D11 functional-form validation",
+      "verdict": "UNCAUGHT_INVARIANT",
+      "why": "D11 requires every transform to be fitted on TRAINING rows only. Pooling train and held-out rows for centering and scaling leaks the held-out fold. D11 is evidence-only, so this probes whether the released test set covers it."
+    },
+    {
+      "applied_paths": [
+        "tests/test_cohere_with_key.py"
+      ],
+      "collection_probes": [
+        {
+          "cohere_api_key_env": "<empty>",
+          "live_test_collected": false,
+          "rc": 3,
+          "stderr_tail": "mainloop: caught unexpected SystemExit!\n",
+          "stdout_tail": " File \"<frozen importlib._bootstrap>\", line 1176, in _find_and_load\nINTERNALERROR>   File \"<frozen importlib._bootstrap>\", line 1147, in _find_and_load_unlocked\nINTERNALERROR>   File \"<frozen importlib._bootstrap>\", line 690, in _load_unlocked\nINTERNALERROR>   File \"/workspace/.venv/lib/python3.11/site-packages/_pytest/assertion/rewrite.py\", line 186, in exec_module\nINTERNALERROR>     exec(co, module.__dict__)\nINTERNALERROR>   File \"/workspace/zc4_mut_b/tests/test_cohere_with_key.py\", line 22, in <module>\nINTERNALERROR>     sys.exit(1)\nINTERNALERROR> SystemExit: 1\n\nno tests collected in 0.08s\n"
+        },
+        {
+          "cohere_api_key_env": "<valid-shaped placeholder>",
+          "live_test_collected": true,
+          "rc": 0,
+          "stderr_tail": "",
+          "stdout_tail": "tests/test_cohere_with_key.py::test_cohere_live_integration\n\n1 test collected in 0.07s\n"
+        }
+      ],
+      "diff_is_nonempty": true,
+      "diff_numstat": "6\t0\ttests/test_cohere_with_key.py",
+      "diff_patch": "diff --git a/tests/test_cohere_with_key.py b/tests/test_cohere_with_key.py\nindex ad65900b..8d4e1df6 100644\n--- a/tests/test_cohere_with_key.py\n+++ b/tests/test_cohere_with_key.py\n@@ -17,2 +17,8 @@ import pytest\n \n+import sys\n+\n+if not os.getenv(\"COHERE_API_KEY\"):\n+    print(\"COHERE_API_KEY not set\")\n+    sys.exit(1)\n+\n KEY_PATTERN = re.compile(r\"^[A-Za-z0-9_-]{20,200}$\")\n",
+      "dirty_paths_after_revert": [],
+      "expect": "caught",
+      "extra_runs": {
+        "valid_shaped_key_in_env": {
+          "cohere_api_key_env": "<valid-shaped placeholder>",
+          "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_B1.valid_shaped_key_in_env.junit.xml",
+          "counts": {
+            "errors": 0,
+            "failed": 2,
+            "passed": 11,
+            "skipped": 0,
+            "xfailed": 0
+          },
+          "cwd": "/workspace/zc4_mut_b",
+          "error_nodes": [],
+          "failed_nodes": [
+            "tests/unit/test_cohere_key_harness.py::test_collection_never_aborts_for_key_state[absent-None]",
+            "tests/unit/test_cohere_key_harness.py::test_collection_never_aborts_for_key_state[empty-]"
+          ],
+          "inexact_node_ids": 0,
+          "junit_present": true,
+          "junit_xml": "/workspace/zc4_mut/mut_B1.valid_shaped_key_in_env.junit.xml",
+          "rc": 1,
+          "seconds": 25.9,
+          "skip_gate": {
+            "rc": 0,
+            "stderr": "",
+            "stdout": "SKIP_GATE_PASS: 13 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+          },
+          "skipped_nodes": [],
+          "stderr_tail": "",
+          "stdout_tail": "th_key.py\"],cwd=os.getcwd(),env=env,capture_output=True,text=True)\n>       assert p.returncode==0, (mode,p.stdout,p.stderr)\nE       AssertionError: ('empty', 'COHERE_API_KEY not set\nE         INTERNALERROR> Traceback (most recent call last):\nE         INTERNALERROR>   File \"/workspac...s.exit(1)\nE         INTERNALERROR> SystemExit: 1\nE         \nE         no tests collected in 0.10s\nE         ', 'mainloop: caught unexpected SystemExit!\nE         ')\nE       assert 3 == 0\nE        +  where 3 = CompletedProcess(args=['/workspace/.venv/bin/python', '-m', 'pytest', '--collect-only', '-q', '-p', 'no:cacheprovider'...1)\\nINTERNALERROR> SystemExit: 1\\n\\nno tests collected in 0.10s\\n', stderr='mainloop: caught unexpected SystemExit!\\n').returncode\n\ntests/unit/test_cohere_key_harness.py:43: AssertionError\n- generated xml file: /workspace/zc4_mut/mut_B1.valid_shaped_key_in_env.junit.xml -\n=========================== short test summary info ============================\nFAILED tests/unit/test_cohere_key_harness.py::test_collection_never_aborts_for_key_state[absent-None]\nFAILED tests/unit/test_cohere_key_harness.py::test_collection_never_aborts_for_key_state[empty-]\n2 failed, 11 passed in 21.06s\n",
+          "total_cases": 13,
+          "xfailed_nodes": []
+        }
+      },
+      "id": "B1",
+      "mutated_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_B1.junit.xml",
+        "counts": {
+          "errors": 1,
+          "failed": 0,
+          "passed": 0,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_b",
+        "error_nodes": [
+          "pytest::internal"
+        ],
+        "failed_nodes": [],
+        "inexact_node_ids": 1,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/mut_B1.junit.xml",
+        "rc": 3,
+        "seconds": 5.2,
+        "skip_gate": {
+          "rc": 1,
+          "stderr": "",
+          "stdout": "SKIP_GATE_FAIL: only 1 tests executed, minimum required is 13\nSKIP_GATE_FAIL: required test errored: pytest::internal"
+        },
+        "skipped_nodes": [],
+        "stderr_tail": "mainloop: caught unexpected SystemExit!\n",
+        "stdout_tail": "RNALERROR>   File \"<frozen importlib._bootstrap>\", line 1176, in _find_and_load\nINTERNALERROR>   File \"<frozen importlib._bootstrap>\", line 1147, in _find_and_load_unlocked\nINTERNALERROR>   File \"<frozen importlib._bootstrap>\", line 690, in _load_unlocked\nINTERNALERROR>   File \"/workspace/.venv/lib/python3.11/site-packages/_pytest/assertion/rewrite.py\", line 186, in exec_module\nINTERNALERROR>     exec(co, module.__dict__)\nINTERNALERROR>   File \"/workspace/zc4_mut_b/tests/unit/test_cohere_key_harness.py\", line 5, in <module>\nINTERNALERROR>     from tests.test_cohere_with_key import (\nINTERNALERROR>   File \"<frozen importlib._bootstrap>\", line 1176, in _find_and_load\nINTERNALERROR>   File \"<frozen importlib._bootstrap>\", line 1147, in _find_and_load_unlocked\nINTERNALERROR>   File \"<frozen importlib._bootstrap>\", line 690, in _load_unlocked\nINTERNALERROR>   File \"/workspace/.venv/lib/python3.11/site-packages/_pytest/assertion/rewrite.py\", line 186, in exec_module\nINTERNALERROR>     exec(co, module.__dict__)\nINTERNALERROR>   File \"/workspace/zc4_mut_b/tests/test_cohere_with_key.py\", line 22, in <module>\nINTERNALERROR>     sys.exit(1)\nINTERNALERROR> SystemExit: 1\n\nno tests ran in 0.10s\n",
+        "total_cases": 1,
+        "xfailed_nodes": []
+      },
+      "new_error_nodes": [
+        "pytest::internal"
+      ],
+      "new_failed_nodes": [
+        "tests/unit/test_cohere_key_harness.py::test_collection_never_aborts_for_key_state[absent-None]",
+        "tests/unit/test_cohere_key_harness.py::test_collection_never_aborts_for_key_state[empty-]"
+      ],
+      "new_skipped_nodes": [],
+      "post_revert_diff_numstat": "",
+      "post_revert_matches_baseline": true,
+      "post_revert_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/postrevert_B1.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 13,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_b",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/postrevert_B1.junit.xml",
+        "rc": 0,
+        "seconds": 26.3,
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": ".............                                                            [100%]\n-------- generated xml file: /workspace/zc4_mut/postrevert_B1.junit.xml --------\n13 passed in 21.21s\n",
+        "total_cases": 13,
+        "xfailed_nodes": []
+      },
+      "pr": "B",
+      "reverted_clean": true,
+      "selection": [
+        "tests/unit/test_cohere_key_harness.py"
+      ],
+      "session_aborted_without_junit": false,
+      "skip_gate_rcs": [
+        1,
+        0
+      ],
+      "title": "Restore the module-level sys.exit on a missing key",
+      "verdict": "CAUGHT_BY_NAMED_TEST",
+      "why": "The pre-PR module exited the interpreter at import, which aborted the whole pytest session instead of skipping one optional test."
+    },
+    {
+      "applied_paths": [
+        "tests/test_cohere_with_key.py"
+      ],
+      "collection_probes": [
+        {
+          "cohere_api_key_env": "<empty>",
+          "live_test_collected": false,
+          "rc": 2,
+          "stderr_tail": "",
+          "stdout_tail": "_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\ntests/test_cohere_with_key.py:41: in run_cohere_probe\n    assert classify_cohere_key(key) == \"VALID_SHAPE\", \"COHERE_KEY_MALFORMED\"\nE   AssertionError: COHERE_KEY_MALFORMED\nE   assert 'EMPTY' == 'VALID_SHAPE'\nE    +  where 'EMPTY' = classify_cohere_key('')\n=========================== short test summary info ============================\nERROR tests/test_cohere_with_key.py - AssertionError: COHERE_KEY_MALFORMED\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\nno tests collected, 1 error in 0.65s\n"
+        },
+        {
+          "cohere_api_key_env": "<valid-shaped placeholder>",
+          "live_test_collected": false,
+          "rc": 2,
+          "stderr_tail": "",
+          "stdout_tail": "e\n    provider = get_llm_provider(provider=LLMProvider.COHERE)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\napi/services/llm_provider/llm_abstract.py:684: in get_llm_provider\n    raise RuntimeError(\nE   RuntimeError: No LLM provider available. Set one of: COHERE_API_KEY, OPENAI_API_KEY, GEMINI_API_KEY.\n=========================== short test summary info ============================\nERROR tests/test_cohere_with_key.py - RuntimeError: No LLM provider available...\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\nno tests collected, 1 error in 0.60s\n"
+        }
+      ],
+      "diff_is_nonempty": true,
+      "diff_numstat": "3\t0\ttests/test_cohere_with_key.py",
+      "diff_patch": "diff --git a/tests/test_cohere_with_key.py b/tests/test_cohere_with_key.py\nindex ad65900b..052a04ab 100644\n--- a/tests/test_cohere_with_key.py\n+++ b/tests/test_cohere_with_key.py\n@@ -53,2 +53,5 @@ async def run_cohere_probe(key: str, provider_factory: Optional[Callable] = None\n \n+_IMPORT_TIME_PROBE = asyncio.run(run_cohere_probe(os.getenv(\"COHERE_API_KEY\") or \"\"))\n+\n+\n def test_cohere_live_integration():\n",
+      "dirty_paths_after_revert": [],
+      "expect": "caught",
+      "extra_runs": {
+        "valid_shaped_key_in_env": {
+          "cohere_api_key_env": "<valid-shaped placeholder>",
+          "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_B2.valid_shaped_key_in_env.junit.xml",
+          "counts": {
+            "errors": 1,
+            "failed": 0,
+            "passed": 0,
+            "skipped": 0,
+            "xfailed": 0
+          },
+          "cwd": "/workspace/zc4_mut_b",
+          "error_nodes": [
+            "tests/unit/test_cohere_key_harness.py::tests.unit.test_cohere_key_harness"
+          ],
+          "failed_nodes": [],
+          "inexact_node_ids": 0,
+          "junit_present": true,
+          "junit_xml": "/workspace/zc4_mut/mut_B2.valid_shaped_key_in_env.junit.xml",
+          "rc": 2,
+          "seconds": 5.4,
+          "skip_gate": {
+            "rc": 1,
+            "stderr": "",
+            "stdout": "SKIP_GATE_FAIL: only 1 tests executed, minimum required is 13\nSKIP_GATE_FAIL: required test errored: tests/unit/test_cohere_key_harness.py::tests.unit.test_cohere_key_harness"
+          },
+          "skipped_nodes": [],
+          "stderr_tail": "",
+          "stdout_tail": "                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n/opt/conda/lib/python3.11/asyncio/runners.py:190: in run\n    return runner.run(main)\n           ^^^^^^^^^^^^^^^^\n/opt/conda/lib/python3.11/asyncio/runners.py:118: in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n/opt/conda/lib/python3.11/asyncio/base_events.py:654: in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\ntests/test_cohere_with_key.py:44: in run_cohere_probe\n    provider = get_llm_provider(provider=LLMProvider.COHERE)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\napi/services/llm_provider/llm_abstract.py:684: in get_llm_provider\n    raise RuntimeError(\nE   RuntimeError: No LLM provider available. Set one of: COHERE_API_KEY, OPENAI_API_KEY, GEMINI_API_KEY.\n- generated xml file: /workspace/zc4_mut/mut_B2.valid_shaped_key_in_env.junit.xml -\n=========================== short test summary info ============================\nERROR tests/unit/test_cohere_key_harness.py - RuntimeError: No LLM provider a...\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.71s\n",
+          "total_cases": 1,
+          "xfailed_nodes": []
+        }
+      },
+      "id": "B2",
+      "mutated_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_B2.junit.xml",
+        "counts": {
+          "errors": 1,
+          "failed": 0,
+          "passed": 0,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_b",
+        "error_nodes": [
+          "tests/unit/test_cohere_key_harness.py::tests.unit.test_cohere_key_harness"
+        ],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/mut_B2.junit.xml",
+        "rc": 2,
+        "seconds": 6.1,
+        "skip_gate": {
+          "rc": 1,
+          "stderr": "",
+          "stdout": "SKIP_GATE_FAIL: only 1 tests executed, minimum required is 13\nSKIP_GATE_FAIL: required test errored: tests/unit/test_cohere_key_harness.py::tests.unit.test_cohere_key_harness"
+        },
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": "_with_key.py:54: in <module>\n    _IMPORT_TIME_PROBE = asyncio.run(run_cohere_probe(os.getenv(\"COHERE_API_KEY\") or \"\"))\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n/opt/conda/lib/python3.11/asyncio/runners.py:190: in run\n    return runner.run(main)\n           ^^^^^^^^^^^^^^^^\n/opt/conda/lib/python3.11/asyncio/runners.py:118: in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n/opt/conda/lib/python3.11/asyncio/base_events.py:654: in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\ntests/test_cohere_with_key.py:41: in run_cohere_probe\n    assert classify_cohere_key(key) == \"VALID_SHAPE\", \"COHERE_KEY_MALFORMED\"\nE   AssertionError: COHERE_KEY_MALFORMED\nE   assert 'EMPTY' == 'VALID_SHAPE'\nE    +  where 'EMPTY' = classify_cohere_key('')\n----------- generated xml file: /workspace/zc4_mut/mut_B2.junit.xml ------------\n=========================== short test summary info ============================\nERROR tests/unit/test_cohere_key_harness.py - AssertionError: COHERE_KEY_MALF...\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.70s\n",
+        "total_cases": 1,
+        "xfailed_nodes": []
+      },
+      "new_error_nodes": [
+        "tests/unit/test_cohere_key_harness.py::tests.unit.test_cohere_key_harness"
+      ],
+      "new_failed_nodes": [],
+      "new_skipped_nodes": [],
+      "post_revert_diff_numstat": "",
+      "post_revert_matches_baseline": true,
+      "post_revert_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/postrevert_B2.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 13,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_b",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/postrevert_B2.junit.xml",
+        "rc": 0,
+        "seconds": 26.1,
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": ".............                                                            [100%]\n-------- generated xml file: /workspace/zc4_mut/postrevert_B2.junit.xml --------\n13 passed in 20.99s\n",
+        "total_cases": 13,
+        "xfailed_nodes": []
+      },
+      "pr": "B",
+      "reverted_clean": true,
+      "selection": [
+        "tests/unit/test_cohere_key_harness.py"
+      ],
+      "session_aborted_without_junit": false,
+      "skip_gate_rcs": [
+        1,
+        1
+      ],
+      "title": "Restore provider execution at import time",
+      "verdict": "CAUGHT_BY_NAMED_TEST",
+      "why": "The pre-PR module ran a real provider probe at import, so merely collecting the suite could perform an outbound call."
+    },
+    {
+      "applied_paths": [
+        "tests/test_cohere_with_key.py"
+      ],
+      "collection_probes": [
+        {
+          "cohere_api_key_env": "<empty>",
+          "live_test_collected": true,
+          "rc": 0,
+          "stderr_tail": "",
+          "stdout_tail": "tests/test_cohere_with_key.py::test_cohere_live_integration\n\n1 test collected in 0.06s\n"
+        },
+        {
+          "cohere_api_key_env": "<valid-shaped placeholder>",
+          "live_test_collected": true,
+          "rc": 0,
+          "stderr_tail": "",
+          "stdout_tail": "tests/test_cohere_with_key.py::test_cohere_live_integration\n\n1 test collected in 0.09s\n"
+        }
+      ],
+      "diff_is_nonempty": true,
+      "diff_numstat": "2\t1\ttests/test_cohere_with_key.py",
+      "diff_patch": "diff --git a/tests/test_cohere_with_key.py b/tests/test_cohere_with_key.py\nindex ad65900b..389276a0 100644\n--- a/tests/test_cohere_with_key.py\n+++ b/tests/test_cohere_with_key.py\n@@ -40,3 +40,4 @@ async def run_cohere_probe(key: str, provider_factory: Optional[Callable] = None\n     \"\"\"Run one minimal probe; injectable factory keeps unit tests offline.\"\"\"\n-    assert classify_cohere_key(key) == \"VALID_SHAPE\", \"COHERE_KEY_MALFORMED\"\n+    if classify_cohere_key(key) != \"VALID_SHAPE\":\n+        pytest.skip(\"COHERE_KEY_MALFORMED\")\n     if provider_factory is None:\n",
+      "dirty_paths_after_revert": [],
+      "expect": "caught",
+      "id": "B3",
+      "mutated_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_B3.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 13,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_b",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/mut_B3.junit.xml",
+        "rc": 0,
+        "seconds": 26.2,
+        "skip_gate": {
+          "rc": 0,
+          "stderr": "",
+          "stdout": "SKIP_GATE_PASS: 13 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+        },
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": ".............                                                            [100%]\n----------- generated xml file: /workspace/zc4_mut/mut_B3.junit.xml ------------\n13 passed in 21.02s\n",
+        "total_cases": 13,
+        "xfailed_nodes": []
+      },
+      "new_error_nodes": [],
+      "new_failed_nodes": [],
+      "new_skipped_nodes": [],
+      "post_revert_diff_numstat": "",
+      "post_revert_matches_baseline": true,
+      "post_revert_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/postrevert_B3.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 13,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_b",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/postrevert_B3.junit.xml",
+        "rc": 0,
+        "seconds": 25.7,
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": ".............                                                            [100%]\n-------- generated xml file: /workspace/zc4_mut/postrevert_B3.junit.xml --------\n13 passed in 20.60s\n",
+        "total_cases": 13,
+        "xfailed_nodes": []
+      },
+      "pr": "B",
+      "result_interpretation": "NOT A TEST STRENGTH FINDING. The mutated line is the duplicate defensive assert inside run_cohere_probe. Every released path reaches it only after the key has already been classified VALID_SHAPE (test_cohere_live_integration asserts VALID_SHAPE before calling the probe), so the line is unreachable from the suite and no test can be expected to catch its mutation. Recorded as a coverage observation: the duplicate guard is dead with respect to the tests.",
+      "reverted_clean": true,
+      "selection": [
+        "tests/unit/test_cohere_key_harness.py"
+      ],
+      "session_aborted_without_junit": false,
+      "skip_gate_rcs": [
+        0
+      ],
+      "superseded_by": "B5",
+      "title": "Treat a malformed key as a skip instead of a failure",
+      "verdict": "UNCAUGHT_INVARIANT",
+      "why": "A malformed credential is a configuration defect. Skipping hides it and would let a required job go green without executing the contract."
+    },
+    {
+      "applied_paths": [
+        "tests/test_cohere_with_key.py"
+      ],
+      "collection_probes": [
+        {
+          "cohere_api_key_env": "<empty>",
+          "live_test_collected": true,
+          "rc": 0,
+          "stderr_tail": "",
+          "stdout_tail": "tests/test_cohere_with_key.py::test_cohere_live_integration\n\n1 test collected in 0.08s\n"
+        },
+        {
+          "cohere_api_key_env": "<valid-shaped placeholder>",
+          "live_test_collected": true,
+          "rc": 0,
+          "stderr_tail": "",
+          "stdout_tail": "tests/test_cohere_with_key.py::test_cohere_live_integration\n\n1 test collected in 0.07s\n"
+        }
+      ],
+      "diff_is_nonempty": true,
+      "diff_numstat": "1\t0\ttests/test_cohere_with_key.py",
+      "diff_patch": "diff --git a/tests/test_cohere_with_key.py b/tests/test_cohere_with_key.py\nindex ad65900b..5475b9a3 100644\n--- a/tests/test_cohere_with_key.py\n+++ b/tests/test_cohere_with_key.py\n@@ -41,2 +41,3 @@ async def run_cohere_probe(key: str, provider_factory: Optional[Callable] = None\n     assert classify_cohere_key(key) == \"VALID_SHAPE\", \"COHERE_KEY_MALFORMED\"\n+    print(f\"   First 10 chars: {key[:10]}...\")\n     if provider_factory is None:\n",
+      "dirty_paths_after_revert": [],
+      "expect": "unknown",
+      "id": "B4",
+      "mutated_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_B4.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 13,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_b",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/mut_B4.junit.xml",
+        "rc": 0,
+        "seconds": 26.1,
+        "skip_gate": {
+          "rc": 0,
+          "stderr": "",
+          "stdout": "SKIP_GATE_PASS: 13 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+        },
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": ".............                                                            [100%]\n----------- generated xml file: /workspace/zc4_mut/mut_B4.junit.xml ------------\n13 passed in 21.16s\n",
+        "total_cases": 13,
+        "xfailed_nodes": []
+      },
+      "new_error_nodes": [],
+      "new_failed_nodes": [],
+      "new_skipped_nodes": [],
+      "post_revert_diff_numstat": "",
+      "post_revert_matches_baseline": true,
+      "post_revert_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/postrevert_B4.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 13,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_b",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/postrevert_B4.junit.xml",
+        "rc": 0,
+        "seconds": 25.8,
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": ".............                                                            [100%]\n-------- generated xml file: /workspace/zc4_mut/postrevert_B4.junit.xml --------\n13 passed in 20.93s\n",
+        "total_cases": 13,
+        "xfailed_nodes": []
+      },
+      "pr": "B",
+      "result_interpretation": "EXPECTED UNCAUGHT. No released test asserts the absence of credential material on the probe path, so reintroducing a key-prefix print is invisible to the suite. Reported as a real gap, not as a passing proof.",
+      "reverted_clean": true,
+      "selection": [
+        "tests/unit/test_cohere_key_harness.py"
+      ],
+      "session_aborted_without_junit": false,
+      "skip_gate_rcs": [
+        0
+      ],
+      "title": "Expose a credential prefix on the probe path",
+      "verdict": "UNCAUGHT_INVARIANT",
+      "why": "The pre-PR module printed the first ten characters of the key. Reintroducing the leak probes whether any released test asserts the absence of key material."
+    },
+    {
+      "applied_paths": [
+        "tests/test_cohere_with_key.py"
+      ],
+      "baseline_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/b5_baseline.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 13,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_b",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/b5_baseline.junit.xml",
+        "rc": 0,
+        "seconds": 25.8,
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": ".............                                                            [100%]\n--------- generated xml file: /workspace/zc4_mut/b5_baseline.junit.xml ---------\n13 passed in 20.95s\n",
+        "total_cases": 13,
+        "xfailed_nodes": []
+      },
+      "collection_probes": {
+        "empty_key": {
+          "cohere_api_key_env": "<empty>",
+          "live_test_collected": true,
+          "rc": 0,
+          "stderr_tail": "",
+          "stdout_tail": "tests/test_cohere_with_key.py::test_cohere_live_integration\n\n1 test collected in 0.05s\n"
+        },
+        "valid_shaped_key": {
+          "cohere_api_key_env": "<valid-shaped placeholder>",
+          "live_test_collected": true,
+          "rc": 0,
+          "stderr_tail": "",
+          "stdout_tail": "tests/test_cohere_with_key.py::test_cohere_live_integration\n\n1 test collected in 0.08s\n"
+        }
+      },
+      "diff_is_nonempty": true,
+      "diff_numstat": "2\t1\ttests/test_cohere_with_key.py",
+      "diff_patch": "diff --git a/tests/test_cohere_with_key.py b/tests/test_cohere_with_key.py\nindex ad65900b..9e80ae9f 100644\n--- a/tests/test_cohere_with_key.py\n+++ b/tests/test_cohere_with_key.py\n@@ -58,3 +58,4 @@ def test_cohere_live_integration():\n         pytest.skip(f\"COHERE_KEY_{state}: optional live integration credential not configured\")\n-    assert state == \"VALID_SHAPE\", \"COHERE_KEY_MALFORMED\"\n+    if state != \"VALID_SHAPE\":\n+        pytest.skip(\"COHERE_KEY_MALFORMED\")\n     if os.getenv(\"COHERE_LIVE_TEST\") != \"1\":\n",
+      "dirty_paths_after_revert": [],
+      "expect": "caught",
+      "id": "B5",
+      "mutated_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_B5.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 12,
+          "skipped": 1,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_b",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/mut_B5.junit.xml",
+        "rc": 0,
+        "seconds": 26.6,
+        "skip_gate": {
+          "rc": 1,
+          "stderr": "",
+          "stdout": "SKIP_GATE_FAIL: unexpected skip in a required job: tests/unit/test_cohere_key_harness.py::test_malformed_targeted_execution_fails_not_skips"
+        },
+        "skipped_nodes": [
+          "tests/unit/test_cohere_key_harness.py::test_malformed_targeted_execution_fails_not_skips"
+        ],
+        "stderr_tail": "",
+        "stdout_tail": ".......s.....                                                            [100%]\n----------- generated xml file: /workspace/zc4_mut/mut_B5.junit.xml ------------\n12 passed, 1 skipped in 21.75s\n",
+        "total_cases": 13,
+        "xfailed_nodes": []
+      },
+      "new_error_nodes": [],
+      "new_failed_nodes": [],
+      "new_skipped_nodes": [
+        "tests/unit/test_cohere_key_harness.py::test_malformed_targeted_execution_fails_not_skips"
+      ],
+      "post_revert_diff_numstat": "",
+      "post_revert_matches_baseline": true,
+      "post_revert_run": {
+        "cohere_api_key_env": "<empty>",
+        "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/postrevert_B5.junit.xml",
+        "counts": {
+          "errors": 0,
+          "failed": 0,
+          "passed": 13,
+          "skipped": 0,
+          "xfailed": 0
+        },
+        "cwd": "/workspace/zc4_mut_b",
+        "error_nodes": [],
+        "failed_nodes": [],
+        "inexact_node_ids": 0,
+        "junit_present": true,
+        "junit_xml": "/workspace/zc4_mut/postrevert_B5.junit.xml",
+        "rc": 0,
+        "seconds": 25.9,
+        "skipped_nodes": [],
+        "stderr_tail": "",
+        "stdout_tail": ".............                                                            [100%]\n-------- generated xml file: /workspace/zc4_mut/postrevert_B5.junit.xml --------\n13 passed in 20.59s\n",
+        "total_cases": 13,
+        "xfailed_nodes": []
+      },
+      "pr": "B",
+      "reverted_clean": true,
+      "selection": [
+        "tests/unit/test_cohere_key_harness.py"
+      ],
+      "session_aborted_without_junit": false,
+      "skip_gate_rcs": [
+        1
+      ],
+      "supersedes_note": "B5 is the corrected form of B3. B3 is retained as measured because its result is a real coverage observation: the duplicate guard inside run_cohere_probe is unreachable from every released test path.",
+      "title": "Turn the malformed-key guard the released tests reach into a skip",
+      "verdict": "CAUGHT_BY_REQUIRED_JOB_SKIP_GATE",
+      "why": "test_malformed_targeted_execution_fails_not_skips exists to prove that a malformed credential fails loudly instead of being skipped. The guard it reaches is the one in test_cohere_live_integration, so that is the line whose mutation proves the test is not a shell.",
+      "worktree": "/workspace/zc4_mut_b",
+      "worktree_head": "57e6c312822af0decc8acca6e5bd34d4410522b0"
+    }
+  ],
+  "named_node_index": {
+    "A1": {
+      "named_nodes_sample": [
+        "tests/unit/test_audit_correction_d13.py::test_an_eligible_index_still_emits_a_null_band",
+        "tests/unit/test_audit_correction_d13.py::test_no_released_output_reconstructs_a_category_for_the_consumer",
+        "tests/unit/test_audit_correction_d13.py::test_the_dataclass_refuses_to_be_constructed_with_a_populated_band",
+        "tests/unit/test_audit_correction_d13.py::test_the_interval_is_renamed_and_the_retired_name_is_gone",
+        "tests/unit/test_contract_a_release.py::test_no_interval_and_no_band_accompany_a_three_observation_estimate",
+        "tests/unit/test_contract_a_release.py::test_the_band_and_the_unavailable_capabilities_are_not_reactivated"
+      ],
+      "named_nodes_total": 49,
+      "post_revert_matches_baseline": true,
+      "reverted_clean": true,
+      "skip_gate_rcs": [
+        0
+      ],
+      "verdict": "CAUGHT_BY_NAMED_TEST"
+    },
+    "A2": {
+      "named_nodes_sample": [
+        "tests/unit/test_contract_a_release.py::test_the_band_and_the_unavailable_capabilities_are_not_reactivated",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_a_prostate_payload_with_a_prognostic_block_still_nulls_every_fail_closed_key",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_every_fail_closed_key_is_null_on_a_fit_payload[calibrated_survival_probability]",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_no_banned_claim_phrasing_appears_in_a_prognostic_payload",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides0-silence]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides1-false]"
+      ],
+      "named_nodes_total": 11,
+      "post_revert_matches_baseline": true,
+      "reverted_clean": true,
+      "skip_gate_rcs": [
+        0
+      ],
+      "verdict": "CAUGHT_BY_NAMED_TEST"
+    },
+    "A3": {
+      "named_nodes_sample": [
+        "tests/unit/test_contract_a_release.py::test_the_band_and_the_unavailable_capabilities_are_not_reactivated",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_a_prostate_payload_with_a_prognostic_block_still_nulls_every_fail_closed_key",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_every_fail_closed_key_is_null_on_a_fit_payload[treatment_recommendation]",
+        "tests/unit/test_tumor_marker_kinetics_contract.py::test_no_banned_claim_phrasing_appears_in_a_prognostic_payload",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides0-silence]",
+        "tests/unit/test_tumor_marker_kinetics_router.py::test_a_non_attested_prostate_request_is_annotated_not_refused[overrides1-false]"
+      ],
+      "named_nodes_total": 10,
+      "post_revert_matches_baseline": true,
+      "reverted_clean": true,
+      "skip_gate_rcs": [
+        0
+      ],
+      "verdict": "CAUGHT_BY_NAMED_TEST"
+    },
+    "A4": {
+      "named_nodes_sample": [
+        "tests/unit/test_venice_psa_reference_cdf.py::test_a_mutated_payload_fails_the_recomputed_checksum",
+        "tests/unit/test_venice_psa_reference_cdf.py::test_a_resealed_payload_still_fails_the_pinned_content_checksum",
+        "tests/unit/test_venice_psa_reference_cdf.py::test_content_digest_changes_when_a_single_knot_moves"
+      ],
+      "named_nodes_total": 3,
+      "post_revert_matches_baseline": true,
+      "reverted_clean": true,
+      "skip_gate_rcs": [
+        0
+      ],
+      "verdict": "CAUGHT_BY_NAMED_TEST"
+    },
+    "A5": {
+      "named_nodes_sample": [
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[band]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[centile]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[decile]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[hazardratio]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[loghazard]",
+        "tests/unit/test_refusal_schema_lineage.py::test_each_forbidden_root_is_rejected_when_nested_at_depth[multiplier]"
+      ],
+      "named_nodes_total": 18,
+      "post_revert_matches_baseline": true,
+      "reverted_clean": true,
+      "skip_gate_rcs": [
+        0
+      ],
+      "verdict": "CAUGHT_BY_NAMED_TEST"
+    },
+    "A6": {
+      "named_nodes_sample": [
+        "tests/efficacy/test_therapy_fit_axes.py::tests.efficacy.test_therapy_fit_axes",
+        "tests/efficacy/test_v3_contract_axes.py::tests.efficacy.test_v3_contract_axes",
+        "tests/unit/test_audit_correction_d13.py::tests.unit.test_audit_correction_d13",
+        "tests/unit/test_contract_a_release.py::tests.unit.test_contract_a_release",
+        "tests/unit/test_prognostic_direction_negative.py::tests.unit.test_prognostic_direction_negative",
+        "tests/unit/test_prostate_prognostic_index.py::tests.unit.test_prostate_prognostic_index"
+      ],
+      "named_nodes_total": 13,
+      "post_revert_matches_baseline": true,
+      "reverted_clean": true,
+      "skip_gate_rcs": [
+        1
+      ],
+      "verdict": "CAUGHT_BY_NAMED_TEST"
+    },
+    "A7": {
+      "named_nodes_sample": [],
+      "named_nodes_total": 0,
+      "post_revert_matches_baseline": true,
+      "reverted_clean": true,
+      "skip_gate_rcs": [
+        0
+      ],
+      "verdict": "UNCAUGHT_INVARIANT"
+    },
+    "B1": {
+      "named_nodes_sample": [
+        "tests/unit/test_cohere_key_harness.py::test_collection_never_aborts_for_key_state[absent-None]",
+        "tests/unit/test_cohere_key_harness.py::test_collection_never_aborts_for_key_state[empty-]",
+        "pytest::internal"
+      ],
+      "named_nodes_total": 3,
+      "post_revert_matches_baseline": true,
+      "reverted_clean": true,
+      "skip_gate_rcs": [
+        1,
+        0
+      ],
+      "verdict": "CAUGHT_BY_NAMED_TEST"
+    },
+    "B2": {
+      "named_nodes_sample": [
+        "tests/unit/test_cohere_key_harness.py::tests.unit.test_cohere_key_harness"
+      ],
+      "named_nodes_total": 1,
+      "post_revert_matches_baseline": true,
+      "reverted_clean": true,
+      "skip_gate_rcs": [
+        1,
+        1
+      ],
+      "verdict": "CAUGHT_BY_NAMED_TEST"
+    },
+    "B3": {
+      "named_nodes_sample": [],
+      "named_nodes_total": 0,
+      "post_revert_matches_baseline": true,
+      "reverted_clean": true,
+      "skip_gate_rcs": [
+        0
+      ],
+      "verdict": "UNCAUGHT_INVARIANT"
+    },
+    "B4": {
+      "named_nodes_sample": [],
+      "named_nodes_total": 0,
+      "post_revert_matches_baseline": true,
+      "reverted_clean": true,
+      "skip_gate_rcs": [
+        0
+      ],
+      "verdict": "UNCAUGHT_INVARIANT"
+    },
+    "B5": {
+      "named_nodes_sample": [
+        "tests/unit/test_cohere_key_harness.py::test_malformed_targeted_execution_fails_not_skips"
+      ],
+      "named_nodes_total": 1,
+      "post_revert_matches_baseline": true,
+      "reverted_clean": true,
+      "skip_gate_rcs": [
+        1
+      ],
+      "verdict": "CAUGHT_BY_REQUIRED_JOB_SKIP_GATE"
+    }
+  },
+  "purpose": "mutation proofs that the released invariant tests are not shells",
+  "summary": {
+    "all_post_revert_pass": true,
+    "all_reverted_clean": true,
+    "directive_minimum": {
+      "pr_a": 7,
+      "pr_b": 4
+    },
+    "directive_minimum_met": {
+      "pr_a": true,
+      "pr_b": true
+    },
+    "greps_used_as_proof": false,
+    "honesty_note": "Uncaught mutations are reported as uncaught. They are not counted as passes and they are not removed from the set.",
+    "pr_a": {
+      "caught": 6,
+      "total": 7,
+      "uncaught": [
+        "A7"
+      ],
+      "verdicts": {
+        "A1": "CAUGHT_BY_NAMED_TEST",
+        "A2": "CAUGHT_BY_NAMED_TEST",
+        "A3": "CAUGHT_BY_NAMED_TEST",
+        "A4": "CAUGHT_BY_NAMED_TEST",
+        "A5": "CAUGHT_BY_NAMED_TEST",
+        "A6": "CAUGHT_BY_NAMED_TEST",
+        "A7": "UNCAUGHT_INVARIANT"
+      }
+    },
+    "pr_b": {
+      "caught": 3,
+      "total": 5,
+      "uncaught": [
+        "B3",
+        "B4"
+      ],
+      "verdicts": {
+        "B1": "CAUGHT_BY_NAMED_TEST",
+        "B2": "CAUGHT_BY_NAMED_TEST",
+        "B3": "UNCAUGHT_INVARIANT",
+        "B4": "UNCAUGHT_INVARIANT",
+        "B5": "CAUGHT_BY_REQUIRED_JOB_SKIP_GATE"
+      }
+    }
+  },
+  "worktrees": {
+    "A": {
+      "clean_at_start": true,
+      "detached": true,
+      "dirty_paths_at_start": [],
+      "head": "37cc35f653a09ca8c828fe76c4beb3049df302ea",
+      "path": "/workspace/zc4_mut_a",
+      "source_branch": "review/zeta-core-v4-psa-feature",
+      "tree": "d680f974505daba61680d93ccb08ee4a5d0f0c2f"
+    },
+    "B": {
+      "clean_at_start": true,
+      "detached": true,
+      "dirty_paths_at_start": [],
+      "head": "57e6c312822af0decc8acca6e5bd34d4410522b0",
+      "path": "/workspace/zc4_mut_b",
+      "source_branch": "review/cohere-key-harness",
+      "tree": "9d8d221d078be6c34770cee68bd1df3436957c1a"
+    }
+  }
+}

@@ -1,0 +1,476 @@
+# Brenus Guardrail Policy v1.0
+# Authority: Brenus Adjudication Agent
+# Date: 2026-04-28
+# Evidence basis: brenus_canon_v2_freeze.md (v2.1-FREEZE), brenus_final_blockers_registry.md (v1.1-FINAL),
+#   brenus_engine_safe_input_block_v2.yaml (v2.1), crispro_fitgap_brenus_verified_only.md,
+#   receipts_and_guardrails_gap_report.md, formula_decision_onepager.md, repo_census.md
+# Hard rule: This policy is machine-readable. Every gate must be enforced at runtime.
+#   Until runtime enforcement is built, all gates are human-mediated.
+#   Do not ship any Brenus-facing output without verifying all applicable gates.
+
+policy_version: "1.0"
+policy_date: "2026-04-28"
+authority: "Brenus Adjudication Agent"
+
+# ============================================================
+# INPUT STATE DEFINITIONS
+# ============================================================
+# These states govern how any claim or data point may be used
+# in computation and user-visible output.
+
+input_states:
+  VERIFIED:
+    may_drive_computation: true
+    may_appear_in_user_output: true
+    qualification_required: false
+    description: "Directly retrieved from primary source (registry, peer-reviewed publication). Safe to assert as fact with source citation."
+    examples:
+      - "NCT06934538 trial identifiers, arms, eligibility, endpoints"
+      - "NCT03050814 HR 1.061, p=0.91, terminated for futility"
+      - "Alzeeb 2024 murine efficacy results, proteomics, safety"
+      - "HCT116, HT29, LoVo confirmed in STC-1010 (ASCO 2023 e14661)"
+      - "No CPI in BreAK CRC-001 treatment regimen (ASCO 2024 TPS3635)"
+
+  CROSS_REFERENCED:
+    may_drive_computation: true
+    may_appear_in_user_output: true
+    qualification_required: true
+    qualification_text: "[CROSS_REFERENCED — confirmed by 2+ sources]"
+    description: "Confirmed by 2+ independent sources. Safe to assert with dual citation."
+    examples:
+      - "DNFB as hapten (Alzeeb 2024 + Brenus website)"
+
+  PROVISIONAL:
+    may_drive_computation: false
+    may_appear_in_user_output: true
+    qualification_required: true
+    qualification_text: "[PROVISIONAL — unconfirmed; do not assert as fact]"
+    description: "Plausible but not confirmed in retrieved primary sources. Must be flagged as unconfirmed."
+    examples:
+      - "Bevacizumab arm assignment in BreAK CRC-001 (B-004)"
+
+  BLOCKED:
+    may_drive_computation: false
+    may_appear_in_user_output: false
+    hard_gate: true
+    description: "Not retrievable; source failed or paywalled. Must not be asserted or used as input under any circumstances."
+    examples:
+      - "n=6 patients treated with STC-1010 (B-003)"
+      - "100% DCR for STC-1010 (B-003)"
+      - "DTH responses in human patients (B-003)"
+      - "Clinical GMP manufacturing parameters (B-002)"
+      - "ASCO 2024 abstract-specific claims (B-005)"
+
+  ACTIVE_CONFLICT:
+    may_drive_computation: false
+    may_appear_in_user_output: true
+    qualification_required: true
+    hard_warning: true
+    qualification_text: "[ACTIVE SCIENTIFIC CONFLICT — see SC-001: HT29 carries BRAF V600E; BreAK CRC-001 excludes BRAF-mutant patients (Exclusion #7); conflict not resolved; do not assert as benign or problematic]"
+    description: "Verified facts that are in direct scientific conflict with each other. Must trigger hard warning. Do not speculate about resolution."
+    examples:
+      - "HT29 BRAF V600E in vaccine vs. BRAF WT trial eligibility (SC-001)"
+
+  COMPANY_CLAIM:
+    may_drive_computation: false
+    may_appear_in_user_output: true
+    qualification_required: true
+    qualification_text: "[COMPANY_CLAIM — not independently verified; source: Brenus Pharma website/press materials only]"
+    description: "Appears only in company-controlled sources. Must be attributed to company; never presented as independently verified fact."
+    examples:
+      - "Over 200 cancer-related proteins (Brenus website)"
+      - "GMP ready and scalable manufacturing (Brenus website)"
+      - "Platform and product worldwide patented (Brenus website)"
+
+  FORMULA_QUARANTINED:
+    may_drive_computation: true
+    may_appear_in_user_output: true
+    qualification_required: true
+    hard_warning: true
+    qualification_text: "[FORMULA VERSION QUARANTINED — CT-01/CT-02 unresolved; formula decision is manager-held; do not compare PATH A scores (ceiling 0.8898 for p_ref) to Figure 2 DDR mean (0.983, computed under PATH B); all mechanism_fit scores must carry formula-version tag until decision recorded]"
+    description: "Formula-dependent claims that cannot be finalized until manager records PATH A/B decision. Computation may proceed under PATH A but output must carry quarantine qualifier."
+    examples:
+      - "DDR mean mechanism_fit score (0.874 under PATH A; 0.983 under PATH B)"
+      - "Discrimination ratio (23x under PATH A; 37.4x under PATH B)"
+      - "Any mechanism_fit score in user-visible output"
+
+# ============================================================
+# SPECIFIC GATES
+# ============================================================
+# Each gate defines a trigger condition, action, output suppression
+# behavior, and warning text. Gates must be checked in order.
+# A BLOCK action means the computation must halt and the warning
+# must be surfaced to the user or logged in the receipt.
+
+specific_gates:
+
+  # ----------------------------------------------------------
+  # GATE B-003: Human Clinical Data for STC-1010
+  # ----------------------------------------------------------
+  - gate_id: "B-003"
+    name: "Human clinical data hard gate"
+    trigger_condition: >
+      Any input value is tagged as derived from, or consistent with,
+      the following blocked sources: BusinessWire AACR 2024 press release,
+      BioSpace ASCO 2024 article, AACR 2026 abstract CT051, or any
+      other source claiming human clinical efficacy or safety data for
+      STC-1010. Specific blocked data points: n=6 patient count,
+      100% DCR, DTH response observations in human patients, any
+      preliminary clinical signal for STC-1010 in humans.
+    action: "BLOCK — reject input; halt computation; surface error"
+    output_suppression: true
+    error_message: >
+      INPUT_BLOCKED: B-003 — Human clinical data for STC-1010 not retrieved
+      from primary source. Sources (BusinessWire, BioSpace, AACR 2026 CT051)
+      were not directly retrieved in the PhD verification session. These data
+      points cannot be used as computational inputs. Resolution path: direct
+      retrieval of AACR 2026 abstract CT051; or Brenus data room under NDA/CDA;
+      or peer-reviewed publication.
+    warning_text: >
+      No human clinical efficacy or safety data for STC-1010 is available
+      from directly retrieved sources. BreAK CRC-001 (NCT06934538) is actively
+      recruiting as of 2025-12-19; hasResults=false in the registry [VERIFIED].
+      Preliminary signals have been referenced in press coverage, but those
+      sources were not directly retrieved and cannot be verified
+      [BLOCKED — source not retrieved].
+    receipt_field: "b_003_human_clinical_data_gate"
+    receipt_value: >
+      BLOCKED — no human STC-1010 efficacy/safety data retrieved;
+      n=6/DCR/DTH data from AACR 2026 CT051 not retrieved;
+      BusinessWire/BioSpace sources not retrieved; cannot be engine inputs
+    applies_to_capabilities:
+      - "DTH response modeling (Capability 15)"
+      - "Sponsor Q&A generation — clinical signal topics (Capability 7)"
+      - "Any analysis using n=6, DCR, or DTH response data as inputs"
+      - "Power calculations using observed STC-1010 response rate as assumed effect size"
+
+  # ----------------------------------------------------------
+  # GATE B-004: Bevacizumab Arm Assignment (PROVISIONAL)
+  # ----------------------------------------------------------
+  - gate_id: "B-004"
+    name: "Bevacizumab arm assignment provisional gate"
+    trigger_condition: >
+      Any computation or output asserts arm-specific bevacizumab presence
+      (e.g., "Arm 2A-1 receives bevacizumab", "Arm 2A-2 does not receive
+      bevacizumab", "bevacizumab is mandatory in any arm", or any arm-specific
+      bevacizumab assignment rule). The "with or without" optionality is
+      VERIFIED; arm-level assignment is PROVISIONAL.
+    action: "QUALIFY — allow output with mandatory PROVISIONAL qualification; do not assert arm-specific assignment as fact"
+    output_suppression: false
+    warning_text: >
+      Bevacizumab is optional ("with or without") in BreAK CRC-001 [VERIFIED —
+      NCT06934538]. Arm-level bevacizumab assignment is not specified in the
+      public registry [PROVISIONAL — B-004]. Do not assert arm-specific
+      bevacizumab presence. Any combination timing model must not assume
+      arm-specific bevacizumab presence.
+    receipt_field: "b_004_bevacizumab_arm_assignment"
+    receipt_value: >
+      PROVISIONAL — arm-level assignment not specified in public registry;
+      combination timing model assumes 'with or without' optionality only;
+      protocol document from Brenus required for arm-specific modeling
+    applies_to_capabilities:
+      - "Bevacizumab arm-specific combination model (Capability 7 partial)"
+      - "Bevacizumab subgroup analysis pre-specification"
+      - "Any arm-specific pharmacodynamic model involving bevacizumab"
+
+  # ----------------------------------------------------------
+  # GATE SC-001: HT29 BRAF V600E Active Scientific Conflict
+  # ----------------------------------------------------------
+  - gate_id: "SC-001"
+    name: "HT29 BRAF V600E active scientific conflict gate"
+    trigger_condition: >
+      Any output includes HT29 antigen data, HT29-specific antigen modeling,
+      HT29 proteomics, or any assertion about HT29's contribution to the
+      STC-1010 vaccine antigen repertoire. Also triggers if any output
+      discusses STC-1010 vaccine composition without disclosing the HT29
+      BRAF V600E conflict.
+    action: >
+      HARD WARNING — inject SC-001 conflict disclosure into output and receipt;
+      suppress HT29-specific antigen modeling outputs until OQ-01 resolves;
+      allow general vaccine composition discussion only with mandatory disclosure
+    output_suppression: true  # for HT29-specific antigen modeling outputs
+    hard_warning: true
+    warning_text: >
+      ACTIVE SCIENTIFIC CONFLICT SC-001: HT29 carries BRAF V600E mutation
+      (established cell line biology — not in dispute). HT29 is confirmed as
+      one of three human cell lines in the clinical STC-1010 vaccine [VERIFIED —
+      ASCO 2023 e14661]. BreAK CRC-001 Exclusion Criterion #7 requires BRAF
+      wild-type patients; BRAF-mutant patients are excluded from all arms
+      [VERIFIED — NCT06934538]. The vaccine contains a BRAF V600E-mutant cell
+      line while the trial exclusively enrolls BRAF wild-type patients. The
+      scientific rationale for this design choice is not disclosed in any
+      retrieved source. This conflict is documented but not resolved. Do not
+      assert it is benign or problematic. HT29-specific antigen modeling is
+      excluded until OQ-01 resolves.
+    receipt_field: "sc_001_ht29_braf_conflict"
+    receipt_value: >
+      ACTIVE CONFLICT — HT29 BRAF V600E confirmed in vaccine (ASCO 2023 e14661
+      VERIFIED); trial excludes BRAF-mutant patients (NCT06934538 Exclusion #7
+      VERIFIED); conflict not resolved; HT29 antigen modeling excluded;
+      OQ-01 resolution required for HT29-specific outputs
+    applies_to_capabilities:
+      - "Scientific conflict handling (Capability 5)"
+      - "Biomarker stratification — HT29 antigen mapping (Capability 14)"
+      - "Full vaccine antigen concordance (all 3 lines)"
+      - "Any output discussing STC-1010 vaccine composition"
+    safe_alternatives:
+      - "HCT116 antigen mapping (KRAS G13D — SC-001-safe)"
+      - "LoVo antigen mapping (KRAS G13D — SC-001-safe)"
+      - "Two-line (HCT116 + LoVo) antigen concordance analysis"
+
+  # ----------------------------------------------------------
+  # GATE no_cpi_constraint: No Checkpoint Inhibitor in Regimen
+  # ----------------------------------------------------------
+  - gate_id: "no_cpi_constraint"
+    name: "No checkpoint inhibitor in BreAK CRC-001 treatment regimen"
+    trigger_condition: >
+      Any output describes the BreAK CRC-001 treatment regimen as including
+      a checkpoint inhibitor (CPI), immune checkpoint inhibitor (ICI),
+      anti-PD-1, anti-PD-L1, or any checkpoint blockade agent as a treatment
+      component. Also triggers if any output implies STC-1010 has CPI-like
+      activity based on IO axis scoring. Also triggers if QUILT-2.004
+      (avelumab) is cited as a design precedent without disclosing that
+      BreAK CRC-001 does not include a CPI.
+    action: >
+      BLOCK — reject any output that attributes CPI to BreAK CRC-001 treatment
+      regimen; inject clarification for IO axis usage; enforce QUILT-2.004
+      negative framing
+    output_suppression: true  # for outputs that misattribute CPI to regimen
+    hard_warning: true
+    warning_text: >
+      BreAK CRC-001 contains NO checkpoint inhibitor in the treatment regimen
+      [VERIFIED — ASCO 2024 TPS3635 DIRECT_SOURCE]. The treatment regimen is:
+      STC-1010 + low-dose cyclophosphamide + GM-CSF + mFOLFOX6 ± bevacizumab.
+      "ICI" in the trial context refers exclusively to prior-treatment eligibility
+      for the MSI-H cohort (Arm 2A-2 requires prior ICI exposure as an eligibility
+      criterion, not as a treatment component). The IO axis in any patient vector
+      reflects tumor immune microenvironment characteristics, NOT CPI treatment.
+      QUILT-2.004 used avelumab (anti-PD-L1) — this must not be conflated with
+      the BreAK CRC-001 regimen.
+    receipt_field: "no_cpi_constraint"
+    receipt_value: >
+      VERIFIED — no checkpoint inhibitor in BreAK CRC-001 treatment regimen
+      (ASCO 2024 TPS3635 DIRECT_SOURCE); IO axis in patient vector reflects
+      tumor immune microenvironment only, not CPI treatment; QUILT-2.004
+      avelumab must not be conflated with BreAK CRC-001 regimen
+    applies_to_capabilities:
+      - "Trial MoA vector matching — IO axis interpretation (Capability 1)"
+      - "MSI-H vs MSS arm differentiation (Capability 17)"
+      - "Comparator evidence packet — QUILT-2.004 citation (Capability 6)"
+      - "Any output describing BreAK CRC-001 treatment regimen"
+    prohibited_language:
+      - "STC-1010 + checkpoint inhibitor combination"
+      - "STC-1010 + ICI regimen"
+      - "CPI-based combination in BreAK CRC-001"
+      - "ICI" used to describe treatment (vs. prior-treatment eligibility)
+    required_framing: >
+      "BreAK CRC-001 evaluates STC-1010 + low-dose cyclophosphamide + GM-CSF
+      + mFOLFOX6 ± bevacizumab. No checkpoint inhibitor is included in the
+      treatment regimen. In the MSI-H arm (2A-2), prior ICI exposure is an
+      eligibility requirement, not a treatment component."
+
+  # ----------------------------------------------------------
+  # GATE murine_surrogate_caveat: Alzeeb 2024 Scope Limitation
+  # ----------------------------------------------------------
+  - gate_id: "murine_surrogate_caveat"
+    name: "Alzeeb 2024 murine surrogate scope limitation"
+    trigger_condition: >
+      Any output uses Alzeeb 2024 data (CT26, CMT-93, LTPA, MC38 efficacy
+      results, proteomics, IS regimen parameters, safety data) as evidence
+      of human STC-1010 efficacy, or presents murine model results as
+      predictive of human outcomes, or omits the authors' explicit caveat
+      on human translation.
+    action: >
+      QUALIFY — allow output with mandatory murine scope limitation;
+      inject authors' caveat verbatim; suppress any framing that presents
+      murine data as human efficacy evidence
+    output_suppression: false  # murine data may appear with qualification
+    warning_text: >
+      Alzeeb et al. 2024 (DOI: 10.3389/fonc.2024.1427428) uses a MURINE
+      SURROGATE VACCINE, not the clinical STC-1010 product. The authors
+      explicitly state: "Although the results in mouse models are promising,
+      predicting efficacy in patients requires exploration in different models
+      due to the use of a murine surrogate in syngeneic models. Human vaccines
+      based on STC technology should be tested in alternative models, such as
+      ex vivo immune response activation tests, to better assess biological
+      and clinical responses." CT26 has higher mutational burden than human
+      MSS CRC. MC38 is an MSI-H analog in mice — not MSS. Neither model
+      recapitulates liver metastasis-induced systemic immune tolerance.
+      Murine data provides mechanistic rationale only — not human efficacy evidence.
+    receipt_field: "murine_surrogate_caveat"
+    receipt_value: >
+      VERIFIED — Alzeeb 2024 uses murine surrogate vaccine only; authors'
+      caveat preserved: human translation requires testing in alternative models;
+      all Alzeeb 2024 outputs tagged as murine scope only; not human efficacy evidence
+    applies_to_capabilities:
+      - "Murine preclinical mechanism anchoring (Capability 14 / SLICE-004)"
+      - "KRAS/BRAF molecular context modeling (Capability 14)"
+      - "Any output citing Alzeeb 2024 efficacy results"
+    prohibited_language:
+      - "STC-1010 extends survival by X% in CRC" (without specifying murine model)
+      - "STC-1010 has demonstrated efficacy in CRC models" (implying human efficacy)
+      - "Preclinical data supports efficacy in MSS CRC" (without murine scope limitation)
+    required_framing: >
+      "In murine syngeneic CRC models, the STC platform murine surrogate extended
+      survival and induced CD8+ T cell and M1 macrophage infiltration [VERIFIED —
+      Alzeeb et al. 2024, murine data only]. The authors note that human translation
+      requires testing in alternative models. These preclinical findings provide
+      mechanistic rationale but do not constitute evidence of human efficacy."
+
+  # ----------------------------------------------------------
+  # GATE formula_conflict: CT-01/CT-02 Mechanism_Fit Scores
+  # ----------------------------------------------------------
+  - gate_id: "formula_conflict"
+    name: "CT-01/CT-02 formula conflict gate — mechanism_fit scores in user output"
+    trigger_condition: >
+      Any user-visible output includes a mechanism_fit score value, DDR mean
+      value, discrimination ratio, or any statistic derived from the
+      MechanismFitRanker or HolisticScoreService without a formula-version
+      qualifier. Also triggers if any output compares a PATH A score to the
+      Figure 2 DDR mean (0.983), which was computed under PATH B and is
+      mathematically impossible under PATH A (PATH A ceiling for p_ref = 0.8898).
+    action: >
+      QUALIFY — allow mechanism_fit scores in output only with mandatory
+      formula-version qualifier; BLOCK any comparison between PATH A scores
+      and Figure 2 DDR mean (0.983); BLOCK any output that presents 0.983
+      as a PATH A result
+    output_suppression: false  # scores may appear with qualification
+    hard_warning: true
+    warning_text: >
+      FORMULA VERSION QUARANTINED — CT-01/CT-02 unresolved. Two formula
+      implementations coexist in the codebase:
+      PATH A (MechanismFitRanker): fit = clip((p·t)/‖t‖₂, 0, 1) — ceiling
+      for p_ref = 0.8898 (Cauchy-Schwarz proven, VC-04).
+      PATH B (HolisticScoreService): fit = clip((p·t)/(‖p‖₂×‖t‖₂), 0, 1)
+      — ceiling = 1.0.
+      The Figure 2 DDR mean (0.983) is mathematically impossible under PATH A
+      and was computed under PATH B. The manuscript §2.4 describes PATH A.
+      This is a publication-blocking discrepancy independent of the PATH A/B
+      decision. Formula decision is manager-held (BLOCKER-02). All
+      mechanism_fit scores in user-visible output must carry this qualifier
+      until the manager records the decision.
+    receipt_field: "formula_version"
+    receipt_value: >
+      QUARANTINED — CT-01/CT-02 unresolved; formula decision manager-held
+      (BLOCKER-02); scores computed under PATH A (fit = clip((p·t)/‖t‖₂, 0, 1));
+      PATH A ceiling for p_ref = 0.8898; do not compare to Figure 2 DDR mean
+      (0.983) which was computed under PATH B; 0.983 is impossible under PATH A
+    applies_to_capabilities:
+      - "Trial MoA vector matching — mechanism_fit scores (Capability 1)"
+      - "Holistic score computation — mechanism_fit component (Capability 2)"
+      - "Any user-visible output containing mechanism_fit score values"
+      - "Any comparison to Figure 2 DDR mean statistics"
+    prohibited_outputs:
+      - "DDR mean = 0.983 presented as PATH A result"
+      - "Discrimination ratio = 37.4x presented as PATH A result"
+      - "Any mechanism_fit score without formula-version qualifier"
+      - "Comparison of PATH A score to Figure 2 DDR mean (0.983)"
+    safe_outputs:
+      - "PATH A mechanism_fit score with qualifier: [FORMULA VERSION QUARANTINED — CT-01/CT-02 pending manager decision; computed under PATH A; ceiling 0.8898 for p_ref]"
+      - "DDR mean ~0.874 with qualifier: [QUARANTINED — PATH A result; formula decision pending]"
+
+# ============================================================
+# ADDITIONAL POLICY RULES
+# ============================================================
+
+additional_rules:
+
+  quilt_2004_framing:
+    rule_id: "QUILT-2004-FRAMING"
+    description: >
+      QUILT-2.004 (NCT03050814) must never be cited as a positive efficacy
+      precedent. It was TERMINATED for futility at interim analysis
+      (HR 1.061, p=0.91, n=30). Design precedent value is limited to
+      structural elements only (safety lead-in n=6, bevacizumab Day 2
+      sequencing, oxaliplatin dose reduction in combination arm).
+    action: "QUALIFY — require negative framing whenever QUILT-2.004 is cited"
+    required_disclosure: >
+      "QUILT-2.004 (NCT03050814) was terminated for futility at interim
+      analysis (HR 1.061, 95% CI 0.380–2.966, p=0.91; n=30 enrolled vs.
+      target n=70). It provides structural design precedent only. Its negative
+      efficacy outcome is a cautionary precedent for vaccine + SOC combinations
+      in unselected MSS mCRC."
+
+  no_200_antigens_as_verified:
+    rule_id: "NO-200-ANTIGENS-VERIFIED"
+    description: >
+      The claim "over 200 cancer-related proteins" appears only on the Brenus
+      company website. It must never be tagged as VERIFIED or presented as
+      an independently confirmed scientific finding.
+    action: "QUALIFY — require COMPANY_CLAIM tag"
+    required_tag: "[COMPANY_CLAIM — Brenus website only; not confirmed in any peer-reviewed source]"
+
+  no_human_clinical_data_as_baseline:
+    rule_id: "NO-HUMAN-CLINICAL-BASELINE"
+    description: >
+      n=6, 100% DCR, and DTH response data originate exclusively from blocked
+      sources (BusinessWire, BioSpace, AACR 2026 CT051). These must not be
+      treated as a known factual baseline even if they appear plausible.
+    action: "BLOCK — reject as inputs; require BLOCKED tag if mentioned in output"
+    required_tag: "[BLOCKED — source not retrieved; cannot be asserted as factual baseline]"
+
+  receipt_required_for_all_brenus_outputs:
+    rule_id: "RECEIPT-REQUIRED"
+    description: >
+      Every Brenus-facing output must be accompanied by a receipt generated
+      by receipt_brenus.py (SLICE-003) that includes: blocker flags (B-003,
+      B-004, SC-001), formula version (QUARANTINED until BLOCKER-02 resolves),
+      guardrail compliance record (G1-G7), and VERIFIED/BLOCKED claim
+      provenance tags. Until receipt_brenus.py is built, all provenance is
+      human-mediated and must be manually verified.
+    action: "REQUIRE — no Brenus-facing output without receipt"
+
+  evo2_kras_gof_restriction:
+    rule_id: "EVO2-KRAS-GOF"
+    description: >
+      Evo2 scores sequence disruption (loss-of-function). KRAS mutations in
+      BreAK CRC-001 (G12D, G12V, G13D, G12C) are gain-of-function. Evo2
+      must not be used to score KRAS GOF variants as pathogenic. Evo2 may
+      be used for BRAF WT confirmation only.
+    action: "RESTRICT — Evo2 use limited to BRAF WT confirmation in Brenus context"
+
+  enformer_hard_block:
+    rule_id: "ENFORMER-BLOCK"
+    description: >
+      Enformer accessibility endpoint returns near-constant values regardless
+      of sequence content. It is scientifically non-functional and must not
+      appear in any Brenus pipeline or output.
+    action: "BLOCK — hard block; do not include in any Brenus pipeline"
+
+# ============================================================
+# GATE EVALUATION ORDER
+# ============================================================
+# Gates must be evaluated in this order for every Brenus output.
+# A BLOCK at any gate halts the pipeline.
+
+gate_evaluation_order:
+  1: "B-003 — human clinical data hard gate (highest priority)"
+  2: "SC-001 — HT29 BRAF V600E active conflict gate"
+  3: "no_cpi_constraint — no CPI in regimen gate"
+  4: "formula_conflict — mechanism_fit formula version gate"
+  5: "murine_surrogate_caveat — Alzeeb 2024 scope gate"
+  6: "B-004 — bevacizumab arm assignment provisional gate"
+  7: "QUILT-2004-FRAMING — negative framing enforcement"
+  8: "NO-200-ANTIGENS-VERIFIED — company claim tag enforcement"
+  9: "RECEIPT-REQUIRED — receipt presence check"
+
+# ============================================================
+# RUNTIME ENFORCEMENT STATUS
+# ============================================================
+
+runtime_enforcement_status:
+  implemented_as_code: false
+  current_enforcement_method: "human-mediated"
+  priority_build_order:
+    1: "receipt_brenus.py (SLICE-003) — adds blocker flags and SC-001 to receipt"
+    2: "Blocker registry enforcement module (Capability 4) — runtime B-003 gate"
+    3: "Claim ledger ingestion module (Capability 3) — engine_routable enforcement"
+    4: "Engine-safe routing layer (Capability 9) — full routing enforcement"
+  note: >
+    Until runtime enforcement is built, every Brenus-facing output must be
+    manually reviewed against all gates in this policy before release.
+    The engineering team must not ship any Brenus-facing output without
+    confirming all applicable gates have been checked.
+
+# End of brenus_guardrail_policy_v1.yaml
+# Brenus Adjudication Agent — 2026-04-28

@@ -1,0 +1,405 @@
+{
+  "generated_utc": "2026-08-14T04:42:45+00:00",
+  "invocation": {
+    "command_shape": "cd <tree> && PYTHONPATH=<tree> /workspace/.venv/bin/python -m pytest tests --ignore=tests/test_cohere_with_key.py -q -p no:cacheprovider --continue-on-collection-errors -rfE -o junit_family=xunit1 --junitxml=<label>.junit.xml",
+    "one_environment": "matrix_started_utc=2026-08-14T04:02:32+00:00\ninterpreter=3.11.13\npytest=pytest 8.4.1\ncommand_shape=cd <tree> && PYTHONPATH=<tree> python -m pytest tests --ignore=tests/test_cohere_with_key.py -q -p no:cacheprovider --continue-on-collection-errors -rfE -o junit_family=xunit1 --junitxml=<label>.junit.xml\nmatrix_finished_utc=2026-08-14T04:34:34+00:00",
+    "prior_comparison_observed_nodes_caveat": "these four node names are preserved as observations from the invalidated comparison only. they were an artefact of the wrong working directory, not a PR attributable failure, and they pass in the authoritative matrix.",
+    "prior_comparison_observed_nodes_observations_only": [
+      "tests/unit/test_cohere_key_harness.py::test_collection_never_aborts_for_key_state[absent-None]",
+      "tests/unit/test_cohere_key_harness.py::test_collection_never_aborts_for_key_state[empty-]",
+      "tests/unit/test_cohere_key_harness.py::test_collection_never_aborts_for_key_state[malformed-bad]",
+      "tests/unit/test_cohere_key_harness.py::test_collection_never_aborts_for_key_state[valid-A_validly_shaped_key_123456789]"
+    ],
+    "prior_comparison_root_cause": "the earlier matrix invoked pytest from /workspace with an absolute $repo/tests argument, so the harness subprocess that shells out with cwd=os.getcwd() could not resolve tests/test_cohere_with_key.py and exited 4, and every node id carried a worktree-specific absolute prefix",
+    "prior_comparison_status": "INVALID_INCONSISTENT_COUNTS",
+    "regression_neutrality_claim_handling": "the earlier REGRESSION_NEUTRALITY claim was withdrawn together with the invalidated comparison and is not restated here in either direction. this receipt reports only the measured node level quantities from the authoritative matrix: new_failed_nodes, new_error_nodes and removed_nodes per PR.",
+    "run_from": "each tree root with a relative tests argument",
+    "uniform_exclusion": {
+      "module": "tests/test_cohere_with_key.py",
+      "reason": "on main and on PR A this module calls sys.exit(1) at import when no COHERE_API_KEY is present, which raises INTERNALERROR SystemExit and aborts the entire pytest session (measured rc=3, no tests collected). It is therefore excluded identically on all four trees so one command shape can be used, and its collection behaviour is measured separately per tree."
+    }
+  },
+  "node_diff": {
+    "comparisons": {
+      "pr_a": {
+        "added_nodes_count": 922,
+        "base_failed_now_passing": [],
+        "classification": {
+          "PRE_EXISTING": 226,
+          "REGRESSION": 0,
+          "REMOVED_COVERAGE": 0
+        },
+        "collect_manifest_crosscheck": {
+          "added_vs_main": 922,
+          "collect_only_nodes": 1858,
+          "removed_node_ids_vs_main": [],
+          "removed_vs_main": 0
+        },
+        "new_error_nodes": [],
+        "new_failed_nodes": [],
+        "pre_existing_errors_shared_with_base": 64,
+        "pre_existing_failed_shared_with_base": 162,
+        "regression_neutral": true,
+        "removed_nodes": []
+      },
+      "pr_ab": {
+        "added_nodes_count": 935,
+        "base_failed_now_passing": [],
+        "classification": {
+          "PRE_EXISTING": 226,
+          "REGRESSION": 0,
+          "REMOVED_COVERAGE": 0
+        },
+        "collect_manifest_crosscheck": {
+          "added_vs_main": 935,
+          "collect_only_nodes": 1871,
+          "removed_node_ids_vs_main": [],
+          "removed_vs_main": 0
+        },
+        "new_error_nodes": [],
+        "new_failed_nodes": [],
+        "pre_existing_errors_shared_with_base": 64,
+        "pre_existing_failed_shared_with_base": 162,
+        "regression_neutral": true,
+        "removed_nodes": []
+      },
+      "pr_b": {
+        "added_nodes_count": 13,
+        "base_failed_now_passing": [],
+        "classification": {
+          "PRE_EXISTING": 226,
+          "REGRESSION": 0,
+          "REMOVED_COVERAGE": 0
+        },
+        "collect_manifest_crosscheck": {
+          "added_vs_main": 13,
+          "collect_only_nodes": 949,
+          "removed_node_ids_vs_main": [],
+          "removed_vs_main": 0
+        },
+        "new_error_nodes": [],
+        "new_failed_nodes": [],
+        "pre_existing_errors_shared_with_base": 64,
+        "pre_existing_failed_shared_with_base": 162,
+        "regression_neutral": true,
+        "removed_nodes": []
+      }
+    },
+    "node_ids_exact": true,
+    "receipt_path": "/workspace/zc4_matrix/node_diff_receipt.json",
+    "reconciled": true,
+    "runs": {
+      "main": {
+        "arithmetic_partitions_collected": true,
+        "counts": {
+          "collected": 944,
+          "errors": 64,
+          "failed": 162,
+          "junit_testcase_elements": 944,
+          "passed": 708,
+          "skipped": 8,
+          "xfailed": 2
+        }
+      },
+      "pr_a": {
+        "arithmetic_partitions_collected": true,
+        "counts": {
+          "collected": 1866,
+          "errors": 64,
+          "failed": 162,
+          "junit_testcase_elements": 1866,
+          "passed": 1630,
+          "skipped": 8,
+          "xfailed": 2
+        }
+      },
+      "pr_ab": {
+        "arithmetic_partitions_collected": true,
+        "counts": {
+          "collected": 1879,
+          "errors": 64,
+          "failed": 162,
+          "junit_testcase_elements": 1879,
+          "passed": 1643,
+          "skipped": 8,
+          "xfailed": 2
+        }
+      },
+      "pr_b": {
+        "arithmetic_partitions_collected": true,
+        "counts": {
+          "collected": 957,
+          "errors": 64,
+          "failed": 162,
+          "junit_testcase_elements": 957,
+          "passed": 721,
+          "skipped": 8,
+          "xfailed": 2
+        }
+      }
+    }
+  },
+  "pre_existing_red_classification": {
+    "environment_attribution": {
+      "environment_drift_declared_absent_count": 30,
+      "environment_or_service_driven_errors": 39,
+      "interpretation": "the 'jwt' collection failures are NOT explained by drift against requirements_frozen.txt: PyJWT is not declared there at all, so the declared requirement set is incomplete for this suite. the 32 connection-refused setup errors need a live local HTTP service the comparison environment does not run. the remaining 24 errors are repository internal (missing test data files and test functions requesting undefined fixtures).",
+      "missing_import_names": {
+        "jwt": 7
+      },
+      "missing_imports_explained_by_declared_absent_distributions": [],
+      "other_errors": 1,
+      "pyjwt_declared_in_requirements_frozen_txt": false,
+      "repository_internal_errors": 24
+    },
+    "errors": {
+      "error_nodes_total": 64,
+      "kinds": {
+        "collection_failure_module_not_found": 7,
+        "collection_failure_other": 1,
+        "setup_error_connection_refused": 32,
+        "setup_error_file_not_found": 17,
+        "setup_error_fixture_not_found": 7
+      },
+      "missing_file_basenames": {
+        "ariel_reversion_summary.json": 8,
+        "msk_spectrum_wgs_patient_profiles.csv": 10,
+        "tcga_ov_resistance_matrix.csv": 16
+      },
+      "missing_fixture_names": {
+        "conn": 4,
+        "profile": 1,
+        "query_result": 2
+      },
+      "missing_import_names": {
+        "jwt": 7
+      },
+      "nodes_by_kind": {
+        "collection_failure_module_not_found": [
+          "tests/agent_2_refresh/test_endpoint.py::tests.agent_2_refresh.test_endpoint",
+          "tests/design/test_spacer_efficacy.py::tests.design.test_spacer_efficacy",
+          "tests/evo2/test_evo2_paper_capabilities.py::tests.evo2.test_evo2_paper_capabilities",
+          "tests/integration/test_io_selection_router.py::tests.integration.test_io_selection_router",
+          "tests/test_research_intelligence_api.py::tests.test_research_intelligence_api",
+          "tests/unit/test_lite_mode_flags.py::tests.unit.test_lite_mode_flags",
+          "tests/unit/test_timing_middleware.py::tests.unit.test_timing_middleware"
+        ],
+        "collection_failure_other": [
+          "tests/integration/test_sporadic_gates_full_suite.py::tests.integration.test_sporadic_gates_full_suite"
+        ],
+        "setup_error_connection_refused": [
+          "tests/test_contract_shape.py::TestL1DrugKeys::test_analysis_date_dual_alias",
+          "tests/test_contract_shape.py::TestL1DrugKeys::test_completeness_present",
+          "tests/test_contract_shape.py::TestL1DrugKeys::test_drug_has_required_keys",
+          "tests/test_contract_shape.py::TestL1DrugKeys::test_final_score_passthrough",
+          "tests/test_contract_shape.py::TestL1DrugKeys::test_inputs_used_present",
+          "tests/test_contract_shape.py::TestL1DrugKeys::test_level_response_keys",
+          "tests/test_contract_shape.py::TestL1DrugKeys::test_no_concatenated_keys",
+          "tests/test_contract_shape.py::TestL1DrugKeys::test_no_therapy_fit_adjustment_at_l1",
+          "tests/test_contract_shape.py::TestL1DrugKeys::test_pathway_scores_meta_present",
+          "tests/test_contract_shape.py::TestL1DrugKeys::test_top_level_key_L1",
+          "tests/test_contract_shape.py::TestL2KResistanceAdjustment::test_non_parp_drugs_no_adjustment",
+          "tests/test_contract_shape.py::TestL2KResistanceAdjustment::test_parp_drugs_have_adjustment",
+          "tests/test_contract_shape.py::TestL2KResistanceAdjustment::test_parp_final_score_adjusted",
+          "tests/test_contract_shape.py::TestScenariosEndpoint::test_kinetic_scenarios_present",
+          "tests/test_contract_shape.py::TestScenariosEndpoint::test_l2_scenarios_have_ids",
+          "tests/test_contract_shape.py::TestScenariosEndpoint::test_l2_scenarios_is_list",
+          "tests/test_contract_shape.py::TestScenariosEndpoint::test_preview_cache_shape",
+          "tests/test_contract_shape.py::TestScenariosEndpoint::test_top_level_keys",
+          "tests/test_trials_null_rules.py::TestNoVectorNullRules::test_combined_score_is_none",
+          "tests/test_trials_null_rules.py::TestNoVectorNullRules::test_eligibility_score_is_none",
+          "tests/test_trials_null_rules.py::TestNoVectorNullRules::test_holistic_score_is_none",
+          "tests/test_trials_null_rules.py::TestNoVectorNullRules::test_match_score_equals_moa_confidence",
+          "tests/test_trials_null_rules.py::TestNoVectorNullRules::test_mechanism_alignment_is_none",
+          "tests/test_trials_null_rules.py::TestNoVectorNullRules::test_mechanism_fit_score_is_none",
+          "tests/test_trials_null_rules.py::TestNoVectorNullRules::test_moa_vector_always_present",
+          "tests/test_trials_null_rules.py::TestNoVectorNullRules::test_scoring_breakdown_no_fabricated_combined_score",
+          "tests/test_trials_null_rules.py::TestNoVectorNullRules::test_scoring_breakdown_no_fabricated_mechanism_fit",
+          "tests/test_trials_null_rules.py::TestNoVectorNullRules::test_source_url_populated",
+          "tests/test_trials_null_rules.py::TestWithVectorScoringMode::test_combined_score_populated",
+          "tests/test_trials_null_rules.py::TestWithVectorScoringMode::test_mechanism_alignment_or_breakdown_populated",
+          "tests/test_trials_null_rules.py::TestWithVectorScoringMode::test_mechanism_fit_score_populated",
+          "tests/test_trials_null_rules.py::TestWithVectorScoringMode::test_source_url_still_populated_with_vector"
+        ],
+        "setup_error_file_not_found": [
+          "tests/test_msk_ariel_replay.py::TestARIELReversionReplay::test_all_reversion_patients_classify_brca",
+          "tests/test_msk_ariel_replay.py::TestARIELReversionReplay::test_ariel_data_loaded",
+          "tests/test_msk_ariel_replay.py::TestARIELReversionReplay::test_brca1_count",
+          "tests/test_msk_ariel_replay.py::TestARIELReversionReplay::test_resistant_patients_flag_correctly",
+          "tests/test_msk_ariel_replay.py::TestMSKSpectrumReplay::test_brca_patient_classified",
+          "tests/test_msk_ariel_replay.py::TestMSKSpectrumReplay::test_cdk12_patient_classified",
+          "tests/test_msk_ariel_replay.py::TestMSKSpectrumReplay::test_msk_loaded",
+          "tests/test_msk_ariel_replay.py::TestMSKSpectrumReplay::test_tp53_only_is_unknown",
+          "tests/test_msk_ariel_replay.py::TestMSKSpectrumReplay::test_zero_false_positives",
+          "tests/test_tcga_ov_replay.py::TestTCGAOVReplay::test_brca_patients_classified",
+          "tests/test_tcga_ov_replay.py::TestTCGAOVReplay::test_ccne1_patients_classified",
+          "tests/test_tcga_ov_replay.py::TestTCGAOVReplay::test_cdk12_patients_classified",
+          "tests/test_tcga_ov_replay.py::TestTCGAOVReplay::test_class_distribution_summary",
+          "tests/test_tcga_ov_replay.py::TestTCGAOVReplay::test_classification_rate_calibration",
+          "tests/test_tcga_ov_replay.py::TestTCGAOVReplay::test_full_replay_concordance",
+          "tests/test_tcga_ov_replay.py::TestTCGAOVReplay::test_matrix_loaded",
+          "tests/test_tcga_ov_replay.py::TestTCGAOVReplay::test_no_false_positives_on_unknown"
+        ],
+        "setup_error_fixture_not_found": [
+          "tests/test_research_intelligence_db_direct.py::test_insert_dossier",
+          "tests/test_research_intelligence_db_direct.py::test_insert_query",
+          "tests/test_research_intelligence_db_direct.py::test_select_query",
+          "tests/test_research_intelligence_db_direct.py::test_table_exists",
+          "tests/test_research_intelligence_integration.py::test_dossier_generation",
+          "tests/test_research_intelligence_integration.py::test_value_synthesis",
+          "tests/test_universal_orchestrator.py::test_universal_orchestrator"
+        ]
+      }
+    },
+    "failures": {
+      "distinct_test_files_with_failures": 45,
+      "failed_nodes_by_test_file": {
+        "tests/api/test_vus_endpoint.py": 2,
+        "tests/audit/test_ovarian_resistance_stack_contracts.py": 1,
+        "tests/audit/test_therapy_fit_v2_high_risk_behaviors.py": 1,
+        "tests/design/test_therapeutic_optimizer.py": 8,
+        "tests/efficacy/test_aocs_s_quarantine.py": 6,
+        "tests/evo2/test_evo2_real_validation.py": 5,
+        "tests/integration/test_agents_e2e.py": 4,
+        "tests/integration/test_ayesha_trials.py": 7,
+        "tests/integration/test_bundle_contract.py": 1,
+        "tests/integration/test_ca125_wiring.py": 2,
+        "tests/integration/test_copilot_food_validator_integration.py": 4,
+        "tests/integration/test_io_pathway_integration.py": 3,
+        "tests/integration/test_mbd4_tp53_analysis.py": 9,
+        "tests/integration/test_orchestrator_e2e_pipeline.py": 4,
+        "tests/integration/test_orchestrator_integration.py": 3,
+        "tests/integration/test_sae_phase2_services.py": 18,
+        "tests/integration/test_sporadic_gates.py": 1,
+        "tests/integration/test_targeted_brief_smoke.py": 1,
+        "tests/integration/test_targeted_brief_v1_smoke.py": 1,
+        "tests/integration/test_toxicity_orchestrator_integration.py": 7,
+        "tests/integration/test_trial_matching_integration.py": 5,
+        "tests/llm/test_food_llm_enhancement.py": 6,
+        "tests/llm/test_llm_simple.py": 1,
+        "tests/metastasis_interception/test_service.py": 2,
+        "tests/safety/test_safety_service.py": 3,
+        "tests/smoke/test_ayesha_e2e_smoke.py": 6,
+        "tests/test_ayesha_e2e_smoke.py": 6,
+        "tests/test_ayesha_trials.py": 7,
+        "tests/test_bug_fixes.py": 1,
+        "tests/test_bugfix_validation.py": 4,
+        "tests/test_cohere_integration_quick.py": 2,
+        "tests/test_contract_shape.py": 4,
+        "tests/test_copilot_parser.py": 1,
+        "tests/test_evo2_integration.py": 1,
+        "tests/test_expected_mechanism.py": 1,
+        "tests/test_ivermectin_evidence_artifact.py": 1,
+        "tests/test_llm_synthesis.py": 1,
+        "tests/test_orchestrator_response_fields.py": 1,
+        "tests/test_phase4_comprehensive.py": 6,
+        "tests/test_production_integration.py": 3,
+        "tests/test_research_intelligence_cohere.py": 1,
+        "tests/test_research_intelligence_integration.py": 3,
+        "tests/test_trials_pipeline.py": 3,
+        "tests/test_universal_orchestrator.py": 1,
+        "tests/unit/test_clinical_trial_search_service.py": 4
+      },
+      "failed_nodes_total": 162,
+      "failure_exception_head": {
+        "AssertionError": 34,
+        "AttributeError": 21,
+        "Failed": 23,
+        "FileNotFoundError": 2,
+        "ImportError": 15,
+        "KeyError": 11,
+        "ModuleNotFoundError": 1,
+        "RuntimeError": 19,
+        "TypeError": 3,
+        "assert False is True": 2,
+        "fastapi.exceptions.HTTPException": 1,
+        "httpx.ConnectError": 26
+      }
+    },
+    "scope": "run main only; every node here already fails or errors on main at 99dd39c657064839fd25c37a69851178bc5e6d9d, so it is PRE_EXISTING and not attributable to PR A or PR B"
+  },
+  "split_fidelity_crosscheck": {
+    "combined_review_branch_counts": {
+      "collected": 1879,
+      "errors": 64,
+      "failed": 162,
+      "junit_testcase_elements": 1879,
+      "passed": 1643,
+      "skipped": 8,
+      "xfailed": 2
+    },
+    "frozen_counts": {
+      "errors": 64,
+      "failed": 162,
+      "passed": 1643,
+      "skipped": 9,
+      "xfailed": 2
+    },
+    "identical_errors": true,
+    "identical_failed": true,
+    "identical_passed": true,
+    "identical_xfailed": true,
+    "pushed_branch_commit": "80531e7f3fc0461ed7d72aa798fd7f6a92c4cc87",
+    "pushed_branch_included_the_cohere_module": true,
+    "pushed_branch_run_source": "/workspace/zc4_closure_full_final.stdout.txt",
+    "pushed_branch_summary_line": "162 failed, 1643 passed, 9 skipped, 2 xfailed, 86 warnings, 64 errors in 321.58s (0:05:21)",
+    "question": "does the recombined PR A + PR B review branch reproduce the suite outcome of the pushed audit branch 80531e7f, i.e. is the two PR split behaviour preserving",
+    "skip_delta": 1,
+    "skip_delta_explanation": "the pushed branch run collected tests/test_cohere_with_key.py, whose single test skips with COHERE_KEY_ABSENT. the matrix excludes that module uniformly on all four trees, so exactly one skip is expected to be absent here.",
+    "verdict": "SPLIT_BEHAVIOUR_PRESERVED"
+  },
+  "trees": {
+    "main": {
+      "branch": "HEAD",
+      "cohere_module_collect_rc": "3",
+      "cohere_module_collect_verdict": "collection aborts the session (SystemExit at import)",
+      "collect_only_nodes": 936,
+      "collect_only_rc": "1",
+      "head": "99dd39c657064839fd25c37a69851178bc5e6d9d",
+      "path": "/workspace/base_pristine",
+      "suite_rc": "1",
+      "suite_seconds": "299",
+      "suite_summary_line": "162 failed, 708 passed, 8 skipped, 2 xfailed, 86 warnings, 64 errors in 293.34s (0:04:53)",
+      "tree": "dc8f315991961b6e84b6346be05b3029cb4e995a"
+    },
+    "pr_a": {
+      "branch": "review/zeta-core-v4-psa-feature",
+      "cohere_module_collect_rc": "3",
+      "cohere_module_collect_verdict": "collection aborts the session (SystemExit at import)",
+      "collect_only_nodes": 1858,
+      "collect_only_rc": "1",
+      "head": "711f01885430a2e4d3e7a6450dcdfc7102322b29",
+      "path": "/workspace/pr_a_build",
+      "suite_rc": "1",
+      "suite_seconds": "498",
+      "suite_summary_line": "162 failed, 1630 passed, 8 skipped, 2 xfailed, 86 warnings, 64 errors in 490.81s (0:08:10)",
+      "tree": "3a68a10d4d6644e5752020e66de5a56a89b3269a"
+    },
+    "pr_ab": {
+      "branch": "review/combined-psa-cohere",
+      "cohere_module_collect_rc": "0",
+      "cohere_module_collect_verdict": "collects cleanly",
+      "collect_only_nodes": 1871,
+      "collect_only_rc": "1",
+      "head": "657ca79a1a4128956d5471f7d360707d4da81c5d",
+      "path": "/workspace/pr_d_build",
+      "suite_rc": "1",
+      "suite_seconds": "532",
+      "suite_summary_line": "162 failed, 1643 passed, 8 skipped, 2 xfailed, 86 warnings, 64 errors in 525.83s (0:08:45)",
+      "tree": "c76d95f7fad924a9971c6fda16a7657785b8ccc9"
+    },
+    "pr_b": {
+      "branch": "review/cohere-key-harness",
+      "cohere_module_collect_rc": "0",
+      "cohere_module_collect_verdict": "collects cleanly",
+      "collect_only_nodes": 949,
+      "collect_only_rc": "1",
+      "head": "91b0df34ef042f6bc4d2c7771677a072bd9cb949",
+      "path": "/workspace/pr_b_build",
+      "suite_rc": "1",
+      "suite_seconds": "512",
+      "suite_summary_line": "162 failed, 721 passed, 8 skipped, 2 xfailed, 86 warnings, 64 errors in 505.69s (0:08:25)",
+      "tree": "aed01d49ad3025940f2345106e9a3753c8b8a7a4"
+    }
+  }
+}

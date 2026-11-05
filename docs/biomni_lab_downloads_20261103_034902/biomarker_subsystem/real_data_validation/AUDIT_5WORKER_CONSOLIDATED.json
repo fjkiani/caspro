@@ -1,0 +1,264 @@
+{
+  "audit_type": "5-worker parallel re-audit of previously-produced artifacts",
+  "date": "2026-07-23",
+  "workers_used": 5,
+  "nature": "read-only verification of files already on disk; no new science, no network, no EGA",
+  "slices": {
+    "provenance": {
+      "worker_env": "worker-0",
+      "host": "modal"
+    },
+    "deltas": {
+      "worker_env": "worker-1",
+      "host": "modal"
+    },
+    "perchrom": {
+      "worker_env": "worker-2",
+      "host": "modal"
+    },
+    "cutoffs": {
+      "worker_env": "worker-3",
+      "host": "modal"
+    },
+    "ledger": {
+      "worker_env": "worker-4",
+      "host": "modal"
+    }
+  },
+  "results": {
+    "provenance": {
+      "provenance": [
+        {
+          "file": "breakpoint_architecture_with_subj260.csv",
+          "exists": true,
+          "size_bytes": 563,
+          "mtime": "2026-07-21 06:28:09",
+          "md5_12": "6ad5d3ff52cb",
+          "n_lines": 6
+        },
+        {
+          "file": "breakpoint_architecture_pilot.csv",
+          "exists": true,
+          "size_bytes": 489,
+          "mtime": "2026-07-21 05:31:56",
+          "md5_12": "1a9f0e980f7d",
+          "n_lines": 5
+        },
+        {
+          "file": "breakpoint_delta_by_chrom.csv",
+          "exists": true,
+          "size_bytes": 660,
+          "mtime": "2026-07-21 05:31:57",
+          "md5_12": "06d08ea6aa70",
+          "n_lines": 75
+        },
+        {
+          "file": "subject_ledger.csv",
+          "exists": true,
+          "size_bytes": 31843,
+          "mtime": "2026-07-21 06:28:13",
+          "md5_12": "52d139ac0286",
+          "n_lines": 183
+        }
+      ]
+    },
+    "deltas": {
+      "delta_recompute": [
+        {
+          "subject": "191",
+          "dx_bp": 127,
+          "relapse_bp": 380,
+          "recomputed_delta": 253,
+          "stored_delta": 253,
+          "match": true,
+          "signature": "dispersed_stochastic_CIN"
+        },
+        {
+          "subject": "6",
+          "dx_bp": 17,
+          "relapse_bp": 118,
+          "recomputed_delta": 101,
+          "stored_delta": 101,
+          "match": true,
+          "signature": "dispersed_stochastic_CIN"
+        },
+        {
+          "subject": "260",
+          "dx_bp": 75,
+          "relapse_bp": 135,
+          "recomputed_delta": 60,
+          "stored_delta": 60,
+          "match": true,
+          "signature": "dispersed_stochastic_CIN"
+        },
+        {
+          "subject": "119",
+          "dx_bp": 148,
+          "relapse_bp": 166,
+          "recomputed_delta": 18,
+          "stored_delta": 18,
+          "match": true,
+          "signature": "intermediate_rearrangement"
+        },
+        {
+          "subject": "109",
+          "dx_bp": 59,
+          "relapse_bp": 52,
+          "recomputed_delta": -7,
+          "stored_delta": -7,
+          "match": true,
+          "signature": "modest_gain"
+        }
+      ],
+      "all_match": true
+    },
+    "perchrom": {
+      "per_chrom_check": {
+        "191": {
+          "per_chrom": {
+            "1": 29,
+            "2": 19,
+            "3": 22,
+            "4": 7,
+            "5": 14,
+            "6": 4,
+            "8": 22,
+            "9": 14,
+            "10": 7,
+            "11": 17,
+            "12": 13,
+            "13": 1,
+            "14": 19,
+            "15": 6,
+            "16": 5,
+            "17": 7,
+            "18": 7,
+            "19": 4,
+            "20": 10,
+            "21": 7,
+            "22": 19
+          },
+          "sum": 253,
+          "arch_delta": 253,
+          "sum_matches_arch": true,
+          "n_gain_chroms": 21,
+          "n_loss_chroms": 0,
+          "top_chrom": "1",
+          "top_chrom_delta": 29
+        },
+        "109": {
+          "per_chrom": {
+            "2": -2,
+            "4": -1,
+            "6": -1,
+            "7": -2,
+            "9": 2,
+            "11": -3,
+            "12": -2,
+            "13": -1,
+            "14": 4,
+            "17": -1,
+            "19": -1,
+            "20": 1
+          },
+          "sum": -7,
+          "arch_delta": -7,
+          "sum_matches_arch": true,
+          "n_gain_chroms": 3,
+          "n_loss_chroms": 9,
+          "top_chrom": "14",
+          "top_chrom_delta": 4
+        }
+      }
+    },
+    "cutoffs": {
+      "cutoff_check": [
+        {
+          "subject": "191",
+          "delta": 253,
+          "stored_signature": "dispersed_stochastic_CIN",
+          "expected_signature": "dispersed_stochastic_CIN",
+          "match": true
+        },
+        {
+          "subject": "6",
+          "delta": 101,
+          "stored_signature": "dispersed_stochastic_CIN",
+          "expected_signature": "dispersed_stochastic_CIN",
+          "match": true
+        },
+        {
+          "subject": "260",
+          "delta": 60,
+          "stored_signature": "dispersed_stochastic_CIN",
+          "expected_signature": "dispersed_stochastic_CIN",
+          "match": true
+        },
+        {
+          "subject": "119",
+          "delta": 18,
+          "stored_signature": "intermediate_rearrangement",
+          "expected_signature": "intermediate_rearrangement",
+          "match": true
+        },
+        {
+          "subject": "109",
+          "delta": -7,
+          "stored_signature": "modest_gain",
+          "expected_signature": "modest_gain",
+          "match": true
+        }
+      ],
+      "all_match": true
+    },
+    "ledger": {
+      "n_computed_in_ledger": 5,
+      "ledger_vs_arch": [
+        {
+          "subject": "6",
+          "in_arch": true,
+          "ledger_delta": "101.0",
+          "arch_delta": "101",
+          "delta_agree": true
+        },
+        {
+          "subject": "109",
+          "in_arch": true,
+          "ledger_delta": "-7.0",
+          "arch_delta": "-7",
+          "delta_agree": true
+        },
+        {
+          "subject": "119",
+          "in_arch": true,
+          "ledger_delta": "18.0",
+          "arch_delta": "18",
+          "delta_agree": true
+        },
+        {
+          "subject": "191",
+          "in_arch": true,
+          "ledger_delta": "253.0",
+          "arch_delta": "253",
+          "delta_agree": true
+        },
+        {
+          "subject": "260",
+          "in_arch": true,
+          "ledger_delta": "60",
+          "arch_delta": "60",
+          "delta_agree": true
+        }
+      ],
+      "all_agree": true
+    }
+  },
+  "summary_flags": {
+    "provenance_all_present": true,
+    "deltas_all_match": true,
+    "perchrom_191_sum_ok": true,
+    "perchrom_109_sum_ok": true,
+    "cutoffs_all_match": true,
+    "ledger_all_agree": true
+  }
+}

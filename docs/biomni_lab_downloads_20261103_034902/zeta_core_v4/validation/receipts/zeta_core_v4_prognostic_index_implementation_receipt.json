@@ -1,0 +1,1011 @@
+{
+  "absolute_risk_calibrated": false,
+  "artifact_integrity": {
+    "contains_carriage_return": false,
+    "content_digest_reproduces": true,
+    "n_top_level_keys": 54,
+    "recomputed_content_sha256": "a1acb23232c13a4089f6eb78a426292816864b2345e4651ccf01eaa7abd9d51f",
+    "recorded_content_sha256": "a1acb23232c13a4089f6eb78a426292816864b2345e4651ccf01eaa7abd9d51f",
+    "single_line_lf_terminated": true
+  },
+  "b6_band_stability": {
+    "band_stability": {
+      "concordance_by_distance_to_band_cut": [
+        {
+          "distance_to_band_cut": "[0.0, 0.02)",
+          "mean_band_concordance": 0.66875,
+          "n_reference_knots": 34
+        },
+        {
+          "distance_to_band_cut": "[0.02, 0.05)",
+          "mean_band_concordance": 0.93925,
+          "n_reference_knots": 56
+        },
+        {
+          "distance_to_band_cut": "[0.05, 0.1)",
+          "mean_band_concordance": 0.9991363636363636,
+          "n_reference_knots": 88
+        },
+        {
+          "distance_to_band_cut": "[0.1, 0.25)",
+          "mean_band_concordance": 1.0,
+          "n_reference_knots": 268
+        }
+      ],
+      "full_grid_concordance": 0.9455789473684211,
+      "knife_edge_note": "The frozen Q1 and Q3 knots sit exactly on the band cut points (111.5/446 = 0.25 and 334.5/446 = 0.75), so the prespecified quartile grid measures stability at the least stable possible points. Read it together with the population-wide concordance and the distance-to-cut strata.",
+      "population_wide_concordance_all_446_knots": 0.9669495515695067,
+      "prespecified_criterion": ">= 90% band concordance at the frozen quartile knots",
+      "prespecified_criterion_met": false,
+      "quartile_knot_concordance": 0.6661666666666667
+    },
+    "beta": {
+      "bootstrap_ci": [
+        -0.2897001249917215,
+        -0.0652229293447069
+      ],
+      "bootstrap_mean": -0.17529805959509517,
+      "bootstrap_sd": 0.055602672220444856,
+      "bootstrap_se_vs_analytic_se_ratio": 0.9792209459705274,
+      "direction_stability": 1.0,
+      "frozen_analytic_se": 0.05678256010479415,
+      "frozen_beta": -0.17278419421744848,
+      "mean_model_se": 0.05728624613985672,
+      "note": "beta < 0 in a replicate means the deployed direction holds: faster PSA elimination -> higher percentile -> lower relative hazard.",
+      "replicates_with_nonnegative_beta": 0
+    },
+    "bootstrap": {
+      "elapsed_seconds": 49.78,
+      "replicates_failed_to_fit": 0,
+      "replicates_fitted": 2000,
+      "replicates_requested": 2000,
+      "resamples_cdf_and_beta_jointly": true,
+      "seed": 20260813
+    },
+    "caveat": "The bootstrap percentile interval at a fixed k_day quantifies reference-distribution resampling uncertainty. It is not a new-patient predictive interval.",
+    "prespecified_criterion": ">= 90% band concordance at the frozen quartile knots",
+    "prespecified_criterion_met": false,
+    "receipt_path_in_repo": "tumor_marker_kinetics_validation/b6_bootstrap_band_stability.json",
+    "receipt_sha256": "0c103a3da9cb0e99332c49cd12bef0cb678262ce022d7893b08ac4a817a76676",
+    "verdict": "FAILED AS PRESPECIFIED. Quartile-knot concordance 0.6662 vs the >= 0.90 requirement. The failure is structural, not sampling noise: the frozen Q1 and Q3 knots sit exactly on the 0.25 and 0.75 cut points, so the prespecified grid measures the least stable points in the distribution. Population-wide concordance across all 446 knots is 0.9669. No threshold was moved and relative_prognostic_band was not removed; the finding is disclosed in the emitted limitations and the continuous reference_percentile is recommended near a cut."
+  },
+  "band_knife_edge_demonstration": {
+    "q1_knot_exact": {
+      "k_day": "0.007266565079515904",
+      "reference_percentile": "0.25",
+      "relative_hazard_multiplier": 1.123603766029922,
+      "relative_prognostic_band": "REFERENCE_RANGE_RELATIVE_HAZARD"
+    },
+    "q1_knot_minus_1ulp": {
+      "k_day": "0.007266565079515903",
+      "reference_percentile": "0.24999999999999994",
+      "relative_hazard_multiplier": 1.123603766029922,
+      "relative_prognostic_band": "HIGHER_RELATIVE_HAZARD"
+    },
+    "q1_truncated_literal_7_266565e_03": {
+      "k_day": "0.007266565",
+      "reference_percentile": "0.24999999537855397",
+      "relative_hazard_multiplier": 1.1236037688533274,
+      "relative_prognostic_band": "HIGHER_RELATIVE_HAZARD"
+    },
+    "q3_knot_exact": {
+      "k_day": "0.021118830402140517",
+      "reference_percentile": "0.75",
+      "relative_hazard_multiplier": 0.8899934569758015,
+      "relative_prognostic_band": "REFERENCE_RANGE_RELATIVE_HAZARD"
+    },
+    "q3_knot_minus_1ulp": {
+      "k_day": "0.021118830402140513",
+      "reference_percentile": "0.7499999999999999",
+      "relative_hazard_multiplier": 0.8899934569758016,
+      "relative_prognostic_band": "REFERENCE_RANGE_RELATIVE_HAZARD"
+    },
+    "q3_knot_plus_1ulp": {
+      "k_day": "0.02111883040214052",
+      "reference_percentile": "0.75",
+      "relative_hazard_multiplier": 0.8899934569758015,
+      "relative_prognostic_band": "REFERENCE_RANGE_RELATIVE_HAZARD"
+    }
+  },
+  "capability_released": "RELATIVE_PROGNOSTIC_INDEX_ONLY",
+  "capability_separation": {
+    "absolute_risk_calibrated": {
+      "authorized_axis_statuses": [],
+      "blocking_gap": "No baseline hazard is transported and no calibration gate has passed.",
+      "meaning": "An absolute survival or response probability. Requires a transported baseline hazard and a passing calibration gate.",
+      "status": "NOT_AVAILABLE_IN_THIS_RELEASE"
+    },
+    "relative_prognostic_index": {
+      "authorized_axis_statuses": [
+        "EXTERNALLY_OS_ASSOCIATED"
+      ],
+      "band_semantics": "Deterministic UI display categories on the frozen reference percentile. Not clinically validated decision thresholds.",
+      "disclosure": "Externally associated with overall survival in comparator cohorts. Relative prognostic index only. Not an absolute survival probability, treatment-benefit estimate, or therapy recommendation. Validated among week-15 survivors with positive estimable early PSA decline. A1-RSE precision gate failed: 66.5% versus 80%.",
+      "meaning": "Hazard ratio relative to a reference patient at z_rank = 0, from a frozen external Cox coefficient and a frozen reference distribution.",
+      "released_outputs_prostate_psa": [
+        "k_day",
+        "fit_qc",
+        "reference_percentile",
+        "z_rank",
+        "prognostic_log_hazard_index",
+        "relative_hazard_multiplier",
+        "coefficient_conditional_relative_hazard_interval",
+        "relative_prognostic_band",
+        "band_status",
+        "band_gate_observed",
+        "band_gate_required",
+        "band_gate_pass",
+        "exploratory_band_definition",
+        "fit_precision_status",
+        "k_day_uncertainty_interval",
+        "percentile_uncertainty_interval",
+        "multiplier_uncertainty_interval",
+        "decline_sign_stability",
+        "boundary_crossing_probability",
+        "landmark_scope_source",
+        "landmark_scope_verified",
+        "reference_artifact_version",
+        "reference_artifact_sha256",
+        "validated_population_scope",
+        "evidence_status",
+        "limitations"
+      ]
+    },
+    "treatment_predictive": {
+      "authorized_axis_statuses": [],
+      "blocking_gap": "All released prostate cohorts are comparator/control arms, so no treatment-by-kinetics interaction is estimable.",
+      "meaning": "A treatment-by-marker interaction supporting a therapy choice.",
+      "status": "NOT_AVAILABLE_IN_THIS_RELEASE"
+    }
+  },
+  "constants": {
+    "absolute_risk_calibrated_axis_statuses": [],
+    "calibrated_axis_statuses": [],
+    "contract_version": "v4.0",
+    "fail_closed_keys": [
+      "score",
+      "therapy_fit_score",
+      "probability",
+      "calibrated_probability",
+      "calibrated_survival_probability",
+      "calibrated_response_probability",
+      "risk_score",
+      "treatment_recommendation",
+      "treatment_priority",
+      "predicted_treatment_benefit"
+    ],
+    "forbidden_prognostic_labels": [
+      "triage_band",
+      "triage band",
+      "clinical triage",
+      "clinical risk",
+      "low risk",
+      "high risk",
+      "favorable prognosis",
+      "treatment priority",
+      "treatment guidance",
+      "calibrated risk"
+    ],
+    "k_day_unit": "day^-1",
+    "legacy_crc_rate_unit": "week^-1",
+    "log_base": "natural",
+    "min_distinct_early_observations": 3,
+    "model_equation": "log(marker_t) = intercept - k_day * t_day",
+    "model_family": "FIRST_ORDER_LOG_LINEAR_OLS",
+    "n_prostate_prognostic_block_keys": 43,
+    "plateau": "fixed_at_zero",
+    "prognostic_block_metadata_keys": [
+      "eligible",
+      "ineligible_reason",
+      "beta",
+      "beta_standard_error",
+      "reference_z_rank",
+      "interpretation",
+      "band_semantics",
+      "band_suppression_statement",
+      "interval_semantics",
+      "fit_precision_semantics",
+      "fit_precision_design",
+      "landmark_scope_statement",
+      "landmark_scope_annotation",
+      "release_contract",
+      "refusal_boundary_statement",
+      "three_observation_disclosure",
+      "disclosure"
+    ],
+    "prognostic_index_axis_statuses": [
+      "EXTERNALLY_OS_ASSOCIATED"
+    ],
+    "prognostic_limitations": [
+      "Relative prognostic index only; not an absolute survival probability.",
+      "Not a treatment-benefit estimate and not a therapy recommendation.",
+      "No absolute-risk calibration exists; no baseline hazard is transported.",
+      "Derived from comparator/control arms only, so no treatment-by-kinetics interaction is estimable and treatment prediction is out of scope.",
+      "A1-RSE precision gate failed: 66.5% versus 80% with RSE<0.5.",
+      "Defined only among week-15 survivors with a positive estimable early PSA decline; other patients fail closed with a typed reason.",
+      "The prespecified band stability gate FAILED: quartile-knot concordance 0.6662 against a required 0.90 in the B6 joint bootstrap (B=2000). The same bootstrap gave concordance 0.9456 on the full knot grid and 96.7% population-wide, but only 49-51% for values sitting exactly on the 0.25 / 0.75 cut points; the prespecified evaluation is the quartile-knot one, and the higher figures do not replace it. relative_prognostic_band is therefore null on every code path and no category may be inferred from any emitted continuous field.",
+      "coefficient_conditional_relative_hazard_interval propagates Cox coefficient uncertainty only. It does not include uncertainty in the patient's PSA-rate fit, reference CDF or assay measurements, and it is not a patient-level confidence interval. Its width is proportional to |z_rank|, so it approaches zero at the reference median.",
+      "percentile_uncertainty_interval, k_day_uncertainty_interval and multiplier_uncertainty_interval propagate resampling of this patient's own analysis days only, holding the frozen coefficient and reference distribution fixed. Neither interval emitted by this service is a joint interval over all three uncertainty components.",
+      "In the frozen reference cohort the individual-rate component was the widest of the three components for 292 of 412 patients with estimable uncertainty, and the median joint interval was about twice the width of the coefficient-only interval.",
+      "fit_precision_status is an output-quality annotation, not a cohort filter. The n=446 frozen reference population is unchanged and was not filtered on fit precision. In that population only 12.6% of patients were RELIABLE.",
+      "An unstable resampled decline sign fails closed with reason UNSTABLE_DECLINE_SIGN. Fewer than four distinct analysis days yields fit_precision_status INSUFFICIENT_FOR_UNCERTAINTY, in which case the point index is still served and every uncertainty field is null.",
+      "The reference distribution is a single external trial (VENICE); portability of a within-trial rank transform to other populations is untested."
+    ],
+    "prostate_prognostic_block_keys": [
+      "band_semantics",
+      "beta",
+      "beta_standard_error",
+      "disclosure",
+      "eligible",
+      "evidence_status",
+      "fit_qc",
+      "ineligible_reason",
+      "interpretation",
+      "k_day",
+      "limitations",
+      "prognostic_log_hazard_index",
+      "reference_artifact_sha256",
+      "reference_artifact_version",
+      "reference_percentile",
+      "reference_z_rank",
+      "relative_hazard_multiplier",
+      "relative_hazard_multiplier_ci",
+      "relative_prognostic_band",
+      "validated_population_scope",
+      "z_rank"
+    ],
+    "ruo_disclaimer": "Research use only. Not validated for clinical decision-making. No calibrated score or probability is emitted by this axis.",
+    "supported_rate_units": [
+      "day^-1",
+      "days^-1"
+    ],
+    "treatment_predictive_axis_statuses": []
+  },
+  "deployment_claim": "NONE. Code is on a feature branch only; nothing is merged to main and no environment is declared deployed.",
+  "determinism": {
+    "byte_identical_regeneration_reproved": true,
+    "content_sha256_invariant_to_timestamp": true,
+    "live_reruns_this_step": {
+      "regen_alt_stamp": {
+        "byte_identical_to_shipped": false,
+        "bytes": 25209,
+        "content_sha256": "a1acb23232c13a4089f6eb78a426292816864b2345e4651ccf01eaa7abd9d51f",
+        "file_sha256": "095ef269f305ddedf6e6912c90eb16d13ebf8e9d5b693c6ef374a1c085e02e0c",
+        "generated_utc": "1999-01-01T12:34:56Z",
+        "returncode": 0,
+        "written": true
+      },
+      "regen_pinned_stamp": {
+        "byte_identical_to_shipped": true,
+        "bytes": 25209,
+        "content_sha256": "a1acb23232c13a4089f6eb78a426292816864b2345e4651ccf01eaa7abd9d51f",
+        "file_sha256": "2302bfaba3acdb48dbcc731406cded140ce68169fb922ae516215bc8e80e62da",
+        "generated_utc": "2026-08-13T00:00:00Z",
+        "returncode": 0,
+        "written": true
+      }
+    },
+    "run_1_equals_run_2": true,
+    "run_1_file_sha256": "2302bfaba3acdb48dbcc731406cded140ce68169fb922ae516215bc8e80e62da",
+    "run_2_file_sha256": "2302bfaba3acdb48dbcc731406cded140ce68169fb922ae516215bc8e80e62da",
+    "run_3_alternate_generated_utc_file_sha256": "095ef269f305ddedf6e6912c90eb16d13ebf8e9d5b693c6ef374a1c085e02e0c",
+    "run_3_differs_only_in_generated_utc": true,
+    "source_parquet_bytes": 16434,
+    "source_parquet_sha256": "5c4220c24b1d056c0b61d045f6f45f22d13a9effc90570f8ee67f1b33b62011f"
+  },
+  "direction_certificate": {
+    "beta": -0.17278419421744848,
+    "beta_is_negative": true,
+    "disclosure": "Externally associated with overall survival in comparator cohorts. Relative prognostic index only. Not an absolute survival probability, treatment-benefit estimate, or therapy recommendation. Validated among week-15 survivors with positive estimable early PSA decline. A1-RSE precision gate failed: 66.5% versus 80%.",
+    "fastest_elimination": {
+      "k_day": 0.08947089486936483,
+      "percentile": 0.9988789237668162,
+      "relative_hazard_multiplier": 0.5897534705576014,
+      "z_rank": 3.0561283588968857
+    },
+    "k_day_monotone_nonincreasing_violations": 0,
+    "n_grid": 2001,
+    "percentile_monotone_decreasing_violations": 0,
+    "reverse_mapping_possible": false,
+    "slowest_elimination": {
+      "k_day": 8.691943994773028e-05,
+      "percentile": 0.0011210762331838565,
+      "relative_hazard_multiplier": 1.6956237647139498,
+      "z_rank": -3.0561283588968724
+    },
+    "statement": "Higher k_day (faster PSA elimination) maps to a higher reference percentile, a higher z_rank, a lower prognostic log hazard index and a lower relative hazard multiplier. The reverse mapping is structurally impossible while beta < 0.",
+    "z_rank_monotone_increasing_violations": 0
+  },
+  "direction_sweep": [
+    {
+      "k_day": 0.0005,
+      "reference_percentile": 0.010471253330430306,
+      "relative_hazard_multiplier": 1.4902770622287018,
+      "relative_prognostic_band": "HIGHER_RELATIVE_HAZARD",
+      "z_rank": -2.309019365357127
+    },
+    {
+      "k_day": 0.002,
+      "reference_percentile": 0.0518792081893706,
+      "relative_hazard_multiplier": 1.3245894227707768,
+      "relative_prognostic_band": "HIGHER_RELATIVE_HAZARD",
+      "z_rank": -1.6268996309810089
+    },
+    {
+      "k_day": 0.007266565,
+      "reference_percentile": 0.24999999537855397,
+      "relative_hazard_multiplier": 1.1236037688533274,
+      "relative_prognostic_band": "HIGHER_RELATIVE_HAZARD",
+      "z_rank": -0.6744897647391488
+    },
+    {
+      "k_day": 0.01342055,
+      "reference_percentile": 0.5011206970732986,
+      "relative_hazard_multiplier": 0.9995147367972159,
+      "relative_prognostic_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "z_rank": 0.0028091746659715607
+    },
+    {
+      "k_day": 0.02111883,
+      "reference_percentile": 0.7499999839090371,
+      "relative_hazard_multiplier": 0.8899934647624572,
+      "relative_prognostic_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "z_rank": 0.6744896995599934
+    },
+    {
+      "k_day": 0.05,
+      "reference_percentile": 0.9805375687211273,
+      "relative_hazard_multiplier": 0.6999152935908356,
+      "relative_prognostic_band": "LOWER_RELATIVE_HAZARD",
+      "z_rank": 2.064980318557688
+    },
+    {
+      "k_day": 0.08,
+      "reference_percentile": 0.9978264306402064,
+      "relative_hazard_multiplier": 0.6109456359478926,
+      "relative_prognostic_band": "LOWER_RELATIVE_HAZARD",
+      "z_rank": 2.851807721974512
+    }
+  ],
+  "direction_sweep_multiplier_strictly_decreasing": true,
+  "emitted_deliverables": {
+    "b6_receipt": {
+      "bytes": 16274,
+      "filename": "b6_bootstrap_band_stability.json",
+      "sha256": "0c103a3da9cb0e99332c49cd12bef0cb678262ce022d7893b08ac4a817a76676"
+    },
+    "contract": {
+      "bytes": 54652,
+      "changed_versus_prior_phase": true,
+      "filename": "therapy_fit_marker_kinetics_contract_v4.json",
+      "gates_passed": {
+        "all_7_pinned_receipts_resolve_and_match": true,
+        "fail_closed_keys_all_null": true,
+        "identifier_claim_label_scans_clean": true,
+        "no_calibrated_axis_status": true,
+        "non_prostate_released_outputs_unchanged": true,
+        "prostate_released_outputs_consistent": true
+      },
+      "prior_phase_sha256": "cc8ed6706cefe5c4e04be7f22b6f26ca55a1295d841a5f41219d558d56b227fa",
+      "reason_for_change": "Prostate released_outputs grew from 2 to 13, the three-tier capability_separation block was added, and the wrapper now records the frozen reference artifact and the relative prognostic index specification.",
+      "sha256": "f31822f5318f531094b854a7037cb8ccc7370cd3f0e1252a9681f4132f6da1e6"
+    },
+    "delivery_report": {
+      "digest_recorded_in": "DELIVERY_REPORT.md.sha256",
+      "filename": "DELIVERY_REPORT.md",
+      "note": "The report cites this receipt's digest, so this receipt deliberately does not cite the report's digest; that would be circular. The report's digest lives in its own sidecar."
+    }
+  },
+  "engine": "ZETA-CORE v4.0 UNIVERSAL TUMOR-MARKER KINETICS",
+  "environment_notes": [
+    "loguru 0.7.3 installed — a declared runtime dependency imported by api/config.py:7 that was absent from the sandbox.",
+    "pytest-asyncio 1.4.0 installed — a declared dev dependency (requirements-dev.txt:6). Its absence produced 6 apparent regressions in tests/audit/test_therapy_fit_v2_slop_proofs.py that reproduced identically on untouched origin/main, so they were never branch regressions.",
+    "uv silently upgraded pytest 8.4.1 -> 9.1.1 while installing pytest-asyncio; pytest was re-pinned to 8.4.1. Final: pytest 8.4.1 + pytest_asyncio 1.4.0.",
+    "No repository code was changed to accommodate the environment."
+  ],
+  "fail_closed_behaviour": {
+    "examples": {
+      "bad_rate_unit": {
+        "all_numeric_fields_null": true,
+        "eligible": false,
+        "ineligible_reason": "INCOMPATIBLE_RATE_UNIT"
+      },
+      "fit_failed": {
+        "all_numeric_fields_null": true,
+        "eligible": false,
+        "ineligible_reason": "NONPOSITIVE_DECLINE_RATE"
+      },
+      "not_attested_false": {
+        "all_numeric_fields_null": true,
+        "eligible": false,
+        "ineligible_reason": "OUTSIDE_VALIDATED_LANDMARK_SCOPE"
+      },
+      "not_attested_silent": {
+        "all_numeric_fields_null": true,
+        "eligible": false,
+        "ineligible_reason": "OUTSIDE_VALIDATED_LANDMARK_SCOPE"
+      },
+      "wrong_axis": {
+        "all_numeric_fields_null": true,
+        "eligible": false,
+        "ineligible_reason": "MARKER_AXIS_MISMATCH"
+      }
+    },
+    "landmark_attestation_matrix": {
+      "attested": {
+        "attested": true,
+        "comparison": "strictly_greater_than",
+        "consequence_if_not_attested": "OUTSIDE_VALIDATED_LANDMARK_SCOPE",
+        "landmark_confirmed_input": true,
+        "landmark_day": 105.0,
+        "landmark_weeks": 15.0,
+        "not_attested_because": null,
+        "survived_through_landmark_day_input": 140.0
+      },
+      "boundary_equal": {
+        "attested": false,
+        "comparison": "strictly_greater_than",
+        "consequence_if_not_attested": "OUTSIDE_VALIDATED_LANDMARK_SCOPE",
+        "landmark_confirmed_input": true,
+        "landmark_day": 105.0,
+        "landmark_weeks": 15.0,
+        "not_attested_because": "survived_through_landmark_day 105.0 is not strictly greater than day 105.0 (week 15.0)",
+        "survived_through_landmark_day_input": 105.0
+      },
+      "day_only": {
+        "attested": false,
+        "comparison": "strictly_greater_than",
+        "consequence_if_not_attested": "OUTSIDE_VALIDATED_LANDMARK_SCOPE",
+        "landmark_confirmed_input": null,
+        "landmark_day": 105.0,
+        "landmark_weeks": 15.0,
+        "not_attested_because": "landmark_confirmed was not explicitly True; silence is never treated as eligibility",
+        "survived_through_landmark_day_input": 140.0
+      },
+      "flag_false": {
+        "attested": false,
+        "comparison": "strictly_greater_than",
+        "consequence_if_not_attested": "OUTSIDE_VALIDATED_LANDMARK_SCOPE",
+        "landmark_confirmed_input": false,
+        "landmark_day": 105.0,
+        "landmark_weeks": 15.0,
+        "not_attested_because": "landmark_confirmed was not explicitly True; silence is never treated as eligibility",
+        "survived_through_landmark_day_input": 140.0
+      },
+      "flag_only": {
+        "attested": false,
+        "comparison": "strictly_greater_than",
+        "consequence_if_not_attested": "OUTSIDE_VALIDATED_LANDMARK_SCOPE",
+        "landmark_confirmed_input": true,
+        "landmark_day": 105.0,
+        "landmark_weeks": 15.0,
+        "not_attested_because": "landmark_confirmed was True but survived_through_landmark_day was missing or non-numeric; the attestation is incomplete",
+        "survived_through_landmark_day_input": null
+      },
+      "silent": {
+        "attested": false,
+        "comparison": "strictly_greater_than",
+        "consequence_if_not_attested": "OUTSIDE_VALIDATED_LANDMARK_SCOPE",
+        "landmark_confirmed_input": null,
+        "landmark_day": 105.0,
+        "landmark_weeks": 15.0,
+        "not_attested_because": "landmark_confirmed was not explicitly True; silence is never treated as eligibility",
+        "survived_through_landmark_day_input": null
+      }
+    },
+    "never_substitutes": [
+      "zero",
+      "reference median",
+      "cohort mean",
+      "a default percentile"
+    ],
+    "precedence": [
+      "axis/marker identity",
+      "rate unit",
+      "fit status",
+      "k validity",
+      "k sign",
+      "landmark attestation",
+      "reference artifact faults",
+      "INVALID_CDF_OUTPUT"
+    ],
+    "typed_reasons": [
+      "DECLINE_SIGN_NOT_INDEPENDENTLY_ESTABLISHED",
+      "FIT_PRECISION_UNVERIFIABLE",
+      "FIT_QC_FAILED",
+      "INCOMPATIBLE_RATE_UNIT",
+      "INSUFFICIENT_DISTINCT_OBSERVATIONS",
+      "INVALID_CDF_OUTPUT",
+      "INVALID_MARKER_VALUE",
+      "MARKER_AXIS_MISMATCH",
+      "NONPOSITIVE_DECLINE_RATE",
+      "REFERENCE_ARTIFACT_MISSING",
+      "REFERENCE_CHECKSUM_MISMATCH",
+      "REFERENCE_VERSION_UNSUPPORTED",
+      "UNSTABLE_DECLINE_SIGN"
+    ]
+  },
+  "frozen_coefficient": {
+    "band_lower": 0.25,
+    "band_upper": 0.75,
+    "beta": -0.17278419421744848,
+    "beta_ci_high": -0.061492421462071026,
+    "beta_ci_low": -0.28407596697282594,
+    "beta_standard_error": 0.05678256010479415,
+    "evidence_status": "EXTERNALLY_OS_ASSOCIATED",
+    "exp_beta": 0.8413191567940249,
+    "exp_beta_ci_high": 0.9403600722668989,
+    "exp_beta_ci_low": 0.7527094614749995,
+    "factored_exp_beta_times_exp_z_se": 0.9403600722668988,
+    "landmark_day": 105.0,
+    "landmark_weeks": 15.0,
+    "mandated_exp_beta_plus_z_se": 0.9403600722668989,
+    "normal_ppf_0975": 1.9599639845400536,
+    "normal_ppf_abs_diff_from_pin": 4.440892098500626e-16,
+    "pinned_normal_quantile_97_5": 1.959963984540054
+  },
+  "git": {
+    "base_pristine_sha": "99dd39c657064839fd25c37a69851178bc5e6d9d",
+    "branch": "feature/zeta-core-v4-tumor-marker-kinetics",
+    "branch_head_worktree_sha": "8308c88b69c2476329049107326f1de205c1a6f3",
+    "head_sha": "8308c88b69c2476329049107326f1de205c1a6f3",
+    "origin_main_sha": "99dd39c657064839fd25c37a69851178bc5e6d9d",
+    "porcelain": [
+      "M .gitignore",
+      " M api/routers/ayesha_therapy_fit.py",
+      " M api/services/tumor_marker_kinetics/__init__.py",
+      " M api/services/tumor_marker_kinetics/models.py",
+      " M api/services/tumor_marker_kinetics/registry.py",
+      " M api/services/tumor_marker_kinetics/serializer.py",
+      " M tests/efficacy/test_therapy_fit_axes.py",
+      " M tests/unit/test_tumor_marker_kinetics_contract.py",
+      " M tests/unit/test_tumor_marker_kinetics_router.py",
+      "?? api/services/tumor_marker_kinetics/data/",
+      "?? api/services/tumor_marker_kinetics/prognostic_index.py",
+      "?? api/services/tumor_marker_kinetics/reference_cdf.py",
+      "?? scripts/generate_venice_psa_reference_cdf.py",
+      "?? scripts/validation/b6_bootstrap_band_stability.py",
+      "?? tests/unit/test_prognostic_direction_negative.py",
+      "?? tests/unit/test_prostate_prognostic_index.py",
+      "?? tests/unit/test_venice_psa_reference_cdf.py",
+      "?? tumor_marker_kinetics_validation/"
+    ]
+  },
+  "limitations_parity": {
+    "artifact_limitations": [
+      "Relative prognostic index only. Not an absolute survival probability.",
+      "Not a treatment-benefit estimate and not a therapy recommendation.",
+      "No absolute-risk calibration exists; no baseline hazard is transported.",
+      "Derived from comparator/control arms only, so no treatment x kinetics interaction is estimable and treatment prediction is out of scope.",
+      "A1-RSE precision gate failed: 66.5% versus 80% with RSE<0.5.",
+      "Defined only among week-15 survivors with positive estimable early PSA decline; patients outside that scope fail closed with a typed reason.",
+      "Quartile bands are deterministic UI display categories, not clinically validated decision thresholds.",
+      "The reference distribution is a single external trial (VENICE); portability of a within-trial rank transform to other populations is untested."
+    ],
+    "b6_sentence_in_artifact": [],
+    "b6_sentence_in_runtime": [
+      "Joint bootstrap (B=2000) band stability: concordance is 96.7% across the reference distribution but only 49-51% for values sitting exactly on the 0.25 / 0.75 cut points, so the continuous reference_percentile should be preferred over the band near a cut."
+    ],
+    "identical": false,
+    "in_artifact_not_in_runtime": [
+      "Relative prognostic index only. Not an absolute survival probability.",
+      "Derived from comparator/control arms only, so no treatment x kinetics interaction is estimable and treatment prediction is out of scope.",
+      "Defined only among week-15 survivors with positive estimable early PSA decline; patients outside that scope fail closed with a typed reason.",
+      "Quartile bands are deterministic UI display categories, not clinically validated decision thresholds."
+    ],
+    "in_runtime_not_in_artifact": [
+      "Relative prognostic index only; not an absolute survival probability.",
+      "Derived from comparator/control arms only, so no treatment-by-kinetics interaction is estimable and treatment prediction is out of scope.",
+      "Defined only among week-15 survivors with a positive estimable early PSA decline; other patients fail closed with a typed reason.",
+      "relative_prognostic_band values are deterministic display categories, not clinically validated decision thresholds.",
+      "Joint bootstrap (B=2000) band stability: concordance is 96.7% across the reference distribution but only 49-51% for values sitting exactly on the 0.25 / 0.75 cut points, so the continuous reference_percentile should be preferred over the band near a cut."
+    ],
+    "n_artifact": 8,
+    "n_runtime": 9,
+    "runtime_limitations": [
+      "Relative prognostic index only; not an absolute survival probability.",
+      "Not a treatment-benefit estimate and not a therapy recommendation.",
+      "No absolute-risk calibration exists; no baseline hazard is transported.",
+      "Derived from comparator/control arms only, so no treatment-by-kinetics interaction is estimable and treatment prediction is out of scope.",
+      "A1-RSE precision gate failed: 66.5% versus 80% with RSE<0.5.",
+      "Defined only among week-15 survivors with a positive estimable early PSA decline; other patients fail closed with a typed reason.",
+      "relative_prognostic_band values are deterministic display categories, not clinically validated decision thresholds.",
+      "Joint bootstrap (B=2000) band stability: concordance is 96.7% across the reference distribution but only 49-51% for values sitting exactly on the 0.25 / 0.75 cut points, so the continuous reference_percentile should be preferred over the band near a cut.",
+      "The reference distribution is a single external trial (VENICE); portability of a within-trial rank transform to other populations is untested."
+    ]
+  },
+  "near_exactness_disclosures": [
+    {
+      "abs_difference": 4.440892098500626e-16,
+      "computed": 1.9599639845400536,
+      "item": "normal_ppf(0.975) vs the pinned NORMAL_QUANTILE_97_5",
+      "pinned": 1.959963984540054,
+      "resolution": "The pinned literal is used for the emitted CI so the receipt reproduces bitwise; the AS241 value is asserted within tolerance, not engineered to match."
+    },
+    {
+      "abs_difference": 1.1102230246251565e-16,
+      "factored_product": 0.9403600722668988,
+      "item": "exp(beta + z*SE) vs exp(beta)*exp(z*SE)",
+      "mandated_single_exponential": 0.9403600722668989,
+      "resolution": "One-ulp float difference. The single-exponential form is what the code emits; the receipt value it must match is the factored one, so the test asserts with tolerance."
+    },
+    {
+      "computed": 0.4999999999999999,
+      "exact_target": 0.5,
+      "item": "interpolated reference median percentile",
+      "percentile_mode": "INTERPOLATED",
+      "resolution": "Monotone linear interpolation returns 0.4999999999999999 at the median; asserted with tolerance rather than rounded."
+    }
+  ],
+  "open_items_and_unresolved_limitations": [
+    "B6 prespecified band criterion FAILED (0.6662 vs >= 0.90 at the frozen quartile knots). Disclosed, not remediated.",
+    "A1-RSE precision gate FAILED (66.5% vs 80%). There is deliberately no runtime RSE gate, because the n=446 reference population was not filtered on fit precision.",
+    "The frozen artifact's own limitations array carries 8 entries while the runtime PROGNOSTIC_LIMITATIONS emitted with every payload carries 9. The runtime list adds the B6 band-stability sentence and re-words four entries. The artifact was digest-pinned before B6 completed and was NOT regenerated, because that would invalidate the pinned file/content digests recorded in the tests and in this receipt. The runtime list is the authoritative disclosure surface.",
+    "The reference distribution is a single external trial (VENICE). Portability of a within-trial rank transform to other populations is untested.",
+    "TROPIC is excluded from the locked model (no ECOG anywhere in the released tables) and its OS derivability is still unverified, so B5 remains conditional.",
+    "TAX327 raw longitudinal PSA is not cached, so per-timepoint rate reliability for TAX327 is blocked; B7 (CRC leave-one-trial-out) is blocked for lack of a cached patient-level table; B10 (treatment-predictive) is permanently blocked because every released prostate cohort is a comparator/control arm; B9 is not run by design.",
+    "scikit-survival is absent from the environment, so B1's IPCW Brier (Graf) and Uno tAUC must be hand-implemented and unit-tested before B1 can be trusted."
+  ],
+  "production_defects_found_by_tests": [
+    {
+      "fix": "Module-level _UNSET sentinel; the guard now resolves PROSTATE_PSA_COX_BETA at call time and validates the value the arithmetic will actually use.",
+      "found_by": "tests/unit/test_prognostic_direction_negative.py (negative test)",
+      "guard_weakened": false,
+      "id": "DEFECT-1",
+      "module": "api/services/tumor_marker_kinetics/prognostic_index.py",
+      "output_neutral": true,
+      "symptom": "_assert_negative_beta(beta: float = PROSTATE_PSA_COX_BETA) bound the coefficient as a DEFINITION-TIME default, so the per-call guard validated the import-time value while the transform resolves the module global at call time. A runtime mutation of the global could have flipped the prognostic direction silently."
+    },
+    {
+      "carve_out_rationale": "treatment_priority is simultaneously a mandated fail-closed key name and a forbidden claim phrase. The contract self-declares its refused key names as string values, so without the exemption no shipped payload could serialize. Any surrounding text is a claim and is still caught; _normalize_key strips spaces, so the spaced prose form 'treatment priority' can never be exempted.",
+      "fix": "Two-pass scan. Pass 1 is the original literal blob. Pass 2 walks the payload with a dedicated recursive walker that collapses '_' and '-' runs to spaces and lowercases, then re-scans. Exactly one carve-out: an EXACT whole-string self-reference to a mandated fail-closed key name, in key position or whole-string value position, is exempt.",
+      "found_by": "an empirical probe written while repairing 8 key-name-scanner test parameters in tests/unit/test_tumor_marker_kinetics_contract.py",
+      "guard_strictly_tightened": true,
+      "guard_weakened": false,
+      "id": "DEFECT-2",
+      "module": "api/services/tumor_marker_kinetics/serializer.py",
+      "output_neutral": true,
+      "symptom": "assert_no_forbidden_prognostic_labels missed separator-styled evasions. _FORBIDDEN_LABEL_PATTERNS matches literal spaced phrases with word boundaries and '_' is not in [a-z0-9], so clinical_risk, low_risk, favorable_prognosis and calibrated-risk all passed.",
+      "verification": "normalized-pass hits are [] for the contract and for the prostate, CRC, breast and lung fit payloads; removing the exemption yields ['treatment priority']."
+    }
+  ],
+  "purpose": "Machine-readable implementation receipt for the externally OS-associated PSA RELATIVE PROGNOSTIC INDEX. No absolute-risk calibration and no treatment-predictive field is created or activated by this work.",
+  "receipt_id": "zeta_core_v4_prognostic_index_implementation_receipt",
+  "receipt_version": "v1",
+  "reference_artifact": {
+    "artifact_type": "FROZEN_EMPIRICAL_REFERENCE_CDF",
+    "artifact_version": "v1",
+    "bytes": 25209,
+    "cdf_convention": "Frozen empirical midrank plotting position F(k) = (L + E/2)/n with L = #{k_i < k} and E = #{k_i == k}. For a distinct value at 1-indexed rank r this equals (r - 0.5)/n, which is exactly the transformation the locked Cox model was fitted on. The naive i/n ECDF is deliberately NOT used: it would return 1.0 at the reference maximum and be inconsistent with the fitted coefficient.",
+    "content_sha256": "a1acb23232c13a4089f6eb78a426292816864b2345e4651ccf01eaa7abd9d51f",
+    "deidentification_attestations": {
+      "contains_dates": false,
+      "contains_patient_identifiers": false,
+      "contains_source_rows": false
+    },
+    "eligibility_cascade": {
+      "complete_model_covariates": 449,
+      "positive_finite_rate": 449,
+      "source_rows_total": 621,
+      "trial_rows": 454,
+      "week15_landmark_survivors": 446
+    },
+    "file_sha256": "2302bfaba3acdb48dbcc731406cded140ce68169fb922ae516215bc8e80e62da",
+    "filename": "venice_psa_k_day_reference_cdf_v1.json",
+    "generated_utc": "2026-08-13T00:00:00Z",
+    "generator": "scripts/generate_venice_psa_reference_cdf.py",
+    "generator_sha256": "6eea4fd7f14cae0d2b7c12b8368aad03b57bda2627c06f3b34f55ed1400d6e66",
+    "generator_version": "1.0.0",
+    "lower_extrapolation_policy": "k below the lowest knot returns the lowest knot's plotting position 0.5/n. Never 0.",
+    "n_events_reference": 296,
+    "n_knots": 446,
+    "n_reference": 446,
+    "n_tied_reference_values": 0,
+    "path_in_repo": "api/services/tumor_marker_kinetics/data/venice_psa_k_day_reference_cdf_v1.json",
+    "percentile_bounds": [
+      0.0011210762331838565,
+      0.9988789237668162
+    ],
+    "reference_rate_max": 0.08947089486936483,
+    "reference_rate_min": 8.691943994773028e-05,
+    "source_cohort_digest": "5c4220c24b1d056c0b61d045f6f45f22d13a9effc90570f8ee67f1b33b62011f",
+    "upper_extrapolation_policy": "k above the highest knot returns the highest knot's plotting position (n - 0.5)/n. Never 1.",
+    "validated_population_criteria": [
+      "trial VENICE (independent external cohort; placebo + docetaxel + prednisone comparator arm)",
+      "at least three distinct PSA observations in the locked 0-105 day early window",
+      "positive, estimable first-order PSA decline rate (k_day > 0, finite)",
+      "survived through the week-15 landmark (os_weeks strictly greater than 15.0)",
+      "complete age_ge65 and ECOG covariates used by the locked Cox model"
+    ]
+  },
+  "reference_artifact_sidecar": {
+    "agrees_with_file_digest": true,
+    "present": true,
+    "text": "2302bfaba3acdb48dbcc731406cded140ce68169fb922ae516215bc8e80e62da  venice_psa_k_day_reference_cdf_v1.json"
+  },
+  "reference_median_k_day": 0.013407235485489187,
+  "reference_quartile_knots": {
+    "q1": 0.007266565079515904,
+    "q2": 0.01342055450463369,
+    "q3": 0.021118830402140517
+  },
+  "regression_control": {
+    "baseline_worktree": "/workspace/base_pristine (detached origin/main 99dd39c657064839fd25c37a69851178bc5e6d9d)",
+    "golden_leaf_diff_head_vs_worktree": {
+      "added": 85,
+      "changed": 0,
+      "meaning": "Both production hardening edits are output-neutral: no existing serialized leaf was removed or changed.",
+      "removed": 0
+    },
+    "non_prostate_axes": {
+      "claim": "VALUE-IDENTICAL, NOT BYTE-IDENTICAL",
+      "detail": "CRC / breast / lung payloads differ from the branch head only by three ADDITIONAL null fail-closed keys (predicted_treatment_benefit, treatment_priority, treatment_recommendation) plus the three corresponding /contract/fail_closed_keys[7..9] manifest strings.",
+      "manifest_strings_added": 3,
+      "null_key_leaves_added": 36,
+      "unexplained": 0
+    },
+    "preexisting_failure_families": [
+      "tests/test_contract_shape.py — 18 errors + 4 failures, requires a localhost server",
+      "tests/audit/test_therapy_fit_v2_high_risk_behaviors.py::test_extract_biomarkers_ovarian_adds_platinum_resistant_tag",
+      "tests/integration/test_bundle_contract.py::test_bundle_contract_strict"
+    ],
+    "preexisting_non_passing_nodes": 24,
+    "preexisting_non_passing_set_unchanged": true,
+    "regressions": 0,
+    "removed_nodes": 0
+  },
+  "tests": {
+    "branch_head_nodes_in_three_preexisting_files": 141,
+    "errors": 0,
+    "failed": 0,
+    "kinetics_suite_nodes": 564,
+    "mandated_target": "~70 new nodes, zero skips",
+    "new_nodes_added": 423,
+    "skipped": 0,
+    "test_files": [
+      "tests/unit/test_venice_psa_reference_cdf.py",
+      "tests/unit/test_prostate_prognostic_index.py",
+      "tests/unit/test_prognostic_direction_negative.py",
+      "tests/unit/test_tumor_marker_kinetics_contract.py",
+      "tests/unit/test_tumor_marker_kinetics_router.py",
+      "tests/efficacy/test_therapy_fit_axes.py"
+    ]
+  },
+  "treatment_predictive": false,
+  "validation_battery": {
+    "gates": [
+      {
+        "detail": "564 tests, 0 failed, 0 errors",
+        "gate": "kinetics suite: 0 failures",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "skipped=0",
+        "gate": "kinetics suite: 0 skips (mandated)",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "564 - 141 = 423 new nodes (target ~70)",
+        "gate": "new test nodes added by this step",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "regressions=[]",
+        "gate": "baseline diff: 0 regressions",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "removed=[]",
+        "gate": "baseline diff: 0 removed nodes",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "24 pre-existing non-passing nodes, unchanged",
+        "gate": "pre-existing non-passing set identical",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "removed=[]",
+        "gate": "golden leaves: 0 removed",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "changed=[]",
+        "gate": "golden leaves: 0 changed",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "36 null-key leaves + 3 manifest strings, 0 unexplained",
+        "gate": "non-prostate additions are only the 3 null keys + their manifest entries",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "2302bfaba3acdb48dbcc731406cded140ce68169fb922ae516215bc8e80e62da",
+        "gate": "artifact file SHA-256 matches pin",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "a1acb23232c13a4089f6eb78a426292816864b2345e4651ccf01eaa7abd9d51f",
+        "gate": "artifact content_sha256 matches pin",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "5c4220c24b1d056c0b61d045f6f45f22d13a9effc90570f8ee67f1b33b62011f",
+        "gate": "artifact source cohort digest matches pin",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "2302bfaba3acdb48dbcc731406cded140ce68169fb922ae516215bc8e80e62da",
+        "gate": "`.sha256` sidecar agrees",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "n=446 events=296",
+        "gate": "artifact population pins",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "/workspace/regen_check/venice_psa_k_day_reference_cdf_v1.json",
+        "gate": "regeneration reproduces the artifact byte-for-byte",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "6 payloads scanned; violations=[]",
+        "gate": "identifier + claim + label scans clean on all emitted payloads",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "{}",
+        "gate": "no identifier-like VALUE anywhere",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "3/3 False",
+        "gate": "artifact de-identification attestations all False",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "n_grid=2001",
+        "gate": "direction certificate: reverse mapping impossible",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "{'percentile_monotone_decreasing_violations': 0, 'z_rank_monotone_increasing_violations': 0, 'k_day_monotone_nonincreasing_violations': 0}",
+        "gate": "direction certificate: 0 violations on every check",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "beta < 0",
+        "gate": "frozen coefficient is negative",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "artifact visible to git",
+        "gate": "frozen artifact is NOT gitignored (the .gitignore fix)",
+        "verdict": "PASS"
+      },
+      {
+        "detail": "",
+        "gate": "no credential pattern in tracked tree",
+        "verdict": "PASS"
+      }
+    ],
+    "n_failed": 0,
+    "n_gates": 23,
+    "n_passed": 23,
+    "script_sha256": "7981f1caf31a2bc2729bb60546de6dd7b11d8db919914994ef69ec970f14eecd"
+  },
+  "worked_examples": {
+    "canonical_anchor_fit": {
+      "eligible": true,
+      "fit": {
+        "k_day": 0.03833793027167849,
+        "n_observations": 4,
+        "r_squared": 0.9995850299799071,
+        "status": "FIT_ELIGIBLE"
+      },
+      "k_day": 0.03833793027167849,
+      "note": "fit_first_order_decay([0,14,28,42],[100,60,35,20])",
+      "percentile_mode": "INTERPOLATED",
+      "prognostic_log_hazard_index": -0.2910625781185182,
+      "reference_percentile": 0.9539617085054027,
+      "relative_hazard_multiplier": 0.7474689013570107,
+      "relative_hazard_multiplier_ci": [
+        0.6196884256974424,
+        0.9015978600327157
+      ],
+      "relative_prognostic_band": "LOWER_RELATIVE_HAZARD",
+      "z_rank": 1.6845440026314946
+    },
+    "fastest_reference_decliner": {
+      "eligible": true,
+      "k_day": 0.08947089486936483,
+      "note": "fastest observed reference rate (upper percentile bound)",
+      "percentile_mode": "AT_KNOT",
+      "prognostic_log_hazard_index": -0.5280506759170915,
+      "reference_percentile": 0.9988789237668162,
+      "relative_hazard_multiplier": 0.5897534705576014,
+      "relative_hazard_multiplier_ci": [
+        0.419717833388169,
+        0.8286737621488439
+      ],
+      "relative_prognostic_band": "LOWER_RELATIVE_HAZARD",
+      "z_rank": 3.0561283588968857
+    },
+    "lower_quartile_knot": {
+      "eligible": true,
+      "k_day": 0.007266565079515904,
+      "note": "reference 25th-percentile knot",
+      "percentile_mode": "AT_KNOT",
+      "prognostic_log_hazard_index": 0.1165411679955581,
+      "reference_percentile": 0.25,
+      "relative_hazard_multiplier": 1.123603766029922,
+      "relative_hazard_multiplier_ci": [
+        1.0423481535250945,
+        1.2111936100880036
+      ],
+      "relative_prognostic_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "z_rank": -0.6744897501960817
+    },
+    "median_knot": {
+      "eligible": true,
+      "k_day": 0.01342055450463369,
+      "note": "reference median knot",
+      "percentile_mode": "AT_KNOT",
+      "prognostic_log_hazard_index": -0.0004855451980492943,
+      "reference_percentile": 0.5011210762331838,
+      "relative_hazard_multiplier": 0.9995145726599445,
+      "relative_hazard_multiplier_ci": [
+        0.9992020295477363,
+        0.9998272135333601
+      ],
+      "relative_prognostic_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "z_rank": 0.0028101250826116472
+    },
+    "reference_median_interpolated": {
+      "eligible": true,
+      "k_day": 0.013407235485489187,
+      "note": "ReferenceCDF.reference_median: the k_day whose percentile is 0.50 by construction",
+      "percentile_mode": "INTERPOLATED",
+      "prognostic_log_hazard_index": 4.80843972011414e-17,
+      "reference_percentile": 0.4999999999999999,
+      "relative_hazard_multiplier": 1.0,
+      "relative_hazard_multiplier_ci": [
+        1.0,
+        1.0
+      ],
+      "relative_prognostic_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "z_rank": -2.7829164246717676e-16
+    },
+    "slowest_reference_decliner": {
+      "eligible": true,
+      "k_day": 8.691943994773028e-05,
+      "note": "slowest observed reference rate (lower percentile bound)",
+      "percentile_mode": "AT_KNOT",
+      "prognostic_log_hazard_index": 0.5280506759170893,
+      "reference_percentile": 0.0011210762331838565,
+      "relative_hazard_multiplier": 1.6956237647139498,
+      "relative_hazard_multiplier_ci": [
+        1.2067475111156978,
+        2.382553040283049
+      ],
+      "relative_prognostic_band": "HIGHER_RELATIVE_HAZARD",
+      "z_rank": -3.0561283588968724
+    },
+    "upper_quartile_knot": {
+      "eligible": true,
+      "k_day": 0.021118830402140517,
+      "note": "reference 75th-percentile knot",
+      "percentile_mode": "AT_KNOT",
+      "prognostic_log_hazard_index": -0.1165411679955581,
+      "reference_percentile": 0.75,
+      "relative_hazard_multiplier": 0.8899934569758015,
+      "relative_hazard_multiplier_ci": [
+        0.8256318326574902,
+        0.9593723523355625
+      ],
+      "relative_prognostic_band": "REFERENCE_RANGE_RELATIVE_HAZARD",
+      "z_rank": 0.6744897501960817
+    }
+  }
+}

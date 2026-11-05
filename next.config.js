@@ -237,6 +237,17 @@ const nextConfig = {
         destination: '/tumor-board/AK/',
         permanent: true,
       },
+      // Legacy resolve → receipts (board twins are /nsclc/ and /AK/).
+      {
+        source: '/tumor-board/resolve/:caseId',
+        destination: '/tumor-board/receipts/:caseId/',
+        permanent: true,
+      },
+      {
+        source: '/tumor-board/resolve/:caseId/',
+        destination: '/tumor-board/receipts/:caseId/',
+        permanent: true,
+      },
     ];
   },
   webpack: (config) => {

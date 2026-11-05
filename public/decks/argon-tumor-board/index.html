@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Argon Tumor Board Console — 8-Slide Visual Deck (crispro.org)</title>
+  <style>
+    :root {
+      --bg: #070b14;
+      --panel: #0f172a;
+      --panel-border: #1e293b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --emerald: #10b981;
+      --cyan: #06b6d4;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(7, 11, 20, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--panel-border);
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 0.02em;
+    }
+    .brand-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 12px var(--emerald);
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--panel-border);
+      background: var(--panel);
+      color: var(--text);
+      transition: all 0.15s ease;
+    }
+    .btn:hover { border-color: var(--cyan); }
+    .btn-primary {
+      background: linear-gradient(135deg, #059669, #0284c7);
+      border-color: transparent;
+      color: #fff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(6, 182, 212, 0.12));
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 36px;
+    }
+    .hero-banner blockquote {
+      font-size: 18px;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+    .hero-banner a { color: #34d399; text-decoration: underline; }
+    .slide-card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+    .slide-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .slide-num {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      background: rgba(6, 182, 212, 0.12);
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+    .slide-tag {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .slide-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+    .no-jargon-box {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 4px solid var(--emerald);
+      padding: 14px 18px;
+      border-radius: 0 10px 10px 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: #ecfdf5;
+      margin-bottom: 20px;
+    }
+    .slide-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .slide-grid { grid-template-columns: 1fr; }
+    }
+    .slide-img-wrap {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #334155;
+      background: #020617;
+    }
+    .slide-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .anchor-panel h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--amber);
+      margin-bottom: 10px;
+    }
+    .anchor-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .anchor-list li {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 15px;
+      color: #e2e8f0;
+    }
+    .anchor-list strong { color: #fff; }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 6px;
+    }
+    .pill-green { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .pill-red { background: rgba(244, 63, 94, 0.2); color: #fb7185; }
+    .pill-cyan { background: rgba(6, 182, 212, 0.2); color: #22d3ee; }
+    .pill-amber { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .cohort-strip {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--panel-border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .cohort-strip code {
+      background: #1e293b;
+      color: #38bdf8;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span>CrisPRO • Argon Tumor Board Visual Deck (23 Real Patient Profiles)</span>
+    </div>
+    <div class="nav-actions">
+      <a class="btn" href="./ruo-pathology-tissue-release-guide.html" target="_blank">Download RUO Tissue Release Guide</a>
+      <a class="btn btn-primary" href="https://crispro.org" target="_blank">Open Argon Console at crispro.org →</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="hero-banner">
+      <blockquote>
+        "Explore our interactive <strong>Argon Tumor Board Console</strong> at <a href="https://crispro.org" target="_blank">crispro.org</a> to see how 23 real, peer-reviewed patient profiles move through the 4-Gate Arbiter, and download our <a href="./ruo-pathology-tissue-release-guide.html" target="_blank"><strong>Research-Use-Only (RUO) Pathology Tissue Release Guide</strong></a> to discuss post-surgical transcriptomic profiling with your oncology team."
+      </blockquote>
+    </div>
+
+    <!-- SLIDE 1 -->
+    <section class="slide-card" id="slide-1">
+      <div class="slide-meta">
+        <span class="slide-num">Slide 01 / 08</span>
+        <span class="slide-tag">The Hook • Post-Surgery Reality</span>
+      </div>
+      <h2 class="slide-title">The Question Every Patient Faces After Surgery</h2>
+      <div class="no-jargon-box">
+        "Surgery removes what the surgeon can see. What happens to the microscopic cells left behind?"
+      </div>
+      <div class="slide-grid">
+        <div class="slide-img-wrap">
+          <img src="./slide_01_two_paths.png" alt="Slide 1: Two Identical Pathology Reports, Two Completely Different Paths" />
+        </div>
+        <div class="anchor-panel">
+          <h3>Real-World Patient Anchor</h3>
+          <ul class="anchor-list">
+            <li><span class="pill pill-cyan">Same Starting Line</span> Two patients walk out of the exact same surgery after standard chemotherapy with identical-looking pathology folders.</li>
+            <li><span class="pill pill-green">490 Days Cancer-Free</span> One patient (<code>EOC136</code> / <code>EOC372</code>) stays in remission for over <strong>16 months (490 days)</strong>.</li>
+            <li><span class="pill pill-red">14-Day Relapse</span> Another patient (<code>EOC3</code>) relapses in just <strong>14 days</strong> because microscopic surviving cells activated an emergency survival shield.</li>
+            <li><strong>The Blind Spot:</strong> Standard pathology looks at cell shape under glass—it does not read what the surviving cells are actively doing.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="slide-card" id="slide-2">
+      <div class="slide-meta">
+        <span class="slide-num">Slide 02 / 08</span>
+        <span class="slide-tag">The Biological Discovery • Sprinters vs. Sleeper Cells</span>
+      </div>
+      <h2 class="slide-title">Why One-Size-Fits-All Fails After Chemotherapy</h2>
+      <div class="no-jargon-box">
+        "Chemotherapy kills fast-dividing cells. It misses cells that go into hibernation."
+      </div>
+      <div class="slide-grid">
+        <div class="slide-img-wrap">
+          <img src="./slide_02_sprinters_vs_hibernators.png" alt="Slide 2: Fast-Dividing Sprinters vs. Hibernating Sleeper Cells" />
+        </div>
+        <div class="anchor-panel">
+          <h3>Inside 11 Paired Ovarian Cancer Profiles (GSE165897)</h3>
+          <ul class="anchor-list">
+            <li><span class="pill pill-cyan">The Sprinters (Door 1)</span> Cells that keep racing and repairing DNA right through chemotherapy (<code>EOC87</code>, <code>EOC349</code>, <code>EOC733</code>, <code>EOC1005</code>).</li>
+            <li><span class="pill pill-amber">The Sleeper Cells (Door 2)</span> Cells that power down into hibernation behind an armored survival shield, waiting for chemo to end (<code>EOC153</code>, <code>EOC443</code>, <code>EOC540</code>, <code>EOC227</code>).</li>
+            <li><strong>Why It Matters:</strong> Giving a Sprinter drug to a Sleeper cell—or a Sleeper drug to a Sprinter—leaves the real threat untouched.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="slide-card" id="slide-3">
+      <div class="slide-meta">
+        <span class="slide-num">Slide 03 / 08</span>
+        <span class="slide-tag">The Architecture • 4-Gate Arbiter</span>
+      </div>
+      <h2 class="slide-title">The 4-Gate Arbiter: Four Simple Checkpoints, Zero Guesswork</h2>
+      <div class="no-jargon-box">
+        "Instead of guessing, the Argon 4-Gate Arbiter runs your tissue through four step-by-step safety and match checkpoints."
+      </div>
+      <div class="slide-grid">
+        <div class="slide-img-wrap">
+          <img src="./slide_03_four_gates.png" alt="Slide 3: The 4-Gate Arbiter Checkpoints" />
+        </div>
+        <div class="anchor-panel">
+          <h3>How the 4 Checkpoints Work Together</h3>
+          <ul class="anchor-list">
+            <li><span class="pill pill-red">Gate 0 • The Emergency Brake</span> Catches ultra-fast resistance immediately (<code>Patient EOC3</code> — flagged <strong>14-day</strong> rapid escape before wasted treatment).</li>
+            <li><span class="pill pill-amber">Gate 1 • The Broken Repair Switch</span> Spots hidden DNA-repair blind spots where standard maintenance pills fail (<code>MBD4</code> anchor — switches to the right targeted match).</li>
+            <li><span class="pill pill-green">Gate 2 • The Neighborhood Check</span> Reads whether tissue around the tumor welcomes immune cells in (<strong>+8.9 months</strong> survival gain when the immune door is open).</li>
+            <li><span class="pill pill-cyan">Gate 3 • The Two-Door Router</span> Separates <strong>Door 1 (Sprinters)</strong>, <strong>Door 2 (Sleeper Cells)</strong>, and <strong>Cleared Remission (490 days)</strong>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="slide-card" id="slide-4">
+      <div class="slide-meta">
+        <span class="slide-num">Slide 04 / 08</span>
+        <span class="slide-tag">Anchor Story #1 • Emergency Brake vs. Cleared Remission</span>
+      </div>
+      <h2 class="slide-title">Knowing When Standard Chemo Isn't Working — And When It Already Worked</h2>
+      <div class="no-jargon-box">
+        "Catch the 14-day emergency early—and celebrate the patients whose tissue already cleared both danger doors."
+      </div>
+      <div class="slide-grid">
+        <div class="slide-img-wrap">
+          <img src="./slide_04_emergency_brake_vs_remission.png" alt="Slide 4: 14-Day Emergency Brake vs 490-Day Cleared Remission" />
+        </div>
+        <div class="anchor-panel">
+          <h3>Two Real Patients From the Same Study</h3>
+          <ul class="anchor-list">
+            <li><span class="pill pill-red">Patient EOC3 (14 Days)</span> On a single test she looked calm, but Gate 0 caught her emergency survival shield spiking. She relapsed in <strong>14 days</strong>. Catching this on Day 1 prevents months of toxic, ineffective chemo.</li>
+            <li><span class="pill pill-green">Patients EOC136 &amp; EOC372 (490 Days)</span> Their post-surgery tissue cleared both the Sprinter door and the Sleeper door—staying cancer-free nearly <strong>10&times; longer (490 days vs. 50.5 days)</strong>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="slide-card" id="slide-5">
+      <div class="slide-meta">
+        <span class="slide-num">Slide 05 / 08</span>
+        <span class="slide-tag">Anchor Story #2 • Door 1 vs. Door 2 Routing</span>
+      </div>
+      <h2 class="slide-title">Door 1 (Sprinters) vs. Door 2 (Sleeper Cells): Right Key, Right Lock</h2>
+      <div class="no-jargon-box">
+        "Two different survival tricks require two completely different game plans—and a decoy key won't open Door 2."
+      </div>
+      <div class="slide-grid">
+        <div class="slide-img-wrap">
+          <img src="./slide_05_two_doors_routing.png" alt="Slide 5: Door 1 Sprinters vs Door 2 Sleeper Cells" />
+        </div>
+        <div class="anchor-panel">
+          <h3>Matching the Key to the Survival Lock</h3>
+          <ul class="anchor-list">
+            <li><span class="pill pill-cyan">Door 1 • The Sprinters (50.5 Days)</span> Patients <code>EOC349</code>, <code>EOC87</code>, <code>EOC733</code>, <code>EOC1005</code> rely on fast DNA repair. Their lock opens with <strong>DNA-Repair Blockers</strong> (Ceralasertib / Adavosertib).</li>
+            <li><span class="pill pill-amber">Door 2 • The Sleeper Cells (203.5 Days)</span> Patients <code>EOC153</code>, <code>EOC443</code>, <code>EOC540</code>, <code>EOC227</code> hide behind a specific hibernation shield (<code>BCL-xL</code> + Vitamin D / <code>EPHA2</code> switches).</li>
+            <li><span class="pill pill-red">The Decoy Key Trap</span> A famous look-alike pill (<code>Venetoclax</code>) hits the wrong lock and is flagged <strong>Do Not Use</strong>—while the matched <strong>Sleeper-Cell Unmaskers</strong> (Navitoclax, Dasatinib, Vitamin D analogs) hit <strong>5 out of 5</strong> confirmed targets.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6 -->
+    <section class="slide-card" id="slide-6">
+      <div class="slide-meta">
+        <span class="slide-num">Slide 06 / 08</span>
+        <span class="slide-tag">Anchor Story #3 • 12 Real Immunotherapy Profiles</span>
+      </div>
+      <h2 class="slide-title">The 12 Immunotherapy Profiles: Checking the Bag, the Blood, and the Biopsy</h2>
+      <div class="no-jargon-box">
+        "Before you infuse an immunotherapy, check if the immune soldiers have the stamina to finish the fight."
+      </div>
+      <div class="slide-grid">
+        <div class="slide-img-wrap">
+          <img src="./slide_06_three_immune_checks.png" alt="Slide 6: Three Immune Checks — IV Bag, Day-7 Blood, Tumor Biopsy" />
+        </div>
+        <div class="anchor-panel">
+          <h3>12 Real Immunotherapy Patients Across 3 Checkpoints</h3>
+          <ul class="anchor-list">
+            <li><span class="pill pill-green">1. The IV Bag Check (88% Accuracy)</span> In 4 highlighted CAR-T bag profiles (<code>ac01</code>, <code>ac12</code>, <code>ac18</code>, <code>ac23</code>), <code>ac01</code> has fresh stamina and achieves complete remission, while <code>ac18</code> is flagged for premature burnout <em>before</em> infusion.</li>
+            <li><span class="pill pill-cyan">2. The Day-7 Blood Check (78% Accuracy)</span> In 3 blood profiles (<code>P1</code>, <code>P3</code>, <code>P26</code>), a simple blood draw spots thriving immune expansion (<code>P26</code>) vs. patients needing bridging support (<code>P1</code>, <code>P3</code>).</li>
+            <li><span class="pill pill-amber">3. The Tumor Biopsy Check (63% Lower Mortality Risk)</span> Across 5 biopsy profiles (<code>PD1_10</code>, <code>PD1_35</code>, <code>Pt101</code>, <code>Mel112</code>, <code>Mel04.3</code>), strong fresh-to-exhausted soldier ratios predict response with <strong>88% single-cell accuracy</strong> and cut mortality risk by <strong>63% (HR = 0.37)</strong>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7 -->
+    <section class="slide-card" id="slide-7">
+      <div class="slide-meta">
+        <span class="slide-num">Slide 07 / 08</span>
+        <span class="slide-tag">Actionable Workflow • Zero New Procedures</span>
+      </div>
+      <h2 class="slide-title">How Your Leftover Surgery Tissue Unlocks This</h2>
+      <div class="no-jargon-box">
+        "No new surgery. No extra needles. Your hospital already stores your tumor tissue in wax blocks."
+      </div>
+      <div class="slide-grid">
+        <div class="slide-img-wrap">
+          <img src="./slide_07_tissue_release_steps.png" alt="Slide 7: 3-Step Tissue Release Workflow" />
+        </div>
+        <div class="anchor-panel">
+          <h3>Your Tissue Belongs to You — 3 Simple Steps</h3>
+          <ul class="anchor-list">
+            <li><span class="pill pill-green">Step 1 • Download the 1-Page Guide</span> Grab our plain-English <a href="./ruo-pathology-tissue-release-guide.html" target="_blank" style="color:#34d399;"><strong>RUO Pathology Tissue Release Guide</strong></a> with the exact checklist for your hospital's pathology window.</li>
+            <li><span class="pill pill-cyan">Step 2 • Request Leftover Wax Curls</span> Every surgery preserves tumor tissue in a paraffin wax block (FFPE). Your pathology department simply shaves 5–10 paper-thin curls—no needles, no hospital admission.</li>
+            <li><span class="pill pill-amber">Step 3 • Review Together With Your Oncologist</span> Walk through the Argon 4-Gate report side by side with your doctor to inform your next research or clinical trial discussion.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8 -->
+    <section class="slide-card" id="slide-8">
+      <div class="slide-meta">
+        <span class="slide-num">Slide 08 / 08</span>
+        <span class="slide-tag">Live Console &amp; Download • crispro.org</span>
+      </div>
+      <h2 class="slide-title">Explore All 23 Real Patient Profiles Live at crispro.org</h2>
+      <div class="no-jargon-box">
+        "Explore our interactive Argon Tumor Board Console at crispro.org to see how 23 real, peer-reviewed patient profiles move through the 4-Gate Arbiter, and download our Research-Use-Only (RUO) Pathology Tissue Release Guide to discuss post-surgical transcriptomic profiling with your oncology team."
+      </div>
+      <div class="slide-grid">
+        <div class="slide-img-wrap">
+          <img src="./slide_08_crispro_console_cta.png" alt="Slide 8: Argon Tumor Board Console and RUO Pathology Tissue Release Guide" />
+        </div>
+        <div class="anchor-panel">
+          <h3>Everything Ready in One Place</h3>
+          <ul class="anchor-list">
+            <li><span class="pill pill-green">11 Ovarian Paired Profiles</span> Click through <code>EOC3</code>, <code>EOC87</code>, <code>EOC136</code>, <code>EOC153</code>, <code>EOC227</code>, <code>EOC349</code>, <code>EOC372</code>, <code>EOC443</code>, <code>EOC540</code>, <code>EOC733</code>, and <code>EOC1005</code> across Gates 0–3.</li>
+            <li><span class="pill pill-cyan">12 Immunotherapy Profiles</span> Inspect CAR-T IV bags (<code>ac01</code>, <code>ac12</code>, <code>ac18</code>, <code>ac23</code>), Day-7 blood draws (<code>P1</code>, <code>P3</code>, <code>P26</code>), and tumor biopsies (<code>PD1_10</code>, <code>PD1_35</code>, <code>Pt101</code>, <code>Mel112</code>, <code>Mel04.3</code>).</li>
+            <li>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;">
+                <a class="btn btn-primary" href="https://crispro.org" target="_blank">Launch Console at crispro.org →</a>
+                <a class="btn" href="./ruo-pathology-tissue-release-guide.html" target="_blank">Download RUO Tissue Guide →</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="cohort-strip">
+        <strong>Complete 23-Patient Peer-Reviewed Anchor Roster:</strong>
+        Ovarian Post-NACT (<code>GSE165897</code>, n=11): <code>EOC3</code>, <code>EOC87</code>, <code>EOC136</code>, <code>EOC153</code>, <code>EOC227</code>, <code>EOC349</code>, <code>EOC372</code>, <code>EOC443</code>, <code>EOC540</code>, <code>EOC733</code>, <code>EOC1005</code> •
+        CAR-T Bag (<code>GSE151511</code>, n=4): <code>ac01</code>, <code>ac12</code>, <code>ac18</code>, <code>ac23</code> •
+        CAR-T Blood (<code>GSE290722</code>, n=3): <code>P1</code>, <code>P3</code>, <code>P26</code> •
+        ICI Biopsy (<code>PRJEB23709</code> / <code>GSE91061</code> / <code>GSE120575</code>, n=5): <code>PD1_10</code>, <code>PD1_35</code>, <code>Pt101</code>, <code>Mel112</code>, <code>Mel04.3</code>.
+      </div>
+    </section>
+  </div>
+</body>
+</html>

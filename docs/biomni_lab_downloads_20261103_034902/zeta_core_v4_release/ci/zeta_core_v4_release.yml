@@ -1,0 +1,351 @@
+name: zeta-core-v4-release
+
+# Required, hermetic CI for the Zeta-Core v4 review branches.
+#
+# Design rules enforced here:
+#   * every required job installs from the committed CI pin set, never from an
+#     unpinned resolve;
+#   * frozen artifacts are verified before any test is collected;
+#   * every required job emits JUnit XML in the xunit1 family (so testcases carry
+#     the repository-relative `file` attribute) and fails on an unexpected skip,
+#     on any error, or on an executed-test count below the committed floor, so a
+#     missing fixture, URL or credential can never produce a green required job;
+#   * no required job performs a live external call. The Cohere live probe is
+#     isolated in an optional job that is never required for review.
+#
+# The two review branches carry disjoint feature content but a byte-identical
+# copy of this file, so the two pull requests cannot conflict textually. Each
+# feature job therefore begins with a fail-closed scope check: the subsystem must
+# be either wholly present or wholly absent on the checked-out ref. Wholly absent
+# is recorded explicitly as OUT_OF_SCOPE; a partially present subsystem fails.
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONHASHSEED: "0"
+  PYTHONDONTWRITEBYTECODE: "1"
+  COHERE_API_KEY: ""
+  COHERE_LIVE_TEST: ""
+
+jobs:
+  psa-artifact-integrity:
+    name: psa-artifact-integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.13"
+      - name: Install from committed CI pin set
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r ci/requirements.ci.txt
+      - name: Resolve subsystem scope for this ref
+        id: scope
+        run: python scripts/ci/branch_scope.py --subsystem psa
+      - name: Verify frozen artifacts before any test runs
+        if: steps.scope.outputs.psa_in_scope == 'true'
+        run: python scripts/ci/verify_frozen_artifacts.py
+      - name: Reference CDF artifact tests
+        if: steps.scope.outputs.psa_in_scope == 'true'
+        run: |
+          python -m pytest tests/unit/test_venice_psa_reference_cdf.py \
+            -q -p no:cacheprovider -o junit_family=xunit1 \
+            --junitxml=junit-artifact-integrity.xml
+      - name: Fail on unexpected skips, errors or a shrunken suite
+        if: steps.scope.outputs.psa_in_scope == 'true'
+        run: |
+          python scripts/ci/assert_no_unexpected_skips.py \
+            junit-artifact-integrity.xml --min-tests 79
+      - name: Record that the PSA subsystem is not on this ref
+        if: steps.scope.outputs.psa_in_scope != 'true'
+        run: |
+          echo "PSA_SUBSYSTEM_OUT_OF_SCOPE: state=${{ steps.scope.outputs.psa_state }}"
+          echo "No PSA path exists on this ref, so there is nothing to verify here."
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.scope.outputs.psa_in_scope == 'true' }}
+        with:
+          name: junit-psa-artifact-integrity
+          path: junit-artifact-integrity.xml
+          if-no-files-found: error
+
+  psa-runtime-contract:
+    name: psa-runtime-contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.13"
+      - name: Install from committed CI pin set
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r ci/requirements.ci.txt
+      - name: Resolve subsystem scope for this ref
+        id: scope
+        run: python scripts/ci/branch_scope.py --subsystem psa
+      - name: Verify frozen artifacts before any test runs
+        if: steps.scope.outputs.psa_in_scope == 'true'
+        run: python scripts/ci/verify_frozen_artifacts.py
+      - name: Runtime contract, router, serializer and equivalence tests
+        if: steps.scope.outputs.psa_in_scope == 'true'
+        run: |
+          python -m pytest \
+            tests/unit/test_tumor_marker_kinetics_contract.py \
+            tests/unit/test_tumor_marker_kinetics_router.py \
+            tests/unit/test_tumor_marker_kinetics_equivalence.py \
+            tests/unit/test_tumor_marker_kinetics_fitter.py \
+            tests/unit/test_tumor_marker_kinetics_parser.py \
+            tests/unit/test_prostate_prognostic_index.py \
+            tests/efficacy/test_therapy_fit_axes.py \
+            tests/efficacy/test_v3_contract_axes.py \
+            -q -p no:cacheprovider -o junit_family=xunit1 \
+            --junitxml=junit-runtime-contract.xml
+      - name: Fail on unexpected skips, errors or a shrunken suite
+        if: steps.scope.outputs.psa_in_scope == 'true'
+        run: |
+          # test_fixture_still_matches_a_live_brenus_checkout is declared skipif on
+          # the absence of a /workspace/Brenus evidence checkout, which a hermetic
+          # runner deliberately does not have. It is named explicitly here, so it
+          # is the only skip this job tolerates and any other skip still fails.
+          # The executed floor moves 570 -> 569 to match.
+          python scripts/ci/assert_no_unexpected_skips.py \
+            junit-runtime-contract.xml --min-tests 569 \
+            --allow-skip tests/unit/test_tumor_marker_kinetics_equivalence.py::test_fixture_still_matches_a_live_brenus_checkout
+      - name: Record that the PSA subsystem is not on this ref
+        if: steps.scope.outputs.psa_in_scope != 'true'
+        run: |
+          echo "PSA_SUBSYSTEM_OUT_OF_SCOPE: state=${{ steps.scope.outputs.psa_state }}"
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.scope.outputs.psa_in_scope == 'true' }}
+        with:
+          name: junit-psa-runtime-contract
+          path: junit-runtime-contract.xml
+          if-no-files-found: error
+
+  psa-negative-controls:
+    name: psa-negative-controls
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.13"
+      - name: Install from committed CI pin set
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r ci/requirements.ci.txt
+      - name: Resolve subsystem scope for this ref
+        id: scope
+        run: python scripts/ci/branch_scope.py --subsystem psa
+      - name: Verify frozen artifacts before any test runs
+        if: steps.scope.outputs.psa_in_scope == 'true'
+        run: python scripts/ci/verify_frozen_artifacts.py
+      - name: Fail-closed, refusal-lineage and release-contract controls
+        if: steps.scope.outputs.psa_in_scope == 'true'
+        run: |
+          python -m pytest \
+            tests/unit/test_prognostic_direction_negative.py \
+            tests/unit/test_refusal_schema_lineage.py \
+            tests/unit/test_contract_a_release.py \
+            tests/unit/test_audit_correction_d13.py \
+            -q -p no:cacheprovider -o junit_family=xunit1 \
+            --junitxml=junit-negative-controls.xml
+      - name: Fail on unexpected skips, errors or a shrunken suite
+        if: steps.scope.outputs.psa_in_scope == 'true'
+        run: |
+          python scripts/ci/assert_no_unexpected_skips.py \
+            junit-negative-controls.xml --min-tests 284
+      - name: Record that the PSA subsystem is not on this ref
+        if: steps.scope.outputs.psa_in_scope != 'true'
+        run: |
+          echo "PSA_SUBSYSTEM_OUT_OF_SCOPE: state=${{ steps.scope.outputs.psa_state }}"
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.scope.outputs.psa_in_scope == 'true' }}
+        with:
+          name: junit-psa-negative-controls
+          path: junit-negative-controls.xml
+          if-no-files-found: error
+
+  cohere-harness:
+    name: cohere-harness
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.13"
+      - name: Install from committed CI pin set
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r ci/requirements.ci.txt
+      - name: Resolve subsystem scope for this ref
+        id: scope
+        run: python scripts/ci/branch_scope.py --subsystem cohere
+      - name: Harness contract with no live credential present
+        if: steps.scope.outputs.cohere_in_scope == 'true'
+        env:
+          COHERE_API_KEY: ""
+          COHERE_LIVE_TEST: ""
+        run: |
+          python -m pytest tests/unit/test_cohere_key_harness.py \
+            -q -p no:cacheprovider -o junit_family=xunit1 \
+            --junitxml=junit-cohere-harness.xml
+      - name: Fail on unexpected skips, errors or a shrunken suite
+        if: steps.scope.outputs.cohere_in_scope == 'true'
+        run: |
+          python scripts/ci/assert_no_unexpected_skips.py \
+            junit-cohere-harness.xml --min-tests 13
+      - name: Collection of the live module must never abort, with or without a key
+        if: steps.scope.outputs.cohere_in_scope == 'true'
+        run: |
+          COHERE_API_KEY="" python -m pytest tests/test_cohere_with_key.py \
+            --collect-only -q -p no:cacheprovider
+          COHERE_API_KEY="A_validly_shaped_key_123456789" python -m pytest \
+            tests/test_cohere_with_key.py --collect-only -q -p no:cacheprovider
+      - name: Record that the Cohere harness is not on this ref
+        if: steps.scope.outputs.cohere_in_scope != 'true'
+        run: |
+          echo "COHERE_HARNESS_OUT_OF_SCOPE: state=${{ steps.scope.outputs.cohere_state }}"
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.scope.outputs.cohere_in_scope == 'true' }}
+        with:
+          name: junit-cohere-harness
+          path: junit-cohere-harness.xml
+          if-no-files-found: error
+
+  regression-diff:
+    name: regression-diff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.13"
+      - name: Install from committed CI pin set
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r ci/requirements.ci.txt
+      - name: Full suite on the pull-request head
+        run: |
+          # tests/test_cohere_with_key.py calls sys.exit(1) at import on main, which
+          # aborts the entire pytest session (INTERNALERROR SystemExit: 1, zero tests
+          # collected). It is excluded identically on both sides of this diff, exactly
+          # as in the authoritative comparison, so the two sides stay comparable; the
+          # module's per-branch collection behaviour is gated by the cohere-harness
+          # collection probes instead.
+          set -o pipefail
+          python -m pytest tests -q -p no:cacheprovider \
+            --ignore=tests/test_cohere_with_key.py \
+            --continue-on-collection-errors -rfE \
+            -o junit_family=xunit1 --junitxml=junit-head.xml 2>&1 | tee head-suite.log || true
+          if grep -q "INTERNALERROR" head-suite.log; then
+            echo "REGRESSION_DIFF_FAIL: the head suite aborted with INTERNALERROR"
+            exit 1
+          fi
+      - name: Full suite on the merge base
+        run: |
+          base_sha="$(git merge-base HEAD "origin/${{ github.base_ref || 'main' }}")"
+          echo "merge_base=$base_sha"
+          git worktree add ../base_tree "$base_sha"
+          cd ../base_tree
+          set -o pipefail
+          python -m pytest tests -q -p no:cacheprovider \
+            --ignore=tests/test_cohere_with_key.py \
+            --continue-on-collection-errors -rfE \
+            -o junit_family=xunit1 \
+            --junitxml="$GITHUB_WORKSPACE/junit-base.xml" 2>&1 \
+            | tee "$GITHUB_WORKSPACE/base-suite.log" || true
+          if grep -q "INTERNALERROR" "$GITHUB_WORKSPACE/base-suite.log"; then
+            echo "REGRESSION_DIFF_FAIL: the merge-base suite aborted with INTERNALERROR"
+            exit 1
+          fi
+      - name: Node-level diff must show no new failures, errors or removals
+        run: |
+          python scripts/ci/node_diff_receipt.py \
+            --run base=junit-base.xml --run head=junit-head.xml \
+            --base base --out node_diff_receipt.json
+          python - <<'PY'
+          import json, sys
+          receipt = json.load(open("node_diff_receipt.json"))
+          if not receipt["reconciled"]:
+              sys.exit("REGRESSION_DIFF_FAIL: set arithmetic did not reconcile")
+          for label in ("base", "head"):
+              collected = receipt["runs"][label]["counts"]["junit_testcase_elements"]
+              if collected < 900:
+                  sys.exit(
+                      f"REGRESSION_DIFF_FAIL: the {label} suite collected only "
+                      f"{collected} testcases; a degenerate run cannot certify a diff"
+                  )
+          head = receipt["comparisons"]["head"]
+          problems = {
+              key: head[key]
+              for key in ("new_failed_nodes", "new_error_nodes", "removed_nodes")
+              if head[key]
+          }
+          if problems:
+              print(json.dumps(problems, indent=2))
+              sys.exit("REGRESSION_DIFF_FAIL: this pull request is not regression neutral")
+          print("REGRESSION_DIFF_PASS: no new failures, no new errors, no removed nodes")
+          PY
+      - name: Publish the node-diff receipt in the job summary
+        if: always()
+        run: |
+          if [ -f node_diff_receipt.json ]; then
+            {
+              echo '### regression-diff receipt'
+              echo '```json'
+              python -c "import json;r=json.load(open('node_diff_receipt.json'));print(json.dumps({'reconciled':r['reconciled'],'node_ids_exact':r['node_ids_exact'],'runs':{k:v['counts'] for k,v in r['runs'].items()},'head':{k:v for k,v in r['comparisons']['head'].items() if k!='removed_nodes' or v}},indent=2))"
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: regression-diff-receipt
+          path: |
+            node_diff_receipt.json
+            junit-base.xml
+            junit-head.xml
+          if-no-files-found: error
+
+  cohere-live-optional:
+    name: cohere-live-optional (never required)
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.13"
+      - name: Install from committed CI pin set
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r ci/requirements.ci.txt
+      - name: Resolve subsystem scope for this ref
+        id: scope
+        run: python scripts/ci/branch_scope.py --subsystem cohere
+      - name: Live provider probe, explicitly enabled
+        if: steps.scope.outputs.cohere_in_scope == 'true'
+        env:
+          COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
+          COHERE_LIVE_TEST: "1"
+        run: |
+          python -m pytest tests/test_cohere_with_key.py \
+            -q -p no:cacheprovider -rs -o junit_family=xunit1 \
+            --junitxml=junit-cohere-live.xml
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.scope.outputs.cohere_in_scope == 'true' }}
+        with:
+          name: junit-cohere-live
+          path: junit-cohere-live.xml
+          if-no-files-found: warn

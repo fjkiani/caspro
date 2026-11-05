@@ -1,0 +1,58 @@
+{
+  "manifest_version": "1.0.0",
+  "generated_at": "2026-07-16T03:31:11.488086+00:00",
+  "canonical_substrate": "clinical_trials_unified.db",
+  "runtime_binding": {
+    "trial_metadata": "clinical_trials",
+    "moa_vectors": "moa_vectors",
+    "join_key": "nct_id"
+  },
+  "axes_order": [
+    "ddr",
+    "mapk",
+    "pi3k",
+    "vegf",
+    "her2",
+    "io",
+    "efflux",
+    "rss"
+  ],
+  "formula": "PATH_A: fit = clip((p\u00b7t) / ||t||_2, 0, 1)",
+  "formula_version": "PATH_A_LOCKED_2026-04-28",
+  "prohibited": [
+    "cosine (dot / (||p||\u00b7||t||))"
+  ],
+  "sources": {
+    "sqlite_input": {
+      "path": "/workspace/crispro-backend-v3-push/data/clinical_trials.db",
+      "sha256": "fb92ad876421fa734e9ec28ea75b547fe317ef78aa40eb890c915131dea02242"
+    },
+    "json_input": {
+      "path": "/workspace/crispro-backend-v2/api/resources/trial_moa_vectors.json",
+      "sha256": "8574e88168712239ba9a50cd1fce1ba6a2f68aba442b82b9e0372b9e6a7a709c"
+    }
+  },
+  "derived_output": {
+    "path": "/mnt/shared-workspace/shared/strike/W2/clinical_trials_unified.db",
+    "sha256": "ac96437f9bb0fe28ec205f3b714b6dca2e864f1520707c39653fefb39bcdf034"
+  },
+  "counts": {
+    "clinical_trials_rows": 2979,
+    "moa_vectors_rows": 283,
+    "moa_vectors_all_zero": 123,
+    "accepted_from_json": 283,
+    "dropped_zero_non_oncology": 226,
+    "dropped_non_oncology": 100,
+    "json_input_total": 609,
+    "oncology_flag_true_in_json": 283
+  },
+  "contamination_controls": [
+    "Silent zero-vectors from non-oncology trials are dropped, NOT included.",
+    "All-zero declared-unknown records are also excluded from moa_vectors (they contribute 0.0 to any dot product).",
+    "The moa_vectors join is inner-only. Trials with metadata but no vector are not eligible for PATH A ranking."
+  ],
+  "known_limits": [
+    "Vector coverage: only ~9.5% of clinical_trials rows have moa_vectors after cleaning.",
+    "The JSON substrate remains the tagging build-input; runtime should point at moa_vectors table in this DB."
+  ]
+}

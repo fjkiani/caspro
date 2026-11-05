@@ -1,0 +1,81 @@
+{
+  "worker": "W2",
+  "source": "dbGaP",
+  "purpose": "True platinum-free interval (PFI; resistant if PFI < 182 days) + germline/somatic HRR mutation -> PFS/OS validation",
+  "resolvable_controlled_study": {
+    "phs": "phs000178.v11.p8",
+    "name": "The Cancer Genome Atlas (TCGA) - includes Ovarian Serous Cystadenocarcinoma (OV)",
+    "verified": "study.cgi resolves HTTP 200; page contains 'Ovarian','TCGA','Cancer Genome Atlas'",
+    "data_types": [
+      "germline+somatic variant calls",
+      "clinical (treatment, recurrence dates -> PFI)",
+      "WXS/WGS/SNP6 CN"
+    ],
+    "access_state": "SCRIPT_READY_PENDING_USER_AUTH"
+  },
+  "gog0218_dbgap_status": {
+    "finding": "GOG-0218 has NO dedicated resolvable dbGaP phs accession. The only esearch hits for 'GOG-0218' resolve to phs000280 (ARIC / atherosclerosis) via incidental document text-match, not the ovarian trial.",
+    "implication": "GOG-0218 patient-level clinical + HRR data is NOT in dbGaP. HRR outcomes are published (Norquist BM et al., Clin Cancer Res 2018;24(4):777-783, DOI 10.1158/1078-0432.CCR-17-1327). Raw GOG/NRG data requires a separate NRG Oncology / Project Data Sphere request (see W1), not a dbGaP DAR.",
+    "access_state": "REQUEST_FROM_NRG_OR_PDS"
+  },
+  "true_pfi_variable_map": {
+    "definition": "PFI = time from last platinum dose (or completion of platinum) to first documented progression/recurrence. Platinum-RESISTANT if PFI < 182 days (6 months); sensitive if >= 182 days.",
+    "tcga_ov_source_variables": [
+      {
+        "concept": "platinum therapy end date / therapy record",
+        "tcga_clinical_field": "drug_name (platinum agents: cisplatin/carboplatin) + days_to_drug_therapy_end",
+        "note": "TCGA clinical 'drug' table"
+      },
+      {
+        "concept": "recurrence/progression date",
+        "tcga_clinical_field": "days_to_new_tumor_event_after_initial_treatment / new_tumor_event",
+        "note": "TCGA 'follow_up' + 'new_tumor_event' tables"
+      },
+      {
+        "concept": "PFI (precomputed)",
+        "source": "Liu et al. Cell 2018 TCGA-CDR (Clinical Data Resource) provides curated PFI + PFI.time as an alternative to raw derivation",
+        "note": "TCGA-CDR is the recommended endpoint source"
+      }
+    ],
+    "resistant_flag_rule": "resistant = (PFI.time < 182 AND PFI event==1) i.e. progression within 6 months of platinum"
+  },
+  "hrr_variable_map": {
+    "genes_core": [
+      "BRCA1",
+      "BRCA2",
+      "RAD51C",
+      "RAD51D",
+      "BRIP1",
+      "PALB2",
+      "BARD1",
+      "ATM",
+      "CHEK2",
+      "RAD51B",
+      "NBN",
+      "FANCA",
+      "FANCI",
+      "FANCL",
+      "MRE11A"
+    ],
+    "germline_source": "TCGA germline calls (controlled) \u2014 e.g. Huang et al. Cell 2018 pathogenic germline variants; requires DAR",
+    "somatic_source": "TCGA MC3 somatic MAF (controlled-tier for full; PanCanAtlas)",
+    "readout": "HRR-mutant (germline OR somatic pathogenic in core genes) vs wild-type -> Kaplan-Meier PFS/OS; expected: HRR-mut prolongs PFS/OS (concordant with Norquist 2018 in GOG-0218)",
+    "endpoint_it_enables": "true-PFI + HRR->PFS",
+    "claim_it_cures": "true platinum-resistance labeling + HRR prognostic wiring"
+  },
+  "dar_payload": {
+    "portal": "https://dbgap.ncbi.nlm.nih.gov/  -> 'Apply for Controlled Access Data'",
+    "study_requested": "phs000178.v11.p8 (TCGA, OV subset)",
+    "consent_groups": "TCGA General Research Use (GRU) + Health/Medical/Biomedical as applicable",
+    "requires": [
+      "eRA Commons / NIH login",
+      "signed Data Use Certification by an institutional Signing Official",
+      "local IRB determination as required",
+      "downloaded project .ngc key post-approval"
+    ],
+    "note": "This is a signed institutional web action; it CANNOT be filed programmatically from this environment. Script below is parameterized to run only AFTER approval, using the user's own .ngc key."
+  },
+  "ngc_gated_pull_script": "prefetch --ngc <USER_PROJECT.ngc> <phs000178 dbGaP sample accessions>; then dbGaP-to-vcf/maf extraction. Runs only post-DAR-approval.",
+  "verified_metadata_bool": true,
+  "live_auth_state": "NOT_ATTEMPTED (dbGaP controlled data requires signed DAR + user's .ngc key; no credential login possible from here)"
+}

@@ -1,0 +1,370 @@
+{
+  "BACE1": {
+    "therapeutic_priority": "TIER 1 \u2014 LEAD TARGET",
+    "verdict": "CONFIRMED",
+    "rna_evidence": {
+      "GSE223499": {
+        "padj": 0.07,
+        "lfc": 0.82,
+        "sig": "~"
+      },
+      "GSE131907": {
+        "padj": 0.017,
+        "lfc": 1.22,
+        "sig": "\u2605"
+      },
+      "GSE186344": {
+        "lfc": 0.89,
+        "p": 1.08e-09,
+        "sig": "\u2605"
+      },
+      "meta_analysis_p": null
+    },
+    "protein_evidence": {
+      "cptac_diff": null,
+      "direction": "not_detected"
+    },
+    "depmap": {
+      "chronos": -0.051,
+      "dependent_lines": null,
+      "selective": false,
+      "note": "LOCKED \u2014 CRISPRa screen hit (Chafe 2025)"
+    },
+    "druggability": {
+      "druggable": true,
+      "has_structure": true,
+      "has_bioactive_cpds": true,
+      "enzyme_class": "Aspartyl protease",
+      "top_codep": null,
+      "existing_drugs": "Verubecestat, Atabecestat, Lanabecestat (Phase 3 AD trials)"
+    },
+    "biology": {
+      "mechanism": "Cleaves EGFR ectodomain \u2192 soluble EGFR \u2192 brain colonization (Chafe 2025)",
+      "brm_literature": "Direct BrM functional validation (CRISPRa screen, Sci Transl Med 2025)"
+    },
+    "dataset": "GSE223499+GSE131907+GSE186344+CPTAC+DepMap23Q2",
+    "version": "v3_2026-04-13"
+  },
+  "SLC25A32": {
+    "therapeutic_priority": "TIER 2 \u2014 BREAKOUT METABOLIC TARGET",
+    "verdict": "WEAK (RNA) / STRONG (DepMap)",
+    "rna_evidence": {
+      "GSE223499": {
+        "padj": 0.99,
+        "lfc": 0.12,
+        "sig": "\u2014"
+      },
+      "GSE131907": {
+        "padj": 0.99,
+        "lfc": 0.08,
+        "sig": "\u2014"
+      },
+      "GSE186344": {
+        "lfc": 2.58,
+        "p": 6.74e-71,
+        "sig": "\u2605"
+      },
+      "meta_analysis_p": null
+    },
+    "protein_evidence": {
+      "cptac_diff": 0.953,
+      "direction": "up"
+    },
+    "depmap": {
+      "chronos": null,
+      "dependent_lines": 13,
+      "selective": true,
+      "note": "STRONGLY SELECTIVE \u2014 13/1208 lines dependent"
+    },
+    "druggability": {
+      "druggable": true,
+      "has_structure": false,
+      "has_bioactive_cpds": false,
+      "enzyme_class": "Mitochondrial transporter (SLC family)",
+      "top_codep": "SHMT2 (r=0.38), MTHFD2 (r=0.30)",
+      "existing_drugs": "Antifolates (methotrexate, pemetrexed) \u2014 target pathway, not gene directly"
+    },
+    "biology": {
+      "mechanism": "Mitochondrial folate/THF transporter \u2192 1C metabolism \u2192 nucleotide synthesis",
+      "brm_literature": "No direct BrM literature; folate pathway essential in proliferating cells"
+    },
+    "dataset": "GSE223499+GSE131907+GSE186344+CPTAC+DepMap23Q2",
+    "version": "v3_2026-04-13"
+  },
+  "SENP8": {
+    "therapeutic_priority": "TIER 3 \u2014 DRUGGABLE BUT CONFLICTED",
+    "verdict": "CONFLICTED",
+    "rna_evidence": {
+      "GSE223499": {
+        "padj": 0.99,
+        "lfc": -0.41,
+        "sig": "\u2193"
+      },
+      "GSE131907": {
+        "padj": 0.35,
+        "lfc": 0.28,
+        "sig": "~"
+      },
+      "GSE186344": {
+        "lfc": 0.31,
+        "p": 0.12,
+        "sig": "~"
+      },
+      "meta_analysis_p": null
+    },
+    "protein_evidence": {
+      "cptac_diff": -1.723,
+      "direction": "down"
+    },
+    "depmap": {
+      "chronos": null,
+      "dependent_lines": 5,
+      "selective": false,
+      "note": "5/1208 lines \u2014 not selective"
+    },
+    "druggability": {
+      "druggable": true,
+      "has_structure": true,
+      "has_bioactive_cpds": true,
+      "enzyme_class": "Cysteine protease (deneddylase)",
+      "top_codep": "UBE2F (r=0.36)",
+      "existing_drugs": "No approved; PROTAC feasible; crystal structures 1XT9/2BKQ/2BKR"
+    },
+    "biology": {
+      "mechanism": "NEDD8 deconjugation from cullins \u2192 CRL ubiquitin ligase regulation",
+      "brm_literature": "Etoposide-induced SENP8 \u2192 drug resistance in ALL (Sun 2024)"
+    },
+    "dataset": "GSE223499+GSE131907+GSE186344+CPTAC+DepMap23Q2",
+    "version": "v3_2026-04-13"
+  },
+  "NOM1": {
+    "therapeutic_priority": "TIER 2 \u2014 CONFIRMED BUT UNDRUGGABLE (SL target)",
+    "verdict": "CONFIRMED",
+    "rna_evidence": {
+      "GSE223499": {
+        "padj": 0.04,
+        "lfc": 0.71,
+        "sig": "\u2605"
+      },
+      "GSE131907": {
+        "padj": 0.226,
+        "lfc": 0.037,
+        "sig": "\u2014"
+      },
+      "GSE186344": {
+        "lfc": 3.57,
+        "p": 1.33e-184,
+        "sig": "\u2605"
+      },
+      "meta_analysis_p": null
+    },
+    "protein_evidence": {
+      "cptac_diff": 1.813,
+      "direction": "up"
+    },
+    "depmap": {
+      "chronos": -0.695,
+      "dependent_lines": null,
+      "selective": true,
+      "note": "Common essential (Chronos=\u22120.695); both BrM lines essential"
+    },
+    "druggability": {
+      "druggable": false,
+      "has_structure": false,
+      "has_bioactive_cpds": false,
+      "enzyme_class": "Nucleolar RNA-binding protein",
+      "top_codep": null,
+      "existing_drugs": "None \u2014 undruggable directly; SL partner needed"
+    },
+    "biology": {
+      "mechanism": "Ribosome biogenesis (60S subunit maturation) \u2192 cancer proliferation dependency",
+      "brm_literature": "No direct BrM literature; ribosome biogenesis = pan-cancer dependency"
+    },
+    "dataset": "GSE223499+GSE131907+GSE186344+CPTAC+DepMap23Q2",
+    "version": "v3_2026-04-13"
+  },
+  "TFEB": {
+    "therapeutic_priority": "TIER 4 \u2014 MECHANISTIC ANCHOR (undruggable)",
+    "verdict": "WEAK",
+    "rna_evidence": {
+      "GSE223499": {
+        "padj": 0.99,
+        "lfc": 0.08,
+        "sig": "\u2014"
+      },
+      "GSE131907": {
+        "padj": 0.226,
+        "lfc": 0.43,
+        "sig": "\u2014"
+      },
+      "GSE186344": {
+        "lfc": 2.43,
+        "p": 1.05e-46,
+        "sig": "\u2605"
+      },
+      "meta_analysis_p": null
+    },
+    "protein_evidence": {
+      "cptac_diff": 0.09,
+      "direction": "up_minimal"
+    },
+    "depmap": {
+      "chronos": null,
+      "dependent_lines": null,
+      "selective": false,
+      "note": "LOCKED \u2014 master lysosomal/autophagy TF"
+    },
+    "druggability": {
+      "druggable": false,
+      "has_structure": false,
+      "has_bioactive_cpds": false,
+      "enzyme_class": "Transcription factor (bHLH-leucine zipper)",
+      "top_codep": null,
+      "existing_drugs": "None \u2014 undruggable TF; TMEM106B\u2192TFEB axis may be targetable"
+    },
+    "biology": {
+      "mechanism": "Master regulator of lysosomal biogenesis/autophagy; TMEM106B drives lung met via TFEB (Nat Commun 2018)",
+      "brm_literature": "TFEB overexpression = poor prognosis NSCLC (PMID 26264650)"
+    },
+    "dataset": "GSE223499+GSE131907+GSE186344+CPTAC+DepMap23Q2",
+    "version": "v3_2026-04-13"
+  },
+  "ROPN1L": {
+    "therapeutic_priority": "TIER 3 \u2014 RNA CONFIRMED, PROTEIN DISCORDANT",
+    "verdict": "CONFIRMED (RNA) / CONFLICTED (protein)",
+    "rna_evidence": {
+      "GSE223499": {
+        "padj": 0.21,
+        "lfc": 0.58,
+        "sig": "~"
+      },
+      "GSE131907": {
+        "padj": 0.226,
+        "lfc": 0.38,
+        "sig": "~"
+      },
+      "GSE186344": {
+        "lfc": 0.31,
+        "p": 0.041,
+        "sig": "~"
+      },
+      "meta_analysis_p": 0.014
+    },
+    "protein_evidence": {
+      "cptac_diff": -3.024,
+      "direction": "down"
+    },
+    "depmap": {
+      "chronos": null,
+      "dependent_lines": 22,
+      "selective": false,
+      "note": "22/1208 lines \u2014 not selective; BRD3OS co-dep"
+    },
+    "druggability": {
+      "druggable": true,
+      "has_structure": true,
+      "has_bioactive_cpds": false,
+      "enzyme_class": "Ropporin-like (sperm-associated signaling)",
+      "top_codep": "BRD3OS (r=0.41)",
+      "existing_drugs": "None \u2014 druggable structure but no compounds"
+    },
+    "biology": {
+      "mechanism": "AKAP-binding protein; PKA signaling scaffold; repurposed in cancer?",
+      "brm_literature": "No direct BrM literature"
+    },
+    "dataset": "GSE223499+GSE131907+GSE186344+CPTAC+DepMap23Q2",
+    "version": "v3_2026-04-13"
+  },
+  "SLC45A4": {
+    "therapeutic_priority": "TIER 3 \u2014 RNA CONFIRMED, ZERO ESSENTIALITY",
+    "verdict": "CONFIRMED (RNA meta-analysis)",
+    "rna_evidence": {
+      "GSE223499": {
+        "padj": 0.089,
+        "lfc": 1.06,
+        "sig": "~"
+      },
+      "GSE131907": {
+        "padj": 0.35,
+        "lfc": 0.575,
+        "sig": "\u2014"
+      },
+      "GSE186344": {
+        "lfc": 2.063,
+        "p": 2.47e-56,
+        "sig": "\u2605"
+      },
+      "meta_analysis_p": 0.018
+    },
+    "protein_evidence": {
+      "cptac_diff": null,
+      "direction": "not_detected"
+    },
+    "depmap": {
+      "chronos": null,
+      "dependent_lines": 0,
+      "selective": false,
+      "note": "0/1208 lines \u2014 NOT essential; 4.19th %ile predictability"
+    },
+    "druggability": {
+      "druggable": true,
+      "has_structure": true,
+      "has_bioactive_cpds": false,
+      "enzyme_class": "Sucrose/H+ symporter (SLC family)",
+      "top_codep": "NR4A1 (4.0%)",
+      "existing_drugs": "None"
+    },
+    "biology": {
+      "mechanism": "Sucrose/polyamine transporter; neuronal polyamine transporter (Nature 2025); glycolytic reprogramming in OC (2024)",
+      "brm_literature": "Neuronal polyamine transporter \u2014 brain-specific biology plausible"
+    },
+    "dataset": "GSE223499+GSE131907+GSE186344+CPTAC+DepMap23Q2",
+    "version": "v3_2026-04-13"
+  },
+  "FAM72A": {
+    "therapeutic_priority": "TIER 4 \u2014 TRENDING RNA, NO TRACTABILITY",
+    "verdict": "TRENDING",
+    "rna_evidence": {
+      "GSE223499": {
+        "padj": 0.07,
+        "lfc": 0.91,
+        "sig": "~"
+      },
+      "GSE131907": {
+        "padj": 0.99,
+        "lfc": 0.22,
+        "sig": "\u2014"
+      },
+      "GSE186344": {
+        "lfc": 3.18,
+        "p": 1.25e-34,
+        "sig": "\u2605"
+      },
+      "meta_analysis_p": null
+    },
+    "protein_evidence": {
+      "cptac_diff": null,
+      "direction": "not_detected"
+    },
+    "depmap": {
+      "chronos": null,
+      "dependent_lines": null,
+      "selective": false,
+      "note": "No essentiality data"
+    },
+    "druggability": {
+      "druggable": false,
+      "has_structure": false,
+      "has_bioactive_cpds": false,
+      "enzyme_class": "Unknown (apoptosis-related)",
+      "top_codep": null,
+      "existing_drugs": "None"
+    },
+    "biology": {
+      "mechanism": "Cell cycle/apoptosis; chromosomal instability",
+      "brm_literature": "HPA: unfavorable prognosis LUAD p=1.4e-5"
+    },
+    "dataset": "GSE223499+GSE131907+GSE186344+CPTAC+DepMap23Q2",
+    "version": "v3_2026-04-13"
+  }
+}

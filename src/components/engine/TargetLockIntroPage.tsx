@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * RETIRED (2026-07-18): no longer mounted at /engine/target-lock/.
+ * Canonical surface is TargetLockBrainMetTabSurface.
+ * Kept for reference / possible archive restore — do not re-wire as the default route.
+ */
+
 import Link from 'next/link';
 import { Target, ChevronRight } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
@@ -234,7 +240,7 @@ export default function TargetLockIntroPage() {
                   {body.scrollCtaLabel}
                 </Link>
                 <Link
-                  href="/engine/target-lock/tabs"
+                  href="/engine/target-lock/"
                   className={`inline-flex items-center gap-1.5 rounded-sm px-4 py-2.5 text-[10px] font-black uppercase tracking-widest border transition-colors ${
                     isDarkMode
                       ? 'border-zinc-700 text-zinc-300 hover:border-cyan-500/50'

@@ -1,0 +1,17 @@
+{
+  "caslib": "LungNo_EliLill_2009_438",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CYFRA21_1"
+  ],
+  "indication": "lung_nsclc",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 0,
+  "n_tabular_files": 0,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "1087bdd528afa9d2c82748e968d5bdde456f472919c72680fee627f86e68cb2b",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": []
+}

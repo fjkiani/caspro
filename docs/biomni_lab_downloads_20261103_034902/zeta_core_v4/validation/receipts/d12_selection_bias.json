@@ -1,0 +1,491 @@
+{
+  "absolute_risk_calibrated": false,
+  "capability_released": "RELATIVE_PROGNOSTIC_INDEX_ONLY",
+  "deployment_claim": "NONE. Code is on a feature branch only; nothing is merged to main and no environment is declared deployed.",
+  "evidence_class_separation": {
+    "1_continuous_ruo_prognostic_index": {
+      "content": "k_day, reference_percentile, z_rank, prognostic_log_hazard_index and relative_hazard_multiplier form a continuous ordering associated with overall survival in one external cohort.",
+      "status": "RELEASED_FOR_RESEARCH_USE_ONLY",
+      "what_it_is_not": "It is not an absolute survival probability and not a treatment benefit estimate."
+    },
+    "2_suppressed_unstable_band": {
+      "content": "The categorical field is emitted as null on every code path. The B6 prespecified stability requirement was not met at the frozen quartile knots, so the categorical layer is withheld rather than reported.",
+      "status": "SUPPRESSED_BY_PRESPECIFIED_GATE_FAILURE",
+      "what_it_is_not": "Suppression is not a statement that the continuous index failed; the continuous index is released and the categorical layer is not."
+    },
+    "3_coefficient_only_uncertainty": {
+      "content": "coefficient_conditional_relative_hazard_interval propagates the standard error of the single frozen coefficient at a fixed z_rank. Its width is |z_rank| * SE, so it is exactly zero at the reference point.",
+      "status": "RELEASED_WITH_EXPLICIT_SCOPE_LABEL",
+      "what_it_is_not": "It is not a patient-level predictive interval and contains no component for the patient's own measurement error."
+    },
+    "4_patient_rate_uncertainty": {
+      "content": "The fit-precision receipt bootstraps the patient's own observations to give a k_day interval, a percentile interval and a decline-sign stability fraction. At exactly three distinct observation days it is not estimable and every interval is null with status INSUFFICIENT_FOR_UNCERTAINTY.",
+      "status": "RELEASED_WHEN_ESTIMABLE_ELSE_NULL",
+      "what_it_is_not": "It is not coefficient uncertainty and the two are never combined into a single interval."
+    },
+    "5_absolute_risk_transport_evidence": {
+      "content": "D10 transported the TAX327-derived model to VENICE at the prespecified gate-eligible horizons. Calibration slope and observed-to-expected both failed the prespecified gate in both transport variants.",
+      "status": "EVALUATED_AND_FAILED_NOTHING_ACTIVATED",
+      "what_it_is_not": "A passing result would still have activated nothing. The failing result is evidence about transportability, not a released output."
+    },
+    "6_treatment_prediction": {
+      "content": "No treatment-predictive quantity is computed anywhere in the code path. The corresponding keys are emitted as null on every payload.",
+      "status": "STRUCTURALLY_UNAVAILABLE",
+      "what_it_is_not": "Absence is structural, not a threshold that could be crossed by supplying more data. Every released prostate cohort is a comparator or control arm, so the comparison is not identified."
+    },
+    "mandate": "Item 9 of the completion directive requires every emitted artifact to keep these six evidence classes separate and to never let one stand in for another."
+  },
+  "landmark_discipline": "Pre-landmark deaths are excluded structurally and are never reweighted. No pre-landmark death is compared with a landmark survivor under a common time origin.",
+  "payload": {
+    "balance": {
+      "against_target_population": {
+        "max_abs_smd_unweighted": 0.06413959683494512,
+        "max_abs_smd_weighted": 0.005550861634319363,
+        "n_covariates_gt_0p05_weighted": 0,
+        "n_covariates_gt_0p10_unweighted": 0,
+        "n_covariates_gt_0p10_weighted": 0
+      },
+      "descriptive_selected_vs_excluded": {
+        "max_abs_smd": 0.253330952237675,
+        "n_covariates_gt_0p10": 7,
+        "note": "describes WHO is missing; not the balance target of the weights"
+      },
+      "per_covariate": [
+        {
+          "covariate": "age",
+          "n_imputed": 0,
+          "smd_selected_vs_excluded_unweighted": 0.04463262227441925,
+          "smd_selected_vs_target_population_unweighted": 0.011438485807212623,
+          "smd_selected_vs_target_population_weighted": 0.0034466285596777084
+        },
+        {
+          "covariate": "ecog",
+          "n_imputed": 0,
+          "smd_selected_vs_excluded_unweighted": -0.1669471715785762,
+          "smd_selected_vs_target_population_unweighted": -0.040656811321348796,
+          "smd_selected_vs_target_population_weighted": -0.0013188153230695389
+        },
+        {
+          "covariate": "log_PSA",
+          "n_imputed": 7,
+          "smd_selected_vs_excluded_unweighted": -0.1301214164839045,
+          "smd_selected_vs_target_population_unweighted": -0.03370012013013522,
+          "smd_selected_vs_target_population_weighted": -0.0024771330962733633
+        },
+        {
+          "covariate": "log_ALP",
+          "n_imputed": 3,
+          "smd_selected_vs_excluded_unweighted": -0.253330952237675,
+          "smd_selected_vs_target_population_unweighted": -0.06413959683494512,
+          "smd_selected_vs_target_population_weighted": -0.003726418513862813
+        },
+        {
+          "covariate": "log_AST",
+          "n_imputed": 8,
+          "smd_selected_vs_excluded_unweighted": -0.18080958045316023,
+          "smd_selected_vs_target_population_unweighted": -0.044213598149855655,
+          "smd_selected_vs_target_population_weighted": -0.005319489055820084
+        },
+        {
+          "covariate": "log_ALT",
+          "n_imputed": 1,
+          "smd_selected_vs_excluded_unweighted": 0.03059950173297308,
+          "smd_selected_vs_target_population_unweighted": 0.007552686174368227,
+          "smd_selected_vs_target_population_weighted": -0.002571353900229779
+        },
+        {
+          "covariate": "log_CREAT",
+          "n_imputed": 2,
+          "smd_selected_vs_excluded_unweighted": -0.002588817717013686,
+          "smd_selected_vs_target_population_unweighted": -0.0006502284226260682,
+          "smd_selected_vs_target_population_weighted": 0.005550861634319363
+        },
+        {
+          "covariate": "log_TBILI",
+          "n_imputed": 4,
+          "smd_selected_vs_excluded_unweighted": 0.004726863115143447,
+          "smd_selected_vs_target_population_unweighted": 0.0011422349736624493,
+          "smd_selected_vs_target_population_weighted": -0.0005008657838774063
+        },
+        {
+          "covariate": "HB",
+          "n_imputed": 0,
+          "smd_selected_vs_excluded_unweighted": 0.19991359792708335,
+          "smd_selected_vs_target_population_unweighted": 0.049608116235488636,
+          "smd_selected_vs_target_population_weighted": 0.001854199585675609
+        },
+        {
+          "covariate": "ALB",
+          "n_imputed": 16,
+          "smd_selected_vs_excluded_unweighted": 0.037866685348172266,
+          "smd_selected_vs_target_population_unweighted": 0.009029711636300128,
+          "smd_selected_vs_target_population_weighted": -0.00034035133173206247
+        },
+        {
+          "covariate": "ALB__missing",
+          "n_imputed": 0,
+          "smd_selected_vs_excluded_unweighted": -0.05928497227051449,
+          "smd_selected_vs_target_population_unweighted": -0.015443792839536511,
+          "smd_selected_vs_target_population_weighted": -0.004651290541152053
+        },
+        {
+          "covariate": "WBC",
+          "n_imputed": 0,
+          "smd_selected_vs_excluded_unweighted": -0.04299995796543996,
+          "smd_selected_vs_target_population_unweighted": -0.00993292094880163,
+          "smd_selected_vs_target_population_weighted": 0.0002918976193097103
+        },
+        {
+          "covariate": "CA",
+          "n_imputed": 10,
+          "smd_selected_vs_excluded_unweighted": -0.11175327367762664,
+          "smd_selected_vs_target_population_unweighted": -0.02628609886111733,
+          "smd_selected_vs_target_population_weighted": -0.00027754392443287334
+        },
+        {
+          "covariate": "CA__missing",
+          "n_imputed": 0,
+          "smd_selected_vs_excluded_unweighted": 0.11461414541425322,
+          "smd_selected_vs_target_population_unweighted": 0.023908943355894084,
+          "smd_selected_vs_target_population_weighted": 0.001384911520440744
+        }
+      ],
+      "target_of_stabilized_ipsw": "the full landmark-survivor population (n=590)"
+    },
+    "baseline_lab_coverage_among_randomized": {
+      "ALB": 0.9738562091503268,
+      "ALP": 0.9950980392156863,
+      "ALT": 0.9983660130718954,
+      "AST": 0.9869281045751634,
+      "CA": 0.9836601307189542,
+      "CREAT": 0.9967320261437909,
+      "HB": 1.0,
+      "PSA": 0.9901960784313726,
+      "TBILI": 0.9934640522875817,
+      "WBC": 1.0
+    },
+    "bootstrap": {
+      "B_requested": 1000,
+      "beta_age_wtd": {
+        "hi": 0.14811457378804305,
+        "lo": -0.31120432187672575,
+        "median": -0.07502614122188375,
+        "n": 1000,
+        "sd": 0.11604828631104676
+      },
+      "beta_ecog_wtd": {
+        "hi": 0.759167103471241,
+        "lo": 0.3295356473989879,
+        "median": 0.5404911968045001,
+        "n": 1000,
+        "sd": 0.10993578926368901
+      },
+      "beta_z_unw": {
+        "hi": -0.07045366054147266,
+        "lo": -0.27984375944722484,
+        "median": -0.17582716799059772,
+        "n": 1000,
+        "sd": 0.053817406172287564
+      },
+      "beta_z_wtd": {
+        "hi": -0.07534254917565268,
+        "lo": -0.2788008212984317,
+        "median": -0.17534987522807394,
+        "n": 1000,
+        "sd": 0.052649443939768475
+      },
+      "delta": {
+        "hi": 0.019340348348569163,
+        "lo": -0.01953935843533526,
+        "median": 0.00012188978274395301,
+        "n": 1000,
+        "sd": 0.009978820481876963
+      },
+      "delta_ci_excludes_zero": false,
+      "max_sw": {
+        "hi": 1.9320560625585923,
+        "lo": 1.2861916210097006,
+        "median": 1.5071252437120939,
+        "n": 1000,
+        "sd": 0.16594834316307333
+      },
+      "n_failed": 0,
+      "seed": 20260813
+    },
+    "covariate_missingness_among_landmark_survivors": {
+      "ALB": 16,
+      "CA": 10,
+      "HB": 0,
+      "WBC": 0,
+      "age": 0,
+      "ecog": 0,
+      "log_ALP": 3,
+      "log_ALT": 1,
+      "log_AST": 8,
+      "log_CREAT": 2,
+      "log_PSA": 7,
+      "log_TBILI": 4
+    },
+    "cox": {
+      "delta_beta_z_weighted_minus_unweighted": -0.00038932471673749913,
+      "events": 296,
+      "locked_beta_z": -0.17278419421744848,
+      "n": 446,
+      "terms": [
+        "z_rank",
+        "age_ge65",
+        "ecog"
+      ],
+      "unweighted": {
+        "beta": [
+          -0.17278419176461016,
+          -0.08635003820117336,
+          0.5330448971033441
+        ],
+        "converged": true,
+        "loglik": -1621.8177716695993,
+        "model_se": [
+          0.056782560127435246,
+          0.11890602784161945,
+          0.10653070798600198
+        ]
+      },
+      "unweighted_reproduces_locked_beta_abs_diff": 2.4528383213429095e-09,
+      "weighted_firth_propensity_sensitivity": {
+        "beta": [
+          -0.17502687898232364,
+          -0.08095197689824518,
+          0.5453784077116904
+        ],
+        "converged": true
+      },
+      "weighted_truncated": {
+        "beta": [
+          -0.17317351648134766,
+          -0.07897307128441562,
+          0.5365080273954115
+        ],
+        "converged": true,
+        "loglik": -1646.912573460758,
+        "model_se_not_valid_under_weighting": true
+      },
+      "weighted_untruncated": {
+        "beta": [
+          -0.17261638403259924,
+          -0.07802220986949335,
+          0.5374562972481455
+        ],
+        "converged": true
+      }
+    },
+    "design_diagnostics": {
+      "full_indicator_variant": {
+        "design_columns": 20,
+        "design_rank": 20,
+        "dropped_columns": [
+          [
+            "arm",
+            "constant"
+          ]
+        ]
+      },
+      "primary": {
+        "design_columns": 15,
+        "design_rank": 15,
+        "dropped_columns": [
+          [
+            "arm",
+            "constant"
+          ]
+        ]
+      },
+      "treatment_arm_note": "all 612 randomized VENICE subjects carry ARMCD=PLACEBO, i.e. the docetaxel+prednisone control arm of the aflibercept trial; the arm column is therefore constant and is dropped as non-estimable"
+    },
+    "document": "Zeta-Core v4 D12 selection-bias analysis (VENICE)",
+    "eligibility_model": {
+      "coefficients_intercept_first": [
+        1.1648777414755525,
+        0.055036963368932525,
+        -0.08793553174102402,
+        -0.011590076496451237,
+        -0.14932935450957646,
+        -0.16855161956868903,
+        0.14825042020534532,
+        -0.010840225046004058,
+        -0.00482208550612388,
+        0.12684349496642336,
+        0.04079434128357448,
+        -0.42354808071415995,
+        -0.010516967126908647,
+        -0.18218530552467024,
+        1.060361629847948
+      ],
+      "covariates": [
+        "age",
+        "ecog",
+        "log_PSA",
+        "log_ALP",
+        "log_AST",
+        "log_ALT",
+        "log_CREAT",
+        "log_TBILI",
+        "HB",
+        "ALB",
+        "ALB__missing",
+        "WBC",
+        "CA",
+        "CA__missing"
+      ],
+      "form": "logistic regression, main effects only, baseline covariates only",
+      "imputation": "median imputation with an added missingness indicator per covariate",
+      "labs_dropped_for_coverage": [
+        "LDH (2/612 subjects, 0.33%)"
+      ],
+      "marker_k_used_as_predictor": false,
+      "post_baseline_variables_used": []
+    },
+    "estimand": "association of the continuous PSA prognostic index with OS among randomized VENICE subjects who SURVIVED BEYOND week 15, reweighted to the full landmark-survivor population",
+    "flow": {
+      "enrolled": 936,
+      "excluded_landmark_survivors": 144,
+      "final_analysis_set": 446,
+      "landmark_survivors": 590,
+      "landmark_survivors_with_computable_k": 451,
+      "pre_landmark_deaths_or_censoring": 22,
+      "randomized_with_os_followup": 612,
+      "selection_fraction_among_landmark_survivors": 0.7559322033898305
+    },
+    "labs_used": [
+      "PSA",
+      "ALP",
+      "AST",
+      "ALT",
+      "CREAT",
+      "TBILI",
+      "HB",
+      "ALB",
+      "WBC",
+      "CA"
+    ],
+    "landmark_handling": {
+      "common_time_origin": "week 15",
+      "landmark_weeks": 15.0,
+      "pre_landmark_deaths_excluded_structurally": 22,
+      "pre_landmark_deaths_that_were_deaths": 20,
+      "rule": "pre-landmark deaths cannot have a marker value, are NOT placed on a common time origin with landmark survivors, and are NOT reweighted; the selection model denominator is landmark survivors only"
+    },
+    "positivity": {
+      "common_support_interval": [
+        0.5412559183424905,
+        0.9319827518674874
+      ],
+      "events_per_parameter_excluded_group": 9.6,
+      "logistic_converged": true,
+      "n_excluded_outside_common_support": 3,
+      "n_propensity_parameters": 15,
+      "n_selected_outside_common_support": 2,
+      "n_selected_with_ps_above_0p95": 0,
+      "n_selected_with_ps_below_0p05": 0,
+      "propensity_max_overall": 0.9448452597533933,
+      "propensity_min_overall": 0.45843378297510345,
+      "structural_positivity_violation": false
+    },
+    "propensity_distribution": {
+      "excluded": {
+        "p0": 0.45843378297510345,
+        "p1": 0.5402121154705458,
+        "p100": 0.9319827518674874,
+        "p25": 0.6840129889234509,
+        "p5": 0.5693901609614359,
+        "p50": 0.7460788443013959,
+        "p75": 0.7878949492111905,
+        "p95": 0.830514423570283,
+        "p99": 0.8902666255726459
+      },
+      "selected": {
+        "p0": 0.5412559183424905,
+        "p1": 0.573258818228967,
+        "p100": 0.9448452597533933,
+        "p25": 0.7246147630714521,
+        "p5": 0.6390583418067457,
+        "p50": 0.7734826042591545,
+        "p75": 0.8090174152317726,
+        "p95": 0.8575959305340969,
+        "p99": 0.9232505147902584
+      }
+    },
+    "separation_diagnostic": {
+      "adopted_primary": {
+        "max_abs_coefficient": 1.1648777414755525,
+        "n_parameters": 15,
+        "n_propensity_below_0p01_or_above_0p99": 0,
+        "propensity_max": 0.9448452597533933,
+        "propensity_min": 0.45843378297510345,
+        "rule": "missingness indicator enters only if its cell has >= 10 observations (pure covariate-count rule, never uses selection status or outcome)"
+      },
+      "firth_penalized_sensitivity": {
+        "converged": true,
+        "max_abs_coefficient": 1.59222831029357,
+        "n_propensity_below_0p01_or_above_0p99": 0,
+        "note": "Jeffreys-prior penalty on the full indicator set; standard remedy for separation",
+        "propensity_max": 0.9362783666418332,
+        "propensity_min": 0.2857196763070068
+      },
+      "rejected_unrestricted_ml": {
+        "max_abs_coefficient": 31.54796696690847,
+        "n_parameters": 20,
+        "n_propensity_below_0p01_or_above_0p99": 3,
+        "note": "missingness indicators retained down to a cell of 2, including the n=3 ALP cell and the n=4 TBILI cell",
+        "propensity_max": 0.9999999999999958,
+        "propensity_min": 0.23162793383284824,
+        "separating_columns": [
+          "log_ALP__missing"
+        ],
+        "verdict": "REJECTED for structural positivity failure"
+      }
+    },
+    "weights": {
+      "definition": "stabilized IPSW for the selected group: sw = P(S=1) / P(S=1|X)",
+      "effective_sample_size_truncated": 441.91283470564036,
+      "marginal_selection_probability": 0.7559322033898305,
+      "n_selected": 446,
+      "n_truncated_high": 5,
+      "n_truncated_low": 5,
+      "prespecified_truncation_percentiles": [
+        1.0,
+        99.0
+      ],
+      "truncated": {
+        "max": 1.3188612035442975,
+        "mean": 0.9988426577838673,
+        "min": 0.8187736152593464,
+        "sd": 0.09616727251700691
+      },
+      "truncation_thresholds": [
+        0.8187736152593464,
+        1.3188612035442975
+      ],
+      "untruncated": {
+        "max": 1.396626212799209,
+        "mean": 0.9993683042092153,
+        "min": 0.800059264293849,
+        "p99": 1.3188612035442975,
+        "sd": 0.09852964527358596
+      }
+    }
+  },
+  "prespecification": {
+    "v1_sha256": "b666481b1414e850fef419547ef830f6176c3fdfcbbcb73634b1ff4bd6673322",
+    "v2_addendum_path": "validation/prespecification/audit_correction_prespecification_v2_addendum.json",
+    "v2_addendum_sha256": "a24fb4e000d4da02852abb3fcb7aeeb2d671474fbafc4dcdc6a7aafcd09de71f"
+  },
+  "purpose": "D12 - quantify how the eligibility cascade could bias the frozen coefficient, using baseline variables only and respecting the week-15 landmark.",
+  "receipt_id": "zeta_core_v4_d12_selection_bias",
+  "receipt_version": "v1",
+  "source_receipt": {
+    "file": "d12_selection_bias.json",
+    "sha256": "a04acb8a524ea845d9105cf2f904ce955e3d2545fb528714fdd90a62323c45df"
+  },
+  "status": "LOCAL_CHECKPOINT_NOT_RELEASE_READY",
+  "treatment_predictive": false
+}

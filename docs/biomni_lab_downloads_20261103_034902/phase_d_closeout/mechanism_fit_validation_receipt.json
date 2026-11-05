@@ -1,0 +1,270 @@
+{
+  "artifact": "Mechanism-Fit Tumor-Board Engine validation",
+  "case_summaries": {
+    "CONTRADICTED": {
+      "context_state": "CONTRADICTED_CONTEXT",
+      "coverage": null,
+      "exclusion_reasons": {},
+      "groups": {},
+      "patient_vector": {
+        "ddr": 0.0,
+        "efflux": 0.0,
+        "her2": 0.0,
+        "io": 0.6,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "rss": 0.0,
+        "vegf": 0.0
+      },
+      "trace_id": "MF-2ed089b1b13d47cf955b8ef2"
+    },
+    "HGSOC_BRCA1": {
+      "context_state": "SUPPORTED_CONTEXT",
+      "coverage": {
+        "disease_candidate_set": 184,
+        "eligible_corpus_denominator": 3195,
+        "scoreable_trials": 1249,
+        "statement": "1249 scoreable trials / 3195 canonical registry records"
+      },
+      "exclusion_reasons": {
+        "DISEASE_CONTEXT_MISMATCH": 948,
+        "MECHANISM_MISMATCH": 47,
+        "NON_INTERVENTIONAL": 68,
+        "UNSUPPORTED_INTERVENTION_CLASS": 49
+      },
+      "groups": {
+        "CONTEXTUAL_MECHANISM_OVERLAP": 11,
+        "MECHANISM_FIT_TIER_C": 126
+      },
+      "patient_vector": {
+        "ddr": 0.45,
+        "efflux": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "rss": 0.0,
+        "vegf": 0.0
+      },
+      "trace_id": "MF-7bb3656f3d364a468c46a7af"
+    },
+    "MBD4_TP53_HGSOC": {
+      "context_state": "SUPPORTED_CONTEXT",
+      "coverage": {
+        "disease_candidate_set": 184,
+        "eligible_corpus_denominator": 3195,
+        "scoreable_trials": 1249,
+        "statement": "1249 scoreable trials / 3195 canonical registry records"
+      },
+      "exclusion_reasons": {
+        "DISEASE_CONTEXT_MISMATCH": 948,
+        "MECHANISM_MISMATCH": 47,
+        "NON_INTERVENTIONAL": 68,
+        "UNSUPPORTED_INTERVENTION_CLASS": 49
+      },
+      "groups": {
+        "CONTEXTUAL_MECHANISM_OVERLAP": 74,
+        "MECHANISM_FIT_TIER_C": 63
+      },
+      "patient_vector": {
+        "ddr": 0.3,
+        "efflux": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "rss": 0.0,
+        "vegf": 0.0
+      },
+      "trace_id": "MF-06bc20a90b3444c87480ede5"
+    },
+    "MISSING_MECHANISM": {
+      "context_state": "INSUFFICIENT_EVIDENCE",
+      "coverage": null,
+      "exclusion_reasons": {},
+      "groups": {},
+      "patient_vector": {
+        "ddr": 0.0,
+        "efflux": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "rss": 0.0,
+        "vegf": 0.0
+      },
+      "trace_id": "MF-a2731dd441ec22e3b837daf2"
+    },
+    "MSIH_CRC": {
+      "context_state": "SUPPORTED_CONTEXT",
+      "coverage": {
+        "disease_candidate_set": 477,
+        "eligible_corpus_denominator": 3195,
+        "scoreable_trials": 1249,
+        "statement": "1249 scoreable trials / 3195 canonical registry records"
+      },
+      "exclusion_reasons": {
+        "DISEASE_CONTEXT_MISMATCH": 655,
+        "MECHANISM_MISMATCH": 195,
+        "NON_INTERVENTIONAL": 68,
+        "UNSUPPORTED_INTERVENTION_CLASS": 49
+      },
+      "groups": {
+        "MECHANISM_FIT_TIER_B": 133,
+        "MECHANISM_FIT_TIER_C": 149
+      },
+      "patient_vector": {
+        "ddr": 0.0,
+        "efflux": 0.0,
+        "her2": 0.0,
+        "io": 0.6,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "rss": 0.0,
+        "vegf": 0.0
+      },
+      "trace_id": "MF-1dd5b14d7171af25664b6373"
+    },
+    "MSIH_OVARIAN": {
+      "context_state": "SUPPORTED_CONTEXT",
+      "coverage": {
+        "disease_candidate_set": 184,
+        "eligible_corpus_denominator": 3195,
+        "scoreable_trials": 1249,
+        "statement": "1249 scoreable trials / 3195 canonical registry records"
+      },
+      "exclusion_reasons": {
+        "DISEASE_CONTEXT_MISMATCH": 948,
+        "MECHANISM_MISMATCH": 132,
+        "NON_INTERVENTIONAL": 68,
+        "UNSUPPORTED_INTERVENTION_CLASS": 49
+      },
+      "groups": {
+        "MECHANISM_FIT_TIER_B": 17,
+        "MECHANISM_FIT_TIER_C": 35
+      },
+      "patient_vector": {
+        "ddr": 0.0,
+        "efflux": 0.0,
+        "her2": 0.0,
+        "io": 0.6,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "rss": 0.0,
+        "vegf": 0.0
+      },
+      "trace_id": "MF-ab76abb05af11a16a7ea66d5"
+    },
+    "STC1010_CRC_TRACE": {
+      "context_state": "SUPPORTED_CONTEXT",
+      "coverage": {
+        "disease_candidate_set": 477,
+        "eligible_corpus_denominator": 3195,
+        "scoreable_trials": 1249,
+        "statement": "1249 scoreable trials / 3195 canonical registry records"
+      },
+      "exclusion_reasons": {
+        "DISEASE_CONTEXT_MISMATCH": 655,
+        "MECHANISM_MISMATCH": 407,
+        "NON_INTERVENTIONAL": 68,
+        "UNSUPPORTED_INTERVENTION_CLASS": 49
+      },
+      "groups": {
+        "MECHANISM_FIT_TIER_B": 17,
+        "MECHANISM_FIT_TIER_C": 53
+      },
+      "patient_vector": {
+        "ddr": 0.0,
+        "efflux": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "mapk": 0.65,
+        "pi3k": 0.0,
+        "rss": 0.0,
+        "vegf": 0.0
+      },
+      "trace_id": "MF-1033b4c6a567f5b91a963a6f"
+    },
+    "WRONG_LINEAGE": {
+      "context_state": "OUT_OF_SCOPE",
+      "coverage": null,
+      "exclusion_reasons": {},
+      "groups": {},
+      "patient_vector": {
+        "ddr": 0.0,
+        "efflux": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "rss": 0.0,
+        "vegf": 0.0
+      },
+      "trace_id": "MF-e9025ac94395c1979d7da38c"
+    }
+  },
+  "deterministic_repeat": true,
+  "engine_output_sha256": "28c93d05b02cf0b24d2b83fac86f82e6a9e910f5a696dc50b9577c2a6cf8ea1a",
+  "forbidden_fields_found": [],
+  "formula": "fit = clip((p\u00b7t) / ||t||_2, 0, 1)",
+  "identity_root_cause": {
+    "NCT03579316": {
+      "trial": {
+        "conditions": "Recurrent Fallopian Tube Carcinoma | Recurrent Ovarian Carcinoma | Recurrent Primary Peritoneal Carcinoma",
+        "interventions": "Adavosertib | Olaparib | Ceralasertib",
+        "nct_id": "NCT03579316",
+        "title": "Adavosertib With or Without Olaparib in Treating Patients With Recurrent Ovarian, Primary Peritoneal, or Fallopian Tube Cancer"
+      },
+      "vector": {
+        "annotation_ids_json": "[\"279964d1495a002aea255b51f8b9a2db56f946845f28c100f3e35f6a4d6e337b\", \"efa2f73e280ba6d5f1ee6adc0f9562199db3d5777892c0621a05f9b4f622a243\"]",
+        "completeness": 1.0,
+        "ddr": 1.0,
+        "efflux": 0.0,
+        "evidence_tier": "DETERMINISTIC",
+        "her2": 0.0,
+        "io": 0.0,
+        "lifecycle_state": "ACTIVE_RESEARCH",
+        "mapk": 0.0,
+        "ontology_version": "axis-rulebook.2026-07-16.1",
+        "pi3k": 0.0,
+        "rss": 1.0,
+        "schema_version": "moa.v2.0.0",
+        "trial_id": "NCT03579316",
+        "updated_at": "2026-07-16T15:33:23.774715+00:00",
+        "vector_hash": "7d252a444f91cbb62cb91d3cd439bc4bf55163182250d71a4d7bdc5c0fcabf74",
+        "vegf": 0.0
+      }
+    },
+    "NCT06934538": {
+      "trial": {
+        "conditions": "Unresectable Metastatic Colorectal Cancer | Unresectable Locally Advanced Colorectal Cancer",
+        "interventions": "STC-1010 + IS regimen + SOC therapy",
+        "nct_id": "NCT06934538",
+        "title": "First-in-human Trial of STC-1010, an Immunotherapy, in Patients With Unresectable Locally Advanced or Metastatic Colorectal Cancer"
+      },
+      "vector": {
+        "annotation_ids_json": "[\"5157392122acccec1c48b573f941658161648110b86524b634136add9e3c6bdd\", \"915cfad568e6808708d562877a123d06f00c51bc42d96aaecb2d38dc6f35a7b7\"]",
+        "completeness": 1.0,
+        "ddr": 1.0,
+        "efflux": 0.0,
+        "evidence_tier": "DETERMINISTIC",
+        "her2": 0.0,
+        "io": 0.0,
+        "lifecycle_state": "ACTIVE_RESEARCH",
+        "mapk": 0.0,
+        "ontology_version": "axis-rulebook.2026-07-16.1",
+        "pi3k": 0.0,
+        "rss": 0.0,
+        "schema_version": "moa.v2.0.0",
+        "trial_id": "NCT06934538",
+        "updated_at": "2026-07-16T15:33:30.760536+00:00",
+        "vector_hash": "9ecd3057e732a2c576d32782e80a6a34d0c038933edb570f050aaa74bfe1a517",
+        "vegf": 1.0
+      }
+    }
+  },
+  "legacy_misidentified_anchor": "NCT03579316",
+  "stc1010_canonical_nct": "NCT06934538",
+  "validation_status": "RESEARCH_ONLY",
+  "visible_output": "co-equal tiers; no ordinal trial ordering semantics"
+}

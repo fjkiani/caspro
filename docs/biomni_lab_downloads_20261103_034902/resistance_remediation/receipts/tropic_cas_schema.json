@@ -1,0 +1,3717 @@
+{
+  "generated_utc": "2026-08-11T19:43:09.699669+00:00",
+  "endpoint": "https://mpmprodvdmml.ondemand.sas.com/cas-shared-default-http/",
+  "trials": {
+    "TROPIC": {
+      "caslib": "Prostat_Sanofi_2007_79",
+      "n_files": 34,
+      "n_tables_loaded": 34,
+      "tables": [
+        {
+          "path": "dataFiles_399/ae.sas7bdat",
+          "n_rows": 5428,
+          "n_columns": 29,
+          "columns": [
+            {
+              "name": "AESTWKF",
+              "label": "Imputation level of AESTWK",
+              "type": "char",
+              "format": "16"
+            },
+            {
+              "name": "AEENWKF",
+              "label": "Imputation level of AEENWK",
+              "type": "char",
+              "format": "16"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "AESEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "AESPID",
+              "label": "Sponsor-Defined Identifier",
+              "type": "char",
+              "format": "5"
+            },
+            {
+              "name": "AEREFID",
+              "label": "Reference ID",
+              "type": "char",
+              "format": "5"
+            },
+            {
+              "name": "AETERM",
+              "label": "Reported Term for the Adverse Event",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "AEDECOD",
+              "label": "Dictionary-Derived Term",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "AEBODSYS",
+              "label": "Body System or Organ Class",
+              "type": "char",
+              "format": "120"
+            },
+            {
+              "name": "AESER",
+              "label": "Serious Event",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "AEACN",
+              "label": "Action Taken with Study Treatment",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "AECONTRT",
+              "label": "Concomitant or Additional Trtmnt Given",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "AEREL",
+              "label": "Causality",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "AEPATT",
+              "label": "Pattern of Adverse Event",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "AEOUT",
+              "label": "Outcome of Adverse Event",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "AESCONG",
+              "label": "Congenital Anomaly or Birth Defect",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "AESDISAB",
+              "label": "Persist or Signif Disability/Incapacity",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "AESDTH",
+              "label": "Results in Death",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "AESHOSP",
+              "label": "Requires or Prolongs Hospitalization",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "AESLIFE",
+              "label": "Is Life Threatening",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "AESMIE",
+              "label": "Other Medically Important Serious Event",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "AETOXGR",
+              "label": "Standard Toxicity Grade",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "AESTWK",
+              "label": "Study Week of Start of Adverse Event",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "AEENWK",
+              "label": "Study Week of End of Adverse Event",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "AESTWK",
+              "AEENWK",
+              "SUBJID"
+            ],
+            "survival": [
+              "AETERM",
+              "AESER",
+              "AEPATT",
+              "AEOUT",
+              "AESDTH",
+              "AESMIE",
+              "AESTWK",
+              "AEENWK"
+            ],
+            "age": [],
+            "ecog": [],
+            "treatment": [
+              "AEACN",
+              "AECONTRT"
+            ],
+            "date": [],
+            "analyte": []
+          }
+        },
+        {
+          "path": "dataFiles_399/cd.sas7bdat",
+          "n_rows": 3339,
+          "n_columns": 14,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "CDSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "CDTESTCD",
+              "label": "Cancer Diagnosis Criterion Short Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "CDTEST",
+              "label": "Cancer Diagnosis Criterion",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "CDCAT",
+              "label": "Category of Cancer Diagnosis",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "CDORRES",
+              "label": "Cancer Diagn. Crit. Original Result",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "CDSTRESC",
+              "label": "Cancer Diagn. Crit. Result in Std Format",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "CDSTAT",
+              "label": "Completion Status",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "CDDTC",
+              "label": "Date/Time of Collection",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "CDDTC",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [
+              "CDDTC"
+            ],
+            "analyte": [
+              "CDTESTCD",
+              "CDTEST"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/cm.sas7bdat",
+          "n_rows": 24534,
+          "n_columns": 18,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "CMSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "CMTRT",
+              "label": "Reported Name of Drug, Med, or Therapy",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "CMDECOD",
+              "label": "Standardized Medication Name",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "CMCAT",
+              "label": "Category for Medication",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "CMINDC",
+              "label": "Indication",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "CMDOSE",
+              "label": "Dose per Administration",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "CMDOSU",
+              "label": "Dose Units",
+              "type": "char",
+              "format": "15"
+            },
+            {
+              "name": "CMDOSRGM",
+              "label": "Intended Dose Regimen",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "CMSTDTC",
+              "label": "Start Date/Time of Medication",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "CMSTDY",
+              "label": "Study Day of Start of Medication",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "CMENDTC",
+              "label": "End Date/Time of Medication",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "CMENDY",
+              "label": "Study Day of End of Medication",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "CMSTDTC",
+              "CMSTDY",
+              "CMENDTC",
+              "CMENDY",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [
+              "CMTRT"
+            ],
+            "date": [
+              "CMSTDTC",
+              "CMENDTC"
+            ],
+            "analyte": []
+          }
+        },
+        {
+          "path": "dataFiles_399/cx.sas7bdat",
+          "n_rows": 2516,
+          "n_columns": 21,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "CXSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "CXTESTCD",
+              "label": "Test Short Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "CXTEST",
+              "label": "Test Name",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "CXCAT",
+              "label": "Category for Test",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "CXORRES",
+              "label": "Result or Finding in Original Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "CXORRESU",
+              "label": "Original Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "CXORNRLO",
+              "label": "Reference Range Lower Limit in Orig Unit",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "CXSTRESC",
+              "label": "Character Result/Finding in Std Format",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "CXSTRESN",
+              "label": "Numeric Result/Finding in Std Units",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "CXSTRESU",
+              "label": "Standard Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "CXSTNRLO",
+              "label": "Reference Range Lower Limit-Std Units",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "CXSTAT",
+              "label": "Clinical Examination Status",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "CXMETHOD",
+              "label": "Method of Clinical Examination",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "CXBLFL",
+              "label": "Baseline Flag",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "CXDTC",
+              "label": "Date/Time Performed",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "CXDTC",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [
+              "CXDTC"
+            ],
+            "treatment": [],
+            "date": [
+              "CXDTC"
+            ],
+            "analyte": [
+              "CXTESTCD",
+              "CXTEST",
+              "CXCAT"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/dm.sas7bdat",
+          "n_rows": 371,
+          "n_columns": 12,
+          "columns": [
+            {
+              "name": "AGEGRP",
+              "label": "Age group",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "9"
+            },
+            {
+              "name": "RFSTDTC",
+              "label": "Subject Reference Start Date/Time",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "RFENDTC",
+              "label": "Subject Reference End Date/Time",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "AGEU",
+              "label": "Age Units",
+              "type": "char",
+              "format": "6"
+            },
+            {
+              "name": "SEX",
+              "label": "Sex",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "RACE",
+              "label": "Race",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "ARM",
+              "label": "Description of Planned Arm",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "ARMCD",
+              "label": "Planned Arm Code",
+              "type": "char",
+              "format": "12"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID",
+              "RFSTDTC",
+              "RFENDTC"
+            ],
+            "psa": [],
+            "time": [
+              "SUBJID",
+              "RFSTDTC",
+              "RFENDTC"
+            ],
+            "survival": [],
+            "age": [
+              "AGEGRP",
+              "AGEU"
+            ],
+            "ecog": [],
+            "treatment": [
+              "ARM",
+              "ARMCD"
+            ],
+            "date": [
+              "RFSTDTC",
+              "RFENDTC"
+            ],
+            "analyte": []
+          }
+        },
+        {
+          "path": "dataFiles_399/ds.sas7bdat",
+          "n_rows": 2842,
+          "n_columns": 14,
+          "columns": [
+            {
+              "name": "DSSTWKF",
+              "label": "Imputation level of DSSTWK",
+              "type": "char",
+              "format": "16"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "DSSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "DSTERM",
+              "label": "Reported Term for the Disposition Event",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "DSDECOD",
+              "label": "Standardized Disposition Term",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "DSCAT",
+              "label": "Category for Disposition Event",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "DSSCAT",
+              "label": "Subcategory for Disposition Event",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "EPOCH",
+              "label": "Trial Epoch",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "DSSTWK",
+              "label": "Study Week of Start of Disposition Event",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "DSSTWK",
+              "SUBJID"
+            ],
+            "survival": [
+              "DSTERM",
+              "DSCAT",
+              "DSSCAT",
+              "DSSTWK"
+            ],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": []
+          }
+        },
+        {
+          "path": "dataFiles_399/eg.sas7bdat",
+          "n_rows": 558,
+          "n_columns": 15,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "EGSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "EGTESTCD",
+              "label": "ECG Test or Examination Short Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "EGTEST",
+              "label": "ECG Test or Examination Name",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "EGORRES",
+              "label": "Result or Finding in Original Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "EGSTRESC",
+              "label": "Character Result/Finding in Std Format",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "EGBLFL",
+              "label": "Baseline Flag",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "EGEVAL",
+              "label": "Evaluator",
+              "type": "char",
+              "format": "100"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "EGDTC",
+              "label": "Date/Time of ECG",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "EGDY",
+              "label": "Study day of ECG",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "EGDTC",
+              "EGDY",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [
+              "EGDTC"
+            ],
+            "analyte": [
+              "EGTESTCD",
+              "EGTEST"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/ex.sas7bdat",
+          "n_rows": 3485,
+          "n_columns": 16,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "EXSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "EXTRT",
+              "label": "Name of Actual Treatment",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "EXLOT",
+              "label": "Lot Number",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "EXDOSE",
+              "label": "Dose per Administration",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "EXDOSU",
+              "label": "Dose Units",
+              "type": "char",
+              "format": "15"
+            },
+            {
+              "name": "EXDOSFRM",
+              "label": "Dose Form",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "EXROUTE",
+              "label": "Route of Administration",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "EXSTDTC",
+              "label": "Start Date/Time of Treatment",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "EXSTDY",
+              "label": "Study Day of Start of Treatment",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "EXENDTC",
+              "label": "End Date/Time of Treatment",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "EXSTDTC",
+              "EXSTDY",
+              "EXENDTC",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [
+              "EXTRT",
+              "EXSTDTC",
+              "EXSTDY",
+              "EXENDTC"
+            ],
+            "date": [
+              "EXSTDTC",
+              "EXENDTC"
+            ],
+            "analyte": []
+          }
+        },
+        {
+          "path": "dataFiles_399/ie.sas7bdat",
+          "n_rows": 42,
+          "n_columns": 13,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "IESEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "IESPID",
+              "label": "Sponsor-Defined Identifier",
+              "type": "char",
+              "format": "10"
+            },
+            {
+              "name": "IETESTCD",
+              "label": "Inclusion/Exclusion Criterion Short Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "IETEST",
+              "label": "Inclusion/Exclusion Criterion",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "IECAT",
+              "label": "Inclusion/Exclusion Category",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "IEORRES",
+              "label": "I/E Criterion Original Result",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "IESTRESC",
+              "label": "I/E Criterion Result in Std Format",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "IETESTCD",
+              "IETEST"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/lb.sas7bdat",
+          "n_rows": 80788,
+          "n_columns": 27,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "LBSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "LBTESTCD",
+              "label": "Lab Test or Examination Short Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "LBTEST",
+              "label": "Lab Test or Examination Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "LBCAT",
+              "label": "Category for Lab Test",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "LBSCAT",
+              "label": "Subcategory for Lab Test",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "LBORRES",
+              "label": "Result or Finding in Original Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "LBORRESU",
+              "label": "Original Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "LBORNRLO",
+              "label": "Reference Range Lower Limit in Orig Unit",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "LBORNRHI",
+              "label": "Reference Range Upper Limit in Orig Unit",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "LBSTRESC",
+              "label": "Character Result/Finding in Std Format",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "LBSTRESN",
+              "label": "Numeric Result/Finding in Standard Units",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "LBSTRESU",
+              "label": "Standard Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "LBSTNRLO",
+              "label": "Reference Range Lower Limit-Std Units",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "LBSTNRHI",
+              "label": "Reference Range Upper Limit-Std Units",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "LBNRIND",
+              "label": "Reference Range Indicator",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "LBSTAT",
+              "label": "Lab Status",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "LBTOX",
+              "label": "Toxicity",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "LBTOXGR",
+              "label": "Standard Toxicity Grade",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "LBBLFL",
+              "label": "Baseline Flag",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "LBDTC",
+              "label": "Date/Time of Specimen Collection",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "LBDY",
+              "label": "Study Day of Specimen Collection",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "LBDTC",
+              "LBDY",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [
+              "LBDTC"
+            ],
+            "analyte": [
+              "LBTESTCD",
+              "LBTEST",
+              "LBCAT",
+              "LBSCAT",
+              "LBSTAT"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/ls.sas7bdat",
+          "n_rows": 5774,
+          "n_columns": 21,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "LSSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "LSSPID",
+              "label": "Sponsor-Defined Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "LSTESTCD",
+              "label": "Short Name of LSTEST",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "LSTEST",
+              "label": "Lesion Test",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "LSCAT",
+              "label": "Category for Lesions",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "LSLOC",
+              "label": "Location of Tumor",
+              "type": "char",
+              "format": "100"
+            },
+            {
+              "name": "LSORRES",
+              "label": "Result or Finding in Original Units",
+              "type": "char",
+              "format": "60"
+            },
+            {
+              "name": "LSORRESU",
+              "label": "Original Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "LSSTRESC",
+              "label": "Character Result/Finding in Std Format",
+              "type": "char",
+              "format": "60"
+            },
+            {
+              "name": "LSSTRESN",
+              "label": "Numeric Result/Finding in Standard Units",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "LSSTRESU",
+              "label": "Standard Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "LSMETHOD",
+              "label": "Test Method",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "LSSTAT",
+              "label": "Tumor Measurement Status",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "LSBLFL",
+              "label": "Baseline Flag",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "LSDTC",
+              "label": "Date/Time Performed",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "LSDTC",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [
+              "LSDTC"
+            ],
+            "treatment": [],
+            "date": [
+              "LSDTC"
+            ],
+            "analyte": [
+              "LSTESTCD",
+              "LSTEST",
+              "LSMETHOD",
+              "LSSTAT"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/mh.sas7bdat",
+          "n_rows": 2292,
+          "n_columns": 13,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "MHSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "MHSPID",
+              "label": "Sponsor-Defined Identifier",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "MHTERM",
+              "label": "Reported Term for the Medical History",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "MHCAT",
+              "label": "Category for Medical History",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "MHDECOD",
+              "label": "Dictionary-Derived Term",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "MHBODSYS",
+              "label": "Body System or Organ Class",
+              "type": "char",
+              "format": "120"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "MHSTDTC",
+              "label": "Start Date/Time of Medical History Event",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "MHSTDTC",
+              "SUBJID"
+            ],
+            "survival": [
+              "MHSTDTC"
+            ],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [
+              "MHSTDTC"
+            ],
+            "analyte": []
+          }
+        },
+        {
+          "path": "dataFiles_399/pe.sas7bdat",
+          "n_rows": 3614,
+          "n_columns": 17,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "PESEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "PETESTCD",
+              "label": "Body System Examined Short Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "PETEST",
+              "label": "Body System Examined",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "PEORRES",
+              "label": "Verbatim Examination Finding",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "PESTRESC",
+              "label": "Character Result/Finding in Std. Format",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "PESTRESN",
+              "label": "Numeric Result/Finding in Standard Units",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "PESTRESU",
+              "label": "Standard Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "PEMETHOD",
+              "label": "Method of Test or Examination",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "PEBLFL",
+              "label": "Baseline Flag",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "PEDTC",
+              "label": "Date/Time of Examination",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "PEDY",
+              "label": "Study Day of Examination",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "PEDTC",
+              "PEDY",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [
+              "PEDTC"
+            ],
+            "analyte": [
+              "PETESTCD",
+              "PETEST",
+              "PEMETHOD"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/pn.sas7bdat",
+          "n_rows": 26982,
+          "n_columns": 18,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "PNSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "PNSPID",
+              "label": "Sponsor-Defined Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "PNTESTCD",
+              "label": "Short Name of PNTEST",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "PNTEST",
+              "label": "Pain Intensity Assessment",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "PNCAT",
+              "label": "Category for Pain Intensity Assessment",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "PNORRES",
+              "label": "Result or Finding in Original Units",
+              "type": "char",
+              "format": "60"
+            },
+            {
+              "name": "PNORRESU",
+              "label": "Original Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "PNSTRESC",
+              "label": "Character Result/Finding in Std Format",
+              "type": "char",
+              "format": "60"
+            },
+            {
+              "name": "PNSTRESN",
+              "label": "Numeric Result/Finding in Standard Units",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "PNSTRESU",
+              "label": "Standard Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "PNSTAT",
+              "label": "Examination Status",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "PNDTC",
+              "label": "Date/Time Performed",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "PNDTC",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [
+              "PNDTC"
+            ],
+            "treatment": [],
+            "date": [
+              "PNDTC"
+            ],
+            "analyte": [
+              "PNTESTCD",
+              "PNTEST"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/pr.sas7bdat",
+          "n_rows": 151,
+          "n_columns": 10,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "PRSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "PRTRT",
+              "label": "Reported Name of Procedure",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "PRCAT",
+              "label": "Category for Procedure",
+              "type": "char",
+              "format": "100"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "PRDTC",
+              "label": "Date/Time of Procedure",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "PRDTC",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [
+              "PRTRT"
+            ],
+            "date": [
+              "PRDTC"
+            ],
+            "analyte": []
+          }
+        },
+        {
+          "path": "dataFiles_399/sc.sas7bdat",
+          "n_rows": 11,
+          "n_columns": 11,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "SCSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "SCTESTCD",
+              "label": "Subject Characteristic Short Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "SCTEST",
+              "label": "Subject Characteristic",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "SCORRES",
+              "label": "Result or Finding in Original Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "SCSTRESC",
+              "label": "Character Result/Finding in Std Format",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "SCDTC",
+              "label": "Date/Time of Collection",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "SCDY",
+              "label": "Study day of Examination",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SCTESTCD",
+              "SCTEST",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "SCDTC",
+              "SCDY",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [
+              "SCDTC"
+            ],
+            "analyte": [
+              "SCTESTCD",
+              "SCTEST"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/suppae.sas7bdat",
+          "n_rows": 53153,
+          "n_columns": 11,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "RDOMAIN",
+              "label": "Related Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "IDVAR",
+              "label": "Identifying Variable",
+              "type": "char",
+              "format": "5"
+            },
+            {
+              "name": "IDVARVAL",
+              "label": "Identifying Variable Value",
+              "type": "char",
+              "format": "32"
+            },
+            {
+              "name": "QNAM",
+              "label": "Qualifier Variable Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "QLABEL",
+              "label": "Qualifier Variable Label",
+              "type": "char",
+              "format": "49"
+            },
+            {
+              "name": "QVAL",
+              "label": "Data Value",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "QORIG",
+              "label": "Origin",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "QEVAL",
+              "label": "Evaluator",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "QLABEL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/suppcm.sas7bdat",
+          "n_rows": 108333,
+          "n_columns": 11,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "RDOMAIN",
+              "label": "Related Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "IDVAR",
+              "label": "Identifying Variable",
+              "type": "char",
+              "format": "5"
+            },
+            {
+              "name": "IDVARVAL",
+              "label": "Identifying Variable Value",
+              "type": "char",
+              "format": "32"
+            },
+            {
+              "name": "QNAM",
+              "label": "Qualifier Variable Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "QLABEL",
+              "label": "Qualifier Variable Label",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "QVAL",
+              "label": "Data Value",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "QORIG",
+              "label": "Origin",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "QEVAL",
+              "label": "Evaluator",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "QLABEL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/suppdm.sas7bdat",
+          "n_rows": 2597,
+          "n_columns": 11,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "RDOMAIN",
+              "label": "Related Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "IDVAR",
+              "label": "Identifying Variable",
+              "type": "char",
+              "format": "6"
+            },
+            {
+              "name": "IDVARVAL",
+              "label": "Identifying Variable Value",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "QNAM",
+              "label": "Qualifier Variable Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "QLABEL",
+              "label": "Qualifier Variable Label",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "QVAL",
+              "label": "Data Value",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "QORIG",
+              "label": "Origin",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "QEVAL",
+              "label": "Evaluator",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "QLABEL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/suppds.sas7bdat",
+          "n_rows": 1083,
+          "n_columns": 11,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "RDOMAIN",
+              "label": "Related Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "IDVAR",
+              "label": "Identifying Variable",
+              "type": "char",
+              "format": "5"
+            },
+            {
+              "name": "IDVARVAL",
+              "label": "Identifying Variable Value",
+              "type": "char",
+              "format": "32"
+            },
+            {
+              "name": "QNAM",
+              "label": "Qualifier Variable Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "QLABEL",
+              "label": "Qualifier Variable Label",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "QVAL",
+              "label": "Data Value",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "QORIG",
+              "label": "Origin",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "QEVAL",
+              "label": "Evaluator",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "QLABEL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/suppeg.sas7bdat",
+          "n_rows": 164,
+          "n_columns": 11,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "RDOMAIN",
+              "label": "Related Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "IDVAR",
+              "label": "Identifying Variable",
+              "type": "char",
+              "format": "5"
+            },
+            {
+              "name": "IDVARVAL",
+              "label": "Identifying Variable Value",
+              "type": "char",
+              "format": "32"
+            },
+            {
+              "name": "QNAM",
+              "label": "Qualifier Variable Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "QLABEL",
+              "label": "Qualifier Variable Label",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "QVAL",
+              "label": "Data Value",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "QORIG",
+              "label": "Origin",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "QEVAL",
+              "label": "Evaluator",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "QLABEL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/suppex.sas7bdat",
+          "n_rows": 18137,
+          "n_columns": 11,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "RDOMAIN",
+              "label": "Related Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "IDVAR",
+              "label": "Identifying Variable",
+              "type": "char",
+              "format": "5"
+            },
+            {
+              "name": "IDVARVAL",
+              "label": "Identifying Variable Value",
+              "type": "char",
+              "format": "32"
+            },
+            {
+              "name": "QNAM",
+              "label": "Qualifier Variable Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "QLABEL",
+              "label": "Qualifier Variable Label",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "QVAL",
+              "label": "Data Value",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "QORIG",
+              "label": "Origin",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "QEVAL",
+              "label": "Evaluator",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "QLABEL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/suppie.sas7bdat",
+          "n_rows": 21,
+          "n_columns": 11,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "RDOMAIN",
+              "label": "Related Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "IDVAR",
+              "label": "Identifying Variable",
+              "type": "char",
+              "format": "5"
+            },
+            {
+              "name": "IDVARVAL",
+              "label": "Identifying Variable Value",
+              "type": "char",
+              "format": "32"
+            },
+            {
+              "name": "QNAM",
+              "label": "Qualifier Variable Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "QLABEL",
+              "label": "Qualifier Variable Label",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "QVAL",
+              "label": "Data Value",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "QORIG",
+              "label": "Origin",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "QEVAL",
+              "label": "Evaluator",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "QLABEL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/supplb.sas7bdat",
+          "n_rows": 80788,
+          "n_columns": 11,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "RDOMAIN",
+              "label": "Related Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "IDVAR",
+              "label": "Identifying Variable",
+              "type": "char",
+              "format": "5"
+            },
+            {
+              "name": "IDVARVAL",
+              "label": "Identifying Variable Value",
+              "type": "char",
+              "format": "32"
+            },
+            {
+              "name": "QNAM",
+              "label": "Qualifier Variable Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "QLABEL",
+              "label": "Qualifier Variable Label",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "QVAL",
+              "label": "Data Value",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "QORIG",
+              "label": "Origin",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "QEVAL",
+              "label": "Evaluator",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "QLABEL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/suppls.sas7bdat",
+          "n_rows": 5610,
+          "n_columns": 11,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "RDOMAIN",
+              "label": "Related Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "IDVAR",
+              "label": "Identifying Variable",
+              "type": "char",
+              "format": "5"
+            },
+            {
+              "name": "IDVARVAL",
+              "label": "Identifying Variable Value",
+              "type": "char",
+              "format": "32"
+            },
+            {
+              "name": "QNAM",
+              "label": "Qualifier Variable Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "QLABEL",
+              "label": "Qualifier Variable Label",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "QVAL",
+              "label": "Data Value",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "QORIG",
+              "label": "Origin",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "QEVAL",
+              "label": "Evaluator",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "QLABEL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/suppmh.sas7bdat",
+          "n_rows": 2025,
+          "n_columns": 11,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "RDOMAIN",
+              "label": "Related Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "IDVAR",
+              "label": "Identifying Variable",
+              "type": "char",
+              "format": "5"
+            },
+            {
+              "name": "IDVARVAL",
+              "label": "Identifying Variable Value",
+              "type": "char",
+              "format": "32"
+            },
+            {
+              "name": "QNAM",
+              "label": "Qualifier Variable Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "QLABEL",
+              "label": "Qualifier Variable Label",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "QVAL",
+              "label": "Data Value",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "QORIG",
+              "label": "Origin",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "QEVAL",
+              "label": "Evaluator",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "QLABEL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/supppe.sas7bdat",
+          "n_rows": 1134,
+          "n_columns": 11,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "RDOMAIN",
+              "label": "Related Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "IDVAR",
+              "label": "Identifying Variable",
+              "type": "char",
+              "format": "5"
+            },
+            {
+              "name": "IDVARVAL",
+              "label": "Identifying Variable Value",
+              "type": "char",
+              "format": "32"
+            },
+            {
+              "name": "QNAM",
+              "label": "Qualifier Variable Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "QLABEL",
+              "label": "Qualifier Variable Label",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "QVAL",
+              "label": "Data Value",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "QORIG",
+              "label": "Origin",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "QEVAL",
+              "label": "Evaluator",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "QLABEL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/supppr.sas7bdat",
+          "n_rows": 151,
+          "n_columns": 11,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "RDOMAIN",
+              "label": "Related Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "IDVAR",
+              "label": "Identifying Variable",
+              "type": "char",
+              "format": "5"
+            },
+            {
+              "name": "IDVARVAL",
+              "label": "Identifying Variable Value",
+              "type": "char",
+              "format": "32"
+            },
+            {
+              "name": "QNAM",
+              "label": "Qualifier Variable Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "QLABEL",
+              "label": "Qualifier Variable Label",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "QVAL",
+              "label": "Data Value",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "QORIG",
+              "label": "Origin",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "QEVAL",
+              "label": "Evaluator",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "QLABEL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/sv.sas7bdat",
+          "n_rows": 3930,
+          "n_columns": 9,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "SVSTDTC",
+              "label": "Start Date/Time of Visit",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "SVSTDY",
+              "label": "Study Day of Start of Observation",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "SVENDTC",
+              "label": "End Date/Time of Visit",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "SVSTDTC",
+              "SVSTDY",
+              "SVENDTC",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [
+              "SVSTDTC",
+              "SVENDTC"
+            ],
+            "analyte": []
+          }
+        },
+        {
+          "path": "dataFiles_399/te.sas7bdat",
+          "n_rows": 4,
+          "n_columns": 6,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "ETCD",
+              "label": "Element Code",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "ELEMENT",
+              "label": "Description of Element",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "TESTRL",
+              "label": "Rule for Start of Element",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "TEENRL",
+              "label": "Rule for End of Element",
+              "type": "char",
+              "format": "200"
+            }
+          ],
+          "candidates": {
+            "patient": [],
+            "psa": [],
+            "time": [],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "TESTRL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/ti.sas7bdat",
+          "n_rows": 48,
+          "n_columns": 5,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "IETESTCD",
+              "label": "Inclusion/Exclusion Criterion Short Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "IETEST",
+              "label": "Inclusion/Exclusion Criterion",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "IECAT",
+              "label": "Inclusion/Exclusion Category",
+              "type": "char",
+              "format": "50"
+            }
+          ],
+          "candidates": {
+            "patient": [],
+            "psa": [],
+            "time": [],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [],
+            "analyte": [
+              "IETESTCD",
+              "IETEST"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/ts.sas7bdat",
+          "n_rows": 16,
+          "n_columns": 6,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "TSSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "TSPARMCD",
+              "label": "Trial Summary Parameter Short Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "TSPARM",
+              "label": "Trial Summary Parameter",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "TSVAL",
+              "label": "Parameter Value",
+              "type": "char",
+              "format": "200"
+            }
+          ],
+          "candidates": {
+            "patient": [],
+            "psa": [],
+            "time": [],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [
+              "TSPARMCD",
+              "TSPARM"
+            ],
+            "date": [],
+            "analyte": [
+              "TSPARMCD",
+              "TSPARM",
+              "TSVAL"
+            ]
+          }
+        },
+        {
+          "path": "dataFiles_399/tv.sas7bdat",
+          "n_rows": 24,
+          "n_columns": 7,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "ARMCD",
+              "label": "Arm Code",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "TVSTRL",
+              "label": "Visit Start Rule",
+              "type": "char",
+              "format": "200"
+            },
+            {
+              "name": "TVENRL",
+              "label": "Visit End Rule",
+              "type": "char",
+              "format": "200"
+            }
+          ],
+          "candidates": {
+            "patient": [],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "TVSTRL",
+              "TVENRL"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [
+              "ARMCD"
+            ],
+            "date": [],
+            "analyte": []
+          }
+        },
+        {
+          "path": "dataFiles_399/vs.sas7bdat",
+          "n_rows": 18388,
+          "n_columns": 19,
+          "columns": [
+            {
+              "name": "STUDYID",
+              "label": "Study Identifier",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "DOMAIN",
+              "label": "Domain Abbreviation",
+              "type": "char",
+              "format": "2"
+            },
+            {
+              "name": "USUBJID",
+              "label": "Unique Subject Identifier",
+              "type": "char",
+              "format": "18"
+            },
+            {
+              "name": "VSSEQ",
+              "label": "Sequence Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VSTESTCD",
+              "label": "Vital Signs Test Short Name",
+              "type": "char",
+              "format": "8"
+            },
+            {
+              "name": "VSTEST",
+              "label": "Vital Signs Test Name",
+              "type": "char",
+              "format": "40"
+            },
+            {
+              "name": "VSORRES",
+              "label": "Result or Finding in Original Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "VSORRESU",
+              "label": "Original Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "VSSTRESC",
+              "label": "Character Result/Finding in Std Format",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "VSSTRESN",
+              "label": "Numeric Result/Finding in Standard Units",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VSSTRESU",
+              "label": "Standard Units",
+              "type": "char",
+              "format": "20"
+            },
+            {
+              "name": "VSMETHOD",
+              "label": "Method of Test or Examination",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "VSBLFL",
+              "label": "Baseline Flag",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "VSDRVFL",
+              "label": "Derived Flag",
+              "type": "char",
+              "format": "1"
+            },
+            {
+              "name": "VISITNUM",
+              "label": "Visit Number",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "VISIT",
+              "label": "Visit Name",
+              "type": "char",
+              "format": "50"
+            },
+            {
+              "name": "VSDTC",
+              "label": "Date/Time of Measurements",
+              "type": "char",
+              "format": "19"
+            },
+            {
+              "name": "VSDY",
+              "label": "Study day of Vital Signs",
+              "type": "double",
+              "format": "12"
+            },
+            {
+              "name": "SUBJID",
+              "label": "Subject Identifier for the Study",
+              "type": "char",
+              "format": "18"
+            }
+          ],
+          "candidates": {
+            "patient": [
+              "USUBJID",
+              "SUBJID"
+            ],
+            "psa": [],
+            "time": [
+              "VISITNUM",
+              "VISIT",
+              "VSDTC",
+              "VSDY",
+              "SUBJID"
+            ],
+            "survival": [],
+            "age": [],
+            "ecog": [],
+            "treatment": [],
+            "date": [
+              "VSDTC"
+            ],
+            "analyte": [
+              "VSTESTCD",
+              "VSTEST",
+              "VSMETHOD",
+              "VSDTC"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "credential_values_persisted": false
+}

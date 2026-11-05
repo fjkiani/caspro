@@ -1,0 +1,667 @@
+{
+  "generated_at": "2026-07-16T05:05:15.816740+00:00",
+  "results": [
+    {
+      "fixture_id": "F1_HGSOC_BRCA1_TP53",
+      "expect": {
+        "lineage": "ovarian",
+        "ddr_gt_0": true,
+        "io_gate_in": [
+          "JUSTIFIED",
+          "INDETERMINATE",
+          "RULE_OUT"
+        ],
+        "p_resp_status_in": [
+          "RULE_BASED_HEURISTIC"
+        ],
+        "top_options_no_eligibility_score": true,
+        "top_options_eligibility_status": "NOT_EVALUATED"
+      },
+      "response_summary": {
+        "lineage": "ovarian",
+        "patient_vector": {
+          "ddr": 0.6,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT04104776",
+            0.582086,
+            1,
+            1,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT04969835",
+            0.582086,
+            1,
+            2,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT05457595",
+            0.582086,
+            1,
+            3,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT07156253",
+            0.582086,
+            1,
+            4,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT05327010",
+            0.49923,
+            2,
+            5,
+            false,
+            "NOT_EVALUATED"
+          ]
+        ],
+        "io_gate": "RULE_OUT",
+        "io_p_resp": 0.1,
+        "io_p_resp_status": "RULE_BASED_HEURISTIC",
+        "io_regimen": "neopembrov_nactp",
+        "run_error": null,
+        "error_type": null
+      },
+      "assertions": [
+        {
+          "key": "lineage",
+          "pass": true,
+          "detail": "got=ovarian"
+        },
+        {
+          "key": "ddr_gt_0",
+          "pass": true,
+          "detail": "pv[ddr]=0.6"
+        },
+        {
+          "key": "io_gate_in",
+          "pass": true,
+          "detail": "got=RULE_OUT"
+        },
+        {
+          "key": "p_resp_status_labeled",
+          "pass": true,
+          "detail": "got=RULE_BASED_HEURISTIC"
+        },
+        {
+          "key": "no_eligibility_score_placeholder",
+          "pass": true,
+          "detail": "any_bad=False"
+        },
+        {
+          "key": "eligibility_status_labeled",
+          "pass": true,
+          "detail": "first_5=[True, True, True, True, True]"
+        }
+      ],
+      "assertions_pass": 6,
+      "assertions_total": 6,
+      "verdict": "PASS"
+    },
+    {
+      "fixture_id": "F2_MSS_CRC_LIVERMET_CPS50_G12C",
+      "expect": {
+        "lineage": "crc",
+        "mapk_gt_0": true,
+        "io_gate": "NOT_APPLICABLE",
+        "p_resp": null,
+        "io_axis": 0.0,
+        "regimen": null,
+        "fail_closed_io": true,
+        "top_options_no_eligibility_score": true
+      },
+      "response_summary": {
+        "lineage": "crc",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.65,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT06128551",
+            0.65,
+            1,
+            1,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT05691504",
+            0.540833,
+            2,
+            2,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT06253520",
+            0.540833,
+            2,
+            3,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT02264678",
+            0.459619,
+            3,
+            4,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT05950464",
+            0.459619,
+            3,
+            5,
+            false,
+            "NOT_EVALUATED"
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_p_resp_status": "RULE_BASED_HEURISTIC_QUARANTINED",
+        "io_regimen": null,
+        "run_error": null,
+        "error_type": null
+      },
+      "assertions": [
+        {
+          "key": "lineage",
+          "pass": true,
+          "detail": "got=crc"
+        },
+        {
+          "key": "mapk_gt_0",
+          "pass": true,
+          "detail": "pv[mapk]=0.65"
+        },
+        {
+          "key": "io_axis",
+          "pass": true,
+          "detail": "io_axis=0.0"
+        },
+        {
+          "key": "io_gate",
+          "pass": true,
+          "detail": "got=NOT_APPLICABLE"
+        },
+        {
+          "key": "p_resp_none",
+          "pass": true,
+          "detail": "got=None"
+        },
+        {
+          "key": "regimen",
+          "pass": true,
+          "detail": "got=None"
+        },
+        {
+          "key": "fail_closed_io",
+          "pass": true,
+          "detail": "fca=['io']"
+        },
+        {
+          "key": "no_eligibility_score_placeholder",
+          "pass": true,
+          "detail": "any_bad=False"
+        }
+      ],
+      "assertions_pass": 8,
+      "assertions_total": 8,
+      "verdict": "PASS"
+    },
+    {
+      "fixture_id": "F3_HER2plus_gastric",
+      "expect": {
+        "lineage": "gastric",
+        "her2_gt_0": true,
+        "io_gate": "NOT_APPLICABLE",
+        "p_resp": null,
+        "regimen": null
+      },
+      "response_summary": {
+        "lineage": "gastric",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.8,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT06330064",
+            0.8,
+            1,
+            1,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT06732336",
+            0.8,
+            1,
+            2,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT07216105",
+            0.66564,
+            2,
+            3,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT05005403",
+            0.090007,
+            3,
+            4,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT01174121",
+            0.0,
+            4,
+            5,
+            false,
+            "NOT_EVALUATED"
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_p_resp_status": "RULE_BASED_HEURISTIC_QUARANTINED",
+        "io_regimen": null,
+        "run_error": null,
+        "error_type": null
+      },
+      "assertions": [
+        {
+          "key": "lineage",
+          "pass": true,
+          "detail": "got=gastric"
+        },
+        {
+          "key": "her2_gt_0",
+          "pass": true,
+          "detail": "pv[her2]=0.8"
+        },
+        {
+          "key": "io_gate",
+          "pass": true,
+          "detail": "got=NOT_APPLICABLE"
+        },
+        {
+          "key": "p_resp_none",
+          "pass": true,
+          "detail": "got=None"
+        },
+        {
+          "key": "regimen",
+          "pass": true,
+          "detail": "got=None"
+        }
+      ],
+      "assertions_pass": 5,
+      "assertions_total": 5,
+      "verdict": "PASS"
+    },
+    {
+      "fixture_id": "F4_melanoma_MSI_H",
+      "expect": {
+        "lineage": "melanoma",
+        "io_gt_0": true,
+        "regimen": "nivo_monotherapy_melanoma",
+        "p_resp_status_in": [
+          "RULE_BASED_HEURISTIC"
+        ]
+      },
+      "response_summary": {
+        "lineage": "melanoma",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.95,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.95,
+            1,
+            1,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT03860272",
+            0.95,
+            1,
+            2,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT04503278",
+            0.95,
+            1,
+            3,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT05200559",
+            0.95,
+            1,
+            4,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT05208762",
+            0.95,
+            1,
+            5,
+            false,
+            "NOT_EVALUATED"
+          ]
+        ],
+        "io_gate": "JUSTIFIED",
+        "io_p_resp": 0.765,
+        "io_p_resp_status": "RULE_BASED_HEURISTIC",
+        "io_regimen": "nivo_monotherapy_melanoma",
+        "run_error": null,
+        "error_type": null
+      },
+      "assertions": [
+        {
+          "key": "lineage",
+          "pass": true,
+          "detail": "got=melanoma"
+        },
+        {
+          "key": "io_gt_0",
+          "pass": true,
+          "detail": "pv[io]=0.95"
+        },
+        {
+          "key": "regimen",
+          "pass": true,
+          "detail": "got=nivo_monotherapy_melanoma"
+        },
+        {
+          "key": "p_resp_status_labeled",
+          "pass": true,
+          "detail": "got=RULE_BASED_HEURISTIC"
+        }
+      ],
+      "assertions_pass": 4,
+      "assertions_total": 4,
+      "verdict": "PASS"
+    },
+    {
+      "fixture_id": "F5_unsupported_lineage",
+      "expect": {
+        "lineage": "unknown",
+        "io_gate": "FAIL_CLOSED",
+        "p_resp": null,
+        "regimen": null
+      },
+      "response_summary": {
+        "lineage": "unknown",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.55,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT06128551",
+            0.55,
+            1,
+            1,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT05691504",
+            0.457628,
+            2,
+            2,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT06253520",
+            0.457628,
+            2,
+            3,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT02264678",
+            0.388909,
+            3,
+            4,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT05950464",
+            0.388909,
+            3,
+            5,
+            false,
+            "NOT_EVALUATED"
+          ]
+        ],
+        "io_gate": "FAIL_CLOSED",
+        "io_p_resp": null,
+        "io_p_resp_status": null,
+        "io_regimen": null,
+        "run_error": null,
+        "error_type": null
+      },
+      "assertions": [
+        {
+          "key": "lineage",
+          "pass": true,
+          "detail": "got=unknown"
+        },
+        {
+          "key": "io_gate",
+          "pass": true,
+          "detail": "got=FAIL_CLOSED"
+        },
+        {
+          "key": "p_resp_none",
+          "pass": true,
+          "detail": "got=None"
+        },
+        {
+          "key": "regimen",
+          "pass": true,
+          "detail": "got=None"
+        }
+      ],
+      "assertions_pass": 4,
+      "assertions_total": 4,
+      "verdict": "PASS"
+    },
+    {
+      "fixture_id": "F6_malformed_somatic",
+      "expect": {
+        "schema_reject": true,
+        "error_type_in": [
+          "ValidationError"
+        ]
+      },
+      "response_summary": {
+        "lineage": null,
+        "patient_vector": null,
+        "trials_scored": null,
+        "top5": [],
+        "io_gate": null,
+        "io_p_resp": null,
+        "io_p_resp_status": null,
+        "io_regimen": null,
+        "run_error": true,
+        "error_type": "ValidationError"
+      },
+      "assertions": [
+        {
+          "key": "schema_reject",
+          "pass": true,
+          "detail": "error_type=ValidationError"
+        }
+      ],
+      "assertions_pass": 1,
+      "assertions_total": 1,
+      "verdict": "PASS"
+    },
+    {
+      "fixture_id": "F7_empty_vector",
+      "expect": {
+        "lineage": "ovarian",
+        "top_options_are_low_or_empty": true,
+        "io_gate_in": [
+          "RULE_OUT",
+          "INDETERMINATE"
+        ],
+        "p_resp_status_in": [
+          "RULE_BASED_HEURISTIC"
+        ]
+      },
+      "response_summary": {
+        "lineage": "ovarian",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0,
+            1,
+            1,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT02264678",
+            0.0,
+            1,
+            2,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT03579316",
+            0.0,
+            1,
+            3,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT03860272",
+            0.0,
+            1,
+            4,
+            false,
+            "NOT_EVALUATED"
+          ],
+          [
+            "NCT04104776",
+            0.0,
+            1,
+            5,
+            false,
+            "NOT_EVALUATED"
+          ]
+        ],
+        "io_gate": "RULE_OUT",
+        "io_p_resp": 0.1,
+        "io_p_resp_status": "RULE_BASED_HEURISTIC",
+        "io_regimen": "neopembrov_nactp",
+        "run_error": null,
+        "error_type": null
+      },
+      "assertions": [
+        {
+          "key": "lineage",
+          "pass": true,
+          "detail": "got=ovarian"
+        },
+        {
+          "key": "io_gate_in",
+          "pass": true,
+          "detail": "got=RULE_OUT"
+        },
+        {
+          "key": "p_resp_status_labeled",
+          "pass": true,
+          "detail": "got=RULE_BASED_HEURISTIC"
+        }
+      ],
+      "assertions_pass": 3,
+      "assertions_total": 3,
+      "verdict": "PASS"
+    }
+  ],
+  "summary": {
+    "pass": 7,
+    "total": 7,
+    "verdict": "PASS"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "document": "Tumor Board — Oncology Arbiter E2E (capability-forward)",
+  "version": "3.0.0",
+  "product": "Tumor Board (Oncology Arbiter)",
+  "posture": "RUO banner once. Decision surface leads with ranked biology and pipeline receipts — not apologetics.",
+  "one_line": "Run the case end-to-end: normalize → detect/retrieve → rank mechanisms and options → hand a traceable package to the clinician.",
+
+  "e2e_authority": {
+    "repo": "https://github.com/fjkiani/scientist-monai-moat",
+    "branch": "feat/tumor-board-frontend-spec",
+    "commit": "e2aa31a",
+    "acceptance": "T01–T10 PASS",
+    "caspro_paths": [
+      "/tumor-board/",
+      "/tumor-board/frontend-spec/",
+      "/tumor-board/receipts/nsclc_luna16/",
+      "/tumor-board/receipts/ak_mbd4_lof/"
+    ]
+  },
+
+  "cases": {
+    "nsclc_luna16": {
+      "role": "end_to_end_reasoning",
+      "claim": "Arbiter reasons from CT bytes to Elo-ranked workup.",
+      "pipeline": [
+        "L1 CT ingest",
+        "L2 MONAI lung_nodule_ct_detection RetinaNet (loaded_luna16_retinanet)",
+        "L3 lung heuristic HIGH bucket",
+        "L4 NCCN-lite (PET/CT, biopsy, MDT; surveillance not recommended)",
+        "L5 co_scientist + Elo re-rank"
+      ],
+      "honest_signal": "Detector top score 0.042 on 41.5 mm OOD mass — surfaced inline, not buried.",
+      "endpoints": [
+        "POST /v1/case/full?cancer=nsclc",
+        "POST /v1/co_scientist/run",
+        "POST /v1/elo/rank"
+      ]
+    },
+    "ak_mbd4_lof": {
+      "role": "manuscript_anchored_ingestion",
+      "claim": "Arbiter validates and audit-sorts a SHA-locked MBD4 evidence bundle.",
+      "pipeline": [
+        "GET /v1/demo/samples/ak_mbd4_lof_case",
+        "POST /v1/tumor_board/bundle → loaded_ak_bundle + bundle_sha256",
+        "POST /v1/elo/rank with manuscript_lead_axis_boost / falsified_penalty"
+      ],
+      "surfaces": [
+        "6-axis evidence matrix (ATR/WEE1/PARP first-class)",
+        "7 anchor p-values verbatim",
+        "PARP falsification narrative (not quarantined)",
+        "Elo: ceralasertib promoted via labeled manuscript weights"
+      ],
+      "arbiter_contributes": [
+        "TumorBoardBundle contract validation",
+        "URL honesty gate",
+        "bundle_sha256 audit-of-record",
+        "Deterministic Elo audit sort"
+      ],
+      "manuscript_owns": "p-values, effect sizes, n_mut/n_wt, PARP falsification biology"
+    }
+  },
+
+  "pipeline_stack": {
+    "runtime": "Python ≥3.11 · FastAPI · Docker → Render",
+    "ml": "torch + MONAI (LUNA16 RetinaNet) opt-in; Modal MedSigLIP/TxGemma when enabled",
+    "therapy_fallback": "therapy-nccn-lite rules",
+    "co_scientist": "generate → reflect → Elo rank → evolve",
+    "endpoints": [
+      "POST /v1/case/full",
+      "POST /v1/tumor_board/bundle",
+      "POST /v1/co_scientist/run",
+      "POST /v1/elo/rank"
+    ]
+  },
+
+  "ui_law": {
+    "lead_with": "what the pipeline did and what it ranked",
+    "ruo": "sticky banner — once; not the voice of every block",
+    "primary_cases": ["nsclc_luna16", "ak_mbd4_lof"],
+    "track_b_shells": ["AK", "BM01", "CRC01 — first-class L1 shells"],
+    "must_not": [
+      "Lead with EXAMPLE-DATA / mockup / hand-off as the product story",
+      "Fake NCT IDs",
+      "Quarantine PARP falsification",
+      "Hide loaded_* model_state behind governance copy"
+    ]
+  },
+
+  "ship_now": [
+    "Keep E2E pipeline views as the /tumor-board/ lead",
+    "React rebuild from nsclc_luna16 + ak_mbd4_lof mockups (capability-first)",
+    "CI: run_acceptance_tests.py T01–T10",
+    "Wire Track B shells without demoting E2E"
+  ],
+
+  "evidence_spine": {
+    "frontend_spec": "e2aa31a tumor_board_frontend",
+    "product_truth": "src/data/tumor-board/product_truth_TUMOR_BOARD_PRODUCT_TRUTH.json",
+    "ruo": "regulatory_posture:oncology_arbiter_ruo"
+  }
+}

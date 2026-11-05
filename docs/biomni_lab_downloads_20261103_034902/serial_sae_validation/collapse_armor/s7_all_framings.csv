@@ -1,0 +1,5 @@
+analysis,auroc,ci,p
+"original (RECIST label, n=40, 3R)",0.8739,0.757-0.973,0.035
+"same 40, correct label (9R)",0.3136,0.108-0.545,0.0948
+"paired published cohort n=47 (10R), relapse",0.3554,0.146-0.590,0.1679
+ALL relapse samples n=108 (28R),0.4295,0.307-0.563,0.2693

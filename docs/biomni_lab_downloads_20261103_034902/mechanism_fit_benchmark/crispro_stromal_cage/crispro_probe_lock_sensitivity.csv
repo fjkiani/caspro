@@ -1,0 +1,5 @@
+panel,endpoint,auroc_percohort_probe,auroc_locked_training_probe,delta
+core13,platinum_sensitivity,0.6385,0.6385,0.0
+core13,chemoresponse,0.5092,0.5092,0.0
+full28,platinum_sensitivity,0.5983,0.5897,-0.0086
+full28,chemoresponse,0.5277,0.5292,0.0015

@@ -1,0 +1,37 @@
+[
+  {
+    "field_name": "project_title",
+    "field_label": "Research Project Title",
+    "field_type": "text (free-form, single line)",
+    "instructions": "Enter a descriptive title for the research activity. The title must match exactly what is submitted in the CTEP Notification email to NCICTEPDAR@mail.nih.gov before DAR submission. Cannot duplicate any existing project title (including closed projects).",
+    "example_value": "Genomic Predictors of Response to Bevacizumab in Metastatic Colorectal Cancer: Analysis of CALGB/SWOG 80405 (phs003428)"
+  },
+  {
+    "field_name": "research_use_statement",
+    "field_label": "Research Use Statement (Technical)",
+    "field_type": "textarea (max 2000 characters)",
+    "instructions": "PI must personally author a 1-2 paragraph statement describing: (1) objectives of the proposed research; (2) study design; (3) analysis plan including phenotypic characteristics to be evaluated with genetic variants; (4) explanation of how proposed research is consistent with data use limitations for phs003428 (GRU consent); (5) any planned collaborations. For phs003428 (CTEP/NCI CALGB-SWOG 80405 ctDNA dataset), must also include copy of CTEP submission approval email. Cannot be pre-filled by institution admin — must reflect PI's specific scientific intent.",
+    "example_value": "We propose to analyze germline genomic variants in the CALGB/SWOG 80405 dataset (phs003428) to identify predictors of bevacizumab response in metastatic colorectal cancer. Using GWAS methodology, we will correlate SNP profiles with progression-free survival and overall survival endpoints. Analysis will include logistic regression adjusted for clinical covariates. This research is consistent with the GRU data use limitation as it constitutes basic cancer genomics research. No external collaborators are involved."
+  },
+  {
+    "field_name": "non_technical_summary",
+    "field_label": "Non-Technical Summary (Public Research Use Statement)",
+    "field_type": "textarea (max 1100 characters)",
+    "instructions": "PI must write a lay-language summary of the research project suitable for public posting on the dbGaP website. This will be posted publicly alongside the PI's name and institution. Must match the research described in the CTEP Notification. Cannot be pre-filled by institution admin.",
+    "example_value": "This study will examine DNA from cancer patients enrolled in a large clinical trial (CALGB/SWOG 80405) to identify genetic factors that predict whether patients with advanced colorectal cancer will respond to the drug bevacizumab. Findings may help doctors select the best treatment for individual patients."
+  },
+  {
+    "field_name": "senior_key_person_profile",
+    "field_label": "Senior/Key Person Profile (Collaborators & IT Director)",
+    "field_type": "structured form — name, role, institution, contact per person",
+    "instructions": "PI must personally list all collaborators at the same institution who will access the data, plus the IT Director. Each person listed becomes an Approved User bound by the DUC. The PI cannot list themselves as the SO or IT Director. For phs003428 (CTEP study), if contractor services are used, PI must name the contractor's employee(s) here and describe contractor services in the Research Use Statement. Institution admin may pre-populate the IT Director name from eRA Commons but PI must confirm and add collaborators.",
+    "example_value": "Collaborator: Jane Smith, PhD, Biostatistician, [Institution], jsmith@institution.edu; IT Director: John Doe, Deputy CISO, [Institution], jdoe@institution.edu"
+  },
+  {
+    "field_name": "ctep_notification_attachment",
+    "field_label": "CTEP Notification / Approval Email Attachment",
+    "field_type": "file upload (PDF) + confirmation checkbox",
+    "instructions": "Specific to phs003428 (NCI CTEP CALGB/SWOG 80405 dataset). Before submitting the DAR, PI must: (1) email NCICTEPDAR@mail.nih.gov with institution/contact info, dataset accession phs003428, Research Use Statement, and Non-Technical Summary; (2) wait for CTEP approval to proceed; (3) upload the CTEP approval email as an attachment in the DAR. The institution/SO cannot perform this step — it requires the PI's personal attestation and correspondence. The DAR will be rejected if the institution, contact info, dataset name, RUS, and NCI Protocol number do not match the CTEP Notification.",
+    "example_value": "Uploaded PDF: 'CTEP_Approval_Email_phs003428_FKiani_2024.pdf' — email from NCICTEPDAR@mail.nih.gov confirming PI may proceed with DAR submission for phs003428"
+  }
+]

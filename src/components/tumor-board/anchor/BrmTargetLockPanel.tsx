@@ -154,6 +154,16 @@ export default function BrmTargetLockPanel() {
           <span className={`font-medium ${emph}`}>For BM01 specifically: </span>
           {panel.patientRelevance}
         </p>
+        <div
+          className={`rounded-lg border px-3 py-2 text-xs ${
+            isDarkMode
+              ? 'border-amber-500/40 bg-amber-500/10 text-amber-200'
+              : 'border-amber-300 bg-amber-50 text-amber-900'
+          }`}
+        >
+          <span className="font-mono font-semibold">RETRACTED_LABEL_LEAK_QUARANTINED (0.976): </span>
+          Legacy per-step AUROC 0.976 (0.9615–1.000 across 7 cascade steps, formerly marketed as 38 genes × 8 steps) used <code className="font-mono">mission_fit_discount</code> (1.0 vs 0.25/0.55 step-membership multiplier) and is permanently quarantined. Live benchmark below shows the honest unleaked class-aware composite (<code className="font-mono">CRISPR + ATAC + Evo2</code>, <code className="font-mono">Enformer=0</code>) across the exact <strong>29-gene panel</strong> (<code className="font-mono">n_genes=29</code>, <code className="font-mono">n_steps=7</code>; legacy 36-gene audit prose alias noted): <strong>AUROC 0.6889</strong> (29-gene panel) / <strong>0.7478</strong> (24 observed-only genes without ATAC mean-imputation; TSG subpanel 0.833, AUPRC 0.831).
+        </div>
       </div>
 
       {patientMatched.length > 0 ? (

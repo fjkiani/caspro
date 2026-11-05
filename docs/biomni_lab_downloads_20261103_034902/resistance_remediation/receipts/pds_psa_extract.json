@@ -1,0 +1,92 @@
+{
+  "ts_utc": "2026-08-05T16:10:07.108306+00:00",
+  "purpose": "Extract serial PSA from PDS prostate trials for KELIM-style kinetic feasibility.",
+  "datasets": {
+    "sanofi_upsa": {
+      "caslib": "Prostat_Sanofi_2000_80",
+      "table": "dataFiles_397/upsa.sas7bdat",
+      "n_rows": 1000,
+      "columns": [
+        "ZPATCODE",
+        "CYCLE",
+        "PSA",
+        "D_PSA",
+        "GROUP",
+        "TRTGRP",
+        "TREATG",
+        "STRATA",
+        "STRA_ACT",
+        "STUDY",
+        "I_PSA",
+        "RD_PSA",
+        "RTD_PSA",
+        "RC_PSA",
+        "R_WEEK",
+        "RC_WEEK",
+        "PSA0",
+        "D_PSA0",
+        "NADPSA",
+        "D_PSA25",
+        "D_PSA50",
+        "PSA25",
+        "PSA50",
+        "PSA25_2",
+        "PSA50_2",
+        "PSARS",
+        "D_PSARS2",
+        "D_PSARS1",
+        "D_PSARSC",
+        "PSAPD",
+        "D_PSAPD",
+        "PSAPD2",
+        "D_PSAPD2"
+      ]
+    },
+    "az_rlabs": {
+      "caslib": "Prostat_AstraZe_1995_102",
+      "table": "dataFiles_506/r_labs.sas7bdat",
+      "n_rows": 1000,
+      "columns": [
+        "NHPREPSA",
+        "PREPSAMD",
+        "PSA_ORIG",
+        "PNEOPSA",
+        "LABTIME",
+        "PROTIME",
+        "VISN",
+        "PSAHIGH",
+        "PSALOW",
+        "PSA",
+        "SKLAB",
+        "AST_ORIG",
+        "ALT_ORIG",
+        "BIL_ORIG",
+        "AST",
+        "ALT",
+        "BILI",
+        "TRIAL",
+        "NORMAL",
+        "LABAE",
+        "TIME",
+        "VISIT",
+        "SCREENUM",
+        "TOTRECS",
+        "trials_d",
+        "DYLAB",
+        "VISDY"
+      ]
+    }
+  },
+  "seriality": [
+    {
+      "name": "sanofi_upsa",
+      "n_psa": 1000,
+      "id_col": null
+    },
+    {
+      "name": "az_rlabs",
+      "n_psa": 680,
+      "id_col": null
+    }
+  ]
+}

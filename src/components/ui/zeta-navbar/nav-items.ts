@@ -111,9 +111,32 @@ export function buildTopNavItems(
       personas: ['oncologist', 'patient', 'pharma'],
     },
     { id: 'tumor-board', label: 'TUMOR BOARD', href: '/tumor-board/',                     personas: ['oncologist', 'patient', 'pharma'] },
-    { id: 'target-lock', label: 'TARGET LOCK', href: '/engine/target-lock/',              personas: ['oncologist', 'pharma'] },
-    { id: 'moa-align',   label: 'MOA ALIGN',   href: '/engine/mechanism-alignment/',      personas: ['oncologist', 'pharma'] },
-    { id: 'sl-engine',   label: 'SL ENGINE',   href: '/engine/synthetic-lethality/',      personas: ['oncologist', 'pharma'] },
+    {
+      id: 'engines',
+      label: 'ENGINES',
+      href: '/engine/target-lock/',
+      personas: ['oncologist', 'pharma'],
+      dropdownItems: [
+        {
+          label: 'Target Lock',
+          description: 'Is this a real driver for this biology?',
+          href: '/engine/target-lock/',
+          accent: 'cyan',
+        },
+        {
+          label: 'MOA Align',
+          description: 'Does the mechanism fit this profile?',
+          href: '/engine/mechanism-alignment/',
+          accent: 'amber',
+        },
+        {
+          label: 'SL Engine',
+          description: 'What does this tumor depend on?',
+          href: '/engine/synthetic-lethality/',
+          accent: 'indigo',
+        },
+      ],
+    },
     { id: 'my-trials',   label: 'MY TRIALS',   href: '/ledger/?persona=patient',          personas: ['patient'] },
     { id: 'understand',  label: 'UNDERSTAND',  href: '/engine/target-lock/?persona=patient', personas: ['patient'] },
     { id: 'ledger',      label: 'LEDGER',      href: '/ledger/',                          personas: ['oncologist', 'pharma'] },
@@ -123,7 +146,7 @@ export function buildTopNavItems(
     { id: 'research',    label: 'RESEARCH',    href: '/research/',
       dropdownItems: buildResearchDropdown(abstracts),                                    personas: ['oncologist', 'patient', 'pharma'] },
     { id: 'demos',       label: 'DEMOS',       href: '/demo/',                            personas: ['oncologist', 'patient', 'pharma'] },
-    { id: 'contact',     label: 'CONTACT',     href: '/contact/',                         personas: ['oncologist', 'patient', 'pharma'] },
+    // CONTACT lives in toolbar CTA — keep out of the link row to stop wrap/overlap
     { id: 'org',         label: 'ORG',         href: 'https://crispro.org/', external: true,
                                                                                           personas: ['oncologist', 'patient', 'pharma'] },
   ];

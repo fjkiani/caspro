@@ -1,0 +1,28 @@
+{
+  "name": "BrM_FAM72A",
+  "modelSeeds": [
+    42
+  ],
+  "sequences": [
+    {
+      "rna": {
+        "id": "A",
+        "sequence": "GGAACAAGACAGGGAGCAGAGUUUUAGAGCUAGAAAUAGCAAGUUAAAAUAAGGCUAGUCCGUUAUCAACUUGAAAAAGUGGCACCGAGUCGGUGC"
+      }
+    },
+    {
+      "dna": {
+        "id": "B",
+        "sequence": "CCCGCTCGCCTGAACCCCGCCGCCTCTGCTCCCTGTCTTGTTCCCTCAGCGTGGCCCCTTC"
+      }
+    },
+    {
+      "dna": {
+        "id": "C",
+        "sequence": "GAAGGGGCCACGCTGAGGGAACAAGACAGGGAGCAGAGGCGGCGGGGTTCAGGCGAGCGGG"
+      }
+    }
+  ],
+  "dialect": "alphafoldserver",
+  "version": 1
+}

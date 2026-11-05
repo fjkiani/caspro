@@ -1,0 +1,5913 @@
+{
+  "caslib": "LungSm_G1Thera_2015_433",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "NSE",
+    "PROGRP"
+  ],
+  "indication": "lung_sclc",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 16,
+  "n_tabular_files": 16,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "9e2348efe16ac4b5ec2a6a891e246d4bcb95cbe1410ed23dc78dae1b614d3368",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "AESEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dictionary-Derived Term",
+          "name": "AEDECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Dictionary-Derived Term",
+          "name": "ADECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Body System or Organ Class",
+          "name": "AEBODSYS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Body System or Organ Class Code",
+          "name": "AEBDSYCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term",
+          "name": "AELLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term Code",
+          "name": "AELLTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Preferred Term Code",
+          "name": "AEPTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "High Level Term",
+          "name": "AEHLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Term Code",
+          "name": "AEHLTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term",
+          "name": "AEHLGT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term Code",
+          "name": "AEHLGTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Primary System Organ Class",
+          "name": "AESOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary System Organ Class Code",
+          "name": "AESOCCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Start Relative Day",
+          "name": "ASTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis End Relative Day",
+          "name": "AENDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment Emergent Analysis Flag",
+          "name": "TRTEMFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event",
+          "name": "AESER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event (N)",
+          "name": "AESERN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Congenital Anomaly or Birth Defect",
+          "name": "AESCONG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Persist or Signif Disability/Incapacity",
+          "name": "AESDISAB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Results in Death",
+          "name": "AESDTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Requires or Prolongs Hospitalization",
+          "name": "AESHOSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Is Life Threatening",
+          "name": "AESLIFE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Other Medically Important Serious Event",
+          "name": "AESMIE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Causality",
+          "name": "AEREL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Causality (N)",
+          "name": "AERELN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "RELATIONSHIP TO CARBOPLATIN",
+          "name": "AERELCAR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Causality TO CARBOPLATIN (N)",
+          "name": "AERELCAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "RELATIONSHIP TO ETOPOSIDE",
+          "name": "AERELETO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Causality TO ETOPOSIDE (N)",
+          "name": "AERELETN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Standard Toxicity Grade",
+          "name": "AETOXGR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Action Taken with Study Treatment",
+          "name": "AEACN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ACTION TAKEN WITH CARBOPLATIN",
+          "name": "AEACNCAR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ACTION TAKEN WITH ETOPOSIDE",
+          "name": "AEACNETO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Other Action Taken",
+          "name": "AEACNOTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Outcome of Adverse Event",
+          "name": "AEOUT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "End Relative to Reference Period",
+          "name": "AEENRF",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AESER",
+          "AESERN",
+          "AESDTH",
+          "AESMIE",
+          "AEOUT"
+        ],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "ASTDY",
+          "AENDY"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN",
+          "TRTEMFL",
+          "AEACN"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": [
+          "AESDTH"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 471,
+      "path": "adae.sas7bdat",
+      "size": 573440,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "CMSEQ",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Category for Medication",
+          "name": "CMCAT",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Subcategory for Medication",
+          "name": "CMSCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Medication Class",
+          "name": "CMCLAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Standardized Medication Name",
+          "name": "CMDECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reported Name of Drug, Med, or Therapy",
+          "name": "CMTRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CM Pre-Specified",
+          "name": "CMPRESP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "CM Occurrence",
+          "name": "CMOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Indication",
+          "name": "CMINDC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Route of Administration",
+          "name": "CMROUTE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose per Administration",
+          "name": "CMDOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose Units",
+          "name": "CMDOSU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dosing Frequency per Interval",
+          "name": "CMDOSFRQ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Start Relative Day",
+          "name": "ASTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis End Relative Day",
+          "name": "AENDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start Relative to Reference Period",
+          "name": "CMSTRF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "End Relative to Reference Period",
+          "name": "CMENRF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Pre-treatment Flag",
+          "name": "PREFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "On Treatment Record Flag",
+          "name": "ONTRTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ATC DECODE LEVEL 1",
+          "name": "ATC1D",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ATC DECODE LEVEL 2",
+          "name": "ATC2D",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ATC DECODE LEVEL 3",
+          "name": "ATC3D",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ATC DECODE LEVEL 4",
+          "name": "ATC4D",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "OTHER FREQUENCY, SPECIFY",
+          "name": "CMFQOTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "OTHER DOSE UNIT, SPECIFY",
+          "name": "CMDOSUO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BEST RESPONSE WHILE ON THIS THERAPY",
+          "name": "ATHXBEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "INDICATION RELATED TO?",
+          "name": "CMIND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "OTHER INDICATION, SPECIFY",
+          "name": "CMINDOSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "OTHER, SPECIFY",
+          "name": "ROUTEOTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Multi-Response Criterion 1 Eval (N)",
+          "name": "MCRIT1MN",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "ASTDY",
+          "AENDY"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN",
+          "CMTRT",
+          "PREFL",
+          "ONTRTFL"
+        ],
+        "unit": [
+          "AGEU",
+          "CMDOSU",
+          "CMDOSUO"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 981,
+      "path": "adcm.sas7bdat",
+      "size": 1662976,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "DVSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Protocol Deviation Coded Term",
+          "name": "DVDECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category for Protocol Deviation",
+          "name": "DVCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Start Relative Day",
+          "name": "ASTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PP Exclusion Flag",
+          "name": "PPEXCL",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "ASTDY"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 155,
+      "path": "addv.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "PARAMCD",
+          "n_unique": 9,
+          "values": [
+            "EGHRMN",
+            "INTP",
+            "PRMEAN",
+            "QRSMEAN",
+            "QTC",
+            "QTCB",
+            "QTCF",
+            "QTMEAN",
+            "RHYTHM"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "EGSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Time Point Name",
+          "name": "EGTPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Time Point Number",
+          "name": "EGTPTNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Relative Day",
+          "name": "ADY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit",
+          "name": "AVISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit (N)",
+          "name": "AVISITN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Parameter",
+          "name": "PARAM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Code",
+          "name": "PARAMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value",
+          "name": "AVAL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value (C)",
+          "name": "AVALC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Value",
+          "name": "BASE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Baseline Value (C)",
+          "name": "BASEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Change from Baseline",
+          "name": "CHG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Percent Change from Baseline",
+          "name": "PCHG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Window Target",
+          "name": "AWTARGET",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Baseline Record Flag",
+          "name": "ABLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Analysis Record-Level Flag",
+          "name": "SAFRFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CLINICALLY SIGNIFICANT",
+          "name": "CLINSIG",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "PARAMCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "VISITNUM",
+          "ADY"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": [
+          "AVAL",
+          "AVALC",
+          "BASE",
+          "BASEC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 456,
+      "path": "adeg.sas7bdat",
+      "size": 516096,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "EXSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Name of Treatment",
+          "name": "EXTRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose",
+          "name": "EXDOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose Units",
+          "name": "EXDOSU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose",
+          "name": "ECDOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose Units",
+          "name": "ECDOSU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose Form",
+          "name": "EXDOSFRM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dosing Frequency per Interval",
+          "name": "EXDOSFRQ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Route of Administration",
+          "name": "EXROUTE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for Dose Adjustment",
+          "name": "EXADJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Start Relative Day",
+          "name": "ASTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis End Relative Day",
+          "name": "AENDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DERIVED CARBOPLATIN DOSE (AUC)",
+          "name": "DDOSEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DERIVED ETOPOSIDE DOSE (MG/M2)",
+          "name": "DDOSEE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "GFR VALUE USED TO CALCULATE DOSE(ML/MIN)",
+          "name": "DCGFRVAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WAS GFR USED TO CALCULATE DOSE?",
+          "name": "GFR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "METHOD USED TO CALCULATE GFR",
+          "name": "GFRMTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WAS THE DOSE INTERRUPTED",
+          "name": "INT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "INFUSION RESTARTED",
+          "name": "INTREST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "INFUSION RESTART TIME",
+          "name": "INTSTM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "INFUSION INTERRUPTION TIME",
+          "name": "INTTM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ACTUAL DOSE (MG)",
+          "name": "ADOSE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PERCENTAGE INFUSED",
+          "name": "PERDSINF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WAS THE DOSE REDUCED",
+          "name": "PREV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE NUMBER",
+          "name": "PREVAE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DOSE REDUCED REASON",
+          "name": "PREVREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ACTUAL INFUSED VOLUME (ML)",
+          "name": "TVOLINF",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "VISITNUM",
+          "ASTDY",
+          "AENDY"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN",
+          "EXTRT"
+        ],
+        "unit": [
+          "AGEU",
+          "EXDOSU",
+          "ECDOSU"
+        ],
+        "value": [
+          "DCGFRVAL"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 1370,
+      "path": "adex.sas7bdat",
+      "size": 851968,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "PARAMCD",
+          "n_unique": 11,
+          "values": [
+            "CUDOAUC",
+            "CUDOMG",
+            "CUDOMGM2",
+            "EXP",
+            "INDOAUC",
+            "INDOMGM2",
+            "INTER",
+            "NUMCYC",
+            "REDUC",
+            "RELDO",
+            "RELINDO"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Parameter",
+          "name": "PARAM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Code",
+          "name": "PARAMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Type",
+          "name": "PARAMTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Drug Category",
+          "name": "DRUG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value",
+          "name": "AVAL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value (C)",
+          "name": "AVALC",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "PARAMCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": [
+          "AVAL",
+          "AVALC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 738,
+      "path": "adex2.sas7bdat",
+      "size": 524288,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "PARAMCD",
+          "n_unique": 51,
+          "values": [
+            "ALB",
+            "ALP",
+            "ALT",
+            "ALT5WK",
+            "AST",
+            "AST5WK",
+            "BASO",
+            "BILI",
+            "CA",
+            "CASTS",
+            "CKM",
+            "CKT",
+            "CL",
+            "CREAT",
+            "CREATCLR",
+            "CREATTSH",
+            "CRP",
+            "CULCNT",
+            "EOS",
+            "GLUC",
+            "GLUCPOCT",
+            "GRANIM",
+            "HCT",
+            "HGB",
+            "HYLAW",
+            "K",
+            "KETONES",
+            "LDH",
+            "LYM",
+            "MG",
+            "MONO",
+            "MRBC",
+            "MWBC",
+            "NEUT",
+            "NEUTLY",
+            "PH",
+            "PHOS",
+            "PLAT",
+            "PLATLY",
+            "PROT",
+            "RBC",
+            "SODIUM",
+            "SPGRAV",
+            "TSH",
+            "UBILI",
+            "UGLUC",
+            "UHGB",
+            "UPROT",
+            "UREAN",
+            "UWBC",
+            "WBC"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "LBSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Relative Day",
+          "name": "ADY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Cycle Relative Day",
+          "name": "ADDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit",
+          "name": "AVISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit (N)",
+          "name": "AVISITN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Parameter",
+          "name": "PARAM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Code",
+          "name": "PARAMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Category 1",
+          "name": "PARCAT1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Type",
+          "name": "PARAMTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value",
+          "name": "AVAL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value (C)",
+          "name": "AVALC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Toxicity Grade",
+          "name": "ATOXGR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Value",
+          "name": "BASE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Baseline Value (C)",
+          "name": "BASEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Toxicity Grade",
+          "name": "BTOXGR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Change from Baseline",
+          "name": "CHG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Window Target",
+          "name": "AWTARGET",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Window Diff from Target",
+          "name": "AWTDIFF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Reference Range Indicator",
+          "name": "ANRIND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Reference Range Indicator",
+          "name": "BNRIND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Normal Range Lower Limit",
+          "name": "ANRLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Normal Range Upper Limit",
+          "name": "ANRHI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Baseline Record Flag",
+          "name": "ABLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Analysis Record-Level Flag",
+          "name": "SAFRFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Clinically Significant?",
+          "name": "CLINSIG",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "PARAMCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "VISITNUM",
+          "ADY",
+          "ADDY",
+          "CYCLE"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": [
+          "AVAL",
+          "AVALC",
+          "BASE",
+          "BASEC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 30329,
+      "path": "adlb.sas7bdat",
+      "size": 28561408,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "MHSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term",
+          "name": "MHLLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term Code",
+          "name": "MHLLTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dictionary-Derived Term",
+          "name": "MHDECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred Term Code",
+          "name": "MHPTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "High Level Term",
+          "name": "MHHLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Term Code",
+          "name": "MHHLTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term",
+          "name": "MHHLGT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term Code",
+          "name": "MHHLGTCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Category for Medical History",
+          "name": "MHCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subcategory for Medical History",
+          "name": "MHSCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary System Organ Class",
+          "name": "MHSOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary System Organ Class Code",
+          "name": "MHSOCCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Medical History Event Pre-Specified",
+          "name": "MHPRESP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Medical History Occurrence",
+          "name": "MHOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Body System or Organ Class",
+          "name": "MHBODSYS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Body System or Organ Class Code",
+          "name": "MHBDSYCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Start Relative Day",
+          "name": "ASTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis End Relative Day",
+          "name": "AENDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "End Relative to Reference Period",
+          "name": "MHENRF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CTC GRADE",
+          "name": "MHCTGRD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT HAD ANY CONCOMITANT DISEASE?",
+          "name": "MHYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DICTIONARY VERSION",
+          "name": "VER",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "MHPRESP"
+        ],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "ASTDY",
+          "AENDY"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 336,
+      "path": "admh.sas7bdat",
+      "size": 466944,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "PRSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Category",
+          "name": "PRCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subcategory",
+          "name": "PRSCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Pre-specified",
+          "name": "PRPRESP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Occurrence",
+          "name": "PROCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Completion Status",
+          "name": "PRSTAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Indication",
+          "name": "PRINDC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose",
+          "name": "PRDOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose Units",
+          "name": "PRDOSU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Location of Procedure",
+          "name": "PRLOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Start Relative Day",
+          "name": "ASTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis End Relative Day",
+          "name": "AENDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Brain Scan Contrast Used?",
+          "name": "BSCONT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Brain Scan Status",
+          "name": "BSSTAT1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Units of Blood Transfusion",
+          "name": "BTUNITS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RT: Location Description",
+          "name": "CMLOCDES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RT: Nubmer of Fractions Received",
+          "name": "CMNUMF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RT, Ongoing?",
+          "name": "CMONGO",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "VISITNUM",
+          "ASTDY",
+          "AENDY"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN"
+        ],
+        "unit": [
+          "AGEU",
+          "PRDOSU",
+          "BTUNITS"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 342,
+      "path": "adpr.sas7bdat",
+      "size": 327680,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "PARAMCD",
+          "n_unique": 1,
+          "values": [
+            "ECOG101"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "QSSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Relative Day",
+          "name": "ADY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Cycle Relative Day",
+          "name": "ADDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit",
+          "name": "AVISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit (N)",
+          "name": "AVISITN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Cycle",
+          "name": "CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Parameter",
+          "name": "PARAM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Code",
+          "name": "PARAMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Category 1",
+          "name": "PARCAT1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value",
+          "name": "AVAL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value (C)",
+          "name": "AVALC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Value",
+          "name": "BASE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Baseline Value (C)",
+          "name": "BASEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Change from Baseline",
+          "name": "CHG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Percent Change from Baseline",
+          "name": "PCHG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Window Target",
+          "name": "AWTARGET",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Window Diff from Target",
+          "name": "AWTDIFF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Baseline Record Flag",
+          "name": "ABLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Analysis Record-Level Flag",
+          "name": "SAFRFL",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "PARAMCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "VISITNUM",
+          "ADY",
+          "ADDY",
+          "CYCLE"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": [
+          "AVAL",
+          "AVALC",
+          "BASE",
+          "BASEC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 266,
+      "path": "adqs.sas7bdat",
+      "size": 368640,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "PARAMCD",
+          "n_unique": 10,
+          "values": [
+            "ADJUDYN",
+            "BESTRESP",
+            "DTPRG",
+            "DTSTRESP",
+            "NTRGRESP",
+            "ORR",
+            "ORRUNCMF",
+            "OVRLRESP",
+            "RESPSDT",
+            "TRGRESP"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "RSSEQ",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Link Group",
+          "name": "RSLNKGRP",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter",
+          "name": "PARAM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Code",
+          "name": "PARAMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Type",
+          "name": "PARAMTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Derivation Type",
+          "name": "DTYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value (C)",
+          "name": "AVALC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Relative Day",
+          "name": "ADY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit (N)",
+          "name": "AVISITN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit",
+          "name": "AVISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Progression Confirmed by",
+          "name": "RSCONF",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Accepted Record Flag",
+          "name": "RSACPTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Progression Relative Day",
+          "name": "RSSPDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "PARAMCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "VISITNUM",
+          "ADY",
+          "RSSPDY"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": [
+          "AVALC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 2031,
+      "path": "adrs.sas7bdat",
+      "size": 1572864,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Country",
+          "name": "COUNTRY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Pooled Age Group 1",
+          "name": "AGEGR1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Pooled Age Group 1 (N)",
+          "name": "AGEGR1N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex (N)",
+          "name": "SEXN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race (N)",
+          "name": "RACEN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Pooled Race Group 1",
+          "name": "RACEGR1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Pooled Race Group 1 (N)",
+          "name": "RACEGR1N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity (N)",
+          "name": "ETHNICN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason Excluded from FAS",
+          "name": "FASREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason Excluded from SAFFL",
+          "name": "SAFREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason Excluded from PPROTFL",
+          "name": "PPREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason Excluded from EFFFL",
+          "name": "EFFREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for Screen Failure",
+          "name": "SFREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PART",
+          "name": "PART",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "COHORT",
+          "name": "COHORT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Actual Arm",
+          "name": "ACTARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Arm Code",
+          "name": "ACTARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Relative Day of Informed Consent",
+          "name": "RFICDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Date of Randomization",
+          "name": "RANDDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "End of Treatment Status",
+          "name": "EOTSTT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for Discontinuation of Treatment",
+          "name": "DCTREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for Discont of Treatment (N)",
+          "name": "DCTREASN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "End of Study Status",
+          "name": "EOSSTT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "End of Study Relative Day",
+          "name": "EOSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reason for Discontinuation from Study",
+          "name": "DCSREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for Discont from Study (N)",
+          "name": "DCSREASN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reason Spec for Discont from Study",
+          "name": "DCSREASP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Height (cm) at Baseline",
+          "name": "HTCM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Weight (kg) at Baseline",
+          "name": "WTKG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BMI (kg/m^2) at Baseline",
+          "name": "BMI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BSA (m^2) at Baseline",
+          "name": "BSA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Baseline LDH Category",
+          "name": "BLLDHCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline ECOG Score",
+          "name": "ECOG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Pooled ECOG Score Group 1",
+          "name": "ECOGGR1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Pooled ECOG Score Group 1 (N)",
+          "name": "ECOGGR1N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ECOG RANDOMIZATION STRATA",
+          "name": "STRATA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ECOG RANDOMIZATION STRATA (N)",
+          "name": "STRATAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Experienced Weight Loss Flag",
+          "name": "WTLOSSFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WEIGHT LOSS AMOUNT",
+          "name": "WTLOSSAM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Death Relative Day",
+          "name": "DTHDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Cause of Death",
+          "name": "DTHCAUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region 1",
+          "name": "REGION1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region 1 (N)",
+          "name": "REGION1N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Childbearing Potential",
+          "name": "CHILDPOT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Initial Diagnosis of Lung Cancer",
+          "name": "DIAGDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Diag Extensive Stage Lung Cancer",
+          "name": "DIAGEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Diagnosis Confirmed Using Markers Flag",
+          "name": "CADXNMFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Was The Disease Progression Confirmed",
+          "name": "DSCNFRM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Brain Scan Status",
+          "name": "PRBSCAN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Prior Surgery Flag",
+          "name": "PRSURFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Prior Surgery Rel. to Lung Cancer Flag",
+          "name": "PRSURLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Followed for Survival",
+          "name": "SURVFOLL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Start of Survival Follow-up",
+          "name": "SURFUDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Date of Last Contact",
+          "name": "LSTCNDT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Smoker Status",
+          "name": "SMKSTAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Smoker Status (N)",
+          "name": "SMKSTATN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Pipe Use Flag",
+          "name": "PIPFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Cigar Use Flag",
+          "name": "CIGARFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Cigarette Use Flag",
+          "name": "CIGFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "E-Cigarette Use Flag",
+          "name": "ECIGFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Smokeless Tobacco Use Flag",
+          "name": "SMKLESFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Duration (Months)",
+          "name": "STDYDURM",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "ECOG",
+          "ECOGGR1",
+          "ECOGGR1N",
+          "STRATA",
+          "STRATAN"
+        ],
+        "endpoint": [
+          "DTHDY",
+          "DTHCAUS",
+          "SURVFOLL",
+          "SURFUDY",
+          "CIGFL",
+          "ECIGFL"
+        ],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "RANDDT",
+          "EOSDY",
+          "DCSREAS",
+          "DCSREASP",
+          "DTHDY",
+          "LSTCNDT"
+        ],
+        "treatment": [
+          "ARM",
+          "ARMCD",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "EOTSTT",
+          "DCTREAS",
+          "DCTREASN"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 37,
+      "path": "adsl.sas7bdat",
+      "size": 155648,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "PARAMCD",
+          "n_unique": 6,
+          "values": [
+            "LDIAM",
+            "PCHGBL",
+            "PCHGNAD",
+            "SAXIS",
+            "SUMDIAM",
+            "TUMSTATE"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "TRSEQ",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Link Group",
+          "name": "TRLNKGRP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Group ID",
+          "name": "TRGRPID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Link ID",
+          "name": "TRLNKID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Method used to Identify the Tumor",
+          "name": "TRMETHOD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Evaluator",
+          "name": "TREVAL",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Evaluator Identifier",
+          "name": "TREVALID",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter",
+          "name": "PARAM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Code",
+          "name": "PARAMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Type",
+          "name": "PARAMTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Derivation Type",
+          "name": "DTYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value (C)",
+          "name": "AVALC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value",
+          "name": "AVAL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Relative Day",
+          "name": "ADY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit (N)",
+          "name": "AVISITN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit",
+          "name": "AVISIT",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Accepted Record Flag",
+          "name": "TRACPTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Contrast?",
+          "name": "CONTRA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Was the scan performed as scheduled?",
+          "name": "SCANONT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for scan not as scheduled?",
+          "name": "SCANREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Are additional split or coalesced lesion",
+          "name": "SCLA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Record Flag",
+          "name": "ABLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Value (C)",
+          "name": "BASEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Value",
+          "name": "BASE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Change from Baseline",
+          "name": "CHG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Percent Change from Baseline",
+          "name": "PCHG",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "PARAMCD"
+        ],
+        "ecog": [
+          "SCANONT"
+        ],
+        "endpoint": [],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "VISITNUM",
+          "ADY"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": [
+          "AVALC",
+          "AVAL",
+          "BASEC",
+          "BASE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 4500,
+      "path": "adtr.sas7bdat",
+      "size": 4902912,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "PARAMCD",
+          "n_unique": 1,
+          "values": [
+            "SUMDIAM"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "TRSEQ",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Link Group",
+          "name": "TRLNKGRP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Group ID",
+          "name": "TRGRPID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter",
+          "name": "PARAM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Code",
+          "name": "PARAMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Type",
+          "name": "PARAMTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Derivation Type",
+          "name": "DTYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value (C)",
+          "name": "AVALC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value",
+          "name": "AVAL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Relative Day",
+          "name": "ADY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit (N)",
+          "name": "AVISITN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit",
+          "name": "AVISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Record Flag",
+          "name": "ABLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Value (C)",
+          "name": "BASEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Value",
+          "name": "BASE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Change from Baseline",
+          "name": "CHG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Percent Change from Baseline",
+          "name": "PCHG",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "PARAMCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "ADY"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": [
+          "AVALC",
+          "AVAL",
+          "BASEC",
+          "BASE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 157,
+      "path": "adtr2.sas7bdat",
+      "size": 278528,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "PARAMCD",
+          "n_unique": 4,
+          "values": [
+            "DOR",
+            "OS",
+            "PFS",
+            "PFSEXCP"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Contact Relative Day",
+          "name": "LSTCNDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Death Relative Day",
+          "name": "DTHDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "End of Study Relative Day",
+          "name": "EOSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Parameter",
+          "name": "PARAM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Code",
+          "name": "PARAMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Type",
+          "name": "PARAMTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Derivation Type",
+          "name": "DTYPE",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Analysis Value",
+          "name": "AVAL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Time-to-Event Origin Relative Day",
+          "name": "STARTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Relative Day",
+          "name": "ADY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Censor",
+          "name": "CNSR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event or Censoring Description",
+          "name": "EVNTDESC",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "PARAMCD"
+        ],
+        "ecog": [],
+        "endpoint": [
+          "DTHDY",
+          "STARTDY",
+          "CNSR",
+          "EVNTDESC"
+        ],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "LSTCNDY",
+          "DTHDY",
+          "EOSDY",
+          "STARTDY",
+          "ADY"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": [
+          "AVAL"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 211,
+      "path": "adtte.sas7bdat",
+      "size": 196608,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "PARAMCD",
+          "n_unique": 8,
+          "values": [
+            "BSA",
+            "DIABP",
+            "HEIGHT",
+            "PULSE",
+            "RESP",
+            "SYSBP",
+            "TEMP",
+            "WEIGHT"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Subject Identifier",
+          "name": "USUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Site Identifier",
+          "name": "SITEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ethnicity",
+          "name": "ETHNIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population Flag",
+          "name": "SAFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Full Analysis Set Population Flag",
+          "name": "FASFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Enrolled Population Flag",
+          "name": "ENRLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Per-Protocol Population Flag",
+          "name": "PPROTFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Evaluable Population Flag",
+          "name": "EFFFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population Flag",
+          "name": "RANDFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PK Population Flag",
+          "name": "PKFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01",
+          "name": "TRT01P",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment for Period 01 (N)",
+          "name": "TRT01PN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01",
+          "name": "TRT01A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment for Period 01 (N)",
+          "name": "TRT01AN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "First Exposure to Treatment Relative Day",
+          "name": "TRTSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Last Exposure to Treatment Relative Day",
+          "name": "TRTEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment",
+          "name": "TRTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Treatment (N)",
+          "name": "TRTPN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment (N)",
+          "name": "TRTAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "VSSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Relative Day",
+          "name": "ADY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit",
+          "name": "AVISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit (N)",
+          "name": "AVISITN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Timepoint",
+          "name": "ATPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Timepoint (N)",
+          "name": "ATPTN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Parameter",
+          "name": "PARAM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Code",
+          "name": "PARAMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value",
+          "name": "AVAL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Value (C)",
+          "name": "AVALC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Value",
+          "name": "BASE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Baseline Value (C)",
+          "name": "BASEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Change from Baseline",
+          "name": "CHG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Percent Change from Baseline",
+          "name": "PCHG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Window Target",
+          "name": "AWTARGET",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Baseline Record Flag",
+          "name": "ABLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Analysis Record-Level Flag",
+          "name": "SAFRFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "HAS THE WEIGHT CHANGED GREATER THAN 10%",
+          "name": "WEIGHT10",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "PARAMCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "USUBJID",
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "TRTSDY",
+          "TRTEDY",
+          "VISITNUM",
+          "ADY"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "TRT01P",
+          "TRT01PN",
+          "TRT01A",
+          "TRT01AN",
+          "TRTSDY",
+          "TRTEDY",
+          "TRTP",
+          "TRTPN",
+          "TRTA",
+          "TRTAN"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": [
+          "AVAL",
+          "AVALC",
+          "BASE",
+          "BASEC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 5759,
+      "path": "advs.sas7bdat",
+      "size": 5234688,
+      "status": "OK"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+gsm_id,IPR_score,IndividCRS_score,IPR_call,IndividCRS_call,chemoresponse,pfi_days,relapse_event,os_days,os_event,responder,plat_sensitive
+GSM746861,4.008146800000001,1.3375762112581555,resistant,sensitive,PR (partial response),385,1,686,1,1.0,1.0
+GSM746862,0.8639572999999987,1.8067261745793435,sensitive,sensitive,CR (completely response),2582,1,2582,0,1.0,1.0
+GSM746863,3.6330572999999995,1.068340414190474,resistant,sensitive,PR (partial response),175,1,595,1,1.0,0.0
+GSM746864,0.016127399999998848,0.6055834848155762,sensitive,sensitive,PR (partial response),162,1,377,1,1.0,0.0
+GSM746865,1.9849323999999995,1.7289877940238279,sensitive,sensitive,CR (completely response),860,1,897,0,1.0,1.0
+GSM746866,2.897032899999999,0.944397125574057,resistant,sensitive,CR (completely response),3025,1,3511,0,1.0,1.0
+GSM746867,-0.8382695000000031,0.8698817694188489,sensitive,sensitive,CR (completely response),454,1,965,1,1.0,1.0
+GSM746868,-2.8663275000000024,2.1004325778652673,sensitive,sensitive,CR (completely response),89,1,749,1,1.0,0.0
+GSM746869,1.9380645000000005,0.8070999115962084,sensitive,sensitive,PR (partial response),252,1,476,1,1.0,1.0
+GSM746870,5.4096209,0.15078466770524812,resistant,sensitive,PR (partial response),30,1,49,1,1.0,0.0
+GSM746871,0.5190686999999988,2.070204353136888,sensitive,sensitive,CR (completely response),401,1,470,1,1.0,1.0
+GSM746872,3.320781099999997,1.230117094299467,resistant,sensitive,PR (partial response),505,1,2923,1,1.0,1.0
+GSM746873,2.787567100000001,1.0322506073550184,resistant,sensitive,PR (partial response),511,1,1993,0,1.0,1.0
+GSM746874,4.335762300000001,1.819765734590342,resistant,sensitive,CR (completely response),494,1,1236,0,1.0,1.0
+GSM746875,2.847505200000002,1.3393511684376402,resistant,sensitive,PR (partial response),195,UNKnown,195,0,1.0,1.0
+GSM746876,2.9487378,1.4650258669099652,resistant,sensitive,PR (partial response),31,1,1212,1,1.0,0.0
+GSM746877,4.756500299999998,0.98279327000418,resistant,sensitive,PR (partial response),245,1,242,1,1.0,1.0
+GSM746878,3.9063228999999984,1.671352765023699,resistant,sensitive,unknown,2195,UNKnown,2195,1,,1.0
+GSM746879,2.9427010000000013,1.6264398822520743,resistant,sensitive,CR (completely response),2282,0,2282,0,1.0,1.0
+GSM746880,4.472804699999999,0.9994761525141661,resistant,sensitive,CR (completely response),309,1,818,1,1.0,1.0
+GSM746881,-0.39064629999999956,0.8379313419100155,sensitive,sensitive,CR (completely response),3315,0,3315,0,1.0,1.0
+GSM746882,-1.0562042000000023,1.9805960521193513,sensitive,sensitive,unknown,387,UNKnown,387,1,,1.0
+GSM746883,1.8739539000000014,1.6993507345121743,sensitive,sensitive,PR (partial response),287,1,659,0,1.0,1.0
+GSM746884,1.2113269999999998,0.9845707763811361,sensitive,sensitive,PR (partial response),367,1,1579,1,1.0,1.0
+GSM746885,0.8523696999999991,1.0981608275810437,sensitive,sensitive,CR (completely response),542,1,985,1,1.0,1.0
+GSM746886,3.3416032999999983,1.4357233611344506,resistant,sensitive,PR (partial response),165,1,237,1,1.0,0.0
+GSM746887,3.4358436999999973,0.9772946346616569,resistant,sensitive,PD (progress of disease),31,1,137,1,0.0,0.0
+GSM746888,1.2181085999999979,0.38332597269693025,sensitive,sensitive,CR (completely response),2246,0,2246,0,1.0,1.0
+GSM746889,4.437069900000003,0.5340983305492819,resistant,sensitive,CR (completely response),481,1,697,0,1.0,1.0
+GSM746890,3.678234300000002,0.25220061295718843,resistant,sensitive,CR (completely response),1003,1,2143,0,1.0,1.0
+GSM746891,1.9009410000000007,1.0080193187602209,sensitive,sensitive,CR (completely response),380,1,704,1,1.0,1.0
+GSM746892,2.2395891000000003,2.084487754870053,sensitive,sensitive,CR (completely response),367,1,1561,1,1.0,1.0
+GSM746893,2.054076699999998,1.20735212798969,sensitive,sensitive,CR (completely response),342,1,1043,1,1.0,1.0
+GSM746894,2.454810399999997,0.6239547477868401,resistant,sensitive,PR (partial response),265,1,1707,0,1.0,1.0
+GSM746895,1.0643693999999986,1.3753424281277795,sensitive,sensitive,CR (completely response),480,1,1152,1,1.0,1.0
+GSM746896,-1.0215417000000004,1.0774747350819196,sensitive,sensitive,CR (completely response),664,1,1529,1,1.0,1.0
+GSM746897,4.698980900000001,0.0777878511742892,resistant,sensitive,CR (completely response),4208,0,4208,0,1.0,1.0
+GSM746898,-0.7933306999999998,1.0998308373798427,sensitive,sensitive,CR (completely response),321,1,434,1,1.0,1.0
+GSM746899,0.4566944999999982,0.7559169415790601,sensitive,sensitive,CR (completely response),431,1,2710,0,1.0,1.0
+GSM746900,3.639672100000001,1.2089835169543697,resistant,sensitive,CR (completely response),929,1,2095,1,1.0,1.0
+GSM746901,-0.7151512000000005,1.2362870465411206,sensitive,sensitive,CR (completely response),125,0,125,0,1.0,0.0
+GSM746902,0.47888469999999983,-0.046692448678545495,sensitive,resistant,CR (completely response),328,1,988,0,1.0,1.0
+GSM746903,0.534010799999999,1.7863932182884443,sensitive,sensitive,CR (completely response),3644,0,3644,0,1.0,1.0
+GSM746904,3.3007357999999987,1.2716238215581934,resistant,sensitive,CR (completely response),811,1,2513,0,1.0,1.0
+GSM746905,0.2128363999999987,0.8374947560892726,sensitive,sensitive,CR (completely response),872,1,3889,0,1.0,1.0
+GSM746906,4.810545599999999,0.8327881368108848,resistant,sensitive,PR (partial response),804,1,2251,1,1.0,1.0
+GSM746907,4.202457499999999,0.8026504849743543,resistant,sensitive,PR (partial response),580,1,2795,1,1.0,1.0
+GSM746908,1.548890499999998,0.5437052927048952,sensitive,sensitive,PR (partial response),298,1,742,1,1.0,1.0
+GSM746909,-7.053473400000001,0.13668439366105573,sensitive,sensitive,PR (partial response),12,1,94,1,1.0,0.0
+GSM746910,4.693596099999998,1.2978730385342332,resistant,sensitive,PR (partial response),282,1,627,1,1.0,1.0
+GSM746911,2.5678139999999994,0.5793661274368233,resistant,sensitive,PR (partial response),218,1,318,1,1.0,1.0
+GSM746912,3.2483128999999993,0.32594016832183215,resistant,sensitive,PR (partial response),114,1,973,0,1.0,0.0
+GSM746913,2.2545443999999972,1.4978284271368938,resistant,sensitive,CR (completely response),566,1,1031,1,1.0,1.0
+GSM746914,-0.6380614000000042,1.0673316009775335,sensitive,sensitive,CR (completely response),803,1,1501,1,1.0,1.0
+GSM746915,1.8519573999999985,0.8711467210917148,sensitive,sensitive,CR (completely response),265,1,1846,1,1.0,1.0
+GSM746916,1.0596258999999995,0.6722958374112795,sensitive,sensitive,CR (completely response),407,1,582,1,1.0,1.0
+GSM746917,4.086654099999999,1.3463446730906126,resistant,sensitive,Unknown,208,UNKnown,208,0,,1.0
+GSM746918,4.9952341,0.7573414923109216,resistant,sensitive,PR (partial response),309,1,1662,1,1.0,1.0

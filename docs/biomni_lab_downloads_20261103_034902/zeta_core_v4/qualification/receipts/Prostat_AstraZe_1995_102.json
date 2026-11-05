@@ -1,0 +1,2713 @@
+{
+  "caslib": "Prostat_AstraZe_1995_102",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "PSA"
+  ],
+  "indication": "prostate",
+  "longitudinal_aggregates": [
+    {
+      "analyte_columns": [
+        "LABTEST"
+      ],
+      "path": "dataFiles_506/r_nonpla.sas7bdat",
+      "patient_column": "trials_d",
+      "reason": "missing patient, numeric value, or time column",
+      "status": "BLOCKED",
+      "time_column": null,
+      "unit_column": "UNIT",
+      "value_column": "VALUE"
+    }
+  ],
+  "marker_ids_found": [
+    "PSA"
+  ],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 22,
+  "n_tabular_files": 22,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "1b3c6a6776e20cc0063886fab1c76f735afe610261f0179ebfb42046c837d615",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$YN",
+          "label": "PATIENT WITHDREW DUE TO AE",
+          "name": "AEWITH",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "REQUIRING INTERVENTION",
+          "name": "INTERV",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "REQUIRING OR PROLONGING HOSPITALIZATION",
+          "name": "HOSP",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "CAUSING DISABILITY OR INCAPACITY",
+          "name": "DISAB",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "LIFE THREATENING",
+          "name": "LTHREAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CARRY FORWARD VISIT",
+          "name": "CFVISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "ZEINTES",
+          "label": "INTENSITY OF AE",
+          "name": "INTEN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SERIES",
+          "name": "SERIES",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "TREATMENT RECEIVED FOR AE",
+          "name": "RXFORAE",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "RELATED TO TRIAL THERAPY",
+          "name": "RELATED",
+          "type": "char"
+        },
+        {
+          "format": "ZEOUTCS",
+          "label": "OUTCOME OF AE",
+          "name": "OUTCOME",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "RESOLVED",
+          "name": "RESOLVED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IMPROVED",
+          "name": "IMPROVED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IMPROVED DUE TO TREATMENT",
+          "name": "IMPRX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DIPLOMAT KEYWORD",
+          "name": "KEYTEXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "COSTART PREFERRED TERM (DIPLOMAT)",
+          "name": "COSTEXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DIPLOMAT SYNONYM",
+          "name": "SYNTEXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "KEYWORD",
+          "type": "char"
+        },
+        {
+          "format": "$BODY",
+          "label": "COSTART BODY SYSTEM",
+          "name": "BODYSYS1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF ONSET OF AE (De-identified)",
+          "name": "DYSTRT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF RESOLUTION OF AE (De-identified)",
+          "name": "DYSTOP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VISIT DAY (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF GYNECOMASTIA (De-identified)",
+          "name": "GYNDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF BREAST PAIN (De-identified)",
+          "name": "BPDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "AEWITH",
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [
+          "RXFORAE",
+          "IMPRX",
+          "DYSTRT"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 20148,
+      "path": "dataFiles_506/r_adver.sas7bdat",
+      "size": 7685120,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$YN",
+          "label": "ANYTHING BOTHERING PATIENT?",
+          "name": "BOTHER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SERIES",
+          "name": "SERIES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VISIT DAY (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "BOTHER",
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 8345,
+      "path": "dataFiles_506/r_bother.sas7bdat",
+      "size": 680960,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$YN",
+          "label": "OBJECTIVE DEMONSTRATION?",
+          "name": "OBJ",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "SUBJECTIVE DEMONSTRATION?",
+          "name": "SUBJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "URETER OBSTRUCTION",
+          "name": "URETER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LYMPHEDEMA",
+          "name": "EDEMA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "GROWTH OF PRIMARY TUMOR",
+          "name": "GROWTH",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "SYMPTOMS OF PROGRESSIVE DISEASE?",
+          "name": "SYMPTOM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF PROGRESSION (De-identified)",
+          "name": "DYPROG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VISIT DAY (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF SKEL ASSESS (De-identified)",
+          "name": "SKELDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF NONSKEL ASSESS (De-identified)",
+          "name": "NSKLDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 22729,
+      "path": "dataFiles_506/r_clprog.sas7bdat",
+      "size": 2221056,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$PRIOR",
+          "label": "PRIOR TO STUDY",
+          "name": "PRIOR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CARRIED FORWARD FROM:",
+          "name": "CFVISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "INDICATION",
+          "name": "INDICATN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SERIES",
+          "name": "SERIES",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DIPLOMAT GENERIC TERM",
+          "name": "GENTEXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DIPLOMAT KEYWORD",
+          "name": "KEYTEXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DIPLOMAT SYNONYM",
+          "name": "SYNTEXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DIPLOMAT PRIMARY BODY SYS OR ATC DECODE",
+          "name": "PCLATEXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DIPLOMAT ALTERNATE BODY SYS OR ATC DECOD",
+          "name": "ACLATEXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY CONCOMITANT THERAPY STARTED (De-identified)",
+          "name": "DYSTRD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY CONCOMITANT THERAPY ENDED (De-identified)",
+          "name": "DYSTPD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VISIT DAY (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [
+          "PRIOR"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 58769,
+      "path": "dataFiles_506/r_concom.sas7bdat",
+      "size": 28328960,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$YN",
+          "label": "CONCURRENT MEDICAL CONDITIONS AT ENTRY?",
+          "name": "CNX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SERIES",
+          "name": "SERIES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VISIT DAY (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 12170,
+      "path": "dataFiles_506/r_conhx.sas7bdat",
+      "size": 992256,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$DCAUSE",
+          "label": "CAUSE OF DEATH",
+          "name": "CAUSE",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "ZENECA NOTIFIED?",
+          "name": "NOTIFY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "COSTART PREFERRED TERM (DIPLOMAT)",
+          "name": "COSTEXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DIPLOMAT KEYWORD",
+          "name": "KEYTEXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DIPLOMAT SYNONYM",
+          "name": "SYNTEXT",
+          "type": "char"
+        },
+        {
+          "format": "$BODY",
+          "label": "COSTART BODY SYSTEM",
+          "name": "COSTBDY1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DEATH DAY (De-identified)",
+          "name": "DYDTH",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY NOTIFIED OF DEATH (De-identified)",
+          "name": "DYNOTE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VISIT DAY (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CAUSE",
+          "DYDTH",
+          "DYNOTE"
+        ],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 11161,
+      "path": "dataFiles_506/r_death.sas7bdat",
+      "size": 3458048,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$RACE",
+          "label": "RACE",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "RECEIVED NEO-ADJUVANT THERAPY",
+          "name": "NEORESP",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "RECEIVED RANDOMIZED THERAPY?",
+          "name": "RECEIVED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "HIGHEST GLEASON SCORE",
+          "name": "GLEASON",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "$GTYPE",
+          "label": "GLEASON TYPE (B)IO / (S)URG",
+          "name": "GLSNTYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "GLEASON FROM SURGICAL SPECIMEN",
+          "name": "SRGGLSN",
+          "type": "char"
+        },
+        {
+          "format": "$NOTDONE",
+          "label": "SURGICAL GLEASON NOT DONE",
+          "name": "SRGGLSND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "GLEASON FROM BIOPSY",
+          "name": "BIOGLSN",
+          "type": "char"
+        },
+        {
+          "format": "$NOTDONE",
+          "label": "BIOPSY GLEASON NOT DONE",
+          "name": "BIOGLSND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age Category at randomisation",
+          "name": "agegrp",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY RANDOMIZED TRT START (De-identified)",
+          "name": "DYSTRT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF RANDOMIZATION (De-identified)",
+          "name": "DYRAND",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF THERAPY 1 LAST DOSE (De-identified)",
+          "name": "NEOSTRD1",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF THERAPY 2 LAST DOSE (De-identified)",
+          "name": "NEOSTRD2",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [
+          "agegrp"
+        ],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [
+          "DYSTRT"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1645,
+      "path": "dataFiles_506/r_dem.sas7bdat",
+      "size": 209920,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PROTOCOL TIMEPOINT",
+          "name": "TIMEDISP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TABLETS RETURNED",
+          "name": "TABRETD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMERIC EQUIVALENT OF PROTOCOL TIMEPOINT",
+          "name": "TIME",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY DISPENSED (De-identified)",
+          "name": "DYDISP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 59100,
+      "path": "dataFiles_506/r_drugac.sas7bdat",
+      "size": 5768192,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$YN",
+          "label": "RADIATION <16 WEEKS PRIOR?",
+          "name": "RADIO",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "CONFIRMED BY BONESCAN <24 WEEKS?",
+          "name": "CONFBS",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "ABSENCE OF METASTATIC NODE DISEASE?",
+          "name": "CONFLAP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "CONFIRMED ADENOCARCINOMA?",
+          "name": "CONFPCA",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "STAGE A2, B, OR C STAGE?",
+          "name": "STAGERES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DISEASE STAGE",
+          "name": "STAGE",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "PROSTATECTAMY <16 WKS PRIOR?",
+          "name": "PROSTECT",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "WRITTEN INFORMED CONSENT?",
+          "name": "CONSENT",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "PRIOR SYSTEMIC THERAPY?",
+          "name": "PRIORSYS",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "OTHER MALIGNANCY",
+          "name": "HISTCA",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "HIGH AST/ALT?",
+          "name": "LIVTOX",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "SEVERE MEDICAL CONDITION?",
+          "name": "TOOSICK",
+          "type": "char"
+        },
+        {
+          "format": "$CLINS",
+          "label": "CLINICAL / PATHOLOGICAL STAGING?",
+          "name": "CLNPATH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IF PATHOLOGICAL: CLINICAL STAGE",
+          "name": "CLNSTAGE",
+          "type": "char"
+        },
+        {
+          "format": "$NOTDONE",
+          "label": "CLINICAL STAGE NOT DONE",
+          "name": "CLNSTGND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY RADIATION INITIATED (De-identified)",
+          "name": "DYRAD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY PROSTATECTOMY PERFORMED (De-identified)",
+          "name": "DYPROS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY CONSENT OBTAINED (De-identified)",
+          "name": "DYCON",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "DYPROS"
+        ],
+        "endpoint": [
+          "CONSENT"
+        ],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [
+          "RADIO",
+          "CONFBS"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1645,
+      "path": "dataFiles_506/r_elig.sas7bdat",
+      "size": 197632,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$YN",
+          "label": "VISIT FROZEN?",
+          "name": "FREEZE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 60865,
+      "path": "dataFiles_506/r_freeze.sas7bdat",
+      "size": 4416512,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$STAT",
+          "label": "STATUS OF PATIENT",
+          "name": "STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "PATIENT PREVIOUSLY PROGRESSED?",
+          "name": "PREVPROG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY CONTACT MADE (De-identified)",
+          "name": "DYASD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "STATUS",
+          "PREVPROG",
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 11146,
+      "path": "dataFiles_506/r_fup.sas7bdat",
+      "size": 910336,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$YN",
+          "label": "HOSPITALIZED SINCE LAST VISIT?",
+          "name": "HOSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY RELEASED FROM HOSPITAL (De-identified)",
+          "name": "DYTO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF HOSPITALIZATION (De-identified)",
+          "name": "DYFROM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 11809,
+      "path": "dataFiles_506/r_hosp.sas7bdat",
+      "size": 1057792,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$DONE",
+          "label": "DATA ENTERED AND EDITED",
+          "name": "INVSTAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 24498,
+      "path": "dataFiles_506/r_invst.sas7bdat",
+      "size": 1786880,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$YN",
+          "label": "PRIOR NON-HYBRITECH PSA?",
+          "name": "NHPREPSA",
+          "type": "char"
+        },
+        {
+          "format": "$PREPSAM",
+          "label": "METHOD USED",
+          "name": "PREPSAMD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PSA ORIGINAL VALUE",
+          "name": "PSA_ORIG",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "PRIOR HYBRITECH PSA?",
+          "name": "PNEOPSA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TIME OF LAB DRAW",
+          "name": "LABTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PSA UPPER NORMAL LIMIT",
+          "name": "PSAHIGH",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PSA LOWER NORMAL LIMIT",
+          "name": "PSALOW",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PSA NG/ML",
+          "name": "PSA",
+          "type": "double"
+        },
+        {
+          "format": "$YN",
+          "label": "WERE SK LABS TAKEN?",
+          "name": "SKLAB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AST ORIGINAL VALUE",
+          "name": "AST_ORIG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ALT ORIGINAL VALUE",
+          "name": "ALT_ORIG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BILIRUBIN ORIGINAL VALUE",
+          "name": "BIL_ORIG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AST U/L",
+          "name": "AST",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ALT U/L",
+          "name": "ALT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BILIRUBIN MG/DL",
+          "name": "BILI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ANY RESULTS NOT NORMAL?",
+          "name": "NORMAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ANY RESULTS CONSIDERED AES?",
+          "name": "LABAE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TIME",
+          "name": "TIME",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY SAMPLE OBTAINED (De-identified)",
+          "name": "DYLAB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "PSA_ORIG",
+          "AST_ORIG",
+          "ALT_ORIG",
+          "BIL_ORIG",
+          "NORMAL",
+          "LABAE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 27691,
+      "path": "dataFiles_506/r_labs.sas7bdat",
+      "size": 5358592,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$YN",
+          "label": "MEDICAL HISTORY NOT PRESENT AT ENTRY",
+          "name": "MHX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SERIES",
+          "name": "SERIES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 11235,
+      "path": "dataFiles_506/r_medhx.sas7bdat",
+      "size": 918528,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LABTEST",
+          "n_unique": 84,
+          "values": [
+            "ALANINE TRANSFERASE",
+            "ALAT",
+            "ALAT (SGPT)",
+            "ALBUMIN",
+            "ALK PHOS",
+            "ALKALINE PHOSPHATASE",
+            "ALPHA I",
+            "ALT",
+            "ASAT",
+            "ASAT (SGOT)",
+            "AST",
+            "B12 LEVEL",
+            "B2M",
+            "BILIRUBIN",
+            "BLOOD GLUCOSE",
+            "BUN",
+            "CALCIUM",
+            "CHLORIDE",
+            "CHOL",
+            "CHOLESTEROL",
+            "CHOLESTEROL TEST",
+            "CHOLESTEROL/HDL RATIO",
+            "CREATININE",
+            "DIRECT BILI",
+            "FACTOR  LDL/HDL",
+            "FASTING GLUCOSE",
+            "GGT",
+            "GLUCOSE",
+            "GLUCOSE-FASTING",
+            "GLUCOSE, PLASMA",
+            "HCT",
+            "HDL CHOLESTEROL",
+            "HEMATOCRIT",
+            "HEMOBLOBIN",
+            "HEMOGLOBIN",
+            "HEMOTACRIT",
+            "HGB",
+            "IRON",
+            "LDH",
+            "LDL",
+            "LDL CHOLESTEROL",
+            "LDL-CHOLESTEROL",
+            "LIPIDS (CHOLESTEROL)",
+            "LITHIUM",
+            "LITHIUM LEVEL",
+            "LOWDENSITY LIPOPROTEIN",
+            "LYMPHOCYTE",
+            "MAGNESIUM",
+            "MCH",
+            "MCHC",
+            "MCV",
+            "PHOSPHATE",
+            "PHOSPHOROUS",
+            "PHOSPHORUS",
+            "PLATELET",
+            "PLATELET COUNT",
+            "PLATELETS",
+            "PLATLET",
+            "PLATLETS",
+            "POTASSIUM",
+            "PROTHROMBIN TIME",
+            "PSA",
+            "RBC",
+            "RED BLOOD CELL",
+            "RED BLOOD COUNT",
+            "SED RATE",
+            "SERUM CREATININE",
+            "SERUM GLUCOSE",
+            "SGOT",
+            "SGOT-ASAT",
+            "SGPT",
+            "SGPT-ALAT",
+            "SODIUM",
+            "THEOPHYLLINE",
+            "THYROID STIMULATING HO",
+            "TOTAL BILIRUBIN",
+            "TOTAL CHOLESTEROL",
+            "TRIGLYCERIDE",
+            "TRIGLYCERIDES",
+            "TRIGYLCERIDES",
+            "UREA NITROGEN",
+            "URIC ACID",
+            "WBC",
+            "WHITE BLOOD CELL COUNT"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "$YN",
+          "label": "NONPROTOCOL LABS?",
+          "name": "NONPLAB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "UNIT",
+          "name": "UNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ORIGINAL UPPER NORMAL LIMIT",
+          "name": "HI_ORIG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ORIGINAL LOWER NORMAL LIMIT",
+          "name": "LOW_ORIG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ORIGINAL VALUE",
+          "name": "VAL_ORIG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LAB TEST",
+          "name": "LABTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SERIES",
+          "name": "SERIES",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LAB VALUE",
+          "name": "VALUE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "UPPER NORMAL LIMIT",
+          "name": "HIGH",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LOWER NORMAL LIMIT",
+          "name": "LOW",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY LAB DRAWN (De-identified)",
+          "name": "DYLAB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LABTEST"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [
+          "UNIT"
+        ],
+        "value": [
+          "VAL_ORIG",
+          "VALUE"
+        ]
+      },
+      "marker_hits": [
+        {
+          "column": "LABTEST",
+          "marker_id": "PSA",
+          "matched_value": "PSA"
+        }
+      ],
+      "n_rows": 35265,
+      "path": "dataFiles_506/r_nonpla.sas7bdat",
+      "size": 5964800,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$YN",
+          "label": "SKELETAL METS. ASSESSED?",
+          "name": "SKELASS",
+          "type": "char"
+        },
+        {
+          "format": "$SKELM",
+          "label": "SKELETAL METHOD USED",
+          "name": "SKELMETH",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "BONEMETS PRESENT",
+          "name": "BONEMET",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "PELVIC NODES ASSESSED?",
+          "name": "PELVASS",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "POSITIVE NODES?",
+          "name": "POSNODE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "$YNX",
+          "label": "ANY NONSKELETAL METS. PRESENT?",
+          "name": "NSKELMET",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "NONSKELETAL METS. ASSESSED?",
+          "name": "NSKELASS",
+          "type": "char"
+        },
+        {
+          "format": "$YNX",
+          "label": "PRIMARY TUMOR RECURRED?",
+          "name": "PTUM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF SKEL ASSESS (De-identified)",
+          "name": "SKELDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF PEL ASSESS (De-identified)",
+          "name": "PELVDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF NONSKEL ASSESS (De-identified)",
+          "name": "NSKLDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 14687,
+      "path": "dataFiles_506/r_objass.sas7bdat",
+      "size": 1549312,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$YN",
+          "label": "ABNORMAL FINDINGS?",
+          "name": "PEABN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SERIES",
+          "name": "SERIES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 8350,
+      "path": "dataFiles_506/r_peabn.sas7bdat",
+      "size": 680960,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$NOTDONE",
+          "label": "WEIGHT NOT DONE",
+          "name": "WGTND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "NEW ABNORMAL FINDINGS?",
+          "name": "NEWABN",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "PREVIOUS FINDINGS WORSEN?",
+          "name": "WORSEN",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "PREVIOUS AES RESOLVED?",
+          "name": "RESOLVED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Weight Category (kg) (De-identified)",
+          "name": "WGHTCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "EXAM DAY (De-identified)",
+          "name": "DYPHXM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 13378,
+      "path": "dataFiles_506/r_phxm.sas7bdat",
+      "size": 1197056,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "ANTIANDROGEN",
+          "name": "ANTIA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LHRH ANALOGUES",
+          "name": "LHRH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ORCHIECTOMY",
+          "name": "ORCH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "OTHER",
+          "name": "OTHER",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "SECOND LINE THERAPY?",
+          "name": "SECLINE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF 2ND LINE INITIATION (De-identified)",
+          "name": "DYSEC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 506,
+      "path": "dataFiles_506/r_second.sas7bdat",
+      "size": 50176,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$YN",
+          "label": "RANDOMIZED TREATMENT STOPPED?",
+          "name": "STOPPED",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "SYSTEMIC THERAPY ADDED?",
+          "name": "ADDED",
+          "type": "char"
+        },
+        {
+          "format": "$YN",
+          "label": "RADIATION FAILURE?",
+          "name": "RADIATIO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "DISC",
+          "label": "REASON RANDOMIZED TREATMENT STOP/CHANGED",
+          "name": "REASONCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY STOPPED RANDOMIZED TREATMENT (De-identified)",
+          "name": "DYSTOP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY THERAPY ADDED (De-identified)",
+          "name": "DYADD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY RADIATION STARTED (De-identified)",
+          "name": "DYRAD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [
+          "STOPPED",
+          "REASONCD",
+          "DYSTOP"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 11689,
+      "path": "dataFiles_506/r_trtsum.sas7bdat",
+      "size": 1242112,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PROTOCOL TIME",
+          "name": "PROTIME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT NUMBER",
+          "name": "VISN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "STUDY VISIT",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TRIAL NUMBER",
+          "name": "TRIAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT RECORD PER SUBJECT",
+          "name": "SCREENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF RECORDS PER SUBJECT",
+          "name": "TOTRECS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient identifier (De-identified)",
+          "name": "trials_d",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STUDY VISIT (De-identified)",
+          "name": "VISDY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "trials_d"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 24498,
+      "path": "dataFiles_506/r_visits.sas7bdat",
+      "size": 1786880,
+      "status": "OK"
+    }
+  ]
+}

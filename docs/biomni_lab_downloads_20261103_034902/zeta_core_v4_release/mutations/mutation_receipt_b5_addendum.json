@@ -1,0 +1,128 @@
+{
+  "applied_paths": [
+    "tests/test_cohere_with_key.py"
+  ],
+  "baseline_run": {
+    "cohere_api_key_env": "<empty>",
+    "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/b5_baseline.junit.xml",
+    "counts": {
+      "errors": 0,
+      "failed": 0,
+      "passed": 13,
+      "skipped": 0,
+      "xfailed": 0
+    },
+    "cwd": "/workspace/zc4_mut_b",
+    "error_nodes": [],
+    "failed_nodes": [],
+    "inexact_node_ids": 0,
+    "junit_present": true,
+    "junit_xml": "/workspace/zc4_mut/b5_baseline.junit.xml",
+    "rc": 0,
+    "seconds": 25.8,
+    "skipped_nodes": [],
+    "stderr_tail": "",
+    "stdout_tail": ".............                                                            [100%]\n--------- generated xml file: /workspace/zc4_mut/b5_baseline.junit.xml ---------\n13 passed in 20.95s\n",
+    "total_cases": 13,
+    "xfailed_nodes": []
+  },
+  "collection_probes": {
+    "empty_key": {
+      "cohere_api_key_env": "<empty>",
+      "live_test_collected": true,
+      "rc": 0,
+      "stderr_tail": "",
+      "stdout_tail": "tests/test_cohere_with_key.py::test_cohere_live_integration\n\n1 test collected in 0.05s\n"
+    },
+    "valid_shaped_key": {
+      "cohere_api_key_env": "<valid-shaped placeholder>",
+      "live_test_collected": true,
+      "rc": 0,
+      "stderr_tail": "",
+      "stdout_tail": "tests/test_cohere_with_key.py::test_cohere_live_integration\n\n1 test collected in 0.08s\n"
+    }
+  },
+  "diff_is_nonempty": true,
+  "diff_numstat": "2\t1\ttests/test_cohere_with_key.py",
+  "diff_patch": "diff --git a/tests/test_cohere_with_key.py b/tests/test_cohere_with_key.py\nindex ad65900b..9e80ae9f 100644\n--- a/tests/test_cohere_with_key.py\n+++ b/tests/test_cohere_with_key.py\n@@ -58,3 +58,4 @@ def test_cohere_live_integration():\n         pytest.skip(f\"COHERE_KEY_{state}: optional live integration credential not configured\")\n-    assert state == \"VALID_SHAPE\", \"COHERE_KEY_MALFORMED\"\n+    if state != \"VALID_SHAPE\":\n+        pytest.skip(\"COHERE_KEY_MALFORMED\")\n     if os.getenv(\"COHERE_LIVE_TEST\") != \"1\":\n",
+  "dirty_paths_after_revert": [],
+  "expect": "caught",
+  "id": "B5",
+  "mutated_run": {
+    "cohere_api_key_env": "<empty>",
+    "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/mut_B5.junit.xml",
+    "counts": {
+      "errors": 0,
+      "failed": 0,
+      "passed": 12,
+      "skipped": 1,
+      "xfailed": 0
+    },
+    "cwd": "/workspace/zc4_mut_b",
+    "error_nodes": [],
+    "failed_nodes": [],
+    "inexact_node_ids": 0,
+    "junit_present": true,
+    "junit_xml": "/workspace/zc4_mut/mut_B5.junit.xml",
+    "rc": 0,
+    "seconds": 26.6,
+    "skip_gate": {
+      "rc": 1,
+      "stderr": "",
+      "stdout": "SKIP_GATE_FAIL: unexpected skip in a required job: tests/unit/test_cohere_key_harness.py::test_malformed_targeted_execution_fails_not_skips"
+    },
+    "skipped_nodes": [
+      "tests/unit/test_cohere_key_harness.py::test_malformed_targeted_execution_fails_not_skips"
+    ],
+    "stderr_tail": "",
+    "stdout_tail": ".......s.....                                                            [100%]\n----------- generated xml file: /workspace/zc4_mut/mut_B5.junit.xml ------------\n12 passed, 1 skipped in 21.75s\n",
+    "total_cases": 13,
+    "xfailed_nodes": []
+  },
+  "new_error_nodes": [],
+  "new_failed_nodes": [],
+  "new_skipped_nodes": [
+    "tests/unit/test_cohere_key_harness.py::test_malformed_targeted_execution_fails_not_skips"
+  ],
+  "post_revert_diff_numstat": "",
+  "post_revert_matches_baseline": true,
+  "post_revert_run": {
+    "cohere_api_key_env": "<empty>",
+    "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_mut/postrevert_B5.junit.xml",
+    "counts": {
+      "errors": 0,
+      "failed": 0,
+      "passed": 13,
+      "skipped": 0,
+      "xfailed": 0
+    },
+    "cwd": "/workspace/zc4_mut_b",
+    "error_nodes": [],
+    "failed_nodes": [],
+    "inexact_node_ids": 0,
+    "junit_present": true,
+    "junit_xml": "/workspace/zc4_mut/postrevert_B5.junit.xml",
+    "rc": 0,
+    "seconds": 25.9,
+    "skipped_nodes": [],
+    "stderr_tail": "",
+    "stdout_tail": ".............                                                            [100%]\n-------- generated xml file: /workspace/zc4_mut/postrevert_B5.junit.xml --------\n13 passed in 20.59s\n",
+    "total_cases": 13,
+    "xfailed_nodes": []
+  },
+  "pr": "B",
+  "reverted_clean": true,
+  "selection": [
+    "tests/unit/test_cohere_key_harness.py"
+  ],
+  "session_aborted_without_junit": false,
+  "skip_gate_rcs": [
+    1
+  ],
+  "supersedes_note": "B5 is the corrected form of B3. B3 is retained as measured because its result is a real coverage observation: the duplicate guard inside run_cohere_probe is unreachable from every released test path.",
+  "title": "Turn the malformed-key guard the released tests reach into a skip",
+  "verdict": "CAUGHT_BY_REQUIRED_JOB_SKIP_GATE",
+  "why": "test_malformed_targeted_execution_fails_not_skips exists to prove that a malformed credential fails loudly instead of being skipped. The guard it reaches is the one in test_cohere_live_integration, so that is the line whose mutation proves the test is not a shell.",
+  "worktree": "/workspace/zc4_mut_b",
+  "worktree_head": "57e6c312822af0decc8acca6e5bd34d4410522b0"
+}

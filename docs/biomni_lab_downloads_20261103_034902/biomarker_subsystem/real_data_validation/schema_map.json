@@ -1,0 +1,32 @@
+{
+  "principle": "No new schema. Extend existing data_acq/w3 structure; key by cohort-manifest IDs.",
+  "identifier_keys": {
+    "subject_id": "BriTROC-1 subject (e.g. 191, 260)",
+    "sample_alias": "IM_* (diagnosis) / JBLAB-* (relapse)",
+    "EGAN_accession": "EGA sample accession (per manifest)",
+    "EGAF_accession": "EGA file accession (per manifest)",
+    "dataset": "EGAD00001011049 (study EGAS00001007292)"
+  },
+  "artifacts_indexed": {
+    "cohort_manifest": "data_acquisition/w3/w3_britroc_cohort_182pairs.csv (182 pairs)",
+    "pilot_serialSAE": "data_acquisition/w3/w3_pilot_serialSAE.csv (4 subjects)",
+    "segmented_cn": "data_acq/w3/cn_out_full/pilot_segmented_cn.csv (8 samples, 103199 bins)",
+    "gene_cn": "data_acq/w3/gene_cn/{gene_cn_per_sample,gene_cn_dx_vs_relapse,gene_universe_pilot_evidence}.csv",
+    "breakpoint_arch": "data_acq/w3/bp_arch/{breakpoint_architecture_pilot,breakpoint_delta_by_chrom}.csv",
+    "subject_260": "data_acq/w3/subj260_bams/ (+ subj260 CN once computed)",
+    "switch_ledger": "data_acq/w3/ledger/switch_reconciliation_ledger.csv",
+    "subject_ledger": "data_acq/w3/ledger/subject_ledger.csv"
+  },
+  "registries_extended_not_replaced": [
+    "biomarker_subsystem/registry (biomarker_registry.json)",
+    "biomarker_val/earned_tier_registry.json"
+  ],
+  "status_legend": {
+    "ALREADY_CLOSED_PRIOR_TURN": "fix exists & was verified before this turn (audit is stale)",
+    "AUDIT_FACTUALLY_WRONG": "the premise is false per code",
+    "DECLINED_FABRICATION": "doing it as demanded would fabricate data/tiers",
+    "HONEST_PARTIAL": "real but narrow; honest ceiling applied",
+    "CANNOT_VERIFY_NO_REPO": "legitimate but unverifiable this session (repo unreachable)",
+    "DONE_THIS_SESSION": "newly executed on real data this turn"
+  }
+}

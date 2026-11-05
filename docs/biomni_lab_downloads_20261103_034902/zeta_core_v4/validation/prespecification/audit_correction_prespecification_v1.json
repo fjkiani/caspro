@@ -1,0 +1,211 @@
+{
+  "authority": "Audit Correction Directive (14 items)",
+  "b1_support_rule_D10": {
+    "activation_gate": {
+      "calibration_slope_in": [
+        0.8,
+        1.2
+      ],
+      "consequence_of_passing": "NOTHING is activated. Absolute survival probability remains structurally disabled and a code change plus separate authorization would be required.",
+      "indeterminate_rule": "If a bootstrap CI for a gate metric spans the gate boundary, the gate is reported INDETERMINATE, never as a pass.",
+      "observed_to_expected_in": [
+        0.9,
+        1.1
+      ],
+      "requirement": "at EVERY gate-eligible horizon, AND IBS beats the frozen age+ECOG-only reference"
+    },
+    "bootstrap": {
+      "B": 1000,
+      "seed": 20260813,
+      "unit": "subject"
+    },
+    "confounding_disclosure": "TAX327 and VENICE differ in treatment, calendar period and follow-up. A failed transport does NOT invalidate the relative prognostic association; a pass would still be confounded and would still require CIs around every calibration metric.",
+    "gate_eligible_horizon_requires": {
+      "min_at_risk_in_TAX327_derivation_set": {
+        "justification": "The Breslow baseline increment at t is a sum over the risk set at t; below ~20 at risk the increment is driven by a handful of subjects and H0(t) is not estimable with usable precision.",
+        "value": 20
+      },
+      "min_cumulative_events_in_TAX327_by_horizon": {
+        "justification": "The conventional 10-events-per-parameter floor, applied to the cumulative baseline hazard evaluated at that horizon.",
+        "value": 10
+      }
+    },
+    "horizons_failing_support_are": "WEAK_SUPPORT, reported but EXCLUDED from gating",
+    "horizons_weeks_post_landmark": [
+      26,
+      52,
+      78,
+      104
+    ],
+    "transport_variants": {
+      "T1": "VENICE k mapped through the frozen TAX327 empirical CDF (strict frozen)",
+      "T2": "VENICE within-cohort midranks (the transform the locked model uses)"
+    }
+  },
+  "b4_cv_D11": {
+    "fold_local_requirements": [
+      "rank/inverse-normal transformation fitted on TRAINING rows only",
+      "spline knot locations chosen from TRAINING rows only",
+      "centering and scaling estimated on TRAINING rows only",
+      "Cox coefficients fitted on TRAINING rows only"
+    ],
+    "folds": 10,
+    "held_out_rule": "the frozen training transformation is APPLIED to held-out rows; held-out values falling outside the training support are mapped by the training transform's own extrapolation rule, never by re-ranking",
+    "metric": "out-of-sample partial log-likelihood, summed over folds",
+    "prohibited": "computing global ranks or global knots before splitting",
+    "seed": 20260813
+  },
+  "b8_selection_D12": {
+    "bootstrap": {
+      "B": 1000,
+      "scope": "the COMPLETE procedure including weight estimation",
+      "seed": 20260813,
+      "unit": "subject"
+    },
+    "eligibility_model_covariates": "BASELINE information only",
+    "positivity": "report min/max estimated eligibility probability and overlap",
+    "prohibited": "comparing pre-landmark deaths directly against landmark survivors as if their risk sets were aligned (immortal-time distortion)",
+    "time_zero": "randomization / treatment start (day 0), identical for all subjects",
+    "weights": {
+      "stabilized": true,
+      "truncation_percentiles": [
+        1.0,
+        99.0
+      ],
+      "truncation_prespecified": true
+    }
+  },
+  "band_gate_D2": {
+    "band_gate_observed": 0.6662,
+    "band_gate_pass": false,
+    "band_gate_required": 0.9,
+    "criterion_text": ">= 90% band concordance at the frozen quartile knots under joint CDF+beta bootstrap",
+    "prohibited_remedies": [
+      "adopting a +/-0.05 or +/-0.10 stable-zone exclusion rule",
+      "moving the 0.25 / 0.75 cut points",
+      "substituting full-grid or population-wide concordance for the prespecified quartile-knot criterion",
+      "re-deriving a band from reference_percentile in any UI-facing code"
+    ],
+    "quartile_mapping_retained_only_as": "exploratory_band_definition",
+    "runtime_consequence": {
+      "band_status": "UNSTABLE_NOT_FOR_RENDERING",
+      "relative_prognostic_band": null
+    },
+    "status": "ALREADY EVALUATED AND FAILED -- NOT RE-OPENED"
+  },
+  "binding_rule": "No threshold in this document may be revised after any result it governs has been observed. A revised threshold produces a NEW versioned document and the original result is reported against the original threshold.",
+  "cdf_grid_governance_D7": {
+    "candidates": [
+      "exact_446_knot",
+      "quantile_grid_101",
+      "quantile_grid_51"
+    ],
+    "decision_rule": "If a reduced grid meets ALL tolerances, prefer it (smaller disclosure surface). Otherwise retain the exact artifact only with explicit written approval and recorded provenance.",
+    "governance_note": "Sorting and de-identification do not by themselves make 446 exact patient-derived slopes non-patient-level data. A governance decision is required and is recorded as OPEN until given.",
+    "numerical_tolerance": {
+      "max_absolute_percentile_error": {
+        "justification": "One percentile point. Two orders of magnitude below the 0.25-wide narrowest band segment, so an approximation meeting it cannot move a value across a cut unless it was already within 0.01 of it.",
+        "value": 0.01
+      },
+      "max_absolute_relative_hazard_multiplier_error": {
+        "justification": "0.5% of a multiplier whose full observed range spans roughly 0.59 to 1.70; an order of magnitude below the width of the coefficient-conditional interval at any percentile.",
+        "value": 0.005
+      },
+      "max_boundary_classification_differences": {
+        "justification": "The exploratory band is already suppressed at runtime, so any boundary flip introduced purely by grid approximation is gratuitous risk with no offsetting benefit.",
+        "value": 0
+      }
+    }
+  },
+  "document": "zeta_core_v4_audit_correction_prespecification",
+  "fit_precision_D5": {
+    "bootstrap_design": {
+      "B": 1000,
+      "per_replicate_estimator": "locked recipe: OLS on natural-log PSA with plateau fixed at 0, positive floor 0.01, duplicates collapsed by median per day BEFORE resampling",
+      "replicate_rejected_if": "non-finite k, or fewer than 2 distinct days drawn",
+      "resampling_unit": "distinct analysis day within the locked 0-105 day window",
+      "seed": 20260813,
+      "seed_provenance": "same frozen seed as the B6 joint bootstrap",
+      "with_replacement": true
+    },
+    "explicitly_not_claimed": "These per-patient intervals are NOT a validated band activation gate. Activating any band requires a new prospectively defined gate evaluated on data not used to define it. This document does not define such a gate.",
+    "graded_fail_closed_policy": {
+      "INSUFFICIENT_FOR_UNCERTAINTY": "PARTIAL fail-closed: the four uncertainty intervals, decline_sign_stability and boundary_crossing_probability are null; the point index is still served. Justification: patients with exactly 3 distinct days ARE members of the validated n=446 population, so refusing them entirely would be the post-hoc cohort filter the directive prohibits.",
+      "SIGN_UNSTABLE": "FULL fail-closed with typed reason UNSTABLE_DECLINE_SIGN. Every numeric output null. Justification: if the sign of the decline is not stable the patient may not be a decliner at all, so the index is undefined for them -- this is the same category of defect as k_day <= 0.",
+      "artifact_checksum_or_version_failure": "FULL fail-closed, unchanged from Phase A.",
+      "rationale": "Directive item 5 requires failing closed on unstable decline and on insufficient observations, while simultaneously forbidding any change to the n=446 reference population and stating that precision status is an annotation, not a cohort filter. These are reconciled by grading the fail-closed by what is actually unsafe."
+    },
+    "leave_one_out_design": {
+      "eligible_if_n_distinct_days_ge": 4,
+      "reported": "maximum absolute percentile shift over all single-day deletions",
+      "unit": "distinct analysis day"
+    },
+    "status_definitions": {
+      "IMPRECISE": "sign stable, but percentile interval width > 0.20 OR boundary_crossing_probability > 0.10",
+      "INSUFFICIENT_FOR_UNCERTAINTY": "n_distinct_days < 4, or no observation series supplied, or finite replicate fraction < 0.80",
+      "RELIABLE": "none of the above",
+      "SIGN_UNSTABLE": "decline_sign_stability < 0.95"
+    },
+    "thresholds": {
+      "max_boundary_crossing_probability": {
+        "justification": "INHERITED, not invented: it is exactly the complement of the already-prespecified >= 0.90 band concordance criterion, applied per patient instead of per knot.",
+        "value": 0.1
+      },
+      "max_percentile_interval_width": {
+        "justification": "The exploratory band definition partitions the percentile scale into segments of width 0.25 / 0.50 / 0.25. An interval wider than 0.20 spans most of the NARROWEST segment (0.25), so the patient's position is unresolvable at band resolution. Derived from the fixed band geometry, not from any observed interval width.",
+        "value": 0.2
+      },
+      "min_decline_sign_stability": {
+        "justification": "The index is defined only for a POSITIVE decline rate. 0.95 is the complement of the conventional 0.05 two-sided error rate already used for the coefficient interval in this service.",
+        "value": 0.95
+      },
+      "min_distinct_days_for_uncertainty": {
+        "justification": "A 3-point fit of a 1-parameter log-linear model with an intercept has 1 residual degree of freedom; deleting a day leaves 0, so leave-one-out is undefined and the within-patient bootstrap is degenerate. This is a property of the estimator, not of the data.",
+        "value": 4
+      },
+      "min_finite_replicate_fraction": {
+        "justification": "Below this, the reported quantiles are dominated by which replicates failed rather than by the sampling distribution.",
+        "value": 0.8
+      }
+    }
+  },
+  "frozen_utc": "2026-08-13T00:00:00Z",
+  "interval_naming_D3": {
+    "mandated_statement": "This interval propagates Cox coefficient uncertainty only. It does not include uncertainty in the patient's PSA-rate fit, reference CDF or assay measurements.",
+    "new_name": "coefficient_conditional_relative_hazard_interval",
+    "old_name": "relative_hazard_multiplier_ci",
+    "prohibited_description": "patient-level confidence interval"
+  },
+  "landmark_scope_D8": {
+    "api_reality": "the service receives a caller flag and cannot verify dates",
+    "preferred": "derive eligibility from treatment-start and last-known-alive/event dates",
+    "prohibited": "describing caller attestation as validated eligibility",
+    "required_fields": {
+      "landmark_scope_source": "CALLER_ATTESTED",
+      "landmark_scope_verified": false
+    }
+  },
+  "metric_equivalence_D9": {
+    "consequence_if_failed": "B1 metrics are reported as UNVALIDATED with the exact discrepancy stated. The tolerance is not relaxed to manufacture agreement.",
+    "fixtures": "deterministic censored fixtures with fixed seeds, including tied event times, tied risk scores, censoring before the first event, and a no-censoring degenerate case",
+    "isolated_environment": "/workspace/.venv_sksurv",
+    "metrics": [
+      "IPCW (Graf) Brier score at fixed horizons",
+      "integrated Brier score",
+      "Uno time-dependent cumulative/dynamic AUC"
+    ],
+    "reference_library": "scikit-survival",
+    "tolerance": {
+      "justification": "Both implementations evaluate the same estimator in double precision; any disagreement above 1e-8 indicates a genuine convention or algorithmic difference, which must be diagnosed and reported rather than absorbed by loosening the tolerance.",
+      "max_absolute_difference": 1e-08
+    }
+  },
+  "rebuild_fidelity_D4": {
+    "consequence_if_failed": "Every downstream reliability result is labelled as pertaining to a REBUILT feature, not the locked feature. No substitution is made and the frozen artifact is not regenerated.",
+    "criterion": "Rebuilt k_day reproduces the locked k for the same patients with max |relative difference| <= 1e-9 and Spearman rho = 1.0",
+    "max_relative_difference": 1e-09,
+    "required_spearman": 1.0
+  },
+  "standing_constraint": "No result in this program activates absolute survival probability, treatment benefit, or treatment recommendation. Meeting any gate below changes no API field without separate written authorization.",
+  "version": "v1"
+}

@@ -1,0 +1,17 @@
+{
+  "caslib": "Colorec_Allianc_1997_182",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CEA"
+  ],
+  "indication": "colorectal",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 0,
+  "n_tabular_files": 0,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "1fafc479f92ba2cb53ce4b78bab92de444b8de379280c78943cd581fc33eff0f",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": []
+}

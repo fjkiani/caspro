@@ -1,0 +1,300 @@
+{
+  "flag_off": {
+    "patient_summary": "c",
+    "gates": {
+      "g": {
+        "status": "PASS",
+        "reason": "",
+        "inferred": false
+      }
+    },
+    "engines": {},
+    "ranked_interventions": [],
+    "missing_data": [],
+    "next_best_test": null,
+    "confidence_level": "L1",
+    "evidence_receipts": {},
+    "active_gates": {
+      "g": {
+        "status": "PASS",
+        "reason": "",
+        "inferred": false
+      }
+    },
+    "marrowguard": null,
+    "evo2_evidence": null,
+    "prognostic_baseline": {
+      "sample_id": "TCGA-04-1517-01",
+      "spe_tiers": {
+        "tier": "TIER_1_TRIPLE",
+        "tier_refined": "TIER_1A_ACCESSIBLE",
+        "spe_composite_score": 0.7271675896269849
+      },
+      "tier": "TIER_1_TRIPLE",
+      "tier_refined": "TIER_1A_ACCESSIBLE",
+      "immune_access_score": 0.0886342827490619,
+      "platinum_window": true,
+      "os_context": {
+        "os_months": 19.97371879106439,
+        "os_status": "1:DECEASED",
+        "note": "Prognostic SPE-tier association (TCGA hgsoc n=427, 3-tier log-rank p~0.003819). TIER_1A vs 1B log-rank p~0.126 (NS). Not a predictive/treatment claim."
+      },
+      "evidence_status": "prognostic_association"
+    },
+    "simulated_predictive_outcome": {
+      "status": "disabled"
+    },
+    "metadata": {
+      "status": "RUO",
+      "created": null,
+      "scoring_version": "3.0.0-dev",
+      "data_level": null
+    }
+  },
+  "eligible_on": {
+    "patient_summary": "c",
+    "gates": {
+      "g": {
+        "status": "PASS",
+        "reason": "",
+        "inferred": false
+      }
+    },
+    "engines": {},
+    "ranked_interventions": [],
+    "missing_data": [],
+    "next_best_test": null,
+    "confidence_level": "L1",
+    "evidence_receipts": {},
+    "active_gates": {
+      "g": {
+        "status": "PASS",
+        "reason": "",
+        "inferred": false
+      }
+    },
+    "marrowguard": null,
+    "evo2_evidence": null,
+    "prognostic_baseline": {
+      "sample_id": "TCGA-04-1517-01",
+      "spe_tiers": {
+        "tier": "TIER_1_TRIPLE",
+        "tier_refined": "TIER_1A_ACCESSIBLE",
+        "spe_composite_score": 0.7271675896269849
+      },
+      "tier": "TIER_1_TRIPLE",
+      "tier_refined": "TIER_1A_ACCESSIBLE",
+      "immune_access_score": 0.0886342827490619,
+      "platinum_window": true,
+      "os_context": {
+        "os_months": 19.97371879106439,
+        "os_status": "1:DECEASED",
+        "note": "Prognostic SPE-tier association (TCGA hgsoc n=427, 3-tier log-rank p~0.003819). TIER_1A vs 1B log-rank p~0.126 (NS). Not a predictive/treatment claim."
+      },
+      "evidence_status": "prognostic_association"
+    },
+    "simulated_predictive_outcome": {
+      "status": "simulated_predictive_reprogramming",
+      "mathematical_integrity": "deterministic_hypothesis",
+      "reproduction_basis": "artistry7_sequence_B_lazarus_simulator",
+      "flag_value": true,
+      "script_path": "publications/11-artistry7-hgsoc-subgroup/scripts/simulate_intervention.py",
+      "code_sha256": "aeee8b543bde0cbeff101b0343dc2743b99ef61c4f969cd78776d6e47648535b",
+      "dataroom_commit": "a54b8a11be7d0f1a58be256ade38b313408e0b11",
+      "input_sample_id": "TCGA-04-1517-01",
+      "run_id": "d1b21d09-0b72-42ea-a2ec-3c15f39a7f62",
+      "run_timestamp_utc": "2026-07-18T22:16:44.368718Z",
+      "analogy_note": "GSE102073 direction flip is NS (p~0.476); used as narrative analogy only, not a fitted survival model.",
+      "hypothesis": "If baseline = TIER_1_TRIPLE AND TIER_1A_ACCESSIBLE, does Sequence B (Metformin->Dupilumab->IO) produce a simulated score-space / universe shift consistent with the ARTISTRY-7 rescue narrative, using the existing Lazarus simulator (NOT a survival regression fit to 84.1)?",
+      "eligibility": {
+        "tier": "TIER_1_TRIPLE",
+        "tier_refined": "TIER_1A_ACCESSIBLE",
+        "platinum_window": true,
+        "platinum_status": "sensitive",
+        "flag_on": true
+      },
+      "sequence": [
+        "METFORMIN",
+        "DUPILUMAB",
+        "CHECKPOINT_INHIBITOR"
+      ],
+      "sequence_variant": "core",
+      "universe_threshold": 0.4,
+      "pre_scores": {
+        "mTOR_score": 0.169594,
+        "AMPK_INV_SCORE": -0.413286,
+        "IGF_score": -0.207484,
+        "M2_RISK_SCORE": -0.13239,
+        "TCELL_GPS_SCORE": -0.625821,
+        "MYELOID_FLOOD_SCORE": -0.551816,
+        "STROMAL_CAGE_SCORE": -0.583309,
+        "CAF_RISK_SCORE": -0.485013,
+        "TGFB_OUTPUT_SCORE": -0.214832,
+        "IMMUNE_ACCESS_SCORE": 0.088634
+      },
+      "post_scores": {
+        "mTOR_score": -0.180406,
+        "AMPK_INV_SCORE": -0.713286,
+        "IGF_score": -0.407484,
+        "M2_RISK_SCORE": -0.53239,
+        "TCELL_GPS_SCORE": 0.074179,
+        "MYELOID_FLOOD_SCORE": -0.801816,
+        "STROMAL_CAGE_SCORE": -0.583309,
+        "CAF_RISK_SCORE": -0.485013,
+        "TGFB_OUTPUT_SCORE": -0.214832,
+        "IMMUNE_ACCESS_SCORE": 0.456134
+      },
+      "universe_before": "A",
+      "universe_after": "B",
+      "universe_transition": "A->B",
+      "prereq_met": false,
+      "timeline": [
+        {
+          "drug": "METFORMIN",
+          "prereq_met": true,
+          "post_scores": {
+            "mTOR_score": -0.18040619736674657,
+            "AMPK_INV_SCORE": -0.7132861195130242,
+            "IGF_score": -0.40748410707517013,
+            "M2_RISK_SCORE": -0.1323895526506536,
+            "TCELL_GPS_SCORE": -0.6258212339621889,
+            "MYELOID_FLOOD_SCORE": -0.551816099320663,
+            "STROMAL_CAGE_SCORE": -0.5833085662868219,
+            "CAF_RISK_SCORE": -0.4850126337784717,
+            "TGFB_OUTPUT_SCORE": -0.2148323761824559,
+            "IMMUNE_ACCESS_SCORE": 0.08863428274906193
+          },
+          "universe": "A",
+          "notes": null
+        },
+        {
+          "drug": "DUPILUMAB",
+          "prereq_met": true,
+          "post_scores": {
+            "mTOR_score": -0.18040619736674657,
+            "AMPK_INV_SCORE": -0.7132861195130242,
+            "IGF_score": -0.40748410707517013,
+            "M2_RISK_SCORE": -0.5323895526506537,
+            "TCELL_GPS_SCORE": -0.4258212339621889,
+            "MYELOID_FLOOD_SCORE": -0.801816099320663,
+            "STROMAL_CAGE_SCORE": -0.5833085662868219,
+            "CAF_RISK_SCORE": -0.4850126337784717,
+            "TGFB_OUTPUT_SCORE": -0.2148323761824559,
+            "IMMUNE_ACCESS_SCORE": 0.2561342827490619
+          },
+          "universe": "A",
+          "notes": null
+        },
+        {
+          "drug": "CHECKPOINT_INHIBITOR",
+          "prereq_met": false,
+          "post_scores": {
+            "mTOR_score": -0.18040619736674657,
+            "AMPK_INV_SCORE": -0.7132861195130242,
+            "IGF_score": -0.40748410707517013,
+            "M2_RISK_SCORE": -0.5323895526506537,
+            "TCELL_GPS_SCORE": 0.0741787660378111,
+            "MYELOID_FLOOD_SCORE": -0.801816099320663,
+            "STROMAL_CAGE_SCORE": -0.5833085662868219,
+            "CAF_RISK_SCORE": -0.4850126337784717,
+            "TGFB_OUTPUT_SCORE": -0.2148323761824559,
+            "IMMUNE_ACCESS_SCORE": 0.456134282749062
+          },
+          "universe": "B",
+          "notes": "Ineffective if prerequisites not met (ARTISTRY-7 control failure mode)."
+        }
+      ],
+      "delta_summary": {
+        "AMPK_INV_SCORE": -0.3,
+        "CAF_RISK_SCORE": 0.0,
+        "IGF_score": -0.2,
+        "IMMUNE_ACCESS_SCORE": 0.3675,
+        "M2_RISK_SCORE": -0.4,
+        "MYELOID_FLOOD_SCORE": -0.25,
+        "STROMAL_CAGE_SCORE": 0.0,
+        "TCELL_GPS_SCORE": 0.7,
+        "TGFB_OUTPUT_SCORE": 0.0,
+        "mTOR_score": -0.35,
+        "IMMUNE_ACCESS_delta": 0.3675
+      },
+      "reference_anchor": {
+        "label": "PLATINUM_WINDOW_KM_MEDIAN_OS",
+        "value_months": 84.13,
+        "n": 9,
+        "events": 5,
+        "role": "cohort_anchor_not_patient_prediction"
+      },
+      "disclaimers": [
+        "RUO",
+        "not_clinical_decision_support",
+        "not_validated_predictive_biomarker",
+        "IMMUNE_ACCESS_external_AUROC_NOT_SUPPORTED"
+      ]
+    },
+    "metadata": {
+      "status": "RUO",
+      "created": null,
+      "scoring_version": "3.0.0-dev",
+      "data_level": null
+    }
+  },
+  "tier3_ineligible": {
+    "status": "ineligible",
+    "gate_failures": [
+      {
+        "gate": "tier",
+        "expected": "TIER_1_TRIPLE",
+        "actual": "TIER_3_NONE"
+      },
+      {
+        "gate": "tier_refined",
+        "expected": "TIER_1A_ACCESSIBLE",
+        "actual": "TIER_3_NONE"
+      },
+      {
+        "gate": "platinum_window",
+        "expected": true,
+        "actual": false
+      }
+    ],
+    "eligibility": {
+      "tier": "TIER_3_NONE",
+      "tier_refined": "TIER_3_NONE",
+      "platinum_window": false,
+      "flag_on": true
+    },
+    "disclaimers": [
+      "RUO",
+      "not_clinical_decision_support",
+      "not_validated_predictive_biomarker",
+      "IMMUNE_ACCESS_external_AUROC_NOT_SUPPORTED"
+    ]
+  },
+  "tier1b_ineligible": {
+    "status": "ineligible",
+    "gate_failures": [
+      {
+        "gate": "tier_refined",
+        "expected": "TIER_1A_ACCESSIBLE",
+        "actual": "TIER_1B_CAGED"
+      },
+      {
+        "gate": "platinum_window",
+        "expected": true,
+        "actual": false
+      }
+    ],
+    "eligibility": {
+      "tier": "TIER_1_TRIPLE",
+      "tier_refined": "TIER_1B_CAGED",
+      "platinum_window": false,
+      "flag_on": true
+    },
+    "disclaimers": [
+      "RUO",
+      "not_clinical_decision_support",
+      "not_validated_predictive_biomarker",
+      "IMMUNE_ACCESS_external_AUROC_NOT_SUPPORTED"
+    ]
+  }
+}

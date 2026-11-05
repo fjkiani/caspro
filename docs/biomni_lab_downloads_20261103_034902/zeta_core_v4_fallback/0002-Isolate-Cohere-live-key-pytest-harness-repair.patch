@@ -1,0 +1,221 @@
+From 80531e7f3fc0461ed7d72aa798fd7f6a92c4cc87 Mon Sep 17 00:00:00 2001
+From: Biomni <biomni@local>
+Date: Fri, 14 Aug 2026 00:50:11 +0000
+Subject: [PATCH 2/2] Isolate Cohere live-key pytest harness repair
+
+Makes collection side-effect free and separately tests absent, empty, valid-shape, and malformed credential states. Malformed credentials fail targeted execution; absent or empty optional live credentials skip without aborting collection.
+---
+ tests/test_cohere_with_key.py         | 129 ++++++++++----------------
+ tests/unit/test_cohere_key_harness.py |  51 ++++++++++
+ 2 files changed, 100 insertions(+), 80 deletions(-)
+ create mode 100644 tests/unit/test_cohere_key_harness.py
+
+diff --git a/tests/test_cohere_with_key.py b/tests/test_cohere_with_key.py
+index a9bf2906..ad65900b 100644
+--- a/tests/test_cohere_with_key.py
++++ b/tests/test_cohere_with_key.py
+@@ -1,95 +1,64 @@
+ #!/usr/bin/env python3
++"""Opt-in Cohere integration harness.
++
++Import and pytest collection are deliberately side-effect free: no network call,
++no process exit, no key printing. A live call requires both a syntactically
++plausible key and COHERE_LIVE_TEST=1.
+ """
+-Test Cohere integration with API key verification
+-"""
++from __future__ import annotations
+ 
+ import asyncio
+-import sys
+ import os
+-from pathlib import Path
+-from dotenv import load_dotenv
++import re
++from dataclasses import dataclass
++from typing import Callable, Optional
+ 
+-# Add parent directory to path
+-sys.path.insert(0, str(Path(__file__).parent.parent))
++import pytest
+ 
+-# Load .env
+-load_dotenv()
++KEY_PATTERN = re.compile(r"^[A-Za-z0-9_-]{20,200}$")
++PLACEHOLDER_FRAGMENTS = ("your-key", "changeme", "placeholder", "example")
+ 
+-print("=" * 80)
+-print("COHERE API KEY VERIFICATION")
+-print("=" * 80)
+ 
+-cohere_key = os.getenv("COHERE_API_KEY")
+-if not cohere_key:
+-    print("❌ COHERE_API_KEY not found in .env file")
+-    print("\n📝 To add it:")
+-    print("   1. Open: oncology-coPilot/oncology-backend-minimal/.env")
+-    print("   2. Find the line: COHERE_API_KEY=")
+-    print("   3. Add your key: COHERE_API_KEY=your-key-here")
+-    print("   4. Save the file")
+-    sys.exit(1)
++def classify_cohere_key(raw: Optional[str]) -> str:
++    if raw is None:
++        return "ABSENT"
++    value = raw.strip()
++    if not value:
++        return "EMPTY"
++    if not KEY_PATTERN.fullmatch(value) or any(x in value.lower() for x in PLACEHOLDER_FRAGMENTS):
++        return "MALFORMED"
++    return "VALID_SHAPE"
+ 
+-print(f"✅ COHERE_API_KEY found ({len(cohere_key)} characters)")
+-print(f"   First 10 chars: {cohere_key[:10]}...")
+ 
+-print("\n" + "=" * 80)
+-print("TESTING COHERE PROVIDER")
+-print("=" * 80)
++@dataclass(frozen=True)
++class ProbeResult:
++    provider_available: bool
++    response_has_text: bool
+ 
+-async def test_cohere():
+-    try:
+-        from api.services.llm_provider.llm_abstract import get_llm_provider, LLMProvider
+-        
+-        # Get Cohere provider
+-        provider = get_llm_provider(provider=LLMProvider.COHERE)
+-        
+-        if not provider:
+-            print("❌ Failed to get Cohere provider")
+-            return
+-        
+-        if not provider.is_available():
+-            print("❌ Cohere provider not available")
+-            print("   - Check COHERE_API_KEY is correct")
+-            print("   - Check 'cohere' library is installed: pip install cohere")
+-            return
+-        
+-        print(f"✅ Cohere provider initialized")
+-        print(f"   - Provider: Cohere")
+-        print(f"   - Model: {provider.get_default_model()}")
+-        
+-        print("\n⏳ Testing Cohere API call...")
+-        
+-        response = await provider.chat(
+-            message="Say 'Hello from Cohere' if you can read this. Then explain what you are in one sentence.",
+-            max_tokens=100,
+-            temperature=0.0
+-        )
+-        
+-        print(f"\n✅ Cohere API call successful!")
+-        print(f"   - Response: {response.text}")
+-        print(f"   - Provider: {response.provider}")
+-        print(f"   - Model: {response.model}")
+-        print(f"   - Tokens used: {response.tokens_used}")
+-        
+-        return True
+-        
+-    except Exception as e:
+-        print(f"\n❌ Cohere test failed: {e}")
+-        import traceback
+-        traceback.print_exc()
+-        return False
+ 
+-# Run test
+-success = asyncio.run(test_cohere())
++async def run_cohere_probe(key: str, provider_factory: Optional[Callable] = None) -> ProbeResult:
++    """Run one minimal probe; injectable factory keeps unit tests offline."""
++    assert classify_cohere_key(key) == "VALID_SHAPE", "COHERE_KEY_MALFORMED"
++    if provider_factory is None:
++        from api.services.llm_provider.llm_abstract import LLMProvider, get_llm_provider
++        provider = get_llm_provider(provider=LLMProvider.COHERE)
++    else:
++        provider = provider_factory()
++    available = bool(provider and provider.is_available())
++    if not available:
++        return ProbeResult(False, False)
++    response = await provider.chat(message="Reply with OK.", max_tokens=8, temperature=0.0)
++    return ProbeResult(True, bool(getattr(response, "text", "").strip()))
+ 
+-if success:
+-    print("\n" + "=" * 80)
+-    print("✅ ALL TESTS PASSED - Cohere is working!")
+-    print("=" * 80)
+-    print("\nNext: Test Research Intelligence endpoint:")
+-    print("  python3 tests/test_research_intelligence_e2e.py")
+-else:
+-    print("\n" + "=" * 80)
+-    print("❌ TESTS FAILED")
+-    print("=" * 80)
+ 
++def test_cohere_live_integration():
++    raw = os.getenv("COHERE_API_KEY")
++    state = classify_cohere_key(raw)
++    if state in ("ABSENT", "EMPTY"):
++        pytest.skip(f"COHERE_KEY_{state}: optional live integration credential not configured")
++    assert state == "VALID_SHAPE", "COHERE_KEY_MALFORMED"
++    if os.getenv("COHERE_LIVE_TEST") != "1":
++        pytest.skip("COHERE_LIVE_OPT_IN_REQUIRED")
++    result = asyncio.run(run_cohere_probe(raw.strip()))
++    assert result.provider_available, "COHERE_PROVIDER_UNAVAILABLE"
++    assert result.response_has_text, "COHERE_EMPTY_RESPONSE"
+diff --git a/tests/unit/test_cohere_key_harness.py b/tests/unit/test_cohere_key_harness.py
+new file mode 100644
+index 00000000..965c22c4
+--- /dev/null
++++ b/tests/unit/test_cohere_key_harness.py
+@@ -0,0 +1,51 @@
++import asyncio, os, subprocess, sys
++from types import SimpleNamespace
++import pytest
++
++from tests.test_cohere_with_key import (
++    classify_cohere_key,
++    run_cohere_probe,
++    test_cohere_live_integration as live_integration_check,
++)
++
++
++@pytest.mark.parametrize("value,state", [
++    (None,"ABSENT"),("","EMPTY"),("   ","EMPTY"),("short","MALFORMED"),
++    ("your-key-here-1234567890","MALFORMED"),("A_validly_shaped_key_123456789","VALID_SHAPE")])
++def test_key_classification(value,state):
++    assert classify_cohere_key(value)==state
++
++
++class FakeProvider:
++    def is_available(self): return True
++    async def chat(self, **kwargs): return SimpleNamespace(text="OK")
++
++
++def test_valid_shape_enters_provider_path_without_network():
++    key="A_validly_shaped_key_123456789"
++    result=asyncio.run(run_cohere_probe(key, provider_factory=FakeProvider))
++    assert result.provider_available and result.response_has_text
++
++
++def test_malformed_targeted_execution_fails_not_skips(monkeypatch):
++    monkeypatch.setenv("COHERE_API_KEY","malformed")
++    monkeypatch.setenv("COHERE_LIVE_TEST","1")
++    with pytest.raises(AssertionError,match="COHERE_KEY_MALFORMED"):
++        live_integration_check()
++
++
++@pytest.mark.parametrize("mode,value", [("absent",None),("empty",""),("valid","A_validly_shaped_key_123456789"),("malformed","bad")])
++def test_collection_never_aborts_for_key_state(mode,value):
++    env=os.environ.copy(); env.pop("COHERE_API_KEY",None); env.pop("COHERE_LIVE_TEST",None)
++    if value is not None: env["COHERE_API_KEY"]=value
++    p=subprocess.run([sys.executable,"-m","pytest","--collect-only","-q","-p","no:cacheprovider",
++                      "tests/test_cohere_with_key.py"],cwd=os.getcwd(),env=env,capture_output=True,text=True)
++    assert p.returncode==0, (mode,p.stdout,p.stderr)
++    assert "test_cohere_live_integration" in p.stdout
++
++
++def test_absent_and_empty_skip_without_hiding_malformed(monkeypatch):
++    monkeypatch.delenv("COHERE_API_KEY",raising=False)
++    with pytest.raises(pytest.skip.Exception,match="COHERE_KEY_ABSENT"): live_integration_check()
++    monkeypatch.setenv("COHERE_API_KEY","   ")
++    with pytest.raises(pytest.skip.Exception,match="COHERE_KEY_EMPTY"): live_integration_check()
+-- 
+2.39.5
+

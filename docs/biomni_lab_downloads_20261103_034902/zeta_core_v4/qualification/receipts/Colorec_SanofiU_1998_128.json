@@ -1,0 +1,7206 @@
+{
+  "caslib": "Colorec_SanofiU_1998_128",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CEA"
+  ],
+  "indication": "colorectal",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 38,
+  "n_tabular_files": 38,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "67ed3aec311af662c54cab123344b875fce78300ce7afe471e8bf4207b772567",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PREFERRED TERM DECODE",
+          "name": "TERMDEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TOXICITY GRADE (DECODE)",
+          "name": "TOXGRA_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SELECTED SYSTEM ORGAN CLASS DECODE",
+          "name": "SOSELDEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SOURCE PANEL FOR AE",
+          "name": "AESOURCE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WHO ART RECORD NUMBER",
+          "name": "CODE_AE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "WHO ART SEQUENCE NUMBER 2",
+          "name": "SEQ_2_AE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PREFERED SYSTEM-ORGAN CLASS CODE",
+          "name": "SO_PF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SELECTED SYSTEM-ORGAN CLASS CODE",
+          "name": "SO_SEL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAE NUMBER",
+          "name": "CASEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "FIRST DOSE DAY",
+          "name": "DTF_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LAST DOSE DAY",
+          "name": "DTL_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF ONSET",
+          "name": "ONSET_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF RECOVERY",
+          "name": "RESOL_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "CODE_AE",
+          "SEQ_2_AE"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE_N",
+          "AGE_DV",
+          "DTF_DY",
+          "DTL_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 28114,
+      "path": "dataFiles_777/ae_cycl.sas7bdat",
+      "size": 13115392,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "HEIGHT (BASELINE)",
+          "name": "HT_BA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "HEIGHT (BASELINE) UNIT",
+          "name": "HT_BAUN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WEIGHT (BASELINE) UNIT",
+          "name": "WT_BAUN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "KPS (BASELINE)",
+          "name": "KPS_BA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KPS (BASELINE) UNIT",
+          "name": "KPS_BAUN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "KPS (BASELINE) IN CLASS (DECODE)",
+          "name": "KPS_C_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ECG (BASELINE DECODE)",
+          "name": "ECG_BA_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CEA (BASELINE)",
+          "name": "CEA_BA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CEA (BASELINE) UNIT",
+          "name": "CEA_BAUN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VENOUS INVASION (BASELINE DECODE)",
+          "name": "VI_BA_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "AGE IN CLASS (DECODE)",
+          "name": "AGE_C_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WEIGHT (BASELINE)",
+          "name": "WT_BA",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [
+          "HT_BAUN",
+          "WT_BAUN",
+          "KPS_BAUN",
+          "CEA_BAUN"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1122,
+      "path": "dataFiles_777/baselin.sas7bdat",
+      "size": 401408,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE DAY (NUM)",
+          "name": "DAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE DAY (NUM)",
+          "name": "RELDAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU",
+          "name": "CCUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU BOLUS",
+          "name": "CCUM5FUB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU CONTINUOUS",
+          "name": "CCUM5FUC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE OXALIPLATIN",
+          "name": "CCUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE LV",
+          "name": "CCUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE_N",
+          "DAY_N",
+          "CCUM_5FU",
+          "CCUM5FUB",
+          "CCUM5FUC",
+          "CCUM_OX",
+          "CCUM_LV",
+          "AGE_DV",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "SF_ARM",
+          "PP_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 265458,
+      "path": "dataFiles_777/chrono.sas7bdat",
+      "size": 70934528,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE DAY (NUM)",
+          "name": "DAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE DAY (NUM)",
+          "name": "RELDAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU",
+          "name": "CCUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU BOLUS",
+          "name": "CCUM5FUB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU CONTINUOUS",
+          "name": "CCUM5FUC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE OXALIPLATIN",
+          "name": "CCUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE LV",
+          "name": "CCUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE_N",
+          "DAY_N",
+          "CCUM_5FU",
+          "CCUM5FUB",
+          "CCUM5FUC",
+          "CCUM_OX",
+          "CCUM_LV",
+          "AGE_DV",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "SF_ARM",
+          "PP_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 86553,
+      "path": "dataFiles_777/chrono_1.sas7bdat",
+      "size": 23158784,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE DAY (NUM)",
+          "name": "DAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE DAY (NUM)",
+          "name": "RELDAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU",
+          "name": "CCUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU BOLUS",
+          "name": "CCUM5FUB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU CONTINUOUS",
+          "name": "CCUM5FUC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE OXALIPLATIN",
+          "name": "CCUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE LV",
+          "name": "CCUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE_N",
+          "DAY_N",
+          "CCUM_5FU",
+          "CCUM5FUB",
+          "CCUM5FUC",
+          "CCUM_OX",
+          "CCUM_LV",
+          "AGE_DV",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "SF_ARM",
+          "PP_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 89290,
+      "path": "dataFiles_777/chrono_2.sas7bdat",
+      "size": 23871488,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE DAY (NUM)",
+          "name": "DAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE DAY (NUM)",
+          "name": "RELDAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU",
+          "name": "CCUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU BOLUS",
+          "name": "CCUM5FUB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU CONTINUOUS",
+          "name": "CCUM5FUC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE OXALIPLATIN",
+          "name": "CCUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE LV",
+          "name": "CCUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLE_N",
+          "DAY_N",
+          "CCUM_5FU",
+          "CCUM5FUB",
+          "CCUM5FUC",
+          "CCUM_OX",
+          "CCUM_LV",
+          "AGE_DV",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "SF_ARM",
+          "PP_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 89615,
+      "path": "dataFiles_777/chrono_3.sas7bdat",
+      "size": 23969792,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "CRITERIA IDENTIFIER",
+          "name": "ID_CR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRITERIA LABEL",
+          "name": "LB_CR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRITERIA RESPONSE (DECODE)",
+          "name": "NY_CR_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 21318,
+      "path": "dataFiles_777/crit.sas7bdat",
+      "size": 8658944,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ADMINISTRATION DELAY (Y/N) (DECODE)",
+          "name": "DELNY_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ADVERSE EVENT (DECODE)",
+          "name": "AETK_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PERSONAL CONVENIENCE (DECODE)",
+          "name": "PERSOT_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "OTHER REASON (DECODE)",
+          "name": "OTHERT_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ACTUAL DELAYS (DAYS)",
+          "name": "DELDAYS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OXA. REDUCED CYCLE (Y/N) (DECODE)",
+          "name": "DROX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "5-FU CONT. REDUCED CYCLE (Y/N) (DECODE)",
+          "name": "DR5FUC_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "5-FU BOLUS. REDUCED CYCLE (Y/N) (DECODE)",
+          "name": "DR5FUB_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE DAY (NUM)",
+          "name": "RELDAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU",
+          "name": "CCUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU BOLUS",
+          "name": "CCUM5FUB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE 5-FU CONTINUOUS",
+          "name": "CCUM5FUC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE OXALIPLATIN",
+          "name": "CCUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE CUMULATIVE LV",
+          "name": "CCUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "FIRST DOSE DAY",
+          "name": "DTF_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LAST DOSE DAY",
+          "name": "DTL_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "START DAY OF DOSING",
+          "name": "STDOS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AETK_F",
+          "STDOS_DY"
+        ],
+        "patient": [],
+        "time": [
+          "DROX_F",
+          "DR5FUC_F",
+          "DR5FUB_F",
+          "AGE_DV",
+          "CYCLE_N",
+          "CCUM_5FU",
+          "CCUM5FUB",
+          "CCUM5FUC",
+          "CCUM_OX",
+          "CCUM_LV",
+          "DTF_DY",
+          "DTL_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 11373,
+      "path": "dataFiles_777/delay.sas7bdat",
+      "size": 4800512,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1122,
+      "path": "dataFiles_777/demog.sas7bdat",
+      "size": 221184,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "DEVIATION CRITERIA NUMBER",
+          "name": "DEVNUM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DEVIATION CRITERIA DEFINITION",
+          "name": "DEVCRIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "MAJOR/MINOR DEVIATION (1=MAJOR,2=MINOR)",
+          "name": "DEVMAJOR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DEVIATION TYPE (1=BASELINE,2=ON STUDY)",
+          "name": "DEVTYPE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SOURCE PANEL FOR DEVIATION DEFINITION",
+          "name": "DEVPANEL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "1ST CHEMO DAY BEFORE RELAPSE",
+          "name": "CHEMDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 464,
+      "path": "dataFiles_777/dev.sas7bdat",
+      "size": 303104,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LABEL ID",
+          "name": "LABELID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DRUG RECEIVED",
+          "name": "DRUG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PRESCRIBED DOSE (CHAR)",
+          "name": "DOSRXNX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PRESCRIBED DOSE (NUM)",
+          "name": "DOSRXNB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PRESCRIBED DOSE UNIT (DECODE)",
+          "name": "DOSRXU_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ACTUAL DOSE (CHAR)",
+          "name": "DOSACNX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ACTUAL DOSE (NUM)",
+          "name": "DOSACNB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ACTUAL DOSE UNIT (DECODE)",
+          "name": "DOSACU_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE DAY (NUM)",
+          "name": "DAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE DAY (NUM)",
+          "name": "RELDAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "FIRST DOSE DAY",
+          "name": "DTF_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LAST DOSE DAY",
+          "name": "DTL_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "START DAY OF DOSING",
+          "name": "STDOS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "STDOS_DY"
+        ],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "CYCLE_N",
+          "DAY_N",
+          "DTF_DY",
+          "DTL_DY",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [
+          "DOSRXU_F",
+          "DOSACU_F"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 87369,
+      "path": "dataFiles_777/dose.sas7bdat",
+      "size": 38920192,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LABEL ID",
+          "name": "LABELID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DRUG RECEIVED",
+          "name": "DRUG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PRESCRIBED DOSE (CHAR)",
+          "name": "DOSRXNX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PRESCRIBED DOSE (NUM)",
+          "name": "DOSRXNB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PRESCRIBED DOSE UNIT (DECODE)",
+          "name": "DOSRXU_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ACTUAL DOSE (CHAR)",
+          "name": "DOSACNX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ACTUAL DOSE (NUM)",
+          "name": "DOSACNB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ACTUAL DOSE UNIT (DECODE)",
+          "name": "DOSACU_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE DAY (NUM)",
+          "name": "DAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE DAY (NUM)",
+          "name": "RELDAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "FIRST DOSE DAY",
+          "name": "DTF_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LAST DOSE DAY",
+          "name": "DTL_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "START DAY OF DOSING",
+          "name": "STDOS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "STDOS_DY"
+        ],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "CYCLE_N",
+          "DAY_N",
+          "DTF_DY",
+          "DTL_DY",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [
+          "DOSRXU_F",
+          "DOSACU_F"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 44109,
+      "path": "dataFiles_777/dose_1.sas7bdat",
+      "size": 19668992,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LABEL ID",
+          "name": "LABELID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DRUG RECEIVED",
+          "name": "DRUG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PRESCRIBED DOSE (CHAR)",
+          "name": "DOSRXNX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PRESCRIBED DOSE (NUM)",
+          "name": "DOSRXNB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PRESCRIBED DOSE UNIT (DECODE)",
+          "name": "DOSRXU_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ACTUAL DOSE (CHAR)",
+          "name": "DOSACNX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ACTUAL DOSE (NUM)",
+          "name": "DOSACNB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ACTUAL DOSE UNIT (DECODE)",
+          "name": "DOSACU_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE DAY (NUM)",
+          "name": "DAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE DAY (NUM)",
+          "name": "RELDAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "FIRST DOSE DAY",
+          "name": "DTF_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LAST DOSE DAY",
+          "name": "DTL_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "START DAY OF DOSING",
+          "name": "STDOS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "STDOS_DY"
+        ],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "CYCLE_N",
+          "DAY_N",
+          "DTF_DY",
+          "DTL_DY",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [
+          "DOSRXU_F",
+          "DOSACU_F"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 43260,
+      "path": "dataFiles_777/dose_2.sas7bdat",
+      "size": 19300352,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "ECG NORMAL ABNORMAL (DECODE)",
+          "name": "ECGNAB_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY PERFORMED (ECG )",
+          "name": "EVDY_EC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "EVDY_EC"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1122,
+      "path": "dataFiles_777/ecg.sas7bdat",
+      "size": 278528,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "REASON FOR END OF TRIAL (DECODE)",
+          "name": "DISRSO_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF END OF TRIAL (IN DAYS)",
+          "name": "ENDST_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Week of End of Trial (in weeks)",
+          "name": "ENDST_WK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "ENDST_WK",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 184,
+      "path": "dataFiles_777/endst.sas7bdat",
+      "size": 57344,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "REASON FOR STOPPING TREATMENT (DECODE)",
+          "name": "REASEN_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE DAY (NUM)",
+          "name": "DAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE DAY (NUM)",
+          "name": "RELDAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OFF TREATMENT (IN DAYS)",
+          "name": "ENDTT_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LAST DRUG ADMINISTRATION DAY",
+          "name": "LDRG_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Week off Treatment (in weeks)",
+          "name": "ENDTT_WK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "CYCLE_N",
+          "DAY_N",
+          "KEY_DY",
+          "LDRG_DY",
+          "ENDTT_WK",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "REASEN_F",
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM",
+          "ENDTT_DY",
+          "ENDTT_WK"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1122,
+      "path": "dataFiles_777/endtt.sas7bdat",
+      "size": 352256,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "METHOD OF CONTACT (DECODE)",
+          "name": "CONTAC_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DISEASE RELAPSE/RECURRENCE ? (DECODE)",
+          "name": "PROG_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "METASTASES (DECODE)",
+          "name": "TK1_FO_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "METASTASES LOCATION, SPECIFY",
+          "name": "CM02_FO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "METASTASE LOCATION CODE ORGAN1 (DECODE)",
+          "name": "SITE1M_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "METASTASE LOCATION CODE ORGAN2 (DECODE)",
+          "name": "SITE2M_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "METASTASE LOCATION CODE ORGAN3 (DECODE)",
+          "name": "SITE3M_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "METASTASE LOCATION CODE ORGAN4 (DECODE)",
+          "name": "SITE4M_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SECOND COLORECTAL CANCER (DECODE)",
+          "name": "TK2_FO_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LOCAL RELAPSE (DECODE)",
+          "name": "TK3_FO_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT CONDITION (DECODE)",
+          "name": "SCOND_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "REASON FOR DEATH (DECODE)",
+          "name": "DEADRE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AUTOPSY (Y/N) (DECODE)",
+          "name": "AUTOPN_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DAY OF STATUS (FOLLOWUP )",
+          "name": "EVDY_FO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF RELAPSE",
+          "name": "PROGDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Week of Death (in weeks)",
+          "name": "DEADWK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "DEADRE_F",
+          "DEADWK"
+        ],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "KEY_DY",
+          "DEADWK",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "ARM",
+          "DOSE",
+          "DOSE_FMT",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 6105,
+      "path": "dataFiles_777/followup.sas7bdat",
+      "size": 3596288,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "LONG TERM TOXICITY DESCRIPTION",
+          "name": "CM_LT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 65,
+      "path": "dataFiles_777/lgttox.sas7bdat",
+      "size": 40960,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PRIMARY SITE (DECODE)",
+          "name": "PSITE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "INITIAL PATHOLOGY CELL TYPE (DECODE)",
+          "name": "CTYPE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "HISTOLOGY (DECODE)",
+          "name": "HISTOL_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BOWEL OBSTRUCTION (YES/NO) (DECODE)",
+          "name": "NY01_M_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PERFORATION (YES/NO) (DECODE)",
+          "name": "NY02_M_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WEEKS SINCE INITIAL DIAGNOSIS",
+          "name": "D_DIRAND",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF INITIAL DIAGNOSIS (MALIGN )",
+          "name": "EVDY_MA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "NY02_M_F"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "D_DIRAND",
+          "AGE_DV",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1122,
+      "path": "dataFiles_777/malign.sas7bdat",
+      "size": 368640,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "TUMOR MEASUREMENT LABEL",
+          "name": "LB_MK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LABORATORY SITE IDENTIFIER",
+          "name": "LAB_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TEST IDENTIFIER (DECODE)",
+          "name": "LABTES_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LAB TEST RESULT (CHAR)",
+          "name": "CEAX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LAB TEST RESULT (NUM)",
+          "name": "CEAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LAB TEST RESULT (NUM, CLASS) (DECODE)",
+          "name": "CEAN_C_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TEST UNIT",
+          "name": "UN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "UPPER BOUND (LOCAL, CHAR)",
+          "name": "VALUX_HL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "UPPER BOUND (LOCAL, NUM)",
+          "name": "VALUE_HL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OUT OF RANGE FLAG - SR (DECODE)",
+          "name": "OUTR_S_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY PERFORMED (CEA )",
+          "name": "EVDY_MK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "EVDY_MK"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [
+          "UN"
+        ],
+        "value": [
+          "CEAX",
+          "CEAN",
+          "CEAN_C_F",
+          "VALUE_HL"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 9192,
+      "path": "dataFiles_777/marker.sas7bdat",
+      "size": 4308992,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "MEDICAL HISTORY SYSTEM (DECODE)",
+          "name": "MEDHSY_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ANY ABNORMALITY ? (DECODE)",
+          "name": "NY_ME_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PRESENT AT STUDY START (DECODE)",
+          "name": "TK_ME_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 20196,
+      "path": "dataFiles_777/medhist.sas7bdat",
+      "size": 4751360,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "POST TREATMENT (DECODE)",
+          "name": "POSTTK_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LINE NUMBER ON CRF FOR POST TRT THERAPY",
+          "name": "ID_MD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "MEDICATION VERBATIM (MED)",
+          "name": "TERM_MD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PREFERRED TERM DECODE (MED)",
+          "name": "TERMDECM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ATC TEXT - FIRST LEVEL",
+          "name": "TERMATC1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ATC TEXT - SECOND LEVEL",
+          "name": "TERMATC2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ATC TEXT - THIRD LEVEL",
+          "name": "TERMATC3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WHO DRUG RECORD NUMBER",
+          "name": "CODENO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "WHO DRUG SEQUENCE NUMBER 1",
+          "name": "SEQ_1",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "WHO DRUG SEQUENCE NUMBER 2",
+          "name": "SEQ_2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "THERAPY TYPE (DECODE)",
+          "name": "TXTY_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "END DAY (MED )",
+          "name": "ENDMD_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "START DAY (MED )",
+          "name": "STMD_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "CODENO",
+          "SEQ_1",
+          "SEQ_2"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "POSTTK_F",
+          "ID_MD",
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 990,
+      "path": "dataFiles_777/medpost.sas7bdat",
+      "size": 647168,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "NEUROTOXICITY GRADE>=1 ?",
+          "name": "NEURO1",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE AT GR>=1 1ST ONSET",
+          "name": "NCYCL1",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OXA.CUM.DOSE AT GR>=1 1ST ONSET",
+          "name": "NCUM1",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OXA.DOSE CLASS GR>=1 1ST ONSET (DECODE)",
+          "name": "NCUM1C_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NEUROTOXICITY GRADE>=2 ?",
+          "name": "NEURO2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE AT GR>=2 1ST ONSET",
+          "name": "NCYCL2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OXA.CUM.DOSE AT GR>=2 1ST ONSET",
+          "name": "NCUM2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OXA.DOSE CLASS GR>=2 1ST ONSET (DECODE)",
+          "name": "NCUM2C_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NEUROTOXICITY GRADE>=3 ?",
+          "name": "NEURO3",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE AT GR>=3 1ST ONSET",
+          "name": "NCYCL3",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OXA.CUM.DOSE AT GR>=3 1ST ONSET",
+          "name": "NCUM3",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OXA.DOSE CLASS GR>=3 1ST ONSET (DECODE)",
+          "name": "NCUM3C_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "NCYCL1",
+          "NCYCL2",
+          "NCYCL3",
+          "AGE_DV",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 0,
+      "path": "dataFiles_777/neurocum.sas7bdat",
+      "size": 32768,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ADVERSE EVENT VERBATIM",
+          "name": "TERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PREFERRED TERM DECODE",
+          "name": "TERMDEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NEUROTOXICITY GRADE BY CYCLE/FU (DECODE)",
+          "name": "NGRADE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TOXICITY GRADE (DECODE)",
+          "name": "TOXGRA_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TOXICITY CURRENT GRADE (DECODE)",
+          "name": "CURGRA_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SELECTED SYSTEM ORGAN CLASS DECODE",
+          "name": "SOSELDEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WHO ART RECORD NUMBER",
+          "name": "CODE_AE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "WHO ART SEQUENCE NUMBER 2",
+          "name": "SEQ_2_AE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PREFERED SYSTEM-ORGAN CLASS CODE",
+          "name": "SO_PF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SELECTED SYSTEM-ORGAN CLASS CODE",
+          "name": "SO_SEL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NEUROTOX COMPLETE RESOLUTION DAY",
+          "name": "NTCR_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "CODE_AE",
+          "SEQ_2_AE"
+        ],
+        "endpoint": [
+          "TERM"
+        ],
+        "patient": [],
+        "time": [
+          "NGRADE_F",
+          "AGE_DV",
+          "CYCLE_N",
+          "NTCR_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 19508,
+      "path": "dataFiles_777/neurotox.sas7bdat",
+      "size": 12910592,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ADVERSE EVENT NUMBER ON CRF",
+          "name": "ID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PREFERRED TERM DECODE",
+          "name": "TERMDEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TOXICITY GRADE (DECODE)",
+          "name": "TOXGRA_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SELECTED SYSTEM ORGAN CLASS DECODE",
+          "name": "SOSELDEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WHO ART RECORD NUMBER",
+          "name": "CODE_AE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "WHO ART SEQUENCE NUMBER 2",
+          "name": "SEQ_2_AE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PREFERED SYSTEM-ORGAN CLASS CODE",
+          "name": "SO_PF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SELECTED SYSTEM-ORGAN CLASS CODE",
+          "name": "SO_SEL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "CODE_AE",
+          "SEQ_2_AE"
+        ],
+        "endpoint": [
+          "ID"
+        ],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "CYCLE_N",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 8207,
+      "path": "dataFiles_777/nsae.sas7bdat",
+      "size": 3448832,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PHYSICAL EXAMINATION SYSTEM (DECODE)",
+          "name": "PHYSSY_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "FINDINGS (DECODE)",
+          "name": "NAB_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY PERFORMED (PHYSEXAM )",
+          "name": "EVDY_PE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "EVDY_PE"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 15708,
+      "path": "dataFiles_777/physexa1.sas7bdat",
+      "size": 3694592,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "CLINICALLY SIGNIFICANT CHANGES ?(DECODE)",
+          "name": "NY_PE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE DAY (NUM)",
+          "name": "DAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE DAY (NUM)",
+          "name": "RELDAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY PERFORMED (PHYSEXAM )",
+          "name": "EVDY_PE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "EVDY_PE"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "CYCLE_N",
+          "DAY_N",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 12485,
+      "path": "dataFiles_777/physexa2.sas7bdat",
+      "size": 3350528,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE: <65, 65+",
+          "name": "AGE_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RANDOMIZED TREATMENT: ARM B, ARM A",
+          "name": "ARM_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BASELINE CEA POST-SURGERY: <5, 5+",
+          "name": "CEAA_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BASELINE CEA PRE-SURGERY: <5, 5+",
+          "name": "CEAB_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DIFFERENTIATION: (POOR), (WELL OR MODERATE)",
+          "name": "DIFF_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "KPS: (90,100) or (<90)",
+          "name": "KPS_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF LYMPH NODES: (N0,N1) or (N2)",
+          "name": "N_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "OBSTRUCTION: NO or YES",
+          "name": "OCCL_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PERFORATION: ABSENT or PRESENT",
+          "name": "PERF_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROGNOSTIC GROUP",
+          "name": "PROG_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE: CAUCASIAN or NON-CAUCASIAN",
+          "name": "RACE_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SEX: FEMALE or MALE",
+          "name": "SEX_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PRIMARY SITE: (COLON) or (SIGMOID,OTHER)",
+          "name": "SITE_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BASELINE DISEASE STAGE: B2 or C",
+          "name": "STAG_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "T CLASSIFICATION: ANY T BUT 4 or T4",
+          "name": "T_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VENOUS INVASION: ABSENT or PRESENT",
+          "name": "VENO_P_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "REGION OF THE WORLD",
+          "name": "REGION",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "PERF_P_F"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM",
+          "ARM_P_F"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1122,
+      "path": "dataFiles_777/prognos.sas7bdat",
+      "size": 434176,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "METHOD OF MEASURE IDENTIFIER",
+          "name": "ID_RE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "METHOD OF MEASURE (DECODE)",
+          "name": "METHOD_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "METHOD OF MEASURE DESCRIPTION",
+          "name": "LB_RE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RADIOLOGICAL EVAL. PERFORMED ? (DECODE)",
+          "name": "NY_RE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NORMAL (DECODE)",
+          "name": "TK1_RE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ABNORMAL DUE TO RELAPSE (DECODE)",
+          "name": "TK2_RE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ABNORMAL DUE TO OTHER (DECODE)",
+          "name": "TK3_RE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RADIOLOGICAL EVALUATION DAY",
+          "name": "EVDY_RE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "NY_RE_F"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "EVDY_RE",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "ARM",
+          "DOSE",
+          "DOSE_FMT",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 34834,
+      "path": "dataFiles_777/radeval.sas7bdat",
+      "size": 13148160,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "TREATMENT ARM DESCRIPTION",
+          "name": "LB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ELIGIBLE PATIENT",
+          "name": "ELIG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "RANDOMIZATION DAY",
+          "name": "EVDY_RA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "ELIG"
+        ],
+        "time": [
+          "AGE_DV",
+          "EVDY_RA",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "LB",
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1122,
+      "path": "dataFiles_777/random.sas7bdat",
+      "size": 303104,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PREFERRED TERM DECODE",
+          "name": "TERMDEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TIME OF ONSET (CHAR)",
+          "name": "ONSET_TX",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "TIME OF ONSET (NUM)",
+          "name": "ONSET_TM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DEATH (DECODE)",
+          "name": "DTHNY_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LIFE-THREATENING (DECODE)",
+          "name": "LTTNY_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "INPATIENT HOSPITALIZATION (DECODE)",
+          "name": "HOSPNY_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DISABILITY OR INCAPACITY (DECODE)",
+          "name": "INCNY_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CONGEN ANOMALY / BIRTH DEF (DECODE)",
+          "name": "CONGNY_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "OTHER (DECODE)",
+          "name": "OTNY_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TOXICITY GRADE (DECODE)",
+          "name": "TOXGRA_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TIME OF RECOVERY (CHAR)",
+          "name": "RESOL_TX",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "TIME OF RECOVERY (NUM)",
+          "name": "RESOL_TM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OUTCOME (DECODE)",
+          "name": "OUTCOM_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ACTION TAKEN FOR STUDY DRUG (DECODE)",
+          "name": "ACTION_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CORRECTIVE TREATMENT (DECODE)",
+          "name": "CORREC_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RELATIONSHIP TO STUDY DRUG (DECODE)",
+          "name": "RELA_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAE NUMBER",
+          "name": "CASEID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SELECTED SYSTEM ORGAN CLASS DECODE",
+          "name": "SOSELDEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WHO ART RECORD NUMBER",
+          "name": "CODE_AE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "WHO ART SEQUENCE NUMBER 2",
+          "name": "SEQ_2_AE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PREFERED SYSTEM-ORGAN CLASS CODE",
+          "name": "SO_PF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SELECTED SYSTEM-ORGAN CLASS CODE",
+          "name": "SO_SEL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE DAY (NUM)",
+          "name": "DAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE DAY (NUM)",
+          "name": "RELDAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF ONSET",
+          "name": "ONSET_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF RECOVERY",
+          "name": "RESOL_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY WHEN AE BECAME SERIOUS",
+          "name": "SERDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Week of Onset (in weeks)",
+          "name": "ONSET_WK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Week of Recovery (in weeks)",
+          "name": "RESOL_WK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "WEEK WHEN AE BECAME SERIOUS(in weeks)",
+          "name": "SERWK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Week of Death (in weeks)",
+          "name": "DEADWK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "CODE_AE",
+          "SEQ_2_AE"
+        ],
+        "endpoint": [
+          "DTHNY_F",
+          "DEADWK"
+        ],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "CYCLE_N",
+          "DAY_N",
+          "KEY_DY",
+          "ONSET_WK",
+          "RESOL_WK",
+          "SERWK",
+          "DEADWK",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CORREC_F",
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 259,
+      "path": "dataFiles_777/sae.sas7bdat",
+      "size": 270336,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "T STAGING (DECODE)",
+          "name": "T_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SITE OF INVASION (DECODE)",
+          "name": "ISITE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "OTHER SITE OF INVASION (DECODE)",
+          "name": "ISITE2_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "N STAGING (DECODE)",
+          "name": "N_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "M STAGING (DECODE)",
+          "name": "M_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DUKES STAGING (DECODE)",
+          "name": "DUKES_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF POSITIVE LYMPH NODES (CHAR)",
+          "name": "NX01",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF POSITIVE LYMPH NODES (NUM)",
+          "name": "NB01",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "POSITIVE LYMPH NODES CLASS (DECODE)",
+          "name": "NX01_C_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF LYMPH NODES EXAMINED (CHAR)",
+          "name": "NX02",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF LYMPH NODES EXAMINED (NUM)",
+          "name": "NB02",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LYMPH NODES EXAMINED CLASS (DECODE)",
+          "name": "NX02_C_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1122,
+      "path": "dataFiles_777/stage.sas7bdat",
+      "size": 376832,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "NUMBER OF CYCLES",
+          "name": "N_CYC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "NUMBER OF CYCLES OXAL PRIOR OXAL DISC.",
+          "name": "N_CYCOXP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DOSING DURATION (WEEKS)",
+          "name": "DUR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OXAL DOSING DURATION PRIOR OXAL DISC.",
+          "name": "DUR_OXP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DOSE INTENSITY 5-FU",
+          "name": "DI_FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DOSE INTENSITY LEUCOVERIN",
+          "name": "DI_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DOSE INTENSITY OXAL",
+          "name": "DI_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DOSE INTENSITY OXAL PRIOR OXAL DISC.",
+          "name": "DI_OXP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "RDI 5-FU",
+          "name": "RDI_FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "RDI LEUCOVERIN",
+          "name": "RDI_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "RDI OXAL",
+          "name": "RDI_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "RDI OXAL PRIOR OXAL DISC.",
+          "name": "RDI_OXP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "FIRST DOSE DAY",
+          "name": "DTF_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LAST DOSE DAY",
+          "name": "DTL_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LAST DOSE DAY FOR OXAL",
+          "name": "DTL_OX_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "N_CYC",
+          "N_CYCOXP",
+          "DUR",
+          "AGE_DV",
+          "DTF_DY",
+          "DTL_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "SF_ARM",
+          "PP_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1108,
+      "path": "dataFiles_777/sumdos.sas7bdat",
+      "size": 368640,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "SURGERY NUMBER ON CRF",
+          "name": "ID_SU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "POST TREATMENT (DECODE)",
+          "name": "POSTTK_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PRIOR TO FIRST STUDY TREATMENT (DECODE)",
+          "name": "PRIORT_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SURGICAL PROCEDURE (DECODE)",
+          "name": "SGPROC_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TIME FROM LAST SURGERY TO RANDO. (WEEKS)",
+          "name": "D_SURAND",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE DAY (NUM)",
+          "name": "DAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE DAY (NUM)",
+          "name": "RELDAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SURGERY DAY",
+          "name": "EVDY_SU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "D_SURAND",
+          "AGE_DV",
+          "CYCLE_N",
+          "DAY_N",
+          "EVDY_SU",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "POSTTK_F",
+          "PRIORT_F",
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1437,
+      "path": "dataFiles_777/surgery.sas7bdat",
+      "size": 499712,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "REASON FOR DEATH (DECODE)",
+          "name": "DEADRE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DFS (MONTHS)",
+          "name": "DFS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CENSOR DFS",
+          "name": "DFSCENS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DFS (MONTHS) FOR PP ANALYSIS",
+          "name": "DFSPP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CENSOR DFS FOR PP ANALYSIS",
+          "name": "DFSCENPP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OS (MONTHS)",
+          "name": "OS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CENSOR OS",
+          "name": "OSCENS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DUKES STAGING (DECODE)",
+          "name": "DUKES_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "1ST CHEMO DAY BEFORE RELAPSE",
+          "name": "CHEMDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LAST DAY OBS FOR DFS",
+          "name": "DFSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LAST DAY OBS. FOR PP DFS",
+          "name": "DFSDYPP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "RANDOMIZATION DAY",
+          "name": "EVDY_RA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LAST DAY OBS FOR OS",
+          "name": "OSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DAY OF RELAPSE",
+          "name": "PROGDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Week of Death (in weeks)",
+          "name": "DTHWK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "DEADRE_F",
+          "DFSCENS",
+          "DFSCENPP",
+          "OSCENS",
+          "OSDY",
+          "DTHWK"
+        ],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "EVDY_RA",
+          "DTHWK",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1122,
+      "path": "dataFiles_777/surv.sas7bdat",
+      "size": 376832,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ADVERSE EVENT VERBATIM",
+          "name": "TERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PREFERRED TERM DECODE",
+          "name": "TERMDEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TOXICITY GRADE (DECODE)",
+          "name": "TOXGRA_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SELECTED SYSTEM ORGAN CLASS DECODE",
+          "name": "SOSELDEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "WHO ART RECORD NUMBER",
+          "name": "CODE_AE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "WHO ART SEQUENCE NUMBER 2",
+          "name": "SEQ_2_AE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PREFERED SYSTEM-ORGAN CLASS CODE",
+          "name": "SO_PF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SELECTED SYSTEM-ORGAN CLASS CODE",
+          "name": "SO_SEL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "CODE_AE",
+          "SEQ_2_AE"
+        ],
+        "endpoint": [
+          "TERM"
+        ],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "CYCLE_N",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 212177,
+      "path": "dataFiles_777/tox.sas7bdat",
+      "size": 130408448,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VISIT LABEL",
+          "name": "VIS_LB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 63,
+      "path": "dataFiles_777/vis_desc.sas7bdat",
+      "size": 16384,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "VISIT IDENTIFIER",
+          "name": "VNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VITAL SIGN TEST (DECODE)",
+          "name": "VTEST_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VITAL SIGN VALUE (CHAR)",
+          "name": "VALUX_VT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VITAL SIGN VALUE (NUM)",
+          "name": "VALUE_VT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VITAL SIGN UNIT (DECODE)",
+          "name": "VUN_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL IDENTIFIER",
+          "name": "PROTID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "DOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT DESCRIPTION",
+          "name": "DOSE_FMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AGE CALCULATED FROM RANDOMIZATION DATE",
+          "name": "AGE_DV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (DECODE)",
+          "name": "SEX_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RACE (DECODE)",
+          "name": "RACE_F",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT ARM",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SUBJECT RECEIVED STUDY DRUG",
+          "name": "DOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "IN ITT ANALYSIS FOR EFFICACY",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PER PROTOCOL TREATMENT ARM",
+          "name": "PP_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SAFETY TREATMENT ARM",
+          "name": "SF_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CYCLE NUMBER (NUM)",
+          "name": "CYCLE_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CYCLE DAY (NUM)",
+          "name": "DAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE DAY (NUM)",
+          "name": "RELDAY_N",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE 5-FU",
+          "name": "CUM_5FU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE OXALIPLATIN",
+          "name": "CUM_OX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CUMULATIVE LV",
+          "name": "CUM_LV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CRF PAGE NUMBER (000.00)",
+          "name": "PAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DAY PERFORMED (VITAL )",
+          "name": "EVDY_VT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "KEY DAY",
+          "name": "KEY_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "EVDY_VT"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "AGE_DV",
+          "CYCLE_N",
+          "DAY_N",
+          "KEY_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "DOSE",
+          "DOSE_FMT",
+          "ARM",
+          "PP_ARM",
+          "SF_ARM"
+        ],
+        "unit": [
+          "VUN_F"
+        ],
+        "value": [
+          "VALUX_VT",
+          "VALUE_VT"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 26112,
+      "path": "dataFiles_777/vital.sas7bdat",
+      "size": 8429568,
+      "status": "OK"
+    }
+  ]
+}

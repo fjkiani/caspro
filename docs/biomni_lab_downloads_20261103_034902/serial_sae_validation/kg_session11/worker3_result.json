@@ -1,0 +1,165 @@
+{
+  "worker": "worker3",
+  "broker_byte_transfer_available": false,
+  "note_broker": "EGA/Synapse endpoints are metadata-only (action=file_metadata); no download/stream/range route in 34-endpoint OpenAPI. Raw BAM pull not executable via broker; not bypassed with pasted creds. No BAM pull fabricated.",
+  "taskA_msk_label_hunt": {
+    "attempted": true,
+    "labels_found": false,
+    "probed": [
+      {
+        "syn": "syn25569736",
+        "type": "Project",
+        "name": "MSK SPECTRUM"
+      },
+      {
+        "syn": "syn33520881",
+        "type": "Dataset",
+        "name": "mpIF"
+      },
+      {
+        "syn": "syn33521743",
+        "type": "Dataset",
+        "name": "scRNA"
+      },
+      {
+        "syn": "syn33521762",
+        "type": "Dataset",
+        "name": "H-E"
+      },
+      {
+        "syn": "syn33521770",
+        "type": "Dataset",
+        "name": "Bulk WGS"
+      },
+      {
+        "syn": "syn33521771",
+        "type": "Dataset",
+        "name": "MSK-IMPACT"
+      },
+      {
+        "syn": "syn39607857",
+        "type": "FileEntity",
+        "name": "cna.tsv"
+      },
+      {
+        "syn": "syn39607858",
+        "type": "FileEntity",
+        "name": "cohort.maf"
+      },
+      {
+        "syn": "syn39607860",
+        "type": "FileEntity",
+        "name": "segments.seg"
+      },
+      {
+        "syn": "syn52458607",
+        "type": "Folder",
+        "name": "Vazquez-Garcia, Uhlitz et al Nature 2022"
+      },
+      {
+        "syn": "syn66309959",
+        "type": "Folder",
+        "name": "McPherson et al. Nature 2025"
+      }
+    ],
+    "reachable_tables": [],
+    "whoami_ok": true
+  },
+  "taskB_britroc_breakpoint_assoc": {
+    "attempted": true,
+    "n_joined_patients": 167,
+    "n_resistant": 12,
+    "n_sensitive": 155,
+    "EPV": 12,
+    "associations": [
+      {
+        "feature": "breakpoints_max",
+        "auroc": 0.4446,
+        "ci": [
+          0.2966,
+          0.6012
+        ],
+        "mannwhitney_p": 0.5253,
+        "n": 167,
+        "events": 12,
+        "direction": "opp(<0.5)",
+        "q_bh": 0.5253,
+        "sig_fdr05": false
+      },
+      {
+        "feature": "breakpoints_mean",
+        "auroc": 0.4011,
+        "ci": [
+          0.254,
+          0.5534
+        ],
+        "mannwhitney_p": 0.2555,
+        "n": 167,
+        "events": 12,
+        "direction": "opp(<0.5)",
+        "q_bh": 0.4258,
+        "sig_fdr05": false
+      },
+      {
+        "feature": "purity_mean",
+        "auroc": 0.3976,
+        "ci": [
+          0.2005,
+          0.6171
+        ],
+        "mannwhitney_p": 0.2389,
+        "n": 167,
+        "events": 12,
+        "direction": "opp(<0.5)",
+        "q_bh": 0.5973,
+        "sig_fdr05": false
+      },
+      {
+        "feature": "ploidy_mean",
+        "auroc": 0.6505,
+        "ci": [
+          0.4927,
+          0.8015
+        ],
+        "mannwhitney_p": 0.083,
+        "n": 167,
+        "events": 12,
+        "direction": "pred(>0.5)",
+        "q_bh": 0.415,
+        "sig_fdr05": false
+      },
+      {
+        "feature": "tp53freq_mean",
+        "auroc": 0.4444,
+        "ci": [
+          0.2435,
+          0.6595
+        ],
+        "mannwhitney_p": 0.5246,
+        "n": 162,
+        "events": 12,
+        "direction": "opp(<0.5)",
+        "q_bh": 0.6557,
+        "sig_fdr05": false
+      }
+    ]
+  },
+  "taskC_ega_metadata_harvest": {
+    "attempted": true,
+    "n_files": 679,
+    "n_samples": 679,
+    "total_bytes": 510904669401,
+    "timepoints": {
+      "relapse tumour DNA": 294,
+      "diagnosis tumour DNA": 385
+    },
+    "sample_file_link_available": false,
+    "note": "Full 679-file + 679-sample EGA metadata minted as acquisition/provenance receipts. No BAM bytes retrievable via broker, so NO CN features are derived from these files here. sample_file_link_available=False -> file<->timepoint mapping is not in the exposed metadata.",
+    "acquisition_receipts_minted": 679
+  },
+  "kg_minted": {
+    "worker": "worker3",
+    "n_entities": 685,
+    "n_edges": 684
+  }
+}

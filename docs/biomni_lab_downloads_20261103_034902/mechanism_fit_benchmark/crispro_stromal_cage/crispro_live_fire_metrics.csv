@@ -1,0 +1,5 @@
+panel,endpoint,n,n_pos,n_neg,AUROC,DeLong_lo,DeLong_hi,boot_lo,boot_hi,p_vs_0.5,sens,spec,ppv,npv,frozen_thr,verdict
+core13,platinum_sensitivity,75,41,34,0.6385,0.5128,0.7641,0.5129,0.7612,0.0308,0.073,1.0,1.0,0.472,0.415,INCONCLUSIVE
+core13,chemoresponse,75,65,10,0.5092,0.3552,0.6633,0.3554,0.6677,0.9065,0.046,1.0,1.0,0.139,0.415,NOT_SUPPORTED
+full28,platinum_sensitivity,75,41,34,0.5983,0.468,0.7286,0.4677,0.7238,0.1394,0.0,1.0,,0.453,0.543,NOT_SUPPORTED
+full28,chemoresponse,75,65,10,0.5277,0.3442,0.7112,0.3461,0.7016,0.7674,0.0,1.0,,0.133,0.543,NOT_SUPPORTED

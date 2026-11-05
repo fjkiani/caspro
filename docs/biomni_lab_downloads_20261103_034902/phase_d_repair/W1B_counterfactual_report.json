@@ -1,0 +1,1955 @@
+{
+  "summary": {
+    "total_cases": 18,
+    "passed": 18,
+    "failed": 0,
+    "verdict": "PASS",
+    "failed_tests": []
+  },
+  "cases": [
+    {
+      "test": "P1_CPS_LINEAGE_crc",
+      "before": {
+        "case": "P1_crc_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "crc",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "crc"
+      },
+      "after": {
+        "case": "P1_crc_CPS50",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.65,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "crc",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.65
+          ],
+          [
+            "NCT03860272",
+            0.65
+          ],
+          [
+            "NCT04503278",
+            0.65
+          ],
+          [
+            "NCT05200559",
+            0.65
+          ],
+          [
+            "NCT05208762",
+            0.65
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "crc"
+      },
+      "delta": {
+        "expected_axes": [
+          "io"
+        ],
+        "changed_axes": [
+          "io"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.65,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": false,
+        "passed": true
+      }
+    },
+    {
+      "test": "P1_CPS_LINEAGE_nsclc",
+      "before": {
+        "case": "P1_nsclc_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "nsclc",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "nsclc"
+      },
+      "after": {
+        "case": "P1_nsclc_CPS50",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.55,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "nsclc",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.55
+          ],
+          [
+            "NCT03860272",
+            0.55
+          ],
+          [
+            "NCT04503278",
+            0.55
+          ],
+          [
+            "NCT05200559",
+            0.55
+          ],
+          [
+            "NCT05208762",
+            0.55
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "nsclc"
+      },
+      "delta": {
+        "expected_axes": [
+          "io"
+        ],
+        "changed_axes": [
+          "io"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.55,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": false,
+        "passed": true
+      }
+    },
+    {
+      "test": "P1_CPS_LINEAGE_melanoma",
+      "before": {
+        "case": "P1_melanoma_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "melanoma",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "RULE_OUT",
+        "io_p_resp": 0.1,
+        "io_lineage": "melanoma"
+      },
+      "after": {
+        "case": "P1_melanoma_CPS50",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.4,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "melanoma",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.4
+          ],
+          [
+            "NCT03860272",
+            0.4
+          ],
+          [
+            "NCT04503278",
+            0.4
+          ],
+          [
+            "NCT05200559",
+            0.4
+          ],
+          [
+            "NCT05208762",
+            0.4
+          ]
+        ],
+        "io_gate": "INDETERMINATE",
+        "io_p_resp": 0.38,
+        "io_lineage": "melanoma"
+      },
+      "delta": {
+        "expected_axes": [
+          "io"
+        ],
+        "changed_axes": [
+          "io"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.4,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": true,
+        "passed": true
+      }
+    },
+    {
+      "test": "P1_CPS_LINEAGE_ovarian",
+      "before": {
+        "case": "P1_ovarian_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "ovarian",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "RULE_OUT",
+        "io_p_resp": 0.1,
+        "io_lineage": "ovarian"
+      },
+      "after": {
+        "case": "P1_ovarian_CPS50",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.4,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "ovarian",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.4
+          ],
+          [
+            "NCT03860272",
+            0.4
+          ],
+          [
+            "NCT04503278",
+            0.4
+          ],
+          [
+            "NCT05200559",
+            0.4
+          ],
+          [
+            "NCT05208762",
+            0.4
+          ]
+        ],
+        "io_gate": "INDETERMINATE",
+        "io_p_resp": 0.38,
+        "io_lineage": "ovarian"
+      },
+      "delta": {
+        "expected_axes": [
+          "io"
+        ],
+        "changed_axes": [
+          "io"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.4,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": true,
+        "passed": true
+      }
+    },
+    {
+      "test": "P1_CPS_LINEAGE_prostate",
+      "before": {
+        "case": "P1_prostate_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "prostate",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "prostate"
+      },
+      "after": {
+        "case": "P1_prostate_CPS50",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.4,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "prostate",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.4
+          ],
+          [
+            "NCT03860272",
+            0.4
+          ],
+          [
+            "NCT04503278",
+            0.4
+          ],
+          [
+            "NCT05200559",
+            0.4
+          ],
+          [
+            "NCT05208762",
+            0.4
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "prostate"
+      },
+      "delta": {
+        "expected_axes": [
+          "io"
+        ],
+        "changed_axes": [
+          "io"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.4,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": false,
+        "passed": true
+      }
+    },
+    {
+      "test": "P1_CPS_LINEAGE_endometrial",
+      "before": {
+        "case": "P1_endometrial_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "endometrial",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "endometrial"
+      },
+      "after": {
+        "case": "P1_endometrial_CPS50",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.4,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "endometrial",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.4
+          ],
+          [
+            "NCT03860272",
+            0.4
+          ],
+          [
+            "NCT04503278",
+            0.4
+          ],
+          [
+            "NCT05200559",
+            0.4
+          ],
+          [
+            "NCT05208762",
+            0.4
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "endometrial"
+      },
+      "delta": {
+        "expected_axes": [
+          "io"
+        ],
+        "changed_axes": [
+          "io"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.4,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": false,
+        "passed": true
+      }
+    },
+    {
+      "test": "P1_CPS_UNKNOWN_FAIL_CLOSED",
+      "before": {
+        "case": "P1_UNK_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "unknown",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "FAIL_CLOSED",
+        "io_p_resp": null,
+        "io_lineage": "unknown"
+      },
+      "after": {
+        "case": "P1_UNK_CPS50",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "unknown",
+        "fail_closed_axes": [
+          "io"
+        ],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "FAIL_CLOSED",
+        "io_p_resp": null,
+        "io_lineage": "unknown"
+      },
+      "delta": {
+        "expected_axes": [],
+        "changed_axes": [],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": false,
+        "io_changed": false,
+        "passed": true,
+        "fail_closed_expected": true,
+        "fail_closed_actual": true
+      }
+    },
+    {
+      "test": "P1_MSSCRC_LIVERMET_CPS50_FAIL_CLOSED",
+      "before": {
+        "case": "P1_MSSCRC_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "crc",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "crc"
+      },
+      "after": {
+        "case": "P1_MSSCRC_CPS50",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "crc",
+        "fail_closed_axes": [
+          "io"
+        ],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "crc"
+      },
+      "delta": {
+        "expected_axes": [],
+        "changed_axes": [],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": false,
+        "io_changed": false,
+        "passed": true,
+        "fail_closed_expected": true,
+        "fail_closed_actual": true
+      }
+    },
+    {
+      "test": "P2_MSI_H_TMB_H_crc",
+      "before": {
+        "case": "P2_crc_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "crc",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "crc"
+      },
+      "after": {
+        "case": "P2_crc_MSIH",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.95,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "crc",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.95
+          ],
+          [
+            "NCT03860272",
+            0.95
+          ],
+          [
+            "NCT04503278",
+            0.95
+          ],
+          [
+            "NCT05200559",
+            0.95
+          ],
+          [
+            "NCT05208762",
+            0.95
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "crc"
+      },
+      "delta": {
+        "expected_axes": [
+          "io"
+        ],
+        "changed_axes": [
+          "io"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.95,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": false,
+        "passed": true
+      }
+    },
+    {
+      "test": "P2_MSI_H_TMB_H_endometrial",
+      "before": {
+        "case": "P2_endometrial_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "endometrial",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "endometrial"
+      },
+      "after": {
+        "case": "P2_endometrial_MSIH",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.95,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "endometrial",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.95
+          ],
+          [
+            "NCT03860272",
+            0.95
+          ],
+          [
+            "NCT04503278",
+            0.95
+          ],
+          [
+            "NCT05200559",
+            0.95
+          ],
+          [
+            "NCT05208762",
+            0.95
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "endometrial"
+      },
+      "delta": {
+        "expected_axes": [
+          "io"
+        ],
+        "changed_axes": [
+          "io"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.95,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": false,
+        "passed": true
+      }
+    },
+    {
+      "test": "P2_MSI_H_TMB_H_ovarian",
+      "before": {
+        "case": "P2_ovarian_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "ovarian",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "RULE_OUT",
+        "io_p_resp": 0.1,
+        "io_lineage": "ovarian"
+      },
+      "after": {
+        "case": "P2_ovarian_MSIH",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.95,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "ovarian",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.95
+          ],
+          [
+            "NCT03860272",
+            0.95
+          ],
+          [
+            "NCT04503278",
+            0.95
+          ],
+          [
+            "NCT05200559",
+            0.95
+          ],
+          [
+            "NCT05208762",
+            0.95
+          ]
+        ],
+        "io_gate": "JUSTIFIED",
+        "io_p_resp": 0.765,
+        "io_lineage": "ovarian"
+      },
+      "delta": {
+        "expected_axes": [
+          "io"
+        ],
+        "changed_axes": [
+          "io"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.95,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": true,
+        "passed": true
+      }
+    },
+    {
+      "test": "P2_PTMB_CO26",
+      "before": {
+        "case": "P2_PTMB_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "crc",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "crc"
+      },
+      "after": {
+        "case": "P2_PTMB_HIGH",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.3,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "crc",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.3
+          ],
+          [
+            "NCT03860272",
+            0.3
+          ],
+          [
+            "NCT04503278",
+            0.3
+          ],
+          [
+            "NCT05200559",
+            0.3
+          ],
+          [
+            "NCT05208762",
+            0.3
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "crc"
+      },
+      "delta": {
+        "expected_axes": [
+          "io"
+        ],
+        "changed_axes": [
+          "io"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.3,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": false,
+        "passed": true
+      }
+    },
+    {
+      "test": "P3_KRAS_G12C_BIOMARKER",
+      "before": {
+        "case": "P3_KRAS_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "crc",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "crc"
+      },
+      "after": {
+        "case": "P3_KRAS_G12C",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.65,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "crc",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT06128551",
+            0.65
+          ],
+          [
+            "NCT05691504",
+            0.5408
+          ],
+          [
+            "NCT06253520",
+            0.5408
+          ],
+          [
+            "NCT02264678",
+            0.4596
+          ],
+          [
+            "NCT05950464",
+            0.4596
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "crc"
+      },
+      "delta": {
+        "expected_axes": [
+          "mapk"
+        ],
+        "changed_axes": [
+          "mapk"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.65,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": false,
+        "passed": true
+      }
+    },
+    {
+      "test": "P3_BRAF_V600E_BIOMARKER",
+      "before": {
+        "case": "P3_BRAF_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "melanoma",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "RULE_OUT",
+        "io_p_resp": 0.1,
+        "io_lineage": "melanoma"
+      },
+      "after": {
+        "case": "P3_BRAF_V600E",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.7,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "melanoma",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT06128551",
+            0.7
+          ],
+          [
+            "NCT05691504",
+            0.5824
+          ],
+          [
+            "NCT06253520",
+            0.5824
+          ],
+          [
+            "NCT02264678",
+            0.495
+          ],
+          [
+            "NCT05950464",
+            0.495
+          ]
+        ],
+        "io_gate": "RULE_OUT",
+        "io_p_resp": 0.1,
+        "io_lineage": "melanoma"
+      },
+      "delta": {
+        "expected_axes": [
+          "mapk"
+        ],
+        "changed_axes": [
+          "mapk"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.7,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": false,
+        "passed": true
+      }
+    },
+    {
+      "test": "P3_KRAS_SOMATIC_FALLBACK",
+      "before": {
+        "case": "P3_KRAS_SOMATIC_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "nsclc",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "nsclc"
+      },
+      "after": {
+        "case": "P3_KRAS_SOMATIC_FALLBACK",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.55,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "nsclc",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT06128551",
+            0.55
+          ],
+          [
+            "NCT05691504",
+            0.4576
+          ],
+          [
+            "NCT06253520",
+            0.4576
+          ],
+          [
+            "NCT02264678",
+            0.3889
+          ],
+          [
+            "NCT05950464",
+            0.3889
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "nsclc"
+      },
+      "delta": {
+        "expected_axes": [
+          "mapk"
+        ],
+        "changed_axes": [
+          "mapk"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.55,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": false,
+        "passed": true
+      }
+    },
+    {
+      "test": "P4_PTEN_NULL_BIOMARKER",
+      "before": {
+        "case": "P4_PTEN_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "breast",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "breast"
+      },
+      "after": {
+        "case": "P4_PTEN_NULL",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.7,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "breast",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT06957379",
+            0.7
+          ],
+          [
+            "NCT06533059",
+            0.6223
+          ],
+          [
+            "NCT02264678",
+            0.495
+          ],
+          [
+            "NCT03579316",
+            0.3747
+          ],
+          [
+            "NCT05950464",
+            0.33
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "breast"
+      },
+      "delta": {
+        "expected_axes": [
+          "pi3k"
+        ],
+        "changed_axes": [
+          "pi3k"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.7,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": false,
+        "passed": true
+      }
+    },
+    {
+      "test": "P4_PTEN_SOMATIC_FALLBACK",
+      "before": {
+        "case": "P4_PTEN_SOMATIC_BASE",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "prostate",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT01174121",
+            0.0
+          ],
+          [
+            "NCT02264678",
+            0.0
+          ],
+          [
+            "NCT03579316",
+            0.0
+          ],
+          [
+            "NCT03860272",
+            0.0
+          ],
+          [
+            "NCT04104776",
+            0.0
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "prostate"
+      },
+      "after": {
+        "case": "P4_PTEN_SOMATIC",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.6,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "prostate",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT06957379",
+            0.6
+          ],
+          [
+            "NCT06533059",
+            0.5334
+          ],
+          [
+            "NCT02264678",
+            0.4243
+          ],
+          [
+            "NCT03579316",
+            0.3212
+          ],
+          [
+            "NCT05950464",
+            0.2828
+          ]
+        ],
+        "io_gate": "NOT_APPLICABLE",
+        "io_p_resp": null,
+        "io_lineage": "prostate"
+      },
+      "delta": {
+        "expected_axes": [
+          "pi3k"
+        ],
+        "changed_axes": [
+          "pi3k"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.6,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "top5_changed": true,
+        "io_changed": false,
+        "passed": true
+      }
+    },
+    {
+      "test": "P5_CCNE1_AMP",
+      "before": {
+        "case": "P5_CCNE1_BASE",
+        "patient_vector": {
+          "ddr": 0.15,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "lineage_normalized": "ovarian",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT04104776",
+            0.1455
+          ],
+          [
+            "NCT04969835",
+            0.1455
+          ],
+          [
+            "NCT05457595",
+            0.1455
+          ],
+          [
+            "NCT07156253",
+            0.1455
+          ],
+          [
+            "NCT05327010",
+            0.1248
+          ]
+        ],
+        "io_gate": "RULE_OUT",
+        "io_p_resp": 0.1,
+        "io_lineage": "ovarian"
+      },
+      "after": {
+        "case": "P5_CCNE1_AMP",
+        "patient_vector": {
+          "ddr": 0.15,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.6
+        },
+        "lineage_normalized": "ovarian",
+        "fail_closed_axes": [],
+        "trials_scored": 42,
+        "top5": [
+          [
+            "NCT05450692",
+            0.4237
+          ],
+          [
+            "NCT03579316",
+            0.3051
+          ],
+          [
+            "NCT04104776",
+            0.1455
+          ],
+          [
+            "NCT04969835",
+            0.1455
+          ],
+          [
+            "NCT05457595",
+            0.1455
+          ]
+        ],
+        "io_gate": "RULE_OUT",
+        "io_p_resp": 0.1,
+        "io_lineage": "ovarian"
+      },
+      "delta": {
+        "expected_axes": [
+          "rss"
+        ],
+        "changed_axes": [
+          "rss"
+        ],
+        "unexpected_axes": [],
+        "missing_expected_axes": [],
+        "vector_delta": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.6
+        },
+        "top5_changed": true,
+        "io_changed": false,
+        "passed": true
+      }
+    }
+  ]
+}

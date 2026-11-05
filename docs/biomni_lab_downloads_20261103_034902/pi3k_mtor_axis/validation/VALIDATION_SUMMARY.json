@@ -1,0 +1,78 @@
+{
+  "receipt_type": "pi3k_mtor_validation_consolidated",
+  "date": "2026-07-20",
+  "purpose": "Consolidated real-data validation of the PI3K/mTOR axis promotion request. Every claim in the original request was tested against reachable public/in-repo data. Only validated numbers feed the axis interpretation; unverified claims are omitted.",
+  "claim_1_prognostic": {
+    "requested_claim": "PI3K/mTOR is the ONLY statistically significant prognostic killer in 299-pt TCGA-OV (HR=1.30, p=0.023)",
+    "w1_tcga_pancan": {
+      "n": 299,
+      "deaths": 180,
+      "directional_HR_per_SD": 1.0120305926348259,
+      "directional_p": 0.882270476430147,
+      "unsigned_HR_per_SD": 1.1594497238393933,
+      "unsigned_p": 0.06534009609141887,
+      "ph_assumption_holds": true,
+      "genes_sig_fdr05": 0
+    },
+    "w2_ov_tcga_replication": {
+      "study": "ov_tcga",
+      "n": 303,
+      "deaths": 184,
+      "directional_HR_per_SD": 1.006716457086349,
+      "directional_p": 0.9338773044101589,
+      "unsigned_HR_per_SD": 1.1645576207104094,
+      "unsigned_p": 0.05561566089612922
+    },
+    "verdict": "NOT REPRODUCED. The TCGA-OV cohort (n=299), plus a same-cohort cross-pipeline sensitivity check on a second cBioPortal rendering of the SAME patients (n=303; NOT an independent cohort), show NO significant prognostic effect of the PI3K/mTOR pathway score (directional p=0.88 and p=0.93). A weak, NON-significant trend toward 'higher activation = worse OS' appears only in the unsigned score (p=0.065 / p=0.056). 0/13 genes individually significant at FDR<0.05. The specific HR=1.30/p=0.023 'prognostic killer' claim is unsupported."
+  },
+  "claim_2_signflip": {
+    "requested_claim": "Predictive sign-flip (GSE160626 p=0.043) toward platinum SENSITIVITY under replication stress",
+    "w3_result": {
+      "note": "GSE160626 not in repo; using grounded GPL570 platinum cohorts GSE63885/GSE30161/GSE51373 to test predictive direction + sign-flip",
+      "auroc_by_cohort": {
+        "GSE63885": 0.583,
+        "GSE30161": 0.427,
+        "GSE51373": 0.635
+      },
+      "cohort_cis": {
+        "GSE63885": [
+          0.45,
+          0.709
+        ],
+        "GSE30161": [
+          0.265,
+          0.595
+        ],
+        "GSE51373": [
+          0.406,
+          0.844
+        ]
+      },
+      "any_cohort_significant": false
+    },
+    "verdict": "NOT REPRODUCED. GSE160626 is absent from the repo. Using 3 grounded GPL570 platinum cohorts, directional AUROCs straddle 0.5 (0.583 / 0.427 / 0.635) but NONE is significant (all 95% CIs cross 0.5). The apparent directional inconsistency reflects an UNSTABLE, NON-significant predictor -- not a validated switch toward sensitivity. Majority direction is toward RESISTANCE, opposite the claim."
+  },
+  "claim_3_pharmacology": {
+    "requested_claim": "Wire LIVE GDSC2/PRISM outputs for Everolimus + BYL719 to the pi3k_mtor row",
+    "grounded_drugs": [
+      "alpelisib",
+      "capivasertib",
+      "inavolisib",
+      "everolimus"
+    ],
+    "omitted": [
+      "metformin",
+      "live_gdsc2_prism_rows"
+    ],
+    "verdict": "PARTIALLY GROUNDABLE. No live PI3K/mTOR GDSC2/PRISM rows exist in the repo (only a PARPi/MBD4 GDSC2 summary). Grounded evidence DOES exist as literature/KB receipts: alpelisib/BYL719 (SOLAR-1 Ph3, PMID 31091374), capivasertib (CAPItello-291), inavolisib, everolimus (JAX KB). Metformin has NO grounded receipt -> omitted. PRISM/GDSC modality cells will be MISSING with an honest reason."
+  },
+  "false_premises_corrected": [
+    "Axis is 'pi3k_akt', not 'pi3k_mtor' (new axis added as superset; pi3k_akt preserved/aliased).",
+    "'wrn' and 'pkmyt1' are ACTIVE synthetic-lethality axes, NOT deprecated -- both preserved.",
+    "The multimodal surface is stamped 'RESEARCH USE ONLY. Not validated for clinical decision-making' -- retained; axis is not presented as a validated clinical target."
+  ],
+  "net_conclusion": "The PI3K/mTOR axis CAN be promoted to first-class and transparently wired -- but the honest evidence is: (a) NOT prognostic in TCGA-OV (2-cohort null), (b) NOT a reliable platinum-response predictor (unstable, non-significant, direction inconsistent), (c) pharmacologically actionable via grounded PI3K/AKT/mTOR agents whose primary evidence is in BREAST cancer (OV use = extrapolation). The fabricated HR/p/sign-flip strings from the request are NOT written into the interpretation.",
+  "caveats": {
+    "replication_scope": "W1 (ov_tcga_pan_can_atlas_2018, n=299) and W2 (ov_tcga/ov_tcga_pub, n=303) are the SAME TCGA ovarian patients reprocessed by two cBioPortal pipelines. W2 is therefore a cross-pipeline SENSITIVITY CHECK demonstrating the null is stable to reprocessing/normalization, NOT independent external replication. No non-TCGA prognostic replication cohort was available. The predictive analysis (W3) DOES use three independent non-TCGA GPL570 cohorts (GSE63885/GSE30161/GSE51373)."
+  }
+}

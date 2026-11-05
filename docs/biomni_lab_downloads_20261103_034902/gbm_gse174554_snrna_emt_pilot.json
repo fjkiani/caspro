@@ -1,0 +1,420 @@
+{
+  "per_sample_scores": [
+    {
+      "gsm_id": "GSM5319575",
+      "patient_id": "SF9871",
+      "timepoint": "primary",
+      "pair_num": 1,
+      "n_cells": 3602,
+      "emt_mean": 0.672833,
+      "stemness_mean": 0.125288,
+      "mesenchymal_mean": 0.067423,
+      "macrophage_mean": 0.014492,
+      "tcell_mean": 0.005552,
+      "emt_frac_above_median": 0.492504
+    },
+    {
+      "gsm_id": "GSM5319534",
+      "patient_id": "SF10108",
+      "timepoint": "recurrent",
+      "pair_num": 1,
+      "n_cells": 4446,
+      "emt_mean": 0.391711,
+      "stemness_mean": 0.238095,
+      "mesenchymal_mean": 0.202044,
+      "macrophage_mean": 0.208997,
+      "tcell_mean": 0.030589,
+      "emt_frac_above_median": 0.428025
+    },
+    {
+      "gsm_id": "GSM5319503",
+      "patient_id": "SF10099",
+      "timepoint": "primary",
+      "pair_num": 9,
+      "n_cells": 568,
+      "emt_mean": 0.974232,
+      "stemness_mean": 0.439135,
+      "mesenchymal_mean": 0.217304,
+      "macrophage_mean": 0.075704,
+      "tcell_mean": 0.021127,
+      "emt_frac_above_median": 0.489437
+    },
+    {
+      "gsm_id": "GSM5319536",
+      "patient_id": "SF10441",
+      "timepoint": "recurrent",
+      "pair_num": 9,
+      "n_cells": 1107,
+      "emt_mean": 0.244559,
+      "stemness_mean": 0.116531,
+      "mesenchymal_mean": 0.13292,
+      "macrophage_mean": 0.021861,
+      "tcell_mean": 0.011066,
+      "emt_frac_above_median": 0.421861
+    },
+    {
+      "gsm_id": "GSM5319525",
+      "patient_id": "SF4849",
+      "timepoint": "primary",
+      "pair_num": 10,
+      "n_cells": 606,
+      "emt_mean": 0.469997,
+      "stemness_mean": 1.541254,
+      "mesenchymal_mean": 2.462518,
+      "macrophage_mean": 0.036304,
+      "tcell_mean": 0.011551,
+      "emt_frac_above_median": 0.435644
+    },
+    {
+      "gsm_id": "GSM5319566",
+      "patient_id": "SF6118",
+      "timepoint": "recurrent",
+      "pair_num": 10,
+      "n_cells": 568,
+      "emt_mean": 0.008803,
+      "stemness_mean": 0.001006,
+      "mesenchymal_mean": 0.000503,
+      "macrophage_mean": 0.0,
+      "tcell_mean": 0.00044,
+      "emt_frac_above_median": 0.091549
+    },
+    {
+      "gsm_id": "GSM5319526",
+      "patient_id": "SF5581",
+      "timepoint": "primary",
+      "pair_num": 11,
+      "n_cells": 4216,
+      "emt_mean": 0.227251,
+      "stemness_mean": 0.164137,
+      "mesenchymal_mean": 0.110735,
+      "macrophage_mean": 0.022865,
+      "tcell_mean": 0.003795,
+      "emt_frac_above_median": 0.415085
+    },
+    {
+      "gsm_id": "GSM5319533",
+      "patient_id": "SF9715",
+      "timepoint": "recurrent",
+      "pair_num": 11,
+      "n_cells": 1834,
+      "emt_mean": 0.016804,
+      "stemness_mean": 0.003895,
+      "mesenchymal_mean": 0.006309,
+      "macrophage_mean": 0.000218,
+      "tcell_mean": 0.0,
+      "emt_frac_above_median": 0.165213
+    }
+  ],
+  "per_pair_deltas": [
+    {
+      "pair_num": 1,
+      "primary_patient": "SF9871",
+      "recurrent_patient": "SF10108",
+      "emt_delta": -0.281123,
+      "stemness_delta": 0.112808,
+      "mesenchymal_delta": 0.134621
+    },
+    {
+      "pair_num": 9,
+      "primary_patient": "SF10099",
+      "recurrent_patient": "SF10441",
+      "emt_delta": -0.729672,
+      "stemness_delta": -0.322604,
+      "mesenchymal_delta": -0.084383
+    },
+    {
+      "pair_num": 10,
+      "primary_patient": "SF4849",
+      "recurrent_patient": "SF6118",
+      "emt_delta": -0.461194,
+      "stemness_delta": -1.540248,
+      "mesenchymal_delta": -2.462015
+    },
+    {
+      "pair_num": 11,
+      "primary_patient": "SF5581",
+      "recurrent_patient": "SF9715",
+      "emt_delta": -0.210447,
+      "stemness_delta": -0.160242,
+      "mesenchymal_delta": -0.104425
+    }
+  ],
+  "wilcoxon_results": {
+    "emt": {
+      "stat": 0.0,
+      "p": 0.125
+    },
+    "stemness": {
+      "stat": 1.0,
+      "p": 0.25
+    },
+    "mesenchymal": {
+      "stat": 3.0,
+      "p": 0.625
+    }
+  },
+  "preliminary_verdict": "SC_NOT_SUPPORTED_YET",
+  "data_note": "Pilot analysis of 4 matched GBM pairs (Pairs 1, 9, 10, 11) from GSE174554 snRNA-seq data. 8 samples total (4 primary + 4 recurrent). All 11 EMT genes, 7 stemness genes, and 7 mesenchymal genes were found in all samples. EMT scores increased in recurrent in 0/4 pairs, decreased in 4/4 pairs. Mesenchymal scores increased in recurrent in 1/4 pairs. Note: Pair 10 (SF4849 primary vs SF6118 recurrent) shows very low scores in recurrent (SF6118 matrix is very sparse, only 158KB vs typical 4-25MB), suggesting possible data quality issue or very low cell count/depth for that sample. Wilcoxon test with n=4 pairs has limited statistical power. Pairs 2 (SF6996) and 8 (SF4297) primary samples were not found in the snRNA-seq manifest.",
+  "analysis_metadata": {
+    "n_pairs_analyzed": 4,
+    "n_samples_analyzed": 8,
+    "failed_samples": [],
+    "missing_from_manifest": [
+      "SF6996 (Pair 2 primary)",
+      "SF4297 (Pair 8 primary)"
+    ],
+    "emt_genes_used": [
+      "ZEB1",
+      "ZEB2",
+      "VIM",
+      "CDH2",
+      "SNAI1",
+      "SNAI2",
+      "TWIST1",
+      "TWIST2",
+      "FN1",
+      "MMP2",
+      "MMP9"
+    ],
+    "stemness_genes_used": [
+      "SOX2",
+      "NES",
+      "CD44",
+      "PROM1",
+      "ALDH1A1",
+      "OLIG2",
+      "SOX9"
+    ],
+    "mesenchymal_genes_used": [
+      "CHI3L1",
+      "CD44",
+      "SERPINE1",
+      "TGFB1",
+      "TGFB2",
+      "LGALS3",
+      "VIM"
+    ]
+  },
+  "qc_analysis": {
+    "normalization_issue_in_original": "Original agent used mean log1p(raw count) without library size normalization. This is depth-confounded: low-depth samples appear to have low expression. Reanalysis used CP10K normalization (counts per 10,000) before log1p.",
+    "library_size_qc": [
+      {
+        "gsm_id": "GSM5319575",
+        "patient_id": "SF9871",
+        "timepoint": "primary",
+        "pair_num": 1,
+        "median_lib_size": 4925,
+        "qc": "PASS"
+      },
+      {
+        "gsm_id": "GSM5319534",
+        "patient_id": "SF10108",
+        "timepoint": "recurrent",
+        "pair_num": 1,
+        "median_lib_size": 2618,
+        "qc": "PASS"
+      },
+      {
+        "gsm_id": "GSM5319503",
+        "patient_id": "SF10099",
+        "timepoint": "primary",
+        "pair_num": 9,
+        "median_lib_size": 5003,
+        "qc": "PASS"
+      },
+      {
+        "gsm_id": "GSM5319536",
+        "patient_id": "SF10441",
+        "timepoint": "recurrent",
+        "pair_num": 9,
+        "median_lib_size": 1742,
+        "qc": "PASS"
+      },
+      {
+        "gsm_id": "GSM5319525",
+        "patient_id": "SF4849",
+        "timepoint": "primary",
+        "pair_num": 10,
+        "median_lib_size": 3420,
+        "qc": "PASS"
+      },
+      {
+        "gsm_id": "GSM5319566",
+        "patient_id": "SF6118",
+        "timepoint": "recurrent",
+        "pair_num": 10,
+        "median_lib_size": 83,
+        "qc": "FAIL_low_depth"
+      },
+      {
+        "gsm_id": "GSM5319526",
+        "patient_id": "SF5581",
+        "timepoint": "primary",
+        "pair_num": 11,
+        "median_lib_size": 1457,
+        "qc": "PASS"
+      },
+      {
+        "gsm_id": "GSM5319533",
+        "patient_id": "SF9715",
+        "timepoint": "recurrent",
+        "pair_num": 11,
+        "median_lib_size": 101,
+        "qc": "FAIL_low_depth"
+      }
+    ],
+    "failed_samples": [
+      "SF6118 (Pair 10 rec, median lib=83)",
+      "SF9715 (Pair 11 rec, median lib=101)"
+    ],
+    "valid_pairs_after_qc": [
+      1,
+      9
+    ],
+    "qc_threshold": "median library size < 200 counts/cell = FAIL",
+    "exclusion_bias_caveat": "IMPORTANT CONFOUNDING RISK: Both failed-QC samples (SF6118, SF9715) are RECURRENT. If low library depth reflects biological sparsity (necrotic/post-treatment tumor) rather than technical failure, excluding them biases the analysis toward 'healthier' recurrent tumors that may not represent the full spectrum of recurrence biology. Mitigation: (1) Check whether low-depth pattern is systematic across recurrent samples in expansion batch; (2) If >30% of recurrent samples fail QC, report this as a biological finding rather than a technical exclusion; (3) Wang et al. paper's QC thresholds should be used as reference if available in supplementary methods."
+  },
+  "per_sample_scores_normalized": [
+    {
+      "gsm_id": "GSM5319575",
+      "patient_id": "SF9871",
+      "timepoint": "primary",
+      "pair_num": 1,
+      "n_cells": 3602,
+      "median_lib_size": 4925.0,
+      "emt_mean_norm": 0.2627,
+      "stemness_mean_norm": 0.107,
+      "mesenchymal_mean_norm": 0.0505,
+      "macrophage_mean_norm": 0.0119,
+      "tcell_mean_norm": 0.0072,
+      "emt_frac_expressing": 0.9733,
+      "macro_frac_expressing": 0.0386
+    },
+    {
+      "gsm_id": "GSM5319534",
+      "patient_id": "SF10108",
+      "timepoint": "recurrent",
+      "pair_num": 1,
+      "n_cells": 4446,
+      "median_lib_size": 2618.5,
+      "emt_mean_norm": 0.304,
+      "stemness_mean_norm": 0.2243,
+      "mesenchymal_mean_norm": 0.1953,
+      "macrophage_mean_norm": 0.1896,
+      "tcell_mean_norm": 0.0379,
+      "emt_frac_expressing": 0.8394,
+      "macro_frac_expressing": 0.2654
+    },
+    {
+      "gsm_id": "GSM5319503",
+      "patient_id": "SF10099",
+      "timepoint": "primary",
+      "pair_num": 9,
+      "n_cells": 568,
+      "median_lib_size": 5003.0,
+      "emt_mean_norm": 0.4372,
+      "stemness_mean_norm": 0.3216,
+      "mesenchymal_mean_norm": 0.1766,
+      "macrophage_mean_norm": 0.0516,
+      "tcell_mean_norm": 0.0191,
+      "emt_frac_expressing": 0.9472,
+      "macro_frac_expressing": 0.1056
+    },
+    {
+      "gsm_id": "GSM5319536",
+      "patient_id": "SF10441",
+      "timepoint": "recurrent",
+      "pair_num": 9,
+      "n_cells": 1107,
+      "median_lib_size": 1742.0,
+      "emt_mean_norm": 0.263,
+      "stemness_mean_norm": 0.1628,
+      "mesenchymal_mean_norm": 0.1114,
+      "macrophage_mean_norm": 0.0386,
+      "tcell_mean_norm": 0.0189,
+      "emt_frac_expressing": 0.8437,
+      "macro_frac_expressing": 0.0705
+    },
+    {
+      "gsm_id": "GSM5319525",
+      "patient_id": "SF4849",
+      "timepoint": "primary",
+      "pair_num": 10,
+      "n_cells": 606,
+      "median_lib_size": 3420.5,
+      "emt_mean_norm": 0.2603,
+      "stemness_mean_norm": 0.4536,
+      "mesenchymal_mean_norm": 0.6812,
+      "macrophage_mean_norm": 0.0396,
+      "tcell_mean_norm": 0.0196,
+      "emt_frac_expressing": 0.7838,
+      "macro_frac_expressing": 0.0743
+    },
+    {
+      "gsm_id": "GSM5319566",
+      "patient_id": "SF6118",
+      "timepoint": "recurrent",
+      "pair_num": 10,
+      "n_cells": 568,
+      "median_lib_size": 83.0,
+      "emt_mean_norm": 0.0395,
+      "stemness_mean_norm": 0.0051,
+      "mesenchymal_mean_norm": 0.0024,
+      "macrophage_mean_norm": 0.0,
+      "tcell_mean_norm": 0.0023,
+      "emt_frac_expressing": 0.0915,
+      "macro_frac_expressing": 0.0
+    },
+    {
+      "gsm_id": "GSM5319526",
+      "patient_id": "SF5581",
+      "timepoint": "primary",
+      "pair_num": 11,
+      "n_cells": 4216,
+      "median_lib_size": 1457.0,
+      "emt_mean_norm": 0.3291,
+      "stemness_mean_norm": 0.2632,
+      "mesenchymal_mean_norm": 0.1827,
+      "macrophage_mean_norm": 0.0429,
+      "tcell_mean_norm": 0.0082,
+      "emt_frac_expressing": 0.8468,
+      "macro_frac_expressing": 0.0916
+    },
+    {
+      "gsm_id": "GSM5319533",
+      "patient_id": "SF9715",
+      "timepoint": "recurrent",
+      "pair_num": 11,
+      "n_cells": 1834,
+      "median_lib_size": 101.0,
+      "emt_mean_norm": 0.0697,
+      "stemness_mean_norm": 0.017,
+      "mesenchymal_mean_norm": 0.0253,
+      "macrophage_mean_norm": 0.0004,
+      "tcell_mean_norm": 0.0,
+      "emt_frac_expressing": 0.1652,
+      "macro_frac_expressing": 0.0005
+    }
+  ],
+  "per_pair_deltas_qc_filtered": [
+    {
+      "pair_num": 1,
+      "primary_patient": "SF9871",
+      "recurrent_patient": "SF10108",
+      "emt_delta": 0.0413,
+      "stemness_delta": 0.1173,
+      "mesenchymal_delta": 0.1448,
+      "macrophage_delta": 0.1777
+    },
+    {
+      "pair_num": 9,
+      "primary_patient": "SF10099",
+      "recurrent_patient": "SF10441",
+      "emt_delta": -0.1742,
+      "stemness_delta": -0.1588,
+      "mesenchymal_delta": -0.0652,
+      "macrophage_delta": -0.013
+    }
+  ],
+  "verdict_note": "CORRECTED ANALYSIS (CP10K normalization + QC filtering): 2 of 4 pilot pairs failed QC (SF6118 median lib=83, SF9715 median lib=101 counts/cell \u2014 catastrophically low depth, not biologically interpretable). Only 2 valid pairs remain (Pairs 1 and 9). Pair 1: EMT+0.041, Stem+0.117, Mes+0.145, Macro+0.178 \u2014 all UP at recurrence. Pair 9: EMT-0.174, Stem-0.159, Mes-0.065, Macro-0.013 \u2014 all DOWN at recurrence. Mixed direction, n=2 \u2014 no statistical test possible. SC_NOT_SUPPORTED_YET due to insufficient valid pairs, not biological null. NEXT: Download Pairs 12-17 to reach n\u22656 valid pairs for Wilcoxon test."
+}

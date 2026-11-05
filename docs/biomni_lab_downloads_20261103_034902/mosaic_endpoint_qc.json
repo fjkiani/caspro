@@ -1,0 +1,29 @@
+{
+  "trial": "MOSAIC",
+  "pubmed_id": "19451431",
+  "doi": "10.1200/JCO.2008.20.6771",
+  "citation": "André T, Boni C, Navarro M, et al. Improved overall survival with oxaliplatin, fluorouracil, and leucovorin as adjuvant treatment in stage II or III colon cancer in the MOSAIC trial. J Clin Oncol. 2009;27(19):3109-16.",
+  "primary_paper_pmid": "15118073",
+  "primary_paper_doi": "10.1056/NEJMoa032709",
+  "primary_paper_citation": "André T, Boni C, Mounedji-Boudiaf L, et al. Oxaliplatin, fluorouracil, and leucovorin as adjuvant treatment for colon cancer. N Engl J Med. 2004;350(23):2343-51.",
+  "endpoints_found": [
+    "DFS (primary endpoint): 5-year DFS 73.3% (FOLFOX4) vs 67.4% (LV5FU2), HR=0.80 (95% CI 0.68-0.93, P=0.003)",
+    "OS (secondary endpoint): 6-year OS 78.5% (FOLFOX4) vs 76.0% (LV5FU2), HR=0.84 (95% CI 0.71-1.00, P=0.046)",
+    "OS stage III: 6-year OS 72.9% vs 68.7%, HR=0.80 (95% CI 0.65-0.97, P=0.023)",
+    "OS stage II: no significant difference"
+  ],
+  "followup_years": 6,
+  "treatment_arms": [
+    "FOLFOX4 (oxaliplatin + infusional 5-FU/leucovorin)",
+    "LV5FU2 (infusional 5-FU/leucovorin)"
+  ],
+  "n_patients": 2246,
+  "subgroups_available": [
+    "Stage II vs Stage III",
+    "Stage III (primary benefit subgroup)",
+    "Stage II (no OS benefit)"
+  ],
+  "molecular_columns": "NOT PRESENT in MOSAIC — no KRAS/BRAF/MMR biomarker data in primary or long-term OS publication",
+  "data_availability": "Published endpoint tables in JCO 2009 (PMID 19451431); no public IPD repository; Sanofi-sponsored trial; data request required",
+  "verdict": "PASS — DFS and OS endpoints confirmed with HRs and CIs; 6-year follow-up confirmed; stage II/III subgroups confirmed; NO molecular columns (KRAS/MMR/BRAF) in MOSAIC publications — endpoint-only trial for this scan"
+}

@@ -1,0 +1,47 @@
+{
+  "worker": "W4",
+  "objective": "Wire ctDNA tumor fraction (TF) into the resistance matrix: define a calibrated TF -> resistance-probability mapping that would replace the current WIRED_PROGNOSTIC_ONLY_V1 lock. THIS IS A DESIGN SPEC ONLY \u2014 no framework code is modified in this run.",
+  "data_availability_reality": {
+    "tier1_direct": {
+      "source": "BriTROC-1 plasma sWGS (EGA-controlled, same study EGAD00001011049 family)",
+      "status": "Only TIER1-direct route pairing per-patient longitudinal ctDNA-TF with a resistance label. EGA-controlled; the tumour-DNA arm is now live-entitled, but the PLASMA/ctDNA arm entitlement must be confirmed separately.",
+      "note": "Removing the WIRED_PROGNOSTIC_ONLY_V1 lock REQUIRES controlled longitudinal ctDNA data \u2014 no open cohort provides it."
+    },
+    "tier2": [
+      "PLD/PROC trial NCT05976932",
+      "Christie/Manchester HGSOC sWGS ctDNA series",
+      "HGSOC MRD/ctDNA cohorts"
+    ],
+    "tier3_prognostic_only": {
+      "source": "MITO16a / Paracchini et al. ESMO Open 2026;11(3):106087, n=167",
+      "note": "prognostic-only, already in registry; cannot calibrate a resistance-probability mapping alone"
+    }
+  },
+  "calibration_spec": {
+    "input_feature": "ctDNA tumor fraction (TF) at a defined on-treatment timepoint (e.g. ichorCNA TF from plasma sWGS, or MRD-style variant-allele-fraction-derived TF).",
+    "target_label": "platinum resistance (binary: PFI < 182d) or time-to-progression (survival).",
+    "recommended_model": "monotone calibration: isotonic regression OR a monotone-constrained logistic link p_resist = sigmoid(a + b*logit(TF_normalized)), with b constrained >= 0 (higher TF -> higher/equal resistance probability). Isotonic is preferred when n is small and the TF->risk shape is uncertain but assumed monotone non-decreasing.",
+    "why_monotone": "Biological prior: higher residual/rising on-treatment ctDNA-TF reflects greater viable tumor burden / poorer platinum clearance -> higher resistance risk. Monotonicity guards against overfitting spurious non-monotone wiggles at small n.",
+    "normalization": "TF logit-transformed after flooring at assay LOD; standardize within-assay to control for platform sensitivity (sWGS vs targeted).",
+    "calibration_metrics": [
+      "Brier score",
+      "calibration slope/intercept (target slope=1, intercept=0)",
+      "ROC-AUC for the resistant vs sensitive split",
+      "decision-curve net benefit"
+    ],
+    "validation": "leave-one-patient-out or nested CV given expected small n; report calibration curve with 95% CI.",
+    "longitudinal_extension": "for serial TF, use TF trajectory features (nadir TF, TF slope over first ~100d, time-to-TF-clearance) as inputs \u2014 parallels the KELIM early-kinetics logic (W1) but on ctDNA instead of CA-125."
+  },
+  "matrix_integration_design": {
+    "current_state": "ctDNA axis is WIRED_PROGNOSTIC_ONLY_V1 (contributes prognostic signal but NOT a calibrated resistance probability into predict_resistance).",
+    "proposed_change": "replace the prognostic-only lock with the calibrated p_resist(TF) above, entering the resistance matrix as an additional evidence channel with an explicit weight; combine with genomic (Sig7), clinical (true-PFI), and CA-125-kinetic (KELIM) channels via the existing ranker.",
+    "governance_note": "This is governance-sensitive per user's custom instructions. NO code is changed in this run. Unlocking WIRED_PROGNOSTIC_ONLY_V1 must be an explicit, separately-authorized decision AND requires the TIER1 controlled ctDNA data to actually calibrate the mapping. Until both hold, the lock stays.",
+    "prerequisites_to_unlock": [
+      "confirmed entitlement + pull of BriTROC-1 (or equivalent) longitudinal plasma ctDNA-TF paired with resistance labels",
+      "fitted + validated monotone calibration meeting calibration-slope/Brier acceptance",
+      "explicit user authorization to modify predict_resistance"
+    ]
+  },
+  "access_state": "SPEC_ONLY_CALIBRATION_DATA_PENDING",
+  "verified_metadata_bool": true
+}

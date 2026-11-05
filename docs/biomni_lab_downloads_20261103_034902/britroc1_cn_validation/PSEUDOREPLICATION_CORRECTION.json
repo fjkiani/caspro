@@ -1,0 +1,71 @@
+{
+  "artifact": "britroc1_cn_resistance_pseudoreplication_correction",
+  "date": "2026-08-11",
+  "source_snapshot": "britroc1_cn_validation/frozen_snapshot/real_bam_features.csv (2026-07-25T04:32:26Z, EGAD00001011049, DAC EGAC00001000388)",
+  "trigger": "Audit of the claim that the low events-per-variable (EPV) count arose from a JBLAB/IM patient-ID mis-join.",
+
+  "join_audit": {
+    "IM_prefix_to_timepoint": "53/53 diagnosis",
+    "JBLAB_prefix_to_timepoint": "41/41 relapse",
+    "sample_to_patient_collisions": 0,
+    "verdict": "NO mis-join. Prefixes are clean timepoint partitions, consistent with manuscript 2.1 (timepoints assigned only from the manifest time_point field).",
+    "genuine_defect_found": {
+      "unresolved_patient_key": 8,
+      "identical_to_unlabeled_set": true,
+      "profiles": ["IM_261","IM_280","IM_284","IM_365","IM_418","JBLAB-4118","JBLAB-4225","JBLAB-4227"],
+      "published_comparator_present": 0
+    }
+  },
+
+  "pseudoreplication": {
+    "profiles_total": 94,
+    "unique_patients": 65,
+    "patients_with_multiple_profiles": 15,
+    "max_profiles_per_patient": 4,
+    "issue": "Manuscript cross-sectional arm is scored at PROFILE level (n=86, 9 resistant). Profiles from the same patient are not independent, so profile-level n and p-values are inflated."
+  },
+
+  "rescore": {
+    "profile_level_as_published": {
+      "n": 86, "resistant": 9, "EPV": 9,
+      "breakpoints":   {"auroc": 0.278, "ci95": [0.124, 0.450], "mwu_p": 0.0303, "ci_excludes_0.5": true},
+      "sd_seg":        {"auroc": 0.234, "ci95": [0.084, 0.416], "mwu_p": 0.0094, "ci_excludes_0.5": true},
+      "frac_aberrant": {"auroc": 0.378, "ci95": [0.144, 0.636], "mwu_p": 0.2360, "ci_excludes_0.5": false}
+    },
+    "patient_level_deduplicated": {
+      "n": 65, "resistant": 4, "EPV": 4,
+      "breakpoints":   {"auroc": 0.230, "ci95": [0.057, 0.422], "mwu_p": 0.0738, "ci_excludes_0.5": true},
+      "sd_seg":        {"auroc": 0.230, "ci95": [0.020, 0.439], "mwu_p": 0.0738, "ci_excludes_0.5": true},
+      "frac_aberrant": {"auroc": 0.553, "ci95": [0.168, 0.898], "mwu_p": 0.7329, "ci_excludes_0.5": false}
+    },
+    "patient_level_diagnosis_only": {
+      "n": 42, "resistant": 3, "EPV": 3,
+      "breakpoints":   {"auroc": 0.308, "ci95": [0.000, 0.564], "mwu_p": 0.2826, "ci_excludes_0.5": false},
+      "sd_seg":        {"auroc": 0.368, "ci95": [0.103, 0.615], "mwu_p": 0.4834, "ci_excludes_0.5": false},
+      "frac_aberrant": {"auroc": 0.513, "ci95": [0.000, 1.000], "mwu_p": 0.9634, "ci_excludes_0.5": false}
+    }
+  },
+
+  "material_findings": [
+    "The manuscript's reported Mann-Whitney significance (breakpoints p=0.030, sd_seg p=0.0094) and the derived BH q-values (0.046, 0.028) DO NOT SURVIVE de-duplication: both become p=0.0738 at patient level and are non-significant.",
+    "Manuscript EPV=9 overstates independent power. True independent EPV is 4 (all timepoints, patient level) or 3 (diagnosis-timepoint only).",
+    "EPV=3 is therefore REPRODUCIBLE as the correct diagnosis-timepoint independent-unit count. It is not the product of a mis-join.",
+    "The manuscript's directional conclusion (pre-specified criterion NOT met; discovery-only) is UNCHANGED and remains correct. Only the specific inferential statistics require correction."
+  ],
+
+  "recommended_manuscript_actions": [
+    "Section 3.3 / Table: report patient-level statistics as primary, or explicitly label the profile-level analysis as pseudo-replicated.",
+    "Withdraw the 'two features' CIs exclude 0.5' and BH q<0.05 claims as artifacts of profile-level counting.",
+    "Restate EPV as 4 (patient level) / 3 (diagnosis only), not 9.",
+    "Resolve the 8 unlinked profiles before any refresh."
+  ],
+
+  "scope_reconciliation": {
+    "273_patients_66_resistant": "Full BriTROC-1 CLINICAL cohort under sensitivity-at-registration. Not CN-profiled here.",
+    "98_samples_20_resistant": "Separate gene-level dataset (CCNE1/KRAS/MYC/ERBB2/LST/FGA) from the published absolute-CN table; not this QDNAseq snapshot.",
+    "94_profiles_65_patients_4_resistant": "This DAC-authorized sWGS snapshot, primary-platinum-resistance label.",
+    "note": "These are three different cohort scopes and two different resistance definitions (primary platinum resistance vs sensitivity at registration). They are not three corrupted versions of one number."
+  },
+
+  "verdict": "MANUSCRIPT_STATISTICS_REQUIRE_CORRECTION; DIRECTIONAL_CONCLUSION_UNCHANGED; MIS-JOIN_CLAIM_REFUTED; LOW-EPV_FRAGILITY_CONCERN_CONFIRMED"
+}

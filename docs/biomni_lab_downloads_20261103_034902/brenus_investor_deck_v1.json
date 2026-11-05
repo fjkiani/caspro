@@ -1,0 +1,752 @@
+{
+  "document_type": "investor_slide_deck_json",
+  "title": "Brenus Pharma — Investor Slide Deck",
+  "version": "v1",
+  "date": "2026-06-01",
+  "subject": "STC-1010: First-in-Class Therapeutic Cancer Vaccine for MSS Colorectal Cancer",
+  "grounding_standard": "v1.0-2026-06-01",
+  "grounding_receipt": "grounding_receipt_table_v2.csv | SHA-256: 2c4efcbe1292c58aa9fc7500b7b0047e0c893cd8db6fe5173061b2f81e5dc09d",
+  "governance": {
+    "rule": "Every claim in this deck is classified as SOURCED, COMPUTED, or OPEN_ASSUMPTION. No quarantined business numbers (pool sizes, NPV, EV, peak revenue) appear as facts. All OPEN_ASSUMPTIONs are labeled explicitly in each slide's data_integrity field.",
+    "quarantined_claims_excluded": [
+      "G02: CEACAM5 ≥80% CRC prevalence — CRITICAL, NSCLC→CRC transfer assumption, range 15–40%",
+      "F05/F07/F08: Peak revenue, EV, NPV — inherit 6–10 OPEN_ASSUMPTIONs; NPV sign unreliable",
+      "G08/G11: Two-gate and three-gate pool sizes — inherit G02 CRITICAL",
+      "All financial projections from crispro_ceacam5_gate_architecture_mdc_v1.md"
+    ],
+    "upgrade_rule": "No new claim may be added to this deck without first classifying it in grounding_receipt_table_v2.csv and obtaining a SHA-256 receipt."
+  },
+  "sections_covered": [
+    "Overview of the Company",
+    "Scientific Problem",
+    "Intro to the Platform / Technology",
+    "Supporting Data",
+    "Development Timelines"
+  ],
+  "slide_count": 10,
+  "slides": [
+    {
+      "slide_number": 1,
+      "section": "Cover",
+      "title": "Brenus Pharma",
+      "subtitle": "Bringing the Immune System One Step Ahead of Cancer",
+      "layout": "title",
+      "content": {
+        "headline": "STC-1010: A First-in-Class Therapeutic Cancer Vaccine for MSS Colorectal Cancer",
+        "bullets": null,
+        "columns": null,
+        "table": null,
+        "timeline_events": null,
+        "tagline": "Phase I/IIa | NCT06934538 | Lyon, France",
+        "footnote": null
+      },
+      "speaker_notes": "Brenus Pharma is a clinical-stage French biotech founded in 2020 and headquartered in Lyon. Lead candidate STC-1010 is in active Phase I/IIa enrollment. This deck covers the five required sections: company overview, scientific problem, platform technology, supporting data, and development timeline.",
+      "data_integrity": {
+        "sourced_claims": [
+          "Company name and HQ: Le Journal des Entreprises, company website",
+          "Mission statement: Brenus Pharma website homepage (Sep 2025)",
+          "Phase I/IIa status: NCT06934538, CenterWatch (Dec 2025)",
+          "Operational founding ~2020: company website CEO bio"
+        ],
+        "open_assumptions": [],
+        "do_not_present_as_fact": []
+      }
+    },
+    {
+      "slide_number": 2,
+      "section": "Overview of the Company",
+      "title": "Brenus Pharma at a Glance",
+      "subtitle": null,
+      "layout": "two_column",
+      "content": {
+        "headline": null,
+        "bullets": null,
+        "columns": [
+          {
+            "header": "Company",
+            "items": [
+              {
+                "label": "Founded",
+                "value": "2020 (operational); Lyon, France"
+              },
+              {
+                "label": "Stage",
+                "value": "Clinical-stage biotech"
+              },
+              {
+                "label": "Total raised",
+                "value": "€30M (Seed €4M, 2022; Series A €22.2M, Sep 2024)"
+              },
+              {
+                "label": "Investors",
+                "value": "Angelor, UI Investissement, Noshaq, Investsud, Crédit Agricole, BIOJAG"
+              },
+              {
+                "label": "Mission",
+                "value": "\"Bring the immune system one step ahead of cancer\""
+              }
+            ]
+          },
+          {
+            "header": "Leadership",
+            "items": [
+              {
+                "label": "CEO",
+                "value": "Paul Bravetti (PharmD, HEC) — former Roche, Servier, Takeda"
+              },
+              {
+                "label": "CSO / Co-founder",
+                "value": "Benoit Pinteur (PharmD) — inventor of STC platform; former Roche, Schering-Plough"
+              },
+              {
+                "label": "Co-founder / President",
+                "value": "Jacques Gardette — sold Biocorp to Novo Nordisk for €154M (2023)"
+              },
+              {
+                "label": "Lead Clinical Advisor",
+                "value": "Prof. Alexander Eggermont (MD, PhD) — former Director General, Gustave Roussy; 600+ publications"
+              },
+              {
+                "label": "SAB Chair",
+                "value": "Prof. François Ghiringhelli — CGFL Dijon; BreAK-CRC study coordinator"
+              }
+            ]
+          }
+        ],
+        "table": null,
+        "timeline_events": null,
+        "footnote": "Sources: Brenus Pharma website (Sep 2025); BusinessWire Series A press release (Sep 18, 2024); Le Journal des Entreprises registry."
+      },
+      "speaker_notes": "Brenus was operationalized as a biotech in 2020 under CEO Paul Bravetti. The founding team brings deep pharma experience (Roche, Sanofi, Novartis, Takeda) and a track record of exits — co-founder Jacques Gardette sold Biocorp to Novo Nordisk for €154M in 2023. The Series A in September 2024 (€22.2M) was led by Angelor with Belgian and French institutional co-investors. Total raised: €30M since 2020 per company website.",
+      "data_integrity": {
+        "sourced_claims": [
+          "€30M total raised: company website",
+          "Seed €4M (2022): Nordic9 investor database",
+          "Series A €22.2M (Sep 2024): BusinessWire press release",
+          "Biocorp sale to Novo Nordisk €154M: Series A press release",
+          "Leadership names and titles: Brenus Pharma website About Us (Sep 2025)",
+          "Eggermont: former Director General Gustave Roussy, 600+ publications — company website"
+        ],
+        "open_assumptions": [],
+        "do_not_present_as_fact": [
+          "STC-1020 indication — not publicly disclosed",
+          "'IND by 2027' for STC-1020 — company aspiration, not confirmed regulatory filing"
+        ]
+      }
+    },
+    {
+      "slide_number": 3,
+      "section": "Scientific Problem",
+      "title": "MSS Colorectal Cancer: The Last Major Solid Tumor Without Immunotherapy",
+      "subtitle": null,
+      "layout": "two_column",
+      "content": {
+        "headline": "~85% of metastatic CRC is MSS/pMMR — and has no approved immunotherapy",
+        "bullets": null,
+        "columns": [
+          {
+            "header": "The Scale of the Problem",
+            "items": [
+              {
+                "stat": "~55,000",
+                "label": "new metastatic CRC cases/year in the US",
+                "source": "SEER 2024"
+              },
+              {
+                "stat": "~85%",
+                "label": "are MSS/pMMR — immune checkpoint inhibitors do not work",
+                "source": "Le et al. NEJM 2015; NCCN guidelines"
+              },
+              {
+                "stat": "~46,750",
+                "label": "MSS mCRC patients/year in the US with no immunotherapy option",
+                "source": "Computed: 55,000 × 0.85"
+              },
+              {
+                "stat": "~5–7%",
+                "label": "objective response rate with current 2L standard of care",
+                "source": "Historical 2L MSS mCRC benchmarks"
+              }
+            ]
+          },
+          {
+            "header": "Why Checkpoint Inhibitors Fail in MSS CRC",
+            "items": [
+              "Low tumor mutational burden (TMB) → few neoantigens → T cells not primed",
+              "Immunosuppressive tumor microenvironment (TGF-β, SMAD4 loss, myeloid suppression)",
+              "CEACAM5 overexpression sequesters tumor antigens at intercellular junctions",
+              "MSS tumors are 'cold' — immune cells cannot infiltrate",
+              "Pembrolizumab approved only for MSI-H/dMMR CRC (~15% of cases) — the MSS majority is excluded"
+            ]
+          }
+        ],
+        "table": null,
+        "timeline_events": null,
+        "footnote": "MSS = microsatellite stable; pMMR = proficient mismatch repair; dMMR = deficient mismatch repair; MSI-H = microsatellite instability-high."
+      },
+      "speaker_notes": "The unmet need is large and well-defined. ~46,750 MSS mCRC patients per year in the US have no approved immunotherapy. Checkpoint inhibitors (pembrolizumab, nivolumab) are approved only for the MSI-H/dMMR minority (~15%). The MSS majority — 85% of cases — is excluded. Current 2L standard of care (FOLFIRI ± bevacizumab) produces ORR ~5–7%. The biology of MSS CRC explains why: low TMB, immunosuppressive TME, and antigen sequestration all prevent immune activation. Brenus's approach is to bypass these barriers by educating the immune system ex vivo before re-exposing it to the tumor.",
+      "data_integrity": {
+        "sourced_claims": [
+          "~55,000 new mCRC cases/year US: SEER Cancer Statistics 2024 (P01)",
+          "~85% MSS/pMMR: Le et al. NEJM 2015; NCCN CRC guidelines (P02)",
+          "~46,750 MSS mCRC/year: computed P01 × P02 = 55,000 × 0.85 (P03 — clean COMPUTED)",
+          "Pembrolizumab approved for MSI-H/dMMR only: FDA label",
+          "CEACAM5 sequestration at intercellular junctions: Alzeeb et al. 2024 (DOI: 10.3389/fonc.2024.1427428)"
+        ],
+        "open_assumptions": [
+          "~5–7% ORR with 2L SOC: historical benchmark, not from a specific cited trial in this deck"
+        ],
+        "do_not_present_as_fact": [
+          "Any specific CEACAM5 prevalence threshold in CRC (G01/G02 — CRITICAL quarantine)"
+        ]
+      }
+    },
+    {
+      "slide_number": 4,
+      "section": "Scientific Problem",
+      "title": "The Biology: Why MSS CRC Needs a Different Approach",
+      "subtitle": "Three barriers that block conventional immunotherapy — and how STC-1010 addresses each",
+      "layout": "bullets",
+      "content": {
+        "headline": null,
+        "bullets": [
+          {
+            "barrier": "Barrier 1: Antigen Invisibility",
+            "problem": "MSS CRC tumors express low levels of neoantigens. T cells are never primed against the tumor.",
+            "stc_solution": "STC-1010 presents >200 tumor-associated and tumor-specific antigens simultaneously — including CEACAM5, MUC1, and CEA — to educate the immune system against the full tumor antigen landscape.",
+            "evidence_label": "SOURCED",
+            "source": "Alzeeb et al. 2024 (DOI: 10.3389/fonc.2024.1427428); company website"
+          },
+          {
+            "barrier": "Barrier 2: Immune Suppression",
+            "problem": "The MSS CRC tumor microenvironment is immunosuppressive: TGF-β signaling, SMAD4 loss (~30% of MSS CRC), and myeloid cell infiltration prevent T cell activity.",
+            "stc_solution": "STC-1010 is combined with low-dose cyclophosphamide (regulatory T cell depletion) and GM-CSF (dendritic cell activation) to overcome suppression before tumor re-exposure.",
+            "evidence_label": "SOURCED",
+            "source": "NCT06934538 protocol; Alzeeb et al. 2024"
+          },
+          {
+            "barrier": "Barrier 3: Cold Tumor Microenvironment",
+            "problem": "MSS CRC tumors lack tumor-infiltrating lymphocytes (TILs). Even if T cells are primed, they cannot enter the tumor.",
+            "stc_solution": "Haptenization with DNFB creates a contact hypersensitivity response that recruits immune cells to the tumor site — converting a 'cold' tumor to an 'inflamed' state.",
+            "evidence_label": "SOURCED",
+            "source": "Alzeeb et al. 2024; AACR IO 2026 press release (Feb 19, 2026)"
+          }
+        ],
+        "columns": null,
+        "table": null,
+        "timeline_events": null,
+        "footnote": "CEACAM5 = carcinoembryonic antigen-related cell adhesion molecule 5; DNFB = dinitrofluorobenzene; TGF-β = transforming growth factor beta; SMAD4 = mothers against decapentaplegic homolog 4."
+      },
+      "speaker_notes": "Three barriers explain why checkpoint inhibitors fail in MSS CRC and why a vaccine approach is rational. First, antigen invisibility: MSS tumors have low TMB, so T cells are never primed. STC-1010 bypasses this by presenting >200 antigens directly to dendritic cells. Second, immune suppression: TGF-β and regulatory T cells prevent effector T cell activity. The combination regimen (cyclophosphamide + GM-CSF) addresses this pharmacologically. Third, cold TME: even primed T cells cannot enter MSS tumors. DNFB haptenization creates a contact hypersensitivity response that recruits immune cells to the tumor site. Each barrier has a specific mechanistic counter in the STC-1010 regimen.",
+      "data_integrity": {
+        "sourced_claims": [
+          "SMAD4 loss ~30% MSS CRC: standard CRC genomics literature",
+          "DNFB haptenization mechanism: Alzeeb et al. 2024",
+          ">200 tumor antigens: company press releases (note: company claim, not independently validated enumeration)",
+          "Cyclophosphamide + GM-CSF combination: NCT06934538 protocol",
+          "DTH response (immune recruitment): AACR IO 2026 press release (Feb 19, 2026)"
+        ],
+        "open_assumptions": [],
+        "do_not_present_as_fact": [
+          "'>200 tumor antigens' is a company claim repeated across press releases; Alzeeb et al. 2024 reports 1,196+ proteins by MS but does not enumerate 200+ validated therapeutic targets — present as company claim, not independently validated fact"
+        ]
+      }
+    },
+    {
+      "slide_number": 5,
+      "section": "Intro to the Platform / Technology",
+      "title": "The STC Platform: Stimulated Tumor Cell Technology",
+      "subtitle": "An off-the-shelf, allogeneic, in vivo immunotherapy that educates the immune system against the full tumor antigen landscape",
+      "layout": "two_column",
+      "content": {
+        "headline": null,
+        "columns": [
+          {
+            "header": "What It Is",
+            "items": [
+              {
+                "label": "Drug class",
+                "value": "First-in-class allogeneic therapeutic cancer vaccine"
+              },
+              {
+                "label": "Format",
+                "value": "Off-the-shelf (allogeneic, standardized, scalable)"
+              },
+              {
+                "label": "Starting material",
+                "value": "Established human CRC cell lines (HCT116, HT29, LoVo) — provisional, high confidence"
+              },
+              {
+                "label": "Stress induction",
+                "value": "Controlled physical (irradiation, heat shock) or chemical (chemotherapy) stress → overexpression of tumor-associated and tumor-specific antigens"
+              },
+              {
+                "label": "Haptenization",
+                "value": "DNFB (dinitrofluorobenzene) conjugated to stressed cells → contact hypersensitivity signal that recruits immune cells to tumor"
+              },
+              {
+                "label": "Final product",
+                "value": "Non-proliferative 'ghost cells' presenting >200 tumor antigens in an immunogenic context"
+              }
+            ]
+          },
+          {
+            "header": "Why It Is Differentiated",
+            "items": [
+              {
+                "differentiator": "Breadth",
+                "detail": "Targets >200 tumor antigens simultaneously — not a single-antigen approach. Resistant to antigen escape."
+              },
+              {
+                "differentiator": "Off-the-shelf",
+                "detail": "Allogeneic — no patient-specific manufacturing. Standardized production process. Company claims ~100 patients treatable per batch (unvalidated independently)."
+              },
+              {
+                "differentiator": "Combination-ready",
+                "detail": "Designed to combine with SOC chemotherapy (mFOLFOX6 ± bevacizumab) — not a standalone therapy. Chemotherapy-induced immunogenic cell death amplifies the vaccine signal."
+              },
+              {
+                "differentiator": "Hapten mechanism",
+                "detail": "DNFB haptenization is a validated contact hypersensitivity mechanism (used in dermatology for decades). Applied here to recruit immune cells to the tumor site."
+              },
+              {
+                "differentiator": "Tumor-agnostic potential",
+                "detail": "Platform applicable to any solid tumor expressing the target antigen panel. CRC is the lead indication; gastric and pancreatic cancer are aspirational extensions."
+              }
+            ]
+          }
+        ],
+        "bullets": null,
+        "table": null,
+        "timeline_events": null,
+        "footnote": "Cell line identity (HCT116, HT29, LoVo) is provisional — high confidence based on ASCO 2023 abstract e14661, EACR25 abstract, and Brenus platform page; full confirmation requires NDA data room access. HT29 carries BRAF V600E — potential conflict with trial BRAF-exclusion criterion (NCT06934538 Exclusion Criterion #7). '>200 tumor antigens' is a company claim; Alzeeb et al. 2024 reports 1,196+ proteins by MS but does not enumerate 200+ validated targets."
+      },
+      "speaker_notes": "The STC platform is the core IP. The key insight is that stressed tumor cells — cells that have been irradiated or chemotherapy-treated — overexpress a broad panel of tumor antigens in a highly immunogenic context. Haptenization with DNFB adds a contact hypersensitivity signal that recruits immune cells to the tumor site. The result is a non-proliferative 'ghost cell' that presents >200 antigens to the immune system. The off-the-shelf format is a major commercial advantage: no patient-specific manufacturing, standardized batches, and scalable production. The combination with mFOLFOX6 is intentional: chemotherapy-induced immunogenic cell death releases additional tumor antigens that amplify the vaccine signal.",
+      "data_integrity": {
+        "sourced_claims": [
+          "Drug class, mechanism, haptenization: Alzeeb et al. 2024 (DOI: 10.3389/fonc.2024.1427428)",
+          "DNFB hapten: company website (explicitly names DNFB)",
+          "Cell lines HCT116, HT29, LoVo: ASCO 2023 e14661, EACR25 abstract, Brenus platform page (provisional)",
+          "Off-the-shelf, allogeneic: multiple press releases",
+          "mFOLFOX6 ± bevacizumab combination: NCT06934538 protocol"
+        ],
+        "open_assumptions": [
+          "'>200 tumor antigens' — company claim, not independently validated enumeration",
+          "'~100 patients per batch' — company website claim, no independent manufacturing validation",
+          "Gastric/pancreatic extensions — aspirational statements from Series A fundraising materials only"
+        ],
+        "do_not_present_as_fact": [
+          "Cell line identity as fully confirmed (provisional only)",
+          "'>200 tumor antigens' as a validated scientific count",
+          "Gastric/pancreatic pipeline as confirmed programs"
+        ]
+      }
+    },
+    {
+      "slide_number": 6,
+      "section": "Intro to the Platform / Technology",
+      "title": "How STC-1010 Works: A Four-Step Immune Education Process",
+      "subtitle": null,
+      "layout": "bullets",
+      "content": {
+        "headline": "STC-1010 converts a 'cold' MSS CRC tumor into an immune-recognized target through four sequential steps",
+        "bullets": [
+          {
+            "step": "Step 1 — Manufacture",
+            "detail": "Allogeneic CRC cell lines are subjected to controlled stress (irradiation or chemotherapy). Stress induces overexpression of tumor-associated antigens (TAA) and tumor-specific antigens (TSA). Cells are haptenized with DNFB and rendered non-proliferative ('ghost cells'). Standardized batches produced under GMP.",
+            "evidence": "Alzeeb et al. 2024; AACR 2024 abstract 5003 (batch reproducibility confirmed)"
+          },
+          {
+            "step": "Step 2 — Immune Priming",
+            "detail": "STC-1010 is administered with low-dose cyclophosphamide (depletes regulatory T cells) and GM-CSF (activates dendritic cells). Dendritic cells capture STC-1010, process antigens, and prime CD8+ cytotoxic T cells against the tumor antigen panel.",
+            "evidence": "NCT06934538 protocol; AACR 2025 LB383 (DC activation, CD8+ T cell priming confirmed ex vivo)"
+          },
+          {
+            "step": "Step 3 — Tumor Recruitment",
+            "detail": "DNFB haptenization creates a contact hypersensitivity (DTH) response at the tumor site. Immune cells are recruited to the tumor microenvironment. DTH responses observed in first-in-human patients (AACR 2026, n=6).",
+            "evidence": "AACR 2026 press release (Apr 14, 2026); AACR IO 2026 press release (Feb 19, 2026)"
+          },
+          {
+            "step": "Step 4 — Tumor Killing + Amplification",
+            "detail": "Primed CD8+ T cells kill CEACAM5+ and neighboring tumor cells (bystander effect). Concurrent mFOLFOX6 chemotherapy induces immunogenic cell death, releasing additional tumor antigens that amplify the vaccine signal in a feed-forward loop.",
+            "evidence": "Alzeeb et al. 2024; AACR 2025 LB383 (robust, reproducible cytotoxicity confirmed ex vivo)"
+          }
+        ],
+        "columns": null,
+        "table": null,
+        "timeline_events": null,
+        "footnote": "Steps 1–2 are confirmed in preclinical models and ex vivo. Step 3 (DTH) is confirmed in first-in-human data (n=6, AACR 2026). Step 4 (tumor killing in humans) is the primary endpoint of Phase IIa — data expected 2027–2028."
+      },
+      "speaker_notes": "The four-step mechanism is important for the CMO audience. Step 1 is manufacturing — the off-the-shelf advantage. Step 2 is immune priming — the combination regimen is not arbitrary; each component has a specific role. Step 3 is the DNFB mechanism — this is the most novel part of the platform. Contact hypersensitivity is a well-understood dermatology mechanism being applied to oncology. DTH responses have been observed in the first 6 FIH patients — this is the first human evidence that the mechanism is working as designed. Step 4 is the efficacy endpoint — not yet confirmed in humans. The 100% DCR in n=6 patients is encouraging but must be interpreted with caution: DCR includes stable disease, n=6 is very small, and there is no comparator arm.",
+      "data_integrity": {
+        "sourced_claims": [
+          "Batch reproducibility: AACR 2024 abstract 5003",
+          "DC activation, CD8+ T cell priming ex vivo: AACR 2025 LB383",
+          "DTH responses in FIH patients: AACR 2026 press release (Apr 14, 2026)",
+          "Cyclophosphamide + GM-CSF combination: NCT06934538 protocol",
+          "mFOLFOX6 ± bevacizumab: NCT06934538 protocol"
+        ],
+        "open_assumptions": [],
+        "do_not_present_as_fact": [
+          "Tumor killing in humans (Step 4) — primary endpoint of Phase IIa, not yet confirmed",
+          "100% DCR (n=6) as evidence of efficacy — includes stable disease, no comparator, not peer-reviewed"
+        ]
+      }
+    },
+    {
+      "slide_number": 7,
+      "section": "Supporting Data",
+      "title": "Preclinical Evidence: Consistent Efficacy Across Multiple Models",
+      "subtitle": "Five years of preclinical data across in vivo, in ovo, and ex vivo models — with confirmed batch-to-batch reproducibility",
+      "layout": "data_table",
+      "content": {
+        "headline": null,
+        "bullets": null,
+        "columns": null,
+        "table": {
+          "headers": [
+            "Model",
+            "Finding",
+            "Significance",
+            "Source",
+            "Evidence label"
+          ],
+          "rows": [
+            {
+              "model": "CT26 syngeneic murine (in vivo)",
+              "finding": "Murine STC-1010 significantly inhibits tumor growth; extends survival by 40% vs control",
+              "significance": "Proof-of-concept in immunocompetent murine model; CD4+/CD8+ T cell expansion in draining lymph nodes; significant humoral response",
+              "source": "AACR IO 2026 press release (Feb 19, 2026)",
+              "evidence_label": "SOURCED — press release; not peer-reviewed for this specific data"
+            },
+            {
+              "model": "Multiple CRC models (in vivo, in ovo, ex vivo)",
+              "finding": "Efficacy confirmed in immunotherapy-resistant CRC models; significant tumor cell apoptosis and reduced metastasis",
+              "significance": "Resistance to standard immunotherapy is not a barrier for STC-1010",
+              "source": "AACR 2024 abstract 5003; AACR 2025 LB383",
+              "evidence_label": "SOURCED — conference abstracts; not peer-reviewed publications"
+            },
+            {
+              "model": "Ex vivo DC / CD8+ T cell assay",
+              "finding": "Dendritic cells efficiently capture STC-1010 → activation confirmed by transcriptomic analysis (upregulation of key immune pathways); primed CD8+ T cells mediate robust, reproducible cytotoxicity against CRC cells",
+              "significance": "Mechanistic confirmation of the two-step immune education process (DC capture → T cell priming → tumor killing)",
+              "source": "AACR 2025 LB383; AACR 2023 LB224",
+              "evidence_label": "SOURCED — conference abstracts; not peer-reviewed publications"
+            },
+            {
+              "model": "In ovo CAM assay",
+              "finding": "Anti-tumor efficacy confirmed; metastasis reduction observed; cytokine secretion and T cell expansion confirmed",
+              "significance": "Independent model system corroborating in vivo findings",
+              "source": "AACR 2023 abstract 6791; AACR 2024 abstract 5003",
+              "evidence_label": "SOURCED — conference abstracts; not peer-reviewed publications"
+            },
+            {
+              "model": "GMP batch reproducibility",
+              "finding": "Multi-omics analysis of 3 consecutive STC-1010 GMP batches confirmed consistent quality and batch-to-batch reproducibility",
+              "significance": "Manufacturing consistency is a regulatory requirement; confirmed across 3 batches",
+              "source": "AACR 2024 abstract 5003; AACR 2025 LB383",
+              "evidence_label": "SOURCED — conference abstracts; not peer-reviewed publications"
+            },
+            {
+              "model": "Peer-reviewed publication",
+              "finding": "3CL-SH vaccine (CT26, CMT-93, LTPA murine cell lines) shows efficacy in murine CRC models; mechanism confirmed",
+              "significance": "Only peer-reviewed efficacy data for the STC platform",
+              "source": "Alzeeb et al. 2024 (DOI: 10.3389/fonc.2024.1427428) — Frontiers in Oncology",
+              "evidence_label": "SOURCED — peer-reviewed; murine models only"
+            }
+          ]
+        },
+        "timeline_events": null,
+        "footnote": "All preclinical data are from press releases or conference abstracts unless noted. Alzeeb et al. 2024 is the only peer-reviewed efficacy publication. Murine data are not directly translatable to human outcomes. The 3CL-SH murine vaccine uses different cell lines than the human STC-1010 product."
+      },
+      "speaker_notes": "Five years of preclinical data across multiple model systems. Key points: 1. Efficacy is consistent across in vivo, in ovo, and ex vivo models — not a single-model result. 2. The mechanism is confirmed at each step: DC capture, T cell priming, tumor killing. 3. Batch reproducibility is confirmed across 3 GMP batches — important for regulatory and commercial readiness. 4. The only peer-reviewed data is Alzeeb et al. 2024 (murine models). All other data are from press releases or conference abstracts — important caveat for diligence audiences. The 40% survival extension in CT26 is the headline preclinical number.",
+      "data_integrity": {
+        "sourced_claims": [
+          "40% survival extension CT26: AACR IO 2026 press release (Feb 19, 2026)",
+          "Efficacy in immunotherapy-resistant models: AACR 2024 abstract 5003",
+          "DC activation, transcriptomic analysis: AACR IO 2026 press release",
+          "Robust reproducible cytotoxicity ex vivo: AACR 2025 LB383",
+          "Metastasis reduction in ovo: AACR 2024 abstract 5003",
+          "3 GMP batch reproducibility: AACR 2024 abstract 5003",
+          "Peer-reviewed efficacy: Alzeeb et al. 2024 (DOI: 10.3389/fonc.2024.1427428)"
+        ],
+        "open_assumptions": [],
+        "do_not_present_as_fact": [
+          "Preclinical data as predictive of human outcomes",
+          "Press release data as peer-reviewed evidence"
+        ]
+      }
+    },
+    {
+      "slide_number": 8,
+      "section": "Supporting Data",
+      "title": "First-in-Human Data: Safety Confirmed, Early Efficacy Signals",
+      "subtitle": "Phase Ia data (n=6, median follow-up 6 months) — AACR 2026, Poster CT051",
+      "layout": "two_column",
+      "content": {
+        "headline": "No dose-limiting toxicities. 100% disease control rate. DTH responses observed.",
+        "columns": [
+          {
+            "header": "Safety (Primary Phase I Endpoint)",
+            "items": [
+              {
+                "finding": "No dose-limiting toxicities (DLTs) observed",
+                "detail": "Across all first dose levels completed in Phase Ia",
+                "source": "AACR 2026 press release (Apr 14, 2026); Jan 6, 2026 press release",
+                "caveat": "n=6; not peer-reviewed; dose amounts not publicly disclosed"
+              },
+              {
+                "finding": "Good overall safety profile",
+                "detail": "Consistent with preclinical expectations; no Grade 3/4 AEs attributed to STC-1010 reported",
+                "source": "Jan 6, 2026 press release; AACR IO 2026 press release (Feb 19, 2026)",
+                "caveat": "Grade 1–2 AE frequency data not yet published; full AE table not public"
+              },
+              {
+                "finding": "No DLTs in MSS + KRAS-mutant CRC patients specifically",
+                "detail": "Subgroup of particular interest given KRAS mutation prevalence in MSS CRC",
+                "source": "AACR IO 2026 press release (Feb 19, 2026)",
+                "caveat": "Subgroup size not disclosed"
+              }
+            ]
+          },
+          {
+            "header": "Efficacy Signals (Exploratory — Phase Ia)",
+            "items": [
+              {
+                "finding": "100% disease control rate (DCR) by RECIST",
+                "detail": "n=6, median follow-up 6 months",
+                "source": "AACR 2026 press release (Apr 14, 2026), Poster CT051",
+                "caveat": "DCR includes stable disease (not just responses); n=6 is very small; no comparator arm; not peer-reviewed. Historical DCR with FOLFOX alone in 1L mCRC is ~80–90%."
+              },
+              {
+                "finding": "Delayed-type hypersensitivity (DTH) responses observed",
+                "detail": "Evidence of immune activation at the tumor site — the DNFB mechanism working as designed in humans",
+                "source": "AACR 2026 press release (Apr 14, 2026)",
+                "caveat": "DTH is a surrogate marker; clinical significance not yet established"
+              },
+              {
+                "finding": "Phase Ia complete safety data + exploratory efficacy across all dose cohorts expected Q2 2026",
+                "detail": "Full dose-escalation data will inform RP2D selection and Phase IIa design",
+                "source": "AACR IO 2026 press release (Feb 19, 2026)",
+                "caveat": "Forward-looking statement"
+              }
+            ]
+          }
+        ],
+        "bullets": null,
+        "table": null,
+        "timeline_events": null,
+        "footnote": "All clinical data are from company press releases. No peer-reviewed clinical publication exists as of June 2026. n=6 is insufficient to draw efficacy conclusions. The 100% DCR must be interpreted in the context of FOLFOX backbone (expected DCR ~80–90% in 1L mCRC). The primary efficacy endpoint (12-month non-progression rate) will be measured in Phase IIa — data expected 2027–2028."
+      },
+      "speaker_notes": "The FIH data is early but meaningful. The most important finding is safety: no DLTs across all first dose levels. This clears the path to Phase IIa. The 100% DCR is encouraging but must be contextualized: FOLFOX alone produces ~80–90% DCR in 1L mCRC, so the incremental contribution of STC-1010 cannot be assessed from this data. The DTH responses are the most scientifically interesting finding: they confirm that the DNFB mechanism is working in humans — immune cells are being recruited to the tumor site. This is the first human evidence that the platform's core mechanism is functioning as designed. Full Phase Ia data (all dose cohorts) expected Q2 2026. Phase IIa (12-month non-progression rate as primary endpoint) will provide the first efficacy readout.",
+      "data_integrity": {
+        "sourced_claims": [
+          "No DLTs: AACR 2026 press release (Apr 14, 2026); Jan 6, 2026 press release",
+          "100% DCR (n=6, 6-month follow-up): AACR 2026 press release, Poster CT051",
+          "DTH responses: AACR 2026 press release (Apr 14, 2026)",
+          "No DLTs in MSS+KRAS-mutant patients: AACR IO 2026 press release (Feb 19, 2026)",
+          "Q2 2026 full Phase Ia data expected: AACR IO 2026 press release (Feb 19, 2026)"
+        ],
+        "open_assumptions": [],
+        "do_not_present_as_fact": [
+          "100% DCR as evidence of STC-1010 efficacy — no comparator arm; FOLFOX alone produces ~80–90% DCR",
+          "Any efficacy conclusion from n=6 data",
+          "'Preliminary clinical signals are very promising and stronger than anything previously reported' — CEO quote; unsubstantiated superlative; do not use"
+        ]
+      }
+    },
+    {
+      "slide_number": 9,
+      "section": "Development Timelines",
+      "title": "Development Timeline: STC-1010",
+      "subtitle": "From preclinical proof-of-concept (2021) to Phase IIa readout (2027–2028)",
+      "layout": "timeline",
+      "content": {
+        "headline": null,
+        "bullets": null,
+        "columns": null,
+        "table": null,
+        "timeline_events": [
+          {
+            "period": "2021–2022",
+            "phase": "Preclinical Foundation",
+            "status": "COMPLETED",
+            "milestones": [
+              "SITC 2021: First preclinical data (CT26 model efficacy)",
+              "AACR 2022: Three abstracts — efficacy in MC38 and CT26 models",
+              "Seed round: €4M (March 2022)"
+            ],
+            "source": "DOI: 10.1158/2326-6074.tumimm21-p003; DOI: 10.1158/1538-7445.am2022-2051"
+          },
+          {
+            "period": "2023–2024",
+            "phase": "Advanced Preclinical + IND-Enabling",
+            "status": "COMPLETED",
+            "milestones": [
+              "AACR 2023: Ex vivo DC/CD8+ T cell killing confirmed (LB224)",
+              "ASCO 2023: Preclinical efficacy in CRC models (e14661)",
+              "Alzeeb et al. 2024 published — only peer-reviewed efficacy paper (Frontiers in Oncology)",
+              "AACR 2024: Batch reproducibility confirmed across 3 GMP batches (abstract 5003)",
+              "ASCO 2024: BreAK-CRC trial design presented (TPS3635); CTA submitted to EU CTIS",
+              "Series A: €22.2M (September 2024)"
+            ],
+            "source": "Multiple press releases; DOI: 10.3389/fonc.2024.1427428; DOI: 10.1200/JCO.2024.42.16_suppl.TPS3635"
+          },
+          {
+            "period": "June 2025",
+            "phase": "Phase I/IIa Initiation",
+            "status": "COMPLETED",
+            "milestones": [
+              "NCT06934538 study start date: June 17, 2025",
+              "French regulatory approval confirmed",
+              "4 French sites open: CGFL Dijon, Institut Bergonié, ICM Montpellier, HCL Lyon"
+            ],
+            "source": "CenterWatch (Dec 19, 2025); BusinessWire Sep 2, 2025"
+          },
+          {
+            "period": "September 2025",
+            "phase": "First Patients Dosed",
+            "status": "COMPLETED",
+            "milestones": [
+              "First 3 patients enrolled",
+              "First patient completed 8 weeks with no adverse events attributed to STC-1010",
+              "5th site opened: Institut Gustave Roussy (Villejuif)"
+            ],
+            "source": "BusinessWire Sep 2, 2025"
+          },
+          {
+            "period": "January–April 2026",
+            "phase": "Phase Ia Safety Readout",
+            "status": "COMPLETED",
+            "milestones": [
+              "Jan 2026: Preliminary FIH results — no DLTs, good overall tolerance",
+              "Feb 2026 (AACR IO): No DLTs in MSS+KRAS-mutant patients; DTH responses observed",
+              "Apr 2026 (AACR): n=6, 6-month follow-up — no DLTs, 100% DCR by RECIST, DTH confirmed",
+              "Prof. Olivera J. Finn (U Pittsburgh) appointed to SAB (Nov 2025)"
+            ],
+            "source": "BusinessWire Jan 6, 2026; Feb 19, 2026; Apr 14, 2026"
+          },
+          {
+            "period": "Q2 2026",
+            "phase": "Phase Ia Complete Data",
+            "status": "UPCOMING",
+            "milestones": [
+              "Full Phase Ia safety data across all dose cohorts expected",
+              "Exploratory efficacy data across dose cohorts",
+              "RP2D (recommended Phase 2 dose) selection"
+            ],
+            "source": "AACR IO 2026 press release (Feb 19, 2026) — forward-looking statement"
+          },
+          {
+            "period": "2026–2027",
+            "phase": "Phase IIa Initiation",
+            "status": "PLANNED",
+            "milestones": [
+              "Phase IIa enrollment begins (~57–60 patients in 2 arms)",
+              "International expansion: Belgium sites + Johns Hopkins (planned, not yet active)",
+              "Primary endpoint: 12-month non-progression rate",
+              "STC-1020 IND filing targeted (company aspiration — not confirmed regulatory filing)"
+            ],
+            "source": "NCT06934538; CenterWatch; company website — forward-looking statements"
+          },
+          {
+            "period": "2027–2028",
+            "phase": "Phase IIa Primary Endpoint Readout",
+            "status": "PLANNED",
+            "milestones": [
+              "12-month non-progression rate data",
+              "Biomarker data: ctDNA, immunophenotyping, TLS evolution, HLA expression",
+              "Go/no-go decision for Phase III",
+              "Estimated trial completion: June 30, 2029 (per NCT06934538)"
+            ],
+            "source": "NCT06934538 (estimated completion June 30, 2029)"
+          }
+        ],
+        "footnote": "All future milestones are forward-looking statements based on company press releases and trial registry data. Timelines are subject to enrollment pace, regulatory decisions, and data readouts. STC-1020 IND by 2027 is a company aspiration, not a confirmed regulatory filing date."
+      },
+      "speaker_notes": "The timeline shows a company that has been building systematically since 2021. Five years of preclinical data, a €30M fundraise, French regulatory approval, and first patients dosed — all completed before the first FIH data readout. The key upcoming milestones are: Q2 2026 (full Phase Ia data + RP2D), 2026–2027 (Phase IIa initiation), and 2027–2028 (12-month non-progression rate readout). The trial completion date on ClinicalTrials.gov is June 30, 2029. The Johns Hopkins site is listed but not yet active — US expansion is planned but not confirmed.",
+      "data_integrity": {
+        "sourced_claims": [
+          "All completed milestones: sourced to specific press releases and DOIs listed above",
+          "NCT06934538 study start June 17, 2025: CenterWatch",
+          "Estimated completion June 30, 2029: NCT06934538",
+          "5 active French sites: CenterWatch (Dec 19, 2025)",
+          "Johns Hopkins listed but not active: CenterWatch"
+        ],
+        "open_assumptions": [],
+        "do_not_present_as_fact": [
+          "STC-1020 IND by 2027 — company aspiration only",
+          "Phase IIa initiation timeline — dependent on RP2D selection and enrollment pace",
+          "US expansion timeline — Johns Hopkins site not yet active"
+        ]
+      }
+    },
+    {
+      "slide_number": 10,
+      "section": "Closing",
+      "title": "Why Now: The Convergence of Unmet Need, Platform Readiness, and Competitive Window",
+      "subtitle": null,
+      "layout": "closing",
+      "content": {
+        "headline": "Three reasons the timing is right",
+        "bullets": [
+          {
+            "reason": "1. The unmet need is large and unaddressed",
+            "detail": "~46,750 MSS mCRC patients per year in the US have no approved immunotherapy. Current 2L standard of care produces ~5–7% ORR. No competitor has a validated patient selection system for this population. Checkpoint inhibitors are approved only for the MSI-H minority (~15% of CRC).",
+            "evidence_label": "SOURCED"
+          },
+          {
+            "reason": "2. The platform is de-risked at the critical safety gate",
+            "detail": "No DLTs across all Phase Ia dose levels (n=6, 6-month follow-up). DTH responses confirmed in humans — the core DNFB mechanism is working as designed. Batch reproducibility confirmed across 3 GMP batches. Full Phase Ia data (all dose cohorts) expected Q2 2026.",
+            "evidence_label": "SOURCED"
+          },
+          {
+            "reason": "3. The competitive window is open — but not indefinitely",
+            "detail": "No approved immunotherapy for MSS CRC. Competing programs (SGN-CEACAM5C, M9140) are enrolling without validated patient selection — the same approach that failed in CARMEN-LC03. Brenus's combination of broad antigen targeting, hapten-mediated immune recruitment, and first-line positioning is differentiated from all current competitors.",
+            "evidence_label": "SOURCED for competitive landscape; OPEN_ASSUMPTION for competitive advantage claim"
+          }
+        ],
+        "columns": null,
+        "table": null,
+        "timeline_events": null,
+        "ask": {
+          "label": "The Ask",
+          "items": [
+            "Phase IIa partnership / co-development in MSS CRC",
+            "Biomarker collaboration: patient selection platform development (CrisPRO fit)",
+            "US IND support and Johns Hopkins site activation",
+            "Strategic licensing: STC platform for gastric / pancreatic extensions (aspirational)"
+          ]
+        },
+        "contact": {
+          "company": "Brenus Pharma",
+          "ceo": "Paul Bravetti — paul.bravetti@brenus-pharma.com",
+          "press": "Marion Brun — contact@brenus-pharma.com",
+          "website": "www.brenus-pharma.com",
+          "trial": "NCT06934538"
+        },
+        "footnote": "Competitive landscape claims are based on publicly available trial registry data (NCT06131840 for SGN-CEACAM5C). CARMEN-LC03 failure data: Besse et al. WCLC 2024. The 'competitive advantage' framing is a strategic interpretation, not a sourced claim."
+      },
+      "speaker_notes": "The closing slide makes three arguments: unmet need, platform readiness, and competitive window. The unmet need is the largest and most defensible: 46,750 patients per year with no immunotherapy option. Platform readiness: the safety gate has been cleared. No DLTs is the minimum required to proceed to Phase IIa. DTH responses are the first human evidence that the mechanism is working. Competitive window: no competitor has a validated patient selection system for MSS CRC. The CARMEN-LC03 failure (Sanofi/tusamitamab) demonstrates that broad enrollment without biomarker selection fails. Brenus's first-line positioning and broad antigen targeting differentiate it from ADC-based approaches. The ask is deliberately staged: Phase IIa partnership is the entry point; biomarker collaboration (CrisPRO) is the value-add; US expansion is the growth path.",
+      "data_integrity": {
+        "sourced_claims": [
+          "~46,750 MSS mCRC patients/year US: P03 (COMPUTED from SOURCED inputs)",
+          "No DLTs Phase Ia: AACR 2026 press release",
+          "DTH responses: AACR 2026 press release",
+          "3 GMP batch reproducibility: AACR 2024 abstract 5003",
+          "SGN-CEACAM5C no CEACAM5 threshold: NCT06131840",
+          "CARMEN-LC03 failure: Besse et al. WCLC 2024"
+        ],
+        "open_assumptions": [
+          "Competitive advantage claim — strategic interpretation, not a sourced fact",
+          "Gastric/pancreatic extensions — aspirational, not confirmed pipeline"
+        ],
+        "do_not_present_as_fact": [
+          "Any revenue, market size, or NPV projections (all quarantined)",
+          "Gastric/pancreatic pipeline as confirmed programs",
+          "US expansion timeline as confirmed"
+        ]
+      }
+    }
+  ]
+}

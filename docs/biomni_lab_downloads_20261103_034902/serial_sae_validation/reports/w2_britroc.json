@@ -1,0 +1,288 @@
+{
+  "worker": "W2",
+  "dataset": "BriTROC-1",
+  "source": "Brenton/BriTROC Nat Commun 2023",
+  "doi": "10.1038/s41467-023-39867-7",
+  "reproduction_mode": "independent_open_supp",
+  "checks": [
+    {
+      "id": "W2-01",
+      "claim": "s7 relapse AUROC=0.874 (95% CI 0.750-0.974), Wilcoxon p=0.035",
+      "reproduced": {
+        "auroc": 0.8739,
+        "ci": [
+          0.7622,
+          0.9717
+        ],
+        "wilcoxon_p": 0.035
+      }
+    },
+    {
+      "id": "W2-02",
+      "claim": "s7 diagnosis AUROC=0.694 (lower than relapse)",
+      "reproduced": {
+        "auroc": 0.6937,
+        "wilcoxon_p": 0.279
+      }
+    },
+    {
+      "id": "W2-03",
+      "claim": "s7 improvement diagnosis->relapse = +0.180",
+      "reproduced": {
+        "diag_auc": 0.6937,
+        "rel_auc": 0.8739,
+        "improvement": 0.1802
+      }
+    },
+    {
+      "id": "W2-04",
+      "claim": "s6 improvement = +0.262 (supported)",
+      "reproduced": {
+        "diag_auc": 0.4414,
+        "rel_auc": 0.7027,
+        "improvement": 0.2613
+      }
+    },
+    {
+      "id": "W2-05",
+      "claim": "s4 improvement = 0.000 (not supported)",
+      "reproduced": {
+        "diag_auc": 0.7297,
+        "rel_auc": 0.7297,
+        "improvement": 0.0
+      }
+    },
+    {
+      "id": "W2-06",
+      "claim": "cohort n=47 paired / n=40 with labels / 3 resistant",
+      "reproduced": {
+        "n_paired_cn": 47,
+        "final_n": 40,
+        "n_resistant": 3
+      }
+    },
+    {
+      "id": "W2-07",
+      "claim": "higher s7 at relapse -> resistant (mean R 0.328 vs S 0.157)",
+      "reproduced": {
+        "mean_resistant": 0.3282,
+        "mean_sensitive": 0.1566
+      }
+    }
+  ],
+  "cn_rows": 1855,
+  "n_paired_cn": 47,
+  "clinical_label_counts_line1": {
+    "sensitive": 212,
+    "resistant": 35
+  },
+  "final_n": 40,
+  "final_n_resistant": 3,
+  "final_n_sensitive": 37,
+  "final_patient_ids": [
+    1,
+    2,
+    5,
+    8,
+    9,
+    11,
+    32,
+    34,
+    36,
+    37,
+    55,
+    65,
+    67,
+    74,
+    99,
+    106,
+    124,
+    132,
+    147,
+    148,
+    157,
+    192,
+    204,
+    205,
+    209,
+    216,
+    225,
+    229,
+    232,
+    234,
+    241,
+    242,
+    246,
+    248,
+    256,
+    259,
+    267,
+    268,
+    271,
+    274
+  ],
+  "auroc_results": {
+    "s7_diag": {
+      "auroc": 0.6937,
+      "boot_mean": 0.6932,
+      "ci_low": 0.4103,
+      "ci_high": 0.9231,
+      "wilcoxon_p": 0.279,
+      "mean_resistant": 0.2103,
+      "mean_sensitive": 0.1345
+    },
+    "s7_rel": {
+      "auroc": 0.8739,
+      "boot_mean": 0.8753,
+      "ci_low": 0.7622,
+      "ci_high": 0.9717,
+      "wilcoxon_p": 0.035,
+      "mean_resistant": 0.3282,
+      "mean_sensitive": 0.1566
+    },
+    "s7_delta": {
+      "auroc": 0.8288,
+      "boot_mean": 0.8331,
+      "ci_low": 0.6053,
+      "ci_high": 0.9744,
+      "wilcoxon_p": 0.0644,
+      "mean_resistant": 0.1178,
+      "mean_sensitive": 0.022
+    },
+    "s6_diag": {
+      "auroc": 0.4414,
+      "boot_mean": 0.4399,
+      "ci_low": 0.2083,
+      "ci_high": 0.8158,
+      "wilcoxon_p": 0.7358,
+      "mean_resistant": 0.0272,
+      "mean_sensitive": 0.0376
+    },
+    "s6_rel": {
+      "auroc": 0.7027,
+      "boot_mean": 0.705,
+      "ci_low": 0.5049,
+      "ci_high": 0.875,
+      "wilcoxon_p": 0.2398,
+      "mean_resistant": 0.0462,
+      "mean_sensitive": 0.0355
+    },
+    "s6_delta": {
+      "auroc": 0.6937,
+      "boot_mean": 0.6978,
+      "ci_low": 0.2105,
+      "ci_high": 1.0,
+      "wilcoxon_p": 0.2651,
+      "mean_resistant": 0.019,
+      "mean_sensitive": -0.0021
+    },
+    "s4_diag": {
+      "auroc": 0.7297,
+      "boot_mean": 0.7267,
+      "ci_low": 0.3421,
+      "ci_high": 0.9744,
+      "wilcoxon_p": 0.1872,
+      "mean_resistant": 0.1934,
+      "mean_sensitive": 0.0952
+    },
+    "s4_rel": {
+      "auroc": 0.7297,
+      "boot_mean": 0.734,
+      "ci_low": 0.373,
+      "ci_high": 1.0,
+      "wilcoxon_p": 0.1915,
+      "mean_resistant": 0.2005,
+      "mean_sensitive": 0.1036
+    },
+    "s4_delta": {
+      "auroc": 0.5676,
+      "boot_mean": 0.5744,
+      "ci_low": null,
+      "ci_high": 1.0,
+      "wilcoxon_p": 0.7177,
+      "mean_resistant": 0.0071,
+      "mean_sensitive": 0.0084
+    },
+    "s2_diag": {
+      "auroc": 0.455,
+      "boot_mean": 0.4569,
+      "ci_low": 0.0256,
+      "ci_high": 0.7895,
+      "wilcoxon_p": 0.8172,
+      "mean_resistant": 0.0984,
+      "mean_sensitive": 0.1257
+    },
+    "s2_rel": {
+      "auroc": 0.4505,
+      "boot_mean": 0.4486,
+      "ci_low": 0.1538,
+      "ci_high": 0.7105,
+      "wilcoxon_p": 0.7973,
+      "mean_resistant": 0.0952,
+      "mean_sensitive": 0.118
+    },
+    "s2_delta": {
+      "auroc": 0.4505,
+      "boot_mean": 0.4455,
+      "ci_low": 0.1282,
+      "ci_high": 0.9474,
+      "wilcoxon_p": 0.8089,
+      "mean_resistant": -0.0032,
+      "mean_sensitive": -0.0076
+    },
+    "s5_diag": {
+      "auroc": 0.527,
+      "boot_mean": 0.535,
+      "ci_low": 0.1795,
+      "ci_high": 0.8226,
+      "wilcoxon_p": 0.8945,
+      "mean_resistant": 0.0584,
+      "mean_sensitive": 0.0638
+    },
+    "s5_rel": {
+      "auroc": 0.2793,
+      "boot_mean": 0.2837,
+      "ci_low": 0.1184,
+      "ci_high": 0.5561,
+      "wilcoxon_p": 0.2055,
+      "mean_resistant": 0.0061,
+      "mean_sensitive": 0.0328
+    },
+    "s5_delta": {
+      "auroc": 0.3423,
+      "boot_mean": 0.3353,
+      "ci_low": 0.0811,
+      "ci_high": 0.6538,
+      "wilcoxon_p": 0.3814,
+      "mean_resistant": -0.0523,
+      "mean_sensitive": -0.0311
+    }
+  },
+  "serial_improvement": {
+    "s7": {
+      "diag_auc": 0.6937,
+      "rel_auc": 0.8739,
+      "improvement": 0.1802
+    },
+    "s6": {
+      "diag_auc": 0.4414,
+      "rel_auc": 0.7027,
+      "improvement": 0.2613
+    },
+    "s4": {
+      "diag_auc": 0.7297,
+      "rel_auc": 0.7297,
+      "improvement": 0.0
+    },
+    "s2": {
+      "diag_auc": 0.455,
+      "rel_auc": 0.4505,
+      "improvement": -0.0045
+    },
+    "s5": {
+      "diag_auc": 0.527,
+      "rel_auc": 0.2793,
+      "improvement": -0.2477
+    }
+  }
+}

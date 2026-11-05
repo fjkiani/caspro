@@ -1,0 +1,2018 @@
+{
+  "caslib": "Prostat_Pfizer_2008_81",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "PSA"
+  ],
+  "indication": "prostate",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 22,
+  "n_tabular_files": 22,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "795f65cce361967643b38efa5f895676d82275a24f46a452a91eaef6d7923a18",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Original Text for Causaility",
+          "name": "AECAUSAC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE Causality Treatment 1 Name",
+          "name": "AECS1NM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE Causality Treatment 2 Name",
+          "name": "AECS2NM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CTC AE Grade Studies Collecting NCI-CTC",
+          "name": "AEGRADE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "AE Action Study Treatment 1 Name",
+          "name": "AEST1NM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE Action Study Treatment 2 Name",
+          "name": "AEST2NM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred Term Text",
+          "name": "PREFTEXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE Start Day",
+          "name": "AEFDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "AE Stop Day",
+          "name": "AETDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Seriousness of AE",
+          "name": "AESERC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE ACTION WDRN FROM STUDY",
+          "name": "ACWDRNC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE STILL PRESENT",
+          "name": "AEPRESC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE CAUSALITY",
+          "name": "AECAUSC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "REASONABLE POSS. AE RELATED STUDY DRUG",
+          "name": "AERCAUSC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE ACTION STUDY TREATMENT 1 DOSE",
+          "name": "AEST1TRC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE ACTION STUDY TREATMENT 2 DOSE",
+          "name": "AEST2TRC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE CAUSALITY TREATMENT 1",
+          "name": "AECS1TRC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE CAUSALITY TREATMENT 2",
+          "name": "AECS2TRC",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [
+          "AEFDAY",
+          "AETDAY",
+          "ACWDRNC"
+        ],
+        "treatment": [
+          "AECS1NM",
+          "AECS2NM",
+          "AEST1NM",
+          "AEST2NM",
+          "AEST1TRC",
+          "AEST2TRC",
+          "AECS1TRC",
+          "AECS2TRC"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2474,
+      "path": "dataFiles_394/adverse.sas7bdat",
+      "size": 2039808,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CONCOMITANT DRUG ONGOING",
+          "name": "CDRGCON",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "REGIMEN NUMBER",
+          "name": "CDRGRNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PREFERRED TERM",
+          "name": "CMDECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NONE-FUL",
+          "name": "NONEF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BEST RESPONSE",
+          "name": "ONCBRP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ONCOLOGY TREATMENT TYPE",
+          "name": "ONCCTYP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROGRESSION AFTER REGIMEN START",
+          "name": "ONCPGOR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROGRESSION OCCURED",
+          "name": "ONCPRGO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "REASON FOR STOPPING THIS THERAPY",
+          "name": "ONCSPRS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Start Day",
+          "name": "CDBPFDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Stop Day",
+          "name": "CDBPTDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [
+          "CDBPFDAY",
+          "CDBPTDAY"
+        ],
+        "treatment": [
+          "CDRGRNM",
+          "ONCCTYP",
+          "ONCPGOR"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1190,
+      "path": "dataFiles_394/cd_b_p.sas7bdat",
+      "size": 696320,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NONE-FUL",
+          "name": "NONEF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TREATMENT",
+          "name": "ONCTRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SITE OF RADIOTHERAPY",
+          "name": "RADSITE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Start Day",
+          "name": "CN6PFDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Stop Day",
+          "name": "CN6PTDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [
+          "CN6PFDAY",
+          "CN6PTDAY"
+        ],
+        "treatment": [
+          "ONCTRT"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 424,
+      "path": "dataFiles_394/cn_6_p.sas7bdat",
+      "size": 253952,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PREFERRED TERM",
+          "name": "CTDECD2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NONE-FUL",
+          "name": "NONEF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Surgery Day",
+          "name": "CTRTSDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [
+          "CTRTSDAY"
+        ],
+        "treatment": [
+          "CTRTSDAY"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 709,
+      "path": "dataFiles_394/cn_7_p.sas7bdat",
+      "size": 303104,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PREFERRED TERM",
+          "name": "CTDECD2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NONE-FUL",
+          "name": "NONEF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Start Day",
+          "name": "CN8PFDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Stop Day",
+          "name": "CN8PTDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [
+          "CN8PFDAY",
+          "CN8PTDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 329,
+      "path": "dataFiles_394/cn_8_p.sas7bdat",
+      "size": 139264,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Concomitant Drug Dose",
+          "name": "CDOS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Con Drug Dose Frequency No Period",
+          "name": "CDOSFRN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Units of Concomitant Drug Dose",
+          "name": "CDOSUNI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reason for Concomitant Drug Treatment",
+          "name": "CDRGREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Con drug Pref BNF or WHODrug Pref Term",
+          "name": "CDRGCOPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Start Day",
+          "name": "CDFDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Stop Day",
+          "name": "CDTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Non-Drug Treatment Ongoing?",
+          "name": "CDRGCONC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "None",
+          "name": "NONEF",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "CDRGCOPT"
+        ],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [
+          "CDFDAY",
+          "CDTDAY"
+        ],
+        "treatment": [
+          "CDRGREAS",
+          "CDRGCONC"
+        ],
+        "unit": [
+          "CDOSUNI"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 7063,
+      "path": "dataFiles_394/condrug.sas7bdat",
+      "size": 4038656,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Reason for Non-drug Treatment/Procedure",
+          "name": "CTRTREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Con Non Drug Prefer Text- MedDRA PT",
+          "name": "CTRTCOPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Start Day",
+          "name": "CTFDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Stop Day",
+          "name": "CTTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Non-Drug Treatment Ongoing?",
+          "name": "CTRTCONC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "None",
+          "name": "NONEF",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [
+          "CTFDAY",
+          "CTTDAY"
+        ],
+        "treatment": [
+          "CTRTREAS",
+          "CTRTCOPT",
+          "CTRTCONC"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 528,
+      "path": "dataFiles_394/contrt.sas7bdat",
+      "size": 237568,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Units for Age",
+          "name": "AGEUNITS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Height in cm",
+          "name": "HT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Text For Other Race",
+          "name": "RACEOTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Weight in Kg",
+          "name": "WT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Study Day of Visit/Collection/Exam",
+          "name": "COLLDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEXC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACESC",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [
+          "AGEUNITS"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 285,
+      "path": "dataFiles_394/demog.sas7bdat",
+      "size": 73728,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "EGDAY",
+          "n_unique": 60,
+          "values": [
+            "0.0",
+            "1.0",
+            "-1.0",
+            "-2.0",
+            "-3.0",
+            "-4.0",
+            "-5.0",
+            "-6.0",
+            "-7.0",
+            "-8.0",
+            "-9.0",
+            "11.0",
+            "15.0",
+            "16.0",
+            "18.0",
+            "22.0",
+            "23.0",
+            "24.0",
+            "25.0",
+            "26.0",
+            "27.0",
+            "28.0",
+            "29.0",
+            "30.0",
+            "31.0",
+            "32.0",
+            "33.0",
+            "34.0",
+            "35.0",
+            "36.0",
+            "39.0",
+            "43.0",
+            "49.0",
+            "54.0",
+            "57.0",
+            "60.0",
+            "66.0",
+            "-10.0",
+            "-11.0",
+            "-12.0",
+            "-13.0",
+            "-14.0",
+            "-15.0",
+            "-16.0",
+            "-17.0",
+            "-18.0",
+            "-19.0",
+            "-20.0",
+            "-21.0",
+            "-22.0",
+            "-23.0",
+            "-24.0",
+            "-25.0",
+            "-26.0",
+            "-27.0",
+            "-29.0",
+            "-31.0",
+            "-34.0",
+            "-45.0",
+            "-52.0"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "ECG Actual Time Char",
+          "name": "EGACTTMF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Normal or Abnormal Status",
+          "name": "EGINTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ECG Test Name",
+          "name": "EGTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Time Post Dose",
+          "name": "EGTPD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Units",
+          "name": "EGUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ECG Result Char",
+          "name": "STRESNF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of ECG Test",
+          "name": "EGDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "EGDAY"
+        ],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [
+          "EGUNIT"
+        ],
+        "value": [
+          "STRESNF"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 4634,
+      "path": "dataFiles_394/ecg.sas7bdat",
+      "size": 2301952,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Final status - other textual info",
+          "name": "FINOTHT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Collection",
+          "name": "COLLDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Withdrawal Day",
+          "name": "WDRLDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reason for Withdrawal",
+          "name": "FINSTATC",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [
+          "WDRLDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 855,
+      "path": "dataFiles_394/final.sas7bdat",
+      "size": 417792,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "OVERALL TUMOR ASSESSMENT",
+          "name": "IOTAALL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NEW LESION",
+          "name": "IOTANL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ASSESSMENT OF NON-TARGET LESIONS",
+          "name": "IOTANTL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ASSESSMENT OF TARGET LESIONS",
+          "name": "IOTATL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Study Day of Visit/Collection/Exam",
+          "name": "EFDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 695,
+      "path": "dataFiles_394/iota_p.sas7bdat",
+      "size": 155648,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Best Overall Response Char",
+          "name": "BESTOR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 285,
+      "path": "dataFiles_394/iota_r.sas7bdat",
+      "size": 57344,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LABUNITR",
+          "n_unique": 61,
+          "values": [
+            "/mm*3",
+            "/mm3",
+            "/ul",
+            "/uL",
+            "%",
+            "10**3/ul",
+            "10**9/l",
+            "10*3/mm*3",
+            "10*3/uL",
+            "10*3/UL",
+            "10*9/L",
+            "10^3/uL",
+            "Fraction",
+            "g/100ml",
+            "g/dl",
+            "G/DL",
+            "g/l",
+            "g/L",
+            "G/L",
+            "g%",
+            "Giga/L",
+            "gm/dL",
+            "IU/l",
+            "IU/L",
+            "K/MM3",
+            "K/ul",
+            "mEq/l",
+            "mEq/L",
+            "MEQ/L",
+            "mg/dl",
+            "mg/dL",
+            "MG/DL",
+            "mIU/l",
+            "MIU/L",
+            "mmol/l",
+            "mmol/L",
+            "MMOL/L",
+            "mU/L",
+            "ng/dl",
+            "ng/dL",
+            "NG/DL",
+            "ng/ml",
+            "NG/ML",
+            "NMBCE/MMCR",
+            "nmol/l",
+            "NMOL/L",
+            "NOUNITS",
+            "thou/uL",
+            "U/l",
+            "U/L",
+            "ug/l",
+            "ug/L",
+            "UG/L",
+            "uIU/ml",
+            "UIU/ML",
+            "umol/l",
+            "umol/L",
+            "UMOL/L",
+            "uU/mL",
+            "x10E3/uL",
+            "x10E9/L"
+          ]
+        },
+        {
+          "column": "LBTEST",
+          "n_unique": 38,
+          "values": [
+            "ALANINE AMINOTRANSFERASE (ALT)",
+            "ALBUMIN",
+            "ALKALINE PHOSPHATASE",
+            "ALKALINE PHOSPHATASE ISOENZYME-2 (BONE)",
+            "ASPARTATE AMINOTRANSFERASE (AST)",
+            "BASOPHILS (%)",
+            "BASOPHILS (ABSOLUTE)",
+            "BILIRUBIN (TOTAL)",
+            "BLOOD UREA NITROGEN",
+            "CALCIUM",
+            "CHLORIDE",
+            "CREATININE",
+            "EOSINOPHILS (%)",
+            "EOSINOPHILS (ABSOLUTE)",
+            "GLUCOSE",
+            "HEMOGLOBIN",
+            "LACTATE DEHYDROGENASE",
+            "LYMPHOCYTES (%)",
+            "LYMPHOCYTES (ABSOLUTE)",
+            "MAGNESIUM",
+            "MONOCYTES (%)",
+            "MONOCYTES (ABSOLUTE)",
+            "NEUTROPHILS (%)",
+            "NEUTROPHILS (ABSOLUTE)",
+            "PHOSPHATE",
+            "PLATELETS",
+            "POTASSIUM",
+            "PROSTATIC SPECIFIC ANTIGEN (PSA)",
+            "PROTEIN (TOTAL)",
+            "SODIUM",
+            "TESTOSTERONE",
+            "THYROID STIMULATING HORMONE",
+            "TYPE I COLL X-LINKED N-TELOPEPTIDE (NTX)",
+            "UREA",
+            "URIC ACID",
+            "URINARY COLLAGEN NTX",
+            "URINE PROTEIN",
+            "WHITE BLOOD CELLS"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Units for raw laboratory test",
+          "name": "LABUNITR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Raw textual value of result",
+          "name": "LABVALUE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Laboatory Test Name",
+          "name": "LBTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Maximum normal range value",
+          "name": "MAX_NORM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Minimum normal range value",
+          "name": "MIN_NORM",
+          "type": "double"
+        },
+        {
+          "format": "TIME",
+          "label": "Collection time",
+          "name": "TESTTIME",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Collection",
+          "name": "COLLDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LABUNITR",
+          "LBTEST"
+        ],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [
+          "LABUNITR"
+        ],
+        "value": [
+          "LABVALUE",
+          "MAX_NORM",
+          "MIN_NORM"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 63890,
+      "path": "dataFiles_394/lab_safe.sas7bdat",
+      "size": 29786112,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ECOG PERFORMANCE STATUS",
+          "name": "PFMECOG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Study Day of Visit/Collection/Exam",
+          "name": "EFDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "PFMECOG"
+        ],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2137,
+      "path": "dataFiles_394/pfm_p.sas7bdat",
+      "size": 204800,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Text to describe site abnormality",
+          "name": "SITEABNT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Site Code Text From Full Phy Exam",
+          "name": "SITENAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Collection",
+          "name": "COLLDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Change since SCRN/BASE/PREV",
+          "name": "BASECHGC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Physical Examination Result",
+          "name": "RSLTCODC",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RSLTCODC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 8211,
+      "path": "dataFiles_394/phyexam.sas7bdat",
+      "size": 4063232,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Disease Details",
+          "name": "DISDET",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "MedDRA Lowest Level Term",
+          "name": "MHDECD1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Collection",
+          "name": "COLLDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Status of Disease",
+          "name": "DISSTATC",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2088,
+      "path": "dataFiles_394/prevdis.sas7bdat",
+      "size": 1138688,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Prim Diag MedDRA Lower Level Term",
+          "name": "PSDECD1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Histopathology Diagnosis Day",
+          "name": "PRIMDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [
+          "PRIMDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 285,
+      "path": "dataFiles_394/primdiag.sas7bdat",
+      "size": 73728,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "COUNTRY CODE",
+          "name": "COUNTRY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomization Day",
+          "name": "RANDDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RANDDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 285,
+      "path": "dataFiles_394/random.sas7bdat",
+      "size": 24576,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CURRENT SUBJECT STATUS",
+          "name": "SRVCSS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CAUSE OF DEATH OTHER-FUL",
+          "name": "SRVDOSF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "OTHER SPECIFY-FUL",
+          "name": "SRVDOTHF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DISEASE UNDER STUDY-FUL",
+          "name": "SRVDUSF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY TREATMENT TOXICITY - SPECIFY-FUL",
+          "name": "SRVSTTDF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "STUDY TREATMENT TOXICITY-FUL",
+          "name": "SRVSTTF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "UNKNOWN-FUL",
+          "name": "SRVUNKF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Death",
+          "name": "DEATHDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day last known to be alive",
+          "name": "SRVDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT",
+          "SRVDOSF",
+          "DEATHDAY"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [
+          "SRVSTTDF",
+          "SRVSTTF"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 939,
+      "path": "dataFiles_394/srv_p.sas7bdat",
+      "size": 1318912,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Total daily dose in mg",
+          "name": "DOSTOT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Name Of The Drug",
+          "name": "DRGNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "TOTAL DAILY DOSE DRUG UNIT-FUL",
+          "name": "DOSTOTUF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose Start Day",
+          "name": "FROMDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose Stop Day",
+          "name": "TODAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [
+          "FROMDAY",
+          "TODAY"
+        ],
+        "treatment": [],
+        "unit": [
+          "DOSTOTUF"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 3151,
+      "path": "dataFiles_394/testdrug.sas7bdat",
+      "size": 1253376,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lesion Type Char",
+          "name": "LESTYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LESION ASSESSMENT STATUS",
+          "name": "TMMASMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LONGEST DIAMETER",
+          "name": "TMMDIA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "UNITS FOR LONGEST DIAMETER",
+          "name": "TMMDIAU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DISEASE SITE",
+          "name": "TMMDIS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LESION NUMBER",
+          "name": "TMMLNM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "NEW LESION",
+          "name": "TMMNLES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROCEDURE",
+          "name": "TMMPROC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LESION SITE",
+          "name": "TMMSITE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Study Day of Visit/Collection/Exam",
+          "name": "EFDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [
+          "TMMDIAU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 5177,
+      "path": "dataFiles_394/tmm_p.sas7bdat",
+      "size": 3620864,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Diastolic Blood Pressure in mmHg",
+          "name": "DIABPF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Heart Rate in beats/minute",
+          "name": "HEARTF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Pulse Rate in beats/minute",
+          "name": "PULSEF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Respiratory Rate in resp/minute",
+          "name": "RESPF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Systolic Blood Pressure in mmHg",
+          "name": "SYSBPF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Temperature Char",
+          "name": "TEMPF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Temperature Source",
+          "name": "TEMPSRCE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Temperature Unit",
+          "name": "TMPUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vitals Not Done",
+          "name": "VSND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vital Signs Position",
+          "name": "VSPOS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Weight Char",
+          "name": "WTF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Weight Unit Char",
+          "name": "WTUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CPE Name",
+          "name": "CPEVENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PROTOCOL ID",
+          "name": "PROTNO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PID",
+          "name": "PID_A",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Day",
+          "name": "COLLDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CPEVENT"
+        ],
+        "patient": [],
+        "time": [
+          "COLLDAY"
+        ],
+        "treatment": [],
+        "unit": [
+          "TMPUNIT",
+          "WTUNIT"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2159,
+      "path": "dataFiles_394/vitals.sas7bdat",
+      "size": 1712128,
+      "status": "OK"
+    }
+  ]
+}

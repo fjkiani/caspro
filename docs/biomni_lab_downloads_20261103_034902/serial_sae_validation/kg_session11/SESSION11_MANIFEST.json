@@ -1,0 +1,79 @@
+{
+  "session": 11,
+  "generated": "2026-07-24T14:51:40.343107",
+  "planner": "zeta_custodian_session11",
+  "base_snapshot": {
+    "entities": 26312,
+    "edges": 98609,
+    "session": 10
+  },
+  "session11_snapshot": {
+    "entities": 27044,
+    "edges": 99340
+  },
+  "net_new": {
+    "entities": 732,
+    "edges": 731
+  },
+  "per_worker_minted": {
+    "worker1": {
+      "entities": 40,
+      "edges": 40
+    },
+    "worker2": {
+      "entities": 7,
+      "edges": 7
+    },
+    "worker3": {
+      "entities": 685,
+      "edges": 684
+    },
+    "worker4": {
+      "entities": 0,
+      "edges": 13
+    }
+  },
+  "dedup": {
+    "entity_id_collisions": 0,
+    "edge_srt_duplicates_skipped": 13
+  },
+  "entity_type_delta": {
+    "DataVault": 1,
+    "CNFeatureProfile": 40,
+    "ResistanceAssociation": 12,
+    "AcquisitionReceipt": 679
+  },
+  "edge_relation_delta": {
+    "specimen_has_cn_profile": 40,
+    "cn_feature_associates_resistance": 12,
+    "acquired_from_vault": 679
+  },
+  "graph_qc": {
+    "nodes": 27049,
+    "edges": 99340,
+    "edges_referencing_scaffold_only_nodes": 5,
+    "session11_entities": 732,
+    "session11_entities_wired_to_scaffold": 47
+  },
+  "acquisition": {
+    "ega_receipts": 679,
+    "byte_transfer": false,
+    "reason": "ZetaBridge broker is metadata-only (no download/stream/range route in 34-endpoint OpenAPI)"
+  },
+  "outputs": {
+    "shared": [
+      "/mnt/shared-workspace/shared/zeta_run_s11/zeta_entities_s11.json",
+      "/mnt/shared-workspace/shared/zeta_run_s11/zeta_edges_s11.json"
+    ],
+    "results": [
+      "/mnt/results/serial_sae_validation/kg_session11/zeta_entities_s11.json",
+      "/mnt/results/serial_sae_validation/kg_session11/zeta_edges_s11.json",
+      "/mnt/results/serial_sae_validation/kg_session11/acquisition_receipts.json"
+    ]
+  },
+  "neo4j_replay": {
+    "executed": false,
+    "reason": "no target/creds provided; replay staged only",
+    "staged_command": "cd /workspace/zetabridge && python -m plumbing.neo4j_bridge_loader --entities /mnt/results/serial_sae_validation/kg_session11/zeta_entities_s11.json --edges /mnt/results/serial_sae_validation/kg_session11/zeta_edges_s11.json # requires NEO4J_URI/USER/PASSWORD in /workspace/.env"
+  }
+}

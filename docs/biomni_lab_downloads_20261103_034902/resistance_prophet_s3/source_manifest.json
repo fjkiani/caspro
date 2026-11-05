@@ -1,0 +1,14 @@
+{
+  "archive_bytes": 10603503,
+  "archive_sha256": "2f7f15417e3a5076633dd75abbad75a26285d94ec1e26f8f22ebf10d337a0a3f",
+  "archive_sha256_matches_pin": true,
+  "citation": "Smith P, Bradley T, Gavarro LM, et al. The copy number and mutational landscape of recurrent ovarian high-grade serous carcinoma. Nat Commun 14, 4387 (2023). DOI 10.1038/s41467-023-39867-7",
+  "doi": "10.1038/s41467-023-39867-7",
+  "extracted_to": "/workspace/s3work/verified/source_data_verified",
+  "member_sha256": {
+    "figure_1B_layer_1.tsv": "3c65ef5921b6d9a2a311fab4070f2f2af99c90b5e14a8e0629eae2b62f3b9b1d",
+    "figure_2.tsv": "9e653d2b10b25c668bc508da9b1a667d94a7f99bd0500ba53aaeb53d51a9a3eb",
+    "figure_4A.tsv": "0441d719edea4377c2ad1cc4f9e922a44edbc7481729194dce3bfbb2069a0187"
+  },
+  "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-023-39867-7/MediaObjects/41467_2023_39867_MOESM10_ESM.zip"
+}

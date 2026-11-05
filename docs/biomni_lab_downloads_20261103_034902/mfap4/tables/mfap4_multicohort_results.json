@@ -1,0 +1,237 @@
+{
+  "evidence_base": {
+    "cohorts": [
+      {
+        "id": "GSE63885",
+        "platform": "GPL570",
+        "n": 75,
+        "resistant": 34,
+        "sensitive": 41,
+        "label": "DFS<180d (NA dropped)"
+      },
+      {
+        "id": "GSE30161",
+        "platform": "GPL570",
+        "n": 58,
+        "resistant": 10,
+        "sensitive": 48,
+        "label": "PFI<180d"
+      },
+      {
+        "id": "GSE51373",
+        "platform": "GPL570",
+        "n": 28,
+        "resistant": 12,
+        "sensitive": 16,
+        "label": "author classification"
+      }
+    ],
+    "pooled_n": 161,
+    "pooled_resistant": 56,
+    "pooled_sensitive": 105
+  },
+  "single_gene_mfap4": {
+    "reconciliation": {
+      "honest_n75": {
+        "auroc": 0.6836,
+        "ci": [
+          0.5574,
+          0.8049
+        ],
+        "prauc": 0.6453
+      },
+      "manuscript_n101": {
+        "auroc": 0.7625,
+        "ci": [
+          0.6536,
+          0.8674
+        ],
+        "prauc": 0.629
+      }
+    },
+    "per_cohort_auroc": {
+      "GSE63885": 0.684,
+      "GSE30161": 0.529,
+      "GSE51373": 0.797
+    },
+    "per_cohort_ci": {
+      "GSE63885": [
+        0.557,
+        0.805
+      ],
+      "GSE30161": [
+        0.333,
+        0.729
+      ],
+      "GSE51373": [
+        0.594,
+        0.969
+      ]
+    },
+    "cross_cohort": {
+      "mean": 0.67,
+      "sd": 0.11,
+      "min": 0.529,
+      "max": 0.797
+    },
+    "loco_transfer": {
+      "GSE63885": 0.684,
+      "GSE30161": 0.529,
+      "GSE51373": 0.797
+    },
+    "loco_mean": 0.67
+  },
+  "stromal_cage_user": {
+    "genes": [
+      "FAP",
+      "POSTN",
+      "ACTA2",
+      "MFAP4"
+    ],
+    "per_cohort_auroc_unweighted": {
+      "GSE63885": 0.633,
+      "GSE30161": 0.629,
+      "GSE51373": 0.729
+    },
+    "per_cohort_ci": {
+      "GSE63885": [
+        0.509,
+        0.758
+      ],
+      "GSE30161": [
+        0.41,
+        0.825
+      ],
+      "GSE51373": [
+        0.526,
+        0.901
+      ]
+    },
+    "cross_cohort": {
+      "mean": 0.664,
+      "sd": 0.046,
+      "min": 0.629,
+      "max": 0.729
+    },
+    "cv_fitted": {
+      "GSE63885": {
+        "mean": 0.638,
+        "sd": 0.117
+      },
+      "GSE30161": {
+        "mean": 0.593,
+        "sd": 0.191
+      },
+      "GSE51373": {
+        "mean": 0.752,
+        "sd": 0.198
+      }
+    },
+    "loco_transfer": {
+      "GSE63885": 0.628,
+      "GSE30161": 0.585,
+      "GSE51373": 0.74
+    },
+    "loco_mean": 0.651,
+    "delong_vs_mfap4": {
+      "GSE63885": {
+        "delta": -0.051,
+        "p": 0.157
+      },
+      "GSE30161": {
+        "delta": 0.1,
+        "p": 0.666
+      },
+      "GSE51373": {
+        "delta": -0.068,
+        "p": 0.894
+      }
+    }
+  },
+  "canonical_cage_code": {
+    "genes": [
+      "CXCL12",
+      "CXCR4",
+      "FAP",
+      "ACTA2",
+      "POSTN"
+    ],
+    "per_cohort_auroc_unweighted": {
+      "GSE63885": 0.598,
+      "GSE30161": 0.675,
+      "GSE51373": 0.672
+    },
+    "cv_fitted": {
+      "GSE63885": {
+        "mean": 0.52,
+        "sd": 0.117
+      },
+      "GSE30161": {
+        "mean": 0.632,
+        "sd": 0.204
+      },
+      "GSE51373": {
+        "mean": 0.557,
+        "sd": 0.226
+      }
+    }
+  },
+  "individual_cage_genes_auroc": {
+    "GSE63885": {
+      "FAP": 0.6,
+      "POSTN": 0.641,
+      "ACTA2": 0.563,
+      "MFAP4": 0.684
+    },
+    "GSE30161": {
+      "FAP": 0.604,
+      "POSTN": 0.681,
+      "ACTA2": 0.627,
+      "MFAP4": 0.529
+    },
+    "GSE51373": {
+      "FAP": 0.49,
+      "POSTN": 0.651,
+      "ACTA2": 0.698,
+      "MFAP4": 0.797
+    }
+  },
+  "mfap4_cv_fitted": {
+    "GSE63885": {
+      "mean": 0.682,
+      "sd": 0.123
+    },
+    "GSE30161": {
+      "mean": 0.378,
+      "sd": 0.167
+    },
+    "GSE51373": {
+      "mean": 0.793,
+      "sd": 0.204
+    }
+  },
+  "key_findings": [
+    "MFAP4 single-gene AUROC=0.684 (95% CI 0.5574-0.8049) on the honest GSE63885 cohort (n=75); the committed 0.763 was reachable only by counting 26 unevaluable 'na' samples as sensitive.",
+    "MFAP4 is unstable across cohorts (0.529-0.797; SD 0.11), collapsing to chance (0.529) in GSE30161 -> unsuitable as a standalone predictor.",
+    "Neither the user STROMAL_CAGE [FAP,POSTN,ACTA2,MFAP4] nor the existing canonical cage beats MFAP4-solo on discrimination (no significant DeLong difference in any cohort: p=0.157/0.666/0.894).",
+    "The composite's real advantage is STABILITY: cross-cohort AUROC SD more than halves (0.11 -> 0.046), range tightens (0.529-0.797 -> 0.629-0.729); it never collapses to chance.",
+    "Honest positioning: MFAP4 = component input; STROMAL_CAGE = stable stromal-context readout (RUO/hypothesis-generating), NOT a validated high-performance resistance classifier."
+  ],
+  "provenance": {
+    "script": "scripts/mfap4_multicohort_validation.py",
+    "reproducible": true,
+    "methods": {
+      "bootstrap": "n=5000, stratified within class, seed=7",
+      "delong": "paired AUROC (fast midrank implementation)",
+      "probe_collapse": "multi-probe mean, then z-score within cohort",
+      "scaling": "auto log2(x+1) if median>=20 (GSE51373 is linear-scale)",
+      "cage_genes": [
+        "FAP",
+        "POSTN",
+        "ACTA2",
+        "MFAP4"
+      ]
+    },
+    "note": "All values in this file are emitted by the standalone script from raw GEO series matrices; deterministic across runs (seed=7 bootstrap, seed=42 CV)."
+  }
+}

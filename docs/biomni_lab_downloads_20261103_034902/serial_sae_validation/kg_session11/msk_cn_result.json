@@ -1,0 +1,18 @@
+{
+  "cohort": "MSK-SPECTRUM",
+  "modality": "WGS copy-number panel (panel_cna)",
+  "n_specimens": 40,
+  "n_patients": 40,
+  "ccne1_amp_n": 6,
+  "hrd_loss_burden": {
+    "4": 10,
+    "6": 12,
+    "5": 13,
+    "3": 3,
+    "0": 1,
+    "2": 1
+  },
+  "resistance_labels_in_kg": 0,
+  "association_runnable": false,
+  "note": "No per-specimen resistance labels in the MSK KG layer (WGS CN was minted without platinum-response). Reporting CN landscape only; resistance association for MSK requires SPECTRUM clinical metadata (staged for acquisition). No association fabricated."
+}

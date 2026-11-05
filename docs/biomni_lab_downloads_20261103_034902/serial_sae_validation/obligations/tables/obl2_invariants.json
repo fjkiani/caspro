@@ -1,0 +1,24 @@
+{
+  "feature_vector": "s7_rel (relapse exposure, CN signature 7)",
+  "feature_source": "BriTROC-1 Nat Commun 2023 MOESM10 figure_4A.tsv (published)",
+  "scoring_direction": "higher s7_rel => resistant (positive class = resistant); identical for both labels; no direction flip",
+  "auroc_fn": "sklearn.metrics.roc_auc_score(y_resistant, s7_rel)",
+  "bootstrap": "1000 iters, np.random.default_rng(42), stratified by class",
+  "label_A_rclass": "RECIST-derived (PD/SD->resistant, CR/PR->sensitive); 3R/37S; defined for 40 pts",
+  "label_B_pt_status": "platinum-sensitivity at registration; 10R/37S; defined for 47 pts",
+  "cohort_relationship": "the 40-pt rclass cohort is an EXACT feature-subset of the 47-pt pt_status cohort",
+  "patients_dropped_from_47_to_40": [
+    "BRITROC-187",
+    "BRITROC-226",
+    "BRITROC-23",
+    "BRITROC-260",
+    "BRITROC-39",
+    "BRITROC-94",
+    "BRITROC-96"
+  ],
+  "dropped_status_breakdown": {
+    "sensitive": 6,
+    "resistant": 1
+  },
+  "confound_note": "In the raw on-disk files the label swap is CONFOUNDED with sample selection (40 vs 47). The controlled swap 'rclass_on_40' vs 'pt_status_on_40' isolates the label effect on a FIXED 40-patient feature matrix."
+}

@@ -1,0 +1,111 @@
+{
+  "worker": "W4",
+  "scope": "consistency/biology/framing",
+  "checks": [
+    {
+      "id": "W4-01",
+      "topic": "discovery resistance split",
+      "finding": "Manuscript states 8 resistant / 3 sensitive (EOC227=Resistant). Repo's corrected resistance_labels.json (2026-05-09, from Zhang Table 1) says 7R/4S with EOC227=Sensitive (PFI 230d>=180d). Package is internally inconsistent with its own corrected source-of-truth.",
+      "evidence": {
+        "mentions_8R": {
+          "MANUSCRIPT_DRAFT.md": [
+            "PFI <6 months (n=8)",
+            "8 resistant",
+            "n=8)"
+          ]
+        },
+        "EOC227_files": [
+          "MANUSCRIPT_DRAFT.md"
+        ]
+      },
+      "verdict": "DISCREPANT"
+    },
+    {
+      "id": "W4-02",
+      "topic": "BriTROC cohort size variants",
+      "finding": "BriTROC described as n=47 paired, n=40 with labels, and 3 resistant across files. These are reconcilable (47 paired CN -> 40 with first-line labels -> 3 resistant) but must be stated consistently. W2 confirmed: 47 paired CN, 40 labeled, 3 resistant.",
+      "evidence": {
+        "n47": [
+          "ABSTRACT.md",
+          "BriTROC1_VALIDATION_RESULTS.md",
+          "MANUSCRIPT_DRAFT.md"
+        ],
+        "n40": [
+          "BriTROC1_VALIDATION_RESULTS.md"
+        ],
+        "n3": [
+          "BriTROC1_DATA_EXTRACTION_GUIDE.md",
+          "BriTROC1_VALIDATION_RESULTS.md",
+          "MANUSCRIPT_DRAFT.md"
+        ]
+      },
+      "verdict": "CONTEXT (reconcilable; state 47->40->3 explicitly)"
+    },
+    {
+      "id": "W4-03",
+      "topic": "prognostic vs predictive vs temporal monitoring",
+      "finding": "AUDIT_REPORT_JAN29 (repo's own audit) flags that the package proves PROGNOSTIC value (high post-treatment score -> shorter PFI) but NOT temporal prediction (alerting X months before an event). The OV-045 red-team showed the resistance signal was present continuously (TF 1.0% at day56, 0.8% at day362), so 'detect 3-6 months before progression' is unsupported and likely a chronic-risk flag, not a temporal alarm. Report must use prognostic language and downgrade the 'serial monitoring / early detection' claim to dynamic risk-stratification.",
+      "evidence": {
+        "monitoring_claim_files": [
+          "ABSTRACT.md",
+          "AUDIT_REPORT_JAN29.md",
+          "MANUSCRIPT_DRAFT.md"
+        ]
+      },
+      "verdict": "OVERSTATED (monitoring/early-detection framing)"
+    },
+    {
+      "id": "W4-04",
+      "topic": "MSK-Spectrum data status",
+      "finding": "Manuscript Future Directions calls MSK-Spectrum 'dbGaP access pending' while AUDIT_REPORT_JAN29 states the data is possessed locally and already benchmarked (OV-045). Status text is outdated. (Note: MSK-Spectrum is controlled-access and NOT used in this validation; open supp only.)",
+      "evidence": {
+        "files": [
+          "AUDIT_REPORT_JAN29.md",
+          "MANUSCRIPT_DRAFT.md",
+          "README.md"
+        ]
+      },
+      "verdict": "DISCREPANT (data-status text stale) - low impact on published results"
+    },
+    {
+      "id": "W4-05",
+      "topic": "intro vs results on delta",
+      "finding": "Introduction states 'Pathway changes during treatment (not baseline state) predict resistance,' but Results show pathway DELTAS are NOT predictive - the opposite. The core thesis is that ABSOLUTE post-treatment state (not change) predicts. Introduction wording contradicts the finding.",
+      "evidence": {
+        "files": [
+          "ABSTRACT.md",
+          "MANUSCRIPT_DRAFT.md"
+        ]
+      },
+      "verdict": "DISCREPANT (internal contradiction, wording)"
+    },
+    {
+      "id": "W4-06",
+      "topic": "biological coherence",
+      "finding": "Directions of effect (post-DDR high, CN-sig-7/CCNE1, PI3K) are biologically coherent with known HGSOC platinum-resistance mechanisms.",
+      "verdict": "SUPPORTED (direction plausible; not a substitute for power/validation)"
+    }
+  ],
+  "biology": {
+    "post_ddr_high->resistant": "Coherent. Platinum kills via DNA crosslinks; tumor cells retaining intact/high DNA-damage-repair capacity after chemo are selected and drive platinum resistance (enhanced repair, HR restoration). Directionally consistent with literature.",
+    "CN_signature_7->CCNE1": "Signature 7 in the BriTROC CN-signature framework is associated with CCNE1 amplification. CCNE1 amplification is a recognized platinum-resistance / HR-proficiency mechanism in HGSOC, mutually exclusive with BRCA loss. Higher s7 at relapse -> resistant is biologically plausible.",
+    "PI3K_high->resistant": "Plausible: PI3K/AKT/mTOR activation supports survival/proliferation of resistant clones, but PI3K signal here is weaker and gene-set-sensitive.",
+    "caveat": "Biological plausibility supports the DIRECTION of effect but does not substitute for adequately powered, externally validated, calibrated evidence."
+  },
+  "clinical_utility_framing": {
+    "evidence_tier": "Tier 3 - discovery / internal-validation-only, hypothesis-generating (RUO)",
+    "intended_use_RUO": "Exploratory, research-use-only prognostic biomarker concept: post-treatment (residual) molecular state (pathway expression or CN signatures) associated with platinum resistance in HGSOC. NOT for clinical decision-making.",
+    "what_is_shown": "(1) Discovery association of post-NACT DDR/PI3K pathway scores with PFI (n=11, apparent, uncorrected); (2) Independent external reproduction that CN signature 7 at relapse discriminates platinum resistance (n=40, 3 resistant) better than at diagnosis (+0.18 AUROC). Consistent DIRECTION across two modalities and cohorts.",
+    "what_is_NOT_shown": "Clinical utility, calibration, prespecified thresholds, net benefit, temporal early-warning capability, generalizability, or adequate statistical power. No cross-validation on discovery; extreme class imbalance in external cohort.",
+    "comparator": "CA-125 kinetics (KELIM), BRCA/HRD status, baseline genomic profiling.",
+    "roadmap_to_true_validation": [
+      "Prespecify a single locked score + threshold before any validation.",
+      "External cohort with balanced classes and adequate events (EPV>=10; target >=30-50 resistant events).",
+      "Nested cross-validation / independent test set; report outer-fold metrics, not apparent.",
+      "Calibration (calibration curve, Brier) and decision-curve / net-benefit analysis.",
+      "Head-to-head vs KELIM and BRCA/HRD; test incremental value (KELIM+SAE > KELIM).",
+      "Distinguish prognostic (risk state) from predictive (event timing); if monitoring claimed, prospective serial-sampling study with prespecified lead-time endpoint.",
+      "Prospective/interventional confirmation before any clinical-utility claim."
+    ]
+  }
+}

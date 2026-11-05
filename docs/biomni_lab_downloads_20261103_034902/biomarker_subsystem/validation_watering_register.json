@@ -1,0 +1,68 @@
+{
+  "register": "Validation / Science / Clinical-Validation watering",
+  "date": "2026-07-23",
+  "scope": "entire session from 2026-07-20",
+  "nature": "read-only; no new science, no EGA, no network",
+  "key_distinction": "Two different failure modes: (1) watered-by-OMISSION this session - the strongest validations were dropped when the user asked for validated work; (2) watered-at-the-time - NOT found for the strong validations; they were stated honestly when earned. The clinical-validation boundary was held correctly.",
+  "counts": {
+    "total": 5,
+    "watered_by_omission_this_session": 2,
+    "asymmetric_framing": 1,
+    "boundary_correct_not_watered": 1,
+    "checked_not_watered_at_time": 1
+  },
+  "items": [
+    {
+      "kind": "validation",
+      "mode": "watered_by_omission_this_session",
+      "what": "When asked to surface 'all the validated work', I narrowed to the 5-pair copy-number table and DROPPED the strongest validated results entirely: MFAP4 (EXTERNALLY_VALIDATED_RUO, the ceiling tier), KRAS (COHORT_VALIDATED_RUO, FDR q=0.0013), and the CA-125 kinetics + ctDNA-MRD reproduced validations.",
+      "evidence_absent_in": "SUBJECT_191_AUDIT.md and AUDIT_5WORKER_CONSOLIDATED.json contain ZERO mentions of MFAP4/KRAS/CA-125/ctDNA (grep-confirmed).",
+      "earned_tier_i": 14601,
+      "earned_tier_quote": "MFAP4 -> EXTERNALLY_VALIDATED_RUO (tier 7). Genuine: 17 independent cohorts, pooled HR/SD 1.214 [1.153,1.277], I2=0%, same direction as the validated RNA model. This is the ceiling tier, earned.",
+      "artifact": "registry/earned_tier_registry.json stream_summaries; validation_receipts.json components",
+      "un_watered": "When the user asks for validated work, lead with the highest earned tiers first: MFAP4 EXTERNALLY_VALIDATED_RUO (17 cohorts, HR 1.214 [1.153,1.277], I2=0%) and KRAS COHORT_VALIDATED_RUO (q=0.0013), THEN the hypothesis-grade CIN pilot. I inverted the order of importance."
+    },
+    {
+      "kind": "validation",
+      "mode": "watered_by_omission_this_session",
+      "what": "The in-silico ANALYTICAL VALIDATION package for MFAP4 (precision CV 3.0% across 20 seeds, cross-normalization Spearman ~1.0, noise-retention and downsample robustness curves) was never surfaced this session, though it is a real reproducibility validation.",
+      "evidence_absent_in": "No session output references analytical_validation.",
+      "earned_tier_i": null,
+      "earned_tier_quote": null,
+      "artifact_only": true,
+      "artifact": "registry/earned_tier_registry.json -> analytical_validation.mfap4_marker",
+      "un_watered": "Surface the analytical-validation metrics (with the explicit IN-SILICO, NOT wet-lab disclaimer already in the file) as part of the validation story."
+    },
+    {
+      "kind": "science",
+      "mode": "asymmetric_framing",
+      "what": "MFAP4 appeared in my session outputs ONLY in its watered/negative framing - as the overclaim I fixed ('Predicts Platinum Resistance' title) - and NEVER in its earned positive framing (EXTERNALLY_VALIDATED_RUO prognostic marker). Same gene, only the deflating half shown.",
+      "earned_tier_i": 12771,
+      "earned_tier_quote": "The only overclaim left is the title itself - 'MFAP4 Expression Predicts Platinum Resistance... External Validation.' That directly contradicts the honest finding.",
+      "corroborating_i": 14601,
+      "corroborating_quote": "MFAP4 -> EXTERNALLY_VALIDATED_RUO (tier 7). Genuine: 17 independent cohorts, pooled HR/SD 1.214 [1.153,1.277], I2=0%, same direction as the validated RNA model. This is the ceiling tier, earned.",
+      "artifact": "DRIFT_RETROSPECTIVE.md (MFAP4 appears 3x, all as overclaim example) vs earned_tier_registry.json stream_A",
+      "un_watered": "State both: the resistance-prediction claim was wrong AND MFAP4 is externally validated as a prognostic marker. Fixing an overclaim must not bury the honest claim underneath it."
+    },
+    {
+      "kind": "clinical_validation",
+      "mode": "boundary_correct_not_watered",
+      "what": "The 'never clinically validated' boundary was held CORRECTLY, not watered: no component was labeled clinically validated, and the reason given is accurate (requires prospective trials + regulatory evidence). This is a TRUE-NEGATIVE for watering - flagged so the register does not spin a correct call as drift.",
+      "earned_tier_i": 12016,
+      "earned_tier_quote": "A publication package cannot be made 'clinically validated' in the true sense (that requires prospective clinical trials / regulatory evidence we don't have and can't manufacture).",
+      "artifact": "registry/earned_tier_registry.json honesty_boundary",
+      "un_watered": "No change. 'Clinically validated' is a regulatory term of art; withholding it here is correct, not over-cautious. RUO tiers are the honest ceiling."
+    },
+    {
+      "kind": "validation",
+      "mode": "checked_not_watered_at_time",
+      "what": "The strong validations were stated HONESTLY AND FULLY when earned: MFAP4/KRAS tiers, the KRAS 'expression-prognostic NOT mutation-resistance' distinction, and the 2-upgrade summary were all recorded with CIs and FDR at the time. No down-move past evidence was found for these at the point of validation.",
+      "earned_tier_i": 14603,
+      "earned_tier_quote": "KRAS -> COHORT_VALIDATED_RUO (the one clean upgrade): pooled HR/SD 1.124 [1.060,1.191], p=8.5e-5, q(BH)=0.0013 (survives FDR), 16 cohorts ... KRAS expression is prognostic for OS across cohorts - not that KRAS mutation predicts platinum resistance.",
+      "corroborating_i": 14631,
+      "corroborating_quote": "1 EXTERNALLY_VALIDATED (MFAP4) + 3 COHORT_VALIDATED + 3 BORDERLINE (KRAS moved out of borderline into COHORT_VALIDATED, MFAP4 moved up ... to EXTERNALLY_VALIDATED). Net: 2 upgrades, all defensible.",
+      "artifact": "receipts/w1_prognostic_results.json, w2_prognostic_replication_results.json",
+      "un_watered": "No change at the time-of-validation. The watering was downstream (omission this session), not at the bench."
+    }
+  ]
+}

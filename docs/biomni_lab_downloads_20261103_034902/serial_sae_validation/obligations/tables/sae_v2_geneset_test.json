@@ -1,0 +1,31 @@
+{
+  "results": {
+    "ORIG 8-gene": {
+      "n": 11,
+      "rho_old": -0.0956722299914231,
+      "p_old": 0.7796173620638177,
+      "rho_new": -0.3545454545454546,
+      "p_new": 0.2846927409558867,
+      "n_genes_present": 8
+    },
+    "W1 14-gene (frozen)": {
+      "n": 11,
+      "rho_old": -0.009111640951564104,
+      "p_old": 0.9787882460225,
+      "rho_new": -0.20909090909090913,
+      "p_new": 0.5372209352113227,
+      "n_genes_present": 14
+    },
+    "v2 26-gene": {
+      "n": 11,
+      "rho_old": 0.11845133237033335,
+      "p_old": 0.7286875040111362,
+      "rho_new": -0.14545454545454548,
+      "p_new": 0.6695786456420787,
+      "n_genes_present": 26
+    }
+  },
+  "any_reaches_-0.711": false,
+  "most_negative": -0.3545454545454546,
+  "note": "v2 26-gene DDR set (crispro-backend-v2 ovarian_pathway_model.py) tested on same raw data; validation script read the deleted pathway_scores.csv, not raw."
+}

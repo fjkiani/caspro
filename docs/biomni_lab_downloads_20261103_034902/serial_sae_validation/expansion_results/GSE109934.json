@@ -1,0 +1,82 @@
+{
+  "cohort": "GSE109934",
+  "role": "paired_delta_null_replication",
+  "n_paired": 19,
+  "coverage": {
+    "ddr": {
+      "matched": 10,
+      "total": 14,
+      "missing": [
+        "PALB2",
+        "XRCC1",
+        "PARP1",
+        "FANCD2"
+      ],
+      "matched_genes": [
+        "BRCA1",
+        "BRCA2",
+        "RAD51",
+        "ATM",
+        "ATR",
+        "CHEK1",
+        "CHEK2",
+        "TP53",
+        "FANCA",
+        "FANCC"
+      ]
+    },
+    "pi3k": {
+      "matched": 9,
+      "total": 10,
+      "missing": [
+        "TSC2"
+      ],
+      "matched_genes": [
+        "PIK3CA",
+        "PIK3CB",
+        "PIK3CD",
+        "AKT1",
+        "AKT2",
+        "AKT3",
+        "MTOR",
+        "PTEN",
+        "TSC1"
+      ]
+    },
+    "vegf": {
+      "matched": 4,
+      "total": 8,
+      "missing": [
+        "VEGFB",
+        "KDR",
+        "FLT4",
+        "ANGPT2"
+      ],
+      "matched_genes": [
+        "VEGFA",
+        "VEGFC",
+        "FLT1",
+        "ANGPT1"
+      ]
+    }
+  },
+  "labels": "NO resistance labels (pre/post only)",
+  "tests": {
+    "ddr_post_vs_pre_signedrank": {
+      "p": 0.0003,
+      "mean_delta_post_minus_pre": -0.6577,
+      "direction": "decreases_post_NACT"
+    },
+    "pi3k_post_vs_pre_signedrank": {
+      "p": 0.1336,
+      "mean_delta_post_minus_pre": 0.2103,
+      "direction": "increases_post_NACT"
+    },
+    "vegf_post_vs_pre_signedrank": {
+      "p": 0.8596,
+      "mean_delta_post_minus_pre": 0.0514,
+      "direction": "increases_post_NACT"
+    }
+  },
+  "interpretation": "19 paired pre/post-NACT (NanoString 770; DDR 10/14, PI3K 9/10, VEGF 4/8 covered). DDR significantly DECREASES post-NACT (mean delta=-0.66, p=0.0003); PI3K/VEGF no significant shift. Shows pathways (esp. DDR) are dynamically modulated by chemo, but NO resistance labels -> cannot test the predictive claim. Neither confirms nor refutes the resistance-prediction hypothesis; addresses only pathway dynamics."
+}

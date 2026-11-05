@@ -1,0 +1,168 @@
+{
+  "caslib": "Breast_Allianc_2006_216",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CA15_3",
+    "CA27_29"
+  ],
+  "indication": "breast",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 1,
+  "n_tabular_files": 1,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "2a21719800bad4ab459b1fedf84a58f83b0f923300ce71c0e44d1c11ec5d76f3",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "mask_id",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "INELGTXT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "randf",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "prob",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "sxperf",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "sxgrp",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "sxnote",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "sxdone",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pe_stat",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "surgstatf",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "bcs",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ctstagef",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cnstagef",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "bxher2",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "bxgrd",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PREALLRE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pki67",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "prehtype",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SXALLRED",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ski67",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "sx_pepi",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "sxperf"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 377,
+      "path": "NCT00265759.csv",
+      "size": 48437,
+      "status": "OK"
+    }
+  ]
+}

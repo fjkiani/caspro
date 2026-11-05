@@ -1,0 +1,73 @@
+{
+  "verdict": "NO_GO",
+  "pass_count": 5,
+  "total_gates": 7,
+  "rules": [
+    {
+      "rule": "R1_path_a_locked",
+      "passed": true,
+      "evidence": [
+        "formula line [42, 'PATH_A_FORMULA = \"fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1)\"']",
+        "dot line [335, 'dot_product = sum(p * t for p, t in zip(patient_vector, trial_vector))']",
+        "magnitude line [341, 'return max(0.0, min(1.0, dot_product / trial_magnitude))']",
+        "path_b_detected=False"
+      ]
+    },
+    {
+      "rule": "R2_registry_unified",
+      "passed": true,
+      "evidence": [
+        "moa_vectors_rows=283",
+        "clinical_trials_rows=2979",
+        "unified_db_sha=ac96437f9bb0fe28",
+        "axes=['ddr', 'mapk', 'pi3k', 'vegf', 'her2', 'io', 'efflux', 'rss']"
+      ]
+    },
+    {
+      "rule": "R3_p0_causality_no_drops",
+      "passed": false,
+      "evidence": [
+        "P0 PASS: 3/7",
+        "FAIL PD-L1_IO \u2014 PD-L1/CPS must reach IO pathway",
+        "FAIL MSI_TMB_IO \u2014 MSI/TMB must feed IO boost",
+        "FAIL KRAS_BRAF_MAPK \u2014 KRAS/BRAF must reach MAPK pathway",
+        "FAIL PTEN_PI3K \u2014 PTEN must reach PI3K pathway"
+      ]
+    },
+    {
+      "rule": "R4_redteam_static_fail_zero",
+      "passed": false,
+      "evidence": [
+        "A4_pdl1_silent_drop_io_boost \u2014 Populate PD-L1 CPS=50; verify it reaches IO score (P0 causality)"
+      ]
+    },
+    {
+      "rule": "R5_adversarial_defenses",
+      "passed": true,
+      "evidence": [
+        "empty_vector\u21920 OK: 5/5",
+        "zero_dominant demoted: 5/5"
+      ]
+    },
+    {
+      "rule": "R6_blocked_claim_leaks_reference_only",
+      "passed": true,
+      "evidence": [
+        "total leak scan results: 14",
+        "REFERENCE_ONLY: 14",
+        "true LEAK: 0"
+      ]
+    },
+    {
+      "rule": "R7_confidence_cap_and_stubbed_disclosure",
+      "passed": true,
+      "evidence": [
+        "confidence_cap.py present=True",
+        "STUBBED marker in therapy_fit/scoring.py verified=True"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-16T03:42:58.625069+00:00",
+  "formula": "PATH_A: fit = clip((p\u00b7t) / ||t||_2, 0, 1)",
+  "unified_registry_sha": "ac96437f9bb0fe28ec205f3b714b6dca2e864f1520707c39653fefb39bcdf034"
+}

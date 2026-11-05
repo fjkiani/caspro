@@ -1,0 +1,353 @@
+{
+  "clones": {
+    "A": {
+      "artifact_sidecar_check": {
+        "rc": 0,
+        "stdout": "venice_psa_k_day_reference_cdf_v1.json: OK"
+      },
+      "branch": "review/zeta-core-v4-psa-feature",
+      "branch_scope": {
+        "rc": 0,
+        "stderr": "",
+        "stdout": "prognostic_index.py\",\n      \"api/services/tumor_marker_kinetics/reference_cdf.py\",\n      \"api/services/tumor_marker_kinetics/refusal_schema.py\",\n      \"api/services/tumor_marker_kinetics/serializer.py\",\n      \"api/services/tumor_marker_kinetics/data/venice_psa_k_day_reference_cdf_v1.json\",\n      \"api/services/tumor_marker_kinetics/data/venice_psa_k_day_reference_cdf_v1.json.sha256\",\n      \"tests/unit/test_venice_psa_reference_cdf.py\",\n      \"tests/unit/test_tumor_marker_kinetics_contract.py\",\n      \"tests/unit/test_tumor_marker_kinetics_router.py\",\n      \"tests/unit/test_prostate_prognostic_index.py\",\n      \"tests/unit/test_prognostic_direction_negative.py\",\n      \"tests/unit/test_refusal_schema_lineage.py\",\n      \"tests/unit/test_contract_a_release.py\",\n      \"tests/unit/test_audit_correction_d13.py\"\n    ],\n    \"missing_paths\": []\n  }\n]\nSCOPE: cohere = OUT_OF_SCOPE\nSCOPE: psa = IN_SCOPE"
+      },
+      "clone_head": "37cc35f653a09ca8c828fe76c4beb3049df302ea",
+      "clone_path": "/workspace/zc4_clone_a",
+      "clone_rc": 0,
+      "clone_seconds": 12.1,
+      "clone_source": "/workspace/crispro-backend-v2",
+      "clone_stderr_tail": "6/14523)\nUpdating files:  92% (13362/14523)\nUpdating files:  93% (13507/14523)\nUpdating files:  94% (13652/14523)\nUpdating files:  95% (13797/14523)\nUpdating files:  95% (13816/14523)\nUpdating files:  96% (13943/14523)\nUpdating files:  97% (14088/14523)\nUpdating files:  98% (14233/14523)\nUpdating files:  99% (14378/14523)\nUpdating files: 100% (14523/14523)\nUpdating files: 100% (14523/14523), done.",
+      "clone_transport_deviation": "cloned from the local repository with --no-local; GitHub clone is impossible without an authorized credential and the credential exposed in chat is prohibited",
+      "clone_tree": "d680f974505daba61680d93ccb08ee4a5d0f0c2f",
+      "cohere_collection_probes": [
+        {
+          "key_env": "<empty>",
+          "live_test_collected": false,
+          "rc": 3,
+          "stdout_tail": "le.__dict__)\nINTERNALERROR>   File \"/workspace/zc4_clone_a/tests/test_cohere_with_key.py\", line 30, in <module>\nINTERNALERROR>     sys.exit(1)\nINTERNALERROR> SystemExit: 1\n\nno tests collected in 0.10s"
+        },
+        {
+          "key_env": "<valid-shaped placeholder>",
+          "live_test_collected": false,
+          "rc": 0,
+          "stdout_tail": "tests/test_cohere_with_key.py::test_cohere\n\n1 test collected in 0.11s"
+        }
+      ],
+      "expected_head": "37cc35f653a09ca8c828fe76c4beb3049df302ea",
+      "expected_tree": "d680f974505daba61680d93ccb08ee4a5d0f0c2f",
+      "head_matches": true,
+      "inventory_checksums": {
+        "lines_failed": 0,
+        "lines_ok": 12,
+        "rc": 0,
+        "stdout_tail": "ements.ci.txt: OK\nci/environment_lock.comparison_env.txt: OK\nci/environment_drift_report.json: OK\nscripts/ci/assert_no_unexpected_skips.py: OK\nscripts/ci/branch_scope.py: OK\nscripts/ci/environment_drift.py: OK\nscripts/ci/gen_ci_pins.py: OK\nscripts/ci/node_diff_receipt.py: OK\nscripts/ci/verify_frozen_artifacts.py: OK\nrelease_inventory/build_inventory.py: OK\nrelease_inventory/inventory_pr_a.json: OK"
+      },
+      "pr": "A",
+      "recent_commits": [
+        "37cc35f6 ci: do not count an expected failure as an unexpected skip",
+        "711f0188 inventory: machine-readable change inventory and checksums for PR A",
+        "ab5bf932 ci: hermetic required CI, scope guard, node-diff receipt and environment drift disclosure",
+        "286dab7d Zeta-Core v4 PSA audit correction and closure diagnostics"
+      ],
+      "required_jobs": {
+        "cohere-harness": {
+          "skipped_because_out_of_scope": true,
+          "subsystem": "cohere",
+          "subsystem_state": "OUT_OF_SCOPE"
+        },
+        "psa-artifact-integrity": {
+          "collected": 79,
+          "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_venice_psa_reference_cdf.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_clone_verify/clone_A_psa-artifact-integrity.junit.xml",
+          "errors": 0,
+          "failed": 0,
+          "passed": 79,
+          "rc": 0,
+          "seconds": 5.4,
+          "skip_gate": {
+            "rc": 0,
+            "stdout": "SKIP_GATE_PASS: 79 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+          },
+          "skipped": 0,
+          "summary_line": "79 passed in 0.27s",
+          "xfailed": 0
+        },
+        "psa-negative-controls": {
+          "collected": 284,
+          "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_prognostic_direction_negative.py tests/unit/test_refusal_schema_lineage.py tests/unit/test_contract_a_release.py tests/unit/test_audit_correction_d13.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_clone_verify/clone_A_psa-negative-controls.junit.xml",
+          "errors": 0,
+          "failed": 0,
+          "passed": 284,
+          "rc": 0,
+          "seconds": 9.2,
+          "skip_gate": {
+            "rc": 0,
+            "stdout": "SKIP_GATE_PASS: 284 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+          },
+          "skipped": 0,
+          "summary_line": "284 passed in 4.03s",
+          "xfailed": 0
+        },
+        "psa-runtime-contract": {
+          "collected": 570,
+          "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_tumor_marker_kinetics_contract.py tests/unit/test_tumor_marker_kinetics_router.py tests/unit/test_tumor_marker_kinetics_equivalence.py tests/unit/test_tumor_marker_kinetics_fitter.py tests/unit/test_tumor_marker_kinetics_parser.py tests/unit/test_prostate_prognostic_index.py tests/efficacy/test_therapy_fit_axes.py tests/efficacy/test_v3_contract_axes.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_clone_verify/clone_A_psa-runtime-contract.junit.xml",
+          "errors": 0,
+          "failed": 0,
+          "passed": 570,
+          "rc": 0,
+          "seconds": 8.9,
+          "skip_gate": {
+            "rc": 0,
+            "stdout": "SKIP_GATE_PASS: 570 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+          },
+          "skipped": 0,
+          "summary_line": "570 passed in 4.18s",
+          "xfailed": 0
+        }
+      },
+      "scan": {
+        "cdisc_findings_in_data_files": 0,
+        "cdisc_patterns": {
+          "PATID": {
+            "code_or_test_files": [],
+            "data_files": [],
+            "files": 0,
+            "matches": 0
+          },
+          "SUBJID": {
+            "code_or_test_files": [
+              "api/services/tumor_marker_kinetics/models.py",
+              "tests/efficacy/test_therapy_fit_axes.py",
+              "tests/unit/test_tumor_marker_kinetics_router.py"
+            ],
+            "data_files": [],
+            "files": 3,
+            "matches": 3
+          },
+          "USUBJID": {
+            "code_or_test_files": [
+              "api/services/tumor_marker_kinetics/models.py",
+              "scripts/generate_venice_psa_reference_cdf.py",
+              "scripts/validation/d12_selection_core.py",
+              "scripts/validation/d5_runtime_equivalence.py",
+              "tests/efficacy/test_therapy_fit_axes.py",
+              "tests/unit/test_tumor_marker_kinetics_router.py"
+            ],
+            "data_files": [],
+            "files": 6,
+            "matches": 16
+          }
+        },
+        "credential_findings_total": 0,
+        "credential_patterns": {
+          "aws_access_key_id": {
+            "files": 0,
+            "matches": 0
+          },
+          "github_oauth_gho": {
+            "files": 0,
+            "matches": 0
+          },
+          "github_pat_classic_ghp": {
+            "files": 0,
+            "matches": 0
+          },
+          "github_pat_fine_grained": {
+            "files": 0,
+            "matches": 0
+          },
+          "github_refresh_ghr": {
+            "files": 0,
+            "matches": 0
+          },
+          "github_server_ghs": {
+            "files": 0,
+            "matches": 0
+          },
+          "openai_sk": {
+            "files": 0,
+            "matches": 0
+          },
+          "slack_token": {
+            "files": 0,
+            "matches": 0
+          }
+        },
+        "tracked_files_scanned": 14523
+      },
+      "sha256_sidecars_present": [
+        "api/services/tumor_marker_kinetics/data/venice_psa_k_day_reference_cdf_v1.json.sha256"
+      ],
+      "status": "VERIFIED",
+      "subsystem_state": {
+        "cohere": "OUT_OF_SCOPE",
+        "psa": "IN_SCOPE"
+      },
+      "target_dir_was_empty": true,
+      "tree_matches": true,
+      "verify_frozen_artifacts": {
+        "rc": 0,
+        "stderr": "",
+        "stdout": "{\n  \"artifact\": \"api/services/tumor_marker_kinetics/data/venice_psa_k_day_reference_cdf_v1.json\",\n  \"content_sha256\": \"a1acb23232c13a4089f6eb78a426292816864b2345e4651ccf01eaa7abd9d51f\",\n  \"file_sha256\": \"2302bfaba3acdb48dbcc731406cded140ce68169fb922ae516215bc8e80e62da\",\n  \"loader\": \"load_reference_cdf() accepted the artifact\",\n  \"n_reference\": 446,\n  \"status\": \"ARTIFACT_INTEGRITY_PASS\"\n}"
+      },
+      "worktree_clean": true
+    },
+    "B": {
+      "artifact_sidecar_check": {
+        "rc": null,
+        "stdout": "PSA subsystem absent on this ref"
+      },
+      "branch": "review/cohere-key-harness",
+      "branch_scope": {
+        "rc": 0,
+        "stderr": "",
+        "stdout": "es/tumor_marker_kinetics/prognostic_index.py\",\n      \"api/services/tumor_marker_kinetics/reference_cdf.py\",\n      \"api/services/tumor_marker_kinetics/refusal_schema.py\",\n      \"api/services/tumor_marker_kinetics/serializer.py\",\n      \"api/services/tumor_marker_kinetics/data/venice_psa_k_day_reference_cdf_v1.json\",\n      \"api/services/tumor_marker_kinetics/data/venice_psa_k_day_reference_cdf_v1.json.sha256\",\n      \"tests/unit/test_venice_psa_reference_cdf.py\",\n      \"tests/unit/test_tumor_marker_kinetics_contract.py\",\n      \"tests/unit/test_tumor_marker_kinetics_router.py\",\n      \"tests/unit/test_prostate_prognostic_index.py\",\n      \"tests/unit/test_prognostic_direction_negative.py\",\n      \"tests/unit/test_refusal_schema_lineage.py\",\n      \"tests/unit/test_contract_a_release.py\",\n      \"tests/unit/test_audit_correction_d13.py\"\n    ]\n  }\n]\nSCOPE: cohere = IN_SCOPE\nSCOPE: psa = OUT_OF_SCOPE"
+      },
+      "clone_head": "57e6c312822af0decc8acca6e5bd34d4410522b0",
+      "clone_path": "/workspace/zc4_clone_b",
+      "clone_rc": 0,
+      "clone_seconds": 12.1,
+      "clone_source": "/workspace/crispro-backend-v2",
+      "clone_stderr_tail": "3/14483)\nUpdating files:  91% (13180/14483)\nUpdating files:  92% (13325/14483)\nUpdating files:  93% (13470/14483)\nUpdating files:  94% (13615/14483)\nUpdating files:  95% (13759/14483)\nUpdating files:  96% (13904/14483)\nUpdating files:  97% (14049/14483)\nUpdating files:  98% (14194/14483)\nUpdating files:  99% (14339/14483)\nUpdating files: 100% (14483/14483)\nUpdating files: 100% (14483/14483), done.",
+      "clone_transport_deviation": "cloned from the local repository with --no-local; GitHub clone is impossible without an authorized credential and the credential exposed in chat is prohibited",
+      "clone_tree": "9d8d221d078be6c34770cee68bd1df3436957c1a",
+      "cohere_collection_probes": [
+        {
+          "key_env": "<empty>",
+          "live_test_collected": true,
+          "rc": 0,
+          "stdout_tail": "tests/test_cohere_with_key.py::test_cohere_live_integration\n\n1 test collected in 0.09s"
+        },
+        {
+          "key_env": "<valid-shaped placeholder>",
+          "live_test_collected": true,
+          "rc": 0,
+          "stdout_tail": "tests/test_cohere_with_key.py::test_cohere_live_integration\n\n1 test collected in 0.08s"
+        }
+      ],
+      "expected_head": "57e6c312822af0decc8acca6e5bd34d4410522b0",
+      "expected_tree": "9d8d221d078be6c34770cee68bd1df3436957c1a",
+      "head_matches": true,
+      "inventory_checksums": {
+        "lines_failed": 0,
+        "lines_ok": 12,
+        "rc": 0,
+        "stdout_tail": "ements.ci.txt: OK\nci/environment_lock.comparison_env.txt: OK\nci/environment_drift_report.json: OK\nscripts/ci/assert_no_unexpected_skips.py: OK\nscripts/ci/branch_scope.py: OK\nscripts/ci/environment_drift.py: OK\nscripts/ci/gen_ci_pins.py: OK\nscripts/ci/node_diff_receipt.py: OK\nscripts/ci/verify_frozen_artifacts.py: OK\nrelease_inventory/build_inventory.py: OK\nrelease_inventory/inventory_pr_b.json: OK"
+      },
+      "pr": "B",
+      "recent_commits": [
+        "57e6c312 ci: do not count an expected failure as an unexpected skip",
+        "91b0df34 inventory: machine-readable change inventory and checksums for PR B",
+        "d73f5d3a ci: hermetic required CI, scope guard, node-diff receipt and environment drift disclosure",
+        "875798c4 Isolate Cohere live-key pytest harness repair"
+      ],
+      "required_jobs": {
+        "cohere-harness": {
+          "collected": 13,
+          "command": "/workspace/.venv/bin/python -m pytest tests/unit/test_cohere_key_harness.py -q -p no:cacheprovider -rfE -o junit_family=xunit1 --junitxml=/workspace/zc4_clone_verify/clone_B_cohere-harness.junit.xml",
+          "errors": 0,
+          "failed": 0,
+          "passed": 13,
+          "rc": 0,
+          "seconds": 25.5,
+          "skip_gate": {
+            "rc": 0,
+            "stdout": "SKIP_GATE_PASS: 13 tests executed, 0 errors, 0 unexpected skips, 0 allow-listed skips, 0 expected failures"
+          },
+          "skipped": 0,
+          "summary_line": "13 passed in 20.54s",
+          "xfailed": 0
+        },
+        "psa-artifact-integrity": {
+          "skipped_because_out_of_scope": true,
+          "subsystem": "psa",
+          "subsystem_state": "OUT_OF_SCOPE"
+        },
+        "psa-negative-controls": {
+          "skipped_because_out_of_scope": true,
+          "subsystem": "psa",
+          "subsystem_state": "OUT_OF_SCOPE"
+        },
+        "psa-runtime-contract": {
+          "skipped_because_out_of_scope": true,
+          "subsystem": "psa",
+          "subsystem_state": "OUT_OF_SCOPE"
+        }
+      },
+      "scan": {
+        "cdisc_findings_in_data_files": 0,
+        "cdisc_patterns": {
+          "PATID": {
+            "code_or_test_files": [],
+            "data_files": [],
+            "files": 0,
+            "matches": 0
+          },
+          "SUBJID": {
+            "code_or_test_files": [],
+            "data_files": [],
+            "files": 0,
+            "matches": 0
+          },
+          "USUBJID": {
+            "code_or_test_files": [],
+            "data_files": [],
+            "files": 0,
+            "matches": 0
+          }
+        },
+        "credential_findings_total": 0,
+        "credential_patterns": {
+          "aws_access_key_id": {
+            "files": 0,
+            "matches": 0
+          },
+          "github_oauth_gho": {
+            "files": 0,
+            "matches": 0
+          },
+          "github_pat_classic_ghp": {
+            "files": 0,
+            "matches": 0
+          },
+          "github_pat_fine_grained": {
+            "files": 0,
+            "matches": 0
+          },
+          "github_refresh_ghr": {
+            "files": 0,
+            "matches": 0
+          },
+          "github_server_ghs": {
+            "files": 0,
+            "matches": 0
+          },
+          "openai_sk": {
+            "files": 0,
+            "matches": 0
+          },
+          "slack_token": {
+            "files": 0,
+            "matches": 0
+          }
+        },
+        "tracked_files_scanned": 14483
+      },
+      "sha256_sidecars_present": [],
+      "status": "VERIFIED",
+      "subsystem_state": {
+        "cohere": "IN_SCOPE",
+        "psa": "OUT_OF_SCOPE"
+      },
+      "target_dir_was_empty": true,
+      "tree_matches": true,
+      "verify_frozen_artifacts": {
+        "rc": 1,
+        "stderr": "4_clone_b/scripts/ci/verify_frozen_artifacts.py\", line 29, in <module>\n    from api.services.tumor_marker_kinetics import reference_cdf as rc  # noqa: E402\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'api.services.tumor_marker_kinetics'",
+        "stdout": ""
+      },
+      "worktree_clean": true
+    }
+  },
+  "generated_utc": "2026-08-14T04:57:43+00:00",
+  "purpose": "independent clean-clone verification of both review branches"
+}

@@ -1,0 +1,1218 @@
+{
+  "absolute_risk_calibrated": false,
+  "capability_released": "RELATIVE_PROGNOSTIC_INDEX_ONLY",
+  "deployment_claim": "NONE. Code is on a feature branch only; nothing is merged to main and no environment is declared deployed.",
+  "evidence_class_separation": {
+    "1_continuous_ruo_prognostic_index": {
+      "content": "k_day, reference_percentile, z_rank, prognostic_log_hazard_index and relative_hazard_multiplier form a continuous ordering associated with overall survival in one external cohort.",
+      "status": "RELEASED_FOR_RESEARCH_USE_ONLY",
+      "what_it_is_not": "It is not an absolute survival probability and not a treatment benefit estimate."
+    },
+    "2_suppressed_unstable_band": {
+      "content": "The categorical field is emitted as null on every code path. The B6 prespecified stability requirement was not met at the frozen quartile knots, so the categorical layer is withheld rather than reported.",
+      "status": "SUPPRESSED_BY_PRESPECIFIED_GATE_FAILURE",
+      "what_it_is_not": "Suppression is not a statement that the continuous index failed; the continuous index is released and the categorical layer is not."
+    },
+    "3_coefficient_only_uncertainty": {
+      "content": "coefficient_conditional_relative_hazard_interval propagates the standard error of the single frozen coefficient at a fixed z_rank. Its width is |z_rank| * SE, so it is exactly zero at the reference point.",
+      "status": "RELEASED_WITH_EXPLICIT_SCOPE_LABEL",
+      "what_it_is_not": "It is not a patient-level predictive interval and contains no component for the patient's own measurement error."
+    },
+    "4_patient_rate_uncertainty": {
+      "content": "The fit-precision receipt bootstraps the patient's own observations to give a k_day interval, a percentile interval and a decline-sign stability fraction. At exactly three distinct observation days it is not estimable and every interval is null with status INSUFFICIENT_FOR_UNCERTAINTY.",
+      "status": "RELEASED_WHEN_ESTIMABLE_ELSE_NULL",
+      "what_it_is_not": "It is not coefficient uncertainty and the two are never combined into a single interval."
+    },
+    "5_absolute_risk_transport_evidence": {
+      "content": "D10 transported the TAX327-derived model to VENICE at the prespecified gate-eligible horizons. Calibration slope and observed-to-expected both failed the prespecified gate in both transport variants.",
+      "status": "EVALUATED_AND_FAILED_NOTHING_ACTIVATED",
+      "what_it_is_not": "A passing result would still have activated nothing. The failing result is evidence about transportability, not a released output."
+    },
+    "6_treatment_prediction": {
+      "content": "No treatment-predictive quantity is computed anywhere in the code path. The corresponding keys are emitted as null on every payload.",
+      "status": "STRUCTURALLY_UNAVAILABLE",
+      "what_it_is_not": "Absence is structural, not a threshold that could be crossed by supplying more data. Every released prostate cohort is a comparator or control arm, so the comparison is not identified."
+    },
+    "mandate": "Item 9 of the completion directive requires every emitted artifact to keep these six evidence classes separate and to never let one stand in for another."
+  },
+  "final_allowable_claim": "An externally OS-associated continuous PSA prognostic index is available for research use. Absolute survival probability and treatment benefit remain unavailable. The categorical band is suppressed because its prespecified stability gate failed.",
+  "git": {
+    "branch": "feature/zeta-core-v4-tumor-marker-kinetics",
+    "changed_files": {
+      "modified": [
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt",
+        "data/cache.db",
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt"
+      ],
+      "untracked": [
+        ".cache/",
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt",
+        "tests/fixtures/d9_survival_metric_equivalence.json",
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt",
+        "_withheld_module_path_see_source_receipt"
+      ]
+    },
+    "head_sha_before_item10_commit": "ca56de30bf45a41d8c5f53584c31a5df27d36dea",
+    "head_tree_before_item10_commit": "819e48354e1bdc46e773005e6590fc63a59e49ad",
+    "n_modified": 12,
+    "n_untracked": 9,
+    "origin_main_sha_untouched": "99dd39c657064839fd25c37a69851178bc5e6d9d"
+  },
+  "item1_refusal_schema": {
+    "boundary_type": "SCHEMA_AND_ENDORSEMENT",
+    "forbidden_lineage_aliases": [
+      "categories",
+      "category",
+      "ci",
+      "cis",
+      "class",
+      "confidenceinterval",
+      "credibleinterval",
+      "crediblerange",
+      "grade",
+      "group",
+      "hr",
+      "interval",
+      "intervals",
+      "lcl",
+      "ll",
+      "p",
+      "pct",
+      "pctl",
+      "rank",
+      "riskband",
+      "riskcategory",
+      "riskgroup",
+      "riskstratum",
+      "ucl",
+      "ul",
+      "z"
+    ],
+    "forbidden_lineage_roots": [
+      "band",
+      "centile",
+      "decile",
+      "hazardratio",
+      "loghazard",
+      "multiplier",
+      "normit",
+      "pctile",
+      "percentile",
+      "probit",
+      "quantile",
+      "quartile",
+      "relativehazard",
+      "stratum",
+      "tercile",
+      "tier",
+      "zrank",
+      "zscore"
+    ],
+    "forbidden_transform_suffixes": [
+      "approx",
+      "binned",
+      "derived",
+      "est",
+      "exp",
+      "hat",
+      "log",
+      "log10",
+      "logit",
+      "norm",
+      "normalised",
+      "normalized",
+      "pct",
+      "proxy",
+      "rank",
+      "reconstructed",
+      "recovered",
+      "rounded",
+      "scaled",
+      "transformed",
+      "z"
+    ],
+    "module_name": "refusal_schema",
+    "module_sha256": "c419fd9696a77a4cab529d3e7b5fe06264e7259baba73bea4cc8f718a7e769f3",
+    "n_forbidden_lineage_aliases": 26,
+    "n_forbidden_lineage_roots": 18,
+    "n_forbidden_transform_suffixes": 21,
+    "n_refused_block_allowed_fields": 43,
+    "n_refused_receipt_allowed_fields": 28,
+    "n_static_subtree_fields": 22,
+    "numeric_proximity_probe_carries_disclaimer": true,
+    "numeric_proximity_retired_as_proof": true,
+    "proof_node_count": 205,
+    "proof_suite": "unit refusal-schema lineage suite",
+    "refused_block_null_required_fields": [
+      "boundary_crossing_probability",
+      "coefficient_conditional_relative_hazard_interval",
+      "multiplier_uncertainty_interval",
+      "percentile_uncertainty_interval",
+      "prognostic_log_hazard_index",
+      "reference_percentile",
+      "relative_hazard_multiplier",
+      "relative_prognostic_band",
+      "z_rank"
+    ],
+    "refused_receipt_null_required_fields": [
+      "boundary_crossing_probability",
+      "boundary_crossing_probability_unconditional",
+      "multiplier_uncertainty_interval",
+      "percentile_interval_width",
+      "percentile_uncertainty_interval",
+      "z_rank_uncertainty_interval"
+    ],
+    "wired_into": [
+      "serializer refused prognostic block",
+      "serializer refused fit-precision receipt"
+    ]
+  },
+  "item2_release_contract": {
+    "absolute_probability_and_treatment_fields_always_null": true,
+    "active_reasons": [
+      "DECLINE_SIGN_NOT_INDEPENDENTLY_ESTABLISHED",
+      "FIT_PRECISION_UNVERIFIABLE",
+      "FIT_QC_FAILED",
+      "INCOMPATIBLE_RATE_UNIT",
+      "INSUFFICIENT_DISTINCT_OBSERVATIONS",
+      "INVALID_CDF_OUTPUT",
+      "INVALID_MARKER_VALUE",
+      "MARKER_AXIS_MISMATCH",
+      "NONPOSITIVE_DECLINE_RATE",
+      "REFERENCE_ARTIFACT_MISSING",
+      "REFERENCE_CHECKSUM_MISMATCH",
+      "REFERENCE_VERSION_UNSUPPORTED",
+      "UNSTABLE_DECLINE_SIGN"
+    ],
+    "band_always_null": true,
+    "decision": "CONTRACT_A_RUO_SCIENTIFIC_WITHHOLDING",
+    "k_day_released": true,
+    "landmark_reclassification_is_a_reversal": true,
+    "n_reasons_active": 13,
+    "n_reasons_total": 14,
+    "percentile_uncertainty_interval_released_when_estimable": true,
+    "reference_percentile_released_when_sign_stable": true,
+    "rejected_alternative": "CONTRACT_B_STRICT_INDEX_WITHHOLDING",
+    "retired_reasons": [
+      "OUTSIDE_VALIDATED_LANDMARK_SCOPE"
+    ],
+    "reversal_disclosure": "Contract A reclassifies the week-15 landmark from a numeric refusal into a scope annotation. This reverses part of the earlier D8 receipt-redaction behaviour. The reason member OUTSIDE_VALIDATED_LANDMARK_SCOPE is retired rather than deleted so the reversal stays visible in the vocabulary.",
+    "runtime_numbers": [
+      {
+        "case": "clean5_landmark_none",
+        "coefficient_interval": "[0.9700475330536897, 0.9934388824601208]",
+        "decline_sign_stability": "1.0",
+        "eligible": true,
+        "fail_closed_keys_all_null": {},
+        "fit_precision_status": "RELIABLE",
+        "ineligible_reason": null,
+        "k_day": "0.014712116463140289",
+        "k_day_uncertainty_interval": "[0.01445038962673749, 0.01493480446043702]",
+        "landmark_scope_verified": false,
+        "loo_negative_slope_count": null,
+        "loo_sign_established": null,
+        "loo_sign_rule": null,
+        "n_distinct_days": 5,
+        "percentile_uncertainty_interval": "[0.5300479860199122, 0.5472952557233455]",
+        "receipt_redacted": false,
+        "reference_percentile": "0.542625166369364",
+        "relative_hazard_multiplier": "0.9816735389986095",
+        "relative_prognostic_band": null,
+        "release_contract": "CONTRACT_A_RUO_SCIENTIFIC_WITHHOLDING",
+        "three_observation_disclosure": null,
+        "z_rank": "0.10704955389661266"
+      },
+      {
+        "case": "clean5_landmark_true",
+        "coefficient_interval": "[0.9700475330536897, 0.9934388824601208]",
+        "decline_sign_stability": "1.0",
+        "eligible": true,
+        "fail_closed_keys_all_null": {},
+        "fit_precision_status": "RELIABLE",
+        "ineligible_reason": null,
+        "k_day": "0.014712116463140289",
+        "k_day_uncertainty_interval": "[0.01445038962673749, 0.01493480446043702]",
+        "landmark_scope_verified": false,
+        "loo_negative_slope_count": null,
+        "loo_sign_established": null,
+        "loo_sign_rule": null,
+        "n_distinct_days": 5,
+        "percentile_uncertainty_interval": "[0.5300479860199122, 0.5472952557233455]",
+        "receipt_redacted": false,
+        "reference_percentile": "0.542625166369364",
+        "relative_hazard_multiplier": "0.9816735389986095",
+        "relative_prognostic_band": null,
+        "release_contract": "CONTRACT_A_RUO_SCIENTIFIC_WITHHOLDING",
+        "three_observation_disclosure": null,
+        "z_rank": "0.10704955389661266"
+      },
+      {
+        "case": "three_ok",
+        "coefficient_interval": "[0.970416648002974, 0.9935206973109747]",
+        "decline_sign_stability": "None",
+        "eligible": true,
+        "fail_closed_keys_all_null": {},
+        "fit_precision_status": "INSUFFICIENT_FOR_UNCERTAINTY",
+        "ineligible_reason": null,
+        "k_day": "0.014660367001246979",
+        "k_day_uncertainty_interval": "None",
+        "landmark_scope_verified": false,
+        "loo_negative_slope_count": 3,
+        "loo_sign_established": true,
+        "loo_sign_rule": "LOO_SIGN_ESTABLISHMENT",
+        "n_distinct_days": 3,
+        "percentile_uncertainty_interval": "None",
+        "receipt_redacted": false,
+        "reference_percentile": "0.5420939099919843",
+        "relative_hazard_multiplier": "0.9819007204428019",
+        "relative_prognostic_band": null,
+        "release_contract": "CONTRACT_A_RUO_SCIENTIFIC_WITHHOLDING",
+        "three_observation_disclosure": [
+          "Uncertainty is unavailable for this estimate. Three distinct analysis days are too few for the prespecified resampling estimator, which requires four.",
+          "No categorical band is emitted. The band stability gate failed cohort-wide and a category must not be inferred from any released number.",
+          "No patient-level interval is emitted. The rate, percentile and multiplier uncertainty intervals are all null for this request.",
+          "This estimate is not suitable for individual decision-making. It is a research-use continuous index only."
+        ],
+        "z_rank": "0.10571033517674373"
+      },
+      {
+        "case": "three_bad_centred",
+        "coefficient_interval": "None",
+        "decline_sign_stability": "None",
+        "eligible": false,
+        "fail_closed_keys_all_null": {},
+        "fit_precision_status": null,
+        "ineligible_reason": "DECLINE_SIGN_NOT_INDEPENDENTLY_ESTABLISHED",
+        "k_day": "0.014660367001246977",
+        "k_day_uncertainty_interval": "None",
+        "landmark_scope_verified": false,
+        "loo_negative_slope_count": 2,
+        "loo_sign_established": false,
+        "loo_sign_rule": "LOO_SIGN_ESTABLISHMENT",
+        "n_distinct_days": 3,
+        "percentile_uncertainty_interval": "None",
+        "receipt_redacted": true,
+        "reference_percentile": "None",
+        "relative_hazard_multiplier": "None",
+        "relative_prognostic_band": null,
+        "release_contract": "CONTRACT_A_RUO_SCIENTIFIC_WITHHOLDING",
+        "three_observation_disclosure": null,
+        "z_rank": "None"
+      },
+      {
+        "case": "three_bad_offcentre",
+        "coefficient_interval": "None",
+        "decline_sign_stability": "None",
+        "eligible": false,
+        "fail_closed_keys_all_null": {},
+        "fit_precision_status": null,
+        "ineligible_reason": "DECLINE_SIGN_NOT_INDEPENDENTLY_ESTABLISHED",
+        "k_day": "0.01722964943248296",
+        "k_day_uncertainty_interval": "None",
+        "landmark_scope_verified": false,
+        "loo_negative_slope_count": 2,
+        "loo_sign_established": false,
+        "loo_sign_rule": "LOO_SIGN_ESTABLISHMENT",
+        "n_distinct_days": 3,
+        "percentile_uncertainty_interval": "None",
+        "receipt_redacted": true,
+        "reference_percentile": "None",
+        "relative_hazard_multiplier": "None",
+        "relative_prognostic_band": null,
+        "release_contract": "CONTRACT_A_RUO_SCIENTIFIC_WITHHOLDING",
+        "three_observation_disclosure": null,
+        "z_rank": "None"
+      }
+    ]
+  },
+  "item3_three_observation_rule": {
+    "fail_closed_reason_when_sign_not_established": "DECLINE_SIGN_NOT_INDEPENDENTLY_ESTABLISHED",
+    "fit_precision_status": "INSUFFICIENT_FOR_UNCERTAINTY",
+    "frozen_before_evaluation_on_venice": true,
+    "leverage_finding": "The centred non-monotone three-point case changes k_day by 1.735e-18 relative to the monotone case, so the ordinary least squares point estimate alone cannot detect it. That is the quantitative reason the sign test is a separate leave-one-out rule rather than a property of the fit.",
+    "mandatory_disclosures_when_released": [
+      "Uncertainty is unavailable for this estimate. Three distinct analysis days are too few for the prespecified resampling estimator, which requires four.",
+      "No categorical band is emitted. The band stability gate failed cohort-wide and a category must not be inferred from any released number.",
+      "No patient-level interval is emitted. The rate, percentile and multiplier uncertainty intervals are all null for this request.",
+      "This estimate is not suitable for individual decision-making. It is a research-use continuous index only."
+    ],
+    "point_estimate_released_only_if_sign_established": true,
+    "rule_definition": "Median-collapse per analysis day, take the natural log of the floored value, and form all three leave-one-out two-point ordinary-least-squares slopes. The decline sign is INDEPENDENTLY ESTABLISHED if and only if every leave-one-out slope is strictly negative in log space, equivalently every leave-one-out k is strictly positive. Otherwise the request fails closed.",
+    "rule_name": "LOO_SIGN_ESTABLISHMENT",
+    "status_is_not_a_reliability_claim": "A released three-day point estimate carries fit_precision_status INSUFFICIENT_FOR_UNCERTAINTY and must never be presented as a precision-qualified value.",
+    "trigger_distinct_days": 3
+  },
+  "item4_collection_internalerror": {
+    "classification": [
+      "TEST_HARNESS_DEFECT",
+      "PRE_EXISTING"
+    ],
+    "collection_error_module_classification": {
+      "ENVIRONMENT_MISMATCH": 1,
+      "NEW_REGRESSION": 0,
+      "PRE_EXISTING": 7,
+      "TEST_HARNESS_DEFECT_fixed": 1
+    },
+    "diagnosis_receipts": {
+      "d4_collection_diagnosis.json": {
+        "document": "D4/item-4 collection INTERNALERROR diagnosis",
+        "environment_identical_across_trees": true,
+        "error_signature_classification": {},
+        "identical_command_across_trees": "/workspace/.venv/bin/python -m pytest tests --collect-only -q -p no:cacheprovider",
+        "interpreter": "/workspace/.venv/bin/python",
+        "module_sets": {
+          "base_only": [],
+          "shared": [],
+          "working_tree_only": []
+        },
+        "new_regressions": [],
+        "per_tree": {
+          "base_99dd39c6": {
+            "collected_count_reported": [
+              "549"
+            ],
+            "collected_nodes_printed": 549,
+            "command": "/workspace/.venv/bin/python -m pytest tests --collect-only -q -p no:cacheprovider",
+            "environment": {
+              "executable": "/workspace/.venv/bin/python",
+              "packages": {
+                "anyio": "4.14.2",
+                "fastapi": "0.116.1",
+                "httpx": "0.28.1",
+                "lifelines": "0.30.0",
+                "numpy": "2.4.6",
+                "pandas": "3.0.5",
+                "pydantic": "2.11.7",
+                "pytest": "8.4.1",
+                "pytest_asyncio": "1.4.0",
+                "scipy": "1.15.0",
+                "starlette": "0.47.2"
+              },
+              "prefix": "/workspace/.venv",
+              "sys_path": [
+                "",
+                "/pkg",
+                "/root",
+                "/opt/conda/lib/python311.zip",
+                "/opt/conda/lib/python3.11",
+                "/opt/conda/lib/python3.11/lib-dynload",
+                "/workspace/.venv/lib/python3.11/site-packages",
+                "/workspace/.conda/envs/persist/lib/python3.11/site-packages",
+                "/workspace/.conda/envs/persist/lib/python3.11/site-packages",
+                "/opt/conda/lib/python3.11/site-packages"
+              ],
+              "version": "3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]"
+            },
+            "error_count_tokens": [
+              "5"
+            ],
+            "error_modules": [],
+            "exception_signatures": [],
+            "internalerror_lines": "_withheld_module_path_see_source_receipt",
+            "internalerror_present": true,
+            "path": "/workspace/base_pristine",
+            "returncode": 3,
+            "tree": "base_99dd39c6"
+          },
+          "branch_start_ca56de30": {
+            "collected_count_reported": [
+              "573"
+            ],
+            "collected_nodes_printed": 573,
+            "command": "/workspace/.venv/bin/python -m pytest tests --collect-only -q -p no:cacheprovider",
+            "environment": {
+              "executable": "/workspace/.venv/bin/python",
+              "packages": {
+                "anyio": "4.14.2",
+                "fastapi": "0.116.1",
+                "httpx": "0.28.1",
+                "lifelines": "0.30.0",
+                "numpy": "2.4.6",
+                "pandas": "3.0.5",
+                "pydantic": "2.11.7",
+                "pytest": "8.4.1",
+                "pytest_asyncio": "1.4.0",
+                "scipy": "1.15.0",
+                "starlette": "0.47.2"
+              },
+              "prefix": "/workspace/.venv",
+              "sys_path": [
+                "",
+                "/pkg",
+                "/root",
+                "/opt/conda/lib/python311.zip",
+                "/opt/conda/lib/python3.11",
+                "/opt/conda/lib/python3.11/lib-dynload",
+                "/workspace/.venv/lib/python3.11/site-packages",
+                "/workspace/.conda/envs/persist/lib/python3.11/site-packages",
+                "/workspace/.conda/envs/persist/lib/python3.11/site-packages",
+                "/opt/conda/lib/python3.11/site-packages"
+              ],
+              "version": "3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]"
+            },
+            "error_count_tokens": [
+              "5"
+            ],
+            "error_modules": [],
+            "exception_signatures": [],
+            "internalerror_lines": "_withheld_module_path_see_source_receipt",
+            "internalerror_present": true,
+            "path": "/workspace/committed_ca56de30",
+            "returncode": 3,
+            "tree": "branch_start_ca56de30"
+          },
+          "working_tree": {
+            "collected_count_reported": [
+              "573"
+            ],
+            "collected_nodes_printed": 573,
+            "command": "/workspace/.venv/bin/python -m pytest tests --collect-only -q -p no:cacheprovider",
+            "environment": {
+              "executable": "/workspace/.venv/bin/python",
+              "packages": {
+                "anyio": "4.14.2",
+                "fastapi": "0.116.1",
+                "httpx": "0.28.1",
+                "lifelines": "0.30.0",
+                "numpy": "2.4.6",
+                "pandas": "3.0.5",
+                "pydantic": "2.11.7",
+                "pytest": "8.4.1",
+                "pytest_asyncio": "1.4.0",
+                "scipy": "1.15.0",
+                "starlette": "0.47.2"
+              },
+              "prefix": "/workspace/.venv",
+              "sys_path": [
+                "",
+                "/pkg",
+                "/root",
+                "/opt/conda/lib/python311.zip",
+                "/opt/conda/lib/python3.11",
+                "/opt/conda/lib/python3.11/lib-dynload",
+                "/workspace/.venv/lib/python3.11/site-packages",
+                "/workspace/.conda/envs/persist/lib/python3.11/site-packages",
+                "/workspace/.conda/envs/persist/lib/python3.11/site-packages",
+                "/opt/conda/lib/python3.11/site-packages"
+              ],
+              "version": "3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]"
+            },
+            "error_count_tokens": [
+              "5"
+            ],
+            "error_modules": [],
+            "exception_signatures": [],
+            "internalerror_lines": "_withheld_module_path_see_source_receipt",
+            "internalerror_present": true,
+            "path": "/workspace/crispro-backend-v2",
+            "returncode": 3,
+            "tree": "working_tree"
+          }
+        }
+      },
+      "d4_pass2_classification.json": {
+        "command": "_withheld_module_path_see_source_receipt",
+        "document": "item-4 pass 2: collection completes, remaining errors classified",
+        "error_classification": {
+          "_module_paths_withheld_see_source_receipt": 8
+        },
+        "internalerror_root_cause": {
+          "classification": "TEST_HARNESS_DEFECT",
+          "effect": "release-wide totals were silently truncated at the abort point",
+          "fix": "pytest.skip(..., allow_module_level=True)",
+          "line": 30,
+          "mechanism": "bare module-level sys.exit(1) when COHERE_API_KEY is absent; SystemExit raised inside pytest's collection import is escalated to INTERNALERROR and aborts the entire session",
+          "module": "_withheld_module_path_see_source_receipt",
+          "pre_existing": "reproduces identically on pristine base 99dd39c6"
+        },
+        "new_regressions": [],
+        "node_comparison": {
+          "added_vs_base": 639,
+          "added_vs_branch_start": 44,
+          "base_count": 936,
+          "branch_start_count": 1535,
+          "removed_vs_base": [],
+          "removed_vs_branch_start": {
+            "_node_ids_withheld_see_source_receipt": 4
+          },
+          "working_tree_count": 1575
+        },
+        "per_tree": {
+          "base_99dd39c6": {
+            "collected": 936,
+            "error_modules": {
+              "_module_paths_withheld_see_source_receipt": 8
+            },
+            "internalerror": false,
+            "returncode": 1
+          },
+          "branch_start_ca56de30": {
+            "collected": 1583,
+            "error_modules": {
+              "_module_paths_withheld_see_source_receipt": 8
+            },
+            "internalerror": false,
+            "returncode": 1
+          },
+          "working_tree": {
+            "collected": 1623,
+            "error_modules": {
+              "_module_paths_withheld_see_source_receipt": 8
+            },
+            "internalerror": false,
+            "returncode": 1
+          }
+        }
+      }
+    },
+    "fix": "Replaced the module-level sys.exit(1) with pytest.skip(..., allow_module_level=True). No production guard was weakened and no production code was changed.",
+    "reproduced_on_pristine_base": true,
+    "root_cause": "A bare module-level sys.exit(1) executed at import time when COHERE_API_KEY was absent. The resulting SystemExit during collection escalates to INTERNALERROR and aborts the entire session.",
+    "root_cause_module": "the live-Cohere-key test module"
+  },
+  "item5_test_matrix": {
+    "A_complete_collection": {
+      "command": "python -m pytest tests --collect-only -q -p no:cacheprovider",
+      "counts": {
+        "collected": 1848,
+        "errors": 8
+      },
+      "internalerror": false,
+      "note": "collection now COMPLETES; before the item-4 fix this aborted with INTERNALERROR on all three trees"
+    },
+    "B_baseline_vs_branch_node_comparison": {
+      "command": "_withheld_module_path_see_source_receipt",
+      "per_tree": {
+        "base_99dd39c6": {
+          "collected": 936,
+          "errors": 8
+        },
+        "branch_start_ca56de30": {
+          "collected": 1583,
+          "errors": 8
+        },
+        "working_tree": {
+          "collected": 1848,
+          "errors": 8
+        }
+      },
+      "removed_node_replacement_proof": {
+        "classes": null,
+        "n_lost": null,
+        "n_mapped": null,
+        "n_removed": null,
+        "source": "d5_removed_node_replacements.json",
+        "verdict": "NO_LOST_COVERAGE"
+      }
+    },
+    "C_focused_suite": {
+      "categories_covered": {
+        "d13": {
+          "_node_ids_withheld_see_source_receipt": 1
+        },
+        "marker_kinetics": {
+          "_node_ids_withheld_see_source_receipt": 10
+        },
+        "receipt_and_report_generation": {
+          "_node_ids_withheld_see_source_receipt": 3
+        },
+        "router_and_contract": {
+          "_node_ids_withheld_see_source_receipt": 2
+        },
+        "therapy_fit_axis": {
+          "_node_ids_withheld_see_source_receipt": 1
+        }
+      },
+      "counts": {
+        "passed": 971
+      },
+      "full_tests_audit_sweep": {
+        "failed_nodes": [
+          {
+            "axis": "OVARIAN (CA125 / platinum-resistant tagging)",
+            "node": "_withheld_module_path_see_source_receipt",
+            "pre_existing_on_pristine_base": true,
+            "relates_to_marker_kinetics": false
+          },
+          {
+            "axis": "OVARIAN (CA125 / platinum-resistant tagging)",
+            "node": "_withheld_module_path_see_source_receipt",
+            "pre_existing_on_pristine_base": true,
+            "relates_to_marker_kinetics": false
+          }
+        ],
+        "note": "the two failures are ovarian-axis behaviours present verbatim on the pristine base; they are inside the 162 pre-existing failures and are not touched by this branch",
+        "summary_line": "2 failed, 104 passed in 2.88s",
+        "target": "tests/audit"
+      },
+      "modules": {
+        "_node_ids_withheld_see_source_receipt": 15
+      },
+      "n_modules": 15,
+      "new_modules_only": {
+        "modules": {
+          "_node_ids_withheld_see_source_receipt": 2
+        },
+        "summary_line": "223 passed in 2.32s"
+      },
+      "summary_line": "971 passed in 5.87s",
+      "v1_omission_corrected": "_withheld_module_path_see_source_receipt"
+    },
+    "D_complete_suite": {
+      "command": "python -m pytest tests -q -p no:cacheprovider --continue-on-collection-errors -rfE --durations=25",
+      "counts": {
+        "_raw": "162 failed, 1620 passed, 9 skipped, 2 xfailed, 86 warnings, 64 errors in 472.60s (0:07:52)",
+        "error": 64,
+        "failed": 162,
+        "passed": 1620,
+        "skipped": 9,
+        "xfailed": 2
+      },
+      "internalerror": false
+    },
+    "E_baseline_full_suite_regression_classification": {
+      "error_classification": {
+        "NEW_REGRESSION": 0,
+        "PRE_EXISTING_on_pristine_base": 64,
+        "PRE_EXISTING_only_on_branch_start": 0,
+        "new_regression_nodes": [],
+        "pre_existing_only_on_branch_start_nodes": [],
+        "working_tree_unique_error_nodes": 64
+      },
+      "error_module_breakdown": {
+        "_module_paths_withheld_see_source_receipt": 15
+      },
+      "failed_classification": {
+        "NEW_REGRESSION": 0,
+        "PRE_EXISTING_on_pristine_base": 162,
+        "PRE_EXISTING_only_on_branch_start": 0,
+        "new_regression_nodes": [],
+        "pre_existing_only_on_branch_start_nodes": [],
+        "working_tree_unique_failed": 162
+      },
+      "mandatory_gate_zero_new_failures_or_errors": "PASS",
+      "passed_delta": {
+        "added_vs_branch_start": 265,
+        "base_99dd39c6": 708,
+        "branch_start_ca56de30": 1355,
+        "working_tree_ignored": 1620
+      },
+      "per_tree_counts": {
+        "base_99dd39c6": {
+          "_raw": "162 failed, 708 passed, 8 skipped, 2 xfailed, 86 warnings, 64 errors in 442.57s (0:07:22)",
+          "error": 64,
+          "failed": 162,
+          "passed": 708,
+          "skipped": 8,
+          "xfailed": 2
+        },
+        "branch_start_ca56de30": {
+          "_raw": "162 failed, 1355 passed, 8 skipped, 2 xfailed, 86 warnings, 64 errors in 439.58s (0:07:19)",
+          "error": 64,
+          "failed": 162,
+          "passed": 1355,
+          "skipped": 8,
+          "xfailed": 2
+        },
+        "working_tree_ignored": {
+          "_raw": "162 failed, 1620 passed, 8 skipped, 2 xfailed, 86 warnings, 64 errors in 305.36s (0:05:05)",
+          "error": 64,
+          "failed": 162,
+          "passed": 1620,
+          "skipped": 8,
+          "xfailed": 2
+        }
+      },
+      "release_wide_improvement_claim": "NOT CLAIMED. The 162 failures and 64 errors are byte-identical node sets on the pristine base, the branch starting commit and the working tree. This branch neither fixes nor worsens them. The only release-wide change is that complete collection now succeeds.",
+      "set_identity_checks": {
+        "errors_base_equals_working": true,
+        "errors_start_equals_working": true,
+        "failed_base_equals_working": true,
+        "failed_start_equals_working": true
+      },
+      "verdict": "ZERO_NEW_FAILURES_AND_ZERO_NEW_ERRORS"
+    },
+    "F_skip_and_xfail_classification": {
+      "command": "python -m pytest tests -q -p no:cacheprovider --continue-on-collection-errors -rsxX",
+      "n_skipped": 9,
+      "n_xfailed": 2,
+      "note": "_withheld_module_path_see_source_receipt",
+      "skips": [
+        {
+          "classification": "HARNESS_FIX_INTRODUCED_BY_THIS_BRANCH",
+          "line": 37,
+          "module": "_withheld_module_path_see_source_receipt",
+          "note": "module-level pytest.skip replacing a bare sys.exit(1) that escalated to a session-aborting INTERNALERROR; this is the item-4 fix, and it converts a collection abort into one honest skip",
+          "reason": "COHERE_API_KEY is not configured; this module requires a live Cohere key."
+        },
+        {
+          "classification": "ENVIRONMENT_DEPENDENT_LIVE_SERVER",
+          "line": 107,
+          "module": "_withheld_module_path_see_source_receipt",
+          "note": "requires a running HTTP server; not started in this sandbox",
+          "reason": "Server not running - skipping integration test"
+        },
+        {
+          "classification": "ENVIRONMENT_DEPENDENT_LIVE_SERVER",
+          "line": 136,
+          "module": "_withheld_module_path_see_source_receipt",
+          "note": "requires a running HTTP server; not started in this sandbox",
+          "reason": "Server not running - skipping integration test"
+        },
+        {
+          "classification": "ENVIRONMENT_DEPENDENT_LIVE_SERVER",
+          "line": 168,
+          "module": "_withheld_module_path_see_source_receipt",
+          "note": "requires a running HTTP server; not started in this sandbox",
+          "reason": "Server not running - skipping integration test"
+        },
+        {
+          "classification": "ENVIRONMENT_DEPENDENT_LIVE_SERVER",
+          "line": 192,
+          "module": "_withheld_module_path_see_source_receipt",
+          "note": "requires a running HTTP server; not started in this sandbox",
+          "reason": "Server not running - skipping integration test"
+        },
+        {
+          "classification": "ENVIRONMENT_DEPENDENT_LIVE_SERVER",
+          "line": 222,
+          "module": "_withheld_module_path_see_source_receipt",
+          "note": "requires a running HTTP server; not started in this sandbox",
+          "reason": "Server not running - skipping integration test"
+        },
+        {
+          "classification": "MISSING_EXTERNAL_DATA_FILE",
+          "line": 356,
+          "module": "_withheld_module_path_see_source_receipt",
+          "note": "GSE91061 composite CSV is not present in this sandbox",
+          "reason": "GSE91061 data not found at /scripts/data_acquisition/IO/gse91061_analysis_with_composites.csv"
+        },
+        {
+          "classification": "OPT_IN_ENV_FLAG",
+          "line": 102,
+          "module": "_withheld_module_path_see_source_receipt",
+          "note": "live invariant test is opt-in via AYESHA_PREVIEW_INVARIANT_LIVE=1",
+          "reason": "Live invariant test disabled (set AYESHA_PREVIEW_INVARIANT_LIVE=1)"
+        },
+        {
+          "classification": "OPTIONAL_DEPENDENCY_ABSENT",
+          "line": 283,
+          "module": "_withheld_module_path_see_source_receipt",
+          "note": "cohere package not installed",
+          "reason": "Cohere package not available in test environment"
+        }
+      ],
+      "skips_in_marker_kinetics_modules": 0,
+      "summary_line": "162 failed, 1620 passed, 9 skipped, 2 xfailed, 86 warnings, 64 errors in 299.45s (0:04:59)",
+      "xfails": [
+        {
+          "classification": "PRE_EXISTING_DECLARED_DEBT",
+          "introduced_by_this_branch": false,
+          "node": "_withheld_module_path_see_source_receipt",
+          "reason": "ARIEL temporal ctDNA replay NOT YET IMPLEMENTED. This test will pass when add_ctdna_signal() is fed with real allele fraction time series from ARIEL data and the state machine transitions are verified. Currently only gene→class mapping is tested. See: tests/resistance_prophet/kill-chain/data/01-arie"
+        },
+        {
+          "classification": "PRE_EXISTING_DECLARED_DEBT",
+          "introduced_by_this_branch": false,
+          "node": "_withheld_module_path_see_source_receipt",
+          "reason": "G1 LONGITUDINAL ctDNA REPLAY NOT YET IMPLEMENTED. This file contains paired tumor/ctDNA data for longitudinal monitoring. The test will pass when this data is fed through the Kill Chain state machine (add_ctdna_signal()) and state transitions are verified. Flagged by Sprint 10 manager audit as invis"
+        }
+      ]
+    },
+    "G_secret_and_patient_identifier_scan": {
+      "binary_residual_scan": {
+        "data_cache_db": {
+          "bytes": 49152,
+          "disposition": "restored with git checkout before staging; not committed",
+          "real_identifier_byte_hits": 0,
+          "sha256": "9af2747d290a315c002652016ebafde4aaf06489e3fcb4ce3b6845a034d76b1a",
+          "tables": [
+            "cache_store"
+          ]
+        },
+        "sha256_sidecars": {
+          "n_files": 12,
+          "real_identifier_hits": 0
+        }
+      },
+      "positive_control": {
+        "column_name_tokens_classified_as_schema_only": true,
+        "control_passed": true,
+        "dashed_usubjid_detected": true,
+        "decimal_literals_not_flagged_as_identifiers": true,
+        "n_blocking_shape_hits_in_control": 3,
+        "nine_digit_subjid_detected": true,
+        "real_source_value_detected_literally": true
+      },
+      "real_identifier_universe_size": 2543,
+      "reviewed_false_positives": {
+        "column_name_tokens_in_v1": "v1 counted 1103+ quoted column NAMES ('patient_id', 'pid', 'USUBJID', 'SUBJID') as patient identifiers. Column names are schema tokens, not patient data. v2 records them in schema_reference_register as NON-BLOCKING.",
+        "decimal_literal_false_positives_in_v1": "v1 flagged 8 subjid_9digit hits that were digit substrings of decimal numbers in the delivery report (e.g. 0.010471253, -3.056128359). The v2 lookbehind/lookahead rejects any digit run touching '.' or another digit, so those 8 hits no longer fire.",
+        "digit_runs_inside_hex_digests": 2
+      },
+      "scanner": "_withheld_module_path_see_source_receipt",
+      "summary": {
+        "n_binary_skipped": 13,
+        "n_blocking_identifier_value_hits": 0,
+        "n_files_scanned": 101,
+        "n_files_with_schema_references": 27,
+        "n_real_identifier_value_hits": 0,
+        "n_schema_reference_hits": 1116,
+        "n_secret_hits_actionable": 0,
+        "n_secret_hits_benign_env_reference": 0
+      },
+      "supersedes": "d5_secret_pii_scan.json (v1: decimal false positives, column names miscounted as identifiers, no positive control)",
+      "verdict": "CLEAN"
+    },
+    "all_gates_pass": true,
+    "baseline_regression_diff": {
+      "command": "_withheld_module_path_see_source_receipt",
+      "document": "ZETA-CORE v4 item 5-E baseline vs branch full-suite regression classification",
+      "error_classification": {
+        "NEW_REGRESSION": 0,
+        "PRE_EXISTING_on_pristine_base": 64,
+        "PRE_EXISTING_only_on_branch_start": 0,
+        "new_regression_nodes": [],
+        "pre_existing_only_on_branch_start_nodes": [],
+        "working_tree_unique_error_nodes": 64
+      },
+      "error_module_breakdown": {
+        "_module_paths_withheld_see_source_receipt": 15
+      },
+      "failed_classification": {
+        "NEW_REGRESSION": 0,
+        "PRE_EXISTING_on_pristine_base": 162,
+        "PRE_EXISTING_only_on_branch_start": 0,
+        "new_regression_nodes": [],
+        "pre_existing_only_on_branch_start_nodes": [],
+        "working_tree_unique_failed": 162
+      },
+      "interpreter": "/workspace/.venv/bin/python (3.11.13)",
+      "mandatory_gate_zero_new_failures_or_errors": "PASS",
+      "per_tree": {
+        "base_99dd39c6": {
+          "error_lines": 64,
+          "error_unique": 64,
+          "failed_lines": 162,
+          "failed_unique": 162,
+          "returncode": 1,
+          "stdout_bytes": 715519,
+          "stdout_path": "/workspace/zc4_d5_matrix/E_full_base_99dd39c6.stdout.txt",
+          "tail_counts": {
+            "_raw": "162 failed, 708 passed, 8 skipped, 2 xfailed, 86 warnings, 64 errors in 442.57s (0:07:22)",
+            "error": 64,
+            "failed": 162,
+            "passed": 708,
+            "skipped": 8,
+            "xfailed": 2
+          }
+        },
+        "branch_start_ca56de30": {
+          "error_lines": 64,
+          "error_unique": 64,
+          "failed_lines": 162,
+          "failed_unique": 162,
+          "returncode": 1,
+          "stdout_bytes": 716780,
+          "stdout_path": "/workspace/zc4_d5_matrix/E_full_branch_start_ca56de30.stdout.txt",
+          "tail_counts": {
+            "_raw": "162 failed, 1355 passed, 8 skipped, 2 xfailed, 86 warnings, 64 errors in 439.58s (0:07:19)",
+            "error": 64,
+            "failed": 162,
+            "passed": 1355,
+            "skipped": 8,
+            "xfailed": 2
+          }
+        },
+        "working_tree_ignored": {
+          "error_lines": 64,
+          "error_unique": 64,
+          "failed_lines": 162,
+          "failed_unique": 162,
+          "returncode": 1,
+          "stdout_bytes": 717100,
+          "stdout_path": "/workspace/zc4_d5_matrix/E_full_working_tree_ignored.stdout.txt",
+          "tail_counts": {
+            "_raw": "162 failed, 1620 passed, 8 skipped, 2 xfailed, 86 warnings, 64 errors in 305.36s (0:05:05)",
+            "error": 64,
+            "failed": 162,
+            "passed": 1620,
+            "skipped": 8,
+            "xfailed": 2
+          }
+        }
+      },
+      "resolved_in_working_tree": {
+        "error_nodes_no_longer_erroring": [],
+        "failed_nodes_no_longer_failing": []
+      },
+      "set_identity_checks": {
+        "errors_base_equals_working": true,
+        "errors_start_equals_working": true,
+        "failed_base_equals_working": true,
+        "failed_start_equals_working": true
+      },
+      "trees": {
+        "base_99dd39c6": "/workspace/base_pristine (detached pristine base)",
+        "branch_start_ca56de30": "/workspace/committed_ca56de30 (branch starting commit)",
+        "working_tree_ignored": "/workspace/crispro-backend-v2 (current working tree)"
+      },
+      "verdict": "ZERO_NEW_FAILURES_AND_ZERO_NEW_ERRORS"
+    },
+    "binary_residual_scan": {
+      "data_cache_db": {
+        "bytes": 49152,
+        "disposition": "restored with git checkout before staging; not committed",
+        "real_identifier_byte_hits": 0,
+        "sha256": "9af2747d290a315c002652016ebafde4aaf06489e3fcb4ce3b6845a034d76b1a",
+        "tables": [
+          "cache_store"
+        ]
+      },
+      "sha256_sidecars": {
+        "n_files": 12,
+        "real_identifier_hits": 0
+      }
+    },
+    "environment": {
+      "COHERE_API_KEY": "unset for every run",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "<tree root>"
+    },
+    "gates": {
+      "collection_completes": true,
+      "focused_suite_all_pass": true,
+      "no_lost_coverage": true,
+      "secret_pii_scan_clean": true,
+      "zero_new_errors": true,
+      "zero_new_failures": true
+    },
+    "pytest": "8.4.1 (pytest-timeout is NOT installed; --timeout is unavailable)",
+    "release_wide_improvement_claim": "NOT CLAIMED. The failing and erroring node sets are byte-identical across the pristine base, the branch start commit and the working tree. The only release-wide change is that complete collection now succeeds.",
+    "removed_node_replacements": {
+      "classes": null,
+      "n_lost": null,
+      "n_mapped": null,
+      "n_removed": null,
+      "verdict": "NO_LOST_COVERAGE"
+    },
+    "secret_pii_scan": {
+      "positive_control_passed": null,
+      "scanner_version": "v2",
+      "summary": {
+        "n_binary_skipped": 13,
+        "n_blocking_identifier_value_hits": 0,
+        "n_files_scanned": 101,
+        "n_files_with_schema_references": 27,
+        "n_real_identifier_value_hits": 0,
+        "n_schema_reference_hits": 1116,
+        "n_secret_hits_actionable": 0,
+        "n_secret_hits_benign_env_reference": 0
+      },
+      "v1_superseded_because": "Scanner v1 returned BLOCKED from its own defects, not from repository content: a digit-run pattern matched substrings of decimals and quoted column NAMES were classified as identifier values. v2 adds lookaround anchoring, a schema-reference class, a positive control and a real-value literal scan.",
+      "verdict": "CLEAN"
+    },
+    "source_receipts": {
+      "d10_transport.json": "afe232c604afec60ebae1f84a54b317165f94de97b7b8bda66dc976372ec7575",
+      "d11_functional_form.json": "aa64787c725124e6464aa0e462f678a1d15f164b4a57220b592055f79805aa1e",
+      "d12_selection_bias.json": "a04acb8a524ea845d9105cf2f904ce955e3d2545fb528714fdd90a62323c45df",
+      "d5_baseline_regression_diff.json": "32617648cf5342f20b68cbdcac95ab523f491e3e7cb6bc7602c2fd91b76bebe1",
+      "d5_secret_pii_scan_v2.json": "41148459a47400bb10f8eeac83a5fdae3a421ca490587dc9ee60950fca43f0a1",
+      "d5_test_matrix_final.json": "1fec0b022506a622fbba5e00643db13d01cc10c6d019801ed2cc4e648091c972",
+      "prespecification_v2_addendum.json": "a24fb4e000d4da02852abb3fcb7aeeb2d671474fbafc4dcdc6a7aafcd09de71f"
+    },
+    "status_label": "LOCAL_CHECKPOINT_NOT_RELEASE_READY"
+  },
+  "item6_d10": {
+    "artifact": "validation/receipts/d10_absolute_risk_transport.json",
+    "sha256": "9ec6054058c5f432b66a6f38b7c6d9fd701943bf78d685d7a9e418c4eda5ff5e",
+    "verdict": {
+      "failing": [
+        {
+          "horizon": 26,
+          "metric": "calibration_slope",
+          "variant": "T1"
+        },
+        {
+          "horizon": 26,
+          "metric": "observed_to_expected",
+          "variant": "T1"
+        },
+        {
+          "horizon": 52,
+          "metric": "calibration_slope",
+          "variant": "T1"
+        },
+        {
+          "horizon": 52,
+          "metric": "observed_to_expected",
+          "variant": "T1"
+        },
+        {
+          "horizon": 26,
+          "metric": "calibration_slope",
+          "variant": "T2"
+        },
+        {
+          "horizon": 26,
+          "metric": "observed_to_expected",
+          "variant": "T2"
+        },
+        {
+          "horizon": 52,
+          "metric": "calibration_slope",
+          "variant": "T2"
+        },
+        {
+          "horizon": 52,
+          "metric": "observed_to_expected",
+          "variant": "T2"
+        }
+      ],
+      "n_fail": 8,
+      "n_gate_evaluations": 10,
+      "n_pass": 2,
+      "overall": "FAIL"
+    }
+  },
+  "item7_d11": {
+    "artifact": "validation/receipts/d11_fold_local_functional_form.json",
+    "sha256": "ff01895d1995ed2925106eb5cb8544f42b5cfcbfe7749f19f2d44913325a8a0c",
+    "verdict": "FOLD_LOCAL_PIPELINE_CONFIRMED"
+  },
+  "item8_d12": {
+    "artifact": "validation/receipts/d12_selection_bias.json",
+    "sha256": "1e693f454ac902d24ee3efb8bb47ceee950995e7316a430aaa676a275f6ed11f"
+  },
+  "live_code_state": {
+    "active_ineligibility_reasons": [
+      "DECLINE_SIGN_NOT_INDEPENDENTLY_ESTABLISHED",
+      "FIT_PRECISION_UNVERIFIABLE",
+      "FIT_QC_FAILED",
+      "INCOMPATIBLE_RATE_UNIT",
+      "INSUFFICIENT_DISTINCT_OBSERVATIONS",
+      "INVALID_CDF_OUTPUT",
+      "INVALID_MARKER_VALUE",
+      "MARKER_AXIS_MISMATCH",
+      "NONPOSITIVE_DECLINE_RATE",
+      "REFERENCE_ARTIFACT_MISSING",
+      "REFERENCE_CHECKSUM_MISMATCH",
+      "REFERENCE_VERSION_UNSUPPORTED",
+      "UNSTABLE_DECLINE_SIGN"
+    ],
+    "all_ineligibility_reasons": [
+      "DECLINE_SIGN_NOT_INDEPENDENTLY_ESTABLISHED",
+      "FIT_PRECISION_UNVERIFIABLE",
+      "FIT_QC_FAILED",
+      "INCOMPATIBLE_RATE_UNIT",
+      "INSUFFICIENT_DISTINCT_OBSERVATIONS",
+      "INVALID_CDF_OUTPUT",
+      "INVALID_MARKER_VALUE",
+      "MARKER_AXIS_MISMATCH",
+      "NONPOSITIVE_DECLINE_RATE",
+      "OUTSIDE_VALIDATED_LANDMARK_SCOPE",
+      "REFERENCE_ARTIFACT_MISSING",
+      "REFERENCE_CHECKSUM_MISMATCH",
+      "REFERENCE_VERSION_UNSUPPORTED",
+      "UNSTABLE_DECLINE_SIGN"
+    ],
+    "fail_closed_keys": [
+      "score",
+      "therapy_fit_score",
+      "probability",
+      "calibrated_probability",
+      "calibrated_survival_probability",
+      "calibrated_response_probability",
+      "risk_score",
+      "treatment_recommendation",
+      "treatment_priority",
+      "predicted_treatment_benefit"
+    ],
+    "landmark_scope_reclassification_is_a_reversal": true,
+    "landmark_scope_unverified_annotation": "Landmark scope for this request is UNVERIFIED and is reported as an annotation, not as a refusal. The overall-survival association was estimated only in the week-15 landmark cohort (n = 446 patients, 296 events); membership of this request in that cohort has not been established. The continuous research-use index is still released because it is a deterministic function of the released rate and the committed reference artifact, so withholding it would withhold nothing. Absolute survival probability and treatment benefit remain unavailable on every path.",
+    "landmark_scope_verified_annotation": "Landmark scope was derived and verified by this service from the supplied treatment-start and last-known-alive or event dates. This request falls inside the week-15 landmark window in which the overall-survival association was estimated (n = 446 patients, 296 events).",
+    "loo_sign_establishment_definition": "Median-collapse per analysis day, take the natural log of the floored value, and form all three leave-one-out two-point ordinary-least-squares slopes. The decline sign is INDEPENDENTLY ESTABLISHED if and only if every leave-one-out slope is strictly negative in log space, equivalently every leave-one-out k is strictly positive. Otherwise the request fails closed.",
+    "loo_sign_establishment_rule_name": "LOO_SIGN_ESTABLISHMENT",
+    "n_fit_precision_receipt_keys": 25,
+    "n_package_exports": 119,
+    "n_prognostic_block_metadata_keys": 17,
+    "n_prognostic_limitations": 13,
+    "n_prostate_prognostic_block_keys": 43,
+    "n_prostate_released_outputs": 26,
+    "n_reasons_active": 13,
+    "n_reasons_retired": 1,
+    "n_reasons_total": 14,
+    "prostate_released_outputs": [
+      "k_day",
+      "fit_qc",
+      "reference_percentile",
+      "z_rank",
+      "prognostic_log_hazard_index",
+      "relative_hazard_multiplier",
+      "coefficient_conditional_relative_hazard_interval",
+      "relative_prognostic_band",
+      "band_status",
+      "band_gate_observed",
+      "band_gate_required",
+      "band_gate_pass",
+      "exploratory_band_definition",
+      "fit_precision_status",
+      "k_day_uncertainty_interval",
+      "percentile_uncertainty_interval",
+      "multiplier_uncertainty_interval",
+      "decline_sign_stability",
+      "boundary_crossing_probability",
+      "landmark_scope_source",
+      "landmark_scope_verified",
+      "reference_artifact_version",
+      "reference_artifact_sha256",
+      "validated_population_scope",
+      "evidence_status",
+      "limitations"
+    ],
+    "release_contract_decision": "CONTRACT_A_RUO_SCIENTIFIC_WITHHOLDING",
+    "release_contract_rejected_alternative": "CONTRACT_B_STRICT_INDEX_WITHHOLDING",
+    "retired_ineligibility_reasons": [
+      "OUTSIDE_VALIDATED_LANDMARK_SCOPE"
+    ],
+    "three_observation_disclosures": [
+      "Uncertainty is unavailable for this estimate. Three distinct analysis days are too few for the prespecified resampling estimator, which requires four.",
+      "No categorical band is emitted. The band stability gate failed cohort-wide and a category must not be inferred from any released number.",
+      "No patient-level interval is emitted. The rate, percentile and multiplier uncertainty intervals are all null for this request.",
+      "This estimate is not suitable for individual decision-making. It is a research-use continuous index only."
+    ],
+    "three_observation_status_is_not_reliable": "A released three-day point estimate carries fit_precision_status INSUFFICIENT_FOR_UNCERTAINTY and must never be presented as a precision-qualified value.",
+    "three_observation_trigger_distinct_days": 3
+  },
+  "prespecification": {
+    "v1_sha256": "b666481b1414e850fef419547ef830f6176c3fdfcbbcb73634b1ff4bd6673322",
+    "v2_addendum_path": "validation/prespecification/audit_correction_prespecification_v2_addendum.json",
+    "v2_addendum_sha256": "a24fb4e000d4da02852abb3fcb7aeeb2d671474fbafc4dcdc6a7aafcd09de71f"
+  },
+  "purpose": "Engineering receipt for the 11-item completion directive. This receipt SUPERSEDES the tests and regression_control sections of zeta_core_v4_prognostic_index_implementation_receipt.json, which were written before complete pytest collection was possible and therefore reported a partial node universe.",
+  "receipt_id": "zeta_core_v4_audit_correction_engineering_receipt",
+  "receipt_version": "v1",
+  "status": "LOCAL_CHECKPOINT_NOT_RELEASE_READY",
+  "supersedes": {
+    "artifact": "validation/receipts/zeta_core_v4_prognostic_index_implementation_receipt.json",
+    "reason": "Those sections were computed while collection aborted with INTERNALERROR, so they described only the subset of nodes that could be collected. They are retained unmodified for audit continuity and are not authoritative.",
+    "sections": [
+      "tests",
+      "regression_control"
+    ]
+  },
+  "treatment_predictive": false
+}

@@ -1,0 +1,180 @@
+{
+  "dataset": "GSE174554",
+  "publication": "Wang et al. Nature Cancer 2022, PMID 36539501",
+  "analysis_date": "2026-05-13",
+  "verdict": "SC_NOT_SUPPORTED_YET",
+  "verdict_rationale": "All three EMT/stemness/mesenchymal signatures trend DOWN at recurrence in the cross-sectional spatial analysis (EMT delta=-0.069, stemness delta=-0.111, mesenchymal delta=-0.127, all p>0.05). Only macrophage markers trend UP (delta=+0.154, p=0.222), consistent with Wang et al. reported peripheral myeloid infiltration. No signature reaches statistical significance. Verdict is SC_NOT_SUPPORTED_YET: the available public data (Visium spatial, 5 unmatched primary vs 5 unmatched recurrent, 1825-gene targeted panel) cannot detect the EMT/mesenchymal shift reported by Wang et al. at single-cell resolution. This is a DATA LIMITATION verdict, not a biological null. The snRNA-seq per-cell analysis (pilot download in progress) is required for a valid SC_ESCAPE verdict.",
+  "data_limitation_note": "Critical limitation: Visium spatial data provides bulk-like expression per spot (mixed cell types). True sub-cell-type EMT analysis requires RAW.tar (1.5 GB) per-cell count matrices for macrophage/T-cell/tumor cell-specific scoring. The 1825-gene targeted panel also lacks VIM, MMP2, NES, ALDH1A1, OLIG2, CHI3L1, SERPINE1 \u2014 key EMT/stemness markers. Cross-sectional design (5 unmatched primary vs 5 unmatched recurrent patients) has n=5 per group \u2014 insufficient power for Mann-Whitney U. Wang et al. paper reports EMT/mesenchymal shift at single-cell resolution in the full dataset; this analysis cannot replicate that with public spatial data.",
+  "what_wang_et_al_actually_found": {
+    "primary_finding": "Proneural-to-mesenchymal shift at recurrence driven by peripheral monocyte-derived macrophage infiltration",
+    "tumor_cell_finding": "Mesenchymal tumor cell fraction increases within tumor compartment at recurrence",
+    "immune_finding": "T-cell expansion at recurrence (outlier cases 2-8x above mean)",
+    "key_genes_reported": [
+      "CHI3L1",
+      "CD44",
+      "VIM",
+      "TGFB1",
+      "TGFB2",
+      "SERPINE1",
+      "ZEB1",
+      "ZEB2"
+    ],
+    "resolution_used": "Single-nucleus RNA-seq per cell, not bulk spatial"
+  },
+  "per_signature_results": {
+    "emt_score": {
+      "label": "EMT",
+      "genes_used": [
+        "ZEB1",
+        "ZEB2",
+        "CDH2",
+        "SNAI1",
+        "SNAI2",
+        "TWIST1",
+        "TWIST2",
+        "FN1",
+        "MMP9"
+      ],
+      "primary_mean": 4.061440246622622,
+      "recurrent_mean": 3.9924551199901055,
+      "delta": -0.06898512663251655,
+      "direction": "DOWN",
+      "mann_whitney_p": 0.2222222222222222,
+      "significant_p05": false
+    },
+    "stemness_score": {
+      "label": "Stemness",
+      "genes_used": [
+        "SOX2",
+        "CD44",
+        "PROM1",
+        "SOX9"
+      ],
+      "primary_mean": 4.371629656809399,
+      "recurrent_mean": 4.260017284123786,
+      "delta": -0.11161237268561308,
+      "direction": "DOWN",
+      "mann_whitney_p": 1.0,
+      "significant_p05": false
+    },
+    "mesenchymal_score": {
+      "label": "Mesenchymal-GBM",
+      "genes_used": [
+        "CD44",
+        "TGFB1",
+        "TGFB2",
+        "LGALS3"
+      ],
+      "primary_mean": 4.354463385365077,
+      "recurrent_mean": 4.227132056062672,
+      "delta": -0.12733132930240476,
+      "direction": "DOWN",
+      "mann_whitney_p": 0.8412698412698413,
+      "significant_p05": false
+    },
+    "macrophage_score": {
+      "label": "Macrophage",
+      "genes_used": [
+        "CD68",
+        "CD163",
+        "CX3CR1"
+      ],
+      "primary_mean": 4.165772015667003,
+      "recurrent_mean": 4.319618762362237,
+      "delta": 0.15384674669523335,
+      "direction": "UP",
+      "mann_whitney_p": 0.2222222222222222,
+      "significant_p05": false
+    },
+    "tcell_score": {
+      "label": "T-cell",
+      "genes_used": [
+        "CD3D",
+        "CD8A",
+        "CD4"
+      ],
+      "primary_mean": 3.855917722949678,
+      "recurrent_mean": 3.9050385641702854,
+      "delta": 0.049120841220607225,
+      "direction": "UP",
+      "mann_whitney_p": 0.6904761904761905,
+      "significant_p05": false
+    }
+  },
+  "spearman_correlations": {
+    "macrophage_vs_emt": {
+      "r": 0.103,
+      "p": 0.777
+    },
+    "macrophage_vs_stemness": {
+      "r": -0.091,
+      "p": 0.8028
+    },
+    "macrophage_vs_mesenchymal": {
+      "r": 0.564,
+      "p": 0.0897
+    }
+  },
+  "next_executable_action": {
+    "status": "COMPLETED",
+    "completed_date": "2026-05-13",
+    "completed_action": "snRNA-seq per-cell analysis completed for n=8 matched pairs (Pairs 1, 9, 12-17). See gbm_gse174554_snrna_emt_expansion.json for definitive results. No further machine-executable action remains for this spatial lane."
+  },
+  "n_patients_analyzed": 10,
+  "n_primary": 5,
+  "n_recurrent": 5,
+  "analysis_type": "cross_sectional_spatial_transcriptomics",
+  "genes_panel_size": 1825,
+  "emt_genes_available": [
+    "ZEB1",
+    "ZEB2",
+    "CDH2",
+    "SNAI1",
+    "SNAI2",
+    "TWIST1",
+    "TWIST2",
+    "FN1",
+    "MMP9"
+  ],
+  "stemness_genes_available": [
+    "SOX2",
+    "CD44",
+    "PROM1",
+    "SOX9"
+  ],
+  "mesenchymal_genes_available": [
+    "CD44",
+    "TGFB1",
+    "TGFB2",
+    "LGALS3"
+  ],
+  "true_pair_mapping_note": "GEO metadata reveals 32 complete matched pairs using DIFFERENT patient IDs for primary vs recurrent (not v2 suffix convention). Example: Pair #13: Primary=SF10592, Recurrent=SF11857. Prior matched_pair_matrix.csv used wrong pairing convention (v2 suffix). Correct pairs confirmed from !Sample_characteristics_ch1 pair# field in GEO soft file.",
+  "audit_note": "VERIFICATION CORRECTION 2026-05-13: Prior SC_MIXED_SIGNAL verdict was incorrect. The verdict_rationale claimed 'all three signatures trend upward' but the stored per_signature_results show DOWN direction for all three EMT/stemness/mesenchymal scores. The reconciliation was based on an unvalidated background agent result that hit iteration limit before writing files. Verdict corrected to SC_NOT_SUPPORTED_YET. SC_MIXED_SIGNAL or SC_ESCAPE_SUPPORTED can only be assigned after snRNA-seq per-cell analysis.",
+  "verdict_label_note": "SC_NOT_SUPPORTED_YET is the correct label for the Visium spatial lane. The spatial assay is structurally incapable of resolving per-cell EMT state (mixed-cell spots, 1825-gene targeted panel, cross-sectional n=5). SC_UNDERPOWERED applies to the snRNA-seq lane (n=8 matched pairs, Wilcoxon p>0.05 due to inter-patient heterogeneity, not assay incapability). These are distinct failure modes and must not be conflated.",
+  "sc_mixed_signal_divergence_record": {
+    "original_verdict_assigned": "SC_MIXED_SIGNAL",
+    "assigned_by": "background agent (agent 3884c4ac, hit iteration limit before writing files)",
+    "assigned_date": "2026-05-13 (session prior to compaction)",
+    "divergence_detected": "2026-05-13 verification audit",
+    "divergence_cause": "Agent 3884c4ac reported \"all three signatures trend upward\" in its summary text, but the per_signature_results it stored showed DOWN direction for all three (EMT delta=-0.069, stemness delta=-0.111, mesenchymal delta=-0.127). The agent hit its iteration limit and its summary text was written from an intermediate state that contradicted the final stored numbers. SC_MIXED_SIGNAL requires at least one signature UP and one DOWN with directional consistency \u2014 the stored data shows all three DOWN, which does not meet that criterion. A subsequent reconciliation note accepted the agent summary without checking the stored numbers \u2014 this was the second error. Correction: SC_NOT_SUPPORTED_YET (data limitation, not mixed signal).",
+    "correction_applied": "SC_NOT_SUPPORTED_YET",
+    "correction_rationale": "All three EMT/stemness/mesenchymal signatures are DOWN in the stored data. Macrophage is UP (+0.154). This is a single-direction finding, not mixed. The correct verdict is SC_NOT_SUPPORTED_YET because the assay (Visium spatial, bulk-like spots, targeted panel) cannot resolve per-cell EMT state regardless of direction."
+  },
+  "visium_mixed_cell_limitation": {
+    "limitation": "Visium spatial transcriptomics captures expression from tissue spots (~55 \u00b5m diameter, ~1-10 cells per spot). Each spot is a mixture of tumor cells, immune cells, endothelial cells, and stroma. EMT/mesenchymal scores computed from spot-level expression are therefore a weighted average across all cell types present in the spot, not a tumor-cell-specific or macrophage-specific measurement.",
+    "consequence_for_emt_scoring": "A spot with high macrophage infiltration will show elevated CD44, VIM, TGFB1 (mesenchymal markers) from macrophages, not from tumor cells. This confounds tumor-cell EMT scoring with immune infiltration. Wang et al. specifically reported that the mesenchymal shift at recurrence is driven by macrophage infiltration \u2014 meaning the Visium assay cannot distinguish the two signals.",
+    "consequence_for_verdict": "Even if the Visium data showed mesenchymal UP at recurrence, it would be uninterpretable as tumor-cell EMT escape without cell-type deconvolution. The snRNA-seq per-cell analysis is the only valid assay for SC_ESCAPE verdict.",
+    "missing_genes_from_panel": [
+      "VIM",
+      "MMP2",
+      "NES",
+      "ALDH1A1",
+      "OLIG2",
+      "CHI3L1",
+      "SERPINE1"
+    ],
+    "genes_available_for_emt": 9,
+    "genes_available_for_stemness": 4,
+    "genes_available_for_mesenchymal": 4
+  }
+}

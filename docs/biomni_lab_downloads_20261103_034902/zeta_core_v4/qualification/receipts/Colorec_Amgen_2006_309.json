@@ -1,0 +1,750 @@
+{
+  "caslib": "Colorec_Amgen_2006_309",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CEA"
+  ],
+  "indication": "colorectal",
+  "longitudinal_aggregates": [
+    {
+      "analyte_columns": [
+        "LBTEST"
+      ],
+      "distinct_times_per_patient": {
+        "max": 23,
+        "median": 5.0,
+        "min": 1
+      },
+      "marker_id": "CEA",
+      "n_marker_rows": 4726,
+      "n_patients": 932,
+      "n_patients_ge2_distinct_times": 874,
+      "n_patients_ge3_distinct_times": 765,
+      "observations_per_patient": {
+        "max": 23,
+        "median": 5.0,
+        "min": 1
+      },
+      "observed_units": [
+        "ug/L"
+      ],
+      "path": "adlb_pds2019.sas7bdat",
+      "patient_column": "SUBJID",
+      "status": "QUALIFIED",
+      "time_column": "VISITDY",
+      "unit_column": "LBSTUNIT",
+      "value_column": "LBSTRESN"
+    }
+  ],
+  "marker_ids_found": [
+    "CEA"
+  ],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 7,
+  "n_tabular_files": 7,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "132bf261d0f6586434238b0ff0c8506f7fa6ad9fdb65c03b48b4a18ca61e5394",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Subject ID",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred Term (MedDRA)",
+          "name": "AEPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "System Organ Class (MedDRA)",
+          "name": "AESOC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Imputed Study Day of Start of Event",
+          "name": "AESTDYI",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Imputed Study Day of End of Event",
+          "name": "AEENDYI",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Grade/Severity Code",
+          "name": "AESEVCD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Continuing?",
+          "name": "AECONT",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AESTDYI",
+          "AEENDYI",
+          "AECONT"
+        ],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "mirrored_paths_suppressed": [
+        "dataFiles_4668/adae_pds2019.sas7bdat"
+      ],
+      "n_rows": 3211,
+      "path": "adae_pds2019.sas7bdat",
+      "size": 1179648,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LBTEST",
+          "n_unique": 8,
+          "values": [
+            "Albumin",
+            "Alkaline Phosphatase",
+            "Carcinoembryonic Antigen",
+            "Creatinine",
+            "Hemoglobin",
+            "Lactate Dehydrogenase",
+            "Platelets",
+            "White Blood Cells"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Subject ID",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Test",
+          "name": "LBTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline?",
+          "name": "LBBASE",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Numeric Result in Analysis Std Units",
+          "name": "LBSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Standard Units",
+          "name": "LBSTUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Day Relative to Enrollment",
+          "name": "VISITDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LBTEST"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "VISITDY"
+        ],
+        "treatment": [],
+        "unit": [
+          "LBSTRESN",
+          "LBSTUNIT"
+        ],
+        "value": [
+          "LBSTRESN"
+        ]
+      },
+      "marker_hits": [
+        {
+          "column": "LBTEST",
+          "marker_id": "CEA",
+          "matched_value": "Carcinoembryonic Antigen"
+        }
+      ],
+      "mirrored_paths_suppressed": [
+        "dataFiles_4668/adlb_pds2019.sas7bdat"
+      ],
+      "n_rows": 125123,
+      "path": "adlb_pds2019.sas7bdat",
+      "size": 15138816,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Subject ID",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Day Relative to Enrollment",
+          "name": "VISITDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lesion Category (Target/Non-target)",
+          "name": "LSCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "New Lesion?",
+          "name": "LSNEW",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sum of Long. Diam Within Lesion Type(mm)",
+          "name": "LSSLD",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Longest Diameter (mm)",
+          "name": "LSLD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lesion Site",
+          "name": "LSSITE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Any New Lesions?",
+          "name": "LSNEWANY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reader",
+          "name": "LSREADER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluation Type (Central or Local)",
+          "name": "LSTYPE",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "VISITDY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "mirrored_paths_suppressed": [
+        "dataFiles_4668/adls_pds2019.sas7bdat"
+      ],
+      "n_rows": 29118,
+      "path": "adls_pds2019.sas7bdat",
+      "size": 6160384,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Subject ID",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Day Relative To Enrollment",
+          "name": "VISITDY",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Weight in Kilograms",
+          "name": "WEIGHT",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "VISITDY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "mirrored_paths_suppressed": [
+        "dataFiles_4668/adpm_pds2019.sas7bdat"
+      ],
+      "n_rows": 14924,
+      "path": "adpm_pds2019.sas7bdat",
+      "size": 1179648,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Subject ID",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Overall Response Status",
+          "name": "RSRESP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Day Relative To Enrollment",
+          "name": "VISITDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Response Confirmed?",
+          "name": "RSCONFYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Radiol. Target Lesion Response",
+          "name": "RSTRESP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Radiol. Non-target Lesion Response",
+          "name": "RSNTRESP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "New Lesion?",
+          "name": "RSNEW",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reader",
+          "name": "RSREADER",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "VISITDY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "mirrored_paths_suppressed": [
+        "dataFiles_4668/adrsp_pds2019.sas7bdat"
+      ],
+      "n_rows": 10856,
+      "path": "adrsp_pds2019.sas7bdat",
+      "size": 6029312,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Subject ID",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Assigned Treatment",
+          "name": "TRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment",
+          "name": "ATRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Prior Surgery?",
+          "name": "PRSURG",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Death Day",
+          "name": "DTHDY",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Death",
+          "name": "DTH",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "PFS Day (Central, RECIST)",
+          "name": "PFSDYCR",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "PD on Study (Central, RECIST) or Death",
+          "name": "PFSCR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Metastases to Liver at Study Entry?",
+          "name": "LIVERMET",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Months Since Primary Diagnosis",
+          "name": "DIAGMONS",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Age in Years at Screening",
+          "name": "AGE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Weight in Kilograms at Baseline",
+          "name": "B_WEIGHT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Height in Centimeters at Baseline",
+          "name": "B_HEIGHT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline ECOG Performance Status",
+          "name": "B_ECOG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Histological Subtype",
+          "name": "HISSUBTY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Number of BL Metas Site",
+          "name": "B_METANM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Primary Tumor Diagnosis",
+          "name": "DIAGTYPE",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "B_ECOG"
+        ],
+        "endpoint": [
+          "DTHDY",
+          "DTH",
+          "PFSDYCR",
+          "PFSCR"
+        ],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "DTHDY"
+        ],
+        "treatment": [
+          "TRT",
+          "ATRT"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "mirrored_paths_suppressed": [
+        "dataFiles_4668/adsl_pds2019.sas7bdat"
+      ],
+      "n_rows": 935,
+      "path": "adsl_pds2019.sas7bdat",
+      "size": 458752,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Subject ID",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Name 1",
+          "name": "BMMTNM1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Result 1",
+          "name": "BMMTR1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Name 2",
+          "name": "BMMTNM2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Result 2",
+          "name": "BMMTR2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Name 3",
+          "name": "BMMTNM3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Result 3",
+          "name": "BMMTR3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Name 4",
+          "name": "BMMTNM4",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Result 4",
+          "name": "BMMTR4",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Name 5",
+          "name": "BMMTNM5",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Result 5",
+          "name": "BMMTR5",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Name 6",
+          "name": "BMMTNM6",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Result 6",
+          "name": "BMMTR6",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Name 7",
+          "name": "BMMTNM7",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Result 7",
+          "name": "BMMTR7",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Name 15",
+          "name": "BMMTNM15",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Result 15",
+          "name": "BMMTR15",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Name 16",
+          "name": "BMMTNM16",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "exon Result 16",
+          "name": "BMMTR16",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "BMMTR1",
+          "BMMTR2",
+          "BMMTR3",
+          "BMMTR4",
+          "BMMTR5",
+          "BMMTR6",
+          "BMMTR7",
+          "BMMTR15",
+          "BMMTR16"
+        ]
+      },
+      "marker_hits": [],
+      "mirrored_paths_suppressed": [
+        "dataFiles_4668/biomark_pds2019.sas7bdat"
+      ],
+      "n_rows": 935,
+      "path": "biomark_pds2019.sas7bdat",
+      "size": 1310720,
+      "status": "OK"
+    }
+  ]
+}

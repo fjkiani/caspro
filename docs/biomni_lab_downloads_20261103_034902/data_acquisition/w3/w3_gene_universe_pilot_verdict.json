@@ -1,0 +1,101 @@
+{
+  "assay": "sWGS_~0.1X_QDNAseq_30kb",
+  "data_source": "EGA:EGAD00001011049 BriTROC-1 pilot (n=8 samples, 4 pairs)",
+  "honesty": "sWGS validates LARGE CNA only; point-mutation LoF mechanisms are NOT assessable at this depth",
+  "verdicts": [
+    {
+      "gene": "PALB2",
+      "mechanism": "HRR LoF (mostly truncating SNV/indel); HRD/PARP sensitivity",
+      "cn_direction_expected": "DEL",
+      "cn_mediated": "partial",
+      "n_focal_cna_events_pilot": 1,
+      "focal_events": [
+        {
+          "subject_id": 6,
+          "sample": "JBLAB-4110",
+          "timepoint": "relapse",
+          "cna_call": "DEL",
+          "cn_ratio_vs_baseline": 0.692
+        }
+      ],
+      "verdict": "CNA_OBSERVED_PILOT (candidate upgrade; needs cohort)",
+      "note": "1 focal DEL event(s) in pilot, direction matches CN-mediated mechanism.",
+      "sWGS_limitation": "~0.1X sWGS detects large CNA only; CANNOT call SNV/indel LoF."
+    },
+    {
+      "gene": "PTEN",
+      "mechanism": "TSG loss (deletion OR SNV); PI3K activation",
+      "cn_direction_expected": "DEL",
+      "cn_mediated": "yes",
+      "n_focal_cna_events_pilot": 1,
+      "focal_events": [
+        {
+          "subject_id": 191,
+          "sample": "IM_280",
+          "timepoint": "diagnosis",
+          "cna_call": "DEL",
+          "cn_ratio_vs_baseline": 0.639
+        }
+      ],
+      "verdict": "CNA_OBSERVED_PILOT (candidate upgrade; needs cohort)",
+      "note": "1 focal DEL event(s) in pilot, direction matches CN-mediated mechanism.",
+      "sWGS_limitation": "~0.1X sWGS detects large CNA only; CANNOT call SNV/indel LoF."
+    },
+    {
+      "gene": "KEAP1",
+      "mechanism": "NRF2 pathway (mostly SNV LoF); chemoresistance",
+      "cn_direction_expected": "DEL/SNV",
+      "cn_mediated": "weak",
+      "n_focal_cna_events_pilot": 2,
+      "focal_events": [
+        {
+          "subject_id": 191,
+          "sample": "IM_280",
+          "timepoint": "diagnosis",
+          "cna_call": "AMP",
+          "cn_ratio_vs_baseline": 1.624
+        },
+        {
+          "subject_id": 6,
+          "sample": "JBLAB-4110",
+          "timepoint": "relapse",
+          "cna_call": "AMP",
+          "cn_ratio_vs_baseline": 1.512
+        }
+      ],
+      "verdict": "STAYS_LITERATURE_ONLY",
+      "note": "CNA seen but wrong direction/mechanism (weak CN-mediated); sWGS CNA does not validate this mechanism.",
+      "sWGS_limitation": "~0.1X sWGS detects large CNA only; CANNOT call SNV/indel LoF."
+    },
+    {
+      "gene": "CUL3",
+      "mechanism": "NRF2 pathway (SNV/del); KEAP1-CUL3 axis",
+      "cn_direction_expected": "DEL",
+      "cn_mediated": "partial",
+      "n_focal_cna_events_pilot": 1,
+      "focal_events": [
+        {
+          "subject_id": 191,
+          "sample": "IM_280",
+          "timepoint": "diagnosis",
+          "cna_call": "DEL",
+          "cn_ratio_vs_baseline": 0.622
+        }
+      ],
+      "verdict": "CNA_OBSERVED_PILOT (candidate upgrade; needs cohort)",
+      "note": "1 focal DEL event(s) in pilot, direction matches CN-mediated mechanism.",
+      "sWGS_limitation": "~0.1X sWGS detects large CNA only; CANNOT call SNV/indel LoF."
+    },
+    {
+      "gene": "SLC31A1",
+      "mechanism": "Copper/platinum influx transporter (CTR1); expression/CN loss -> platinum resistance",
+      "cn_direction_expected": "DEL",
+      "cn_mediated": "yes",
+      "n_focal_cna_events_pilot": 0,
+      "focal_events": [],
+      "verdict": "STAYS_LITERATURE_ONLY",
+      "note": "No focal CNA in pilot; mechanism is chiefly Copper/platinum influx transporter (CTR1) (not assessable at ~0.1X sWGS).",
+      "sWGS_limitation": "~0.1X sWGS detects large CNA only; CANNOT call SNV/indel LoF."
+    }
+  ]
+}

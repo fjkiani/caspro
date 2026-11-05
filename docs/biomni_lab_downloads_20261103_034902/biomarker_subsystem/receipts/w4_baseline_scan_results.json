@@ -1,0 +1,141 @@
+{
+  "analysis": "w4_baseline_discovery_scan",
+  "purpose": "Quantify prognostic signal of our OWN validated in-repo gene panels across independent OV cohorts; seed subsystem with our features, honestly flagged.",
+  "cohorts": ["TCGAOVARIAN", "GSE9891", "GSE32062", "GSE49997"],
+  "panels": {
+    "pi3k_mtor": {
+      "panel": "pi3k_mtor",
+      "source": "inline_fallback",
+      "n_genes_panel": 13,
+      "per_cohort": {
+        "TCGAOVARIAN": {
+          "cohort_id": "TCGAOVARIAN",
+          "n": 521,
+          "n_events": 281,
+          "n_genes": 10,
+          "c_index": 0.531759,
+          "c_index_lower": 0.493174,
+          "c_index_upper": 0.570344,
+          "c_index_p": 0.106699,
+          "hr_per_1sd": 1.09988,
+          "hr_lower": 0.9728,
+          "hr_upper": 1.24356,
+          "hr_p": 0.128577
+        },
+        "GSE9891": {
+          "cohort_id": "GSE9891",
+          "n": 268,
+          "n_events": 113,
+          "n_genes": 13,
+          "c_index": 0.562864,
+          "c_index_lower": 0.500557,
+          "c_index_upper": 0.625172,
+          "c_index_p": 0.047987,
+          "hr_per_1sd": 1.200595,
+          "hr_lower": 0.997371,
+          "hr_upper": 1.445228,
+          "hr_p": 0.053342
+        },
+        "GSE32062": {
+          "cohort_id": "GSE32062",
+          "n": 257,
+          "n_events": 120,
+          "n_genes": 13,
+          "c_index": 0.517412,
+          "c_index_lower": 0.464862,
+          "c_index_upper": 0.569963,
+          "c_index_p": 0.51606,
+          "hr_per_1sd": 1.019219,
+          "hr_lower": 0.854804,
+          "hr_upper": 1.215258,
+          "hr_p": 0.832038
+        },
+        "GSE49997": {
+          "cohort_id": "GSE49997",
+          "n": 194,
+          "n_events": 57,
+          "n_genes": 10,
+          "c_index": 0.513939,
+          "c_index_lower": 0.434113,
+          "c_index_upper": 0.593765,
+          "c_index_p": 0.732173,
+          "hr_per_1sd": 1.153891,
+          "hr_lower": 0.88613,
+          "hr_upper": 1.502562,
+          "hr_p": 0.287982
+        }
+      },
+      "replicates_across_independent": false,
+      "status": "discovery_only",
+      "status_note": "W4 is a DISCOVERY scan of our own panels; even 'candidate_replicated' stays discovery-only until formally frozen + prospectively externally validated."
+    },
+    "ddr": {
+      "panel": "ddr",
+      "source": "inline_fallback",
+      "n_genes_panel": 13,
+      "per_cohort": {
+        "TCGAOVARIAN": {
+          "cohort_id": "TCGAOVARIAN",
+          "n": 521,
+          "n_events": 281,
+          "n_genes": 11,
+          "c_index": 0.504341,
+          "c_index_lower": 0.467732,
+          "c_index_upper": 0.540951,
+          "c_index_p": 0.816208,
+          "hr_per_1sd": 0.953885,
+          "hr_lower": 0.848314,
+          "hr_upper": 1.072594,
+          "hr_p": 0.43016
+        },
+        "GSE9891": {
+          "cohort_id": "GSE9891",
+          "n": 268,
+          "n_events": 113,
+          "n_genes": 12,
+          "c_index": 0.500751,
+          "c_index_lower": 0.441122,
+          "c_index_upper": 0.56038,
+          "c_index_p": 0.980309,
+          "hr_per_1sd": 0.993914,
+          "hr_lower": 0.832308,
+          "hr_upper": 1.186899,
+          "hr_p": 0.946243
+        },
+        "GSE32062": {
+          "cohort_id": "GSE32062",
+          "n": 257,
+          "n_events": 120,
+          "n_genes": 12,
+          "c_index": 0.533755,
+          "c_index_lower": 0.475809,
+          "c_index_upper": 0.5917,
+          "c_index_p": 0.253571,
+          "hr_per_1sd": 1.098617,
+          "hr_lower": 0.911603,
+          "hr_upper": 1.323997,
+          "hr_p": 0.323219
+        },
+        "GSE49997": {
+          "cohort_id": "GSE49997",
+          "n": 194,
+          "n_events": 57,
+          "n_genes": 10,
+          "c_index": 0.447695,
+          "c_index_lower": 0.365195,
+          "c_index_upper": 0.530195,
+          "c_index_p": 0.214012,
+          "hr_per_1sd": 0.860259,
+          "hr_lower": 0.665887,
+          "hr_upper": 1.111367,
+          "hr_p": 0.24936
+        }
+      },
+      "replicates_across_independent": false,
+      "status": "discovery_only",
+      "status_note": "W4 is a DISCOVERY scan of our own panels; even 'candidate_replicated' stays discovery-only until formally frozen + prospectively externally validated."
+    }
+  },
+  "global_caveat": "All W4 results are DISCOVERY-ONLY. Unsupervised mean-z panel scores, not outcome-fitted models. No panel here is a validated prognostic biomarker.",
+  "seed": 7
+}

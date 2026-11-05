@@ -1,0 +1,6882 @@
+{
+  "caslib": "Prostat_Celgene_2009_90",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "PSA"
+  ],
+  "indication": "prostate",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 51,
+  "n_tabular_files": 51,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "15b0caff771c04b409d0b4a6dc3e0a010812a705d080e48de535a0528fac76f8",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence #",
+          "name": "AESEQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Adverse Event",
+          "name": "AETERM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AEDECOD",
+          "name": "AEDECOD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "LLTCD",
+          "name": "LLTCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "LLTNM",
+          "name": "LLTNM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "HLTNM",
+          "name": "HLTNM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "HLGTNM",
+          "name": "HLGTNM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "PTCD",
+          "name": "PTCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "DICTVER",
+          "name": "DICTVER",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Ongoing (Numeric)",
+          "name": "AEONGON",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Ongoing (Text)",
+          "name": "AEONGO",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Severity (Numeric)",
+          "name": "AESEVNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Severity (Text)",
+          "name": "AESEVN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Rel. to CG. Study Drug(N)",
+          "name": "AERELNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Rel. to CG. Study Drug(C)",
+          "name": "AERELN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Rel. to Other Study Trt.(s)(N)",
+          "name": "AERELOTN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Rel. to Other Study Trt.(s)(C)",
+          "name": "AERELOTH",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Action taken to CG. Study Drug(N)",
+          "name": "AEACNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Action taken to CG. Study Drug(C)",
+          "name": "AEACN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Action Taken to Other Study Trt.(s)(N)",
+          "name": "AEACNOTN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Action Taken to Other Study Trt.(s)(C)",
+          "name": "AEACNOTH",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Were concom. / addtl. Trt.s given?(N)",
+          "name": "AECONTRN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Were concom. / addtl. Trt.s given?(C)",
+          "name": "AECONTR",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Is this a Serious Adverse Event?(N)",
+          "name": "AESERNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Is this a Serious Adverse Event? (Text)",
+          "name": "AESERN",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AEMODIFY",
+          "name": "AEMODIFY",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AEBODSYS",
+          "name": "AEBODSYS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AETRTEM",
+          "name": "AETRTEM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Severety Not Done",
+          "name": "AESEV_ND",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Rel. to Celgene Study Drug - Not Done",
+          "name": "AEREL1_ND",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Rel. to Other Study Trt.(s)(C) - Not Done",
+          "name": "AEREL2_ND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between End Date and Informed Consent Date",
+          "name": "AEENDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Start Date and Informed Consent Date",
+          "name": "AESTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AETERM",
+          "AESERNN",
+          "AESERN"
+        ],
+        "patient": [],
+        "time": [
+          "AEENDAY",
+          "AESTDAY",
+          "VISDAY"
+        ],
+        "treatment": [
+          "AERELOTN",
+          "AERELOTH",
+          "AEACNOTN",
+          "AEACNOTH",
+          "AECONTRN",
+          "AECONTR",
+          "AETRTEM",
+          "AEREL2_ND"
+        ],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 8344,
+      "path": "dataFiles_412/ae.sas7bdat",
+      "size": 45581312,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Region of the World",
+          "name": "REGION",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Protocol ID",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Sitepad Assignment Date and Informed Consent Date",
+          "name": "ENROLLDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ENROLLDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 520,
+      "path": "dataFiles_412/assignmt.sas7bdat",
+      "size": 50176,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LBYNN",
+          "n_unique": 3,
+          "values": [
+            "1.0",
+            "2.0",
+            "94.0"
+          ]
+        },
+        {
+          "column": "LBYN",
+          "n_unique": 3,
+          "values": [
+            "No",
+            "Not Applicable",
+            "Yes"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Was a Biomarker smp. collected?(N)",
+          "name": "LBYNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Was a Biomarker sample collected? (Text)",
+          "name": "LBYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Collection Date and Informed Consent Date",
+          "name": "LBDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LBYNN",
+          "LBYN"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "LBDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 2137,
+      "path": "dataFiles_412/biobc.sas7bdat",
+      "size": 394240,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Protocol ID",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit ID",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "Visit",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Questionnaire Name",
+          "name": "QUESNAME",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "BPI-SF Q1 Had Pain Today",
+          "name": "BPISF1",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q1 Low Value Text",
+          "name": "BPISF1L",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q1 High Value Text",
+          "name": "BPISF1H",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "BPI-SF Q3 24hr Worst Pain",
+          "name": "BPISF3",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q3 Low Value Text",
+          "name": "BPISF3L",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q3 High Value Text",
+          "name": "BPISF3H",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "BPI-SF Q4 24hr Least Pain",
+          "name": "BPISF4",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q4 Low Value Text",
+          "name": "BPISF4L",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q4 High Value Text",
+          "name": "BPISF4H",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "BPI-SF Q5 24hr Average Pain",
+          "name": "BPISF5",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q5 Low Value Text",
+          "name": "BPISF5L",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q5 High Value Text",
+          "name": "BPISF5H",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "BPI-SF Q6 Right Now Pain",
+          "name": "BPISF6",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q6 Low Value Text",
+          "name": "BPISF6L",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q6 High Value Text",
+          "name": "BPISF66H",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "BPI-SF Q8 24hr Relief Received",
+          "name": "BPISF8",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q8 Low Value Text",
+          "name": "BPISF8L",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q8 High Value Text",
+          "name": "BPISF8H",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "BPI-SF Q9A General Activity Interference",
+          "name": "BPISF9A",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9A Low Value Text",
+          "name": "BPISF9AL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9A High Value Text",
+          "name": "BPISF9AH",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "BPI-SF Q9B Mood Interference",
+          "name": "BPISF9B",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9B Low Value Text",
+          "name": "BPISF9BL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9B High Value Text",
+          "name": "BPISF9BH",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "BPI-SF Q9C Walking Ability Interference",
+          "name": "BPISF9C",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9C Low Value Text",
+          "name": "BPISF9CL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9C High Value Text",
+          "name": "BPISF9CH",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "BPI-SF Q9D Normal Work Interference",
+          "name": "BPISF9D",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9D Low Value Text",
+          "name": "BPISF9DL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9D High Value Text",
+          "name": "BPISF9DH",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "BPI-SF Q9E Relationships Interference",
+          "name": "BPISF9E",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9E Low Value Text",
+          "name": "BPISF9EL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9E High Value Text",
+          "name": "BPISF9EH",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "BPI-SF Q9F Sleep Interference",
+          "name": "BPISF9F",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9F Low Value Text",
+          "name": "BPISF9FL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9F High Value Text",
+          "name": "BPISF9FH",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "BPI-SF Q9G Life Enjoyment Interference",
+          "name": "BPISF9G",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9G Low Value Text",
+          "name": "BPISF9GL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "BPI-SF Q9G High Value Text",
+          "name": "BPISF9GH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Assessment Date and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "BPISF1",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE",
+          "BPISF1L",
+          "BPISF1H",
+          "BPISF3L",
+          "BPISF3H",
+          "BPISF4L",
+          "BPISF4H",
+          "BPISF5L",
+          "BPISF5H",
+          "BPISF6L",
+          "BPISF66H",
+          "BPISF8L",
+          "BPISF8H",
+          "BPISF9AL",
+          "BPISF9AH",
+          "BPISF9BL",
+          "BPISF9BH",
+          "BPISF9CL",
+          "BPISF9CH",
+          "BPISF9DL",
+          "BPISF9DH",
+          "BPISF9EL",
+          "BPISF9EH",
+          "BPISF9FL",
+          "BPISF9FH",
+          "BPISF9GL",
+          "BPISF9GH"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 5199,
+      "path": "dataFiles_412/bpi_sf.sas7bdat",
+      "size": 7767040,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Was a BChem. smp. collected?(N)",
+          "name": "LBYNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Was a BChem. smp. collected?(C)",
+          "name": "LBYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of sample collection and Informed Consent Date",
+          "name": "LBDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "LBDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 6356,
+      "path": "dataFiles_412/chem.sas7bdat",
+      "size": 2278400,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence #",
+          "name": "CMSEQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Drug Name (generic name)",
+          "name": "CMTRT",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "CMDECOD",
+          "name": "CMDECOD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC1",
+          "name": "ATC1",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC1_CODE",
+          "name": "ATC1CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC2",
+          "name": "ATC2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC2_CODE",
+          "name": "ATC2CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC3",
+          "name": "ATC3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC3_CODE",
+          "name": "ATC3CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC4",
+          "name": "ATC4",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC4_CODE",
+          "name": "ATC4CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "PN_CODE",
+          "name": "PN_CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "SYN",
+          "name": "SYN",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "SYN_CODE",
+          "name": "SYN_CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "GENRICNM",
+          "name": "GENRICNM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "DICTVER",
+          "name": "DICTVER",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Indication/Diagnosis",
+          "name": "CMREAS",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Ongoing (Numeric)",
+          "name": "CMONGON",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Ongoing (Text)",
+          "name": "CMONGO",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Dose",
+          "name": "CMDOSE",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Unit (Numeric)",
+          "name": "CMDOSTHN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Unit (Text)",
+          "name": "CMDOSTH",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Unit select (Numeric)",
+          "name": "CMDOSUN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Unit select (Text)",
+          "name": "CMDOSU",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unit Other, specify",
+          "name": "CMDSPOTH",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Frequency Select (Numeric)",
+          "name": "CMFQ",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Frequency Select (Text)",
+          "name": "CMFQU",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Frequency (Numeric)",
+          "name": "CMDOSFQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Frequency (Text)",
+          "name": "CMDOSFQ",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Other Frequency, Specify",
+          "name": "CMFQOTH",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Route (Numeric)",
+          "name": "CMROUTEN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Route (Text)",
+          "name": "CMROUTE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "CMCLAS",
+          "name": "CMCLAS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "CMCLASCD",
+          "name": "CMCLASCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "CMMODIFY",
+          "name": "CMMODIFY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Stop Date and Informed Consent Date",
+          "name": "CMENDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Start Date and Informed Consent Date",
+          "name": "CMSTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CMENDAY",
+          "CMSTDAY",
+          "VISDAY"
+        ],
+        "treatment": [
+          "CMTRT"
+        ],
+        "unit": [
+          "CMDOSTHN",
+          "CMDOSTH",
+          "CMDOSUN",
+          "CMDOSU",
+          "CMDSPOTH"
+        ],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 12135,
+      "path": "dataFiles_412/cmed1.sas7bdat",
+      "size": 74564608,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Confmd.type of dis. progression?(N)",
+          "name": "PPSAMN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Confmd.type of dis. progression?(C)",
+          "name": "PPSAM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between DateSubj.'s dis. conf. hrmn. refr. and Informed Consent Date",
+          "name": "DTHRDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between DateSubj.'s dis. conf. metastatic and Informed Consent Date",
+          "name": "DTMETDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "DTHRDAY"
+        ],
+        "patient": [],
+        "time": [
+          "DTHRDAY",
+          "DTMETDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 526,
+      "path": "dataFiles_412/condiag.sas7bdat",
+      "size": 132096,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Patient To Remain In Trial (Numeric)",
+          "name": "CONREMN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Patient To Remain In Trial (Text)",
+          "name": "CONREM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "CONREMN",
+          "CONREM"
+        ],
+        "time": [
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 53,
+      "path": "dataFiles_412/cont.sas7bdat",
+      "size": 17408,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence #",
+          "name": "CPSEQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Procedure/Surgery",
+          "name": "CPTERM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Coded Term",
+          "name": "CPDECOD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Indication",
+          "name": "CPINDI",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "",
+          "name": "CPMODIFY",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "CPBODSYS",
+          "name": "CPBODSYS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "LLTCDP",
+          "name": "LLTCDP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "LLTNMP",
+          "name": "LLTNMP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "HLTNMP",
+          "name": "HLTNMP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "HLGTNMP",
+          "name": "HLGTNMP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "PTCDP",
+          "name": "PTCDP",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "DICTVER",
+          "name": "DICTVER",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Was the Procedure/Surgery elective?(N)",
+          "name": "CPELCTNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Was the Procedure/Surgery elective?(C)",
+          "name": "CPELECTN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Procedure/Surgery and Informed Consent Date",
+          "name": "CPDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CPDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 391,
+      "path": "dataFiles_412/cproc.sas7bdat",
+      "size": 1082368,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "What cycle # this is(N)",
+          "name": "CYCLEN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "What cycle # this is(C)",
+          "name": "CYCLE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CYCLEN",
+          "CYCLE",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 184,
+      "path": "dataFiles_412/cycle.sas7bdat",
+      "size": 82944,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Cause of Death (Numeric)",
+          "name": "DSCAUSEN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Cause of Death (Text)",
+          "name": "DSCAUSE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Specify cause of death",
+          "name": "DSREAS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "DSDECOD",
+          "name": "DSDECOD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "DSBODSYS",
+          "name": "DSBODSYS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DSMODIFY",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "LLTCDD",
+          "name": "LLTCD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "LLTNMD",
+          "name": "LLTNMD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "HLTNMD",
+          "name": "HLTNMD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "HLGTNMD",
+          "name": "HLGTNMD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "PTCDD",
+          "name": "PTCDD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "DICTVERD",
+          "name": "DICTVER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Death and Informed Consent Date",
+          "name": "DSDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "DSCAUSEN",
+          "DSCAUSE",
+          "DSREAS",
+          "DSDAY"
+        ],
+        "patient": [],
+        "time": [
+          "DSDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 92,
+      "path": "dataFiles_412/death.sas7bdat",
+      "size": 263168,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sex (Numeric)",
+          "name": "SEXN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Sex (Text)",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary Race (select only one) (Text)",
+          "name": "RACEPRIM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Informed Consent and Informed Consent Date",
+          "name": "INFCDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age at Informed Consent",
+          "name": "AGE",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "INFCDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 526,
+      "path": "dataFiles_412/dm.sas7bdat",
+      "size": 132096,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Date of Visit Not Done",
+          "name": "DOV_ND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "DOVDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "DOV_ND",
+          "DOVDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 7313,
+      "path": "dataFiles_412/dov.sas7bdat",
+      "size": 1770496,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Check 1 prim. RSN for Disct. below(N)",
+          "name": "DSTERMN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Check 1 prim. RSN for Disct. below(C)",
+          "name": "DSTERM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Adverse Event Sequence #",
+          "name": "DSAENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Discontinuation and Informed Consent Date",
+          "name": "DSDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "DSAENUM"
+        ],
+        "patient": [],
+        "time": [
+          "DSDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 431,
+      "path": "dataFiles_412/ds.sas7bdat",
+      "size": 164864,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Overall Interpretation of ECG (Numeric)",
+          "name": "EGINTPN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Overall Interpretation of ECG (Text)",
+          "name": "EGINTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of ECG and Informed Consent Date",
+          "name": "ECGDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ECGDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 823,
+      "path": "dataFiles_412/ecg.sas7bdat",
+      "size": 312320,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Grade (Numeric)",
+          "name": "ECOGGRN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Grade (Text)",
+          "name": "ECOGGR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "ECOGGRN",
+          "ECOGGR"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 5667,
+      "path": "dataFiles_412/ecog.sas7bdat",
+      "size": 1983488,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Subj. meet all crit. for study elig.?(N)",
+          "name": "ELIGYNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Subj. meet all crit. for study elig.?(C)",
+          "name": "ELIGYN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Inc/Exc Criteria # for Subj. failed(N)",
+          "name": "FAILN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Inc/Exc Criteria # for Subj. failed(C)",
+          "name": "FAIL",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Inclusion Criteria (Numeric)",
+          "name": "INCFAILN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Inclusion Criteria (Text)",
+          "name": "INCFAIL",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Exclusion Criteria (Numeric)",
+          "name": "EXCFAILN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Exclusion Criteria (Text)",
+          "name": "EXCFAIL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 528,
+      "path": "dataFiles_412/elig.sas7bdat",
+      "size": 558080,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Protocol ID",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit ID",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "Visit",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Questionnaire Name",
+          "name": "QUESNAME",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "EQ5D Mobility",
+          "name": "EQ5DQ1",
+          "type": "double"
+        },
+        {
+          "format": "BEST",
+          "label": "EQ5D Self-Care",
+          "name": "EQ5DQ2",
+          "type": "double"
+        },
+        {
+          "format": "BEST",
+          "label": "EQ5D Usual Activities",
+          "name": "EQ5DQ3",
+          "type": "double"
+        },
+        {
+          "format": "BEST",
+          "label": "EQ5D Pain/Discomfort",
+          "name": "EQ5DQ4",
+          "type": "double"
+        },
+        {
+          "format": "BEST",
+          "label": "EQ5D Anxiety/Depression",
+          "name": "EQ5DQ5",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Assessment Date and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 1772,
+      "path": "dataFiles_412/eq5d.sas7bdat",
+      "size": 283648,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Dose Assigned (Numeric)",
+          "name": "EXDOSENN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Dose Assigned (Text)",
+          "name": "EXDOSEN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Reason for Dose Assignment (Numeric)",
+          "name": "EXREASNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Reason for Dose Assignment (Text)",
+          "name": "EXREASN2",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Adverse Event Sequence #",
+          "name": "DSAENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose Not Done",
+          "name": "DOSE_ND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": " Reason for Dose Assignment Not Done",
+          "name": "REASN_ND",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Visit Mnemonic",
+          "name": "VISITMNEMONIC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Dose Stop Date and Informed Consent Date",
+          "name": "EXENDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Dose Start Date and Informed Consent Date",
+          "name": "EXSTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "DSAENUM"
+        ],
+        "patient": [],
+        "time": [
+          "EXENDAY",
+          "EXSTDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 4996,
+      "path": "dataFiles_412/ex2.sas7bdat",
+      "size": 5129216,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Dose Assigned (Numeric)",
+          "name": "EXDOSE2N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Dose Assigned (Text)",
+          "name": "EXDOSE2",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Actual dose per administration",
+          "name": "DSADMN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Actual dose per administration (unit)",
+          "name": "DSADMNU",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Reason for Dose Assignment (Numeric)",
+          "name": "EXREASNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Reason for Dose Assignment (Text)",
+          "name": "EXREASN2",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Adverse Event Sequence #",
+          "name": "DSAENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose Not Done",
+          "name": "DOSE_ND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual dose per administration-Not Done",
+          "name": "ADMN_ND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": " Reason for Dose Assignment Not Done",
+          "name": "REASN_ND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Dose Stop Date and Informed Consent Date",
+          "name": "EXENDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Dose Start Date and Informed Consent Date",
+          "name": "EXSTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "DSAENUM"
+        ],
+        "patient": [],
+        "time": [
+          "EXENDAY",
+          "EXSTDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [
+          "DSADMNU"
+        ],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 4539,
+      "path": "dataFiles_412/ex3.sas7bdat",
+      "size": 6767616,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Dose Assigned (Numeric)",
+          "name": "EXDOSE3N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Dose Assigned (Text)",
+          "name": "EXDOSE3",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Reason for Dose Assignment (Numeric)",
+          "name": "EXREASNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Reason for Dose Assignment (Text)",
+          "name": "EXREASN2",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Adverse Event Sequence #",
+          "name": "DSAENUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose Not Done",
+          "name": "DOSE_ND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": " Reason for Dose Assignment Not Done",
+          "name": "REASN_ND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Dose Stop Date and Informed Consent Date",
+          "name": "EXENDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Dose Start Date and Informed Consent Date",
+          "name": "EXSTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "DSAENUM"
+        ],
+        "patient": [],
+        "time": [
+          "EXENDAY",
+          "EXSTDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 4794,
+      "path": "dataFiles_412/ex4.sas7bdat",
+      "size": 4916224,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "PWB1 Lack of Energy",
+          "name": "FACTGP1",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "PWB2 Nausea",
+          "name": "FACTGP2",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "PWB3 Trouble Meeting Needs",
+          "name": "FACTGP3",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "PWB4 Pain",
+          "name": "FACTGP4",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "PWB5 Side Effects",
+          "name": "FACTGP5",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "PWB6 Feel ill",
+          "name": "FACTGP6",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "PWB7 Spend Time in Bed",
+          "name": "FACTGP7",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "SWB1 Close to Friends",
+          "name": "FACTGS1",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "SWB2 Family Emotional Support",
+          "name": "FACTGS2",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "SWB3 Friend Support",
+          "name": "FACTGS3",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "SWB4 Family Accepted Illness",
+          "name": "FACTGS4",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "SWB5 Family Communication Satisfactory",
+          "name": "FACTGS5",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "SWB6 Feel Close to Partner",
+          "name": "FACTGS6",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "SWB7 Satisfied with Sex Life",
+          "name": "FACTGS7",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "EWB1 Feel Sad",
+          "name": "FACTGE1",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "EWB2 Coping Satisfactorily",
+          "name": "FACTGE2",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "EWB3 Losing Hope",
+          "name": "FACTGE3",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "EWB4 Feel Nervous",
+          "name": "FACTGE4",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "EWB5 Worry about Dying",
+          "name": "FACTGE5",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "EWB6 Worry Condition Will Worsen",
+          "name": "FACTGE6",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "FWB1 Able to Work",
+          "name": "FACTGF1",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "FWB2 Work Is Fulfilling",
+          "name": "FACTGF2",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "FWB3 Able to Enjoy Life",
+          "name": "FACTGF3",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "FWB4 Accepted Illness",
+          "name": "FACTGF4",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "FWB5 Sleeping Well",
+          "name": "FACTGF5",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "FWB6 Enjoying Usual Fun Things",
+          "name": "FACTGF6",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "FWB7 Content with QOL",
+          "name": "FACTGF7",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "AC1 Losing Weight",
+          "name": "FACTC2",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "AC2 Good Appetite",
+          "name": "FACTC6",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "AC3 Have Bothersome Pain",
+          "name": "FACTP1",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "AC4 Have Significant Pain",
+          "name": "FACTP2",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "AC5 Pain Prevents Doing Things",
+          "name": "FACTP3",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "AC6 Comfort Level Satisfactory",
+          "name": "FACTP4",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "AC7 Feel Like a Man",
+          "name": "FACTP5",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "AC8 Trouble Moving Bowels",
+          "name": "FACTP6",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "AC9 Difficulty Urinating",
+          "name": "FACTP7",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "AC10 Urinate More Frequently",
+          "name": "FACTBL2",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "AC11 Urination Problems Limit Activities",
+          "name": "FACTP8",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "AC12 Able to Have and Maintain Erection",
+          "name": "FACTBL5",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Protocol ID",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit ID",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "BEST",
+          "label": "Visit",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Assessment Date and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "FACTP3"
+        ],
+        "patient": [],
+        "time": [
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 1797,
+      "path": "dataFiles_412/factp.sas7bdat",
+      "size": 476160,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Are there any Concom. Proc./Surg.?(N)",
+          "name": "CPQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Are there any Concom. Proc./Surg.?(C)",
+          "name": "CPQ",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": " Pri./Concom. Med. taken?(N)",
+          "name": "CMQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": " Pri./Concom. Med. taken?(C)",
+          "name": "CMQ",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Were there any Adverse Events? (Numeric)",
+          "name": "AEQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Were there any Adverse Events? (Text)",
+          "name": "AEQ",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Any Hospitalizations?(N)",
+          "name": "HPQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Were there any Hospitalizations? (Text)",
+          "name": "HPQ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AEQN",
+          "AEQ"
+        ],
+        "patient": [],
+        "time": [
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 526,
+      "path": "dataFiles_412/gate.sas7bdat",
+      "size": 541696,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Was a Hematology smp. collected?(N)",
+          "name": "LBYNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Was a Hematology smp. collected?(C)",
+          "name": "LBYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of sample collection and Informed Consent Date",
+          "name": "LBDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "LBDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 6365,
+      "path": "dataFiles_412/hem.sas7bdat",
+      "size": 2278400,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": " AE #  theSubj. hospitalized?",
+          "name": "SEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Days  Special / Std. Care Units(N)",
+          "name": "CBSDAYN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Days  Special / Std. Care Units(C)",
+          "name": "CBSDAY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Days  Special / Std. Care Units(N)",
+          "name": "CBCN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Days  Special / Std. Care Units(C)",
+          "name": "CBC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date admitted to the hospital and Informed Consent Date",
+          "name": "DTADMDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date discharged from the hospital and Informed Consent Date",
+          "name": "DTDISDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "DTADMDAY"
+        ],
+        "patient": [],
+        "time": [
+          "DTADMDAY",
+          "DTDISDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [
+          "CBSDAYN",
+          "CBSDAY",
+          "CBCN",
+          "CBC"
+        ],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 218,
+      "path": "dataFiles_412/hosp.sas7bdat",
+      "size": 132096,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sex (Numeric)",
+          "name": "SEXN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Sex (Text)",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Transaction #",
+          "name": "TRANSNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Unscheduled Visit #",
+          "name": "UNSC_NUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Unscheduled Sequence #",
+          "name": "UNSEQNUM",
+          "type": "double"
+        },
+        {
+          "format": "TIME",
+          "label": "Collection Time",
+          "name": "COL_TM",
+          "type": "double"
+        },
+        {
+          "format": "TIME",
+          "label": "Received Time",
+          "name": "REC_TM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Labcode",
+          "name": "LABCODE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Type",
+          "name": "VIS_TYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test Code",
+          "name": "TST_CODE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test Name",
+          "name": "TST_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Department #",
+          "name": "DEPT_NUM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Type",
+          "name": "LABTYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "US Result",
+          "name": "US_RES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "US Unit",
+          "name": "US_UNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "US Low Range",
+          "name": "US_L_RNG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "US High Range",
+          "name": "US_H_RNG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SI Result",
+          "name": "SI_RES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SI Unit",
+          "name": "SI_UNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SI Low Range",
+          "name": "SI_L_RNG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SI High Range",
+          "name": "SI_H_RNG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test Class (For Lab Use Only)",
+          "name": "TSTCLASS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Result Flag",
+          "name": "RES_FG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Inclusion/Exclusion Flag",
+          "name": "IN_EX_FG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Toxicity Grade",
+          "name": "TOXICITY",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Report Time",
+          "name": "RPT_TM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "US Non-Numeric Range",
+          "name": "USNONRNG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SI Non-Numeric Range",
+          "name": "SINONRNG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test Specific Comments",
+          "name": "TST_CMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Department Comments",
+          "name": "DEPT_CMT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Collection Date and Informed Consent Date",
+          "name": "LABDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Received Date and Informed Consent Date",
+          "name": "REC_DAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Report Date and Informed Consent Date",
+          "name": "RPT_DAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age at Informed Consent",
+          "name": "AGE",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "LABDAY",
+          "REC_DAY",
+          "RPT_DAY"
+        ],
+        "treatment": [],
+        "unit": [
+          "US_UNIT",
+          "SI_UNIT"
+        ],
+        "value": [
+          "RPT",
+          "RINVSITE",
+          "US_RES",
+          "SI_RES",
+          "RES_FG"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 240832,
+      "path": "dataFiles_412/lab.sas7bdat",
+      "size": 303531008,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Is there a relevant medical history?(N)",
+          "name": "MQHNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Is there a relevant medical history?(C)",
+          "name": "MHQN",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Diagnosis",
+          "name": "MHTERM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "MHDECOD",
+          "name": "MHDECOD",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "",
+          "name": "MHMODIFY",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "MHBODSYS",
+          "name": "MHBODSYS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "LLTCDM",
+          "name": "LLTCDM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "LLTNMM",
+          "name": "LLTNMM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "HLTNMM",
+          "name": "HLTNMM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "HLGTNMM",
+          "name": "HLGTNMM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "PTCDM",
+          "name": "PTCDM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "DICTVER",
+          "name": "DICTVER",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Is this Diagnosis Active? (Numeric)",
+          "name": "MHACTN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Is this Diagnosis Active? (Text)",
+          "name": "MHACT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Resolution and Informed Consent Date",
+          "name": "MHACTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Diagnosis and Informed Consent Date",
+          "name": "MHSTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "MHACTDAY",
+          "MHSTDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 4582,
+      "path": "dataFiles_412/medhx.sas7bdat",
+      "size": 12518400,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence #",
+          "name": "PCSSQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Surgical Procedure",
+          "name": "PCSPROC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SURGCODE",
+          "name": "PCDECODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "LLTCDPC",
+          "name": "LLTCDPC",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "LLTNMPC",
+          "name": "LLTNMPC",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "SURGCODE",
+          "name": "HLTNMPC",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "HLGTNMPC",
+          "name": "HLGTNMPC",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "PTCDPC",
+          "name": "PTCDPC",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "DICTVER",
+          "name": "DICTVER",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "PCBODSYS",
+          "name": "PCBODSYS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Surgery Date and Informed Consent Date",
+          "name": "PCSDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "PCSDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 499,
+      "path": "dataFiles_412/pcs.sas7bdat",
+      "size": 1033216,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Is the case book ready to be signed?(N)",
+          "name": "SGBOOKN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Is the case book ready to be signed?(C)",
+          "name": "SGBOOK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 109,
+      "path": "dataFiles_412/pisign.sas7bdat",
+      "size": 50176,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Date PK  Info Consent Signed(N)",
+          "name": "PKSAMPN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Date PK  Info Consent Signed(C)",
+          "name": "PKSAMP",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "PK the Subj. will enter into(N)",
+          "name": "TYPEPKN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "PK the Subj. will enter into(C)",
+          "name": "TYPEPK",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date PK Info Consent Signed and Informed Consent Date",
+          "name": "PKDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "PKSAMPN",
+          "PKSAMP",
+          "PKDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 522,
+      "path": "dataFiles_412/pkbs.sas7bdat",
+      "size": 312320,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Lenalidomide dose administered (Numeric)",
+          "name": "DOSEN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Lenalidomide dose administered (Text)",
+          "name": "DOSE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Time  LEN/plbo(C)",
+          "name": "ADMLTMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time  LEN/plbo",
+          "name": "ADMLTM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time last meal pri.  LEN/plbo(C)",
+          "name": "MLADMTMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time last meal pri.  LEN/plbo",
+          "name": "MLADMTM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time the start of DOX infu.(C)",
+          "name": "DOCTMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time the start of DOX infu.",
+          "name": "DOCTM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time any meal W. 4 Hrs fl.  LEN/plbo(C)",
+          "name": "INTPKTMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time any meal W. 4 Hrs fl.  LEN/plbo",
+          "name": "INTPKTM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time 1 Hr(pt. LEN) PK smp.(C)",
+          "name": "PD1TMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time 1 Hr(pt. LEN) PK smp.",
+          "name": "PD1TM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time 1.5 Hr(pt. LEN) PK smp.(C)",
+          "name": "PD15TMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time 1.5 Hr(pt. LEN) PK smp.",
+          "name": "PD15TM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time 2 Hr(pt. LEN) PK smp.(C)",
+          "name": "PD2TMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time 2 Hr(pt. LEN) PK smp.",
+          "name": "PD2TM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time 3 Hr(pt. LEN) PK smp.(C)",
+          "name": "PD3TMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time 3 Hr(pt. LEN) PK smp.",
+          "name": "PD3TM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time 4 Hr(pt. LEN) PK smp.(C)",
+          "name": "PD4TMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time 4 Hr(pt. LEN) PK smp.",
+          "name": "PD4TM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time 6-8 Hr(pt. LEN) PK smp.(C)",
+          "name": "PD68TMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time 6-8 Hr(pt. LEN) PK smp.",
+          "name": "PD68TM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date  LEN/plbo and Informed Consent Date",
+          "name": "ADMLDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date last meal pri.  LEN/plbo and Informed Consent Date",
+          "name": "MLADMDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ADMLDAY",
+          "MLADMDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 29,
+      "path": "dataFiles_412/pksampi.sas7bdat",
+      "size": 99328,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "LEN admin.(Day Bef. PK)(N)",
+          "name": "DOSELVN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "LEN admin.(Day Bef. PK)(C)",
+          "name": "DOSELV",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Time  LEN/plbo(Day Bef. PK)(C)",
+          "name": "INTPKTMF",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "LEN admin.(PK sampling Day)(N)",
+          "name": "DOSELV2N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "LEN admin.(PK sampling Day)(C)",
+          "name": "DOSELV2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Time  LEN/plbo(PK sampling Day)(C)",
+          "name": "LNPKTMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time  LEN/plbo(PK sampling Day)",
+          "name": "LNPKTM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time last meal pri. LEN/plbo(C)",
+          "name": "INPKLTMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time last meal pri. LEN/plbo",
+          "name": "INPKLTM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time meal W. 4 Hrs fl.  LEN/plbo(C)",
+          "name": "PLENTMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time meal W. 4 Hrs fl.  LEN/plbo",
+          "name": "PLENTM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time PK smp. 1(app./GT 4 Hrs pt. LEN)(C)",
+          "name": "PKSMPTMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time PK smp. 1(app./GT 4 Hrs pt. LEN)",
+          "name": "PKSMPTM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Time PK smp. 2(GT 1 Hr pt. PK smp. 1)(C)",
+          "name": "PKSP2TMF",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time PK smp. 2(GT 1 Hr pt. PK smp. 1)",
+          "name": "PKSP2TM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date last meal pri. LEN/plbo and Informed Consent Date",
+          "name": "INPKDDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date  LEN/plbo(Day Bef. PK) and Informed Consent Date",
+          "name": "INTPKDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date  LEN/plbo(PK sampling Day) and Informed Consent Date",
+          "name": "LNPKDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "INPKDDAY",
+          "INTPKDAY",
+          "LNPKDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 64,
+      "path": "dataFiles_412/pksamps.sas7bdat",
+      "size": 132096,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Any Pri. Radiation Thrp.?(N)",
+          "name": "PRTQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Any Pri. Radiation Thrp.?(C)",
+          "name": "PRTQ",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Any Pri. Cancer Surg.?(N)",
+          "name": "PCSQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Any Pri. Cancer Surg.?(C)",
+          "name": "PCSQ",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Any Pri. Hormonal Anti-Cancer Thrp.?(N)",
+          "name": "PRHACTQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Any Pri. Hormonal Anti-Cancer Thrp.?(C)",
+          "name": "PRHACTQ",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Any Other Pri. Anti-Cancer Thrp.?(N)",
+          "name": "PROACTQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Any Other Pri. Anti-Cancer Thrp.?(C)",
+          "name": "PROACTQ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 526,
+      "path": "dataFiles_412/priortx.sas7bdat",
+      "size": 541696,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Subj. comp. the BPI-SF PRO Assmnt.?(N)",
+          "name": "BPIPRON",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Subj. comp. the BPI-SF PRO Assmnt.?(C)",
+          "name": "BPIPRO",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Not Done Reason (Numeric)",
+          "name": "PRONO2N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Not Done Reason (Text)",
+          "name": "PRONO2",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Subj. comp. the FACT-P PRO Assmnt.?(N)",
+          "name": "PROFACTN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Subj. comp. the FACT-P PRO Assmnt.?(C)",
+          "name": "PROFACT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Not Done Reason (Numeric)",
+          "name": "PRONON",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Not Done Reason (Text)",
+          "name": "PRONO",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Subj. comp. the EQ-5D PRO Assmnt.?(N)",
+          "name": "PROASMN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Subj. comp. the EQ-5D PRO Assmnt.?(C)",
+          "name": "PROASM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Not Done Reason (Numeric)",
+          "name": "PRONDN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Not Done Reason (Text)",
+          "name": "PROND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 2185,
+      "path": "dataFiles_412/proasm1.sas7bdat",
+      "size": 3261440,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Subj. comp.d the PRO Assmnt.?(N)",
+          "name": "PROASM2N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Subj. comp.d the PRO Assmnt.?(C)",
+          "name": "PROASM2",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Not Done Reason (Numeric)",
+          "name": "PROBPIN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Not Done Reason (Text)",
+          "name": "PROBPI",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 3556,
+      "path": "dataFiles_412/proasm2.sas7bdat",
+      "size": 2016256,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence #",
+          "name": "PRIXRSEQ",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Treatment Site",
+          "name": "PRTSITE",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Type of Radiation Therapy (Numeric)",
+          "name": "PRTTYPEN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Type of Radiation Therapy (Text)",
+          "name": "PRTTYPE",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "External Beam (Numeric)",
+          "name": "PRTBEAMN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "External Beam (Text)",
+          "name": "PRTBEAM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Other, Specify",
+          "name": "PRTSPE",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Dose (Numeric)",
+          "name": "PRTDOSEN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Dose (Text)",
+          "name": "PRTDOSE",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Gy",
+          "name": "PRTDOSE1",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "cGY",
+          "name": "PRTDOSE2",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Number of Fractions (Numeric)",
+          "name": "PRTYNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Number of Fractions (Text)",
+          "name": "PRTYN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Fractions",
+          "name": "PRTFRACT",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Intent (Numeric)",
+          "name": "PRTINTN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Intent (Text)",
+          "name": "PRTINT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Settings (Numeric)",
+          "name": "PRTSETTN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Settings (Text)",
+          "name": "PRTSETT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date Stopped and Informed Consent Date",
+          "name": "PRTENDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date Started and Informed Consent Date",
+          "name": "PRTSTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "PRTENDAY",
+          "PRTSTDAY",
+          "VISDAY"
+        ],
+        "treatment": [
+          "PRTSITE"
+        ],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 496,
+      "path": "dataFiles_412/prt.sas7bdat",
+      "size": 1033216,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Regimen",
+          "name": "PATSEQN",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Number of Cycles (Numeric)",
+          "name": "PATYNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Number of Cycles (Text)",
+          "name": "PATYN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Number of Cycles( 1 =< n <= 50 )(N)",
+          "name": "PATCYC",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Drug Name",
+          "name": "PATDRUG",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Drug Name",
+          "name": "PATDRUG2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC1",
+          "name": "ATC1",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC2",
+          "name": "ATC2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC3",
+          "name": "ATC3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC3_CODE",
+          "name": "ATC3CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC4",
+          "name": "ATC4",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC4_CODE",
+          "name": "ATC4CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "SYN",
+          "name": "SYN",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "SYN_CODE",
+          "name": "SYN_CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "GENRICNM",
+          "name": "GENRICNM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "DICTVER",
+          "name": "DICTVER",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC1_CODE",
+          "name": "ATC1CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC2_CODE",
+          "name": "ATC2CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "PN_CODE",
+          "name": "PN_CODE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date Stopped and Informed Consent Date",
+          "name": "PATENDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date Started and Informed Consent Date",
+          "name": "PATSTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "PATYNN",
+          "PATYN",
+          "PATCYC",
+          "PATENDAY",
+          "PATSTDAY",
+          "VISDAY"
+        ],
+        "treatment": [
+          "PATSEQN"
+        ],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 1540,
+      "path": "dataFiles_412/psat2.sas7bdat",
+      "size": 6325248,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence #",
+          "name": "PATSEQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Treatment",
+          "name": "PATDRUG",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Best Response (Numeric)",
+          "name": "PATRSPNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Best Response (Text)",
+          "name": "PATRSPN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date Stopped and Informed Consent Date",
+          "name": "PATENDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date Started and Informed Consent Date",
+          "name": "PATSTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "PATENDAY",
+          "PATSTDAY",
+          "VISDAY"
+        ],
+        "treatment": [
+          "PATDRUG"
+        ],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 101,
+      "path": "dataFiles_412/psat3.sas7bdat",
+      "size": 66560,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date Subject Signed Info Consent and Informed Consent Date",
+          "name": "INFCDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age at Informed Consent",
+          "name": "AGE",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "INFCDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 526,
+      "path": "dataFiles_412/screen.sas7bdat",
+      "size": 87040,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Thrp./drugs trtd. the cond. ?(N)",
+          "name": "STNONEN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Thrp./drugs trtd. the cond. ?(C)",
+          "name": "STNONE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Drug Name",
+          "name": "STTERM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Start Date - Ongoing (Numeric)",
+          "name": "STSTOGN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Start Date - Ongoing (Text)",
+          "name": "STSTOG",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Stop Date - Ongoing (Numeric)",
+          "name": "STENOGN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Stop Date - Ongoing (Text)",
+          "name": "STENOG",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC Dictionary Level RC",
+          "name": "ATCRC",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC Dictionary Level Code RC",
+          "name": "ATCCDRC",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC1 Dictionary Level RC",
+          "name": "ATC1",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC1 Dictionary Level Code RC",
+          "name": "ATC1CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC2 Dictionary Level RC",
+          "name": "ATC2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC2 Dictionary Level Code RC",
+          "name": "ATC2CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC3 Dictionary Level RC",
+          "name": "ATC3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC3 Dictionary Level Code RC",
+          "name": "ATC3CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC4 Dictionary Level RC",
+          "name": "ATC4",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ATC4 Dictionary Level Code RC",
+          "name": "ATC4CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Preferred Name Dictionary Level RC",
+          "name": "PN",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Preferred Name Dictionary Level Code RC",
+          "name": "PN_CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Synonym Dictionary Level RC",
+          "name": "SYN",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Synonym Dictionary Level Code RC",
+          "name": "SYN_CODE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Dictionary Version RC",
+          "name": "DICTVRC",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Trimmed Generic Name RC",
+          "name": "GENNMRC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Stop Date and Informed Consent Date",
+          "name": "STENDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Start Date and Informed Consent Date",
+          "name": "STSTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "STTERM"
+        ],
+        "patient": [],
+        "time": [
+          "STSTOGN",
+          "STSTOG",
+          "STENOGN",
+          "STENOG",
+          "STENDAY",
+          "STSTDAY",
+          "VISDAY"
+        ],
+        "treatment": [
+          "STNONEN",
+          "STNONE"
+        ],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 608,
+      "path": "dataFiles_412/survcoded.sas7bdat",
+      "size": 3326976,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Survival Status (Numeric)",
+          "name": "STATUSN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Survival Status (Text)",
+          "name": "STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Contact and Informed Consent Date",
+          "name": "CONTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date last known alive and Informed Consent Date",
+          "name": "LKDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "STATUSN",
+          "STATUS"
+        ],
+        "patient": [],
+        "time": [
+          "CONTDAY",
+          "LKDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 462,
+      "path": "dataFiles_412/survive.sas7bdat",
+      "size": 181248,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Thrp./drugs trtd. the cond. ?(N)",
+          "name": "STNONEN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Thrp./drugs trtd. the cond. ?(C)",
+          "name": "STNONE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Drug Name",
+          "name": "STTERM",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Start Date - Ongoing (Numeric)",
+          "name": "STSTOGN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Start Date - Ongoing (Text)",
+          "name": "STSTOG",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Stop Date - Ongoing (Numeric)",
+          "name": "STENOGN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Stop Date - Ongoing (Text)",
+          "name": "STENOG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Stop Date and Informed Consent Date",
+          "name": "STENDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Start Date and Informed Consent Date",
+          "name": "STSTDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "STTERM"
+        ],
+        "patient": [],
+        "time": [
+          "STSTOGN",
+          "STSTOG",
+          "STENOGN",
+          "STENOG",
+          "STENDAY",
+          "STSTDAY",
+          "VISDAY"
+        ],
+        "treatment": [
+          "STNONEN",
+          "STNONE"
+        ],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 608,
+      "path": "dataFiles_412/survth.sas7bdat",
+      "size": 640000,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Any Target Lesions identified?(N)",
+          "name": "TARGETQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Any Target Lesions identified?(C)",
+          "name": "TARGETQ",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Any Non-Target Lesions identified?(N)",
+          "name": "NONTARQN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Any Non-Target Lesions identified?(C)",
+          "name": "NONTARQ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 2090,
+      "path": "dataFiles_412/targetq.sas7bdat",
+      "size": 1197056,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Lesion Number",
+          "name": "LESNO",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Location (Numeric)",
+          "name": "LOCGRPN1",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Location (Text)",
+          "name": "LOCGRP1C",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Organ/soft tissue(longest axis)(N)",
+          "name": "LOCNUM1N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Organ/soft tissue(longest axis)(C)",
+          "name": "LOCNUM1",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Lymph nodes (shortest axis) (Numeric)",
+          "name": "LOCNUM2N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Lymph nodes (shortest axis) (Text)",
+          "name": "LOCNUM2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Other Soft Tissue (longest axis)",
+          "name": "SPECST",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Other Organ (longest axis)",
+          "name": "SPECOR",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Method of Assessment Selection (Numeric)",
+          "name": "METHOTHN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Method of Assessment Selection (Text)",
+          "name": "METHOTHC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Method of Assessment (Numeric)",
+          "name": "METHODN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Method of Assessment (Text)",
+          "name": "METHODC",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Other Method of Assessment",
+          "name": "OTHSPEC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Length",
+          "name": "LENGTH",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Total Length (all target lesions)",
+          "name": "TAREAC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Assessment and Informed Consent Date",
+          "name": "ASSEDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ASSEDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 2517,
+      "path": "dataFiles_412/tumor_m.sas7bdat",
+      "size": 4588544,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Lesion Number:",
+          "name": "LESNO",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Location: (Numeric)",
+          "name": "LOCGRP2N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Location: (Text)",
+          "name": "LOCGRP2C",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Organ or soft tissue (Numeric)",
+          "name": "LOCNUM4N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Organ or soft tissue (Text)",
+          "name": "LOCNUMN4",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Lymph nodes (Numeric)",
+          "name": "LOCNUM2N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Lymph nodes (Text)",
+          "name": "LOCNUMN2",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Other non-measureable disease (Numeric)",
+          "name": "LOCNUM3N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Other non-measureable disease (Text)",
+          "name": "LOCNUMN3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Abnormal tumor marker, Specify:",
+          "name": "SPECTM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Other Soft Tissue, Specify:",
+          "name": "SPECST",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Other Organ, Specify:",
+          "name": "SPECOR",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Current Status (Numeric)",
+          "name": "CURSTATN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Current Status (Text)",
+          "name": "CURSTAT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Method of Assessment: (Numeric)",
+          "name": "METHOTHN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Method of Assessment: (Text)",
+          "name": "METHOTHC",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Method of Assessment, Other:",
+          "name": "OTHSPEC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Method of Assmnt.(Numeric, Pulldown)",
+          "name": "METHODN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Method of Assessment: (Text, Pulldown)",
+          "name": "METHODC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Assessment and Informed Consent Date",
+          "name": "ASSEDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ASSEDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 4312,
+      "path": "dataFiles_412/tumor_mp.sas7bdat",
+      "size": 11781120,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Inv. Assmnt. of Best Overall Resp.(N)",
+          "name": "BOVRN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Inv. Assmnt. of Best Overall Resp.(C)",
+          "name": "BOVRC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Was symptomatic deterioration noted?(N)",
+          "name": "DETRIORN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Was symptomatic deterioration noted?(C)",
+          "name": "DETRIORC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 1464,
+      "path": "dataFiles_412/tumor_mresp.sas7bdat",
+      "size": 836608,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": " Non-Target Lesions identified?(N)",
+          "name": "LESIOYNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": " Non-Target Lesions identified?(C)",
+          "name": "LESIOYNC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Lesion Number:",
+          "name": "LESNO",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Location: (Numeric)",
+          "name": "LOCGRP2N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Location: (Text)",
+          "name": "LOCGRP2C",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Organ or soft tissue (Numeric)",
+          "name": "LOCNUM4N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Organ or soft tissue (Text)",
+          "name": "LOCNUM4",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Lymph nodes (Numeric)",
+          "name": "LOCNUM2N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Lymph nodes (Text)",
+          "name": "LOCNUM2",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Other non-measureable disease (Numeric)",
+          "name": "LOCNUM3N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Other non-measureable disease (Text)",
+          "name": "LOCNUM3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Abnormal tumor marker, Specify:",
+          "name": "SPECTM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Other Soft Tissue, Specify:",
+          "name": "SPECST",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Other Organ, Specify:",
+          "name": "SPECOR",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Method of Assessment: (Numeric)",
+          "name": "METHOTHN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Method of Assessment: (Text)",
+          "name": "METHOTHC",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Method: (Numeric, Pulldown)",
+          "name": "METHODN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Method: (Text, Pulldown)",
+          "name": "METHODC",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Other, specify:",
+          "name": "OTHSPEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Assessment and Informed Consent Date",
+          "name": "ASSEDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ASSEDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 2008,
+      "path": "dataFiles_412/tumor_ntb.sas7bdat",
+      "size": 5489664,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Vital Signs",
+          "name": "VITALS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ECG",
+          "name": "ECG",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "ECOG",
+          "name": "ECOG2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Hematology",
+          "name": "CLABHEM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Blood Chemistry",
+          "name": "CLABCHEM",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Urinalysis",
+          "name": "CLABURI",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Tumor Assessments",
+          "name": "TUMOR",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Patient Reported Outcomes",
+          "name": "PROASM1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "ECOG2"
+        ],
+        "endpoint": [],
+        "patient": [
+          "PROASM1"
+        ],
+        "time": [
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 209,
+      "path": "dataFiles_412/unsdov.sas7bdat",
+      "size": 394240,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Was a Urin. smp. collected?(N)",
+          "name": "LBYNN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Was a Urin. smp. collected?(C)",
+          "name": "LBYN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Yes, Was Urine dipstick: (Numeric)",
+          "name": "DIPSTKN",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Yes, Was Urine dipstick: (Text)",
+          "name": "DIPSTK",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "If Abn. smp. sent to cen. lab?(N)",
+          "name": "ABNORM1N",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "If Abn. smp. sent to cen. lab?(C)",
+          "name": "ABNORM1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of sample collection and Informed Consent Date",
+          "name": "LBDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "LBDAY",
+          "VISDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 5774,
+      "path": "dataFiles_412/urin.sas7bdat",
+      "size": 4523008,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Height",
+          "name": "HEIGHT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Height Unit",
+          "name": "HEIGHTU",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Weight",
+          "name": "WEIGHT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Weight Unit",
+          "name": "WEIGHTU",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "BMI",
+          "name": "BMI",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Temperature",
+          "name": "TEMP",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Temperature Unit",
+          "name": "TEMPU",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Blood Pressure Systolic",
+          "name": "SYSBP",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Blood Pressure Diastolic",
+          "name": "DIABP",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Blood Pressure Unit",
+          "name": "DIABPU",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Pulse",
+          "name": "PULSE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Pulse Unit",
+          "name": "PULSEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date Vital Signs Taken and Informed Consent Date",
+          "name": "VTDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISDAY",
+          "VTDAY"
+        ],
+        "treatment": [],
+        "unit": [
+          "HEIGHTU",
+          "WEIGHTU",
+          "TEMPU",
+          "DIABPU",
+          "PULSEU"
+        ],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 6226,
+      "path": "dataFiles_412/vs.sas7bdat",
+      "size": 1639424,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Random Value for Subject Identifier",
+          "name": "RPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random Value for Site Identifier",
+          "name": "RINVSITE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Study Identifier",
+          "name": "STUDY",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Visit Code",
+          "name": "VISIT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Visit Name",
+          "name": "VISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date of Visit and Informed Consent Date",
+          "name": "VISDAY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Days Between Date patient withdrew consent and Informed Consent Date",
+          "name": "WCFUDAY",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "WCFUDAY"
+        ],
+        "time": [
+          "VISDAY",
+          "WCFUDAY"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RPT",
+          "RINVSITE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 31,
+      "path": "dataFiles_412/wcfu.sas7bdat",
+      "size": 13312,
+      "status": "OK"
+    }
+  ]
+}

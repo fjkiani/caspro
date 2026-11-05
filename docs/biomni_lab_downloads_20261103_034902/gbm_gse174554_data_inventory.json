@@ -1,0 +1,39 @@
+{
+  "total_samples": 113,
+  "matched_pairs_confirmed": 30,
+  "modalities_available": {
+    "snRNA-seq": 81,
+    "snATAC-seq": 10,
+    "Visium_ST": 10,
+    "GeoMx_SP": 6,
+    "bulk_RNA-seq": 4,
+    "scRNA-seq_invitro": 2
+  },
+  "treatment_annotation_pct": 100.0,
+  "available_processed_files": [
+    "GSE174554_RAW.tar (1.5GB - individual sample MTX/TSV files)",
+    "GSE174554_Spatial_proteomics_matrix.txt.gz (6.6KB)",
+    "GSE174554_Spatial_transcriptomic_matrix.txt.gz (472KB)",
+    "GSE174554_Tumor_normal_metadata.txt.gz (1.4MB)",
+    "filelist.txt (23KB - index of all 330 files in RAW.tar)"
+  ],
+  "recommended_entry_file": "GSE174554_Tumor_normal_metadata.txt.gz",
+  "download_size_mb": 1.36,
+  "notes": {
+    "raw_tar_size_gb": 1.5,
+    "individual_sample_files": 330,
+    "file_types_in_raw": [
+      "MTX (count matrices)",
+      "TSV (barcodes/features)",
+      "BED (ATAC peaks)",
+      "ZIP (spatial)",
+      "TXT (spatial matrices)"
+    ],
+    "treatment_note": "Treatment fields are study-level: all patients received SOC TMZ+RT+surgery. Primary=pre-treatment, Recurrent=post-TMZ+RT. Mouse/in-vitro samples marked N/A.",
+    "batch_structure": {
+      "batch1_2021": "GSM5319503-GSM5319586 (snRNA-seq + snATAC-seq, original cohort)",
+      "batch2_2022": "GSM6199398-GSM6199410 (additional snRNA-seq + bulk/scRNA-seq)",
+      "batch3_2022": "GSM6337065-GSM6337080 (spatial transcriptomics + spatial proteomics)"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "artifact": "kelim_psa_proxy_validation",
+  "date": "2026-08-05",
+  "data_source": "sanofi_upsa_full.csv (PDS Prostat_Sanofi_2000_80/dataFiles_397/upsa.sas7bdat, study XRP6976J-327)",
+  "model": "KELIM-PROXY: per-patient single-exponential elimination on log-PSA (primary); constrained bi-exponential (sensitivity). NOT the exact published semi-mechanistic NLME.",
+  "window_weeks": [
+    0,
+    15
+  ],
+  "cohort": {
+    "total_patients": 337,
+    "eligible_ge3_obs": 282,
+    "decline_cohort": 170,
+    "progressor_arm": 112,
+    "decline_converged": 147,
+    "progressor_converged": 72
+  },
+  "acceptance_criteria": {
+    "A1_convergence_ge80pct": {
+      "threshold": 0.8,
+      "observed": 0.8647,
+      "pass": true
+    },
+    "A1_rse_lt50pct_among_converged": {
+      "threshold": 0.8,
+      "observed": 0.3129,
+      "pass": false
+    },
+    "A2_median_R2_ge0.70": {
+      "threshold": 0.7,
+      "observed": 0.9056,
+      "pass": true
+    },
+    "A3_auc_kfast_vs_PSARS_ge0.65": {
+      "threshold": 0.65,
+      "observed": 0.545,
+      "ci95": [
+        0.444,
+        0.651
+      ],
+      "pass": false
+    }
+  },
+  "robustness": {
+    "permutation_null_mean_auc": 0.507,
+    "permutation_p_null_ge_obs": 0.276,
+    "n_permutations": 500,
+    "A3_variants": {
+      "k_fast_RSElt0.5_auc": 0.482,
+      "biexp_kfast_auc": 0.42,
+      "naive_slope_auc": 0.586
+    },
+    "spearman_primary_vs_biexp_kfast": -0.117,
+    "window_0_8wk": "underpowered (n=5 converged labeled)"
+  },
+  "verdict": "MACHINERY_NOT_VALIDATED",
+  "failing_criteria": [
+    "A1_rse_lt50pct (31.3% < 80%)",
+    "A3_auc (0.545 < 0.65, CI crosses 0.5, perm p=0.276)"
+  ],
+  "interpretation": "The single-exponential elimination MACHINERY fits real serial PSA well (86.5% convergence, median R2=0.906), so the math runs on real data. BUT the extracted elimination rate k_fast does NOT discriminate the trial's own PSA-response label (AUC=0.545, not distinguishable from null). The bi-exponential fast rate is unstable on weekly sampling (Spearman vs single-exp=-0.117). This is a PSA PROXY, not CA-125, and PSARS is a response label, not OS/PFS -- the published KELIM->survival result cannot be reproduced here (no survival in extract).",
+  "labeling": "KELIM machinery RUNS on real serial-marker kinetics (prostate PSA proxy) but DOES NOT VALIDATE: elimination rate fails to predict PSA-response. Ovarian CA-125 module remains UNCALIBRATED -- genuine data gap (no ovarian trial in PDS).",
+  "honesty_notes": [
+    "Deviation from plan: single-exponential used as PRIMARY estimator (bi-exp as sensitivity) because the 5-param bi-exp is weakly identifiable from ~weekly sampling; single-exp is the direct analog of published KELIM (effective first-order rate). Disclosed.",
+    "A3 uses PSARS (PSA-response flag), a PROXY criterion -- no OS/PFS in extract.",
+    "Failed criteria reported, not hidden."
+  ]
+}

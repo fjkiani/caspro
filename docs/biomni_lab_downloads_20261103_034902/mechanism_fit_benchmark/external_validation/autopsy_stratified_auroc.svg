@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="877.858997pt" height="839.26935pt" viewBox="0 0 877.858997 839.26935" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2022-01-01T05:00:00+00:00</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.5, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 839.26935 
+L 877.858997 839.26935 
+L 877.858997 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 267.855 802.4256 
+L 778.695 802.4256 
+L 778.695 92.5632 
+L 267.855 92.5632 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 407.811164 802.4256 
+L 407.811164 92.5632 
+" clip-path="url(#p6729189399)" style="fill: none; stroke-dasharray: 1.2,1.98; stroke-dashoffset: 0; stroke: #888888; stroke-width: 1.2"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 547.767329 802.4256 
+L 547.767329 92.5632 
+" clip-path="url(#p6729189399)" style="fill: none; stroke-dasharray: 5.18,2.24; stroke-dashoffset: 0; stroke: #75a025; stroke-width: 1.4"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_3">
+      <defs>
+       <path id="m43cc3239e6" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m43cc3239e6" x="267.855" y="802.4256" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle" x="267.855" y="816.672475" transform="rotate(-0 267.855 816.672475)">0.3</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m43cc3239e6" x="337.833082" y="802.4256" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle" x="337.833082" y="816.672475" transform="rotate(-0 337.833082 816.672475)">0.4</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#m43cc3239e6" x="407.811164" y="802.4256" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle" x="407.811164" y="816.672475" transform="rotate(-0 407.811164 816.672475)">0.5</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m43cc3239e6" x="477.789247" y="802.4256" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle" x="477.789247" y="816.672475" transform="rotate(-0 477.789247 816.672475)">0.6</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#m43cc3239e6" x="547.767329" y="802.4256" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle" x="547.767329" y="816.672475" transform="rotate(-0 547.767329 816.672475)">0.7</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m43cc3239e6" x="617.745411" y="802.4256" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle" x="617.745411" y="816.672475" transform="rotate(-0 617.745411 816.672475)">0.8</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#m43cc3239e6" x="687.723493" y="802.4256" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle" x="687.723493" y="816.672475" transform="rotate(-0 687.723493 816.672475)">0.9</text>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m43cc3239e6" x="757.701575" y="802.4256" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle" x="757.701575" y="816.672475" transform="rotate(-0 757.701575 816.672475)">1.0</text>
+     </g>
+    </g>
+    <g id="text_9">
+     <text style="font-size: 10px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle" x="523.275" y="829.99435" transform="rotate(-0 523.275 829.99435)">Within-stratum AUROC (DeLong 95% CI)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_11">
+      <defs>
+       <path id="m2b61c6404c" d="M 0 0 
+L -3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="114.40512" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="117.30387" transform="rotate(-0 260.855 117.30387)">chemoresponse · IPR · regimen=taxane/platinum</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="141.70752" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="144.60627" transform="rotate(-0 260.855 144.60627)">chemoresponse · IPR · stage=IV</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="169.00992" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="171.90867" transform="rotate(-0 260.855 171.90867)">chemoresponse · IPR · histology=serous</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="196.31232" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="199.21107" transform="rotate(-0 260.855 199.21107)">chemoresponse · IPR · stage=IIIC</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="223.61472" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_14">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="226.51347" transform="rotate(-0 260.855 226.51347)">chemoresponse · IPR · regimen=platinum/cyclophosphamide</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="250.91712" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_15">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="253.81587" transform="rotate(-0 260.855 253.81587)">chemoresponse · IndividCRS · stage=IV</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_17">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="278.21952" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_16">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="281.11827" transform="rotate(-0 260.855 281.11827)">chemoresponse · IndividCRS · regimen=platinum/cyclophosphamide</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="305.52192" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_17">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="308.42067" transform="rotate(-0 260.855 308.42067)">chemoresponse · IndividCRS · histology=serous</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_19">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="332.82432" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_18">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="335.72307" transform="rotate(-0 260.855 335.72307)">chemoresponse · IndividCRS · stage=IIIC</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_20">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="360.12672" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_19">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="363.02547" transform="rotate(-0 260.855 363.02547)">chemoresponse · IndividCRS · regimen=taxane/platinum</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_21">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="387.42912" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_20">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="390.32787" transform="rotate(-0 260.855 390.32787)">platinum sensitivity · IPR · histology=non_serous</text>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_22">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="414.73152" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_21">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="417.63027" transform="rotate(-0 260.855 417.63027)">platinum sensitivity · IPR · regimen=taxane/platinum</text>
+     </g>
+    </g>
+    <g id="ytick_13">
+     <g id="line2d_23">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="442.03392" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_22">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="444.93267" transform="rotate(-0 260.855 444.93267)">platinum sensitivity · IPR · stage=III</text>
+     </g>
+    </g>
+    <g id="ytick_14">
+     <g id="line2d_24">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="469.33632" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_23">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="472.23507" transform="rotate(-0 260.855 472.23507)">platinum sensitivity · IPR · stage=IIIC</text>
+     </g>
+    </g>
+    <g id="ytick_15">
+     <g id="line2d_25">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="496.63872" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_24">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="499.53747" transform="rotate(-0 260.855 499.53747)">platinum sensitivity · IPR · histology=serous</text>
+     </g>
+    </g>
+    <g id="ytick_16">
+     <g id="line2d_26">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="523.94112" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_25">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="526.83987" transform="rotate(-0 260.855 526.83987)">platinum sensitivity · IPR · regimen=platinum/cyclophosphamide</text>
+     </g>
+    </g>
+    <g id="ytick_17">
+     <g id="line2d_27">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="551.24352" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_26">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="554.14227" transform="rotate(-0 260.855 554.14227)">platinum sensitivity · IPR · stage=IV</text>
+     </g>
+    </g>
+    <g id="ytick_18">
+     <g id="line2d_28">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="578.54592" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_27">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="581.44467" transform="rotate(-0 260.855 581.44467)">platinum sensitivity · IndividCRS · regimen=platinum/cyclophosphamide</text>
+     </g>
+    </g>
+    <g id="ytick_19">
+     <g id="line2d_29">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="605.84832" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_28">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="608.74707" transform="rotate(-0 260.855 608.74707)">platinum sensitivity · IndividCRS · stage=IV</text>
+     </g>
+    </g>
+    <g id="ytick_20">
+     <g id="line2d_30">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="633.15072" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_29">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="636.04947" transform="rotate(-0 260.855 636.04947)">platinum sensitivity · IndividCRS · stage=IIIC</text>
+     </g>
+    </g>
+    <g id="ytick_21">
+     <g id="line2d_31">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="660.45312" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_30">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="663.35187" transform="rotate(-0 260.855 663.35187)">platinum sensitivity · IndividCRS · histology=serous</text>
+     </g>
+    </g>
+    <g id="ytick_22">
+     <g id="line2d_32">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="687.75552" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_31">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="690.65427" transform="rotate(-0 260.855 690.65427)">platinum sensitivity · IndividCRS · regimen=taxane/platinum</text>
+     </g>
+    </g>
+    <g id="ytick_23">
+     <g id="line2d_33">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="715.05792" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_32">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="717.95667" transform="rotate(-0 260.855 717.95667)">platinum sensitivity · IndividCRS · stage=III</text>
+     </g>
+    </g>
+    <g id="ytick_24">
+     <g id="line2d_34">
+      <g>
+       <use xlink:href="#m2b61c6404c" x="267.855" y="742.36032" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_33">
+      <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end" x="260.855" y="745.25907" transform="rotate(-0 260.855 745.25907)">platinum sensitivity · IndividCRS · histology=non_serous</text>
+     </g>
+    </g>
+   </g>
+   <g id="line2d_35">
+    <path d="M 57.920753 114.40512 
+L 724.671921 114.40512 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_36">
+    <path d="M 84.792337 141.70752 
+L 697.520425 141.70752 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_37">
+    <path d="M 374.011751 169.00992 
+L 698.220205 169.00992 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_38">
+    <path d="M 355.327603 196.31232 
+L 757.701575 196.31232 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_39">
+    <path d="M 442.730227 223.61472 
+L 757.701575 223.61472 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #0279ee; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_40">
+    <path d="M 57.920753 250.91712 
+L 555.115027 250.91712 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_41">
+    <path d="M 279.54134 278.21952 
+L 658.262721 278.21952 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_42">
+    <path d="M 371.632496 305.52192 
+L 649.305526 305.52192 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_43">
+    <path d="M 413.409411 332.82432 
+L 733.979005 332.82432 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #0279ee; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_44">
+    <path d="M 503.541181 360.12672 
+L 757.701575 360.12672 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #ff9400; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_45">
+    <path d="M 57.920753 387.42912 
+L 757.701575 387.42912 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_46">
+    <path d="M 274.013071 414.73152 
+L 541.609258 414.73152 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_47">
+    <path d="M 181.152156 442.03392 
+L 660.362063 442.03392 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_48">
+    <path d="M 315.65003 469.33632 
+L 553.785444 469.33632 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_49">
+    <path d="M 360.995827 496.63872 
+L 558.194063 496.63872 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_50">
+    <path d="M 357.636879 523.94112 
+L 632.930655 523.94112 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_51">
+    <path d="M 238.324249 551.24352 
+L 757.701575 551.24352 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_52">
+    <path d="M 267.855 578.54592 
+L 552.595816 578.54592 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_53">
+    <path d="M 136.716074 605.84832 
+L 737.197997 605.84832 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_54">
+    <path d="M 356.237318 633.15072 
+L 582.126567 633.15072 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_55">
+    <path d="M 378.000501 660.45312 
+L 569.950381 660.45312 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_56">
+    <path d="M 432.583405 687.75552 
+L 667.009981 687.75552 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #0279ee; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_57">
+    <path d="M 414.109192 715.05792 
+L 757.701575 715.05792 
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #0279ee; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 267.855 802.4256 
+L 267.855 92.5632 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 267.855 802.4256 
+L 778.695 802.4256 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="m74bb8a1859" d="M 0 3.24037 
+C 0.859356 3.24037 1.683631 2.898944 2.291288 2.291288 
+C 2.898944 1.683631 3.24037 0.859356 3.24037 0 
+C 3.24037 -0.859356 2.898944 -1.683631 2.291288 -2.291288 
+C 1.683631 -2.898944 0.859356 -3.24037 0 -3.24037 
+C -0.859356 -3.24037 -1.683631 -2.898944 -2.291288 -2.291288 
+C -2.898944 -1.683631 -3.24037 -0.859356 -3.24037 0 
+C -3.24037 0.859356 -2.898944 1.683631 -2.291288 2.291288 
+C -1.683631 2.898944 -0.859356 3.24037 0 3.24037 
+z
+" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </defs>
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="358.686551" y="114.40512" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_2">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="391.156381" y="141.70752" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_3">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="536.080989" y="169.00992" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_4">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="562.32277" y="196.31232" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_5">
+    <defs>
+     <path id="m2cd9a3c8af" d="M 0 3.24037 
+C 0.859356 3.24037 1.683631 2.898944 2.291288 2.291288 
+C 2.898944 1.683631 3.24037 0.859356 3.24037 0 
+C 3.24037 -0.859356 2.898944 -1.683631 2.291288 -2.291288 
+C 1.683631 -2.898944 0.859356 -3.24037 0 -3.24037 
+C -0.859356 -3.24037 -1.683631 -2.898944 -2.291288 -2.291288 
+C -2.898944 -1.683631 -3.24037 -0.859356 -3.24037 0 
+C -3.24037 0.859356 -2.898944 1.683631 -2.291288 2.291288 
+C -1.683631 2.898944 -0.859356 3.24037 0 3.24037 
+z
+" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </defs>
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m2cd9a3c8af" x="605.919115" y="223.61472" style="fill: #0279ee; stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_6">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="291.157701" y="250.91712" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_7">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="468.90203" y="278.21952" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_8">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="510.469011" y="305.52192" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_9">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m2cd9a3c8af" x="573.659219" y="332.82432" style="fill: #0279ee; stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_10">
+    <defs>
+     <path id="mca6f111b74" d="M 0 3.24037 
+C 0.859356 3.24037 1.683631 2.898944 2.291288 2.291288 
+C 2.898944 1.683631 3.24037 0.859356 3.24037 0 
+C 3.24037 -0.859356 2.898944 -1.683631 2.291288 -2.291288 
+C 1.683631 -2.898944 0.859356 -3.24037 0 -3.24037 
+C -0.859356 -3.24037 -1.683631 -2.898944 -2.291288 -2.291288 
+C -2.898944 -1.683631 -3.24037 -0.859356 -3.24037 0 
+C -3.24037 0.859356 -2.898944 1.683631 -2.291288 2.291288 
+C -1.683631 2.898944 -0.859356 3.24037 0 3.24037 
+z
+" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </defs>
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#mca6f111b74" x="634.960019" y="360.12672" style="fill: #ff9400; stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="text_34">
+    <text style="font-weight: 700; font-size: 7.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: start; fill: #ff9400" x="761.701575" y="362.049767" transform="rotate(-0 761.701575 362.049767)">BH-sig, LOW_CONF (n_neg=3)</text>
+   </g>
+   <g id="PathCollection_11">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="291.157701" y="387.42912" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_12">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="407.811164" y="414.73152" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_13">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="420.75711" y="442.03392" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_14">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="434.752726" y="469.33632" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_15">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="459.594945" y="496.63872" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_16">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="495.283767" y="523.94112" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_17">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="524.464627" y="551.24352" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_18">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="410.260397" y="578.54592" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_19">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="436.992025" y="605.84832" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_20">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="469.181942" y="633.15072" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_21">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m74bb8a1859" x="474.01043" y="660.45312" style="stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_22">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m2cd9a3c8af" x="549.796693" y="687.75552" style="fill: #0279ee; stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_23">
+    <g clip-path="url(#p6729189399)">
+     <use xlink:href="#m2cd9a3c8af" x="628.102167" y="715.05792" style="fill: #0279ee; stroke: #ffffff; stroke-width: 0.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_24">
+    <path d="M 757.701575 748.2764 
+L 763.617655 742.36032 
+L 757.701575 736.44424 
+L 751.785496 742.36032 
+L 757.701575 748.2764 
+z
+" clip-path="url(#p6729189399)" style="fill: none; stroke: #999999; stroke-width: 1.4"/>
+   </g>
+   <g id="text_35">
+    <text style="font-style: italic; font-size: 7.2px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: end; fill: #999999" x="751.701575" y="744.222195" transform="rotate(-0 751.701575 744.222195)">spurious (n=5, CI width 0)</text>
+   </g>
+   <g id="text_36">
+    <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #75a025" x="547.767329" y="93.63344" transform="rotate(-0 547.767329 93.63344)">0.70 release bar</text>
+   </g>
+   <g id="text_37">
+    <text style="font-size: 8px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle; fill: #888888" x="407.811164" y="789.11142" transform="rotate(-0 407.811164 789.11142)">chance</text>
+   </g>
+   <g id="legend_1">
+    <g id="patch_5">
+     <path d="M 572.739141 798.6756 
+L 773.445 798.6756 
+Q 774.945 798.6756 774.945 797.1756 
+L 774.945 754.959975 
+Q 774.945 753.459975 773.445 753.459975 
+L 572.739141 753.459975 
+Q 571.239141 753.459975 571.239141 754.959975 
+L 571.239141 797.1756 
+Q 571.239141 798.6756 572.739141 798.6756 
+z
+" style="fill: #ffffff; opacity: 0.9; stroke: #cccccc; stroke-linejoin: miter"/>
+    </g>
+    <g id="line2d_58">
+     <path d="M 574.239141 759.270131 
+L 581.739141 759.270131 
+L 589.239141 759.270131 
+" style="fill: none; stroke: #ff9400; stroke-width: 2; stroke-linecap: square"/>
+     <defs>
+      <path id="maa10c353b7" d="M 0 3 
+C 0.795609 3 1.55874 2.683901 2.12132 2.12132 
+C 2.683901 1.55874 3 0.795609 3 0 
+C 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132 
+C 1.55874 -2.683901 0.795609 -3 0 -3 
+C -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132 
+C -2.683901 -1.55874 -3 -0.795609 -3 0 
+C -3 0.795609 -2.683901 1.55874 -2.12132 2.12132 
+C -1.55874 2.683901 -0.795609 3 0 3 
+z
+" style="stroke: #ff9400"/>
+     </defs>
+     <g>
+      <use xlink:href="#maa10c353b7" x="581.739141" y="759.270131" style="fill: #ff9400; stroke: #ff9400"/>
+     </g>
+    </g>
+    <g id="text_38">
+     <text style="font-size: 7.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: start" x="595.239141" y="761.895131" transform="rotate(-0 595.239141 761.895131)">Clears bar AND BH-significant (fragile / LOW_CONF)</text>
+    </g>
+    <g id="line2d_59">
+     <path d="M 574.239141 770.011538 
+L 581.739141 770.011538 
+L 589.239141 770.011538 
+" style="fill: none; stroke: #0279ee; stroke-width: 2; stroke-linecap: square"/>
+     <defs>
+      <path id="m881cc0d782" d="M 0 3 
+C 0.795609 3 1.55874 2.683901 2.12132 2.12132 
+C 2.683901 1.55874 3 0.795609 3 0 
+C 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132 
+C 1.55874 -2.683901 0.795609 -3 0 -3 
+C -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132 
+C -2.683901 -1.55874 -3 -0.795609 -3 0 
+C -3 0.795609 -2.683901 1.55874 -2.12132 2.12132 
+C -1.55874 2.683901 -0.795609 3 0 3 
+z
+" style="stroke: #0279ee"/>
+     </defs>
+     <g>
+      <use xlink:href="#m881cc0d782" x="581.739141" y="770.011538" style="fill: #0279ee; stroke: #0279ee"/>
+     </g>
+    </g>
+    <g id="text_39">
+     <text style="font-size: 7.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: start" x="595.239141" y="772.636538" transform="rotate(-0 595.239141 772.636538)">Clears bar, BH n.s.</text>
+    </g>
+    <g id="line2d_60">
+     <path d="M 574.239141 780.752944 
+L 581.739141 780.752944 
+L 589.239141 780.752944 
+" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: square"/>
+     <defs>
+      <path id="mf6152cbd0f" d="M 0 3 
+C 0.795609 3 1.55874 2.683901 2.12132 2.12132 
+C 2.683901 1.55874 3 0.795609 3 0 
+C 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132 
+C 1.55874 -2.683901 0.795609 -3 0 -3 
+C -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132 
+C -2.683901 -1.55874 -3 -0.795609 -3 0 
+C -3 0.795609 -2.683901 1.55874 -2.12132 2.12132 
+C -1.55874 2.683901 -0.795609 3 0 3 
+z
+" style="stroke: #000000"/>
+     </defs>
+     <g>
+      <use xlink:href="#mf6152cbd0f" x="581.739141" y="780.752944" style="stroke: #000000"/>
+     </g>
+    </g>
+    <g id="text_40">
+     <text style="font-size: 7.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: start" x="595.239141" y="783.377944" transform="rotate(-0 595.239141 783.377944)">Does not clear bar</text>
+    </g>
+    <g id="line2d_61">
+     <path d="M 574.239141 791.49435 
+L 581.739141 791.49435 
+L 589.239141 791.49435 
+" style="fill: none"/>
+     <defs>
+      <path id="m64424f93e1" d="M -0 4.949747 
+L 4.949747 0 
+L 0 -4.949747 
+L -4.949747 -0 
+z
+" style="stroke: #999999; stroke-linejoin: miter"/>
+     </defs>
+     <g>
+      <use xlink:href="#m64424f93e1" x="581.739141" y="791.49435" style="fill-opacity: 0; stroke: #999999; stroke-linejoin: miter"/>
+     </g>
+    </g>
+    <g id="text_41">
+     <text style="font-size: 7.5px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: start" x="595.239141" y="794.11935" transform="rotate(-0 595.239141 794.11935)">Spurious / unpowered (zero-width or no BH p)</text>
+    </g>
+   </g>
+  </g>
+  <g id="text_42">
+   <text style="font-weight: 700; font-size: 11px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; text-anchor: middle" x="394.575" y="15.171562" transform="rotate(-0 394.575 15.171562)">GSE63885 mechanistic autopsy — within-stratum AUROC of EXTERNAL published signatures (IPR, IndividCRS)</text>
+  </g>
+  <g id="text_43">
+   <text style="font-size: 7.6px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; fill: #222222" transform="translate(7.735594 48.650025)">Characterizes external signatures on the Objective-B harness. NOT a validation of the CrisPRO / sl_agent engine. For IPR (the promoted signature) no stratum survives BH correction; for IndividCRS one stratum — taxane/platinum</text>
+   <text style="font-size: 7.6px; font-family: 'Liberation Sans', 'Arimo', 'DejaVu Sans'; fill: #222222" transform="translate(112.099031 56.836175)">chemoresponse (AUROC 0.825, BH-adj p=0.016) — clears the bar and is BH-significant but is LOW_CONF (only 3 non-responders), i.e. fragile / hypothesis-generating.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p6729189399">
+   <rect x="267.855" y="92.5632" width="510.84" height="709.8624"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -1,0 +1,99 @@
+{
+  "cohort": {
+    "n": 98,
+    "n_resistant": 20,
+    "n_sensitive": 78,
+    "outcome": "primary platinum resistance at registration",
+    "signature_of_interest": "s3_diag (BRCA1/2-related HRD axis, diagnosis)",
+    "direction_note": "higher s3 => sensitive (protective) per Nature; AUROC positive class = resistant so protective => AUROC<0.5"
+  },
+  "s3_diag_auroc": {
+    "auroc": 0.2715,
+    "ci95": [
+      0.1532,
+      0.4058
+    ],
+    "mwu_p": 0.0017,
+    "n_boot": 2000,
+    "protective_auroc_1_minus": 0.7285,
+    "interpretation": "AUROC<0.5 confirms protective direction (low s3 -> resistant), consistent with Nature"
+  },
+  "covariate_completeness": {
+    "full_modeling_set_n": 98,
+    "full_events": 20,
+    "adjusted_model_n": 67,
+    "adjusted_model_events": 9,
+    "events_lost_to_missing_covariates": 11,
+    "note": "age/stage/num_lines are present for only 67/98 patients in the published confounder table (figure_2.tsv); the adjusted model therefore runs on 67 patients / 9 events, MORE underpowered than the 20-event unadjusted set. Unadjusted AUROC, BH-FDR and LOEO use all 20 events."
+  },
+  "adjusted_logistic": {
+    "n": 67,
+    "events": 9,
+    "n_covariates": 5,
+    "events_per_variable": 1.8,
+    "UNDERPOWERED_FLAG": true,
+    "s3_scale": "per +1 SD of s3_diag exposure (SD=0.1337)",
+    "s3_diag_OR_perSD": 0.0252,
+    "s3_diag_beta_perSD": -3.6791,
+    "s3_diag_p": 0.0141,
+    "s3_diag_ci_OR_perSD": [
+      0.0013,
+      0.4759
+    ],
+    "firth_s3_diag_OR_perSD": 0.0825,
+    "firth_s3_diag_beta_perSD": -2.4949,
+    "firth_s3_diag_wald_p": 0.0095,
+    "firth_s3_diag_lrt_p": 0.0,
+    "firth_note": "Firth-penalized companion (Jeffreys-prior bias reduction); sign and magnitude concordant with MLE => protective s3 estimate is NOT a sparse-data / separation artifact"
+  },
+  "cox_os": {
+    "n": 67,
+    "events": 39,
+    "s3_scale": "per +1 SD of s3_diag exposure",
+    "s3_diag_HR_perSD": 0.6869,
+    "s3_diag_p": 0.043,
+    "s3_diag_HR_ci_perSD": [
+      0.4775,
+      0.9883
+    ],
+    "schoenfeld_global_p": 0.2251,
+    "schoenfeld_ph_violation": false
+  },
+  "sensitivity": {
+    "BRCA_mutant": {
+      "n": 19,
+      "n_resistant": 3,
+      "auroc": 0.0208,
+      "ci": [
+        0.0,
+        0.125
+      ]
+    },
+    "BRCA_wt": {
+      "n": 79,
+      "n_resistant": 17,
+      "auroc": 0.3292,
+      "ci": [
+        0.1964,
+        0.472
+      ]
+    },
+    "purity_ploidy_immune_columns_present": {
+      "purity": false,
+      "ploidy": false,
+      "immune": false,
+      "immune_infiltration": false,
+      "til": false
+    },
+    "purity_ploidy_immune_note": "Per-patient purity/ploidy/immune-infiltration values are NOT in the published source-data tables used here (figure_4A/1B/2). Nature reports these as cohort-level covariates of CN signatures but does not release per-patient purity/ploidy/immune scores in these files. This sensitivity is therefore reported as NOT TESTABLE with the available open data, not as passed."
+  },
+  "leave_one_event_out": {
+    "base_auroc": 0.2715,
+    "n_events_dropped_one_at_a_time": 20,
+    "loeo_auroc_min": 0.2352,
+    "loeo_auroc_max": 0.2827,
+    "loeo_auroc_mean": 0.2715,
+    "range_width": 0.0476,
+    "note": "Small LOEO range => estimate not driven by a single event"
+  }
+}

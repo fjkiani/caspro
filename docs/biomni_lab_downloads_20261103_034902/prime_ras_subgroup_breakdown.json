@@ -1,0 +1,113 @@
+{
+  "trial": "PRIME",
+  "pmid": "24024839",
+  "citation": "Douillard JY, Oliner KS, Siena S, et al. Panitumumab-FOLFOX4 treatment and RAS mutations in colorectal cancer. N Engl J Med. 2013;369(11):1023-34.",
+  "data_source": "PubMed abstract (PMID 24024839) + AACR abstract (Hecht 2014, doi:10.1158/1557-3125.RASONC14-A57) + Douillard 2015 Eur J Cancer (PMID 25892681, tumor shrinkage/RAS WT n=505)",
+  "n_total_randomized": 1183,
+  "n_kras_exon2_wt_evaluable": 639,
+  "ras_ascertainment_rate": "90% (1060/1183)",
+  "ras_subgroups": [
+    {
+      "ras_status": "RAS wild-type (expanded)",
+      "mutation_detail": "WT for KRAS exons 2/3/4 AND NRAS exons 2/3/4",
+      "n": 512,
+      "pfs_hr": 0.72,
+      "pfs_ci": "0.58-0.90",
+      "pfs_p": 0.004,
+      "pfs_median_pmab": "10.1 months",
+      "pfs_median_folfox": "7.9 months",
+      "os_hr": 0.78,
+      "os_ci": "0.62-0.99",
+      "os_p": 0.04,
+      "os_median_pmab": "26.0 months",
+      "os_median_folfox": "20.2 months",
+      "notes": "Primary efficacy population in Douillard 2013. n=512 from abstract. Douillard 2015 Eur J Cancer reports n=505 RAS WT with tumor shrinkage data."
+    },
+    {
+      "ras_status": "KRAS exon 2 wild-type only (original analysis population)",
+      "mutation_detail": "WT KRAS codons 12/13 only (includes patients with other RAS mutations)",
+      "n": 656,
+      "pfs_hr": "not_reported_in_2013_paper",
+      "pfs_ci": "not_reported_in_2013_paper",
+      "pfs_p": "not_reported_in_2013_paper",
+      "os_hr": "not_reported_in_2013_paper",
+      "os_ci": "not_reported_in_2013_paper",
+      "os_p": "not_reported_in_2013_paper",
+      "notes": "Original PRIME primary analysis (Douillard 2010 JCO, PMID 20921462): KRAS exon 2 WT PFS HR=0.80 (95%CI 0.66-0.97, P=0.02), OS HR=0.83 (95%CI 0.67-1.02, P=0.072). These are the KRAS exon 2-only HRs."
+    },
+    {
+      "ras_status": "RAS mutant (other RAS mutations beyond KRAS exon 2)",
+      "mutation_detail": "KRAS exon 2 WT but mutant in KRAS exon 3 or 4, or NRAS exon 2, 3, or 4",
+      "n": 108,
+      "pct_of_kras_exon2_wt": "17%",
+      "pfs_hr": 1.28,
+      "pfs_ci": "0.79-2.07",
+      "pfs_p": 0.326,
+      "pfs_median_pmab": "7.3 months",
+      "pfs_median_folfox": "8.0 months",
+      "os_hr": 1.29,
+      "os_ci": "0.79-2.10",
+      "os_p": 0.305,
+      "os_median_pmab": "17.1 months",
+      "os_median_folfox": "18.3 months",
+      "notes": "From Hecht 2014 AACR abstract (doi:10.1158/1557-3125.RASONC14-A57). These patients had KRAS exon 2 WT but harbored other RAS mutations — panitumumab showed no benefit (HR>1 for both PFS and OS, consistent with harm signal)."
+    },
+    {
+      "ras_status": "KRAS exon 2 mutant",
+      "mutation_detail": "KRAS codons 12 or 13 mutation",
+      "n": "~440 (total minus WT KRAS exon 2)",
+      "pfs_hr": "not_reported_in_2013_paper",
+      "pfs_ci": "not_reported_in_2013_paper",
+      "pfs_p": "not_reported_in_2013_paper",
+      "os_hr": "not_reported_in_2013_paper",
+      "os_ci": "not_reported_in_2013_paper",
+      "os_p": "not_reported_in_2013_paper",
+      "notes": "From original PRIME 2010 paper: KRAS exon 2 mutant PFS HR=1.29 (95%CI 1.04-1.62, P=0.02) — panitumumab harmful. OS HR=1.24 (95%CI 0.98-1.57, P=0.068)."
+    },
+    {
+      "ras_status": "BRAF mutant (exon 15, V600E)",
+      "mutation_detail": "BRAF V600E",
+      "n": "not_reported_in_abstract",
+      "pfs_hr": "not_reported_in_abstract",
+      "pfs_ci": "not_reported_in_abstract",
+      "pfs_p": "not_reported_in_abstract",
+      "os_hr": "not_reported_in_abstract",
+      "os_ci": "not_reported_in_abstract",
+      "os_p": "not_reported_in_abstract",
+      "notes": "Abstract states 'BRAF mutations were a negative prognostic factor' but does not report HR. Full-text table required. BRAF exon 15 was assessed in 639 KRAS exon 2 WT patients."
+    }
+  ],
+  "individual_ras_mutation_subgroups": {
+    "available_in_abstract": false,
+    "available_in_full_text": true,
+    "note": "Full-text Table 2 of Douillard 2013 NEJM reports individual mutation subgroups. Not accessible from abstract. From Oliner 2013 ASCO abstract (doi:10.1200/jco.2013.31.15_suppl.3511): individual RAS mutation subgroups by exon reported but truncated in literature search.",
+    "subgroups_reported_in_full_text": [
+      "KRAS exon 3 (codon 61) mutations",
+      "KRAS exon 4 (codon 117/146) mutations",
+      "NRAS exon 2 (codon 12/13) mutations",
+      "NRAS exon 3 (codon 61) mutations",
+      "NRAS exon 4 (codon 117/146) mutations"
+    ],
+    "full_text_accessibility": "NEJM full text behind paywall; PMC equivalent not available"
+  },
+  "kras_exon2_only_hr_delta": {
+    "kras_exon2_wt_pfs_hr": 0.80,
+    "kras_exon2_wt_pfs_source": "Douillard 2010 JCO (PMID 20921462)",
+    "expanded_ras_wt_pfs_hr": 0.72,
+    "expanded_ras_wt_pfs_source": "Douillard 2013 NEJM (PMID 24024839)",
+    "pfs_hr_delta": -0.08,
+    "pfs_hr_delta_interpretation": "Expanded RAS WT population shows stronger panitumumab benefit (HR 0.72 vs 0.80) — delta of 0.08 improvement in HR by excluding other RAS mutations",
+    "kras_exon2_wt_os_hr": 0.83,
+    "kras_exon2_wt_os_source": "Douillard 2010 JCO (PMID 20921462)",
+    "expanded_ras_wt_os_hr": 0.78,
+    "expanded_ras_wt_os_source": "Douillard 2013 NEJM (PMID 24024839)",
+    "os_hr_delta": -0.05,
+    "os_hr_delta_interpretation": "Expanded RAS WT shows stronger OS benefit (HR 0.78 vs 0.83) — delta of 0.05 improvement in HR"
+  },
+  "expanded_ras_hr_delta": {
+    "summary": "Expanding from KRAS exon 2 only to full RAS panel (KRAS+NRAS exons 2/3/4) identified 17% additional mutation-positive patients (108/639 KRAS exon 2 WT). This enriched the WT population for panitumumab benefit: PFS HR improved from 0.80 to 0.72, OS HR improved from 0.83 to 0.78. The 108 patients with other RAS mutations showed harm signal (PFS HR=1.28, OS HR=1.29).",
+    "proportion_reclassified": "17% of KRAS exon 2 WT patients reclassified as RAS mutant",
+    "total_ras_mut_proportion": "approximately 55% of all randomized patients (KRAS exon 2 mut ~37% + other RAS mut ~17% of remaining 63%)"
+  },
+  "data_completeness": "GOOD for primary RAS-WT and other-RAS-mut subgroups. Individual mutation subgroup HRs (by specific exon/codon) require NEJM full-text access — not_accessible. BRAF subgroup HR not in abstract."
+}

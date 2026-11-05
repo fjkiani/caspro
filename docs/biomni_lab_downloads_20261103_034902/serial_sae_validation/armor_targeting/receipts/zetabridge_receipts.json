@@ -1,0 +1,181 @@
+{
+  "generated_utc": "2026-07-26T07:55:46.517591+00:00",
+  "base": "https://zetabridge-api.onrender.com",
+  "target_dataset": "EGAD00001011049",
+  "warm_up": {
+    "warmed": true,
+    "seconds": 0.1
+  },
+  "ega_authorized_datasets": {
+    "http": 200,
+    "body": {
+      "endpoint": "C_EGA",
+      "source": "ega",
+      "status": "live",
+      "action": "authorized_datasets",
+      "latency_ms": 2129.9,
+      "data": {
+        "n_authorized": 1,
+        "authorized_datasets": [
+          {
+            "dataset_id": "EGAD00001011049",
+            "description": "Shallow whole genome sequencing",
+            "dac_stable_id": "EGAC00001000388"
+          }
+        ],
+        "source_endpoint": "https://ega.ebi.ac.uk:8443/v2/metadata/datasets",
+        "note": "Authoritative DAC grants for this account. An empty list means the login is valid but has no dataset access. This is NOT the public catalog."
+      },
+      "error": null,
+      "grounding": {
+        "n_authorized": 1,
+        "dataset_ids": [
+          "EGAD00001011049"
+        ]
+      }
+    }
+  },
+  "ega_files_head": {
+    "http": 200,
+    "n_files": 679,
+    "access": "authorized",
+    "first5": [
+      {
+        "accession_id": "EGAF00008095623",
+        "filesize": 698709769,
+        "display_file_name": "JBLAB-4927.bam",
+        "checksum": "a9430a9b58057f11f45351433ba8c067",
+        "checksum_type": "MD5",
+        "file_status": "available",
+        "index_file_id": ""
+      },
+      {
+        "accession_id": "EGAF00008095502",
+        "filesize": 419571750,
+        "display_file_name": "JBLAB-4184.bam",
+        "checksum": "c6cc4e088c4f7583d9312e044abc471f",
+        "checksum_type": "MD5",
+        "file_status": "available",
+        "index_file_id": ""
+      },
+      {
+        "accession_id": "EGAF00008095624",
+        "filesize": 568423002,
+        "display_file_name": "JBLAB-4928.bam",
+        "checksum": "0601edbb5eaf2454f507f18f8386cba9",
+        "checksum_type": "MD5",
+        "file_status": "available",
+        "index_file_id": ""
+      },
+      {
+        "accession_id": "EGAF00008095503",
+        "filesize": 759614055,
+        "display_file_name": "JBLAB-4186.bam",
+        "checksum": "7afb29bd1d47b13c3e71085f5d1f87f1",
+        "checksum_type": "MD5",
+        "file_status": "available",
+        "index_file_id": ""
+      },
+      {
+        "accession_id": "EGAF00008095625",
+        "filesize": 573699414,
+        "display_file_name": "JBLAB-4929.bam",
+        "checksum": "e193b20988abbdcd731499123d78e803",
+        "checksum_type": "MD5",
+        "file_status": "available",
+        "index_file_id": ""
+      }
+    ]
+  },
+  "byte_proof_target": {
+    "file_id": "EGAF00008095623",
+    "display_file_name": "JBLAB-4927.bam",
+    "published_md5_full_file": "a9430a9b58057f11f45351433ba8c067"
+  },
+  "ega_access_probe": {
+    "http": 200,
+    "body": {
+      "endpoint": "C_EGA",
+      "source": "ega",
+      "status": "live",
+      "action": "file_access_probe",
+      "latency_ms": 8104.3,
+      "data": {
+        "metadata_status": 200,
+        "display_file_name": "JBLAB-4927.bam",
+        "file_size": 698709769,
+        "dataset_id": [
+          "EGAD00001011049"
+        ],
+        "plain_checksum": "a9430a9b58057f11f45351433ba8c067",
+        "byte_probe_status": 206,
+        "byte_probe_content_type": "application/octet-stream",
+        "can_download": true
+      },
+      "error": null,
+      "grounding": {
+        "file_id": "EGAF00008095623",
+        "can_download": true
+      }
+    }
+  },
+  "ega_ranged_byteproof": {
+    "http": 200,
+    "bytes_received": 1000000,
+    "md5_of_first_bytes": "b41f151168f0b77d137f255fae28241c",
+    "sha256_of_first_bytes": "1a63d14a3fcb2f39fde1f4d4d926d505a2e16b2e968f34508109b823069903fa",
+    "note": "MD5 is over the first <=1MB prefix (NOT the full-file MD5); full-file published MD5 recorded separately. Proves authorized byte egress.",
+    "seconds": 7.7,
+    "is_bam_magic": true
+  },
+  "synapse_argo_scan": {
+    "retrieved_utc": "2026-07-26T07:56:07.046578+00:00",
+    "purpose": "locate HGSOC CCNE1/HR-annotated cohort w/ ATR/WEE1/CDK2i drug response",
+    "synapse_whoami": {
+      "http": 200,
+      "body": {
+        "endpoint": "A_MSK",
+        "source": "synapse",
+        "status": "live",
+        "action": "whoami",
+        "latency_ms": 0.1,
+        "data": {
+          "ownerId": "3572550",
+          "userName": "fjkiani",
+          "firstName": "Fahad",
+          "lastName": "Kiani"
+        },
+        "error": null,
+        "grounding": {
+          "ownerId": "3572550"
+        }
+      }
+    },
+    "argo_health": {
+      "http": 200,
+      "body": {
+        "endpoint": "D_ARGO",
+        "source": "argo",
+        "configured": true,
+        "status": "live",
+        "latency_ms": 248.4,
+        "error": null
+      }
+    },
+    "argo_entities": {
+      "http": 200,
+      "body_keys": [
+        "endpoint",
+        "source",
+        "status",
+        "action",
+        "latency_ms",
+        "data",
+        "error",
+        "grounding"
+      ],
+      "body_trunc": "{\"endpoint\": \"D_ARGO\", \"source\": \"argo\", \"status\": \"live\", \"action\": \"list_entities\", \"latency_ms\": 341.5, \"data\": {\"total_in_registry\": 10000, \"n_returned\": 50, \"pages_scanned\": 1, \"entities\": [{\"object_id\": \"00006fc5-0b49-57be-82ff-79ccad4f1049\", \"file_name\": \"MUTO-INTL.DO250036.SA610331.wgs.20230810.sanger-wgs.somatic.ascat_metrics.tgz\", \"gnos_id\": \"12809c8b-73ca-429f-809c-8b73ca729f2b\", \"project_code\": \"MUTO-INTL\", \"access\": \"controlled\", \"donor_id\": \"DO250036\", \"sample_id\": \"SA610331\", \"experiment\": \"wgs\", \"date\": \"20230810\", \"extension\": \"tgz\"}, {\"object_id\": \"0000a124-d7f6-5820-887a-c3893906a31c\", \"file_name\": \"MUTO-INTL.DO252997.SA615386.wgs.20240602.sanger-wgs.somatic.ascat_metrics.tgz\", \"gnos_id\": \"44779d6d-1d84-4fab-b79d-6d1d844fab5b\", \"project_code\": \"MUTO-INTL\", \"access\": \"con"
+    },
+    "verdict": "HONEST-NULL. EGA entitlement is CN-only (shallow-WGS BAMs, EGAD00001011049); no authorized HGSOC drug-response cohort with ATR/WEE1/CDK2i outcomes is exposed. Armor drug targets therefore remain HYPOTHESIS."
+  }
+}

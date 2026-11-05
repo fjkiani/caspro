@@ -1,0 +1,112 @@
+{
+  "product": "Tumor Board",
+  "generated_at": "2026-07-16",
+  "case_resolution_contract": {
+    "product_name": "Tumor Board",
+    "product_type": "Research case-resolution workspace",
+    "governance_status": "RUO \u2014 research use only; not clinical decision support",
+    "one_sentence": "Tumor Board translates CrisPRO's research intelligence into a traceable case workspace that organizes what the molecular profile supports, which mechanism-aligned options and trials should be investigated, what evidence applies, and what remains uncertain.",
+    "not_this": [
+      "Not a separate biology engine.",
+      "Not 'four demo patients'.",
+      "Not clinical decision support.",
+      "Not a treatment directive.",
+      "Not a diagnostic system."
+    ],
+    "input_contract": {
+      "required": [
+        "Molecular profile (variants, structural events, expression signature where available)"
+      ],
+      "recommended": [
+        "Clinical context (histology, stage, prior lines)",
+        "Available specimens / assays"
+      ],
+      "governance": "Any protected health information handling is out of scope for the public surface; enterprise deployments include the governance layer."
+    },
+    "output_contract": {
+      "sections": [
+        {
+          "section": "Biology map",
+          "content": "Named pathways/MoA active or perturbed in the profile."
+        },
+        {
+          "section": "Vulnerability hypotheses",
+          "content": "SL candidates, dependency signals, escape routes."
+        },
+        {
+          "section": "Mechanism-aligned options",
+          "content": "Therapeutic mechanisms aligned to the biology; framed as research exploration."
+        },
+        {
+          "section": "Trial exploration",
+          "content": "Mechanism-relevant trials with fit rationale."
+        },
+        {
+          "section": "Evidence trace",
+          "content": "Every claim tagged with source and evidence tier."
+        },
+        {
+          "section": "Missing data + confidence",
+          "content": "What the profile does NOT tell us; where confidence is low."
+        },
+        {
+          "section": "Caveats and governance flags",
+          "content": "Quarantine notes; RUO reminder; wet-lab/clinical work remaining."
+        }
+      ],
+      "prohibited_framing": [
+        "Treatment recommendation.",
+        "Clinical prescribing.",
+        "Prognosis prediction.",
+        "Responder prediction for the individual patient."
+      ]
+    }
+  },
+  "shared_layer_matrix": {
+    "shared_layer_components": [
+      {
+        "component": "MoA / pathway map",
+        "interception_use": "Metastasis-step context; target-mission framing.",
+        "insilico_trials_use": "Asset/population mechanism fit.",
+        "tumor_board_use": "Patient vulnerability context."
+      },
+      {
+        "component": "Synthetic lethality (SL)",
+        "interception_use": "Target hypothesis support.",
+        "insilico_trials_use": "Biomarker-dependent program logic.",
+        "tumor_board_use": "Candidate dependency exploration for the individual profile."
+      },
+      {
+        "component": "Trial decoding",
+        "interception_use": "Downstream translational context.",
+        "insilico_trials_use": "Core trial strategy layer.",
+        "tumor_board_use": "Mechanism-aligned trial exploration."
+      },
+      {
+        "component": "Resistance / escape logic",
+        "interception_use": "Metastasis escape rationale.",
+        "insilico_trials_use": "Program risk and combination design.",
+        "tumor_board_use": "Patient-level hypothesis + risk exploration."
+      },
+      {
+        "component": "Target Lock",
+        "interception_use": "Metastatic target selection.",
+        "insilico_trials_use": "Asset target coherence check.",
+        "tumor_board_use": "Optional research annotation on the biology map."
+      },
+      {
+        "component": "PGx layer",
+        "interception_use": "Experimental / asset safety context.",
+        "insilico_trials_use": "Exposure and protocol context.",
+        "tumor_board_use": "Research safety flag on options exploration."
+      },
+      {
+        "component": "Governance / claim ledger",
+        "interception_use": "Bounds on product claims (POC vs CFD, AF3 gates).",
+        "insilico_trials_use": "Bounds on program-decision claims.",
+        "tumor_board_use": "Bounds on case-output framing (research, not clinical)."
+      }
+    ],
+    "invariant": "A vulnerability, mechanism, escape route, or trial that surfaces in one product surfaces in the others the same way \u2014 pulled from the same layer. Product surfaces differ in the customer decision they scope."
+  }
+}

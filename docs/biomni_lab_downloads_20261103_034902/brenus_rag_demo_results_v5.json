@@ -1,0 +1,86 @@
+{
+  "results": [
+    {
+      "query_num": 1,
+      "query": "What are the best IO benchmark results for MSS colorectal cancer, and what does the liver-met data show?",
+      "answer": "(a) The best IO benchmark results for MSS colorectal cancer show a universal positive delta (P_A > P_B) across all 7 trials, with a delta range of 0.15-0.30. Liver-met IO suppression is universal across all MSS CRC IO mechanisms. [W1-IOCORE-001]\n\n(b) Evidence:\n  - All 7 trials show positive delta (P_A > P_B). [W1-IOCORE-001]\n  - Liver-met IO suppression is universal across all MSS CRC IO mechanisms. [W1-IOCORE-001]\n  - Delta range: 0.15-0.30. [W1-IOCORE-001]\n\n(c) Caveats: None.",
+      "citations": [
+        "W1-IOCORE-001"
+      ],
+      "guardrail_violations": [],
+      "faithfulness": 1.0,
+      "faithfulness_reasoning": "The answer is fully grounded in the source documents, accurately summarizing the results of the 7 trials and the universal positive delta (P_A > P_B) across all MSS CRC IO mechanisms.",
+      "ungrounded_claims": [],
+      "answer_relevancy": 1.0,
+      "relevancy_reasoning": "The answer fully addresses the user's query by providing the best IO benchmark results for MSS colorectal cancer and the liver-met data.",
+      "composite": 1.0,
+      "pass": true,
+      "latency_ms": {
+        "retrieval": 1118,
+        "generation": 52563,
+        "faith_eval": 1815,
+        "relev_eval": 3471
+      }
+    },
+    {
+      "query_num": 2,
+      "query": "Compare the BreAK CRC-001 trial design against the TRIBE2 benchmark. What are the critical gaps?",
+      "answer": "(a) The critical gaps in the BreAK CRC-001 trial design are:\n- Liver metastasis not pre-specified as stratification variable [W2-GAPS-001]\n- No biomarker gate for patient selection [W2-GAPS-001]\n- Bevacizumab optionality creates immunomodulatory confounding [W2-GAPS-001]\n- SC-001 ACTIVE CONFLICT: HT29 carries BRAF V600E vs BreAK CRC-001 BRAF-WT requirement [W2-GAPS-001]\n\n(b) Evidence:\n- Liver metastasis not pre-specified as stratification variable: [W2-GAPS-001]\n- No biomarker gate for patient selection: [W2-GAPS-001]\n- Bevacizumab optionality creates immunomodulatory confounding: [W2-GAPS-001]\n- SC-001 ACTIVE CONFLICT: HT29 carries BRAF V600E vs BreAK CRC-001 BRAF-WT requirement: [W2-GAPS-001]\n\n(c) Caveats: None.",
+      "citations": [
+        "W2-GAPS-001"
+      ],
+      "guardrail_violations": [],
+      "faithfulness": 0.5,
+      "faithfulness_reasoning": "extracted",
+      "ungrounded_claims": [],
+      "answer_relevancy": 0.5,
+      "relevancy_reasoning": "The answer partially addresses the query by listing the critical gaps in the BreAK CRC-001 trial design, but does not compare them against the TRIBE2 benchmark as requested.",
+      "composite": 0.5,
+      "pass": false,
+      "latency_ms": {
+        "retrieval": 660,
+        "generation": 31209,
+        "faith_eval": 9279,
+        "relev_eval": 2769
+      }
+    },
+    {
+      "query_num": 3,
+      "query": "How does CrisPRO help Brenus Pharma address the design gaps in BreAK CRC-001?",
+      "answer": "(a) CrisPRO helps Brenus Pharma address the design gaps in BreAK CRC-001 by identifying the following gaps and providing solutions:\n\n* Liver metastasis not pre-specified as stratification variable: CrisPRO's Liver-Met Stratification Module can capture the NLM signal [W3-FITGAP-001].\n* pTMB not collected prospectively: CrisPRO recommends prospective collection of pTMB \u226528 using GuardantOMNI [W3-FITGAP-001].\n* io=0.40 (moderate) - STC-1010 mechanism requires io\u22650.50 for optimal alignment: CrisPRO's PATH A Fit Scorer can identify the mechanistic alignment score between patient molecular profile and trial mechanism-of-action vector [W3-CRISPRO-001].\n* No biomarker gate for patient selection: CrisPRO can identify which biomarkers are missing from trial design that would be needed to exploit the mechanistic signal [W3-CRISPRO-001].\n* Bevacizumab optionality creates immunomodulatory confounding: CrisPRO's Bev Scheduling Optimizer can address this gap by optimizing bevacizumab scheduling [W3-FITGAP-001].\n* SC-001 ACTIVE CONFLICT: HT29 carries BRAF V600E vs BreAK CRC-001 BRAF-WT requirement: CrisPRO's CMS Subtype Classifier can identify CMS2/3 enrichment for IO-permissive patient selection [W3-FITGAP-001].\n\n(b) Evidence:\n[W3-CRISPRO-001, W3-FITGAP-001, W2-GAPS-001]\n\n(c) Caveats: None",
+      "citations": [
+        "W3-FITGAP-001",
+        "W3-CRISPRO-001",
+        "W2-GAPS-001"
+      ],
+      "guardrail_violations": [],
+      "faithfulness": 0.8,
+      "faithfulness_reasoning": "The AI answer accurately identifies and addresses 5 out of 6 design gaps in BreAK CRC-001, but fails to provide a solution for the gap related to HT29 carrying BRAF V600E vs BreAK CRC-001 BRAF-WT requirement.",
+      "ungrounded_claims": [
+        {
+          "claim": "CrisPRO's Bev Scheduling Optimizer can address the gap related to Bevacizumab optionality creating immunomodulatory confounding.",
+          "source": "W3-FITGAP-001",
+          "grounded": false
+        },
+        {
+          "claim": "CrisPRO's CMS Subtype Classifier can identify CMS2/3 enrichment for IO-permissive patient selection.",
+          "source": "W3-FITGAP-001",
+          "grounded": false
+        }
+      ],
+      "answer_relevancy": 1.0,
+      "relevancy_reasoning": "The AI answer fully addresses the user query by providing specific solutions to the design gaps in BreAK CRC-001 using CrisPRO.",
+      "composite": 0.9,
+      "pass": true,
+      "latency_ms": {
+        "retrieval": 641,
+        "generation": 2833,
+        "faith_eval": 6105,
+        "relev_eval": 213
+      }
+    }
+  ],
+  "avg_faithfulness": 0.767,
+  "avg_answer_relevancy": 0.833,
+  "pass_rate": 0.667
+}

@@ -1,0 +1,494 @@
+{
+  "ts_utc": "2026-08-05T09:02:12.896411+00:00",
+  "purpose": "Definitive CA-125 analyte scan across all lab/marker candidate tables in PDS account mpm0fxk2 (KELIM source check).",
+  "cas_url": "https://mpmprodvdmml.ondemand.sas.com/cas-shared-default-http/",
+  "sas_username": "mpm0fxk2",
+  "ovarian_caslibs_in_account": [],
+  "n_disease_caslibs": 94,
+  "n_tabular_tables_total": 472,
+  "n_candidate_lab_tables": 34,
+  "candidate_tables": [
+    [
+      "Breast_Allianc_2002_200",
+      "aeclean_finalb.sas7bdat"
+    ],
+    [
+      "Breast_Allianc_2002_200",
+      "all_finalb.sas7bdat"
+    ],
+    [
+      "Breast_Pfizer_2006_111",
+      "lab_safe.sas7bdat"
+    ],
+    [
+      "Breast_Pfizer_2006_112",
+      "lab_safe.sas7bdat"
+    ],
+    [
+      "Breast_Pfizer_2007_113",
+      "lab_safe.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2004_310",
+      "adlb_pds2019.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2004_310",
+      "biomark_pds2019.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2005_262",
+      "chemotx.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2005_262",
+      "lab.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2006_263",
+      "chemotx.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2006_263",
+      "lab.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2006_264",
+      "chemotx.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2006_264",
+      "lab.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2006_309",
+      "adlb_pds2019.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2006_309",
+      "biomark_pds2019.sas7bdat"
+    ],
+    [
+      "Colorec_Pfizer_2007_114",
+      "lab_safe.sas7bdat"
+    ],
+    [
+      "HeadNe_Amgen_2007_265",
+      "chemotx.sas7bdat"
+    ],
+    [
+      "HeadNe_Amgen_2007_265",
+      "lab.sas7bdat"
+    ],
+    [
+      "Liver_Pfizer_2008_124",
+      "lab_safe.sas7bdat"
+    ],
+    [
+      "LungNo_Pfizer_2007_115",
+      "lab_safe.sas7bdat"
+    ],
+    [
+      "LungSm_Amgen_2002_266",
+      "a_lab.sas7bdat"
+    ],
+    [
+      "LungSm_Amgen_2002_266",
+      "c_chem.sas7bdat"
+    ],
+    [
+      "LungSm_Amgen_2002_266",
+      "c_chemo.sas7bdat"
+    ],
+    [
+      "LungSm_EliLill_2011_287",
+      "chem_cen.sas7bdat"
+    ],
+    [
+      "LungSm_EliLill_2011_287",
+      "lbcen.sas7bdat"
+    ],
+    [
+      "LungSm_G1Thera_2015_433",
+      "adlb.sas7bdat"
+    ],
+    [
+      "LungSm_G1Thera_2015_433",
+      "adtte.sas7bdat"
+    ],
+    [
+      "LungSm_G1Thera_2015_433",
+      "advs.sas7bdat"
+    ],
+    [
+      "LungSm_G1Thera_2015_434",
+      "adtte.sas7bdat"
+    ],
+    [
+      "LungSm_G1Thera_2015_434",
+      "advs.sas7bdat"
+    ],
+    [
+      "Melanom_SyntaPh_2007_123",
+      "labd.sas7bdat"
+    ],
+    [
+      "Melanom_SyntaPh_2007_123",
+      "labdllab.sas7bdat"
+    ],
+    [
+      "Pancrea_ClovisO_2010_186",
+      "adlb.sas7bdat"
+    ],
+    [
+      "Pancrea_ClovisO_2010_186",
+      "advs.sas7bdat"
+    ]
+  ],
+  "n_ca125_hits": 0,
+  "ca125_hits": [],
+  "per_table_results": [
+    {
+      "caslib": "Breast_Allianc_2002_200",
+      "table": "aeclean_finalb.sas7bdat",
+      "loaded": true,
+      "n_rows": 4740,
+      "char_cols_scanned": 2,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Breast_Allianc_2002_200",
+      "table": "all_finalb.sas7bdat",
+      "loaded": true,
+      "n_rows": 3871,
+      "char_cols_scanned": 1,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Breast_Pfizer_2006_111",
+      "table": "lab_safe.sas7bdat",
+      "loaded": true,
+      "n_rows": 71274,
+      "char_cols_scanned": 6,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Breast_Pfizer_2006_112",
+      "table": "lab_safe.sas7bdat",
+      "loaded": true,
+      "n_rows": 172845,
+      "char_cols_scanned": 6,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Breast_Pfizer_2007_113",
+      "table": "lab_safe.sas7bdat",
+      "loaded": true,
+      "n_rows": 87631,
+      "char_cols_scanned": 6,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Colorec_Amgen_2004_310",
+      "table": "adlb_pds2019.sas7bdat",
+      "loaded": true,
+      "n_rows": 12439,
+      "char_cols_scanned": 5,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Colorec_Amgen_2004_310",
+      "table": "biomark_pds2019.sas7bdat",
+      "loaded": true,
+      "n_rows": 394,
+      "char_cols_scanned": 15,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Colorec_Amgen_2005_262",
+      "table": "chemotx.sas7bdat",
+      "loaded": true,
+      "n_rows": 1136,
+      "char_cols_scanned": 40,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Colorec_Amgen_2005_262",
+      "table": "lab.sas7bdat",
+      "loaded": true,
+      "n_rows": 118749,
+      "char_cols_scanned": 40,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Colorec_Amgen_2006_263",
+      "table": "chemotx.sas7bdat",
+      "loaded": true,
+      "n_rows": 2283,
+      "char_cols_scanned": 40,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Colorec_Amgen_2006_263",
+      "table": "lab.sas7bdat",
+      "loaded": true,
+      "n_rows": 406508,
+      "char_cols_scanned": 40,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Colorec_Amgen_2006_264",
+      "table": "chemotx.sas7bdat",
+      "loaded": true,
+      "n_rows": 237,
+      "char_cols_scanned": 29,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Colorec_Amgen_2006_264",
+      "table": "lab.sas7bdat",
+      "loaded": true,
+      "n_rows": 516051,
+      "char_cols_scanned": 40,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Colorec_Amgen_2006_309",
+      "table": "adlb_pds2019.sas7bdat",
+      "loaded": true,
+      "n_rows": 125123,
+      "char_cols_scanned": 5,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Colorec_Amgen_2006_309",
+      "table": "biomark_pds2019.sas7bdat",
+      "loaded": true,
+      "n_rows": 935,
+      "char_cols_scanned": 19,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Colorec_Pfizer_2007_114",
+      "table": "lab_safe.sas7bdat",
+      "loaded": true,
+      "n_rows": 214770,
+      "char_cols_scanned": 6,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "HeadNe_Amgen_2007_265",
+      "table": "chemotx.sas7bdat",
+      "loaded": true,
+      "n_rows": 388,
+      "char_cols_scanned": 34,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "HeadNe_Amgen_2007_265",
+      "table": "lab.sas7bdat",
+      "loaded": true,
+      "n_rows": 212391,
+      "char_cols_scanned": 40,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Liver_Pfizer_2008_124",
+      "table": "lab_safe.sas7bdat",
+      "loaded": true,
+      "n_rows": 212976,
+      "char_cols_scanned": 6,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "LungNo_Pfizer_2007_115",
+      "table": "lab_safe.sas7bdat",
+      "loaded": true,
+      "n_rows": 92554,
+      "char_cols_scanned": 6,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "LungSm_Amgen_2002_266",
+      "table": "a_lab.sas7bdat",
+      "loaded": true,
+      "n_rows": 111234,
+      "char_cols_scanned": 27,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "LungSm_Amgen_2002_266",
+      "table": "c_chem.sas7bdat",
+      "loaded": true,
+      "n_rows": 3287,
+      "char_cols_scanned": 32,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "LungSm_Amgen_2002_266",
+      "table": "c_chemo.sas7bdat",
+      "loaded": true,
+      "n_rows": 4581,
+      "char_cols_scanned": 20,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "LungSm_EliLill_2011_287",
+      "table": "chem_cen.sas7bdat",
+      "loaded": true,
+      "n_rows": 12480,
+      "char_cols_scanned": 20,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "LungSm_EliLill_2011_287",
+      "table": "lbcen.sas7bdat",
+      "loaded": true,
+      "n_rows": 28710,
+      "char_cols_scanned": 38,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "LungSm_G1Thera_2015_433",
+      "table": "adlb.sas7bdat",
+      "loaded": true,
+      "n_rows": 30329,
+      "char_cols_scanned": 37,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "LungSm_G1Thera_2015_433",
+      "table": "adtte.sas7bdat",
+      "loaded": true,
+      "n_rows": 211,
+      "char_cols_scanned": 27,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "LungSm_G1Thera_2015_433",
+      "table": "advs.sas7bdat",
+      "loaded": true,
+      "n_rows": 5759,
+      "char_cols_scanned": 32,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "LungSm_G1Thera_2015_434",
+      "table": "adtte.sas7bdat",
+      "loaded": true,
+      "n_rows": 96,
+      "char_cols_scanned": 27,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "LungSm_G1Thera_2015_434",
+      "table": "advs.sas7bdat",
+      "loaded": true,
+      "n_rows": 2383,
+      "char_cols_scanned": 32,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Melanom_SyntaPh_2007_123",
+      "table": "labd.sas7bdat",
+      "loaded": true,
+      "n_rows": 7340,
+      "char_cols_scanned": 5,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Melanom_SyntaPh_2007_123",
+      "table": "labdllab.sas7bdat",
+      "loaded": true,
+      "n_rows": 11769,
+      "char_cols_scanned": 13,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Pancrea_ClovisO_2010_186",
+      "table": "adlb.sas7bdat",
+      "loaded": true,
+      "n_rows": 160592,
+      "char_cols_scanned": 39,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    },
+    {
+      "caslib": "Pancrea_ClovisO_2010_186",
+      "table": "advs.sas7bdat",
+      "loaded": true,
+      "n_rows": 45176,
+      "char_cols_scanned": 27,
+      "ca125_column_name_hit": [],
+      "ca125_value_hits": [],
+      "err": null
+    }
+  ],
+  "search_regex": "ca[\\s._-]?125|cancer\\s*antigen\\s*125|\\bca125\\b",
+  "limitation": "Value scan covered the 34 name-flagged lab/marker/chemistry tables; not all 472 tabular tables were row-loaded. CA-125 is an ovarian/gyn tumour marker and no ovarian trial is provisioned to this account, so any incidental non-ovarian CA-125 would not be KELIM-usable."
+}

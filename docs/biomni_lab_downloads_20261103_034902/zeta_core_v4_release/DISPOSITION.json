@@ -1,0 +1,534 @@
+{
+  "ci_execution_history": {
+    "defects_were_mine_not_pr_attributable": [
+      {
+        "branches": [
+          "pr_a",
+          "pr_b"
+        ],
+        "commits": {
+          "pr_a": "0159b9610d4e094de5e134458c05c4d87e78849d",
+          "pr_b": "a266d23fa992b9dad9d7d65b7bcdf71aeba0154c"
+        },
+        "fix": "added the same --ignore to both head and base invocations with an inline rationale, plus set -o pipefail, tee'd logs, a hard failure if either log contains INTERNALERROR, and a refusal to certify when a run reports fewer than 900 junit testcase elements. Gates strengthened, not weakened; the excluded module's per-branch collection behaviour stays covered by the two cohere-harness collection probes.",
+        "id": "CI_DEFECT_1",
+        "job": "regression-diff",
+        "symptom": "the job ran `pytest tests` without the uniform --ignore=tests/test_cohere_with_key.py used by the authoritative comparison. On the merge base that module calls sys.exit(1) at import, so the base session aborted with INTERNALERROR: SystemExit: 1 and collected zero tests; the node diff was then computed against a degenerate run."
+      },
+      {
+        "branches": [
+          "pr_a"
+        ],
+        "commits": {
+          "pr_a": "0159b9610d4e094de5e134458c05c4d87e78849d"
+        },
+        "fix": "--min-tests 570 -> 569 plus --allow-skip for exactly that one node. Every other skip in a required job still fails the job.",
+        "id": "CI_DEFECT_2",
+        "job": "psa-runtime-contract",
+        "symptom": "569 passed, 1 skipped, then SKIP_GATE_FAIL on tests/unit/test_tumor_marker_kinetics_equivalence.py::test_fixture_still_matches_a_live_brenus_checkout. That test is skipif-guarded on a local Brenus evidence checkout that a hermetic runner cannot have, so the gate's own floor was wrong, not the test."
+      }
+    ],
+    "generations": 3,
+    "requirements_ci_txt_first_clean_install": {
+      "installed_successfully_on_github_runner": true,
+      "note": "ci/requirements.ci.txt was a derived pin set with 20 unresolved entries that had never been installed on a clean runner. It has now installed successfully on GitHub-hosted runners in every green job, which retires that specific risk. The 20 unresolved entries remain unresolved in the file itself."
+    },
+    "run_1_both_prs_failed": {
+      "pr_a_failing_jobs": [
+        "psa-runtime-contract",
+        "regression-diff"
+      ],
+      "pr_a_run_id": 31774475819,
+      "pr_b_failing_jobs": [
+        "regression-diff"
+      ],
+      "pr_b_run_id": 31774475838
+    },
+    "run_2_after_ci_fix": {
+      "pr_a_failing_jobs": [
+        "regression-diff"
+      ],
+      "pr_a_new_errors_at_that_head": 1,
+      "pr_a_run_id": 31775215370,
+      "pr_b_result": "all jobs success",
+      "pr_b_run_id": 31775217334
+    },
+    "run_3_after_import_fix": {
+      "pr_a_result": "all jobs success",
+      "pr_a_run_id": 31776434485
+    },
+    "workflow_blob": "286a3f79fc98793acb5da5646239b1e450226c8c",
+    "workflow_blob_identical_across_branches": true,
+    "workflow_sha256": "85289d5d73cbdad02e33cab3ab53230da62317e308bac28ccb12bc4178e70130"
+  },
+  "combined_pr_a_plus_b": {
+    "branch": "review/combined-psa-cohere",
+    "split_fidelity": "SPLIT_BEHAVIOUR_PRESERVED",
+    "tests": {
+      "collected": 1879,
+      "errors": 64,
+      "failed": 162,
+      "junit_testcase_elements": 1879,
+      "passed": 1643,
+      "skipped": 8,
+      "xfailed": 2
+    }
+  },
+  "comparison_integrity": {
+    "command_shape": "cd <tree> && PYTHONPATH=<tree> /workspace/.venv/bin/python -m pytest tests --ignore=tests/test_cohere_with_key.py -q -p no:cacheprovider --continue-on-collection-errors -rfE -o junit_family=xunit1 --junitxml=<label>.junit.xml",
+    "node_ids_exact": true,
+    "one_environment": "matrix_started_utc=2026-08-14T04:02:32+00:00\ninterpreter=3.11.13\npytest=pytest 8.4.1\ncommand_shape=cd <tree> && PYTHONPATH=<tree> python -m pytest tests --ignore=tests/test_cohere_with_key.py -q -p no:cacheprovider --continue-on-collection-errors -rfE -o junit_family=xunit1 --junitxml=<label>.junit.xml\nmatrix_finished_utc=2026-08-14T04:34:34+00:00",
+    "prior_comparison_status": "INVALID_INCONSISTENT_COUNTS",
+    "reconciled": true,
+    "regression_neutrality_claim_handling": "the earlier REGRESSION_NEUTRALITY claim was withdrawn together with the invalidated comparison and is not restated here in either direction. this receipt reports only the measured node level quantities from the authoritative matrix: new_failed_nodes, new_error_nodes and removed_nodes per PR.",
+    "uniform_exclusion": {
+      "module": "tests/test_cohere_with_key.py",
+      "reason": "on main and on PR A this module calls sys.exit(1) at import when no COHERE_API_KEY is present, which raises INTERNALERROR SystemExit and aborts the entire pytest session (measured rc=3, no tests collected). It is therefore excluded identically on all four trees so one command shape can be used, and its collection behaviour is measured separately per tree."
+    }
+  },
+  "credential_hygiene": {
+    "credential_findings_in_pr_a_clone": 0,
+    "credential_findings_in_pr_b_clone": 0,
+    "exposed_pat_treated_as": "COMPROMISED, ROTATION REQUIRED",
+    "exposed_pat_use_authorized_by_user": true,
+    "exposed_pat_used": true,
+    "rotation_note": "authorized use does not undo the exposure. The token was printed in plaintext chat and must be revoked and reissued; it carries repo, workflow, admin:org and delete_repo scopes."
+  },
+  "generated_utc": "2026-08-14T06:58:54+00:00",
+  "global": {
+    "FOCUSED_SUITE": "POST_HOC, NOT AN ACCEPTANCE GATE",
+    "GLOBAL_REPOSITORY_STATUS": "RED",
+    "MERGED": "NO",
+    "MERGE_READY": "NO",
+    "PRODUCTION_DEPLOYED": "NO",
+    "REPOSITORY_WIDE_SUITE": "RED",
+    "base_commit": "99dd39c657064839fd25c37a69851178bc5e6d9d",
+    "pre_existing_errors": 64,
+    "pre_existing_failures": 162,
+    "pre_existing_total_red_nodes": 226,
+    "red_attribution": {
+      "environment_or_service_driven_errors": 39,
+      "note": "the 'jwt' import failures are not explained by drift against requirements_frozen.txt because PyJWT is not declared there at all; the declared requirement set is incomplete for this test suite. connection refused errors need a live local HTTP service that the comparison environment does not run.",
+      "other_errors": 1,
+      "pyjwt_declared_in_requirements_frozen_txt": false,
+      "repository_internal_errors": 24
+    }
+  },
+  "mandatory_corrections": {
+    "A7_and_evidence_only_claim": {
+      "correct_statement": "tests/unit/test_zeta_closure_diagnostics.py imports scripts/validation/qualify_zeta_d10_d11_d12, which imports d11_functional_form_validation at module scope. The file is therefore reached by the test suite at import time, which is exactly how the PR-attributable collection regression was produced.",
+      "effect_on_mutation_A7": "A7 remains UNCAUGHT_INVARIANT, but for the narrower reason that the mutated fold-local preprocessing function is never called by any test, not because the module is unreferenced.",
+      "still_true": "no production runtime module under api/ imports scripts/validation/; the D9/D10/D11/D12 material remains evidence-only for the served API surface.",
+      "tests_that_import_scripts_validation": {
+        "tests/unit/test_zeta_closure_diagnostics.py": "qualify_zeta_d10_d11_d12",
+        "tests/unit/test_zeta_delivery_manifest.py": "verify_zeta_core_delivery",
+        "tests/unit/test_zeta_report_retirement.py": "retire_zeta_delivery_report"
+      },
+      "withdrawn_claim": "scripts/validation/d11_functional_form_validation.py is evidence-only with no runtime import and no test referencing it"
+    }
+  },
+  "pr_a": {
+    "added_nodes": 922,
+    "branch": "review/zeta-core-v4-psa-feature",
+    "ci": {
+      "artifacts_published": {
+        "junit-psa-artifact-integrity": 2052,
+        "junit-psa-negative-controls": 4408,
+        "junit-psa-runtime-contract": 10222,
+        "regression-diff-receipt": 155233
+      },
+      "event": "pull_request",
+      "head_sha_ci_ran_on": "1d9ce4f5964c3e3d1fc198969c722256cd23e694",
+      "head_sha_matches_branch_head": true,
+      "non_required_jobs": {
+        "cohere-live-optional (never required)": "skipped"
+      },
+      "note": "all five required hermetic jobs succeeded on GitHub-hosted runners installing from the committed pin set; the live provider probe is the only non-required job and it did not run on the pull_request event",
+      "required_jobs": {
+        "cohere-harness": "success",
+        "psa-artifact-integrity": "success",
+        "psa-negative-controls": "success",
+        "psa-runtime-contract": "success",
+        "regression-diff": "success"
+      },
+      "run_attempt": 1,
+      "run_id": 31776434485,
+      "run_url": "https://github.com/fjkiani/crispro-backend-v2/actions/runs/31776434485",
+      "verdict": "GREEN"
+    },
+    "ci_measured_base_tests": {
+      "collected": 944,
+      "errors": 64,
+      "failed": 162,
+      "junit_testcase_elements": 944,
+      "passed": 708,
+      "skipped": 8,
+      "xfailed": 2
+    },
+    "ci_measured_tests": {
+      "collected": 1866,
+      "errors": 64,
+      "failed": 162,
+      "junit_testcase_elements": 1866,
+      "passed": 1629,
+      "skipped": 9,
+      "xfailed": 2
+    },
+    "ci_node_diff": {
+      "added_nodes_count": 922,
+      "base_failed_now_passing": [],
+      "new_errors": 0,
+      "new_failed": 0,
+      "node_ids_exact": true,
+      "pre_existing_errors_shared_with_base": 64,
+      "pre_existing_failed_shared_with_base": 162,
+      "reconciled": true,
+      "removed": 0
+    },
+    "clean_clone_status": "VERIFIED",
+    "commits_added_over_matrix_head": [
+      {
+        "changed_files": [
+          "release_inventory/SHA256SUMS",
+          "scripts/ci/assert_no_unexpected_skips.py"
+        ],
+        "sha": "37cc35f653a09ca8c828fe76c4beb3049df302ea",
+        "subject": "ci: do not count an expected failure as an unexpected skip"
+      },
+      {
+        "changed_files": [
+          ".github/workflows/zeta_core_v4_release.yml",
+          "release_inventory/SHA256SUMS"
+        ],
+        "sha": "0159b9610d4e094de5e134458c05c4d87e78849d",
+        "subject": "ci: run the regression diff against a non-degenerate base suite"
+      },
+      {
+        "changed_files": [
+          "scripts/validation/d11_functional_form_validation.py",
+          "scripts/validation/d12_selection_analysis.py",
+          "scripts/validation/d12_selection_core.py"
+        ],
+        "sha": "1d9ce4f5964c3e3d1fc198969c722256cd23e694",
+        "subject": "fix: importing the D11/D12 evidence scripts must not touch the filesystem"
+      }
+    ],
+    "draft": true,
+    "draft_intent": true,
+    "force_push_used": false,
+    "head": "1d9ce4f5964c3e3d1fc198969c722256cd23e694",
+    "head_gap_disclosure": "the branch head now carries 3 commits over the head measured in the authoritative local matrix (711f01885430a2e4d3e7a6450dcdfc7102322b29): 37cc35f6 (ci: do not count an expected failure as an unexpected skip) touching release_inventory/SHA256SUMS, scripts/ci/assert_no_unexpected_skips.py; 0159b961 (ci: run the regression diff against a non-degenerate base suite) touching .github/workflows/zeta_core_v4_release.yml, release_inventory/SHA256SUMS; 1d9ce4f5 (fix: importing the D11/D12 evidence scripts must not touch the filesystem) touching scripts/validation/d11_functional_form_validation.py, scripts/validation/d12_selection_analysis.py, scripts/validation/d12_selection_core.py. The CI run at the final head re-measures the full suite independently and is the authoritative outcome for the delivered head.",
+    "head_measured_in_matrix": "711f01885430a2e4d3e7a6450dcdfc7102322b29",
+    "local_vs_ci_delta": {
+      "ci": {
+        "collected": 1866,
+        "errors": 64,
+        "failed": 162,
+        "junit_testcase_elements": 1866,
+        "passed": 1629,
+        "skipped": 9,
+        "xfailed": 2
+      },
+      "collected_failed_errors_xfailed_identical": true,
+      "difference": "passed 1630 -> 1629, skipped 8 -> 9",
+      "explanation": "that test is guarded by skipif on the presence of a local Brenus evidence checkout. it executes in the comparison environment and is skipped on a hermetic GitHub runner, which has no such checkout. it is the one node that the required-job skip gate tolerates by name; every other skip still fails the job.",
+      "local": {
+        "collected": 1866,
+        "errors": 64,
+        "failed": 162,
+        "junit_testcase_elements": 1866,
+        "passed": 1630,
+        "skipped": 8,
+        "xfailed": 2
+      },
+      "single_node_responsible": "tests/unit/test_tumor_marker_kinetics_equivalence.py::test_fixture_still_matches_a_live_brenus_checkout"
+    },
+    "merged": false,
+    "mutation_tests": {
+      "caught": 6,
+      "total": 7,
+      "uncaught": [
+        "A7"
+      ]
+    },
+    "new_errors": 0,
+    "new_failures": 0,
+    "pull_request_number": 18,
+    "remote_head_verified_by_ls_remote": true,
+    "removed_nodes": 0,
+    "staging": "BLOCKED",
+    "staging_evidence": {
+      "eligible_under_directive_section_10": true,
+      "pr_a_gates_pass": true,
+      "preview_or_autodeploy_keys_found": false,
+      "render_credentials_in_environment": 0,
+      "render_yaml_services": [
+        "crispro-backend",
+        "crispro-backend-v2",
+        "crispro-backend-v2-keepalive"
+      ],
+      "verdict": "PR A now passes its gates so staging is eligible, but there is no Render credential in this environment and render.yaml declares no preview environment, so no staging deployment can be created or verified from here. No claim is made that a Render PR preview exists; if previews are enabled on the Render side they are not observable from this environment."
+    },
+    "staging_reason": "STAGING_BLOCKED_INFRASTRUCTURE",
+    "status": "READY_FOR_REVIEW",
+    "tests": {
+      "collected": 1866,
+      "errors": 64,
+      "failed": 162,
+      "junit_testcase_elements": 1866,
+      "passed": 1630,
+      "skipped": 8,
+      "xfailed": 2
+    },
+    "tree": "09a1e53de75d3dcefb45d158f1c4830834bc69ad",
+    "url": "https://github.com/fjkiani/crispro-backend-v2/pull/18"
+  },
+  "pr_attributable_regression": {
+    "count_found": 1,
+    "counts_at_that_head": {
+      "collected": 1865,
+      "errors": 65,
+      "failed": 162,
+      "passed": 1627,
+      "skipped": 9,
+      "xfailed": 2
+    },
+    "fix_commit": "1d9ce4f5964c3e3d1fc198969c722256cd23e694",
+    "fix_description": "moved the directory creation out of import scope to the point of use immediately before each write site; removed it entirely from d12_selection_core.py, which has no write site for OUT. ZC4_D11_OUT / ZC4_D12_OUT overrides retained. Folds (10), seed (20260813), output paths, output file names and all computation unchanged.",
+    "fix_diffstat": " 3 files changed, 11 insertions(+), 3 deletions(-)",
+    "fix_files": [
+      "scripts/validation/d11_functional_form_validation.py",
+      "scripts/validation/d12_selection_analysis.py",
+      "scripts/validation/d12_selection_core.py"
+    ],
+    "fix_proven_not_asserted": {
+      "import_probe_stdout": "IMPORT_OK inside",
+      "import_probe_with_unwritable_out_dirs_rc": 0,
+      "post_fix_ci_errors": 64,
+      "post_fix_ci_new_errors": 0,
+      "targeted_tests_rc": 0,
+      "targeted_tests_tail": "2 passed in 0.56s"
+    },
+    "fix_tree": "09a1e53de75d3dcefb45d158f1c4830834bc69ad",
+    "found_only_on": "a clean GitHub-hosted runner; the comparison environment could not surface it",
+    "kind": "module-level collection failure",
+    "node": "tests/unit/test_zeta_closure_diagnostics.py::tests.unit.test_zeta_closure_diagnostics",
+    "root_cause": "importing scripts/validation/qualify_zeta_d10_d11_d12 transitively imported scripts/validation/d11_functional_form_validation.py, which called OUT.mkdir(parents=True, exist_ok=True) at module scope. On a runner where /workspace is not writable this raised PermissionError: [Errno 13] Permission denied: '/workspace' during collection.",
+    "scope_restraint": {
+      "reason": "these three carry the identical import-time mkdir but exist on main, so they are not PR-attributable and fixing them would exceed the directive's 'fix only PR-attributable regressions' instruction.",
+      "same_pattern_left_untouched_because_pre_existing_on_main": [
+        "scripts/validation/validate_pgx_extraction.py",
+        "scripts/validation/validate_pgx_integration_e2e.py",
+        "scripts/validation/validate_trial_failure_prevention.py"
+      ]
+    }
+  },
+  "pr_b": {
+    "added_nodes": 13,
+    "branch": "review/cohere-key-harness",
+    "ci": {
+      "artifacts_published": {
+        "junit-cohere-harness": 694,
+        "regression-diff-receipt": 139912
+      },
+      "event": "pull_request",
+      "head_sha_ci_ran_on": "a266d23fa992b9dad9d7d65b7bcdf71aeba0154c",
+      "head_sha_matches_branch_head": true,
+      "non_required_jobs": {
+        "cohere-live-optional (never required)": "skipped"
+      },
+      "note": "all five required hermetic jobs succeeded on GitHub-hosted runners installing from the committed pin set; the live provider probe is the only non-required job and it did not run on the pull_request event",
+      "required_jobs": {
+        "cohere-harness": "success",
+        "psa-artifact-integrity": "success",
+        "psa-negative-controls": "success",
+        "psa-runtime-contract": "success",
+        "regression-diff": "success"
+      },
+      "run_attempt": 1,
+      "run_id": 31775217334,
+      "run_url": "https://github.com/fjkiani/crispro-backend-v2/actions/runs/31775217334",
+      "verdict": "GREEN"
+    },
+    "ci_measured_base_tests": {
+      "collected": 944,
+      "errors": 64,
+      "failed": 162,
+      "junit_testcase_elements": 944,
+      "passed": 708,
+      "skipped": 8,
+      "xfailed": 2
+    },
+    "ci_measured_tests": {
+      "collected": 957,
+      "errors": 64,
+      "failed": 162,
+      "junit_testcase_elements": 957,
+      "passed": 721,
+      "skipped": 8,
+      "xfailed": 2
+    },
+    "ci_node_diff": {
+      "added_nodes_count": 13,
+      "base_failed_now_passing": [],
+      "new_errors": 0,
+      "new_failed": 0,
+      "node_ids_exact": true,
+      "pre_existing_errors_shared_with_base": 64,
+      "pre_existing_failed_shared_with_base": 162,
+      "reconciled": true,
+      "removed": 0
+    },
+    "clean_clone_status": "VERIFIED",
+    "commits_added_over_matrix_head": [
+      {
+        "changed_files": [
+          "release_inventory/SHA256SUMS",
+          "scripts/ci/assert_no_unexpected_skips.py"
+        ],
+        "sha": "57e6c312822af0decc8acca6e5bd34d4410522b0",
+        "subject": "ci: do not count an expected failure as an unexpected skip"
+      },
+      {
+        "changed_files": [
+          ".github/workflows/zeta_core_v4_release.yml",
+          "release_inventory/SHA256SUMS"
+        ],
+        "sha": "a266d23fa992b9dad9d7d65b7bcdf71aeba0154c",
+        "subject": "ci: run the regression diff against a non-degenerate base suite"
+      }
+    ],
+    "draft": true,
+    "draft_intent": true,
+    "force_push_used": false,
+    "head": "a266d23fa992b9dad9d7d65b7bcdf71aeba0154c",
+    "head_gap_disclosure": "the branch head now carries 2 commits over the head measured in the authoritative local matrix (91b0df34ef042f6bc4d2c7771677a072bd9cb949): 57e6c312 (ci: do not count an expected failure as an unexpected skip) touching release_inventory/SHA256SUMS, scripts/ci/assert_no_unexpected_skips.py; a266d23f (ci: run the regression diff against a non-degenerate base suite) touching .github/workflows/zeta_core_v4_release.yml, release_inventory/SHA256SUMS. CI at the final head reproduces the local counts exactly.",
+    "head_measured_in_matrix": "91b0df34ef042f6bc4d2c7771677a072bd9cb949",
+    "local_vs_ci_delta": {
+      "ci": {
+        "collected": 957,
+        "errors": 64,
+        "failed": 162,
+        "junit_testcase_elements": 957,
+        "passed": 721,
+        "skipped": 8,
+        "xfailed": 2
+      },
+      "difference": "none",
+      "identical": true,
+      "local": {
+        "collected": 957,
+        "errors": 64,
+        "failed": 162,
+        "junit_testcase_elements": 957,
+        "passed": 721,
+        "skipped": 8,
+        "xfailed": 2
+      }
+    },
+    "merged": false,
+    "mutation_tests": {
+      "caught": 3,
+      "total": 5,
+      "uncaught": [
+        "B3",
+        "B4"
+      ]
+    },
+    "new_errors": 0,
+    "new_failures": 0,
+    "pull_request_number": 19,
+    "remote_head_verified_by_ls_remote": true,
+    "removed_nodes": 0,
+    "staging": "NOT_ELIGIBLE",
+    "staging_reason": "test-harness-only change; directive scopes staging to PR A",
+    "status": "READY_FOR_REVIEW",
+    "tests": {
+      "collected": 957,
+      "errors": 64,
+      "failed": 162,
+      "junit_testcase_elements": 957,
+      "passed": 721,
+      "skipped": 8,
+      "xfailed": 2
+    },
+    "tree": "7b7816d3b583b9f3d98a8f5774218c0773cd4f84",
+    "url": "https://github.com/fjkiani/crispro-backend-v2/pull/19"
+  },
+  "published_evidence": {
+    "ambiguous_inventory_checksum_file_removed": true,
+    "files_failed": [],
+    "files_verified": 33,
+    "manifest": "SHA256SUMS.release_evidence",
+    "note": "count grew from 19 to 33 with the ci_runs/ receipts, the seal receipt, the PR-body update receipt and the final hygiene receipt; the published CI workflow copy was also refreshed to the delivered blob.",
+    "root": "/mnt/results/zeta_core_v4_release",
+    "supersedes_count": 19
+  },
+  "remote_baseline": {
+    "ancestry": [
+      "ca56de30bf45a41d8c5f53584c31a5df27d36dea",
+      "286dab7d213601220282d8f0dac652c98946c138",
+      "80531e7f3fc0461ed7d72aa798fd7f6a92c4cc87"
+    ],
+    "branch": "feature/zeta-core-v4-tumor-marker-kinetics",
+    "pushed_branch_rewritten": false,
+    "tip": "80531e7f3fc0461ed7d72aa798fd7f6a92c4cc87",
+    "tree": "0d4cb0a68ad18e7ab16481bb2aa56815d251256a",
+    "verified": true
+  },
+  "remote_delivery": {
+    "all_pushes_fast_forward": true,
+    "fallback": {
+      "askpass": "transient GIT_ASKPASS helper, written per push and removed immediately after",
+      "core_askpass_persisted": false,
+      "credential_helper_persisted": false,
+      "method": "chat-exposed PAT, explicitly authorized by the user after the initial refusal",
+      "remote_url_contains_token": false,
+      "token_file": "/workspace/.zc4_tok (mode 600, deleted at end of run)"
+    },
+    "live_refs": {
+      "agent/prove-framework-5ws": "88cc337e86a110fcc74b3efcac681d9d7422f272",
+      "agent/stc1010-mechanism-map-max-merge": "e76e62493ef515a4ca5625fb8003c2f98d792605",
+      "analysis/britroc-bridge-classification-correction-20260813": "818a5b5c75426bd3d46adc776611b858440d03d7",
+      "audit/therapy-fit-hardening-20260509": "05b75228be48ba98bc012c273b95248319c0aaf8",
+      "auth-endpoints-only": "531678ff0fb4f3e820eef898e971d90374fad826",
+      "backup/pre-purge-agent-prove-framework-5ws": "23a4457465c1ad90abada91f64e0193d8df78737",
+      "feat/patent-submission-v0.5": "7708d4be17ab2701397a9412d8d2911a82db6591",
+      "feat/v3-sl-therapy-bridge": "975ae98087142c02e7963c0ffb5d7e1b39d8880c",
+      "feature/armor-targeting-v1.0": "adb6f0a7c48de6b55e4298117c15cf1b4e3a8323",
+      "feature/biomarker-subsystem": "0169ca4b37c042874914aeca154e8949581ef5c3",
+      "feature/mbd4-lof-sl-targeting-v1.0": "edcbc7c1c789e6497cb3e78f86030bf30abc8f4b",
+      "feature/zeta-core-v4-tumor-marker-kinetics": "80531e7f3fc0461ed7d72aa798fd7f6a92c4cc87",
+      "fix/ca125-kelim-standardization": "3bf9e6d0761c6adc5c4be0409836c8418bdd935e",
+      "fix/max-merge-engine": "03d6c8fa2ee2f6f027060c59e157f9c434a17c1b",
+      "fix/mbd4-atr-strong-tier": "bfd6d11fc872c11a13365b0682cea776a136c7f3",
+      "fix/moa-rebuild-path-a-lift005": "f2be52c9ab34cc3772aae2156504e853fc5e245b",
+      "fix/oncology-arbiter-sl-bridge": "e55cb59808ab7ac2f786bd63d64c2177231fe278",
+      "fix/res-ov-p0-009-to-main": "52f48ee5fabb6a5b06188989fa9d2ef3adf858b9",
+      "fix/resistance-p0-007-008-closures": "26e4e7d410e30ba68b24ba7bc542fddaaa6a349b",
+      "fix/tmb-guard-provenance-contracts": "778f7b5585ca95fdae79e2dc3d960248a59f2fc4",
+      "fix/v2-p0-closures": "e14b3057b617a82d0f3a1561bcf0577bbc429e45",
+      "main": "99dd39c657064839fd25c37a69851178bc5e6d9d",
+      "review/cohere-key-harness": "a266d23fa992b9dad9d7d65b7bcdf71aeba0154c",
+      "review/zeta-core-v4-psa-feature": "1d9ce4f5964c3e3d1fc198969c722256cd23e694",
+      "security/untrack-credentials-and-venv": "d3c6d0feca789d4b5beb258e41a2762277edd700"
+    },
+    "mcp_github": {
+      "authenticated_as": "fjkiani",
+      "list_branches_on_this_repo": 404,
+      "reason": "the MCP GitHub grant does not cover this private repository",
+      "usable_for_this_repo": false
+    },
+    "prohibitions_respected": {
+      "force_push": false,
+      "main_head_unchanged": "99dd39c657064839fd25c37a69851178bc5e6d9d",
+      "merge_to_main": false,
+      "production_deploy": false,
+      "pushed_audit_branch_rewritten": false,
+      "pushed_audit_branch_tip": "80531e7f3fc0461ed7d72aa798fd7f6a92c4cc87"
+    },
+    "status": "DELIVERED"
+  },
+  "repository": "fjkiani/crispro-backend-v2",
+  "supersedes": "the pre-push disposition, which recorded pr_a.status and pr_b.status as BLOCKED_BY_REMOTE_AUTHORIZATION and CI as committed-but-never-executed. Both conditions are resolved: the pull requests are open and GitHub Actions has run green on both heads."
+}

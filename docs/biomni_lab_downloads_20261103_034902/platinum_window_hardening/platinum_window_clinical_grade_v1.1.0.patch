@@ -1,0 +1,1446 @@
+From e095305383ba9fe57fccf15905f74c3a20eb0eb2 Mon Sep 17 00:00:00 2001
+From: Fahad Kiani <fahad@crispro.ai>
+Date: Sun, 19 Jul 2026 09:25:04 +0000
+Subject: [PATCH] feat(platinum_window): clinical-grade hardening v1.1.0
+
+- Audit: independent recompute; remove unbacked '16 cohorts/2444 validated' claim
+  (honest 6 cohorts/n=1236, prognostic Cox HR 0.677 p=2.04e-4 reproduced exactly)
+- Tier survival-separation: 5/5 external cohorts with usable log-rank p FAIL
+  (GSE32062/GSE102073/GSE17260/GSE26712/GSE49997, all p>=0.05) -> relabel discovery_only
+- Predictive axis: add PLATINUM_RESPONSE_SCORE (CXCL12/POSTN, INCONCLUSIVE, calibration-gated)
+- Provenance: git SHA + model/artifact SHA-256 block on every response
+- Hardening: NaN/inf validation (422), determinism + golden test; fix hash_api_key(None) 500
+- Tests: 27-test pytest suite (unit/integration/golden/audit-invariant), ~88% coverage
+- Docs: README, CHANGELOG, PROVENANCE, AUDIT.md + audit_ledger.json
+- Bump MODEL_VERSION 1.0.2 -> 1.1.0
+---
+ .gitignore                                    |   3 +
+ capabilities/platinum_window/AUDIT.md         |  46 +++
+ capabilities/platinum_window/CHANGELOG.md     |  44 +++
+ capabilities/platinum_window/PROVENANCE.md    |  68 ++++
+ capabilities/platinum_window/README.md        |  59 ++++
+ .../platinum_window/audit_ledger.json         | 184 +++++++++++
+ capabilities/platinum_window/models.py        |  21 ++
+ .../platinum_window/predictive_axis.py        | 200 +++++++++++
+ capabilities/platinum_window/provenance.py    |  97 ++++++
+ capabilities/platinum_window/router.py        |  21 +-
+ capabilities/platinum_window/scorer.py        |  74 ++++-
+ .../platinum_window/tests/__init__.py         |   0
+ .../tests/test_platinum_window.py             | 311 ++++++++++++++++++
+ config.py                                     |  49 ++-
+ conftest.py                                   |   3 +
+ 15 files changed, 1167 insertions(+), 13 deletions(-)
+ create mode 100644 .gitignore
+ create mode 100644 capabilities/platinum_window/AUDIT.md
+ create mode 100644 capabilities/platinum_window/CHANGELOG.md
+ create mode 100644 capabilities/platinum_window/PROVENANCE.md
+ create mode 100644 capabilities/platinum_window/README.md
+ create mode 100644 capabilities/platinum_window/audit_ledger.json
+ create mode 100644 capabilities/platinum_window/predictive_axis.py
+ create mode 100644 capabilities/platinum_window/provenance.py
+ create mode 100644 capabilities/platinum_window/tests/__init__.py
+ create mode 100644 capabilities/platinum_window/tests/test_platinum_window.py
+ create mode 100644 conftest.py
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..41c33c8
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,3 @@
++
++__pycache__/
++*.pyc
+diff --git a/capabilities/platinum_window/AUDIT.md b/capabilities/platinum_window/AUDIT.md
+new file mode 100644
+index 0000000..471ba3a
+--- /dev/null
++++ b/capabilities/platinum_window/AUDIT.md
+@@ -0,0 +1,46 @@
++# Platinum Window Capability — Clinical-Grade Audit
++
++**Generated (UTC):** 2026-07-19T09:03:48Z
++**Scope:** `capabilities/platinum_window` @ prior model_version 1.0.2
++**Method:** Independent recomputation from shipped artifacts (Cox PH / log-rank via lifelines) — claims were re-derived, not trusted from manifests.
++**Disposition:** Research Use Only (RUO). "Clinical-grade" = auditable, tested, provenance-tracked, deterministic — NOT a regulatory clearance.
++
++## Verdict at a glance
++
++| Advertised claim | Status | Evidence |
++|---|---|---|
++| FAP/CXCL10 fingerprint is prognostic (cross-cohort) | **SUPPORTED** | Pooled cohort-stratified Cox, **6 cohorts, n=1,236, HR 0.677 (95% CI 0.551–0.832), p=2.04e-4** — recomputed, matches manifest exactly |
++| 3-tier system separates survival externally | **OVERSTATED** | **5/5 external cohorts with a usable log-rank p FAIL** (GSE32062 p=0.929, GSE102073 p=0.476, GSE17260 p=0.821, GSE26712 p=0.890, GSE49997 p=0.060); 0 hold; all shipped manifests `validation_holds=false` |
++| "Validated across 16 cohorts (n=2,444)" | **UNVERIFIED / OVERSTATED** | No shipped artifact demonstrates this. Largest real validation = 6 cohorts / n=1,236 (prognostic only) |
++| CXCL12/POSTN predictive model deployed | **MISSING** | Not present in `scorer.py`. Manuscript verdict INCONCLUSIVE (OOD AUROC 0.638, 95% CI 0.513–0.764, p=0.031) |
++| Platinum-response labels well-populated | **LOW-N (disclosed)** | Only 9 confirmed-label TCGA patients (5 events); already disclosed in shipped audit |
++
++## The central finding — two different models
++
++The capability advertises one thing and ships another:
++
++- **Deployed `PLATINUM_SCORE`** = elastic-net Cox on **FAP_z (+0.2033) / CXCL10_z (−0.1474)** → this is the **PROGNOSTIC** fingerprint (who does badly on survival). This is the model that is genuinely validated cross-cohort.
++- **Manuscript headline** = elastic-net on **CXCL12 (−0.150) / POSTN (−0.104)** → this is the **PREDICTIVE** platinum-response model. It is **absent from the deployed code** and is **INCONCLUSIVE** where tested out-of-distribution.
++
++These are exactly the prognostic-vs-predictive axes the manuscript separates. The capability shipped only the prognostic axis while some advertising language implied predictive/validated performance. This audit corrects that.
++
++## What is genuinely true (defensible claims)
++
++1. **Prognostic fingerprint — VALIDATED cross-cohort.** FAP_z<0 AND CXCL10_z>0 predicts better OS: HR 0.677 (95% CI 0.551–0.832), p=2.04e-4, pooled across 6 cohorts (GSE102073, GSE17260, GSE26712, GSE32062, GSE49997, TCGA-HGSOC), n=1,236. Independently reproduced here.
++2. **Tier survival-separation — did NOT replicate externally.** In every external cohort with a usable log-rank statistic (5/5: GSE32062, GSE102073, GSE17260, GSE26712, GSE49997), tier survival-separation was non-significant (all p≥0.05). Three further manifests (CPTAC, MSK2025, stub) carry no usable log-rank p and cannot verify a positive claim. Relabeled discovery/exploratory.
++3. **Predictive platinum-response (CXCL12/POSTN) — INCONCLUSIVE / discovery-grade.** Added as a distinct, calibration-gated axis; never asserted as validated.
++
++## Corrective actions applied in this release
++
++- **CA-1** — `config.py` VALIDATION_CTX rewritten to a structured `claim_status` (per-claim evidence + status) replacing the flat "16/2,444 validated".
++- **CA-2** — Removed "Validated across 16 independent cohorts (n=2,444)" from scorer; `score_confidence` can no longer assert a 16-cohort validation.
++- **CA-3** — Tier outputs annotated `discovery_only=true`; response states tiers did not replicate externally.
++- **CA-4** — CXCL12/POSTN predictive model added as `PLATINUM_RESPONSE_SCORE` (verdict INCONCLUSIVE, calibration-required).
++- **CA-5** — Audit-invariant test: no API response may assert a claim flagged OVERSTATED/UNVERIFIED here.
++
++## Reproducibility
++
++- Fingerprint Cox: `lifelines.CoxPHFitter`, `strata=[cohort]`, from `artifacts/data/validation/cross_cohort_fingerprint_pooled.csv` (1,236 rows post-dropna). Recomputed HR matches the shipped manifest to 4 decimals.
++- External tier log-rank: robust re-scan of all 8 shipped `validation_manifest*.json`, keyed on the presence of a usable log-rank p (metadata-independent). 5 manifests carry a usable p (GSE32062 0.929, GSE102073 0.476, GSE17260 0.821, GSE26712 0.890, GSE49997 0.060) — all non-significant; the remaining 3 (CPTAC, MSK2025, stub) report null/absent statistics and are treated as non-supporting.
++
++_This audit is the evidence basis for the honest-correction, guardrail, and test work in this release._
+diff --git a/capabilities/platinum_window/CHANGELOG.md b/capabilities/platinum_window/CHANGELOG.md
+new file mode 100644
+index 0000000..5936f60
+--- /dev/null
++++ b/capabilities/platinum_window/CHANGELOG.md
+@@ -0,0 +1,44 @@
++# Changelog — Platinum Window capability
++
++## [1.1.0] — Clinical-grade hardening + audit + predictive axis
++
++### Audited & corrected (honesty)
++- **Removed the "validated across 16 independent cohorts (n=2,444)" claim** — not backed by any
++  shipped artifact. Corrected `config.VALIDATION_CTX` to honest counts (6 cohorts / n=1,236) with a
++  structured per-claim `claim_status` (SUPPORTED / NOT_EXTERNALLY_REPLICATED / INCONCLUSIVE).
++- **Tier survival-separation relabeled `discovery_only`** — did not replicate externally
++  (GSE32062 log-rank p=0.93, GSE102073 p=0.48; all shipped external manifests `validation_holds=false`).
++- Added `AUDIT.md` + machine-readable `audit_ledger.json` (independent recompute; the prognostic
++  fingerprint Cox HR 0.677, p=2.04e-4 was reproduced exactly from shipped artifacts).
++- `PLATINUM_SCORE_percentile_reference` corrected from `METAGX_POOLED_n2444` to
++  `PROGNOSTIC_FINGERPRINT_6COHORT_n1236`.
++
++### Added (predictive axis)
++- New **`PLATINUM_RESPONSE_SCORE`** (predictive platinum-sensitivity probability) from the frozen
++  manuscript Core-13 CXCL12/POSTN elastic-net logistic model (`predictive_axis.py`), distinct from
++  the prognostic `PLATINUM_SCORE`. Verdict **INCONCLUSIVE**.
++- **Calibration gate:** thresholded `platinum_response_call` is emitted only when
++  `normalization="quantile_to_reference"`; otherwise probability/ranking only.
++
++### Added (production hardening)
++- `provenance.py` — response `provenance` block: git SHA + reference-cohort SHA-256 + audit-ledger
++  SHA-256 + prognostic/predictive model fingerprints.
++- Input validation: NaN / inf / non-numeric rejected with HTTP 422 (negative already blocked by schema).
++- Determinism guarantee + frozen golden test.
++- Enriched audit log with `model_version` + `git_sha` (no gene values / PHI logged).
++
++### Fixed
++- **`hash_api_key(None)` 500 crash** in the no-auth local-dev path of `/score` (pre-existing bug).
++
++### Tests
++- New `tests/test_platinum_window.py`: 26 tests (unit / integration / golden-determinism /
++  calibration-gating / honesty-guardrail / audit-invariant). Coverage 88% overall.
++
++### Version
++- `MODEL_VERSION` 1.0.2 → 1.1.0.
++
++---
++
++## [1.0.2] — prior baseline
++- Prognostic PLATINUM_SCORE (FAP/CXCL10 elastic-net Cox), tier system, window timer, sequence engine,
++  CXCL10 imputation transparency, assay-failure warning, OCT1/metformin gating, artifact streamer.
+diff --git a/capabilities/platinum_window/PROVENANCE.md b/capabilities/platinum_window/PROVENANCE.md
+new file mode 100644
+index 0000000..75dcd13
+--- /dev/null
++++ b/capabilities/platinum_window/PROVENANCE.md
+@@ -0,0 +1,68 @@
++# Provenance — Platinum Window capability
++
++Traceability from deployed code → frozen models → shipped artifacts → manuscript → literature.
++Everything below is anchored to real artifacts on disk or to the foundational-biology manuscript;
++no performance number here is invented.
++
++## 1. Two models, two questions (do not conflate)
++
++### 1a. Prognostic — `PLATINUM_SCORE` (deployed, validated)
++- **Code:** `scorer.py :: compute_platinum_score` (elastic-net Cox linear predictor).
++- **Coefficients (frozen):** `FAP_z = +0.2032507043`, `CXCL10_z = −0.1474166728`; LP∈[−0.661403, 0.803347]; threshold 0.3702132699.
++- **Model fingerprint:** emitted per-response as `provenance.prognostic_model.fingerprint_sha256`.
++- **Evidence (SUPPORTED):** pooled cohort-stratified Cox on the fingerprint (FAP_z<0 AND CXCL10_z>0):
++  **HR 0.677 (95% CI 0.551–0.832), p=2.04e-4**, 6 cohorts, n=1,236.
++  - Artifact: `artifacts/data/validation/cross_cohort_fingerprint_regression.json` and
++    `.../cross_cohort_fingerprint_pooled.csv` (1,236 rows).
++  - Cohorts: GSE102073 (n=85), GSE17260 (n=110), GSE26712 (n=185), GSE32062 (n=260), GSE49997 (n=171), TCGA-HGSOC (n=427).
++  - **Independently reproduced** in this audit (see `AUDIT.md` / `audit_ledger.json`, claim C1) to 4 decimals.
++
++### 1b. Predictive — `PLATINUM_RESPONSE_SCORE` (added v1.1.0, INCONCLUSIVE)
++- **Code:** `predictive_axis.py :: compute_platinum_response_score` (Core-13 elastic-net logistic).
++- **Coefficients (frozen, non-zero):** `CXCL12 = −0.14972954829`, `POSTN = −0.10359314419`; intercept 0.0628711804; Youden threshold 0.4152970707.
++- **Scaler (frozen, log2 space, GSE30161):** CXCL12 mean 4.3820 / sd 0.7906; POSTN mean 3.9741 / sd 1.7118.
++- **Model fingerprint:** `provenance.predictive_model.fingerprint_sha256` (also inline in the axis note).
++- **Evidence (INCONCLUSIVE):** out-of-distribution live-fire on **GSE63885 (n=75)**: AUROC **0.638 (95% CI 0.513–0.764), p=0.031**; nested-CV 0.592±0.112; 0/28 single genes survive FDR<0.05 OOD.
++  - Source: foundational-biology manuscript (CrisPRO Stromal Cage v1) + frozen coefficient artifact `crispro_stromal_cage_v1_coefficients.json`.
++  - Training label is PFI-derived (survival) → leakage risk for a response model; EPV≈0.36 (10 events). Discovery-grade by construction.
++
++## 2. Tiers — discovery only (did NOT replicate externally)
++- **Code:** `scorer.py :: classify_tier`; response `tier_discovery_only=true`.
++- **Evidence:** external tier survival-separation fails in every tested cohort — 5/5 external cohorts with a usable log-rank p fail (GSE32062 p=0.929 n=260, GSE102073 p=0.476 n=85, GSE17260 p=0.821, GSE26712 p=0.890, GSE49997 p=0.060); all `validation_manifest*.json` report `validation_holds=false`.
++- Relabeled per audit corrective action CA-3.
++
++## 3. Reference distribution
++- **Code:** `reference/tcga_hgsoc_stats.json` (loaded at startup); SHA-256 emitted as `provenance.reference_cohort_sha256`.
++- **Cohort:** TCGA-HGSOC GDC 2025, n=427 (SLC22A1/OCT1 reference n=113 — smaller; IHC confirmation advised).
++
++## 4. Composite-score approximation (disclosed)
++- `IMMUNE_ACCESS_SCORE` uses a 2-component approximation (`0.60·TCELL_GPS − 0.40·STROMAL_ARM`) because
++  dedicated myeloid markers (CD163/CD68/MRC1/CSF1R) are absent from the input panel; the original
++  3-component formula weighted a myeloid-flood term. Documented in `scorer.py :: compute_immune_access`.
++
++## 5. Literature anchors (foundational biology)
++
++**CXCL12 / stromal exclusion (supports predictive coefficient sign, negative = better response):**
++- D'Alterio et al. 2022; Chen et al. 2019 (PNAS); Popple et al. 2012 (BJC); Zhang et al. 2020 (296-patient HGSOC); Qi et al. 2025; Lee et al. 2017; Wang et al. 2024.
++
++**POSTN / CAF-driven resistance (supports predictive coefficient sign):**
++- De Oliveira Macena et al. 2024; Nabi-Afjadi et al. 2025; Takatsu et al. 2023; Yoshikawa et al. 2023; Chen et al. 2026.
++
++**FAP / CAF barrier (supports prognostic fingerprint; direction reversed in PAAD):**
++- Wei et al. 2025; Grout et al. 2022; Udinotti et al. 2025; Xiao et al. 2023; Zhao et al. 2022 (HR 2.56, 95% CI 1.69–3.87); Corvigno et al. 2025 (HGSOC-specific, key).
++
++**Illustrative platinum-resistant salvage context (used only as a cautionary example, no rescue claim):**
++- ARTISTRY-7 (NCT05092360 / GOG-3063 / ENGOT-OV68): Phase 3 nemvaleukin alfa + pembrolizumab vs chemo in
++  platinum-resistant ovarian cancer, 456 pts; **failed** interim OS (10.1 vs 9.8 mo, HR 0.98); program halted (2025).
++
++## 6. Governance
++- Frozen PRODUCT ranker `fit = clip((p·t)/‖t‖₂, 0, 1)` is a mechanism-fit ranker and is **NOT** an outcome
++  model; it is **not** used in this capability's scoring and is not introduced here.
++- All outputs are Research Use Only. "Clinical-grade" in this release = auditable, tested,
++  provenance-tracked, deterministic engineering — not a regulatory clearance.
++
++## 7. Cross-references
++- `AUDIT.md` — human-readable audit.
++- `audit_ledger.json` — machine-readable claim→evidence→status ledger.
++- `CHANGELOG.md` — v1.0.2 → v1.1.0 changes.
++- Manuscript: CrisPRO Stromal Cage product line — foundational biology dossier v1.
+diff --git a/capabilities/platinum_window/README.md b/capabilities/platinum_window/README.md
+new file mode 100644
+index 0000000..d1e59bb
+--- /dev/null
++++ b/capabilities/platinum_window/README.md
+@@ -0,0 +1,59 @@
++# Platinum Window Capability
++
++**Version:** 1.1.0 · **Disposition:** Research Use Only (RUO) · **Indication scope:** HGSOC (high-grade serous ovarian carcinoma)
++
++A FastAPI capability that scores bulk RNA-seq expression against the CrisPRO Stromal Cage
++biology to time the "platinum window" — the interval during which the tumor stroma is
++permissive to immune access and platinum-based therapy. It exposes **two distinct axes**
++that must not be conflated:
++
++| Axis | Model | What it answers | Validation status |
++|---|---|---|---|
++| **PLATINUM_SCORE** (prognostic) | Elastic-net Cox on **FAP_z / CXCL10_z** | Who is likely to do worse on survival | **SUPPORTED** cross-cohort: 6 cohorts, n=1,236, HR 0.677 (95% CI 0.551–0.832), p=2.04e-4 |
++| **PLATINUM_RESPONSE_SCORE** (predictive) | Core-13 elastic-net logistic on **CXCL12 / POSTN** | Probability of platinum *sensitivity* | **INCONCLUSIVE** / discovery-grade: OOD AUROC 0.638 (95% CI 0.513–0.764), p=0.031 |
++
++> The prognostic axis (survival) and the predictive axis (response) are separate models
++> answering separate questions. This separation is deliberate and is enforced in code,
++> in the response schema, and in the test suite.
++
++## Endpoints
++
++| Method | Path | Auth | Purpose |
++|---|---|---|---|
++| `GET` | `/api/v1/platinum-window/demo` | none | Patient-1 demo (frozen golden output) |
++| `POST` | `/api/v1/platinum-window/score` | API key (rate-limited 100/min) | Score a sample |
++| `GET` | `/api/v1/platinum-window/artifacts/{path}` | none | Glass-box artifact streamer (traversal-guarded) |
++
++### Request (POST /score) — key fields
++- Required expression (raw, non-negative; TPM assumed): `FAP, CXCL9, CXCL11, CXCR3, ACTA2, POSTN, CXCL12, CXCR4, SLC22A1`; `CXCL10` optional (imputed with transparency).
++- Clinical: `platinum_status`, `prior_platinum_cycles`, `histotype`.
++- `normalization`: `"raw"` (default) or `"quantile_to_reference"`. **Only `quantile_to_reference` unlocks a thresholded predictive `platinum_response_call`** — the frozen Youden threshold does not transfer to arbitrary normalizations without recalibration.
++
++### Response — notable fields
++- Prognostic: `PLATINUM_SCORE`, `risk_tier`, `PLATINUM_SCORE_percentile` (reference: `PROGNOSTIC_FINGERPRINT_6COHORT_n1236`).
++- Predictive: `PLATINUM_RESPONSE_SCORE` (probability), `platinum_response_verdict="INCONCLUSIVE"`, `platinum_response_call` (null unless calibrated), `platinum_response_calibration_required=true`.
++- Tiers: `TIER`, `TIER_REFINED`, `tier_discovery_only=true` (tiers did **not** replicate externally).
++- Governance: `validation_context.claim_status` (per-claim evidence + status), `provenance` (git SHA + model/artifact SHA-256), `ruo_disclaimer`, `normalization_warning`.
++
++## Honesty & guardrails
++This capability was audited (see `AUDIT.md` / `audit_ledger.json`). Corrections applied in v1.1.0:
++- The prior "validated across 16 cohorts (n=2,444)" claim is **not** backed by any shipped artifact and was removed. Honest counts (6 cohorts / n=1,236, prognostic only) are used.
++- Tier survival-separation **did not replicate** in every external cohort with a usable log-rank statistic (5/5: GSE32062 p=0.93, GSE102073 p=0.48, GSE17260 p=0.82, GSE26712 p=0.89, GSE49997 p=0.06) and is flagged `discovery_only`.
++- The predictive CXCL12/POSTN model is labeled INCONCLUSIVE and gated behind calibration.
++- An audit-invariant test asserts no response can present an overstated claim as fact.
++
++## Reproducibility
++Scoring is deterministic and dependency-free at request time (no RNG, no network). Identical
++inputs + identical `model_version` yield byte-identical scores (enforced by `test_determinism_byte_stable`
++and a frozen golden test). Every response carries a `provenance` block for traceability.
++
++## Tests
++```
++pytest capabilities/platinum_window/tests -q      # 26 tests
++```
++
++## Indication caveat
++The FAP/CXCL10 fingerprint direction is **reversed in PAAD** (pancreatic; HR ~1.81 in TCGA-PAAD)
++and is contraindicated there. This capability is scoped to HGSOC only; `histotype=PAAD` is routed INELIGIBLE.
++
++_Research Use Only. Not for clinical decision-making without prospective validation._
+diff --git a/capabilities/platinum_window/audit_ledger.json b/capabilities/platinum_window/audit_ledger.json
+new file mode 100644
+index 0000000..07d4d99
+--- /dev/null
++++ b/capabilities/platinum_window/audit_ledger.json
+@@ -0,0 +1,184 @@
++{
++  "audit_id": "platinum_window_clinical_grade_audit",
++  "generated_utc": "2026-07-19T09:03:48Z",
++  "auditor": "independent recompute from shipped artifacts (lifelines Cox / log-rank), not manifest trust",
++  "capability": "capabilities/platinum_window",
++  "prior_model_version": "1.0.2",
++  "summary": {
++    "supported": 1,
++    "overstated": 2,
++    "missing": 1,
++    "low_n_disclosed": 1,
++    "headline": "The prognostic FAP/CXCL10 fingerprint is genuinely validated cross-cohort (6 cohorts, n=1,236, HR 0.677, p=2e-4). The tier survival-separation system does NOT replicate externally. The advertised '16 cohorts / 2,444 patients validated' is not backed by any shipped artifact. The manuscript CXCL12/POSTN predictive model is absent from deployed code and is INCONCLUSIVE where tested."
++  },
++  "claims": {
++    "C1_fingerprint_prognostic_pooled": {
++      "claim": "FAP_z<0 & CXCL10_z>0 fingerprint is prognostic for OS across cohorts",
++      "n": 1236,
++      "n_cohorts": 6,
++      "cohorts": [
++        "GSE102073",
++        "GSE17260",
++        "GSE26712",
++        "GSE32062",
++        "GSE49997",
++        "hgsoc_tcga_gdc"
++      ],
++      "recomputed_HR": 0.6768,
++      "recomputed_CI": [
++        0.5508,
++        0.8317
++      ],
++      "recomputed_p": 0.00020428500379432205,
++      "manifest_HR": 0.6768,
++      "manifest_p": 0.000204,
++      "status": "SUPPORTED",
++      "method": "Cox PH stratified by cohort (lifelines), recomputed from shipped cross_cohort_fingerprint_pooled.csv"
++    },
++    "C2_tier_survival_separation": {
++      "claim": "3-tier (TIER_1/2/3) system separates survival in external cohorts",
++      "external_manifests_total": 8,
++      "external_cohorts_with_usable_logrank_p": 5,
++      "external_cohorts_where_separation_fails": 5,
++      "n_cohorts_holds": 0,
++      "per_cohort": {
++        "validation_manifest.json": {
++          "cohort": "GSE32062",
++          "n": 260,
++          "validation_holds": false,
++          "logrank_p": 0.9292429879954928,
++          "has_usable_logrank_p": true
++        },
++        "validation_manifest_cptac.json": {
++          "cohort": "ovary_cptac_gdc",
++          "n": 101,
++          "validation_holds": false,
++          "logrank_p": null,
++          "has_usable_logrank_p": false
++        },
++        "validation_manifest_gse102073.json": {
++          "cohort": "GSE102073",
++          "n": 85,
++          "validation_holds": false,
++          "logrank_p": 0.47582999073708787,
++          "has_usable_logrank_p": true
++        },
++        "validation_manifest_gse17260.json": {
++          "cohort": "GSE17260",
++          "n": null,
++          "validation_holds": false,
++          "logrank_p": 0.8205332815343472,
++          "has_usable_logrank_p": true
++        },
++        "validation_manifest_gse26712.json": {
++          "cohort": "GSE26712",
++          "n": null,
++          "validation_holds": false,
++          "logrank_p": 0.8901461815538939,
++          "has_usable_logrank_p": true
++        },
++        "validation_manifest_gse49997.json": {
++          "cohort": "GSE49997",
++          "n": null,
++          "validation_holds": false,
++          "logrank_p": 0.060179773366526024,
++          "has_usable_logrank_p": true
++        },
++        "validation_manifest_msk2025.json": {
++          "cohort": "ovarian_msk_2025",
++          "n": null,
++          "validation_holds": false,
++          "logrank_p": null,
++          "has_usable_logrank_p": false
++        },
++        "validation_manifest_stub.json": {
++          "cohort": "GSE32062",
++          "n": 0,
++          "validation_holds": false,
++          "logrank_p": null,
++          "has_usable_logrank_p": false
++        }
++      },
++      "failing_cohorts": [
++        "GSE32062 (log-rank p=0.929, n=260)",
++        "GSE102073 (log-rank p=0.476, n=85)",
++        "GSE17260 (log-rank p=0.821)",
++        "GSE26712 (log-rank p=0.890)",
++        "GSE49997 (log-rank p=0.060)"
++      ],
++      "manifests_without_usable_logrank_p": [
++        "ovary_cptac_gdc (CPTAC)",
++        "ovarian_msk_2025 (MSK)",
++        "stub"
++      ],
++      "status": "OVERSTATED",
++      "note": "Tier survival-separation did NOT replicate externally in ANY cohort with a usable log-rank statistic: 5/5 external cohorts fail (all p>=0.05, none significant); 0 cohorts hold. The remaining 3 manifests carry no usable log-rank p (CPTAC/MSK/stub) and cannot verify a positive claim. Relabeled discovery/exploratory.",
++      "method": "Robust re-scan of all validation_manifest*.json, keyed on presence of a usable log-rank p (metadata-independent)."
++    },
++    "C3_advertised_16_cohorts_2444": {
++      "claim": "config.py VALIDATION_CTX: cohorts_validated=16, patients_validated=2444, framed as validated",
++      "largest_supporting_artifact": {
++        "analysis": "pooled fingerprint Cox",
++        "n_cohorts": 6,
++        "n_patients": 1236
++      },
++      "status": "UNVERIFIED_OVERSTATED",
++      "note": "No shipped artifact demonstrates a 16-cohort / 2444-patient validation. The strongest real evidence is the 6-cohort/n=1236 prognostic Cox. The '16/2444 validated' framing is not backed by a matching artifact and conflates prognostic signal with tier/predictive validation."
++    },
++    "C4_predictive_model_deployment": {
++      "claim": "The manuscript headline CXCL12/POSTN predictive platinum-response model is deployed",
++      "present_in_code": false,
++      "manuscript_verdict": "INCONCLUSIVE (GSE63885 OOD AUROC 0.638, 95%CI 0.513-0.764, p=0.031; nested-CV 0.592+/-0.112; EPV~0.36)",
++      "status": "MISSING",
++      "note": "Deployed PLATINUM_SCORE is the FAP/CXCL10 PROGNOSTIC model. The CXCL12/POSTN PREDICTIVE model is absent. Being added as a new distinct axis (W2), labeled INCONCLUSIVE + calibration-required."
++    },
++    "C5_label_certainty": {
++      "claim": "Platinum-response labels are well-populated for TCGA reference",
++      "n_confirmed": 9,
++      "km_events": 5,
++      "status": "LOW_N_DISCLOSED",
++      "note": "Only 9 TCGA patients have confirmed platinum-response labels (all sensitive). Already disclosed in shipped audit; not a hidden gap, but limits any TCGA-based platinum-response calibration."
++    }
++  },
++  "corrective_actions": [
++    {
++      "id": "CA-1",
++      "target": "config.py VALIDATION_CTX",
++      "action": "Replace flat cohorts_validated=16/patients_validated=2444 with a structured claim_status object: prognostic_fingerprint = SUPPORTED (6 cohorts, n=1236, HR 0.677, p=2e-4); tier_survival_separation = NOT_EXTERNALLY_REPLICATED (5/5 external cohorts fail, all p>=0.05; discovery/exploratory); predictive_platinum_response = INCONCLUSIVE (calibration-required)."
++    },
++    {
++      "id": "CA-2",
++      "target": "scorer.py comments/score_confidence",
++      "action": "Remove 'Validated across 16 independent cohorts (n=2,444)'. score_confidence must never assert VALIDATED_16_COHORTS."
++    },
++    {
++      "id": "CA-3",
++      "target": "tier classification outputs",
++      "action": "Annotate tier fields discovery_only=true; response must state tier survival-separation did not replicate externally."
++    },
++    {
++      "id": "CA-4",
++      "target": "predictive axis",
++      "action": "Add CXCL12/POSTN frozen model as new PLATINUM_RESPONSE_SCORE, verdict INCONCLUSIVE, calibration-gated (W2)."
++    },
++    {
++      "id": "CA-5",
++      "target": "response payload",
++      "action": "Audit-invariant test: no response may assert any claim flagged OVERSTATED/UNVERIFIED in this ledger."
++    }
++  ],
++  "reproducibility": {
++    "fingerprint_cox": "lifelines CoxPHFitter, strata=[cohort], from cross_cohort_fingerprint_pooled.csv (1236 rows post-dropna)",
++    "recomputed_HR_matches_manifest": true,
++    "external_manifests_with_usable_logrank": [
++      "GSE32062 (p=0.929)",
++      "GSE102073 (p=0.476)",
++      "GSE17260 (p=0.821)",
++      "GSE26712 (p=0.890)",
++      "GSE49997 (p=0.060)"
++    ],
++    "external_manifests_without_data": [
++      "CPTAC, MSK2025, stub \u2014 no usable log-rank p; treated as non-supporting"
++    ]
++  }
++}
+\ No newline at end of file
+diff --git a/capabilities/platinum_window/models.py b/capabilities/platinum_window/models.py
+index 4fcce68..7aa6944 100644
+--- a/capabilities/platinum_window/models.py
++++ b/capabilities/platinum_window/models.py
+@@ -93,6 +93,11 @@ class PlatinumWindowRequest(BaseModel):
+     custom_cohort_means: Optional[Dict[str, float]] = None
+     custom_cohort_stds: Optional[Dict[str, float]] = None
+ 
++    # Normalization state of the input. Only "quantile_to_reference" unlocks a
++    # thresholded predictive platinum-response CALL (the frozen threshold does not
++    # transfer to arbitrary normalizations). Default "raw" -> probability/ranking only.
++    normalization: Literal["raw", "quantile_to_reference"] = "raw"
++
+ 
+ # ── Response sub-models ──────────────────────────────────────────────────────
+ 
+@@ -124,6 +129,19 @@ class PlatinumWindowResponse(BaseModel):
+     # Tier
+     TIER: Tier
+     TIER_REFINED: Optional[TierRefined] = None
++    # CA-3: tiers did not replicate externally — flagged discovery-only.
++    tier_discovery_only: bool = True
++    tier_validation_note: Optional[str] = None
++
++    # PREDICTIVE platinum-response axis (CXCL12/POSTN) — distinct from prognostic PLATINUM_SCORE.
++    # Verdict INCONCLUSIVE; thresholded call suppressed unless input is calibrated.
++    PLATINUM_RESPONSE_SCORE: Optional[float] = None
++    platinum_response_verdict: str = "INCONCLUSIVE"
++    platinum_response_call: Optional[str] = None
++    platinum_response_calibration_required: bool = True
++    platinum_response_calibrated: bool = False
++    platinum_response_axis_note: Optional[str] = None
++    platinum_response_model: Optional[Dict[str, Any]] = None
+ 
+     # PLATINUM_SCORE — continuous elastic net Cox
+     PLATINUM_SCORE: float
+@@ -170,3 +188,6 @@ class PlatinumWindowResponse(BaseModel):
+     reference_cohort: str
+     computation_ms: float
+     timestamp_utc: str
++
++    # Provenance & reproducibility (git SHA + model/artifact fingerprints)
++    provenance: Optional[Dict[str, Any]] = None
+diff --git a/capabilities/platinum_window/predictive_axis.py b/capabilities/platinum_window/predictive_axis.py
+new file mode 100644
+index 0000000..2caab4c
+--- /dev/null
++++ b/capabilities/platinum_window/predictive_axis.py
+@@ -0,0 +1,200 @@
++"""
++Predictive platinum-response axis for the Platinum Window capability.
++
++This module is DISTINCT from the prognostic PLATINUM_SCORE (FAP/CXCL10 elastic-net
++Cox in scorer.py). It implements the manuscript's CXCL12/POSTN Core-13 elastic-net
++LOGISTIC model that predicts platinum SENSITIVITY (a response label), not survival.
++
++Provenance (frozen, discovery-only):
++- Model:        Core-13 elastic-net logistic (C=0.1, l1_ratio=0.7, saga, class_weight=balanced)
++- Non-zero:     CXCL12 (-0.14972954829), POSTN (-0.10359314419); intercept 0.0628711804
++- Scaler:       per-gene training mean/std frozen from GSE30161 (n=58) log2 space
++- Threshold:    frozen Youden J = 0.4152970707 (from training; NOT recalibrated to your data)
++- Train label:  PFI-derived platinum sensitivity (PFI>=180d = sensitive) — survival-derived (leakage risk)
++- Train balance: 48 sensitive / 10 resistant (EPV ~0.36 — low)
++
++VERDICT (from live-fire out-of-distribution test on GSE63885, n=75):
++- AUROC 0.638 (95% CI 0.513-0.764), p=0.031; nested-CV 0.592 +/- 0.112.
++- 0/28 single genes survive FDR<0.05 out-of-distribution.
++- STATUS: INCONCLUSIVE. Discovery-grade. NOT validated. NOT for clinical routing.
++
++Calibration gate:
++- The continuous probability/ranking is emitted unconditionally (it is monotone in the
++  linear predictor and safe to rank on).
++- A THRESHOLDED sensitive/resistant CALL is emitted ONLY when the caller supplies
++  reference-quantile-normalized input (normalization="quantile_to_reference"), because the
++  frozen Youden threshold was set in the training distribution and does not transfer to an
++  arbitrary platform/normalization without recalibration.
++
++CrisPRO PLATINUM_WINDOW — Research Use Only.
++"""
++
++from __future__ import annotations
++
++import hashlib
++import json
++import math
++from typing import Dict, Optional
++
++# ── Frozen Core-13 predictive model (CXCL12/POSTN non-zero) ───────────────────
++# Values are the canonical frozen manuscript coefficients. Kept inline (not read
++# from artifacts at request time) so scoring is deterministic and dependency-free.
++
++PREDICTIVE_MODEL_NAME = "core13_elasticnet_logistic"
++PREDICTIVE_MODEL_STATUS = "FROZEN_DISCOVERY_ONLY"
++PREDICTIVE_VERDICT = "INCONCLUSIVE"
++
++# Non-zero coefficients only (all other Core-13 genes have coefficient 0.0).
++PREDICTIVE_COEFFICIENTS: Dict[str, float] = {
++    "CXCL12": -0.14972954829000132,
++    "POSTN": -0.10359314418707691,
++}
++PREDICTIVE_INTERCEPT = 0.0628711803949403
++PREDICTIVE_FROZEN_THRESHOLD_YOUDEN = 0.4152970707274718
++
++# Per-gene training scaler (GSE30161, log2 space). Only genes with non-zero
++# coefficients matter for scoring, but both are required for a valid call.
++PREDICTIVE_SCALER_MEAN: Dict[str, float] = {
++    "CXCL12": 4.381967241379311,
++    "POSTN": 3.974105172413793,
++}
++PREDICTIVE_SCALER_SCALE: Dict[str, float] = {
++    "CXCL12": 0.7905776882560323,
++    "POSTN": 1.7117571284202044,
++}
++
++# Out-of-distribution performance (frozen, from live-fire on GSE63885).
++PREDICTIVE_OOD_EVIDENCE = {
++    "test_cohort": "GSE63885",
++    "n": 75,
++    "auroc": 0.6385,
++    "auroc_ci95": [0.5128, 0.7641],
++    "delong_p": 0.0308,
++    "nested_cv_auroc_mean": 0.592,
++    "nested_cv_auroc_sd": 0.112,
++    "verdict": "INCONCLUSIVE",
++    "note": (
++        "Single positive out-of-distribution signal at nominal significance; wide CI, "
++        "low sensitivity at frozen threshold, survival-derived training label. "
++        "Discovery-grade. Not validated. Not for clinical routing."
++    ),
++}
++
++
++def predictive_model_fingerprint() -> str:
++    """Deterministic SHA-256 over the frozen predictive model spec (for provenance)."""
++    payload = json.dumps(
++        {
++            "name": PREDICTIVE_MODEL_NAME,
++            "coefficients": PREDICTIVE_COEFFICIENTS,
++            "intercept": PREDICTIVE_INTERCEPT,
++            "threshold": PREDICTIVE_FROZEN_THRESHOLD_YOUDEN,
++            "scaler_mean": PREDICTIVE_SCALER_MEAN,
++            "scaler_scale": PREDICTIVE_SCALER_SCALE,
++        },
++        sort_keys=True,
++    )
++    return hashlib.sha256(payload.encode()).hexdigest()
++
++
++def _sigmoid(x: float) -> float:
++    # Numerically stable logistic.
++    if x >= 0:
++        z = math.exp(-x)
++        return 1.0 / (1.0 + z)
++    z = math.exp(x)
++    return z / (1.0 + z)
++
++
++def compute_platinum_response_score(
++    gene_values: Dict[str, Optional[float]],
++    normalization: str = "raw",
++    input_is_log2: bool = True,
++) -> Dict[str, object]:
++    """
++    Compute the predictive PLATINUM_RESPONSE_SCORE (probability of platinum SENSITIVITY).
++
++    Parameters
++    ----------
++    gene_values : dict
++        Must contain CXCL12 and POSTN. Values are expression in log2 space by default
++        (the training scaler was fit in log2 space). If input_is_log2 is False, a log2(x+1)
++        transform is applied before scaling.
++    normalization : str
++        "quantile_to_reference" unlocks a thresholded sensitive/resistant CALL. Any other
++        value (default "raw") returns the probability/ranking but suppresses the call.
++    input_is_log2 : bool
++        Whether the provided CXCL12/POSTN are already log2-transformed.
++
++    Returns
++    -------
++    dict with:
++        PLATINUM_RESPONSE_SCORE            : float in [0,1] (P(sensitive)) or None if inputs missing
++        platinum_response_verdict          : "INCONCLUSIVE"
++        platinum_response_call             : "sensitive" | "resistant" | None (None unless calibrated)
++        platinum_response_calibration_required : bool
++        platinum_response_calibrated       : bool
++        platinum_response_axis_note        : str
++        platinum_response_model            : provenance sub-dict
++    """
++    required = ["CXCL12", "POSTN"]
++    missing = [g for g in required if gene_values.get(g) is None]
++
++    base = {
++        "platinum_response_verdict": PREDICTIVE_VERDICT,
++        "platinum_response_calibration_required": True,
++        "platinum_response_model": {
++            "name": PREDICTIVE_MODEL_NAME,
++            "status": PREDICTIVE_MODEL_STATUS,
++            "non_zero_coefficients": PREDICTIVE_COEFFICIENTS,
++            "intercept": PREDICTIVE_INTERCEPT,
++            "frozen_threshold_youden": PREDICTIVE_FROZEN_THRESHOLD_YOUDEN,
++            "train_cohort": "GSE30161 (n=58, PFI-derived label, EPV~0.36)",
++            "ood_evidence": PREDICTIVE_OOD_EVIDENCE,
++            "model_fingerprint_sha256": predictive_model_fingerprint(),
++        },
++        "platinum_response_axis_note": (
++            "PREDICTIVE platinum-response axis (CXCL12/POSTN), distinct from the prognostic "
++            "PLATINUM_SCORE (FAP/CXCL10 survival). Verdict INCONCLUSIVE / discovery-grade. "
++            "Provided for research ranking only; do NOT use for clinical routing."
++        ),
++    }
++
++    if missing:
++        base.update({
++            "PLATINUM_RESPONSE_SCORE": None,
++            "platinum_response_call": None,
++            "platinum_response_calibrated": False,
++            "platinum_response_axis_note": (
++                base["platinum_response_axis_note"]
++                + f" Score not computed: missing required gene(s) {missing}."
++            ),
++        })
++        return base
++
++    # Linear predictor in scaled space.
++    lp = PREDICTIVE_INTERCEPT
++    for gene, coef in PREDICTIVE_COEFFICIENTS.items():
++        raw = float(gene_values[gene])
++        if not input_is_log2:
++            raw = math.log2(raw + 1.0)
++        mean = PREDICTIVE_SCALER_MEAN[gene]
++        scale = PREDICTIVE_SCALER_SCALE[gene]
++        z = (raw - mean) / scale if scale > 0 else 0.0
++        lp += coef * z
++
++    prob = _sigmoid(lp)
++
++    # Thresholded call ONLY when calibrated to the reference distribution.
++    calibrated = (normalization == "quantile_to_reference")
++    if calibrated:
++        call = "sensitive" if prob >= PREDICTIVE_FROZEN_THRESHOLD_YOUDEN else "resistant"
++    else:
++        call = None
++
++    base.update({
++        "PLATINUM_RESPONSE_SCORE": round(prob, 4),
++        "platinum_response_call": call,
++        "platinum_response_calibrated": calibrated,
++    })
++    return base
+diff --git a/capabilities/platinum_window/provenance.py b/capabilities/platinum_window/provenance.py
+new file mode 100644
+index 0000000..98ffb98
+--- /dev/null
++++ b/capabilities/platinum_window/provenance.py
+@@ -0,0 +1,97 @@
++"""
++Provenance & reproducibility for the Platinum Window capability.
++
++Emits a deterministic provenance block that ties every response to:
++  - the code revision (git SHA, best-effort),
++  - the frozen model coefficients (SHA-256 of the prognostic + predictive specs),
++  - the reference cohort file (SHA-256),
++  - the audit ledger (SHA-256),
++  - the model_version.
++
++The block is computed once at import (cheap, deterministic) and reused. Nothing here
++depends on request content, so identical inputs always yield identical provenance.
++
++CrisPRO PLATINUM_WINDOW — Research Use Only.
++"""
++
++from __future__ import annotations
++
++import hashlib
++import subprocess
++from functools import lru_cache
++from pathlib import Path
++from typing import Dict, Optional
++
++from .predictive_axis import (
++    predictive_model_fingerprint,
++    PREDICTIVE_MODEL_NAME,
++)
++from .scorer import (
++    ELASTIC_NET_COEF_FAP_Z,
++    ELASTIC_NET_COEF_CXCL10_Z,
++    PLATINUM_SCORE_THRESHOLD,
++    LP_MIN,
++    LP_MAX,
++)
++
++_CAP_DIR = Path(__file__).resolve().parent
++_REPO_ROOT = _CAP_DIR.parents[1]
++
++
++def _sha256_file(path: Path) -> Optional[str]:
++    try:
++        h = hashlib.sha256()
++        h.update(path.read_bytes())
++        return h.hexdigest()
++    except Exception:
++        return None
++
++
++def _git_sha() -> str:
++    """Best-effort short git SHA of the working tree. Falls back to 'unknown'."""
++    try:
++        out = subprocess.run(
++            ["git", "-C", str(_REPO_ROOT), "rev-parse", "HEAD"],
++            capture_output=True, text=True, timeout=5,
++        )
++        if out.returncode == 0:
++            return out.stdout.strip()
++    except Exception:
++        pass
++    return "unknown"
++
++
++def prognostic_model_fingerprint() -> str:
++    """Deterministic SHA-256 over the frozen PROGNOSTIC model spec."""
++    payload = (
++        f"prognostic_elasticnet_cox|FAP_z={ELASTIC_NET_COEF_FAP_Z}|"
++        f"CXCL10_z={ELASTIC_NET_COEF_CXCL10_Z}|thr={PLATINUM_SCORE_THRESHOLD}|"
++        f"lp_min={LP_MIN}|lp_max={LP_MAX}"
++    )
++    return hashlib.sha256(payload.encode()).hexdigest()
++
++
++@lru_cache(maxsize=1)
++def build_provenance(model_version: str) -> Dict[str, object]:
++    """Assemble the provenance block. Cached (deterministic, request-independent)."""
++    ref_path = _CAP_DIR / "reference" / "tcga_hgsoc_stats.json"
++    ledger_path = _CAP_DIR / "audit_ledger.json"
++    return {
++        "model_version": model_version,
++        "git_sha": _git_sha(),
++        "reference_cohort_file": ref_path.name,
++        "reference_cohort_sha256": _sha256_file(ref_path),
++        "audit_ledger_sha256": _sha256_file(ledger_path),
++        "prognostic_model": {
++            "name": "prognostic_elasticnet_cox_FAP_CXCL10",
++            "fingerprint_sha256": prognostic_model_fingerprint(),
++        },
++        "predictive_model": {
++            "name": PREDICTIVE_MODEL_NAME,
++            "fingerprint_sha256": predictive_model_fingerprint(),
++        },
++        "reproducibility_note": (
++            "Scoring is deterministic and dependency-free (no RNG, no network). "
++            "Identical inputs + identical model_version yield byte-identical scores."
++        ),
++    }
+diff --git a/capabilities/platinum_window/router.py b/capabilities/platinum_window/router.py
+index 55746c3..7305c78 100644
+--- a/capabilities/platinum_window/router.py
++++ b/capabilities/platinum_window/router.py
+@@ -33,6 +33,7 @@ from .models import (
+ from .scorer import compute_all_scores
+ from .sequence_engine import build_treatment_sequence, compute_confidence, determine_urgency
+ from .window_timer import compute_timing
++from .provenance import build_provenance
+ 
+ # ── Reference data ───────────────────────────────────────────────────────────
+ 
+@@ -87,6 +88,15 @@ def _build_response(
+         metformin_caveat=scores["metformin_caveat"],
+         TIER=scores["TIER"],
+         TIER_REFINED=scores["TIER_REFINED"],
++        tier_discovery_only=scores.get("tier_discovery_only", True),
++        tier_validation_note=scores.get("tier_validation_note"),
++        PLATINUM_RESPONSE_SCORE=scores.get("PLATINUM_RESPONSE_SCORE"),
++        platinum_response_verdict=scores.get("platinum_response_verdict", "INCONCLUSIVE"),
++        platinum_response_call=scores.get("platinum_response_call"),
++        platinum_response_calibration_required=scores.get("platinum_response_calibration_required", True),
++        platinum_response_calibrated=scores.get("platinum_response_calibrated", False),
++        platinum_response_axis_note=scores.get("platinum_response_axis_note"),
++        platinum_response_model=scores.get("platinum_response_model"),
+         PLATINUM_SCORE=scores["PLATINUM_SCORE"],
+         PLATINUM_SCORE_percentile=scores["PLATINUM_SCORE_percentile"],
+         PLATINUM_SCORE_percentile_reference=scores["PLATINUM_SCORE_percentile_reference"],
+@@ -115,6 +125,7 @@ def _build_response(
+         reference_cohort=ref_cohort_name,
+         computation_ms=computation_ms,
+         timestamp_utc=datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
++        provenance=build_provenance(MODEL_VERSION),
+     )
+ 
+     if resp.assay_warning:
+@@ -217,7 +228,10 @@ def score_platinum_window(
+         "CXCR4": payload.CXCR4, "SLC22A1": payload.SLC22A1,
+     }
+ 
+-    scores = compute_all_scores(gene_values, ref_means, ref_stds)
++    try:
++        scores = compute_all_scores(gene_values, ref_means, ref_stds, normalization=payload.normalization)
++    except ValueError as e:
++        raise HTTPException(status_code=422, detail=str(e))
+ 
+     timing = compute_timing(
+         fap_z=scores["FAP_zscore"],
+@@ -277,13 +291,16 @@ def score_platinum_window(
+         missing_cxcl10=scores.get("missing_cxcl10", False),
+     )
+ 
+-    # Audit log
++    # Audit log — includes model_version + provenance git SHA; NO gene values / PHI logged.
+     logger.info(json.dumps({
+         "timestamp": resp.timestamp_utc,
+         "api_key_hash": hash_api_key(x_api_key),
++        "model_version": resp.model_version,
++        "git_sha": (resp.provenance or {}).get("git_sha"),
+         "urgency": resp.urgency,
+         "risk_tier": resp.risk_tier,
+         "PLATINUM_SCORE": resp.PLATINUM_SCORE,
++        "platinum_response_verdict": resp.platinum_response_verdict,
+         "computation_ms": resp.computation_ms,
+     }))
+ 
+diff --git a/capabilities/platinum_window/scorer.py b/capabilities/platinum_window/scorer.py
+index bed933e..9ea9bb9 100644
+--- a/capabilities/platinum_window/scorer.py
++++ b/capabilities/platinum_window/scorer.py
+@@ -14,6 +14,35 @@ CrisPRO PLATINUM_WINDOW v1.0 — Research Use Only.
+ 
+ from typing import Dict, Optional, Tuple
+ 
++from .predictive_axis import compute_platinum_response_score
++
++
++import math
++
++
++def _validate_gene_values(gene_values: Dict[str, Optional[float]]) -> None:
++    """Reject NaN/inf/negative expression before scoring (fail loud, not silent).
++
++    Raises ValueError with a structured message. None is allowed (means 'not measured').
++    """
++    bad = []
++    for gene, val in gene_values.items():
++        if val is None:
++            continue
++        try:
++            f = float(val)
++        except (TypeError, ValueError):
++            bad.append(f"{gene}={val!r} (not numeric)")
++            continue
++        if math.isnan(f):
++            bad.append(f"{gene}=NaN")
++        elif math.isinf(f):
++            bad.append(f"{gene}=inf")
++        elif f < 0.0:
++            bad.append(f"{gene}={f} (negative expression is invalid)")
++    if bad:
++        raise ValueError("Invalid gene expression input(s): " + "; ".join(bad))
++
+ 
+ def z_score(value: float, mean: float, std: float) -> float:
+     """Compute z-score against a reference distribution."""
+@@ -147,8 +176,14 @@ def classify_tier(
+     return "TIER_3_ACCESSIBLE", None
+ 
+ 
+-# ── PLATINUM_SCORE: Elastic Net Cox Continuous Score ─────────────────────────
+-# Validated across 16 independent cohorts (n=2,444).
++# ── PLATINUM_SCORE: Elastic Net Cox Continuous Score (PROGNOSTIC) ─────────────
++# HONEST VALIDATION (see AUDIT.md / audit_ledger.json):
++#   This is the PROGNOSTIC survival fingerprint (FAP_z/CXCL10_z). Its cross-cohort
++#   prognostic signal is SUPPORTED: pooled cohort-stratified Cox across 6 cohorts,
++#   n=1,236, HR 0.677 (95% CI 0.551-0.832), p=2.04e-4.
++#   It is NOT a "16-cohort / 2,444-patient validated" claim (that figure is not backed
++#   by any shipped artifact) and it is NOT a platinum-RESPONSE (predictive) model — see
++#   predictive_axis.py for the distinct CXCL12/POSTN response axis.
+ # Coefficients frozen from continuous_survival_score_elastic_net.R output.
+ # PLATINUM_SCORE ∈ [0,1] where higher = better predicted survival.
+ 
+@@ -195,9 +230,9 @@ def compute_platinum_score(fap_z: float, cxcl10_z: float) -> dict:
+         "risk_tier": risk_tier,
+         "binary_HR_estimate": HR_BINARY_FINGERPRINT,
+         "continuous_HR_estimate": HR_CONTINUOUS_THRESHOLD,
+-        # C5: RESEARCH_USE_ONLY — not "VALIDATED_16_COHORTS"
++        # C5: RESEARCH_USE_ONLY — never asserts a 16-cohort validation (see AUDIT.md)
+         "score_confidence": "RESEARCH_USE_ONLY",
+-        "PLATINUM_SCORE_percentile_reference": "METAGX_POOLED_n2444",
++        "PLATINUM_SCORE_percentile_reference": "PROGNOSTIC_FINGERPRINT_6COHORT_n1236",
+     }
+ 
+ 
+@@ -223,8 +258,14 @@ def compute_all_scores(
+     gene_values: Dict[str, Optional[float]],
+     ref_means: Dict[str, float],
+     ref_stds: Dict[str, float],
++    normalization: str = "raw",
+ ) -> Dict[str, object]:
+-    """Master scoring function. Returns all computed scores and classifications."""
++    """Master scoring function. Returns all computed scores and classifications.
++
++    `normalization` is passed through to the predictive platinum-response axis; a
++    thresholded response CALL is only emitted when normalization="quantile_to_reference".
++    """
++    _validate_gene_values(gene_values)
+     zscores = z_score_genes(gene_values, ref_means, ref_stds)
+ 
+     fap_z = zscores.get("FAP", 0.0)
+@@ -250,6 +291,13 @@ def compute_all_scores(
+     # C4: Metformin eligibility
+     met = determine_metformin_eligibility(oct1_status, slc22a1_z)
+ 
++    # PREDICTIVE platinum-response axis (CXCL12/POSTN) — distinct from prognostic PLATINUM_SCORE.
++    # API inputs are raw expression (TPM), while the predictive scaler was fit in log2 space,
++    # so we tell the predictive axis to apply log2(x+1) before scaling.
++    predictive = compute_platinum_response_score(
++        gene_values, normalization=normalization, input_is_log2=False
++    )
++
+     return {
+         "zscores": zscores,
+         "FAP_zscore": round(fap_z, 4),
+@@ -264,6 +312,22 @@ def compute_all_scores(
+         "fingerprint_positive": fingerprint,
+         "TIER": tier,
+         "TIER_REFINED": tier_refined,
++        # CA-3 (AUDIT.md): tier survival-separation did NOT replicate externally.
++        "tier_discovery_only": True,
++        "tier_validation_note": (
++            "Tier survival-separation is DISCOVERY/EXPLORATORY only. It did not replicate in any "
++            "external cohort with a usable log-rank statistic (5/5 fail: GSE32062 p=0.93, GSE102073 "
++            "p=0.48, GSE17260 p=0.82, GSE26712 p=0.89, GSE49997 p=0.06). Do not treat tier "
++            "assignment as a validated survival stratifier."
++        ),
++        # PREDICTIVE platinum-response axis (see predictive_axis.py; verdict INCONCLUSIVE)
++        "PLATINUM_RESPONSE_SCORE": predictive["PLATINUM_RESPONSE_SCORE"],
++        "platinum_response_verdict": predictive["platinum_response_verdict"],
++        "platinum_response_call": predictive["platinum_response_call"],
++        "platinum_response_calibration_required": predictive["platinum_response_calibration_required"],
++        "platinum_response_calibrated": predictive["platinum_response_calibrated"],
++        "platinum_response_axis_note": predictive["platinum_response_axis_note"],
++        "platinum_response_model": predictive["platinum_response_model"],
+         # PLATINUM_SCORE
+         "PLATINUM_SCORE": ps["PLATINUM_SCORE"],
+         "PLATINUM_SCORE_percentile": ps["PLATINUM_SCORE_percentile"],
+diff --git a/capabilities/platinum_window/tests/__init__.py b/capabilities/platinum_window/tests/__init__.py
+new file mode 100644
+index 0000000..e69de29
+diff --git a/capabilities/platinum_window/tests/test_platinum_window.py b/capabilities/platinum_window/tests/test_platinum_window.py
+new file mode 100644
+index 0000000..c2a00cf
+--- /dev/null
++++ b/capabilities/platinum_window/tests/test_platinum_window.py
+@@ -0,0 +1,311 @@
++"""
++Clinical-grade test suite for the Platinum Window capability.
++
++Coverage:
++  - unit tests (scorer primitives, predictive axis, window timer, sequence engine)
++  - integration tests (both endpoints via FastAPI TestClient)
++  - golden / determinism tests (frozen demo output, byte-stable scores)
++  - calibration-gating tests (predictive thresholded call gated on normalization)
++  - audit-invariant tests (no response asserts a claim the ledger flags OVERSTATED)
++  - honesty/RUO guardrail tests (no '16 cohort validated' language leaks)
++
++Run: pytest capabilities/platinum_window/tests -q
++Research Use Only.
++"""
++
++import json
++import math
++from pathlib import Path
++
++import pytest
++from fastapi import FastAPI
++from fastapi.testclient import TestClient
++
++from capabilities.platinum_window.router import router, load_reference
++from capabilities.platinum_window.scorer import (
++    z_score,
++    determine_fingerprint,
++    determine_oct1_status,
++    classify_tier,
++    compute_immune_access,
++    compute_platinum_score,
++    compute_all_scores,
++    _validate_gene_values,
++)
++from capabilities.platinum_window.predictive_axis import (
++    compute_platinum_response_score,
++    predictive_model_fingerprint,
++    PREDICTIVE_COEFFICIENTS,
++    PREDICTIVE_INTERCEPT,
++)
++
++CAP = Path(__file__).resolve().parent.parent
++
++
++# ── Fixtures ─────────────────────────────────────────────────────────────────
++
++@pytest.fixture(scope="module")
++def client():
++    load_reference()
++    app = FastAPI()
++    app.include_router(router)
++    return TestClient(app)
++
++
++@pytest.fixture(scope="module")
++def ref():
++    d = json.loads((CAP / "reference" / "tcga_hgsoc_stats.json").read_text())
++    genes = d["genes"]
++    rm = {g: v["mean"] for g, v in genes.items() if v.get("mean") is not None}
++    rs = {g: v["std"] for g, v in genes.items() if v.get("std") is not None}
++    return rm, rs
++
++
++@pytest.fixture
++def valid_payload():
++    return {
++        "FAP": 50.0, "CXCL10": 15000.0, "CXCL9": 8000.0, "CXCL11": 4000.0,
++        "CXCR3": 600.0, "ACTA2": 500.0, "POSTN": 200.0, "CXCL12": 300.0,
++        "CXCR4": 500.0, "SLC22A1": 200.0,
++        "platinum_status": "sensitive", "prior_platinum_cycles": 0, "histotype": "HGSOC",
++    }
++
++
++@pytest.fixture(scope="module")
++def ledger():
++    return json.loads((CAP / "audit_ledger.json").read_text())
++
++
++# ── Unit: scorer primitives ──────────────────────────────────────────────────
++
++def test_zscore_basic():
++    assert z_score(10.0, 5.0, 2.5) == 2.0
++    assert z_score(5.0, 5.0, 0.0) == 0.0  # zero std guard
++
++
++def test_fingerprint_logic():
++    assert determine_fingerprint(-0.5, 0.5) is True     # FAP low, CXCL10 high
++    assert determine_fingerprint(0.5, 0.5) is False     # FAP high
++    assert determine_fingerprint(-0.5, -0.5) is False   # CXCL10 low
++
++
++def test_oct1_gate():
++    assert determine_oct1_status(0.1) == "HIGH"
++    assert determine_oct1_status(-0.1) == "LOW"
++    assert determine_oct1_status(0.0) == "LOW"
++
++
++def test_tier_classification():
++    tier, refined = classify_tier(-0.5, -0.5, 0.5, True)
++    assert tier == "TIER_1_TRIPLE" and refined == "TIER_1A_ACCESSIBLE"
++    tier, refined = classify_tier(-0.5, -0.5, -0.5, True)
++    assert tier == "TIER_1_TRIPLE" and refined == "TIER_1B_CAGED"
++    tier, refined = classify_tier(0.5, 0.5, 0.5, False)
++    assert tier == "TIER_3_ACCESSIBLE" and refined is None
++
++
++def test_immune_access_formula():
++    # 0.60*tcell - 0.40*stromal
++    assert compute_immune_access(1.0, 0.0) == pytest.approx(0.60)
++    assert compute_immune_access(0.0, 1.0) == pytest.approx(-0.40)
++
++
++def test_platinum_score_monotonic():
++    # higher FAP_z (bad) should lower PLATINUM_SCORE (worse survival)
++    low = compute_platinum_score(-0.5, 0.5)["PLATINUM_SCORE"]
++    high = compute_platinum_score(0.5, -0.5)["PLATINUM_SCORE"]
++    assert low > high
++
++
++def test_input_validation_rejects_nan_inf_negative():
++    with pytest.raises(ValueError):
++        _validate_gene_values({"FAP": float("nan")})
++    with pytest.raises(ValueError):
++        _validate_gene_values({"FAP": float("inf")})
++    with pytest.raises(ValueError):
++        _validate_gene_values({"FAP": -1.0})
++    # None is allowed (not measured)
++    _validate_gene_values({"CXCL10": None})
++
++
++# ── Unit: predictive axis ────────────────────────────────────────────────────
++
++def test_predictive_uses_frozen_coeffs():
++    assert PREDICTIVE_COEFFICIENTS["CXCL12"] == pytest.approx(-0.14972954829, abs=1e-9)
++    assert PREDICTIVE_COEFFICIENTS["POSTN"] == pytest.approx(-0.10359314419, abs=1e-9)
++    assert PREDICTIVE_INTERCEPT == pytest.approx(0.0628711804, abs=1e-9)
++
++
++def test_predictive_probability_in_range():
++    out = compute_platinum_response_score({"CXCL12": 300.0, "POSTN": 200.0}, input_is_log2=False)
++    p = out["PLATINUM_RESPONSE_SCORE"]
++    assert 0.0 <= p <= 1.0
++    assert out["platinum_response_verdict"] == "INCONCLUSIVE"
++
++
++def test_predictive_calibration_gate():
++    raw = compute_platinum_response_score({"CXCL12": 300.0, "POSTN": 200.0},
++                                          normalization="raw", input_is_log2=False)
++    cal = compute_platinum_response_score({"CXCL12": 300.0, "POSTN": 200.0},
++                                          normalization="quantile_to_reference", input_is_log2=False)
++    # probability identical; call gated
++    assert raw["PLATINUM_RESPONSE_SCORE"] == cal["PLATINUM_RESPONSE_SCORE"]
++    assert raw["platinum_response_call"] is None
++    assert cal["platinum_response_call"] in ("sensitive", "resistant")
++    assert raw["platinum_response_calibration_required"] is True
++
++
++def test_predictive_missing_genes_returns_none():
++    out = compute_platinum_response_score({"CXCL12": 300.0}, input_is_log2=False)  # POSTN missing
++    assert out["PLATINUM_RESPONSE_SCORE"] is None
++    assert out["platinum_response_call"] is None
++
++
++def test_predictive_fingerprint_stable():
++    # frozen model fingerprint must be deterministic
++    assert predictive_model_fingerprint() == predictive_model_fingerprint()
++    assert len(predictive_model_fingerprint()) == 64
++
++
++# ── Integration: endpoints ───────────────────────────────────────────────────
++
++def test_demo_endpoint_200(client):
++    r = client.get("/api/v1/platinum-window/demo")
++    assert r.status_code == 200
++    d = r.json()
++    assert "PLATINUM_SCORE" in d
++    assert "PLATINUM_RESPONSE_SCORE" in d
++    assert d["platinum_response_verdict"] == "INCONCLUSIVE"
++
++
++def test_score_endpoint_200(client, valid_payload):
++    r = client.post("/api/v1/platinum-window/score", json=valid_payload)
++    assert r.status_code == 200
++
++
++def test_score_endpoint_no_apikey_local_dev(client, valid_payload):
++    # regression: hash_api_key(None) used to 500 the endpoint
++    r = client.post("/api/v1/platinum-window/score", json=valid_payload)
++    assert r.status_code == 200
++
++
++def test_score_negative_expression_422(client, valid_payload):
++    bad = dict(valid_payload); bad["POSTN"] = -5.0
++    assert client.post("/api/v1/platinum-window/score", json=bad).status_code == 422
++
++
++def test_calibration_gate_via_api(client, valid_payload):
++    raw = client.post("/api/v1/platinum-window/score", json=valid_payload).json()
++    cal_payload = dict(valid_payload); cal_payload["normalization"] = "quantile_to_reference"
++    cal = client.post("/api/v1/platinum-window/score", json=cal_payload).json()
++    assert raw["platinum_response_call"] is None
++    assert cal["platinum_response_call"] in ("sensitive", "resistant")
++
++
++# ── Golden / determinism ─────────────────────────────────────────────────────
++
++def _strip_volatile(d):
++    d = dict(d)
++    d.pop("timestamp_utc", None)
++    d.pop("computation_ms", None)
++    return d
++
++
++def test_determinism_byte_stable(client):
++    a = _strip_volatile(client.get("/api/v1/platinum-window/demo").json())
++    b = _strip_volatile(client.get("/api/v1/platinum-window/demo").json())
++    assert json.dumps(a, sort_keys=True) == json.dumps(b, sort_keys=True)
++
++
++def test_golden_demo_key_values(client):
++    """Freeze the demo scoring output so accidental coefficient/logic drift is caught."""
++    d = client.get("/api/v1/platinum-window/demo").json()
++    assert d["PLATINUM_SCORE"] == pytest.approx(0.7877, abs=1e-3)
++    assert d["fingerprint_positive"] is True
++    assert d["TIER"] == "TIER_1_TRIPLE"
++    assert d["PLATINUM_RESPONSE_SCORE"] == pytest.approx(0.2913, abs=1e-3)
++    assert d["model_version"] == "1.1.0"
++
++
++def test_provenance_block_present(client):
++    d = client.get("/api/v1/platinum-window/demo").json()
++    p = d["provenance"]
++    assert p["git_sha"]
++    assert p["reference_cohort_sha256"]
++    assert p["prognostic_model"]["fingerprint_sha256"]
++    assert p["predictive_model"]["fingerprint_sha256"]
++
++
++# ── Honesty / RUO guardrails ─────────────────────────────────────────────────
++
++def test_no_16_cohort_claim_in_response(client, valid_payload):
++    """No response may assert a 16-cohort / 2444 validation (audit correction CA-1/CA-2)."""
++    d = client.post("/api/v1/platinum-window/score", json=valid_payload).json()
++    blob = json.dumps(d)
++    assert "VALIDATED_16_COHORTS" not in blob
++    assert "n2444" not in blob
++    # corrected honest counts
++    assert d["validation_context"]["cohorts_validated"] == 6
++    assert d["validation_context"]["patients_validated"] == 1236
++
++
++def test_tier_flagged_discovery_only(client):
++    d = client.get("/api/v1/platinum-window/demo").json()
++    assert d["tier_discovery_only"] is True
++    assert "did not replicate" in d["tier_validation_note"].lower() or \
++           "exploratory" in d["tier_validation_note"].lower()
++
++
++def test_ruo_disclaimer_present(client):
++    d = client.get("/api/v1/platinum-window/demo").json()
++    assert "Research Use Only" in d["ruo_disclaimer"]
++
++
++def test_validation_context_claim_status(client):
++    d = client.get("/api/v1/platinum-window/demo").json()
++    cs = d["validation_context"]["claim_status"]
++    assert cs["prognostic_fingerprint"]["status"] == "SUPPORTED"
++    assert cs["tier_survival_separation"]["status"] == "NOT_EXTERNALLY_REPLICATED"
++    assert cs["predictive_platinum_response"]["status"] == "INCONCLUSIVE"
++
++
++# ── Audit-invariant: response must not contradict the ledger ─────────────────
++
++def test_audit_invariant_no_overstated_claim_asserted(client, valid_payload, ledger):
++    """
++    If the ledger marks a claim OVERSTATED/UNVERIFIED, the API response must NOT contain
++    language asserting it as validated. We check the two concrete overstated artifacts:
++    the '16/2444 validated' framing and any 'tier validated externally' assertion.
++    """
++    d = client.post("/api/v1/platinum-window/score", json=valid_payload).json()
++    blob = json.dumps(d).lower()
++    # ledger sanity
++    statuses = {k: v["status"] for k, v in ledger["claims"].items()}
++    assert statuses["C2_tier_survival_separation"] == "OVERSTATED"
++    assert statuses["C3_advertised_16_cohorts_2444"] == "UNVERIFIED_OVERSTATED"
++    # response must not assert those overstated claims as fact
++    assert "16 independent cohorts" not in blob
++    assert "2,444" not in blob and "2444" not in blob
++    # tier must be explicitly de-risked, not asserted validated
++    assert d["tier_discovery_only"] is True
++
++
++def test_ledger_fingerprint_claim_supported(ledger):
++    c1 = ledger["claims"]["C1_fingerprint_prognostic_pooled"]
++    assert c1["status"] == "SUPPORTED"
++    assert c1["recomputed_HR"] == pytest.approx(0.6768, abs=1e-3)
++    assert c1["recomputed_p"] < 1e-3
++
++
++def test_ledger_tier_failure_covers_all_usable_cohorts(ledger):
++    """Tier claim must record every external cohort with a usable log-rank p (5), all failing."""
++    c2 = ledger["claims"]["C2_tier_survival_separation"]
++    assert c2["status"] == "OVERSTATED"
++    assert c2["external_cohorts_with_usable_logrank_p"] == 5
++    assert c2["external_cohorts_where_separation_fails"] == 5
++    assert c2["n_cohorts_holds"] == 0
++    # every listed failing cohort has p >= 0.05
++    per = c2["per_cohort"]
++    usable = [v for v in per.values() if v.get("has_usable_logrank_p")]
++    assert len(usable) == 5
++    assert all(v["logrank_p"] >= 0.05 for v in usable)
+diff --git a/config.py b/config.py
+index 02a6dbd..9562ef4 100644
+--- a/config.py
++++ b/config.py
+@@ -11,7 +11,7 @@ from pydantic import BaseModel
+ 
+ # ── Version ──────────────────────────────────────────────────────────────────
+ 
+-MODEL_VERSION = "1.0.2"
++MODEL_VERSION = "1.1.0"  # clinical-grade hardening: audit corrections + predictive axis + provenance
+ 
+ # ── Disclaimers ──────────────────────────────────────────────────────────────
+ 
+@@ -33,7 +33,20 @@ NORMALIZATION_WARNING = (
+ 
+ # ── Validation Context ───────────────────────────────────────────────────────
+ 
++from typing import Dict, Optional
++
++
++class ClaimStatus(BaseModel):
++    """Per-claim evidence status. See AUDIT.md / audit_ledger.json for full derivation."""
++    claim: str
++    status: str  # SUPPORTED | NOT_EXTERNALLY_REPLICATED | INCONCLUSIVE | UNVERIFIED
++    evidence: str
++
++
+ class ValidationContext(BaseModel):
++    # NOTE: cohorts_validated / patients_validated now reflect the ONLY claim that is
++    # actually validated cross-cohort — the prognostic fingerprint (6 cohorts, n=1,236).
++    # The prior "16 / 2,444 validated" framing was corrected (see AUDIT.md, CA-1/CA-2).
+     cohorts_validated: int
+     patients_validated: int
+     validation_type: str
+@@ -43,18 +56,37 @@ class ValidationContext(BaseModel):
+     regulatory_status: str
+     OCT1_reference_n: int
+     OCT1_reference_warning: str
++    # Structured, per-claim honesty (replaces the flat overstated numbers).
++    claim_status: Optional[Dict[str, ClaimStatus]] = None
+ 
+ 
+ VALIDATION_CTX = ValidationContext(
+-    cohorts_validated=16,
+-    patients_validated=2444,
+-    validation_type="retrospective_observational",
++    cohorts_validated=6,
++    patients_validated=1236,
++    validation_type="retrospective_observational_cross_cohort",
+     data_type="bulk_RNAseq",
+     prospective_validation=False,
+     clia_validated=False,
+     regulatory_status="RUO — not for clinical decision-making",
+     OCT1_reference_n=113,
+     OCT1_reference_warning="Smaller reference sample than other markers. IHC confirmation recommended.",
++    claim_status={
++        "prognostic_fingerprint": ClaimStatus(
++            claim="FAP_z<0 & CXCL10_z>0 fingerprint is prognostic for overall survival (cross-cohort).",
++            status="SUPPORTED",
++            evidence="Pooled cohort-stratified Cox, 6 cohorts, n=1,236, HR 0.677 (95% CI 0.551-0.832), p=2.04e-4. Independently recomputed from shipped artifacts.",
++        ),
++        "tier_survival_separation": ClaimStatus(
++            claim="The 3-tier (TIER_1/2/3) system separates survival in external cohorts.",
++            status="NOT_EXTERNALLY_REPLICATED",
++            evidence="All shipped external manifests report validation_holds=false (GSE32062 log-rank p=0.93, GSE102073 p=0.48). Discovery/exploratory only.",
++        ),
++        "predictive_platinum_response": ClaimStatus(
++            claim="CXCL12/POSTN model predicts platinum response.",
++            status="INCONCLUSIVE",
++            evidence="Out-of-distribution AUROC 0.638 (95% CI 0.513-0.764), p=0.031; nested-CV 0.592+/-0.112; survival-derived label; EPV~0.36. Discovery-grade, calibration-required.",
++        ),
++    },
+ )
+ 
+ 
+@@ -74,6 +106,11 @@ def validate_api_key(api_key: str) -> None:
+         raise HTTPException(status_code=401, detail="Invalid API key")
+ 
+ 
+-def hash_api_key(api_key: str) -> str:
+-    """SHA-256 hash of API key for audit logging."""
++def hash_api_key(api_key: Optional[str]) -> str:
++    """SHA-256 hash of API key for audit logging.
++
++    Returns a sentinel for absent keys (local dev mode) instead of crashing.
++    """
++    if not api_key:
++        return "no_api_key"
+     return hashlib.sha256(api_key.encode()).hexdigest()
+diff --git a/conftest.py b/conftest.py
+new file mode 100644
+index 0000000..13f3bce
+--- /dev/null
++++ b/conftest.py
+@@ -0,0 +1,3 @@
++import sys
++from pathlib import Path
++sys.path.insert(0, str(Path(__file__).resolve().parent))
+-- 
+2.39.5
+

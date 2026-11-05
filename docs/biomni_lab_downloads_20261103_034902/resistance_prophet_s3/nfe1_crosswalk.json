@@ -1,0 +1,301 @@
+{
+  "contrasts": [
+    {
+      "contrast": "s3_vs_CX3",
+      "statistic": "spearman",
+      "estimate": 0.30496718517605004,
+      "ci_lo": 0.22679656080815502,
+      "ci_hi": 0.3819191768671389,
+      "n": 529,
+      "criterion": 0.8,
+      "meets_criterion": false
+    },
+    {
+      "contrast": "s3_vs_CX2",
+      "statistic": "spearman",
+      "estimate": 0.27935726111032905,
+      "ci_lo": 0.19967535115914947,
+      "ci_hi": 0.3547049876868949,
+      "n": 529,
+      "criterion": 0.8,
+      "meets_criterion": false
+    },
+    {
+      "contrast": "s3_vs_CX3_minus_CX2",
+      "statistic": "spearman",
+      "estimate": 0.15584735585167075,
+      "ci_lo": 0.07268917111959405,
+      "ci_hi": 0.23929192463416843,
+      "n": 529,
+      "criterion": 0.8,
+      "meets_criterion": false
+    },
+    {
+      "contrast": "s3_vs_CX3",
+      "statistic": "pearson",
+      "estimate": 0.29051123992500705,
+      "ci_lo": 0.21866667073342086,
+      "ci_hi": 0.3600401662404517,
+      "n": 529,
+      "criterion": 0.8,
+      "meets_criterion": false
+    },
+    {
+      "contrast": "s3_vs_CX3_minus_CX2",
+      "statistic": "pearson",
+      "estimate": 0.10666451697492288,
+      "ci_lo": 0.026861940200512146,
+      "ci_hi": 0.18583479560230556,
+      "n": 529,
+      "criterion": 0.8,
+      "meets_criterion": false
+    },
+    {
+      "contrast": "raw_s3_vs_CX3",
+      "statistic": "spearman",
+      "estimate": 0.2918954891953068,
+      "ci_lo": 0.21149924761960096,
+      "ci_hi": 0.37100876663276333,
+      "n": 529,
+      "criterion": 0.8,
+      "meets_criterion": false
+    },
+    {
+      "contrast": "raw_s3_vs_CX3_minus_CX2",
+      "statistic": "spearman",
+      "estimate": 0.12780880706052708,
+      "ci_lo": 0.04328001772753978,
+      "ci_hi": 0.21396559182764757,
+      "n": 529,
+      "criterion": 0.8,
+      "meets_criterion": false
+    },
+    {
+      "contrast": "s3_high_vs_CX3_dominant_classification",
+      "statistic": "agreement_fraction",
+      "estimate": 0.5425330812854442,
+      "ci_lo": NaN,
+      "ci_hi": NaN,
+      "n": 529,
+      "criterion": 0.8,
+      "meets_criterion": false
+    },
+    {
+      "contrast": "s3_high_vs_CX3_dominant_classification",
+      "statistic": "cohens_kappa",
+      "estimate": 0.08370075584058616,
+      "ci_lo": NaN,
+      "ci_hi": NaN,
+      "n": 529,
+      "criterion": 0.8,
+      "meets_criterion": false
+    }
+  ],
+  "full_7x17_spearman": {
+    "CX1": {
+      "s1": 0.958786900186498,
+      "s2": -0.13623449657513953,
+      "s3": 0.01870542052606433,
+      "s4": -0.3729788874429572,
+      "s5": -0.33403748503352887,
+      "s6": -0.0639278399913782,
+      "s7": -0.6869869835090311
+    },
+    "CX2": {
+      "s1": -0.5027961802889827,
+      "s2": 0.825936009053471,
+      "s3": 0.27935726111032905,
+      "s4": -0.2010738528088771,
+      "s5": 0.15156852739027546,
+      "s6": 0.25852675483728044,
+      "s7": 0.2636718588421326
+    },
+    "CX3": {
+      "s1": -0.19794169327958977,
+      "s2": -0.3710186293860721,
+      "s3": 0.30496718517605004,
+      "s4": -0.1696075270455404,
+      "s5": 0.13268347833512473,
+      "s6": -0.2872211891223636,
+      "s7": 0.7823989571837655
+    },
+    "CX4": {
+      "s1": -0.23480527729674555,
+      "s2": 0.054042626416531285,
+      "s3": -0.5700201138403861,
+      "s4": 0.8510812352290587,
+      "s5": -0.20802498406271153,
+      "s6": 0.07033887781541062,
+      "s7": -0.1805500529124256
+    },
+    "CX5": {
+      "s1": -0.745132458238493,
+      "s2": 0.2635198489527222,
+      "s3": -0.39933907503294575,
+      "s4": 0.5870466224768406,
+      "s5": 0.3992406990771905,
+      "s6": 0.37267697946379086,
+      "s7": 0.13066767407151705
+    },
+    "CX6": {
+      "s1": 0.525098653568665,
+      "s2": 0.013145737110177776,
+      "s3": -0.41697072946792174,
+      "s4": 0.17120476688097327,
+      "s5": -0.27744196394776593,
+      "s6": 0.09029916908835628,
+      "s7": -0.5035482269539372
+    },
+    "CX7": {
+      "s1": -0.1426916741580518,
+      "s2": -0.18432607196506412,
+      "s3": -0.09900485892994201,
+      "s4": -0.044867277941312164,
+      "s5": 0.7856455471970397,
+      "s6": -0.04852292576220619,
+      "s7": 0.13423605069258526
+    },
+    "CX8": {
+      "s1": -0.18999886945730798,
+      "s2": -0.04502782558728618,
+      "s3": -0.5290131558473462,
+      "s4": 0.6288557135079899,
+      "s5": -0.19133160164974447,
+      "s6": 0.3573175636679436,
+      "s7": -0.11911519299538155
+    },
+    "CX9": {
+      "s1": 0.052392533274290436,
+      "s2": 0.08953276075608867,
+      "s3": -0.2866857708075196,
+      "s4": 0.13740656258980316,
+      "s5": 0.14211082674574976,
+      "s6": 0.4413180744278853,
+      "s7": -0.19841713563017985
+    },
+    "CX10": {
+      "s1": -0.008453970445317574,
+      "s2": 0.12161623822072325,
+      "s3": 0.10386219708583871,
+      "s4": 0.12868780877184008,
+      "s5": -0.3131858464430236,
+      "s6": 0.3740050774966751,
+      "s7": -0.30116853020828155
+    },
+    "CX11": {
+      "s1": 0.04432280687537461,
+      "s2": 0.026095604788086604,
+      "s3": 0.2679031661246704,
+      "s4": -0.253311210035076,
+      "s5": 0.20561061686893364,
+      "s6": 0.18899119098608444,
+      "s7": -0.055276711293335036
+    },
+    "CX12": {
+      "s1": 0.14776790730255834,
+      "s2": -0.1434455951431847,
+      "s3": 0.17008182021455096,
+      "s4": -0.11691188475839849,
+      "s5": -0.008674351152320266,
+      "s6": -0.03288442006729365,
+      "s7": -0.06622225331511922
+    },
+    "CX13": {
+      "s1": -0.12571955171095742,
+      "s2": 0.1283799052424365,
+      "s3": -0.2987010034391669,
+      "s4": 0.28736085778488274,
+      "s5": -0.04139795330382543,
+      "s6": 0.48177360120101753,
+      "s7": -0.19589743352158773
+    },
+    "CX14": {
+      "s1": 0.26869950135898035,
+      "s2": -0.10924904516273558,
+      "s3": 0.17445197371510954,
+      "s4": -0.19377372089227893,
+      "s5": 0.05042216377259157,
+      "s6": -0.08875630617039186,
+      "s7": -0.2232662732792562
+    },
+    "CX15": {
+      "s1": -0.003756980062448046,
+      "s2": -0.06800818237740991,
+      "s3": 0.05522685104736284,
+      "s4": -0.19274276103006868,
+      "s5": 0.325241200332171,
+      "s6": -0.3629688221641462,
+      "s7": 0.08436204386211953
+    },
+    "CX16": {
+      "s1": -0.3497916608378018,
+      "s2": 0.13958267974549213,
+      "s3": 0.006946871980132317,
+      "s4": 0.24496838042632307,
+      "s5": 0.0018008022164590974,
+      "s6": 0.026078068206847757,
+      "s7": 0.15277728311205332
+    },
+    "CX17": {
+      "s1": -0.30257758322681577,
+      "s2": -0.09808787402609827,
+      "s3": -0.18819112943730626,
+      "s4": 0.4569686728292527,
+      "s5": -0.1971540003682427,
+      "s6": 0.023227923496448977,
+      "s7": 0.15099004105894423
+    }
+  },
+  "verdict": {
+    "nfe": "NFE-1 framework crosswalk",
+    "cohort": {
+      "requested": "BriTROC-1 diagnosis profiles",
+      "executed": "TCGA-OV",
+      "n_overlap": 529,
+      "substitution_reason": "BriTROC-1 segment-level CN profiles are EGA-controlled and not in the sandbox; CX exposures for BriTROC-1 have never been published. TCGA-OV is the largest cohort with both frameworks published by the originating labs."
+    },
+    "criterion": {
+      "threshold": 0.8,
+      "statement": "|Spearman rho| >= 0.80 between s3 and CX3 (or CX3-CX2)"
+    },
+    "primary_result": {
+      "s3_vs_CX3_spearman": 0.30496718517605004,
+      "ci95": [
+        0.22679656080815502,
+        0.3819191768671389
+      ],
+      "n": 529
+    },
+    "criterion_met": false,
+    "top5_cx_by_abs_spearman_with_s3": {
+      "CX4": -0.5700201138403861,
+      "CX8": -0.5290131558473462,
+      "CX6": -0.41697072946792174,
+      "CX5": -0.39933907503294575,
+      "CX3": 0.30496718517605004
+    },
+    "classification_concordance": {
+      "agreement": 0.5425330812854442,
+      "cohens_kappa": 0.08370075584058616
+    },
+    "provenance": {
+      "files": {
+        "ov_sigs_tcga_norm.rds": {
+          "sha256": "586250eb8e9ab1d01376349c150e8574243183bf764e7a3b0c3e0fd5efe2b41f",
+          "url": "https://github.com/markowetzlab/Drews2022_CIN_Compendium/raw/main/Section%201%20-%204%20Signature%20Discovery/input/Export-matrix_OV_Sigs_on_TCGA-OV_12112019.rds"
+        },
+        "ov_sigs_tcga_raw.rds": {
+          "sha256": "7a7494eb5ebfb27a3e4aacf0d8624d98e5c9bd652a0d2f08f784e55ed6fd5a89",
+          "url": "https://github.com/markowetzlab/Drews2022_CIN_Compendium/raw/main/Section%201%20-%204%20Signature%20Discovery/input/Export-matrix_OV_Sigs_on_TCGA-OV_rawExposures_12112019.rds"
+        },
+        "cx_activities_tcga.rds": {
+          "sha256": "13a7d7e8758e3250cf5b556723cac2221a779678f76e572f6e30eb0afa79c329",
+          "url": "https://github.com/markowetzlab/Drews2022_CIN_Compendium/raw/main/Section%2010%20Supplementary%20figures/input/Signature_Compendium_v5_Cosine-0.74_Activities_THRESH95_NAMESAPRIL21.rds"
+        }
+      },
+      "note": "Author-published exposure matrices; no re-derivation."
+    },
+    "verdict": "CRITERION_NOT_MET: s3 vs CX3 Spearman rho = 0.305 [0.227, 0.382] at n=529 -- far below the 0.80 surrogate threshold, with a CI that excludes 0.80. Macintyre s3 and Drews CX3 share HRD-related biology but are NOT numerically interchangeable exposures; the frameworks partition copy-number features differently (s3's strongest CX correlates are negative: CX4 -0.57, CX8 -0.53).",
+    "gate_c_consequence": "The CX-transfer route to Gate C is CLOSED on evidence, not on missing data. The open route is DIRECT Macintyre-framework quantification: the CINSignatureQuantification package (markowetzlab) natively supports the ovarian s1-s7 signatures, and public absolute CN profiles with clinical outcomes (TCGA-OV ASCAT SNP6 + TCGA-CDR platinum response; PCAWG-OV) require no crosswalk assumption. That is the next falsifiable experiment for Gate C."
+  }
+}

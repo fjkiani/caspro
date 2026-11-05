@@ -21,17 +21,16 @@ export default function RecommendedDrugsPanel() {
   const pathTag   = isDarkMode ? 'text-white/30' : 'text-zinc-400';
 
   return (
-    <section className="mx-auto w-full max-w-[1400px] px-4 py-8 md:px-8 md:py-10">
-      <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
+    <section className="mx-auto h-full min-h-0 w-full max-w-[1400px] overflow-y-auto">
+      <div className="mb-2 flex shrink-0 flex-wrap items-baseline justify-between gap-3">
         <div>
-          <h2 className={`text-lg font-semibold ${heading}`}>Recommended SL drugs</h2>
+          <h2 className={`text-lg font-semibold ${heading}`}>Ranked options</h2>
           <p className={`mt-1 text-xs ${sub}`}>
-            Anchor therapy: <span className={anchorHi}>{anchorName}</span> · 5 ranked
-            confidences from the SL engine. Rucaparib is intentionally listed so the
-            falsification arc has visible substrate.
+            Lead option: <span className={anchorHi}>{anchorName}</span>. Ordered for this
+            fixture's biology — research discussion, not a prescription.
           </p>
         </div>
-        <span className={`font-mono text-[10px] ${pathTag}`}>recommended_drugs[]</span>
+        <span className={`text-[10px] uppercase tracking-widest ${pathTag}`}>RUO</span>
       </div>
 
       <div className="grid gap-3">
@@ -94,7 +93,6 @@ function DrugCard({
     ? 'border-rose-400/40 bg-rose-500/10 text-rose-200'
     : 'border-rose-300 bg-rose-100 text-rose-800';
 
-  const path = isDarkMode ? 'text-white/30' : 'text-zinc-400';
   const bar = isDarkMode ? 'bg-white/10' : 'bg-zinc-200';
   const barFill = anchor
     ? isDarkMode ? 'bg-cyan-400' : 'bg-indigo-500'
@@ -133,7 +131,6 @@ function DrugCard({
               </span>
             )}
           </div>
-          <div className={`mt-1 font-mono text-[10px] ${path}`}>{d.path}</div>
         </div>
         <div className="flex items-center gap-3">
           <div className="w-32">

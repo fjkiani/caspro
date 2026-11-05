@@ -1,0 +1,135 @@
+{
+  "board_version": "2026-05-13-fix",
+  "description": "Canonical research board state for Brenus / CrisPRO GBM + CRC lanes",
+  "gbm_finding": {
+    "dataset": "GSE174554 (Wang et al. Nature Cancer 2022, PMID 36539501)",
+    "canonical_verdict": "SC_UNDERPOWERED",
+    "one_line": "snRNA-seq matched-pair analysis (n=8, CP10K normalized) shows no significant EMT/mesenchymal upregulation at recurrence (all Wilcoxon p>0.05), but is underpowered (~20% power for d=0.5); mesenchymal shift present in 4/8 pairs (50%), consistent with Wang et al. ~60% rate.",
+    "verdict_taxonomy_note": "SC_UNDERPOWERED \u2260 SC_NOT_SUPPORTED_YET \u2260 SC_ESCAPE_ABSENT. SC_NOT_SUPPORTED_YET applies to Visium spatial (structurally incapable). SC_UNDERPOWERED applies to snRNA-seq (correct assay, insufficient n). SC_ESCAPE_ABSENT requires adequately powered analysis showing significant DOWN \u2014 not met.",
+    "sc_mixed_signal_divergence": "SC_MIXED_SIGNAL was incorrectly assigned by agent 3884c4ac (iteration-limit state). Agent summary contradicted stored per_signature_results (all three DOWN, not mixed). Corrected to SC_NOT_SUPPORTED_YET on 2026-05-13 audit; further refined to SC_UNDERPOWERED on board fix 2026-05-13. Full divergence record in gbm_gse174554_sc_escape_verdict.json and gbm_gse174554_canonical_verdict.json.",
+    "snrna_key_numbers": {
+      "n_valid_pairs": 8,
+      "mesenchymal_mean_delta": 0.019,
+      "mesenchymal_wilcoxon_p": 0.371,
+      "mesenchymal_up_pairs": "4/8",
+      "emt_mean_delta": -0.022,
+      "emt_wilcoxon_p": 0.727,
+      "n_needed_80pct_power": 34
+    },
+    "spatial_key_numbers": {
+      "verdict": "SC_NOT_SUPPORTED_YET",
+      "failure_mode": "mixed-cell Visium spots, 1825-gene panel, cross-sectional n=5",
+      "mesenchymal_delta": -0.127,
+      "macrophage_delta": 0.154
+    },
+    "source_files": [
+      "gbm_gse174554_canonical_verdict.json",
+      "gbm_gse174554_snrna_emt_expansion.json",
+      "gbm_gse174554_sc_escape_verdict.json"
+    ]
+  },
+  "crc_finding": {
+    "trial": "BreAK CRC-001",
+    "population": "KRAS-mutant MSS/pMMR mCRC, 1L",
+    "backbone": "mFOLFOX6 +/- bevacizumab",
+    "one_line": "Primary benchmark: KRAS exon 2 mutant FOLFOX4 arm OS 19.7 mo, PFS 8.8 mo (PRIME 2010, PMID 20921462). Must-beat threshold (20% improvement): OS \u226523.6 mo, PFS \u226510.6 mo.",
+    "primary_benchmark": {
+      "source": "PRIME 2010 (PMID 20921462)",
+      "population": "KRAS exon 2 mutant",
+      "arm": "FOLFOX4",
+      "os_months": 19.7,
+      "pfs_months": 8.8,
+      "must_beat_os": 23.6,
+      "must_beat_pfs": 10.6
+    },
+    "secondary_floor": {
+      "source": "PRIME 2013 (PMID 24024839)",
+      "population": "RAS-other-mutant (different population \u2014 secondary reference only)",
+      "arm": "FOLFOX4",
+      "os_months": 18.3,
+      "pfs_months": 8.0,
+      "must_beat_os": 22.0,
+      "must_beat_pfs": 9.6
+    },
+    "braf_v600e_benchmark": {
+      "primary_source": "BREAKWATER SOC arm (\u00c9lez 2025 NEJM, DOI 10.1056/nejmoa2501912)",
+      "os_months": 15.1,
+      "floor_source": "CAPSTAN CRC real-world (Martinelli 2022 ESMO Open)",
+      "floor_os_months": 12.9,
+      "floor_pfs_months": 6.0
+    },
+    "bev_ceiling": {
+      "os_months": 25.6,
+      "source": "TRIBE FOLFIRI+bev RAS-mut (Cremolini 2015 Lancet Oncol, PMID 25038498)",
+      "caveat": "FOLFIRI-derived, not mFOLFOX6+bev. Direct mFOLFOX6+bev KRAS-mut all-comers: ~22-26 mo range."
+    },
+    "source_file": "break_crc001_comparator_floor.json"
+  },
+  "open_blockers": [
+    {
+      "id": "GBM-01",
+      "lane": "GBM snRNA-seq",
+      "description": "Expand to n\u226520 matched pairs for 80% power (d=0.5)",
+      "action": "Download Pairs 19, 20 + remaining unanalyzed pairs from GEO FTP (24 pairs available)",
+      "blocking": "Definitive SC_ESCAPE_SUPPORTED or SC_ESCAPE_ABSENT verdict",
+      "machine_executable": true
+    },
+    {
+      "id": "GBM-02",
+      "lane": "GBM snRNA-seq",
+      "description": "Tumor-cell-specific EMT scoring (separate from macrophage-driven mesenchymal signal)",
+      "action": "Cell-type annotation via Seurat/Scanpy on full snRNA-seq data; score tumor cells only",
+      "blocking": "Unconfounded SC_ESCAPE verdict",
+      "machine_executable": true
+    },
+    {
+      "id": "DBGAP-01",
+      "lane": "dbGaP phs003428",
+      "description": "5 human-only blockers remain",
+      "action": "PI: CTEP email, research_use_statement, non_technical_summary. Institution: SO cosignature, IRB approval.",
+      "blocking": "dbGaP access",
+      "machine_executable": false
+    },
+    {
+      "id": "CRC-01",
+      "lane": "CRC comparator floor",
+      "description": "Direct mFOLFOX6+bev KRAS-mut all-comers OS not available from single clean source",
+      "action": "Literature search for mFOLFOX6+bev KRAS-mut RCT subgroup data",
+      "blocking": "Precise bev ceiling for BreAK CRC-001 positioning",
+      "machine_executable": true
+    }
+  ],
+  "completed_lanes": [
+    {
+      "lane": "dbGaP phs003428 automation",
+      "status": "COMPLETE",
+      "artifact": "dbgap_phs003428_automation_status.json"
+    },
+    {
+      "lane": "CRC comparator floor",
+      "status": "COMPLETE (verified)",
+      "artifact": "break_crc001_comparator_floor.json"
+    },
+    {
+      "lane": "GBM spatial EMT",
+      "status": "COMPLETE (verified)",
+      "artifact": "gbm_gse174554_sc_escape_verdict.json"
+    },
+    {
+      "lane": "GBM snRNA-seq pilot",
+      "status": "COMPLETE (QC-corrected)",
+      "artifact": "gbm_gse174554_snrna_emt_pilot.json"
+    },
+    {
+      "lane": "GBM snRNA-seq expansion (Pairs 12-17)",
+      "status": "COMPLETE (verified)",
+      "artifact": "gbm_gse174554_snrna_emt_expansion.json"
+    },
+    {
+      "lane": "data-room (6 nav-linked decks)",
+      "status": "COMPLETE",
+      "artifact": "brenus_data_room/",
+      "commit": "0a85421"
+    }
+  ]
+}

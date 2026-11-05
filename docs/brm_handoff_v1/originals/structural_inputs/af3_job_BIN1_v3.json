@@ -1,0 +1,28 @@
+{
+  "name": "BrM_BIN1",
+  "modelSeeds": [
+    42
+  ],
+  "sequences": [
+    {
+      "rna": {
+        "id": "A",
+        "sequence": "AGAUGUGGAGAUGUCCCGGAGUUUUAGAGCUAGAAAUAGCAAGUUAAAAUAAGGCUAGUCCGUUAUCAACUUGAAAAAGUGGCACCGAGUCGGUGC"
+      }
+    },
+    {
+      "dna": {
+        "id": "B",
+        "sequence": "TTTCGCCCGGATACCCTAGGCGCCTCCGGGACATCTCCACATCTTTGCCTACGGCGCCTAG"
+      }
+    },
+    {
+      "dna": {
+        "id": "C",
+        "sequence": "CTAGGCGCCGTAGGCAAAGATGTGGAGATGTCCCGGAGGCGCCTAGGGTATCCGGGCGAAA"
+      }
+    }
+  ],
+  "dialect": "alphafoldserver",
+  "version": 1
+}

@@ -14,6 +14,8 @@ export interface HeadlineEntry {
   text: string;        // The headline to type
   highlight?: string;  // Colored suffix — the punchline
   trial?: string;      // Trial reference (for watermark traceability)
+  /** Optional destination — used by homepage ACTIVE GATE cycling copy. */
+  href?: string;
   evidence?: {
     title: string;            // Evidence panel title
     rows: EvidenceRow[];      // Key-value rows

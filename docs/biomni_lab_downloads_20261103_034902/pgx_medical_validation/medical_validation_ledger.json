@@ -1,0 +1,266 @@
+{
+  "ledger_version": "1.0",
+  "generated_at": "2026-07-19T10:01:50Z",
+  "validator": "Independent medical validation (Biomni)",
+  "scope": "Independent re-derivation of load-bearing quantitative claims from primary literature + current PGx guidelines; internal-consistency audit; in-place corrections on review branch.",
+  "definitions": {
+    "SUPPORTED": "Independently reproduced from the cited primary source within rounding; statistical direction and magnitude confirmed.",
+    "SUPPORTED_WITH_NOTE": "Reproduced, but requires a clarifying note (framing/denominator/currency).",
+    "OVERSTATED": "Claim exceeds what the underlying data/receipt support; corrected in place.",
+    "DISCREPANT": "Internal inconsistency across files, or contrast mislabeled vs the paper's actual significant result.",
+    "UNVERIFIABLE": "Cannot be computed from the available cohort (e.g., specificity with zero confirmed negatives).",
+    "validated_meaning": "Throughout, 'validated' = independently reproduced from cited sources. It NEVER means clinically proven. All results are RUO; no regulatory clearance is implied."
+  },
+  "claims": [
+    {
+      "id": "A1",
+      "title": "PREPARE actionable-carrier relative risk reduction",
+      "source_locations": [
+        "MANUSCRIPT.md:16 (abstract)",
+        "ABSTRACT_FINAL.md:9",
+        "README.md",
+        "VALIDATION_SUMMARY_FIGURES.md:222"
+      ],
+      "claimed_value": "83.1% RRR (34.8%->5.9%), Fisher p=0.054, OR 0.1",
+      "independently_recomputed_value": "RRR=0.8309, Fisher p=0.0536, OR 0.1 (exact 95% CI 0.013-1.052) from control 8/23, intervention 1/17",
+      "verdict": "SUPPORTED",
+      "severity": "none",
+      "primary_citation": "Chiara Nardini et al., PREPARE gastrointestinal-cancer secondary analysis, PMID 39641926 / PMC11624585, Table 2 (OR 0.1, 0.0-0.8, p=.04 adjusted; Fisher p=0.054 conservative).",
+      "corrective_action": "No change. Abstract's use of the conservative Fisher p=0.054 (vs the paper's adjusted p=.04) is the more conservative choice and is retained.",
+      "notes": "Paper reports adjusted OR 0.1 (0.0-0.8) p=.04 as significant; receipt/abstract cite Fisher p=0.054 (borderline). Both disclosed. n=563 is a secondary-analysis subset of 1232 enrolled; manuscript says 'secondary analysis' correctly."
+    },
+    {
+      "id": "A2",
+      "title": "PREPARE nonactionable negative-control equivalence",
+      "source_locations": [
+        "MANUSCRIPT.md:16",
+        "MANUSCRIPT.md:18"
+      ],
+      "claimed_value": "15.3% vs 16.0%, p=0.904 (523 negative controls)",
+      "independently_recomputed_value": "RRR=0.0409, Fisher p=0.904 from control 46/288, intervention 36/235 (n=523)",
+      "verdict": "SUPPORTED",
+      "severity": "none",
+      "primary_citation": "PMID 39641926 / PMC11624585, Table 2 nonactionable strata.",
+      "corrective_action": "No change.",
+      "notes": "Correctly used as negative-control specificity evidence."
+    },
+    {
+      "id": "A3",
+      "title": "CYP2C19 clopidogrel ischemic-event risk ratio",
+      "source_locations": [
+        "MANUSCRIPT.md:16",
+        "VALIDATION_SUMMARY_FIGURES.md (CYP2C19)"
+      ],
+      "claimed_value": "4.28x higher risk in PM/IM (20.2% vs 4.7%), p=6.7e-4",
+      "independently_recomputed_value": "RR=4.2808 (95% CI 1.677-10.926), Fisher p=6.7e-4 from EM 5/106, PM/IM 21/104",
+      "verdict": "SUPPORTED",
+      "severity": "none",
+      "primary_citation": "NCVC Genome Registry LAA-stroke cohort, PMID 40944685 / PMC12673833, Table 4; paper univariate HR 4.34 (1.61-11.36), multivariate 5.26 (1.87-14.56).",
+      "corrective_action": "No change.",
+      "notes": "Full study = 369 LAA-stroke patients (from 1,612 screened); n=210 is the clopidogrel-treated subset (EM 106 + PM/IM 104). Used correctly. Manuscript uses CYP2C19 as outcome-association, not a dosing-concordance case."
+    },
+    {
+      "id": "A4",
+      "title": "Nguyen pretreatment-vs-reactive toxicity RRR",
+      "source_locations": [
+        "reports/case_studies_data.json (CS001)",
+        "receipts/nguyen_dpyd_validation.json",
+        "MANUSCRIPT.md:392"
+      ],
+      "claimed_value": "51.6% RRR toxicity (pretreatment vs reactive)",
+      "independently_recomputed_value": "Pretreatment-vs-reactive RRR=0.509 but Fisher p=0.13 (NOT significant); paper's significant result is reactive-vs-wildtype (multivariable OR 3.57, 95% CI 1.02-12.49, p=.029 tox; OR 9.59, 2.70-34.04, p=.001 hosp)",
+      "verdict": "DISCREPANT",
+      "severity": "MEDIUM",
+      "primary_citation": "D. Grace Nguyen, Jai N. Patel et al., JCO Precis Oncol 2024, PMID 38935897 / PMC11371106 / DOI 10.1200/PO.23.00623.",
+      "corrective_action": "Ensure the pretreatment-vs-reactive RRR is presented as a DESCRIPTIVE contrast, not a statistically significant effect. Where a significant Nguyen effect is cited, it must be the reactive-vs-wildtype OR (3.57 tox / 9.59 hosp), which the manuscript body (line 392) does correctly.",
+      "notes": "Descriptive RRR is fine; the error would be presenting the pretreatment-vs-reactive contrast as significant."
+    },
+    {
+      "id": "A5",
+      "title": "Nguyen hospitalization RRR internal disagreement",
+      "source_locations": [
+        "reports/case_studies_data.json (CS001)",
+        "receipts/nguyen_dpyd_validation.json"
+      ],
+      "claimed_value": "60.7% (nguyen receipt) vs 60.9% (case_studies_data.json)",
+      "independently_recomputed_value": "Recomputed 0.607",
+      "verdict": "DISCREPANT",
+      "severity": "LOW",
+      "primary_citation": "PMID 38935897 / PMC11371106.",
+      "corrective_action": "Harmonize to 60.7% (0.607). Also note pretreatment-vs-reactive hospitalization contrast p=0.061 (not significant).",
+      "notes": "Minor rounding disagreement between two shipped receipts."
+    },
+    {
+      "id": "A6",
+      "title": "Nguyen study metadata conflict across receipts",
+      "source_locations": [
+        "reports/case_studies_data.json (CS001_DPYD_442)",
+        "receipts/nguyen_dpyd_validation.json"
+      ],
+      "claimed_value": "case_studies_data.json: first author 'Patel JN', 'Levine Cancer Institute', 'Real-world implementation study'",
+      "independently_recomputed_value": "Correct per PMC11371106: first author D. Grace Nguyen (PharmD); senior/last author Jai N. Patel; Atrium Health Levine Cancer Institute; prospective observational cohort. nguyen_dpyd_validation.json is CORRECT.",
+      "verdict": "DISCREPANT",
+      "severity": "MEDIUM",
+      "primary_citation": "PMID 38935897 / PMC11371106.",
+      "corrective_action": "Correct case_studies_data.json CS001 metadata: first author -> 'Nguyen DG' (Patel JN is senior author), study_type -> 'Prospective observational cohort', title corrected to the actual article.",
+      "notes": "Same PMID described two ways; nguyen_dpyd_validation.json already matches the paper."
+    },
+    {
+      "id": "B1",
+      "title": "Toxicity-prediction specificity headline (53/53)",
+      "source_locations": [
+        "README.md:20",
+        "README.md:73",
+        "PUBLICATION_PACKAGE_INDEX.md:53",
+        "docs/SME_EXECUTIVE_SUMMARY.md:21"
+      ],
+      "claimed_value": "Specificity 100% (53/53); 'Zero false positives'",
+      "independently_recomputed_value": "UNVERIFIABLE: authoritative receipt clinical_validation_audit.json reports toxicity_specificity=null (tn=0, fp=0). The 53 cases are tox_unknown (drug/outcome not both known), NOT confirmed non-toxic, so specificity cannot be estimated.",
+      "verdict": "OVERSTATED",
+      "severity": "HIGH",
+      "primary_citation": "reports/clinical_validation_audit.json (shipped receipt; states specificity=null with note).",
+      "corrective_action": "Remove/replace '100% (53/53)' with 'Not estimable from this cohort (0 confirmed toxicity-negative evaluable cases; 53 outcome-unknown)'. Fix README:20, README:73, PUBLICATION_PACKAGE_INDEX:53, SME_EXECUTIVE_SUMMARY:21.",
+      "notes": "This claim contradicts the package's own machine receipt."
+    },
+    {
+      "id": "B2",
+      "title": "Clinical-evaluable toxicity sensitivity vs headline",
+      "source_locations": [
+        "README.md:19",
+        "PUBLICATION_PACKAGE_INDEX.md:52",
+        "VALIDATION_SUMMARY_FIGURES.md:242"
+      ],
+      "claimed_value": "Toxicity Sensitivity 100% (6/6)",
+      "independently_recomputed_value": "Clinical-evaluable (drug present AND known outcome, n=6): sensitivity=0.667 (tp=4, fn=2), Wilson CI 30.0-90.3%. The Tier-2 heuristic screen (n=16 scorable) is the one that is 100% (6/6) sensitivity, but its specificity is 10% (1/10), not 100%.",
+      "verdict": "OVERSTATED",
+      "severity": "HIGH",
+      "primary_citation": "reports/clinical_validation_audit.json (clinical-evaluable) + MANUSCRIPT.md:\u00a73.3 (Tier-2 100% sens / 10% spec).",
+      "corrective_action": "Disambiguate the two metrics in README/index/figures: (i) clinical-evaluable sensitivity 0.667 (4/6); (ii) Tier-2 heuristic sensitivity 100% (6/6) WITH specificity 10% (1/10), PPV 40%. Never pair '6/6 sensitivity' with '53/53 specificity'.",
+      "notes": "The manuscript body \u00a73.3 already reports the honest Tier-2 profile; the error is concentrated in the summary/audit/README files."
+    },
+    {
+      "id": "B3",
+      "title": "Tier-2 heuristic screen full confusion matrix",
+      "source_locations": [
+        "MANUSCRIPT.md:\u00a73.3"
+      ],
+      "claimed_value": "100% sensitivity, 10% specificity, 40% PPV, n=16",
+      "independently_recomputed_value": "Reproduced exactly: tp=6, fn=0, tn=1, fp=9 -> sensitivity 100% (CI 61.0-100), specificity 10% (1/10, CI 1.8-40.4), PPV 40% (6/15), NPV 100% (1/1).",
+      "verdict": "SUPPORTED",
+      "severity": "none",
+      "primary_citation": "reports/clinical_validation_audit.json / tier2 receipts; manuscript \u00a73.3.",
+      "corrective_action": "No change to manuscript body. Use these exact numbers when correcting the summary files.",
+      "notes": "Manuscript body is accurate and honest."
+    },
+    {
+      "id": "B4",
+      "title": "PREPARE actionability-classification specificity (523/523)",
+      "source_locations": [
+        "VALIDATION_SUMMARY_FIGURES.md:244",
+        "OUTCOME_LINKED_BREAKTHROUGHS.md:54",
+        "reports/prepare_outcome_validation.json:69-70"
+      ],
+      "claimed_value": "Actionability Specificity 100% (523/523)",
+      "independently_recomputed_value": "Legitimate table-level actionability-classification concordance (nonactionable genotypes correctly classified nonactionable), per prepare_outcome_validation.json. This is DISTINCT from clinical toxicity-prediction specificity.",
+      "verdict": "SUPPORTED_WITH_NOTE",
+      "severity": "LOW",
+      "primary_citation": "reports/prepare_outcome_validation.json (table-level, explicitly not patient-level prediction).",
+      "corrective_action": "Do NOT delete. Add a one-line clarifier where it could be confused with clinical tox-prediction specificity so the two are not conflated. VALIDATION_SUMMARY_FIGURES.md already labels it 'table-level'.",
+      "notes": "Honestly scoped already; needs only disambiguation from B1."
+    },
+    {
+      "id": "C1",
+      "title": "CPIC concordance 100% (10/10)",
+      "source_locations": [
+        "MANUSCRIPT.md:16",
+        "reports/CPIC_CONCORDANCE_REPORT.md",
+        "reports/cpic_concordance_report.json"
+      ],
+      "claimed_value": "100% CPIC concordance (10/10)",
+      "independently_recomputed_value": "SUPPORTED but thin: 10 matched calls = 9 DPYD + 1 TPMT; only ~3 are actionable dose-reduction calls (rest Normal Metabolizer->Full-dose). DPYD REDUCE_50 for c.2846A>T / c.1903A>G IM confirmed concordant with CPIC.",
+      "verdict": "SUPPORTED_WITH_NOTE",
+      "severity": "LOW",
+      "primary_citation": "CPIC DPYD/fluoropyrimidine guideline (cpicpgx.org).",
+      "corrective_action": "Add a note that the denominator is small and mostly Normal-Metabolizer full-dose calls, so 10/10 concordance is real but low-powered.",
+      "notes": ""
+    },
+    {
+      "id": "C2",
+      "title": "TPMT *3A case labeled 'EXACT' match",
+      "source_locations": [
+        "docs/CPIC_ALIGNMENT_SUMMARY.md:41",
+        "reports/CPIC_CONCORDANCE_REPORT.md:44",
+        "reports/cpic_concordance_report.json:128"
+      ],
+      "claimed_value": "LIT-TPMT-001 TPMT *3A: CPIC 'REDUCE_30_70', system 'REDUCE_50', match_type EXACT",
+      "independently_recomputed_value": "(a) *3A/*1 = Intermediate Metabolizer phenotype: CORRECT. (b) CPIC mercaptopurine IM recommendation is a STARTING-DOSE RANGE of 30-80% of normal (2018 and 2025/26 versions), NOT 'REDUCE_30_70' -> cited range mis-stated. (c) System REDUCE_50 is WITHIN the CPIC range -> defensible, but 'EXACT' is wrong; it is a within-range point approximation.",
+      "verdict": "OVERSTATED",
+      "severity": "MEDIUM",
+      "primary_citation": "CPIC TPMT/NUDT15-thiopurine guideline (2018 PMID 30447069; 2025/26 update PMID 41618934 / doi 10.1002/cpt.70209).",
+      "corrective_action": "Change match_type 'EXACT' -> 'WITHIN_RANGE'; correct '30-70%'/'REDUCE_30_70' -> '30-80% of normal starting dose' in CPIC_ALIGNMENT_SUMMARY.md:41, CPIC_CONCORDANCE_REPORT.md:44, cpic_concordance_report.json:128.",
+      "notes": ""
+    },
+    {
+      "id": "C3",
+      "title": "DPYD guideline currency",
+      "source_locations": [
+        "MANUSCRIPT.md references",
+        "reports/CPIC_CONCORDANCE_REPORT.md"
+      ],
+      "claimed_value": "Cites DPYD 2017 Update (PMID 29152729)",
+      "independently_recomputed_value": "SUPERSEDED: 2017 base + Jan-2024 + Jul-2026 updates (HapB3 / c.1129-5923C>G reclassified to activity score 0.75 -> 75% starting dose). None of the 10 cases involve HapB3, so REDUCE_50 for standard IM variants is unchanged.",
+      "verdict": "SUPPORTED_WITH_NOTE",
+      "severity": "LOW",
+      "primary_citation": "CPIC DPYD guideline update history (cpicpgx.org).",
+      "corrective_action": "Add currency note that 2017 is superseded but the specific calls remain valid (no HapB3 cases).",
+      "notes": ""
+    },
+    {
+      "id": "C4",
+      "title": "TPMT guideline currency",
+      "source_locations": [
+        "reports/CPIC_CONCORDANCE_REPORT.md"
+      ],
+      "claimed_value": "Cites TPMT 2018 Update (PMID 30447069)",
+      "independently_recomputed_value": "SUPERSEDED by 2025/2026 update (PMID 41618934 / doi 10.1002/cpt.70209); IM starting-dose range still 30-80%; adds compound TPMT/NUDT15 IM phenotype.",
+      "verdict": "SUPPORTED_WITH_NOTE",
+      "severity": "LOW",
+      "primary_citation": "CPIC TPMT/NUDT15-thiopurine 2025/26 update.",
+      "corrective_action": "Add currency note. IM range unchanged (30-80%).",
+      "notes": ""
+    },
+    {
+      "id": "D1",
+      "title": "Safety Gate 'prevents trial failures' 87.5% labeled VALIDATED",
+      "source_locations": [
+        "CLINICAL_VALIDATION_AUDIT.md:27",
+        "CLINICAL_VALIDATION_AUDIT.md:187",
+        "CLINICAL_VALIDATION_AUDIT.md:241",
+        "OUTCOME_LINKED_BREAKTHROUGHS.md:137"
+      ],
+      "claimed_value": "Claim E 'Safety Gate prevents trial failures' = VALIDATED (87.5% / 7-of-8)",
+      "independently_recomputed_value": "OVERSTATED: this is a PROJECTION applying PREPARE intervention-arm rates to the control arm. The repo's own reports/EVIDENCE_TIER_TABLE.md concedes PROJECTION status and that RETROSPECTIVE/PROSPECTIVE/RCT tiers are Not Done, and that PREPARE succeeded (not a failed trial).",
+      "verdict": "OVERSTATED",
+      "severity": "MEDIUM",
+      "primary_citation": "reports/EVIDENCE_TIER_TABLE.md (repo's own concession) + reports/trial_failure_prevention_validation.json.",
+      "corrective_action": "Label Claim E as a PROJECTION (not '\u2705 VALIDATED') in CLINICAL_VALIDATION_AUDIT.md and OUTCOME_LINKED_BREAKTHROUGHS.md, consistent with the manuscript body and EVIDENCE_TIER_TABLE.md.",
+      "notes": "Manuscript abstract/body already say 'projection'; the audit summary overstates it."
+    },
+    {
+      "id": "D2",
+      "title": "'83% of variants lack CPIC coverage'",
+      "source_locations": [
+        "README.md:27",
+        "COVER_LETTER.md:24",
+        "PUBLICATION_STRATEGY_PIVOT.md:38"
+      ],
+      "claimed_value": "83% of pharmacogene variants lack CPIC coverage (49/59)",
+      "independently_recomputed_value": "SUPPORTED and correctly framed as a COVERAGE statement (not a performance metric) in every instance.",
+      "verdict": "SUPPORTED",
+      "severity": "none",
+      "primary_citation": "reports/clinical_validation_audit.json (49 non-CPIC of 59).",
+      "corrective_action": "No change.",
+      "notes": "Verified this is never presented as a performance claim."
+    }
+  ]
+}

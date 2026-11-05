@@ -1,0 +1,347 @@
+{
+  "generated_at": "2026-07-16T05:06:43.491987+00:00",
+  "provenance": {
+    "head_commit": "4f1748a6194436c560a5388c7576cde087985948",
+    "unified_db_sha256_16": "ac96437f9bb0fe28",
+    "patient_vector_builder_sha256_16": "215dd7bf73e6cbd8",
+    "pipeline_sha256_16": "5f50ccd0c61c7f5e",
+    "registry_contract_sha256_16": "85dc6c8a06ab8bdc"
+  },
+  "orch_registry_receipt": {
+    "status": "OK",
+    "db_path": "/workspace/crispro-backend-v3-push/data/clinical_trials.db",
+    "prohibited_paths_checked": [
+      "api/resources/trial_moa_vectors.json",
+      "layer1_engines/mechanism_fit/trial_moa_vectors.json",
+      "data/trial_moa_vectors.json"
+    ],
+    "message": "SQLite unified DB is sole runtime registry; no legacy JSON present."
+  },
+  "anchors": [
+    {
+      "anchor_id": "A_HGSOC_HRDlow",
+      "verdict": "STRICT_PASS",
+      "reasons_if_fail": [],
+      "patient_vector": {
+        "ddr": 0.6,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.0
+      },
+      "fail_closed_axes": [],
+      "expected_top_axis": "ddr",
+      "expected_axis_value_in_pv": 0.6,
+      "anchor_nct_used": "NCT05457595",
+      "anchor_registry_row": {
+        "nct_id": "NCT05457595",
+        "vector": {
+          "ddr": 0.8,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.2,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "moa_source": "cohere_batch_tagging",
+        "moa_confidence": 0.8,
+        "vector_state": "POPULATED"
+      },
+      "anchor_tier": 1,
+      "anchor_position_in_tier": 3,
+      "path_a_math": {
+        "dot": 0.48,
+        "tmag": 0.824621,
+        "raw_fit": 0.582086,
+        "clipped": 0.582086
+      },
+      "top_tier_1_ncts": [
+        "NCT04104776",
+        "NCT04969835",
+        "NCT05457595",
+        "NCT07156253"
+      ],
+      "top_tier_1_size_tie": 4,
+      "top_tier_2_ncts": [
+        "NCT05327010",
+        "NCT06686030",
+        "NCT06906341"
+      ],
+      "top_tier_2_size_tie": 3,
+      "trials_scored": 42,
+      "io_gate": {
+        "risk_benefit_gate": "RULE_OUT",
+        "p_resp": 0.1,
+        "p_resp_status": "RULE_BASED_HEURISTIC",
+        "io_axis": 0.0,
+        "regimen": "neopembrov_nactp"
+      }
+    },
+    {
+      "anchor_id": "B_MSS_CRC_STC1010",
+      "verdict": "STRICT_FAIL",
+      "reasons_if_fail": [
+        "anchor tier=6 > 2"
+      ],
+      "patient_vector": {
+        "ddr": 0.0,
+        "mapk": 0.65,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.0
+      },
+      "fail_closed_axes": [
+        "io"
+      ],
+      "expected_top_axis": "mapk",
+      "expected_axis_value_in_pv": 0.65,
+      "anchor_nct_used": "NCT03579316",
+      "anchor_registry_row": {
+        "nct_id": "NCT03579316",
+        "vector": {
+          "ddr": 1.0,
+          "mapk": 1.0,
+          "pi3k": 1.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.7
+        },
+        "moa_source": null,
+        "moa_confidence": "High",
+        "vector_state": "POPULATED"
+      },
+      "anchor_tier": 6,
+      "anchor_position_in_tier": 9,
+      "path_a_math": {
+        "dot": 0.65,
+        "tmag": 1.868154,
+        "raw_fit": 0.347937,
+        "clipped": 0.347937
+      },
+      "top_tier_1_ncts": [
+        "NCT06128551"
+      ],
+      "top_tier_1_size_tie": 1,
+      "top_tier_2_ncts": [
+        "NCT05691504",
+        "NCT06253520"
+      ],
+      "top_tier_2_size_tie": 2,
+      "trials_scored": 42,
+      "io_gate": {
+        "risk_benefit_gate": "NOT_APPLICABLE",
+        "p_resp": null,
+        "p_resp_status": "RULE_BASED_HEURISTIC_QUARANTINED",
+        "io_axis": 0.0,
+        "regimen": null
+      }
+    },
+    {
+      "anchor_id": "C_HER2plus_gastric",
+      "verdict": "STRICT_PASS",
+      "reasons_if_fail": [],
+      "patient_vector": {
+        "ddr": 0.0,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.8,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.0
+      },
+      "fail_closed_axes": [],
+      "expected_top_axis": "her2",
+      "expected_axis_value_in_pv": 0.8,
+      "anchor_nct_used": "NCT06732336",
+      "anchor_registry_row": {
+        "nct_id": "NCT06732336",
+        "vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 1.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "moa_source": "cohere_batch_tagging",
+        "moa_confidence": 0.8,
+        "vector_state": "POPULATED"
+      },
+      "anchor_tier": 1,
+      "anchor_position_in_tier": 2,
+      "path_a_math": {
+        "dot": 0.8,
+        "tmag": 1.0,
+        "raw_fit": 0.8,
+        "clipped": 0.8
+      },
+      "top_tier_1_ncts": [
+        "NCT06330064",
+        "NCT06732336"
+      ],
+      "top_tier_1_size_tie": 2,
+      "top_tier_2_ncts": [
+        "NCT07216105"
+      ],
+      "top_tier_2_size_tie": 1,
+      "trials_scored": 42,
+      "io_gate": {
+        "risk_benefit_gate": "NOT_APPLICABLE",
+        "p_resp": null,
+        "p_resp_status": "RULE_BASED_HEURISTIC_QUARANTINED",
+        "io_axis": 0.0,
+        "regimen": null
+      }
+    },
+    {
+      "anchor_id": "D_TNBC_BRCA1_germline",
+      "verdict": "STRICT_PASS",
+      "reasons_if_fail": [],
+      "patient_vector": {
+        "ddr": 0.6,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.0
+      },
+      "fail_closed_axes": [],
+      "expected_top_axis": "ddr",
+      "expected_axis_value_in_pv": 0.6,
+      "anchor_nct_used": "NCT05457595",
+      "anchor_registry_row": {
+        "nct_id": "NCT05457595",
+        "vector": {
+          "ddr": 0.8,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.2,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "moa_source": "cohere_batch_tagging",
+        "moa_confidence": 0.8,
+        "vector_state": "POPULATED"
+      },
+      "anchor_tier": 1,
+      "anchor_position_in_tier": 3,
+      "path_a_math": {
+        "dot": 0.48,
+        "tmag": 0.824621,
+        "raw_fit": 0.582086,
+        "clipped": 0.582086
+      },
+      "top_tier_1_ncts": [
+        "NCT04104776",
+        "NCT04969835",
+        "NCT05457595",
+        "NCT07156253"
+      ],
+      "top_tier_1_size_tie": 4,
+      "top_tier_2_ncts": [
+        "NCT05327010",
+        "NCT06686030",
+        "NCT06906341"
+      ],
+      "top_tier_2_size_tie": 3,
+      "trials_scored": 42,
+      "io_gate": {
+        "risk_benefit_gate": "NOT_APPLICABLE",
+        "p_resp": null,
+        "p_resp_status": "RULE_BASED_HEURISTIC_QUARANTINED",
+        "io_axis": 0.0,
+        "regimen": null
+      }
+    },
+    {
+      "anchor_id": "E_MSI_H_OVARIAN",
+      "verdict": "STRICT_PASS",
+      "reasons_if_fail": [],
+      "patient_vector": {
+        "ddr": 0.0,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.95,
+        "efflux": 0.0,
+        "rss": 0.0
+      },
+      "fail_closed_axes": [],
+      "expected_top_axis": "io",
+      "expected_axis_value_in_pv": 0.95,
+      "anchor_nct_used": "NCT01174121",
+      "anchor_registry_row": {
+        "nct_id": "NCT01174121",
+        "vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 1.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "moa_source": "cohere_batch_tagging",
+        "moa_confidence": 0.8,
+        "vector_state": "POPULATED"
+      },
+      "anchor_tier": 1,
+      "anchor_position_in_tier": 1,
+      "path_a_math": {
+        "dot": 0.95,
+        "tmag": 1.0,
+        "raw_fit": 0.95,
+        "clipped": 0.95
+      },
+      "top_tier_1_ncts": [
+        "NCT01174121",
+        "NCT03860272",
+        "NCT04503278",
+        "NCT05200559",
+        "NCT05208762",
+        "NCT05239143",
+        "NCT05763199",
+        "NCT06341907",
+        "NCT06508307",
+        "NCT06781983",
+        "NCT06910657"
+      ],
+      "top_tier_1_size_tie": 11,
+      "top_tier_2_ncts": [
+        "NCT05955105"
+      ],
+      "top_tier_2_size_tie": 1,
+      "trials_scored": 42,
+      "io_gate": {
+        "risk_benefit_gate": "JUSTIFIED",
+        "p_resp": 0.765,
+        "p_resp_status": "RULE_BASED_HEURISTIC",
+        "io_axis": 0.95,
+        "regimen": "neopembrov_nactp"
+      }
+    }
+  ],
+  "strict_gate": {
+    "pass": 4,
+    "total": 5
+  }
+}

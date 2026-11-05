@@ -1,0 +1,28 @@
+{
+  "trial": "N0147",
+  "pubmed_id": "25305506",
+  "doi": "10.1053/j.gastro.2014.09.041",
+  "citation": "Sinicrope FA, Shi Q, Smyrk TC, et al. Molecular markers identify subtypes of stage III colon cancer associated with patient outcomes. Gastroenterology. 2015;148(1):88-99.",
+  "pmc_id": "PMC4274188",
+  "molecular_columns_found": [
+    "KRAS_mutation_status (exon 2, codons 12/13)",
+    "BRAF_V600E_mutation_status",
+    "MMR_status (MLH1, MSH2, MSH6 IHC + MLH1 promoter methylation)",
+    "MSI_status (dMMR vs pMMR)",
+    "MLH1_promoter_methylation",
+    "tumor_subtype (5-class: pMMR-BRAF-mut, pMMR-KRAS-mut, pMMR-WT, dMMR-sporadic, dMMR-familial)"
+  ],
+  "primary_endpoint": "5-year disease-free survival (DFS)",
+  "secondary_endpoints": ["OS"],
+  "treatment_arms": ["FOLFOX-based adjuvant chemotherapy (mFOLFOX6 vs FOLFOX4)"],
+  "n_patients": 2720,
+  "stage": "Stage III colon cancer",
+  "key_results": {
+    "pMMR_BRAF_mut_DFS_HR": "1.43 (95% CI 1.11-1.85, P_adj=0.0065)",
+    "pMMR_KRAS_mut_DFS_HR": "1.48 (95% CI 1.27-1.74, P_adj<0.0001)",
+    "reference_subtype": "pMMR without BRAF or KRAS mutations"
+  },
+  "data_availability": "Prospectively collected tumor samples from NCCTG N0147 RCT; PMC open access (PMC4274188); NCI-funded; data request via Alliance Statistics and Data Center",
+  "ipd_availability": "NCCTG/Alliance trial — IPD available via NCI/Alliance data sharing request; not in public repository without application",
+  "verdict": "PASS — KRAS (exon 2), BRAF (V600E), MMR/MSI status all confirmed present; DFS primary endpoint confirmed; OS secondary endpoint confirmed; molecular columns fully anchored to published supplementary data"
+}

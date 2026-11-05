@@ -1,0 +1,417 @@
+{
+  "kb": "crispro_capability_kb_v1_1_0",
+  "total_entities_scanned": 422,
+  "contaminated_count": 78,
+  "by_type": {
+    "closed_gap": 5,
+    "data_provenance_protocol": 1,
+    "candidate_axis": 8,
+    "evidence_modality": 7,
+    "contract_model": 5,
+    "threshold_index": 1,
+    "layer": 4,
+    "invariant_keyword_index": 1,
+    "orchestrator": 1,
+    "strategic_roadmap": 1,
+    "invariant": 8,
+    "weight_index": 1,
+    "cancer_context": 8,
+    "scoring_framework": 1,
+    "engine": 2,
+    "evidence_tier": 4,
+    "engine_component": 2,
+    "roadmap_chapter": 18
+  },
+  "entities": [
+    {
+      "entity_id": "gap:ruo_middleware",
+      "type": "closed_gap",
+      "file": "crispro_capability_kb_v1_1_0/entities/closed_gap/gap_ruo_middleware.json"
+    },
+    {
+      "entity_id": "gap:validated_guard",
+      "type": "closed_gap",
+      "file": "crispro_capability_kb_v1_1_0/entities/closed_gap/gap_validated_guard.json"
+    },
+    {
+      "entity_id": "gap:mbd4_cytidine_tier_fix",
+      "type": "closed_gap",
+      "file": "crispro_capability_kb_v1_1_0/entities/closed_gap/gap_mbd4_cytidine_tier_fix.json"
+    },
+    {
+      "entity_id": "gap:pole_guard",
+      "type": "closed_gap",
+      "file": "crispro_capability_kb_v1_1_0/entities/closed_gap/gap_pole_guard.json"
+    },
+    {
+      "entity_id": "gap:rs_score_wiring",
+      "type": "closed_gap",
+      "file": "crispro_capability_kb_v1_1_0/entities/closed_gap/gap_rs_score_wiring.json"
+    },
+    {
+      "entity_id": "protocol:mars",
+      "type": "data_provenance_protocol",
+      "file": "crispro_capability_kb_v1_1_0/entities/data_provenance_protocol/protocol_mars.json"
+    },
+    {
+      "entity_id": "axis:PARP_INHIBITORS",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb_v1_1_0/entities/candidate_axis/axis_PARP_INHIBITORS.json"
+    },
+    {
+      "entity_id": "axis:CCNE1_AMP",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb_v1_1_0/entities/candidate_axis/axis_CCNE1_AMP.json"
+    },
+    {
+      "entity_id": "axis:IMMUNOTHERAPY",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb_v1_1_0/entities/candidate_axis/axis_IMMUNOTHERAPY.json"
+    },
+    {
+      "entity_id": "axis:WRN",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb_v1_1_0/entities/candidate_axis/axis_WRN.json"
+    },
+    {
+      "entity_id": "axis:TP53_REPLICATION_STRESS",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb_v1_1_0/entities/candidate_axis/axis_TP53_REPLICATION_STRESS.json"
+    },
+    {
+      "entity_id": "axis:ATR_WEE1",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb_v1_1_0/entities/candidate_axis/axis_ATR_WEE1.json"
+    },
+    {
+      "entity_id": "axis:CYTIDINE_ANALOGS",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb_v1_1_0/entities/candidate_axis/axis_CYTIDINE_ANALOGS.json"
+    },
+    {
+      "entity_id": "axis:PKMYT1",
+      "type": "candidate_axis",
+      "file": "crispro_capability_kb_v1_1_0/entities/candidate_axis/axis_PKMYT1.json"
+    },
+    {
+      "entity_id": "modality:clinical",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb_v1_1_0/entities/evidence_modality/modality_clinical.json"
+    },
+    {
+      "entity_id": "modality:gdsc",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb_v1_1_0/entities/evidence_modality/modality_gdsc.json"
+    },
+    {
+      "entity_id": "modality:prism",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb_v1_1_0/entities/evidence_modality/modality_prism.json"
+    },
+    {
+      "entity_id": "modality:crispr",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb_v1_1_0/entities/evidence_modality/modality_crispr.json"
+    },
+    {
+      "entity_id": "modality:expression",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb_v1_1_0/entities/evidence_modality/modality_expression.json"
+    },
+    {
+      "entity_id": "modality:in_vivo",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb_v1_1_0/entities/evidence_modality/modality_in_vivo.json"
+    },
+    {
+      "entity_id": "modality:in_vitro",
+      "type": "evidence_modality",
+      "file": "crispro_capability_kb_v1_1_0/entities/evidence_modality/modality_in_vitro.json"
+    },
+    {
+      "entity_id": "contract:PatientState",
+      "type": "contract_model",
+      "file": "crispro_capability_kb_v1_1_0/entities/contract_model/contract_PatientState.json"
+    },
+    {
+      "entity_id": "contract:RSFeatureSet",
+      "type": "contract_model",
+      "file": "crispro_capability_kb_v1_1_0/entities/contract_model/contract_RSFeatureSet.json"
+    },
+    {
+      "entity_id": "contract:CaseResolution",
+      "type": "contract_model",
+      "file": "crispro_capability_kb_v1_1_0/entities/contract_model/contract_CaseResolution.json"
+    },
+    {
+      "entity_id": "contract:SomaticMutation",
+      "type": "contract_model",
+      "file": "crispro_capability_kb_v1_1_0/entities/contract_model/contract_SomaticMutation.json"
+    },
+    {
+      "entity_id": "contract:RankedIntervention",
+      "type": "contract_model",
+      "file": "crispro_capability_kb_v1_1_0/entities/contract_model/contract_RankedIntervention.json"
+    },
+    {
+      "entity_id": "roadmap:threshold_index",
+      "type": "threshold_index",
+      "file": "crispro_capability_kb_v1_1_0/entities/threshold_index/roadmap_threshold_index.json"
+    },
+    {
+      "entity_id": "layer:contracts",
+      "type": "layer",
+      "file": "crispro_capability_kb_v1_1_0/entities/layer/layer_contracts.json"
+    },
+    {
+      "entity_id": "layer:engines",
+      "type": "layer",
+      "file": "crispro_capability_kb_v1_1_0/entities/layer/layer_engines.json"
+    },
+    {
+      "entity_id": "layer:orchestrator",
+      "type": "layer",
+      "file": "crispro_capability_kb_v1_1_0/entities/layer/layer_orchestrator.json"
+    },
+    {
+      "entity_id": "layer:output",
+      "type": "layer",
+      "file": "crispro_capability_kb_v1_1_0/entities/layer/layer_output.json"
+    },
+    {
+      "entity_id": "roadmap:invariant_keyword_index",
+      "type": "invariant_keyword_index",
+      "file": "crispro_capability_kb_v1_1_0/entities/invariant_keyword_index/roadmap_invariant_keyword_index.json"
+    },
+    {
+      "entity_id": "component:orchestrator",
+      "type": "orchestrator",
+      "file": "crispro_capability_kb_v1_1_0/entities/orchestrator/component_orchestrator.json"
+    },
+    {
+      "entity_id": "doc:computational_cancer_cure_roadmap",
+      "type": "strategic_roadmap",
+      "file": "crispro_capability_kb_v1_1_0/entities/strategic_roadmap/doc_computational_cancer_cure_roadmap.json"
+    },
+    {
+      "entity_id": "invariant:tier_clamp_no_clinical",
+      "type": "invariant",
+      "file": "crispro_capability_kb_v1_1_0/entities/invariant/invariant_tier_clamp_no_clinical.json"
+    },
+    {
+      "entity_id": "invariant:pole_guard",
+      "type": "invariant",
+      "file": "crispro_capability_kb_v1_1_0/entities/invariant/invariant_pole_guard.json"
+    },
+    {
+      "entity_id": "invariant:audit_trail",
+      "type": "invariant",
+      "file": "crispro_capability_kb_v1_1_0/entities/invariant/invariant_audit_trail.json"
+    },
+    {
+      "entity_id": "invariant:underpowered_guard",
+      "type": "invariant",
+      "file": "crispro_capability_kb_v1_1_0/entities/invariant/invariant_underpowered_guard.json"
+    },
+    {
+      "entity_id": "invariant:ruo_middleware",
+      "type": "invariant",
+      "file": "crispro_capability_kb_v1_1_0/entities/invariant/invariant_ruo_middleware.json"
+    },
+    {
+      "entity_id": "invariant:kb_read_only",
+      "type": "invariant",
+      "file": "crispro_capability_kb_v1_1_0/entities/invariant/invariant_kb_read_only.json"
+    },
+    {
+      "entity_id": "invariant:receipt_immutability",
+      "type": "invariant",
+      "file": "crispro_capability_kb_v1_1_0/entities/invariant/invariant_receipt_immutability.json"
+    },
+    {
+      "entity_id": "invariant:validated_never_auto",
+      "type": "invariant",
+      "file": "crispro_capability_kb_v1_1_0/entities/invariant/invariant_validated_never_auto.json"
+    },
+    {
+      "entity_id": "roadmap:weight_index",
+      "type": "weight_index",
+      "file": "crispro_capability_kb_v1_1_0/entities/weight_index/roadmap_weight_index.json"
+    },
+    {
+      "entity_id": "cancer:bladder",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb_v1_1_0/entities/cancer_context/cancer_bladder.json"
+    },
+    {
+      "entity_id": "cancer:heme",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb_v1_1_0/entities/cancer_context/cancer_heme.json"
+    },
+    {
+      "entity_id": "cancer:pdac",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb_v1_1_0/entities/cancer_context/cancer_pdac.json"
+    },
+    {
+      "entity_id": "cancer:breast",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb_v1_1_0/entities/cancer_context/cancer_breast.json"
+    },
+    {
+      "entity_id": "cancer:ovarian",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb_v1_1_0/entities/cancer_context/cancer_ovarian.json"
+    },
+    {
+      "entity_id": "cancer:lung",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb_v1_1_0/entities/cancer_context/cancer_lung.json"
+    },
+    {
+      "entity_id": "cancer:crc",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb_v1_1_0/entities/cancer_context/cancer_crc.json"
+    },
+    {
+      "entity_id": "cancer:prostate",
+      "type": "cancer_context",
+      "file": "crispro_capability_kb_v1_1_0/entities/cancer_context/cancer_prostate.json"
+    },
+    {
+      "entity_id": "framework:rs",
+      "type": "scoring_framework",
+      "file": "crispro_capability_kb_v1_1_0/entities/scoring_framework/framework_rs.json"
+    },
+    {
+      "entity_id": "engine:lineage_dependency",
+      "type": "engine",
+      "file": "crispro_capability_kb_v1_1_0/entities/engine/engine_lineage_dependency.json"
+    },
+    {
+      "entity_id": "engine:synthetic_lethality",
+      "type": "engine",
+      "file": "crispro_capability_kb_v1_1_0/entities/engine/engine_synthetic_lethality.json"
+    },
+    {
+      "entity_id": "tier:NOT_SUPPORTED",
+      "type": "evidence_tier",
+      "file": "crispro_capability_kb_v1_1_0/entities/evidence_tier/tier_NOT_SUPPORTED.json"
+    },
+    {
+      "entity_id": "tier:MECHANISTIC",
+      "type": "evidence_tier",
+      "file": "crispro_capability_kb_v1_1_0/entities/evidence_tier/tier_MECHANISTIC.json"
+    },
+    {
+      "entity_id": "tier:VALIDATED",
+      "type": "evidence_tier",
+      "file": "crispro_capability_kb_v1_1_0/entities/evidence_tier/tier_VALIDATED.json"
+    },
+    {
+      "entity_id": "tier:STRONG",
+      "type": "evidence_tier",
+      "file": "crispro_capability_kb_v1_1_0/entities/evidence_tier/tier_STRONG.json"
+    },
+    {
+      "entity_id": "component:modality_fuser",
+      "type": "engine_component",
+      "file": "crispro_capability_kb_v1_1_0/entities/engine_component/component_modality_fuser.json"
+    },
+    {
+      "entity_id": "component:tier_promotion",
+      "type": "engine_component",
+      "file": "crispro_capability_kb_v1_1_0/entities/engine_component/component_tier_promotion.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:14__modality_statuses_",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_14__modality_statuses_.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:12_copy_this_block_and_fill_in_all_fields_",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_12_copy_this_block_and_fill_in_all_fields_.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:08_in_audit_receipt_miner_py_auto_generated_candidate_receipts",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_08_in_audit_receipt_miner_py_auto_generated_candidate_receipts.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:11__template_literature_receipt_",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_11__template_literature_receipt_.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:09_in_modality_fuser_py_add_promotionblockederror_guard",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_09_in_modality_fuser_py_add_promotionblockederror_guard.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:17__quality_fields_required_for_audit_",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_17__quality_fields_required_for_audit_.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:05_no_automated_validated_assignment_only_frozen_receipt_",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_05_no_automated_validated_assignment_only_frozen_receipt_.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:16__metadata_",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_16__metadata_.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:04_data_gaps_not_empty_atr_wee1_upgradeable_",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_04_data_gaps_not_empty_atr_wee1_upgradeable_.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:07_in_lineage_dependency_panels_py",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_07_in_lineage_dependency_panels_py.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:00_in_multimodal_routes_py_get_api_v1_analyze_evidence_matrix",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_00_in_multimodal_routes_py_get_api_v1_analyze_evidence_matrix.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:01_tests_test_rs_context_params_py",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_01_tests_test_rs_context_params_py.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:03_validated_cytidine_analogs_in_top_axes",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_03_validated_cytidine_analogs_in_top_axes.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:06_in_literature_receipts_py_frozen_receipts_dict",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_06_in_literature_receipts_py_frozen_receipts_dict.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:10_inherits_from_ovarian_receipt_same_biology_different_lineage",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_10_inherits_from_ovarian_receipt_same_biology_different_lineage.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:13_place_inside_the_frozen_receipts_dict_in_literature_receipts",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_13_place_inside_the_frozen_receipts_dict_in_literature_receipts.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:15_values_positive_negative_missing_not_applicable_",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_15_values_positive_negative_missing_not_applicable_.json"
+    },
+    {
+      "entity_id": "roadmap_chapter:02_tests_test_patient_sl_report_py",
+      "type": "roadmap_chapter",
+      "file": "crispro_capability_kb_v1_1_0/entities/roadmap_chapter/roadmap_chapter_02_tests_test_patient_sl_report_py.json"
+    }
+  ]
+}

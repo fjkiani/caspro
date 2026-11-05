@@ -1,0 +1,77 @@
+{
+  "n_queries": 3,
+  "avg_faithfulness": 0.833,
+  "avg_answer_relevancy": 0.833,
+  "pass_rate": 1.0,
+  "results": [
+    {
+      "query": "What are the best IO benchmarks for MSS CRC and what do they show about liver-met patients?",
+      "answer": "(a) The best IO benchmarks for MSS CRC show positive delta (P_A > P_B) and liver-met IO suppression is universal across all MSS CRC IO mechanisms, with a delta range of 0.15-0.30 [W1-IOCORE-001].\n(b) The universal finding of positive delta and liver-met IO suppression is based on 7 MSS CRC IO comparator trials [W1-IOCORE-001].\n(c) None",
+      "citations": [
+        "W1-IOCORE-001"
+      ],
+      "guardrail_violations": [],
+      "faithfulness": 1.0,
+      "faithfulness_method": "groq_llm_judge/llama-3.3-70b-versatile",
+      "faithfulness_reasoning": "All claims in the answer are directly supported by the context in W1-IOCORE-001.",
+      "ungrounded_claims": [],
+      "answer_relevancy": 1.0,
+      "relevancy_reasoning": "The answer directly addresses the query by providing specific IO benchmarks for MSS CRC and their implications for liver-met patients.",
+      "composite": 1.0,
+      "pass": true,
+      "latency_ms": {
+        "retrieval_ms": 2722,
+        "generation_ms": 645,
+        "eval_ms": 1009
+      }
+    },
+    {
+      "query": "Compare BreAK CRC-001 vs TRIBE2. What are the critical design gaps?",
+      "answer": "(a) BreAK CRC-001 has critical design gaps, including liver metastasis not pre-specified as stratification variable and pTMB not collected prospectively.\n(b) [W2-GAPS-001] \n(c) INSUFFICIENT DATA for direct comparison of BreAK CRC-001 and TRIBE2 design gaps, as TRIBE2 details are only mentioned in [W1-TRIBE2-001] without specific design gap information.",
+      "citations": [
+        "W2-GAPS-001",
+        "W1-TRIBE2-001"
+      ],
+      "guardrail_violations": [],
+      "faithfulness": 1.0,
+      "faithfulness_method": "groq_llm_judge/llama-3.3-70b-versatile",
+      "faithfulness_reasoning": "The answer directly references specific design gaps in BreAK CRC-001 from the provided context.",
+      "ungrounded_claims": [],
+      "answer_relevancy": 0.5,
+      "relevancy_reasoning": "The answer partially addresses the query by mentioning design gaps in BreAK CRC-001 but lacks specific information about TRIBE2's design gaps for a direct comparison.",
+      "composite": 0.75,
+      "pass": true,
+      "latency_ms": {
+        "retrieval_ms": 433,
+        "generation_ms": 817,
+        "eval_ms": 795
+      }
+    },
+    {
+      "query": "How does CrisPRO help Brenus address the design gaps in BreAK CRC-001?",
+      "answer": "(a) CrisPRO helps Brenus address the design gaps in BreAK CRC-001 by identifying critical gaps and providing solutions through its core capabilities, such as PATH A Fit Scoring, Liver-Met IO Suppression Decoder, and Biomarker Gap Identification [W3-CRISPRO-001].\n(b) The Liver-Met Stratification Module, a part of CrisPRO, can help address GAP-01 by providing pre-specified liver-met subgroup analysis [W3-FITGAP-001]. Additionally, CrisPRO's Prospective Biomarker Collection can help address GAP-02 by validating pTMB collection [W3-FITGAP-001]. The Biomarker Gap Identification capability can help address GAP-04 by identifying missing biomarkers [W3-CRISPRO-001].\n(c) The effectiveness of CrisPRO in addressing these gaps is supported by its honest composite AUROC of 0.6889 [W4-AUDIT-001], indicating its ability to accurately predict outcomes. However, the deployment status and potential limitations of CrisPRO should be considered [W4-AUDIT-001, W3-FITGAP-001].",
+      "citations": [
+        "W3-CRISPRO-001",
+        "W3-FITGAP-001",
+        "W4-AUDIT-001"
+      ],
+      "guardrail_violations": [],
+      "faithfulness": 0.5,
+      "faithfulness_method": "groq_llm_judge/llama-3.3-70b-versatile",
+      "faithfulness_reasoning": "The answer contains a mix of directly supported claims and claims that are not explicitly supported by the provided context.",
+      "ungrounded_claims": [
+        "CrisPRO's Prospective Biomarker Collection can help address GAP-02 by validating pTMB collection",
+        "The Biomarker Gap Identification capability can help address GAP-04 by identifying missing biomarkers"
+      ],
+      "answer_relevancy": 1.0,
+      "relevancy_reasoning": "The answer directly addresses the query by explaining how CrisPRO helps Brenus address design gaps in BreAK CRC-001 through its various capabilities and modules.",
+      "composite": 0.75,
+      "pass": true,
+      "latency_ms": {
+        "retrieval_ms": 414,
+        "generation_ms": 822,
+        "eval_ms": 973
+      }
+    }
+  ]
+}

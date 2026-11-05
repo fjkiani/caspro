@@ -1,0 +1,228 @@
+# PATH A Scores — Machine-Readable
+# CrisPRO Platform | Brenus Pharma Engagement
+# Formula: PATH A = clip((p·t)/‖t‖₂, 0, 1) — signed Fahad Kiani 2026-04-28
+# Run date: 2026-05-01 | Lock date: 2026-05-04
+# Source: brenus_comparator_path_a_report.md (LOCKED)
+# Recomputation verified: path_a_recomputation_lock_v1.md
+# PATH B: PROHIBITED
+
+meta:
+  formula: "fit = clip((p·t) / norm(t, 2), 0, 1)"
+  formula_signed_by: "Fahad Kiani"
+  formula_signed_date: "2026-04-28"
+  run_date: "2026-05-01"
+  lock_date: "2026-05-04"
+  axis_set: "PATHWAYS_7D"
+  axes: [ddr, mapk, pi3k, vegf, her2, io, efflux]
+  path_b_status: "PROHIBITED"
+
+patient_profiles:
+  P_A:
+    label: "KRAS-mut MSS mCRC, 1L, liver-met NEG, IO-permissive"
+    vector: [0.10, 0.70, 0.20, 0.30, 0.00, 0.40, 0.05]
+    ceiling: 0.8902
+    ceiling_check: "PASS"
+  P_B:
+    label: "KRAS-mut MSS mCRC, 1L, liver-met POS, IO-suppressed"
+    vector: [0.10, 0.70, 0.20, 0.30, 0.00, 0.10, 0.05]
+    ceiling: 0.8016
+    ceiling_check: "PASS"
+
+scores:
+  - core_id: "CORE-01"
+    trial_name: "QUILT-2.004"
+    nct_id: "NCT03050814"
+    mechanism_short: "CEA vaccine + PD-L1 + mFOLFOX6 + bev"
+    tier: "TIER1"
+    admissibility: "VERIFIED"
+    source_pmid: "35274710"
+    trial_vector:
+      ddr: 0.00
+      mapk: 0.10
+      pi3k: 0.05
+      vegf: 0.60
+      her2: 0.00
+      io: 0.70
+      efflux: 0.00
+    fit_A: 0.5815
+    fit_B: 0.3553
+    delta: 0.2261
+    rank_fit_A: 3
+    rank_delta: 5
+    ceiling_check_A: "PASS"
+    ceiling_check_B: "PASS"
+    failure_domains: ["D1_Biology", "D3_Architecture"]
+    primary_outcome: "HR=1.061 (95% CI 0.380-2.966), p=0.91 — TERMINATED for futility"
+    break_crc001_implication: "Historical floor STC-1010 must clear; single-antigen CEA insufficient for MSS TME"
+
+  - core_id: "CORE-02"
+    trial_name: "GRANITE GO-010"
+    nct_id: "NCT05141721"
+    mechanism_short: "Neoantigen vaccine + PD-L1 + CTLA-4 + bev"
+    tier: "TIER2"
+    tier2_reason: "Press-release only (P-003); company in Chapter 11 bankruptcy; not peer-reviewed"
+    admissibility: "PRESS-RELEASE-ONLY — directional scores only; do not cite as efficacy evidence"
+    warning: "TIER2 — scores directional only; do not cite externally"
+    trial_vector:
+      ddr: 0.00
+      mapk: 0.05
+      pi3k: 0.05
+      vegf: 0.50
+      her2: 0.00
+      io: 0.85
+      efflux: 0.00
+    fit_A: 0.5411
+    fit_B: 0.2832
+    delta: 0.2579
+    rank_fit_A: 4
+    rank_delta: 4
+    ceiling_check_A: "PASS"
+    ceiling_check_B: "PASS"
+    failure_domains: ["D8_Systemic", "D6_Interpretability"]
+    primary_outcome: "ITT PFS HR 0.73 (90% CI 0.44-1.21) — primary endpoint NOT MET [PRESS-RELEASE-ONLY]"
+    break_crc001_implication: "ctDNA-low subgroup HR 0.50 [PROVISIONAL] — pre-specify ctDNA as exploratory stratification variable"
+
+  - core_id: "CORE-03"
+    trial_name: "GVAX + CY + Pembrolizumab"
+    nct_id: "NCT02981524"
+    mechanism_short: "Whole-cell vaccine (GM-CSF) + cyclophosphamide + PD-1"
+    tier: "TIER1"
+    admissibility: "VERIFIED"
+    source_doi: "10.1002/cam4.2763"
+    trial_vector:
+      ddr: 0.00
+      mapk: 0.05
+      pi3k: 0.05
+      vegf: 0.00
+      her2: 0.00
+      io: 0.90
+      efflux: 0.00
+    fit_A: 0.4486
+    fit_B: 0.1495
+    delta: 0.2991
+    rank_fit_A: 6
+    rank_delta: 2
+    ceiling_check_A: "PASS"
+    ceiling_check_B: "PASS"
+    failure_domains: ["D1_Biology", "D2_Selection"]
+    primary_outcome: "ORR 0% (0/22) despite confirmed T-cell responses and CD8+ infiltration"
+    mechanistic_note: "Closest analog to STC-1010 — whole-cell vaccine + CY + CPI; low fit_A is vector geometry artifact not clinical relevance"
+    break_crc001_implication: "Pre-specify clinical endpoints (PFS, ORR) as primary — pharmacodynamic immune activity is necessary but not sufficient"
+
+  - core_id: "CORE-04"
+    trial_name: "IMblaze370"
+    nct_id: "NCT02788279"
+    mechanism_short: "MEKi (cobimetinib) + PD-L1 (atezolizumab) vs regorafenib"
+    tier: "TIER1"
+    admissibility: "VERIFIED"
+    source_doi: "10.1016/s1470-2045(19)30027-0"
+    warning: "FALSE POSITIVE — fit_A=0.8262 is mechanistically misleading; Phase III definitive negative; OS HR=1.00; MEKi immune priming hypothesis permanently falsified"
+    trial_vector:
+      ddr: 0.05
+      mapk: 0.85
+      pi3k: 0.10
+      vegf: 0.00
+      her2: 0.00
+      io: 0.50
+      efflux: 0.00
+    fit_A: 0.8262
+    fit_B: 0.6751
+    delta: 0.1511
+    rank_fit_A: 1
+    rank_delta: 7
+    ceiling_check_A: "PASS"
+    ceiling_check_B: "PASS"
+    failure_domains: ["D1_Biology", "D7_Translational"]
+    primary_outcome: "OS HR=1.00; ORR 3% vs 2% vs 2% — no significant difference across all arms"
+    false_positive_explanation: "High fit_A driven by MAPK axis alignment (patient mapk=0.70, trial mapk=0.85). MAPK axis is real; MEK inhibition mechanism failed. Score is a warning, not a recommendation."
+    break_crc001_implication: "MEKi immune priming pathway permanently closed in MSS CRC; STC-1010 ICD mechanism must be distinguished from MEKi priming in protocol rationale"
+
+  - core_id: "CORE-05"
+    trial_name: "AtezoTRIBE"
+    nct_id: "NCT03721653"
+    mechanism_short: "PD-L1 + FOLFOXIRI + bevacizumab"
+    tier: "TIER1"
+    admissibility: "VERIFIED"
+    source_pmid: "39908699"
+    trial_vector:
+      ddr: 0.10
+      mapk: 0.10
+      pi3k: 0.05
+      vegf: 0.65
+      her2: 0.00
+      io: 0.70
+      efflux: 0.00
+    fit_A: 0.5843
+    fit_B: 0.3671
+    delta: 0.2172
+    rank_fit_A: 2
+    rank_delta: 6
+    ceiling_check_A: "PASS"
+    ceiling_check_B: "PASS"
+    failure_domains: ["D2_Selection", "D5_Attribution"]
+    primary_outcome: "pMMR subgroup PFS HR=0.86 (95% CI 0.63-1.17) — NOT significant"
+    break_crc001_implication: "KRAS-mutant enrichment in Arm 2A-1 is direct response to AtezoTRIBE selection failure; consider pre-specifying Immunoscore-IC as exploratory stratification"
+
+  - core_id: "CORE-06"
+    trial_name: "MEDITREME"
+    nct_id: "NCT03202758"
+    mechanism_short: "PD-L1 + CTLA-4 + mFOLFOX6 (no bev)"
+    tier: "TIER1"
+    admissibility: "VERIFIED"
+    source_pmid: "37563240"
+    trial_vector:
+      ddr: 0.10
+      mapk: 0.10
+      pi3k: 0.05
+      vegf: 0.00
+      her2: 0.00
+      io: 0.80
+      efflux: 0.00
+    fit_A: 0.5037
+    fit_B: 0.2089
+    delta: 0.2949
+    rank_fit_A: 5
+    rank_delta: 3
+    ceiling_check_A: "PASS"
+    ceiling_check_B: "PASS"
+    failure_domains: ["D3_Architecture", "D5_Attribution"]
+    primary_outcome: "ORR 64.5%, mPFS 8.2m — single-arm; IO contribution unattributable vs mFOLFOX6 alone"
+    backbone_match: "EXACT — mFOLFOX6 without bevacizumab matches BreAK CRC-001 backbone"
+    break_crc001_implication: "BreAK CRC-001 must include randomized control arm or pre-specified historical control to avoid MEDITREME attribution failure"
+
+  - core_id: "CORE-07"
+    trial_name: "CCTG CO.26"
+    nct_id: "NCT02870920"
+    mechanism_short: "PD-L1 + CTLA-4 vs BSC (3L+ refractory)"
+    tier: "TIER1"
+    admissibility: "VERIFIED"
+    source_pmid: "38727700"
+    trial_vector:
+      ddr: 0.00
+      mapk: 0.00
+      pi3k: 0.00
+      vegf: 0.00
+      her2: 0.00
+      io: 0.90
+      efflux: 0.00
+    fit_A: 0.4000
+    fit_B: 0.1000
+    delta: 0.3000
+    rank_fit_A: 7
+    rank_delta: 1
+    ceiling_check_A: "PASS"
+    ceiling_check_B: "PASS"
+    failure_domains: ["D2_Selection", "D6_Interpretability"]
+    primary_outcome: "OS HR=0.73 (90% CI 0.55-0.97, p=0.07); pTMB≥28 subgroup OS HR=0.34 (90% CI 0.18-0.63)"
+    calibration_anchor: true
+    calibration_note: "Highest delta (0.3000) — pure IO trial maximally sensitive to liver-met IO suppression; non-liver-met subgroup HR~0.50 vs liver-met HR~0.90 is strongest available evidence for liver-met stratification"
+    break_crc001_implication: "GAP-01 CRITICAL — liver-met status not pre-specified as stratification variable in BreAK CRC-001 replicates exact CO.26 interpretability gap"
+
+ceiling_proofs:
+  P_A_ceiling: 0.8902
+  P_B_ceiling: 0.8016
+  method: "Cauchy-Schwarz: fit ≤ ‖p‖₂ = sqrt(sum(p_i²))"
+  P_A_norm: 0.8902
+  P_B_norm: 0.8016
+  all_ceiling_checks: "PASS — no score exceeds patient vector norm"
+  note: "DDR 0.983 claim (DL-07) is mathematically impossible under PATH A for P_A ceiling 0.8902 — PERMANENTLY BLOCKED"

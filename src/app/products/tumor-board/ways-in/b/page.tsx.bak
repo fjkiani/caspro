@@ -1,0 +1,12 @@
+import type { Metadata } from 'next';
+import TumorBoardProductWorkspace from '@/components/products/tumor-board/TumorBoardProductWorkspace';
+
+export const metadata: Metadata = {
+  title: 'B · From the molecular profile · Tumor Board · CrisPRO',
+  description:
+    'We map the drivers, show what the tumor may depend on, rank options that fit that biology, and flag matching trials.',
+};
+
+export default function TumorBoardWaysInBPage() {
+  return <TumorBoardProductWorkspace routedTab="lanes" laneSlug="b" />;
+}

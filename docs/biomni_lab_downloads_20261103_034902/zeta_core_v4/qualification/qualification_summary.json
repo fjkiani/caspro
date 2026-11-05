@@ -1,0 +1,293 @@
+{
+  "cohort_marker_rows": [
+    {
+      "aggregate_statuses": [
+        "QUALIFIED"
+      ],
+      "caslib": "Colorec_Amgen_2004_310",
+      "has_age_field": false,
+      "has_ecog_field": true,
+      "has_endpoint_field": true,
+      "has_treatment_field": true,
+      "indication": "colorectal",
+      "longitudinally_qualified": true,
+      "marker_found": true,
+      "marker_id": "CEA",
+      "n_patients_ge3_max_across_marker_tables": 133,
+      "n_patients_max_across_marker_tables": 362,
+      "observed_units": [
+        "ug/L"
+      ]
+    },
+    {
+      "aggregate_statuses": [
+        "QUALIFIED"
+      ],
+      "caslib": "Colorec_Amgen_2005_262",
+      "has_age_field": false,
+      "has_ecog_field": true,
+      "has_endpoint_field": true,
+      "has_treatment_field": true,
+      "indication": "colorectal",
+      "longitudinally_qualified": true,
+      "marker_found": true,
+      "marker_id": "CEA",
+      "n_patients_ge3_max_across_marker_tables": 490,
+      "n_patients_max_across_marker_tables": 815,
+      "observed_units": [
+        "ug/L"
+      ]
+    },
+    {
+      "aggregate_statuses": [
+        "QUALIFIED"
+      ],
+      "caslib": "Colorec_Amgen_2006_263",
+      "has_age_field": false,
+      "has_ecog_field": true,
+      "has_endpoint_field": true,
+      "has_treatment_field": true,
+      "indication": "colorectal",
+      "longitudinally_qualified": true,
+      "marker_found": true,
+      "marker_id": "CEA",
+      "n_patients_ge3_max_across_marker_tables": 640,
+      "n_patients_max_across_marker_tables": 937,
+      "observed_units": [
+        "ug/L"
+      ]
+    },
+    {
+      "aggregate_statuses": [
+        "QUALIFIED"
+      ],
+      "caslib": "Colorec_Amgen_2006_264",
+      "has_age_field": false,
+      "has_ecog_field": true,
+      "has_endpoint_field": true,
+      "has_treatment_field": true,
+      "indication": "colorectal",
+      "longitudinally_qualified": true,
+      "marker_found": true,
+      "marker_id": "CEA",
+      "n_patients_ge3_max_across_marker_tables": 762,
+      "n_patients_max_across_marker_tables": 934,
+      "observed_units": [
+        "ug/L"
+      ]
+    },
+    {
+      "aggregate_statuses": [
+        "QUALIFIED"
+      ],
+      "caslib": "Colorec_Amgen_2006_309",
+      "has_age_field": false,
+      "has_ecog_field": true,
+      "has_endpoint_field": true,
+      "has_treatment_field": true,
+      "indication": "colorectal",
+      "longitudinally_qualified": true,
+      "marker_found": true,
+      "marker_id": "CEA",
+      "n_patients_ge3_max_across_marker_tables": 765,
+      "n_patients_max_across_marker_tables": 932,
+      "observed_units": [
+        "ug/L"
+      ]
+    },
+    {
+      "aggregate_statuses": [],
+      "caslib": "Colorec_Pfizer_2007_114",
+      "has_age_field": false,
+      "has_ecog_field": true,
+      "has_endpoint_field": true,
+      "has_treatment_field": true,
+      "indication": "colorectal",
+      "longitudinally_qualified": false,
+      "marker_found": true,
+      "marker_id": "CEA",
+      "n_patients_ge3_max_across_marker_tables": 0,
+      "n_patients_max_across_marker_tables": 0,
+      "observed_units": []
+    },
+    {
+      "aggregate_statuses": [],
+      "caslib": "Colorec_SanofiU_2002_137",
+      "has_age_field": false,
+      "has_ecog_field": true,
+      "has_endpoint_field": true,
+      "has_treatment_field": true,
+      "indication": "colorectal",
+      "longitudinally_qualified": false,
+      "marker_found": true,
+      "marker_id": "CEA",
+      "n_patients_ge3_max_across_marker_tables": 0,
+      "n_patients_max_across_marker_tables": 0,
+      "observed_units": []
+    },
+    {
+      "aggregate_statuses": [],
+      "caslib": "Colorec_SanofiU_2005_136",
+      "has_age_field": false,
+      "has_ecog_field": true,
+      "has_endpoint_field": true,
+      "has_treatment_field": true,
+      "indication": "colorectal",
+      "longitudinally_qualified": false,
+      "marker_found": true,
+      "marker_id": "CEA",
+      "n_patients_ge3_max_across_marker_tables": 0,
+      "n_patients_max_across_marker_tables": 0,
+      "observed_units": []
+    },
+    {
+      "aggregate_statuses": [],
+      "caslib": "Colorec_SanofiU_2007_131",
+      "has_age_field": false,
+      "has_ecog_field": true,
+      "has_endpoint_field": true,
+      "has_treatment_field": true,
+      "indication": "colorectal",
+      "longitudinally_qualified": false,
+      "marker_found": true,
+      "marker_id": "CEA",
+      "n_patients_ge3_max_across_marker_tables": 0,
+      "n_patients_max_across_marker_tables": 0,
+      "observed_units": []
+    },
+    {
+      "aggregate_statuses": [],
+      "caslib": "Prostat_AstraZe_1995_102",
+      "has_age_field": true,
+      "has_ecog_field": true,
+      "has_endpoint_field": true,
+      "has_treatment_field": true,
+      "indication": "prostate",
+      "longitudinally_qualified": false,
+      "marker_found": true,
+      "marker_id": "PSA",
+      "n_patients_ge3_max_across_marker_tables": 0,
+      "n_patients_max_across_marker_tables": 0,
+      "observed_units": []
+    },
+    {
+      "aggregate_statuses": [
+        "QUALIFIED"
+      ],
+      "caslib": "Prostat_Sanofi_2007_79",
+      "has_age_field": true,
+      "has_ecog_field": true,
+      "has_endpoint_field": true,
+      "has_treatment_field": true,
+      "indication": "prostate",
+      "longitudinally_qualified": true,
+      "marker_found": true,
+      "marker_id": "PSA",
+      "n_patients_ge3_max_across_marker_tables": 368,
+      "n_patients_max_across_marker_tables": 371,
+      "observed_units": [
+        "ng/ml"
+      ]
+    },
+    {
+      "aggregate_statuses": [
+        "QUALIFIED"
+      ],
+      "caslib": "Prostat_Sanofi_2007_83",
+      "has_age_field": true,
+      "has_ecog_field": true,
+      "has_endpoint_field": true,
+      "has_treatment_field": true,
+      "indication": "prostate",
+      "longitudinally_qualified": true,
+      "marker_found": true,
+      "marker_id": "PSA",
+      "n_patients_ge3_max_across_marker_tables": 610,
+      "n_patients_max_across_marker_tables": 610,
+      "observed_units": [
+        "NG/ML"
+      ]
+    },
+    {
+      "aggregate_statuses": [],
+      "caslib": "Prostat_na_2006_149",
+      "has_age_field": true,
+      "has_ecog_field": true,
+      "has_endpoint_field": true,
+      "has_treatment_field": true,
+      "indication": "prostate",
+      "longitudinally_qualified": false,
+      "marker_found": true,
+      "marker_id": "PSA",
+      "n_patients_ge3_max_across_marker_tables": 0,
+      "n_patients_max_across_marker_tables": 0,
+      "observed_units": []
+    }
+  ],
+  "credentials_persisted": false,
+  "disease_counts": {
+    "breast": 17,
+    "colorectal": 16,
+    "lung_nsclc": 9,
+    "lung_sclc": 6,
+    "prostate": 19
+  },
+  "duplicate_caslibs": [],
+  "expected_disease_counts": {
+    "breast": 17,
+    "colorectal": 16,
+    "lung_nsclc": 9,
+    "lung_sclc": 6,
+    "prostate": 19
+  },
+  "expected_receipts": 67,
+  "input_directory": "qualification",
+  "marker_summary": {
+    "CEA": {
+      "n_cohorts_found": 9,
+      "n_cohorts_longitudinally_qualified": 5,
+      "observed_units": [
+        "ug/L"
+      ],
+      "qualifying_caslibs": [
+        "Colorec_Amgen_2004_310",
+        "Colorec_Amgen_2005_262",
+        "Colorec_Amgen_2006_263",
+        "Colorec_Amgen_2006_264",
+        "Colorec_Amgen_2006_309"
+      ],
+      "sum_cohort_max_patients": 3980,
+      "sum_cohort_max_patients_ge3": 2790
+    },
+    "PSA": {
+      "n_cohorts_found": 4,
+      "n_cohorts_longitudinally_qualified": 2,
+      "observed_units": [
+        "NG/ML",
+        "ng/ml"
+      ],
+      "qualifying_caslibs": [
+        "Prostat_Sanofi_2007_79",
+        "Prostat_Sanofi_2007_83"
+      ],
+      "sum_cohort_max_patients": 981,
+      "sum_cohort_max_patients_ge3": 978
+    }
+  },
+  "n_parsed_receipts": 67,
+  "n_receipt_files": 67,
+  "patient_level_data_persisted": false,
+  "schema_version": "zeta_core_pds_qualification_summary_v1",
+  "verification_checks": {
+    "all_credential_flags_false": true,
+    "all_files_nonzero": true,
+    "all_files_parseable": true,
+    "all_internal_receipt_hashes_valid": true,
+    "all_patient_level_flags_false": true,
+    "disease_counts_match_inventory": true,
+    "no_forbidden_keys": true,
+    "receipt_file_count_matches_expected": true,
+    "unique_caslib_names": true
+  },
+  "verification_passed": true
+}

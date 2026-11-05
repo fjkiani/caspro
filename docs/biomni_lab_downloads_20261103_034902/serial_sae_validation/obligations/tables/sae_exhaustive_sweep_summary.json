@@ -1,0 +1,57 @@
+{
+  "raw_checksums": {
+    "UMI_sha16": "d604a459df7e5e70",
+    "cellInfo_sha16": "7366ec57d7de3613"
+  },
+  "manuscript_table2": {
+    "post_ddr": 0.014,
+    "post_pi3k": 0.02,
+    "post_vegf": 0.088,
+    "post_composite_equal": 0.023,
+    "post_composite_weighted": 0.023
+  },
+  "best_raw_recomputation_NEWpfi_spearman": {
+    "post_ddr": {
+      "rho": -0.3545,
+      "p": 0.2847
+    },
+    "post_pi3k": {
+      "rho": -0.1909,
+      "p": 0.5739
+    },
+    "post_vegf": {
+      "rho": -0.4091,
+      "p": 0.2115
+    },
+    "post_composite_equal": {
+      "rho": -0.2727,
+      "p": 0.4171
+    },
+    "post_composite_weighted": {
+      "rho": -0.2727,
+      "p": 0.4171
+    }
+  },
+  "ddr_geneset_isolation": {
+    "orig8_gene_NEWpfi": {
+      "rho": -0.3545,
+      "p": 0.2847
+    },
+    "orig8_gene_OLDpfi": {
+      "rho": -0.0957,
+      "p": 0.7796
+    },
+    "w1_14gene_NEWpfi": {
+      "rho": -0.2091,
+      "p": 0.5372
+    },
+    "w1_14gene_OLDpfi": {
+      "rho": -0.0091,
+      "p": 0.9788
+    },
+    "rescale_div15_changes_spearman": false
+  },
+  "most_negative_post_ddr_obtainable": -0.3545,
+  "any_combination_reaches_-0.711": false,
+  "conclusion": "No feature x test(Spearman/Pearson) x PFI(old/new) x geneset(orig8/w1-14) reproduces rho=-0.711 p=0.014. Max |post_ddr| from raw = 0.3545, p=0.28 (NS). None of the 5 Table-2 p-values reproduce; all recomputed p>0.2."
+}

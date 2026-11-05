@@ -1,0 +1,65 @@
+{
+  "workstream": "W5_author_dataset_mining",
+  "scholar_profile": {
+    "user_id": "yS47gHMAAAAJ",
+    "url": "https://scholar.google.com/citations?user=yS47gHMAAAAJ&hl=en",
+    "resolved_name": "Marc J Williams",
+    "scrape_status": "SUCCESS (HTTP 200, no captcha); top-20 cited titles captured; 'show more' exists so full list is longer",
+    "field": "cancer evolution / tumour genomics / single-cell cancer genomics / mutational processes"
+  },
+  "dataset_yielding_papers": [
+    {
+      "title": "Ovarian cancer mutational processes drive site-specific immune evasion",
+      "authors_short": "Vazquez-Garcia, Uhlitz, ... Williams MJ, ... (61 authors)",
+      "venue": "Nature",
+      "year": 2022,
+      "doi": "10.1038/s41586-022-05496-1",
+      "cohort": "MSK SPECTRUM",
+      "cohort_size": "42 treatment-naive HGSOC patients; 160 multi-site biopsies",
+      "assays": [
+        "scRNA-seq (CD45+/CD45-)",
+        "tumour-normal WGS (n=40)",
+        "MSK-IMPACT 468-gene panel",
+        "H&E",
+        "mpIF"
+      ],
+      "resistance_relevance": "WGS mutational-signature classes (HRD-Dup n=16, HRD-Del n=6, FBI n=14), CCNE1/MYC amplification, BRCA1/2 + clinical HRD \u2014 directly feeds Sig7 (mutational/CN signatures) biology",
+      "accessions": {
+        "synapse_project_open_tier": "syn25569736",
+        "synapse_2022_subfolder": "syn52458607",
+        "dbgap_controlled_tier": "phs002857.v1.p1 (umbrella now at v3.p1)",
+        "cbioportal": "msk_spectrum_tme_2022",
+        "cellxgene_collection": "4796c91c-9d8f-4692-be43-347b1727f9d8"
+      },
+      "connection_status": "CONNECTED_AND_VERIFIED: Synapse syn25569736 opened live via in-session token (Sage Project 'MSK SPECTRUM', created 2021-04-19), child folder syn52458607 = this 2022 paper. Open-tier = OPEN_PULLABLE_NOW with Synapse creds; raw WGS/scRNA = controlled via dbGaP phs002857 DAC.",
+      "access_state": "OPEN_PULLABLE_NOW (open tier) + SCRIPT_READY_PENDING_USER_AUTH (dbGaP controlled tier)"
+    },
+    {
+      "title": "Ongoing genome doubling shapes evolvability and immunity in ovarian cancer",
+      "authors_short": "McPherson, ... Williams MJ, ... (58 authors)",
+      "venue": "Nature",
+      "year": 2025,
+      "doi": "10.1038/s41586-025-09240-3",
+      "cohort": "MSK SPECTRUM (single-cell WGS extension)",
+      "assays": [
+        "single-cell WGS (scWGS)",
+        "10x 3' scRNA-seq"
+      ],
+      "resistance_relevance": "whole-genome-doubling dynamics + evolvability in HGSOC \u2014 CN-evolution substrate for Sig7 / Serial-SAE analogues",
+      "accessions": {
+        "synapse_documentation": "syn66366718",
+        "synapse_processed_scWGS": "syn66366960",
+        "synapse_processed_scRNA": [
+          "syn33521743",
+          "syn66477498"
+        ],
+        "dbgap_raw_scWGS": "phs002857.v3.p1",
+        "geo_raw_scRNA": "GSE180661",
+        "synapse_2025_subfolder": "syn66309959"
+      },
+      "connection_status": "VERIFIED: accessions read verbatim from the paper's Data availability statement; parent Synapse project syn25569736 connected live (child folder syn66309959 = this 2025 paper). GEO GSE180661 is open; scWGS raw is dbGaP-controlled.",
+      "access_state": "OPEN_PULLABLE_NOW (GEO + processed Synapse) + SCRIPT_READY_PENDING_USER_AUTH (dbGaP raw)"
+    }
+  ],
+  "honest_summary": "The Scholar profile resolves to Marc J Williams (cancer-evolution genomics). Two of his papers yield HGSOC datasets directly relevant to our resistance/signature work (MSK SPECTRUM, Nature 2022 & 2025). I genuinely connected to the MSK SPECTRUM Synapse project (syn25569736) live via the in-session Synapse token and confirmed both papers' subfolders exist. Open-tier data are pullable now with Synapse creds; raw WGS/scWGS require the dbGaP phs002857 DAC. All other accessions (GEO GSE180661, dbGaP phs002857.v3.p1, processed Synapse IDs) were read verbatim from the papers' Data availability statements and the dbGaP study page was confirmed to resolve. No controlled sequence data was downloaded."
+}

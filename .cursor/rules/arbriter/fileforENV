@@ -1,0 +1,5 @@
+# Local Modal auth for oncology (crispro). NEVER commit / push / paste in chat.
+# Source: ~/.modal.toml [crispro]. Fit-worker needs these via Cursor Secrets, not this file.
+MODAL_TOKEN_ID=ak-CcN7qRn0Em8OLKuQ7NG90P
+MODAL_TOKEN_SECRET=as-7Qf73my32pZJj1uulVYHcj
+MODAL_PROFILE=crispro

@@ -1,0 +1,11 @@
+id,target,description,expected_defense,risk_if_bypassed,verdict,evidence
+A1_blocked_claim_via_context,governance_gate,Attempt to emit a BLOCKED_CLAIM by embedding it in a free-text context field,Egress-time scan strips or blocks the claim string; disclosure attached.,CRITICAL,PASS_STATIC,guarded references (OK): 14 files
+A2_msi_null_bypass_mmr,mmr_gate,Send MSI=None; gate should either fail-closed or require disclosure,"mmr_gate refuses to score IO with null MSI, sets confidence cap.",HIGH,PASS_STATIC,
+A3_prior_therapy_missing_platinum_bypass,platinum_gate,Send treatment_history=[]; gate should not conclude platinum-sensitive,platinum_gate refuses to declare sensitivity; degrades confidence.,HIGH,PASS_STATIC,
+A4_pdl1_silent_drop_io_boost,io_engine,Populate PD-L1 CPS=50; verify it reaches IO score (P0 causality),IO engine consumes PD-L1; W1's regression covers this.,HIGH,FAIL_STATIC,io_engine appears not to reference PD-L1
+A5_all_zero_patient_vector,mechanism_fit,"Send patient_vector = [0]*8; PATH A dot=0, fit=0 across all trials.",All fits 0.0; no ranked recommendation. Confidence tier LOCKED_NO_EXPRESSION.,MEDIUM,PASS_STATIC,LOCKED_NO_EXPRESSION present in spe_engine/scorer.py
+A6_axis_swap_confusion,vector_alignment,Send patient_vector with axes in wrong order (map her2 into ddr slot).,Canonical axis order enforced at contract boundary.,CRITICAL,PASS_STATIC,
+A7_negative_biomarker_leak,therapy_fit,Trigger negative biomarker; ranker should quarantine to rank=999.,_QUARANTINE_RANK = 999 in scoring.py.,HIGH,PASS_STATIC,
+A8_stubbed_impact_visible,therapy_fit,"Verify that impact_score.value==0.5 is disclosed as STUBBED, not silently reported.",Response includes STUBBED tier + disclosure.,CRITICAL,PASS_STATIC,
+A9_advisory_tier_downgrade,confidence_cap,Any output computed from stubbed/unwired data must be tagged ADVISORY_ONLY.,confidence_cap enforces tier ceiling.,CRITICAL,PASS_STATIC,confidence_cap has cap/advisory logic
+A10_path_b_reintroduction,mechanism_fit,Any code path that computes ||p||*||t|| instead of ||t|| is prohibited.,PATH_A_FORMULA constant + regression test in W1.,CRITICAL,PASS_STATIC,

@@ -1,0 +1,47 @@
+{
+  "stc1010_target_population": "MSS/pMMR CRC",
+  "stc1010_population_definition": {
+    "msi_status": "MSS (microsatellite stable)",
+    "mmr_status": "pMMR (proficient mismatch repair)",
+    "prevalence": "95% of metastatic CRC",
+    "ici_sensitivity": "None — primary rationale for STC-1010 therapeutic vaccine approach",
+    "clinical_trial": "BreAK CRC-001, backbone mFOLFOX6 +/- bevacizumab",
+    "source": "Alzeeb et al. 2024 — CT26 model (pMMR surrogate) and MC38-PD1R model (ICI-resistant surrogate)"
+  },
+  "trial_bridges": [
+    {
+      "trial": "N0147",
+      "molecular_data_available": "KRAS exon 2 (mut/WT), BRAF V600E (mut/WT), MMR/MSI status (MLH1/MSH2/MSH6 IHC + MLH1 methylation), 5-class tumor subtype; n=2720; DFS primary endpoint",
+      "relevance_to_mss_crc": "HIGH — N0147 is the definitive dataset establishing that dMMR/MSI-H patients benefit from adjuvant FOLFOX (DFS benefit) while pMMR/MSS patients do NOT. The pMMR/MSS subgroup in N0147 (majority of n=2720) represents the exact population STC-1010 targets: FOLFOX-treated, MMR-proficient, ICI-ineligible CRC patients with residual recurrence risk.",
+      "bridge_use_case": "N0147 pMMR/MSS subgroup provides the natural history control arm benchmark for BreAK CRC-001: DFS rates in FOLFOX-treated pMMR patients define the unmet need STC-1010 must improve upon. KRAS exon 2 data from N0147 enables KRAS-mut vs KRAS-WT subgroup stratification within the MSS population — directly relevant to STC-1010 biomarker strategy since KRAS-mut MSS CRC is the primary target.",
+      "data_gap": "N0147 is adjuvant (Stage III); BreAK CRC-001 is metastatic. N0147 KRAS data is exon 2 only (not expanded RAS). No NRAS, no KRAS exon 3/4 data. No immune infiltration or TME data. No bevacizumab arm."
+    },
+    {
+      "trial": "PRIME",
+      "molecular_data_available": "Expanded RAS panel: KRAS exon 2/3/4 + NRAS exon 2/3/4 + BRAF exon 15; RAS-WT PFS HR=0.72, OS HR=0.78 (panitumumab + FOLFOX4 vs FOLFOX4); RAS-mut: no benefit or harm from panitumumab",
+      "relevance_to_mss_crc": "HIGH — PRIME defines the RAS mutation landscape in mCRC and establishes that RAS-mutant patients (KRAS or NRAS any exon) derive no benefit from EGFR-targeted therapy. Since ~40-45% of MSS CRC is KRAS-mutant and KRAS-mut MSS CRC is the primary STC-1010 target population (ICI-ineligible, EGFR-therapy-ineligible, chemotherapy-only), PRIME's RAS-mut subgroup provides the benchmark OS/PFS for the STC-1010 target population on mFOLFOX6 backbone.",
+      "bridge_use_case": "PRIME RAS-mut OS data (HR=0.78 favoring FOLFOX4 alone over panitumumab+FOLFOX4 in RAS-mut) establishes that KRAS/NRAS-mutant MSS mCRC patients are a chemotherapy-only population with defined survival outcomes. STC-1010 + mFOLFOX6 in BreAK CRC-001 can be benchmarked against PRIME RAS-mut FOLFOX4 arm OS/PFS as a historical comparator for the KRAS-mut MSS subgroup. Oracle can classify the full expanded RAS panel to enable this subgroup analysis.",
+      "data_gap": "PRIME does not report MSI/MMR status — cannot confirm all RAS-mut patients are MSS. No bevacizumab arm in PRIME. FOLFOX4 vs mFOLFOX6 backbone differences. No immune biomarkers."
+    },
+    {
+      "trial": "MOSAIC",
+      "molecular_data_available": "DFS HR=0.80 (FOLFOX4 vs LV5FU2), OS HR=0.84; Stage II/III subgroups; ZERO molecular columns — no KRAS, no MMR, no RAS data",
+      "relevance_to_mss_crc": "MEDIUM — MOSAIC established FOLFOX as adjuvant standard of care for Stage III CRC (and high-risk Stage II). As the foundational FOLFOX efficacy trial, MOSAIC provides the backbone chemotherapy benchmark for BreAK CRC-001's mFOLFOX6 component. However, absence of molecular data means MOSAIC cannot be used for MSS-specific or KRAS-specific subgroup benchmarking.",
+      "bridge_use_case": "MOSAIC DFS/OS data serves as the historical efficacy floor for mFOLFOX6 backbone in BreAK CRC-001. The HR=0.80 DFS benefit establishes what chemotherapy alone achieves; STC-1010 must demonstrate incremental benefit above this floor. No molecular subgroup bridging is possible due to zero molecular data.",
+      "data_gap": "Zero molecular data — no MSI, no KRAS, no RAS, no BRAF. Adjuvant setting (Stage II/III) vs BreAK CRC-001 metastatic setting. Cannot stratify by MSS status. Cannot identify KRAS-mut subgroup. Entirely non-informative for biomarker strategy."
+    },
+    {
+      "trial": "VELOUR",
+      "molecular_data_available": "OS HR=0.817 (P=0.0032) for aflibercept + FOLFIRI vs placebo + FOLFIRI; ZERO molecular columns — no KRAS, no MMR, no RAS, no BRAF data",
+      "relevance_to_mss_crc": "LOW-MEDIUM — VELOUR is an angiogenesis trial (aflibercept/VEGF-trap) in second-line mCRC. Relevant to BreAK CRC-001 only insofar as bevacizumab is an optional backbone component. VELOUR's OS HR=0.817 provides a reference for anti-angiogenic benefit magnitude in unselected mCRC, but absence of molecular data prevents MSS-specific interpretation.",
+      "bridge_use_case": "VELOUR OS data provides context for the anti-angiogenic component of BreAK CRC-001's bevacizumab arm: the ~18% OS improvement from VEGF blockade in unselected mCRC sets the expected contribution of bevacizumab to the control arm. STC-1010 must demonstrate benefit above the bevacizumab + mFOLFOX6 combination baseline. No molecular bridging possible.",
+      "data_gap": "Zero molecular data — no MSI, no KRAS, no RAS, no BRAF. Second-line FOLFIRI backbone vs first-line mFOLFOX6 in BreAK CRC-001. Aflibercept (VEGF-trap) vs bevacizumab (anti-VEGF mAb) — different mechanisms. Cannot stratify by MSS status. Entirely non-informative for biomarker strategy."
+    }
+  ],
+  "oracle_application_to_bridges": {
+    "n0147_mmr_replication": "Oracle can replicate N0147's MMR classification pipeline (MLH1/MSH2/MSH6 variant pathogenicity + IHC integration) to prospectively confirm pMMR/MSS status in BreAK CRC-001 patients, with 0.957 AUROC exceeding standard IHC sensitivity.",
+    "prime_ras_replication": "Oracle can classify the full PRIME expanded RAS panel (KRAS+NRAS exon 2/3/4 + BRAF exon 15) to enable KRAS-mut MSS subgroup identification in BreAK CRC-001 — the primary target population for STC-1010.",
+    "mosaic_velour_limitation": "No Oracle application possible for MOSAIC/VELOUR molecular bridging — zero molecular data in both trials. Oracle can only be applied prospectively in BreAK CRC-001."
+  },
+  "key_insight": "N0147's pMMR/MSS subgroup (the population that did NOT benefit from FOLFOX-based immunotherapy augmentation) combined with PRIME's KRAS-mut RAS-expanded data together define the exact STC-1010 target: KRAS-mutant, pMMR/MSS mCRC patients who are ineligible for both ICI and EGFR-targeted therapy, leaving mFOLFOX6 +/- bevacizumab as the only standard option — the precise unmet need STC-1010 addresses."
+}

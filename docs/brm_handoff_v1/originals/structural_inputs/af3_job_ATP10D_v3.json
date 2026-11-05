@@ -1,0 +1,39 @@
+{
+  "name": "BrM_ATP10D",
+  "modality": "CRISPRi_dCas9_KRAB_TSS",
+  "target_status": "Quarantined / Null / Down-in-BrM (GSE223499 tumor_like LFC = -0.1321, padj = 0.8791, true baseMean = 846.51; signed oncogenic LFC credit = 0.0)",
+  "dna_b_typo_audit": {
+    "status": "CORRECTED_62NT_TO_61NT",
+    "bug_id": "BUG_DNA_B_62NT_1NT_INSERTION_CTTCTGTCCC",
+    "historical_62nt_typo_motif": "CTTCTGTCCC",
+    "corrected_61nt_motif": "CTTCTGCCC",
+    "historical_62nt_sequence": "AGCTGCCCTTCTGTCCCAGCGCAGATGCCCCAGTGACCCAGAGCCCTTACAATCTCACCTCT",
+    "corrected_61nt_sequence": "AGCTGCCCTTCTGCCCAGCGCAGATGCCCCAGTGACCCAGAGCCCTTACAATCTCACCTCT",
+    "note": "Fixed spurious 1-nt T insertion in Chain C (reverse strand DNA_B) so DNA_B is the exact 61-nt Watson-Crick reverse-complement of 61-nt forward strand DNA_A."
+  },
+  "modelSeeds": [
+    42
+  ],
+  "sequences": [
+    {
+      "rna": {
+        "id": "A",
+        "sequence": "UUGUAAGGGCUCUGGGUCACGUUUUAGAGCUAGAAAUAGCAAGUUAAAAUAAGGCUAGUCCGUUAUCAACUUGAAAAAGUGGCACCGAGUCGGUGC"
+      }
+    },
+    {
+      "dna": {
+        "id": "B",
+        "sequence": "AGAGGTGAGATTGTAAGGGCTCTGGGTCACTGGGGCATCTGCGCTGGGCAGAAGGGCAGCT"
+      }
+    },
+    {
+      "dna": {
+        "id": "C",
+        "sequence": "AGCTGCCCTTCTGCCCAGCGCAGATGCCCCAGTGACCCAGAGCCCTTACAATCTCACCTCT"
+      }
+    }
+  ],
+  "dialect": "alphafoldserver",
+  "version": 1
+}

@@ -1,0 +1,12 @@
+import type { Metadata } from 'next';
+import TumorBoardProductWorkspace from '@/components/products/tumor-board/TumorBoardProductWorkspace';
+
+export const metadata: Metadata = {
+  title: 'A · From imaging & reports · Tumor Board · CrisPRO',
+  description:
+    'We read what you send, apply the rules that matter for this cancer, and return what is worth discussing next — with sources.',
+};
+
+export default function TumorBoardWaysInAPage() {
+  return <TumorBoardProductWorkspace routedTab="lanes" laneSlug="a" />;
+}

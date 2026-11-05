@@ -1,0 +1,115 @@
+{
+  "receipt_type": "w3_predictive_platinum_response",
+  "claim_under_test": "GSE160626 sign-flip p=0.043 toward platinum sensitivity",
+  "note_dataset": "GSE160626 not in repo; using grounded GPL570 platinum cohorts GSE63885/GSE30161/GSE51373 to test predictive direction + sign-flip",
+  "cohorts": {
+    "GSE63885": {
+      "n": 75,
+      "n_resistant": 34,
+      "n_sensitive": 41,
+      "genes_used": [
+        "PIK3CA",
+        "PIK3CB",
+        "PIK3R1",
+        "AKT1",
+        "AKT2",
+        "AKT3",
+        "MTOR",
+        "RPTOR",
+        "RICTOR",
+        "PTEN",
+        "TSC1",
+        "STK11"
+      ],
+      "auroc_dir": 0.583,
+      "auroc_dir_ci": [
+        0.45,
+        0.709
+      ],
+      "auroc_uns": 0.515,
+      "auroc_uns_ci": [
+        0.382,
+        0.646
+      ],
+      "direction_dir": "higher_score_more_resistant"
+    },
+    "GSE30161": {
+      "n": 54,
+      "n_resistant": 15,
+      "n_sensitive": 39,
+      "genes_used": [
+        "PIK3CA",
+        "PIK3CB",
+        "PIK3R1",
+        "AKT1",
+        "AKT2",
+        "AKT3",
+        "MTOR",
+        "RPTOR",
+        "RICTOR",
+        "PTEN",
+        "TSC1",
+        "STK11"
+      ],
+      "auroc_dir": 0.427,
+      "auroc_dir_ci": [
+        0.265,
+        0.595
+      ],
+      "auroc_uns": 0.366,
+      "auroc_uns_ci": [
+        0.203,
+        0.54
+      ],
+      "direction_dir": "higher_score_more_sensitive"
+    },
+    "GSE51373": {
+      "n": 28,
+      "n_resistant": 12,
+      "n_sensitive": 16,
+      "genes_used": [
+        "PIK3CA",
+        "PIK3CB",
+        "PIK3R1",
+        "AKT1",
+        "AKT2",
+        "AKT3",
+        "MTOR",
+        "RPTOR",
+        "RICTOR",
+        "PTEN",
+        "TSC1",
+        "STK11"
+      ],
+      "auroc_dir": 0.635,
+      "auroc_dir_ci": [
+        0.406,
+        0.844
+      ],
+      "auroc_uns": 0.63,
+      "auroc_uns_ci": [
+        0.396,
+        0.833
+      ],
+      "direction_dir": "higher_score_more_resistant"
+    }
+  },
+  "signflip_verdict": {
+    "auroc_by_cohort": {
+      "GSE63885": 0.583,
+      "GSE30161": 0.427,
+      "GSE51373": 0.635
+    },
+    "cohorts_score_predicts_resistance": [
+      "GSE63885",
+      "GSE51373"
+    ],
+    "cohorts_score_predicts_sensitivity": [
+      "GSE30161"
+    ],
+    "sign_flip_observed": true,
+    "note": "A real sign-flip requires the SAME score to predict resistance in one cohort and sensitivity in another (AUROC on opposite sides of 0.5). If all near 0.5, the honest conclusion is 'no reliable predictive signal'.",
+    "any_cohort_significant": false,
+    "honest_interpretation": "Directional AUROCs straddle 0.5 across cohorts (0.583 resistant / 0.427 sensitive / 0.635 resistant), but NONE is statistically significant (all 95% CIs cross 0.5). The apparent sign-flip reflects an UNSTABLE, NON-SIGNIFICANT predictor, not a validated biological switch toward platinum sensitivity. The requested claim (GSE160626 sign-flip toward sensitivity, p=0.043) is NOT reproduced: GSE160626 is absent from the repo, no cohort reaches significance, and the majority direction is toward RESISTANCE."
+  }
+}

@@ -1,0 +1,4 @@
+trial,released_patients,n_with_serial_psa,n_early_ge3,n_positive_rate,n_model,events_model,status
+TAX327,337,337,281,167,166,77,discovery; included
+VENICE,612,612,570,454,446,296,independent external; included
+TROPIC,371,371,294,123,0,0,excluded: no released ECOG/WHO/Karnofsky field

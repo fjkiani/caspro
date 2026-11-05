@@ -1,0 +1,64 @@
+{
+  "framework": "Ovarian HGSOC Resistance & Biomarker Subsystem (v3 spine)",
+  "generated_at": "2026-07-20T07:33:11.501998+00:00",
+  "acceptance_gate": "reproduce-within-CI + all tests green + zero stub keys on touched paths",
+  "test_summary": {
+    "biomarker_suite": "11/11 pass",
+    "resistance_preexisting": "23/23 pass",
+    "new_wiring_tests": "9/9 pass (3 ctDNA + 3 KELIM Signal6 + 3 integration)",
+    "total": "43/43 pass",
+    "regressions_introduced": 0
+  },
+  "components": {
+    "plco_ca125_kinetics": {
+      "tier": "externally_validated_RUO",
+      "scope": "CA-125 kinetics early-signal for INCIDENT ovarian cancer (screening). NOT treatment resistance.",
+      "primary_metric": {
+        "feature": "log_slope_per_year",
+        "auroc": 0.6519,
+        "ci95": [
+          0.6047,
+          0.6954
+        ],
+        "interpretation": "cases have ~11x higher mean log-slope; AUROC CI excludes 0.5 -> real early signal"
+      },
+      "secondary_metric": {
+        "feature": "velocity",
+        "auroc": 0.6539,
+        "ci95": [
+          0.6051,
+          0.6992
+        ]
+      },
+      "gate": "PASS (slope + velocity CIs exclude 0.5; consistent with CA-125 screening literature AUROC ~0.6-0.7)",
+      "n_cases": 202,
+      "n_controls": 28573
+    },
+    "ctdna_mrd": {
+      "tier": "reproduced_from_published_RUO",
+      "wiring": "V1_prognostic_only (never changes drug routing); V2 code-complete but gated off; V3 not implemented",
+      "gate": "PASS \u2014 all headline numbers reproduce the published values exactly",
+      "prophet_status": "WIRED_PROGNOSTIC_ONLY_V1",
+      "routing_invariance_test": "PASS (probability + risk identical with/without ctDNA)"
+    },
+    "kelim_signal6": {
+      "issue": "RES-OV-P0-009",
+      "fix": "reads kelim_obj.k (log-linear shim) with .kelim fallback",
+      "status": "WIRED_ACTIVE_SIMULATION_ANCHORED",
+      "tier": "simulation_anchored_prior_RUO",
+      "calibration_status": "PENDING_REAL_DATA (Colomban 2023 anchored, confidence cap 0.70)",
+      "test": "PASS (fires on unfavorable K; missing->not detected)"
+    },
+    "biomarker_registry": {
+      "models": 4,
+      "all_status": "discovery_only",
+      "integration": "biomarker_context_from_registry -> advisory BiomarkerContext (advisory_only=True)",
+      "routing_invariance_test": "PASS"
+    }
+  },
+  "open_issues_closed": [
+    "RES-OV-P0-006 (ctDNA->Prophet)",
+    "RES-OV-P0-009 (dead KELIM Signal 6)"
+  ],
+  "honesty_boundary": "No component labeled 'clinically validated'. PLCO validates a CA-125 kinetics EARLY-SIGNAL method for INCIDENT cancer (screening) ONLY, not treatment resistance."
+}

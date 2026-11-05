@@ -1,0 +1,4810 @@
+{
+  "caslib": "Breast_SanofiU_1998_127",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CA15_3",
+    "CA27_29"
+  ],
+  "indication": "breast",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 41,
+  "n_tabular_files": 41,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "b833483c7eed141f7e2ffadf051ddcb3e166cd21a2152c56ca5d028e7db449d3",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Record Status",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Event Identifier",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Seq#",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Adverse Experience",
+          "name": "AE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE Synonym",
+          "name": "AESYN",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Grade",
+          "name": "GRAD",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "code Flag",
+          "name": "CS",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Most Likely Cause",
+          "name": "AECAUSE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Costart",
+          "name": "AECOS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unique Code for an AE",
+          "name": "C_AESYN",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "NCI Term",
+          "name": "NCICRI",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Costart full term English",
+          "name": "AECOSE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE Costart body system",
+          "name": "AECB1",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE Costart body sys 2",
+          "name": "AECB2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE Costart body sys 3",
+          "name": "AECB3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE Costart subcategory 1",
+          "name": "AECS1",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE Costart subcategory 2",
+          "name": "AECS2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE Costart subcategory 3",
+          "name": "AECS3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE Costart special search 1",
+          "name": "AECSS1",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE Costart special search 2",
+          "name": "AECSS2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE Costart special search 3",
+          "name": "AECSS3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "WHO-Art body system 1",
+          "name": "AEWB1",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "WHO-Art body system 2",
+          "name": "AEWB2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "WHO-Art body system 3",
+          "name": "AEWB3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "WHO-Art preferred term",
+          "name": "AEWHO",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "WHO-Art high level term",
+          "name": "AEWHOH",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Coding status",
+          "name": "COD_FLAG",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Costart body system code 1",
+          "name": "C_AECB1",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Costart body system code 2",
+          "name": "C_AECB2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Costart body system code 3",
+          "name": "C_AECB3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "AE Costart code",
+          "name": "C_AECOS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Costart subcategory 1 code",
+          "name": "C_AECS1",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Costart subcategory 2 code",
+          "name": "C_AECS2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Costart subcategory 3 code",
+          "name": "C_AECS3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Costart special search 1 code",
+          "name": "C_AECSS1",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Costart spacial search 2 code",
+          "name": "C_AECSS2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Costart special search 3 code",
+          "name": "C_AECSS3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "WHO-Art body system 1 code",
+          "name": "C_AEWB1",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "WHO-Art body system 2 code",
+          "name": "C_AEWB2",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "WHO-Art body system 3 code",
+          "name": "C_AEWB3",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "WHO_Art preferred term code",
+          "name": "C_AEWHO",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "WHO-Art high level term code",
+          "name": "C_AEWHOH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "day flag coding",
+          "name": "CS_DATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Stop Day",
+          "name": "I_AESTP_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start day",
+          "name": "I_AESTR_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Action Taken",
+          "name": "AEACTMED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Significant Consequences",
+          "name": "AECONS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE Ongoing",
+          "name": "AEONGO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE Ong start infection",
+          "name": "AEONGO1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE Ong stop infection",
+          "name": "AEONGO2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Relation to Study Medication",
+          "name": "AEREL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious",
+          "name": "AESER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Status",
+          "name": "AESTAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Flag Incomplete Date Stop",
+          "name": "F_AESTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Flag Incomplete Date Start",
+          "name": "F_AESTR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Stop week (unit=weeks) for deaths",
+          "name": "I_AESTP_WK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start week (unit=weeks) for deaths",
+          "name": "I_AESTR_WK",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "AEWB1",
+          "AEWB2",
+          "AEWB3",
+          "AEWHO",
+          "AEWHOH",
+          "C_AEWB1",
+          "C_AEWB2",
+          "C_AEWB3",
+          "C_AEWHO",
+          "C_AEWHOH"
+        ],
+        "endpoint": [
+          "ZVISNAME",
+          "I_AESTP_WK",
+          "I_AESTR_WK"
+        ],
+        "patient": [],
+        "time": [
+          "CS_DATE_DY",
+          "I_AESTP_DY",
+          "I_AESTR_DY",
+          "ZVISDATE_DY",
+          "F_AESTP",
+          "F_AESTR",
+          "RSUBJID",
+          "RUSUBJID",
+          "I_AESTP_WK",
+          "I_AESTR_WK"
+        ],
+        "treatment": [],
+        "unit": [
+          "I_AESTP_WK",
+          "I_AESTR_WK"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 35545,
+      "path": "dataFiles_736/ae.sas7bdat",
+      "size": 37036032,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Seq#",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of relapse",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 136,
+      "path": "dataFiles_736/bcr.sas7bdat",
+      "size": 24576,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Specify other distant nodes",
+          "name": "DNODES_C",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Specify other distant relapse",
+          "name": "OTHDSR_C",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Seq#",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Site Code",
+          "name": "SITE_COD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Site Synonym",
+          "name": "SITESYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Coding Status",
+          "name": "CS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Coding Day",
+          "name": "CS_DATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Histo or Cyto proof for DRELP",
+          "name": "D_DRPROO_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Histo or Cyto proof for LRELP",
+          "name": "D_LRPROO_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of relapse",
+          "name": "D_RELAPS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Histo or Cyto proof for RRELP",
+          "name": "D_RRPROO_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Histopatho or cyctological proof obtain",
+          "name": "DRELAPRO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Distance relapse",
+          "name": "DSRELAP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Local relapse",
+          "name": "LCRELAP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Histopatho or cytological proof obtained",
+          "name": "LRELAPRO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Regional relapse",
+          "name": "RGRELAP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Hisopatho or cytological proof obtained",
+          "name": "RRELAPRO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CS_DATE_DY",
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 84,
+      "path": "dataFiles_736/bcrelap.sas7bdat",
+      "size": 106496,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Product name",
+          "name": "CTX_L",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Cumulative dose",
+          "name": "CTXDOSE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Literal Synonym",
+          "name": "CTXSYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Whocode",
+          "name": "C_CTXWHO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Coding Status",
+          "name": "CS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Coding Day",
+          "name": "CS_DATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Stop Day",
+          "name": "D_TXSTP_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start Day",
+          "name": "D_TXSTR_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Last Contact FU",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Receive  anthracycline since lst visit",
+          "name": "ANTHRAYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Congestive heart fail. since last visit",
+          "name": "CHFYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Radiotherapy after relapse",
+          "name": "RADIJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "C_CTXWHO"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CS_DATE_DY",
+          "D_TXSTP_DY",
+          "D_TXSTR_DY",
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 65,
+      "path": "dataFiles_736/chf.sas7bdat",
+      "size": 40960,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Record Status",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Event Identifier",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AC_ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Random day",
+          "name": "DRANDOM_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day informed consent obtained:",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Treatment Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "ZVISNAME"
+        ],
+        "patient": [],
+        "time": [
+          "DRANDOM_DY",
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 993,
+      "path": "dataFiles_736/cover.sas7bdat",
+      "size": 90112,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Record Status",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Event Identifier",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Criteria No.",
+          "name": "INCNO",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Criteria",
+          "name": "CRITERIA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day informed consent obtained:",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "No/Yes",
+          "name": "CRITYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Applicable",
+          "name": "NAP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "ZVISNAME"
+        ],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 26838,
+      "path": "dataFiles_736/criteria.sas7bdat",
+      "size": 6078464,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Was an autopsy performed?",
+          "name": "DRAUTO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Cause of death",
+          "name": "DRCAUSE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lungs",
+          "name": "DRSITE1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Liver",
+          "name": "DRSITE2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "GI tract",
+          "name": "DRSITE3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Kidney",
+          "name": "DRSITE4",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CNS",
+          "name": "DRSITE5",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Locoregional",
+          "name": "DRSITE6",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Bone",
+          "name": "DRSITE7",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "No evidence of disease",
+          "name": "DRSITE8",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Other, specify",
+          "name": "DRSITE9",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Week of Death",
+          "name": "D_DEATH_WEEK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Time to Death Unit",
+          "name": "DTH_TIME_U",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "DRAUTO"
+        ],
+        "endpoint": [
+          "DRCAUSE",
+          "D_DEATH_WEEK",
+          "DTH_TIME_U"
+        ],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID",
+          "D_DEATH_WEEK"
+        ],
+        "treatment": [],
+        "unit": [
+          "DTH_TIME_U"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 20,
+      "path": "dataFiles_736/death.sas7bdat",
+      "size": 24576,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AGE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AGE_U",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day informed consent obtained:",
+          "name": "D_INFCON_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient is of childbearing potential:",
+          "name": "CBPYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Is adequate contraception practiced?",
+          "name": "CONTRYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "CBPYN"
+        ],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 994,
+      "path": "dataFiles_736/demog.sas7bdat",
+      "size": 139264,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Seq #",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Surgery",
+          "name": "D_SURG_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day informed consent obtained:",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Surgery",
+          "name": "SURGERY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1162,
+      "path": "dataFiles_736/diag1.sas7bdat",
+      "size": 139264,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Number of resected axillary lymph nodes:",
+          "name": "RESALN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Number of positive axillary lymph nodes:",
+          "name": "POSALN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Primary tumor size",
+          "name": "PTSIZE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Primary tumor size unit",
+          "name": "PTSIZE_U",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Axillary Node Dissection",
+          "name": "D_ASSESS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day informed consent obtained:",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Estrogen and Progesterone receptors...",
+          "name": "ERPRYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Histopathologic Grade",
+          "name": "HISGRADE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Histopathologic Type",
+          "name": "HISTYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Margins in the Definitive Specimen",
+          "name": "MARGIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Multifocal tumor (y/n)",
+          "name": "MULTUYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Paraffin block available to COO",
+          "name": "PARAFFIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "M- Distant Metastases",
+          "name": "PATHOM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "pN - Regional Lymph Nodes",
+          "name": "PATHON",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "pT - Primary Tumor",
+          "name": "PATHOT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary tumor type  BREAST",
+          "name": "SITE_L",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "PTSIZE_U"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1988,
+      "path": "dataFiles_736/diag2.sas7bdat",
+      "size": 696320,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Last Contact FU",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reason of discontinuation of tamoxifen",
+          "name": "DISCTAMO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Applicable",
+          "name": "NAP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1531,
+      "path": "dataFiles_736/disctamo.sas7bdat",
+      "size": 172032,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "WHOCODE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ATCCODE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ATCTEXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DRUGNAM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DRUGSY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "NUMING",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SUBSNAM",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "WHOCODE"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2931,
+      "path": "dataFiles_736/druging.sas7bdat",
+      "size": 720896,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SEQ",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Assessment",
+          "name": "D_ASSESS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Ekg Interpretation",
+          "name": "EINTNA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1213,
+      "path": "dataFiles_736/ekg.sas7bdat",
+      "size": 139264,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "How many days did pt. miss from work?",
+          "name": "NBMISW",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "How many days missed other activities?",
+          "name": "NBMISO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Employment Status",
+          "name": "EMPLST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Applicable",
+          "name": "NAP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 7612,
+      "path": "dataFiles_736/employ.sas7bdat",
+      "size": 876544,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of last contact",
+          "name": "D_ALIVE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Primary reason for discontinuation chemo",
+          "name": "ENDCHEMO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 994,
+      "path": "dataFiles_736/end.sas7bdat",
+      "size": 122880,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Temperature literal unit",
+          "name": "TEMP_LU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Stop Day of fever >= Grade 2",
+          "name": "D_AESTP_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start Day of fever >= Grade 2",
+          "name": "D_AESTR_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Administration Day",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Action Taken Study Medication",
+          "name": "AEACTMED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Significant Consequences",
+          "name": "AECONS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Relation to Study Medication",
+          "name": "AEREL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious",
+          "name": "AESER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Fever in absence of infection concomit..",
+          "name": "FEBNEUYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Antibiotics given to prevent infection ?",
+          "name": "PREANT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Oral Temperature",
+          "name": "TEMP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "PREANT"
+        ],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "TEMP_LU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 6618,
+      "path": "dataFiles_736/febneut.sas7bdat",
+      "size": 1351680,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Hystology CR",
+          "name": "HISTYPE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day informed consent obtained:",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Histopathologic Grade",
+          "name": "HISGRADE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Histology Type Dominant",
+          "name": "HISTYP_D",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Histology Type Secondary",
+          "name": "HISTYP_S",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vascular Invasion",
+          "name": "INVASION",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 383,
+      "path": "dataFiles_736/histo.sas7bdat",
+      "size": 90112,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "HRMTEST",
+          "n_unique": 2,
+          "values": [
+            "Biochemical Method",
+            "Immunohistochemistry"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day Assessed",
+          "name": "D_LABASS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day informed consent obtained:",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Estrogen Receptors",
+          "name": "ERSTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Hormonal Test",
+          "name": "HRMTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Done",
+          "name": "NDONE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Progesterone receptors",
+          "name": "PGRSTA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "HRMTEST"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1985,
+      "path": "dataFiles_736/hormorec.sas7bdat",
+      "size": 303104,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SEQ#",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Admission day",
+          "name": "D_HOSPAD_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Discharge day",
+          "name": "D_HOSPDI_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Administration Day",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Ongoing",
+          "name": "ADMHONGO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for admission",
+          "name": "ADMREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ongoing",
+          "name": "DISHONGO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Hospitalisation during cycle period ?",
+          "name": "HOSPIYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Major procedures performed during hos",
+          "name": "MAJPROYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Unit",
+          "name": "TYPUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "MAJPROYN"
+        ],
+        "endpoint": [
+          "MAJPROYN"
+        ],
+        "patient": [],
+        "time": [
+          "D_HOSPAD_DY",
+          "D_HOSPDI_DY",
+          "ZVISDATE_DY",
+          "HOSPIYN",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "TYPUNIT"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 6741,
+      "path": "dataFiles_736/hospi.sas7bdat",
+      "size": 1220608,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LTEST",
+          "n_unique": 12,
+          "values": [
+            "ALAT (SGPT)",
+            "Alkaline Phosphatase",
+            "ASAT (SGOT)",
+            "Creatinine",
+            "Creatinine Clearance",
+            "Follicle Stim. Hormone",
+            "Hemoglobin",
+            "Lutenising Hormone",
+            "Neutrophils",
+            "Platelets",
+            "Total Bilirubin",
+            "White Blood Cells"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Record Status",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Event Identifier",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Laboratory identification",
+          "name": "LABID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Recommended Units",
+          "name": "RECUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Units",
+          "name": "LUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Value",
+          "name": "LVALUE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Upper Normal Value",
+          "name": "UPVALUE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Normal Range",
+          "name": "NORRANGE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Laboratory Test short text",
+          "name": "LTESTS",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "SEQ#",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "converted value",
+          "name": "SLVALUE",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Laboratory Data Type",
+          "name": "LTYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Converted UNL",
+          "name": "SUPVALUE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of sample",
+          "name": "D_LABSAM_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Corrected",
+          "name": "CORR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test",
+          "name": "LTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Applicable/Not Done",
+          "name": "NAP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Done",
+          "name": "NDONE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Same as baseline",
+          "name": "SAMBASE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LTEST"
+        ],
+        "ecog": [],
+        "endpoint": [
+          "ZVISNAME"
+        ],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "RECUNIT",
+          "LUNIT"
+        ],
+        "value": [
+          "LVALUE",
+          "UPVALUE",
+          "SLVALUE",
+          "SUPVALUE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 136751,
+      "path": "dataFiles_736/lab.sas7bdat",
+      "size": 36552704,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "LABID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LUNIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LOVALUE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "UPVALUE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SUPVALUE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "XLAGE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "XUAGE",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [
+          "LUNIT"
+        ],
+        "value": [
+          "LOVALUE",
+          "UPVALUE",
+          "SUPVALUE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 4097,
+      "path": "dataFiles_736/labnorm.sas7bdat",
+      "size": 376832,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lower limit of normal for Inst. (%)",
+          "name": "LOWLIMIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEQ#",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Assessment",
+          "name": "D_ASSESS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Type of Assessment",
+          "name": "CARECHO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Value (%)",
+          "name": "LVVALUE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "LVVALUE"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 1052,
+      "path": "dataFiles_736/lvef.sas7bdat",
+      "size": 139264,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day informed consent obtained:",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Set to Y if date present, even if UNK",
+          "name": "I_MENOYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day:",
+          "name": "I_BILOVADY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Stop Day:",
+          "name": "I_HORSTPDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start Day:",
+          "name": "I_HORSTRDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day:",
+          "name": "I_HYSTERDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Last Mensus",
+          "name": "I_MENODY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Bilateral ovariectomy",
+          "name": "BILOVARI",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Hormonal Treatment Replacement",
+          "name": "HORMOREP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Hysterectomy",
+          "name": "HYSTEREC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "I_MENOYN",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "HORMOREP"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 994,
+      "path": "dataFiles_736/meno.sas7bdat",
+      "size": 155648,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Seq #",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Description",
+          "name": "MX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "RPR Synonyme",
+          "name": "MXSYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease Syn Code",
+          "name": "C_MX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Term icd9cm",
+          "name": "MXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "icd9cm class",
+          "name": "MXCL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "icd9cm code class",
+          "name": "C_MXCL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Coding flag",
+          "name": "CS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Disease Synonym code",
+          "name": "C_MXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day Coding flag",
+          "name": "CS_DATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day Ceased",
+          "name": "I_MXSTP_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day Started",
+          "name": "I_MXSTR_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day informed consent obtained:",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Flag Date Stop",
+          "name": "F_MXSTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Flag Date Start",
+          "name": "F_MXSTR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Done",
+          "name": "MXNONE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ongoing",
+          "name": "MXONGO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "CS_DATE_DY",
+          "ZVISDATE_DY",
+          "F_MXSTP",
+          "F_MXSTR",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1747,
+      "path": "dataFiles_736/mx.sas7bdat",
+      "size": 827392,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SEQ#",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day assessed",
+          "name": "D_ASSESS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Type of procedure",
+          "name": "TYPEPROC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1822,
+      "path": "dataFiles_736/othproc.sas7bdat",
+      "size": 204800,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Number of Emergency room visits",
+          "name": "NB_EMERG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Not Applicable",
+          "name": "NAP1",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Not Applicable",
+          "name": "NAP2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Number of General practitionner visits",
+          "name": "NB_GPRAC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Number of Oncologist/Internist Visits",
+          "name": "NB_ONCO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Number of Other Visits",
+          "name": "NB_OTHER",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Specify type of Physician Visits",
+          "name": "NBOTHE_C",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Applicable",
+          "name": "NAP3",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Number of nurse visits",
+          "name": "NB_NURSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Number of Rehabilitation Visits",
+          "name": "NB_REHAB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Number of Physiotherapy Visits",
+          "name": "NB_PHYSI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Number of Other Health Prof. Visits",
+          "name": "NB_OTHEA",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Specify type of other Health Prof. Visit",
+          "name": "NBHEAL_C",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Administration Day",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Since the last visit....an out-patient",
+          "name": "CONSULYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Major procedures",
+          "name": "MAJPROYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "CONSULYN"
+        ],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 6619,
+      "path": "dataFiles_736/outcare.sas7bdat",
+      "size": 2875392,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Last Contact FU",
+          "name": "D_ASSESS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of last contact",
+          "name": "D_CONTAC_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Last Contact FU",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Patient status",
+          "name": "PATSTAT1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Patient Status",
+          "name": "PATSTAT2",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Patient Status Change (Y/N)",
+          "name": "STATYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Week of Last Contact FU for deaths",
+          "name": "D_ASSESS_WK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Week of Last Contact FU for deaths",
+          "name": "ZVISDATE_WK",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "D_ASSESS_WK",
+          "ZVISDATE_WK"
+        ],
+        "patient": [
+          "PATSTAT1",
+          "PATSTAT2",
+          "STATYN"
+        ],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID",
+          "D_ASSESS_WK",
+          "ZVISDATE_WK"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 4680,
+      "path": "dataFiles_736/patstat.sas7bdat",
+      "size": 860160,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Record Status",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Event Identifier",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Seq #",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Regimen/Drug",
+          "name": "CTX_L",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "RPR SYN DRUG",
+          "name": "RPRSYNDR",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "whocode",
+          "name": "C_CTXWHO",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Dose",
+          "name": "CTXDOSE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Dose Units",
+          "name": "CTXD_LU",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Code flag Coding",
+          "name": "CS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "day flag coding",
+          "name": "CS_DATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Stop Day",
+          "name": "I_CTXSTP_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start Day",
+          "name": "I_CTXSTR_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ongoing",
+          "name": "CTXONGO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ongoing",
+          "name": "CTXONGO1",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Route",
+          "name": "CTXRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Indication for use",
+          "name": "CTXSPECI",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Flag Incomplete Date Stop",
+          "name": "F_CTXSTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Flag Incomplete Date Start",
+          "name": "F_CTXSTR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Applicable",
+          "name": "NAP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "C_CTXWHO"
+        ],
+        "endpoint": [
+          "ZVISNAME"
+        ],
+        "patient": [],
+        "time": [
+          "CS_DATE_DY",
+          "I_CTXSTP_DY",
+          "I_CTXSTR_DY",
+          "ZVISDATE_DY",
+          "F_CTXSTP",
+          "F_CTXSTR",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CTX_L"
+        ],
+        "unit": [
+          "CTXD_LU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 41178,
+      "path": "dataFiles_736/pctx.sas7bdat",
+      "size": 17989632,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Record Status",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Event Identifier",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of assessment",
+          "name": "D_ASSESS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Tumor involvement",
+          "name": "INVOYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Any change from previous exam.",
+          "name": "PECYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not done",
+          "name": "PENONE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Physical Exam Normal/Abnormal",
+          "name": "PGEN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "ZVISNAME"
+        ],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 12236,
+      "path": "dataFiles_736/pe.sas7bdat",
+      "size": 1302528,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "HCGTEST",
+          "n_unique": 3,
+          "values": [
+            ".",
+            "Serum",
+            "Urine"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Record Status",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Event Identifier",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Sample",
+          "name": "D_ASSESS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day informed consent obtained:",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "HCG Test",
+          "name": "HCGTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Applicable",
+          "name": "NAP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Results",
+          "name": "RESULT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "HCGTEST"
+        ],
+        "ecog": [],
+        "endpoint": [
+          "ZVISNAME"
+        ],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "RESULT"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 994,
+      "path": "dataFiles_736/pregtest.sas7bdat",
+      "size": 122880,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SEQ",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Intended dose",
+          "name": "PTXDG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Intended dose literal units",
+          "name": "PTXDG_LU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Total dose given",
+          "name": "BTXDD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Total dose given literal units",
+          "name": "BTXD_LU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Stop Day oral",
+          "name": "D_OTXSTP_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Administration Day",
+          "name": "D_OTXSTR_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Administration Day",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Allocated drug route",
+          "name": "ATXRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Drug Choice",
+          "name": "BTXCHOIX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Delayed dose Y/N",
+          "name": "DELDOSYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason discontinue oral cyclophosphamide",
+          "name": "DISCHAN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "discontinue oral cyclo before day 14",
+          "name": "DISDOSYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason Dose Reduced",
+          "name": "DOSECHAN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason Dose Delayed",
+          "name": "FREQCHAN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Non applicable Date",
+          "name": "NA_D_OTX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reduced dose Y/N",
+          "name": "REDDOSYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Setting",
+          "name": "SETTING",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "D_OTXSTR_DY",
+          "ZVISDATE_DY",
+          "NA_D_OTX",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "PTXDG_LU",
+          "BTXD_LU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 22480,
+      "path": "dataFiles_736/ptxd.sas7bdat",
+      "size": 6938624,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Record Status",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Event Identifier",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Site",
+          "name": "SITE_L",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Dose",
+          "name": "RADTF",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Stop Day",
+          "name": "I_RADSTP_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start Day",
+          "name": "I_RADSTR_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Flag date stop",
+          "name": "F_RADSTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Flag date start",
+          "name": "F_RADSTR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Left/Right",
+          "name": "LEFTRIGH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not applicable",
+          "name": "NAP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for discontinuation",
+          "name": "RADISCON",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Did patient receive radiation therapy?",
+          "name": "RADYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "dose units",
+          "name": "RAD_LU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Site Radiated Y/N",
+          "name": "SITESYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "ZVISNAME"
+        ],
+        "patient": [
+          "RADYN"
+        ],
+        "time": [
+          "ZVISDATE",
+          "I_RADSTP_DY",
+          "I_RADSTR_DY",
+          "F_RADSTP",
+          "F_RADSTR",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "RAD_LU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 5431,
+      "path": "dataFiles_736/rad.sas7bdat",
+      "size": 1974272,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Record Status",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Event Identifier",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Reason",
+          "name": "REASONR",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Reason",
+          "name": "REASONH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day informed consent obtained:",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "hormonotherapy planned ?",
+          "name": "HORADJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Radiotherapy planned ?",
+          "name": "RADADJ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "ZVISNAME"
+        ],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 994,
+      "path": "dataFiles_736/rahoadj.sas7bdat",
+      "size": 278528,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Record Status",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Event Identifier",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "SEQ#",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day Assessed",
+          "name": "D_ASSESS_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Tumor Involvement",
+          "name": "INVOYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not applicable",
+          "name": "NA",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Tumor Abnormality",
+          "name": "NTUABNYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Type  of Evaluation",
+          "name": "TYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Done",
+          "name": "XNONE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "ZVISNAME"
+        ],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 26652,
+      "path": "dataFiles_736/scan.sas7bdat",
+      "size": 4300800,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Synonym",
+          "name": "HISTOSYN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Code",
+          "name": "HISTOCOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of histopathology",
+          "name": "D_HISTO_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Diagnosis",
+          "name": "DIAG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Histopathologic proof obtained",
+          "name": "DIAGPROO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 5,
+      "path": "dataFiles_736/spmalig.sas7bdat",
+      "size": 24576,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Record Status",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Event Identifier",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Sequence #",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Trade Name or Product Name",
+          "name": "CTX_L",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "RPR Dictionaries",
+          "name": "RPRSYN",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "whocode",
+          "name": "C_CTXWHO",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Coding flag",
+          "name": "CS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day Coding flag",
+          "name": "CS_DATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Stop Day",
+          "name": "I_CTXSTP_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start Day",
+          "name": "I_CTXSTR_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day informed consent obtained:",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Ongoing",
+          "name": "AEONGO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Route",
+          "name": "CTXRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Indication for Use",
+          "name": "CTXSPECI",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Flag Incomplete date Stop",
+          "name": "F_CTXSTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Flag Incomplete Date Start",
+          "name": "F_CTXSTR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "C_CTXWHO"
+        ],
+        "endpoint": [
+          "ZVISNAME"
+        ],
+        "patient": [],
+        "time": [
+          "CS_DATE_DY",
+          "I_CTXSTP_DY",
+          "I_CTXSTR_DY",
+          "ZVISDATE_DY",
+          "F_CTXSTP",
+          "F_CTXSTR",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 857,
+      "path": "dataFiles_736/sptotat.sas7bdat",
+      "size": 376832,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Record Status",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Event Identifier",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Seq #",
+          "name": "SEQ",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Regimen/Drug",
+          "name": "CTX_L",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "RPR SYN",
+          "name": "RPRSYNDR",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "whocode",
+          "name": "C_CTXWHO",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Dose",
+          "name": "CTXDOSE",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Unit",
+          "name": "CTXD_LU",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Site/Procedure",
+          "name": "SITE_L",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Coding flag",
+          "name": "CS",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Site Synonym",
+          "name": "SITESYN",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Site code",
+          "name": "SITE_COD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "day coding flag",
+          "name": "CS_DATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Stop Therapy",
+          "name": "D_TXSTP_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start Therapy",
+          "name": "D_TXSTR_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Flag incomplete date",
+          "name": "F_TXSTP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Flag incomplete date",
+          "name": "F_TXSTR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Type of therapy",
+          "name": "THFUP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "None",
+          "name": "TXNONE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "C_CTXWHO"
+        ],
+        "endpoint": [
+          "ZVISNAME"
+        ],
+        "patient": [],
+        "time": [
+          "CS_DATE_DY",
+          "ZVISDATE_DY",
+          "F_TXSTP",
+          "F_TXSTR",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CTX_L"
+        ],
+        "unit": [
+          "CTXD_LU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 402,
+      "path": "dataFiles_736/syscantx.sas7bdat",
+      "size": 294912,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Administration Day",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 6618,
+      "path": "dataFiles_736/vd_cycle.sas7bdat",
+      "size": 335872,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Last Contact FU",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 4140,
+      "path": "dataFiles_736/vd_fu.sas7bdat",
+      "size": 212992,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day informed consent obtained:",
+          "name": "ZVISD_B_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Administration Day",
+          "name": "ZVISD_C_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Last Contact FU",
+          "name": "ZVISD_F_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of relapse",
+          "name": "ZVISD_R_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of histopathology",
+          "name": "ZVISD_SP_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "ZVISD_C_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 11894,
+      "path": "dataFiles_736/vis_date.sas7bdat",
+      "size": 983040,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "$",
+          "label": "Record Status",
+          "name": "F_STATUS",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Event Identifier",
+          "name": "ZVISNAME",
+          "type": "char"
+        },
+        {
+          "format": "$",
+          "label": "Page",
+          "name": "PAG_NAME",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Performance Status",
+          "name": "PSKAR",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Weight Literal Units",
+          "name": "WT_LU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Height",
+          "name": "HT",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Height Literal Units",
+          "name": "HT_LU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Assessment",
+          "name": "D_VITAL_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ZVISDATE_DY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Vitals Not Done",
+          "name": "VITNONE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Weight",
+          "name": "WT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-identified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "PSKAR"
+        ],
+        "endpoint": [
+          "ZVISNAME"
+        ],
+        "patient": [],
+        "time": [
+          "ZVISDATE_DY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "WT_LU",
+          "HT_LU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 7614,
+      "path": "dataFiles_736/vital.sas7bdat",
+      "size": 827392,
+      "status": "OK"
+    }
+  ]
+}

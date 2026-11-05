@@ -30,7 +30,7 @@ export function ZetaNavbar({ isProcessing = false }: { isProcessing?: boolean })
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-[1000] w-full pointer-events-auto backdrop-blur-md border-b ${theme.navSurface}`}>
-      <div className="flex items-center justify-between h-14 px-4 sm:px-6 max-w-[1920px] mx-auto w-full gap-2">
+      <div className="mx-auto flex h-14 w-full max-w-[1920px] items-center justify-between gap-2 px-4 sm:px-6">
         <ZetaBrand isDarkMode={isDarkMode} brandBorder={theme.brandBorder} />
         <Suspense fallback={<div className="hidden lg:flex flex-1 min-w-0 justify-end" aria-hidden />}>
           <ZetaDesktopNav

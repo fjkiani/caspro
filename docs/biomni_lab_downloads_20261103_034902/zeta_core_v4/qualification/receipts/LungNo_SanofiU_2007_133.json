@@ -1,0 +1,3862 @@
+{
+  "caslib": "LungNo_SanofiU_2007_133",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CYFRA21_1"
+  ],
+  "indication": "lung_nsclc",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 25,
+  "n_tabular_files": 25,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "31805a311794bd73a9038576f9b13d317bce192b3aaae4cde4852e47d3ee603a",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "AESEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reference ID",
+          "name": "AEREFID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sponsor-Defined Identifier",
+          "name": "AESPID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary-Derived Term",
+          "name": "AEDECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Body System or Organ Class",
+          "name": "AEBODSYS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event",
+          "name": "AESER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Action Taken with Study Treatment",
+          "name": "AEACN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Causality",
+          "name": "AEREL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Pattern of Adverse Event",
+          "name": "AEPATT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Outcome of Adverse Event",
+          "name": "AEOUT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Congenital Anomaly or Birth Defect",
+          "name": "AESCONG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Persist or Signif Disability/Incapacity",
+          "name": "AESDISAB",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Results in Death",
+          "name": "AESDTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Requires or Prolongs Hospitalization",
+          "name": "AESHOSP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Is Life Threatening",
+          "name": "AESLIFE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Other Medically Important Serious Event",
+          "name": "AESMIE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Concomitant or Additional Trtmnt Given",
+          "name": "AECONTRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Standard Toxicity Grade",
+          "name": "AETOXGR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Start of Adverse Event",
+          "name": "AESTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Day of End of Adverse Event",
+          "name": "AEENDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term",
+          "name": "AEHLGT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Term",
+          "name": "AEHLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term",
+          "name": "AELLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term Code",
+          "name": "AELLTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred Term Code",
+          "name": "AEPTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Term Code",
+          "name": "AEHLTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term Code",
+          "name": "AEHLGTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "System Organ Class Code",
+          "name": "AESOCCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Treatment Emergent Classification",
+          "name": "AETRTEM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Action Taken Collected",
+          "name": "AEACCOL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Occured with Pregnancy",
+          "name": "AEPREG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Occurred with Overdose",
+          "name": "AEOVERDO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study day of Start of Serious Aedverse Event",
+          "name": "AESERDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Week of Death",
+          "name": "AEDTHWK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start Week of Adverse Event",
+          "name": "AESTWK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start Week of Serious Adverse Event",
+          "name": "AESERWK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AESER",
+          "AEPATT",
+          "AEOUT",
+          "AESDTH",
+          "AESMIE",
+          "AESTDY",
+          "AEENDY",
+          "AESERDY",
+          "AEDTHWK",
+          "AESTWK",
+          "AESERWK"
+        ],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "AEDTHWK",
+          "AESTWK",
+          "AESERWK",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "AEACN",
+          "AECONTRT",
+          "AETRTEM"
+        ],
+        "unit": [],
+        "value": [
+          "AESDTH"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 9235,
+      "path": "dataFiles_781/ae.sas7bdat",
+      "size": 27533312,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "CDTESTCD",
+          "n_unique": 7,
+          "values": [
+            "EXTENT",
+            "HTYPE",
+            "PSITE",
+            "STAGE",
+            "STAGEM",
+            "STAGEN",
+            "STAGET"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "CDSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Cancer Diagnosis Criterion Short Name",
+          "name": "CDTESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Cancer Diagnosis Criterion",
+          "name": "CDTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Result in Original Units",
+          "name": "CDORRES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Result in Standard Format",
+          "name": "CDSTRESC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Visit/Collection/Exam",
+          "name": "CDDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Progression",
+          "name": "CDPGDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "CDTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "CDORRES"
+        ],
+        "value": [
+          "CDORRES",
+          "CDSTRESC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 3183,
+      "path": "dataFiles_781/cd.sas7bdat",
+      "size": 1875968,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "CESEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sponsor-Defined Identifier",
+          "name": "CESPID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reported Term for the Clinical Event",
+          "name": "CETERM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Modified Reported Term",
+          "name": "CEMODIFY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary-Derived Term",
+          "name": "CEDECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category for Clinical Event",
+          "name": "CECAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Clinical Event Pre-Specified",
+          "name": "CEPRESP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Clinical Event Occurrence",
+          "name": "CEOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Body System or Organ Class",
+          "name": "CEBODSYS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Outcome of Event",
+          "name": "CEOUT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Start of Observation",
+          "name": "CESTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term",
+          "name": "CELLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term Code",
+          "name": "CELLTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred Term Code",
+          "name": "CEPTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Term",
+          "name": "CEHLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Term Code",
+          "name": "CEHLTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term",
+          "name": "CEHLGT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term Code",
+          "name": "CEHLGTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "System Organ Class Code",
+          "name": "CESOCCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Clinically Significant",
+          "name": "CECLSIG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CETERM",
+          "CECAT",
+          "CEPRESP",
+          "CEOCCUR",
+          "CEOUT"
+        ],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 27589,
+      "path": "dataFiles_781/ce.sas7bdat",
+      "size": 78651392,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "CMSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Group ID",
+          "name": "CMGRPID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sponsor-Defined Identifier",
+          "name": "CMSPID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Standardized Medication Name",
+          "name": "CMDECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category for Medication",
+          "name": "CMCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subcategory for Medication",
+          "name": "CMSCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CM Pre-Specified",
+          "name": "CMPRESP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "CM Occurrence",
+          "name": "CMOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Indication",
+          "name": "CMINDC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose per Administration",
+          "name": "CMDOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose Units",
+          "name": "CMDOSU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Route of Administration",
+          "name": "CMROUTE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Start of Medication",
+          "name": "CMSTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Day of End of Medication",
+          "name": "CMENDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start Relative to Reference Time Point",
+          "name": "CMSTRTPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Start Reference Time Point",
+          "name": "CMSTTPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "End Relative to Reference Time Point",
+          "name": "CMENRTPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "End Reference Time Point",
+          "name": "CMENTPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Best Response per Regimen",
+          "name": "CMBOR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason For Discontinuation",
+          "name": "CMDSC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Start Day of Relapse Progression",
+          "name": "CMRPDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "CMSTRTPT",
+          "CMBOR"
+        ],
+        "unit": [
+          "CMDOSU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 12119,
+      "path": "dataFiles_781/cm.sas7bdat",
+      "size": 18948096,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Age",
+          "name": "AGE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Age Units",
+          "name": "AGEU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Exposed Population",
+          "name": "EXPOSED",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Intent-to-treat Population",
+          "name": "ITT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Randomized Population",
+          "name": "RANDOM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Safety Population",
+          "name": "SAFETY",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Reference Start Day",
+          "name": "RFSTDY",
+          "type": "double"
+        },
+        {
+          "format": "TIME",
+          "label": "Subject Reference Start Time",
+          "name": "RFSTTM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Subject Reference End Day",
+          "name": "RFENDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Region",
+          "name": "REGION",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "RFSTDY",
+          "RFENDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "ARMCD",
+          "ARM",
+          "ITT"
+        ],
+        "unit": [
+          "AGEU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 455,
+      "path": "dataFiles_781/dm.sas7bdat",
+      "size": 598016,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "DSSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Standardized Disposition Term",
+          "name": "DSDECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category for Disposition Event",
+          "name": "DSCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subcategory for Disposition Event",
+          "name": "DSSCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Epoch",
+          "name": "EPOCH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Start of Disposition Event",
+          "name": "DSSTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Method of Contact",
+          "name": "DSMCONT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Code Breaking Requester",
+          "name": "DSBKWHO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Performed by Central",
+          "name": "DSCBWHO3",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for Code Break",
+          "name": "DSBKREAS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "AE Form Number",
+          "name": "DSAEFN",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Start Time of Disposition Event",
+          "name": "DSSTTM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Start Week of Disposition Event",
+          "name": "DSSTHWK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "DSBKWHO",
+          "DSCBWHO3"
+        ],
+        "endpoint": [
+          "DSCAT",
+          "DSSCAT",
+          "DSSTDY",
+          "DSSTTM",
+          "DSSTHWK"
+        ],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "DSSTHWK",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 3104,
+      "path": "dataFiles_781/ds.sas7bdat",
+      "size": 4661248,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "EGTESTCD",
+          "n_unique": 1,
+          "values": [
+            "EGALL"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "EGSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ECG Test or Examination Short Name",
+          "name": "EGTESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "ECG Test or Examination Name",
+          "name": "EGTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Result or Finding in Original Units",
+          "name": "EGORRES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Character Result/Finding in Std Format",
+          "name": "EGSTRESC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Flag",
+          "name": "EGBLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of ECG",
+          "name": "EGDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Clinically Significant",
+          "name": "EGCLSIG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "EGTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "EGORRES"
+        ],
+        "value": [
+          "EGORRES",
+          "EGSTRESC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 535,
+      "path": "dataFiles_781/eg.sas7bdat",
+      "size": 352256,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "EXSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sponsor-Defined Identifier",
+          "name": "EXSPID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Name of Actual Treatment",
+          "name": "EXTRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose per Administration",
+          "name": "EXDOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Dose Units",
+          "name": "EXDOSU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dose Form",
+          "name": "EXDOSFRM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Route of Administration",
+          "name": "EXROUTE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Epoch",
+          "name": "EPOCH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Start of Treatment",
+          "name": "EXSTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Day of End of Treatment",
+          "name": "EXENDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Time Point Name",
+          "name": "EXTPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Time Point Number",
+          "name": "EXTPTNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Dose per Administration",
+          "name": "EXPDOSE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Dose Units per Administration",
+          "name": "EXPDOSU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Product Administration Setting",
+          "name": "EXADMSET",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Not Taken or Administered",
+          "name": "EXNAT",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Start Time of Treatment",
+          "name": "EXSTTM",
+          "type": "double"
+        },
+        {
+          "format": "TIME",
+          "label": "End Time of Treatment",
+          "name": "EXENTM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "EXTRT",
+          "EXSTDY",
+          "EXENDY",
+          "EXSTTM",
+          "EXENTM"
+        ],
+        "unit": [
+          "EXDOSU",
+          "EXPDOSU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 5639,
+      "path": "dataFiles_781/ex.sas7bdat",
+      "size": 7938048,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "IETESTCD",
+          "n_unique": 12,
+          "values": [
+            "E02",
+            "E07",
+            "E08",
+            "E10",
+            "E11",
+            "E19",
+            "E20",
+            "E21",
+            "E22",
+            "E25",
+            "E27",
+            "I02"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "IESEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Inclusion/Exclusion Criterion Short Name",
+          "name": "IETESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Inclusion/Exclusion Criterion",
+          "name": "IETEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Inclusion/Exclusion Category",
+          "name": "IECAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Inclusion/Exclusion Subcategory",
+          "name": "IESCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "I/E Criterion Original Result",
+          "name": "IEORRES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "I/E Criterion Result in Std Format",
+          "name": "IESTRESC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Day of Collection",
+          "name": "IEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "IETESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "IEORRES",
+          "IESTRESC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 61,
+      "path": "dataFiles_781/ie.sas7bdat",
+      "size": 40960,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LBTESTCD",
+          "n_unique": 61,
+          "values": [
+            "ACTH",
+            "ALB",
+            "ALBGLOB",
+            "ALP",
+            "ALT",
+            "AST",
+            "BILI",
+            "BUN",
+            "CA",
+            "CCA",
+            "CL",
+            "CO2",
+            "CORTISOL",
+            "CREAT",
+            "CREATCLR",
+            "CRP",
+            "DDIMER",
+            "GGT",
+            "GLOBA1",
+            "GLOBA2",
+            "GLOBB",
+            "GLOBG",
+            "GLUC",
+            "HAPTOG",
+            "HCAB",
+            "HCT",
+            "HGB",
+            "INR",
+            "K",
+            "KETONES",
+            "LDH",
+            "LYM",
+            "MCH",
+            "MCHC",
+            "MCV",
+            "MG",
+            "MONO",
+            "MPV",
+            "NEUT",
+            "NITRITE",
+            "OCCBLD",
+            "ORM1",
+            "PH",
+            "PHOS",
+            "PLAT",
+            "PROCAL",
+            "PROT",
+            "PROTCRT",
+            "PSA",
+            "PT",
+            "RBC",
+            "RDW",
+            "SAO2",
+            "SCHISTO",
+            "SODIUM",
+            "SPGRAV",
+            "TSH",
+            "UREA",
+            "UROBIL",
+            "WBC",
+            "YEAST"
+          ]
+        },
+        {
+          "column": "LBTEST",
+          "n_unique": 61,
+          "values": [
+            "Adrenocorticotropic Hormone",
+            "Alanine Aminotransferase",
+            "Albumin",
+            "Albumin/Globulin",
+            "Alkaline Phosphatase",
+            "Alpha-1 Globulin",
+            "Alpha-2 Globulin",
+            "Arterial Oxygen Saturation",
+            "Aspartate Aminotransferase",
+            "Beta Globulin",
+            "Bilirubin",
+            "Blood Urea Nitrogen",
+            "C Reactive Protein",
+            "Calcium",
+            "Carbon Dioxide",
+            "Chloride",
+            "Corected Calcium",
+            "Cortisol",
+            "Creatinine",
+            "Creatinine Clearance",
+            "D-Dimer",
+            "Ery. Mean Corpuscular Hemoglobin",
+            "Ery. Mean Corpuscular HGB Concentration",
+            "Ery. Mean Corpuscular Volume",
+            "Erythrocytes",
+            "Erythrocytes Distribution Width",
+            "Gamma Globulin",
+            "Gamma Glutamyl Transferase",
+            "Glucose",
+            "Haptoglobin",
+            "Hematocrit",
+            "Hemoglobin",
+            "Hepatitis C Virus Antibody",
+            "Ketones",
+            "Lactate Dehydrogenase",
+            "Leukocytes",
+            "Lymphocytes",
+            "Magnesium",
+            "Mean Platelet Volume",
+            "Monocytes",
+            "Neutrophils",
+            "Nitrite",
+            "Occult Blood",
+            "Orosomucoid",
+            "pH",
+            "Phosphate",
+            "Platelet",
+            "Potassium",
+            "Procalcitonin",
+            "Prostate Specific Antigen",
+            "Protein",
+            "Protein/Creatinine",
+            "Prothrombin Intl. Normalized Ratio",
+            "Prothrombin Time",
+            "Schistocytes",
+            "Sodium",
+            "Specific Gravity",
+            "Thyrotropin",
+            "Urea",
+            "Urobilinogen",
+            "Yeast Cells"
+          ]
+        },
+        {
+          "column": "LBCAT",
+          "n_unique": 4,
+          "values": [
+            "BIOCHEMISTRY",
+            "HEMATOLOGY",
+            "UNPLANNED",
+            "URINALYSIS"
+          ]
+        },
+        {
+          "column": "LBSCAT",
+          "n_unique": 3,
+          "values": [
+            "24H",
+            "DIPSTICK",
+            "MORNING SPOT"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "LBSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sponsor-Defined Identifier",
+          "name": "LBSPID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Test or Examination Short Name",
+          "name": "LBTESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lab Test or Examination Name",
+          "name": "LBTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category for Lab Test",
+          "name": "LBCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subcategory for Lab Test",
+          "name": "LBSCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Result or Finding in Original Units",
+          "name": "LBORRES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Original Units",
+          "name": "LBORRESU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reference Range Lower Limit in Orig Unit",
+          "name": "LBORNRLO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reference Range Upper Limit in Orig Unit",
+          "name": "LBORNRHI",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Character Result/Finding in Std Format",
+          "name": "LBSTRESC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Numeric Result/Finding in Standard Units",
+          "name": "LBSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Standard Units",
+          "name": "LBSTRESU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reference Range Lower Limit-Std Units",
+          "name": "LBSTNRLO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reference Range Upper Limit-Std Units",
+          "name": "LBSTNRHI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reference Range Indicator",
+          "name": "LBNRIND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Flag",
+          "name": "LBBLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Derived Flag",
+          "name": "LBDRVFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Toxicity",
+          "name": "LBTOX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Standard Toxicity Grade",
+          "name": "LBTOXGR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Epoch",
+          "name": "EPOCH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Specimen Collection",
+          "name": "LBDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Collected Toxicity Grade",
+          "name": "LBORTOXG",
+          "type": "char"
+        },
+        {
+          "format": "TIME",
+          "label": "Time of Specimen Collection",
+          "name": "LBTM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "End Day of Specimen Collection",
+          "name": "LBENDY",
+          "type": "double"
+        },
+        {
+          "format": "TIME",
+          "label": "End Time of Specimen Collection",
+          "name": "LBENTM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LBTESTCD",
+          "LBTEST",
+          "LBCAT",
+          "LBSCAT"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "LBDY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "LBORRES",
+          "LBORRESU",
+          "LBORNRLO",
+          "LBORNRHI",
+          "LBSTRESN",
+          "LBSTRESU",
+          "LBSTNRLO",
+          "LBSTNRHI"
+        ],
+        "value": [
+          "LBORRES",
+          "LBSTRESC",
+          "LBSTRESN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 90466,
+      "path": "dataFiles_781/lb.sas7bdat",
+      "size": 104079360,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LSTESTCD",
+          "n_unique": 6,
+          "values": [
+            "BORESP",
+            "COMRWOSP",
+            "COMRWSP",
+            "LENGTH",
+            "RLNTL",
+            "SYMPDET"
+          ]
+        },
+        {
+          "column": "LSTEST",
+          "n_unique": 6,
+          "values": [
+            "Best Overall Response",
+            "Measurement of Target Lesion",
+            "Overall Response with Symp. Det.",
+            "Overall Response without Symp. Det.",
+            "Response of Non-Target Lesion",
+            "Symptomatic Deterioration"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "LSSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sponsor-Defined Identifier",
+          "name": "LSSPID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Short Name of Lesion Test",
+          "name": "LSTESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lesion Test",
+          "name": "LSTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category for Lesions",
+          "name": "LSCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Result or Finding in Original Units",
+          "name": "LSORRES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Original Units",
+          "name": "LSORRESU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Result or Finding in Standard Format",
+          "name": "LSSTRESC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Numeric Result/Finding in Standard Units",
+          "name": "LSSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Standard Units",
+          "name": "LSSTRESU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Location Used for the Measurement",
+          "name": "LSLOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Method of Test or Examination",
+          "name": "LSMETHOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Flag",
+          "name": "LSBLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Derived Flag",
+          "name": "LSDRVFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Evaluator",
+          "name": "LSEVAL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Visit/Collection/Exam",
+          "name": "LSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Location of Tumor (Subcategory)",
+          "name": "LSSLOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LSTESTCD",
+          "LSTEST"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "LSORRES",
+          "LSORRESU",
+          "LSSTRESN",
+          "LSSTRESU"
+        ],
+        "value": [
+          "LSORRES",
+          "LSSTRESC",
+          "LSSTRESN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 12526,
+      "path": "dataFiles_781/ls.sas7bdat",
+      "size": 11018240,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "MHSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sponsor-Defined Identifier",
+          "name": "MHSPID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary-Derived Term",
+          "name": "MHDECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category for Medical History",
+          "name": "MHCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Medical History Event Pre-Specified",
+          "name": "MHPRESP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Medical History Occurrence",
+          "name": "MHOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Body System or Organ Class",
+          "name": "MHBODSYS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "End Relative to Reference Time Point",
+          "name": "MHENRTPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "End Reference Time Point",
+          "name": "MHENTPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term",
+          "name": "MHHLGT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Term",
+          "name": "MHHLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term",
+          "name": "MHLLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term Code",
+          "name": "MHLLTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred Term Code",
+          "name": "MHPTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Term Code",
+          "name": "MHHLTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term Code",
+          "name": "MHHLGTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "System Organ Class Code",
+          "name": "MHSOCCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Disease or Symptoms Controlled",
+          "name": "MHCONTRO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Start Day of Medical History Event",
+          "name": "MHSTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "MHPRESP",
+          "MHSTDY"
+        ],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 8353,
+      "path": "dataFiles_781/mh.sas7bdat",
+      "size": 20324352,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "PCTESTCD",
+          "n_unique": 5,
+          "values": [
+            "ADJBOUND",
+            "ANTIBODY",
+            "ENDOGENE",
+            "FREETRAP",
+            "RATIO"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "PCSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reference ID",
+          "name": "PCREFID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Pharmacokinetic Test Short Name",
+          "name": "PCTESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Pharmacokinetic Test Name",
+          "name": "PCTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Test Category",
+          "name": "PCCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Result or Finding in Original Units",
+          "name": "PCORRES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Original Units",
+          "name": "PCORRESU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Character Result/Finding in Std Format",
+          "name": "PCSTRESC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Numeric Result/Finding in Standard Units",
+          "name": "PCSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Standard Units",
+          "name": "PCSTRESU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Completion Status",
+          "name": "PCSTAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vendor Name",
+          "name": "PCNAM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Specimen Material Type",
+          "name": "PCSPEC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Derived Flag",
+          "name": "PCDRVFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lower Limit of Quantitation",
+          "name": "PCLLOQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Time Point Name",
+          "name": "PCTPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Time Point Number",
+          "name": "PCTPTNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Day of Specimen Collection",
+          "name": "PCDY",
+          "type": "double"
+        },
+        {
+          "format": "TIME",
+          "label": "Time of Specimen Collection",
+          "name": "PCTM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "PCTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "PCORRES",
+          "PCORRESU",
+          "PCSTRESN",
+          "PCSTRESU"
+        ],
+        "value": [
+          "PCORRES",
+          "PCSTRESC",
+          "PCSTRESN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 9754,
+      "path": "dataFiles_781/pc.sas7bdat",
+      "size": 13377536,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "PETESTCD",
+          "n_unique": 7,
+          "values": [
+            "ABD_PELV",
+            "ABDO",
+            "BONEMAR",
+            "BRAINCNS",
+            "OTHER",
+            "PELVIS",
+            "THORAX"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "PESEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sponsor-Defined Identifier",
+          "name": "PESPID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Body System Examined Short Name",
+          "name": "PETESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Body System Examined",
+          "name": "PETEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category for Examination",
+          "name": "PECAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Verbatim Examination Finding",
+          "name": "PEORRES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Character Result/Finding in Std Format",
+          "name": "PESTRESC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Method of Test or Examination",
+          "name": "PEMETHOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Examination",
+          "name": "PEDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "PETESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "PESTRESC"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 2001,
+      "path": "dataFiles_781/pe.sas7bdat",
+      "size": 1712128,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "QSTESTCD",
+          "n_unique": 12,
+          "values": [
+            "ASBI",
+            "LCSS1",
+            "LCSS2",
+            "LCSS3",
+            "LCSS4",
+            "LCSS5",
+            "LCSS6",
+            "LCSS7",
+            "LCSS8",
+            "LCSS9",
+            "LCSSTOT",
+            "QSALL"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "QSSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sponsor-Defined Identifier",
+          "name": "QSSPID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Question Short Name",
+          "name": "QSTESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Question Name",
+          "name": "QSTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category of Question",
+          "name": "QSCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Finding in Original Units",
+          "name": "QSORRES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Original Units",
+          "name": "QSORRESU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Character Result/Finding in Std Format",
+          "name": "QSSTRESC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Numeric Finding in Standard Units",
+          "name": "QSSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Standard Units",
+          "name": "QSSTRESU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Completion Status",
+          "name": "QSSTAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason Not Performed",
+          "name": "QSREASND",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Flag",
+          "name": "QSBLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Derived Flag",
+          "name": "QSDRVFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Finding",
+          "name": "QSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "QSTESTCD"
+        ],
+        "ecog": [
+          "QSREASND"
+        ],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "QSORRES",
+          "QSORRESU",
+          "QSSTRESN",
+          "QSSTRESU"
+        ],
+        "value": [
+          "QSSTRESC",
+          "QSSTRESN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 14017,
+      "path": "dataFiles_781/qs.sas7bdat",
+      "size": 14884864,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "RASEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sponsor-Defined Identifier",
+          "name": "RASPID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Site/Procedure of Therapy",
+          "name": "RATRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category for Therapy",
+          "name": "RACAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Indication",
+          "name": "RAINDC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Start of Therapy",
+          "name": "RASTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Day of End of Therapy",
+          "name": "RAENDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Cumulative Dose",
+          "name": "RACUMD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Cumulative Dose Unit",
+          "name": "RACUMDU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "RATRT"
+        ],
+        "unit": [
+          "RACUMDU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 300,
+      "path": "dataFiles_781/ra.sas7bdat",
+      "size": 401408,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "SGSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sponsor-Defined Identifier",
+          "name": "SGSPID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary-Derived Term",
+          "name": "SGDECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category for Surgery",
+          "name": "SGCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Surgery Pre-Specified",
+          "name": "SGPRESP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SG Occurrence",
+          "name": "SGOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Start of Surgery",
+          "name": "SGSTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term",
+          "name": "SGLLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Lowest Level Term Code",
+          "name": "SGLLTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Preferred Term Code",
+          "name": "SGPTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Term",
+          "name": "SGHLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Term Code",
+          "name": "SGHLTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term",
+          "name": "SGHLGT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "High Level Group Term Code",
+          "name": "SGHLGTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Body System or Organ Class",
+          "name": "SGBODSYS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "System Organ Class Code",
+          "name": "SGSOCCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2310,
+      "path": "dataFiles_781/sg.sas7bdat",
+      "size": 5251072,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "SUSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reported Name of Substance",
+          "name": "SUTRT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category for Substance Use",
+          "name": "SUCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subcategory for Substance Use",
+          "name": "SUSCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SU Pre-Specified",
+          "name": "SUPRESP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "SU Occurrence",
+          "name": "SUOCCUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Substance Use Consumption",
+          "name": "SUDOSE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Substance Use Consumption Text",
+          "name": "SUDOSTXT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Consumption Units",
+          "name": "SUDOSU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Use Frequency Per Interval",
+          "name": "SUDOSFRQ",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Duration of Substance Use",
+          "name": "SUDUR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Smoking Status",
+          "name": "SUSMKST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "End Day of Substance Use",
+          "name": "SUENDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [
+          "SUTRT"
+        ],
+        "unit": [
+          "SUDOSU"
+        ],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 478,
+      "path": "dataFiles_781/su.sas7bdat",
+      "size": 352256,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "SVSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Start of Visit",
+          "name": "SVSTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Study Day of End of Visit",
+          "name": "SVENDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Epoch",
+          "name": "EPOCH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "End Day of Collected Visit End Date",
+          "name": "ENDTCODY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "ENDTCODY",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 6006,
+      "path": "dataFiles_781/sv.sas7bdat",
+      "size": 1040384,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Planned Arm",
+          "name": "ARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Order of Element within Arm",
+          "name": "TAETORD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Element Code",
+          "name": "ETCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Element",
+          "name": "ELEMENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Branch",
+          "name": "TABRANCH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Transition Rule",
+          "name": "TATRANS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Epoch",
+          "name": "EPOCH",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [
+          "ARMCD",
+          "ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 90,
+      "path": "dataFiles_781/ta.sas7bdat",
+      "size": 139264,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Element Code",
+          "name": "ETCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Description of Element",
+          "name": "ELEMENT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Rule for Start of Element",
+          "name": "TESTRL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Rule for End of Element",
+          "name": "TEENRL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Duration of Element",
+          "name": "TEDUR",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 4,
+      "path": "dataFiles_781/te.sas7bdat",
+      "size": 65536,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "IETESTCD",
+          "n_unique": 32,
+          "values": [
+            "E",
+            "E01",
+            "E02",
+            "E03",
+            "E04",
+            "E05",
+            "E06",
+            "E07",
+            "E08",
+            "E09",
+            "E10",
+            "E11",
+            "E12",
+            "E13",
+            "E14",
+            "E15",
+            "E16",
+            "E17",
+            "E18",
+            "E19",
+            "E20",
+            "E21",
+            "E22",
+            "E23",
+            "E24",
+            "E25",
+            "E26",
+            "E27",
+            "E28",
+            "E29",
+            "I01",
+            "I02"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Inclusion/Exclusion Criterion Short Name",
+          "name": "IETESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Inclusion/Exclusion Criterion",
+          "name": "IETEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Inclusion/Exclusion Category",
+          "name": "IECAT",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "IETESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 32,
+      "path": "dataFiles_781/ti.sas7bdat",
+      "size": 32768,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "TSSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Trial Summary Parameter Short Name",
+          "name": "TSPARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Trial Summary Parameter",
+          "name": "TSPARM",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Parameter Value",
+          "name": "TSVAL",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "TSVAL"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 22,
+      "path": "dataFiles_781/ts.sas7bdat",
+      "size": 32768,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Arm Code",
+          "name": "ARMCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Start Rule",
+          "name": "TVSTRL",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM"
+        ],
+        "treatment": [
+          "ARMCD"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 62,
+      "path": "dataFiles_781/tv.sas7bdat",
+      "size": 32768,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "VSTESTCD",
+          "n_unique": 5,
+          "values": [
+            "DIABP",
+            "ECOG",
+            "HEIGHT",
+            "SYSBP",
+            "WEIGHT"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Domain Abbreviation",
+          "name": "DOMAIN",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Sequence Number",
+          "name": "VSSEQ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Vital Signs Test Short Name",
+          "name": "VSTESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vital Signs Test Name",
+          "name": "VSTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Result or Finding in Original Units",
+          "name": "VSORRES",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Original Units",
+          "name": "VSORRESU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Character Result/Finding in Std Format",
+          "name": "VSSTRESC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Numeric Result/Finding in Standard Units",
+          "name": "VSSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Standard Units",
+          "name": "VSSTRESU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Baseline Flag",
+          "name": "VSBLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Derived Flag",
+          "name": "VSDRVFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Number",
+          "name": "VISITNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Epoch",
+          "name": "EPOCH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Study Day of Vital Signs",
+          "name": "VSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Planned Time Point Name",
+          "name": "VSTPT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Planned Time Point Number",
+          "name": "VSTPTNUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Subject ID for Study",
+          "name": "RSUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "De-indentified Unique Subj. ID for Study",
+          "name": "RUSUBJID",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "VSTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "VISITNUM",
+          "RSUBJID",
+          "RUSUBJID"
+        ],
+        "treatment": [],
+        "unit": [
+          "VSORRES",
+          "VSORRESU",
+          "VSSTRESN",
+          "VSSTRESU"
+        ],
+        "value": [
+          "VSORRES",
+          "VSSTRESC",
+          "VSSTRESN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 21359,
+      "path": "dataFiles_781/vs.sas7bdat",
+      "size": 7643136,
+      "status": "OK"
+    }
+  ]
+}

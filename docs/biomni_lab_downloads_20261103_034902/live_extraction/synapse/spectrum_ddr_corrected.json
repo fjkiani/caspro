@@ -1,0 +1,35 @@
+{
+  "dataset": "SPECTRUM tumor (syn51091849), pre-treatment, n=41",
+  "correction": "CPM normalized by TOTAL UMI per patient (nCount_RNA sum), audit-comparable scale",
+  "n_patients": 41,
+  "ddr14_summary": {
+    "min": 3.0277,
+    "median": 3.7538,
+    "max": 4.5287,
+    "sd": 0.3763
+  },
+  "geneset_concordance": [
+    {
+      "comparison": "ddr8_vs_ddr14",
+      "rho": 0.8963,
+      "p": 2.3565e-15,
+      "n": 41
+    },
+    {
+      "comparison": "ddr14_vs_ddr26",
+      "rho": 0.9249,
+      "p": 5.6924e-18,
+      "n": 41
+    },
+    {
+      "comparison": "ddr8_vs_ddr26",
+      "rho": 0.8812,
+      "p": 2.9308e-14,
+      "n": 41
+    }
+  ],
+  "celltype_ddr14_median": {
+    "Ovarian.cancer.super": [3.754, 0.376]
+  },
+  "note": "Corrected scoring. Concordance explains audit feature-diff at n=41. Cell-type specificity tests tumor-driven vs ubiquitous. No clinical outcome in release -> descriptive/mechanistic only."
+}

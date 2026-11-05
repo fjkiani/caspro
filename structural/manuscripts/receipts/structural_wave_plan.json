@@ -1,0 +1,51 @@
+{
+  "plan": "structural_3d_wave (honest-3D-only per user request 2026-07-19)",
+  "decision": "User asked for 'only Real AF2 3D morph, re-narrated for all'. Applied approved-plan integrity principle: real 3D morphs ONLY for genuine structural events + real folds. A3/A4/B1/B3/B4 remain 2D (falsified non-result / statistical stress tests / zero-mutation counts / pathway model / evolutionary Dll have no honest structural representation; fabricating structure for them would misrepresent the manuscripts).",
+  "honest_3d_set": ["A1 (done)", "B5 variant panel", "B2 BACE1 apo->inhibitor", "A5 drug complexes"],
+  "engines_ready": {
+    "morph_frames": "analysis/morph3d_pymol.py (build_point_mutation / build_apo_holo / build_truncation) - smoke-tested on TP53_WT, PASS",
+    "narration_compositor": "analysis/morph3d_compose.py (render) - smoke-tested, media-check PASS",
+    "quant_panels": "AK_case/analysis/mutation_impact_panel.py (compare_point_mutation / compare_truncation) - self-test PASS"
+  },
+  "gpu_status_at_prep": "3/3 slots occupied (TP53_R175H f152eecf, PDGFRA_WT b9c54705, PDGFRA_S755P e364eaf7 - all running, 0 files). Blocked. Act on completion callbacks; do NOT poll.",
+  "in_flight_reuse": "TP53_R175H fold already running -> use its result for B5 (do NOT re-fold). PDGFRA WT/S755P + staged PDGFRA+imatinib Boltz feed the earlier AK-case reel + A5.",
+  "monomer_fold_queue_priority": [
+    {"tier": "HIGH", "why": "small/fast/iconic GOF-LOF; core of B5", "folds": ["KRAS_WT", "KRAS_G12C", "KRAS_G12D", "KRAS_G12V", "TP53_WT", "TP53_G245D", "TP53_R248W", "CCND1_WT", "CCND1_E279trunc"]},
+    {"tier": "HIGH", "why": "apex driver + druggable; B2", "folds": ["BACE1_dom_WT"]},
+    {"tier": "MED", "why": "domain-scoped kinase variants for B5", "folds": ["EGFR_kd_WT", "EGFR_kd_L858R", "PIK3CA_kd_WT", "PIK3CA_kd_H1047R"]},
+    {"tier": "MED", "why": "A5 drug-complex apo partners (domain-scoped)", "folds": ["ATR_dom_WT", "WEE1_dom_WT", "PARP1_dom_WT"]}
+  ],
+  "boltz_complex_queue": [
+    {"job": "KRAS_G12C_sotorasib", "for": "B5 (GOF hotspot that is druggable)", "yaml": "boltz_inputs/KRAS_G12C_sotorasib.yaml"},
+    {"job": "BACE1_dom_inhibitor", "for": "B2 (verubecestat, AD-repurposed)", "yaml": "boltz_inputs/BACE1_dom_inhibitor.yaml"},
+    {"job": "ATR_kd_ceralasertib", "for": "A5 (ATR axis, STRONG in M00)", "yaml": "boltz_inputs/ATR_kd_ceralasertib.yaml"},
+    {"job": "WEE1_kd_adavosertib", "for": "A5 (WEE1 trend in M00)", "yaml": "boltz_inputs/WEE1_kd_adavosertib.yaml"},
+    {"job": "PARP1_cat_olaparib", "for": "A5 (drug-binding structural event ONLY; NOT framed as MBD4-LOF therapy - that axis is FALSIFIED in M00)", "yaml": "boltz_inputs/PARP1_cat_olaparib.yaml"},
+    {"job": "PDGFRA_WT_kd_imatinib", "for": "AK-case reel + A5", "yaml": "boltz_inputs/PDGFRA_WT_kd_imatinib.yaml"},
+    {"job": "TP53_WT_core_DNA", "for": "B5 companion (DNA-contact context for R175H/R248W)", "yaml": "boltz_inputs/TP53_WT_core_DNA.yaml"}
+  ],
+  "af2_submit_recipe": {
+    "tool_id": "alphafold-v2",
+    "flags": "--model_preset=monomer_ptm --db_preset=reduced_dbs --max_template_date=2024-01-01 --use_gpu_relax=false --pdb70_database_path REQUIRED",
+    "note": "input_files={fasta_name: local_path}; one FASTA per job; GPU hard cap 3 concurrent."
+  },
+  "boltz_submit_recipe": {
+    "tool_id": "boltz-2",
+    "command": "HF_HUB_OFFLINE=1 boltz predict /input/input.yaml --out_dir /output --cache /mnt/fsx/dbs/boltz/",
+    "input_files": "{'input.yaml': yaml_path}"
+  },
+  "evo2_dll_on_frame": {
+    "note": "B5 morphs carry each variant's Evo2 delta-log-likelihood as a stat callout, from Manuscript 12:",
+    "values": {
+      "CCND1_E279*": -1.264, "BRCA1_E1526*": -1.258, "TP53_G245D": -0.626, "TP53_R175H": -0.622,
+      "PIK3CA_H1047R": -0.615, "KRAS_G12C": -0.148, "EGFR_L858R": 0.088, "TP53_R248W": 0.099,
+      "KRAS_G12D": 0.152, "KRAS_G12V": 0.259
+    },
+    "key_nuance": "Evo2 detects LOF/disruption NOT GOF: oncogenic GOF hotspots exploit a conserved switch so look sequence-tolerated (Dll near 0). B5 shows this structurally (mutation sits at a functionally critical but sequence-tolerated position)."
+  },
+  "sequence_provenance": {
+    "source": "UniProt canonical (fetched 2026-07-19); mutation sites verified against WT reference residue before editing (all 8 point muts + CCND1 E279 confirmed).",
+    "domain_windows": {"EGFR_kd": "712-979", "PIK3CA_kd": "697-1068", "BACE1": "46-460", "ATR_kd": "2320-2567", "WEE1_kd": "291-575", "PARP1_cat": "662-1011", "TP53_DBD_focus": "94-312 (whole protein folded; DBD is the render focus)"},
+    "drug_smiles_source": "PubChem canonical SMILES (ceralasertib, adavosertib, olaparib, sotorasib, imatinib, verubecestat)"
+  }
+}

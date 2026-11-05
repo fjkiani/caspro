@@ -1,0 +1,103 @@
+{
+  "version": "serial_sae_frozen_v1",
+  "frozen_at_utc": "2026-07-19T15:21:40.307674+00:00",
+  "purpose": "Single fully-specified pipeline applied IDENTICALLY across all cohorts for honest cross-cohort replication.",
+  "gene_sets_manuscript_canonical": {
+    "DDR": [
+      "BRCA1",
+      "BRCA2",
+      "PALB2",
+      "RAD51",
+      "ATM",
+      "ATR",
+      "CHEK1",
+      "CHEK2",
+      "TP53",
+      "XRCC1",
+      "PARP1",
+      "FANCA",
+      "FANCC",
+      "FANCD2"
+    ],
+    "PI3K": [
+      "PIK3CA",
+      "PIK3CB",
+      "PIK3CD",
+      "AKT1",
+      "AKT2",
+      "AKT3",
+      "MTOR",
+      "PTEN",
+      "TSC1",
+      "TSC2"
+    ],
+    "VEGF": [
+      "VEGFA",
+      "VEGFB",
+      "VEGFC",
+      "KDR",
+      "FLT1",
+      "FLT4",
+      "ANGPT1",
+      "ANGPT2"
+    ]
+  },
+  "gene_aliases": {
+    "MTOR": [
+      "MTOR",
+      "mTOR",
+      "FRAP1"
+    ],
+    "KDR": [
+      "KDR",
+      "VEGFR2",
+      "FLK1"
+    ],
+    "FLT1": [
+      "FLT1",
+      "VEGFR1"
+    ],
+    "FLT4": [
+      "FLT4",
+      "VEGFR3"
+    ],
+    "CHEK1": [
+      "CHEK1",
+      "CHK1"
+    ],
+    "CHEK2": [
+      "CHEK2",
+      "CHK2"
+    ],
+    "TSC1": [
+      "TSC1"
+    ],
+    "TSC2": [
+      "TSC2"
+    ]
+  },
+  "expression_handling": {
+    "scRNA": "pseudobulk sum UMI per patient x phase -> CPM -> log2(CPM+1) -> mean over pathway genes",
+    "bulk": "start from provided TPM/normalized -> log2(x+1) -> z-score genes across samples WITHIN cohort -> mean over pathway genes",
+    "cross_cohort": "each cohort analyzed independently; NO raw-value cross-cohort merging; meta-summary is vote-count / fixed-effect on effect sizes"
+  },
+  "resistance_label_rule": {
+    "primary": "PFI < 180 days = resistant; >= 180 = sensitive",
+    "categorical_fallback": "use provided sensitive/resistant labels where PFI absent (state definition)",
+    "discovery_labels": "repo corrected resistance_labels.json (7R/4S, EOC227 sensitive) canonical; manuscript 8R/3S shown side-by-side"
+  },
+  "statistics": {
+    "continuous_primary": "Spearman rho (post-treatment pathway score vs PFI), label-independent",
+    "binary": "AUROC (resistant vs sensitive), 95% CI via 2000-iter bootstrap, Wilcoxon rank-sum p",
+    "paired": "delta (post-pre) vs absolute post-treatment state, to test delta-null out-of-sample",
+    "survival": "KM median-split + log-rank, disclosed as in-sample exploratory",
+    "multiplicity": "BH-FDR across primary test family per cohort",
+    "adequacy": "report EPV per cohort; flag EPV<10; NO cross-validated multivariate ML (insufficient events)"
+  },
+  "reproducibility": {
+    "seed": 42,
+    "bootstrap_iters": 2000
+  },
+  "success_criterion": "signal replicated if post-treatment-state -> resistance holds SAME DIRECTION with frozen pipeline in >=2 independent cohorts beyond BriTROC-1, with effect sizes+CIs; non-replication reported honestly.",
+  "tiering": "RUO / hypothesis-generating; no clinical or regulatory claim."
+}

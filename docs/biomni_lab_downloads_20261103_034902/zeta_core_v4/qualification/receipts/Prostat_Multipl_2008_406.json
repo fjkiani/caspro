@@ -1,0 +1,326 @@
+{
+  "caslib": "Prostat_Multipl_2008_406",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "PSA"
+  ],
+  "indication": "prostate",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 1,
+  "n_tabular_files": 1,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "ca585e1786c6d5d85cbee63a291d1819f2ed59d6ca71b632fcda3d2abaa49b86",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "SAQ HEALTH TODAY: USUAL ACTIVITY EQ-5D",
+          "name": "ADACTI42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: HEALTH TODAY: ANXIETY/DEPRESSION EQ-5D",
+          "name": "ADDEPR42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: DR ADVISED TO QUIT SMOKING",
+          "name": "ADDSMK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: DO NOT NEED HEALTH INSURANCE",
+          "name": "ADINSA42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: HEALTH INSURANCE NOT WORTH COST",
+          "name": "ADINSB42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ HEALTH TODAY: MOBILITY EQ-5D",
+          "name": "ADMOBI42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: CAN OVERCOME ILLS WITHOUT MED HELP",
+          "name": "ADOVER42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ HEALTH TODAY: PAIN/DISCOMFORT EQ-5D",
+          "name": "ADPAYN42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: MORE LIKELY TO TAKE RISKS",
+          "name": "ADRISK42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ HEALTH TODAY: SELF-CARE EQ-5D",
+          "name": "ADSELF42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: CURRENTLY SMOKE",
+          "name": "ADSMOK42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "AGE (PRIMARY LINKAGE VAR)",
+          "name": "AGE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CATEGORIZED AGE (PRIMARY LINKAGE VAR)",
+          "name": "AGECAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "COLLAPSED CATEGORIZED AGE (PRIMARY LINKAGE VAR)",
+          "name": "AGECAT2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BMI CATEGORY (SECONDARY LINKAGE VAR)",
+          "name": "BMICAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MEPS PERSON ID",
+          "name": "DUPERSID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "EMPLOYMENT STATUS",
+          "name": "EMPST42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "EQ5D VALUE DIRECTLY SCORED FROM FIVE DIMENSIONS",
+          "name": "EQ5DDIRECT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PREDICTED EQ5D VALUE (DOLAN EQUATION)",
+          "name": "EQ5DDOLAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CATEGORIZED PREDICTED EQ5D VALUE (DOLAN EQUATION)",
+          "name": "EQ5DDOLANCAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PREDICTED EQ5D VALUE (SULLIVAN GHUSHCHYAN EQUATION)",
+          "name": "EQ5DSG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CATEGORIZED PREDICTED EQ5D VALUE (SULLIVAN GHUSHCHYAN EQUATION)",
+          "name": "EQ5DSGCAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "HIGHEST DEGREE",
+          "name": "HIDEGYRN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "HEALTH INSURANCE COVERAGE INDICATOR",
+          "name": "INSCOV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MEPS-PDS LINKAGE METHOD",
+          "name": "LINKMETHOD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MEPS-PDS LINKAGE STATUS BASED ON AGE, RACE, SEX, EQ5D",
+          "name": "LINKSTATUS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MEPS-PDS LINKAGE STATUS BASED ON AGE, RACE, SEX, EQ5D, BMI",
+          "name": "LINKSTATUS_BMI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MARITAL STATUS",
+          "name": "MARRY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ:MENTAL COMPONET SUMMRY SF12 IMPUTED",
+          "name": "MCS42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "UNABLE TO GET NECESSRY MEDICAL CARE",
+          "name": "MDUNAB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DERIVED MEPS ID (DUPERSID||YEAR)",
+          "name": "MEPSID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "MEPS PANEL NUMBER",
+          "name": "PANEL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ:PHYSICAL COMPNT SUMMARY SF12 IMPUTED",
+          "name": "PCS42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "FINAL PERSON WEIGHT",
+          "name": "PERWTF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "FAMILY INC AS % OF POVERTY LINE",
+          "name": "POVCAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "RACE/ETHNICITY (PRIMARY LINKAGE VAR)",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CENSUS REGION",
+          "name": "REGION",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "FINAL SAQ PERSON WEIGHT",
+          "name": "SAQWTF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX (PRIMARY LINKAGE VAR)",
+          "name": "SEX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TOTAL HEALTH CARE EXPENDITURE",
+          "name": "TOTEXP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PDS PATIENT ID (EQUIV TO SUBJ ON ORIG PDS DATA FILE)",
+          "name": "PDSID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "VARIANCE ESTIMATION PSU (SINGLE YEAR MEPS ANALYSIS)",
+          "name": "VARPSU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VARIANCE ESTIMATION PSU (POOLED MEPS ANALYSIS)",
+          "name": "VARPSU9617",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VARIANCE ESTIMATION STRATUM (SINGLE YEAR MEPS ANALYSIS)",
+          "name": "VARSTR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VARIANCE ESTIMATION STRATUM (POOLED MEPS ANALYSIS)",
+          "name": "VARSTRA9617",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MEPS SURVEY YEAR",
+          "name": "YEAR",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "REGION",
+          "YEAR"
+        ],
+        "patient": [
+          "PDSID"
+        ],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "EQ5DDIRECT",
+          "EQ5DDOLAN",
+          "EQ5DDOLANCAT",
+          "EQ5DSG",
+          "EQ5DSGCAT"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 31641,
+      "path": "linked_prostate103.sas7bdat",
+      "size": 12320768,
+      "status": "OK"
+    }
+  ]
+}

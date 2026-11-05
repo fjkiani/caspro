@@ -1,0 +1,172 @@
+{
+  "trial": "VELOUR",
+  "pmid_primary": "22949147",
+  "pmid_subgroup_paper": "24140268",
+  "citation_primary": "Van Cutsem E, Tabernero J, Lakomy R, et al. Addition of aflibercept to fluorouracil, leucovorin, and irinotecan improves survival in a phase III randomized trial in patients with metastatic colorectal cancer previously treated with an oxaliplatin-based regimen. J Clin Oncol. 2012;30(28):3499-506.",
+  "citation_subgroup": "Tabernero J, Van Cutsem E, Lakomý R, et al. Aflibercept versus placebo in combination with fluorouracil, leucovorin and irinotecan in the treatment of previously treated metastatic colorectal cancer: prespecified subgroup analyses from the VELOUR trial. Eur J Cancer. 2014;50(2):320-31.",
+  "data_source": "PubMed abstract (PMID 22949147) + literature search (PMID 24140268 abstract via Consensus; Allegra 2012 ASCO abstract PMID 22649143; Van Cutsem 2019 Clin Cancer Res PMID 31481499)",
+  "n_total": 1226,
+  "n_aflibercept": 612,
+  "n_placebo": 614,
+  "overall_os": {
+    "hr": 0.817,
+    "ci": "0.713-0.937",
+    "ci_level": "95.34%",
+    "p": 0.0032,
+    "median_aflibercept_months": 13.50,
+    "median_placebo_months": 12.06
+  },
+  "overall_pfs": {
+    "hr": 0.758,
+    "ci": "0.661-0.869",
+    "ci_level": "95%",
+    "p": "<0.0001",
+    "median_aflibercept_months": 6.90,
+    "median_placebo_months": 4.67
+  },
+  "clinical_subgroups": [
+    {
+      "subgroup": "Prior bevacizumab — YES",
+      "category": "prior_bevacizumab",
+      "n_aflibercept": 186,
+      "n_placebo": 187,
+      "n_total": 373,
+      "os_hr": "not_reported_as_numeric_in_abstract",
+      "os_ci": "not_reported_as_numeric_in_abstract",
+      "os_p": "not_reported_as_numeric_in_abstract",
+      "os_median_aflibercept_months": 12.5,
+      "os_median_placebo_months": 11.7,
+      "os_ci_aflibercept": "10.8-15.5",
+      "os_ci_placebo": "9.8-13.8",
+      "interaction_p": 0.5668,
+      "notes": "From Tabernero 2014 Eur J Cancer (PMID 24140268). Interaction P=0.5668 — no heterogeneity between bevacizumab-pretreated and non-pretreated subgroups. Stratification factor in randomization."
+    },
+    {
+      "subgroup": "Prior bevacizumab — NO",
+      "category": "prior_bevacizumab",
+      "n_aflibercept": 426,
+      "n_placebo": 427,
+      "n_total": 853,
+      "os_hr": "not_reported_as_numeric_in_abstract",
+      "os_ci": "not_reported_as_numeric_in_abstract",
+      "os_p": "not_reported_as_numeric_in_abstract",
+      "os_median_aflibercept_months": 13.9,
+      "os_median_placebo_months": 12.4,
+      "os_ci_aflibercept": "12.7-15.6",
+      "os_ci_placebo": "11.2-13.5",
+      "interaction_p": 0.5668,
+      "notes": "From Tabernero 2014 Eur J Cancer (PMID 24140268). Consistent benefit regardless of prior bevacizumab."
+    },
+    {
+      "subgroup": "ECOG PS 0",
+      "category": "ecog_ps",
+      "n_total": "not_reported_in_abstract",
+      "os_hr": "not_reported_in_abstract",
+      "os_ci": "not_reported_in_abstract",
+      "os_p": "not_reported_in_abstract",
+      "notes": "Stratification factor. Tabernero 2014 abstract states 'no evidence of heterogeneity in treatment effect in any of the other subgroups examined' including ECOG PS. Numeric HRs by ECOG PS subgroup in full-text Table 2 — not accessible from abstract."
+    },
+    {
+      "subgroup": "ECOG PS 1",
+      "category": "ecog_ps",
+      "n_total": "not_reported_in_abstract",
+      "os_hr": "not_reported_in_abstract",
+      "os_ci": "not_reported_in_abstract",
+      "os_p": "not_reported_in_abstract",
+      "notes": "Stratification factor. Consistent benefit per Tabernero 2014. Numeric HR requires full-text access."
+    },
+    {
+      "subgroup": "ECOG PS 2",
+      "category": "ecog_ps",
+      "n_total": 27,
+      "pct_of_total": "2.2%",
+      "os_hr": "not_reported",
+      "os_ci": "not_reported",
+      "os_p": "not_reported",
+      "notes": "Only 27 patients (2.2% of ITT). Joulain 2012 Annals Oncology abstract notes PS=2 subgroup not presented due to small size."
+    },
+    {
+      "subgroup": "Liver metastases only",
+      "category": "metastasis_pattern",
+      "n_total": "not_reported_in_abstract",
+      "os_hr": "not_reported_in_abstract",
+      "os_ci": "not_reported_in_abstract",
+      "os_p": "not_reported_in_abstract",
+      "interaction_p_os": 0.0899,
+      "interaction_p_pfs": 0.0076,
+      "notes": "From Tabernero 2014 Eur J Cancer. Significantly greater PFS benefit for liver-only metastases vs no liver/liver+other (interaction P=0.0076 for PFS; P=0.0899 for OS). This was the only subgroup showing significant heterogeneity."
+    },
+    {
+      "subgroup": "Number of prior lines — 1 (oxaliplatin-based only)",
+      "category": "prior_lines",
+      "n_total": "majority of 1226",
+      "os_hr": "not_reported_in_abstract",
+      "os_ci": "not_reported_in_abstract",
+      "os_p": "not_reported_in_abstract",
+      "notes": "VELOUR required exactly 1 prior oxaliplatin-based regimen. All patients had 1 prior line. Subgroup by whether prior regimen included bevacizumab is the relevant stratification (reported above). No 'number of prior lines' subgroup analysis applicable — all patients had 1 prior line by design."
+    },
+    {
+      "subgroup": "Geographic region — North America",
+      "category": "geographic_region",
+      "n_total": "not_reported_in_abstract",
+      "os_hr": "not_reported_in_abstract",
+      "os_ci": "not_reported_in_abstract",
+      "os_p": "not_reported_in_abstract",
+      "notes": "Mitchell 2013 ASCO abstract (doi:10.1200/jco.2013.31.15_suppl.e14528) reports NA subgroup. Consistent benefit per Tabernero 2014 — no heterogeneity by region."
+    }
+  ],
+  "biomarker_data_available": true,
+  "biomarker_summary": {
+    "source_pmid": "31481499",
+    "citation": "Van Cutsem E, Paccard C, Chiron M, et al. Impact of Prior Bevacizumab Treatment on VEGF-A and PlGF Levels and Outcome Following Second-Line Aflibercept Treatment: Biomarker Post Hoc Analysis of the VELOUR Trial. Clin Cancer Res. 2019;25(24):7441-7451.",
+    "n_with_biomarker_data": 553,
+    "n_aflibercept_biomarker": 288,
+    "n_placebo_biomarker": 265,
+    "n_prior_bevacizumab_biomarker": 169,
+    "biomarkers_assessed": [
+      "VEGF-A (plasma)",
+      "PlGF (placental growth factor, plasma)",
+      "9 additional angiogenesis biomarkers"
+    ],
+    "key_findings": {
+      "vegf_a_and_plgf_elevated_with_prior_bevacizumab": true,
+      "vegf_a_high_vs_low_in_placebo_arm": {
+        "cutoff_pg_ml": 144,
+        "os_high_vegf_a_months": 9.6,
+        "os_low_vegf_a_months": 12.9,
+        "interpretation": "High baseline VEGF-A associated with worse OS in placebo arm"
+      },
+      "plgf_high_vs_low_in_placebo_arm": {
+        "cutoff_pg_ml": 8,
+        "os_high_plgf_months": 9.7,
+        "os_low_plgf_months": 11.7,
+        "interpretation": "High baseline PlGF associated with worse OS in placebo arm"
+      },
+      "aflibercept_activity_by_vegf_a": "Prolonged OS and PFS with aflibercept regardless of baseline VEGF-A level — aflibercept retains activity in high VEGF-A patients",
+      "aflibercept_activity_by_plgf": "Prolonged OS and PFS with aflibercept regardless of baseline PlGF level",
+      "predictive_value": "Neither VEGF-A nor PlGF was predictive of aflibercept benefit (prognostic only in placebo arm)",
+      "nine_biomarkers_correlated_with_prior_bevacizumab": "VEGF-A and PlGF most significantly increased in prior-bevacizumab patients"
+    },
+    "ras_braf_biomarker_data": {
+      "source": "Pu et al. 2026 NPJ Precision Oncology (doi:10.1038/s41698-025-01253-5)",
+      "n_profiled": 439,
+      "ras_mutation_prevalence": "57.5%",
+      "braf_mutation_prevalence": "10.0%",
+      "ras_braf_wt_prevalence": "34.2%",
+      "ras_wt_os_benefit": "Numerically improved OS with aflibercept in RAS/BRAF WT",
+      "ras_mut_os_benefit": "No clear benefit in RAS-mutant tumors",
+      "icms_subtyping": "iCMS2 (66.5%) vs iCMS3 (33.5%); iCMS2 longer OS and PFS (OS HR=0.57, 95%CI 0.45-0.72)",
+      "notes": "Exploratory retrospective biomarker analysis. Not prespecified in original VELOUR protocol."
+    }
+  },
+  "prespecified_stratification_factors": [
+    "Prior bevacizumab treatment (yes/no)",
+    "ECOG performance status (0 vs 1 vs 2)"
+  ],
+  "full_text_accessibility": {
+    "pmid_22949147": "JCO — behind paywall (Atypon). Abstract accessible.",
+    "pmid_24140268": "Eur J Cancer — behind paywall. Abstract accessible via Consensus literature search.",
+    "numeric_subgroup_hrs": "Tabernero 2014 full-text Table 2 contains all prespecified subgroup HRs — not accessible without subscription. Key data extracted from abstract: prior bevacizumab OS medians and interaction P=0.5668; liver-only metastases interaction P values."
+  },
+  "data_completeness": "PARTIAL — OS medians by prior bevacizumab confirmed. Numeric OS HRs for ECOG PS subgroups not_accessible from abstract. Biomarker data (VEGF-A, PlGF) confirmed from Van Cutsem 2019 post-hoc analysis. RAS/BRAF biomarker data from Pu 2026 exploratory analysis."
+}

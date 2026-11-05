@@ -1,0 +1,14 @@
+{
+  "dataset": "MSK SPECTRUM tumor compartment (syn51091849), PRE-TREATMENT ONLY",
+  "n_patients": 41,
+  "n_cells": 211624,
+  "ddr_genes_present": 14,
+  "ddr_score_summary": {
+    "min": 12.1567,
+    "median": 13.0204,
+    "max": 13.7866,
+    "sd": 0.3669
+  },
+  "note": "DESCRIPTIVE ONLY. No platinum-response label exists in the accessible SPECTRUM release (all pre-Rx), so NO resistance association is computed. DDR score recomputed from raw counts via the GSE165897 audit method (pseudobulk sum UMI -> CPM -> log2 -> mean over W1 14-gene set).",
+  "audit_link": "Connects verified SPECTRUM tumor data to the audit's DDR feature construction; does NOT replicate or alter the GSE165897 rho=-0.711 classification (NO_COMPUTATIONAL_OR_MANUAL_SOURCE_ESTABLISHED)."
+}

@@ -1,0 +1,64 @@
+{
+  "generated_utc": "2026-08-11T19:56:57.766797+00:00",
+  "inventories": {
+    "VENICE": {
+      "caslib": "Prostat_Sanofi_2007_83",
+      "tables_enumerated": 32
+    },
+    "TROPIC": {
+      "caslib": "Prostat_Sanofi_2007_79",
+      "tables_enumerated": 34
+    }
+  },
+  "mappings": {
+    "TAX327": {
+      "patient": "ZPATCODE",
+      "psa": "PSA",
+      "time": "R_WEEK (weeks)",
+      "os": "DEATHWK/event plus all-table last contact",
+      "age_ge65": "AGE65C",
+      "ecog": "PSWHO0"
+    },
+    "VENICE": {
+      "patient": "USUBJID",
+      "psa": "adlb.LBSTRESN where LBTESTCD=PSA",
+      "time": "adlb.LBDY (days)",
+      "os_time": "adtte.ATTE where PARAMCD=OS",
+      "event": "adtte.AVAL (1=Event, 0=Censored)",
+      "age": "addm.AGEGRP",
+      "ecog": "addm.ECOGIVRN"
+    },
+    "TROPIC": {
+      "patient": "USUBJID",
+      "psa": "lb.LBSTRESN where LBTESTCD=PSA",
+      "time": "lb.LBDY (days)",
+      "os_event_candidate": "ds.DSDECOD=DEATH with DSSTWK",
+      "age": "dm.AGEGRP",
+      "ecog": null
+    }
+  },
+  "qualification": {
+    "TAX327": {
+      "role": "discovery",
+      "qualifies": true,
+      "released_arm": "mitoxantrone + prednisone comparator",
+      "released_n": 337
+    },
+    "VENICE": {
+      "role": "independent external",
+      "qualifies": true,
+      "released_arm": "placebo + docetaxel + prednisone comparator",
+      "released_n": 612,
+      "age_missing_rate_before_landmark": 0.011013215859030838,
+      "ecog_missing_rate_before_landmark": 0.0
+    },
+    "TROPIC": {
+      "role": "candidate external",
+      "qualifies": false,
+      "released_arm": "mitoxantrone + prednisone comparator",
+      "released_n": 371,
+      "reason": "No ECOG, WHO performance status, or Karnofsky field was present in any core or supplemental released table; value-level scan also found none."
+    }
+  },
+  "patient_level_data_persisted_in_artifact": false
+}

@@ -1,0 +1,534 @@
+{
+  "audit_id": "argo_resistant_cohort_audit",
+  "generated_utc": "2026-07-25T18:47:45.838490+00:00",
+  "framing": "RUO / hypothesis-generating. No efficacy claims. Resistance = specimen-provenance proxy (Metastatic/Recurrent), NOT treatment-response label.",
+  "endpoints": {
+    "public_file_index": "https://api.platform.icgc-argo.org/graphql",
+    "controlled_download_gateway": "https://api.platform.icgc-argo.org/storage-api (Overture Score/Song)"
+  },
+  "access_verification": {
+    "claim": "Supplied API token authenticates for CONTROLLED-data download (DACO entitlement live).",
+    "method": "score-client 5.11.0 (Java 11) configured with storage-api gateway; resolved signed S3 URL AND downloaded a controlled ASCAT CNV supplement, checksum verified.",
+    "result": "CONFIRMED. One 55,093,099-byte controlled object (POG-CA CNV supplement) downloaded + MD5-verified.",
+    "correction": "Earlier recon verdict 'token = public-metadata-only' was WRONG (tested wrong endpoint: platform GraphQL rejects this token, but storage-api accepts it).",
+    "token_lifetime": "ARGO API tokens last 30 days; regenerate from user profile."
+  },
+  "programs": [
+    {
+      "study_id": "APGI-AU",
+      "total_files": 4079,
+      "distinct_donors": 97,
+      "relapse_proxy_donors": 1,
+      "relapse_proxy_files": 35,
+      "cn_comparable_files": 96,
+      "aligned_reads_bam_files": 290,
+      "pct_controlled": 91.1
+    },
+    {
+      "study_id": "LUCA-KR",
+      "total_files": 4785,
+      "distinct_donors": 167,
+      "relapse_proxy_donors": 0,
+      "relapse_proxy_files": 0,
+      "cn_comparable_files": 60,
+      "aligned_reads_bam_files": 334,
+      "pct_controlled": 86.0
+    },
+    {
+      "study_id": "MONSTAR-JP",
+      "total_files": 6106,
+      "distinct_donors": 2152,
+      "relapse_proxy_donors": 186,
+      "relapse_proxy_files": 459,
+      "cn_comparable_files": 889,
+      "aligned_reads_bam_files": 0,
+      "pct_controlled": 100.0
+    },
+    {
+      "study_id": "MUTO-INTL",
+      "total_files": 86893,
+      "distinct_donors": 2659,
+      "relapse_proxy_donors": 0,
+      "relapse_proxy_files": 0,
+      "cn_comparable_files": 2850,
+      "aligned_reads_bam_files": 5318,
+      "pct_controlled": 100.0
+    },
+    {
+      "study_id": "OCCAMS-GB",
+      "total_files": 15063,
+      "distinct_donors": 400,
+      "relapse_proxy_donors": 0,
+      "relapse_proxy_files": 0,
+      "cn_comparable_files": 826,
+      "aligned_reads_bam_files": 813,
+      "pct_controlled": 89.0
+    },
+    {
+      "study_id": "P1000-US",
+      "total_files": 13094,
+      "distinct_donors": 275,
+      "relapse_proxy_donors": 5,
+      "relapse_proxy_files": 150,
+      "cn_comparable_files": 50,
+      "aligned_reads_bam_files": 999,
+      "pct_controlled": 100.0
+    },
+    {
+      "study_id": "PACA-CA",
+      "total_files": 7060,
+      "distinct_donors": 136,
+      "relapse_proxy_donors": 4,
+      "relapse_proxy_files": 295,
+      "cn_comparable_files": 304,
+      "aligned_reads_bam_files": 349,
+      "pct_controlled": 89.6
+    },
+    {
+      "study_id": "POG-CA",
+      "total_files": 36421,
+      "distinct_donors": 931,
+      "relapse_proxy_donors": 807,
+      "relapse_proxy_files": 25365,
+      "cn_comparable_files": 1218,
+      "aligned_reads_bam_files": 4244,
+      "pct_controlled": 100.0
+    },
+    {
+      "study_id": "PTC-SA",
+      "total_files": 6455,
+      "distinct_donors": 239,
+      "relapse_proxy_donors": 0,
+      "relapse_proxy_files": 0,
+      "cn_comparable_files": 0,
+      "aligned_reads_bam_files": 478,
+      "pct_controlled": 85.2
+    }
+  ],
+  "cohort": {
+    "definition": "Distinct donors with a Metastatic/Recurrent specimen AND CN-comparable data (Raw/Filtered CNV Calls or CNV Supplement).",
+    "relapse_cn_manifest": [
+      {
+        "study_id": "POG-CA",
+        "cn_files_total_program": 1218,
+        "relapse_cn_objects": 1000,
+        "relapse_cn_donors": 484,
+        "relapse_cn_bytes": 27121983044
+      },
+      {
+        "study_id": "MONSTAR-JP",
+        "cn_files_total_program": 889,
+        "relapse_cn_objects": 122,
+        "relapse_cn_donors": 122,
+        "relapse_cn_bytes": 590858
+      },
+      {
+        "study_id": "P1000-US",
+        "cn_files_total_program": 50,
+        "relapse_cn_objects": 0,
+        "relapse_cn_donors": 0,
+        "relapse_cn_bytes": 0
+      },
+      {
+        "study_id": "PACA-CA",
+        "cn_files_total_program": 304,
+        "relapse_cn_objects": 16,
+        "relapse_cn_donors": 1,
+        "relapse_cn_bytes": 433438288
+      },
+      {
+        "study_id": "APGI-AU",
+        "cn_files_total_program": 96,
+        "relapse_cn_objects": 2,
+        "relapse_cn_donors": 1,
+        "relapse_cn_bytes": 55180656
+      }
+    ],
+    "downloaded_tier1_vcf": {
+      "wgs_ascat_samples": 509,
+      "wgs_ascat_donors": 486,
+      "panel_f1cdx_samples": 122,
+      "panel_f1cdx_donors": 122
+    },
+    "totals": {
+      "relapse_specimen_cn_donors": 608,
+      "relapse_specimen_cn_objects": 1140,
+      "tier1_vcf_bytes": 16500000.0,
+      "tier2_tgz_bytes": 27600000000.0
+    }
+  },
+  "receipts_by_program": {
+    "APGI-AU": [
+      {
+        "ts": "2026-07-25T18:15:57.622436+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "APGI-AU",
+        "fields": [
+          "file_access",
+          "embargo_stage",
+          "data_type",
+          "data_category",
+          "analysis.experiment.experimental_strategy",
+          "analysis.experiment.platform",
+          "donors.specimens.specimen_type",
+          "donors.specimens.tumour_normal_designation",
+          "donors.specimens.samples.sample_type",
+          "clinical.donor.primary_site"
+        ],
+        "total": 4079
+      },
+      {
+        "ts": "2026-07-25T18:15:57.739482+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "APGI-AU",
+        "metric": "distinct_donor_id (paginated hit enumeration)",
+        "value": 97,
+        "files_enumerated": 4079,
+        "pages": 3
+      },
+      {
+        "ts": "2026-07-25T18:16:00.904952+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "APGI-AU",
+        "metric": "relapse-proxy (specimen_type startswith Recurrent/Metastatic); distinct donors via paginated enumeration",
+        "matched_keys": [
+          "Metastatic tumour"
+        ],
+        "files": 35,
+        "files_enumerated": 35,
+        "distinct_donors": 1
+      }
+    ],
+    "LUCA-KR": [
+      {
+        "ts": "2026-07-25T18:15:19.308622+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "LUCA-KR",
+        "fields": [
+          "file_access",
+          "embargo_stage",
+          "data_type",
+          "data_category",
+          "analysis.experiment.experimental_strategy",
+          "analysis.experiment.platform",
+          "donors.specimens.specimen_type",
+          "donors.specimens.tumour_normal_designation",
+          "donors.specimens.samples.sample_type",
+          "clinical.donor.primary_site"
+        ],
+        "total": 4785
+      },
+      {
+        "ts": "2026-07-25T18:15:19.475064+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "LUCA-KR",
+        "metric": "distinct_donor_id (paginated hit enumeration)",
+        "value": 167,
+        "files_enumerated": 4785,
+        "pages": 3
+      },
+      {
+        "ts": "2026-07-25T18:15:23.867697+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "LUCA-KR",
+        "metric": "relapse-proxy (specimen_type startswith Recurrent/Metastatic); distinct donors via paginated enumeration",
+        "matched_keys": [],
+        "files": 0,
+        "files_enumerated": 0,
+        "distinct_donors": 0
+      }
+    ],
+    "MONSTAR-JP": [
+      {
+        "ts": "2026-07-25T18:15:23.546845+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "MONSTAR-JP",
+        "fields": [
+          "file_access",
+          "embargo_stage",
+          "data_type",
+          "data_category",
+          "analysis.experiment.experimental_strategy",
+          "analysis.experiment.platform",
+          "donors.specimens.specimen_type",
+          "donors.specimens.tumour_normal_designation",
+          "donors.specimens.samples.sample_type",
+          "clinical.donor.primary_site"
+        ],
+        "total": 6106
+      },
+      {
+        "ts": "2026-07-25T18:15:23.674325+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "MONSTAR-JP",
+        "metric": "distinct_donor_id (paginated hit enumeration)",
+        "value": 2152,
+        "files_enumerated": 6106,
+        "pages": 4
+      },
+      {
+        "ts": "2026-07-25T18:15:28.388576+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "MONSTAR-JP",
+        "metric": "relapse-proxy (specimen_type startswith Recurrent/Metastatic); distinct donors via paginated enumeration",
+        "matched_keys": [
+          "Metastatic tumour"
+        ],
+        "files": 459,
+        "files_enumerated": 459,
+        "distinct_donors": 186
+      }
+    ],
+    "MUTO-INTL": [
+      {
+        "ts": "2026-07-25T18:15:11.871465+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "MUTO-INTL",
+        "fields": [
+          "file_access",
+          "embargo_stage",
+          "data_type",
+          "data_category",
+          "analysis.experiment.experimental_strategy",
+          "analysis.experiment.platform",
+          "donors.specimens.specimen_type",
+          "donors.specimens.tumour_normal_designation",
+          "donors.specimens.samples.sample_type",
+          "clinical.donor.primary_site"
+        ],
+        "total": 86893
+      },
+      {
+        "ts": "2026-07-25T18:15:12.222130+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "MUTO-INTL",
+        "metric": "distinct_donor_id (paginated hit enumeration)",
+        "value": 2659,
+        "files_enumerated": 86893,
+        "pages": 44
+      },
+      {
+        "ts": "2026-07-25T18:16:39.726207+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "MUTO-INTL",
+        "metric": "relapse-proxy (specimen_type startswith Recurrent/Metastatic); distinct donors via paginated enumeration",
+        "matched_keys": [],
+        "files": 0,
+        "files_enumerated": 0,
+        "distinct_donors": 0
+      }
+    ],
+    "OCCAMS-GB": [
+      {
+        "ts": "2026-07-25T18:15:13.283829+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "OCCAMS-GB",
+        "fields": [
+          "file_access",
+          "embargo_stage",
+          "data_type",
+          "data_category",
+          "analysis.experiment.experimental_strategy",
+          "analysis.experiment.platform",
+          "donors.specimens.specimen_type",
+          "donors.specimens.tumour_normal_designation",
+          "donors.specimens.samples.sample_type",
+          "clinical.donor.primary_site"
+        ],
+        "total": 15063
+      },
+      {
+        "ts": "2026-07-25T18:15:13.876443+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "OCCAMS-GB",
+        "metric": "distinct_donor_id (paginated hit enumeration)",
+        "value": 400,
+        "files_enumerated": 15063,
+        "pages": 8
+      },
+      {
+        "ts": "2026-07-25T18:15:29.380425+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "OCCAMS-GB",
+        "metric": "relapse-proxy (specimen_type startswith Recurrent/Metastatic); distinct donors via paginated enumeration",
+        "matched_keys": [],
+        "files": 0,
+        "files_enumerated": 0,
+        "distinct_donors": 0
+      }
+    ],
+    "P1000-US": [
+      {
+        "ts": "2026-07-25T18:15:11.726874+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "P1000-US",
+        "fields": [
+          "file_access",
+          "embargo_stage",
+          "data_type",
+          "data_category",
+          "analysis.experiment.experimental_strategy",
+          "analysis.experiment.platform",
+          "donors.specimens.specimen_type",
+          "donors.specimens.tumour_normal_designation",
+          "donors.specimens.samples.sample_type",
+          "clinical.donor.primary_site"
+        ],
+        "total": 13094
+      },
+      {
+        "ts": "2026-07-25T18:15:11.928655+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "P1000-US",
+        "metric": "distinct_donor_id (paginated hit enumeration)",
+        "value": 275,
+        "files_enumerated": 13094,
+        "pages": 7
+      },
+      {
+        "ts": "2026-07-25T18:15:21.880590+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "P1000-US",
+        "metric": "relapse-proxy (specimen_type startswith Recurrent/Metastatic); distinct donors via paginated enumeration",
+        "matched_keys": [
+          "Metastatic tumour",
+          "Recurrent tumour",
+          "Metastatic tumour - metastasis local to lymph node"
+        ],
+        "files": 150,
+        "files_enumerated": 150,
+        "distinct_donors": 5
+      }
+    ],
+    "PACA-CA": [
+      {
+        "ts": "2026-07-25T18:15:11.824099+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "PACA-CA",
+        "fields": [
+          "file_access",
+          "embargo_stage",
+          "data_type",
+          "data_category",
+          "analysis.experiment.experimental_strategy",
+          "analysis.experiment.platform",
+          "donors.specimens.specimen_type",
+          "donors.specimens.tumour_normal_designation",
+          "donors.specimens.samples.sample_type",
+          "clinical.donor.primary_site"
+        ],
+        "total": 7060
+      },
+      {
+        "ts": "2026-07-25T18:15:12.061697+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "PACA-CA",
+        "metric": "distinct_donor_id (paginated hit enumeration)",
+        "value": 136,
+        "files_enumerated": 7060,
+        "pages": 4
+      },
+      {
+        "ts": "2026-07-25T18:15:17.394017+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "PACA-CA",
+        "metric": "relapse-proxy (specimen_type startswith Recurrent/Metastatic); distinct donors via paginated enumeration",
+        "matched_keys": [
+          "Metastatic tumour - metastasis to distant location",
+          "Metastatic tumour"
+        ],
+        "files": 295,
+        "files_enumerated": 295,
+        "distinct_donors": 4
+      }
+    ],
+    "POG-CA": [
+      {
+        "ts": "2026-07-25T18:15:11.185241+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "POG-CA",
+        "fields": [
+          "file_access",
+          "embargo_stage",
+          "data_type",
+          "data_category",
+          "analysis.experiment.experimental_strategy",
+          "analysis.experiment.platform",
+          "donors.specimens.specimen_type",
+          "donors.specimens.tumour_normal_designation",
+          "donors.specimens.samples.sample_type",
+          "clinical.donor.primary_site"
+        ],
+        "total": 36421
+      },
+      {
+        "ts": "2026-07-25T18:15:11.724785+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "POG-CA",
+        "metric": "distinct_donor_id (paginated hit enumeration)",
+        "value": 931,
+        "files_enumerated": 36421,
+        "pages": 19
+      },
+      {
+        "ts": "2026-07-25T18:15:39.145188+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "POG-CA",
+        "metric": "relapse-proxy (specimen_type startswith Recurrent/Metastatic); distinct donors via paginated enumeration",
+        "matched_keys": [
+          "Metastatic tumour",
+          "Recurrent tumour"
+        ],
+        "files": 25365,
+        "files_enumerated": 25365,
+        "distinct_donors": 807
+      }
+    ],
+    "PTC-SA": [
+      {
+        "ts": "2026-07-25T18:15:30.751581+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "PTC-SA",
+        "fields": [
+          "file_access",
+          "embargo_stage",
+          "data_type",
+          "data_category",
+          "analysis.experiment.experimental_strategy",
+          "analysis.experiment.platform",
+          "donors.specimens.specimen_type",
+          "donors.specimens.tumour_normal_designation",
+          "donors.specimens.samples.sample_type",
+          "clinical.donor.primary_site"
+        ],
+        "total": 6455
+      },
+      {
+        "ts": "2026-07-25T18:15:31.260608+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "PTC-SA",
+        "metric": "distinct_donor_id (paginated hit enumeration)",
+        "value": 239,
+        "files_enumerated": 6455,
+        "pages": 4
+      },
+      {
+        "ts": "2026-07-25T18:15:37.996391+00:00",
+        "endpoint": "https://api.platform.icgc-argo.org/graphql",
+        "study_id": "PTC-SA",
+        "metric": "relapse-proxy (specimen_type startswith Recurrent/Metastatic); distinct donors via paginated enumeration",
+        "matched_keys": [],
+        "files": 0,
+        "files_enumerated": 0,
+        "distinct_donors": 0
+      }
+    ]
+  },
+  "integrity_checks": {
+    "sum_files_equals_anchor": true,
+    "anchor": 179956,
+    "file_access_sums_equal_totals": "verified per program (all OK)",
+    "relapse_donors_le_total_donors": "verified per program (all OK)",
+    "feature_extraction_failed_files": 0
+  }
+}

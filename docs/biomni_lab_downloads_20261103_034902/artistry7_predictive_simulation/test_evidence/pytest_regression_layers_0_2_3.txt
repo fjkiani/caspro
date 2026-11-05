@@ -1,0 +1,62 @@
+.................................................FFFF..F................ [ 49%]
+........................................................................ [ 99%]
+.                                                                        [100%]
+=================================== FAILURES ===================================
+_________________________ test_break_crc_canonical_fit _________________________
+
+    def test_break_crc_canonical_fit():
+        """Canonical fit=0.7375 — governance-locked."""
+>       assert abs(BREAK_CRC_CANONICAL_FIT - 0.7375) < 0.0001
+E       assert 0.04310000000000003 < 0.0001
+E        +  where 0.04310000000000003 = abs((0.6944 - 0.7375))
+
+tests/test_layer0/test_canonical_vectors.py:71: AssertionError
+_________________________ test_break_crc_canonical_dot _________________________
+
+    def test_break_crc_canonical_dot():
+>       assert abs(BREAK_CRC_CANONICAL_DOT - 0.685) < 0.001
+E       assert 0.06000000000000005 < 0.001
+E        +  where 0.06000000000000005 = abs((0.625 - 0.685))
+
+tests/test_layer0/test_canonical_vectors.py:74: AssertionError
+________________________ test_break_crc_canonical_norm _________________________
+
+    def test_break_crc_canonical_norm():
+>       assert abs(BREAK_CRC_CANONICAL_NORM - 0.9288) < 0.001
+E       assert 0.028799999999999937 < 0.001
+E        +  where 0.028799999999999937 = abs((0.9 - 0.9288))
+
+tests/test_layer0/test_canonical_vectors.py:77: AssertionError
+___________________________ test_break_crc_fit_label ___________________________
+
+    def test_break_crc_fit_label():
+>       assert BREAK_CRC_FIT_LABEL == "MODERATE-HIGH"
+E       AssertionError: assert 'MODERATE' == 'MODERATE-HIGH'
+E         
+E         - MODERATE-HIGH
+E         ?         -----
+E         + MODERATE
+
+tests/test_layer0/test_canonical_vectors.py:80: AssertionError
+_____________________ test_break_crc_fit_norm_consistency ______________________
+
+    def test_break_crc_fit_norm_consistency():
+        """0.685 / 0.9288 must equal 0.7375."""
+>       assert abs(BREAK_CRC_CANONICAL_DOT / BREAK_CRC_CANONICAL_NORM - 0.7375) < 0.001
+E       assert 0.043055555555555625 < 0.001
+E        +  where 0.043055555555555625 = abs(((0.625 / 0.9) - 0.7375))
+
+tests/test_layer0/test_canonical_vectors.py:90: AssertionError
+=============================== warnings summary ===============================
+layer0_contracts/pharma_contracts.py:40
+  /workspace/crispro-backend-v3-push/layer0_contracts/pharma_contracts.py:40: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'example'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    patient_vector: Optional[Dict[str, float]] = Field(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_layer0/test_canonical_vectors.py::test_break_crc_canonical_fit
+FAILED tests/test_layer0/test_canonical_vectors.py::test_break_crc_canonical_dot
+FAILED tests/test_layer0/test_canonical_vectors.py::test_break_crc_canonical_norm
+FAILED tests/test_layer0/test_canonical_vectors.py::test_break_crc_fit_label
+FAILED tests/test_layer0/test_canonical_vectors.py::test_break_crc_fit_norm_consistency
+5 failed, 140 passed, 1 warning in 44.89s

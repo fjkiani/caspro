@@ -1,0 +1,105 @@
+{
+  "contract_id": "ENDPOINT_CONTRACT",
+  "version": "1.0.0",
+  "status": "LOCKED",
+  "generated_utc": "2026-08-19",
+  "prohibition": "The outcome must never be derived from the predictor. No rule of the form s3_diag < threshold => resistant is permitted as a label. No such rule exists in any repository.",
+  "primary": {
+    "id": "ENDPOINT_v1_PRIMARY",
+    "field": "pt_sensitivity_at_reg",
+    "type": "binary",
+    "positive_class": "resistant",
+    "encoding": {"resistant": 1, "sensitive": 0},
+    "source_files": ["figure_1B_layer_1.tsv (273 patients, labels all)", "figure_2.tsv (134 patients)"],
+    "label_concordance_between_sources": "134/134 identical where both present",
+    "source_study": {
+      "cohort": "BriTROC-1",
+      "citation": "Smith P, Bradley T, Gavarro LM, et al. Nat Commun 14, 4387 (2023)",
+      "doi": "10.1038/s41467-023-39867-7",
+      "pmid": "37474499"
+    },
+    "definition_provenance": "SOURCE_ATTRIBUTED_NOT_INDEPENDENTLY_ADJUDICATED",
+    "outcome_time_origin": "registration into BriTROC-1 (at relapse)",
+    "predictor_time_origin": "diagnosis (archival diagnosis specimen)",
+    "temporal_ordering_verified": true,
+    "diagnosis_to_registration_interval_available": "yes, as the negative time value for event=='diag' in figure_1B_layer_1.tsv"
+  },
+  "five_class_contract": {
+    "platinum_sensitive": {
+      "status": "DERIVABLE",
+      "rule": "pt_sensitivity_at_reg == 'sensitive'",
+      "n_in_source_cohort": 207
+    },
+    "primary_resistant": {
+      "status": "DERIVABLE",
+      "rule": "pt_sensitivity_at_reg == 'resistant'",
+      "n_in_source_cohort": 66,
+      "caveat": "Pools refractory with resistant; the two cannot be separated in open data."
+    },
+    "primary_refractory": {
+      "status": "NOT_DERIVABLE_FROM_OPEN_DATA",
+      "requires": ["date_last_platinum_dose", "date_documented_progression", "progression_basis", "best_overall_response"],
+      "consequence": "Refractory patients are pooled inside primary_resistant, making that class heterogeneous in severity."
+    },
+    "censored_before_assessable": {
+      "status": "NOT_DERIVABLE_FROM_OPEN_DATA",
+      "requires": ["assessability_status_per_visit", "date_first_post_treatment_assessment", "date_death_or_last_followup relative to that date"],
+      "available_instead": "overall survival time and vital status only (event=='os', status in {alive, deceased})"
+    },
+    "indeterminate_missing": {
+      "status": "DERIVABLE_ONLY_AS_NOT_LABELLED",
+      "observed_count_in_this_cohort": 0,
+      "note": "figure_1B_layer_1.tsv labels all 273 patients, so strict_n_missing_label = 0. Genuine adjudication indeterminacy cannot be distinguished from a confident label because the adjudication inputs are not released."
+    }
+  },
+  "pfi_reconstruction": {
+    "possible": false,
+    "proof": "figure_1B_layer_1.tsv has exactly five columns (britroc_number, pt_sensitivity_at_reg, status, event, time); event takes exactly two values, 'diag' (273 rows) and 'os' (273 rows). No progression event, no PFS, no PFI, no treatment date exists in any released file. figure_2.tsv adds day_diff and num_lines, neither of which is a platinum-free interval.",
+    "fields_that_would_unblock": [
+      "date_last_platinum_dose",
+      "date_documented_progression + progression_basis",
+      "best_overall_response",
+      "assessability_status_per_visit + date_first_post_treatment_assessment",
+      "date_treatment_completion + reason_for_discontinuation",
+      "n_platinum_cycles_received"
+    ]
+  },
+  "denominator_ladder": [
+    {"stage": "A_source_clinical_cohort", "n": 273, "resistant": 66, "sensitive": 207, "prevalence": 0.2418},
+    {"stage": "B_with_platinum_label", "n": 273, "resistant": 66, "sensitive": 207, "prevalence": 0.2418},
+    {"stage": "C_complete_diagnosis_exposures", "n": 98, "resistant": 20, "sensitive": 78, "prevalence": 0.2041},
+    {"stage": "D_primary_analysis_set", "n": 98, "resistant": 20, "sensitive": 78, "prevalence": 0.2041},
+    {"stage": "E_covariate_complete_subset", "n": 67, "resistant": 9, "sensitive": 58, "prevalence": 0.1343}
+  ],
+  "selection_tests": {
+    "labelled_cohort_to_set98": {"fisher_or": 0.6125, "p": 0.2511, "prevalence_in": 0.2041, "prevalence_out": 0.2951, "outcome_selective": false},
+    "set98_to_set67": {"fisher_or": 0.2821, "p": 0.0162, "prevalence_in": 0.1343, "prevalence_out": 0.3548, "outcome_selective": true},
+    "s3_retained_vs_dropped": {"median_retained": 0.1394, "median_dropped": 0.1028, "mannwhitney_p": 0.1360}
+  },
+  "binding_rule": "Primary denominator is n=98 / 20 events. Any figure quoted at n=67 / 9 events, including the 0.8807 CV receipt and every adjusted model, must carry the set98->set67 selection warning.",
+  "alternative_definitions": {
+    "ALT_A_rclass": {
+      "definition": "RECIST-derived response classification (OBL#2 audit)",
+      "availability": "40-47 patient subset only",
+      "status": "SENSITIVITY_ONLY",
+      "standing_warning": "On the identical 40-patient s7_rel feature matrix, AUROC = 0.8739 under rclass and 0.3136 under pt_sensitivity_at_reg. Any rclass result must be reported alongside the same analysis under the primary endpoint."
+    },
+    "ALT_B_pfi_6mo": {
+      "definition": "platinum-free interval < 6 months",
+      "status": "NOT_DERIVABLE_FROM_OPEN_DATA",
+      "reserved_for": "controlled-access analysis once date fields are available"
+    },
+    "ALT_C_os_surrogate": {
+      "definition": "overall survival from registration",
+      "availability": "available; 39 events in the n=67 set",
+      "status": "SECONDARY_PLAUSIBILITY_CHECK_ONLY",
+      "not_a_resistance_label": true,
+      "result": {"cox_hr_per_sd": 0.6869, "p": 0.043, "ci": [0.4775, 0.9883], "schoenfeld_global_p": 0.2251}
+    }
+  },
+  "change_control": {
+    "major_bump_triggers": ["any change to the primary endpoint definition", "any change to the denominator ladder"],
+    "minor_bump_triggers": ["adding a five-class member as data becomes available"],
+    "enforcement": "The adversarial suite asserts that the endpoint contract version recorded in candidate_spec_v0.1.0.json matches the contract used at scoring time; a mismatch must refuse."
+  }
+}

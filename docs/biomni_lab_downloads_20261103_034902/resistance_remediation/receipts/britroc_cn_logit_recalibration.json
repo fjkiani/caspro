@@ -1,0 +1,99 @@
+{
+  "cohort": "BriTROC-1 (feature-complete CN subset of outcome_anchor)",
+  "n": 98,
+  "resistant": 20,
+  "cohort_gate_pass": false,
+  "models": {
+    "CCNE1_only": {
+      "features": [
+        "CCNE1_log2"
+      ],
+      "n": 98,
+      "resistant": 20,
+      "EPV": 20.0,
+      "oof_auc_mean": 0.64,
+      "oof_auc_ci_lo": 0.596,
+      "oof_auc_ci_hi": 0.669,
+      "perm_p": 0.0299,
+      "ci_excludes_0.5": true
+    },
+    "parsimonious_CCNE1_LST_FGA": {
+      "features": [
+        "CCNE1_log2",
+        "LST_score",
+        "fraction_genome_altered"
+      ],
+      "n": 98,
+      "resistant": 20,
+      "EPV": 6.7,
+      "oof_auc_mean": 0.647,
+      "oof_auc_ci_lo": 0.592,
+      "oof_auc_ci_hi": 0.685,
+      "perm_p": 0.0299,
+      "ci_excludes_0.5": true
+    },
+    "full_6feat": {
+      "features": [
+        "CCNE1_log2",
+        "KRAS_log2",
+        "MYC_log2",
+        "ERBB2_log2",
+        "LST_score",
+        "fraction_genome_altered"
+      ],
+      "n": 98,
+      "resistant": 20,
+      "EPV": 3.3,
+      "oof_auc_mean": 0.643,
+      "oof_auc_ci_lo": 0.579,
+      "oof_auc_ci_hi": 0.695,
+      "perm_p": 0.0465,
+      "ci_excludes_0.5": true
+    }
+  },
+  "verdict": "DISCOVERY_ONLY_NOT_CALIBRATED",
+  "univariate": [
+    {
+      "feature": "fraction_genome_altered",
+      "OR_per_SD": 2.566087807490648,
+      "CI_lo": 1.2342526431748129,
+      "CI_hi": 5.3350557296068315,
+      "p": 0.011617338905567858
+    },
+    {
+      "feature": "KRAS_log2",
+      "OR_per_SD": 1.6909648670254784,
+      "CI_lo": 1.0177498550661086,
+      "CI_hi": 2.8094940689809893,
+      "p": 0.042571969535056015
+    },
+    {
+      "feature": "CCNE1_log2",
+      "OR_per_SD": 1.6288957889628755,
+      "CI_lo": 1.0100404117022357,
+      "CI_hi": 2.6269260720265053,
+      "p": 0.04539935696189254
+    },
+    {
+      "feature": "ERBB2_log2",
+      "OR_per_SD": 1.4880778518513018,
+      "CI_lo": 0.9396729221494309,
+      "CI_hi": 2.35653879235465,
+      "p": 0.09013709638574886
+    },
+    {
+      "feature": "LST_score",
+      "OR_per_SD": 0.7026943400963366,
+      "CI_lo": 0.40719093871047196,
+      "CI_hi": 1.2126481428274651,
+      "p": 0.20501450014135458
+    },
+    {
+      "feature": "MYC_log2",
+      "OR_per_SD": 1.0845315133045388,
+      "CI_lo": 0.6593309105907299,
+      "CI_hi": 1.7839427584197514,
+      "p": 0.7492875192516832
+    }
+  ]
+}

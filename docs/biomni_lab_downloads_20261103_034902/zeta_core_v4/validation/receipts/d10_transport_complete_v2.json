@@ -1,0 +1,436 @@
+{
+  "bootstrap": {
+    "B": 1000,
+    "scope": "COMPLETE procedure: both cohorts resampled, model and baseline hazard refit inside every replicate",
+    "seed": 20260813,
+    "unit": "subject"
+  },
+  "classification_counts": {
+    "CLEAR_FAIL": 0,
+    "INDETERMINATE": 8,
+    "PASS": 0
+  },
+  "document": "Zeta-Core v4 D10 complete transport table v2",
+  "excluded_from_gating": {
+    "horizon_weeks": 104,
+    "reason": "predeclared derivation support criterion not met"
+  },
+  "gate_interpretation": {
+    "CLEAR_FAIL": "95% CI has no overlap with acceptance interval",
+    "INDETERMINATE": "all other cases, including a failing point with CI overlap",
+    "PASS": "point and full 95% CI inside acceptance interval",
+    "attainment": "NOT_MET",
+    "note": "Gate non-attainment is distinct from certainty. A transport gate result cannot activate an API field.",
+    "nothing_activated": true
+  },
+  "rows": [
+    {
+      "brier": {
+        "ci95": [
+          0.04780097325470472,
+          0.08715666198673769
+        ],
+        "point": 0.06486384634714806
+      },
+      "calibration_intercept": {
+        "ci95": [
+          -1.0207402042275882,
+          0.2861078942733543
+        ],
+        "point": -0.3263505932707377
+      },
+      "calibration_slope": {
+        "ci95": [
+          -0.24982516558623838,
+          1.4527862034745624
+        ],
+        "classification": "INDETERMINATE",
+        "gate": [
+          0.8,
+          1.2
+        ],
+        "margin": {
+          "boundary": 0.8,
+          "direction": "below_lower",
+          "signed_margin": -0.23228310958577036
+        },
+        "point": 0.5677168904142297
+      },
+      "comparator_brier": {
+        "ci95": [
+          0.04827372794072208,
+          0.08746834270920455
+        ],
+        "point": 0.06551574037697792
+      },
+      "comparator_ibs": {
+        "ci95": [
+          0.1902317566432198,
+          0.2361308563284112
+        ],
+        "point": 0.20688844769336961
+      },
+      "gate_eligible": true,
+      "horizon_weeks_post_landmark": 26,
+      "ibs": {
+        "ci95": [
+          0.18562487175132894,
+          0.2333603578020316
+        ],
+        "point": 0.20124978344441896
+      },
+      "ibs_margin_vs_comparator": 0.005638664248950653,
+      "n_at_risk": 417,
+      "observed": {
+        "events": 31.0,
+        "km_risk": 0.06954400690220819
+      },
+      "observed_to_expected": {
+        "ci95": [
+          0.4155709060066763,
+          1.41180287308533
+        ],
+        "classification": "INDETERMINATE",
+        "gate": [
+          0.9,
+          1.1
+        ],
+        "margin": {
+          "boundary": 0.9,
+          "direction": "below_lower",
+          "signed_margin": -0.16486193349205025
+        },
+        "point": 0.7351380665079498
+      },
+      "predicted": {
+        "expected_events_cumhaz": 42.168949497141526,
+        "mean_predicted_risk": 0.09283568751905441
+      },
+      "time_dependent_auc": {
+        "ci95": [
+          0.4315788853204539,
+          0.6623810903340531
+        ],
+        "point": 0.5461864971036687
+      },
+      "variant": "T1"
+    },
+    {
+      "brier": {
+        "ci95": [
+          0.16175089169710308,
+          0.21765691414984684
+        ],
+        "point": 0.18294606924078163
+      },
+      "calibration_intercept": {
+        "ci95": [
+          -0.7131221891134641,
+          0.0323490081206506
+        ],
+        "point": -0.3403860631773047
+      },
+      "calibration_slope": {
+        "ci95": [
+          0.07998329319693082,
+          1.0472523158187454
+        ],
+        "classification": "INDETERMINATE",
+        "gate": [
+          0.8,
+          1.2
+        ],
+        "margin": {
+          "boundary": 0.8,
+          "direction": "below_lower",
+          "signed_margin": -0.25634535493524724
+        },
+        "point": 0.5436546450647528
+      },
+      "comparator_brier": {
+        "ci95": [
+          0.16415888325143824,
+          0.21801169010288876
+        ],
+        "point": 0.18657138190404804
+      },
+      "comparator_ibs": {
+        "ci95": [
+          0.1902317566432198,
+          0.2361308563284112
+        ],
+        "point": 0.20688844769336961
+      },
+      "gate_eligible": true,
+      "horizon_weeks_post_landmark": 52,
+      "ibs": {
+        "ci95": [
+          0.18562487175132894,
+          0.2333603578020316
+        ],
+        "point": 0.20124978344441896
+      },
+      "ibs_margin_vs_comparator": 0.005638664248950653,
+      "n_at_risk": 344,
+      "observed": {
+        "events": 103.0,
+        "km_risk": 0.23136244048443289
+      },
+      "observed_to_expected": {
+        "ci95": [
+          0.49873931127831744,
+          1.0677347356115017
+        ],
+        "classification": "INDETERMINATE",
+        "gate": [
+          0.9,
+          1.1
+        ],
+        "margin": {
+          "boundary": 0.9,
+          "direction": "below_lower",
+          "signed_margin": -0.169199161035689
+        },
+        "point": 0.730800838964311
+      },
+      "predicted": {
+        "expected_events_cumhaz": 140.9412722431618,
+        "mean_predicted_risk": 0.29366334691661006
+      },
+      "time_dependent_auc": {
+        "ci95": [
+          0.5175480274964352,
+          0.6579292517929385
+        ],
+        "point": 0.5928805100173321
+      },
+      "variant": "T1"
+    },
+    {
+      "brier": {
+        "ci95": [
+          0.04800058345565552,
+          0.08682106379686512
+        ],
+        "point": 0.06492086029640652
+      },
+      "calibration_intercept": {
+        "ci95": [
+          -1.0615851198285753,
+          0.26067428148081284
+        ],
+        "point": -0.35812666142079735
+      },
+      "calibration_slope": {
+        "ci95": [
+          -0.29414552170782254,
+          1.5699659127168022
+        ],
+        "classification": "INDETERMINATE",
+        "gate": [
+          0.8,
+          1.2
+        ],
+        "margin": {
+          "boundary": 0.8,
+          "direction": "below_lower",
+          "signed_margin": -0.19226396803523071
+        },
+        "point": 0.6077360319647693
+      },
+      "comparator_brier": {
+        "ci95": [
+          0.04827372794072208,
+          0.08746834270920455
+        ],
+        "point": 0.06551574037697792
+      },
+      "comparator_ibs": {
+        "ci95": [
+          0.1902317566432198,
+          0.2361308563284112
+        ],
+        "point": 0.20688844769336961
+      },
+      "gate_eligible": true,
+      "horizon_weeks_post_landmark": 26,
+      "ibs": {
+        "ci95": [
+          0.18856844922268784,
+          0.23548039473330576
+        ],
+        "point": 0.20419907232756723
+      },
+      "ibs_margin_vs_comparator": 0.0026893753658023822,
+      "n_at_risk": 417,
+      "observed": {
+        "events": 31.0,
+        "km_risk": 0.06954400690220819
+      },
+      "observed_to_expected": {
+        "ci95": [
+          0.4048864528828254,
+          1.3113184812784051
+        ],
+        "classification": "INDETERMINATE",
+        "gate": [
+          0.9,
+          1.1
+        ],
+        "margin": {
+          "boundary": 0.9,
+          "direction": "below_lower",
+          "signed_margin": -0.20484343750818512
+        },
+        "point": 0.6951565624918149
+      },
+      "predicted": {
+        "expected_events_cumhaz": 44.59427080552808,
+        "mean_predicted_risk": 0.09800391916727987
+      },
+      "time_dependent_auc": {
+        "ci95": [
+          0.42965375036187803,
+          0.6686439926515327
+        ],
+        "point": 0.5468105214875971
+      },
+      "variant": "T2"
+    },
+    {
+      "brier": {
+        "ci95": [
+          0.16361755614780632,
+          0.21768971286533376
+        ],
+        "point": 0.18432998977271783
+      },
+      "calibration_intercept": {
+        "ci95": [
+          -0.7361104193417072,
+          -0.011949679528834892
+        ],
+        "point": -0.3696751740573095
+      },
+      "calibration_slope": {
+        "ci95": [
+          0.07379871924065393,
+          1.1257398847082085
+        ],
+        "classification": "INDETERMINATE",
+        "gate": [
+          0.8,
+          1.2
+        ],
+        "margin": {
+          "boundary": 0.8,
+          "direction": "below_lower",
+          "signed_margin": -0.21668945914203042
+        },
+        "point": 0.5833105408579696
+      },
+      "comparator_brier": {
+        "ci95": [
+          0.16415888325143824,
+          0.21801169010288876
+        ],
+        "point": 0.18657138190404804
+      },
+      "comparator_ibs": {
+        "ci95": [
+          0.1902317566432198,
+          0.2361308563284112
+        ],
+        "point": 0.20688844769336961
+      },
+      "gate_eligible": true,
+      "horizon_weeks_post_landmark": 52,
+      "ibs": {
+        "ci95": [
+          0.18856844922268784,
+          0.23548039473330576
+        ],
+        "point": 0.20419907232756723
+      },
+      "ibs_margin_vs_comparator": 0.0026893753658023822,
+      "n_at_risk": 344,
+      "observed": {
+        "events": 103.0,
+        "km_risk": 0.23136244048443289
+      },
+      "observed_to_expected": {
+        "ci95": [
+          0.4814379353815633,
+          0.9875106273174945
+        ],
+        "classification": "INDETERMINATE",
+        "gate": [
+          0.9,
+          1.1
+        ],
+        "margin": {
+          "boundary": 0.9,
+          "direction": "below_lower",
+          "signed_margin": -0.20812989973569496
+        },
+        "point": 0.6918701002643051
+      },
+      "predicted": {
+        "expected_events_cumhaz": 148.87187632570394,
+        "mean_predicted_risk": 0.3080614449469603
+      },
+      "time_dependent_auc": {
+        "ci95": [
+          0.5162971284671892,
+          0.6587096270175812
+        ],
+        "point": 0.5924972445538546
+      },
+      "variant": "T2"
+    }
+  ],
+  "status": {
+    "deployment": "PRODUCTION_DEPLOYMENT_NOT_PERFORMED",
+    "focused": "FOCUSED_ACCEPTANCE_GATES_PASS",
+    "remote": "REMOTE_DELIVERY_BLOCKED",
+    "repository": "REPOSITORY_WIDE_SUITE_RED"
+  },
+  "support": [
+    {
+      "gate_eligible": true,
+      "horizon_weeks_post_landmark": 26.0,
+      "min_at_risk_required": 20,
+      "min_cumulative_events_required": 10,
+      "support_label": "GATE_ELIGIBLE",
+      "tax327_at_risk": 138,
+      "tax327_cumulative_events": 19
+    },
+    {
+      "gate_eligible": true,
+      "horizon_weeks_post_landmark": 52.0,
+      "min_at_risk_required": 20,
+      "min_cumulative_events_required": 10,
+      "support_label": "GATE_ELIGIBLE",
+      "tax327_at_risk": 68,
+      "tax327_cumulative_events": 50
+    },
+    {
+      "gate_eligible": false,
+      "horizon_weeks_post_landmark": 78.0,
+      "min_at_risk_required": 20,
+      "min_cumulative_events_required": 10,
+      "support_label": "WEAK_SUPPORT",
+      "tax327_at_risk": 18,
+      "tax327_cumulative_events": 69
+    },
+    {
+      "gate_eligible": false,
+      "horizon_weeks_post_landmark": 104.0,
+      "min_at_risk_required": 20,
+      "min_cumulative_events_required": 10,
+      "support_label": "WEAK_SUPPORT",
+      "tax327_at_risk": 3,
+      "tax327_cumulative_events": 77
+    }
+  ]
+}

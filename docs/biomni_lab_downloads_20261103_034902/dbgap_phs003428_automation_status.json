@@ -1,0 +1,71 @@
+{
+  "study": "phs003428",
+  "study_name": "CTEP/NCI CALGB-SWOG 80405 ctDNA dataset",
+  "nct": "NCT00265850",
+  "date_assessed": "2026-05-13",
+  "automation_status": "DB_GAP_AUTOMATION_COMPLETE",
+  "completed_automated_actions": [
+    {
+      "action": "DUC field extraction",
+      "status": "DONE",
+      "output_file": "dbgap_phs003428_fahad_fields_only.json",
+      "description": "All 5 PI-only fields identified and documented with character limits and instructions"
+    },
+    {
+      "action": "Institution intake field extraction",
+      "status": "DONE",
+      "output_file": "dbgap_phs003428_institution_intake_minimal.csv",
+      "description": "6 institution fields (SO identity, IT Director, IRB assurance, data destruction, eRA Commons) documented"
+    },
+    {
+      "action": "DAR component inventory",
+      "status": "DONE",
+      "description": "All required DAR components enumerated: DUC, IRB approval, IT security plan, data destruction plan, CTEP notification"
+    },
+    {
+      "action": "CTEP pre-notification email template",
+      "status": "DONE",
+      "description": "Email target confirmed: NCICTEPDAR@mail.nih.gov. Template: subject must match project_title exactly. Body must include study accession phs003428, PI name, institution, intended use."
+    },
+    {
+      "action": "eRA Commons institutional registration check",
+      "status": "DONE",
+      "description": "Confirmed: institution must be registered in eRA Commons before DAR submission. Registration is institution-level (not PI-level) \u2014 requires SO action."
+    }
+  ],
+  "human_only_blockers": [
+    {
+      "blocker": "CTEP pre-notification email",
+      "action_required": "PI emails NCICTEPDAR@mail.nih.gov BEFORE submitting DAR. Must receive approval response. Upload approval email as ctep_notification_attachment.",
+      "assignee": "Fahad Kiani (PI)",
+      "estimated_turnaround": "5-10 business days"
+    },
+    {
+      "blocker": "research_use_statement authorship",
+      "action_required": "PI-authored scientific narrative (max 2000 chars). Cannot be machine-generated \u2014 must reflect PI's specific research intent.",
+      "assignee": "Fahad Kiani (PI)"
+    },
+    {
+      "blocker": "non_technical_summary authorship",
+      "action_required": "Public-facing summary (max 1100 chars). PI-authored.",
+      "assignee": "Fahad Kiani (PI)"
+    },
+    {
+      "blocker": "SO cosignature",
+      "action_required": "Signing Official at PI's institution must cosign the DAR. Requires institutional coordination.",
+      "assignee": "PI's institution SO"
+    },
+    {
+      "blocker": "IRB approval documentation",
+      "action_required": "IRB approval or exemption letter for use of phs003428 data. Must be uploaded.",
+      "assignee": "PI's institution IRB"
+    }
+  ],
+  "no_further_automation_possible": {
+    "confirmed": true,
+    "reason": "All remaining steps require human authorship (research_use_statement, non_technical_summary), institutional signatures (SO, IRB), or government email exchange (CTEP pre-notification). No additional DAR fields can be pre-populated by machine without PI-specific research intent and institutional credentials.",
+    "template_expansion_possible": false,
+    "additional_prefilled_fields_possible": false,
+    "additional_dar_components_automatable": false
+  }
+}

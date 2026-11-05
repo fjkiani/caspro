@@ -1,0 +1,12 @@
+{
+  "method": "Segmented-CN breakpoint detection (QDNAseq hg19 30kb bins, ~0.1x sWGS). Breakpoint = segmented relative-CN level shift >= 0.1 between adjacent bins.",
+  "signature_definitions": {
+    "chromothripsis_like_focal_catastrophe": ">=50 net-gained BPs, >=40% on one chromosome, >=3 oscillating CN levels there (focal, clustered, oscillating)",
+    "dispersed_stochastic_CIN": ">=50 net-gained BPs spread across >=8 chromosomes, <30% on any one",
+    "intermediate_rearrangement": ">=20 net-gained BPs",
+    "modest_gain": ">0 net-gained BPs",
+    "no_net_gain_or_simplification": "<=0"
+  },
+  "honest_ceiling": "sWGS/QDNAseq resolves LARGE CNA breakpoints only. This architecture readout is DESCRIPTIVE/hypothesis-generating; it cannot prove single-catastrophe chromothripsis vs progressive rearrangement (needs WGS SV/junction resolution). 'chromothripsis_like' is a pattern label, not a diagnosis.",
+  "bp_threshold_relative_cn": 0.1
+}

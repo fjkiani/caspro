@@ -1,0 +1,245 @@
+{
+  "caslib": "Colorec_Allianc_1994_201",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CEA"
+  ],
+  "indication": "colorectal",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 1,
+  "n_tabular_files": 1,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "d3d8b88a6461fd8d1f68665367c9cb228c56239ad6531c1b99f39bca38356152",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "ANON_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "surgeon_grp",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "arm",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SEX",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "abd_adh",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "bow_adh",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "surgtime",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "los",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "daysnarc",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "compall",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "dfs_stat",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "dfs_time",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "dfs_yrs",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "localonly",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "FU_STAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "fu_time",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "fu_yrs",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pg_stat",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pg_time",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pg_yrs",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pgsite",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "stage",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "convert",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "any_adh",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "tsgrp",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "diffgrp",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "complica",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "converte",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "asa",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pri_tum",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "factorb",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "diffdegr",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "localext",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "exclu",
+          "type": "varchar"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [
+          "arm"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 871,
+      "path": "master.csv",
+      "size": 88525,
+      "status": "OK"
+    }
+  ]
+}

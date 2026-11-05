@@ -1,0 +1,387 @@
+{
+  "caslib": "Prostat_Researc_2016_167",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "PSA"
+  ],
+  "indication": "prostate",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 9,
+  "n_tabular_files": 9,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "516ca853f2e1fc028835d4a8be8e27c2f4a06fdf3cb85000c20d3bb0fd6e594f",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "name",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "date",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "size",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "date"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 5235,
+      "path": "dataFiles_996/input celgene09.csv",
+      "size": 67640,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "name",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "date",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "size",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "date"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 332,
+      "path": "dataFiles_996/input centoco06.csv",
+      "size": 4108,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "name",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "date",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "size",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "date"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 740,
+      "path": "dataFiles_996/input cougar06.csv",
+      "size": 9818,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "name",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "date",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "size",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "date"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2560,
+      "path": "dataFiles_996/input novacea06.csv",
+      "size": 43123,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "name",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "date",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "size",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "date"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1569,
+      "path": "dataFiles_996/input pfizer08.csv",
+      "size": 19394,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "name",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "date",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "size",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "date"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1441,
+      "path": "dataFiles_996/input sanfi00.csv",
+      "size": 19142,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "name",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "date",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "size",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "date"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2387,
+      "path": "dataFiles_996/input sanofi79.csv",
+      "size": 46719,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "name",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "date",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "size",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "date"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1947,
+      "path": "dataFiles_996/inputS83OFF.csv",
+      "size": 42889,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "name",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "date",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "size",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "date"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 5892,
+      "path": "dataFiles_996/inputS83ON.csv",
+      "size": 115414,
+      "status": "OK"
+    }
+  ]
+}

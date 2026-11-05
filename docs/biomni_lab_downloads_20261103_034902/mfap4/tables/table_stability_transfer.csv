@@ -1,0 +1,9 @@
+metric,MFAP4,STROMAL_CAGE
+cross_cohort_mean_AUROC,0.67,0.664
+cross_cohort_SD_AUROC,0.11,0.046
+cross_cohort_min_AUROC,0.529,0.629
+cross_cohort_max_AUROC,0.797,0.729
+LOCO_transfer_mean_AUROC,0.67,0.651
+LOCO_GSE63885,0.684,0.628
+LOCO_GSE30161,0.529,0.585
+LOCO_GSE51373,0.797,0.74

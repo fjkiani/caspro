@@ -1,0 +1,1633 @@
+{
+  "meta": {
+    "file_id": "crispro_master_pipeline",
+    "file_version": "v1.0",
+    "generated_date": "2026-06-30",
+    "generated_by": "CrisPRO — Brenus Pharma Engagement",
+    "admissibility": "external_safe_except_where_noted",
+    "governance_status": {
+      "formula": "PATH_A_LOCKED",
+      "formula_signed": "2026-04-28",
+      "remediation": "8D_remediation_approved_2026-04-28",
+      "blocking_items": [
+        {
+          "id": "DL-07",
+          "status": "QUARANTINED",
+          "description": "DDR 0.983 figure — publication-blocking"
+        },
+        {
+          "id": "PC-02",
+          "status": "PERMANENTLY_DOWNGRADED",
+          "description": "retroactive_prediction_run.py delta reproduction failure"
+        },
+        {
+          "id": "SC-001",
+          "status": "ACTIVE_CONFLICT",
+          "description": "HT29 BRAF V600E — blocks L4 CLEAN"
+        }
+      ]
+    },
+    "total_programs": 7,
+    "total_trials_decoded": 42,
+    "total_dataset_analyses": 3,
+    "active_engagements": 2,
+    "note": "GBM EscapeMap program (Program 7) is internal_only. Governance section is internal_only. All other sections are external_safe."
+  },
+  "platform": {
+    "name": "CrisPRO",
+    "full_name": "CrisPRO — AI-Driven Oncology Trial Intelligence Platform",
+    "tagline": "Metastasis-interception AI — decoding the 8 steps of cancer spread",
+    "mission": "Identify the patient populations and biological conditions under which oncology trials succeed or fail — before they cost $300M.",
+    "core_system": {
+      "name": "Two-Layer Drug Failure Prediction System",
+      "description": "CrisPRO evaluates every oncology program across two independent failure axes. A trial can fail at Layer 1 (wrong target), Layer 2 (wrong patients), or both. Most expensive failures are Layer 2 — the target is real, but the enrolled population cannot respond.",
+      "layer_1": {
+        "name": "Target Biology (Target-Lock Score)",
+        "question": "Is this gene a real driver of the cancer step being targeted?",
+        "threshold": "Target-Lock ≥ 0.35 = genuine driver",
+        "method": "Multi-modal evidence synthesis: DepMap essentiality, in vivo CRISPR screens, patient expression data, mechanistic literature",
+        "validated_on": [
+          "CEACAM5 (CARMEN-LC03)",
+          "ATR (ceralasertib/LATIFY)",
+          "ZEB1 (OV EscapeMap)"
+        ]
+      },
+      "layer_2": {
+        "name": "Patient Selection (Mechanism Fit)",
+        "question": "Are the right patients being enrolled? Are their genomic and molecular profiles matched to the trial's mechanism of action?",
+        "method": "CrisPRO PATH A formula: fit = clip((p·t) / ‖t‖₂, 0, 1) — normalized dot-product of patient vector p and trial vector t, clipped to [0,1]",
+        "formula": "fit = clip((p·t) / ‖t‖₂, 0, 1)",
+        "formula_status": "PATH A — LOCKED 2026-04-28",
+        "axes": [
+          "ddr",
+          "mapk",
+          "pi3k",
+          "vegf",
+          "her2",
+          "io",
+          "efflux",
+          "rss"
+        ],
+        "validated_on": [
+          "LATIFY (ceralasertib + durvalumab, NCT05450692)",
+          "CARMEN-LC03 (tusamitamab ravtansine, NCT04154956)",
+          "BreAK CRC-001 (STC-1010, NCT06934538)"
+        ]
+      }
+    },
+    "failure_framework": {
+      "name": "8D Failure Vector Framework",
+      "description": "Every decoded trial is classified across 8 failure domains. The primary domain (highest weight) determines the root cause of failure. Secondary domains identify compounding factors.",
+      "domains": [
+        {
+          "id": "D1",
+          "name": "Biology",
+          "description": "Target is not a genuine driver in the enrolled cancer type or stage. Gene is expressed but not functionally essential."
+        },
+        {
+          "id": "D2",
+          "name": "Selection",
+          "description": "Patient population too broad — responder subgroup exists but is diluted by non-responders. Biomarker gate missing or set at wrong threshold."
+        },
+        {
+          "id": "D3",
+          "name": "Architecture",
+          "description": "Trial design cannot detect the signal — single-arm, wrong endpoint, insufficient power, or missing stratification variable."
+        },
+        {
+          "id": "D4",
+          "name": "Timing",
+          "description": "Drug administered at wrong disease stage — too early (target not yet active) or too late (resistance already established)."
+        },
+        {
+          "id": "D5",
+          "name": "Combination",
+          "description": "Combination partner is antagonistic, redundant, or creates pharmacodynamic interference."
+        },
+        {
+          "id": "D6",
+          "name": "Resistance",
+          "description": "Pre-existing or rapidly acquired resistance mechanism bypasses the targeted pathway."
+        },
+        {
+          "id": "D7",
+          "name": "Translational",
+          "description": "Preclinical-to-clinical translation failure — archived tissue, expression heterogeneity, or species-specific biology."
+        },
+        {
+          "id": "D8",
+          "name": "Systemic",
+          "description": "Safety signal, regulatory hold, or systemic toxicity terminates the program before efficacy can be assessed."
+        }
+      ]
+    },
+    "scoring_engine": {
+      "name": "LATIFY Scoring Engine",
+      "formula": "fit = clip((p·t) / ‖t‖₂, 0, 1)",
+      "formula_path": "PATH A",
+      "formula_locked": "2026-04-28",
+      "axes_count": 8,
+      "axes": [
+        "ddr",
+        "mapk",
+        "pi3k",
+        "vegf",
+        "her2",
+        "io",
+        "efflux",
+        "rss"
+      ],
+      "output_range": "[0, 1]",
+      "output_labels": {
+        "0.0_0.4": "LOW alignment — high failure risk",
+        "0.4_0.6": "MODERATE alignment — proceed with caution",
+        "0.6_0.8": "MODERATE-HIGH alignment — favorable",
+        "0.8_1.0": "HIGH alignment — strong fit"
+      },
+      "governance": {
+        "PATH_B": "PROHIBITED",
+        "DL_07": "QUARANTINED — DDR 0.983 figure publication-blocking",
+        "PC_02": "PERMANENTLY_DOWNGRADED — retroactive_prediction_run.py",
+        "admissibility": "internal_only"
+      }
+    },
+    "grounding_register": {
+      "rows": 38,
+      "description": "38-row evidence classification register tracking every quantitative claim in the CrisPRO platform against its primary source. Each row carries a VERIFIED / PROVISIONAL / HYPOTHESIS label.",
+      "admissibility": "internal_only"
+    },
+    "capability_map": {
+      "capabilities": 11,
+      "tiers": 4,
+      "admissibility": "internal_only"
+    },
+    "validated_predictions": {
+      "retroactive_validation": "9 FDA-approved genes validated retroactively in predictions_2024_retroactive.json",
+      "auroc": "0.689 confirmed in MSK-MET (N=25,775)",
+      "aacr_2026_abstracts": 4,
+      "awards": [
+        "2nd place UC Berkeley AgentX Entrepreneurship Track",
+        "$3M Google.org GIC application filed 2026-05-01"
+      ]
+    }
+  },
+  "programs": [
+    {
+      "program_id": "ATR_DDR",
+      "program_name": "ATR/DDR Inhibitor Failure Corpus",
+      "program_number": 1,
+      "trial_count": 5,
+      "glb_set": true,
+      "admissibility": "external_safe",
+      "asset_version": "v1",
+      "asset_date": "2026-06-18",
+      "headline": "5-trial ATR/DDR failure corpus with decoded selection failure modes — identifies the biomarker gate that all 3 completed trials missed and the responder subpopulations that existed within each failure.",
+      "indication_focus": "Ovarian cancer (3 trials), NSCLC (1 trial), mixed solid tumors (1 trial) — ATR inhibitors and WEE1 inhibitors in DDR-deficient populations",
+      "ip_value": "GLB set — 6-trial IP valuation graveyard corpus. ATR/DDR contributes 4 of 6 GLB trials. Estimated decoded trial value: $1.95B in failed program investment.",
+      "key_findings": [
+        {
+          "finding_id": "ATR-F1",
+          "title": "RS-High is the ATR responder gate",
+          "description": "Berzosertib (M6620) ORR 40% in RS-High vs 5% in RS-Low. Responders existed within the failed ITT population — the trial failed because RS-High patients were not pre-selected.",
+          "source": "Yap et al. Cancer Discov 2020 (NCT02595892)",
+          "verified": true
+        },
+        {
+          "finding_id": "ATR-F2",
+          "title": "PTEN-loss is the WEE1i resistance marker",
+          "description": "Adavosertib (AZD1775) ORR 0% in PTEN-loss vs 23% in PTEN-intact; PFS HR 1.82 (PTEN-loss) vs 0.55 (PTEN-intact). PTEN status is a mandatory exclusion criterion for WEE1i programs.",
+          "source": "Lheureux et al. Clin Cancer Res 2021 (NCT03579316)",
+          "verified": true
+        },
+        {
+          "finding_id": "ATR-F3",
+          "title": "PARPi-naive status is the ATRi+PARPi responder gate",
+          "description": "CAPRI: PARPi-naive ORR 36% vs post-PARPi ORR 4%; PFS HR 0.42 (PARPi-naive) vs 1.31 (post-PARPi). Prior PARPi exposure is a mandatory stratification variable for ATRi+PARPi combinations.",
+          "source": "Yap et al. JCO 2023 (NCT03462342)",
+          "verified": true
+        },
+        {
+          "finding_id": "ATR-F4",
+          "title": "LATIFY (ceralasertib + durvalumab) — QUARANTINED",
+          "description": "Delta value conflict between patent filing and computation receipt. Vector version unresolved. Do not cite LATIFY delta in external outputs.",
+          "source": "NCT05450692",
+          "verified": false,
+          "governance": "QUARANTINED — CT-03 blocker"
+        }
+      ],
+      "transfer_lessons": [
+        "Any ATR inhibitor program must pre-specify RS-High enrollment criterion",
+        "Any WEE1 inhibitor program must exclude PTEN-loss patients",
+        "ATRi + PARPi combinations must stratify by prior PARPi exposure",
+        "ITT enrollment in DDR-deficient populations dilutes the responder signal by 5–8x"
+      ],
+      "trials": [
+        {
+          "nct_id": "NCT02595892",
+          "trial_name": "Berzosertib (M6620) Phase I/II",
+          "drug": "Berzosertib (M6620, ATRi) + gemcitabine",
+          "sponsor": "Merck KGaA / EMD Serono",
+          "indication": "Ovarian cancer",
+          "phase": "I/II",
+          "status": "COMPLETED",
+          "glb_set": true,
+          "primary_result": "RS-High ORR 40% vs RS-Low ORR 5%",
+          "primary_met": "SUBGROUP — ITT not powered for efficacy",
+          "failure_mode": "D2 — Selection: RS-High patients not pre-selected; ITT diluted by non-responders",
+          "key_biomarker": "Replication Stress (RS) score — High vs Low",
+          "delta": 0.138,
+          "delta_status": "DOCUMENTED_NOT_REPRODUCED",
+          "published_source": "Yap et al. Cancer Discov 2020"
+        },
+        {
+          "nct_id": "NCT03579316",
+          "trial_name": "Adavosertib (AZD1775) Phase II",
+          "drug": "Adavosertib (AZD1775, WEE1i) + gemcitabine",
+          "sponsor": "AstraZeneca",
+          "indication": "Ovarian cancer",
+          "phase": "II",
+          "status": "COMPLETED",
+          "glb_set": true,
+          "primary_result": "PTEN-intact ORR 23% vs PTEN-loss ORR 0%; PFS HR 0.55 (PTEN-intact) vs 1.82 (PTEN-loss)",
+          "primary_met": "SUBGROUP — PTEN-intact only",
+          "failure_mode": "D2 — Selection: PTEN-loss patients included; PTEN-loss is a resistance marker for WEE1i",
+          "key_biomarker": "PTEN status (intact vs loss)",
+          "delta": 0.307,
+          "delta_status": "DOCUMENTED_NOT_REPRODUCED",
+          "published_source": "Lheureux et al. Clin Cancer Res 2021"
+        },
+        {
+          "nct_id": "NCT03462342",
+          "trial_name": "CAPRI Phase II",
+          "drug": "Ceralasertib (ATRi) + olaparib (PARPi)",
+          "sponsor": "AstraZeneca",
+          "indication": "Ovarian cancer",
+          "phase": "II",
+          "status": "COMPLETED",
+          "glb_set": true,
+          "primary_result": "PARPi-naive ORR 36% vs post-PARPi ORR 4%; PFS HR 0.42 (PARPi-naive) vs 1.31 (post-PARPi)",
+          "primary_met": "SUBGROUP — PARPi-naive only",
+          "failure_mode": "D2 — Selection: prior PARPi exposure creates resistance; PARPi-naive status is mandatory stratification",
+          "key_biomarker": "Prior PARPi exposure (naive vs exposed)",
+          "delta": 0.108,
+          "delta_status": "DOCUMENTED_NOT_REPRODUCED",
+          "published_source": "Yap et al. JCO 2023"
+        },
+        {
+          "nct_id": "NCT05450692",
+          "trial_name": "LATIFY",
+          "drug": "Ceralasertib (ATRi) + durvalumab (anti-PD-L1)",
+          "sponsor": "AstraZeneca",
+          "indication": "NSCLC",
+          "phase": "II",
+          "status": "COMPLETED",
+          "glb_set": true,
+          "primary_result": "QUARANTINED — delta version conflict unresolved",
+          "primary_met": "QUARANTINED",
+          "failure_mode": "QUARANTINED — do not cite",
+          "key_biomarker": "QUARANTINED",
+          "delta": "QUARANTINED",
+          "delta_status": "QUARANTINED — CT-03 blocker: patent delta +0.366 vs receipt delta +0.2641",
+          "published_source": "NCT05450692",
+          "governance": "QUARANTINED — do not use in external outputs"
+        },
+        {
+          "nct_id": "NCT02264678",
+          "trial_name": "Ceralasertib + Olaparib Phase I/Ib",
+          "drug": "Ceralasertib (ATRi) + olaparib (PARPi)",
+          "sponsor": "AstraZeneca",
+          "indication": "Mixed solid tumors",
+          "phase": "I/Ib",
+          "status": "COMPLETED",
+          "glb_set": true,
+          "primary_result": "MISSING — Patient B vector not defined; delta cannot be computed",
+          "primary_met": "MISSING",
+          "failure_mode": "MISSING — CT-04 blocker",
+          "key_biomarker": "MISSING",
+          "delta": "MISSING",
+          "delta_status": "MISSING — CT-04 blocker",
+          "published_source": "NCT02264678"
+        }
+      ]
+    },
+    {
+      "program_id": "CEACAM5",
+      "program_name": "CEACAM5-Targeted Therapy Failure Corpus",
+      "program_number": 2,
+      "trial_count": 5,
+      "glb_set": false,
+      "admissibility": "external_safe",
+      "asset_version": "v1",
+      "asset_date": "2026-06-18",
+      "headline": "5-trial CEACAM5 failure corpus spanning ADC (DM4, SN-38, Topo1i), bispecific T-cell engager, and EU-hold safety signal — with IHC threshold analysis, CRC-specific transfer lessons, and the definitive proof that CEACAM5 IHC is prognostic not predictive.",
+      "indication_focus": "2L+ NSCLC (1 Phase III); 3L+ mCRC (3 trials); solid tumors including CRC (1 Phase I on EU hold)",
+      "ip_value": "Sanofi pitch anchor — CEACAM5 two-gate patient selection framework (IHC ≥80% + IO permissiveness) applied to SAR445953 and SAR445877. Committed to Brenus repo SHA 993aecd.",
+      "key_findings": [
+        {
+          "finding_id": "CEACAM5-F1",
+          "title": "CEACAM5 IHC ≥50% threshold is prognostic, not predictive",
+          "description": "CARMEN-LC03 (Phase III, N=389): PFS HR 1.14 (P=0.82) in CEACAM5 IHC ≥50% population. The threshold was set too low — ≥50% captures patients who express CEACAM5 but cannot respond to ADC therapy. CEACAM5 IHC is a marker of tumor identity, not drug sensitivity.",
+          "source": "Besse et al. IASLC 2024 WCLC; Sanofi press release 2023-12-21",
+          "verified": true
+        },
+        {
+          "finding_id": "CEACAM5-F2",
+          "title": "CEACAM5 IHC ≥80% shows directional OS benefit (post-hoc, underpowered)",
+          "description": "CARMEN-LC03 post-hoc: CEACAM5 ≥80% OS HR=0.71 (CI not published). CEACAM5 50–79% PFS HR=1.38 (numerically harmful). The ≥80% threshold is the candidate predictive gate — but this is exploratory, underpowered, and CI not published. Must be labeled as trend, not established.",
+          "source": "Besse et al. IASLC 2024 WCLC",
+          "verified": true,
+          "caveat": "Post-hoc, underpowered, CI not published. Label as trend only."
+        },
+        {
+          "finding_id": "CEACAM5-F3",
+          "title": "CEACAM5 IHC is not predictive at any threshold in CRC (PROCEADE-CRC-01)",
+          "description": "PROCEADE-CRC-01 (N=40, 3L+ mCRC): ORR 7.5% confirmed; CEACAM5 IHC Spearman rho = −0.14 (P=0.4) — no correlation between IHC expression and response. The IHC threshold failure pattern from NSCLC does not resolve in CRC.",
+          "source": "Nature Medicine 2025 (PMC12720031)",
+          "verified": true
+        },
+        {
+          "finding_id": "CEACAM5-F4",
+          "title": "cCEA ≥100 as a liquid biopsy proxy for CEACAM5 IHC ≥80%",
+          "description": "Gazzah et al. (PMC12720031): cCEA ≥100 ORR 41.7% (10/24) vs 8.1% (3/37), P=0.003 in CEACAM5 high-expressing NSCLC. IHC ↔ cCEA Spearman ρ=0.43 (n=92). cCEA ↔ cCEACAM5 ρ=0.99 (n=87). cCEA ≥100 prevalence in HE patients: 40.3% (25/62). NOTE: All data from NSCLC — application to CRC is by inference.",
+          "source": "Gazzah et al. PMC12720031 (NSCLC cohort)",
+          "verified": true,
+          "caveat": "NSCLC data only. CRC application is by inference. Must be labeled on every slide."
+        },
+        {
+          "finding_id": "CEACAM5-F5",
+          "title": "SGN-CEACAM5C EU clinical hold — VKG linker + Topo1i toxicity signal",
+          "description": "NCT06131840 (tusamitamab sonditecan, SGN-CEACAM5C): EU clinical hold in France, Spain, Sweden, Netherlands. Shared VKG linker + Topo1i chemistry with discontinued PF-08046044 (terminated for toxicity). No efficacy data published. Competitive risk for the CEACAM5 ADC field.",
+          "source": "NCT06131840 registry; EU regulatory communications",
+          "verified": true
+        },
+        {
+          "finding_id": "CEACAM5-F6",
+          "title": "CEACAM5 CRC prevalence: 98.7% any-positivity; MSS CRC has HIGHER expression than MSI-H",
+          "description": "Jansen et al. Cancers 2024 (DOI:10.3390/cancers16234052): 98.7% CEACAM5 any-positivity in colorectal adenocarcinomas (pan-tumor TMA). MMR deficiency → reduced CEA (P<0.0001) — MSS CRC has HIGHER CEACAM5 expression than MSI-H CRC. CRLM CEACAM5 positivity: 79% (Warmerdam et al. EJNMMI Res 2025).",
+          "source": "Jansen et al. Cancers 2024; Warmerdam et al. EJNMMI Res 2025",
+          "verified": true
+        }
+      ],
+      "transfer_lessons": [
+        "CEACAM5 IHC ≥80% is the candidate predictive threshold — ≥50% is insufficient",
+        "cCEA ≥100 ng/mL is a liquid biopsy proxy for IHC ≥80% (NSCLC data; CRC inference only)",
+        "IO permissiveness (pTMB, TME immune infiltrate) must be the second gate — CEACAM5 expression alone is insufficient",
+        "SN-38 payload (labetuzumab govitecan) fails in post-irinotecan patients — D1 biology failure",
+        "On-target/off-tumor GI toxicity is a class risk for CEACAM5 bispecifics (cibisatamab: diarrhea 55.8%, colitis 13.5%)",
+        "EU clinical hold on VKG linker + Topo1i chemistry creates regulatory risk for SGN-CEACAM5C class"
+      ],
+      "sanofi_pitch_anchor": {
+        "pitch_submitted": true,
+        "pitch_date": "2026-05-29",
+        "pitch_deadline": "2026-07-01 (finalist pitch event)",
+        "repo_sha": "4de4297",
+        "deliverables": [
+          "CrisPRO_Sanofi_PitchDeck_v1.pptx (12 slides, 290 KB)",
+          "crispro_sanofi_pitch_anchor_v1.mdc (415 lines, governance PASS)",
+          "escape_map_mss_crc_archetypes_v1.png (10-archetype ESCAPE map)"
+        ],
+        "sanofi_assets_decoded": [
+          {
+            "asset": "SAR445953",
+            "description": "CEACAM5-Topo1 ADC (NCT06131840)",
+            "crispro_value": "Two-gate patient selection: CEACAM5 IHC ≥80% + IO permissiveness. EU hold risk assessment."
+          },
+          {
+            "asset": "SAR445877",
+            "description": "PD1×IL-15 fusion protein (NCT07500298) — Sanofi/MD Anderson, 1L MSS mCRC, mFOLFOX6+bev backbone",
+            "crispro_value": "Identical backbone to BreAK CRC-001. CrisPRO can decode patient selection problem before Sanofi's trial reads out."
+          },
+          {
+            "asset": "CARMEN-LC03",
+            "description": "Tusamitamab ravtansine Phase III (NCT04154956) — failed 2023",
+            "crispro_value": "Retrospective decode: IHC threshold failure (≥50% too low), archived tissue limitation, D2 selection failure."
+          }
+        ]
+      },
+      "trials": [
+        {
+          "nct_id": "NCT04154956",
+          "trial_name": "CARMEN-LC03",
+          "drug": "Tusamitamab ravtansine (SAR408701) — anti-CEACAM5 ADC, DM4 payload",
+          "sponsor": "Sanofi",
+          "indication": "2L+ NSCLC",
+          "phase": "III",
+          "status": "FAILED December 2023",
+          "glb_set": true,
+          "primary_result": "PFS HR 1.14 (95% CI 0.86–1.51; P=0.8204) — primary endpoint not met. CEACAM5 50–79% PFS HR 1.38 (numerically harmful). CEACAM5 ≥80% OS HR 0.71 (post-hoc, CI not published).",
+          "primary_met": "NO",
+          "failure_mode": "D2 — Selection: IHC ≥50% threshold too low; archived tissue limitation (D7)",
+          "key_biomarker": "CEACAM5 IHC — ≥50% enrolled; ≥80% shows directional benefit (post-hoc)",
+          "published_source": "Besse et al. IASLC 2024 WCLC; Sanofi press release 2023-12-21"
+        },
+        {
+          "nct_id": "NCT05464030",
+          "trial_name": "PROCEADE-CRC-01",
+          "drug": "Precemtabart tocentecan (M9140) — anti-CEACAM5 ADC, exatecan payload",
+          "sponsor": "Immunomedics / Gilead",
+          "indication": "3L+ mCRC",
+          "phase": "I (Phase III planned)",
+          "status": "ACTIVE",
+          "glb_set": false,
+          "primary_result": "Confirmed ORR 7.5% (3/40); mPFS 5.9 months (95% CI 4.6–7.2). CEACAM5 IHC not predictive: Spearman rho = −0.14 (P=0.4). MTD 2.8 mg/kg Q3W.",
+          "primary_met": "PARTIAL — ORR 7.5% in heavily pre-treated population",
+          "failure_mode": "D2 — Selection: IHC not predictive at any threshold tested in CRC",
+          "key_biomarker": "CEACAM5 IHC — not predictive (rho = −0.14, P=0.4)",
+          "published_source": "Nature Medicine 2025 (PMC12720031)"
+        },
+        {
+          "nct_id": "NCT01270698",
+          "trial_name": "Labetuzumab govitecan (IMMU-130)",
+          "drug": "Anti-CEACAM5 ADC, SN-38 payload",
+          "sponsor": "Immunomedics",
+          "indication": "3L+ mCRC",
+          "phase": "I/II",
+          "status": "COMPLETED",
+          "glb_set": false,
+          "primary_result": "ORR 1.2% (1/86 confirmed PR); mPFS 3.6 months; mOS 6.9 months",
+          "primary_met": "NO",
+          "failure_mode": "D1 — Biology: SN-38 payload = same mechanism as prior irinotecan therapy (topoisomerase I inhibition). Patients pre-treated with irinotecan cannot respond to SN-38 ADC.",
+          "key_biomarker": "Prior irinotecan exposure (mandatory exclusion for SN-38 ADC)",
+          "published_source": "Goldenberg et al. JCO 2020"
+        },
+        {
+          "nct_id": "NCT04826003",
+          "trial_name": "Cibisatamab + FAP-4-1BBL (BP42675)",
+          "drug": "CEA-TCB bispecific T-cell engager + FAP-targeted 4-1BB agonist",
+          "sponsor": "Roche/Genentech",
+          "indication": "3L+ MSS mCRC",
+          "phase": "Ib",
+          "status": "COMPLETED",
+          "glb_set": false,
+          "primary_result": "Confirmed ORR 13.5% (7/52; 95% CI 6–26); DCR 50%; confirmed CD8+ T-cell infiltration. On-target/off-tumor GI toxicity: diarrhea 55.8%, colitis 13.5%, fatal CMV colitis (1 patient).",
+          "primary_met": "PARTIAL — ORR 13.5% with significant toxicity",
+          "failure_mode": "D1 — Biology: on-target/off-tumor GI toxicity limits dose escalation and therapeutic window",
+          "key_biomarker": "CEACAM5 expression (T-cell engager target); FAP expression (4-1BB agonist target)",
+          "published_source": "Nature Medicine 2026"
+        },
+        {
+          "nct_id": "NCT06131840",
+          "trial_name": "Tusamitamab sonditecan (SGN-CEACAM5C)",
+          "drug": "Anti-CEACAM5 ADC, Topo1i payload, VKG linker",
+          "sponsor": "Seagen / Pfizer",
+          "indication": "Advanced solid tumors including CRC",
+          "phase": "I",
+          "status": "EU CLINICAL HOLD 2026 — France, Spain, Sweden, Netherlands",
+          "glb_set": false,
+          "primary_result": "No efficacy data published — EU hold before efficacy readout",
+          "primary_met": "N/A — EU hold",
+          "failure_mode": "D8 — Systemic: EU clinical hold. Shared VKG linker + Topo1i chemistry with discontinued PF-08046044 (terminated for toxicity).",
+          "key_biomarker": "CEACAM5 expression",
+          "published_source": "NCT06131840 registry; EU regulatory communications"
+        }
+      ]
+    },
+    {
+      "program_id": "IO_CORE",
+      "program_name": "MSS CRC Immunotherapy Core Failure Corpus",
+      "program_number": 3,
+      "trial_count": 7,
+      "glb_set": false,
+      "admissibility": "external_safe",
+      "asset_version": "v1",
+      "asset_date": "2026-06-18",
+      "headline": "7-trial MSS CRC IO failure corpus — the definitive evidence base for why immunotherapy fails in MSS colorectal cancer and the 3 conditions under which it doesn't: non-liver-metastatic disease, pTMB ≥28, and immune-inflamed tumor microenvironment.",
+      "indication_focus": "1L–refractory MSS/pMMR metastatic CRC across 7 trials spanning vaccine, CPI, MEKi+CPI, and combination IO strategies",
+      "ip_value": "Primary comparator corpus for BreAK CRC-001 (Brenus Pharma engagement). Defines the 3 conditions for IO benefit in MSS CRC and the 4 design gaps in BreAK CRC-001.",
+      "three_conditions_for_io_benefit": [
+        {
+          "condition": "Non-liver-metastatic disease",
+          "evidence": "CO.26 liver-met Pint=0.02; REGONIVO US 0/5 liver-met responders vs 22% NLM ORR; RIN NLM ORR ~40% vs liver-met ORR ~5%",
+          "clinical_implication": "Liver metastasis is a mandatory stratification variable. Liver-metastatic patients should be analyzed separately or excluded from IO enrichment strategies."
+        },
+        {
+          "condition": "pTMB ≥28 mut/Mb",
+          "evidence": "CO.26 pTMB ≥28 OS HR=0.34 (90% CI 0.18–0.63, p=0.022) vs ITT OS HR=0.73. pTMB ↔ tissue TMB Spearman r=0.13 (P=0.20) — plasma TMB is not a proxy for tissue TMB.",
+          "clinical_implication": "Prospective pTMB measurement at enrollment is the strongest available IO enrichment strategy in MSS CRC. Tissue TMB is not a substitute."
+        },
+        {
+          "condition": "Immune-inflamed tumor microenvironment",
+          "evidence": "AtezoTRIBE Immunoscore-IC high subgroup PFS HR ~0.50 (exploratory); MEDITREME CD8-high + TGF-β-low subgroup better outcomes; GRANITE ctDNA-low subgroup HR 0.50 (exploratory)",
+          "clinical_implication": "Immunoscore-IC, CD8+ TIL density, or ctDNA-low status are candidate prospective enrollment gates. None are validated in a randomized Phase III."
+        }
+      ],
+      "key_findings": [
+        {
+          "finding_id": "IO-F1",
+          "title": "Pharmacodynamic T-cell responses do not translate to clinical benefit in MSS CRC",
+          "description": "GVAX (ORR 0% despite confirmed T-cell responses) and QUILT-2.004 (HR 1.061 despite CEA-specific T cells generated) both demonstrate that peripheral immune activation does not equal intratumoral effector function in MSS CRC.",
+          "source": "Yarchoan et al. Cancer Med 2019; Redman et al. Oncologist 2022",
+          "verified": true
+        },
+        {
+          "finding_id": "IO-F2",
+          "title": "MEK inhibition does not convert MSS CRC to immunogenic (Phase III confirmed)",
+          "description": "IMblaze370 (Phase III, N=363): OS no significant difference across atezolizumab + cobimetinib vs atezolizumab vs regorafenib. MEK inhibition definitively fails to overcome MSS CRC immune exclusion.",
+          "source": "Eng et al. Lancet Oncol 2019",
+          "verified": true
+        },
+        {
+          "finding_id": "IO-F3",
+          "title": "pTMB ≥28 is the strongest IO enrichment signal in MSS CRC from a randomized trial",
+          "description": "CO.26 pTMB ≥28 OS HR=0.34 (90% CI 0.18–0.63, p=0.022). pTMB median 15.3 mut/Mb (IQR 9.5–26.2). Tissue TMB ≥10 OS HR=0.71 (p=0.47) — NOT predictive. pTMB ↔ tissue TMB Spearman r=0.13 (P=0.20).",
+          "source": "Loree et al. Clin Cancer Res 2024 (PMID 38727700); Chen et al. JAMA Oncol 2020",
+          "verified": true
+        },
+        {
+          "finding_id": "IO-F4",
+          "title": "Liver metastasis abolishes IO benefit — Pint=0.02 in randomized data",
+          "description": "CO.26: liver-met PFS HR=1.39 (90% CI 1.02–1.90) vs no-LM PFS HR=0.54 (90% CI 0.35–0.96); Pint=0.02. REGONIVO US: 0/5 liver-met responders vs 22% NLM ORR (5/23). RIN: NLM ORR ~40% vs liver-met ORR ~5%.",
+          "source": "Chen et al. JAMA Oncol 2020 (PMC10698621); Fakih et al. EClinicalMedicine 2023",
+          "verified": true
+        }
+      ],
+      "trials": [
+        {
+          "nct_id": "NCT03050814",
+          "core_id": "CORE-01",
+          "trial_name": "QUILT-2.004",
+          "drug": "AdCEA vaccine + avelumab + mFOLFOX6 + bevacizumab",
+          "sponsor": "ImmunGene/NantKwest",
+          "indication": "1L MSS mCRC",
+          "phase": "II",
+          "status": "TERMINATED for futility",
+          "primary_result": "PFS HR 1.061 (95% CI 0.380–2.966, p=0.91)",
+          "primary_met": "NO",
+          "failure_mode": "D1 — Biology (0.7); D2 — Selection (secondary)",
+          "key_biomarker": "None identified",
+          "published_source": "Redman et al. Oncologist 2022 (DOI: 10.1093/oncolo/oyab046)"
+        },
+        {
+          "nct_id": "NCT05141721",
+          "core_id": "CORE-02",
+          "trial_name": "GRANITE GO-010",
+          "drug": "Personalized neoantigen vaccine + nivolumab + ipilimumab + FP + bevacizumab (maintenance)",
+          "sponsor": "Gritstone bio (Chapter 11 bankruptcy Oct 2024)",
+          "indication": "1L MSS mCRC maintenance",
+          "phase": "II",
+          "status": "INTERIM — company bankrupt",
+          "primary_result": "HR 0.73 (90% CI 0.44–1.21) — CI crosses 1.0; ctDNA-low subgroup HR 0.50 (exploratory)",
+          "primary_met": "INTERIM — CI crosses 1.0",
+          "failure_mode": "D2 — Selection (0.6); D1 — Biology (secondary)",
+          "key_biomarker": "Low baseline ctDNA (exploratory)",
+          "published_source": "Hecht et al. JCO 2025 LBA13"
+        },
+        {
+          "nct_id": "NCT02981524",
+          "core_id": "CORE-03",
+          "trial_name": "GVAX + Cyclophosphamide + Pembrolizumab",
+          "drug": "Allogeneic whole-cell vaccine (GVAX) + low-dose cyclophosphamide + pembrolizumab",
+          "sponsor": "Johns Hopkins / MSD",
+          "indication": "Refractory MSS mCRC",
+          "phase": "II",
+          "status": "COMPLETED",
+          "primary_result": "ORR 0% (0/22) despite confirmed T-cell responses",
+          "primary_met": "NO",
+          "failure_mode": "D1 — Biology (0.8): pharmacodynamic dissociation — T-cell activation ≠ tumor regression in MSS CRC",
+          "key_biomarker": "None identified",
+          "published_source": "Yarchoan et al. Cancer Med 2019 (DOI: 10.1002/cam4.2763)"
+        },
+        {
+          "nct_id": "NCT02788279",
+          "core_id": "CORE-04",
+          "trial_name": "IMblaze370",
+          "drug": "Atezolizumab + cobimetinib vs atezolizumab vs regorafenib",
+          "sponsor": "Roche/Genentech",
+          "indication": "3L+ MSS mCRC",
+          "phase": "III",
+          "status": "COMPLETED",
+          "primary_result": "OS no significant difference across all 3 arms — MEK inhibition definitively fails to convert MSS CRC to immunogenic",
+          "primary_met": "NO",
+          "failure_mode": "D1 — Biology (0.9): MEK inhibition insufficient to overcome MSS CRC immune exclusion",
+          "key_biomarker": "None identified",
+          "published_source": "Eng et al. Lancet Oncol 2019 (DOI: 10.1016/s1470-2045(19)30027-0)"
+        },
+        {
+          "nct_id": "NCT03721653",
+          "core_id": "CORE-05",
+          "trial_name": "AtezoTRIBE",
+          "drug": "FOLFOXIRI + bevacizumab ± atezolizumab",
+          "sponsor": "GONO / Roche",
+          "indication": "1L mCRC",
+          "phase": "III",
+          "status": "COMPLETED",
+          "primary_result": "pMMR PFS HR 0.86 (95% CI 0.63–1.17) — NOT significant. Immunoscore-IC high subgroup HR ~0.50 (exploratory).",
+          "primary_met": "NO (pMMR)",
+          "failure_mode": "D2 — Selection (0.7): Immunoscore-IC high subgroup shows signal; unselected pMMR population dilutes it",
+          "key_biomarker": "Immunoscore-IC (exploratory)",
+          "published_source": "Antoniotti et al. Lancet Oncol 2022 (DOI: 10.1016/s1470-2045(22)00274-1)"
+        },
+        {
+          "nct_id": "NCT03202758",
+          "core_id": "CORE-06",
+          "trial_name": "MEDITREME",
+          "drug": "Durvalumab + tremelimumab + mFOLFOX6",
+          "sponsor": "AstraZeneca / GERCOR",
+          "indication": "1L MSS mCRC",
+          "phase": "II",
+          "status": "COMPLETED",
+          "primary_result": "mPFS 8.2 months; ORR 64.5% (uncontrolled — consistent with mFOLFOX6 alone). CD8-high + TGF-β-low subgroup showed better outcomes.",
+          "primary_met": "UNCONTROLLED — cannot separate IO contribution from backbone",
+          "failure_mode": "D3 — Architecture (0.8): single-arm design cannot prove IO adds value beyond mFOLFOX6",
+          "key_biomarker": "CD8+ TIL density + TGF-β expression (exploratory)",
+          "published_source": "Thibaudin et al. Nat Med 2023 (DOI: 10.1038/s41591-023-02497-z)"
+        },
+        {
+          "nct_id": "NCT02870920",
+          "core_id": "CORE-07",
+          "trial_name": "CCTG CO.26",
+          "drug": "Durvalumab + tremelimumab + BSC vs BSC",
+          "sponsor": "CCTG / AstraZeneca",
+          "indication": "Refractory MSS mCRC",
+          "phase": "II",
+          "status": "COMPLETED",
+          "glb_set": true,
+          "primary_result": "OS HR 0.73 (90% CI 0.55–0.97, p=0.07) — marginal. pTMB ≥28 OS HR=0.34 (90% CI 0.18–0.63, p=0.022). Liver-met PFS HR=1.39 vs no-LM PFS HR=0.54; Pint=0.02.",
+          "primary_met": "MARGINAL (p=0.07)",
+          "failure_mode": "D2 — Selection (0.8): pTMB ≥28 and liver-met status are the critical stratification variables; unselected ITT dilutes signal",
+          "key_biomarker": "pTMB ≥28 mut/Mb; liver metastasis status",
+          "published_source": "Chen et al. JAMA Oncol 2020 (DOI: 10.1001/jamaoncol.2020.0910); Loree et al. Clin Cancer Res 2024 (PMID 38727700)"
+        }
+      ]
+    },
+    {
+      "program_id": "IO_APPENDIX",
+      "program_name": "MSS CRC Immunotherapy Supporting Evidence Corpus",
+      "program_number": 4,
+      "trial_count": 15,
+      "glb_set": false,
+      "admissibility": "external_safe",
+      "asset_version": "v1",
+      "asset_date": "2026-06-18",
+      "headline": "15-trial supporting IO corpus covering MSI-H positive controls, liver metastasis stratification evidence, vaccine T-cell pharmacodynamic dissociation, and the ongoing Phase III landscape — providing the full boundary conditions for IO benefit in CRC.",
+      "indication_focus": "CRC across all lines and MSI status — positive controls (MSI-H), liver metastasis stratification (REGONIVO, RIN), vaccine pharmacodynamics (PolyPEPI1018, GVAX+guadecitabine, PANVAC), TGF-β/VEGF combinations (MODUL, bintrafusp alfa), and ongoing Phase III (STELLAR-303)",
+      "ip_value": "Supporting evidence for BreAK CRC-001 design gap analysis and the 3 conditions for IO benefit in MSS CRC.",
+      "trials": [
+        {
+          "appendix_id": "A-01",
+          "nct_id": "NCT02563002",
+          "trial_name": "KEYNOTE-177",
+          "drug": "Pembrolizumab vs chemotherapy",
+          "indication": "1L MSI-H mCRC",
+          "primary_result": "PFS HR 0.60; OS HR 0.74 — POSITIVE. Definitive positive control for MSI-H.",
+          "lesson": "MSI-H positive control — confirms IO works in MSI-H; establishes the MSS CRC contrast"
+        },
+        {
+          "appendix_id": "A-02",
+          "nct_id": "NCT02060188",
+          "trial_name": "CheckMate 142",
+          "drug": "Nivolumab ± ipilimumab",
+          "indication": "MSS and MSI-H mCRC",
+          "primary_result": "MSS cohort ORR 0% (n=74). MSI-H ORR 31% mono, 55% combo.",
+          "lesson": "MSS CRC ORR 0% with CPI alone — confirms the immune exclusion problem"
+        },
+        {
+          "appendix_id": "B-01",
+          "nct_id": "EPOC1603",
+          "trial_name": "REGONIVO (Japan)",
+          "drug": "Regorafenib + nivolumab",
+          "indication": "MSS mCRC (Japan)",
+          "primary_result": "CRC cohort (n=24 MSS): ORR 33%, mPFS 6.3 months. All 8 responders had NO liver metastases.",
+          "lesson": "Liver metastasis exclusion enrichment — all responders were non-liver-metastatic"
+        },
+        {
+          "appendix_id": "B-02",
+          "nct_id": "NCT04126733",
+          "trial_name": "REGONIVO Phase 2 (US)",
+          "drug": "Regorafenib + nivolumab",
+          "indication": "MSS mCRC (US)",
+          "primary_result": "ORR 7% (5/70). All 5 responders had NO liver metastases. Non-liver-met ORR 22% (5/23). Liver-met ORR 0% (0/5).",
+          "lesson": "Liver metastasis abolishes IO benefit — 0/5 liver-met responders in US validation"
+        },
+        {
+          "appendix_id": "B-03",
+          "nct_id": "NCT04362839",
+          "trial_name": "RIN (Regorafenib + Ipilimumab + Nivolumab)",
+          "drug": "Regorafenib + ipilimumab + nivolumab",
+          "indication": "MSS mCRC",
+          "primary_result": "ORR 27.6% overall; NLM cohort ORR ~40%; liver-met ORR ~5%. Median OS 20 months in NLM cohort.",
+          "lesson": "NLM enrichment strategy — NLM ORR ~40% vs liver-met ORR ~5% confirms liver metastasis as the critical stratification variable"
+        },
+        {
+          "appendix_id": "C-01",
+          "nct_id": "NCT02291289",
+          "trial_name": "MODUL Cohort 2",
+          "drug": "Atezolizumab + bevacizumab maintenance",
+          "indication": "1L pMMR mCRC maintenance",
+          "primary_result": "PFS HR 1.04 (95% CI 0.77–1.40) — no benefit. OS HR 0.91 — no benefit. All biomarker subgroups negative.",
+          "lesson": "Maintenance IO + VEGF strategy fails in unselected pMMR CRC"
+        },
+        {
+          "appendix_id": "D-01",
+          "nct_id": "NCT03374254",
+          "trial_name": "KEYNOTE-651 Cohorts B & D",
+          "drug": "Pembrolizumab + mFOLFOX6 ± bevacizumab",
+          "indication": "1L MSS mCRC",
+          "primary_result": "Cohort B ORR 23% (1L, includes chemo response). Cohort D ORR 7%. No MSS-specific IO signal identified.",
+          "lesson": "Pembro + chemo ORR reflects chemo contribution — no MSS-specific IO signal"
+        },
+        {
+          "appendix_id": "D-02",
+          "nct_id": "NCT03539822",
+          "trial_name": "CAMILLA CRC",
+          "drug": "Camrelizumab + FOLFOX",
+          "indication": "MSS mCRC",
+          "primary_result": "ORR 27.6% (8/29 evaluable). Median OS 9.1 months. Post-hoc: patients without liver metastases had better outcomes.",
+          "lesson": "Liver metastasis signal replicated in Asian cohort"
+        },
+        {
+          "appendix_id": "E-01",
+          "nct_id": "NCT03391232",
+          "trial_name": "PolyPEPI1018",
+          "drug": "Personalized peptide vaccine",
+          "indication": "Refractory mCRC",
+          "primary_result": "T-cell responses to ≥1 antigen in 100% of patients. No objective responses. Stable disease in some patients.",
+          "lesson": "Pharmacodynamic dissociation — 100% T-cell response rate, 0% ORR"
+        },
+        {
+          "appendix_id": "E-02",
+          "nct_id": "NCT02998879",
+          "trial_name": "GVAX + Guadecitabine",
+          "drug": "GVAX + guadecitabine (DNMT inhibitor)",
+          "indication": "Refractory mCRC",
+          "primary_result": "No T-cell increase; no objective responses.",
+          "lesson": "DNMT inhibition does not rescue GVAX in MSS CRC"
+        },
+        {
+          "appendix_id": "E-03",
+          "nct_id": "NCT00103142",
+          "trial_name": "PANVAC + DC vaccine",
+          "drug": "PANVAC (CEA/MUC1 poxviral vaccine) + dendritic cell vaccine",
+          "indication": "Refractory mCRC",
+          "primary_result": "No OS benefit; T-cell responses >70% of patients.",
+          "lesson": "CEA/MUC1 vaccine pharmacodynamic dissociation — T-cell responses do not translate to OS benefit"
+        },
+        {
+          "appendix_id": "E-04",
+          "nct_id": "NCT04853017",
+          "trial_name": "AMPLIFY-201",
+          "drug": "mKRAS-specific neoantigen vaccine",
+          "indication": "KRAS-mutant solid tumors including CRC",
+          "primary_result": "ctDNA clearance in 3/5 CRC patients. mKRAS-specific T-cell responses confirmed.",
+          "lesson": "ctDNA clearance as pharmacodynamic endpoint — early signal for KRAS-targeted vaccine approach"
+        },
+        {
+          "appendix_id": "E-05",
+          "nct_id": "NCT02562755",
+          "trial_name": "PexaVec + Durvalumab ± Tremelimumab",
+          "drug": "Pexastimogene devacirepvec (oncolytic vaccinia) + durvalumab ± tremelimumab",
+          "indication": "MSS mCRC",
+          "primary_result": "ORR 0% (0/21).",
+          "lesson": "Oncolytic virus + CPI fails in MSS CRC — D1 biology failure"
+        },
+        {
+          "appendix_id": "F-01",
+          "nct_id": "NCT02517398",
+          "trial_name": "Bintrafusp Alfa in CRC",
+          "drug": "Bintrafusp alfa (anti-PD-L1 + TGF-β trap)",
+          "indication": "Refractory CRC",
+          "primary_result": "ORR 0% (n=30).",
+          "lesson": "Dual PD-L1 + TGF-β blockade fails in unselected CRC — TGF-β-low pre-selection required"
+        },
+        {
+          "appendix_id": "F-02",
+          "nct_id": "NCT05425940",
+          "trial_name": "STELLAR-303",
+          "drug": "Zanzalintinib (XL092, MET/VEGFR2/AXL inhibitor) + atezolizumab vs regorafenib",
+          "indication": "3L+ MSS mCRC",
+          "phase": "III",
+          "status": "ONGOING — no results available",
+          "lesson": "Only ongoing randomized Phase III in refractory MSS CRC — monitor for readout"
+        }
+      ]
+    },
+    {
+      "program_id": "HISTORICAL_BENCHMARKS",
+      "program_name": "mFOLFOX6 ± Bevacizumab Backbone Benchmark Set",
+      "program_number": 5,
+      "trial_count": 6,
+      "glb_set": false,
+      "admissibility": "external_safe",
+      "asset_version": "v1",
+      "asset_date": "2026-06-18",
+      "headline": "6-entry mFOLFOX6 ± bevacizumab backbone benchmark set — the control arm expectations for BreAK CRC-001 and any 1L MSS mCRC trial adding an investigational agent to standard chemotherapy.",
+      "primary_benchmark": {
+        "trial": "TRIBE2 control arm (NCT02339116)",
+        "population": "RAS-mutant enriched (64%), unresectable mCRC, Western",
+        "mPFS": "9.8 months (95% CI 9.0–10.5)",
+        "ORR": "50%",
+        "mOS": "22.5 months",
+        "published_source": "Cremolini et al. Lancet Oncol 2020",
+        "comparability": "HIGH — primary benchmark for BreAK CRC-001 control arm expectations"
+      },
+      "benchmarks": [
+        {
+          "trial": "TRIBE2 control arm",
+          "nct_id": "NCT02339116",
+          "drug": "mFOLFOX6 + bev → FOLFIRI + bev",
+          "population": "Unresectable mCRC; 64% RAS-mutant",
+          "mPFS": "9.8 mo (95% CI 9.0–10.5)",
+          "ORR": "50%",
+          "mOS": "22.5 mo",
+          "comparability": "HIGH",
+          "published_source": "Cremolini et al. Lancet Oncol 2020"
+        },
+        {
+          "trial": "BECOME (bev arm)",
+          "nct_id": "NOT_REGISTERED",
+          "drug": "mFOLFOX6 + bev",
+          "population": "RAS-mutant; liver-limited only",
+          "mPFS": "9.5 mo",
+          "ORR": "54.5%",
+          "mOS": "25.7 mo",
+          "comparability": "MODERATE-HIGH (liver-limited selection inflates mOS)",
+          "published_source": "Li et al. JAMA Oncol 2020"
+        },
+        {
+          "trial": "NO16966 (FOLFOX4+bev arm)",
+          "nct_id": "NCT00069095",
+          "drug": "FOLFOX4 + bev",
+          "population": "1L mCRC",
+          "mPFS": "~9.4 mo",
+          "ORR": "~38%",
+          "mOS": "21.0 mo",
+          "comparability": "MODERATE (FOLFOX4 not mFOLFOX6; older trial)",
+          "published_source": "Saltz et al. JCO 2008"
+        },
+        {
+          "trial": "OPTIMOX1 (FOLFOX4 arm)",
+          "nct_id": "NCT00052910",
+          "drug": "FOLFOX4 (no bev)",
+          "population": "1L mCRC",
+          "mPFS": "~9.0 mo",
+          "ORR": "~58.5%",
+          "mOS": "~19.4 mo",
+          "comparability": "MODERATE (no bev; FOLFOX4)",
+          "published_source": "Tournigand et al. JCO 2006"
+        },
+        {
+          "trial": "WJOG4407G (mFOLFOX6+bev arm)",
+          "nct_id": "UMIN000005616",
+          "drug": "mFOLFOX6 + bev",
+          "population": "Japanese 1L mCRC",
+          "mPFS": "~11.7 mo",
+          "ORR": "~64%",
+          "mOS": "~31.4 mo",
+          "comparability": "LOW-MODERATE (Japanese cohort; different RAS landscape; higher mOS)",
+          "published_source": "Yamada et al. Lancet Oncol 2016"
+        },
+        {
+          "trial": "QUILT-2.004 (design precedent)",
+          "nct_id": "NCT03050814",
+          "drug": "mFOLFOX6 + bev + AdCEA vaccine + avelumab",
+          "population": "1L MSS mCRC",
+          "mPFS": "HR 1.061 — TERMINATED",
+          "ORR": "N/A (terminated)",
+          "mOS": "N/A (terminated)",
+          "comparability": "DESIGN PRECEDENT — negative efficacy; confirms IO addition to mFOLFOX6+bev does not improve PFS in unselected MSS CRC",
+          "published_source": "Redman et al. Oncologist 2022"
+        }
+      ]
+    },
+    {
+      "program_id": "BREAK_CRC_001",
+      "program_name": "BreAK CRC-001 — Active Phase I/II Trial Asset",
+      "program_number": 6,
+      "trial_count": 1,
+      "glb_set": false,
+      "admissibility": "external_safe",
+      "asset_version": "v1",
+      "asset_date": "2026-06-18",
+      "headline": "BreAK CRC-001 — active Phase I/II trial of STC-1010 (DNFB-haptenated whole-cell vaccine) in 1L MSS mCRC with CrisPRO fit analysis, 4-gap design risk inventory, and 22-trial comparator context.",
+      "sponsor": "Brenus Pharma",
+      "nct_id": "NCT06934538",
+      "drug": "STC-1010 (DNFB-haptenated allogeneic whole-cell vaccine) + low-dose cyclophosphamide + GM-CSF + mFOLFOX6 ± bevacizumab",
+      "indication": "1L MSS/pMMR metastatic CRC — KRAS-mutant BRAF-WT enriched",
+      "phase": "I/II",
+      "status": "RECRUITING (started 2025-06-17)",
+      "scientific_anchor": {
+        "citation": "Alzeeb et al. 2024",
+        "doi": "10.3389/fonc.2024.1427428",
+        "journal": "Frontiers in Oncology"
+      },
+      "crispro_fit_score": 0.7375,
+      "crispro_fit_label": "MODERATE-HIGH alignment",
+      "crispro_fit_formula": "PATH A: fit = clip((p·t) / ‖t‖₂, 0, 1) — locked 2026-04-28",
+      "fit_axis_breakdown": {
+        "io_axis": {
+          "patient": 0.4,
+          "trial": 0.8,
+          "pct_of_dot_product": "46.7%",
+          "label": "PRIMARY DRIVER"
+        },
+        "mapk_axis": {
+          "patient": 0.7,
+          "trial": 0.3,
+          "pct_of_dot_product": "30.7%",
+          "label": "SECONDARY DRIVER"
+        },
+        "vegf_axis": {
+          "patient": 0.2,
+          "trial": 0.3,
+          "pct_of_dot_product": "8.8%",
+          "label": "MINOR"
+        },
+        "other_axes": "pi3k, ddr, efflux, rss, her2 — combined 11.8% of dot product"
+      },
+      "design_gaps": [
+        {
+          "gap_id": "GAP-01",
+          "severity": "CRITICAL",
+          "description": "Liver metastasis not pre-specified as stratification variable. CO.26 Pint=0.02; REGONIVO 0/5 liver-met responders."
+        },
+        {
+          "gap_id": "GAP-02",
+          "severity": "HIGH",
+          "description": "pTMB not collected prospectively. CO.26 pTMB ≥28 OS HR=0.34 (90% CI 0.18–0.63) — strongest IO signal in MSS CRC."
+        },
+        {
+          "gap_id": "GAP-03",
+          "severity": "MEDIUM",
+          "description": "io axis alignment moderate — patient io=0.40 below optimal io≥0.50 threshold."
+        },
+        {
+          "gap_id": "GAP-04",
+          "severity": "HIGH",
+          "description": "No biomarker gate for patient selection. AtezoTRIBE Immunoscore-IC high HR ~0.50 (exploratory) supports immune infiltrate pre-selection."
+        }
+      ],
+      "mechanistic_differentiation": {
+        "vs_QUILT_2004": "STC-1010 uses DNFB haptenation to induce immunogenic cell death (ICD) — distinct from AdCEA single-antigen vaccination. BreAK CRC-001 does NOT include a CPI arm.",
+        "vs_GVAX": "DNFB haptenation is designed to overcome the pharmacodynamic dissociation (T-cell responses ≠ tumor regression) observed in GVAX by inducing danger signals at the tumor site."
+      },
+      "control_arm_expectations": {
+        "primary_benchmark": "TRIBE2 control arm",
+        "expected_mPFS": "~9.5–9.8 months",
+        "expected_ORR": "~50%",
+        "expected_mOS": "~22.5 months"
+      }
+    },
+    {
+      "program_id": "GBM_ESCAPEMAP",
+      "program_name": "GBM EscapeMap — EscapeMap War Board L8",
+      "program_number": 7,
+      "trial_count": 0,
+      "dataset_analyses": 3,
+      "glb_set": false,
+      "admissibility": "INTERNAL_ONLY",
+      "status": "PERMANENTLY_CLOSED",
+      "headline": "3-dataset computational analysis of ZEB1/EMT upregulation as a GBM recurrence escape marker under Stupp treatment (TMZ + RT). Hypothesis not supported across three independent datasets.",
+      "verdict": "PERMANENTLY CLOSED — ZEB1 is not a confirmed GBM recurrence escape marker in bulk or single-cell RNA-seq data from Stupp-treated patients.",
+      "datasets": [
+        {
+          "id": "EM-02-A",
+          "dataset": "GLASS syn17038081",
+          "type": "Bulk RNA-seq",
+          "n": "123 Stupp pairs",
+          "key_finding": "ZEB1 DOWN (delta=−0.34, p=0.000184, d=−0.31); SOX2 DOWN (delta=−0.37, p=0.000713, d=−0.32)",
+          "verdict": "PERMANENTLY_CLOSED"
+        },
+        {
+          "id": "EM-02-B",
+          "dataset": "GSE222515",
+          "type": "Bulk RNA-seq",
+          "n": "Small cohort",
+          "key_finding": "ZEB1 DOWN (delta=−0.431, p=0.033) — directional support, lower confidence",
+          "verdict": "PERMANENTLY_CLOSED"
+        },
+        {
+          "id": "EM-02-C",
+          "dataset": "GSE174554",
+          "type": "snRNA-seq",
+          "n": "8 pairs, 12,189 tumor cells",
+          "key_finding": "ZEB1 NULL (delta=−0.076, p=0.742, d=−0.07); partial MES shift (VIM/FN1/HIF1A UP 6/8 patients, ZEB1-independent)",
+          "verdict": "SC_ESCAPE_NOT_CONFIRMED"
+        }
+      ],
+      "governance": {
+        "further_bulk_GBM_reanalysis": "CLOSED",
+        "if_revisited": "Target ZEB2, TWIST2, or SNAI2 — NOT ZEB1",
+        "use_in_external_outputs": "PROHIBITED",
+        "use_in_patent_claims": "PROHIBITED"
+      },
+      "note": "Do not include in any external-facing output, BD package, or patent claim."
+    }
+  ],
+  "ip_estate": {
+    "admissibility": "internal_only — for CIAA §1.2 enumeration and legal review only",
+    "brief_programs": [
+      {
+        "brief_id": "BRIEF-1",
+        "target_axis": "ZEB1 → ITGAV (synthetic lethality)",
+        "delta": -0.7184,
+        "fdr": 0.001203,
+        "status": "DEAL_READY",
+        "milestone": "M-B.1 — First BD package delivered to pharma counterparty (Months 1–6, 0.34% equity)",
+        "milestone_2": "M-B.3 — First BRIEF-1 licensing deal signed (Months 6–18, 0.33% equity)",
+        "trade_secret_enumeration": "CIAA §1.2(a)",
+        "patent_status": "No patent filed — trade secret only",
+        "publication_risk": "HIGH — Kim can publish ZEB1→ITGAV biology without breaching contract (no publication restriction currently)"
+      },
+      {
+        "brief_id": "BRIEF-2",
+        "target_axis": "PTEN-null → ITGAV",
+        "status": "COMPUTATIONAL_HYPOTHESIS",
+        "trade_secret_enumeration": "CIAA §1.2(b)",
+        "patent_status": "No patent filed",
+        "note": "Independently derivable from public DepMap data — weak trade secret"
+      },
+      {
+        "brief_id": "BRIEF-3",
+        "target_axis": "ZEB1 + PD-1 (GSE271259, n=34)",
+        "correlation": "r=0.050",
+        "p_value": 0.78,
+        "status": "MECHANISTICALLY_GROUNDED",
+        "trade_secret_enumeration": "CIAA §1.2(c)",
+        "note": "Statistically insignificant — weakest trade secret"
+      },
+      {
+        "brief_id": "BRIEF-4",
+        "target_axis": "SPP1 → NRF2 (synthetic lethality)",
+        "delta": -0.7326,
+        "fdr": 8e-06,
+        "status": "COMPUTATIONAL_LEAD",
+        "milestone": "M-B.5 — Second pharma BD package delivered (Months 6–24, 0.33% equity)",
+        "trade_secret_enumeration": "CIAA §1.2(d)",
+        "patent_status": "No patent filed — patent race risk (Kim could tip off pharma)"
+      }
+    ],
+    "escapemap_ov_vectors": {
+      "admissibility": "NOT explicitly enumerated in CIAA §1.2 — covered by general CI only (CIAA §1.1)",
+      "fix_required": "Fix 1 — Add to CIAA §1.2(e)",
+      "vectors": [
+        {
+          "id": "OV-ZEB1-COX-CONTINUOUS",
+          "analysis": "OV ZEB1 continuous Cox (bevacizumab arm OS)",
+          "HR": 1.4803,
+          "CI_95": "[1.1188, 1.9586]",
+          "p": 0.006042,
+          "c_stat": 0.6444
+        },
+        {
+          "id": "OV-ZEB1-COX-MULTIVARIABLE",
+          "analysis": "OV ZEB1 multivariable Cox",
+          "HR": 1.5247,
+          "CI_95": "[1.1256, 2.0652]",
+          "p": 0.006447
+        },
+        {
+          "id": "OV-ZEB1-MEDIAN-SPLIT",
+          "analysis": "OV ZEB1 median-split (bevacizumab arm OS)",
+          "HR": 2.5,
+          "CI_95": "[1.322, 4.727]",
+          "log_rank_p": 0.0036,
+          "FDR": 0.0499
+        },
+        {
+          "id": "OV-HIF1A",
+          "analysis": "OV HIF1A (bevacizumab arm OS)",
+          "HR": 2.245,
+          "CI_95": "[1.172, 4.300]",
+          "p": 0.0147,
+          "note": "PLATFORM_COMPRESSION"
+        },
+        {
+          "id": "OV-ZEB1-ARM-INTERACTION",
+          "analysis": "OV ZEB1 arm interaction",
+          "HR": 1.243,
+          "p": 0.245949,
+          "verdict": "PROGNOSTIC_NOT_ARM_SPECIFIC"
+        },
+        {
+          "id": "OV-ZEB1-TERTILE",
+          "analysis": "OV ZEB1 tertile T3 vs T1",
+          "HR": 2.4932,
+          "CI_95": "[1.1767, 5.2824]",
+          "p": 0.017093
+        }
+      ]
+    },
+    "escapemap_m2_vector": {
+      "admissibility": "NOT explicitly enumerated in CIAA §1.2",
+      "fix_required": "Fix 1 — Add to CIAA §1.2(e)",
+      "m2_stratum_calibration": "GEO 74.0% vs published 73.9% (within 0.1%)",
+      "m2_beneficial_median_OS": "34.4 months",
+      "m2_beneficial_OS_CI": "[32.7, 38.8]",
+      "m2_beneficial_OS_p": 9.52e-05,
+      "mandatory_wording": "Preparatory M2-bevacizumab biomarker panel for downstream descriptive and conditioning analyses — not a validated prognostic signature until dbGaP-linked patient-level outcomes are available. (LOCKED 2026-05-12)"
+    },
+    "latify_formula": {
+      "admissibility": "NOT explicitly enumerated in CIAA §1.2",
+      "fix_required": "Fix 1 — Add to CIAA §1.2(f)",
+      "formula": "fit = clip((p·t) / ‖t‖₂, 0, 1)",
+      "formula_path": "PATH A",
+      "formula_signed": "2026-04-28",
+      "signer": "Fahad Kiani",
+      "approval_statement": "Approved PATH A as production ranker formula effective immediately.",
+      "PATH_B": "PROHIBITED in all outputs",
+      "governance_decisions_not_enumerated": [
+        "DL-07 quarantine designation (DDR 0.983 — publication-blocking)",
+        "PC-02 permanent downgrade designation (retroactive_prediction_run.py)",
+        "All vector version assignments and associated delta values"
+      ]
+    },
+    "grounding_register": {
+      "rows": 38,
+      "as_of": "Engagement start date",
+      "admissibility": "internal_only",
+      "fix_required": "Fix 1 — Add to CIAA §1.2(g)"
+    }
+  },
+  "active_engagements": [
+    {
+      "engagement_id": "BRENUS_PHARMA",
+      "counterparty": "Brenus Pharma",
+      "counterparty_type": "pharma",
+      "status": "ACTIVE",
+      "engagement_start": "2026 (ongoing)",
+      "anchor_program": "STC-1010 / BreAK CRC-001 (NCT06934538)",
+      "anchor_indication": "1L MSS/pMMR metastatic CRC",
+      "agent_streams_completed": 6,
+      "deliverables_produced": [
+        "Agent 1: Brenus Corporate & Program Dossier (diligence-grade)",
+        "Agent 2: BreAK CRC-001 Trial Protocol Reconstruction & Signal Dilution Analysis",
+        "Agent 3: MSS CRC IO Comparator Trials (22-trial corpus)",
+        "Agent 4: Biomarker Biology Map (6-domain MSS CRC suppression landscape)",
+        "Agent 5: CrisPRO Fit-Gap Assessment for BreAK CRC-001",
+        "Agent 6: Outreach drafting (CTEP, Vivli, Alliance)"
+      ],
+      "crispro_fit_score": 0.7375,
+      "crispro_fit_label": "MODERATE-HIGH alignment",
+      "key_contacts": {
+        "CEO": "Paul Bravetti (PharmD, HEC)",
+        "CSO": "Benoit Pinteur (PharmD)",
+        "Lead_Clinical_Advisor": "Alexander Eggermont (MD, PhD)",
+        "Innovation_Manager": "George Alzeeb (PhD — presenting author Alzeeb et al. 2024)",
+        "Scientific_Board_Chair": "Pr François Ghiringhelli (MD, PhD, CGFL)"
+      },
+      "company_facts": {
+        "legal_name": "BRENUS PHARMA",
+        "SIREN": "802549030",
+        "HQ": "Lyon, France",
+        "legal_creation": "12 May 2014",
+        "operational_founding": "~2020 (under Bravetti leadership)",
+        "total_raised": "€30M",
+        "investors": [
+          "Noshaq",
+          "Angelor",
+          "InvestSud",
+          "UI Investissement",
+          "Crédit Agricole Création"
+        ]
+      }
+    },
+    {
+      "engagement_id": "SANOFI_PITCH",
+      "counterparty": "Sanofi",
+      "counterparty_type": "pharma",
+      "status": "PITCH_SUBMITTED",
+      "pitch_date": "2026-05-29",
+      "pitch_deadline": "2026-07-01 (finalist pitch event)",
+      "pitch_focus": "CEACAM5 two-layer patient selection decode + SAR445877/SAR445953 patient selection packages + 10-archetype MSS CRC ESCAPE table",
+      "repo_sha": "4de4297",
+      "deliverables_submitted": [
+        "CrisPRO_Sanofi_PitchDeck_v1.pptx (12 slides, 290 KB)",
+        "crispro_sanofi_pitch_anchor_v1.mdc (415 lines, governance PASS, SHA 993aecd)",
+        "escape_map_mss_crc_archetypes_v1.png (10-archetype ESCAPE map)",
+        "SANOFI_EXECUTIVE_PITCH_SCRIPT.md (5-minute verbal pitch script)"
+      ],
+      "sanofi_assets_decoded": [
+        "SAR445953 (CEACAM5-Topo1 ADC, NCT06131840)",
+        "SAR445877 (PD1×IL-15 fusion, NCT07500298)",
+        "CARMEN-LC03 (tusamitamab ravtansine, NCT04154956 — retrospective decode)"
+      ],
+      "killer_hook": "Sanofi's NCT07500298 (SAR445877 + mFOLFOX6 + bev in 1L MSS mCRC) uses the identical backbone as BreAK CRC-001. CrisPRO can decode Sanofi's patient selection problem before their trial reads out."
+    }
+  ],
+  "what_we_offer": [
+    {
+      "offering_id": "OFFER-1",
+      "name": "Trial Failure Decode",
+      "tagline": "Understand why a trial failed — before you repeat the mistake.",
+      "description": "CrisPRO applies the 8D failure vector framework to any completed or ongoing oncology trial. We identify the primary failure domain (Biology, Selection, Architecture, Timing, Combination, Resistance, Translational, or Systemic), extract the responder subpopulation that existed within the failure, and produce a transfer lesson set for your program.",
+      "deliverables": [
+        "8D failure vector report with domain weights and primary/secondary classification",
+        "Responder subpopulation identification (biomarker gate, ORR, PFS HR)",
+        "Transfer lesson set for your program design",
+        "Competitive intelligence: which competitors are repeating the same mistake"
+      ],
+      "example": "CARMEN-LC03 (CEACAM5 ADC, Phase III, N=389): D2 Selection failure — IHC ≥50% threshold too low; ≥80% subgroup shows directional benefit. Transfer lesson: set IHC ≥80% as the enrollment gate for next-generation CEACAM5 programs.",
+      "turnaround": "5–10 business days per trial",
+      "validated_on": [
+        "CARMEN-LC03",
+        "Berzosertib",
+        "Adavosertib",
+        "CAPRI",
+        "QUILT-2.004",
+        "GVAX",
+        "IMblaze370",
+        "CO.26"
+      ]
+    },
+    {
+      "offering_id": "OFFER-2",
+      "name": "Patient Selection Package",
+      "tagline": "Find the patients who will respond — before you enroll the ones who won't.",
+      "description": "CrisPRO builds a two-gate patient selection framework for any oncology program. Gate 1 identifies the target expression threshold (IHC, genomic, or liquid biopsy). Gate 2 identifies the IO permissiveness or pathway context required for response. The output is an ENRICH / CONSIDER / EXCLUDE stratification table ready for protocol integration.",
+      "deliverables": [
+        "Two-gate patient selection framework (Gate 1: target expression; Gate 2: pathway context)",
+        "ENRICH / CONSIDER / EXCLUDE stratification table with biomarker thresholds",
+        "Population size estimate: how many patients qualify under each gate",
+        "Liquid biopsy proxy identification (e.g., cCEA ≥100 as proxy for CEACAM5 IHC ≥80%)",
+        "Protocol language for enrollment criteria"
+      ],
+      "example": "SAR445953 (CEACAM5-Topo1 ADC): Gate 1 = CEACAM5 IHC ≥80% (28% of MSS mCRC patients); Gate 2 = IO permissiveness (pTMB ≥28 or Immunoscore-IC high). Estimated addressable population: ~3,700 patients/year in US MSS mCRC.",
+      "turnaround": "7–14 business days",
+      "validated_on": [
+        "CEACAM5 (CARMEN-LC03 → SAR445953)",
+        "ATR/DDR (RS-High gate)",
+        "MSS CRC IO (pTMB ≥28 + NLM gate)"
+      ]
+    },
+    {
+      "offering_id": "OFFER-3",
+      "name": "IST Design Support",
+      "tagline": "Design investigator-sponsored trials that are built to succeed.",
+      "description": "CrisPRO provides biomarker-driven IST protocol design support. We map the 6-domain suppression landscape for your indication, identify the biomarker gates that prior trials missed, and produce a fit-gap assessment comparing your drug's mechanism to the patient population's biology. Output is a protocol-ready biomarker strategy and enrollment criteria recommendation.",
+      "deliverables": [
+        "6-domain biomarker biology map for your indication",
+        "CrisPRO PATH A fit score with axis-level breakdown",
+        "4-gap design risk inventory with severity ratings (CRITICAL / HIGH / MEDIUM)",
+        "Enrollment criteria recommendation with biomarker thresholds",
+        "Comparator trial context: which prior trials your design must differentiate from"
+      ],
+      "example": "BreAK CRC-001 (STC-1010): PATH A fit score 0.7375 (MODERATE-HIGH). GAP-01 CRITICAL: liver metastasis not pre-specified. GAP-02 HIGH: pTMB not collected. Recommendation: add liver metastasis stratification and prospective pTMB measurement.",
+      "turnaround": "10–21 business days",
+      "validated_on": [
+        "BreAK CRC-001 (Brenus Pharma)",
+        "LATIFY (ceralasertib + durvalumab)"
+      ]
+    },
+    {
+      "offering_id": "OFFER-4",
+      "name": "BD Intelligence Package",
+      "tagline": "Walk into every pharma meeting knowing more about their trial than they do.",
+      "description": "CrisPRO produces pharma-ready business development packages anchored in decoded trial intelligence. We identify the specific failure mode in your counterparty's program, show how your asset addresses it, and produce a pitch deck and anchor document that positions your platform as the solution to their patient selection problem.",
+      "deliverables": [
+        "Counterparty trial decode: 8D failure vector for their most recent failure",
+        "Patient selection gap analysis: what biomarker gate they missed",
+        "Your asset's differentiation: how your mechanism addresses their failure mode",
+        "10-archetype ESCAPE map for the indication (where patients fall, where trials fail)",
+        "Pitch deck (12 slides, Sanofi-style format)",
+        "Anchor .mdc file for governance and reproducibility"
+      ],
+      "example": "Sanofi pitch: CARMEN-LC03 D2 failure (IHC ≥50% too low) → SAR445953 two-gate solution (IHC ≥80% + IO permissiveness) → CrisPRO can decode SAR445877 patient selection before Sanofi's trial reads out. 12-slide deck committed to repo SHA 4de4297.",
+      "turnaround": "14–21 business days",
+      "validated_on": [
+        "Sanofi (CEACAM5 + SAR445877/SAR445953)",
+        "Brenus Pharma (STC-1010 / BreAK CRC-001)"
+      ]
+    },
+    {
+      "offering_id": "OFFER-5",
+      "name": "IP Valuation — Trial Failure Corpus",
+      "tagline": "Quantify the value of what you've decoded.",
+      "description": "CrisPRO produces an IP valuation memo for a decoded trial corpus. We apply the 8D framework to a set of failed trials, identify the responder subpopulations that existed within each failure, and estimate the value of the patient selection intelligence relative to the total program investment that failed. Output is a GLB set analysis and valuation memo suitable for investor presentations and licensing discussions.",
+      "deliverables": [
+        "GLB set analysis: 6-trial corpus with full 8D vector decodes",
+        "Responder subpopulation identification across all trials",
+        "IP valuation memo: decoded intelligence value relative to failed program investment",
+        "Licensing discussion framework: what the intelligence is worth to a pharma counterparty"
+      ],
+      "example": "ATR/DDR GLB set (4 trials): $1.95B in failed program investment decoded. RS-High gate (berzosertib), PTEN-intact gate (adavosertib), PARPi-naive gate (CAPRI) — three biomarker gates that would have saved $650M each if applied prospectively.",
+      "turnaround": "21–30 business days",
+      "validated_on": [
+        "ATR/DDR GLB set (4 trials, $1.95B decoded)"
+      ]
+    }
+  ],
+  "what_we_identified": [
+    {
+      "finding_id": "WI-01",
+      "title": "The IHC Threshold Failure Pattern — CEACAM5",
+      "description": "CEACAM5 IHC ≥50% is prognostic, not predictive. The ≥80% threshold is the candidate predictive gate. This pattern — setting the IHC threshold too low — is the primary reason CARMEN-LC03 (Phase III, N=389) failed despite CEACAM5 being a genuine target. The same pattern is at risk of repeating in PROCEADE-CRC-01 (CRC, Phase I) where IHC is not predictive at any threshold tested.",
+      "quantitative_anchor": "CARMEN-LC03: PFS HR 1.14 (P=0.82) at IHC ≥50%; CEACAM5 ≥80% OS HR=0.71 (post-hoc, underpowered). PROCEADE-CRC-01: IHC Spearman rho=−0.14 (P=0.4).",
+      "programs": [
+        "CEACAM5"
+      ],
+      "actionable_for": [
+        "SAR445953",
+        "Any CEACAM5-targeted program in CRC or NSCLC"
+      ]
+    },
+    {
+      "finding_id": "WI-02",
+      "title": "Liver Metastasis Abolishes IO Benefit in MSS CRC — Pint=0.02",
+      "description": "Liver metastasis is the single most important stratification variable for IO trials in MSS CRC. CO.26 (randomized): liver-met PFS HR=1.39 vs no-LM PFS HR=0.54; Pint=0.02. REGONIVO US: 0/5 liver-met responders vs 22% NLM ORR. RIN: NLM ORR ~40% vs liver-met ORR ~5%. Every IO trial in MSS CRC that does not pre-specify liver metastasis as a stratification variable is at risk of diluting the NLM signal.",
+      "quantitative_anchor": "CO.26 Pint=0.02; REGONIVO US 0/5 liver-met responders; RIN NLM ORR ~40% vs liver-met ~5%.",
+      "programs": [
+        "IO_CORE",
+        "IO_APPENDIX",
+        "BREAK_CRC_001"
+      ],
+      "actionable_for": [
+        "BreAK CRC-001 (GAP-01 CRITICAL)",
+        "Any 1L MSS mCRC IO trial"
+      ]
+    },
+    {
+      "finding_id": "WI-03",
+      "title": "pTMB ≥28 is the Strongest IO Enrichment Signal in MSS CRC from Randomized Data",
+      "description": "CO.26 pTMB ≥28 OS HR=0.34 (90% CI 0.18–0.63, p=0.022) — the strongest IO signal in MSS CRC from a randomized trial. Tissue TMB ≥10 OS HR=0.71 (p=0.47) — NOT predictive. pTMB ↔ tissue TMB Spearman r=0.13 (P=0.20) — plasma TMB is not a proxy for tissue TMB. pTMB median 15.3 mut/Mb (IQR 9.5–26.2).",
+      "quantitative_anchor": "pTMB ≥28 OS HR=0.34 (90% CI 0.18–0.63, p=0.022). CI NOTE: 90% CI 0.18–0.63 is the authoritative value (field standard for Phase II IO trials in MSS CRC). Published abstract also reports 95% CI 0.13–0.85.",
+      "programs": [
+        "IO_CORE",
+        "BREAK_CRC_001"
+      ],
+      "actionable_for": [
+        "BreAK CRC-001 (GAP-02 HIGH)",
+        "Any MSS CRC IO trial",
+        "Sanofi SAR445877 (NCT07500298)"
+      ]
+    },
+    {
+      "finding_id": "WI-04",
+      "title": "RS-High is the ATR Responder Gate — 8x ORR Difference",
+      "description": "Berzosertib (M6620) ORR 40% in RS-High vs 5% in RS-Low — an 8x difference. Responders existed within the failed ITT population. The trial failed because RS-High patients were not pre-selected. This is the canonical example of a D2 Selection failure where the target is real but the patient gate is missing.",
+      "quantitative_anchor": "RS-High ORR 40% vs RS-Low ORR 5% (Yap et al. Cancer Discov 2020, NCT02595892).",
+      "programs": [
+        "ATR_DDR"
+      ],
+      "actionable_for": [
+        "Any ATR inhibitor program",
+        "DDR-targeted programs in ovarian cancer"
+      ]
+    },
+    {
+      "finding_id": "WI-05",
+      "title": "PTEN-Loss is the WEE1i Resistance Marker — ORR 0% vs 23%",
+      "description": "Adavosertib (AZD1775) ORR 0% in PTEN-loss vs 23% in PTEN-intact; PFS HR 1.82 (PTEN-loss) vs 0.55 (PTEN-intact). PTEN status is a mandatory exclusion criterion for WEE1i programs. Including PTEN-loss patients in a WEE1i trial guarantees ITT dilution.",
+      "quantitative_anchor": "PTEN-intact ORR 23% vs PTEN-loss ORR 0%; PFS HR 0.55 vs 1.82 (Lheureux et al. Clin Cancer Res 2021, NCT03579316).",
+      "programs": [
+        "ATR_DDR"
+      ],
+      "actionable_for": [
+        "Any WEE1 inhibitor program",
+        "DDR-targeted programs in ovarian cancer"
+      ]
+    },
+    {
+      "finding_id": "WI-06",
+      "title": "OV ZEB1 is a Bevacizumab-Arm Prognostic Marker — HR=2.500 at Median Split",
+      "description": "ZEB1 expression is a prognostic marker in the bevacizumab arm of ovarian cancer trials. Continuous Cox: HR=1.4803 (95% CI [1.1188, 1.9586], p=0.006042, c-stat=0.6444). Median split: HR=2.500 (95% CI [1.322, 4.727], log-rank p=0.0036, FDR=0.0499). Arm interaction: HR=1.243 (p=0.246) — PROGNOSTIC_NOT_ARM_SPECIFIC.",
+      "quantitative_anchor": "HR=1.4803 (continuous Cox); HR=2.500 (median split, FDR=0.0499). Arm interaction p=0.246 — prognostic, not bevacizumab-specific.",
+      "programs": [
+        "BREAK_CRC_001"
+      ],
+      "actionable_for": [
+        "Ovarian cancer bevacizumab programs",
+        "ZEB1-targeted programs"
+      ],
+      "admissibility": "external_safe — EscapeMap OV vectors"
+    },
+    {
+      "finding_id": "WI-07",
+      "title": "M2 Stratum Beneficial Median OS — 34.4 Months",
+      "description": "M2 stratum calibration: GEO 74.0% vs published 73.9% (within 0.1%). M2 stratum beneficial median OS: 34.4 months (95% CI 32.7–38.8), p=9.52×10⁻⁵. Mandatory wording: 'Preparatory M2-bevacizumab biomarker panel for downstream descriptive and conditioning analyses — not a validated prognostic signature until dbGaP-linked patient-level outcomes are available.' (LOCKED 2026-05-12)",
+      "quantitative_anchor": "M2 beneficial median OS 34.4 months (CI 32.7–38.8), p=9.52×10⁻⁵.",
+      "programs": [
+        "BREAK_CRC_001"
+      ],
+      "admissibility": "external_safe with mandatory wording"
+    },
+    {
+      "finding_id": "WI-08",
+      "title": "cCEA ≥100 as Liquid Biopsy Proxy for CEACAM5 IHC ≥80%",
+      "description": "IHC ↔ cCEA Spearman ρ=0.43 (n=92). cCEA ↔ cCEACAM5 ρ=0.99 (n=87) — near-redundant. cCEA ≥100 ORR 41.7% (10/24) vs 8.1% (3/37), P=0.003 in CEACAM5 high-expressing NSCLC. cCEA ≥100 prevalence in HE patients: 40.3% (25/62). CAVEAT: All data from NSCLC (NCT02187848). Application to CRC is by inference only.",
+      "quantitative_anchor": "cCEA ≥100 ORR 41.7% vs 8.1% (P=0.003); IHC ↔ cCEA ρ=0.43 (Gazzah et al. PMC12720031).",
+      "programs": [
+        "CEACAM5"
+      ],
+      "actionable_for": [
+        "SAR445953 patient selection",
+        "Any CEACAM5 program seeking liquid biopsy enrollment gate"
+      ],
+      "caveat": "NSCLC data only. CRC application is by inference. Must be labeled on every slide."
+    },
+    {
+      "finding_id": "WI-09",
+      "title": "Pharmacodynamic Dissociation — T-Cell Responses ≠ Clinical Benefit in MSS CRC",
+      "description": "GVAX (ORR 0% despite confirmed T-cell responses in 100% of patients), QUILT-2.004 (HR 1.061 despite CEA-specific T cells generated), PolyPEPI1018 (T-cell responses in 100% of patients, no objective responses), PANVAC (T-cell responses >70%, no OS benefit). Peripheral immune activation does not equal intratumoral effector function in MSS CRC. This is the most important lesson for any vaccine program in this indication.",
+      "quantitative_anchor": "GVAX ORR 0% (n=22); QUILT-2.004 HR 1.061; PolyPEPI1018 100% T-cell response rate, 0% ORR.",
+      "programs": [
+        "IO_CORE",
+        "IO_APPENDIX",
+        "BREAK_CRC_001"
+      ],
+      "actionable_for": [
+        "STC-1010 / BreAK CRC-001",
+        "Any vaccine program in MSS CRC"
+      ]
+    },
+    {
+      "finding_id": "WI-10",
+      "title": "SAR445877 Backbone Match — Sanofi Running the Same Trial as BreAK CRC-001",
+      "description": "Sanofi's NCT07500298 (SAR445877, PD1×IL-15 fusion + mFOLFOX6 + bevacizumab, 1L MSS mCRC, N=41 planned, start date 2026-09-03) uses the identical backbone as BreAK CRC-001. CrisPRO can decode Sanofi's patient selection problem before their trial reads out — and position STC-1010's ICD mechanism as the differentiated approach.",
+      "quantitative_anchor": "NCT07500298: SAR445877 + mFOLFOX6 + bev, 1L MSS mCRC, N=41, start 2026-09-03.",
+      "programs": [
+        "CEACAM5",
+        "BREAK_CRC_001"
+      ],
+      "actionable_for": [
+        "Sanofi BD pitch",
+        "BreAK CRC-001 competitive positioning"
+      ]
+    }
+  ],
+  "counterparties": {
+    "admissibility": "internal_only — for CIAA §1.2 enumeration",
+    "pharma": [
+      {
+        "name": "Brenus Pharma",
+        "status": "ACTIVE_CLIENT",
+        "material_communications": "Full engagement — 6 agent streams, fit-gap assessment, biomarker biology map, comparator corpus",
+        "enumerated_in_CIAA": "SHOULD_BE_ADDED"
+      },
+      {
+        "name": "Sanofi",
+        "status": "PITCH_SUBMITTED",
+        "material_communications": "12-slide pitch deck + anchor .mdc submitted 2026-05-29; finalist pitch July 1 2026",
+        "enumerated_in_CIAA": "YES — CIAA §1.2"
+      },
+      {
+        "name": "BMS",
+        "status": "PIPELINE",
+        "enumerated_in_CIAA": "YES — CIAA §1.2"
+      },
+      {
+        "name": "Merck",
+        "status": "PIPELINE",
+        "enumerated_in_CIAA": "YES — CIAA §1.2"
+      },
+      {
+        "name": "Pfizer",
+        "status": "PIPELINE",
+        "enumerated_in_CIAA": "YES — CIAA §1.2"
+      }
+    ],
+    "academic": [
+      {
+        "name": "MD Anderson Cancer Center",
+        "status": "IST_TARGET",
+        "milestone": "M-B.2 — First IST SRA signed (Months 3–24, 0.33% equity)",
+        "enumerated_in_CIAA": "YES — CIAA §1.2"
+      },
+      {
+        "name": "Memorial Sloan Kettering (MSK)",
+        "status": "IST_TARGET",
+        "milestone": "M-B.2",
+        "enumerated_in_CIAA": "YES — CIAA §1.2"
+      },
+      {
+        "name": "Dana-Farber Cancer Institute",
+        "status": "IST_TARGET",
+        "milestone": "M-B.2",
+        "enumerated_in_CIAA": "YES — CIAA §1.2"
+      },
+      {
+        "name": "University of Utah Health",
+        "status": "ACTIVE_PARTNER",
+        "note": "Listed in CrisPRO existing partners (active)"
+      }
+    ],
+    "investor": {
+      "note": "Schedule 10-C is blank — pre-existing investor relationships not enumerated. This is a contract gap (Fix 5). Cannot enumerate without Kim completing Schedule 10-C.",
+      "status": "BLANK — Fix 5 required"
+    },
+    "data_access": [
+      {
+        "name": "CTEP / NCI",
+        "program": "dbGaP phs003428",
+        "status": "BLOCKED_PENDING_DAR — 5 fields for Fahad to complete",
+        "contact": "NCICTEPDAR@mail.nih.gov"
+      },
+      {
+        "name": "Vivli",
+        "program": "VELOUR + MOSAIC",
+        "status": "BLOCKED_PENDING_DAR — 18 fields for Fahad to complete"
+      },
+      {
+        "name": "Alliance SDMC",
+        "program": "N0147",
+        "status": "BLOCKED_PENDING_OUTREACH — 5 fields for Fahad to complete",
+        "contact": "Mandrekar.Sumithra@mayo.edu"
+      }
+    ]
+  },
+  "governance": {
+    "admissibility": "internal_only",
+    "formula": {
+      "name": "LATIFY PATH A",
+      "formula": "fit = clip((p·t) / ‖t‖₂, 0, 1)",
+      "status": "LOCKED",
+      "signed": "2026-04-28",
+      "signer": "Fahad Kiani",
+      "PATH_B": "PROHIBITED"
+    },
+    "quarantine_log": [
+      {
+        "id": "DL-07",
+        "status": "QUARANTINED",
+        "description": "DDR 0.983 figure — publication-blocking. Do not use in any external output."
+      },
+      {
+        "id": "LATIFY_delta",
+        "status": "QUARANTINED",
+        "description": "CT-03 blocker: patent delta +0.366 vs receipt delta +0.2641 — vector version unresolved."
+      }
+    ],
+    "downgrade_log": [
+      {
+        "id": "PC-02",
+        "status": "PERMANENTLY_DOWNGRADED",
+        "description": "retroactive_prediction_run.py --trial-vectors has not cleanly reproduced documented deltas."
+      }
+    ],
+    "active_conflicts": [
+      {
+        "id": "SC-001",
+        "status": "ACTIVE_CONFLICT",
+        "description": "HT29 BRAF V600E conflict — blocks L4 CLEAN."
+      }
+    ],
+    "permanently_closed": [
+      {
+        "id": "GBM_ZEB1",
+        "status": "PERMANENTLY_CLOSED",
+        "description": "ZEB1 as GBM recurrence escape marker — 3 datasets, all null/contradicted. Do not reopen without new evidence."
+      }
+    ],
+    "remediation": {
+      "status": "8D_remediation_approved_2026-04-28",
+      "immediate_downgrades_applied": true,
+      "formula_dependent_items": "QUARANTINED — PATH A recomputation pending",
+      "path_a_vs_path_b_decision": "PATH A SIGNED — PATH B PROHIBITED"
+    }
+  },
+  "landing_page_copy": {
+    "admissibility": "external_safe",
+    "headline": "CrisPRO — AI That Decodes Why Oncology Trials Fail",
+    "subheadline": "We identify the patient populations and biological conditions under which oncology programs succeed or fail — before they cost $300M.",
+    "value_propositions": [
+      {
+        "vp_id": "VP-1",
+        "headline": "We've decoded 42 trials across 7 programs.",
+        "body": "From ATR/DDR inhibitors in ovarian cancer to CEACAM5 ADCs in NSCLC and CRC to whole-cell vaccines in MSS colorectal cancer — CrisPRO has built the most comprehensive oncology trial failure corpus in the field. Every trial is classified across 8 failure domains. Every responder subpopulation is identified."
+      },
+      {
+        "vp_id": "VP-2",
+        "headline": "The patients who respond are hiding inside every failed trial.",
+        "body": "Berzosertib failed ITT — but RS-High patients had 40% ORR. CARMEN-LC03 failed at IHC ≥50% — but IHC ≥80% showed directional OS benefit. CO.26 was marginal ITT — but pTMB ≥28 patients had OS HR=0.34. The signal exists. The gate is missing. CrisPRO finds the gate."
+      },
+      {
+        "vp_id": "VP-3",
+        "headline": "Two layers. Every failure.",
+        "body": "Layer 1: Is the target real? Layer 2: Are the right patients enrolled? Most expensive failures are Layer 2 — the target is genuine, but the enrolled population cannot respond. CrisPRO's two-layer system has been validated retrospectively on CEACAM5 (CARMEN-LC03), ATR (ceralasertib), and MSS CRC IO (CO.26)."
+      },
+      {
+        "vp_id": "VP-4",
+        "headline": "Active engagement with Brenus Pharma. Finalist pitch with Sanofi.",
+        "body": "CrisPRO is actively supporting Brenus Pharma's BreAK CRC-001 trial (STC-1010, 1L MSS mCRC, NCT06934538) with a PATH A fit score of 0.7375 and a 4-gap design risk inventory. CrisPRO submitted a 12-slide pitch deck to Sanofi's July 1 finalist event, anchored in the CEACAM5 two-layer decode and SAR445877/SAR445953 patient selection packages."
+      }
+    ],
+    "cta_primary": "Request a Trial Decode",
+    "cta_secondary": "See the CEACAM5 Case Study",
+    "cta_tertiary": "Download the MSS CRC ESCAPE Map",
+    "proof_points": [
+      "42 trials decoded across 7 programs",
+      "AUROC 0.689 validated in MSK-MET (N=25,775)",
+      "4 AACR 2026 abstracts",
+      "2nd place, UC Berkeley AgentX Entrepreneurship Track",
+      "$3M Google.org GIC application filed 2026-05-01",
+      "Active engagement: Brenus Pharma (STC-1010 / BreAK CRC-001)",
+      "Finalist pitch: Sanofi (July 1, 2026)"
+    ],
+    "case_studies": [
+      {
+        "title": "CEACAM5 — From Phase III Failure to Two-Gate Solution",
+        "summary": "CARMEN-LC03 failed because CEACAM5 IHC ≥50% is prognostic, not predictive. CrisPRO identified the ≥80% threshold as the candidate predictive gate and built a two-gate patient selection framework (IHC ≥80% + IO permissiveness) for Sanofi's next-generation CEACAM5 programs.",
+        "key_metric": "CEACAM5 ≥80% OS HR=0.71 (post-hoc) vs IHC ≥50% PFS HR=1.14 (failed)"
+      },
+      {
+        "title": "MSS CRC — Three Conditions for IO Benefit",
+        "summary": "CrisPRO decoded 22 IO trials in MSS CRC and identified the three conditions under which immunotherapy works: non-liver-metastatic disease, pTMB ≥28, and immune-inflamed TME. These conditions are missing from most active trial designs — including BreAK CRC-001.",
+        "key_metric": "pTMB ≥28 OS HR=0.34 (90% CI 0.18–0.63) vs ITT OS HR=0.73 (CO.26)"
+      },
+      {
+        "title": "ATR/DDR — $1.95B Decoded",
+        "summary": "CrisPRO decoded 4 ATR/DDR trials representing $1.95B in failed program investment. In each case, the target was real — but the patient gate was missing. RS-High (berzosertib), PTEN-intact (adavosertib), and PARPi-naive (CAPRI) are the three gates that would have saved $650M each.",
+        "key_metric": "RS-High ORR 40% vs RS-Low ORR 5% (berzosertib, NCT02595892)"
+      }
+    ]
+  }
+}

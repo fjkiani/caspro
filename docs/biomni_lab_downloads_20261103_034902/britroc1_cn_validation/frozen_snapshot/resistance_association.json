@@ -1,0 +1,37 @@
+{
+ "n_labeled": 86,
+ "n_resistant": 9,
+ "n_sensitive": 77,
+ "EPV": 9,
+ "EPV_flag": "LOW (<10) - underpowered",
+ "breakpoints": {
+  "auroc": 0.2778,
+  "boot_ci95": [
+   0.1241,
+   0.4502
+  ],
+  "ci_excludes_0.5": true,
+  "mwu_p": 0.030334482075226245,
+  "bh_fdr_q": 0.04550172311283937
+ },
+ "sd_seg": {
+  "auroc": 0.2338,
+  "boot_ci95": [
+   0.0837,
+   0.4156
+  ],
+  "ci_excludes_0.5": true,
+  "mwu_p": 0.009434960308245357,
+  "bh_fdr_q": 0.02830488092473607
+ },
+ "frac_aberrant": {
+  "auroc": 0.3781,
+  "boot_ci95": [
+   0.1443,
+   0.6364
+  ],
+  "ci_excludes_0.5": false,
+  "mwu_p": 0.23599013667083446,
+  "bh_fdr_q": 0.23599013667083446
+ }
+}

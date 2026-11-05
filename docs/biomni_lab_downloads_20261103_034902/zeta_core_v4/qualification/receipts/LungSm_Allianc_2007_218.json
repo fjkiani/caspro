@@ -1,0 +1,241 @@
+{
+  "caslib": "LungSm_Allianc_2007_218",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "NSE",
+    "PROGRP"
+  ],
+  "indication": "lung_sclc",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 2,
+  "n_tabular_files": 2,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "3f4304f3bba3c486b4b62e3acfb300a451edf70208261bf5ae0b8f718ea88cdb",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "mask_id",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GRADE_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "EventName",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "arm",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "EventName"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [
+          "arm"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 68,
+      "path": "ae.csv",
+      "size": 2327,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "mask_id",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "sex",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "race",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "arm",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "straf_chemo",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "straf_cycle",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cycle_maint",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cycle_cross",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "br_maint",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "offtrt_rx",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pci",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cycle_maint2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "survcens",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "failcens",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "survtime",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "failtime",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "survtime2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "failtime2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pd2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pfs2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cross_eval",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "agecat",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "survcens",
+          "failcens",
+          "survtime",
+          "survtime2",
+          "pfs2"
+        ],
+        "patient": [],
+        "time": [
+          "straf_cycle",
+          "cycle_maint",
+          "cycle_cross",
+          "cycle_maint2"
+        ],
+        "treatment": [
+          "arm",
+          "offtrt_rx"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 95,
+      "path": "clinical.csv",
+      "size": 8591,
+      "status": "OK"
+    }
+  ]
+}

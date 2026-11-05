@@ -1,0 +1,87 @@
+{
+  "purpose": "BreAK CRC-001 historical comparator benchmarks \u2014 KRAS-mut MSS CRC 1L FOLFOX\u00b1bevacizumab",
+  "target_population": "KRAS-mutant MSS/pMMR mCRC, 1L treatment",
+  "benchmarks": {
+    "os_floor_months": 18.3,
+    "os_floor_source": "PRIME trial, FOLFOX4 monotherapy arm, RAS mutant (other) subgroup (KRAS exon 2 WT but KRAS exon 3/4 or NRAS exon 2/3/4 mutant), n=108, PMID 24024839",
+    "os_ceiling_months": 19.7,
+    "os_ceiling_source": "PRIME trial, FOLFOX4 monotherapy arm, KRAS exon 2 mutant subgroup, n=~440, PMID 20921462",
+    "pfs_floor_months": 8.0,
+    "pfs_floor_source": "PRIME trial, FOLFOX4 monotherapy arm, RAS mutant (other) subgroup, n=108, PMID 24024839",
+    "pfs_ceiling_months": 8.8,
+    "pfs_ceiling_source": "PRIME trial, FOLFOX4 monotherapy arm, KRAS exon 2 mutant subgroup, n=~440, PMID 20921462",
+    "twelve_month_pfs_rate_floor": 0.3536,
+    "twelve_month_pfs_rate_ceiling": 0.3886,
+    "twelve_month_pfs_rate_source": "Exponential model: 12mo_PFS = exp(-ln(2)/PFS_median \u00d7 12). Floor from RAS-other-mut PFS median 8.0 mo \u2192 35.4%; ceiling from KRAS-exon2-mut PFS median 8.8 mo \u2192 38.9%",
+    "primary_benchmark_note": "PRIMARY BENCHMARK for BreAK CRC-001: KRAS exon 2 mutant FOLFOX4 arm OS 19.7 mo, PFS 8.8 mo (PRIME 2010, PMID 20921462). This is the dominant KRAS-mut MSS CRC population (~37% of all mCRC). SECONDARY REFERENCE: RAS-other-mutant FOLFOX4 arm OS 18.3 mo, PFS 8.0 mo (PRIME 2013, PMID 24024839) \u2014 this is KRAS exon 2 WT but other RAS mutant, a DIFFERENT population. The os_floor_months=18.3 and pfs_floor_months=8.0 represent the WORST-CASE across both RAS-mut subgroups, which is conservative and appropriate for a floor. However, the must-beat threshold should be anchored to the PRIMARY benchmark (KRAS exon 2 mut)."
+  },
+  "break_crc001_must_beat": {
+    "os_threshold_months": 22.0,
+    "pfs_threshold_months": 9.6,
+    "twelve_month_pfs_threshold": 0.4243,
+    "rationale": "20% improvement over historical floor is a heuristic for single-arm Phase 1b/2 signal detection. Floor-based threshold (OS \u226522.0 mo) uses worst-case RAS-mut subgroup. Primary-benchmark-based threshold (OS \u226523.6 mo) uses KRAS exon 2 mutant arm \u2014 more stringent and more appropriate for BreAK CRC-001 target population. CAVEAT: Actual threshold depends on BreAK CRC-001 protocol primary endpoint and power calculation.",
+    "bev_arm_os_ceiling_months": 25.6,
+    "bev_arm_os_ceiling_source": "TRIBE trial, FOLFIRI+bev arm, RAS-mutation-positive subgroup OS 25.6 months (Cremolini 2015 Lancet Oncol, PMID 25038498); corroborated by BECOME mFOLFOX6+bev RAS-mut OS 25.7 months (Tang 2020 JCO) and community oncology KRAS-mut chemo+bev OS 26.9 months (Houts 2019 J Gastrointest Cancer)",
+    "primary_benchmark_os_months": 19.7,
+    "primary_benchmark_pfs_months": 8.8,
+    "os_threshold_vs_primary_benchmark": 23.6,
+    "pfs_threshold_vs_primary_benchmark": 10.6
+  },
+  "subgroup_benchmarks": [
+    {
+      "subgroup": "KRAS exon 2 mutant (FOLFOX4 monotherapy)",
+      "trial": "PRIME",
+      "pmid": "20921462",
+      "os_median_months": 19.7,
+      "pfs_median_months": 8.8,
+      "twelve_month_pfs_rate": 0.3886
+    },
+    {
+      "subgroup": "RAS mutant other (FOLFOX4 monotherapy)",
+      "trial": "PRIME",
+      "pmid": "24024839",
+      "os_median_months": 18.3,
+      "pfs_median_months": 8.0,
+      "twelve_month_pfs_rate": 0.3536
+    },
+    {
+      "subgroup": "KRAS-mut pMMR (DFS reference, adjuvant)",
+      "trial": "N0147",
+      "pmid": "25305506",
+      "dfs_hr_vs_dwt": 1.48,
+      "note": "Adjuvant setting \u2014 not directly comparable to 1L mCRC but confirms KRAS-mut as worst-prognosis pMMR subgroup"
+    }
+  ],
+  "bevacizumab_addback": {
+    "folfox_bev_vs_folfox_os_delta_months": 1.4,
+    "source": "TREE-2 trial (Hochster 2008 JCO, PMID 18235120): mFOLFOX6+bev OS 26.1 vs FOLFOX4 OS ~20 months in 1L mCRC",
+    "note": "BreAK CRC-001 backbone is mFOLFOX6+/-bevacizumab \u2014 bevacizumab arm ceiling is ~2-3 months higher than FOLFOX alone"
+  },
+  "braf_v600e_benchmark": {
+    "os_median_months": 13.4,
+    "pfs_median_months": 6.0,
+    "source": "TRIBE updated analysis (Cremolini 2015 Lancet Oncol, PMID 25038498): BRAF-mutation-positive subgroup OS 13.4 months (HR 2.79 vs RAS/BRAF WT); CAPSTAN CRC real-world study (Martinelli 2022 ESMO Open, DOI 10.1016/j.esmoop.2022.100603): all 1L regimens BRAF-mut OS 12.9 months, PFS 6.0 months. PRIME trial (Douillard 2013 NEJM, PMID 24024839) confirmed BRAF mutation as strong negative prognostic factor but did not report BRAF V600E subgroup OS/PFS medians. BREAKWATER SOC arm (BRAF V600E, all-comers, chemo\u00b1bev): OS 15.1 months (\u00c9lez 2025 NEJM, DOI 10.1056/nejmoa2501912).",
+    "note": "BRAF V600E is negative prognostic factor in PRIME; worst-prognosis subgroup in 1L FOLFOX. PRIME BRAF V600E subgroup medians not reported in abstract or primary publication \u2014 best available estimate from TRIBE BRAF-mut subgroup (OS 13.4 mo) and CAPSTAN CRC real-world (OS 12.9 mo, PFS 6.0 mo). BREAKWATER SOC arm (BRAF V600E, chemo\u00b1bev) OS 15.1 months represents upper bound for FOLFOX-based SOC in BRAF V600E. FOLFOX doublet alone (without bev) expected ~10-13 months based on CAPSTAN and real-world data.",
+    "prime_braf_subgroup_note": "Exact PRIME FOLFOX4 arm BRAF V600E OS/PFS medians not published in primary paper or abstract; PRIME 2013 NEJM states BRAF mutation was strong negative prognostic factor (HR not reported for OS in BRAF subgroup in abstract). Supplementary Table S2 data not accessible via literature search.",
+    "primary_source_corrected": "BREAKWATER SOC arm (BRAF V600E, chemo\u00b1bev, RCT, 2025): OS 15.1 mo \u2014 most recent and most directly relevant RCT benchmark. CAPSTAN CRC real-world OS 12.9 mo = floor. TRIBE 13.4 mo = supporting reference (FOLFOXIRI+bev vs FOLFIRI+bev, not FOLFOX4). TRIBE arms do not include FOLFOX4 monotherapy \u2014 TRIBE BRAF-mut OS is not FOLFOX4-specific."
+  },
+  "kras_mut_folfox_bev_ceiling": {
+    "os_median_months": 25.6,
+    "source": "TRIBE trial, FOLFIRI+bev arm, RAS-mutation-positive subgroup, OS 25.6 months (95% CI 22.4-28.6), Cremolini 2015 Lancet Oncol, PMID 25038498. Corroborated by: BECOME RCT mFOLFOX6+bev RAS-mut OS 25.7 months (Tang 2020 JCO, PMID 32453988, liver-limited only); community oncology KRAS-mut chemo+bev OS 26.9 months (Houts 2019 J Gastrointest Cancer, DOI 10.1007/s12029-017-0017-8); RAS/BRAF-mut mFOLFOX6+bev OS 22.6 months (Topal 2025 J Oncol Sci).",
+    "note": "KRAS-mut specific OS ceiling for mFOLFOX6+bev arm. TRIBE FOLFIRI+bev RAS-mut subgroup OS 25.6 months is the most robust estimate from a randomized phase III trial. BECOME provides direct mFOLFOX6+bev RAS-mut data (25.7 months) but is liver-limited only. Consensus estimate: ~25-27 months for KRAS-mut 1L mFOLFOX6+bev all-comers.",
+    "caveat": "IMPORTANT: 25.6 mo estimate is from TRIBE FOLFIRI+bev arm (not mFOLFOX6+bev). Direct mFOLFOX6+bev KRAS-mut data: BECOME 25.7 mo (liver-limited only, not generalizable). All-comers mFOLFOX6+bev KRAS-mut OS estimate: ~22-26 mo range. Use 25.6 mo as upper bound; 22-23 mo as conservative all-comers estimate."
+  },
+  "data_sources": [
+    "PRIME PMID 20921462",
+    "PRIME PMID 24024839",
+    "N0147 PMID 25305506",
+    "MOSAIC PMID 19451431",
+    "TRIBE PMID 25038498 (Cremolini 2015 Lancet Oncol)",
+    "BECOME PMID 32453988 (Tang 2020 JCO)",
+    "CAPSTAN CRC DOI 10.1016/j.esmoop.2022.100603 (Martinelli 2022 ESMO Open)",
+    "BREAKWATER DOI 10.1056/nejmoa2501912 (\u00c9lez 2025 NEJM)",
+    "Houts 2019 J Gastrointest Cancer DOI 10.1007/s12029-017-0017-8"
+  ],
+  "computed_by": "Biomni automated extraction from comparator evidence files",
+  "date": "2026-05-13"
+}

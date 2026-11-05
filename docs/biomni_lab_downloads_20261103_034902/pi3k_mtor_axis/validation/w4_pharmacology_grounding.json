@@ -1,0 +1,54 @@
+{
+  "receipt_type": "w4_pi3k_mtor_pharmacology_grounding",
+  "purpose": "Drug->pi3k_mtor axis evidence assembled ONLY from grounded in-repo sources. Numbers/claims traced to existing receipts; no fabricated GDSC2/PRISM rows.",
+  "source_files": [
+    "sl_agent/multimodal/literature_receipts.py (PIK3CA / PI3K_AKT block)",
+    "sl_agent/kb/clients/jax_client.py (PIK3CA, PTEN entries)"
+  ],
+  "drugs": {
+    "alpelisib": {
+      "aliases": ["byl719", "byl-719", "piqray"],
+      "class": "PI3K inhibitor (PIK3CA)",
+      "evidence_tier": "clinical_phase3_approved",
+      "grounded_claim": "SOLAR-1 (Phase III, n=572, PIK3CA-mut HR+/HER2- advanced breast cancer): alpelisib+fulvestrant PFS 11.0 vs 5.7 mo (HR=0.65, p<0.001); FDA-approved.",
+      "pmids": ["31091374"],
+      "jax_tier": "A",
+      "context_caveat": "Evidence base is BREAST cancer (PIK3CA-mut), not ovarian. Applying to OV is extrapolation and must be labeled as such."
+    },
+    "capivasertib": {
+      "aliases": ["azd5363"],
+      "class": "AKT inhibitor",
+      "evidence_tier": "clinical_phase3",
+      "grounded_claim": "CAPItello-291 (Phase III): capivasertib+fulvestrant PFS benefit in PIK3CA/AKT1/PTEN-altered breast cancer.",
+      "pmids": ["31091374"],
+      "context_caveat": "Breast cancer evidence; OV use is extrapolation."
+    },
+    "inavolisib": {
+      "class": "PI3K inhibitor (PIK3CA)",
+      "evidence_tier": "in_vitro_validated",
+      "grounded_claim": "Listed among validated PI3K-pathway agents (alpelisib, capivasertib, inavolisib) in PIK3CA-mutant in-vitro sensitivity receipt.",
+      "pmids": ["31091374"]
+    },
+    "everolimus": {
+      "aliases": ["rad001", "afinitor"],
+      "class": "mTOR inhibitor",
+      "evidence_tier": "kb_tier_B",
+      "grounded_claim": "JAX KB: PTEN-LOF -> Everolimus (mTOR inhibitor), tier B, sensitivity, endometrial cancer.",
+      "context_caveat": "KB association is PTEN-LOF/endometrial; OV use is extrapolation."
+    }
+  },
+  "omitted": {
+    "metformin": "Requested by the task, but NO grounded receipt for metformin (AMPK/mTOR) found anywhere in the repo. Omitted per grounding policy (do not invent).",
+    "live_gdsc2_prism_rows": "Requested 'live GDSC2/PRISM outputs for everolimus/BYL719'. NO PI3K/mTOR drug-screen rows are materialized in the repo (only a PARPi/MBD4 GDSC2 summary exists). PRISM/GDSC modality cells for pi3k_mtor will be MISSING with an honest reason, not fabricated."
+  },
+  "axis_mapping_to_add": {
+    "everolimus": "pi3k_mtor", "temsirolimus": "pi3k_mtor", "sirolimus": "pi3k_mtor",
+    "rapamycin": "pi3k_mtor",
+    "alpelisib": "pi3k_mtor", "byl719": "pi3k_mtor", "byl-719": "pi3k_mtor",
+    "capivasertib": "pi3k_mtor", "azd5363": "pi3k_mtor",
+    "inavolisib": "pi3k_mtor", "ipatasertib": "pi3k_mtor",
+    "buparlisib": "pi3k_mtor", "bkm120": "pi3k_mtor",
+    "pictilisib": "pi3k_mtor", "copanlisib": "pi3k_mtor"
+  },
+  "date": "2026-07-20"
+}

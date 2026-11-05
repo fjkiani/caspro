@@ -1,0 +1,519 @@
+{
+  "caslib": "Breast_Allianc_2009_162",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CA15_3",
+    "CA27_29"
+  ],
+  "indication": "breast",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 2,
+  "n_tabular_files": 2,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "2de60eb687ded259883304065273a9cc9bb3a837884a91b14d5ddb1493ffcdec",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "MASK_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "study",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AER_SUBMITTED",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CATEGORY",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CTC_VERSION",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "EVENTCAT",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "EVENTNAME",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GRADE_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MEDDRA_CODE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MEDDRA_VERSION",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RELATION_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SELECT_AE",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "aestart",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "aeend",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AER_SUBMITTED",
+          "EVENTCAT",
+          "EVENTNAME"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 15435,
+      "path": "aeclean.csv",
+      "size": 1508069,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "MASK_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "indrx",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "stra1_stage",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AGE_C",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "WHITE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GRADE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "clinicalt",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "clinicaln",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "er",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pgr",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "histotype",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "meno",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "her2fish",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "her2ihc",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "txendreason",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "factora",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "factorb",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "bev_received",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "bev_ndoses",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "bev_ndelays",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "bev_nmods",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "carbo_received",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "carbo_ndoses",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "carbo_ndelays",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "carbo_nmods",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pac_received",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pac_ndoses",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pac_ndelays",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pac_nmods",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "dox_received",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "dox_ndoses",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "dox_ndelays",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "dox_nmods",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cyclo_received",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cyclo_ndoses",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cyclo_ndelays",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cyclo_nmods",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "nodesentinel",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "nodesentpos",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "nodesentexam",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "nodeaxill",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "nodeaxilpos",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "nodeaxilexam",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "stageT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "stageN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "stagegroup",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pCR_breast",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pCR_brax",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RCB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "RCBclass",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BXTYPE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CAUSEDTH",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "recursite",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "scase",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "sstat",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "tsizepe",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "tsizemamm",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "tsizeultra",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "tsizemri",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "sentinel",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "sentinel_result",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "CAUSEDTH"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "sentinel_result"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 443,
+      "path": "treated2.csv",
+      "size": 60649,
+      "status": "OK"
+    }
+  ]
+}

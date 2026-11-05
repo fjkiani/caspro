@@ -1,0 +1,137 @@
+{
+  "artifact": "britroc_cn_logit_coefficients",
+  "purpose": "Real data-derived replacement for the shipped simulation coefficients of the resistance logit.",
+  "cohort": "BriTROC-1 CN feature-complete subset of britroc_outcome_anchor.csv",
+  "n": 98,
+  "resistant": 20,
+  "sensitive": 78,
+  "label": "pt_sensitivity_at_reg.str.lower()=='resistant'",
+  "feature_engineering": "CN genes (CCNE1,KRAS,MYC,ERBB2) -> log2(clip>=1e-3); LST_score and fraction_genome_altered as-is; then z-score standardize using stored mean/scale.",
+  "shipped_simulation_coefficients_being_replaced": {
+    "intercept": 2.9076,
+    "b_brca": 0.6015,
+    "b_mapk": 0.3172,
+    "note": "Colomban-2023-anchored simulation on BRCA/MAPK MUTATION features; prior refit on that space gave OOF AUC 0.489 (null)."
+  },
+  "models": {
+    "parsimonious_CCNE1_LST_FGA": {
+      "features": [
+        "CCNE1_log2",
+        "LST_score",
+        "fraction_genome_altered"
+      ],
+      "standardize": {
+        "mean": [
+          1.71984503305735,
+          13.173469387755102,
+          0.8836755102040816
+        ],
+        "scale": [
+          1.0809918205186742,
+          9.484708972334325,
+          0.12096003730463914
+        ]
+      },
+      "sklearn_l2_C1": {
+        "intercept": -1.5672632777018354,
+        "coef": {
+          "CCNE1_log2": 0.1398182609327285,
+          "LST_score": -0.2216978913168429,
+          "fraction_genome_altered": 0.7121206734569874
+        },
+        "OR_per_SD": {
+          "CCNE1_log2": 1.150064768165013,
+          "LST_score": 0.8011573643740146,
+          "fraction_genome_altered": 2.038309266845128
+        }
+      },
+      "n": 98,
+      "resistant": 20,
+      "EPV": 6.7,
+      "statsmodels_mle": {
+        "intercept": -1.6088115363987958,
+        "coef": {
+          "CCNE1_log2": 0.11072437008708934,
+          "LST_score": -0.2328945117280867,
+          "fraction_genome_altered": 0.8204102482350157
+        },
+        "OR_per_SD": {
+          "CCNE1_log2": 1.1170869618349741,
+          "LST_score": 0.7922371408434836,
+          "fraction_genome_altered": 2.2714314971761524
+        },
+        "p": {
+          "CCNE1_log2": 0.7068911222481924,
+          "LST_score": 0.4126441371933882,
+          "fraction_genome_altered": 0.048382396894310654
+        }
+      }
+    },
+    "full_6feat": {
+      "features": [
+        "CCNE1_log2",
+        "KRAS_log2",
+        "MYC_log2",
+        "ERBB2_log2",
+        "LST_score",
+        "fraction_genome_altered"
+      ],
+      "standardize": {
+        "mean": [
+          1.71984503305735,
+          1.745619147823361,
+          2.0754085825752133,
+          0.9409537479029059,
+          13.173469387755102,
+          0.8836755102040816
+        ],
+        "scale": [
+          1.0809918205186742,
+          1.077725294707303,
+          0.6037658797490287,
+          1.0393379679399601,
+          9.484708972334325,
+          0.12096003730463914
+        ]
+      },
+      "sklearn_l2_C1": {
+        "intercept": -1.5866802510772484,
+        "coef": {
+          "CCNE1_log2": -0.0344002231666921,
+          "KRAS_log2": 0.2712692730599249,
+          "MYC_log2": -0.3133076416600204,
+          "ERBB2_log2": 0.1545834147675182,
+          "LST_score": -0.13641008859532205,
+          "fraction_genome_altered": 0.7271768720425316
+        },
+        "OR_per_SD": {
+          "CCNE1_log2": 0.9661847377307871,
+          "KRAS_log2": 1.3116282089784148,
+          "MYC_log2": 0.731024984232327,
+          "ERBB2_log2": 1.167171633347453,
+          "LST_score": 0.872484763063725,
+          "fraction_genome_altered": 2.0692306510699874
+        }
+      },
+      "n": 98,
+      "resistant": 20,
+      "EPV": 3.3
+    }
+  },
+  "oof_validation_ref": "receipts/britroc_cn_logit_recalibration.json",
+  "verdict": "DISCOVERY_ONLY_EXTERNAL_REPLICATION_FAILED",
+  "promotion_gate": "cohort>=300 AND resistant>=50 (FAIL: 98/20); OOF AUC CI excludes 0.5 (PASS). Net: NOT CALIBRATED_RUO.",
+  "disclosure": "Data-derived (real), DISCOVERY-grade only. Wiring into the engine requires matching the production feature contract (feature order + the log2/standardize transform above) in the private crispro-backend-v2 repo. Do NOT label CALIBRATED_RUO until an independent CN-profiled resistance cohort with >=50 events replicates the OOF AUC.",
+  "random_seed": 20260805,
+  "external_replication": {
+    "attempted_in": "TCGA-OV (n=158, 19 resistant)",
+    "driver_tested": "fraction_genome_altered (dominant BriTROC driver)",
+    "result": "FAILED_TO_REPLICATE",
+    "tcga_ov_OR_per_SD": 0.805820816074808,
+    "tcga_ov_p": 0.384405356527481,
+    "pooled_OR": 1.1491543145185605,
+    "pooled_p": 0.5012262758791626,
+    "I2_pct": 85.01381790802014,
+    "implication": "The BriTROC CN/instability resistance signal is COHORT-SPECIFIC (did not generalize; high heterogeneity). Coefficients are BriTROC-discovery only. Do NOT productionize or label CALIBRATED_RUO."
+  }
+}

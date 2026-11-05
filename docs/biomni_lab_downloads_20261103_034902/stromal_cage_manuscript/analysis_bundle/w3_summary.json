@@ -1,0 +1,54 @@
+{
+  "n_evaluable": 54,
+  "n_events": 48,
+  "duration": "pfi_days",
+  "event": "pfi_event",
+  "endpoint": "progression-free interval (PFI)",
+  "tier_1a_vs_1b": {
+    "n_1a": 26,
+    "n_1b": 28,
+    "logrank_p": 0.02126460848443414,
+    "logrank_stat": 5.304974701448146
+  },
+  "CXCL12_median_split": {
+    "median_log2": 4.42915,
+    "logrank_p": 0.14665355650011166,
+    "n_high": 27,
+    "n_low": 27
+  },
+  "POSTN_median_split": {
+    "median_log2": 3.29855,
+    "logrank_p": 0.1324936978991667,
+    "n_high": 27,
+    "n_low": 27
+  },
+  "cox": {
+    "n": 54,
+    "events": 48,
+    "CXCL12_z": {
+      "HR": 1.3487746610430207,
+      "coef": 0.29919652179229644,
+      "p": 0.06868247616673981,
+      "ci_lo": 0.9773404586850429,
+      "ci_hi": 1.8613708970150873
+    },
+    "POSTN_z": {
+      "HR": 1.1197486546448088,
+      "coef": 0.11310424462637138,
+      "p": 0.5210232284802836,
+      "ci_lo": 0.7926952627141687,
+      "ci_hi": 1.5817390472168997
+    },
+    "concordance": 0.6185944363103953,
+    "schoenfeld_ph_p": {
+      "CXCL12_z": 0.3987956243291241,
+      "POSTN_z": 0.8027221321341149
+    }
+  },
+  "known_prior_facts": {
+    "TCGA_hgsoc_3tier_SPE_logrank_p": 0.003819,
+    "TCGA_TIER1A_vs_1B_logrank_p": 0.126,
+    "note": "TCGA n=427 3-tier SPE is PROGNOSTIC only (prior mission fact). This cohort analysis is corroborating, discovery-only, RUO."
+  },
+  "caveat": "Cohort-level prognostic association, discovery-only, small n. PROGNOSTIC (who progresses) is distinct from PREDICTIVE platinum-response (Elastic Net). Not a validated clinical tool."
+}

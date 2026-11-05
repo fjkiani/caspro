@@ -1,0 +1,321 @@
+{
+  "workstream": "W4_ctDNA_TF_resistance_calibration",
+  "generated_by": "discovery-only; literature + registry metadata; no patient ctDNA downloaded",
+  "openalex_status": 200,
+  "openalex_candidate_papers": [
+    {
+      "title": "A view on drug resistance in cancer",
+      "year": 2019,
+      "doi": "https://doi.org/10.1038/s41586-019-1730-1",
+      "venue": "Nature",
+      "cited_by": 2748,
+      "oa_url": "https://www.nature.com/articles/s41586-019-1730-1.pdf"
+    },
+    {
+      "title": "Liquid biopsy in ovarian cancer using circulating tumor DNA and cells: Ready for prime time?",
+      "year": 2019,
+      "doi": "https://doi.org/10.1016/j.canlet.2019.10.014",
+      "venue": "Cancer Letters",
+      "cited_by": 191,
+      "oa_url": "https://doi.org/10.1016/j.canlet.2019.10.014"
+    },
+    {
+      "title": "Tumor biomarkers for diagnosis, prognosis and targeted therapy",
+      "year": 2024,
+      "doi": "https://doi.org/10.1038/s41392-024-01823-2",
+      "venue": "Signal Transduction and Targeted Therapy",
+      "cited_by": 658,
+      "oa_url": "https://www.nature.com/articles/s41392-024-01823-2.pdf"
+    },
+    {
+      "title": "PARP inhibitor resistance: the underlying mechanisms and clinical implications",
+      "year": 2020,
+      "doi": "https://doi.org/10.1186/s12943-020-01227-0",
+      "venue": "Molecular Cancer",
+      "cited_by": 541,
+      "oa_url": "https://molecular-cancer.biomedcentral.com/track/pdf/10.1186/s12943-020-01227-0"
+    },
+    {
+      "title": "Liquid biopsy: current technology and clinical applications",
+      "year": 2022,
+      "doi": "https://doi.org/10.1186/s13045-022-01351-y",
+      "venue": "Journal of Hematology & Oncology",
+      "cited_by": 886,
+      "oa_url": "https://jhoonline.biomedcentral.com/counter/pdf/10.1186/s13045-022-01351-y"
+    },
+    {
+      "title": "ESMO recommendations on the use of circulating tumour DNA assays for patients with cancer: a report from the ESMO Precision Medicine Working Group",
+      "year": 2022,
+      "doi": "https://doi.org/10.1016/j.annonc.2022.05.520",
+      "venue": "Annals of Oncology",
+      "cited_by": 678,
+      "oa_url": "http://hdl.handle.net/10230/54289"
+    },
+    {
+      "title": "Circulating Tumor DNA and Minimal Residual Disease (MRD) in Solid Tumors: Current Horizons and Future Perspectives",
+      "year": 2021,
+      "doi": "https://doi.org/10.3389/fonc.2021.763790",
+      "venue": "Frontiers in Oncology",
+      "cited_by": 160,
+      "oa_url": "https://www.frontiersin.org/articles/10.3389/fonc.2021.763790/pdf"
+    },
+    {
+      "title": "Potential clinical utility of liquid biopsies in ovarian cancer",
+      "year": 2022,
+      "doi": "https://doi.org/10.1186/s12943-022-01588-8",
+      "venue": "Molecular Cancer",
+      "cited_by": 163,
+      "oa_url": "https://molecular-cancer.biomedcentral.com/track/pdf/10.1186/s12943-022-01588-8"
+    },
+    {
+      "title": "How liquid biopsies can change clinical practice in oncology",
+      "year": 2019,
+      "doi": "https://doi.org/10.1093/annonc/mdz227",
+      "venue": "Annals of Oncology",
+      "cited_by": 354,
+      "oa_url": "http://www.annalsofoncology.org/article/S0923753419609725/pdf"
+    },
+    {
+      "title": "Multi-omics approaches for biomarker discovery in early ovarian cancer diagnosis",
+      "year": 2022,
+      "doi": "https://doi.org/10.1016/j.ebiom.2022.104001",
+      "venue": "EBioMedicine",
+      "cited_by": 245,
+      "oa_url": "http://www.thelancet.com/article/S2352396422001852/pdf"
+    },
+    {
+      "title": "Using cfDNA and ctDNA as Oncologic Markers: A Path to Clinical Validation",
+      "year": 2023,
+      "doi": "https://doi.org/10.3390/ijms241713219",
+      "venue": "International Journal of Molecular Sciences",
+      "cited_by": 100,
+      "oa_url": "https://www.mdpi.com/1422-0067/24/17/13219/pdf?version=1692959185"
+    },
+    {
+      "title": "Tumor mutational burden quantification from targeted gene panels: major advancements and challenges",
+      "year": 2019,
+      "doi": "https://doi.org/10.1186/s40425-019-0647-4",
+      "venue": "Journal for ImmunoTherapy of Cancer",
+      "cited_by": 319,
+      "oa_url": "https://jitc.bmj.com/content/jitc/7/1/183.full.pdf"
+    },
+    {
+      "title": "Epithelial ovarian cancer and the use of circulating tumor DNA: A systematic review",
+      "year": 2021,
+      "doi": "https://doi.org/10.1016/j.ygyno.2021.04.020",
+      "venue": "Gynecologic Oncology",
+      "cited_by": 40,
+      "oa_url": "http://www.gynecologiconcology-online.net/article/S0090825821003309/pdf"
+    },
+    {
+      "title": "Genome-wide Copy-number Alterations in Circulating Tumor DNA as a Novel Biomarker for Patients with High-grade Serous Ovarian Cancer",
+      "year": 2020,
+      "doi": "https://doi.org/10.1158/1078-0432.ccr-20-3345",
+      "venue": "Clinical Cancer Research",
+      "cited_by": 58,
+      "oa_url": "https://aacrjournals.org/clincancerres/article-pdf/27/9/2549/3089730/2549.pdf"
+    },
+    {
+      "title": "Circulating tumor DNA: a noninvasive biomarker for tracking ovarian cancer",
+      "year": 2021,
+      "doi": "https://doi.org/10.1186/s12958-021-00860-8",
+      "venue": "Reproductive Biology and Endocrinology",
+      "cited_by": 36,
+      "oa_url": "https://rbej.biomedcentral.com/counter/pdf/10.1186/s12958-021-00860-8"
+    },
+    {
+      "title": "&lt;p&gt;Circulating Cell-Free DNA or Circulating Tumor DNA in the Management of Ovarian and Endometrial Cancer&lt;/p&gt;",
+      "year": 2019,
+      "doi": "https://doi.org/10.2147/ott.s227156",
+      "venue": "OncoTargets and Therapy",
+      "cited_by": 77,
+      "oa_url": "https://www.dovepress.com/getfile.php?fileID=55008"
+    },
+    {
+      "title": "Applications of Proteomics in Ovarian Cancer: Dawn of a New Era",
+      "year": 2022,
+      "doi": "https://doi.org/10.3390/proteomes10020016",
+      "venue": "Proteomes",
+      "cited_by": 121,
+      "oa_url": "https://www.mdpi.com/2227-7382/10/2/16/pdf?version=1652176018"
+    },
+    {
+      "title": "Tumor-Derived Extracellular Vesicles: Multifunctional Entities in the Tumor Microenvironment",
+      "year": 2022,
+      "doi": "https://doi.org/10.1146/annurev-pathmechdis-031521-022116",
+      "venue": "Annual Review of Pathology Mechanisms of Disease",
+      "cited_by": 155,
+      "oa_url": "https://www.annualreviews.org/doi/pdf/10.1146/annurev-pathmechdis-031521-022116"
+    },
+    {
+      "title": "Making the Rounds: Exploring the Role of Circulating Tumor DNA (ctDNA) in Non-Small Cell Lung Cancer",
+      "year": 2022,
+      "doi": "https://doi.org/10.3390/ijms23169006",
+      "venue": "International Journal of Molecular Sciences",
+      "cited_by": 47,
+      "oa_url": "https://www.mdpi.com/1422-0067/23/16/9006/pdf?version=1661218125"
+    },
+    {
+      "title": "Cancer biomarkers: Emerging trends and clinical implications for personalized treatment",
+      "year": 2024,
+      "doi": "https://doi.org/10.1016/j.cell.2024.02.041",
+      "venue": "Cell",
+      "cited_by": 589,
+      "oa_url": "http://www.cell.com/article/S0092867424002447/pdf"
+    },
+    {
+      "title": "Practical classification of triple-negative breast cancer: intratumoral heterogeneity, mechanisms of drug resistance, and novel therapies",
+      "year": 2020,
+      "doi": "https://doi.org/10.1038/s41523-020-00197-2",
+      "venue": "npj Breast Cancer",
+      "cited_by": 322,
+      "oa_url": "https://www.nature.com/articles/s41523-020-00197-2.pdf"
+    },
+    {
+      "title": "Circulating tumor DNA methylation detection as biomarker and its application in tumor liquid biopsy: advances and challenges",
+      "year": 2024,
+      "doi": "https://doi.org/10.1002/mco2.766",
+      "venue": "MedComm",
+      "cited_by": 79,
+      "oa_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/mco2.766"
+    },
+    {
+      "title": "Tumor fraction-guided cell-free DNA profiling in metastatic solid tumor patients",
+      "year": 2021,
+      "doi": "https://doi.org/10.1186/s13073-021-00898-8",
+      "venue": "Genome Medicine",
+      "cited_by": 58,
+      "oa_url": "https://genomemedicine.biomedcentral.com/track/pdf/10.1186/s13073-021-00898-8"
+    },
+    {
+      "title": "Adagrasib in Advanced Solid Tumors Harboring a<i>KRAS</i><sup><i>G12C</i></sup>Mutation",
+      "year": 2023,
+      "doi": "https://doi.org/10.1200/jco.23.00434",
+      "venue": "Journal of Clinical Oncology",
+      "cited_by": 286,
+      "oa_url": "https://ascopubs.org/doi/pdfdirect/10.1200/JCO.23.00434?role=tab"
+    },
+    {
+      "title": "Circulating tumor DNA clearance predicts prognosis across treatment regimen in a large real-world longitudinally monitored advanced non-small cell lung cancer cohort",
+      "year": 2020,
+      "doi": "https://doi.org/10.21037/tlcr.2020.03.17",
+      "venue": "Translational Lung Cancer Research",
+      "cited_by": 120,
+      "oa_url": "https://tlcr.amegroups.com/article/viewFile/37646/pdf"
+    }
+  ],
+  "clinicaltrials_status": 200,
+  "clinicaltrials_ctdna_trials": [
+    {
+      "nct": "NCT05950464",
+      "title": "Testing Different Amounts of the Combination of Drugs M1774 and ZEN-3694 for the Treatment of Recurrent Ovarian and Endometrial Cancer",
+      "phase": [
+        "PHASE1"
+      ],
+      "status": null
+    },
+    {
+      "nct": "NCT05976932",
+      "title": "Circulating Tumor DNA Monitoring in Platinum-resistant Ovarian Cancer",
+      "phase": null,
+      "status": null
+    },
+    {
+      "nct": "NCT04846933",
+      "title": "Multi-layer Data to Improve Diagnosis, Predict Therapy Resistance and Suggest Targeted Therapies in HGSOC",
+      "phase": [
+        "NA"
+      ],
+      "status": null
+    },
+    {
+      "nct": "NCT06334432",
+      "title": "Safety and Efficacy Study of NUV-1511 in Adult Patients With Advanced Solid Tumors",
+      "phase": [
+        "PHASE1",
+        "PHASE2"
+      ],
+      "status": null
+    },
+    {
+      "nct": "NCT02489058",
+      "title": "A Study of Long-Term Responders on Olaparib",
+      "phase": null,
+      "status": null
+    },
+    {
+      "nct": "NCT06815497",
+      "title": "Telmisartan in Combination With Cytotoxic Regimens in Platinum-Resistant Ovarian Cancer",
+      "phase": [
+        "PHASE2"
+      ],
+      "status": null
+    }
+  ],
+  "ranked_cohorts_by_directness": [
+    {
+      "cohort": "BriTROC-1 ctDNA (Goranova/Smith)",
+      "publication": "BriTROC-1 sWGS plasma; Brenton lab",
+      "n": null,
+      "ctdna_metric": "shallow-WGS plasma tumor fraction (relative CN) longitudinal",
+      "outcome": "relapse after platinum (acquired resistance) \u2014 real endpoint",
+      "directness": "TIER1_DIRECT",
+      "access": "EGA DAC controlled (links to W3 EGAD00001011049 sample set)",
+      "note": "strongest: plasma TF paired with true relapse/resistance timing; overlaps W3"
+    },
+    {
+      "cohort": "PLD-monitoring PROC ctDNA trial (Fudan)",
+      "publication": "NCT05976932",
+      "n": null,
+      "ctdna_metric": "serial ctDNA during PLD in platinum-RESISTANT OC",
+      "outcome": "response/progression in platinum-resistant setting (routing-relevant)",
+      "directness": "TIER2_RESPONSE",
+      "access": "REQUEST_FROM_AUTHORS / trial team (ongoing)",
+      "note": "directly in the platinum-resistant population; response-tracking useful for drug routing"
+    },
+    {
+      "cohort": "Christie/Manchester HGSOC ctDNA (tumour fraction vs CA-125)",
+      "publication": "shallow-WGS ctDNA CN; ctDNA TF outperformed CA-125 for progression",
+      "n": null,
+      "ctdna_metric": "sWGS tumor fraction longitudinal",
+      "outcome": "progression detection vs CA-125 (response/progression)",
+      "directness": "TIER2_RESPONSE",
+      "access": "REQUEST_FROM_AUTHORS",
+      "note": "supports TF as a progression signal; check if resistance-stratified"
+    },
+    {
+      "cohort": "TRACE / DETECTIVE-style HGSOC MRD ctDNA",
+      "publication": "HGSOC MRD ctDNA cohorts",
+      "n": null,
+      "ctdna_metric": "tumor-informed ctDNA MRD post-chemo",
+      "outcome": "relapse timing (resistance surrogate)",
+      "directness": "TIER2_RESPONSE",
+      "access": "REQUEST_FROM_AUTHORS / consortium",
+      "note": "MRD positivity post-platinum approximates residual resistant disease"
+    },
+    {
+      "cohort": "MITO16a/MaNGO-OV2a (Paracchini 2026)",
+      "publication": "Paracchini et al., ESMO Open 2026;11(3):106087",
+      "n": 167,
+      "ctdna_metric": "plasma ctDNA / tumor fraction (baseline + on-treatment)",
+      "outcome": "PFS/OS prognostic (first-line bev)",
+      "directness": "TIER3_PROGNOSTIC",
+      "access": "REQUEST_FROM_AUTHORS (Italian MITO/MaNGO consortium)",
+      "note": "already in registry as prognostic-only; does NOT by itself justify direct wiring"
+    }
+  ],
+  "wiring_requirement": {
+    "to_remove_lock": "WIRED_PROGNOSTIC_ONLY_V1",
+    "minimum_evidence": "at least one TIER1_DIRECT cohort: per-patient longitudinal ctDNA tumor fraction AexpB measured platinum-resistance/PFI outcome, enabling a monotone TF->resistance-probability calibration",
+    "current_gap": "registry currently holds only TIER3_PROGNOSTIC (Paracchini); BriTROC-1 plasma (TIER1, EGA-controlled) is the concrete path to a calibratable TF<->true-resistance relationship",
+    "calibration_dictionary": {
+      "subject_id": "patient id",
+      "ctdna_tumor_fraction": "plasma TF (ichorCNA or sWGS relative CN) per timepoint",
+      "timepoint_day": "days from platinum start",
+      "platinum_resistance_label": "resistant if PFI<182d (or progression on platinum)",
+      "pfi_days": "platinum-free interval"
+    }
+  },
+  "access_state": "MIXED: BriTROC-1 plasma=SCRIPT_READY_PENDING_USER_AUTH(EGA); others=REQUEST_FROM_AUTHORS",
+  "honest_access_summary": "No public cohort was found that ships per-patient longitudinal ctDNA tumor fraction paired with a platinum-resistance label as an open download. The strongest calibratable route is BriTROC-1 plasma sWGS (TIER1_DIRECT, EGA-controlled, overlaps W3); the rest are prognostic-only or require author/consortium requests. This is reported honestly: direct wiring of ctDNA into predict_resistance needs a TIER1 cohort that must be applied for \u2014 it is not satisfiable from open data today."
+}

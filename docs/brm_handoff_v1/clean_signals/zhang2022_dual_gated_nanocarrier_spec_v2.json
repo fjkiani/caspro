@@ -1,0 +1,129 @@
+{
+  "specification_id": "zhang2022_dual_gated_nanocarrier_spec_v2",
+  "version": "2.0.0",
+  "status": "LOCKED_CANONICAL",
+  "primary_evidence_source": "Zhang et al. 2022, Nature Communications (41467_2022_33365_MOESM6_ESM.xlsx) + NanoString PanCancer IO 360 annotation (a2f1293b8766f86ca8c59ad3babc3261.xlsx)",
+  "verified_hits_csv": "clean_signals/zhang2022_moesm6_brm_and_lrp1_sink_hits.csv",
+  "superseded_assumptions_quarantined": [
+    "Single-lock unmasked Angiopep-2 (LRP1) delivery — QUARANTINED because LRP1 is enriched 3.50x (+1.8066 log2FC, p=9.92e-9, q=1.48e-6) in peritumoral brain myeloid/microglial stroma (TIME-B) vs lung brain metastasis core (LB), creating a severe off-tumor myeloid sink.",
+    "MMP9 brain-stroma protease gate — QUARANTINED because MMP9 is absent from brain TIME-B vs LB significant DEGs and is only significantly enriched in primary lung stroma TIME-L vs L (+1.8776 log2FC, 3.68x, p=1.19e-8, q=5.29e-7)."
+  ],
+  "chassis_parameters": {
+    "polymer_chassis": "PEG2000-b-PDPA pH-responsive diblock polymersomes",
+    "hydrodynamic_diameter_nm": 90,
+    "diameter_range_nm": "70-110",
+    "polydispersity_index_max": 0.15,
+    "zeta_potential_mv": -10.0,
+    "zeta_potential_range_mv": "-5 to -15",
+    "peg_molecular_weight_da": 2000,
+    "peg_grafting_density_chains_per_nm2": 0.6,
+    "endosomal_escape_ph_onset": 6.8,
+    "endosomal_escape_ph_half_release": 6.3,
+    "endosomal_escape_ph_full_release": 6.0
+  },
+  "three_stage_btb_delivery_gate": {
+    "stage_1_bbb_transcytosis": {
+      "stage_number": 1,
+      "name": "BBB / BTB Receptor-Mediated Transcytosis",
+      "shuttle_ligand": "Low-avidity Angiopep-2 (TFFYGGSRGKRNNFKTEEY)",
+      "target_receptor": "LRP1 (endothelial blood-brain / blood-tumor barrier)",
+      "ligand_density_per_um2": 2500,
+      "ligand_density_range_per_um2": "1500-3000 (low/intermediate lock-pick avidity regime)",
+      "zhang2022_competing_ligand_constraint": {
+        "competing_gene": "APOE",
+        "sheet": "TIME-B vs. LB",
+        "excel_row": 55,
+        "log2fc": 3.351147,
+        "linear_fold_change": 10.205,
+        "p_value": 1.81141624691559e-10,
+        "q_value": 5.83869426484259e-08,
+        "engineering_rule": "Calibrate Angiopep-2 surface density to complete luminal-to-abluminal endothelial LRP1 transcytosis while avoiding high-avidity lysosomal sorting and accounting for 10.20x endogenous APOE competition in the abluminal TIME-B peritumoral cuff."
+      }
+    },
+    "stage_2_peritumoral_deshielding": {
+      "stage_number": 2,
+      "name": "Peritumoral Protease-Triggered Stealth De-Shielding",
+      "stealth_mechanism": "MMP2-cleavable PEG2000 stealth corona (peptide substrate GPLGIAGQ / PLGLAG)",
+      "trigger_protease": "MMP2",
+      "rejected_protease": "MMP9 (absent in TIME-B vs LB; restricted to lung TIME-L vs L, +1.8776 log2FC, q=5.29e-7)",
+      "zhang2022_protease_evidence": {
+        "gene": "MMP2",
+        "sheet": "TIME-B vs. LB",
+        "excel_row": 84,
+        "log2fc": 1.873169,
+        "linear_fold_change": 3.663,
+        "p_value": 4.39422631115264e-09,
+        "q_value": 7.82381532257129e-07
+      },
+      "zhang2022_peritumoral_myeloid_sink_bypassed": {
+        "LRP1": {
+          "sheet": "TIME-B vs. LB",
+          "excel_row": 93,
+          "log2fc": 1.806618,
+          "linear_fold_change": 3.498,
+          "p_value": 9.92400745345751e-09,
+          "q_value": 1.4842345547391e-06,
+          "role": "Off-tumor peritumoral myeloid/microglial sink (3.50x higher in TIME-B than LB tumor core)"
+        },
+        "CD163": {
+          "sheet": "TIME-B vs. LB",
+          "excel_row": 30,
+          "log2fc": 2.675284,
+          "linear_fold_change": 6.388,
+          "p_value": 4.2856313379275203e-13,
+          "q_value": 2.86142420937697e-10,
+          "role": "Peritumoral M2 macrophage/microglial marker"
+        },
+        "MRC1": {
+          "sheet": "TIME-B vs. LB",
+          "excel_row": 147,
+          "log2fc": 1.692968,
+          "linear_fold_change": 3.233,
+          "p_value": 1.38135117709199e-06,
+          "q_value": 7.64034327092748e-05,
+          "role": "Peritumoral CD206+ M2 myeloid sink"
+        },
+        "PTPRC": {
+          "sheet": "TIME-B vs. LB",
+          "excel_row": 47,
+          "log2fc": 1.991824,
+          "linear_fold_change": 3.977,
+          "p_value": 7.9813488795455e-11,
+          "q_value": 3.10856911048131e-08,
+          "role": "CD45+ pan-leukocyte peritumoral cuff trapping"
+        }
+      },
+      "engineering_rule": "Maintain PEG2000 steric shielding across the LRP1+ CD163+ MRC1+ peritumoral myeloid cuff to prevent premature phagocytosis/sequestration by the 3.50x LRP1+ myeloid sink; cleave the PEG corona via 3.66x enriched MMP2 at the TIME-B / LB invasive interface."
+    },
+    "stage_3_malignant_core_endocytosis": {
+      "stage_number": 3,
+      "name": "Malignant Core Receptor-Locked Endocytosis & Endosomal Escape",
+      "secondary_tumor_cell_receptor_locks": [
+        "EGFR (EGF/anti-EGFR scFv or GE11 peptide for EGFR-mutant/amplified LB tumor cells)",
+        "HER2 (trastuzumab-scFv / AHNP for ERBB2-driven BrM)",
+        "CEACAM5 (tusamitamab-derived scFv for CEACAM5+ NSCLC BrM)"
+      ],
+      "target_compartment": "LB (Lung Brain Metastasis Malignant Core)",
+      "intracellular_release": "PDPA protonation at endosomal pH 6.3 (6.8-6.0) -> endosomal membrane disruption -> cytosolic release of CRISPRi dCas9-KRAB / SpCas9 KO RNP or verubecestat payload."
+    }
+  },
+  "payload_modalities_supported": {
+    "CRISPRi_dCas9_KRAB_TSS": {
+      "lead_target": "BACE1",
+      "spacer_20nt": "TCTTCCCATGGCAGGCAATC",
+      "hg38_locus": "chr11:117316334 (+ strand, TSS window -200..+50bp)",
+      "af3_validation": "5/5 models pass; true CIF R-loop conformation: sgRNA↔Template DNA_B ipTM = 0.418 mean / 0.43 m0, DNA_A↔DNA_B duplex ipTM = 0.230, spacer PAE = 16.87 A vs 23.04 A non-template (ΔPAE = 6.17 A), 0 clashes",
+      "secondary_target": "FAM72A (spacer GGAACAAGACAGGGAGCAGA, chr1:206204398 -, sgRNA↔Template DNA_A ipTM = 0.382 mean / 0.39 m0, ΔPAE = 5.75 A)"
+    },
+    "SpCas9_KO_coding_exon": {
+      "lead_target": "BACE1",
+      "coding_spacer_20nt": "GCGAGCCGCGAGCTGGATTA",
+      "alt_exonic_ko_spacer_20nt": "GTGGTGCTGGCTTCCCCATC",
+      "status": "4-chain SpCas9 RNP specification in data/brm/af3_cas9_rnp_BACE1.json; requires 4-chain AF3 fold verification"
+    },
+    "small_molecule_synergy": {
+      "drug": "Verubecestat (MK-8931)",
+      "dual_compartment_rationale": "Targets both Compartment 1 malignant tumor_like BACE1 (LFC = +1.0688, p = 0.0158; EGFR ectodomain cleavage) and Compartment 2 brain-metastatic immune_aggregate BACE1 (LFC = +1.8268 [3.55x], p = 0.00224, padj = 0.0161; M2 myeloid cuff reprogramming)."
+    }
+  }
+}

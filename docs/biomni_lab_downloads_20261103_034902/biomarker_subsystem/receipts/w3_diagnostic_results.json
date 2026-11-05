@@ -1,0 +1,100 @@
+{
+  "method_id": "consensusOV_diagnostic_ov",
+  "source_pmid": "30084834",
+  "source_doi": "10.1158/1078-0432.ccr-18-0784",
+  "source_note": "consensusOV (Chen et al. 2018 CCR) HGSOC molecular-subtype classifier, run as-published across independent cohorts.",
+  "classifier": "consensusOV::get.subtypes(method='consensusOV') [random-forest consensus of Helland/Bentink/Verhaak/Konecny]",
+  "cohorts": {
+    "TCGAOVARIAN": {
+      "cohort_id": "TCGAOVARIAN",
+      "n": 536,
+      "subtype_levels": ["IMR_consensus", "DIF_consensus", "PRO_consensus", "MES_consensus"],
+      "subtype_distribution": {
+        "IMR_consensus": 0.2761,
+        "DIF_consensus": 0.2985,
+        "PRO_consensus": 0.194,
+        "MES_consensus": 0.2313
+      },
+      "mean_margin": 0.5635,
+      "median_margin": 0.596,
+      "mean_entropy": 0.5165,
+      "low_confidence_frac": 0.1772,
+      "composition_confound": {
+        "percent_tumor_cells": {
+          "n": 516,
+          "kruskal_p": 6.326452e-06,
+          "group_means": {
+            "IMR_consensus": 82.92,
+            "DIF_consensus": 82.24,
+            "PRO_consensus": 81.62,
+            "MES_consensus": 76
+          }
+        },
+        "percent_stromal_cells": {
+          "n": 513,
+          "kruskal_p": 2.532814e-07,
+          "group_means": {
+            "IMR_consensus": 10.31,
+            "DIF_consensus": 10.49,
+            "PRO_consensus": 11.04,
+            "MES_consensus": 18.44
+          }
+        },
+        "percent_normal_cells": {
+          "n": 519,
+          "kruskal_p": 0.169072,
+          "group_means": {
+            "IMR_consensus": 1.66,
+            "DIF_consensus": 2.86,
+            "PRO_consensus": 3.59,
+            "MES_consensus": 2.31
+          }
+        }
+      }
+    },
+    "GSE9891": {
+      "cohort_id": "GSE9891",
+      "n": 276,
+      "subtype_levels": ["IMR_consensus", "DIF_consensus", "PRO_consensus", "MES_consensus"],
+      "subtype_distribution": {
+        "IMR_consensus": 0.279,
+        "DIF_consensus": 0.279,
+        "PRO_consensus": 0.1884,
+        "MES_consensus": 0.2536
+      },
+      "mean_margin": 0.561,
+      "median_margin": 0.609,
+      "mean_entropy": 0.5062,
+      "low_confidence_frac": 0.1812,
+      "composition_confound": {
+        "note": "no composition variable with >=20 usable values in this cohort"
+      }
+    }
+  },
+  "subtype_mixture_matrix": [
+    {
+      "TCGAOVARIAN": 0.2761,
+      "GSE9891": 0.279,
+      "_row": "IMR_consensus"
+    },
+    {
+      "TCGAOVARIAN": 0.2985,
+      "GSE9891": 0.279,
+      "_row": "DIF_consensus"
+    },
+    {
+      "TCGAOVARIAN": 0.194,
+      "GSE9891": 0.1884,
+      "_row": "PRO_consensus"
+    },
+    {
+      "TCGAOVARIAN": 0.2313,
+      "GSE9891": 0.2536,
+      "_row": "MES_consensus"
+    }
+  ],
+  "cross_cohort_total_variation_distance": 0.0251,
+  "concordance_note": "Patients are NOT shared across GSE9891 and TCGAOVARIAN (different studies), so subtype concordance is assessed at the DISTRIBUTIONAL level (total variation distance between subtype mixtures), not per-patient agreement.",
+  "composition_caveat": "HGSOC transcriptomic subtypes are partly driven by tumor cellular composition and TME (Geistlinger 2020, Cancer Res; Tanis 2026). Subtype calls are labelled composition-aware, not intrinsic epithelial subtype. Kruskal-Wallis tests report whether subtype tracks tumor/stromal content in each cohort.",
+  "seed": 7
+}

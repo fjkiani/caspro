@@ -1,0 +1,416 @@
+{
+  "caslib": "LungSm_Allianc_1998_261",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "NSE",
+    "PROGRP"
+  ],
+  "indication": "lung_sclc",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 3,
+  "n_tabular_files": 3,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "fc59529f8a0522945142d979d94dd54f061948a18b675956d7f3cf3a2ea7103f",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Patient Pseudo ID",
+          "name": "PHATOM_ID",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Adverse event name",
+          "name": "AE_NAME",
+          "type": "char"
+        },
+        {
+          "format": "AE_GRADEF",
+          "label": "Adverse event grade",
+          "name": "AE_GRADE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Did the patient have grade 3 or higher toxicity: 1=No, 2=Yes",
+          "name": "AE_G3",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Treatment Arm",
+          "name": "TRT_ARM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Treatment Arm Name",
+          "name": "TRT_ARM_LABEL",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AE_NAME",
+          "AE_GRADE"
+        ],
+        "patient": [
+          "PHATOM_ID",
+          "AE_G3"
+        ],
+        "time": [],
+        "treatment": [
+          "TRT_ARM",
+          "TRT_ARM_LABEL"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 20268,
+      "path": "c9732_ae.sas7bdat",
+      "size": 10420224,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Patient Pseudo ID",
+          "name": "PHATOM_ID",
+          "type": "double"
+        },
+        {
+          "format": "GENDERF",
+          "label": "Gender",
+          "name": "GENDER",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Age",
+          "name": "AGE",
+          "type": "double"
+        },
+        {
+          "format": "RACEF",
+          "label": "Race",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "PSF",
+          "label": "Performance Status",
+          "name": "PS",
+          "type": "double"
+        },
+        {
+          "format": "NOYESF",
+          "label": "Weight Loss > 5/10%?",
+          "name": "WGT_LOSSPCT",
+          "type": "double"
+        },
+        {
+          "format": "NOYESF",
+          "label": "Eligibility",
+          "name": "ELIGIBLE",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Number of Metastatic Sites at Registration",
+          "name": "NUM_META",
+          "type": "double"
+        },
+        {
+          "format": "SCLC_STAGEF",
+          "label": "Small Cell Lung Cancer Stage",
+          "name": "SCLC_STAGE",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Treatment Arm",
+          "name": "TRT_ARM",
+          "type": "double"
+        },
+        {
+          "format": "$",
+          "label": "Treatment Arm Name",
+          "name": "TRT_ARM_LABEL",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Number of Chemotherapy Cycles Received",
+          "name": "CHEMO_CYCLE",
+          "type": "double"
+        },
+        {
+          "format": "NOYESF",
+          "label": "Radiotherapy Received? (yes/no)",
+          "name": "RADIOTHERAPY",
+          "type": "double"
+        },
+        {
+          "format": "BESTRESPF",
+          "label": "Best Overall Objective Response to Protocol Treatment",
+          "name": "BESTRESP",
+          "type": "double"
+        },
+        {
+          "format": "OFFTRT_RXF",
+          "label": "Reason of Off Protocol Treatment",
+          "name": "OFFTRT_RX",
+          "type": "double"
+        },
+        {
+          "format": "STATUSF",
+          "label": "Overall Survival Status",
+          "name": "STATUS",
+          "type": "double"
+        },
+        {
+          "format": "CAUSEDTHF",
+          "label": "Cause of Death",
+          "name": "CAUSEDTH",
+          "type": "double"
+        },
+        {
+          "format": "NOYESF",
+          "label": "Recurrence/Relapse/Progression?",
+          "name": "PD",
+          "type": "double"
+        },
+        {
+          "format": "NOYESF",
+          "label": "New Malignancy? (yes/no)",
+          "name": "NEW_MALIG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Overall Survival Time (Months)",
+          "name": "OS_TIME",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Recurrence/Relapse/Progression Time (Months)",
+          "name": "PD_TIME",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Failure Free Survival Status",
+          "name": "PFS_STATUS",
+          "type": "double"
+        },
+        {
+          "format": "BEST",
+          "label": "Failure Free Survival Time (Months)",
+          "name": "PFS_TIME",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "PS"
+        ],
+        "endpoint": [
+          "STATUS",
+          "CAUSEDTH",
+          "OS_TIME",
+          "PFS_STATUS",
+          "PFS_TIME"
+        ],
+        "patient": [
+          "PHATOM_ID"
+        ],
+        "time": [
+          "CHEMO_CYCLE"
+        ],
+        "treatment": [
+          "TRT_ARM",
+          "TRT_ARM_LABEL",
+          "BESTRESP",
+          "OFFTRT_RX"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 587,
+      "path": "c9732_demographic.sas7bdat",
+      "size": 327680,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Format name",
+          "name": "FMTNAME",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Starting value for format",
+          "name": "START",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Ending value for format",
+          "name": "END",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Format value label",
+          "name": "LABEL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Minimum length",
+          "name": "MIN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Maximum length",
+          "name": "MAX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Default length",
+          "name": "DEFAULT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Format length",
+          "name": "LENGTH",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Fuzz value",
+          "name": "FUZZ",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Prefix characters",
+          "name": "PREFIX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Multiplier",
+          "name": "MULT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Fill character",
+          "name": "FILL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Is picture string noedit?",
+          "name": "NOEDIT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Type of format",
+          "name": "TYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Start exclusion",
+          "name": "SEXCL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "End exclusion",
+          "name": "EEXCL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Additional information",
+          "name": "HLO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Decimal separator",
+          "name": "DECSEP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Three-digit separator",
+          "name": "DIG3SEP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Date/time/datetime?",
+          "name": "DATATYPE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Language for date strings",
+          "name": "LANGUAGE",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "DATATYPE",
+          "LANGUAGE"
+        ],
+        "treatment": [],
+        "unit": [],
+        "value": [
+          "START",
+          "END",
+          "LABEL",
+          "FUZZ"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 186,
+      "path": "c9732_fmt.sas7bdat",
+      "size": 131072,
+      "status": "OK"
+    }
+  ]
+}

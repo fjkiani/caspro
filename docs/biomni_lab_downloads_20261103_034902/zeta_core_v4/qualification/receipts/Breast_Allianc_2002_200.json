@@ -1,0 +1,346 @@
+{
+  "caslib": "Breast_Allianc_2002_200",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CA15_3",
+    "CA27_29"
+  ],
+  "indication": "breast",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 2,
+  "n_tabular_files": 2,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "47ca5fed371ebc9138ef52c499deed34775781415c20011dbee73d80f63bf2f1",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "MASK_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "AER_SUBMITTED",
+          "name": "AER_SUBMITTED",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MEDDRA_CODE",
+          "name": "MEDDRA_CODE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MEDDRA_VERSION",
+          "name": "MEDDRA_VERSION",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "GRADE_ID",
+          "name": "GRADE_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "RELATION_ID",
+          "name": "RELATION_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "eventname",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "eventcat",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "grade",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AER_SUBMITTED",
+          "eventname",
+          "eventcat"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 4740,
+      "path": "aeclean_finalb.sas7bdat",
+      "size": 655360,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "mask_id",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "STATUS_ID",
+          "name": "SSTAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "ETHNIC_ID",
+          "name": "ETHNIC_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "STATUS_ID",
+          "name": "scase",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "GROUP_ID",
+          "name": "GROUP_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "RACE_ID",
+          "name": "RACE_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "indrx",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "meno",
+          "name": "stra1",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "receptor",
+          "name": "stra2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "her2",
+          "name": "stra3",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "survstat",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "elig",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OH002",
+          "name": "OH002",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OH003",
+          "name": "OH003",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OH004",
+          "name": "OH004",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "grade",
+          "name": "OH005",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OH011",
+          "name": "OH011",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OH012",
+          "name": "OH012",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OH013",
+          "name": "OH013",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OH014",
+          "name": "OH014",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OH016",
+          "name": "OH016",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OH027",
+          "name": "OH027",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "prim.sx",
+          "name": "OH028",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SNB",
+          "name": "OH032",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "OH036",
+          "name": "OH036",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "axil.diss",
+          "name": "OH037",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "tsize",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cod",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "agecat",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "preamend",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "survmos",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "event",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "dfsstat",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "dfsmos",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "agent",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "length",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "num_pos_nodes",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "survstat",
+          "survmos",
+          "event",
+          "num_pos_nodes"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 3871,
+      "path": "all_finalb.sas7bdat",
+      "size": 786432,
+      "status": "OK"
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+# v3 Therapy Fit Blocker Register
+# Scope: tests/test_layer1/test_therapy_fit/test_brm_bundle.py
+# Branch: fix/v3-sl-therapy-fit-wiring (commit 26d08bc)
+# Recorded: 2026-05-10
+#
+# T6 status: PASSES. test_t6_sl_wiring_populates_sl_tier is green.
+# SL wiring is verified.
+#
+# UPDATE 2026-07-20 (audit closure): T2 and T12 are now RESOLVED. The full T-series
+# runs 10 passed / 0 failed (was 8/2). See per-issue closure notes below.
+#   - V3-TF-T2-001  -> CLOSED_VERIFIED (DEGRADED-isolation pytest fixture)
+#   - V3-TF-T12-001 -> CLOSED_VERIFIED (stale assertion corrected to the real invariant;
+#                       also resolved a genuine T6<->T12 contradiction)
+#   - V3-TF-DB-001  -> STILL OPEN (repo hygiene: clinical_trials.db is still committed;
+#                       the test fix no longer depends on removing it, but the 10.7 MB
+#                       binary should still be gitignored + generated at runtime).
+
+blockers:
+
+  - issue_id: V3-TF-T2-001
+    title: "T2 asserts DEGRADED but clinical_trials.db is committed — trials adapter returns PRECOMPUTED"
+    severity: P1
+    test: "tests/test_layer1/test_therapy_fit/test_brm_bundle.py::test_t2_degraded_path_all_adapters"
+    t6_impact: none — T6 passes independently of DB presence
+
+    root_cause: >
+      data/clinical_trials.db (11 MB) was committed as part of the initial v3 branch
+      commit (26d08bc, 303 files, git status A = Added). The .gitignore does not exclude
+      *.db files. scripts/refresh_clinical_trials_db.py shows the DB is intended to be
+      generated at runtime (pulled from ClinicalTrials.gov API v2), not committed to the
+      repo. With the DB present, trials_adapter.py returns EvidenceStatus.PRECOMPUTED.
+      T2 asserts engine_status["trials"] == EvidenceStatus.DEGRADED.value.
+      The test was written for an isolated CI environment where the DB is absent.
+
+    runtime_proof:
+      method: >
+        Patched ta._DB_PATH to /tmp/nonexistent and mocked _ctgov_live_count=0
+        (simulates both DB absent and live CT.gov API unavailable — the true DEGRADED
+        condition). DB move alone is insufficient: live CT.gov fallback returns LIVE
+        status when the API is reachable (osimertinib+brain_metastasis: 13 recruiting
+        trials, access_bonus=0.2).
+      result_db_present: "engine_status['trials'] = PRECOMPUTED — T2 FAILS"
+      result_db_absent_api_live: "engine_status['trials'] = LIVE — T2 STILL FAILS"
+      result_db_absent_api_mocked_0: "engine_status['trials'] = DEGRADED — T2 PASSES"
+      conclusion: >
+        T2 requires a fully isolated environment (no DB, no live API). The repo is not
+        configured for this. Root cause is accidental DB commit + missing .gitignore entry.
+
+    closure_criteria:
+      - "Add data/clinical_trials.db to .gitignore and remove from repo tracking (git rm --cached)"
+      - "Add a pytest fixture that mocks TrialsAdapter._DB_PATH and _ctgov_live_count=0 for T2"
+      - "OR rewrite T2 to assert PRECOMPUTED (if DB-present behavior is intentional)"
+      - "Confirm T2 passes after chosen fix without breaking T6"
+
+    owner: backend
+    product_impact: >
+      While T2 fails, the DEGRADED fallback path is untested in CI. Any regression in
+      the DEGRADED path (e.g., crash when both DB and API are unavailable) would be
+      undetected. This is a CI coverage gap, not a runtime correctness issue — the
+      PRECOMPUTED path is exercised and working.
+
+    opened_date: "2026-05-10"
+    introduced_in: "26d08bc — initial v3 branch commit (accidental DB inclusion)"
+
+    status: CLOSED_VERIFIED
+    closed_date: "2026-07-20"
+    closure_method: "chosen: closure_criteria option 2 (pytest fixture, non-destructive)"
+    closure_note: >
+      Added a `trials_degraded` pytest fixture (test_brm_bundle.py) that reproduces the
+      intended isolated DEGRADED condition deterministically: monkeypatches
+      trials_adapter._DB_PATH to a nonexistent path AND _ctgov_live_count -> 0. Applied to
+      T2 (and T12). This is the exact runtime condition documented in runtime_proof
+      (result_db_absent_api_mocked_0). It sets up the isolated environment the test was
+      written for — it does NOT fabricate a result and does NOT delete the committed DB.
+      The PRECOMPUTED path remains the default runtime behavior and is unaffected.
+    proof_artifact: "pytest test_brm_bundle.py -> 10 passed / 0 failed (was 8/2)"
+    still_open_followup: "V3-TF-DB-001 (repo hygiene) remains open — DB should still be gitignored."
+
+  - issue_id: V3-TF-T12-001
+    title: "T12 asserts final_score==0.5 but access_bonus=0.2 from DB — score is 0.7"
+    severity: P1
+    test: "tests/test_layer1/test_therapy_fit/test_brm_bundle.py::test_t12_calibration_only_no_score_inflation"
+    t6_impact: none — T6 passes independently of DB presence
+
+    root_cause: >
+      Same root cause as V3-TF-T2-001. With clinical_trials.db present, the SQLite
+      3-tier lookup returns trial_count > 0 for osimertinib+brain_metastasis.
+      _compute_access_bonus(trial_count) returns 0.2.
+      final_score = impact_score.value * safety_mult.value + access_bonus_value
+                  = 0.5 * 1.0 + 0.2 = 0.7.
+      T12 hardcodes the assertion: opt.final_score == pytest.approx(0.5, abs=1e-6).
+      The test comment states "All active candidates in Phase 1 score 0.5
+      (STUBBED impact * 1.0 safety + 0.0 bonus)" — this assumes access_bonus=0.0,
+      which only holds in the DEGRADED path (DB absent + API returns 0).
+
+    runtime_proof:
+      method: >
+        Same mock as V3-TF-T2-001: ta._DB_PATH=/tmp/nonexistent + _ctgov_live_count=0.
+      result_db_present: "osimertinib final_score=0.7 (access_bonus=0.2) — T12 FAILS"
+      result_db_absent_api_mocked_0: >
+        All 12 active candidates score 0.5 (access_bonus=0.0, DEGRADED path) — T12 PASSES.
+        Candidates: osimertinib, alectinib, lorlatinib, tucatinib, silvestrol,
+        homoharringtonine, idelalisib, copanlisib, pembrolizumab, nivolumab,
+        bevacizumab, cilengitide — all 0.5.
+      live_api_count: "CT.gov live count for osimertinib+brain_metastasis: 13 recruiting trials"
+      access_bonus_formula: "_compute_access_bonus(13) = 0.2 (confirmed by direct call)"
+
+    closure_criteria:
+      - "Same fix as V3-TF-T2-001 (remove DB from repo) — access_bonus drops to 0.0 in DEGRADED path"
+      - "OR add a pytest fixture that mocks TrialsAdapter to return DEGRADED for T12"
+      - "OR rewrite T12 to assert 0.7 and update the test comment to reflect PRECOMPUTED behavior"
+      - "Confirm T12 passes after chosen fix without breaking T6"
+
+    owner: backend
+    product_impact: >
+      While T12 fails, the assertion that CALIBRATION_ONLY SL metadata does not inflate
+      scores is untested in CI under the PRECOMPUTED path. The test intent (SL metadata
+      must not change final_score) is valid but the baseline assumption (score=0.5) is
+      wrong when the DB is present. This is a test fixture gap, not a scoring logic bug —
+      the scoring formula is correct and access_bonus is correctly sourced from the DB.
+
+    opened_date: "2026-05-10"
+    introduced_in: "26d08bc — initial v3 branch commit (accidental DB inclusion)"
+
+    status: CLOSED_VERIFIED
+    closed_date: "2026-07-20"
+    closure_method: "chosen: closure_criteria option 2 (fixture) + corrected a stale assertion"
+    second_defect_found_during_closure: >
+      Applying the trials_degraded fixture removed the access_bonus red herring and
+      exposed a DEEPER, previously-masked defect that contradicts the register's original
+      root_cause: with access_bonus=0.0, T12 still failed — not on score, but on
+      `assert opt.sl_support_class == NO_SL_SUPPORT for every active candidate`.
+      cilengitide (brm_target_gene=ITGAV) carries sl_support_class=STRONG_SL_SUPPORT,
+      because _SL_HANDOFF_MAP maps ITGAV -> STRONG (ZEB1->ITGAV, delta=-0.72, FDR=0.013)
+      — the exact signal shipped by the 26d08bc wiring and asserted by T6
+      (cilengitide.sl_tier == "Strong"). So T12's blanket "all active == NO_SL_SUPPORT"
+      assertion was STALE and in direct contradiction with T6.
+    closure_note: >
+      Verified in code (service._apply_sl_annotation) that SL support class is
+      metadata-only: "Effect on scoring: NONE. rank, final_score, access_bonus ...
+      are not modified here." cilengitide's final_score is therefore NOT inflated by its
+      STRONG_SL_SUPPORT class. T12's REAL invariant (SL metadata must not change
+      score/rank) HOLDS. Corrected T12's stale secondary assertion to test that real
+      invariant: all active candidates keep final_score=0.5 in the DEGRADED path
+      regardless of SL class, and STRONG_SL_SUPPORT is pinned to the ITGAV-targeting
+      candidate (cilengitide) to match T6 + the handoff map. Zero product-logic change.
+      Also corrected a false comment in _SL_HANDOFF_MAP that claimed no brm.json
+      candidate targets ITGAV (cilengitide does).
+    proof_artifact: "pytest test_brm_bundle.py -> 10 passed / 0 failed; T6 still green"
+
+  - issue_id: V3-TF-DB-001
+    title: "data/clinical_trials.db committed to repo — should be gitignored and generated at runtime"
+    severity: P1
+    type: repo_hygiene
+    root_cause: >
+      .gitignore only excludes __pycache__/, *.pyc, .cache/, .pytest_cache/, *.egg-info/.
+      It does not exclude *.db or data/clinical_trials.db. The DB (11 MB) was included
+      in the initial 303-file commit. scripts/refresh_clinical_trials_db.py documents
+      that the DB is intended to be generated at runtime via CT.gov API v2 pull.
+    closure_criteria:
+      - "Add '*.db' or 'data/clinical_trials.db' to .gitignore"
+      - "Run: git rm --cached data/clinical_trials.db"
+      - "Add CI step: python scripts/refresh_clinical_trials_db.py --dry-run to verify generation"
+      - "Confirm T2 and T12 pass after DB removal (with live API mocked in CI)"
+    owner: backend
+    product_impact: >
+      11 MB binary committed to repo. Every clone pulls stale trial data. The refresh
+      script exists precisely to keep this data current — committing it defeats the purpose.
+      Stale trial counts affect access_bonus values and final_score rankings in production.
+    opened_date: "2026-05-10"
+    introduced_in: "26d08bc — initial v3 branch commit"
+
+# ── T6 confirmation ──────────────────────────────────────────────────────────
+t6_status:
+  test: "tests/test_layer1/test_therapy_fit/test_brm_bundle.py::test_t6_sl_wiring_populates_sl_tier"
+  status: PASSES
+  result: "8 passed, 2 failed (T2, T12) — T6 is in the 8 passed"
+  sl_wiring_verdict: >
+    SL wiring is verified. ITGAV (fdr=0.013, delta=-0.72) maps to SLAnnotation(tier=Strong).
+    cilengitide.sl_tier='Strong' confirmed. Full Therapy Fit production readiness is NOT
+    claimed while T2 and T12 remain failing.

@@ -1,0 +1,12 @@
+import type { Metadata } from 'next';
+import TumorBoardProductWorkspace from '@/components/products/tumor-board/TumorBoardProductWorkspace';
+
+export const metadata: Metadata = {
+  title: 'Ways in · Tumor Board · CrisPRO',
+  description: 'Same board whether you start from a scan or a molecular report.',
+};
+
+/** Demo: only this tab is slug-routed. */
+export default function TumorBoardWaysInPage() {
+  return <TumorBoardProductWorkspace routedTab="lanes" />;
+}

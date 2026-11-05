@@ -1,0 +1,221 @@
+{
+  "spec_id": "RESISTANCE_PROPHET_S3_CANDIDATE",
+  "version": "0.2.0",
+  "status": "RESEARCH_CANDIDATE_LOCKED",
+  "generated_utc": "2026-08-19",
+  "supersedes": "0.1.0",
+  "changelog": [
+    "v0.2.0: LOCKED_THRESHOLD 0.075 (Youden-J grid optimum on the n=98 primary set, inside the 100-fold envelope and bootstrap CI). Candidate 0.10 formally rejected and retained as historical record only.",
+    "v0.2.0: GATE_E_DESIGNATED_DECISION hardcoded (research-use screening hypothesis for the clinical-utility gate).",
+    "v0.2.0: NFE-3 result added -- within-fold multiple imputation on the full n=98 resolves Gate B5 as PASS_WITH_CAVEATS.",
+    "v0.2.0: NFE-1 result added -- s3<->CX3 crosswalk on TCGA-OV (n=529) FAILS the 0.80 surrogate criterion; CX-transfer route to Gate C closed on evidence; direct Macintyre quantification route named.",
+    "v0.2.0: RED baseline figure corrected to the measured 231 failing/erroring nodes (supersedes unverifiable 226)."
+  ],
+  "endpoint_contract": {"id": "ENDPOINT_CONTRACT", "version": "1.0.0", "primary_field": "pt_sensitivity_at_reg"},
+  "intended_use": {
+    "supported_now": "RANKING_ONLY",
+    "statement": "Rank-orders patients by copy-number signature 3 exposure at diagnosis as a research-use resistance axis for cohort enrichment and hypothesis generation. Not for individual treatment decisions.",
+    "explicitly_not_supported": [
+      "calibrated absolute risk of platinum resistance",
+      "treatment selection or treatment withholding",
+      "surveillance intensification or de-escalation",
+      "any per-patient probability statement"
+    ],
+    "regulatory_status": "Research Use Only. Not for diagnostic procedures."
+  },
+  "feature": {
+    "name": "s3_diag",
+    "definition": "Macintyre 2018 copy-number signature 3 exposure, computed on the diagnosis-stage specimen",
+    "framework": "MACINTYRE_2018_7_SIGNATURE",
+    "framework_citation": "Macintyre G, Goranova TE, De Silva D, et al. Nat Genet 50, 1262-1270 (2018). DOI 10.1038/s41588-018-0179-8",
+    "framework_mismatch_is_an_error": true,
+    "forbidden_aliases": ["cosmic_cn_signatures.CN3", "COSMIC_CN3", "SBS3", "Sig3"],
+    "forbidden_alias_rationale": "COSMIC CN signatures and COSMIC SBS3 are different frameworks with different definitions. Reading a value from the wrong namespace is the defect recorded as contradiction C02 and must raise, not silently return None.",
+    "units": "dimensionless exposure fraction in [0, 1]",
+    "prespecified": true,
+    "feature_selection": "none - single prespecified feature. No selection step exists, therefore no selection can leak.",
+    "range_observed": {"min": 0.0, "max": 0.8306, "median_n98": 0.1312},
+    "scaling_denominator": {
+      "rule": "standard deviation of s3_diag over the PRIMARY analysis set (n=98), not over any covariate-complete subset",
+      "value_locked": 0.133721,
+      "rationale": "Contradiction C14: using the n=67 SD (0.139083) shifted the adjusted OR from 0.0252 to 0.0247-0.0199 depending on the other choices. Pinning the denominator removes that drift."
+    }
+  },
+  "direction": {
+    "constant": "HIGHER_S3_IS_PLATINUM_SENSITIVE",
+    "sign_of_score": "resistance score is monotone DECREASING in s3_diag",
+    "auroc_orientation_note": "With positive class = resistant and the raw s3 value as the score, AUROC < 0.5 is the expected and correct result. 0.2715 at n=98 is a protective direction, not a failed model.",
+    "source_attribution": [
+      "Macintyre 2018: s3 is the BRCA1/2-related HRD axis and is positively prognostic",
+      "Smith 2023: s3 significantly LOWER in the primary resistant population at diagnosis"
+    ],
+    "verified_in_both_denominators": true,
+    "reversal_must_refuse": true
+  },
+  "covariate_contract_for_adjusted_analyses": {
+    "covariates": ["s3_diag_z", "age_z", "stage_adv", "brca", "nlines"],
+    "definitions": {
+      "s3_diag_z": "(s3_diag - mean(s3_diag over n=98)) / sd(s3_diag over n=98)",
+      "age_z": "(age - mean(age over n=98)) / sd(age over n=98)",
+      "stage_adv": "1 if tumour_stage_at_diagnosis >= 3 else 0",
+      "brca": "brca_mut with missing treated as False",
+      "nlines": "pd.to_numeric(num_lines, errors='coerce') then median-filled; '4+' becomes NaN then median"
+    },
+    "alternative_nlines_recode_for_sensitivity": "'4+' -> 5.0 (right-censored ordinal); yields OR/SD 0.0214, p 0.0198",
+    "cox_covariates": ["s3_diag_z", "age_z", "stage_adv", "brca"],
+    "rationale": "This is the exact archived specification. It is pinned so that any future re-run is comparable, not because it is the only defensible specification."
+  },
+  "model_form": {
+    "primary": {
+      "id": "M1_s3_only",
+      "family": "Firth-penalized logistic regression",
+      "penalization_rationale": "9 events in the covariate-complete set; maximum-likelihood logistic is unreliable and separation-prone at this event count",
+      "parameters": 1,
+      "preprocessing": "standardisation fitted INSIDE each training fold only"
+    },
+    "parsimonious_vs_multivariable": {
+      "decision": "PARSIMONIOUS_WINS",
+      "evidence": "OOF AUROC: M1 single feature 0.8747 (fold SD 0.0062); M3a clinical+s3 0.8752 (0.0182); M5 full 6-parameter 0.8372 (0.0303). Adding covariates does not improve discrimination and increases fold-to-fold variance. NFE-3 on the full n=98 under multiple imputation: M3a 0.7008 vs M0 0.5171 -- the multivariable model does not beat the s3-only raw-feature AUROC (0.7285) on the same denominator.",
+      "note": "M3a has the best OOF AUPRC (0.4325 vs 0.4041) but at 4 parameters on 9 events. The parsimonious model is the candidate; M3a is retained as a prespecified secondary."
+    },
+    "validation_protocol": {
+      "scheme": "RepeatedStratifiedKFold, 5 folds x 20 repeats = 100 fits",
+      "identical_fold_indices_across_models": true,
+      "everything_inside_folds": ["standardisation", "threshold selection", "any calibration", "imputation (NFE-3)"],
+      "leakage_guard": "models.verify_no_leakage asserts that preprocessing parameters differ across folds; verified True for every fitted model",
+      "seed": 42
+    },
+    "known_degeneracy": {
+      "statement": "For a single monotone feature, a fitted logistic is a monotone transform, so its within-fold AUROC equals 1 - AUROC(raw s3) to 1.11e-16 across 1000 folds. Cross-validation of this model adds no discrimination information.",
+      "implication": "Cross-validation is still required the moment a threshold is chosen or a probability is emitted, and that is where this candidate fails (see calibration)."
+    }
+  },
+  "performance": {
+    "primary_denominator": {
+      "n": 98, "events": 20, "prevalence": 0.2041,
+      "auroc_raw_positive_class_resistant": 0.2715,
+      "auroc_raw_ci95": [0.1532, 0.4058],
+      "auroc_protective_orientation": 0.7285,
+      "auroc_protective_ci95": [0.5942, 0.8468],
+      "auprc_on_reversed_axis": 0.3478, "auprc_ci95": [0.2635, 0.5143], "auprc_prevalence_null": 0.2041,
+      "permutation_p_two_sided": 0.0014, "permutation_n": 10000,
+      "mannwhitney_p": 0.0016841736715629155,
+      "bh_fdr_q_across_all_7_signatures": 0.0118
+    },
+    "covariate_complete_subset": {
+      "n": 67, "events": 9, "prevalence": 0.1343,
+      "auroc_raw": 0.113, "auroc_raw_ci95": [0.0421, 0.1983],
+      "auroc_protective": 0.887, "auroc_protective_ci95": [0.8017, 0.9579],
+      "selection_warning": "set98 -> set67 restriction is outcome-selective: Fisher OR 0.2821, p 0.0162, prevalence 0.1343 in vs 0.3548 out"
+    },
+    "oof_incremental_value": {
+      "delta_auroc_clinical_to_clinical_plus_s3": {"delta": 0.3525, "ci": [0.1494, 0.5480], "excludes_zero": true},
+      "delta_auroc_hrd_mutation_only_to_plus_s3": {"delta": 0.6571, "ci": [0.4713, 0.8257], "excludes_zero": true},
+      "delta_auroc_shipped_s7_rule_to_s3": {"delta": 0.2232, "ci": [0.0498, 0.3927], "excludes_zero": true},
+      "delta_auprc_clinical_to_s3_alone": {"delta": 0.1840, "ci": [-0.0922, 0.4676], "excludes_zero": false}
+    },
+    "nfe3_selection_bias_imputation": {
+      "question": "Does the M0 -> M3a incremental signal survive on the full n=98 when the 31 block-missing covariate sets are multiply imputed?",
+      "method": "IterativeImputer(sample_posterior=True), m=10 per fold, fitted INSIDE each training fold with outcome as predictor; held-out outcomes set to NaN; Firth estimator unchanged; identical 5x20 folds; Rubin pooling; KNNImputer(k=5) sensitivity",
+      "result": {
+        "mice": {"M0_auroc": [0.5171, [0.4691, 0.5652]], "M3a_auroc": [0.7008, [0.6759, 0.7256]], "delta_auroc": [0.1836, [0.1563, 0.2109]], "excludes_zero": true},
+        "knn_sensitivity": {"delta_auroc": [0.0955, [0.0882, 0.1029]]}
+      },
+      "verdict": "PASS_WITH_CAVEATS",
+      "caveats": ["MNAR not excludable", "20 events", "Rubin CI reflects CV-repeat and imputation variance, not full sampling uncertainty of the AUROC", "complete-case delta (0.3525) was inflated by the outcome-selected subset; the transported estimate is smaller and remains positive"],
+      "gate_b5_status": "PASS_WITH_CAVEATS"
+    },
+    "calibration": {
+      "verdict": "NOT_ESTABLISHED",
+      "brier": 0.1484,
+      "brier_prevalence_only": 0.1163,
+      "brier_skill_vs_prevalence": -0.2762,
+      "slope": 1.537, "slope_ci": [0.3394, 2.7345],
+      "intercept": -2.1174, "intercept_ci": [-3.4144, -0.8204],
+      "consequence": "The slope CI spans 1 so widely that it is compatible with severe under- and over-fitting simultaneously. No probability may be emitted."
+    },
+    "influence": {
+      "leave_one_event_out_range": [0.2352, 0.2827],
+      "leave_one_subject_out_range": [0.2352, 0.2827],
+      "no_single_subject_flips_direction": true
+    }
+  },
+  "threshold_record": {
+    "locked_threshold": 0.075,
+    "locked_in_version": "0.2.0",
+    "provenance": {
+      "value": 0.075,
+      "spec_version": "0.2.0",
+      "dataset": "BriTROC-1 diagnosis primary analysis set (n=98, 20 resistant events, prevalence 0.2041)",
+      "analysis": "Youden-J optimum over the prespecified grid [0.025..0.150] on out-of-fold predictions (J=0.4564); inside the 100-fold in-fold cutpoint envelope [0.0502, 0.0798] and the bootstrap cutpoint CI [0.0467, 0.2084]",
+      "oof_sensitivity": 0.70,
+      "oof_specificity": 0.7564
+    },
+    "operating_characteristics_at_lock": {
+      "set98": {"n_flagged": 33, "tp": 14, "fp": 19, "fn": 6, "sensitivity": 0.70, "sensitivity_ci": [0.481, 0.855], "specificity": 0.7564, "specificity_ci": [0.651, 0.838], "ppv": 0.4242, "ppv_ci": [0.272, 0.592], "npv": 0.9077, "npv_ci": [0.813, 0.957], "youden_j": 0.4564},
+      "set67": {"n_flagged": 21, "tp": 8, "fp": 13, "fn": 1, "sensitivity": 0.8889, "sensitivity_ci": [0.565, 0.980], "specificity": 0.7759, "specificity_ci": [0.653, 0.864], "ppv": 0.3810, "npv": 0.9783, "youden_j": 0.6648}
+    },
+    "rejected_candidate": {
+      "value": 0.10,
+      "provenance": "UNSOURCED_IN_REPOSITORY - supplied by the directive, not found in any file on any ref",
+      "verdict": "REJECTED_AS_LOCK",
+      "rejection_reasons": ["unsourced in repository", "outside the 100-fold in-fold cutpoint envelope [0.0502, 0.0798]", "grid-optimal only on the n=67 subset and only via a zero false-negative cell", "on the primary n=98 set it is dominated by 0.075 (J 0.429 vs 0.456)"]
+    },
+    "fold_envelope": {"n_folds": 100, "median": 0.0646, "iqr": [0.0646, 0.0798], "min": 0.0502, "max": 0.0798, "pctile_2p5_97p5": [0.0588, 0.0798]},
+    "bootstrap_ci_of_cutpoint": [0.0467, 0.2084],
+    "status": "LOCKED for research shadow scoring. The lock is a candidate lock, not a clinical threshold: it defines the shadow-scorer operating point and the Gate E screening hypothesis. Changing it requires a spec version bump plus a new provenance record."
+  },
+  "gate_e_designated_decision": {
+    "statement": "Prioritize s3_diag <= 0.075 patients for non-platinum clinical-trial screening.",
+    "nature": "DESIGNATED_DECISION_FOR_UTILITY_EVALUATION - the decision whose clinical utility Gate E must test. It is a research-use screening hypothesis, not a live recommendation.",
+    "direction_check": "higher s3 = platinum sensitive, therefore LOW s3 flags likely resistance and prioritizes NON-platinum trials",
+    "expected_operating_point": {"sensitivity": 0.70, "specificity": 0.7564, "ppv": 0.4242, "npv": 0.9077, "denominator": "n=98, 20 events"},
+    "utility_question": "Does screening on this rule enrich non-platinum trial cohorts for platinum-resistant patients enough to offset the 58% false-flag rate (fp=19 of 33 flagged at the lock on n=98)? Gate E answers this with a prospective utility design, not with this retrospective table."
+  },
+  "nfe1_framework_crosswalk": {
+    "question": "Can Drews CX3 (or CX3-CX2) stand in for Macintyre s3 so CX-published cohorts could serve as Gate C external validation?",
+    "criterion": "|Spearman rho| >= 0.80",
+    "cohort": "TCGA-OV, n=529 with both frameworks published by the originating labs (BriTROC-1 substitution recorded: segment profiles EGA-controlled, CX never published for BriTROC-1)",
+    "result": {"s3_vs_CX3_spearman": [0.305, [0.227, 0.382]], "s3_vs_CX2_spearman": [0.279, [0.200, 0.355]], "s3_vs_CX3_minus_CX2_spearman": [0.156, [0.073, 0.239]], "classification_agreement": 0.543, "cohens_kappa": 0.084, "strongest_s3_correlates": {"CX4": -0.570, "CX8": -0.529}},
+    "verdict": "CRITERION_NOT_MET",
+    "consequence": "CX-transfer route to Gate C is CLOSED on evidence. Open route: direct Macintyre-framework quantification (CINSignatureQuantification supports the ovarian s1-s7 signatures natively) on public absolute CN profiles with outcomes (TCGA-OV ASCAT + TCGA-CDR platinum response; PCAWG-OV).",
+    "artifacts": ["code/crosswalk_s3_to_cx.py", "tables/nfe1_crosswalk_concordance.csv", "nfe1_crosswalk.json", "figures/fig5_framework_crosswalk.png"]
+  },
+  "prohibitions": [
+    "Do not convert any AUROC into a confidence, a probability, or a percentage certainty. AUROC 0.8807 does not mean 88% confidence and never will.",
+    "Do not emit a calibrated probability. Calibration slope CI is [0.34, 2.73] and Brier skill is -0.2762 versus predicting prevalence.",
+    "Do not describe this as a durable or independent biomarker. CLAIM_LEDGER.md row 9 prohibits that language and this work does not lift the prohibition.",
+    "Do not quote 0.8807 or 0.887 without n=67, 9 events, the statement that it is the reversed raw feature, and the selection warning.",
+    "Do not substitute the locked threshold without a version bump and provenance record.",
+    "Do not read the feature from any namespace other than the Macintyre 2018 7-signature framework.",
+    "Do not present a passing adversarial suite as a green repository: the backend baseline is RED with 231 failing or erroring nodes (measured 2026-08-19 over 1,873 collected nodes; supersedes the earlier unverifiable 226)."
+  ],
+  "novelty_position": {
+    "is_this_a_new_biomarker": false,
+    "statement": "This re-derives a published copy-number HRD axis (Macintyre s3) with an independent implementation. That is method validation, not biomarker discovery.",
+    "what_is_new_here": "The measured demonstration that s3 is NOT a restatement of the BRCA/HR mutation axis in this cohort: BRCA mutation status is uncorrelated with s3 exposure (point-biserial r 0.0912, p 0.372 at n=98) and carries essentially no discrimination for registration platinum resistance on its own (AUROC 0.4724 at n=98; 0.5287 at n=67), while s3 adds delta AUROC 0.6571 [0.4713, 0.8257] on top of it."
+  },
+  "deployment": {
+    "flag": "ZETA_S3_RESEARCH_ENABLED",
+    "default": "off",
+    "flag_off_behaviour": "No S3-derived value reaches any response field.",
+    "flag_on_behaviour": "Every S3 output carries research_only=true and intended_use=RANKING_ONLY; no probability, no action_recommendation, no treatment_recommendation. The locked threshold 0.075 is applied by default and reported as threshold_applied plus below_locked_threshold; the Gate E designated decision string is carried as documentation.",
+    "provenance_enforcement": "The scorer refuses to load unless the source-data SHA256 and the spec version both match the recorded values."
+  },
+  "provenance": {
+    "source_archive_sha256": "2f7f15417e3a5076633dd75abbad75a26285d94ec1e26f8f22ebf10d337a0a3f",
+    "source_archive_bytes": 10603503,
+    "member_sha256": {
+      "figure_4A.tsv": "0441d719edea4377c2ad1cc4f9e922a44edbc7481729194dce3bfbb2069a0187",
+      "figure_1B_layer_1.tsv": "3c65ef5921b6d9a2a311fab4070f2f2af99c90b5e14a8e0629eae2b62f3b9b1d",
+      "figure_2.tsv": "9e653d2b10b25c668bc508da9b1a667d94a7f99bd0500ba53aaeb53d51a9a3eb"
+    },
+    "crosswalk_input_sha256": {
+      "ov_sigs_tcga_norm.rds": "586250eb8e9ab1d01376349c150e8574243183bf764e7a3b0c3e0fd5efe2b41f",
+      "ov_sigs_tcga_raw.rds": "7a7494eb5ebfb27a3e4aacf0d8624d98e5c9bd652a0d2f08f784e55ed6fd5a89",
+      "cx_activities_tcga.rds": "13a7d7e8758e3250cf5b556723cac2221a779678f76e572f6e30eb0afa79c329"
+    },
+    "rebuild_diff_vs_archived_master": "0 mismatched cells",
+    "environment": {"python": "3.11.13", "numpy": "2.4.6", "pandas": "3.0.5", "scikit-learn": "1.7.1", "scipy": "1.15.0", "statsmodels": "0.14.6", "lifelines": "0.30.0"}
+  }
+}

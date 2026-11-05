@@ -1,0 +1,1127 @@
+{
+  "absolute_risk_calibrated": false,
+  "activation_consequence": "NONE. A passing result would have activated nothing; this result is a failing one. Absolute survival probability remains structurally disabled and would require a separate code change plus separate authorization.",
+  "api_unchanged": true,
+  "capability_released": "RELATIVE_PROGNOSTIC_INDEX_ONLY",
+  "deployment_claim": "NONE. Code is on a feature branch only; nothing is merged to main and no environment is declared deployed.",
+  "equivalence_gate_precondition": {
+    "fixture_path_in_repo": "tests/fixtures/d9_survival_metric_equivalence.json",
+    "gate": "D9 - local survival metrics must match committed scikit-survival fixtures before any transport metric is trusted.",
+    "tolerance": 1e-08,
+    "verdict": "PASSED"
+  },
+  "evidence_class_separation": {
+    "1_continuous_ruo_prognostic_index": {
+      "content": "k_day, reference_percentile, z_rank, prognostic_log_hazard_index and relative_hazard_multiplier form a continuous ordering associated with overall survival in one external cohort.",
+      "status": "RELEASED_FOR_RESEARCH_USE_ONLY",
+      "what_it_is_not": "It is not an absolute survival probability and not a treatment benefit estimate."
+    },
+    "2_suppressed_unstable_band": {
+      "content": "The categorical field is emitted as null on every code path. The B6 prespecified stability requirement was not met at the frozen quartile knots, so the categorical layer is withheld rather than reported.",
+      "status": "SUPPRESSED_BY_PRESPECIFIED_GATE_FAILURE",
+      "what_it_is_not": "Suppression is not a statement that the continuous index failed; the continuous index is released and the categorical layer is not."
+    },
+    "3_coefficient_only_uncertainty": {
+      "content": "coefficient_conditional_relative_hazard_interval propagates the standard error of the single frozen coefficient at a fixed z_rank. Its width is |z_rank| * SE, so it is exactly zero at the reference point.",
+      "status": "RELEASED_WITH_EXPLICIT_SCOPE_LABEL",
+      "what_it_is_not": "It is not a patient-level predictive interval and contains no component for the patient's own measurement error."
+    },
+    "4_patient_rate_uncertainty": {
+      "content": "The fit-precision receipt bootstraps the patient's own observations to give a k_day interval, a percentile interval and a decline-sign stability fraction. At exactly three distinct observation days it is not estimable and every interval is null with status INSUFFICIENT_FOR_UNCERTAINTY.",
+      "status": "RELEASED_WHEN_ESTIMABLE_ELSE_NULL",
+      "what_it_is_not": "It is not coefficient uncertainty and the two are never combined into a single interval."
+    },
+    "5_absolute_risk_transport_evidence": {
+      "content": "D10 transported the TAX327-derived model to VENICE at the prespecified gate-eligible horizons. Calibration slope and observed-to-expected both failed the prespecified gate in both transport variants.",
+      "status": "EVALUATED_AND_FAILED_NOTHING_ACTIVATED",
+      "what_it_is_not": "A passing result would still have activated nothing. The failing result is evidence about transportability, not a released output."
+    },
+    "6_treatment_prediction": {
+      "content": "No treatment-predictive quantity is computed anywhere in the code path. The corresponding keys are emitted as null on every payload.",
+      "status": "STRUCTURALLY_UNAVAILABLE",
+      "what_it_is_not": "Absence is structural, not a threshold that could be crossed by supplying more data. Every released prostate cohort is a comparator or control arm, so the comparison is not identified."
+    },
+    "mandate": "Item 9 of the completion directive requires every emitted artifact to keep these six evidence classes separate and to never let one stand in for another."
+  },
+  "gate_detail_by_variant": {
+    "T1": {
+      "consequence": "NOTHING is activated. Absolute survival probability remains structurally disabled; a code change plus separate authorization would be required.",
+      "detail": [
+        {
+          "ci_hi": 1.4527862034745624,
+          "ci_lo": -0.24982516558623838,
+          "gate": [
+            0.8,
+            1.2
+          ],
+          "horizon": 26,
+          "metric": "calibration_slope",
+          "point": 0.5677168904142297,
+          "verdict": "FAIL"
+        },
+        {
+          "ci_hi": 1.41180287308533,
+          "ci_lo": 0.4155709060066763,
+          "gate": [
+            0.9,
+            1.1
+          ],
+          "horizon": 26,
+          "metric": "observed_to_expected",
+          "point": 0.7351380665079498,
+          "verdict": "FAIL"
+        },
+        {
+          "ci_hi": 1.0472523158187454,
+          "ci_lo": 0.07998329319693082,
+          "gate": [
+            0.8,
+            1.2
+          ],
+          "horizon": 52,
+          "metric": "calibration_slope",
+          "point": 0.5436546450647528,
+          "verdict": "FAIL"
+        },
+        {
+          "ci_hi": 1.0677347356115017,
+          "ci_lo": 0.49873931127831744,
+          "gate": [
+            0.9,
+            1.1
+          ],
+          "horizon": 52,
+          "metric": "observed_to_expected",
+          "point": 0.730800838964311,
+          "verdict": "FAIL"
+        },
+        {
+          "comparator": 0.20688844769336961,
+          "gate": "marker IBS < comparator IBS",
+          "horizon": "ALL",
+          "metric": "ibs_beats_age_ecog_reference",
+          "point": 0.20124978344441896,
+          "verdict": "PASS"
+        }
+      ],
+      "gate_eligible_horizons": [
+        26,
+        52
+      ],
+      "overall": "FAIL"
+    },
+    "T2": {
+      "consequence": "NOTHING is activated. Absolute survival probability remains structurally disabled; a code change plus separate authorization would be required.",
+      "detail": [
+        {
+          "ci_hi": 1.5699659127168022,
+          "ci_lo": -0.29414552170782254,
+          "gate": [
+            0.8,
+            1.2
+          ],
+          "horizon": 26,
+          "metric": "calibration_slope",
+          "point": 0.6077360319647693,
+          "verdict": "FAIL"
+        },
+        {
+          "ci_hi": 1.3113184812784051,
+          "ci_lo": 0.4048864528828254,
+          "gate": [
+            0.9,
+            1.1
+          ],
+          "horizon": 26,
+          "metric": "observed_to_expected",
+          "point": 0.6951565624918149,
+          "verdict": "FAIL"
+        },
+        {
+          "ci_hi": 1.1257398847082085,
+          "ci_lo": 0.07379871924065393,
+          "gate": [
+            0.8,
+            1.2
+          ],
+          "horizon": 52,
+          "metric": "calibration_slope",
+          "point": 0.5833105408579696,
+          "verdict": "FAIL"
+        },
+        {
+          "ci_hi": 0.9875106273174945,
+          "ci_lo": 0.4814379353815633,
+          "gate": [
+            0.9,
+            1.1
+          ],
+          "horizon": 52,
+          "metric": "observed_to_expected",
+          "point": 0.6918701002643051,
+          "verdict": "FAIL"
+        },
+        {
+          "comparator": 0.20688844769336961,
+          "gate": "marker IBS < comparator IBS",
+          "horizon": "ALL",
+          "metric": "ibs_beats_age_ecog_reference",
+          "point": 0.20419907232756723,
+          "verdict": "PASS"
+        }
+      ],
+      "gate_eligible_horizons": [
+        26,
+        52
+      ],
+      "overall": "FAIL"
+    }
+  },
+  "payload": {
+    "activation_consequence": "NOTHING is activated by any result in this receipt.",
+    "bootstrap": {
+      "B": 1000,
+      "scope": "COMPLETE procedure: both cohorts resampled, model and baseline hazard refit inside every replicate",
+      "seed": 20260813,
+      "unit": "subject"
+    },
+    "bootstrap_ci": {
+      "COMPARATOR": {
+        "ci": {
+          "auc@104": {
+            "hi": 0.650553604934697,
+            "lo": 0.5277716121338262,
+            "n_finite": 1000
+          },
+          "auc@26": {
+            "hi": 0.663443680052933,
+            "lo": 0.4458187776758961,
+            "n_finite": 1000
+          },
+          "auc@52": {
+            "hi": 0.6395391448848717,
+            "lo": 0.5072147732982343,
+            "n_finite": 1000
+          },
+          "auc@78": {
+            "hi": 0.6354629501435288,
+            "lo": 0.5239162739580825,
+            "n_finite": 1000
+          },
+          "brier@104": {
+            "hi": 0.34710893031906126,
+            "lo": 0.24441361229355196,
+            "n_finite": 1000
+          },
+          "brier@26": {
+            "hi": 0.08746834270920455,
+            "lo": 0.04827372794072208,
+            "n_finite": 1000
+          },
+          "brier@52": {
+            "hi": 0.21801169010288876,
+            "lo": 0.16415888325143824,
+            "n_finite": 1000
+          },
+          "brier@78": {
+            "hi": 0.3071172311757764,
+            "lo": 0.24032367537193378,
+            "n_finite": 1000
+          },
+          "cal_int@104": {
+            "hi": -0.31000768863181166,
+            "lo": -1.034939109623495,
+            "n_finite": 1000
+          },
+          "cal_int@26": {
+            "hi": 0.24451870464105097,
+            "lo": -1.0779239988979645,
+            "n_finite": 1000
+          },
+          "cal_int@52": {
+            "hi": -0.017343412249189664,
+            "lo": -0.740300138516902,
+            "n_finite": 1000
+          },
+          "cal_int@78": {
+            "hi": -0.09105152955625628,
+            "lo": -0.7580187757978363,
+            "n_finite": 1000
+          },
+          "cal_slope@104": {
+            "hi": 0.9052280728382035,
+            "lo": 0.1846271979304748,
+            "n_finite": 1000
+          },
+          "cal_slope@26": {
+            "hi": 1.5895080218158206,
+            "lo": -0.26918993206922454,
+            "n_finite": 1000
+          },
+          "cal_slope@52": {
+            "hi": 1.058335578719194,
+            "lo": 0.07127807148100744,
+            "n_finite": 1000
+          },
+          "cal_slope@78": {
+            "hi": 0.9239743751476257,
+            "lo": 0.1428959406411544,
+            "n_finite": 1000
+          },
+          "ibs": {
+            "hi": 0.2361308563284112,
+            "lo": 0.1902317566432198,
+            "n_finite": 1000
+          },
+          "mean_auc": {
+            "hi": 0.6331789247431171,
+            "lo": 0.5233581736120465,
+            "n_finite": 1000
+          },
+          "oe@104": {
+            "hi": 0.7546441884117102,
+            "lo": 0.3560085302206041,
+            "n_finite": 1000
+          },
+          "oe@26": {
+            "hi": 1.3070117246924966,
+            "lo": 0.40839311519090254,
+            "n_finite": 1000
+          },
+          "oe@52": {
+            "hi": 0.9881265148162532,
+            "lo": 0.48794721199417324,
+            "n_finite": 1000
+          },
+          "oe@78": {
+            "hi": 0.9331926981501412,
+            "lo": 0.47527573496184183,
+            "n_finite": 1000
+          }
+        },
+        "n_replicates_failed": 0,
+        "n_replicates_used": 1000
+      },
+      "T1": {
+        "ci": {
+          "auc@104": {
+            "hi": 0.6733933295280322,
+            "lo": 0.5338483367662832,
+            "n_finite": 1000
+          },
+          "auc@26": {
+            "hi": 0.6623810903340531,
+            "lo": 0.4315788853204539,
+            "n_finite": 1000
+          },
+          "auc@52": {
+            "hi": 0.6579292517929385,
+            "lo": 0.5175480274964352,
+            "n_finite": 1000
+          },
+          "auc@78": {
+            "hi": 0.6573722079441661,
+            "lo": 0.5329687670349532,
+            "n_finite": 1000
+          },
+          "brier@104": {
+            "hi": 0.3319551211704529,
+            "lo": 0.23635757298371174,
+            "n_finite": 1000
+          },
+          "brier@26": {
+            "hi": 0.08715666198673769,
+            "lo": 0.04780097325470472,
+            "n_finite": 1000
+          },
+          "brier@52": {
+            "hi": 0.21765691414984684,
+            "lo": 0.16175089169710308,
+            "n_finite": 1000
+          },
+          "brier@78": {
+            "hi": 0.2989131619713932,
+            "lo": 0.23265531253944507,
+            "n_finite": 1000
+          },
+          "cal_int@104": {
+            "hi": -0.2282954336490574,
+            "lo": -1.0056009518059694,
+            "n_finite": 1000
+          },
+          "cal_int@26": {
+            "hi": 0.2861078942733543,
+            "lo": -1.0207402042275882,
+            "n_finite": 1000
+          },
+          "cal_int@52": {
+            "hi": 0.0323490081206506,
+            "lo": -0.7131221891134641,
+            "n_finite": 1000
+          },
+          "cal_int@78": {
+            "hi": -0.045488061803827334,
+            "lo": -0.73172755728952,
+            "n_finite": 1000
+          },
+          "cal_slope@104": {
+            "hi": 0.9625669449157669,
+            "lo": 0.21776040461983653,
+            "n_finite": 1000
+          },
+          "cal_slope@26": {
+            "hi": 1.4527862034745624,
+            "lo": -0.24982516558623838,
+            "n_finite": 1000
+          },
+          "cal_slope@52": {
+            "hi": 1.0472523158187454,
+            "lo": 0.07998329319693082,
+            "n_finite": 1000
+          },
+          "cal_slope@78": {
+            "hi": 0.956815609018398,
+            "lo": 0.16300821580518327,
+            "n_finite": 1000
+          },
+          "ibs": {
+            "hi": 0.2333603578020316,
+            "lo": 0.18562487175132894,
+            "n_finite": 1000
+          },
+          "mean_auc": {
+            "hi": 0.6487028459072142,
+            "lo": 0.5270860680158148,
+            "n_finite": 1000
+          },
+          "oe@104": {
+            "hi": 0.8325541488750284,
+            "lo": 0.36044710536522057,
+            "n_finite": 1000
+          },
+          "oe@26": {
+            "hi": 1.41180287308533,
+            "lo": 0.4155709060066763,
+            "n_finite": 1000
+          },
+          "oe@52": {
+            "hi": 1.0677347356115017,
+            "lo": 0.49873931127831744,
+            "n_finite": 1000
+          },
+          "oe@78": {
+            "hi": 0.9925869455988268,
+            "lo": 0.4791634766405958,
+            "n_finite": 1000
+          }
+        },
+        "n_replicates_failed": 0,
+        "n_replicates_used": 1000
+      },
+      "T2": {
+        "ci": {
+          "auc@104": {
+            "hi": 0.6717910260111054,
+            "lo": 0.5361625097310303,
+            "n_finite": 1000
+          },
+          "auc@26": {
+            "hi": 0.6686439926515327,
+            "lo": 0.42965375036187803,
+            "n_finite": 1000
+          },
+          "auc@52": {
+            "hi": 0.6587096270175812,
+            "lo": 0.5162971284671892,
+            "n_finite": 1000
+          },
+          "auc@78": {
+            "hi": 0.6564321445540366,
+            "lo": 0.5336266868127763,
+            "n_finite": 1000
+          },
+          "brier@104": {
+            "hi": 0.34024287804364434,
+            "lo": 0.23991430202992514,
+            "n_finite": 1000
+          },
+          "brier@26": {
+            "hi": 0.08682106379686512,
+            "lo": 0.04800058345565552,
+            "n_finite": 1000
+          },
+          "brier@52": {
+            "hi": 0.21768971286533376,
+            "lo": 0.16361755614780632,
+            "n_finite": 1000
+          },
+          "brier@78": {
+            "hi": 0.3043867707180968,
+            "lo": 0.23553842248439916,
+            "n_finite": 1000
+          },
+          "cal_int@104": {
+            "hi": -0.28588497490194936,
+            "lo": -1.0181214578889204,
+            "n_finite": 1000
+          },
+          "cal_int@26": {
+            "hi": 0.26067428148081284,
+            "lo": -1.0615851198285753,
+            "n_finite": 1000
+          },
+          "cal_int@52": {
+            "hi": -0.011949679528834892,
+            "lo": -0.7361104193417072,
+            "n_finite": 1000
+          },
+          "cal_int@78": {
+            "hi": -0.08504024760452258,
+            "lo": -0.7555569616055893,
+            "n_finite": 1000
+          },
+          "cal_slope@104": {
+            "hi": 0.993938589594665,
+            "lo": 0.22413818123119406,
+            "n_finite": 1000
+          },
+          "cal_slope@26": {
+            "hi": 1.5699659127168022,
+            "lo": -0.29414552170782254,
+            "n_finite": 1000
+          },
+          "cal_slope@52": {
+            "hi": 1.1257398847082085,
+            "lo": 0.07379871924065393,
+            "n_finite": 1000
+          },
+          "cal_slope@78": {
+            "hi": 1.0132332345388082,
+            "lo": 0.18514390520658291,
+            "n_finite": 1000
+          },
+          "ibs": {
+            "hi": 0.23548039473330576,
+            "lo": 0.18856844922268784,
+            "n_finite": 1000
+          },
+          "mean_auc": {
+            "hi": 0.6473595068683267,
+            "lo": 0.5279456285970078,
+            "n_finite": 1000
+          },
+          "oe@104": {
+            "hi": 0.7618950317142572,
+            "lo": 0.35487276296936104,
+            "n_finite": 1000
+          },
+          "oe@26": {
+            "hi": 1.3113184812784051,
+            "lo": 0.4048864528828254,
+            "n_finite": 1000
+          },
+          "oe@52": {
+            "hi": 0.9875106273174945,
+            "lo": 0.4814379353815633,
+            "n_finite": 1000
+          },
+          "oe@78": {
+            "hi": 0.9386379565136853,
+            "lo": 0.4709764253219626,
+            "n_finite": 1000
+          }
+        },
+        "n_replicates_failed": 0,
+        "n_replicates_used": 1000
+      }
+    },
+    "confounding_disclosure": "TAX327 and VENICE differ in treatment, calendar period and follow-up. A failed transport does NOT invalidate the relative prognostic association; a pass would still be confounded and would still require CIs around every calibration metric.",
+    "document": "Zeta-Core v4 D10 absolute-risk transport TAX327 -> VENICE",
+    "gates": {
+      "T1": {
+        "consequence": "NOTHING is activated. Absolute survival probability remains structurally disabled; a code change plus separate authorization would be required.",
+        "detail": [
+          {
+            "ci_hi": 1.4527862034745624,
+            "ci_lo": -0.24982516558623838,
+            "gate": [
+              0.8,
+              1.2
+            ],
+            "horizon": 26,
+            "metric": "calibration_slope",
+            "point": 0.5677168904142297,
+            "verdict": "FAIL"
+          },
+          {
+            "ci_hi": 1.41180287308533,
+            "ci_lo": 0.4155709060066763,
+            "gate": [
+              0.9,
+              1.1
+            ],
+            "horizon": 26,
+            "metric": "observed_to_expected",
+            "point": 0.7351380665079498,
+            "verdict": "FAIL"
+          },
+          {
+            "ci_hi": 1.0472523158187454,
+            "ci_lo": 0.07998329319693082,
+            "gate": [
+              0.8,
+              1.2
+            ],
+            "horizon": 52,
+            "metric": "calibration_slope",
+            "point": 0.5436546450647528,
+            "verdict": "FAIL"
+          },
+          {
+            "ci_hi": 1.0677347356115017,
+            "ci_lo": 0.49873931127831744,
+            "gate": [
+              0.9,
+              1.1
+            ],
+            "horizon": 52,
+            "metric": "observed_to_expected",
+            "point": 0.730800838964311,
+            "verdict": "FAIL"
+          },
+          {
+            "comparator": 0.20688844769336961,
+            "gate": "marker IBS < comparator IBS",
+            "horizon": "ALL",
+            "metric": "ibs_beats_age_ecog_reference",
+            "point": 0.20124978344441896,
+            "verdict": "PASS"
+          }
+        ],
+        "gate_eligible_horizons": [
+          26,
+          52
+        ],
+        "overall": "FAIL"
+      },
+      "T2": {
+        "consequence": "NOTHING is activated. Absolute survival probability remains structurally disabled; a code change plus separate authorization would be required.",
+        "detail": [
+          {
+            "ci_hi": 1.5699659127168022,
+            "ci_lo": -0.29414552170782254,
+            "gate": [
+              0.8,
+              1.2
+            ],
+            "horizon": 26,
+            "metric": "calibration_slope",
+            "point": 0.6077360319647693,
+            "verdict": "FAIL"
+          },
+          {
+            "ci_hi": 1.3113184812784051,
+            "ci_lo": 0.4048864528828254,
+            "gate": [
+              0.9,
+              1.1
+            ],
+            "horizon": 26,
+            "metric": "observed_to_expected",
+            "point": 0.6951565624918149,
+            "verdict": "FAIL"
+          },
+          {
+            "ci_hi": 1.1257398847082085,
+            "ci_lo": 0.07379871924065393,
+            "gate": [
+              0.8,
+              1.2
+            ],
+            "horizon": 52,
+            "metric": "calibration_slope",
+            "point": 0.5833105408579696,
+            "verdict": "FAIL"
+          },
+          {
+            "ci_hi": 0.9875106273174945,
+            "ci_lo": 0.4814379353815633,
+            "gate": [
+              0.9,
+              1.1
+            ],
+            "horizon": 52,
+            "metric": "observed_to_expected",
+            "point": 0.6918701002643051,
+            "verdict": "FAIL"
+          },
+          {
+            "comparator": 0.20688844769336961,
+            "gate": "marker IBS < comparator IBS",
+            "horizon": "ALL",
+            "metric": "ibs_beats_age_ecog_reference",
+            "point": 0.20419907232756723,
+            "verdict": "PASS"
+          }
+        ],
+        "gate_eligible_horizons": [
+          26,
+          52
+        ],
+        "overall": "FAIL"
+      }
+    },
+    "horizons_weeks_post_landmark": [
+      26.0,
+      52.0,
+      78.0,
+      104.0
+    ],
+    "ipcw_censoring_estimated_on": "VALIDATION cohort (VENICE)",
+    "landmark_weeks": 15.0,
+    "point_estimates": {
+      "COMPARATOR": {
+        "baseline_cumhaz_at_horizons": [
+          0.1121383853746455,
+          0.41461529719071255,
+          0.9284611089491549,
+          1.780332055512162
+        ],
+        "baseline_x_ref": [
+          0.6686746987951807,
+          0.8433734939759037
+        ],
+        "ci_source_point": {
+          "auc@104": 0.5991216263857374,
+          "auc@26": 0.5682379171567866,
+          "auc@52": 0.5861265373020372,
+          "auc@78": 0.5880816661114864,
+          "brier@104": 0.2807352693104338,
+          "brier@26": 0.06551574037697792,
+          "brier@52": 0.18657138190404804,
+          "brier@78": 0.26096845633235505,
+          "cal_int@104": -0.6489009645965113,
+          "cal_int@26": -0.3648778945656619,
+          "cal_int@52": -0.37338276623541117,
+          "cal_int@78": -0.42858237740133887,
+          "cal_slope@104": 0.49828335463896734,
+          "cal_slope@26": 0.5465192489319513,
+          "cal_slope@52": 0.4984951438455241,
+          "cal_slope@78": 0.48764212383654854,
+          "ibs": 0.20688844769336961,
+          "mean_auc": 0.5877217337577708,
+          "oe@104": 0.5371006812348098,
+          "oe@26": 0.6931992402636997,
+          "oe@52": 0.6927367744089342,
+          "oe@78": 0.6650779302273873
+        },
+        "derivation_beta": [
+          -0.6083396900065564,
+          0.7520415243400429
+        ],
+        "derivation_converged": true,
+        "derivation_events": 77,
+        "derivation_loglik": -319.51655012082585,
+        "derivation_n": 166,
+        "derivation_se": [
+          0.24360730909512904,
+          0.20790841164094767
+        ],
+        "integrated_brier_score": 0.20688844769336961,
+        "mean_auc": 0.5877217337577708,
+        "per_horizon": [
+          {
+            "brier": 0.06551574037697792,
+            "calibration_intercept": -0.3648778945656619,
+            "calibration_slope": 0.5465192489319513,
+            "expected_events_cumhaz": 44.72018750079313,
+            "horizon_weeks_post_landmark": 26.0,
+            "km_observed_risk": 0.06954400690220819,
+            "mean_predicted_risk": 0.09804316773329542,
+            "observed_events": 31.0,
+            "observed_to_expected": 0.6931992402636997,
+            "time_dependent_auc": 0.5682379171567866,
+            "venice_at_risk": 417,
+            "venice_cumulative_events": 31
+          },
+          {
+            "brier": 0.18657138190404804,
+            "calibration_intercept": -0.37338276623541117,
+            "calibration_slope": 0.4984951438455241,
+            "expected_events_cumhaz": 148.6856246196587,
+            "horizon_weeks_post_landmark": 52.0,
+            "km_observed_risk": 0.23136244048443289,
+            "mean_predicted_risk": 0.30592083281169646,
+            "observed_events": 103.0,
+            "observed_to_expected": 0.6927367744089342,
+            "time_dependent_auc": 0.5861265373020372,
+            "venice_at_risk": 344,
+            "venice_cumulative_events": 103
+          },
+          {
+            "brier": 0.26096845633235505,
+            "calibration_intercept": -0.42858237740133887,
+            "calibration_slope": 0.48764212383654854,
+            "expected_events_cumhaz": 279.6664744782727,
+            "horizon_weeks_post_landmark": 78.0,
+            "km_observed_risk": 0.4179031347528307,
+            "mean_predicted_risk": 0.5366251431441597,
+            "observed_events": 186.0,
+            "observed_to_expected": 0.6650779302273873,
+            "time_dependent_auc": 0.5880816661114864,
+            "venice_at_risk": 260,
+            "venice_cumulative_events": 186
+          },
+          {
+            "brier": 0.2807352693104338,
+            "calibration_intercept": -0.6489009645965113,
+            "calibration_slope": 0.49828335463896734,
+            "expected_events_cumhaz": 450.56729297686815,
+            "horizon_weeks_post_landmark": 104.0,
+            "km_observed_risk": 0.5535160643832882,
+            "mean_predicted_risk": 0.744073940618089,
+            "observed_events": 242.0,
+            "observed_to_expected": 0.5371006812348098,
+            "time_dependent_auc": 0.5991216263857374,
+            "venice_at_risk": 168,
+            "venice_cumulative_events": 242
+          }
+        ],
+        "validation_events": 296,
+        "validation_n": 446,
+        "variant": "COMPARATOR"
+      },
+      "T1": {
+        "baseline_cumhaz_at_horizons": [
+          0.11126432219619464,
+          0.41482003895891695,
+          0.9343556102930667,
+          1.751013366432538
+        ],
+        "baseline_x_ref": [
+          5.6848769333215845e-18,
+          0.6686746987951807,
+          0.8433734939759037
+        ],
+        "ci_source_point": {
+          "auc@104": 0.61412695256803,
+          "auc@26": 0.5461864971036687,
+          "auc@52": 0.5928805100173321,
+          "auc@78": 0.5990068998161264,
+          "brier@104": 0.27054379852714616,
+          "brier@26": 0.06486384634714806,
+          "brier@52": 0.18294606924078163,
+          "brier@78": 0.25309945865532807,
+          "cal_int@104": -0.5941562079140135,
+          "cal_int@26": -0.3263505932707377,
+          "cal_int@52": -0.3403860631773047,
+          "cal_int@78": -0.3961727848235994,
+          "cal_slope@104": 0.5758921653537169,
+          "cal_slope@26": 0.5677168904142297,
+          "cal_slope@52": 0.5436546450647528,
+          "cal_slope@78": 0.5517292236181552,
+          "ibs": 0.20124978344441896,
+          "mean_auc": 0.5942839463737044,
+          "oe@104": 0.5762797243268943,
+          "oe@26": 0.7351380665079498,
+          "oe@52": 0.730800838964311,
+          "oe@78": 0.6994855839083435
+        },
+        "derivation_beta": [
+          -0.1496622409704432,
+          -0.5875393986751383,
+          0.7115618094624793
+        ],
+        "derivation_converged": true,
+        "derivation_events": 77,
+        "derivation_loglik": -318.72903131224865,
+        "derivation_n": 166,
+        "derivation_se": [
+          0.11882074131986137,
+          0.24363462891890691,
+          0.20855783790098673
+        ],
+        "integrated_brier_score": 0.20124978344441896,
+        "mean_auc": 0.5942839463737044,
+        "per_horizon": [
+          {
+            "brier": 0.06486384634714806,
+            "calibration_intercept": -0.3263505932707377,
+            "calibration_slope": 0.5677168904142297,
+            "expected_events_cumhaz": 42.168949497141526,
+            "horizon_weeks_post_landmark": 26.0,
+            "km_observed_risk": 0.06954400690220819,
+            "mean_predicted_risk": 0.09283568751905441,
+            "observed_events": 31.0,
+            "observed_to_expected": 0.7351380665079498,
+            "time_dependent_auc": 0.5461864971036687,
+            "venice_at_risk": 417,
+            "venice_cumulative_events": 31
+          },
+          {
+            "brier": 0.18294606924078163,
+            "calibration_intercept": -0.3403860631773047,
+            "calibration_slope": 0.5436546450647528,
+            "expected_events_cumhaz": 140.9412722431618,
+            "horizon_weeks_post_landmark": 52.0,
+            "km_observed_risk": 0.23136244048443289,
+            "mean_predicted_risk": 0.29366334691661006,
+            "observed_events": 103.0,
+            "observed_to_expected": 0.730800838964311,
+            "time_dependent_auc": 0.5928805100173321,
+            "venice_at_risk": 344,
+            "venice_cumulative_events": 103
+          },
+          {
+            "brier": 0.25309945865532807,
+            "calibration_intercept": -0.3961727848235994,
+            "calibration_slope": 0.5517292236181552,
+            "expected_events_cumhaz": 265.9096974675783,
+            "horizon_weeks_post_landmark": 78.0,
+            "km_observed_risk": 0.4179031347528307,
+            "mean_predicted_risk": 0.521795610028963,
+            "observed_events": 186.0,
+            "observed_to_expected": 0.6994855839083435,
+            "time_dependent_auc": 0.5990068998161264,
+            "venice_at_risk": 260,
+            "venice_cumulative_events": 186
+          },
+          {
+            "brier": 0.27054379852714616,
+            "calibration_intercept": -0.5941562079140135,
+            "calibration_slope": 0.5758921653537169,
+            "expected_events_cumhaz": 419.93495482191497,
+            "horizon_weeks_post_landmark": 104.0,
+            "km_observed_risk": 0.5535160643832882,
+            "mean_predicted_risk": 0.7237827676414063,
+            "observed_events": 242.0,
+            "observed_to_expected": 0.5762797243268943,
+            "time_dependent_auc": 0.61412695256803,
+            "venice_at_risk": 168,
+            "venice_cumulative_events": 242
+          }
+        ],
+        "validation_events": 296,
+        "validation_n": 446,
+        "variant": "T1"
+      },
+      "T2": {
+        "baseline_cumhaz_at_horizons": [
+          0.11126432219619464,
+          0.41482003895891695,
+          0.9343556102930667,
+          1.751013366432538
+        ],
+        "baseline_x_ref": [
+          5.6848769333215845e-18,
+          0.6686746987951807,
+          0.8433734939759037
+        ],
+        "ci_source_point": {
+          "auc@104": 0.6132774262971202,
+          "auc@26": 0.5468105214875971,
+          "auc@52": 0.5924972445538546,
+          "auc@78": 0.5987889526184418,
+          "brier@104": 0.27668812795603603,
+          "brier@26": 0.06492086029640652,
+          "brier@52": 0.18432998977271783,
+          "brier@78": 0.2574627330837626,
+          "cal_int@104": -0.6237124824630528,
+          "cal_int@26": -0.35812666142079735,
+          "cal_int@52": -0.3696751740573095,
+          "cal_int@78": -0.42504909130412116,
+          "cal_slope@104": 0.610216218646015,
+          "cal_slope@26": 0.6077360319647693,
+          "cal_slope@52": 0.5833105408579696,
+          "cal_slope@78": 0.5870545607339425,
+          "ibs": 0.20419907232756723,
+          "mean_auc": 0.5939687160848718,
+          "oe@104": 0.5465630491101721,
+          "oe@26": 0.6951565624918149,
+          "oe@52": 0.6918701002643051,
+          "oe@78": 0.6627869621407945
+        },
+        "derivation_beta": [
+          -0.1496622409704432,
+          -0.5875393986751383,
+          0.7115618094624793
+        ],
+        "derivation_converged": true,
+        "derivation_events": 77,
+        "derivation_loglik": -318.72903131224865,
+        "derivation_n": 166,
+        "derivation_se": [
+          0.11882074131986137,
+          0.24363462891890691,
+          0.20855783790098673
+        ],
+        "integrated_brier_score": 0.20419907232756723,
+        "mean_auc": 0.5939687160848718,
+        "per_horizon": [
+          {
+            "brier": 0.06492086029640652,
+            "calibration_intercept": -0.35812666142079735,
+            "calibration_slope": 0.6077360319647693,
+            "expected_events_cumhaz": 44.59427080552808,
+            "horizon_weeks_post_landmark": 26.0,
+            "km_observed_risk": 0.06954400690220819,
+            "mean_predicted_risk": 0.09800391916727987,
+            "observed_events": 31.0,
+            "observed_to_expected": 0.6951565624918149,
+            "time_dependent_auc": 0.5468105214875971,
+            "venice_at_risk": 417,
+            "venice_cumulative_events": 31
+          },
+          {
+            "brier": 0.18432998977271783,
+            "calibration_intercept": -0.3696751740573095,
+            "calibration_slope": 0.5833105408579696,
+            "expected_events_cumhaz": 148.87187632570394,
+            "horizon_weeks_post_landmark": 52.0,
+            "km_observed_risk": 0.23136244048443289,
+            "mean_predicted_risk": 0.3080614449469603,
+            "observed_events": 103.0,
+            "observed_to_expected": 0.6918701002643051,
+            "time_dependent_auc": 0.5924972445538546,
+            "venice_at_risk": 344,
+            "venice_cumulative_events": 103
+          },
+          {
+            "brier": 0.2574627330837626,
+            "calibration_intercept": -0.42504909130412116,
+            "calibration_slope": 0.5870545607339425,
+            "expected_events_cumhaz": 280.6331606150219,
+            "horizon_weeks_post_landmark": 78.0,
+            "km_observed_risk": 0.4179031347528307,
+            "mean_predicted_risk": 0.5420734555270827,
+            "observed_events": 186.0,
+            "observed_to_expected": 0.6627869621407945,
+            "time_dependent_auc": 0.5987889526184418,
+            "venice_at_risk": 260,
+            "venice_cumulative_events": 186
+          },
+          {
+            "brier": 0.27668812795603603,
+            "calibration_intercept": -0.6237124824630528,
+            "calibration_slope": 0.610216218646015,
+            "expected_events_cumhaz": 442.76685076678035,
+            "horizon_weeks_post_landmark": 104.0,
+            "km_observed_risk": 0.5535160643832882,
+            "mean_predicted_risk": 0.7433449241264999,
+            "observed_events": 242.0,
+            "observed_to_expected": 0.5465630491101721,
+            "time_dependent_auc": 0.6132774262971202,
+            "venice_at_risk": 168,
+            "venice_cumulative_events": 242
+          }
+        ],
+        "validation_events": 296,
+        "validation_n": 446,
+        "variant": "T2"
+      }
+    },
+    "prespecification": "b1_support_rule_D10 (frozen v1, SHA-256 b666481b1414e850fef419547ef830f6176c3fdfcbbcb73634b1ff4bd6673322)",
+    "support": [
+      {
+        "gate_eligible": true,
+        "horizon_weeks_post_landmark": 26.0,
+        "min_at_risk_required": 20,
+        "min_cumulative_events_required": 10,
+        "support_label": "GATE_ELIGIBLE",
+        "tax327_at_risk": 138,
+        "tax327_cumulative_events": 19
+      },
+      {
+        "gate_eligible": true,
+        "horizon_weeks_post_landmark": 52.0,
+        "min_at_risk_required": 20,
+        "min_cumulative_events_required": 10,
+        "support_label": "GATE_ELIGIBLE",
+        "tax327_at_risk": 68,
+        "tax327_cumulative_events": 50
+      },
+      {
+        "gate_eligible": false,
+        "horizon_weeks_post_landmark": 78.0,
+        "min_at_risk_required": 20,
+        "min_cumulative_events_required": 10,
+        "support_label": "WEAK_SUPPORT",
+        "tax327_at_risk": 18,
+        "tax327_cumulative_events": 69
+      },
+      {
+        "gate_eligible": false,
+        "horizon_weeks_post_landmark": 104.0,
+        "min_at_risk_required": 20,
+        "min_cumulative_events_required": 10,
+        "support_label": "WEAK_SUPPORT",
+        "tax327_at_risk": 3,
+        "tax327_cumulative_events": 77
+      }
+    ],
+    "time_origin": "week-15 landmark; analysis time = os_weeks - 15",
+    "wall_seconds": 124.6
+  },
+  "prespecification": {
+    "v1_sha256": "b666481b1414e850fef419547ef830f6176c3fdfcbbcb73634b1ff4bd6673322",
+    "v2_addendum_path": "validation/prespecification/audit_correction_prespecification_v2_addendum.json",
+    "v2_addendum_sha256": "a24fb4e000d4da02852abb3fcb7aeeb2d671474fbafc4dcdc6a7aafcd09de71f"
+  },
+  "purpose": "D10 - transport the TAX327-derived survival model to VENICE without changing the API, and test it against a prespecified support and calibration gate.",
+  "receipt_id": "zeta_core_v4_d10_absolute_risk_transport",
+  "receipt_version": "v1",
+  "source_receipt": {
+    "file": "d10_transport.json",
+    "sha256": "afe232c604afec60ebae1f84a54b317165f94de97b7b8bda66dc976372ec7575"
+  },
+  "status": "LOCAL_CHECKPOINT_NOT_RELEASE_READY",
+  "treatment_predictive": false,
+  "verdict": {
+    "failing": [
+      {
+        "horizon": 26,
+        "metric": "calibration_slope",
+        "variant": "T1"
+      },
+      {
+        "horizon": 26,
+        "metric": "observed_to_expected",
+        "variant": "T1"
+      },
+      {
+        "horizon": 52,
+        "metric": "calibration_slope",
+        "variant": "T1"
+      },
+      {
+        "horizon": 52,
+        "metric": "observed_to_expected",
+        "variant": "T1"
+      },
+      {
+        "horizon": 26,
+        "metric": "calibration_slope",
+        "variant": "T2"
+      },
+      {
+        "horizon": 26,
+        "metric": "observed_to_expected",
+        "variant": "T2"
+      },
+      {
+        "horizon": 52,
+        "metric": "calibration_slope",
+        "variant": "T2"
+      },
+      {
+        "horizon": 52,
+        "metric": "observed_to_expected",
+        "variant": "T2"
+      }
+    ],
+    "n_fail": 8,
+    "n_gate_evaluations": 10,
+    "n_pass": 2,
+    "overall": "FAIL"
+  }
+}

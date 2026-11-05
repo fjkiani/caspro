@@ -1,0 +1,100 @@
+{
+  "version": "2.0",
+  "generated": "2026-04-15",
+  "note": "v2.0 \u2014 all DNA targets replaced with real hg38 genomic sequences. v1.0 used synthetic palindromes (spacer+PAM+RC(spacer)) which did not map to actual gene loci.",
+  "correction": "v1.0 spacers (GGATCATCAGCATGGTGGCC for BACE1 etc.) did not map to their respective gene bodies in hg38. v2.0 guides are designed from actual TSS windows (-200 to +50bp) with verified NGG PAM sites.",
+  "guide_design": {
+    "method": "TSS window PAM-scan",
+    "window": "-200 to +50bp relative to TSS (Ensembl hg38)",
+    "pam": "NGG (SpCas9)",
+    "spacer_length": 20,
+    "gc_range": "40-70%",
+    "selection_criterion": "GC closest to 55%",
+    "verification": "spacer sequence confirmed present in DNA target strand"
+  },
+  "criteria": {
+    "plddt_min": 50,
+    "iptm_min": 0.3,
+    "disorder_max": 0.5,
+    "no_clash": true
+  },
+  "jobs": [
+    {
+      "gene": "BACE1",
+      "spacer": "TCTTCCCATGGCAGGCAATC",
+      "chrom": "chr11",
+      "cut_pos_hg38": 117316334,
+      "guide_strand": "+",
+      "gc_pct": 55,
+      "rna_len": 96,
+      "dna_len": 61,
+      "known_crispr": false,
+      "source": "TSS PAM-scan hg38 (real genomic)",
+      "cascade_step": "bbb_transit / cns_colonization",
+      "af3_spec": "/workspace/evo2-e2e/data/brain_met/af3_job_BACE1_real.json",
+      "spacer_verified_in_dna": true
+    },
+    {
+      "gene": "FAM72A",
+      "spacer": "GGAACAAGACAGGGAGCAGA",
+      "chrom": "chr1",
+      "cut_pos_hg38": 206204398,
+      "guide_strand": "-",
+      "gc_pct": 55,
+      "rna_len": 96,
+      "dna_len": 61,
+      "known_crispr": false,
+      "source": "TSS PAM-scan hg38 (real genomic)",
+      "cascade_step": "proliferative_colonization",
+      "af3_spec": "/workspace/evo2-e2e/data/brain_met/af3_job_FAM72A_real.json",
+      "spacer_verified_in_dna": true
+    },
+    {
+      "gene": "SLC25A32",
+      "spacer": "TTGCCGGCAAAACTACGGAG",
+      "chrom": "chr8",
+      "cut_pos_hg38": 103415289,
+      "guide_strand": "+",
+      "gc_pct": 55,
+      "rna_len": 96,
+      "dna_len": 61,
+      "known_crispr": false,
+      "source": "TSS PAM-scan hg38 (real genomic)",
+      "cascade_step": "parenchymal_survival",
+      "af3_spec": "/workspace/evo2-e2e/data/brain_met/af3_job_SLC25A32_real.json",
+      "spacer_verified_in_dna": true
+    },
+    {
+      "gene": "ATP10D",
+      "spacer": "TTGTAAGGGCTCTGGGTCAC",
+      "chrom": "chr4",
+      "cut_pos_hg38": 47485130,
+      "guide_strand": "+",
+      "gc_pct": 55,
+      "rna_len": 96,
+      "dna_len": 61,
+      "known_crispr": false,
+      "source": "TSS PAM-scan hg38 (real genomic)",
+      "cascade_step": "parenchymal_survival",
+      "af3_spec": "/workspace/evo2-e2e/data/brain_met/af3_job_ATP10D_real.json",
+      "spacer_verified_in_dna": true
+    },
+    {
+      "gene": "BIN1",
+      "spacer": "AGATGTGGAGATGTCCCGGA",
+      "chrom": "chr2",
+      "cut_pos_hg38": 127107645,
+      "guide_strand": "-",
+      "gc_pct": 55,
+      "rna_len": 96,
+      "dna_len": 61,
+      "known_crispr": false,
+      "source": "TSS PAM-scan hg38 (real genomic)",
+      "cascade_step": "cns_colonization",
+      "af3_spec": "/workspace/evo2-e2e/data/brain_met/af3_job_BIN1_real.json",
+      "spacer_verified_in_dna": true
+    }
+  ],
+  "status": "READY_FOR_SUBMISSION",
+  "next_action": "Submit each af3_job_GENE_real.json to https://alphafoldserver.com"
+}

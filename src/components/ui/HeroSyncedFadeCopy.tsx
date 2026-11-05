@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Pause, Play } from 'lucide-react';
+import Link from 'next/link';
 import type { HeadlineEntry } from '@/data/hero-headlines';
 import { HERO_ORACLE_PREFIX } from '@/data/hero-oracle-taglines';
 import {
@@ -248,26 +249,49 @@ export function HeroSyncedFadeCopy({
               transition={{ duration: fadeSec, ease: 'easeInOut' }}
               className="absolute inset-x-0 top-0 z-10"
             >
-              <p
-                className={`text-[13px] sm:text-sm md:text-base lg:text-[17px] font-black tracking-tight leading-relaxed [overflow-wrap:anywhere] ${heading}`}
-              >
-                {gate.text}
-                {gate.highlight ? (
+              {(() => {
+                const body = (
                   <>
-                    {' '}
-                    <span className={accent}>{gate.highlight}</span>
+                    <p
+                      className={`text-[13px] sm:text-sm md:text-base lg:text-[17px] font-black tracking-tight leading-relaxed [overflow-wrap:anywhere] ${heading}`}
+                    >
+                      {gate.text}
+                      {gate.highlight ? (
+                        <>
+                          {' '}
+                          <span className={accent}>{gate.highlight}</span>
+                        </>
+                      ) : null}
+                    </p>
+                    <div className="h-4 sm:h-5 mt-1.5 sm:mt-2 flex items-center gap-2">
+                      {gate.trial && phase === 'hold' ? (
+                        <span
+                          className={`block text-[7px] sm:text-[8px] font-mono uppercase tracking-[0.25em] sm:tracking-[0.3em] ${muted}`}
+                        >
+                          ref: {gate.trial}
+                        </span>
+                      ) : null}
+                      {gate.href && phase === 'hold' ? (
+                        <span
+                          className={`text-[7px] sm:text-[8px] font-black uppercase tracking-[0.22em] ${accent}`}
+                        >
+                          Open →
+                        </span>
+                      ) : null}
+                    </div>
                   </>
-                ) : null}
-              </p>
-              <div className="h-4 sm:h-5 mt-1.5 sm:mt-2">
-                {gate.trial && phase === 'hold' ? (
-                  <span
-                    className={`block text-[7px] sm:text-[8px] font-mono uppercase tracking-[0.25em] sm:tracking-[0.3em] ${muted}`}
+                );
+                if (!gate.href) return body;
+                return (
+                  <Link
+                    href={gate.href}
+                    prefetch={false}
+                    className="block rounded-sm outline-none hover:opacity-90 focus-visible:ring-2 focus-visible:ring-cyan-400/60"
                   >
-                    ref: {gate.trial}
-                  </span>
-                ) : null}
-              </div>
+                    {body}
+                  </Link>
+                );
+              })()}
             </motion.div>
           </AnimatePresence>
           {showGlitch && gateGlitch && (

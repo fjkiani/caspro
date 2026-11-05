@@ -1,0 +1,82 @@
+{
+  "simulate_intervention_py": null,
+  "canonical_source_file": "scripts/artistry7_proxy/run_artistry7_proxy_pipeline.py",
+  "canonical_source_note": "There is no simulate_intervention.py in this repository. api/scorer.py states logic was lifted from simulate_intervention.py and implements a 2-term API fallback (0.60 * tcell_gps - 0.40 * stromal_arm) when the myeloid panel is unavailable. The filing-grade 3-module construction is exactly as in run_artistry7_proxy_pipeline.py (lines shown below).",
+  "formula": "tme[\"IMMUNE_ACCESS_SCORE\"] = (\n        pd.to_numeric(tme[\"TCELL_GPS_SCORE\"], errors=\"coerce\") * 0.40\n        + -pd.to_numeric(tme[\"MYELOID_FLOOD_SCORE\"], errors=\"coerce\") * 0.35\n        + -pd.to_numeric(tme[\"STROMAL_CAGE_SCORE\"], errors=\"coerce\") * 0.25\n    )",
+  "component_score_formula": "def _signature_score(expr_df, genes):\n    present = [g for g in genes if g in expr_df.columns]\n    if not present:\n        return pd.Series([np.nan] * len(expr_df), index=expr_df.index)\n    z = pd.DataFrame({g: _zscore_series(expr_df[g]) for g in present})\n    return z.mean(axis=1)",
+  "input_genes": [
+    "CXCL9",
+    "CXCL10",
+    "CXCL11",
+    "CXCR3",
+    "CCL2",
+    "CCL5",
+    "CCL7",
+    "CCR2",
+    "CXCL12",
+    "CXCR4",
+    "FAP",
+    "ACTA2",
+    "POSTN"
+  ],
+  "gene_sets": {
+    "TCELL_GPS_GENES": [
+      "CXCL9",
+      "CXCL10",
+      "CXCL11",
+      "CXCR3"
+    ],
+    "MYELOID_FLOOD_GENES": [
+      "CCL2",
+      "CCL5",
+      "CCL7",
+      "CCR2"
+    ],
+    "STROMAL_CAGE_GENES": [
+      "CXCL12",
+      "CXCR4",
+      "FAP",
+      "ACTA2",
+      "POSTN"
+    ]
+  },
+  "weights": {
+    "CXCL9": 0.1,
+    "CXCL10": 0.1,
+    "CXCL11": 0.1,
+    "CXCR3": 0.1,
+    "CCL2": -0.0875,
+    "CCL5": -0.0875,
+    "CCL7": -0.0875,
+    "CCR2": -0.0875,
+    "CXCL12": -0.05,
+    "CXCR4": -0.05,
+    "FAP": -0.05,
+    "ACTA2": -0.05,
+    "POSTN": -0.05
+  },
+  "weights_note": "Effective per-gene contribution when the full gene panel is present: module_weight * (1 / n_genes_present_in_module). TCELL_GPS uses +0.40/n; MYELOID_FLOOD uses -0.35/n; STROMAL_CAGE uses -0.25/n. Missing genes are dropped from the mean inside _signature_score (not renormalized in code).",
+  "module_level_weights": {
+    "TCELL_GPS_SCORE": 0.4,
+    "MYELOID_FLOOD_SCORE": -0.35,
+    "STROMAL_CAGE_SCORE": -0.25
+  },
+  "threshold": 0.4,
+  "threshold_derivation": "Hardcoded narrative gate in api/sequence_engine.py (intervention path conditions use IMMUNE_ACCESS_SCORE > 0.40). No in-repository Kaplan\u2013Meier or percentile optimization was found tying 0.40 to pooled MetaGx survival; it is a design constant for the sequencing/pembrolizumab checkpoint copy, not a data-derived cutoff on IMMUNE_ACCESS_SCORE itself.",
+  "threshold_code_references": [
+    "api/sequence_engine.py (conditions IMMUNE_ACCESS_SCORE > 0.40)"
+  ],
+  "n_above_threshold": 26,
+  "n_below_threshold": 400,
+  "OS_separation_HR": 0.5554809914060272,
+  "OS_separation_HR_model": "Univariate Cox proportional hazards; covariate hi=1 if IMMUNE_ACCESS_SCORE > 0.40 else 0; HR is exp(beta_hi) for death hazard comparing high vs low arm.",
+  "OS_separation_HR_ci_95": [
+    0.3035758287257587,
+    1.0164153487073766
+  ],
+  "OS_separation_p_value": 0.05650157564301106,
+  "OS_separation_km_median_months_above": 58.04862023653088,
+  "OS_separation_km_median_months_below": 44.283837056504595,
+  "dataset_used": "TCGA-OV artistry7_proxy: inner-join of data/artistry7_proxy/tme_scores.csv with data/artistry7_proxy/ovarian_raw.csv on SAMPLE_ID; OS_EVENT derived from OS_STATUS (1:DECEASED -> 1, else 0); rows with OS_MONTHS > 0; n=426.",
+  "commit": "8fb0e8e2621038fb24a0d675713df6c9ba626b07"
+}

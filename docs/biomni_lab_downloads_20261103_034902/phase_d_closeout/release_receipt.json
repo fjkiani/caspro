@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-07-16T17:10:13.383329+00:00",
+  "release_disposition": "NOT_RELEASED_BLOCKED_WITH_RECEIPTS",
+  "backend_commit": "dab22261fa2c9e60fd284a3d5fbfd68c902e830e",
+  "frontend_commit": "a279c60d43dcf8e2d97fe9d87b871eb2d1b779b6",
+  "staging_deployed": false,
+  "local_validation": {
+    "backend": "1559 passed; 9 skipped",
+    "frontend": "83/83 suites; 173/173 passed; 1 pending",
+    "build": "PASS_WITH_WARNINGS",
+    "browser": "1 passed"
+  },
+  "runtime": {
+    "registry_records": 3195,
+    "active_source_backed_vectors": 1249,
+    "legacy_json_request_time_consumers": 0
+  },
+  "artifact_dispositions": {
+    "mechanism_fit": "RESEARCH_ONLY",
+    "resistance_prophet": "SHADOW_ONLY",
+    "kill_chain": "SHADOW_ONLY"
+  },
+  "blockers": [
+    "No staging URL/deployment SHA; browser evidence is localhost only.",
+    "Original 483-record JSON corpus absent, so every-record disposition is unproven.",
+    "No named qualified human clinical reviewer for RP/KC promotion.",
+    "Phase 6 UI does not yet surface RP/KC shadow summaries; backend execution only."
+  ]
+}

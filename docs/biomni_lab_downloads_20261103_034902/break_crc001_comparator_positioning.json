@@ -1,0 +1,31 @@
+{
+  "program": "BreAK CRC-001 / STC-1010",
+  "target_population": "KRAS-mutant pMMR/MSS mCRC \u2014 ICI-ineligible, EGFR-therapy-ineligible",
+  "unmet_need_anchor": {
+    "source": "N0147 PMID 25305506",
+    "finding": "pMMR-KRAS subgroup DFS HR=1.48 vs pMMR-DWT reference \u2014 worst prognosis in pMMR group on FOLFOX",
+    "implication": "KRAS-mut pMMR patients have highest recurrence risk on FOLFOX with no approved targeted therapy"
+  },
+  "folfox_backbone_benchmark": {
+    "source": "MOSAIC PMID 19451431",
+    "finding": "Stage III OS HR=0.80 (95%CI 0.65-0.97, P=0.023); 10-year update confirms HR=0.80 (P=0.016)",
+    "implication": "mFOLFOX6 backbone delivers ~20% OS improvement; BreAK CRC-001 control arm baseline"
+  },
+  "kras_mut_mss_historical_os_benchmark": {
+    "source": "PRIME PMID 24024839",
+    "finding": "RAS-mut FOLFOX4 alone: OS median 20.2 months; panitumumab adds no benefit (HR=1.29 harm)",
+    "implication": "KRAS-mut MSS mCRC on mFOLFOX6 alone: ~20 month OS. STC-1010 must improve above this floor."
+  },
+  "bevacizumab_arm_benchmark": {
+    "source": "VELOUR PMID 22949147",
+    "finding": "OS HR=0.817 (P=0.0032); prior bevacizumab subgroup: 12.5 vs 11.7 months (interaction P=0.57)",
+    "implication": "Bevacizumab adds ~1.4 month OS in second-line; BreAK CRC-001 bev arm adds this increment to mFOLFOX6"
+  },
+  "oracle_application": "Classify MMR variants (N0147 pipeline, 0.957 AUROC) + expanded RAS (PRIME pipeline: KRAS+NRAS exon 2/3/4 + BRAF exon 15) for BreAK CRC-001 enrollment gating and subgroup stratification",
+  "data_gaps": {
+    "n0147": "Adjuvant Stage III only; KRAS exon 2 only (no expanded RAS); no immune/TME data",
+    "mosaic": "Zero molecular data \u2014 no MSI/KRAS/RAS/BRAF; adjuvant not metastatic",
+    "prime": "No MMR/MSI data; FOLFOX4 not mFOLFOX6; no bevacizumab arm; individual RAS exon HRs behind paywall",
+    "velour": "Zero molecular data; second-line FOLFIRI not first-line mFOLFOX6; aflibercept not bevacizumab"
+  }
+}

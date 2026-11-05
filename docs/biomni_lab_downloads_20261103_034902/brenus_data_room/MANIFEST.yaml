@@ -1,0 +1,253 @@
+# Brenus Data Room — Master Manifest
+# CrisPRO Platform | Brenus Pharma Engagement
+# Built: 2026-05-07
+# Authority: brenus_engine_safe_input_block_v2.yaml (canon v2.1-FREEZE)
+# Formula: PATH A = clip((p·t)/‖t‖₂, 0, 1) — signed Fahad Kiani 2026-04-28
+# PATH B: PROHIBITED in all outputs
+
+meta:
+  data_room_version: "1.0"
+  engagement: "Brenus Pharma / STC-1010 / BreAK CRC-001"
+  nct_id: "NCT06934538"
+  built_by: "CrisPRO Platform"
+  built_date: "2026-05-07"
+  canon_source: "brenus_engine_safe_input_block_v2.yaml v2.1-FREEZE"
+  formula_lock: "PATH A = clip((p·t)/‖t‖₂, 0, 1) — 2026-04-28"
+  score_lock_date: "2026-05-04"
+  evidence_wall_status: "CLOSED — no new external sources retrieved"
+
+governance_rules:
+  - rule: "PATH B prohibited — not mentioned in any file"
+  - rule: "CORE-02 GRANITE — TIER2 everywhere; scores directional only; company bankrupt"
+  - rule: "CORE-04 IMblaze370 — FALSE POSITIVE warning mandatory wherever fit_A=0.8262 appears"
+  - rule: "SC-001 HT29 BRAF conflict — ACTIVE CONFLICT; not speculated on in partner-facing files"
+  - rule: "DL-07 DDR 0.983 — PERMANENTLY BLOCKED; does not appear in any file"
+  - rule: "PC-02 — PERMANENTLY DOWNGRADED; does not appear in any file"
+  - rule: "Human clinical data n=6 DCR 100% — PRESS-RELEASE-ONLY; not cited as efficacy evidence"
+  - rule: "Evidence level tags — PROVEN EFFICACY / PHARMACODYNAMIC ACTIVITY / MECHANISTIC PLAUSIBILITY throughout"
+
+source_provenance:
+  - file: "brenus_comparator_path_a_report.md"
+    provides: "PATH A scores, 7D vectors, interpretation narratives"
+    status: "LOCKED 2026-05-04"
+  - file: "MSS_CRC_IO_comparator_trials_agent3.md"
+    provides: "Trial outcomes, subgroup data, PMIDs, failure domain taxonomy"
+    status: "VERIFIED"
+  - file: "brenus_engine_safe_input_block_v2.yaml"
+    provides: "Trial registry data, canon v2.1, blocked fields"
+    status: "FREEZE v2.1"
+  - file: "path_a_recomputation_lock_v1.md"
+    provides: "Formula lock, ceiling proofs, recomputation verification"
+    status: "LOCKED 2026-05-04"
+  - file: "formula_affected_claims_table.csv"
+    provides: "Claim status — CT-01/CT-02 LOCKED; DL-07/PC-02 BLOCKED"
+    status: "CURRENT"
+
+files:
+  # ── 00 EXECUTIVE SUMMARY ──────────────────────────────────────────────────
+  - path: "00_executive_summary/executive_summary.md"
+    content_type: "executive_summary"
+    audience: "partner"
+    description: "Plain-English decode of 7 CORE trials for Brenus BD, investors, IRB reviewers"
+    status: "CURRENT"
+    agent_lane: "L6_outreach"
+    contains_path_a_scores: false
+    contains_formula: false
+    contains_vector_notation: false
+
+  # ── 01 TRIAL DECODES ──────────────────────────────────────────────────────
+  - path: "01_trial_decodes/CORE-01_QUILT-2004.md"
+    content_type: "trial_decode"
+    audience: "partner+internal"
+    trial: "QUILT-2.004"
+    nct: "NCT03050814"
+    tier: "TIER1"
+    fit_A: 0.5815
+    fit_B: 0.3553
+    delta: 0.2261
+    rank_fit_A: 3
+    status: "LOCKED"
+    agent_lane: "L3_comparator"
+
+  - path: "01_trial_decodes/CORE-02_GRANITE_GO-010.md"
+    content_type: "trial_decode"
+    audience: "internal_only"
+    trial: "GRANITE GO-010"
+    nct: "NCT05141721"
+    tier: "TIER2"
+    tier2_reason: "Press-release only; company bankrupt; scores directional only"
+    fit_A: 0.5411
+    fit_B: 0.2832
+    delta: 0.2579
+    rank_fit_A: 4
+    status: "LOCKED"
+    agent_lane: "L3_comparator"
+    warning: "TIER2 — do not cite efficacy data externally"
+
+  - path: "01_trial_decodes/CORE-03_GVAX_CY_Pembro.md"
+    content_type: "trial_decode"
+    audience: "partner+internal"
+    trial: "GVAX + CY + Pembrolizumab"
+    nct: "NCT02981524"
+    tier: "TIER1"
+    fit_A: 0.4486
+    fit_B: 0.1495
+    delta: 0.2991
+    rank_fit_A: 6
+    status: "LOCKED"
+    agent_lane: "L3_comparator"
+    note: "Mechanistically closest analog to STC-1010"
+
+  - path: "01_trial_decodes/CORE-04_IMblaze370.md"
+    content_type: "trial_decode"
+    audience: "partner+internal"
+    trial: "IMblaze370"
+    nct: "NCT02788279"
+    tier: "TIER1"
+    fit_A: 0.8262
+    fit_B: 0.6751
+    delta: 0.1511
+    rank_fit_A: 1
+    status: "LOCKED"
+    agent_lane: "L3_comparator"
+    warning: "FALSE POSITIVE — fit_A=0.8262 is mechanistically misleading; Phase III definitive negative OS HR=1.00"
+
+  - path: "01_trial_decodes/CORE-05_AtezoTRIBE.md"
+    content_type: "trial_decode"
+    audience: "partner+internal"
+    trial: "AtezoTRIBE"
+    nct: "NCT03721653"
+    tier: "TIER1"
+    fit_A: 0.5843
+    fit_B: 0.3671
+    delta: 0.2172
+    rank_fit_A: 2
+    status: "LOCKED"
+    agent_lane: "L3_comparator"
+
+  - path: "01_trial_decodes/CORE-06_MEDITREME.md"
+    content_type: "trial_decode"
+    audience: "partner+internal"
+    trial: "MEDITREME"
+    nct: "NCT03202758"
+    tier: "TIER1"
+    fit_A: 0.5037
+    fit_B: 0.2089
+    delta: 0.2949
+    rank_fit_A: 5
+    status: "LOCKED"
+    agent_lane: "L3_comparator"
+
+  - path: "01_trial_decodes/CORE-07_CCTG_CO26.md"
+    content_type: "trial_decode"
+    audience: "partner+internal"
+    trial: "CCTG CO.26"
+    nct: "NCT02870920"
+    tier: "TIER1"
+    fit_A: 0.4000
+    fit_B: 0.1000
+    delta: 0.3000
+    rank_fit_A: 7
+    status: "LOCKED"
+    agent_lane: "L3_comparator"
+    note: "Calibration anchor — highest delta, liver-met discrimination signal"
+
+  # ── 02 SCORES ─────────────────────────────────────────────────────────────
+  - path: "02_scores/path_a_scores.yaml"
+    content_type: "machine_readable_scores"
+    audience: "agent"
+    description: "All 7 PATH A scores — structured for downstream agent ingestion"
+    status: "LOCKED"
+    agent_lane: "L3_comparator"
+
+  - path: "02_scores/path_a_scores_table.md"
+    content_type: "score_table"
+    audience: "partner+internal"
+    description: "Human-readable PATH A score table with ceiling checks"
+    status: "LOCKED"
+    agent_lane: "L3_comparator"
+
+  # ── 03 CROSS-CUTTING ──────────────────────────────────────────────────────
+  - path: "03_cross_cutting/failure_taxonomy.md"
+    content_type: "cross_cutting_analysis"
+    audience: "partner+internal"
+    description: "8 failure domains mapped across all 7 CORE trials"
+    status: "CURRENT"
+    agent_lane: "L5_fitgap"
+
+  - path: "03_cross_cutting/liver_met_stratification.md"
+    content_type: "cross_cutting_analysis"
+    audience: "partner+internal"
+    description: "CO.26 anchor — liver-met as dominant IO discrimination signal; GAP-01 analysis"
+    status: "CURRENT"
+    agent_lane: "L5_fitgap"
+
+  - path: "03_cross_cutting/stc1010_positioning.md"
+    content_type: "cross_cutting_analysis"
+    audience: "partner"
+    description: "Mechanistic differentiation argument for pharma BD — what STC-1010 must do differently"
+    status: "CURRENT"
+    agent_lane: "L6_outreach"
+
+  # ── 04 GOVERNANCE ─────────────────────────────────────────────────────────
+  - path: "04_governance/admissibility_key.md"
+    content_type: "governance"
+    audience: "internal+agent"
+    description: "Evidence tier definitions — TIER1 vs TIER2, evidence level tags"
+    status: "CURRENT"
+    agent_lane: "L3_comparator"
+
+  - path: "04_governance/formula_lock.md"
+    content_type: "governance"
+    audience: "internal+agent"
+    description: "PATH A formula, ceiling proofs, Cauchy-Schwarz bound, signing record"
+    status: "LOCKED"
+    agent_lane: "L3_comparator"
+
+  - path: "04_governance/claim_status.md"
+    content_type: "governance"
+    audience: "internal+agent"
+    description: "Full claim status table — LOCKED/QUARANTINED/BLOCKED/DOWNGRADED"
+    status: "CURRENT"
+    agent_lane: "L5_fitgap"
+
+  # ── 05 AGENT HANDOFF ──────────────────────────────────────────────────────
+  - path: "05_agent_handoff/handoff_manifest.yaml"
+    content_type: "agent_handoff"
+    audience: "agent"
+    description: "Lane assignments, LOCKED/BLOCKED/OPEN state for next agent"
+    status: "CURRENT"
+    agent_lane: "ALL"
+
+  - path: "05_agent_handoff/open_blockers.yaml"
+    content_type: "agent_handoff"
+    audience: "agent"
+    description: "Structured blocker registry — SC-001, B-004, DL-07, PC-02"
+    status: "CURRENT"
+    agent_lane: "ALL"
+
+  - path: "05_agent_handoff/next_agent_instructions.md"
+    content_type: "agent_handoff"
+    audience: "agent"
+    description: "Authorization scope for downstream agent — what is permitted, what is prohibited"
+    status: "CURRENT"
+    agent_lane: "L6_outreach"
+
+patient_profiles:
+  P_A:
+    label: "KRAS-mut MSS mCRC, 1L, liver-met NEG, IO-permissive"
+    vector: {ddr: 0.10, mapk: 0.70, pi3k: 0.20, vegf: 0.30, her2: 0.00, io: 0.40, efflux: 0.05}
+    ceiling: 0.8902
+  P_B:
+    label: "KRAS-mut MSS mCRC, 1L, liver-met POS, IO-suppressed"
+    vector: {ddr: 0.10, mapk: 0.70, pi3k: 0.20, vegf: 0.30, her2: 0.00, io: 0.10, efflux: 0.05}
+    ceiling: 0.8016
+
+axis_definitions:
+  ddr: "DNA damage response pathway weight"
+  mapk: "MAPK/RAS/ERK pathway weight"
+  pi3k: "PI3K/AKT/mTOR pathway weight"
+  vegf: "VEGF/angiogenesis pathway weight"
+  her2: "HER2/ERBB2 pathway weight"
+  io: "Immunotherapy / immune checkpoint weight"
+  efflux: "Drug efflux / resistance weight"

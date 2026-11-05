@@ -1,0 +1,102 @@
+{
+  "probe_utc": "2026-07-30T00:50:33.661602Z",
+  "gateway_base": "https://zetabridge-api-q33d.onrender.com",
+  "gateway_health": "ok",
+  "auth": "X-Zeta-Api-Key accepted (JSON envelopes returned, not 401/403)",
+  "goal": "Extract MSK SPECTRUM processed scRNA release (Synapse project syn25569736)",
+  "per_source_health": {
+    "endpoints": [
+      {
+        "endpoint": "A_MSK",
+        "source": "synapse",
+        "status": "unconfigured",
+        "configured": false,
+        "latency_ms": 0.0,
+        "error": "SYNAPSE_AUTH_TOKEN not set"
+      },
+      {
+        "endpoint": "B_SAS",
+        "source": "sas_cas",
+        "status": "unconfigured",
+        "configured": false,
+        "latency_ms": 0.0,
+        "error": "SAS_CAS_HOST + (SAS_CAS_TOKEN or SAS_CAS_USER/PASSWORD) not set"
+      },
+      {
+        "endpoint": "C_EGA",
+        "source": "ega",
+        "status": "live",
+        "configured": true,
+        "latency_ms": 6744.2,
+        "error": null
+      },
+      {
+        "endpoint": "D_ARGO",
+        "source": "argo",
+        "status": "live",
+        "configured": true,
+        "latency_ms": 236.8,
+        "error": null
+      }
+    ],
+    "any_live": true
+  },
+  "msk_spectrum_path": {
+    "synapse_whoami": {
+      "endpoint": "A_MSK",
+      "source": "synapse",
+      "status": "unconfigured",
+      "action": "whoami",
+      "latency_ms": 0.0,
+      "data": null,
+      "error": "SYNAPSE_AUTH_TOKEN not set",
+      "grounding": {}
+    },
+    "children_syn52458609": {
+      "endpoint": "A_MSK",
+      "source": "synapse",
+      "status": "unconfigured",
+      "action": "list_children",
+      "latency_ms": 0.0,
+      "data": null,
+      "error": "SYNAPSE_AUTH_TOKEN not set",
+      "grounding": {
+        "parent_id": "syn52458609",
+        "limit": 100
+      }
+    },
+    "download_diagnostics_syn51091852_DCs": {
+      "endpoint": "A_MSK",
+      "source": "synapse",
+      "status": "unconfigured",
+      "action": "download_diagnostics",
+      "latency_ms": 0.0,
+      "data": null,
+      "error": "SYNAPSE_AUTH_TOKEN not set",
+      "grounding": {
+        "syn_id": "syn51091852"
+      }
+    }
+  },
+  "ega_control_same_key": {
+    "status": "live",
+    "n_authorized": 8
+  },
+  "live_alternative_backends_checked": {
+    "federation_tables": "all not_seeded (tcga_clinical, genomic_variants, hrd_scores, drug_responses, synthetic_lethality)",
+    "catalog_tables": "empty []",
+    "graph_search": "returns architecture/README nodes only, not SPECTRUM data files",
+    "federation_ask_NL": "GROQ_API_KEY unavailable",
+    "argo_entities": "ICGC ARGO WGS (MUTO-INTL), not MSK SPECTRUM",
+    "connectors": "only duckdb ok; snowflake/databricks unconfigured",
+    "signals_overview": "knowledge-graph node vault:synapse_msk_spectrum EXISTS (metadata), 72 A_MSK metadata nodes -- metadata only, not byte access"
+  },
+  "conclusion": "MSK SPECTRUM byte extraction BLOCKED: Synapse source endpoint A_MSK is unconfigured (SYNAPSE_AUTH_TOKEN not set). EGA (C_EGA) is live with same key, proving this is source-token-specific, not a key/refusal issue. No live alternative backend exposes SPECTRUM bytes. Fix is gateway-operator-side: load a Synapse PAT with access to syn25569736 into the ZetaBridge env.",
+  "target_files_when_unblocked": {
+    "syn51091852": "DCs 1.94GB (byte-verified previously)",
+    "syn51091851": "T.super 11.72GB",
+    "syn51091853": "Macrophages 14.95GB",
+    "syn51091849": "Ovarian.cancer.super 20.0GB",
+    "syn51091882": "Cohort 37.2GB"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "errors": [],
+  "updated": [
+    {
+      "body_replaced": true,
+      "expected_head": "1d9ce4f5964c3e3d1fc198969c722256cd23e694",
+      "head_unchanged_by_patch": true,
+      "label": "pr_a",
+      "new_body_bytes": 14283,
+      "number": 18,
+      "patch_http": 200,
+      "post_base": "main",
+      "post_body_bytes": 14283,
+      "post_draft": true,
+      "post_head_sha": "1d9ce4f5964c3e3d1fc198969c722256cd23e694",
+      "post_merged": false,
+      "post_state": "open",
+      "pre_body_bytes": 6010,
+      "pre_draft": true,
+      "pre_head_matches_expected": true,
+      "pre_head_sha": "1d9ce4f5964c3e3d1fc198969c722256cd23e694",
+      "pre_state": "open",
+      "status": "BODY_UPDATED_DRAFT_PRESERVED",
+      "still_draft": true,
+      "url": "https://github.com/fjkiani/crispro-backend-v2/pull/18"
+    },
+    {
+      "body_replaced": true,
+      "expected_head": "a266d23fa992b9dad9d7d65b7bcdf71aeba0154c",
+      "head_unchanged_by_patch": true,
+      "label": "pr_b",
+      "new_body_bytes": 12586,
+      "number": 19,
+      "patch_http": 200,
+      "post_base": "main",
+      "post_body_bytes": 12586,
+      "post_draft": true,
+      "post_head_sha": "a266d23fa992b9dad9d7d65b7bcdf71aeba0154c",
+      "post_merged": false,
+      "post_state": "open",
+      "pre_body_bytes": 5502,
+      "pre_draft": true,
+      "pre_head_matches_expected": true,
+      "pre_head_sha": "a266d23fa992b9dad9d7d65b7bcdf71aeba0154c",
+      "pre_state": "open",
+      "status": "BODY_UPDATED_DRAFT_PRESERVED",
+      "still_draft": true,
+      "url": "https://github.com/fjkiani/crispro-backend-v2/pull/19"
+    }
+  ]
+}

@@ -1,0 +1,3086 @@
+{
+  "block3_gate2": {
+    "GSE281732_protocol_uniformity": {
+      "n_sequencing_runs": 70,
+      "n_unique_subjects": 67,
+      "n_proven_fertile": 14,
+      "n_infertility_cohort": 53,
+      "sperm_isolation_protocol": "Washing and somatic cell lysis followed by miRvana kit isolation (Bianchi et al. 2018, doi:10.1111/andr.12471) \u2014 uniform across 70/70 samples",
+      "library_prep_protocol": "NEBNext Ultra II RNA Library Prep Kit (oligo-dT polyA selection, 15 min 94C fragmentation) \u2014 uniform across 70/70 samples",
+      "sequencing_instrument": "Illumina HiSeq 4000 (GPL20301) \u2014 uniform across 70/70 samples",
+      "bioinformatic_pipeline": "bcl2fastq 2.20 -> Trimmomatic v0.36 -> STAR v2.5.2b (GRCh38) -> Subread featureCounts v1.5.2 -> 3 infertility technical duplicates collapsed -> median normalization -> log2(count+1)"
+    },
+    "signed_gene_tables": {
+      "GSE281732": [
+        {
+          "cohort_id": "GSE281732",
+          "gene": "CATSPER2",
+          "matched": "CATSPER2",
+          "expected_sign": 1,
+          "mean_fertile_z": -1.0705,
+          "mean_infertile_z": 0.2828,
+          "signed_delta_z": -1.3532,
+          "signed_auroc": 0.1051,
+          "ci95": [
+            0.0274,
+            0.1945
+          ],
+          "p_mwu": 6.45629977341296e-06,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.00013558229524167218
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "PRM2",
+          "matched": "PRM2",
+          "expected_sign": 1,
+          "mean_fertile_z": 1.0845,
+          "mean_infertile_z": -0.2865,
+          "signed_delta_z": 1.3709,
+          "signed_auroc": 0.8747,
+          "ci95": [
+            0.7601,
+            0.9577
+          ],
+          "p_mwu": 1.8727905450023415e-05,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00019664300722524588
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "PRM1",
+          "matched": "PRM1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.899,
+          "mean_infertile_z": -0.2375,
+          "signed_delta_z": 1.1364,
+          "signed_auroc": 0.8396,
+          "ci95": [
+            0.7163,
+            0.9402
+          ],
+          "p_mwu": 0.000105070097207812,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.0007284631776662251
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "TNP1",
+          "matched": "TNP1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.8808,
+          "mean_infertile_z": -0.2327,
+          "signed_delta_z": 1.1134,
+          "signed_auroc": 0.8288,
+          "ci95": [
+            0.6962,
+            0.9252
+          ],
+          "p_mwu": 0.0001732024717392498,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.0007284631776662251
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "PLCZ1",
+          "matched": "PLCZ1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.9378,
+          "mean_infertile_z": -0.2477,
+          "signed_delta_z": 1.1855,
+          "signed_auroc": 0.8275,
+          "ci95": [
+            0.6701,
+            0.9441
+          ],
+          "p_mwu": 0.00018418200028145996,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.0007284631776662251
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "KCNU1",
+          "matched": "KCNU1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.9788,
+          "mean_infertile_z": -0.2585,
+          "signed_delta_z": 1.2373,
+          "signed_auroc": 0.8248,
+          "ci95": [
+            0.6445,
+            0.9671
+          ],
+          "p_mwu": 0.0002081323364760643,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.0007284631776662251
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "TNP2",
+          "matched": "TNP2",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.8468,
+          "mean_infertile_z": -0.2237,
+          "signed_delta_z": 1.0705,
+          "signed_auroc": 0.8059,
+          "ci95": [
+            0.6593,
+            0.9392
+          ],
+          "p_mwu": 0.00047757134641930696,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.001432714039257921
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "CATSPER4",
+          "matched": "CATSPER4",
+          "expected_sign": 1,
+          "mean_fertile_z": -0.9077,
+          "mean_infertile_z": 0.2398,
+          "signed_delta_z": -1.1475,
+          "signed_auroc": 0.2561,
+          "ci95": [
+            0.0977,
+            0.4415
+          ],
+          "p_mwu": 0.005375440959370126,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.012542695571863629
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "ATP5F1A",
+          "matched": "ATP5A1",
+          "expected_sign": 1,
+          "mean_fertile_z": -0.5765,
+          "mean_infertile_z": 0.1523,
+          "signed_delta_z": -0.7288,
+          "signed_auroc": 0.2561,
+          "ci95": [
+            0.1174,
+            0.4168
+          ],
+          "p_mwu": 0.005375440959370126,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.012542695571863629
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "COX5B",
+          "matched": "COX5B",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.6328,
+          "mean_infertile_z": -0.1671,
+          "signed_delta_z": 0.7999,
+          "signed_auroc": 0.7143,
+          "ci95": [
+            0.539,
+            0.8728
+          ],
+          "p_mwu": 0.01451132086570582,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.030473773817982226
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "ADCY10",
+          "matched": "ADCY10",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.6927,
+          "mean_infertile_z": -0.183,
+          "signed_delta_z": 0.8757,
+          "signed_auroc": 0.7035,
+          "ci95": [
+            0.5198,
+            0.8772
+          ],
+          "p_mwu": 0.02028812064044685,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.03873186667721672
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "BAX",
+          "matched": "BAX",
+          "expected_sign": -1,
+          "mean_fertile_z": -0.9584,
+          "mean_infertile_z": 0.2532,
+          "signed_delta_z": -1.2116,
+          "signed_auroc": 0.3032,
+          "ci95": [
+            0.0977,
+            0.5377
+          ],
+          "p_mwu": 0.024840928107094214,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.043471624187414876
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "IZUMO1",
+          "matched": "IZUMO1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.4177,
+          "mean_infertile_z": -0.1103,
+          "signed_delta_z": 0.5281,
+          "signed_auroc": 0.6698,
+          "ci95": [
+            0.4932,
+            0.8308
+          ],
+          "p_mwu": 0.05293729333341868,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.0822848917659462
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "CATSPER1",
+          "matched": "CATSPER1",
+          "expected_sign": 1,
+          "mean_fertile_z": -0.7875,
+          "mean_infertile_z": 0.208,
+          "signed_delta_z": -0.9955,
+          "signed_auroc": 0.3315,
+          "ci95": [
+            0.1294,
+            0.5622
+          ],
+          "p_mwu": 0.05485659451063079,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.0822848917659462
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "CASP3",
+          "matched": "CASP3",
+          "expected_sign": -1,
+          "mean_fertile_z": 0.5489,
+          "mean_infertile_z": -0.145,
+          "signed_delta_z": 0.6939,
+          "signed_auroc": 0.6644,
+          "ci95": [
+            0.5093,
+            0.8469
+          ],
+          "p_mwu": 0.060965577358675645,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.0853518083021459
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "PRKACA",
+          "matched": "PRKACA",
+          "expected_sign": 1,
+          "mean_fertile_z": -0.629,
+          "mean_infertile_z": 0.1662,
+          "signed_delta_z": -0.7952,
+          "signed_auroc": 0.341,
+          "ci95": [
+            0.1206,
+            0.5828
+          ],
+          "p_mwu": 0.06997724395384604,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.09184513268942293
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "CYCS",
+          "matched": "CYCS",
+          "expected_sign": -1,
+          "mean_fertile_z": -0.2145,
+          "mean_infertile_z": 0.0567,
+          "signed_delta_z": -0.2712,
+          "signed_auroc": 0.372,
+          "ci95": [
+            0.1891,
+            0.5564
+          ],
+          "p_mwu": 0.14501779425160014,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.1791396281931531
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "HILS1",
+          "matched": "HILS1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.4277,
+          "mean_infertile_z": -0.113,
+          "signed_delta_z": 0.5407,
+          "signed_auroc": 0.6199,
+          "ci95": [
+            0.3863,
+            0.8371
+          ],
+          "p_mwu": 0.17230754978495555,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.2010254747491148
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "SPACA3",
+          "matched": "SPACA3",
+          "expected_sign": 1,
+          "mean_fertile_z": -0.515,
+          "mean_infertile_z": 0.136,
+          "signed_delta_z": -0.6511,
+          "signed_auroc": 0.3895,
+          "ci95": [
+            0.2257,
+            0.5654
+          ],
+          "p_mwu": 0.20879918042997414,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.23077804152786616
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "HSPA2",
+          "matched": "HSPA2",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.4085,
+          "mean_infertile_z": -0.1079,
+          "signed_delta_z": 0.5164,
+          "signed_auroc": 0.5782,
+          "ci95": [
+            0.4001,
+            0.7445
+          ],
+          "p_mwu": 0.3752125650648934,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.3939731933181381
+        },
+        {
+          "cohort_id": "GSE281732",
+          "gene": "CRISP2",
+          "matched": "CRISP2",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.1444,
+          "mean_infertile_z": -0.0382,
+          "signed_delta_z": 0.1826,
+          "signed_auroc": 0.5526,
+          "ci95": [
+            0.3896,
+            0.7041
+          ],
+          "p_mwu": 0.5526872729611286,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.5526872729611286
+        }
+      ],
+      "GSE6872": [
+        {
+          "cohort_id": "GSE6872",
+          "gene": "PRM2",
+          "matched": "PRM2",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.6914,
+          "mean_infertile_z": -1.1235,
+          "signed_delta_z": 1.815,
+          "signed_auroc": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ],
+          "p_mwu": 9.828492800629024e-06,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 9.828492800629023e-05
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "COX5B",
+          "matched": "COX5B",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.6781,
+          "mean_infertile_z": -1.102,
+          "signed_delta_z": 1.7801,
+          "signed_auroc": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ],
+          "p_mwu": 9.828492800629024e-06,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 9.828492800629023e-05
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "CATSPER3",
+          "matched": "CATSPER3",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.624,
+          "mean_infertile_z": -1.0139,
+          "signed_delta_z": 1.6379,
+          "signed_auroc": 0.9904,
+          "ci95": [
+            0.9388,
+            1.0
+          ],
+          "p_mwu": 1.9656985601258048e-05,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00011232563200718884
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "PLCZ1",
+          "matched": "PLCZ1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.6141,
+          "mean_infertile_z": -0.9979,
+          "signed_delta_z": 1.612,
+          "signed_auroc": 0.9808,
+          "ci95": [
+            0.91,
+            1.0
+          ],
+          "p_mwu": 3.9313971202516095e-05,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00011232563200718884
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "TNP1",
+          "matched": "TNP1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.5436,
+          "mean_infertile_z": -0.8834,
+          "signed_delta_z": 1.427,
+          "signed_auroc": 0.9808,
+          "ci95": [
+            0.9114,
+            1.0
+          ],
+          "p_mwu": 3.9313971202516095e-05,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00011232563200718884
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "KCNU1",
+          "matched": "KCNU1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.5987,
+          "mean_infertile_z": -0.9728,
+          "signed_delta_z": 1.5715,
+          "signed_auroc": 0.9808,
+          "ci95": [
+            0.9173,
+            1.0
+          ],
+          "p_mwu": 3.9313971202516095e-05,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00011232563200718884
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "ADCY10",
+          "matched": "ADCY10",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.6085,
+          "mean_infertile_z": -0.9889,
+          "signed_delta_z": 1.5974,
+          "signed_auroc": 0.9808,
+          "ci95": [
+            0.9183,
+            1.0
+          ],
+          "p_mwu": 3.9313971202516095e-05,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00011232563200718884
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "HSPA2",
+          "matched": "HSPA2",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.6235,
+          "mean_infertile_z": -1.0133,
+          "signed_delta_z": 1.6368,
+          "signed_auroc": 0.9712,
+          "ci95": [
+            0.8881,
+            1.0
+          ],
+          "p_mwu": 6.879944960440316e-05,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.0001719986240110079
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "ATP5F1A",
+          "matched": "ATP5A1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.5912,
+          "mean_infertile_z": -0.9606,
+          "signed_delta_z": 1.5518,
+          "signed_auroc": 0.9615,
+          "ci95": [
+            0.8699,
+            1.0
+          ],
+          "p_mwu": 0.00011794191360754827,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00026209314135010726
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "CRISP2",
+          "matched": "CRISP2",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.5508,
+          "mean_infertile_z": -0.8951,
+          "signed_delta_z": 1.4459,
+          "signed_auroc": 0.9423,
+          "ci95": [
+            0.7857,
+            1.0
+          ],
+          "p_mwu": 0.0002948547840188707,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.0005360996073070376
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "TNP2",
+          "matched": "TNP2",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.5679,
+          "mean_infertile_z": -0.9228,
+          "signed_delta_z": 1.4907,
+          "signed_auroc": 0.9423,
+          "ci95": [
+            0.8163,
+            1.0
+          ],
+          "p_mwu": 0.0002948547840188707,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.0005360996073070376
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "PRM1",
+          "matched": "PRM1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.5215,
+          "mean_infertile_z": -0.8475,
+          "signed_delta_z": 1.3691,
+          "signed_auroc": 0.8846,
+          "ci95": [
+            0.6786,
+            1.0
+          ],
+          "p_mwu": 0.002535751142562288,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00422625190427048
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "CASP3",
+          "matched": "CASP3",
+          "expected_sign": -1,
+          "mean_fertile_z": 0.448,
+          "mean_infertile_z": -0.728,
+          "signed_delta_z": 1.176,
+          "signed_auroc": 0.875,
+          "ci95": [
+            0.6911,
+            1.0
+          ],
+          "p_mwu": 0.005241179465747299,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.008063353024226613
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "CYCS",
+          "matched": "CYCS",
+          "expected_sign": -1,
+          "mean_fertile_z": -0.442,
+          "mean_infertile_z": 0.7183,
+          "signed_delta_z": -1.1603,
+          "signed_auroc": 0.1538,
+          "ci95": [
+            0.0143,
+            0.345
+          ],
+          "p_mwu": 0.00774485232689567,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.0110640747527081
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "CATSPER1",
+          "matched": "CATSPER1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.3892,
+          "mean_infertile_z": -0.6324,
+          "signed_delta_z": 1.0216,
+          "signed_auroc": 0.8365,
+          "ci95": [
+            0.6369,
+            0.9818
+          ],
+          "p_mwu": 0.009936606221435943,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.013248808295247924
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "PRKACA",
+          "matched": "PRKACA",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.4494,
+          "mean_infertile_z": -0.7303,
+          "signed_delta_z": 1.1797,
+          "signed_auroc": 0.7885,
+          "ci95": [
+            0.4947,
+            1.0
+          ],
+          "p_mwu": 0.030232443854734878,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.037790554818418594
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "BAX",
+          "matched": "BAX",
+          "expected_sign": -1,
+          "mean_fertile_z": -0.2932,
+          "mean_infertile_z": 0.4764,
+          "signed_delta_z": -0.7695,
+          "signed_auroc": 0.2981,
+          "ci95": [
+            0.0876,
+            0.5463
+          ],
+          "p_mwu": 0.1375156818872989,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.16178315516152814
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "SPACA3",
+          "matched": "SPACA3",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.1844,
+          "mean_infertile_z": -0.2997,
+          "signed_delta_z": 0.4841,
+          "signed_auroc": 0.6538,
+          "ci95": [
+            0.3587,
+            0.928
+          ],
+          "p_mwu": 0.2684554523563812,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.2982838359515346
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "HILS1",
+          "matched": "HILS1",
+          "expected_sign": 1,
+          "mean_fertile_z": -0.1319,
+          "mean_infertile_z": 0.2144,
+          "signed_delta_z": -0.3463,
+          "signed_auroc": 0.375,
+          "ci95": [
+            0.1019,
+            0.696
+          ],
+          "p_mwu": 0.37375792422232057,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.3934293939182322
+        },
+        {
+          "cohort_id": "GSE6872",
+          "gene": "IZUMO1",
+          "matched": "IZUMO1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.1923,
+          "mean_infertile_z": -0.3124,
+          "signed_delta_z": 0.5047,
+          "signed_auroc": 0.5962,
+          "ci95": [
+            0.2778,
+            0.8548
+          ],
+          "p_mwu": 0.5002113125952136,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.5002113125952136
+        }
+      ],
+      "GSE4797": [
+        {
+          "cohort_id": "GSE4797",
+          "gene": "TNP2",
+          "matched": "TNP2",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.9303,
+          "mean_infertile_z": -0.6978,
+          "signed_delta_z": 1.6281,
+          "signed_auroc": 0.974,
+          "ci95": [
+            0.9129,
+            1.0
+          ],
+          "p_mwu": 2.6464658732828673e-05,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00017256246502738004
+        },
+        {
+          "cohort_id": "GSE4797",
+          "gene": "SPACA3",
+          "matched": "SPACA3",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.9233,
+          "mean_infertile_z": -0.6925,
+          "signed_delta_z": 1.6157,
+          "signed_auroc": 0.9688,
+          "ci95": [
+            0.8953,
+            1.0
+          ],
+          "p_mwu": 3.245743123218767e-05,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00017256246502738004
+        },
+        {
+          "cohort_id": "GSE4797",
+          "gene": "PLCZ1",
+          "matched": "PLCZ1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.899,
+          "mean_infertile_z": -0.6743,
+          "signed_delta_z": 1.5733,
+          "signed_auroc": 0.9635,
+          "ci95": [
+            0.8883,
+            1.0
+          ],
+          "p_mwu": 3.982210731401078e-05,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00017256246502738004
+        },
+        {
+          "cohort_id": "GSE4797",
+          "gene": "CRISP2",
+          "matched": "CRISP2",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.8209,
+          "mean_infertile_z": -0.6157,
+          "signed_delta_z": 1.4366,
+          "signed_auroc": 0.9479,
+          "ci95": [
+            0.8586,
+            1.0
+          ],
+          "p_mwu": 7.193869149619241e-05,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00022704711339476222
+        },
+        {
+          "cohort_id": "GSE4797",
+          "gene": "ADCY10",
+          "matched": "ADCY10",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.8591,
+          "mean_infertile_z": -0.6444,
+          "signed_delta_z": 1.5035,
+          "signed_auroc": 0.9427,
+          "ci95": [
+            0.8272,
+            1.0
+          ],
+          "p_mwu": 8.732581284413932e-05,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00022704711339476222
+        },
+        {
+          "cohort_id": "GSE4797",
+          "gene": "TNP1",
+          "matched": "TNP1",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.8031,
+          "mean_infertile_z": -0.6023,
+          "signed_delta_z": 1.4055,
+          "signed_auroc": 0.9375,
+          "ci95": [
+            0.832,
+            1.0
+          ],
+          "p_mwu": 0.00010601762559384,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.00022970485545331998
+        },
+        {
+          "cohort_id": "GSE4797",
+          "gene": "COX5B",
+          "matched": "COX5B",
+          "expected_sign": 1,
+          "mean_fertile_z": -0.8087,
+          "mean_infertile_z": 0.6065,
+          "signed_delta_z": -1.4152,
+          "signed_auroc": 0.0677,
+          "ci95": [
+            0.0,
+            0.1848
+          ],
+          "p_mwu": 0.00012816078338035542,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.0002380128834206601
+        },
+        {
+          "cohort_id": "GSE4797",
+          "gene": "BAX",
+          "matched": "BAX",
+          "expected_sign": -1,
+          "mean_fertile_z": -0.5634,
+          "mean_infertile_z": 0.4226,
+          "signed_delta_z": -0.986,
+          "signed_auroc": 0.1979,
+          "ci95": [
+            0.0625,
+            0.3683
+          ],
+          "p_mwu": 0.007599357460699228,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.012348955873636245
+        },
+        {
+          "cohort_id": "GSE4797",
+          "gene": "PRKACA",
+          "matched": "PRKACA",
+          "expected_sign": 1,
+          "mean_fertile_z": -0.5407,
+          "mean_infertile_z": 0.4055,
+          "signed_delta_z": -0.9463,
+          "signed_auroc": 0.237,
+          "ci95": [
+            0.0872,
+            0.4449
+          ],
+          "p_mwu": 0.02019089470048092,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.02916462567847244
+        },
+        {
+          "cohort_id": "GSE4797",
+          "gene": "HSPA2",
+          "matched": "HSPA2",
+          "expected_sign": 1,
+          "mean_fertile_z": 0.4961,
+          "mean_infertile_z": -0.3721,
+          "signed_delta_z": 0.8681,
+          "signed_auroc": 0.7344,
+          "ci95": [
+            0.5328,
+            0.9019
+          ],
+          "p_mwu": 0.03884164054946723,
+          "flag": "MATCHES_FORMULA",
+          "bh_q": 0.0504941327143074
+        },
+        {
+          "cohort_id": "GSE4797",
+          "gene": "ATP5F1A",
+          "matched": "ATP5A1",
+          "expected_sign": 1,
+          "mean_fertile_z": -0.4437,
+          "mean_infertile_z": 0.3327,
+          "signed_delta_z": -0.7764,
+          "signed_auroc": 0.276,
+          "ci95": [
+            0.0997,
+            0.4975
+          ],
+          "p_mwu": 0.04849408487525856,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.05731119121621466
+        },
+        {
+          "cohort_id": "GSE4797",
+          "gene": "HILS1",
+          "matched": "HIST1H1T",
+          "expected_sign": 1,
+          "mean_fertile_z": -0.2584,
+          "mean_infertile_z": 0.1938,
+          "signed_delta_z": -0.4522,
+          "signed_auroc": 0.3594,
+          "ci95": [
+            0.1711,
+            0.5743
+          ],
+          "p_mwu": 0.2176004116307857,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.23573377926668448
+        },
+        {
+          "cohort_id": "GSE4797",
+          "gene": "CASP3",
+          "matched": "CASP3",
+          "expected_sign": -1,
+          "mean_fertile_z": 0.2483,
+          "mean_infertile_z": -0.1862,
+          "signed_delta_z": 0.4344,
+          "signed_auroc": 0.6146,
+          "ci95": [
+            0.3788,
+            0.8061
+          ],
+          "p_mwu": 0.31809235977876427,
+          "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+          "bh_q": 0.31809235977876427
+        }
+      ]
+    },
+    "zero_retraining_cross_cohort_transfer": {
+      "train_GSE281732_to_GSE6872_3modules": {
+        "n_total": 21,
+        "n_pos": 13,
+        "n_neg": 8,
+        "auroc": 0.7788,
+        "discriminative_auroc": 0.7788,
+        "ci95": [
+          0.5609,
+          0.9778
+        ],
+        "mean_pos": 0.1728,
+        "mean_neg": 0.0937,
+        "delta_z": 0.0791,
+        "p_mwu": 0.036817534031156327
+      },
+      "train_GSE281732_to_GSE4797_3modules": {
+        "n_total": 28,
+        "n_pos": 12,
+        "n_neg": 16,
+        "auroc": 0.7292,
+        "discriminative_auroc": 0.7292,
+        "ci95": [
+          0.5078,
+          0.9065
+        ],
+        "mean_pos": 0.3095,
+        "mean_neg": 0.185,
+        "delta_z": 0.1244,
+        "p_mwu": 0.04344183963042402
+      },
+      "train_GSE281732_to_GSE6872_6genes_shared": {
+        "n_total": 21,
+        "n_pos": 13,
+        "n_neg": 8,
+        "auroc": 0.9904,
+        "discriminative_auroc": 0.9904,
+        "ci95": [
+          0.9423,
+          1.0
+        ],
+        "mean_pos": 0.3213,
+        "mean_neg": 0.0506,
+        "delta_z": 0.2707,
+        "p_mwu": 1.9656985601258048e-05
+      },
+      "train_GSE281732_to_GSE4797_6genes_shared": {
+        "n_total": 28,
+        "n_pos": 12,
+        "n_neg": 16,
+        "auroc": 0.9948,
+        "discriminative_auroc": 0.9948,
+        "ci95": [
+          0.9692,
+          1.0
+        ],
+        "mean_pos": 0.4844,
+        "mean_neg": 0.0838,
+        "delta_z": 0.4006,
+        "p_mwu": 1.1489713553094727e-05
+      },
+      "train_GSE281732_to_GSE6872_PRM_TNP_PLCZ1_KCNU1": {
+        "n_total": 21,
+        "n_pos": 13,
+        "n_neg": 8,
+        "auroc": 0.9904,
+        "discriminative_auroc": 0.9904,
+        "ci95": [
+          0.9423,
+          1.0
+        ],
+        "mean_pos": 0.3944,
+        "mean_neg": 0.0271,
+        "delta_z": 0.3674,
+        "p_mwu": 1.9656985601258048e-05
+      },
+      "model_weights_3modules": {
+        "S_sperm_act": -0.2373,
+        "S_sperm_chrom": 1.2636,
+        "S_sperm_mot": -0.1746
+      }
+    },
+    "GSE262969_clinical_audit": {
+      "n_libraries": 44,
+      "binary_endpoints": {
+        "LiveBirth_Delivered_vs_NoLB": {
+          "S_sperm_act": {
+            "n_total": 15,
+            "n_pos": 8,
+            "n_neg": 7,
+            "auroc": 0.5714,
+            "discriminative_auroc": 0.5714,
+            "ci95": [
+              0.2316,
+              0.8804
+            ],
+            "mean_pos": 0.2965,
+            "mean_neg": -0.0047,
+            "delta_z": 0.3012,
+            "p_mwu": 0.6943278943278944
+          },
+          "S_sperm_chrom": {
+            "n_total": 15,
+            "n_pos": 8,
+            "n_neg": 7,
+            "auroc": 0.5893,
+            "discriminative_auroc": 0.5893,
+            "ci95": [
+              0.2221,
+              0.9286
+            ],
+            "mean_pos": 0.0905,
+            "mean_neg": -0.809,
+            "delta_z": 0.8994,
+            "p_mwu": 0.6125874125874127
+          },
+          "S_sperm_mot": {
+            "n_total": 15,
+            "n_pos": 8,
+            "n_neg": 7,
+            "auroc": 0.5357,
+            "discriminative_auroc": 0.5357,
+            "ci95": [
+              0.2037,
+              0.8803
+            ],
+            "mean_pos": 0.0499,
+            "mean_neg": 0.093,
+            "delta_z": -0.043,
+            "p_mwu": 0.8665112665112666
+          },
+          "top_genes": [
+            {
+              "cohort_id": "GSE262969_LiveBirth_Delivered_vs_NoLB",
+              "gene": "ADCY10",
+              "matched": "ADCY10",
+              "expected_sign": 1,
+              "mean_fertile_z": -0.3984,
+              "mean_infertile_z": 0.4554,
+              "signed_delta_z": -0.8538,
+              "signed_auroc": 0.2679,
+              "ci95": [
+                0.04,
+                0.5628
+              ],
+              "p_mwu": 0.1272980462544935,
+              "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+              "bh_q": 1.0
+            },
+            {
+              "cohort_id": "GSE262969_LiveBirth_Delivered_vs_NoLB",
+              "gene": "SPACA3",
+              "matched": "SPACA3",
+              "expected_sign": 1,
+              "mean_fertile_z": 0.1119,
+              "mean_infertile_z": -0.1278,
+              "signed_delta_z": 0.2397,
+              "signed_auroc": 0.6964,
+              "ci95": [
+                0.3889,
+                1.0
+              ],
+              "p_mwu": 0.2226536979813717,
+              "flag": "MATCHES_FORMULA",
+              "bh_q": 1.0
+            },
+            {
+              "cohort_id": "GSE262969_LiveBirth_Delivered_vs_NoLB",
+              "gene": "PRKACA",
+              "matched": "PRKACA",
+              "expected_sign": 1,
+              "mean_fertile_z": 0.2439,
+              "mean_infertile_z": -0.2787,
+              "signed_delta_z": 0.5226,
+              "signed_auroc": 0.6607,
+              "ci95": [
+                0.3333,
+                0.9096
+              ],
+              "p_mwu": 0.31647178784797814,
+              "flag": "MATCHES_FORMULA",
+              "bh_q": 1.0
+            },
+            {
+              "cohort_id": "GSE262969_LiveBirth_Delivered_vs_NoLB",
+              "gene": "CATSPER2",
+              "matched": "CATSPER2",
+              "expected_sign": 1,
+              "mean_fertile_z": 0.2548,
+              "mean_infertile_z": -0.2912,
+              "signed_delta_z": 0.546,
+              "signed_auroc": 0.6607,
+              "ci95": [
+                0.3882,
+                0.9273
+              ],
+              "p_mwu": 0.31647178784797814,
+              "flag": "MATCHES_FORMULA",
+              "bh_q": 1.0
+            },
+            {
+              "cohort_id": "GSE262969_LiveBirth_Delivered_vs_NoLB",
+              "gene": "IZUMO1",
+              "matched": "IZUMO1",
+              "expected_sign": 1,
+              "mean_fertile_z": 0.2999,
+              "mean_infertile_z": -0.3428,
+              "signed_delta_z": 0.6427,
+              "signed_auroc": 0.6607,
+              "ci95": [
+                0.2877,
+                0.9273
+              ],
+              "p_mwu": 0.3248386127491286,
+              "flag": "MATCHES_FORMULA",
+              "bh_q": 1.0
+            }
+          ]
+        },
+        "PregnancyOutcome_Pos_vs_Neg": {
+          "S_sperm_act": {
+            "n_total": 30,
+            "n_pos": 23,
+            "n_neg": 7,
+            "auroc": 0.4472,
+            "discriminative_auroc": 0.5528,
+            "ci95": [
+              0.1852,
+              0.7441
+            ],
+            "mean_pos": -0.088,
+            "mean_neg": -0.0047,
+            "delta_z": -0.0832,
+            "p_mwu": 0.701294822674133
+          },
+          "S_sperm_chrom": {
+            "n_total": 30,
+            "n_pos": 23,
+            "n_neg": 7,
+            "auroc": 0.5031,
+            "discriminative_auroc": 0.5031,
+            "ci95": [
+              0.2079,
+              0.8241
+            ],
+            "mean_pos": -0.3141,
+            "mean_neg": -0.809,
+            "delta_z": 0.4949,
+            "p_mwu": 1.0
+          },
+          "S_sperm_mot": {
+            "n_total": 30,
+            "n_pos": 23,
+            "n_neg": 7,
+            "auroc": 0.4783,
+            "discriminative_auroc": 0.5217,
+            "ci95": [
+              0.1477,
+              0.8014
+            ],
+            "mean_pos": -0.0312,
+            "mean_neg": 0.093,
+            "delta_z": -0.1242,
+            "p_mwu": 0.8829999459701429
+          },
+          "top_genes": [
+            {
+              "cohort_id": "GSE262969_PregnancyOutcome_Pos_vs_Neg",
+              "gene": "TNP2",
+              "matched": "TNP2",
+              "expected_sign": 1,
+              "mean_fertile_z": -0.1485,
+              "mean_infertile_z": 0.4878,
+              "signed_delta_z": -0.6362,
+              "signed_auroc": 0.3106,
+              "ci95": [
+                0.078,
+                0.552
+              ],
+              "p_mwu": 0.11032247442807493,
+              "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+              "bh_q": 0.9800711315698962
+            },
+            {
+              "cohort_id": "GSE262969_PregnancyOutcome_Pos_vs_Neg",
+              "gene": "ADCY10",
+              "matched": "ADCY10",
+              "expected_sign": 1,
+              "mean_fertile_z": -0.1549,
+              "mean_infertile_z": 0.5089,
+              "signed_delta_z": -0.6638,
+              "signed_auroc": 0.3292,
+              "ci95": [
+                0.0768,
+                0.5837
+              ],
+              "p_mwu": 0.15707170383226066,
+              "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+              "bh_q": 0.9800711315698962
+            },
+            {
+              "cohort_id": "GSE262969_PregnancyOutcome_Pos_vs_Neg",
+              "gene": "PLCZ1",
+              "matched": "PLCZ1",
+              "expected_sign": 1,
+              "mean_fertile_z": -0.1403,
+              "mean_infertile_z": 0.461,
+              "signed_delta_z": -0.6013,
+              "signed_auroc": 0.3354,
+              "ci95": [
+                0.0999,
+                0.6118
+              ],
+              "p_mwu": 0.19627113282818498,
+              "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+              "bh_q": 0.9800711315698962
+            },
+            {
+              "cohort_id": "GSE262969_PregnancyOutcome_Pos_vs_Neg",
+              "gene": "CATSPER1",
+              "matched": "CATSPER1",
+              "expected_sign": 1,
+              "mean_fertile_z": -0.1224,
+              "mean_infertile_z": 0.4022,
+              "signed_delta_z": -0.5245,
+              "signed_auroc": 0.3727,
+              "ci95": [
+                0.15,
+                0.6374
+              ],
+              "p_mwu": 0.2783675592829451,
+              "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+              "bh_q": 0.9800711315698962
+            },
+            {
+              "cohort_id": "GSE262969_PregnancyOutcome_Pos_vs_Neg",
+              "gene": "CYCS",
+              "matched": "CYCS",
+              "expected_sign": -1,
+              "mean_fertile_z": 0.0606,
+              "mean_infertile_z": -0.199,
+              "signed_delta_z": 0.2595,
+              "signed_auroc": 0.4224,
+              "ci95": [
+                0.2018,
+                0.6274
+              ],
+              "p_mwu": 0.44973520757958885,
+              "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+              "bh_q": 0.9800711315698962
+            }
+          ]
+        },
+        "FertilizationRate_AboveMedian": {
+          "S_sperm_act": {
+            "n_total": 44,
+            "n_pos": 22,
+            "n_neg": 22,
+            "auroc": 0.407,
+            "discriminative_auroc": 0.593,
+            "ci95": [
+              0.2357,
+              0.5875
+            ],
+            "mean_pos": -0.1202,
+            "mean_neg": 0.1202,
+            "delta_z": -0.2404,
+            "p_mwu": 0.296239381120748
+          },
+          "S_sperm_chrom": {
+            "n_total": 44,
+            "n_pos": 22,
+            "n_neg": 22,
+            "auroc": 0.5227,
+            "discriminative_auroc": 0.5227,
+            "ci95": [
+              0.3419,
+              0.6936
+            ],
+            "mean_pos": -0.4234,
+            "mean_neg": -0.2451,
+            "delta_z": -0.1783,
+            "p_mwu": 0.8053241706182483
+          },
+          "S_sperm_mot": {
+            "n_total": 44,
+            "n_pos": 22,
+            "n_neg": 22,
+            "auroc": 0.4938,
+            "discriminative_auroc": 0.5062,
+            "ci95": [
+              0.3099,
+              0.6689
+            ],
+            "mean_pos": -0.0114,
+            "mean_neg": 0.0114,
+            "delta_z": -0.0228,
+            "p_mwu": 0.9531991531420025
+          },
+          "top_genes": [
+            {
+              "cohort_id": "GSE262969_FertilizationRate_AboveMedian",
+              "gene": "COX5B",
+              "matched": "COX5B",
+              "expected_sign": 1,
+              "mean_fertile_z": -0.3344,
+              "mean_infertile_z": 0.3344,
+              "signed_delta_z": -0.6689,
+              "signed_auroc": 0.3182,
+              "ci95": [
+                0.1988,
+                0.4567
+              ],
+              "p_mwu": 0.01714686477429925,
+              "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+              "bh_q": 0.3600841602602843
+            },
+            {
+              "cohort_id": "GSE262969_FertilizationRate_AboveMedian",
+              "gene": "KCNU1",
+              "matched": "KCNU1",
+              "expected_sign": 1,
+              "mean_fertile_z": -0.3015,
+              "mean_infertile_z": 0.3015,
+              "signed_delta_z": -0.603,
+              "signed_auroc": 0.3233,
+              "ci95": [
+                0.1697,
+                0.4933
+              ],
+              "p_mwu": 0.04538107965812772,
+              "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+              "bh_q": 0.47650133641034104
+            },
+            {
+              "cohort_id": "GSE262969_FertilizationRate_AboveMedian",
+              "gene": "TNP2",
+              "matched": "TNP2",
+              "expected_sign": 1,
+              "mean_fertile_z": 0.2315,
+              "mean_infertile_z": -0.2315,
+              "signed_delta_z": 0.463,
+              "signed_auroc": 0.626,
+              "ci95": [
+                0.4745,
+                0.7957
+              ],
+              "p_mwu": 0.13256785021516346,
+              "flag": "MATCHES_FORMULA",
+              "bh_q": 0.8196485575390272
+            },
+            {
+              "cohort_id": "GSE262969_FertilizationRate_AboveMedian",
+              "gene": "HSPA2",
+              "matched": "HSPA2",
+              "expected_sign": 1,
+              "mean_fertile_z": -0.0332,
+              "mean_infertile_z": 0.0332,
+              "signed_delta_z": -0.0663,
+              "signed_auroc": 0.4008,
+              "ci95": [
+                0.2492,
+                0.573
+              ],
+              "p_mwu": 0.21080460767768328,
+              "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+              "bh_q": 0.8196485575390272
+            },
+            {
+              "cohort_id": "GSE262969_FertilizationRate_AboveMedian",
+              "gene": "IZUMO1",
+              "matched": "IZUMO1",
+              "expected_sign": 1,
+              "mean_fertile_z": -0.1592,
+              "mean_infertile_z": 0.1592,
+              "signed_delta_z": -0.3183,
+              "signed_auroc": 0.4019,
+              "ci95": [
+                0.245,
+                0.573
+              ],
+              "p_mwu": 0.2650638767419793,
+              "flag": "CONTRADICTS_FORMULA (Negative-Feedback / Arrest-Compensatory Up)",
+              "bh_q": 0.8196485575390272
+            }
+          ]
+        }
+      },
+      "continuous_correlations": {
+        "FertilizationRate_2PN_per_MII": {
+          "S_sperm_act": {
+            "n": 44,
+            "rho": -0.0612,
+            "p": 0.6930749824062017
+          },
+          "S_sperm_chrom": {
+            "n": 44,
+            "rho": 0.0663,
+            "p": 0.6689920131952086
+          },
+          "S_sperm_mot": {
+            "n": 44,
+            "rho": -0.0088,
+            "p": 0.9546570567674036
+          }
+        },
+        "PercentBlast": {
+          "S_sperm_act": {
+            "n": 44,
+            "rho": 0.0151,
+            "p": 0.922453321724416
+          },
+          "S_sperm_chrom": {
+            "n": 44,
+            "rho": 0.075,
+            "p": 0.6285738932724563
+          },
+          "S_sperm_mot": {
+            "n": 44,
+            "rho": 0.101,
+            "p": 0.5142716892375274
+          }
+        },
+        "SpermConcentration_mil_ml": {
+          "S_sperm_act": {
+            "n": 44,
+            "rho": 0.1615,
+            "p": 0.29483753049951766
+          },
+          "S_sperm_chrom": {
+            "n": 44,
+            "rho": 0.0893,
+            "p": 0.5641556945067687
+          },
+          "S_sperm_mot": {
+            "n": 44,
+            "rho": 0.1542,
+            "p": 0.31774538227842386
+          }
+        },
+        "EjaculateMotility": {
+          "S_sperm_act": {
+            "n": 44,
+            "rho": 0.2213,
+            "p": 0.14878562666253498
+          },
+          "S_sperm_chrom": {
+            "n": 44,
+            "rho": 0.2228,
+            "p": 0.1460104832155321
+          },
+          "S_sperm_mot": {
+            "n": 44,
+            "rho": 0.0834,
+            "p": 0.5906252153969491
+          }
+        },
+        "MorphologyNormal": {
+          "S_sperm_act": {
+            "n": 29,
+            "rho": 0.0977,
+            "p": 0.6142258627790231
+          },
+          "S_sperm_chrom": {
+            "n": 29,
+            "rho": -0.0268,
+            "p": 0.8903515015132403
+          },
+          "S_sperm_mot": {
+            "n": 29,
+            "rho": 0.359,
+            "p": 0.055806000784943105
+          }
+        }
+      }
+    }
+  },
+  "block4_gate3": {
+    "GSE180485_endotime_clinical": {
+      "n_unique_patients": 36,
+      "outcome_counts": {
+        "Live birth": 19,
+        "Miscarriage": 12,
+        "Ongoing": 5
+      },
+      "miscarriage_vs_livebirth": {
+        "S_senescent_decidua_raw": {
+          "n_total": 31,
+          "n_pos": 12,
+          "n_neg": 19,
+          "auroc": 0.5175,
+          "discriminative_auroc": 0.5175,
+          "ci95": [
+            0.3083,
+            0.7381
+          ],
+          "mean_pos": -0.1418,
+          "mean_neg": 0.2528,
+          "delta_z": -0.3946,
+          "p_mwu": 0.8871244417960681
+        },
+        "S_senescent_decidua_LH_residualized": {
+          "n_total": 30,
+          "n_pos": 12,
+          "n_neg": 18,
+          "auroc": 0.3981,
+          "discriminative_auroc": 0.6019,
+          "ci95": [
+            0.201,
+            0.6064
+          ],
+          "mean_pos": -0.3999,
+          "mean_neg": 0.4196,
+          "delta_z": -0.8195,
+          "p_mwu": 0.36273414050722164
+        },
+        "S_senescent_ext_LH_residualized": {
+          "n_total": 30,
+          "n_pos": 12,
+          "n_neg": 18,
+          "auroc": 0.412,
+          "discriminative_auroc": 0.588,
+          "ci95": [
+            0.1849,
+            0.676
+          ],
+          "mean_pos": -0.1145,
+          "mean_neg": 0.078,
+          "delta_z": -0.1925,
+          "p_mwu": 0.4335287866464804
+        },
+        "S_receptivity_LH_residualized": {
+          "n_total": 30,
+          "n_pos": 12,
+          "n_neg": 18,
+          "auroc": 0.662,
+          "discriminative_auroc": 0.662,
+          "ci95": [
+            0.4398,
+            0.8466
+          ],
+          "mean_pos": 0.215,
+          "mean_neg": -0.1502,
+          "delta_z": 0.3652,
+          "p_mwu": 0.14415230644213753
+        },
+        "S_p4_resist_LH_residualized": {
+          "n_total": 30,
+          "n_pos": 12,
+          "n_neg": 18,
+          "auroc": 0.7176,
+          "discriminative_auroc": 0.7176,
+          "ci95": [
+            0.4844,
+            0.9018
+          ],
+          "mean_pos": 0.2347,
+          "mean_neg": -0.1299,
+          "delta_z": 0.3645,
+          "p_mwu": 0.0490103098396988
+        },
+        "uNK_percent": {
+          "n_total": 30,
+          "n_pos": 12,
+          "n_neg": 18,
+          "auroc": 0.625,
+          "discriminative_auroc": 0.625,
+          "ci95": [
+            0.4117,
+            0.8421
+          ],
+          "mean_pos": 6.2242,
+          "mean_neg": 4.2739,
+          "delta_z": 1.9503,
+          "p_mwu": 0.26193283344736606
+        },
+        "previous_losses": {
+          "n_total": 31,
+          "n_pos": 12,
+          "n_neg": 19,
+          "auroc": 0.6996,
+          "discriminative_auroc": 0.6996,
+          "ci95": [
+            0.509,
+            0.8572
+          ],
+          "mean_pos": 5.0833,
+          "mean_neg": 3.1579,
+          "delta_z": 1.9254,
+          "p_mwu": 0.06357364282473721
+        }
+      },
+      "rpl_ge3_losses_vs_lt3": {
+        "S_senescent_decidua_raw": {
+          "n_total": 36,
+          "n_pos": 24,
+          "n_neg": 12,
+          "auroc": 0.5139,
+          "discriminative_auroc": 0.5139,
+          "ci95": [
+            0.2811,
+            0.7341
+          ],
+          "mean_pos": -0.1332,
+          "mean_neg": 0.2665,
+          "delta_z": -0.3997,
+          "p_mwu": 0.9065016337652708
+        },
+        "S_senescent_decidua_LH_residualized": {
+          "n_total": 35,
+          "n_pos": 23,
+          "n_neg": 12,
+          "auroc": 0.4275,
+          "discriminative_auroc": 0.5725,
+          "ci95": [
+            0.2199,
+            0.6415
+          ],
+          "mean_pos": -0.2486,
+          "mean_neg": 0.4764,
+          "delta_z": -0.7249,
+          "p_mwu": 0.4979797813778726
+        },
+        "S_p4_resist_LH_residualized": {
+          "n_total": 35,
+          "n_pos": 23,
+          "n_neg": 12,
+          "auroc": 0.5833,
+          "discriminative_auroc": 0.5833,
+          "ci95": [
+            0.384,
+            0.776
+          ],
+          "mean_pos": 0.0133,
+          "mean_neg": -0.0255,
+          "delta_z": 0.0387,
+          "p_mwu": 0.4342562698548039
+        },
+        "uNK_percent": {
+          "n_total": 35,
+          "n_pos": 23,
+          "n_neg": 12,
+          "auroc": 0.6087,
+          "discriminative_auroc": 0.6087,
+          "ci95": [
+            0.4017,
+            0.8096
+          ],
+          "mean_pos": 5.3596,
+          "mean_neg": 4.0058,
+          "delta_z": 1.3537,
+          "p_mwu": 0.3052707769997559
+        }
+      },
+      "rpl_ge5_losses_vs_lt5": {
+        "S_senescent_decidua_raw": {
+          "n_total": 36,
+          "n_pos": 12,
+          "n_neg": 24,
+          "auroc": 0.6181,
+          "discriminative_auroc": 0.6181,
+          "ci95": [
+            0.44,
+            0.8019
+          ],
+          "mean_pos": 0.036,
+          "mean_neg": -0.018,
+          "delta_z": 0.054,
+          "p_mwu": 0.2609339609317859
+        },
+        "S_senescent_decidua_LH_residualized": {
+          "n_total": 35,
+          "n_pos": 11,
+          "n_neg": 24,
+          "auroc": 0.5227,
+          "discriminative_auroc": 0.5227,
+          "ci95": [
+            0.33,
+            0.7198
+          ],
+          "mean_pos": -0.0997,
+          "mean_neg": 0.0457,
+          "delta_z": -0.1453,
+          "p_mwu": 0.8450532094360411
+        },
+        "S_p4_resist_LH_residualized": {
+          "n_total": 35,
+          "n_pos": 11,
+          "n_neg": 24,
+          "auroc": 0.4583,
+          "discriminative_auroc": 0.5417,
+          "ci95": [
+            0.2376,
+            0.6782
+          ],
+          "mean_pos": 0.0082,
+          "mean_neg": -0.0038,
+          "delta_z": 0.012,
+          "p_mwu": 0.7090730856847203
+        },
+        "uNK_percent": {
+          "n_total": 35,
+          "n_pos": 12,
+          "n_neg": 23,
+          "auroc": 0.6232,
+          "discriminative_auroc": 0.6232,
+          "ci95": [
+            0.4102,
+            0.824
+          ],
+          "mean_pos": 5.9017,
+          "mean_neg": 4.3704,
+          "delta_z": 1.5312,
+          "p_mwu": 0.24434075059425275
+        }
+      },
+      "spearman_correlations": {
+        "LH_day": {
+          "DIO2_minus_SCARA5_raw": {
+            "n": 35,
+            "rho": -0.3482,
+            "p": 0.04040284280799322
+          },
+          "DIO2_minus_SCARA5_LH_resid": {
+            "n": 35,
+            "rho": 0.2151,
+            "p": 0.21465075702373265
+          },
+          "S_senescent_ext_LH_resid": {
+            "n": 35,
+            "rho": 0.0249,
+            "p": 0.8872810765589444
+          },
+          "S_receptivity_raw": {
+            "n": 35,
+            "rho": 0.3395,
+            "p": 0.04599027549349669
+          },
+          "S_receptivity_LH_resid": {
+            "n": 35,
+            "rho": -0.0055,
+            "p": 0.9749504984826891
+          },
+          "S_p4_resist_LH_resid": {
+            "n": 35,
+            "rho": -0.0481,
+            "p": 0.7838764348659635
+          },
+          "uNK_percent": {
+            "n": 34,
+            "rho": 0.0861,
+            "p": 0.6282020537940809
+          }
+        },
+        "uNK_percent": {
+          "DIO2_minus_SCARA5_raw": {
+            "n": 35,
+            "rho": -0.5824,
+            "p": 0.00024235598908961916
+          },
+          "DIO2_minus_SCARA5_LH_resid": {
+            "n": 34,
+            "rho": -0.5077,
+            "p": 0.0021756221403554047
+          },
+          "S_senescent_ext_LH_resid": {
+            "n": 34,
+            "rho": -0.3736,
+            "p": 0.029536293185310397
+          },
+          "S_receptivity_raw": {
+            "n": 35,
+            "rho": 0.4947,
+            "p": 0.002520805585411125
+          },
+          "S_receptivity_LH_resid": {
+            "n": 34,
+            "rho": 0.4805,
+            "p": 0.004022353245743147
+          },
+          "S_p4_resist_LH_resid": {
+            "n": 34,
+            "rho": 0.4451,
+            "p": 0.008350157378811613
+          },
+          "uNK_percent": {
+            "n": 35,
+            "rho": 1.0,
+            "p": 0.0
+          }
+        },
+        "previous_losses": {
+          "DIO2_minus_SCARA5_raw": {
+            "n": 36,
+            "rho": 0.127,
+            "p": 0.4606063692020287
+          },
+          "DIO2_minus_SCARA5_LH_resid": {
+            "n": 35,
+            "rho": -0.0222,
+            "p": 0.8990538580714595
+          },
+          "S_senescent_ext_LH_resid": {
+            "n": 35,
+            "rho": -0.0466,
+            "p": 0.7902213701612117
+          },
+          "S_receptivity_raw": {
+            "n": 36,
+            "rho": -0.0349,
+            "p": 0.8396538897786442
+          },
+          "S_receptivity_LH_resid": {
+            "n": 35,
+            "rho": 0.017,
+            "p": 0.9229139458431754
+          },
+          "S_p4_resist_LH_resid": {
+            "n": 35,
+            "rho": 0.1199,
+            "p": 0.49253180721814893
+          },
+          "uNK_percent": {
+            "n": 35,
+            "rho": 0.2539,
+            "p": 0.14101759693053206
+          }
+        }
+      },
+      "top_genes_miscarriage_vs_livebirth": [
+        {
+          "gene": "RP11-626H12.1",
+          "signed_delta_z": -1.2198,
+          "signed_auroc": 0.1425,
+          "p_mwu": 0.000405735067659312
+        },
+        {
+          "gene": "RPS10",
+          "signed_delta_z": -1.3277,
+          "signed_auroc": 0.1272,
+          "p_mwu": 0.000610451982783814
+        },
+        {
+          "gene": "AC008427.2",
+          "signed_delta_z": 1.2114,
+          "signed_auroc": 0.8246,
+          "p_mwu": 0.0006822803553703205
+        },
+        {
+          "gene": "RPL23AP7",
+          "signed_delta_z": 1.2033,
+          "signed_auroc": 0.864,
+          "p_mwu": 0.0008204057760031703
+        },
+        {
+          "gene": "LL22NC03-75H12.2",
+          "signed_delta_z": 1.1966,
+          "signed_auroc": 0.7763,
+          "p_mwu": 0.000985928771484368
+        },
+        {
+          "gene": "TRPM5",
+          "signed_delta_z": -1.2284,
+          "signed_auroc": 0.1491,
+          "p_mwu": 0.0012634687069330466
+        },
+        {
+          "gene": "AC060834.2",
+          "signed_delta_z": 1.1265,
+          "signed_auroc": 0.7939,
+          "p_mwu": 0.0016186962048013224
+        },
+        {
+          "gene": "ZNF80",
+          "signed_delta_z": 1.1532,
+          "signed_auroc": 0.8399,
+          "p_mwu": 0.0016352448617903503
+        },
+        {
+          "gene": "CCDC141",
+          "signed_delta_z": 1.1803,
+          "signed_auroc": 0.8421,
+          "p_mwu": 0.001672029698931434
+        },
+        {
+          "gene": "RP11-72M17.1",
+          "signed_delta_z": -1.0271,
+          "signed_auroc": 0.1579,
+          "p_mwu": 0.001672029698931434
+        }
+      ]
+    },
+    "concordant_3cohort_genes": [
+      {
+        "gene": "GTPBP5",
+        "concordant_sign_in_failure": "+1 (Up in RIF/UIF)",
+        "GSE58144_dz": 0.4344,
+        "GSE58144_signed_auroc": 0.6166,
+        "GSE58144_p": 0.03717382795538464,
+        "GSE111974_dz": 1.6509,
+        "GSE111974_signed_auroc": 0.9844,
+        "GSE111974_p": 9.32485400964649e-09,
+        "GSE165004_UIF_dz": 1.5877,
+        "GSE165004_UIF_signed_auroc": 0.9688,
+        "GSE165004_UIF_p": 2.7445651191271856e-08,
+        "GSE165004_RPL_dz": 1.0312,
+        "GSE165004_RPL_signed_auroc": 0.7899,
+        "GSE165004_RPL_p": 0.0005965632210801781
+      },
+      {
+        "gene": "FAM74A4",
+        "concordant_sign_in_failure": "+1 (Up in RIF/UIF)",
+        "GSE58144_dz": 0.2984,
+        "GSE58144_signed_auroc": 0.5837,
+        "GSE58144_p": 0.13511169496371297,
+        "GSE111974_dz": 1.5562,
+        "GSE111974_signed_auroc": 0.9635,
+        "GSE111974_p": 3.897470089986877e-08,
+        "GSE165004_UIF_dz": 1.6648,
+        "GSE165004_UIF_signed_auroc": 0.987,
+        "GSE165004_UIF_p": 7.735191626910433e-09,
+        "GSE165004_RPL_dz": 0.537,
+        "GSE165004_RPL_signed_auroc": 0.6606,
+        "GSE165004_RPL_p": 0.05777931950218694
+      },
+      {
+        "gene": "FKBP3",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.2684,
+        "GSE58144_signed_auroc": 0.4167,
+        "GSE58144_p": 0.13662852366876452,
+        "GSE111974_dz": -1.663,
+        "GSE111974_signed_auroc": 0.0156,
+        "GSE111974_p": 9.32485400964649e-09,
+        "GSE165004_UIF_dz": -1.3291,
+        "GSE165004_UIF_signed_auroc": 0.1076,
+        "GSE165004_UIF_p": 3.323672193729133e-06,
+        "GSE165004_RPL_dz": -1.1529,
+        "GSE165004_RPL_signed_auroc": 0.158,
+        "GSE165004_RPL_p": 5.083342321091998e-05
+      },
+      {
+        "gene": "TRIAP1",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.2492,
+        "GSE58144_signed_auroc": 0.4241,
+        "GSE58144_p": 0.17525385909747493,
+        "GSE111974_dz": -1.4594,
+        "GSE111974_signed_auroc": 0.0408,
+        "GSE111974_p": 5.217453255668243e-08,
+        "GSE165004_UIF_dz": -1.5452,
+        "GSE165004_UIF_signed_auroc": 0.0139,
+        "GSE165004_UIF_p": 8.253738424413415e-09,
+        "GSE165004_RPL_dz": -1.0575,
+        "GSE165004_RPL_signed_auroc": 0.1458,
+        "GSE165004_RPL_p": 2.7155125360679333e-05
+      },
+      {
+        "gene": "C2ORF69",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.1676,
+        "GSE58144_signed_auroc": 0.448,
+        "GSE58144_p": 0.3535314731876882,
+        "GSE111974_dz": -1.3432,
+        "GSE111974_signed_auroc": 0.0972,
+        "GSE111974_p": 1.8109693263668705e-06,
+        "GSE165004_UIF_dz": -1.632,
+        "GSE165004_UIF_signed_auroc": 0.0243,
+        "GSE165004_UIF_p": 1.7056946192722718e-08,
+        "GSE165004_RPL_dz": -1.5755,
+        "GSE165004_RPL_signed_auroc": 0.0278,
+        "GSE165004_RPL_p": 2.1654428383507124e-08
+      },
+      {
+        "gene": "CNIH",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.1678,
+        "GSE58144_signed_auroc": 0.4499,
+        "GSE58144_p": 0.37181513368575525,
+        "GSE111974_dz": -1.5642,
+        "GSE111974_signed_auroc": 0.0382,
+        "GSE111974_p": 4.387047157635008e-08,
+        "GSE165004_UIF_dz": -1.4262,
+        "GSE165004_UIF_signed_auroc": 0.0503,
+        "GSE165004_UIF_p": 9.811538330159388e-08,
+        "GSE165004_RPL_dz": -0.8468,
+        "GSE165004_RPL_signed_auroc": 0.2517,
+        "GSE165004_RPL_p": 0.0033001700253736358
+      },
+      {
+        "gene": "USP33",
+        "concordant_sign_in_failure": "+1 (Up in RIF/UIF)",
+        "GSE58144_dz": 0.3645,
+        "GSE58144_signed_auroc": 0.604,
+        "GSE58144_p": 0.06311045141866149,
+        "GSE111974_dz": 1.6773,
+        "GSE111974_signed_auroc": 0.9983,
+        "GSE111974_p": 3.4693648314702977e-09,
+        "GSE165004_UIF_dz": 0.9851,
+        "GSE165004_UIF_signed_auroc": 0.7899,
+        "GSE165004_UIF_p": 0.0005965632210801781,
+        "GSE165004_RPL_dz": 0.067,
+        "GSE165004_RPL_signed_auroc": 0.4757,
+        "GSE165004_RPL_p": 0.7807319473938321
+      },
+      {
+        "gene": "BOLA1",
+        "concordant_sign_in_failure": "+1 (Up in RIF/UIF)",
+        "GSE58144_dz": 0.2835,
+        "GSE58144_signed_auroc": 0.552,
+        "GSE58144_p": 0.3535314731876882,
+        "GSE111974_dz": 1.4345,
+        "GSE111974_signed_auroc": 0.9306,
+        "GSE111974_p": 3.3366835070669557e-07,
+        "GSE165004_UIF_dz": 1.4921,
+        "GSE165004_UIF_signed_auroc": 0.9566,
+        "GSE165004_UIF_p": 6.209575257062966e-08,
+        "GSE165004_RPL_dz": 0.9319,
+        "GSE165004_RPL_signed_auroc": 0.8733,
+        "GSE165004_RPL_p": 9.737785441998759e-06
+      },
+      {
+        "gene": "HSPB9",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.2111,
+        "GSE58144_signed_auroc": 0.5443,
+        "GSE58144_p": 0.43009416709002457,
+        "GSE111974_dz": -1.4598,
+        "GSE111974_signed_auroc": 0.0608,
+        "GSE111974_p": 1.9247482902536914e-07,
+        "GSE165004_UIF_dz": -1.5023,
+        "GSE165004_UIF_signed_auroc": 0.033,
+        "GSE165004_UIF_p": 3.087930666324875e-08,
+        "GSE165004_RPL_dz": -0.7555,
+        "GSE165004_RPL_signed_auroc": 0.2552,
+        "GSE165004_RPL_p": 0.003766763000078114
+      },
+      {
+        "gene": "CPSF3",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.411,
+        "GSE58144_signed_auroc": 0.4289,
+        "GSE58144_p": 0.20450979220571408,
+        "GSE111974_dz": -1.3397,
+        "GSE111974_signed_auroc": 0.0877,
+        "GSE111974_p": 1.0238915558027181e-06,
+        "GSE165004_UIF_dz": -1.4822,
+        "GSE165004_UIF_signed_auroc": 0.0608,
+        "GSE165004_UIF_p": 1.9247482902536914e-07,
+        "GSE165004_RPL_dz": -1.4919,
+        "GSE165004_RPL_signed_auroc": 0.0243,
+        "GSE165004_RPL_p": 1.7056946192722718e-08
+      },
+      {
+        "gene": "CTDSP1",
+        "concordant_sign_in_failure": "+1 (Up in RIF/UIF)",
+        "GSE58144_dz": 0.3429,
+        "GSE58144_signed_auroc": 0.5988,
+        "GSE58144_p": 0.07740835585094927,
+        "GSE111974_dz": 1.2653,
+        "GSE111974_signed_auroc": 0.9106,
+        "GSE111974_p": 1.1366660124587924e-06,
+        "GSE165004_UIF_dz": 1.5523,
+        "GSE165004_UIF_signed_auroc": 0.9861,
+        "GSE165004_UIF_p": 8.253738424413415e-09,
+        "GSE165004_RPL_dz": 1.1643,
+        "GSE165004_RPL_signed_auroc": 0.8559,
+        "GSE165004_RPL_p": 2.4788262264360555e-05
+      },
+      {
+        "gene": "PRKRIR",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.2015,
+        "GSE58144_signed_auroc": 0.4587,
+        "GSE58144_p": 0.4611183769013394,
+        "GSE111974_dz": -1.5711,
+        "GSE111974_signed_auroc": 0.0347,
+        "GSE111974_p": 3.472817646969715e-08,
+        "GSE165004_UIF_dz": -1.2635,
+        "GSE165004_UIF_signed_auroc": 0.1128,
+        "GSE165004_UIF_p": 4.477855916866232e-06,
+        "GSE165004_RPL_dz": -0.3998,
+        "GSE165004_RPL_signed_auroc": 0.3733,
+        "GSE165004_RPL_p": 0.13493406800802574
+      },
+      {
+        "gene": "C6ORF203",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.2626,
+        "GSE58144_signed_auroc": 0.4176,
+        "GSE58144_p": 0.14125789844528,
+        "GSE111974_dz": -1.5092,
+        "GSE111974_signed_auroc": 0.0503,
+        "GSE111974_p": 9.811538330159388e-08,
+        "GSE165004_UIF_dz": -1.3134,
+        "GSE165004_UIF_signed_auroc": 0.0938,
+        "GSE165004_UIF_p": 1.4742942149091543e-06,
+        "GSE165004_RPL_dz": -1.0145,
+        "GSE165004_RPL_signed_auroc": 0.1892,
+        "GSE165004_RPL_p": 0.00023267851145308106
+      },
+      {
+        "gene": "ANKIB1",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.1503,
+        "GSE58144_signed_auroc": 0.4587,
+        "GSE58144_p": 0.4611183769013394,
+        "GSE111974_dz": -1.4016,
+        "GSE111974_signed_auroc": 0.0851,
+        "GSE111974_p": 8.752802415366256e-07,
+        "GSE165004_UIF_dz": -1.4686,
+        "GSE165004_UIF_signed_auroc": 0.0417,
+        "GSE165004_UIF_p": 5.532797456867226e-08,
+        "GSE165004_RPL_dz": -1.2355,
+        "GSE165004_RPL_signed_auroc": 0.125,
+        "GSE165004_RPL_p": 8.849270861410745e-06
+      },
+      {
+        "gene": "HOXA6",
+        "concordant_sign_in_failure": "+1 (Up in RIF/UIF)",
+        "GSE58144_dz": 0.1738,
+        "GSE58144_signed_auroc": 0.5423,
+        "GSE58144_p": 0.45064036954903475,
+        "GSE111974_dz": 1.4594,
+        "GSE111974_signed_auroc": 0.9497,
+        "GSE111974_p": 9.811538330159388e-08,
+        "GSE165004_UIF_dz": 1.3533,
+        "GSE165004_UIF_signed_auroc": 0.9132,
+        "GSE165004_UIF_p": 9.722797636417776e-07,
+        "GSE165004_RPL_dz": 0.2965,
+        "GSE165004_RPL_signed_auroc": 0.599,
+        "GSE165004_RPL_p": 0.24401479744248233
+      },
+      {
+        "gene": "MAGOH",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.2558,
+        "GSE58144_signed_auroc": 0.4054,
+        "GSE58144_p": 0.09087888724556024,
+        "GSE111974_dz": -1.4963,
+        "GSE111974_signed_auroc": 0.066,
+        "GSE111974_p": 2.6808671751024467e-07,
+        "GSE165004_UIF_dz": -1.2378,
+        "GSE165004_UIF_signed_auroc": 0.1233,
+        "GSE165004_UIF_p": 8.038544852142128e-06,
+        "GSE165004_RPL_dz": -0.7253,
+        "GSE165004_RPL_signed_auroc": 0.2986,
+        "GSE165004_RPL_p": 0.017239020558590966
+      },
+      {
+        "gene": "POC5",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.7627,
+        "GSE58144_signed_auroc": 0.272,
+        "GSE58144_p": 4.540468873570213e-05,
+        "GSE111974_dz": -1.1502,
+        "GSE111974_signed_auroc": 0.1615,
+        "GSE111974_p": 6.058455057030493e-05,
+        "GSE165004_UIF_dz": -1.2171,
+        "GSE165004_UIF_signed_auroc": 0.1424,
+        "GSE165004_UIF_p": 2.2618492002903638e-05,
+        "GSE165004_RPL_dz": -0.6136,
+        "GSE165004_RPL_signed_auroc": 0.2899,
+        "GSE165004_RPL_p": 0.012967226151306415
+      },
+      {
+        "gene": "PPA2",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.5519,
+        "GSE58144_signed_auroc": 0.3446,
+        "GSE58144_p": 0.005477832608841046,
+        "GSE111974_dz": -1.2981,
+        "GSE111974_signed_auroc": 0.1233,
+        "GSE111974_p": 8.038544852142128e-06,
+        "GSE165004_UIF_dz": -1.2455,
+        "GSE165004_UIF_signed_auroc": 0.1094,
+        "GSE165004_UIF_p": 3.672371527798871e-06,
+        "GSE165004_RPL_dz": -0.9997,
+        "GSE165004_RPL_signed_auroc": 0.2083,
+        "GSE165004_RPL_p": 0.0005527639632859502
+      },
+      {
+        "gene": "POLR2K",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.1756,
+        "GSE58144_signed_auroc": 0.4519,
+        "GSE58144_p": 0.39067392194214556,
+        "GSE111974_dz": -1.2873,
+        "GSE111974_signed_auroc": 0.1042,
+        "GSE111974_p": 2.717424336558233e-06,
+        "GSE165004_UIF_dz": -1.4667,
+        "GSE165004_UIF_signed_auroc": 0.033,
+        "GSE165004_UIF_p": 3.087930666324875e-08,
+        "GSE165004_RPL_dz": -1.3946,
+        "GSE165004_RPL_signed_auroc": 0.0851,
+        "GSE165004_RPL_p": 8.752802415366256e-07
+      },
+      {
+        "gene": "ICAM5",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.1683,
+        "GSE58144_signed_auroc": 0.4619,
+        "GSE58144_p": 0.49700981789444,
+        "GSE111974_dz": -1.4306,
+        "GSE111974_signed_auroc": 0.0712,
+        "GSE111974_p": 3.7202029593072613e-07,
+        "GSE165004_UIF_dz": -1.3304,
+        "GSE165004_UIF_signed_auroc": 0.0677,
+        "GSE165004_UIF_p": 2.9914695196150355e-07,
+        "GSE165004_RPL_dz": -1.0436,
+        "GSE165004_RPL_signed_auroc": 0.1823,
+        "GSE165004_RPL_p": 0.00016782906845876314
+      },
+      {
+        "gene": "TSEN54",
+        "concordant_sign_in_failure": "+1 (Up in RIF/UIF)",
+        "GSE58144_dz": 0.1808,
+        "GSE58144_signed_auroc": 0.5665,
+        "GSE58144_p": 0.23488025021176007,
+        "GSE111974_dz": 1.6137,
+        "GSE111974_signed_auroc": 0.9748,
+        "GSE111974_p": 1.807634919201744e-08,
+        "GSE165004_UIF_dz": 0.9303,
+        "GSE165004_UIF_signed_auroc": 0.7674,
+        "GSE165004_UIF_p": 0.0015502078583888577,
+        "GSE165004_RPL_dz": 1.0645,
+        "GSE165004_RPL_signed_auroc": 0.8316,
+        "GSE165004_RPL_p": 8.563961802983584e-05
+      },
+      {
+        "gene": "GABPA",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.3598,
+        "GSE58144_signed_auroc": 0.396,
+        "GSE58144_p": 0.06311045141866149,
+        "GSE111974_dz": -1.0946,
+        "GSE111974_signed_auroc": 0.1701,
+        "GSE111974_p": 9.328531495833861e-05,
+        "GSE165004_UIF_dz": -1.4687,
+        "GSE165004_UIF_signed_auroc": 0.0556,
+        "GSE165004_UIF_p": 1.3767704755836844e-07,
+        "GSE165004_RPL_dz": -1.0778,
+        "GSE165004_RPL_signed_auroc": 0.1094,
+        "GSE165004_RPL_p": 3.672371527798871e-06
+      },
+      {
+        "gene": "GIMAP2",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.2392,
+        "GSE58144_signed_auroc": 0.4725,
+        "GSE58144_p": 0.6252329274733132,
+        "GSE111974_dz": -1.5508,
+        "GSE111974_signed_auroc": 0.0521,
+        "GSE111974_p": 1.0988989556288946e-07,
+        "GSE165004_UIF_dz": -1.0421,
+        "GSE165004_UIF_signed_auroc": 0.191,
+        "GSE165004_UIF_p": 0.0002522267513013396,
+        "GSE165004_RPL_dz": -0.7648,
+        "GSE165004_RPL_signed_auroc": 0.276,
+        "GSE165004_RPL_p": 0.008058107539921757
+      },
+      {
+        "gene": "TRIM13",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.3218,
+        "GSE58144_signed_auroc": 0.4257,
+        "GSE58144_p": 0.18463714426852285,
+        "GSE111974_dz": -1.2322,
+        "GSE111974_signed_auroc": 0.1372,
+        "GSE111974_p": 1.7105701262270983e-05,
+        "GSE165004_UIF_dz": -1.424,
+        "GSE165004_UIF_signed_auroc": 0.0799,
+        "GSE165004_UIF_p": 6.370065893774589e-07,
+        "GSE165004_RPL_dz": -0.8912,
+        "GSE165004_RPL_signed_auroc": 0.2378,
+        "GSE165004_RPL_p": 0.0019140289654979324
+      },
+      {
+        "gene": "AZI2",
+        "concordant_sign_in_failure": "-1 (Down in RIF/UIF)",
+        "GSE58144_dz": -0.2378,
+        "GSE58144_signed_auroc": 0.416,
+        "GSE58144_p": 0.13360791125466012,
+        "GSE111974_dz": -1.2827,
+        "GSE111974_signed_auroc": 0.1094,
+        "GSE111974_p": 3.672371527798871e-06,
+        "GSE165004_UIF_dz": -1.4151,
+        "GSE165004_UIF_signed_auroc": 0.0799,
+        "GSE165004_UIF_p": 6.370065893774589e-07,
+        "GSE165004_RPL_dz": -1.4383,
+        "GSE165004_RPL_signed_auroc": 0.0764,
+        "GSE165004_RPL_p": 5.143384694389769e-07
+      }
+    ],
+    "same_phase_full_matrix_10x5_oof": {
+      "GSE58144_RIF_vs_Ctrl": {
+        "n_genes_screened": 18016,
+        "oof_signed_auroc": 0.8127,
+        "oof_ci95": [
+          0.7301,
+          0.8863
+        ],
+        "oof_p_mwu": 2.2372132883811216e-08,
+        "top_discovery_genes": [
+          {
+            "gene": "CPE",
+            "signed_delta_z": -0.8369,
+            "signed_auroc": 0.2332,
+            "p_mwu": 1.8262664834136526e-06,
+            "bh_q": 0.0005478799450240958
+          },
+          {
+            "gene": "CXXC4",
+            "signed_delta_z": -0.7875,
+            "signed_auroc": 0.2477,
+            "p_mwu": 6.432949542697355e-06,
+            "bh_q": 0.0007431774574138648
+          },
+          {
+            "gene": "AQP11",
+            "signed_delta_z": -0.8842,
+            "signed_auroc": 0.2523,
+            "p_mwu": 9.392339150759615e-06,
+            "bh_q": 0.0007431774574138648
+          },
+          {
+            "gene": "PPWD1",
+            "signed_delta_z": -0.8134,
+            "signed_auroc": 0.2529,
+            "p_mwu": 9.909032765518198e-06,
+            "bh_q": 0.0007431774574138648
+          },
+          {
+            "gene": "ZNF415",
+            "signed_delta_z": -0.8324,
+            "signed_auroc": 0.2587,
+            "p_mwu": 1.5952995484886092e-05,
+            "bh_q": 0.0008187843626301672
+          },
+          {
+            "gene": "KYNU",
+            "signed_delta_z": 0.8601,
+            "signed_auroc": 0.741,
+            "p_mwu": 1.6375687252603345e-05,
+            "bh_q": 0.0008187843626301672
+          },
+          {
+            "gene": "KLHDC9",
+            "signed_delta_z": -0.7159,
+            "signed_auroc": 0.2655,
+            "p_mwu": 2.7442674827254257e-05,
+            "bh_q": 0.0011392956097527145
+          },
+          {
+            "gene": "DTWD2",
+            "signed_delta_z": -0.7225,
+            "signed_auroc": 0.2668,
+            "p_mwu": 3.038121626007239e-05,
+            "bh_q": 0.0011392956097527145
+          },
+          {
+            "gene": "CNOT10",
+            "signed_delta_z": -0.6878,
+            "signed_auroc": 0.2697,
+            "p_mwu": 3.812375234961449e-05,
+            "bh_q": 0.0012707917449871495
+          },
+          {
+            "gene": "POC5",
+            "signed_delta_z": -0.7627,
+            "signed_auroc": 0.272,
+            "p_mwu": 4.540468873570213e-05,
+            "bh_q": 0.001362140662071064
+          },
+          {
+            "gene": "DZIP1L",
+            "signed_delta_z": -0.7355,
+            "signed_auroc": 0.2736,
+            "p_mwu": 5.1392880640202774e-05,
+            "bh_q": 0.0014016240174600757
+          },
+          {
+            "gene": "CCDC41",
+            "signed_delta_z": -0.7609,
+            "signed_auroc": 0.2771,
+            "p_mwu": 6.730536561468904e-05,
+            "bh_q": 0.0015532007449543625
+          },
+          {
+            "gene": "SP3",
+            "signed_delta_z": -0.724,
+            "signed_auroc": 0.2771,
+            "p_mwu": 6.730536561468904e-05,
+            "bh_q": 0.0015532007449543625
+          },
+          {
+            "gene": "TAF7",
+            "signed_delta_z": -0.7786,
+            "signed_auroc": 0.2813,
+            "p_mwu": 9.211671895975922e-05,
+            "bh_q": 0.0017297539106679311
+          },
+          {
+            "gene": "SRD5A1",
+            "signed_delta_z": -0.6127,
+            "signed_auroc": 0.282,
+            "p_mwu": 9.662705088027468e-05,
+            "bh_q": 0.0017297539106679311
+          }
+        ]
+      },
+      "GSE111974_RIF_vs_Ctrl": {
+        "n_genes_screened": 18016,
+        "oof_signed_auroc": 1.0,
+        "oof_ci95": [
+          1.0,
+          1.0
+        ],
+        "oof_p_mwu": 3.06366423367317e-09,
+        "top_discovery_genes": [
+          {
+            "gene": "SMG5",
+            "signed_delta_z": 1.7188,
+            "signed_auroc": 1.0,
+            "p_mwu": 3.06366423367317e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "USP33",
+            "signed_delta_z": 1.6773,
+            "signed_auroc": 0.9983,
+            "p_mwu": 3.4693648314702977e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "VDAC3",
+            "signed_delta_z": -1.5883,
+            "signed_auroc": 0.0035,
+            "p_mwu": 3.934809858233721e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "MARK2",
+            "signed_delta_z": 1.7823,
+            "signed_auroc": 0.9948,
+            "p_mwu": 4.456510382156085e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "USF2",
+            "signed_delta_z": 1.6963,
+            "signed_auroc": 0.9931,
+            "p_mwu": 5.040482320351515e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "ACTB",
+            "signed_delta_z": 1.7594,
+            "signed_auroc": 0.9931,
+            "p_mwu": 5.045289036533223e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "CIZ1",
+            "signed_delta_z": 1.6708,
+            "signed_auroc": 0.9896,
+            "p_mwu": 6.4584498574189764e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "TLK2",
+            "signed_delta_z": 1.6672,
+            "signed_auroc": 0.9896,
+            "p_mwu": 6.4584498574189764e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "LATS1",
+            "signed_delta_z": 1.6179,
+            "signed_auroc": 0.9896,
+            "p_mwu": 6.4584498574189764e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "GMEB2",
+            "signed_delta_z": 1.6824,
+            "signed_auroc": 0.9878,
+            "p_mwu": 7.3026327622917125e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "PAPD7",
+            "signed_delta_z": -1.6509,
+            "signed_auroc": 0.0122,
+            "p_mwu": 7.3026327622917125e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "PCSK1N",
+            "signed_delta_z": -1.6419,
+            "signed_auroc": 0.0139,
+            "p_mwu": 8.253738424413415e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "TMED4",
+            "signed_delta_z": 1.6595,
+            "signed_auroc": 0.9844,
+            "p_mwu": 9.290570156953111e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "FKBP3",
+            "signed_delta_z": -1.663,
+            "signed_auroc": 0.0156,
+            "p_mwu": 9.32485400964649e-09,
+            "bh_q": 1.8649708019292978e-07
+          },
+          {
+            "gene": "GTPBP5",
+            "signed_delta_z": 1.6509,
+            "signed_auroc": 0.9844,
+            "p_mwu": 9.32485400964649e-09,
+            "bh_q": 1.8649708019292978e-07
+          }
+        ]
+      },
+      "GSE165004_All_vs_Ctrl": {
+        "n_genes_screened": 18016,
+        "oof_signed_auroc": 1.0,
+        "oof_ci95": [
+          1.0,
+          1.0
+        ],
+        "oof_p_mwu": 6.2158188032843955e-12,
+        "top_discovery_genes": [
+          {
+            "gene": "CD2AP",
+            "signed_delta_z": -1.6576,
+            "signed_auroc": 0.0122,
+            "p_mwu": 1.9815392673078663e-11,
+            "bh_q": 3.225542668033271e-09
+          },
+          {
+            "gene": "WBP11",
+            "signed_delta_z": -1.7502,
+            "signed_auroc": 0.013,
+            "p_mwu": 2.1503617786888474e-11,
+            "bh_q": 3.225542668033271e-09
+          },
+          {
+            "gene": "C18ORF32",
+            "signed_delta_z": -1.7068,
+            "signed_auroc": 0.02,
+            "p_mwu": 4.115246065365027e-11,
+            "bh_q": 3.622532278118559e-09
+          },
+          {
+            "gene": "NCSTN",
+            "signed_delta_z": 1.6913,
+            "signed_auroc": 0.9783,
+            "p_mwu": 4.830043037491412e-11,
+            "bh_q": 3.622532278118559e-09
+          },
+          {
+            "gene": "C2ORF69",
+            "signed_delta_z": -1.6483,
+            "signed_auroc": 0.026,
+            "p_mwu": 7.208700766722106e-11,
+            "bh_q": 4.325220460033264e-09
+          },
+          {
+            "gene": "ZNF222",
+            "signed_delta_z": -1.4084,
+            "signed_auroc": 0.033,
+            "p_mwu": 1.3566172420943323e-10,
+            "bh_q": 6.783086210471661e-09
+          },
+          {
+            "gene": "YIPF5",
+            "signed_delta_z": -1.4835,
+            "signed_auroc": 0.0365,
+            "p_mwu": 1.8548198456447846e-10,
+            "bh_q": 6.81216809921289e-09
+          },
+          {
+            "gene": "CCNYL1",
+            "signed_delta_z": -1.2197,
+            "signed_auroc": 0.0365,
+            "p_mwu": 1.8548198456447846e-10,
+            "bh_q": 6.81216809921289e-09
+          },
+          {
+            "gene": "GIPR",
+            "signed_delta_z": -1.413,
+            "signed_auroc": 0.0382,
+            "p_mwu": 2.1670060064405096e-10,
+            "bh_q": 6.81216809921289e-09
+          },
+          {
+            "gene": "TAAR2",
+            "signed_delta_z": -1.5568,
+            "signed_auroc": 0.0399,
+            "p_mwu": 2.529490081859558e-10,
+            "bh_q": 6.81216809921289e-09
+          },
+          {
+            "gene": "WNT10B",
+            "signed_delta_z": -1.5291,
+            "signed_auroc": 0.0408,
+            "p_mwu": 2.7336506461711184e-10,
+            "bh_q": 6.81216809921289e-09
+          },
+          {
+            "gene": "EIF1B",
+            "signed_delta_z": -1.4981,
+            "signed_auroc": 0.0412,
+            "p_mwu": 2.840282676136895e-10,
+            "bh_q": 6.81216809921289e-09
+          },
+          {
+            "gene": "OR10A5",
+            "signed_delta_z": -1.441,
+            "signed_auroc": 0.0417,
+            "p_mwu": 2.9519395096589193e-10,
+            "bh_q": 6.81216809921289e-09
+          },
+          {
+            "gene": "CPSF3",
+            "signed_delta_z": -1.5047,
+            "signed_auroc": 0.0425,
+            "p_mwu": 3.1892988229708096e-10,
+            "bh_q": 6.8342117635088775e-09
+          },
+          {
+            "gene": "WIBG",
+            "signed_delta_z": 1.4944,
+            "signed_auroc": 0.954,
+            "p_mwu": 4.332445222841722e-10,
+            "bh_q": 8.664890445683443e-09
+          }
+        ]
+      },
+      "GSE165004_UIF_vs_Ctrl": {
+        "n_genes_screened": 18016,
+        "oof_signed_auroc": 1.0,
+        "oof_ci95": [
+          1.0,
+          1.0
+        ],
+        "oof_p_mwu": 3.06366423367317e-09,
+        "top_discovery_genes": [
+          {
+            "gene": "MAGEA6",
+            "signed_delta_z": -1.7451,
+            "signed_auroc": 0.0,
+            "p_mwu": 3.06366423367317e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "MAFA",
+            "signed_delta_z": -1.7575,
+            "signed_auroc": 0.0017,
+            "p_mwu": 3.4727419076006433e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "TAAR2",
+            "signed_delta_z": -1.7508,
+            "signed_auroc": 0.0017,
+            "p_mwu": 3.4727419076006433e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "DCUN1D1",
+            "signed_delta_z": -1.6625,
+            "signed_auroc": 0.0017,
+            "p_mwu": 3.4727419076006433e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "UNCX",
+            "signed_delta_z": -1.748,
+            "signed_auroc": 0.0052,
+            "p_mwu": 4.45223538388076e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "FOXB1",
+            "signed_delta_z": -1.7416,
+            "signed_auroc": 0.0052,
+            "p_mwu": 4.456510382156085e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "SLC6A17",
+            "signed_delta_z": -1.6548,
+            "signed_auroc": 0.0052,
+            "p_mwu": 4.456510382156085e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "DNTTIP2",
+            "signed_delta_z": -1.5187,
+            "signed_auroc": 0.0087,
+            "p_mwu": 5.7040858031450815e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "RNF32",
+            "signed_delta_z": -1.6603,
+            "signed_auroc": 0.0104,
+            "p_mwu": 6.4584498574189764e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "FAM74A4",
+            "signed_delta_z": 1.6648,
+            "signed_auroc": 0.987,
+            "p_mwu": 7.735191626910433e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "DAD1",
+            "signed_delta_z": -1.6471,
+            "signed_auroc": 0.0139,
+            "p_mwu": 8.253738424413415e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "RPL30",
+            "signed_delta_z": -1.6164,
+            "signed_auroc": 0.0139,
+            "p_mwu": 8.253738424413415e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "CTDSP1",
+            "signed_delta_z": 1.5523,
+            "signed_auroc": 0.9861,
+            "p_mwu": 8.253738424413415e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "TRIAP1",
+            "signed_delta_z": -1.5452,
+            "signed_auroc": 0.0139,
+            "p_mwu": 8.253738424413415e-09,
+            "bh_q": 1.645562472290557e-07
+          },
+          {
+            "gene": "GPR150",
+            "signed_delta_z": -1.6051,
+            "signed_auroc": 0.0156,
+            "p_mwu": 9.32485400964649e-09,
+            "bh_q": 1.645562472290557e-07
+          }
+        ]
+      },
+      "GSE165004_RPL_vs_Ctrl": {
+        "n_genes_screened": 18016,
+        "oof_signed_auroc": 1.0,
+        "oof_ci95": [
+          1.0,
+          1.0
+        ],
+        "oof_p_mwu": 3.06366423367317e-09,
+        "top_discovery_genes": [
+          {
+            "gene": "RPS7P5",
+            "signed_delta_z": -1.7761,
+            "signed_auroc": 0.0,
+            "p_mwu": 3.0606646680427864e-09,
+            "bh_q": 2.2977481752548775e-07
+          },
+          {
+            "gene": "C18ORF32",
+            "signed_delta_z": -1.7805,
+            "signed_auroc": 0.0,
+            "p_mwu": 3.06366423367317e-09,
+            "bh_q": 2.2977481752548775e-07
+          },
+          {
+            "gene": "WBP11",
+            "signed_delta_z": -1.764,
+            "signed_auroc": 0.0,
+            "p_mwu": 3.06366423367317e-09,
+            "bh_q": 2.2977481752548775e-07
+          },
+          {
+            "gene": "C11ORF30",
+            "signed_delta_z": -1.6882,
+            "signed_auroc": 0.0,
+            "p_mwu": 3.06366423367317e-09,
+            "bh_q": 2.2977481752548775e-07
+          },
+          {
+            "gene": "CCNYL1",
+            "signed_delta_z": -1.6394,
+            "signed_auroc": 0.0069,
+            "p_mwu": 5.045289036533223e-09,
+            "bh_q": 2.632652388430346e-07
+          },
+          {
+            "gene": "CD2AP",
+            "signed_delta_z": -1.6881,
+            "signed_auroc": 0.0087,
+            "p_mwu": 5.709488006862737e-09,
+            "bh_q": 2.632652388430346e-07
+          },
+          {
+            "gene": "TRAF7",
+            "signed_delta_z": -1.6521,
+            "signed_auroc": 0.0104,
+            "p_mwu": 6.4584498574189764e-09,
+            "bh_q": 2.632652388430346e-07
+          },
+          {
+            "gene": "NCSTN",
+            "signed_delta_z": 1.692,
+            "signed_auroc": 0.9861,
+            "p_mwu": 8.246089547705563e-09,
+            "bh_q": 2.632652388430346e-07
+          },
+          {
+            "gene": "ACTR2",
+            "signed_delta_z": -1.6594,
+            "signed_auroc": 0.0139,
+            "p_mwu": 8.253738424413415e-09,
+            "bh_q": 2.632652388430346e-07
+          },
+          {
+            "gene": "RPS12",
+            "signed_delta_z": -1.5507,
+            "signed_auroc": 0.0156,
+            "p_mwu": 9.307698134562003e-09,
+            "bh_q": 2.632652388430346e-07
+          },
+          {
+            "gene": "TINAGL1",
+            "signed_delta_z": 1.6511,
+            "signed_auroc": 0.9826,
+            "p_mwu": 1.0511370403974111e-08,
+            "bh_q": 2.632652388430346e-07
+          },
+          {
+            "gene": "ATP5L2",
+            "signed_delta_z": -1.7043,
+            "signed_auroc": 0.0174,
+            "p_mwu": 1.0530609553721385e-08,
+            "bh_q": 2.632652388430346e-07
+          },
+          {
+            "gene": "TRUB1",
+            "signed_delta_z": -1.6496,
+            "signed_auroc": 0.0191,
+            "p_mwu": 1.1887352442517718e-08,
+            "bh_q": 2.7432351790425504e-07
+          },
+          {
+            "gene": "SRP19",
+            "signed_delta_z": -1.6996,
+            "signed_auroc": 0.0226,
+            "p_mwu": 1.5128957162723002e-08,
+            "bh_q": 3.0100493281275385e-07
+          },
+          {
+            "gene": "RNF113A",
+            "signed_delta_z": 1.5381,
+            "signed_auroc": 0.9774,
+            "p_mwu": 1.5128957162723002e-08,
+            "bh_q": 3.0100493281275385e-07
+          }
+        ]
+      }
+    },
+    "zero_retraining_external_transfer": {
+      "LOCO_train_58144_111974_test_GSE165004_UIF": {
+        "n_total": 48,
+        "n_pos": 24,
+        "n_neg": 24,
+        "auroc": 0.9514,
+        "discriminative_auroc": 0.9514,
+        "ci95": [
+          0.8928,
+          0.9946
+        ],
+        "mean_pos": 0.3567,
+        "mean_neg": -0.3567,
+        "delta_z": 0.7134,
+        "p_mwu": 8.756634554187482e-08,
+        "n_genes_locked_in_train": 20,
+        "locked_genes_sample": [
+          "GTPBP5",
+          "USP33",
+          "ASB9",
+          "SRD5A1",
+          "FKBP3",
+          "POC5",
+          "ZNF624",
+          "SRCAP",
+          "FAM74A4",
+          "PPA2"
+        ]
+      },
+      "LOCO_train_58144_111974_test_GSE165004_All": {
+        "n_total": 72,
+        "n_pos": 48,
+        "n_neg": 24,
+        "auroc": 0.8819,
+        "discriminative_auroc": 0.8819,
+        "ci95": [
+          0.7994,
+          0.9468
+        ],
+        "mean_pos": 0.1914,
+        "mean_neg": -0.3827,
+        "delta_z": 0.5741,
+        "p_mwu": 1.5207396493097385e-07,
+        "n_genes_locked_in_train": 20,
+        "locked_genes_sample": [
+          "GTPBP5",
+          "USP33",
+          "ASB9",
+          "SRD5A1",
+          "FKBP3",
+          "POC5",
+          "ZNF624",
+          "SRCAP",
+          "FAM74A4",
+          "PPA2"
+        ]
+      },
+      "LOCO_train_58144_165004UIF_test_GSE111974": {
+        "n_total": 48,
+        "n_pos": 24,
+        "n_neg": 24,
+        "auroc": 0.9896,
+        "discriminative_auroc": 0.9896,
+        "ci95": [
+          0.9683,
+          1.0
+        ],
+        "mean_pos": 0.4931,
+        "mean_neg": -0.4931,
+        "delta_z": 0.9862,
+        "p_mwu": 6.4584498574189764e-09,
+        "n_genes_locked_in_train": 20,
+        "locked_genes_sample": [
+          "CD2AP",
+          "GTPBP5",
+          "CNOT7",
+          "POC5",
+          "FAM74A4",
+          "WBP11",
+          "ZFYVE16",
+          "AEBP2",
+          "CTDSP1",
+          "CPSF3"
+        ]
+      },
+      "LOCO_train_111974_165004UIF_test_GSE58144": {
+        "n_total": 115,
+        "n_pos": 43,
+        "n_neg": 72,
+        "auroc": 0.4952,
+        "discriminative_auroc": 0.5048,
+        "ci95": [
+          0.3833,
+          0.6062
+        ],
+        "mean_pos": -0.0162,
+        "mean_neg": 0.0097,
+        "delta_z": -0.0259,
+        "p_mwu": 0.9332023853972677,
+        "n_genes_locked_in_train": 20,
+        "locked_genes_sample": [
+          "FOXB1",
+          "GTPBP5",
+          "ZNF329",
+          "FAM74A4",
+          "MAFA",
+          "PCSK1N",
+          "AVP",
+          "USF2",
+          "WIBG",
+          "PAPD7"
+        ]
+      },
+      "Pairwise_train_GSE111974_test_GSE165004_UIF": {
+        "n_total": 48,
+        "n_pos": 24,
+        "n_neg": 24,
+        "auroc": 0.9878,
+        "discriminative_auroc": 0.9878,
+        "ci95": [
+          0.963,
+          1.0
+        ],
+        "mean_pos": 0.4587,
+        "mean_neg": -0.4587,
+        "delta_z": 0.9175,
+        "p_mwu": 7.3026327622917125e-09,
+        "n_genes_locked_in_train": 30,
+        "locked_genes_sample": [
+          "MARK2",
+          "ACTB",
+          "SMG5",
+          "USF2",
+          "GMEB2",
+          "PAPOLA",
+          "USP33",
+          "CIZ1",
+          "TLK2",
+          "FKBP3"
+        ]
+      },
+      "Pairwise_train_GSE165004_UIF_test_GSE111974": {
+        "n_total": 48,
+        "n_pos": 24,
+        "n_neg": 24,
+        "auroc": 1.0,
+        "discriminative_auroc": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "mean_pos": 0.5352,
+        "mean_neg": -0.5352,
+        "delta_z": 1.0705,
+        "p_mwu": 3.06366423367317e-09,
+        "n_genes_locked_in_train": 30,
+        "locked_genes_sample": [
+          "MAFA",
+          "TAAR2",
+          "UNCX",
+          "MAGEA6",
+          "FOXB1",
+          "FAM74A4",
+          "DCUN1D1",
+          "ZNF329",
+          "RNF32",
+          "SLC6A17"
+        ]
+      }
+    }
+  }
+}

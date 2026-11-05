@@ -1,0 +1,108 @@
+{
+  "pr_a": {
+    "artifacts": {
+      "junit-psa-artifact-integrity": 2052,
+      "junit-psa-negative-controls": 4408,
+      "junit-psa-runtime-contract": 10222,
+      "regression-diff-receipt": 155233
+    },
+    "ci_node_diff": {
+      "added_nodes_count": 922,
+      "base_counts": {
+        "collected": 944,
+        "errors": 64,
+        "failed": 162,
+        "junit_testcase_elements": 944,
+        "passed": 708,
+        "skipped": 8,
+        "xfailed": 2
+      },
+      "base_failed_now_passing": [],
+      "head_counts": {
+        "collected": 1866,
+        "errors": 64,
+        "failed": 162,
+        "junit_testcase_elements": 1866,
+        "passed": 1629,
+        "skipped": 9,
+        "xfailed": 2
+      },
+      "new_errors": 0,
+      "new_failed": 0,
+      "node_ids_exact": true,
+      "pre_existing_errors_shared_with_base": 64,
+      "pre_existing_failed_shared_with_base": 162,
+      "reconciled": true,
+      "regression_neutral_field": true,
+      "removed": 0
+    },
+    "conclusion": "success",
+    "event": "pull_request",
+    "head_sha": "1d9ce4f5964c3e3d1fc198969c722256cd23e694",
+    "jobs": {
+      "cohere-harness": "success",
+      "cohere-live-optional (never required)": "skipped",
+      "psa-artifact-integrity": "success",
+      "psa-negative-controls": "success",
+      "psa-runtime-contract": "success",
+      "regression-diff": "success"
+    },
+    "pr_number": 18,
+    "run_attempt": 1,
+    "run_id": 31776434485,
+    "run_url": "https://github.com/fjkiani/crispro-backend-v2/actions/runs/31776434485",
+    "status": "completed"
+  },
+  "pr_b": {
+    "artifacts": {
+      "junit-cohere-harness": 694,
+      "regression-diff-receipt": 139912
+    },
+    "ci_node_diff": {
+      "added_nodes_count": 13,
+      "base_counts": {
+        "collected": 944,
+        "errors": 64,
+        "failed": 162,
+        "junit_testcase_elements": 944,
+        "passed": 708,
+        "skipped": 8,
+        "xfailed": 2
+      },
+      "base_failed_now_passing": [],
+      "head_counts": {
+        "collected": 957,
+        "errors": 64,
+        "failed": 162,
+        "junit_testcase_elements": 957,
+        "passed": 721,
+        "skipped": 8,
+        "xfailed": 2
+      },
+      "new_errors": 0,
+      "new_failed": 0,
+      "node_ids_exact": true,
+      "pre_existing_errors_shared_with_base": 64,
+      "pre_existing_failed_shared_with_base": 162,
+      "reconciled": true,
+      "regression_neutral_field": true,
+      "removed": 0
+    },
+    "conclusion": "success",
+    "event": "pull_request",
+    "head_sha": "a266d23fa992b9dad9d7d65b7bcdf71aeba0154c",
+    "jobs": {
+      "cohere-harness": "success",
+      "cohere-live-optional (never required)": "skipped",
+      "psa-artifact-integrity": "success",
+      "psa-negative-controls": "success",
+      "psa-runtime-contract": "success",
+      "regression-diff": "success"
+    },
+    "pr_number": 19,
+    "run_attempt": 1,
+    "run_id": 31775217334,
+    "run_url": "https://github.com/fjkiani/crispro-backend-v2/actions/runs/31775217334",
+    "status": "completed"
+  }
+}

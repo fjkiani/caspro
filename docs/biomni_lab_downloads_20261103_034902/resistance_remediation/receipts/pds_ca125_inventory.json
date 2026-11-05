@@ -1,0 +1,1534 @@
+{
+  "ts_utc": "2026-08-05T08:53:30.180367+00:00",
+  "cas_url": "https://mpmprodvdmml.ondemand.sas.com/cas-shared-default-http/",
+  "sas_username": "mpm0fxk2",
+  "caslib_count": 102,
+  "disease_caslibs": [
+    "Breast_Allianc_2002_194",
+    "Breast_Allianc_2002_200",
+    "Breast_Allianc_2006_216",
+    "Breast_Allianc_2008_158",
+    "Breast_Allianc_2009_162",
+    "Breast_Amgen_2004_153",
+    "Breast_AmgenI_2006_122",
+    "Breast_Celgene_2001_107",
+    "Breast_EliLill_2008_168",
+    "Breast_Multipl_2004_414",
+    "Breast_Pfizer_2006_111",
+    "Breast_Pfizer_2006_112",
+    "Breast_Pfizer_2007_113",
+    "Breast_SanofiU_1997_120",
+    "Breast_SanofiU_1998_127",
+    "Breast_SanofiU_2000_118",
+    "Breast_SanofiU_2004_135",
+    "Colorec_Allianc_1994_201",
+    "Colorec_Allianc_1997_138",
+    "Colorec_Allianc_1997_182",
+    "Colorec_Allianc_2004_161",
+    "Colorec_Amgen_2004_310",
+    "Colorec_Amgen_2005_262",
+    "Colorec_Amgen_2006_263",
+    "Colorec_Amgen_2006_264",
+    "Colorec_Amgen_2006_309",
+    "Colorec_AstraZe_2006_78",
+    "Colorec_Multipl_2006_251",
+    "Colorec_Pfizer_2007_114",
+    "Colorec_SanofiU_1998_128",
+    "Colorec_SanofiU_2002_137",
+    "Colorec_SanofiU_2005_136",
+    "Colorec_SanofiU_2007_131",
+    "Gastric_MerckKG_2008_130",
+    "Gastric_Multipl_1999_416",
+    "Gastric_Multipl_2008_415",
+    "Gastric_SanofiU_1999_143",
+    "Glioma_EMDSero_2008_441",
+    "Glioma_EMDSero_2009_440",
+    "HeadNe_Amgen_2007_265",
+    "HeadNe_EliLill_2006_150",
+    "HeadNe_SanofiU_1998_142",
+    "HeadNe_SanofiU_2002_129",
+    "Kidney_BayerAG_2003_97",
+    "Liver_Pfizer_2008_124",
+    "LungNo_Celgene_2007_108",
+    "LungNo_ELiLill_2006_116",
+    "LungNo_EliLill_2008_141",
+    "LungNo_EliLill_2008_148",
+    "LungNo_EliLill_2009_438",
+    "LungNo_EliLill_2010_272",
+    "LungNo_MerckKG_2007_145",
+    "LungNo_Pfizer_2007_115",
+    "LungNo_SanofiU_2007_133",
+    "LungSm_Allianc_1998_261",
+    "LungSm_Allianc_2007_218",
+    "LungSm_Amgen_2002_266",
+    "LungSm_EliLill_2011_287",
+    "LungSm_G1Thera_2015_433",
+    "LungSm_G1Thera_2015_434",
+    "Lymphom_Allianc_2006_212",
+    "Melanom_SyntaPh_2007_123",
+    "Multiple_Allianc_2002_202",
+    "Multiple_Allianc_2002_213",
+    "Multiple_Amgen_2006_156",
+    "Multiple_Brigham_454",
+    "Multiple_MerckKG_2008_441",
+    "Multiple_SanofiU_2008_119",
+    "Myelody_sanofi_2012_110",
+    "Pancrea_Celgene_2008_132",
+    "Pancrea_ClovisO_2010_186",
+    "Pancrea_EMDSero_2009_442",
+    "Pancrea_Multipl_2020_430",
+    "Pancrea_Sanofi_2006_109",
+    "Pancrea_SanofiU_2007_134",
+    "Prostat_Amgen_2004_154",
+    "Prostat_Amgen_2006_155",
+    "Prostat_AmgenI_2006_121",
+    "Prostat_Asociac_484",
+    "Prostat_AstraZe_1995_102",
+    "Prostat_AstraZe_1995_105",
+    "Prostat_AstraZe_1995_106",
+    "Prostat_AstraZe_2009_144",
+    "Prostat_Celgene_2009_90",
+    "Prostat_Multipl_2008_406",
+    "Prostat_Multipl_2008_420",
+    "Prostat_Multipl_2009_417",
+    "Prostat_Multipl_2018_234",
+    "Prostat_na_2006_149",
+    "Prostat_Pfizer_2008_81",
+    "Prostat_Researc_2016_167",
+    "Prostat_Sanofi_2000_80",
+    "Prostat_Sanofi_2007_79",
+    "Prostat_Sanofi_2007_83"
+  ],
+  "ovarian_gyn_caslibs": [],
+  "clovis_caslibs": [
+    "Pancrea_ClovisO_2010_186"
+  ],
+  "total_tabular_tables": 472,
+  "ca125_filename_hits": [],
+  "labmarker_candidate_tables": [
+    [
+      "Breast_Allianc_2002_200",
+      "aeclean_finalb.sas7bdat"
+    ],
+    [
+      "Breast_Allianc_2002_200",
+      "all_finalb.sas7bdat"
+    ],
+    [
+      "Breast_Pfizer_2006_111",
+      "lab_safe.sas7bdat"
+    ],
+    [
+      "Breast_Pfizer_2006_112",
+      "lab_safe.sas7bdat"
+    ],
+    [
+      "Breast_Pfizer_2007_113",
+      "lab_safe.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2004_310",
+      "adlb_pds2019.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2004_310",
+      "biomark_pds2019.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2005_262",
+      "chemotx.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2005_262",
+      "lab.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2006_263",
+      "chemotx.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2006_263",
+      "lab.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2006_264",
+      "chemotx.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2006_264",
+      "lab.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2006_309",
+      "adlb_pds2019.sas7bdat"
+    ],
+    [
+      "Colorec_Amgen_2006_309",
+      "biomark_pds2019.sas7bdat"
+    ],
+    [
+      "Colorec_Pfizer_2007_114",
+      "lab_safe.sas7bdat"
+    ],
+    [
+      "HeadNe_Amgen_2007_265",
+      "chemotx.sas7bdat"
+    ],
+    [
+      "HeadNe_Amgen_2007_265",
+      "lab.sas7bdat"
+    ],
+    [
+      "Liver_Pfizer_2008_124",
+      "lab_safe.sas7bdat"
+    ],
+    [
+      "LungNo_Pfizer_2007_115",
+      "lab_safe.sas7bdat"
+    ],
+    [
+      "LungSm_Amgen_2002_266",
+      "a_lab.sas7bdat"
+    ],
+    [
+      "LungSm_Amgen_2002_266",
+      "c_chem.sas7bdat"
+    ],
+    [
+      "LungSm_Amgen_2002_266",
+      "c_chemo.sas7bdat"
+    ],
+    [
+      "LungSm_EliLill_2011_287",
+      "chem_cen.sas7bdat"
+    ],
+    [
+      "LungSm_EliLill_2011_287",
+      "lbcen.sas7bdat"
+    ],
+    [
+      "LungSm_G1Thera_2015_433",
+      "adlb.sas7bdat"
+    ],
+    [
+      "LungSm_G1Thera_2015_433",
+      "adtte.sas7bdat"
+    ],
+    [
+      "LungSm_G1Thera_2015_433",
+      "advs.sas7bdat"
+    ],
+    [
+      "LungSm_G1Thera_2015_434",
+      "adtte.sas7bdat"
+    ],
+    [
+      "LungSm_G1Thera_2015_434",
+      "advs.sas7bdat"
+    ],
+    [
+      "Melanom_SyntaPh_2007_123",
+      "labd.sas7bdat"
+    ],
+    [
+      "Melanom_SyntaPh_2007_123",
+      "labdllab.sas7bdat"
+    ],
+    [
+      "Pancrea_ClovisO_2010_186",
+      "adlb.sas7bdat"
+    ],
+    [
+      "Pancrea_ClovisO_2010_186",
+      "advs.sas7bdat"
+    ]
+  ],
+  "inventory": {
+    "Breast_Allianc_2002_194": {
+      "n_files": 2,
+      "tables": [
+        "aeclean_finala.sas7bdat",
+        "eval46_3_finala.sas7bdat"
+      ]
+    },
+    "Breast_Allianc_2002_200": {
+      "n_files": 2,
+      "tables": [
+        "aeclean_finalb.sas7bdat",
+        "all_finalb.sas7bdat"
+      ]
+    },
+    "Breast_Allianc_2006_216": {
+      "n_files": 1,
+      "tables": [
+        "NCT00265759.csv"
+      ]
+    },
+    "Breast_Allianc_2008_158": {
+      "n_files": 3,
+      "tables": [
+        "c40502_ae.csv",
+        "c40502_cycles.csv",
+        "c40502_efficacy.csv"
+      ]
+    },
+    "Breast_Allianc_2009_162": {
+      "n_files": 2,
+      "tables": [
+        "aeclean.csv",
+        "treated2.csv"
+      ]
+    },
+    "Breast_Amgen_2004_153": {
+      "n_files": 1,
+      "tables": []
+    },
+    "Breast_AmgenI_2006_122": {
+      "n_files": 1,
+      "tables": []
+    },
+    "Breast_Celgene_2001_107": {
+      "n_files": 1,
+      "tables": [
+        "PDS_Data_Profile_Created_107.xlsx"
+      ]
+    },
+    "Breast_EliLill_2008_168": {
+      "n_files": 1,
+      "tables": []
+    },
+    "Breast_Multipl_2004_414": {
+      "n_files": 3,
+      "tables": [
+        "Dataset Contents and Variable Crosswalk.xlsx",
+        "Descriptive_Stats_Linked_Breast_SanofiU_2004_135.xlsx",
+        "linked_breast135.sas7bdat"
+      ]
+    },
+    "Breast_Pfizer_2006_111": {
+      "n_files": 22,
+      "tables": [
+        "A6181107_SPECS.xlsx",
+        "adverse.sas7bdat",
+        "cd_b_p.sas7bdat",
+        "cn_6_p.sas7bdat",
+        "cn_7_p.sas7bdat",
+        "cn_8_p.sas7bdat",
+        "condrug.sas7bdat",
+        "contrt.sas7bdat",
+        "demog.sas7bdat",
+        "ecg.sas7bdat",
+        "final.sas7bdat",
+        "iota_p.sas7bdat",
+        "lab_safe.sas7bdat",
+        "pfm_p.sas7bdat",
+        "phyexam.sas7bdat",
+        "prevdis.sas7bdat",
+        "primdiag.sas7bdat",
+        "random.sas7bdat",
+        "srv_p.sas7bdat",
+        "testdrug.sas7bdat",
+        "tmm_p.sas7bdat",
+        "vitals.sas7bdat"
+      ]
+    },
+    "Breast_Pfizer_2006_112": {
+      "n_files": 21,
+      "tables": [
+        "A6181094_SPECS.xlsx",
+        "adverse.sas7bdat",
+        "cd_b_p.sas7bdat",
+        "cn_6_p.sas7bdat",
+        "cn_7_p.sas7bdat",
+        "cn_8_p.sas7bdat",
+        "condrug.sas7bdat",
+        "contrt.sas7bdat",
+        "demog.sas7bdat",
+        "ecg.sas7bdat",
+        "final.sas7bdat",
+        "iota_p.sas7bdat",
+        "lab_safe.sas7bdat",
+        "pfm_p.sas7bdat",
+        "phyexam.sas7bdat",
+        "prevdis.sas7bdat",
+        "primdiag.sas7bdat",
+        "random.sas7bdat",
+        "testdrug.sas7bdat",
+        "tmm_p.sas7bdat",
+        "vitals.sas7bdat"
+      ]
+    },
+    "Breast_Pfizer_2007_113": {
+      "n_files": 21,
+      "tables": [
+        "A6181099_SPECS.xlsx",
+        "adverse.sas7bdat",
+        "cd_b_p.sas7bdat",
+        "cn_6_p.sas7bdat",
+        "cn_7_p.sas7bdat",
+        "cn_8_p.sas7bdat",
+        "condrug.sas7bdat",
+        "contrt.sas7bdat",
+        "demog.sas7bdat",
+        "ecg.sas7bdat",
+        "final.sas7bdat",
+        "iota_p.sas7bdat",
+        "lab_safe.sas7bdat",
+        "pfm_p.sas7bdat",
+        "phyexam.sas7bdat",
+        "prevdis.sas7bdat",
+        "primdiag.sas7bdat",
+        "random.sas7bdat",
+        "testdrug.sas7bdat",
+        "tmm_p.sas7bdat",
+        "vitals.sas7bdat"
+      ]
+    },
+    "Breast_SanofiU_1997_120": {
+      "n_files": 1,
+      "tables": []
+    },
+    "Breast_SanofiU_1998_127": {
+      "n_files": 2,
+      "tables": [
+        "XRP6976_RP56976_PR_315_data_definition.xls"
+      ]
+    },
+    "Breast_SanofiU_2000_118": {
+      "n_files": 2,
+      "tables": [
+        "sanofi_XRP6976_TAX_GMA_301_data_descriptors.xls"
+      ]
+    },
+    "Breast_SanofiU_2004_135": {
+      "n_files": 2,
+      "tables": [
+        "sanofi_XRP9881_EFC6089_datasphere_data_definition.xls"
+      ]
+    },
+    "Colorec_Allianc_1994_201": {
+      "n_files": 1,
+      "tables": [
+        "master.csv"
+      ]
+    },
+    "Colorec_Allianc_1997_138": {
+      "n_files": 2,
+      "tables": [
+        "Data_Dictionary.xlsx"
+      ]
+    },
+    "Colorec_Allianc_1997_182": {
+      "n_files": 6,
+      "tables": [
+        "outcome_other_baseline_data.xlsx",
+        "Data_Dictionary.xlsx",
+        "adverse_event_c272.xlsx",
+        "new_primary_c1001.xlsx",
+        "off_trt_c300.xlsx",
+        "onstudy_c437.xlsx"
+      ]
+    },
+    "Colorec_Allianc_2004_161": {
+      "n_files": 3,
+      "tables": [
+        "characteristic.csv",
+        "objectives.csv",
+        "tox.csv"
+      ]
+    },
+    "Colorec_Amgen_2004_310": {
+      "n_files": 10,
+      "tables": [
+        "DDT_408_v2.xlsx",
+        "adae_pds2019.sas7bdat",
+        "adlb_pds2019.sas7bdat",
+        "adls_pds2019.sas7bdat",
+        "adpm_pds2019.sas7bdat",
+        "adrsp_pds2019.sas7bdat",
+        "adsl_pds2019.sas7bdat",
+        "biomark_pds2019.sas7bdat"
+      ]
+    },
+    "Colorec_Amgen_2005_262": {
+      "n_files": 18,
+      "tables": [
+        "a_eendpt.sas7bdat",
+        "a_sendpt.sas7bdat",
+        "ae.sas7bdat",
+        "chemotx.sas7bdat",
+        "corevar.sas7bdat",
+        "death.sas7bdat",
+        "demo.sas7bdat",
+        "disposit.sas7bdat",
+        "eligcrit.sas7bdat",
+        "exposure.sas7bdat",
+        "lab.sas7bdat",
+        "lesion.sas7bdat",
+        "medhist.sas7bdat",
+        "radiotx.sas7bdat",
+        "respeval.sas7bdat",
+        "surghist.sas7bdat",
+        "vitals_v.sas7bdat"
+      ]
+    },
+    "Colorec_Amgen_2006_263": {
+      "n_files": 21,
+      "tables": [
+        "a_eendpt.sas7bdat",
+        "a_endpt.sas7bdat",
+        "a_sendpt.sas7bdat",
+        "ae.sas7bdat",
+        "chemotx.sas7bdat",
+        "corevar.sas7bdat",
+        "death.sas7bdat",
+        "demo.sas7bdat",
+        "disposit.sas7bdat",
+        "eligcrit.sas7bdat",
+        "exposure.sas7bdat",
+        "lab.sas7bdat",
+        "lesion.sas7bdat",
+        "lesnprog.sas7bdat",
+        "medhist.sas7bdat",
+        "othcantx.sas7bdat",
+        "radiotx.sas7bdat",
+        "respeval.sas7bdat",
+        "surghist.sas7bdat",
+        "vitals_v.sas7bdat"
+      ]
+    },
+    "Colorec_Amgen_2006_264": {
+      "n_files": 21,
+      "tables": [
+        "a_eendpt.sas7bdat",
+        "a_endpt.sas7bdat",
+        "a_sendpt.sas7bdat",
+        "ae.sas7bdat",
+        "chemotx.sas7bdat",
+        "corevar.sas7bdat",
+        "death.sas7bdat",
+        "demo.sas7bdat",
+        "disposit.sas7bdat",
+        "eligcrit.sas7bdat",
+        "exposure.sas7bdat",
+        "lab.sas7bdat",
+        "lesion.sas7bdat",
+        "lesnprog.sas7bdat",
+        "medhist.sas7bdat",
+        "othcantx.sas7bdat",
+        "radiotx.sas7bdat",
+        "respeval.sas7bdat",
+        "surghist.sas7bdat",
+        "vitals_v.sas7bdat"
+      ]
+    },
+    "Colorec_Amgen_2006_309": {
+      "n_files": 10,
+      "tables": [
+        "DDT_203_v2.xlsx",
+        "adae_pds2019.sas7bdat",
+        "adlb_pds2019.sas7bdat",
+        "adls_pds2019.sas7bdat",
+        "adpm_pds2019.sas7bdat",
+        "adrsp_pds2019.sas7bdat",
+        "adsl_pds2019.sas7bdat",
+        "biomark_pds2019.sas7bdat"
+      ]
+    },
+    "Colorec_AstraZe_2006_78": {
+      "n_files": 2,
+      "tables": [
+        "AstraZeneca Data Cediranib.xls"
+      ]
+    },
+    "Colorec_Multipl_2006_251": {
+      "n_files": 2,
+      "tables": [
+        "MEPS Variable Crosswalk.xlsx",
+        "linked_pds78_20180429_final.sas7bdat"
+      ]
+    },
+    "Colorec_Pfizer_2007_114": {
+      "n_files": 21,
+      "tables": [
+        "A6181122_SPECS.xlsx",
+        "adverse.sas7bdat",
+        "cd_b_p.sas7bdat",
+        "cn_6_p.sas7bdat",
+        "cn_7_p.sas7bdat",
+        "cn_8_p.sas7bdat",
+        "condrug.sas7bdat",
+        "contrt.sas7bdat",
+        "demog.sas7bdat",
+        "ecg.sas7bdat",
+        "final.sas7bdat",
+        "iota_p.sas7bdat",
+        "lab_safe.sas7bdat",
+        "pfm_p.sas7bdat",
+        "phyexam.sas7bdat",
+        "prevdis.sas7bdat",
+        "primdiag.sas7bdat",
+        "random.sas7bdat",
+        "testdrug.sas7bdat",
+        "tmm_p.sas7bdat",
+        "vitals.sas7bdat"
+      ]
+    },
+    "Colorec_SanofiU_1998_128": {
+      "n_files": 2,
+      "tables": [
+        "sanofi_SR96669_EFC3313_data_definition.xls"
+      ]
+    },
+    "Colorec_SanofiU_2002_137": {
+      "n_files": 2,
+      "tables": [
+        "sanofi_SR57746A_EFC4972_data_definition.xls"
+      ]
+    },
+    "Colorec_SanofiU_2005_136": {
+      "n_files": 2,
+      "tables": [
+        "sanofi_SR57746A_EFC5505_data_definition.xls"
+      ]
+    },
+    "Colorec_SanofiU_2007_131": {
+      "n_files": 2,
+      "tables": [
+        "Sanofi_AVE0005_EFC10262_data_discriptors.xlsx"
+      ]
+    },
+    "Gastric_MerckKG_2008_130": {
+      "n_files": 0,
+      "tables": []
+    },
+    "Gastric_Multipl_1999_416": {
+      "n_files": 3,
+      "tables": [
+        "Dataset Contents and Variable Crosswalk.xlsx",
+        "Descriptive_Stats_Linked_Gastric_SanofiU_1999_143.xlsx",
+        "linked_gastric143.sas7bdat"
+      ]
+    },
+    "Gastric_Multipl_2008_415": {
+      "n_files": 4,
+      "tables": [
+        "Dataset Contents and Variable Crosswalk.xlsx",
+        "Descriptive_Stats_Linked_Gastric_MerckKG_2008_130.xlsx",
+        "PDS_DATA_PROFILE_CREATED_130.xlsx",
+        "linked_gastric130.sas7bdat"
+      ]
+    },
+    "Gastric_SanofiU_1999_143": {
+      "n_files": 2,
+      "tables": [
+        "sanofi_XRP6976_TAX325_data_definition.xls"
+      ]
+    },
+    "Glioma_EMDSero_2008_441": {
+      "n_files": 1,
+      "tables": [
+        "Descriptive_Stats_EMD121974_011.xlsx"
+      ]
+    },
+    "Glioma_EMDSero_2009_440": {
+      "n_files": 1,
+      "tables": [
+        "Descriptive_Stats_EMD_121974_012.xlsx"
+      ]
+    },
+    "HeadNe_Amgen_2007_265": {
+      "n_files": 19,
+      "tables": [
+        "ae.sas7bdat",
+        "aeendpt.sas7bdat",
+        "asendpt.sas7bdat",
+        "chemotx.sas7bdat",
+        "corevar.sas7bdat",
+        "death.sas7bdat",
+        "demo.sas7bdat",
+        "disposit.sas7bdat",
+        "eligcrit.sas7bdat",
+        "exposure.sas7bdat",
+        "lab.sas7bdat",
+        "lesion.sas7bdat",
+        "lesnprog.sas7bdat",
+        "medhist.sas7bdat",
+        "othcantx.sas7bdat",
+        "radiotx.sas7bdat",
+        "respeval.sas7bdat",
+        "surghist.sas7bdat"
+      ]
+    },
+    "HeadNe_EliLill_2006_150": {
+      "n_files": 1,
+      "tables": []
+    },
+    "HeadNe_SanofiU_1998_142": {
+      "n_files": 2,
+      "tables": [
+        "XRP6976_EFC6051_datasphere.xls"
+      ]
+    },
+    "HeadNe_SanofiU_2002_129": {
+      "n_files": 2,
+      "tables": [
+        "sanofi_SR259075_EFC4690_data_definition.xls"
+      ]
+    },
+    "Kidney_BayerAG_2003_97": {
+      "n_files": 1,
+      "tables": []
+    },
+    "Liver_Pfizer_2008_124": {
+      "n_files": 23,
+      "tables": [
+        "A6181170_SPECS.xlsx",
+        "adverse.sas7bdat",
+        "cd_b_p.sas7bdat",
+        "cn_6_p.sas7bdat",
+        "cn_7_p.sas7bdat",
+        "cn_9_p.sas7bdat",
+        "cn_a_p.sas7bdat",
+        "condrug.sas7bdat",
+        "contrt.sas7bdat",
+        "demog.sas7bdat",
+        "ecg.sas7bdat",
+        "final.sas7bdat",
+        "iota_p.sas7bdat",
+        "lab_safe.sas7bdat",
+        "pfm_p.sas7bdat",
+        "phyexam.sas7bdat",
+        "prevdis.sas7bdat",
+        "primdiag.sas7bdat",
+        "random.sas7bdat",
+        "srv_p.sas7bdat",
+        "testdrug.sas7bdat",
+        "tmm_p.sas7bdat",
+        "vitals.sas7bdat"
+      ]
+    },
+    "LungNo_Celgene_2007_108": {
+      "n_files": 1,
+      "tables": [
+        "PDS_Data_Profile_Created_108.xlsx"
+      ]
+    },
+    "LungNo_ELiLill_2006_116": {
+      "n_files": 1,
+      "tables": []
+    },
+    "LungNo_EliLill_2008_141": {
+      "n_files": 1,
+      "tables": []
+    },
+    "LungNo_EliLill_2008_148": {
+      "n_files": 1,
+      "tables": []
+    },
+    "LungNo_EliLill_2009_438": {
+      "n_files": 1,
+      "tables": [
+        "Descriptive_Stats_H3E_US_S130.xlsx"
+      ]
+    },
+    "LungNo_EliLill_2010_272": {
+      "n_files": 1,
+      "tables": []
+    },
+    "LungNo_MerckKG_2007_145": {
+      "n_files": 1,
+      "tables": []
+    },
+    "LungNo_Pfizer_2007_115": {
+      "n_files": 21,
+      "tables": [
+        "A6181087_SPECS.xlsx",
+        "adverse.sas7bdat",
+        "cd_b_p.sas7bdat",
+        "cn_6_p.sas7bdat",
+        "cn_7_p.sas7bdat",
+        "cn_8_p.sas7bdat",
+        "condrug.sas7bdat",
+        "contrt.sas7bdat",
+        "demog.sas7bdat",
+        "ecg.sas7bdat",
+        "final.sas7bdat",
+        "iota_p.sas7bdat",
+        "lab_safe.sas7bdat",
+        "pfm_p.sas7bdat",
+        "phyexam.sas7bdat",
+        "prevdis.sas7bdat",
+        "primdiag.sas7bdat",
+        "random.sas7bdat",
+        "testdrug.sas7bdat",
+        "tmm_p.sas7bdat",
+        "vitals.sas7bdat"
+      ]
+    },
+    "LungNo_SanofiU_2007_133": {
+      "n_files": 2,
+      "tables": [
+        "sanofi_ave0005_efc10261_data_definition.xls"
+      ]
+    },
+    "LungSm_Allianc_1998_261": {
+      "n_files": 4,
+      "tables": [
+        "c9732_demographic.sas7bdat",
+        "C9732_Dictionary.xlsx",
+        "c9732_ae.sas7bdat",
+        "c9732_fmt.sas7bdat"
+      ]
+    },
+    "LungSm_Allianc_2007_218": {
+      "n_files": 2,
+      "tables": [
+        "ae.csv",
+        "clinical.csv"
+      ]
+    },
+    "LungSm_Amgen_2002_266": {
+      "n_files": 26,
+      "tables": [
+        "a_eendes.sas7bdat",
+        "a_eendfu.sas7bdat",
+        "a_eendpt.sas7bdat",
+        "a_lab.sas7bdat",
+        "a_qol.sas7bdat",
+        "a_sendpt.sas7bdat",
+        "c_ae.sas7bdat",
+        "c_bchar.sas7bdat",
+        "c_chem.sas7bdat",
+        "c_chemo.sas7bdat",
+        "c_conmed.sas7bdat",
+        "c_death.sas7bdat",
+        "c_diag.sas7bdat",
+        "c_disp.sas7bdat",
+        "c_doses.sas7bdat",
+        "c_entry.sas7bdat",
+        "c_hbscan.sas7bdat",
+        "c_hemat.sas7bdat",
+        "c_iron.sas7bdat",
+        "c_keyvar.sas7bdat",
+        "c_lesion.sas7bdat",
+        "c_medhis.sas7bdat",
+        "c_radio.sas7bdat",
+        "c_trans.sas7bdat",
+        "c_vitals.sas7bdat"
+      ]
+    },
+    "LungSm_EliLill_2011_287": {
+      "n_files": 38,
+      "tables": [
+        "ae.sas7bdat",
+        "biomrkr.sas7bdat",
+        "cclm_cen.sas7bdat",
+        "chem_cen.sas7bdat",
+        "cm.sas7bdat",
+        "dm.sas7bdat",
+        "dor.sas7bdat",
+        "dosmod.sas7bdat",
+        "ds_fl.sas7bdat",
+        "ds_l.sas7bdat",
+        "ds_t.sas7bdat",
+        "ecg.sas7bdat",
+        "ex.sas7bdat",
+        "excomp.sas7bdat",
+        "exvial.sas7bdat",
+        "hema_cen.sas7bdat",
+        "immune.sas7bdat",
+        "lbcen.sas7bdat",
+        "mh.sas7bdat",
+        "os.sas7bdat",
+        "pe.sas7bdat",
+        "pfs.sas7bdat",
+        "pfs_ns.sas7bdat",
+        "pfs_sen.sas7bdat",
+        "pfsclin.sas7bdat",
+        "ph.sas7bdat",
+        "rs.sas7bdat",
+        "ta.sas7bdat",
+        "te.sas7bdat",
+        "thyp.sas7bdat",
+        "tissue.sas7bdat",
+        "tms.sas7bdat",
+        "tr.sas7bdat",
+        "tv.sas7bdat",
+        "urin_cen.sas7bdat",
+        "vs.sas7bdat",
+        "wbcm_cen.sas7bdat"
+      ]
+    },
+    "LungSm_G1Thera_2015_433": {
+      "n_files": 18,
+      "tables": [
+        "Data descriptors for SCLC 01.xlsx",
+        "Descriptive_Stats_G1T_NCT02499770.xlsx",
+        "adae.sas7bdat",
+        "adcm.sas7bdat",
+        "addv.sas7bdat",
+        "adeg.sas7bdat",
+        "adex.sas7bdat",
+        "adex2.sas7bdat",
+        "adlb.sas7bdat",
+        "admh.sas7bdat",
+        "adpr.sas7bdat",
+        "adqs.sas7bdat",
+        "adrs.sas7bdat",
+        "adsl.sas7bdat",
+        "adtr.sas7bdat",
+        "adtr2.sas7bdat",
+        "adtte.sas7bdat",
+        "advs.sas7bdat"
+      ]
+    },
+    "LungSm_G1Thera_2015_434": {
+      "n_files": 17,
+      "tables": [
+        "Data descriptors for SCLC 02.xlsx",
+        "Descriptive_Stats_G1T_NCT02514447.xlsx",
+        "adae.sas7bdat",
+        "adcm.sas7bdat",
+        "addv.sas7bdat",
+        "adecog.sas7bdat",
+        "adeg.sas7bdat",
+        "adex.sas7bdat",
+        "adex2.sas7bdat",
+        "admh.sas7bdat",
+        "adpr.sas7bdat",
+        "adrs.sas7bdat",
+        "adsl.sas7bdat",
+        "adtr.sas7bdat",
+        "adtr2.sas7bdat",
+        "adtte.sas7bdat",
+        "advs.sas7bdat"
+      ]
+    },
+    "Lymphom_Allianc_2006_212": {
+      "n_files": 2,
+      "tables": [
+        "events.sas7bdat",
+        "outcome17mar24.sas7bdat"
+      ]
+    },
+    "Melanom_SyntaPh_2007_123": {
+      "n_files": 40,
+      "tables": [
+        "Data_dictionary.xlsx",
+        "ae.sas7bdat",
+        "aeae.sas7bdat",
+        "bdos.sas7bdat",
+        "cm.sas7bdat",
+        "cmcm.sas7bdat",
+        "dm.sas7bdat",
+        "ds.sas7bdat",
+        "ec.sas7bdat",
+        "eg.sas7bdat",
+        "exc.sas7bdat",
+        "im.sas7bdat",
+        "inc.sas7bdat",
+        "invs.sas7bdat",
+        "labd.sas7bdat",
+        "labdllab.sas7bdat",
+        "les.sas7bdat",
+        "lesles.sas7bdat",
+        "master.sas7bdat",
+        "mh.sas7bdat",
+        "mhmh.sas7bdat",
+        "ms.sas7bdat",
+        "pe.sas7bdat",
+        "pepe.sas7bdat",
+        "pkd.sas7bdat",
+        "pkdpkd.sas7bdat",
+        "plog.sas7bdat",
+        "plogplog.sas7bdat",
+        "qexc.sas7bdat",
+        "qtc.sas7bdat",
+        "qtceg.sas7bdat",
+        "rad.sas7bdat",
+        "radrad.sas7bdat",
+        "rsp.sas7bdat",
+        "srv.sas7bdat",
+        "tmr.sas7bdat",
+        "tmrphto.sas7bdat",
+        "vdt.sas7bdat",
+        "vs.sas7bdat",
+        "vsvs.sas7bdat"
+      ]
+    },
+    "Multiple_Allianc_2002_202": {
+      "n_files": 9,
+      "tables": [
+        "casecrse.sas7bdat",
+        "chklist.sas7bdat",
+        "chklist2.sas7bdat",
+        "end_at.sas7bdat",
+        "fagerstm.sas7bdat",
+        "relapse.sas7bdat",
+        "smokehx.sas7bdat",
+        "visit.sas7bdat",
+        "wt_scale.sas7bdat"
+      ]
+    },
+    "Multiple_Allianc_2002_213": {
+      "n_files": 2,
+      "tables": [
+        "NCT00052910_D1_(EFFICACY).csv",
+        "NCT00052910_D2_(AE).csv"
+      ]
+    },
+    "Multiple_Amgen_2006_156": {
+      "n_files": 1,
+      "tables": []
+    },
+    "Multiple_Brigham_454": {
+      "n_files": 4,
+      "tables": [
+        "PDS_DATA_PROFILE_CREATED_VITAL_trial_NEJM_2022.xlsx",
+        "VITAL_trial_NEJM_2022.sas7bdat",
+        "vitalkneepain111623.sas7bdat",
+        "vitalstatin.sas7bdat"
+      ]
+    },
+    "Multiple_MerckKG_2008_441": {
+      "n_files": 1,
+      "tables": [
+        "Descriptive_Stats_EMD121974_011.xlsx"
+      ]
+    },
+    "Multiple_SanofiU_2008_119": {
+      "n_files": 2,
+      "tables": [
+        "sanofi_ave5026_efc6521.xlsx"
+      ]
+    },
+    "Myelody_sanofi_2012_110": {
+      "n_files": 0,
+      "tables": []
+    },
+    "Pancrea_Celgene_2008_132": {
+      "n_files": 1,
+      "tables": [
+        "PDS_Data_Profile_Created_132.xlsx"
+      ]
+    },
+    "Pancrea_ClovisO_2010_186": {
+      "n_files": 16,
+      "tables": [
+        "adae.sas7bdat",
+        "adcm.sas7bdat",
+        "addur.sas7bdat",
+        "adef.sas7bdat",
+        "adeg.sas7bdat",
+        "adex.sas7bdat",
+        "adie.sas7bdat",
+        "adlb.sas7bdat",
+        "admh.sas7bdat",
+        "ador.sas7bdat",
+        "adpf.sas7bdat",
+        "adqs.sas7bdat",
+        "adsl.sas7bdat",
+        "adsv.sas7bdat",
+        "advs.sas7bdat"
+      ]
+    },
+    "Pancrea_EMDSero_2009_442": {
+      "n_files": 3,
+      "tables": [
+        "Descriptive_Stats_EMR 200066-003.xlsx"
+      ]
+    },
+    "Pancrea_Multipl_2020_430": {
+      "n_files": 3,
+      "tables": [
+        "Dataset Contents and Variable Crosswalk.xlsx",
+        "Descriptive_Stats_Linked_Pancrea_ClovisO_2010_186.xlsx",
+        "linked_pancrea186.sas7bdat"
+      ]
+    },
+    "Pancrea_Sanofi_2006_109": {
+      "n_files": 1,
+      "tables": []
+    },
+    "Pancrea_SanofiU_2007_134": {
+      "n_files": 2,
+      "tables": [
+        "sanofi_ave0005_efc10547_data_definition.xls"
+      ]
+    },
+    "Prostat_Amgen_2004_154": {
+      "n_files": 1,
+      "tables": []
+    },
+    "Prostat_Amgen_2006_155": {
+      "n_files": 1,
+      "tables": []
+    },
+    "Prostat_AmgenI_2006_121": {
+      "n_files": 1,
+      "tables": []
+    },
+    "Prostat_Asociac_484": {
+      "n_files": 2,
+      "tables": [
+        "BBDD_Spain_IAD_v4.xlsx",
+        "DataDescription_v1.xlsx"
+      ]
+    },
+    "Prostat_AstraZe_1995_102": {
+      "n_files": 2,
+      "tables": [
+        "7054IL_0023 data variables.xlsx"
+      ]
+    },
+    "Prostat_AstraZe_1995_105": {
+      "n_files": 2,
+      "tables": [
+        "7054IL_0024 data variables.xlsx"
+      ]
+    },
+    "Prostat_AstraZe_1995_106": {
+      "n_files": 2,
+      "tables": [
+        "7054IL_0025 data variables.xlsx"
+      ]
+    },
+    "Prostat_AstraZe_2009_144": {
+      "n_files": 2,
+      "tables": [
+        "De indentification RDB standards STUDY14.xlsx"
+      ]
+    },
+    "Prostat_Celgene_2009_90": {
+      "n_files": 1,
+      "tables": []
+    },
+    "Prostat_Multipl_2008_406": {
+      "n_files": 3,
+      "tables": [
+        "Dataset Contents and Variable Crosswalk.xlsx",
+        "Descriptive_Stats_Linked_Prostat_AstraZe_2008_103.xlsx",
+        "linked_prostate103.sas7bdat"
+      ]
+    },
+    "Prostat_Multipl_2008_420": {
+      "n_files": 3,
+      "tables": [
+        "Dataset Contents and Variable Crosswalk.xlsx",
+        "Descriptive_Stats_Linked_Prostat_AstraZe_2008_104.xlsx",
+        "linked_prostate104.sas7bdat"
+      ]
+    },
+    "Prostat_Multipl_2009_417": {
+      "n_files": 3,
+      "tables": [
+        "Dataset Contents and Variable Crosswalk.xlsx",
+        "Descriptive_Stats_Linked_Prostat_AstraZe_2009_144.xlsx",
+        "linked_prostate144.sas7bdat"
+      ]
+    },
+    "Prostat_Multipl_2018_234": {
+      "n_files": 2,
+      "tables": [
+        "MEPS Variable Crosswalk_20171109.xlsx",
+        "linked_pds90_20171109.sas7bdat"
+      ]
+    },
+    "Prostat_na_2006_149": {
+      "n_files": 4,
+      "tables": [
+        "Challenge_data_dictionary v2.xlsx"
+      ]
+    },
+    "Prostat_Pfizer_2008_81": {
+      "n_files": 2,
+      "tables": [
+        "Pfizer Data Descriptors Sunitinib.xlsx"
+      ]
+    },
+    "Prostat_Researc_2016_167": {
+      "n_files": 1,
+      "tables": []
+    },
+    "Prostat_Sanofi_2000_80": {
+      "n_files": 1,
+      "tables": []
+    },
+    "Prostat_Sanofi_2007_79": {
+      "n_files": 2,
+      "tables": []
+    },
+    "Prostat_Sanofi_2007_83": {
+      "n_files": 2,
+      "tables": []
+    }
+  },
+  "platform_catalog_findings": {
+    "PDSInfo": {
+      "files": [
+        "caslib_info.sas7bdat"
+      ],
+      "ovarian_in_catalog": [
+        {
+          "table": "caslib_info.sas7bdat",
+          "n_rows_sample": 20,
+          "cols": [
+            "caslib",
+            "filename",
+            "path"
+          ],
+          "mentions_ovarian": false,
+          "mentions_ca125": false
+        }
+      ]
+    },
+    "PDSSamples": {
+      "files": [
+        "DC_CORE_TABLE_PR.sashdat",
+        "DC_CORE_TABLE.sashdat",
+        "recent_user_activity_records.sashdat"
+      ],
+      "ovarian_in_catalog": [
+        {
+          "table": "DC_CORE_TABLE_PR.sashdat",
+          "n_rows_sample": 20,
+          "cols": [
+            "NON_TARGET_LESIONS",
+            "TARGET_LESIONS",
+            "RPT",
+            "DEATH",
+            "GLEAS_DX",
+            "TSTAG_DX",
+            "AGEGRP",
+            "AGEGRP2",
+            "RACE_C",
+            "BMI",
+            "HEIGHTBL",
+            "HGTBLCAT",
+            "WEIGHTBL",
+            "WGTBLCAT",
+            "REGION_C",
+            "SMOKE",
+            "SMOKFREQ",
+            "SMOKSTAT",
+            "ECOG_C",
+            "TRT1_ID",
+            "TRT2_ID",
+            "TRT3_ID",
+            "ALP",
+            "ALT",
+            "AST",
+            "CA",
+            "CREAT",
+            "HB",
+            "LDH",
+            "NEU",
+            "PLT",
+            "PSA",
+            "TBILI",
+            "TESTO",
+            "WBC",
+            "CREACL",
+            "NA.",
+            "MG",
+            "PHOS",
+            "ALB"
+          ],
+          "mentions_ovarian": false,
+          "mentions_ca125": false
+        },
+        {
+          "table": "DC_CORE_TABLE.sashdat",
+          "n_rows_sample": 20,
+          "cols": [
+            "DOMAIN",
+            "STUDYID",
+            "RPT",
+            "LKADT_P",
+            "DEATH",
+            "DISCONT",
+            "ENDTRS_C",
+            "ENTRT_PC",
+            "PER_REF",
+            "LKADT_REF",
+            "LKADT_PER",
+            "GLEAS_DX",
+            "TSTAG_DX",
+            "AGEGRP",
+            "AGEGRP2",
+            "RACE_C",
+            "BMI",
+            "HEIGHTBL",
+            "HGTBLCAT",
+            "WEIGHTBL",
+            "WGTBLCAT",
+            "REGION_C",
+            "SMOKE",
+            "SMOKFREQ",
+            "SMOKSTAT",
+            "ECOG_C",
+            "TRT1_ID",
+            "TRT2_ID",
+            "TRT3_ID",
+            "ALP",
+            "ALT",
+            "AST",
+            "CA",
+            "CREAT",
+            "HB",
+            "LDH",
+            "NEU",
+            "PLT",
+            "PSA",
+            "TBILI"
+          ],
+          "mentions_ovarian": false,
+          "mentions_ca125": false
+        },
+        {
+          "table": "recent_user_activity_records.sashdat",
+          "n_rows_sample": 20,
+          "cols": [
+            "name",
+            "datetime",
+            "tzoneoff",
+            "shift",
+            "tenantid",
+            "session_sig",
+            "deploymentid",
+            "action",
+            "actionstate",
+            "machine",
+            "duration"
+          ],
+          "mentions_ovarian": false,
+          "mentions_ca125": false
+        }
+      ]
+    },
+    "Samples": {
+      "files": [
+        "COSTCHANGE.sashdat",
+        "WATER_CLUSTER.sashdat",
+        "RAND_RETAILDEMO.sashdat",
+        "SW_LAKE_RT_SENSOR_WATERQUALITY.sashdat",
+        "PROMO_EFFECTIVENESS_X_EFFECTS_2.sashdat",
+        "WARRANTY_CLAIMS_0117.sashdat"
+      ],
+      "ovarian_in_catalog": [
+        {
+          "table": "COSTCHANGE.sashdat",
+          "n_rows_sample": 20,
+          "cols": [
+            "shipyear",
+            "primarylaborgroup",
+            "total_Claim_Count",
+            "gross_claim_amt",
+            "gross_labor_amt",
+            "gross_material_amt",
+            "prev_total_claim_count",
+            "prev_gross_claim_amt",
+            "prev_gross_labor_amt",
+            "prev_gross_material_amt"
+          ],
+          "mentions_ovarian": false,
+          "mentions_ca125": false
+        },
+        {
+          "table": "WATER_CLUSTER.sashdat",
+          "n_rows_sample": 20,
+          "cols": [
+            "Year",
+            "Month",
+            "Day",
+            "Date",
+            "Serial",
+            "Property",
+            "Address",
+            "City",
+            "Zip",
+            "Lat",
+            "Long",
+            "Property_type",
+            "Meter_Location",
+            "Clli",
+            "DMA",
+            "Weekday",
+            "Weekend",
+            "Daily_W_C_M3",
+            "Week",
+            "US Holiday",
+            "CLUSTER",
+            "holiday_order"
+          ],
+          "mentions_ovarian": false,
+          "mentions_ca125": false
+        },
+        {
+          "table": "RAND_RETAILDEMO.sashdat",
+          "n_rows_sample": 20,
+          "cols": [
+            "CustID",
+            "bucket",
+            "age",
+            "loyalty_card",
+            "Department",
+            "brand_name",
+            "Storechain",
+            "ChannelType",
+            "Class",
+            "StoreNum",
+            "Storeage",
+            "trx_hr_char",
+            "trx_dow_new",
+            "trx_tod",
+            "Date",
+            "MDY",
+            "Year",
+            "Sales",
+            "Cost",
+            "mkt_bdgt",
+            "Margin",
+            "sss",
+            "City",
+            "City_Lat",
+            "City_Long",
+            "Country",
+            "Country_Lat",
+            "Country_Long",
+            "Region",
+            "Region_Lat",
+            "Region_Long",
+            "Region_2",
+            "Region_2_Lat",
+            "Region_2_Long",
+            "State",
+            "State_Lat",
+            "State_Long",
+            "age_bucket",
+            "Storechain1",
+            "brand_name1"
+          ],
+          "mentions_ovarian": false,
+          "mentions_ca125": false
+        },
+        {
+          "table": "SW_LAKE_RT_SENSOR_WATERQUALITY.sashdat",
+          "n_rows_sample": 20,
+          "cols": [
+            "agency_cd",
+            "site_no",
+            "Latitude",
+            "Longitude",
+            "Hyd_Unit",
+            "County",
+            "Datum_Gage",
+            "NAD",
+            "NAVD",
+            "datetime",
+            "tz_cd",
+            "Temperature_1Ft",
+            "_02_00010_cd",
+            "Specific_Conductance_1Ft",
+            "_03_00095_cd",
+            "PH_1Ft",
+            "_04_00400_cd",
+            "Turbidity_1FT",
+            "_05_63680_cd",
+            "Dissolved_Oxygen_1Ft",
+            "_06_00300_cd",
+            "Temperature_6Ft",
+            "_09_00010_cd",
+            "Specific_Conductance_6Ft",
+            "_10_00095_cd",
+            "Ph_6Ft",
+            "_11_00400_cd",
+            "Turbidity_6ft",
+            "_12_63680_cd",
+            "Dissolved_Oxygen_6Ft",
+            "_13_00300_cd",
+            "Temperature_12Ft",
+            "_16_00010_cd",
+            "Specific_Conductance_12FT",
+            "_17_00095_cd",
+            "Ph_12Ft",
+            "_18_00400_cd",
+            "Turbidity_12FT",
+            "_19_63680_cd",
+            "Dissolved_Oxygen_12FT"
+          ],
+          "mentions_ovarian": false,
+          "mentions_ca125": false
+        },
+        {
+          "table": "PROMO_EFFECTIVENESS_X_EFFECTS_2.sashdat",
+          "n_rows_sample": 14,
+          "cols": [
+            "prod_hier_sk",
+            "name",
+            "promotion_name",
+            "total_price_impact",
+            "own_price_impact",
+            "halo___cannibal_impact",
+            "revenue_____baseline",
+            "revenue_____expected",
+            "revenue_____expected_change",
+            "revenue_____actual",
+            "forecast_accuracy"
+          ],
+          "mentions_ovarian": false,
+          "mentions_ca125": false
+        },
+        {
+          "table": "WARRANTY_CLAIMS_0117.sashdat",
+          "n_rows_sample": 20,
+          "cols": [
+            "claim_attribute_1",
+            "seller_attribute_5",
+            "product_attribute_1",
+            "product_attribute_2",
+            "product_attribute_3",
+            "product_attribute_4",
+            "product_attribute_5",
+            "customer_attribute_1",
+            "x_product_attribute7",
+            "x_product_attribute9",
+            "srvc_prvdr_attribute_1",
+            "srvc_prvdr_attribute_4",
+            "srvc_prvdr_attribute_2",
+            "srvc_prvdr_attribute_3",
+            "srvc_prvdr_attribute_5",
+            "primary_labor_group_desc",
+            "primary_labor_desc",
+            "total_claim_count",
+            "CLAIM_REPAIR_START_DT_SK",
+            "CLAIM_REPAIR_END_DT_SK",
+            "CLAIM_PROCESSED_DT_SK",
+            "CLAIM_SUBMITTED_DT_SK",
+            "PRIMARY_LABOR_CD",
+            "DEFECT_SK",
+            "PRIMARY_LABOR_GROUP_CD",
+            "PRIMARY_MATERIAL_ID",
+            "PRIMARY_MATERIAL_GROUP_CD",
+            "WARRANTY_CLAIM_ID",
+            "USAGE_VALUE",
+            "GROSS_CLAIM_AMT",
+            "GROSS_LABOR_AMT",
+            "GROSS_MATERIAL_AMT",
+            "GROSS_OTHER_AMT",
+            "PRODUCT_ID",
+            "PRODUCT_MODEL_CD",
+            "PRODUCTION_DT",
+            "IN_SERVICE_DT",
+            "SHIP_DT",
+            "SHIP_YEAR_CD",
+            "DEFECT_CD"
+          ],
+          "mentions_ovarian": false,
+          "mentions_ca125": false
+        }
+      ]
+    }
+  }
+}

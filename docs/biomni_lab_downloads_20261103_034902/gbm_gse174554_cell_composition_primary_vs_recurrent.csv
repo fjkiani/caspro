@@ -1,0 +1,3 @@
+cell_type,mean_fraction_primary,mean_fraction_recurrent,mean_delta,n_pairs_increased,n_pairs_decreased,wilcoxon_p,direction,significant
+Tumor (malignant),0.4507,0.1787,-0.2721,4,9,0.0464,decrease,True
+Non-malignant (immune+stromal),0.5493,0.8213,0.2721,9,4,0.0464,increase,True

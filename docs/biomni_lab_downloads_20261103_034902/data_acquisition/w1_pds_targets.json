@@ -1,0 +1,369 @@
+{
+  "workstream": "W1_PDS_CA125_KELIM",
+  "generated_by": "discovery-only; no controlled data downloaded",
+  "pds_public_catalog_probe": {
+    "catalog_root": {
+      "url": "https://data.projectdatasphere.org/",
+      "http_status": 200,
+      "nct_mentions": [],
+      "body_len": 654
+    },
+    "access_page": {
+      "url": "https://data.projectdatasphere.org/projectdatasphere/html/access",
+      "http_status": 200,
+      "nct_mentions": [],
+      "body_len": 654
+    },
+    "search_ovarian": {
+      "url": "https://data.projectdatasphere.org/projectdatasphere/html/search?query=ovarian",
+      "http_status": 200,
+      "nct_mentions": [],
+      "body_len": 654
+    }
+  },
+  "clinicaltrials_lookups": {
+    "GOG-0218": {
+      "nct": "NCT00262847",
+      "short_name": "GOG-0218",
+      "kelim_rationale": "First-line HGSOC carbo/taxol +/- bevacizumab; per-cycle CA-125; Norquist HRR (Clin Cancer Res 2018); KELIM-validation anchor",
+      "http_status": 200,
+      "official_title": "A Phase III Trial of Carboplatin and Paclitaxel Plus Placebo Versus Carboplatin and Paclitaxel Plus Concurrent Bevacizumab (NSC # 704865) Followed by Placebo, Versus Carboplatin and Paclitaxel Plus Concurrent and Extended Bevacizumab, in Women With Newly Diagnosed, Previously Untreated, Stage III or IV Epithelial Ovarian, Primary Peritoneal or Fallopian Tube Cancer",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 1873,
+      "ca125_in_outcomes": true
+    },
+    "ICON7": {
+      "nct": "NCT00483782",
+      "short_name": "ICON7",
+      "kelim_rationale": "First-line carbo/taxol +/- bevacizumab; serial CA-125; KELIM developed on first-line trials",
+      "http_status": 200,
+      "official_title": "ICON7 - A Randomised, Two-Arm, Multi-Centre Gynaecologic Cancer InterGroup Trial of Adding Bevacizumab to Standard Chemotherapy (Carboplatin and Paclitaxel) in Patients With Epithelial Ovarian Cancer",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 1520,
+      "ca125_in_outcomes": true
+    },
+    "OCEANS": {
+      "nct": "NCT00434642",
+      "short_name": "OCEANS",
+      "kelim_rationale": "Platinum-sensitive recurrent; carbo/gem +/- bev; serial CA-125",
+      "http_status": 200,
+      "official_title": "A Phase III, Multicenter, Randomized, Blinded, Placebo-controlled Trial of Carboplatin and Gemcitabine Plus Bevacizumab in Patients With Platinum-sensitive Recurrent Ovary, Primary Peritoneal, or Fallopian Tube Carcinoma",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 484,
+      "ca125_in_outcomes": false
+    },
+    "AGO-OVAR16": {
+      "nct": "NCT00866697",
+      "short_name": "AGO-OVAR16",
+      "kelim_rationale": "First-line + pazopanib maintenance; serial CA-125",
+      "http_status": 200,
+      "official_title": "A Phase III Study to Evaluate the Efficacy and Safety of Pazopanib Monotherapy Versus Placebo in Women Who Have Not Progressed After First Line Chemotherapy for Epithelial Ovarian, Fallopian Tube, or Primary Peritoneal Cancer",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 940,
+      "ca125_in_outcomes": true
+    },
+    "GOG-0262": {
+      "nct": "NCT01167712",
+      "short_name": "GOG-0262",
+      "kelim_rationale": "First-line dose-dense taxol; serial CA-125",
+      "http_status": 200,
+      "official_title": "GOG-0262: A Phase III Trial of Every-3-Weeks Paclitaxel Versus Dose Dense Weekly Paclitaxel in Combination With Carboplatin With or Without Concurrent and Consolidation Bevacizumab (NSC #704865) in the Treatment of Primary Stage II, III or IV Epithelial Ovarian, Peritoneal or Fallopian Tube Cancer and ACRIN 6695: Perfusion CT Imaging to Evaluate Treatment Response in Patients Participating in GOG-0262",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 692,
+      "ca125_in_outcomes": false
+    },
+    "MITO-7": {
+      "nct": "NCT00660842",
+      "short_name": "MITO-7",
+      "kelim_rationale": "First-line weekly carbo/taxol; serial CA-125; KELIM literature cohort",
+      "http_status": 200,
+      "official_title": "Weekly Versus Every 3 Week Carboplatin and Paclitaxel in Patients With Ovarian Cancer: a Phase III Randomized Multicenter Study",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 800,
+      "ca125_in_outcomes": false
+    },
+    "CALYPSO": {
+      "nct": "NCT00189553",
+      "short_name": "CALYPSO",
+      "kelim_rationale": "Platinum-sensitive recurrent carbo/PLD vs carbo/taxol; serial CA-125",
+      "http_status": 200,
+      "official_title": "A Multi-National,Randomized, Phase III, GCIG Intergroup Study Comparing Pegylated Liposomal Doxorubicin and Carboplatin Versus Paclitaxel and Carboplatin in Patients With Epithelial Ovarian Cancer in Late Relapse (> 6 Months)",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 976,
+      "ca125_in_outcomes": false
+    },
+    "AGO-OVAR11/ICON7-like": {
+      "nct": "NCT00976911",
+      "short_name": "AGO-OVAR11/ICON7-like",
+      "kelim_rationale": "first-line trial family; serial CA-125",
+      "http_status": 200,
+      "official_title": "AURELIA: A Multi-center, Open-label, Randomised, Two-arm Phase III Trial of the Effect on Progression Free Survival of Bevacizumab Plus Chemotherapy Versus Chemotherapy Alone in Patients With Platinum-resistant, Epithelial Ovarian, Fallopian Tube or Primary Peritoneal Cancer",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 361,
+      "ca125_in_outcomes": true
+    }
+  },
+  "ca125_longitudinal_data_dictionary_template": {
+    "subject_id": "unique patient identifier (maps across CA-125 + outcome tables)",
+    "ca125_value": "serum CA-125 (U/mL)",
+    "ca125_date_or_day": "collection date or study day (day 0 = first platinum dose)",
+    "cycle_number": "chemo cycle index (KELIM uses first ~100 days / first 3 cycles)",
+    "treatment_arm": "regimen arm",
+    "platinum_start_date": "date of first platinum infusion (KELIM t0 anchor)",
+    "pfs_event": "progression indicator (for PFI/PFS linkage)",
+    "pfs_time": "time to progression (days)",
+    "os_event": "death indicator",
+    "os_time": "overall survival time"
+  },
+  "ranked_targets": [
+    {
+      "pds_target": "GOG-0218",
+      "nct": "NCT00262847",
+      "official_title": "A Phase III Trial of Carboplatin and Paclitaxel Plus Placebo Versus Carboplatin and Paclitaxel Plus Concurrent Bevacizumab (NSC # 704865) Followed by Placebo, Versus Carboplatin and Paclitaxel Plus Concurrent and Extended Bevacizumab, in Women With Newly Diagnosed, Previously Untreated, Stage III or IV Epithelial Ovarian, Primary Peritoneal or Fallopian Tube Cancer",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 1873,
+      "ca125_in_ctgov_outcomes": true,
+      "kelim_rationale": "First-line HGSOC carbo/taxol +/- bevacizumab; per-cycle CA-125; Norquist HRR (Clin Cancer Res 2018); KELIM-validation anchor",
+      "kelim_adequacy": "ADEQUATE_FIRST_LINE",
+      "data_types": [
+        "longitudinal_serum_CA125",
+        "PFS/PFI",
+        "OS",
+        "treatment_arm"
+      ],
+      "endpoint_it_enables": "KELIM (CA-125 elimination-rate) validated on in-treatment chemo-response; PFI linkage",
+      "claim_it_cures": "KELIM Convergence Model validated on real in-treatment chemo-response (was pointed at PLCO screening)",
+      "source": "Project Data Sphere",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "PDS Research Access account (free registration + approval)",
+        "Signed PDS Data Use Agreement",
+        "Dataset must be located in PDS catalog by trial sponsor/NCT (dataset IDs are assigned per deposit inside the portal)"
+      ],
+      "verified_metadata_bool": true,
+      "note": "PDS dataset IDs are portal-internal and only enumerable after login; the NCT + sponsor is the stable public handle to locate the deposit."
+    },
+    {
+      "pds_target": "ICON7",
+      "nct": "NCT00483782",
+      "official_title": "ICON7 - A Randomised, Two-Arm, Multi-Centre Gynaecologic Cancer InterGroup Trial of Adding Bevacizumab to Standard Chemotherapy (Carboplatin and Paclitaxel) in Patients With Epithelial Ovarian Cancer",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 1520,
+      "ca125_in_ctgov_outcomes": true,
+      "kelim_rationale": "First-line carbo/taxol +/- bevacizumab; serial CA-125; KELIM developed on first-line trials",
+      "kelim_adequacy": "ADEQUATE_FIRST_LINE",
+      "data_types": [
+        "longitudinal_serum_CA125",
+        "PFS/PFI",
+        "OS",
+        "treatment_arm"
+      ],
+      "endpoint_it_enables": "KELIM (CA-125 elimination-rate) validated on in-treatment chemo-response; PFI linkage",
+      "claim_it_cures": "KELIM Convergence Model validated on real in-treatment chemo-response (was pointed at PLCO screening)",
+      "source": "Project Data Sphere",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "PDS Research Access account (free registration + approval)",
+        "Signed PDS Data Use Agreement",
+        "Dataset must be located in PDS catalog by trial sponsor/NCT (dataset IDs are assigned per deposit inside the portal)"
+      ],
+      "verified_metadata_bool": true,
+      "note": "PDS dataset IDs are portal-internal and only enumerable after login; the NCT + sponsor is the stable public handle to locate the deposit."
+    },
+    {
+      "pds_target": "OCEANS",
+      "nct": "NCT00434642",
+      "official_title": "A Phase III, Multicenter, Randomized, Blinded, Placebo-controlled Trial of Carboplatin and Gemcitabine Plus Bevacizumab in Patients With Platinum-sensitive Recurrent Ovary, Primary Peritoneal, or Fallopian Tube Carcinoma",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 484,
+      "ca125_in_ctgov_outcomes": false,
+      "kelim_rationale": "Platinum-sensitive recurrent; carbo/gem +/- bev; serial CA-125",
+      "kelim_adequacy": "ANALOG_RECURRENT_LINE",
+      "data_types": [
+        "longitudinal_serum_CA125",
+        "PFS/PFI",
+        "OS",
+        "treatment_arm"
+      ],
+      "endpoint_it_enables": "KELIM (CA-125 elimination-rate) validated on in-treatment chemo-response; PFI linkage",
+      "claim_it_cures": "KELIM Convergence Model validated on real in-treatment chemo-response (was pointed at PLCO screening)",
+      "source": "Project Data Sphere",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "PDS Research Access account (free registration + approval)",
+        "Signed PDS Data Use Agreement",
+        "Dataset must be located in PDS catalog by trial sponsor/NCT (dataset IDs are assigned per deposit inside the portal)"
+      ],
+      "verified_metadata_bool": true,
+      "note": "PDS dataset IDs are portal-internal and only enumerable after login; the NCT + sponsor is the stable public handle to locate the deposit."
+    },
+    {
+      "pds_target": "AGO-OVAR16",
+      "nct": "NCT00866697",
+      "official_title": "A Phase III Study to Evaluate the Efficacy and Safety of Pazopanib Monotherapy Versus Placebo in Women Who Have Not Progressed After First Line Chemotherapy for Epithelial Ovarian, Fallopian Tube, or Primary Peritoneal Cancer",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 940,
+      "ca125_in_ctgov_outcomes": true,
+      "kelim_rationale": "First-line + pazopanib maintenance; serial CA-125",
+      "kelim_adequacy": "ADEQUATE_FIRST_LINE",
+      "data_types": [
+        "longitudinal_serum_CA125",
+        "PFS/PFI",
+        "OS",
+        "treatment_arm"
+      ],
+      "endpoint_it_enables": "KELIM (CA-125 elimination-rate) validated on in-treatment chemo-response; PFI linkage",
+      "claim_it_cures": "KELIM Convergence Model validated on real in-treatment chemo-response (was pointed at PLCO screening)",
+      "source": "Project Data Sphere",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "PDS Research Access account (free registration + approval)",
+        "Signed PDS Data Use Agreement",
+        "Dataset must be located in PDS catalog by trial sponsor/NCT (dataset IDs are assigned per deposit inside the portal)"
+      ],
+      "verified_metadata_bool": true,
+      "note": "PDS dataset IDs are portal-internal and only enumerable after login; the NCT + sponsor is the stable public handle to locate the deposit."
+    },
+    {
+      "pds_target": "GOG-0262",
+      "nct": "NCT01167712",
+      "official_title": "GOG-0262: A Phase III Trial of Every-3-Weeks Paclitaxel Versus Dose Dense Weekly Paclitaxel in Combination With Carboplatin With or Without Concurrent and Consolidation Bevacizumab (NSC #704865) in the Treatment of Primary Stage II, III or IV Epithelial Ovarian, Peritoneal or Fallopian Tube Cancer and ACRIN 6695: Perfusion CT Imaging to Evaluate Treatment Response in Patients Participating in GOG-0262",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 692,
+      "ca125_in_ctgov_outcomes": false,
+      "kelim_rationale": "First-line dose-dense taxol; serial CA-125",
+      "kelim_adequacy": "ADEQUATE_FIRST_LINE",
+      "data_types": [
+        "longitudinal_serum_CA125",
+        "PFS/PFI",
+        "OS",
+        "treatment_arm"
+      ],
+      "endpoint_it_enables": "KELIM (CA-125 elimination-rate) validated on in-treatment chemo-response; PFI linkage",
+      "claim_it_cures": "KELIM Convergence Model validated on real in-treatment chemo-response (was pointed at PLCO screening)",
+      "source": "Project Data Sphere",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "PDS Research Access account (free registration + approval)",
+        "Signed PDS Data Use Agreement",
+        "Dataset must be located in PDS catalog by trial sponsor/NCT (dataset IDs are assigned per deposit inside the portal)"
+      ],
+      "verified_metadata_bool": true,
+      "note": "PDS dataset IDs are portal-internal and only enumerable after login; the NCT + sponsor is the stable public handle to locate the deposit."
+    },
+    {
+      "pds_target": "MITO-7",
+      "nct": "NCT00660842",
+      "official_title": "Weekly Versus Every 3 Week Carboplatin and Paclitaxel in Patients With Ovarian Cancer: a Phase III Randomized Multicenter Study",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 800,
+      "ca125_in_ctgov_outcomes": false,
+      "kelim_rationale": "First-line weekly carbo/taxol; serial CA-125; KELIM literature cohort",
+      "kelim_adequacy": "ADEQUATE_FIRST_LINE",
+      "data_types": [
+        "longitudinal_serum_CA125",
+        "PFS/PFI",
+        "OS",
+        "treatment_arm"
+      ],
+      "endpoint_it_enables": "KELIM (CA-125 elimination-rate) validated on in-treatment chemo-response; PFI linkage",
+      "claim_it_cures": "KELIM Convergence Model validated on real in-treatment chemo-response (was pointed at PLCO screening)",
+      "source": "Project Data Sphere",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "PDS Research Access account (free registration + approval)",
+        "Signed PDS Data Use Agreement",
+        "Dataset must be located in PDS catalog by trial sponsor/NCT (dataset IDs are assigned per deposit inside the portal)"
+      ],
+      "verified_metadata_bool": true,
+      "note": "PDS dataset IDs are portal-internal and only enumerable after login; the NCT + sponsor is the stable public handle to locate the deposit."
+    },
+    {
+      "pds_target": "CALYPSO",
+      "nct": "NCT00189553",
+      "official_title": "A Multi-National,Randomized, Phase III, GCIG Intergroup Study Comparing Pegylated Liposomal Doxorubicin and Carboplatin Versus Paclitaxel and Carboplatin in Patients With Epithelial Ovarian Cancer in Late Relapse (> 6 Months)",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 976,
+      "ca125_in_ctgov_outcomes": false,
+      "kelim_rationale": "Platinum-sensitive recurrent carbo/PLD vs carbo/taxol; serial CA-125",
+      "kelim_adequacy": "ANALOG_RECURRENT_LINE",
+      "data_types": [
+        "longitudinal_serum_CA125",
+        "PFS/PFI",
+        "OS",
+        "treatment_arm"
+      ],
+      "endpoint_it_enables": "KELIM (CA-125 elimination-rate) validated on in-treatment chemo-response; PFI linkage",
+      "claim_it_cures": "KELIM Convergence Model validated on real in-treatment chemo-response (was pointed at PLCO screening)",
+      "source": "Project Data Sphere",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "PDS Research Access account (free registration + approval)",
+        "Signed PDS Data Use Agreement",
+        "Dataset must be located in PDS catalog by trial sponsor/NCT (dataset IDs are assigned per deposit inside the portal)"
+      ],
+      "verified_metadata_bool": true,
+      "note": "PDS dataset IDs are portal-internal and only enumerable after login; the NCT + sponsor is the stable public handle to locate the deposit."
+    },
+    {
+      "pds_target": "AGO-OVAR11/ICON7-like",
+      "nct": "NCT00976911",
+      "official_title": "AURELIA: A Multi-center, Open-label, Randomised, Two-arm Phase III Trial of the Effect on Progression Free Survival of Bevacizumab Plus Chemotherapy Versus Chemotherapy Alone in Patients With Platinum-resistant, Epithelial Ovarian, Fallopian Tube or Primary Peritoneal Cancer",
+      "phase": [
+        "PHASE3"
+      ],
+      "enrollment": 361,
+      "ca125_in_ctgov_outcomes": true,
+      "kelim_rationale": "first-line trial family; serial CA-125",
+      "kelim_adequacy": "ADEQUATE_FIRST_LINE",
+      "data_types": [
+        "longitudinal_serum_CA125",
+        "PFS/PFI",
+        "OS",
+        "treatment_arm"
+      ],
+      "endpoint_it_enables": "KELIM (CA-125 elimination-rate) validated on in-treatment chemo-response; PFI linkage",
+      "claim_it_cures": "KELIM Convergence Model validated on real in-treatment chemo-response (was pointed at PLCO screening)",
+      "source": "Project Data Sphere",
+      "access_state": "SCRIPT_READY_PENDING_USER_AUTH",
+      "access_requirements": [
+        "PDS Research Access account (free registration + approval)",
+        "Signed PDS Data Use Agreement",
+        "Dataset must be located in PDS catalog by trial sponsor/NCT (dataset IDs are assigned per deposit inside the portal)"
+      ],
+      "verified_metadata_bool": true,
+      "note": "PDS dataset IDs are portal-internal and only enumerable after login; the NCT + sponsor is the stable public handle to locate the deposit."
+    }
+  ],
+  "honest_access_summary": "PDS requires a free Research Access account + signed DUA; dataset IDs are assigned inside the portal per deposit and are not enumerable from the public catalog without login. The NCT + sponsor identifiers above are the stable public handles to locate each deposit; the ingestion script (W5) authenticates with user-supplied PDS credentials and pulls the CA-125 + outcome tables once the DUA is active. No CA-125 patient data was downloaded in this discovery step."
+}

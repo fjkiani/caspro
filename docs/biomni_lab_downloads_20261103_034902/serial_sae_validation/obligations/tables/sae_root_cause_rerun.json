@@ -1,0 +1,163 @@
+{
+  "per_patient": [
+    {
+      "eoc": "EOC1005",
+      "ddr_orig8_mean": 2.726708,
+      "ddr_orig8_resc": 0.181781,
+      "ddr_w1_14_mean": 2.663475,
+      "ddr_w1_14_resc": 0.177565
+    },
+    {
+      "eoc": "EOC136",
+      "ddr_orig8_mean": 1.954707,
+      "ddr_orig8_resc": 0.130314,
+      "ddr_w1_14_mean": 1.855324,
+      "ddr_w1_14_resc": 0.123688
+    },
+    {
+      "eoc": "EOC153",
+      "ddr_orig8_mean": 2.631261,
+      "ddr_orig8_resc": 0.175417,
+      "ddr_w1_14_mean": 2.374544,
+      "ddr_w1_14_resc": 0.158303
+    },
+    {
+      "eoc": "EOC227",
+      "ddr_orig8_mean": 2.897489,
+      "ddr_orig8_resc": 0.193166,
+      "ddr_w1_14_mean": 2.678579,
+      "ddr_w1_14_resc": 0.178572
+    },
+    {
+      "eoc": "EOC3",
+      "ddr_orig8_mean": 2.118446,
+      "ddr_orig8_resc": 0.14123,
+      "ddr_w1_14_mean": 1.927144,
+      "ddr_w1_14_resc": 0.128476
+    },
+    {
+      "eoc": "EOC349",
+      "ddr_orig8_mean": 2.977527,
+      "ddr_orig8_resc": 0.198502,
+      "ddr_w1_14_mean": 2.633882,
+      "ddr_w1_14_resc": 0.175592
+    },
+    {
+      "eoc": "EOC372",
+      "ddr_orig8_mean": 2.435766,
+      "ddr_orig8_resc": 0.162384,
+      "ddr_w1_14_mean": 2.384705,
+      "ddr_w1_14_resc": 0.15898
+    },
+    {
+      "eoc": "EOC443",
+      "ddr_orig8_mean": 2.311077,
+      "ddr_orig8_resc": 0.154072,
+      "ddr_w1_14_mean": 2.256192,
+      "ddr_w1_14_resc": 0.150413
+    },
+    {
+      "eoc": "EOC540",
+      "ddr_orig8_mean": 1.998957,
+      "ddr_orig8_resc": 0.133264,
+      "ddr_w1_14_mean": 1.995262,
+      "ddr_w1_14_resc": 0.133017
+    },
+    {
+      "eoc": "EOC733",
+      "ddr_orig8_mean": 2.973107,
+      "ddr_orig8_resc": 0.198207,
+      "ddr_w1_14_mean": 2.835763,
+      "ddr_w1_14_resc": 0.189051
+    },
+    {
+      "eoc": "EOC87",
+      "ddr_orig8_mean": 2.751158,
+      "ddr_orig8_resc": 0.183411,
+      "ddr_w1_14_mean": 2.623301,
+      "ddr_w1_14_resc": 0.174887
+    }
+  ],
+  "spearman": {
+    "ORIG 8-gene, /15 rescale": {
+      "rho_old": -0.0956722299914231,
+      "p_old": 0.7796173620638177,
+      "rho_new": -0.3545454545454546,
+      "p_new": 0.2846927409558867,
+      "n": 11
+    },
+    "ORIG 8-gene, plain mean": {
+      "rho_old": -0.0956722299914231,
+      "p_old": 0.7796173620638177,
+      "rho_new": -0.3545454545454546,
+      "p_new": 0.2846927409558867,
+      "n": 11
+    },
+    "W1 14-gene, plain mean (FROZEN)": {
+      "rho_old": -0.009111640951564104,
+      "p_old": 0.9787882460225,
+      "rho_new": -0.20909090909090913,
+      "p_new": 0.5372209352113227,
+      "n": 11
+    },
+    "W1 14-gene, /15 rescale": {
+      "rho_old": -0.009111640951564104,
+      "p_old": 0.9787882460225,
+      "rho_new": -0.20909090909090913,
+      "p_new": 0.5372209352113227,
+      "n": 11
+    }
+  },
+  "ddr_orig_genes": [
+    "BRCA1",
+    "BRCA2",
+    "ATM",
+    "ATR",
+    "CHEK1",
+    "CHEK2",
+    "RAD51",
+    "PARP1"
+  ],
+  "ddr_w1_genes": [
+    "BRCA1",
+    "BRCA2",
+    "PALB2",
+    "RAD51",
+    "ATM",
+    "ATR",
+    "CHEK1",
+    "CHEK2",
+    "TP53",
+    "XRCC1",
+    "PARP1",
+    "FANCA",
+    "FANCC",
+    "FANCD2"
+  ],
+  "pfi_old": {
+    "EOC1005": 126,
+    "EOC136": 210,
+    "EOC153": 393,
+    "EOC227": 230,
+    "EOC3": 14,
+    "EOC349": 36,
+    "EOC372": 460,
+    "EOC443": 177,
+    "EOC540": 126,
+    "EOC733": 83,
+    "EOC87": 274
+  },
+  "pfi_new": {
+    "EOC1005": 65,
+    "EOC136": 520,
+    "EOC153": 393,
+    "EOC227": 230,
+    "EOC3": 14,
+    "EOC349": 36,
+    "EOC372": 460,
+    "EOC443": 177,
+    "EOC540": 126,
+    "EOC733": 83,
+    "EOC87": 30
+  }
+}

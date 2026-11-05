@@ -1,0 +1,353 @@
+{
+  "caslib": "Colorec_Multipl_2006_251",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CEA"
+  ],
+  "indication": "colorectal",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 1,
+  "n_tabular_files": 1,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "76c447e3fadb72fa657f97dc70d45200921120bf0a010130986fed364ef12206",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "SAQ HEALTH TODAY: USUAL ACTIVITY EQ-5D",
+          "name": "ADACTI42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ HEALTH TODAY: ANXIETY/DEPRESSION EQ-5D",
+          "name": "ADDEPR42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: DR ADVISED TO QUIT SMOKING",
+          "name": "ADDSMK",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: DO NOT NEED HEALTH INSURANCE",
+          "name": "ADINSA42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: HEALTH INSURANCE NOT WORTH COST",
+          "name": "ADINSB42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ HEALTH TODAY: MOBILITY EQ-5D",
+          "name": "ADMOBI42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: CAN OVERCOME ILLS WITHOUT MED HELP",
+          "name": "ADOVER42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ HEALTH TODAY: PAIN/DISCOMFORT EQ-5D",
+          "name": "ADPAYN42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: MORE LIKELY TO TAKE RISKS",
+          "name": "ADRISK42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ HEALTH TODAY: SELF-CARE EQ-5D",
+          "name": "ADSELF42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: CURRENTLY SMOKE",
+          "name": "ADSMOK42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "AGE",
+          "name": "AGE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "AGE CATEGORY",
+          "name": "AGECAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "COLLAPSED AGE CATEGORY",
+          "name": "AGECAT2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BMI CATEGORY FOR MEPS CASE",
+          "name": "BMICAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "BMI CATEGORY FOR PDS CASE",
+          "name": "BMICAT_PDS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MEPS COLON TUMOR (ICD9CODX = 153)",
+          "name": "COLON",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PDS PRIMARY TUMOR LOCATION (COLON)",
+          "name": "COLON_PDS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MEPS PERSON ID",
+          "name": "DUPERSID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "EMPLOYMENT STATUS",
+          "name": "EMPST42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "EQ5D DECILE CATEGORY (EQ5DDOLAN)",
+          "name": "EQ5DDECILE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "EQ5D DECILE CATEGORY (EQ5DSG)",
+          "name": "EQ5DDECILESG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "EQ5D DIRECTLY SCORED FROM FIVE DIMENSIONS",
+          "name": "EQ5DDIRECT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PREDICTED EQ5D (DOLAN)",
+          "name": "EQ5DDOLAN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PREDICTED EQ5D (SULLIVAN, GHUSHCHYAN)",
+          "name": "EQ5DSG",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ: EQ-5D PREFERENCE BASED INDEX",
+          "name": "EQU42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "HIGHEST DEGREE",
+          "name": "HIDEGYRN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "HEALTH INSURANCE COVERAGE INDICATOR",
+          "name": "INSCOV",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "LINKAGE METHOD",
+          "name": "LINKMETHOD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MEPS CASE LINKAGE STATUS",
+          "name": "LINKSTATUS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MEPS CASE LINKAGE STATUS CONDITIONED ON BMICAT",
+          "name": "LINKSTATUS_BMI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MARITAL STATUS",
+          "name": "MARRY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ:MENTAL COMPONET SUMMRY SF12 IMPUTED",
+          "name": "MCS42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "UNABLE TO GET NECESSRY MEDICAL CARE",
+          "name": "MDUNAB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "DERIVED MEPS ID (DUPERSID||YEAR)",
+          "name": "MEPSID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "PANEL NUMBER",
+          "name": "PANEL",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SAQ:PHYSICAL COMPNT SUMMARY SF12 IMPUTED",
+          "name": "PCS42",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "FINAL PERSON WEIGHT",
+          "name": "PERWTF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "FAMILY INC AS % OF POVERTY LINE",
+          "name": "POVCAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "RACE",
+          "name": "RACE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PDS UNIQUE SUBJECT ID",
+          "name": "RANDCODE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "MEPS RECTAL TUMOR (ICD9CODX = 154)",
+          "name": "RECTUM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "PDS PRIMARY TUMOR LOCATION (RECTAL)",
+          "name": "RECTUM_PDS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "CENSUS REGION",
+          "name": "REGION",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "FINAL SAQ PERSON WEIGHT",
+          "name": "SAQWTF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "SEX",
+          "name": "SEX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "TOTAL HEALTH CARE EXPENDITURE",
+          "name": "TOTEXP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VARIANCE ESTIMATION PSU",
+          "name": "VARPSU",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VARIANCE ESTIMATION PSU (POOLED ANALYSIS WITH 2000-2001)",
+          "name": "VARPSU9614",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VARIANCE ESTIMATION STRATUM",
+          "name": "VARSTR",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "VARIANCE ESTIMATION STRATUM (POOLED ANALYSIS WITH 2000-2001)",
+          "name": "VARSTRA9614",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "YEAR OF MEPS",
+          "name": "YEAR",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "REGION"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 3004,
+      "path": "linked_pds78_20180429_final.sas7bdat",
+      "size": 983040,
+      "status": "OK"
+    }
+  ]
+}

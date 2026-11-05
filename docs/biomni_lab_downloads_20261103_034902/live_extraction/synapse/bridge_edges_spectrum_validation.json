@@ -1,0 +1,38 @@
+[
+  {
+    "source": "vault:synapse_msk_spectrum",
+    "target": "signal:msk:ddr14_transcriptomic_score",
+    "relation": "DERIVES_SIGNAL",
+    "_mint_timestamp": "2026-07-30T02:07:08.592312+00:00"
+  },
+  {
+    "source": "signal:msk:ddr14_transcriptomic_score",
+    "target": "cohort:msk",
+    "relation": "COMPUTED_ON",
+    "_mint_timestamp": "2026-07-30T02:07:08.592312+00:00"
+  },
+  {
+    "source": "signal:msk:ddr14_transcriptomic_score",
+    "target": "signal:msk:genomic_hrd_fga",
+    "relation": "TESTED_AGAINST_NULL",
+    "_mint_timestamp": "2026-07-30T02:07:08.592312+00:00"
+  },
+  {
+    "source": "signal:msk:genomic_hrd_fga",
+    "target": "genomicfeature:msk:wgs:segments",
+    "relation": "DERIVED_FROM",
+    "_mint_timestamp": "2026-07-30T02:07:08.592312+00:00"
+  },
+  {
+    "source": "signal:msk:ddr14_transcriptomic_score",
+    "target": "signal:gse165897:ddr_score_audit",
+    "relation": "CROSS_COHORT_POWER_CONTEXT",
+    "_mint_timestamp": "2026-07-30T02:07:08.592312+00:00"
+  },
+  {
+    "source": "signal:msk:geneset_concordance",
+    "target": "signal:msk:ddr14_transcriptomic_score",
+    "relation": "EXPLAINS_FEATURE_DIFF",
+    "_mint_timestamp": "2026-07-30T02:07:08.592312+00:00"
+  }
+]

@@ -1,0 +1,411 @@
+{
+  "caslib": "Breast_Allianc_2008_158",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CA15_3",
+    "CA27_29"
+  ],
+  "indication": "breast",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 3,
+  "n_tabular_files": 3,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "148c51a2b8e5813ff9fdb67c6a2427ac21d8ee990d0a2c3d5216c4f039f0801d",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "study",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "MASK_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AER_submitted",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "meddra_code",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "CTC_version",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "meddra_version",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "grade_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "relation_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "category",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "eventname",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "eventcat",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "specify",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "select_AE",
+          "type": "varchar"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AER_submitted",
+          "eventname",
+          "eventcat"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 8436,
+      "path": "c40502_ae.csv",
+      "size": 758061,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "MASK_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "arm_received",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "cycleno",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pac_dosemod",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pac_dc",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "nab_dosemod",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "nab_dc",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ixa_dosemod",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ixa_dc",
+          "type": "varchar"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [
+          "cycleno"
+        ],
+        "treatment": [
+          "arm_received"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2508,
+      "path": "c40502_cycles.csv",
+      "size": 36050,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "MASK_ID",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "study_num",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "treated",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "treat_assigned",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "arm",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pacsubset",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "strat1_taxane",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "strat2_recep",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "strat3_bev",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "sstat",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "AGECAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "sex_id",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "racecat",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "anyvisceral",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "softtiss",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "bone",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "dficat",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "dfi01",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "clinstage4",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "hormone",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "her2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "txendreas",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "survmos",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "survstat",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "fumos",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pfsmos",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pfsstat",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ttfmos",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ttfstat",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "bestresp",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "survmos",
+          "survstat",
+          "pfsmos",
+          "pfsstat"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [
+          "treated",
+          "treat_assigned",
+          "arm"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 283,
+      "path": "c40502_efficacy.csv",
+      "size": 29229,
+      "status": "OK"
+    }
+  ]
+}

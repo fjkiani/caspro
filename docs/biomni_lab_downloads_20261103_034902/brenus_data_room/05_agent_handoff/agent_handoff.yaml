@@ -1,0 +1,239 @@
+---
+# CrisPRO Agent Handoff Package — Brenus Data Room
+# Generated: 2026-05-07
+# Formula: PATH A (LOCKED 2026-04-28)
+# PATH B: PROHIBITED
+
+metadata:
+  partner: Brenus Pharma
+  trial: BreAK CRC-001
+  nct: NCT06934538
+  indication: MSS/pMMR metastatic colorectal cancer
+  backbone: mFOLFOX6 +/- bevacizumab
+  anchor_drug: STC-1010
+  anchor_mechanism: DNFB-haptenated whole-cell therapeutic vaccine
+  anchor_publication: "Alzeeb et al. 2024 (DOI: 10.3389/fonc.2024.1427428)"
+  data_room_version: "1.0"
+  data_room_date: "2026-05-07"
+  formula_version: PATH_A
+  formula_lock_date: "2026-04-28"
+  formula_lock_signatory: "Fahad Kiani"
+
+# ============================================================
+# PATIENT POPULATION VECTOR (BreAK CRC-001 enrolled population)
+# ============================================================
+patient_vector:
+  description: "1L MSS/pMMR mCRC, KRAS-enriched (Arm 2A-1), mFOLFOX6 backbone"
+  axes:
+    ddr: 0.20   # Low DDR burden in MSS CRC (vs. MSI-H)
+    mapk: 0.70  # High KRAS/BRAF burden in MSS mCRC (~45% KRAS G12C/D/V)
+    pi3k: 0.30  # Moderate PI3K co-mutation rate
+    vegf: 0.30  # Moderate VEGF expression; bev arm adds VEGF targeting
+    her2: 0.10  # Low HER2 amplification in CRC (~3%)
+    io: 0.40    # Low baseline IO sensitivity (MSS = cold tumor)
+    efflux: 0.20 # Moderate efflux burden; oxaliplatin partially affected
+  notes:
+    - "io=0.40 reflects MSS CRC baseline; non-liver-met subgroup may be higher"
+    - "mapk=0.70 reflects KRAS-enriched Arm 2A-1; ITT population mapk ~0.60"
+    - "vegf=0.30 reflects patient population VEGF burden, not bev treatment"
+    - "SC-001 ACTIVE: KRAS-enriched arm excludes BRAF V600E; HT29 is BRAF V600E"
+
+# ============================================================
+# TRIAL VECTOR (STC-1010 mechanism)
+# ============================================================
+trial_vector:
+  description: "STC-1010 + mFOLFOX6 mechanism vector (no-bev arm)"
+  axes:
+    ddr: 0.10   # Oxaliplatin has mild DDR activity; not primary mechanism
+    mapk: 0.20  # mFOLFOX6 has mild MAPK modulation; not primary mechanism
+    pi3k: 0.10  # Minimal PI3K targeting
+    vegf: 0.20  # No direct VEGF targeting in no-bev arm
+    her2: 0.00  # No HER2 targeting
+    io: 0.90    # Primary mechanism: DNFB danger signal → DC maturation → T-cell priming
+    efflux: 0.10 # Minimal efflux targeting
+  notes:
+    - "io=0.90 reflects DNFB haptenation as primary mechanism"
+    - "B-004 BLOCKED: bev arm vector not finalized (vegf axis would increase)"
+    - "Oxaliplatin ICD contribution captured in io axis (ICD → DAMP release → DC activation)"
+
+# ============================================================
+# PATH A SCORES — ALL 7 CORE TRIALS
+# ============================================================
+path_a_scores:
+  formula: "fit = clip((p · t) / norm(t, 2), 0, 1)"
+  formula_lock: PATH_A
+  ceiling:
+    P_A: 0.8902
+    P_B: 0.8016
+    note: "No trial can score above ceiling. IMblaze370 fit_A=0.8262 is below ceiling — valid."
+
+  trials:
+    CORE-01:
+      name: QUILT-2.004
+      fit_A: 0.5815
+      fit_B: 0.3553
+      delta: 0.2261
+      rank_fit_A: 3
+      rank_delta: 5
+      tier: TIER1
+      primary_failure: "D1 Biology + D3 Architecture"
+      key_signal: "CEA T-cell responses in >80% patients; no PFS benefit"
+      break_implication: "Multi-antigen STC-1010 vs single-antigen CEA; architecture must avoid early termination"
+
+    CORE-02:
+      name: GRANITE GO-010
+      fit_A: 0.5411
+      fit_B: 0.2832
+      delta: 0.2579
+      rank_fit_A: 4
+      rank_delta: 4
+      tier: TIER2
+      warning: "TIER2 — press release data only; company bankrupt; peer review unlikely"
+      primary_failure: "D6 Interpretability + D8 Systemic"
+      key_signal: "Low-ctDNA subgroup HR=0.50 (exploratory, not pre-specified)"
+      break_implication: "Pre-specify all biomarker analyses; ctDNA-low subgroup is hypothesis-generating only"
+
+    CORE-03:
+      name: GVAX + CY + Pembro
+      fit_A: 0.4486
+      fit_B: 0.1495
+      delta: 0.2991
+      rank_fit_A: 6
+      rank_delta: 2
+      tier: TIER1
+      primary_failure: "D1 Biology + D2 Selection"
+      key_signal: "ORR 0% despite T-cell responses and CD8+ infiltration; TGF-β/MDSC bottleneck"
+      break_implication: "MOST IMPORTANT COMPARATOR — STC-1010 must address T-cell trafficking bottleneck, not just priming"
+
+    CORE-04:
+      name: IMblaze370
+      fit_A: 0.8262
+      fit_B: 0.6751
+      delta: 0.1511
+      rank_fit_A: 1
+      rank_delta: 7
+      tier: TIER1
+      warning: "FALSE POSITIVE — high fit reflects patient MAPK burden, not positive precedent. OS HR=1.00 Phase III."
+      primary_failure: "D1 Biology + D7 Translational"
+      key_signal: "OS HR=1.00 in 363 patients; MEK inhibition pathway permanently closed"
+      break_implication: "Do not cite IMblaze370 as supportive evidence. MAPK axis is real; MEK inhibition mechanism is not."
+
+    CORE-05:
+      name: AtezoTRIBE
+      fit_A: 0.5843
+      fit_B: 0.3671
+      delta: 0.2172
+      rank_fit_A: 2
+      rank_delta: 6
+      tier: TIER1
+      primary_failure: "D2 Selection + D5 Attribution"
+      key_signal: "pMMR subgroup PFS HR=0.86 NS; Immunoscore-IC high subgroup PFS HR=0.56"
+      break_implication: "Immunoscore-IC is the strongest available predictive biomarker; consider pre-specification"
+
+    CORE-06:
+      name: MEDITREME
+      fit_A: 0.5037
+      fit_B: 0.2089
+      delta: 0.2949
+      rank_fit_A: 5
+      rank_delta: 3
+      tier: TIER1
+      primary_failure: "D3 Architecture + D5 Attribution"
+      key_signal: "ORR 64.5% single-arm; historical mFOLFOX6+bev ORR ~50-55%; IO contribution unattributable"
+      break_implication: "Randomized control arm or pre-specified historical control required for attribution"
+
+    CORE-07:
+      name: CCTG CO.26
+      fit_A: 0.4000
+      fit_B: 0.1000
+      delta: 0.3000
+      rank_fit_A: 7
+      rank_delta: 1
+      tier: TIER1
+      primary_failure: "D2 Selection + D6 Interpretability"
+      key_signal: "Non-liver-met OS HR~0.50; liver-met OS HR~0.90; pTMB>=28 HR=0.34 (post-hoc)"
+      break_implication: "CALIBRATION ANCHOR — liver-met stratification is the highest-priority design gap (GAP-01)"
+
+# ============================================================
+# OPEN CONFLICTS
+# ============================================================
+open_conflicts:
+  SC-001:
+    status: ACTIVE
+    description: "HT29 cell line is BRAF V600E; Arm 2A-1 is KRAS-enriched (KRAS/BRAF mutually exclusive)"
+    blocks: "Arm 2A-1 vector assignment"
+    resolution: "Brenus Pharma must clarify HT29 use as convenience vs. representative model"
+
+  B-004:
+    status: BLOCKED
+    description: "Bevacizumab arm (Arm 2A-2) vector not finalized; vegf axis weight unresolved"
+    blocks: "Bev arm PATH A score"
+    resolution: "Brenus Pharma must confirm bev arm randomization structure"
+
+  GAP-01:
+    status: CRITICAL_OPEN
+    description: "Liver-metastasis status not pre-specified as stratification variable in NCT06934538"
+    blocks: "Non-liver-met subgroup analysis"
+    resolution: "Protocol amendment required before enrollment opens"
+
+# ============================================================
+# DOWNSTREAM AGENT INSTRUCTIONS
+# ============================================================
+agent_instructions:
+  agent_5_fit_gap:
+    description: "CrisPRO fit-gap analysis for BreAK CRC-001"
+    inputs:
+      - patient_vector: "Use patient_vector above (KRAS-enriched, no-bev arm)"
+      - trial_vector: "Use trial_vector above (STC-1010 + mFOLFOX6)"
+      - comparator_scores: "Use path_a_scores above"
+    outputs:
+      - fit_gap_report: "Identify which axes are most underserved by STC-1010 mechanism"
+      - gap_priority: "Rank gaps by clinical actionability"
+    constraints:
+      - "Use PATH A formula only"
+      - "Do not compute PATH B scores"
+      - "Flag SC-001 and B-004 in any arm-specific analysis"
+      - "Do not use DL-07 (0.983) in any output"
+
+  agent_6_outreach:
+    description: "Brenus Pharma outreach drafting"
+    inputs:
+      - executive_summary: "00_executive_summary/brenus_executive_summary.md"
+      - stc1010_positioning: "03_cross_cutting/stc1010_positioning.md"
+      - failure_taxonomy: "03_cross_cutting/failure_taxonomy.md"
+    outputs:
+      - outreach_email: "Partner-facing email to Brenus BD/clinical team"
+      - one_pager: "Single-page summary for KOL meeting"
+    constraints:
+      - "Do not cite IMblaze370 as positive precedent"
+      - "Do not cite GRANITE as primary evidence (TIER2)"
+      - "Flag GAP-01 as the highest-priority protocol recommendation"
+      - "Do not reference DL-07 (0.983) or PATH B"
+      - "SC-001 conflict must be disclosed in any arm-specific claim"
+
+# ============================================================
+# QUARANTINED ITEMS — DO NOT USE
+# ============================================================
+quarantined:
+  DL-07:
+    value: 0.983
+    axis: ddr
+    status: QUARANTINED
+    reason: "Publication-blocking; not reproducible"
+    instruction: "Do not use in any output"
+
+  LATIFY_deltas:
+    items: [CT-03, DL-05, PC-06]
+    status: QUARANTINED
+    reason: "Vector version unresolved"
+    instruction: "Do not use in any output"
+
+  PC-02:
+    status: PERMANENTLY_DOWNGRADED
+    reason: "retroactive_prediction_run.py has not reproduced documented deltas"
+    instruction: "Do not use in any output"
+
+  PATH_B:
+    status: PROHIBITED
+    reason: "PATH A signed 2026-04-28; PATH B prohibited in all outputs"
+    instruction: "Do not compute, store, or reference PATH B scores"

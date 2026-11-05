@@ -1,0 +1,640 @@
+{
+  "part_a_reproduction": {
+    "set98": {
+      "n": 98,
+      "events": 20,
+      "prevalence": 0.2041,
+      "auroc_raw_s3_vs_resistance": 0.2715,
+      "auroc_raw_ci": [
+        0.1532,
+        0.4058
+      ],
+      "documented_auroc_raw": 0.2715,
+      "reproduces_documented": true,
+      "protective_auroc_1_minus": 0.7285,
+      "protective_auroc_ci": [
+        0.5942,
+        0.8468
+      ],
+      "auprc_resistance_reversed_axis": 0.3478,
+      "auprc_ci": [
+        0.2635,
+        0.5143
+      ],
+      "auprc_prevalence_null": 0.2041,
+      "permutation_p_two_sided": 0.0013998600139986002,
+      "permutation_n": 10000,
+      "mannwhitney_p": 0.0016841736715629155,
+      "median_s3_resistant": 0.046383,
+      "median_s3_sensitive": 0.154783
+    },
+    "set67": {
+      "n": 67,
+      "events": 9,
+      "prevalence": 0.1343,
+      "auroc_raw_s3_vs_resistance": 0.113,
+      "auroc_raw_ci": [
+        0.0421,
+        0.1983
+      ],
+      "documented_auroc_raw": 0.113,
+      "reproduces_documented": true,
+      "protective_auroc_1_minus": 0.887,
+      "protective_auroc_ci": [
+        0.8017,
+        0.9579
+      ],
+      "auprc_resistance_reversed_axis": 0.4179,
+      "auprc_ci": [
+        0.301,
+        0.7282
+      ],
+      "auprc_prevalence_null": 0.1343,
+      "permutation_p_two_sided": 9.999000099990002e-05,
+      "permutation_n": 10000,
+      "mannwhitney_p": 0.00021040055521920662,
+      "median_s3_resistant": 0.024353,
+      "median_s3_sensitive": 0.176513
+    },
+    "direction": {
+      "feature": "s3_diag",
+      "declared_direction": "HIGHER s3 -> platinum SENSITIVE (protective)",
+      "consistency_across_denominators": true,
+      "source_attribution": "Macintyre 2018 Nat Genet 50:1262 (s3 = BRCA1/2-related HRD axis, positively prognostic); Smith 2023 Nat Commun 14:4387 (s3 lower in primary resistant at diagnosis)"
+    }
+  },
+  "part_b_monotone_invariance": {
+    "raw_auroc_s3_vs_resistance": 0.1130268199,
+    "one_minus_raw": 0.8869731801,
+    "cv_auroc_mean_reproduced": 0.8817097701,
+    "cv_auroc_sd_reproduced": 0.0051862804,
+    "cv_auroc_pctile_2p5_97p5_reproduced": [
+      0.8716235632,
+      0.8908045977
+    ],
+    "documented_cv_auroc_mean": 0.8807231800766283,
+    "documented_cv_auroc_sd": 0.00454242948722634,
+    "documented_cv_pctile": [
+      0.871647509578544,
+      0.8889367816091954
+    ],
+    "loo_auroc_reproduced": 0.8716475096,
+    "documented_loo_auroc": 0.871647509578544,
+    "within_fold_identity_max_abs_diff": 1.1102230246251565e-16,
+    "within_fold_identity_n_folds_checked": 1000,
+    "fold_band": {
+      "mean": 0.8817097701149424,
+      "sd": 0.00518628035107954,
+      "pctile_2p5": 0.8716235632183907,
+      "pctile_97p5": 0.8908045977011494,
+      "n_folds": 200,
+      "interpretation": "dispersion across resampled training folds of the SAME patients; NOT a confidence interval for the population AUROC"
+    },
+    "honest_bootstrap_ci_protective": [
+      0.8017,
+      0.9579
+    ],
+    "fold_band_width": 0.0192,
+    "bootstrap_ci_width": 0.1562,
+    "width_ratio_bootstrap_over_fold": 8.14
+  },
+  "part_b_frozen_scorer_calibration": {
+    "n": 67,
+    "events": 9,
+    "auroc_of_frozen_score": 0.887,
+    "calibration_intercept": -2.1174,
+    "calibration_slope": 1.537,
+    "slope_ci_lo": 0.3394,
+    "slope_ci_hi": 2.7345,
+    "intercept_ci_lo": -3.4144,
+    "intercept_ci_hi": -0.8204,
+    "brier": 0.1484,
+    "brier_prevalence_only": 0.1163,
+    "brier_skill_vs_prevalence": -0.2762,
+    "prevalence": 0.1343,
+    "documented_brier_oof": 0.15286348564965177,
+    "documented_brier_prevalence_only": 0.11628425038984185
+  },
+  "part_c_thresholds": {
+    "operating_characteristics_file": "tables/threshold_operating_characteristics.csv",
+    "stability_envelope": {
+      "n_folds": 100,
+      "cutpoint_median": 0.0646,
+      "cutpoint_iqr": [
+        0.0646,
+        0.0798
+      ],
+      "cutpoint_min": 0.0502,
+      "cutpoint_max": 0.0798,
+      "cutpoint_2p5_97p5_across_folds": [
+        0.0588,
+        0.0798
+      ],
+      "cutpoint_bootstrap_ci": [
+        0.0467,
+        0.2084
+      ],
+      "candidate_threshold_0p10_inside_fold_envelope": false,
+      "candidate_threshold_0p10_inside_bootstrap_ci": true,
+      "mean_oof_sens_at_infold_cut": 0.6525,
+      "mean_oof_spec_at_infold_cut": 0.751
+    }
+  },
+  "part_d_incremental_value": {
+    "table": [
+      {
+        "model": "M0_clinical",
+        "kind": "fitted",
+        "features": "age_z;stage_adv;num_lines_n",
+        "n": 67,
+        "events": 9,
+        "oof_auroc_mean": 0.5867,
+        "oof_auroc_fold_sd": 0.0437,
+        "oof_auprc_mean": 0.22,
+        "oof_brier_mean": 0.1212,
+        "preprocessing_varies_across_folds": true,
+        "note": "age, advanced stage, prior lines"
+      },
+      {
+        "model": "M1_s3_only",
+        "kind": "fitted",
+        "features": "s3_diag",
+        "n": 67,
+        "events": 9,
+        "oof_auroc_mean": 0.8747,
+        "oof_auroc_fold_sd": 0.0062,
+        "oof_auprc_mean": 0.4041,
+        "oof_brier_mean": 0.091,
+        "preprocessing_varies_across_folds": true,
+        "note": "fitted single-feature"
+      },
+      {
+        "model": "M2a_shipped_s7_rule",
+        "kind": "fixed",
+        "features": "(fixed rule)",
+        "n": 67,
+        "events": 9,
+        "oof_auroc_mean": 0.6446,
+        "oof_auroc_fold_sd": 0.0,
+        "oof_auprc_mean": 0.2114,
+        "oof_brier_mean": 0.209,
+        "preprocessing_varies_across_folds": null,
+        "note": "backend constants.py SIG7_RISK_THRESHOLD=0.25, binary; timepoint substituted to diagnosis"
+      },
+      {
+        "model": "M2b_s7_continuous",
+        "kind": "fitted",
+        "features": "s7_diag",
+        "n": 67,
+        "events": 9,
+        "oof_auroc_mean": 0.4108,
+        "oof_auroc_fold_sd": 0.0792,
+        "oof_auprc_mean": 0.1453,
+        "oof_brier_mean": 0.1221,
+        "preprocessing_varies_across_folds": true,
+        "note": "fitted s7 exposure"
+      },
+      {
+        "model": "M2c_frozen_s3_scorer",
+        "kind": "fixed",
+        "features": "(fixed rule)",
+        "n": 67,
+        "events": 9,
+        "oof_auroc_mean": 0.887,
+        "oof_auroc_fold_sd": 0.0,
+        "oof_auprc_mean": 0.4179,
+        "oof_brier_mean": 0.1484,
+        "preprocessing_varies_across_folds": null,
+        "note": "Brenus pinned production scorer; constants derived on THIS set -> not out-of-sample"
+      },
+      {
+        "model": "M3a_clinical_plus_s3",
+        "kind": "fitted",
+        "features": "age_z;stage_adv;num_lines_n;s3_diag",
+        "n": 67,
+        "events": 9,
+        "oof_auroc_mean": 0.8752,
+        "oof_auroc_fold_sd": 0.0182,
+        "oof_auprc_mean": 0.4325,
+        "oof_brier_mean": 0.1005,
+        "preprocessing_varies_across_folds": true,
+        "note": ""
+      },
+      {
+        "model": "M3b_s7_plus_s3",
+        "kind": "fitted",
+        "features": "s7_diag;s3_diag",
+        "n": 67,
+        "events": 9,
+        "oof_auroc_mean": 0.8581,
+        "oof_auroc_fold_sd": 0.016,
+        "oof_auprc_mean": 0.4033,
+        "oof_brier_mean": 0.0984,
+        "preprocessing_varies_across_folds": true,
+        "note": ""
+      },
+      {
+        "model": "M4a_hrd_only",
+        "kind": "fitted",
+        "features": "brca_mut_i;hr_gene_mut_i",
+        "n": 67,
+        "events": 9,
+        "oof_auroc_mean": 0.3139,
+        "oof_auroc_fold_sd": 0.0607,
+        "oof_auprc_mean": 0.1011,
+        "oof_brier_mean": 0.1257,
+        "preprocessing_varies_across_folds": true,
+        "note": "BRCA/HR mutation axis"
+      },
+      {
+        "model": "M4b_hrd_plus_s3",
+        "kind": "fitted",
+        "features": "brca_mut_i;hr_gene_mut_i;s3_diag",
+        "n": 67,
+        "events": 9,
+        "oof_auroc_mean": 0.8507,
+        "oof_auroc_fold_sd": 0.0162,
+        "oof_auprc_mean": 0.4129,
+        "oof_brier_mean": 0.1001,
+        "preprocessing_varies_across_folds": true,
+        "note": ""
+      },
+      {
+        "model": "M5_full",
+        "kind": "fitted",
+        "features": "age_z;stage_adv;num_lines_n;brca_mut_i;hr_gene_mut_i;s3_diag",
+        "n": 67,
+        "events": 9,
+        "oof_auroc_mean": 0.8372,
+        "oof_auroc_fold_sd": 0.0303,
+        "oof_auprc_mean": 0.3602,
+        "oof_brier_mean": 0.1155,
+        "preprocessing_varies_across_folds": true,
+        "note": "all covariates + s3; 6 params on 9 events -- reported for completeness only"
+      }
+    ],
+    "deltas": [
+      {
+        "baseline": "M0_clinical",
+        "augmented": "M3a_clinical_plus_s3",
+        "metric": "auroc",
+        "delta": 0.3525,
+        "delta_ci_lo": 0.1494,
+        "delta_ci_hi": 0.548,
+        "p_delta_le_0": 0.0005,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M0_clinical",
+        "augmented": "M3a_clinical_plus_s3",
+        "metric": "auprc",
+        "delta": 0.2078,
+        "delta_ci_lo": 0.01,
+        "delta_ci_hi": 0.4494,
+        "p_delta_le_0": 0.022,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M0_clinical",
+        "augmented": "M3a_clinical_plus_s3",
+        "metric": "brier",
+        "delta": -0.0227,
+        "delta_ci_lo": -0.0474,
+        "delta_ci_hi": 0.0049,
+        "p_delta_le_0": 0.949,
+        "ci_excludes_zero": false
+      },
+      {
+        "baseline": "M0_clinical",
+        "augmented": "M1_s3_only",
+        "metric": "auroc",
+        "delta": 0.341,
+        "delta_ci_lo": 0.1092,
+        "delta_ci_hi": 0.567,
+        "p_delta_le_0": 0.0035,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M0_clinical",
+        "augmented": "M1_s3_only",
+        "metric": "auprc",
+        "delta": 0.184,
+        "delta_ci_lo": -0.0922,
+        "delta_ci_hi": 0.4676,
+        "p_delta_le_0": 0.076,
+        "ci_excludes_zero": false
+      },
+      {
+        "baseline": "M0_clinical",
+        "augmented": "M1_s3_only",
+        "metric": "brier",
+        "delta": -0.0293,
+        "delta_ci_lo": -0.0598,
+        "delta_ci_hi": 0.0017,
+        "p_delta_le_0": 0.9685,
+        "ci_excludes_zero": false
+      },
+      {
+        "baseline": "M2b_s7_continuous",
+        "augmented": "M3b_s7_plus_s3",
+        "metric": "auroc",
+        "delta": 0.408,
+        "delta_ci_lo": 0.1494,
+        "delta_ci_hi": 0.6782,
+        "p_delta_le_0": 0.0,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M2b_s7_continuous",
+        "augmented": "M3b_s7_plus_s3",
+        "metric": "auprc",
+        "delta": 0.2614,
+        "delta_ci_lo": 0.0929,
+        "delta_ci_hi": 0.5972,
+        "p_delta_le_0": 0.0,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M2b_s7_continuous",
+        "augmented": "M3b_s7_plus_s3",
+        "metric": "brier",
+        "delta": -0.0248,
+        "delta_ci_lo": -0.0529,
+        "delta_ci_hi": 0.0048,
+        "p_delta_le_0": 0.953,
+        "ci_excludes_zero": false
+      },
+      {
+        "baseline": "M2a_shipped_s7_rule",
+        "augmented": "M1_s3_only",
+        "metric": "auroc",
+        "delta": 0.2232,
+        "delta_ci_lo": 0.0498,
+        "delta_ci_hi": 0.3927,
+        "p_delta_le_0": 0.004,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M2a_shipped_s7_rule",
+        "augmented": "M1_s3_only",
+        "metric": "auprc",
+        "delta": 0.1679,
+        "delta_ci_lo": 0.008,
+        "delta_ci_hi": 0.4434,
+        "p_delta_le_0": 0.019,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M2a_shipped_s7_rule",
+        "augmented": "M1_s3_only",
+        "metric": "brier",
+        "delta": -0.1185,
+        "delta_ci_lo": -0.2076,
+        "delta_ci_hi": -0.0392,
+        "p_delta_le_0": 0.9985,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M4a_hrd_only",
+        "augmented": "M4b_hrd_plus_s3",
+        "metric": "auroc",
+        "delta": 0.6571,
+        "delta_ci_lo": 0.4713,
+        "delta_ci_hi": 0.8257,
+        "p_delta_le_0": 0.0,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M4a_hrd_only",
+        "augmented": "M4b_hrd_plus_s3",
+        "metric": "auprc",
+        "delta": 0.3836,
+        "delta_ci_lo": 0.2015,
+        "delta_ci_hi": 0.6256,
+        "p_delta_le_0": 0.0,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M4a_hrd_only",
+        "augmented": "M4b_hrd_plus_s3",
+        "metric": "brier",
+        "delta": -0.0261,
+        "delta_ci_lo": -0.0516,
+        "delta_ci_hi": -0.0009,
+        "p_delta_le_0": 0.978,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M4a_hrd_only",
+        "augmented": "M1_s3_only",
+        "metric": "auroc",
+        "delta": 0.6609,
+        "delta_ci_lo": 0.4463,
+        "delta_ci_hi": 0.8506,
+        "p_delta_le_0": 0.0,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M4a_hrd_only",
+        "augmented": "M1_s3_only",
+        "metric": "auprc",
+        "delta": 0.2851,
+        "delta_ci_lo": 0.1747,
+        "delta_ci_hi": 0.5605,
+        "p_delta_le_0": 0.0,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M4a_hrd_only",
+        "augmented": "M1_s3_only",
+        "metric": "brier",
+        "delta": -0.0343,
+        "delta_ci_lo": -0.0567,
+        "delta_ci_hi": -0.0099,
+        "p_delta_le_0": 0.997,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M2c_frozen_s3_scorer",
+        "augmented": "M1_s3_only",
+        "metric": "auroc",
+        "delta": -0.0192,
+        "delta_ci_lo": -0.0403,
+        "delta_ci_hi": -0.0029,
+        "p_delta_le_0": 0.999,
+        "ci_excludes_zero": true
+      },
+      {
+        "baseline": "M2c_frozen_s3_scorer",
+        "augmented": "M1_s3_only",
+        "metric": "auprc",
+        "delta": -0.0386,
+        "delta_ci_lo": -0.1052,
+        "delta_ci_hi": 0.0,
+        "p_delta_le_0": 0.9945,
+        "ci_excludes_zero": false
+      },
+      {
+        "baseline": "M2c_frozen_s3_scorer",
+        "augmented": "M1_s3_only",
+        "metric": "brier",
+        "delta": -0.0579,
+        "delta_ci_lo": -0.0913,
+        "delta_ci_hi": -0.0244,
+        "p_delta_le_0": 1.0,
+        "ci_excludes_zero": true
+      }
+    ],
+    "firth_lrt_full_data_non_oof": {
+      "age_z+stage_adv+num_lines_n+s3_diag | drop s3_diag": 0.000423,
+      "brca_mut_i+hr_gene_mut_i+s3_diag | drop s3_diag": 0.000145,
+      "s7_diag+s3_diag | drop s3_diag": 0.000154
+    },
+    "power_warning": "n=67 with 9 events. Events-per-variable is below 2 for every multivariable model. These comparisons can exclude large effects but cannot establish small ones."
+  },
+  "part_e_hrd_redundancy": {
+    "set98": {
+      "n": 98,
+      "events": 20,
+      "brca_mut_i": {
+        "n_mutant": 19,
+        "corr_with_s3_pointbiserial": 0.0912,
+        "corr_p": 0.3718326964532515,
+        "s3_median_mutant": 0.152,
+        "s3_median_wildtype": 0.1188,
+        "mannwhitney_p_s3_by_mutation": 0.3202731401542286,
+        "auroc_of_mutation_alone_vs_resistance": 0.4724
+      },
+      "hr_gene_mut_i": {
+        "n_mutant": 26,
+        "corr_with_s3_pointbiserial": 0.0347,
+        "corr_p": 0.7341056363031988,
+        "s3_median_mutant": 0.1385,
+        "s3_median_wildtype": 0.1312,
+        "mannwhitney_p_s3_by_mutation": 0.7564982816866186,
+        "auroc_of_mutation_alone_vs_resistance": 0.459
+      },
+      "brca_stratified_s3": {
+        "BRCA_mutant": {
+          "n": 19,
+          "events": 3,
+          "auroc_raw": 0.0208,
+          "ci": [
+            0.0,
+            0.125
+          ],
+          "protective_auroc": 0.9792,
+          "interpretable": false,
+          "note": "event count below 10 -- this stratum cannot support a conclusion"
+        },
+        "BRCA_wildtype": {
+          "n": 79,
+          "events": 17,
+          "auroc_raw": 0.3292,
+          "ci": [
+            0.1964,
+            0.472
+          ],
+          "protective_auroc": 0.6708,
+          "interpretable": true,
+          "note": ""
+        }
+      }
+    },
+    "set67": {
+      "n": 67,
+      "events": 9,
+      "brca_mut_i": {
+        "n_mutant": 19,
+        "corr_with_s3_pointbiserial": 0.0478,
+        "corr_p": 0.7011183419397101,
+        "s3_median_mutant": 0.152,
+        "s3_median_wildtype": 0.1341,
+        "mannwhitney_p_s3_by_mutation": 0.6460886432436261,
+        "auroc_of_mutation_alone_vs_resistance": 0.5287
+      },
+      "hr_gene_mut_i": {
+        "n_mutant": 26,
+        "corr_with_s3_pointbiserial": -0.0379,
+        "corr_p": 0.76086611363796,
+        "s3_median_mutant": 0.1385,
+        "s3_median_wildtype": 0.1463,
+        "mannwhitney_p_s3_by_mutation": 0.7137525812281191,
+        "auroc_of_mutation_alone_vs_resistance": 0.5326
+      },
+      "brca_stratified_s3": {
+        "BRCA_mutant": {
+          "n": 19,
+          "events": 3,
+          "auroc_raw": 0.0208,
+          "ci": [
+            0.0,
+            0.125
+          ],
+          "protective_auroc": 0.9792,
+          "interpretable": false,
+          "note": "event count below 10 -- this stratum cannot support a conclusion"
+        },
+        "BRCA_wildtype": {
+          "n": 48,
+          "events": 6,
+          "auroc_raw": 0.1587,
+          "ci": [
+            0.0595,
+            0.2778
+          ],
+          "protective_auroc": 0.8413,
+          "interpretable": false,
+          "note": "event count below 10 -- this stratum cannot support a conclusion"
+        }
+      }
+    }
+  },
+  "part_f_adjusted": {
+    "s3_sd_used": 0.1391,
+    "documented_sd": 0.1337,
+    "mle_or_per_sd": 0.0189,
+    "mle_p": 0.018086228124364872,
+    "documented_mle_or": 0.0252,
+    "documented_mle_p": 0.0141,
+    "firth_or_per_sd": 0.0633,
+    "firth_wald_p": 0.011260835260167745,
+    "documented_firth_or": 0.0825,
+    "documented_firth_wald_p": 0.0095,
+    "n": 67,
+    "events": 9,
+    "n_covariates": 5,
+    "events_per_variable": 1.8,
+    "underpowered_flag": true,
+    "cox_os": {
+      "n": 67,
+      "events": 39,
+      "hr_per_sd": 0.7384,
+      "ci": [
+        0.5088,
+        1.0714
+      ],
+      "p": 0.110334026391474,
+      "documented_hr": 0.6869,
+      "documented_p": 0.043
+    }
+  },
+  "part_g_influence": {
+    "base_auroc": 0.2715,
+    "leave_one_event_out": {
+      "n_drops": 20,
+      "min": 0.2352,
+      "max": 0.2827,
+      "range_width": 0.0476,
+      "documented_min": 0.2352,
+      "documented_max": 0.2827
+    },
+    "leave_one_subject_out": {
+      "n_drops": 98,
+      "min": 0.2352,
+      "max": 0.2827,
+      "range_width": 0.0476
+    },
+    "no_single_subject_flips_direction": true
+  }
+}

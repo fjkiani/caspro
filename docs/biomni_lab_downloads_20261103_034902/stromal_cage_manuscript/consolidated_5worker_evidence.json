@@ -1,0 +1,256 @@
+{
+  "frozen_headline": {
+    "CXCL12_coef": -0.1497295482900013,
+    "POSTN_coef": -0.1035931441870769,
+    "core13_gse63885_platinum_AUROC": 0.6385,
+    "DeLong_CI": [
+      0.5128,
+      0.7641
+    ],
+    "p_vs_0.5": 0.0308,
+    "verdict": "INCONCLUSIVE",
+    "model_scope_note": {
+      "core13_nonzero": {
+        "CXCL12": -0.14973,
+        "POSTN": -0.10359,
+        "n_nonzero": 2,
+        "n_candidates": 13,
+        "hyperparams": {
+          "C": 0.1,
+          "l1_ratio": 0.7
+        }
+      },
+      "full28_nonzero": {
+        "n_nonzero": 12,
+        "n_candidates": 28,
+        "genes": [
+          "CXCL12",
+          "POSTN",
+          "CXCL11",
+          "CXCR3",
+          "CCL2",
+          "CCL5",
+          "TGFB1",
+          "COL1A1",
+          "TWIST1",
+          "CD274",
+          "THBS1",
+          "SPARC"
+        ],
+        "hyperparams": {
+          "C": 0.03,
+          "l1_ratio": 0.1
+        }
+      },
+      "clarification": "The 2-gene collapse (CXCL12,POSTN) is the Core-13 model. The Full-28 model retains 12 non-zero genes and does NOT collapse to two; it also does not transfer OOD (platinum AUROC 0.598, p=0.139, NOT-SUPPORTED). The parsimonious 2-gene Core-13 is the frozen, carried-forward model."
+    }
+  },
+  "w1_coef_stability": {
+    "panel": "core13",
+    "hyperparams": {
+      "C": 0.1,
+      "l1_ratio": 0.7,
+      "penalty": "elasticnet",
+      "solver": "saga",
+      "class_weight": "balanced",
+      "max_iter": 5000,
+      "random_state": 42
+    },
+    "n_samples": 58,
+    "class_balance": {
+      "resistant_0": 10,
+      "sensitive_1": 48
+    },
+    "n_bootstrap": 2000,
+    "n_valid": 2000,
+    "CXCL12_selection_freq": 0.6525,
+    "POSTN_selection_freq": 0.5845,
+    "both_cxcl12_postn_coselected_freq": 0.38,
+    "either_cxcl12_postn_freq": 0.857,
+    "mean_n_nonzero_genes_per_fit": 3.201,
+    "median_n_nonzero_genes_per_fit": 3.0,
+    "top3_by_selection_freq": [
+      [
+        "CXCL12",
+        0.6525
+      ],
+      [
+        "POSTN",
+        0.5845
+      ],
+      [
+        "CCL5",
+        0.4515
+      ]
+    ],
+    "caveat": "Discovery-only. EPV~0.36 (10 minority events / 13 features). Low-EPV drives wide fold spread; bootstrap stability quantifies fragility honestly."
+  },
+  "w2_batch_effect": {
+    "mean_abs_shift_active_genes_log2": 4.842075899682655,
+    "mean_abs_shift_core13_log2": 4.636435753980092,
+    "CXCL12_shift": [
+      {
+        "train_mean": 4.382,
+        "test_mean": 8.953,
+        "delta_mean_log2": 4.571
+      }
+    ],
+    "POSTN_shift": [
+      {
+        "train_mean": 3.974,
+        "test_mean": 9.087,
+        "delta_mean_log2": 5.113
+      }
+    ],
+    "quantile_norm_sensitivity": {
+      "n_scored": 75,
+      "n_pos": 41,
+      "n_neg": 34,
+      "auroc_raw_frozen": 0.6384505021520803,
+      "auroc_quantile_normalized": 0.6348637015781923,
+      "auroc_delta_qn_minus_raw": -0.0035868005738880493,
+      "spearman_rho_raw_vs_qn_scores": 0.9849217638691322,
+      "interpretation": "AUROC is rank-based; quantile normalization of active genes changes absolute scores but should barely move AUROC, confirming discrimination survives the batch shift while the operating threshold does not."
+    },
+    "composite_context": "Prior frozen composite IMMUNE_ACCESS=0.40*TCELL_GPS-0.35*MYELOID_FLOOD-0.25*STROMAL_CAGE was NOT_SUPPORTED across 9 configs (GSE63885 platinum AUROC 0.549z/0.579raw, p=0.474/0.239). Core-13 Elastic Net (0.638) is a DIFFERENT model; both verdicts real.",
+    "caveat": "Batch shift ~4.5 log2 on CXCL12/POSTN breaks frozen Youden threshold (sens 0.00-0.07, spec 1.0) but not rank-based AUROC. Deployment needs cross-cohort calibration."
+  },
+  "w3_survival": {
+    "n_evaluable": 54,
+    "n_events": 48,
+    "duration": "pfi_days",
+    "event": "pfi_event",
+    "endpoint": "progression-free interval (PFI)",
+    "tier_1a_vs_1b": {
+      "n_1a": 26,
+      "n_1b": 28,
+      "logrank_p": 0.02126460848443414,
+      "logrank_stat": 5.304974701448146
+    },
+    "CXCL12_median_split": {
+      "median_log2": 4.42915,
+      "logrank_p": 0.14665355650011166,
+      "n_high": 27,
+      "n_low": 27
+    },
+    "POSTN_median_split": {
+      "median_log2": 3.29855,
+      "logrank_p": 0.1324936978991667,
+      "n_high": 27,
+      "n_low": 27
+    },
+    "cox": {
+      "n": 54,
+      "events": 48,
+      "CXCL12_z": {
+        "HR": 1.3487746610430207,
+        "coef": 0.29919652179229644,
+        "p": 0.06868247616673981,
+        "ci_lo": 0.9773404586850429,
+        "ci_hi": 1.8613708970150873
+      },
+      "POSTN_z": {
+        "HR": 1.1197486546448088,
+        "coef": 0.11310424462637138,
+        "p": 0.5210232284802836,
+        "ci_lo": 0.7926952627141687,
+        "ci_hi": 1.5817390472168997
+      },
+      "concordance": 0.6185944363103953,
+      "schoenfeld_ph_p": {
+        "CXCL12_z": 0.3987956243291241,
+        "POSTN_z": 0.8027221321341149
+      }
+    },
+    "known_prior_facts": {
+      "TCGA_hgsoc_3tier_SPE_logrank_p": 0.003819,
+      "TCGA_TIER1A_vs_1B_logrank_p": 0.126,
+      "note": "TCGA n=427 3-tier SPE is PROGNOSTIC only (prior mission fact). This cohort analysis is corroborating, discovery-only, RUO."
+    },
+    "caveat": "Cohort-level prognostic association, discovery-only, small n. PROGNOSTIC (who progresses) is distinct from PREDICTIVE platinum-response (Elastic Net). Not a validated clinical tool."
+  },
+  "w4_gene_screen": {
+    "n": 75,
+    "n_pos": 41,
+    "n_neg": 34,
+    "top5_by_abs_deviation": [
+      {
+        "gene": "POSTN",
+        "auroc_raw": 0.3232,
+        "p_vs_0.5": 0.0041,
+        "p_bh_fdr": 0.1156
+      },
+      {
+        "gene": "LGALS1",
+        "auroc_raw": 0.3931,
+        "p_vs_0.5": 0.1149,
+        "p_bh_fdr": 0.7715
+      },
+      {
+        "gene": "FAP",
+        "auroc_raw": 0.3967,
+        "p_vs_0.5": 0.1226,
+        "p_bh_fdr": 0.7715
+      },
+      {
+        "gene": "CXCL12",
+        "auroc_raw": 0.4014,
+        "p_vs_0.5": 0.1367,
+        "p_bh_fdr": 0.7715
+      },
+      {
+        "gene": "PDGFRB",
+        "auroc_raw": 0.4082,
+        "p_vs_0.5": 0.1724,
+        "p_bh_fdr": 0.7715
+      }
+    ],
+    "apex_candidates": [
+      {
+        "gene": "POSTN",
+        "auroc_raw": 0.3232,
+        "auroc_abs_dev": 0.1768,
+        "p_vs_0.5": 0.0041,
+        "p_bh_fdr": 0.1156
+      },
+      {
+        "gene": "FAP",
+        "auroc_raw": 0.3967,
+        "auroc_abs_dev": 0.1033,
+        "p_vs_0.5": 0.1226,
+        "p_bh_fdr": 0.7715
+      },
+      {
+        "gene": "CXCL12",
+        "auroc_raw": 0.4014,
+        "auroc_abs_dev": 0.0986,
+        "p_vs_0.5": 0.1367,
+        "p_bh_fdr": 0.7715
+      },
+      {
+        "gene": "CXCL10",
+        "auroc_raw": 0.4684,
+        "auroc_abs_dev": 0.0316,
+        "p_vs_0.5": 0.6406,
+        "p_bh_fdr": 0.7715
+      }
+    ],
+    "n_genes_fdr_sig_0.05": 0,
+    "n_genes_nominal_sig_0.05": 1,
+    "interpretation": "Univariate out-of-distribution screen. Identifies which single genes carry standalone platinum-sensitivity signal after BH-FDR. Contextualizes whether the 2-gene Elastic Net core reflects the strongest individual drivers.",
+    "caveat": "Discovery-only, out-of-distribution, RUO. Raw-gene AUROC without orientation correction; |AUROC-0.5| measures discrimination magnitude in either direction."
+  },
+  "artistry7_verified": {
+    "trial": "ARTISTRY-7 (NCT05092360, GOG-3063/ENGOT-OV68)",
+    "outcome": "FAILED interim OS: nemvaleukin+pembro median OS 10.1mo vs chemo 9.8mo (HR 0.98); development halted for PROC; 456 patients; terminated",
+    "sources": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "usage_note": "Illustrative real-world example of failed IO in cold/stromal-rich tumor. NOT a claim CrisPRO could have rescued it (no access to ARTISTRY-7 biomarker data). Hypothesis-generating only."
+  }
+}

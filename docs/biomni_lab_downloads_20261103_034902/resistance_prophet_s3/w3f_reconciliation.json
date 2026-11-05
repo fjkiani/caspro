@@ -1,0 +1,187 @@
+{
+  "rebuilt_table": "/mnt/results/resistance_prophet_s3/tables/rebuilt_patient_master.csv",
+  "n_modeling_set": 98,
+  "events_modeling_set": 20,
+  "s3_sd_on_n98": 0.133721,
+  "documented_s3_sd": 0.1337,
+  "s3_sd_on_n67_for_contrast": 0.139083,
+  "documented": {
+    "mle_or": 0.0252,
+    "mle_p": 0.0141,
+    "firth_or": 0.0825,
+    "firth_p": 0.0095,
+    "cox_hr": 0.6869,
+    "cox_p": 0.043,
+    "cox_ci": [
+      0.4775,
+      0.9883
+    ],
+    "schoenfeld_global_p": 0.2251,
+    "s3_sd": 0.1337
+  },
+  "variants": {
+    "V0_exact_archived_spec": {
+      "n": 67,
+      "events": 9,
+      "n_covariates": 5,
+      "covariates": [
+        "s3_diag_z",
+        "age_z",
+        "stage_adv",
+        "brca",
+        "nlines"
+      ],
+      "mle_or_per_sd": 0.0252,
+      "mle_beta": -3.6791,
+      "mle_p": 0.0141,
+      "mle_ci_or": [
+        0.0013,
+        0.4759
+      ],
+      "firth_or_per_sd": 0.0825,
+      "firth_beta": -2.4949,
+      "firth_wald_p": 0.0095,
+      "firth_lrt_p": 4.9e-05,
+      "cox": {
+        "n": 67,
+        "events": 39,
+        "covariates": [
+          "s3_diag_z",
+          "age_z",
+          "stage_adv",
+          "brca"
+        ],
+        "hr_per_sd": 0.6869,
+        "p": 0.043,
+        "ci_hr": [
+          0.4775,
+          0.9883
+        ],
+        "schoenfeld_global_p": 0.2251,
+        "ph_violation": false
+      }
+    },
+    "V1_hr_gene_instead_of_brca": {
+      "n": 67,
+      "events": 9,
+      "n_covariates": 5,
+      "covariates": [
+        "s3_diag_z",
+        "age_z",
+        "stage_adv",
+        "hr",
+        "nlines"
+      ],
+      "mle_or_per_sd": 0.0236,
+      "mle_beta": -3.7484,
+      "mle_p": 0.0136,
+      "mle_ci_or": [
+        0.0012,
+        0.4621
+      ],
+      "firth_or_per_sd": 0.0801,
+      "firth_beta": -2.5247,
+      "firth_wald_p": 0.0095,
+      "firth_lrt_p": 4.7e-05
+    },
+    "V2_num_lines_4plus_as_5": {
+      "n": 67,
+      "events": 9,
+      "n_covariates": 5,
+      "covariates": [
+        "s3_diag_z",
+        "age_z",
+        "stage_adv",
+        "brca",
+        "nlines_recode5"
+      ],
+      "mle_or_per_sd": 0.0214,
+      "mle_beta": -3.8442,
+      "mle_p": 0.0198,
+      "mle_ci_or": [
+        0.0008,
+        0.5432
+      ],
+      "firth_or_per_sd": 0.0722,
+      "firth_beta": -2.6281,
+      "firth_wald_p": 0.0114,
+      "firth_lrt_p": 6.2e-05
+    },
+    "V3_sd_from_n67": {
+      "n": 67,
+      "events": 9,
+      "n_covariates": 5,
+      "covariates": [
+        "s3_sd67",
+        "age_z",
+        "stage_adv",
+        "brca",
+        "nlines"
+      ],
+      "mle_or_per_sd": 0.0247,
+      "mle_beta": -3.6992,
+      "mle_p": 0.0148,
+      "mle_ci_or": [
+        0.0013,
+        0.4852
+      ],
+      "firth_or_per_sd": 0.0747,
+      "firth_beta": -2.5949,
+      "firth_wald_p": 0.0095,
+      "firth_lrt_p": 5.1e-05
+    },
+    "V4_w3_partF_spec": {
+      "n": 67,
+      "events": 9,
+      "n_covariates": 5,
+      "covariates": [
+        "s3_sd_partf",
+        "age_z",
+        "stage_adv",
+        "nlines_recode5",
+        "hr"
+      ],
+      "mle_or_per_sd": 0.0199,
+      "mle_beta": -3.9182,
+      "mle_p": 0.0185,
+      "mle_ci_or": [
+        0.0008,
+        0.5183
+      ],
+      "firth_or_per_sd": 0.0633,
+      "firth_beta": -2.7592,
+      "firth_wald_p": 0.0113,
+      "firth_lrt_p": 6e-05,
+      "cox": {
+        "n": 67,
+        "events": 39,
+        "covariates": [
+          "s3_diag_z",
+          "age_z",
+          "stage_adv",
+          "hr",
+          "nlines"
+        ],
+        "hr_per_sd": 0.7383,
+        "p": 0.0937,
+        "ci_hr": [
+          0.5177,
+          1.0527
+        ],
+        "schoenfeld_global_p": 0.2558,
+        "ph_violation": false
+      }
+    }
+  },
+  "verdict": {
+    "mle_or_matches_documented": true,
+    "mle_p_matches_documented": true,
+    "firth_or_matches_documented": true,
+    "firth_p_matches_documented": true,
+    "cox_hr_matches_documented": true,
+    "cox_p_matches_documented": true,
+    "s3_sd_matches_documented": true,
+    "all_match": true
+  },
+  "interpretation": "The W3 Part F gap was a specification difference, not a data difference. The archived spec scales s3 by the SD of the n=98 modeling set (not the n=67 complete-case set), adjusts for BRCA (not any-HR-gene), drops '4+' lines to NaN then median-fills, and omits num_lines from the Cox model. Re-running that exact specification on the independently rebuilt table reproduces the documented adjusted OR, Firth OR and Cox HR."
+}

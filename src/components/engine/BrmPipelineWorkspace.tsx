@@ -609,7 +609,7 @@ export default function BrmPipelineWorkspace() {
           {chrome.footerEyebrow}
         </span>
         <FooterLink
-          href="/engine/target-lock/tabs"
+          href="/engine/target-lock/"
           label={chrome.footerLinkTabbed}
           isDark={isDarkMode}
         />

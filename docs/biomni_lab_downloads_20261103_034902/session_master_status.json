@@ -1,0 +1,89 @@
+{
+  "session": "GLASS + dbGaP + PDS/CRC parallel execution",
+  "timestamp": "2026-05-13",
+  "lanes": {
+    "dbgap": {
+      "status": "CLOSED",
+      "study": "phs003428 (CTEP/NCI CALGB-SWOG 80405 ctDNA, NCT00265850)",
+      "files": [
+        "dbgap_phs003428_fahad_fields_only.json",
+        "dbgap_phs003428_institution_intake_minimal.csv"
+      ],
+      "fahad_fields": [
+        "project_title",
+        "research_use_statement",
+        "non_technical_summary",
+        "senior_key_person_profile",
+        "ctep_notification_attachment"
+      ],
+      "human_only_blocker": "Email NCICTEPDAR@mail.nih.gov for CTEP pre-notification approval before DAR submission"
+    },
+    "glass": {
+      "status": "ANALYSIS_RUNNING",
+      "gse163120_verdict": "DEAD \u2014 not matched-pair, no treatment annotation, raw data EGA-restricted",
+      "target": "GSE174554",
+      "target_publication": "36539501",
+      "matched_pairs": 30,
+      "treatment_annotation_pct": 100.0,
+      "files_landed": [
+        "gbm_next_resolution_dataset_scan.csv",
+        "gbm_next_resolution_target.json",
+        "gbm_next_resolution_access_status.json",
+        "gbm_gse174554_sample_manifest.csv",
+        "gbm_gse174554_data_inventory.json",
+        "gbm_gse174554_analysis_readiness.json"
+      ],
+      "pending": [
+        "gbm_gse174554_cell_composition_primary_vs_recurrent.csv",
+        "gbm_gse174554_composition_summary.json",
+        "gbm_gse174554_spatial_summary.json",
+        "gbm_gse174554_matched_pair_matrix.csv"
+      ]
+    },
+    "pds_crc": {
+      "status": "SUBGROUP_EXTRACTION_RUNNING",
+      "anchor_scan": "CLOSED",
+      "trials": {
+        "N0147": {
+          "pmid": "25305506",
+          "molecular_columns": [
+            "KRAS_mutation_status (exon 2, codons 12/13)",
+            "BRAF_V600E_mutation_status",
+            "MMR_status (MLH1, MSH2, MSH6 IHC + MLH1 promoter methylation)",
+            "MSI_status (dMMR vs pMMR)",
+            "MLH1_promoter_methylation",
+            "tumor_subtype (5-class: pMMR-BRAF-mut, pMMR-KRAS-mut, pMMR-WT, dMMR-sporadic, dMMR-familial)"
+          ],
+          "verdict": "PASS"
+        },
+        "MOSAIC": {
+          "pmid": "19451431",
+          "molecular_columns": [],
+          "verdict": "PASS"
+        },
+        "PRIME": {
+          "pmid": "24024839",
+          "molecular_columns": [],
+          "verdict": "PASS"
+        },
+        "VELOUR": {
+          "pmid": "22949147",
+          "molecular_columns": [],
+          "verdict": "PASS"
+        }
+      },
+      "files_landed": [
+        "n0147_molecular_anchor_scan.json",
+        "mosaic_endpoint_qc.json",
+        "prime_ras_column_scan.json",
+        "velour_endpoint_table_resolution.json"
+      ],
+      "pending": [
+        "n0147_molecular_subgroup_table.json",
+        "mosaic_stage_subgroup_table.json",
+        "prime_ras_subgroup_breakdown.json",
+        "velour_subgroup_and_biomarker_table.json"
+      ]
+    }
+  }
+}

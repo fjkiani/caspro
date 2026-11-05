@@ -1,0 +1,21 @@
+{
+  "receipt_type": "pi3k_mtor_gene_panel",
+  "purpose": "Canonical PI3K/PI3K-AKT-mTOR pathway gene panel used to compute a pathway z-score for TCGA-OV prognostic Cox (W1/W2) and platinum-response predictive analysis (W3). Fixed BEFORE analysis to avoid post-hoc gene cherry-picking.",
+  "hugo_symbols": [
+    "PIK3CA", "PIK3CB", "PIK3R1",
+    "AKT1", "AKT2", "AKT3",
+    "MTOR", "RPTOR", "RICTOR",
+    "PTEN",
+    "TSC1", "TSC2",
+    "STK11"
+  ],
+  "core_activating_axis": ["PIK3CA", "AKT1", "AKT2", "AKT3", "MTOR", "RPTOR", "RICTOR"],
+  "negative_regulators_tumor_suppressors": ["PTEN", "TSC1", "TSC2", "STK11", "PIK3R1"],
+  "scoring_notes": {
+    "score_definition": "Pathway activation z-score = mean of per-gene mRNA median z-scores for core_activating_axis genes MINUS mean z of negative_regulators (directional pathway-activity score). A second, simpler 'unsigned mean-z of all panel genes' is also computed as a sensitivity check.",
+    "expression_profile_tcga": "ov_tcga_pan_can_atlas_2018_rna_seq_v2_mrna_median_Zscores",
+    "rationale": "PTEN/TSC1/TSC2/STK11/PIK3R1 loss ACTIVATES the pathway, so their z enters with a negative sign in the directional score. Reported alongside the unsigned score for transparency."
+  },
+  "provenance": "Canonical PI3K-AKT-mTOR pathway members (KEGG hsa04151 / oncogenic PI3K signaling); panel committed as a pre-registration receipt for this validation run.",
+  "date_fixed": "2026-07-20"
+}

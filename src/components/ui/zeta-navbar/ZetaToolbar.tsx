@@ -34,7 +34,7 @@ function PersonaPill({ p, active, isDarkMode, onClick }: { p: Persona; active: b
       }
     >
       <Icon className="h-3 w-3" aria-hidden />
-      <span className="hidden md:inline">{PERSONA_LABELS[p]}</span>
+      <span className="hidden xl:inline">{PERSONA_LABELS[p]}</span>
     </button>
   );
 }
@@ -51,7 +51,7 @@ export function ZetaToolbar({
   const { persona, setPersona } = usePersona();
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex shrink-0 items-center gap-2">
       {/* Persona switcher */}
       <div
         role="group"

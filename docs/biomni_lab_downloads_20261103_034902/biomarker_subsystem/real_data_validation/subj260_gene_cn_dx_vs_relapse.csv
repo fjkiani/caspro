@@ -1,0 +1,7 @@
+gene,dx_rel_cn,relapse_rel_cn,delta,dx_call,relapse_call,changed
+CCNE1,1.0361,0.8745,-0.1616,neutral,neutral,False
+PALB2,0.9501,0.9787,0.0286,neutral,neutral,False
+PTEN,0.9666,0.6915,-0.2751,neutral,loss,True
+KEAP1,0.9819,1.6451,0.6632,neutral,gain,True
+CUL3,0.9989,0.9765,-0.0224,neutral,neutral,False
+SLC31A1,0.7187,0.6989,-0.0198,loss,loss,False

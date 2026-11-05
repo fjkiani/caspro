@@ -1,0 +1,4 @@
+repo: https://github.com/fjkiani/scientist-monai-moat
+branch: feat/tumor-board-frontend-spec
+commit: e2aa31a8f69fcb2905dfdffa27303867c3e6f3ca
+pulled: 2026-07-20T23:24

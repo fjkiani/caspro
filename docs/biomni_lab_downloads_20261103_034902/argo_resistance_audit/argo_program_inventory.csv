@@ -1,0 +1,10 @@
+study_id,program_context,total_files,distinct_donors,controlled_files,open_files,pct_controlled,relapse_proxy_donors,relapse_proxy_files,relapse_specimen_types,cn_comparable_files,aligned_reads_bam_files,wgs_files,wxs_files,rnaseq_files,specimen_primary,specimen_metastatic,specimen_recurrent,specimen_normal
+POG-CA,"Personalized OncoGenomics (BC Cancer, Canada) — advanced/metastatic pan-cancer",36421,931,36421,0,100.0,807,25365,Metastatic tumour;Recurrent tumour,1218,4244,28321,0,8100,4646,24852,513,5826
+MONSTAR-JP,"Multi-tumour precision-oncology (SCRUM/MONSTAR, Japan)",6106,2152,6106,0,100.0,186,459,Metastatic tumour,889,0,0,0,0,1404,459,0,0
+P1000-US,Pediatric pan-cancer (US),13094,275,13094,0,100.0,5,150,Metastatic tumour;Recurrent tumour;Metastatic tumour - metastasis local to lymph node,50,999,11646,0,1448,8247,104,46,4697
+PACA-CA,Pancreatic ductal adenocarcinoma (Canada),7060,136,6324,736,89.6,4,295,Metastatic tumour - metastasis to distant location;Metastatic tumour,304,349,6190,870,0,4767,295,0,1196
+APGI-AU,"Pancreatic cancer (APGI, Australia)",4079,97,3715,364,91.1,1,35,Metastatic tumour,96,290,2002,1681,396,2987,35,0,819
+MUTO-INTL,Multi-tumour (MUTOGRAPHS/IARC mutational-signatures),86893,2659,86857,36,100.0,0,0,(none),2850,5318,86893,0,0,65993,0,0,20900
+OCCAMS-GB,"Esophageal adenocarcinoma (OCCAMS, UK)",15063,400,13411,1652,89.0,0,0,(none),826,813,15063,0,0,12823,0,0,2240
+PTC-SA,Pediatric tumours (South Africa),6455,239,5499,956,85.2,0,0,(none),0,478,0,6455,0,5258,0,0,1197
+LUCA-KR,Lung cancer (Korea),4785,167,4117,668,86.0,0,0,(none),60,334,1086,3699,0,3940,0,0,845

@@ -1,0 +1,28 @@
+{
+  "name": "BrM_SLC25A32",
+  "modelSeeds": [
+    42
+  ],
+  "sequences": [
+    {
+      "rna": {
+        "id": "A",
+        "sequence": "UUGCCGGCAAAACUACGGAGGUUUUAGAGCUAGAAAUAGCAAGUUAAAAUAAGGCUAGUCCGUUAUCAACUUGAAAAAGUGGCACCGAGUCGGUGC"
+      }
+    },
+    {
+      "dna": {
+        "id": "B",
+        "sequence": "TTGCTAACGTTTGCCGGCAAAACTACGGAGCGGCGCAGGATCCAGTTGAGCCAGCAGGCCG"
+      }
+    },
+    {
+      "dna": {
+        "id": "C",
+        "sequence": "CGGCCTGCTGGCTCAACTGGATCCTGCGCCGCTCCGTAGTTTTGCCGGCAAACGTTAGCAA"
+      }
+    }
+  ],
+  "dialect": "alphafoldserver",
+  "version": 1
+}

@@ -1,0 +1,248 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "cin_resistance_evidence_v1",
+  "title": "Dispersed stochastic CIN and acquired PTEN loss in platinum-relapsed HGSOC (BriTROC-1 pilot)",
+  "evidence_class": "hypothesis_generating",
+  "evidence_tier": "Consider",
+  "cohort": {
+    "name": "BriTROC-1",
+    "ega_dataset": "EGAD00001011049",
+    "ega_study": "EGAS00001007292",
+    "n_subjects": 5,
+    "design": "matched diagnosis->relapse tumour pairs; within-subject copy-number architecture contrast",
+    "access": "controlled access via EGA data-access committee; analysed under authorised access"
+  },
+  "method": {
+    "assay": "shallow WGS (~0.1x)",
+    "caller": "QDNAseq",
+    "reference": "hg19",
+    "bin_size_kb": 30,
+    "breakpoint_definition": "segmented relative-CN level shift >= 0.10 between adjacent 30kb bins (BP_THR=0.10)",
+    "cn_bands": {
+      "high_amp": ">=2.5",
+      "gain": ">=1.5",
+      "loss": "<=0.8",
+      "deep_loss": "<=0.5",
+      "neutral": "otherwise"
+    },
+    "signature_heuristic": {
+      "focal_catastrophe": ">=50 net-gained AND top_focus_fraction>=0.40 AND >=3 oscillating CN levels",
+      "dispersed_stochastic_CIN": ">=50 net-gained across >=8 chromosomes AND top_focus_fraction<0.30",
+      "intermediate_rearrangement": ">=20 net-gained",
+      "modest_gain": "any positive net gain below the above"
+    }
+  },
+  "cohort_architecture": [
+    {
+      "subject": 191,
+      "dx_sample": "IM_280",
+      "relapse_sample": "JBLAB-4944",
+      "dx_breakpoints": 127,
+      "relapse_breakpoints": 380,
+      "breakpoint_delta": 253,
+      "net_gained_breakpoints": 253,
+      "n_chromosomes_gained": 21,
+      "top_focus_chrom": 1,
+      "top_focus_fraction": 0.115,
+      "top_chrom_cn_levels": 5,
+      "architecture_signature": "dispersed_stochastic_CIN"
+    },
+    {
+      "subject": 6,
+      "dx_sample": "IM_274",
+      "relapse_sample": "JBLAB-4110",
+      "dx_breakpoints": 17,
+      "relapse_breakpoints": 118,
+      "breakpoint_delta": 101,
+      "net_gained_breakpoints": 101,
+      "n_chromosomes_gained": 20,
+      "top_focus_chrom": 8,
+      "top_focus_fraction": 0.119,
+      "top_chrom_cn_levels": 9,
+      "architecture_signature": "dispersed_stochastic_CIN"
+    },
+    {
+      "subject": 260,
+      "dx_sample": "IM_426",
+      "relapse_sample": "JBLAB-19323",
+      "dx_breakpoints": 75,
+      "relapse_breakpoints": 135,
+      "breakpoint_delta": 60,
+      "net_gained_breakpoints": 66,
+      "n_chromosomes_gained": 16,
+      "top_focus_chrom": 1,
+      "top_focus_fraction": 0.212,
+      "top_chrom_cn_levels": 5,
+      "architecture_signature": "dispersed_stochastic_CIN"
+    },
+    {
+      "subject": 119,
+      "dx_sample": "IM_249",
+      "relapse_sample": "JBLAB-4232",
+      "dx_breakpoints": 148,
+      "relapse_breakpoints": 166,
+      "breakpoint_delta": 18,
+      "net_gained_breakpoints": 48,
+      "n_chromosomes_gained": 11,
+      "top_focus_chrom": 7,
+      "top_focus_fraction": 0.25,
+      "top_chrom_cn_levels": 2,
+      "architecture_signature": "intermediate_rearrangement"
+    },
+    {
+      "subject": 109,
+      "dx_sample": "IM_373",
+      "relapse_sample": "JBLAB-4225",
+      "dx_breakpoints": 59,
+      "relapse_breakpoints": 52,
+      "breakpoint_delta": -7,
+      "net_gained_breakpoints": 7,
+      "n_chromosomes_gained": 3,
+      "top_focus_chrom": 14,
+      "top_focus_fraction": 0.571,
+      "top_chrom_cn_levels": 2,
+      "architecture_signature": "modest_gain"
+    }
+  ],
+  "lead_subject": {
+    "subject": "260",
+    "dx_sample": "IM_426",
+    "relapse_sample": "JBLAB-19323",
+    "architecture": {
+      "subject": "260",
+      "dx_sample": "IM_426",
+      "relapse_sample": "JBLAB-19323",
+      "dx_breakpoints": 75,
+      "relapse_breakpoints": 135,
+      "breakpoint_delta": 60,
+      "net_gained_breakpoints": 66,
+      "n_chromosomes_gained": 16,
+      "top_focus_chrom": "1",
+      "top_focus_fraction": 0.212,
+      "top_chrom_cn_levels": 5,
+      "architecture_signature": "dispersed_stochastic_CIN"
+    },
+    "delta_by_chrom": {
+      "1": 14,
+      "2": 4,
+      "3": 2,
+      "4": 2,
+      "5": 1,
+      "6": 6,
+      "7": 10,
+      "8": 2,
+      "9": 5,
+      "10": 4,
+      "11": -4,
+      "12": 4,
+      "13": 1,
+      "14": -2,
+      "16": 3,
+      "17": 3,
+      "19": 4,
+      "21": 1
+    },
+    "qc": [
+      {
+        "sample": "IM_426",
+        "used_reads": 7766083,
+        "n_bins": 103199,
+        "median_cn": 0.978608523724137,
+        "mad_cn": 0.198454187841172
+      },
+      {
+        "sample": "JBLAB-19323",
+        "used_reads": 7745920,
+        "n_bins": 103199,
+        "median_cn": 0.939806956717646,
+        "mad_cn": 0.224494741310232
+      }
+    ],
+    "premise_note": "Prior asserted delta '+58' was UNVERIFIED; direct computation yields +60 (net +66) \u2014 premise corroborated within 2-3 breakpoints, not asserted as a result.",
+    "gene_cn": [
+      {
+        "gene": "CCNE1",
+        "dx_rel_cn": 1.0361,
+        "relapse_rel_cn": 0.8745,
+        "delta": -0.1616,
+        "dx_call": "neutral",
+        "relapse_call": "neutral",
+        "changed": false
+      },
+      {
+        "gene": "PALB2",
+        "dx_rel_cn": 0.9501,
+        "relapse_rel_cn": 0.9787,
+        "delta": 0.0286,
+        "dx_call": "neutral",
+        "relapse_call": "neutral",
+        "changed": false
+      },
+      {
+        "gene": "PTEN",
+        "dx_rel_cn": 0.9666,
+        "relapse_rel_cn": 0.6915,
+        "delta": -0.2751,
+        "dx_call": "neutral",
+        "relapse_call": "loss",
+        "changed": true
+      },
+      {
+        "gene": "KEAP1",
+        "dx_rel_cn": 0.9819,
+        "relapse_rel_cn": 1.6451,
+        "delta": 0.6632,
+        "dx_call": "neutral",
+        "relapse_call": "gain",
+        "changed": true
+      },
+      {
+        "gene": "CUL3",
+        "dx_rel_cn": 0.9989,
+        "relapse_rel_cn": 0.9765,
+        "delta": -0.0224,
+        "dx_call": "neutral",
+        "relapse_call": "neutral",
+        "changed": false
+      },
+      {
+        "gene": "SLC31A1",
+        "dx_rel_cn": 0.7187,
+        "relapse_rel_cn": 0.6989,
+        "delta": -0.0198,
+        "dx_call": "loss",
+        "relapse_call": "loss",
+        "changed": false
+      }
+    ]
+  },
+  "therapeutic_nomination": {
+    "lesion": "acquired PTEN copy-number loss at relapse (relative CN 0.9666 -> 0.6915, delta -0.2751; neutral -> loss)",
+    "pathway": "PI3K/AKT/mTOR",
+    "prophet_signal_mapping": "extends the EXISTING validated PI3K ovarian resistance signal (RR 1.39, p=0.02 per RESISTANCE_PROPHET_MASTER); does NOT create a new pathway",
+    "nominated_agents_class": "PI3K/mTOR-directed inhibitors (mapped in DDR/pathway panels)",
+    "tier": "Consider",
+    "hard_cap": "must NEVER alone drive a HIGH resistance call; mirrors the doc's '>=3 signals for HIGH when baseline missing' guardrail",
+    "grade": "hypothesis-generating: single relative-CN call from ~0.1x sWGS, no matched RNA/protein, no outcome data"
+  },
+  "counter_evidence_and_caveats": {
+    "keap1_gain_not_resistance": "KEAP1 shows a copy-number GAIN at relapse (0.9819 -> 1.6451); this points the WRONG direction for its loss-of-function SNV resistance mechanism and is explicitly NOT interpreted as resistance.",
+    "slc31a1_stable": "SLC31A1 (copper/platinum import) was already low-level loss at diagnosis and did not change.",
+    "swgs_ceiling": "sWGS resolves LARGE CNA breakpoints only; architecture signature is descriptive/hypothesis-generating, NOT a chromothripsis diagnosis (needs WGS SV resolution).",
+    "selection_vs_induction": "A relapse biopsy reports only the surviving clone; sWGS cannot distinguish platinum-driven INDUCTION of breakage from SELECTION of a pre-existing CIN-high clone. Selection is the primary interpretation; induction is an alternative that cannot be excluded.",
+    "pilot": "n=5 pilot, not a validation cohort; no clinically validated tier is assigned to any finding.",
+    "not_chromothripsis_diagnosis": "The 'dispersed vs focal' label is a descriptive pattern call on segmented CN, NOT a chromothripsis diagnosis (which needs WGS junction resolution)."
+  },
+  "provenance": {
+    "manuscript": "manuscript_dispersed_CIN_HGSOC.md",
+    "figure": "fig_ranked_signals_and_breakpoints.png",
+    "receipts": [
+      "breakpoint_architecture_with_subj260.csv",
+      "subj260_analysis_meta.json",
+      "subj260_cn_qc.csv",
+      "subj260_breakpoint_delta_by_chrom.csv",
+      "subj260_gene_cn_dx_vs_relapse.csv"
+    ],
+    "generated_by": "Biomni CIN product-integration workstream D"
+  }
+}

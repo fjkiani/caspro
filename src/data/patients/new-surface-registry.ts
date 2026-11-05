@@ -1,19 +1,13 @@
 /**
- * Route-level bridge: which patients render with the new PatientBoardWalker
- * shell vs. the legacy TumorBoardSurface.
- *
- * Set to true per patient once the walker has been smoke-tested on that
- * bundle. AK ships true out of the gate (D2). BR/CRC/BM flip to true in D5
- * after visual smoke on each bundle.
- *
- * Kept as a plain lookup table (not a bundle field) so the migration is
- * reversible without touching the PatientBundle contract.
+ * Route-level bridge (historical): which patients used PatientBoardWalker.
+ * RETIRED 2026-07-18 — all patients mount TumorBoardTabSurface.
+ * Table kept so prior call sites / docs do not break.
  */
 export const NEW_SURFACE_ENABLED: Record<string, boolean> = {
-  AK:    true,   // walker live 2026-07-14 (D2)
-  BR01:  true,   // D5 — bundle fields verified (no anchor panels, no PARP falsification; walker guards both)
-  CRC01: true,   // D5 — bundle fields verified (anchorPanels.crc present; CrcAnchorEvidencePanel on confidence tab)
-  BM01:  true,   // D5 — bundle fields verified (anchorPanels.brm present; BrmTargetLockPanel on sl-axes tab)
+  AK: true,
+  BR01: true,
+  CRC01: true,
+  BM01: true,
 };
 
 export function usesNewSurface(patientId: string): boolean {

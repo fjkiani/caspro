@@ -1,0 +1,40 @@
+{
+  "dataset": "GSE174554",
+  "publication": "Wang et al. Nature Cancer 2022, PMID 36539501",
+  "matched_pairs_analyzed": 14,
+  "total_cells_analyzed": 254288,
+  "cell_types_found": [
+    "Tumor (malignant)",
+    "Non-malignant (immune+stromal)"
+  ],
+  "annotation_note": "Public supplementary metadata provides only Tumor/Normal labels; sub-cell-type annotations (macrophage, T cell, oligodendrocyte, etc.) are in RAW.tar count matrices not deposited as separate files",
+  "top_expanding_at_recurrence": [
+    {
+      "cell_type": "Non-malignant (immune+stromal)",
+      "mean_delta": 0.2721,
+      "wilcoxon_p": 0.0464,
+      "n_pairs_increased": 9,
+      "n_pairs_total": 14
+    }
+  ],
+  "top_contracting_at_recurrence": [
+    {
+      "cell_type": "Tumor (malignant)",
+      "mean_delta": -0.2721,
+      "wilcoxon_p": 0.0464,
+      "n_pairs_decreased": 9,
+      "n_pairs_total": 14
+    }
+  ],
+  "key_finding": "Non-malignant (immune+stromal) compartment significantly expands at recurrence in 9/14 matched pairs (mean delta +0.27, Wilcoxon p=0.046), consistent with Wang et al. reported proneural-to-mesenchymal shift driven by peripheral myeloid infiltration and T-cell expansion",
+  "paper_reported_cell_types_expanding": [
+    "Monocyte-derived macrophages (peripheral myeloid infiltration \u2014 primary driver)",
+    "Mesenchymal tumor cells (cycling fraction increases within tumor compartment)",
+    "T cells (significant increase at recurrence; ~1% average with outlier cases 2-8x above mean)"
+  ],
+  "spatial_tx_samples": 10,
+  "spatial_tx_genes": 1825,
+  "spatial_tx_spots": 118,
+  "spatial_prot_samples": 6,
+  "spatial_prot_proteins": 25
+}

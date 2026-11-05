@@ -1,0 +1,85 @@
+{
+  "endpoint": "Sig7 (CN signature exposure) + Serial-SAE (per-patient diagnosis->relapse CN delta)",
+  "dataset_id": "EGAD00001011049",
+  "study": "BriTROC-1 (Brenac et al./ overall Brenton lab); The genomic landscape of recurrent ovarian HGSC",
+  "data_type": "shallow WGS (~0.1-0.5X) BAM, single-end, HiSeq 2500",
+  "cn_tool_primary": "QDNAseq (BriTROC-standard for sWGS; 30-500kb bins)",
+  "cn_tool_fallback": "ichorCNA",
+  "signature_framework": "Macintyre et al. Nat Genet 2018 7-signature CN framework (Sig1-7); implemented via CINSignatureQuantification / britroc-1 repo",
+  "n_pairs_total": 182,
+  "n_bams_full_pull": 364,
+  "full_pull_bytes_gb": 280.9,
+  "live_auth_state": "AUTHENTICATED",
+  "access_state": "OPEN_PULLABLE_NOW (credential entitled; verified live 2026-07-20)",
+  "pilot_pairs": [
+    {
+      "subject_id": "191",
+      "dx": {
+        "alias": "IM_280",
+        "egaf": "EGAF00008095203",
+        "md5": "f5ae73a2120c5f860a9ac6acafb67c7a",
+        "bytes": 158718854,
+        "site": "Ovary"
+      },
+      "relapse": {
+        "alias": "JBLAB-4944",
+        "egaf": "EGAF00008095636",
+        "md5": "65079ca83dbd3043774f41216bfd80ee",
+        "bytes": 399709658,
+        "site": "Trachea"
+      }
+    },
+    {
+      "subject_id": "109",
+      "dx": {
+        "alias": "IM_373",
+        "egaf": "EGAF00008095291",
+        "md5": "3112ed3b883af2fa7335927a19c08da3",
+        "bytes": 273959939,
+        "site": "Ovary"
+      },
+      "relapse": {
+        "alias": "JBLAB-4225",
+        "egaf": "EGAF00008095538",
+        "md5": "3b10bc9ff43491d40242beb375a07dbf",
+        "bytes": 295666267,
+        "site": "Para-aortic Lymph Node"
+      }
+    },
+    {
+      "subject_id": "119",
+      "dx": {
+        "alias": "IM_249",
+        "egaf": "EGAF00008095173",
+        "md5": "ca53f72d529664fb0b0a27b5227b2bc9",
+        "bytes": 349268902,
+        "site": "Ovary; Fallopian Tube; Uterus"
+      },
+      "relapse": {
+        "alias": "JBLAB-4232",
+        "egaf": "EGAF00008095545",
+        "md5": "aceaf30bc6467ff0cc2c495c0c319a80",
+        "bytes": 356080619,
+        "site": "Sigmoid Mesentery"
+      }
+    },
+    {
+      "subject_id": "6",
+      "dx": {
+        "alias": "IM_274",
+        "egaf": "EGAF00008095197",
+        "md5": "bc6234f76bcc84eecb49462f168b96d6",
+        "bytes": 376763725,
+        "site": "Omentum"
+      },
+      "relapse": {
+        "alias": "JBLAB-4110",
+        "egaf": "EGAF00008095441",
+        "md5": "6b0d48d28f3248df0eb020d8f6bddcd7",
+        "bytes": 399018563,
+        "site": "Chest Wall"
+      }
+    }
+  ],
+  "pilot_transfer_gb": 2.61
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "_source_endpoint": "synapse",
+    "_table": "msk_spectrum_processed_release",
+    "_pk": "syn51091882",
+    "_raw_payload": {
+      "entity_id": "syn51091882",
+      "entity_name": "Cohort_processed_filtered_annotated_release.rds",
+      "entity_type": "FileEntity",
+      "parent_id": "syn52458609",
+      "folder_id": "syn52458607",
+      "project_id": "syn25569736",
+      "size_bytes": 37200706819,
+      "md5": "a49aaf13c61f95c480aeaddae901b5bf",
+      "file_handle_id": "121525378",
+      "content_type": "application/octet-stream",
+      "compartment": "full_cohort",
+      "dataset": "MSK SPECTRUM (Vazquez-Garcia, Uhlitz et al Nature 2022)",
+      "access": "via ZetaBridge synapse endpoint A_MSK"
+    },
+    "_ingested_at": "2026-07-30T01:30:49.140890+00:00",
+    "name": "synapse:msk_spectrum_processed_release:syn51091882"
+  },
+  {
+    "_source_endpoint": "synapse",
+    "_table": "msk_spectrum_processed_release",
+    "_pk": "syn51091852",
+    "_raw_payload": {
+      "entity_id": "syn51091852",
+      "entity_name": "DCs_processed_filtered_annotated_release.rds",
+      "entity_type": "FileEntity",
+      "parent_id": "syn52458609",
+      "folder_id": "syn52458607",
+      "project_id": "syn25569736",
+      "size_bytes": 1938268174,
+      "md5": "03b0d4a5c5ca9556ad3577bccb2871c2",
+      "file_handle_id": "121507147",
+      "content_type": "application/octet-stream",
+      "compartment": "dendritic_cells",
+      "dataset": "MSK SPECTRUM (Vazquez-Garcia, Uhlitz et al Nature 2022)",
+      "access": "via ZetaBridge synapse endpoint A_MSK"
+    },
+    "_ingested_at": "2026-07-30T01:30:49.140890+00:00",
+    "name": "synapse:msk_spectrum_processed_release:syn51091852"
+  },
+  {
+    "_source_endpoint": "synapse",
+    "_table": "msk_spectrum_processed_release",
+    "_pk": "syn51091853",
+    "_raw_payload": {
+      "entity_id": "syn51091853",
+      "entity_name": "Macrophages_processed_filtered_annotated_release.rds",
+      "entity_type": "FileEntity",
+      "parent_id": "syn52458609",
+      "folder_id": "syn52458607",
+      "project_id": "syn25569736",
+      "size_bytes": 14950251763,
+      "md5": "339c91bb1316c5ee45d71eb7dcc356a7",
+      "file_handle_id": "121507162",
+      "content_type": "application/octet-stream",
+      "compartment": "macrophages",
+      "dataset": "MSK SPECTRUM (Vazquez-Garcia, Uhlitz et al Nature 2022)",
+      "access": "via ZetaBridge synapse endpoint A_MSK"
+    },
+    "_ingested_at": "2026-07-30T01:30:49.140890+00:00",
+    "name": "synapse:msk_spectrum_processed_release:syn51091853"
+  },
+  {
+    "_source_endpoint": "synapse",
+    "_table": "msk_spectrum_processed_release",
+    "_pk": "syn51091849",
+    "_raw_payload": {
+      "entity_id": "syn51091849",
+      "entity_name": "Ovarian.cancer.super_processed_filtered_annotated_release.rds",
+      "entity_type": "FileEntity",
+      "parent_id": "syn52458609",
+      "folder_id": "syn52458607",
+      "project_id": "syn25569736",
+      "size_bytes": 20000280403,
+      "md5": "f12732157b774938294025be040a2bf4",
+      "file_handle_id": "121507196",
+      "content_type": "application/octet-stream",
+      "compartment": "tumor",
+      "dataset": "MSK SPECTRUM (Vazquez-Garcia, Uhlitz et al Nature 2022)",
+      "access": "via ZetaBridge synapse endpoint A_MSK"
+    },
+    "_ingested_at": "2026-07-30T01:30:49.140890+00:00",
+    "name": "synapse:msk_spectrum_processed_release:syn51091849"
+  },
+  {
+    "_source_endpoint": "synapse",
+    "_table": "msk_spectrum_processed_release",
+    "_pk": "syn51091851",
+    "_raw_payload": {
+      "entity_id": "syn51091851",
+      "entity_name": "T.super_processed_filtered_annotated_release.rds",
+      "entity_type": "FileEntity",
+      "parent_id": "syn52458609",
+      "folder_id": "syn52458607",
+      "project_id": "syn25569736",
+      "size_bytes": 11719420977,
+      "md5": "0c325d329223ad6b27937a9d14fec37d",
+      "file_handle_id": "121525323",
+      "content_type": "application/octet-stream",
+      "compartment": "t_cells",
+      "dataset": "MSK SPECTRUM (Vazquez-Garcia, Uhlitz et al Nature 2022)",
+      "access": "via ZetaBridge synapse endpoint A_MSK"
+    },
+    "_ingested_at": "2026-07-30T01:30:49.140890+00:00",
+    "name": "synapse:msk_spectrum_processed_release:syn51091851"
+  }
+]

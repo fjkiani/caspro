@@ -1,0 +1,71 @@
+{
+  "cohort": "GSE165897",
+  "role": "discovery_rederivation",
+  "n": 11,
+  "labels": {
+    "corrected": "7R/4S",
+    "manuscript": "8R/3S"
+  },
+  "tests": {
+    "post_ddr_vs_PFI_spearman": {
+      "rho": -0.2091,
+      "p": 0.5372
+    },
+    "delta_ddr_vs_PFI_spearman": {
+      "rho": -0.1091,
+      "p": 0.7495
+    },
+    "post_pi3k_vs_PFI_spearman": {
+      "rho": 0.1091,
+      "p": 0.7495
+    },
+    "delta_pi3k_vs_PFI_spearman": {
+      "rho": 0.0545,
+      "p": 0.8734
+    },
+    "post_vegf_vs_PFI_spearman": {
+      "rho": -0.1545,
+      "p": 0.65
+    },
+    "delta_vegf_vs_PFI_spearman": {
+      "rho": -0.0364,
+      "p": 0.9155
+    },
+    "post_ddr_AUROC_corrected": {
+      "auroc": 0.5714,
+      "ci95": [
+        0.125,
+        0.9333
+      ],
+      "wilcoxon_p": 0.7879
+    },
+    "post_ddr_AUROC_manuscript": {
+      "auroc": 0.75,
+      "ci95": [
+        0.375,
+        1.0
+      ],
+      "wilcoxon_p": 0.2788
+    },
+    "post_pi3k_AUROC_corrected": {
+      "auroc": 0.3571,
+      "ci95": [
+        0.0,
+        0.7667
+      ],
+      "wilcoxon_p": 0.5273
+    },
+    "post_pi3k_AUROC_manuscript": {
+      "auroc": 0.5,
+      "ci95": [
+        0.1111,
+        0.8889
+      ],
+      "wilcoxon_p": 1.0
+    }
+  },
+  "EPV_single_feature_corrected": 7.0,
+  "EPV_single_feature_manuscript": 8.0,
+  "reproduces_W1": true,
+  "interpretation": "Discovery statistics re-derived under frozen pipeline match W1 exactly and do NOT match the published headline values (post-DDR rho=-0.711/p=0.014; post-PI3K AUC=0.750). Only the delta-null result reproduces. Wide bootstrap CIs confirm n=11 is uninformative for discrimination."
+}

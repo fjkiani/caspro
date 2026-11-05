@@ -1,0 +1,367 @@
+{
+  "access_audit": {
+    "TAX327": "337 comparator patients; 0 experimental patients released; all local TRTGRP=3",
+    "TROPIC": "371 mitoxantrone-control patients; 0 experimental patients released",
+    "VENICE": "612 placebo-control patients; 0 experimental patients released",
+    "three_arm_tax327_available": false
+  },
+  "all_cohort": {
+    "c_index": 0.5870028448708652,
+    "epv": 124.33333333333333,
+    "events": 373,
+    "influence": {
+      "max_abs_delta_beta": 0.011838630345992349,
+      "n_over_threshold": 0,
+      "threshold": 0.08084520834544433
+    },
+    "label": "All-cohort supportive",
+    "log_likelihood": -1942.3214618829736,
+    "n": 612,
+    "n_trials": 2,
+    "ph_test_p": {
+      "age_ge65": 0.7843215120498405,
+      "ecog": 0.5957533111985776,
+      "z_rank": 0.5990437857900067
+    },
+    "stratified_by_trial": true,
+    "terms": {
+      "age_ge65": {
+        "HR": 0.8404421028974353,
+        "ci_high": 1.036321322227202,
+        "ci_low": 0.6815867947256279,
+        "coef": -0.17382721262573542,
+        "p": 0.10390821717955656,
+        "se": 0.1068919973106253,
+        "z": -1.6261948228041634
+      },
+      "ecog": {
+        "HR": 1.7399026748504252,
+        "ci_high": 2.092344290433324,
+        "ci_low": 1.4468275282385383,
+        "coef": 0.5538291776680649,
+        "p": 3.985488678773871e-09,
+        "se": 0.09411189757850498,
+        "z": 5.884794504393871
+      },
+      "z_rank": {
+        "HR": 0.8416982786956889,
+        "ci_high": 0.929746427500396,
+        "ci_low": 0.761988399637044,
+        "coef": -0.17233366779973933,
+        "p": 0.0006863292321327803,
+        "se": 0.05076127927341066,
+        "z": -3.394982755881995
+      }
+    },
+    "trials": [
+      "TAX327",
+      "VENICE"
+    ]
+  },
+  "analysis": "multicohort_rank_normalized_psa_rate_os_cox",
+  "boundaries": {
+    "a1_rse": "FAILED at 66.5% with RSE<0.5; unchanged",
+    "k_fast": "deprecated; exploratory sensitivity only",
+    "ovarian_ca125_kelim": "UNCALIBRATED"
+  },
+  "cohort_qualification": {
+    "TAX327": {
+      "qualifies": true,
+      "released_arm": "mitoxantrone + prednisone comparator",
+      "released_n": 337,
+      "role": "discovery"
+    },
+    "TROPIC": {
+      "qualifies": false,
+      "reason": "No ECOG, WHO performance status, or Karnofsky field was present in any core or supplemental released table; value-level scan also found none.",
+      "released_arm": "mitoxantrone + prednisone comparator",
+      "released_n": 371,
+      "role": "candidate external"
+    },
+    "VENICE": {
+      "age_missing_rate_before_landmark": 0.011013215859030838,
+      "ecog_missing_rate_before_landmark": 0.0,
+      "qualifies": true,
+      "released_arm": "placebo + docetaxel + prednisone comparator",
+      "released_n": 612,
+      "role": "independent external"
+    }
+  },
+  "confirmatory_external_evidence": "VENICE only; TROPIC failed the prespecified ECOG availability gate.",
+  "external_only": {
+    "c_index": 0.5851214122704276,
+    "epv": 98.66666666666667,
+    "events": 296,
+    "influence": {
+      "max_abs_delta_beta": 0.014406672661670575,
+      "n_over_threshold": 0,
+      "threshold": 0.09470274476207569
+    },
+    "label": "External-only confirmatory",
+    "log_likelihood": -1621.8177716696005,
+    "n": 446,
+    "n_trials": 1,
+    "ph_test_p": {
+      "age_ge65": 0.2347973935294726,
+      "ecog": 0.6635425386129823,
+      "z_rank": 0.40391104036123127
+    },
+    "stratified_by_trial": false,
+    "terms": {
+      "age_ge65": {
+        "HR": 0.9172730813059712,
+        "ci_high": 1.1580082220085564,
+        "ci_low": 0.726583706140848,
+        "coef": -0.08635005247002522,
+        "p": 0.46771361939479594,
+        "se": 0.11890602766887755,
+        "z": -0.7262041644388939
+      },
+      "ecog": {
+        "HR": 1.7041132686073035,
+        "ci_high": 2.0997982092479694,
+        "ci_low": 1.3829910033514694,
+        "coef": 0.5330448983853308,
+        "p": 5.624794507728443e-07,
+        "se": 0.1065307079822309,
+        "z": 5.003673668199422
+      },
+      "z_rank": {
+        "HR": 0.8413191567940249,
+        "ci_high": 0.9403600722668988,
+        "ci_low": 0.7527094614749995,
+        "coef": -0.17278419421744848,
+        "p": 0.0023430274966805002,
+        "se": 0.05678256010479415,
+        "z": -3.04290954649754
+      }
+    },
+    "trials": [
+      "VENICE"
+    ]
+  },
+  "fixed_effect_meta": {
+    "HR": 0.8449434943250309,
+    "I2_pct": 0.0,
+    "Q": 0.03082642419886752,
+    "Q_df": 1,
+    "Q_p": 0.8606281943259352,
+    "ci_high": 0.9341961539616327,
+    "ci_low": 0.7642179916655005,
+    "coef": -0.16848552448216803,
+    "p": 0.0010068221701408009,
+    "se": 0.051232998279100196,
+    "trials": [
+      "TAX327",
+      "VENICE"
+    ],
+    "z": -3.2886133964738
+  },
+  "flow": {
+    "TAX327": {
+      "missing_by_field": {
+        "age_ge65": 0,
+        "ecog": 0,
+        "event": 0,
+        "k": 0,
+        "os_weeks": 0
+      },
+      "n_after_landmark_complete_case": 166,
+      "n_before_complete_case": 167
+    },
+    "VENICE": {
+      "missing_by_field": {
+        "age_ge65": 5,
+        "ecog": 0,
+        "event": 0,
+        "k": 0,
+        "os_weeks": 0
+      },
+      "n_after_landmark_complete_case": 446,
+      "n_before_complete_case": 454
+    }
+  },
+  "flow_table": [
+    {
+      "events_model": 77,
+      "n_early_ge3": 281,
+      "n_model": 166,
+      "n_positive_rate": 167,
+      "n_with_serial_psa": 337,
+      "released_patients": 337,
+      "status": "discovery; included",
+      "trial": "TAX327"
+    },
+    {
+      "events_model": 296,
+      "n_early_ge3": 570,
+      "n_model": 446,
+      "n_positive_rate": 454,
+      "n_with_serial_psa": 612,
+      "released_patients": 612,
+      "status": "independent external; included",
+      "trial": "VENICE"
+    },
+    {
+      "events_model": 0,
+      "n_early_ge3": 294,
+      "n_model": 0,
+      "n_positive_rate": 123,
+      "n_with_serial_psa": 371,
+      "released_patients": 371,
+      "status": "excluded: no released ECOG/WHO/Karnofsky field",
+      "trial": "TROPIC"
+    }
+  ],
+  "generated_utc": "2026-08-11T19:56:57.766797+00:00",
+  "landmark_weeks": 15.0,
+  "model": "OS_landmark ~ z_rank(k) + age_ge65 + ECOG; baseline hazard stratified by trial",
+  "os_sanity": {
+    "TAX327": {
+      "full_arm_km_median_weeks": 65.0,
+      "note": "Previously calibrated against all-table last-contact reconstruction.",
+      "passed": true
+    },
+    "TROPIC": {
+      "note": "Not required after prespecified covariate-availability exclusion.",
+      "passed": null
+    },
+    "VENICE": {
+      "absolute_difference_months": 0.04084636614535242,
+      "full_arm_km_median_months": 21.159153633854647,
+      "full_arm_km_median_weeks": 92.0,
+      "passed": true,
+      "published_comparator_median_months": 21.2
+    }
+  },
+  "promotion": {
+    "checks": {
+      "all_cohort_hr_lt_1_p_lt_0p05": true,
+      "epv_ge_10": true,
+      "external_direction_consistent": true,
+      "external_hr_lt_1_p_lt_0p05": true,
+      "heterogeneity_acceptable": true,
+      "influence_diagnostics_passed": true,
+      "os_sanity_passed": true,
+      "rank_ph_ok": true
+    },
+    "label": "ALGORITHM-VALIDATED (prostate PSA proxy, OS-anchored, early-decline population)",
+    "passed": true,
+    "verdict": "ALGORITHM_VALIDATED_PROSTATE_PSA_PROXY_OS_ANCHORED_EARLY_DECLINE"
+  },
+  "rank_transform": "within-trial inverse-normal midrank: Phi^-1((rank-0.5)/n)",
+  "rate_feature": "V1_mono2_plateau0_OLS__k",
+  "rate_units": "days^-1",
+  "tax327_rate_reproduction": {
+    "max_abs_difference": 9.71445146547012e-17,
+    "max_relative_difference": 3.6034374371331526e-13,
+    "n_compared": 167,
+    "passed": true
+  },
+  "trial_specific": {
+    "TAX327": {
+      "c_index": 0.6295101202698739,
+      "epv": 25.666666666666668,
+      "events": 77,
+      "influence": {
+        "max_abs_delta_beta": 0.039217860274572094,
+        "n_over_threshold": 0,
+        "threshold": 0.15523010514126656
+      },
+      "label": "TAX327 trial-specific",
+      "log_likelihood": -318.72903131227565,
+      "n": 166,
+      "n_trials": 1,
+      "ph_test_p": {
+        "age_ge65": 0.3399088969791694,
+        "ecog": 0.42423536174019794,
+        "z_rank": 0.9817329153851777
+      },
+      "stratified_by_trial": false,
+      "terms": {
+        "age_ge65": {
+          "HR": 0.5556921687434834,
+          "ci_high": 0.8958110559593699,
+          "ci_low": 0.3447086127689426,
+          "coef": -0.5875407913932177,
+          "p": 0.015884196339980852,
+          "se": 0.24363459322210715,
+          "z": -2.4115655483192886
+        },
+        "ecog": {
+          "HR": 2.037172265527274,
+          "ci_high": 3.065861211111697,
+          "ci_low": 1.3536395008333364,
+          "coef": 0.7115627019199695,
+          "p": 0.0006452960868963634,
+          "se": 0.20855781720608302,
+          "z": 3.4118246510839265
+        },
+        "z_rank": {
+          "HR": 0.860998484863422,
+          "ci_high": 1.0867828611342825,
+          "ci_low": 0.6821219007478544,
+          "coef": -0.14966253429646328,
+          "p": 0.20782604185033088,
+          "se": 0.11882073576442675,
+          "z": -1.259565793239854
+        }
+      },
+      "trials": [
+        "TAX327"
+      ]
+    },
+    "VENICE": {
+      "c_index": 0.5851214122704276,
+      "epv": 98.66666666666667,
+      "events": 296,
+      "influence": {
+        "max_abs_delta_beta": 0.014406672661670575,
+        "n_over_threshold": 0,
+        "threshold": 0.09470274476207569
+      },
+      "label": "VENICE trial-specific",
+      "log_likelihood": -1621.8177716696005,
+      "n": 446,
+      "n_trials": 1,
+      "ph_test_p": {
+        "age_ge65": 0.2347973935294726,
+        "ecog": 0.6635425386129823,
+        "z_rank": 0.40391104036123127
+      },
+      "stratified_by_trial": false,
+      "terms": {
+        "age_ge65": {
+          "HR": 0.9172730813059712,
+          "ci_high": 1.1580082220085564,
+          "ci_low": 0.726583706140848,
+          "coef": -0.08635005247002522,
+          "p": 0.46771361939479594,
+          "se": 0.11890602766887755,
+          "z": -0.7262041644388939
+        },
+        "ecog": {
+          "HR": 1.7041132686073035,
+          "ci_high": 2.0997982092479694,
+          "ci_low": 1.3829910033514694,
+          "coef": 0.5330448983853308,
+          "p": 5.624794507728443e-07,
+          "se": 0.1065307079822309,
+          "z": 5.003673668199422
+        },
+        "z_rank": {
+          "HR": 0.8413191567940249,
+          "ci_high": 0.9403600722668988,
+          "ci_low": 0.7527094614749995,
+          "coef": -0.17278419421744848,
+          "p": 0.0023430274966805002,
+          "se": 0.05678256010479415,
+          "z": -3.04290954649754
+        }
+      },
+      "trials": [
+        "VENICE"
+      ]
+    }
+  }
+}

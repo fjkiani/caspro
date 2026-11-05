@@ -1,0 +1,25 @@
+{
+  "ready_for_scrna_analysis": true,
+  "ready_for_spatial_analysis": true,
+  "matched_pair_n": 30,
+  "primary_n": 33,
+  "recurrent_n": 48,
+  "blockers": [
+    "Raw data not available (privacy concerns per GEO record) - only processed count matrices available",
+    "Individual sample MTX files require RAW.tar download (1.5GB) for full snRNA-seq analysis",
+    "No single merged count matrix available at series level - must download per-sample files",
+    "Some samples lack matched pairs (pair#=NA): 11 snRNA-seq samples unpaired"
+  ],
+  "recommended_first_analysis": "Download GSE174554_Tumor_normal_metadata.txt.gz (1.4MB) for cell-level tumor/normal annotations, then download individual sample MTX files for matched pairs (pair# #1-#40) from RAW.tar for primary/recurrent differential composition analysis",
+  "data_completeness": {
+    "snrna_seq_samples": 81,
+    "snrna_matched_pairs": 30,
+    "snrna_unmatched_primary": 3,
+    "snrna_unmatched_recurrent": 9,
+    "spatial_transcriptomics_samples": 10,
+    "spatial_proteomics_samples": 6,
+    "atac_seq_samples": 10,
+    "tumor_normal_metadata_available": true,
+    "spatial_matrices_available": true
+  }
+}

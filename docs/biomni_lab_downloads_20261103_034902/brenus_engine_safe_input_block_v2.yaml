@@ -1,0 +1,603 @@
+# Brenus / STC-1010 / BreAK CRC-001 — Engine-Safe Input Block v2
+# Generated: 2026-04-28
+# Source: brenus_canon_v2_freeze.md (PhD Verification Agent)
+# Policy: VERIFIED and CROSS_REFERENCED claims only.
+#         BLOCKED fields listed explicitly as blocked: true.
+#         Company claims, interpretations, and prose excluded.
+#         Do not assert any field marked blocked: true in downstream outputs.
+
+---
+
+meta:
+  canon_version: "2.1-FREEZE"  # UPDATED 2026-04-28 [e14661 + TPS3635 direct retrieval]
+  generated: "2026-04-28"
+  updated: "2026-04-28"  # B-001 resolved; HT29 BRAF conflict active
+  base_ledger: "brenus_verified_claim_ledger_v1.md"
+  freeze_file: "brenus_canon_v2_freeze.md"
+  sources_retrieved:
+    - id: NCT06934538
+      type: PRIMARY_REGISTRY
+      label: "ClinicalTrials.gov API v2 — BreAK CRC-001"
+    - id: NCT03050814
+      type: PRIMARY_REGISTRY
+      label: "ClinicalTrials.gov API v2 + results module — QUILT-2.004"
+    - id: "DOI:10.3389/fonc.2024.1427428"
+      type: PEER_REVIEWED_PUBLICATION
+      label: "Alzeeb et al. 2024, Frontiers in Oncology"
+    - id: "brenus-pharma.com/science-innovation/"
+      type: COMPANY_WEBSITE
+      label: "Brenus Science & Innovation page — COMPANY_CLAIM source only"
+    - id: "DOI:10.1200/JCO.2023.41.16_suppl.e14661"  # UPDATED 2026-04-28
+      type: CONFERENCE_ABSTRACT
+      label: "ASCO 2023 abstract e14661, JCO 41:16_suppl:e14661 — DIRECT_SOURCE — resolves B-001"
+      retrieval_status: "DIRECT_SOURCE — full abstract body retrieved"
+    - id: "DOI:10.1200/JCO.2024.42.16_suppl.TPS3635"  # UPDATED 2026-04-28
+      type: CONFERENCE_ABSTRACT
+      label: "ASCO 2024 TPS3635, JCO 42:TPS3635 — DIRECT_SOURCE — confirms CPI-absent regimen"
+      retrieval_status: "DIRECT_SOURCE — full abstract body retrieved"
+  sources_blocked:
+    - "BusinessWire AACR 2024 (Akamai block)"
+    - "BusinessWire InSphero (Akamai block)"
+    - "BioSpace ASCO 2024 (404)"
+    - "ASCO 2023 abstract e14661 (paywall/resolver failure — SUPERSEDED: now retrieved as DIRECT_SOURCE)"
+    - "AACR 2026 abstract CT051 (not directly retrieved in PhD verification session)"
+
+---
+
+break_crc001:
+  # Source: NCT06934538, ClinicalTrials.gov API v2
+  nct_id: "NCT06934538"
+  confidence: VERIFIED
+  sponsor_study_id: "BreAK CRC-001"
+  lead_sponsor: "Brenus Pharma"
+  sponsor_class: "INDUSTRY"
+  phase: "Phase I / Phase IIA"
+  study_type: "Interventional"
+  design: "Non-randomized, sequential, open-label"
+  fda_regulated_drug: true
+  dmc_oversight: true
+
+  arms:
+    - arm_id: "Phase_1"
+      label: "Phase 1 — Dose Escalation"
+      population: "BRAF_WT_KRAS_mutated_unresectable_stage_IIIC_T4b_or_stage_IV_CRC"
+      msi_status: "not_restricted_to_MSS_or_MSI-H"
+      confidence: VERIFIED
+    - arm_id: "Phase_2A_Arm_2A-1"
+      label: "Phase 2A Arm 2A-1 — MSS Expansion"
+      population: "BRAF_WT_KRAS_mutated_MSS_pMMR"
+      msi_status: "MSS"
+      confidence: VERIFIED
+    - arm_id: "Phase_2A_Arm_2A-2"
+      label: "Phase 2A Arm 2A-2 — MSI-H Expansion"
+      population: "BRAF_WT_KRAS_mutated_MSI-H"
+      msi_status: "MSI-H"
+      confidence: VERIFIED
+      note: "CORRECTED — prior canon described trial as MSS-only; MSI-H arm is registered"
+
+  biomarker_requirements:
+    kras_status: "MUTATED — required for all arms"
+    braf_status: "WILD-TYPE — required; BRAF mutation is Exclusion Criterion #7"
+    confidence: VERIFIED
+
+  intervention:
+    vaccine: "STC-1010"
+    immunostimulant_components:
+      - "low-dose cyclophosphamide"
+      - "GM-CSF"
+    backbone_chemotherapy: "mFOLFOX6"
+    bevacizumab: "optional — with or without"
+    bevacizumab_arm_assignment:
+      blocked: true
+      reason: "Protocol document not publicly available"
+    confidence: VERIFIED
+
+  endpoints:
+    phase_1_primary:
+      - "Safety profile"
+      - "MTD (maximum tolerated dose)"
+      - "RP2D (recommended Phase 2 dose)"
+      - "CTCAE v5 grading"
+      - "DLT window: 28 days"
+    phase_1_immune_monitoring:
+      - measure: "DTH score"
+        timepoints: ["1h", "24h", "48h", "72h post-first injection", "after 4th injection", "after 8th injection", "every boost"]
+    phase_2a_primary:
+      - measure: "PFS rate at 12 months"
+        definition: "Proportion alive without progression (CR/PR/SD) per RECIST 1.1"
+        timepoint_from: "STC-1010 + IS regimen initiation"
+    phase_2a_secondary:
+      - "CBR (clinical benefit rate)"
+      - "ORR (objective response rate)"
+      - "DOR (duration of response)"
+      - "PFS (median)"
+      - "OS (overall survival)"
+      - "Metastases resection rate"
+    exploratory:
+      - "Biomarkers in blood and tumor biopsies"
+      - "Timepoints: T0, 1m, 2m, 6m, 12m, Tprogression (up to 24m)"
+    confidence: VERIFIED
+
+  eligibility:
+    age_range: "18–75 years"
+    age_note: "ECOG PS=0 required for patients >70 years"
+    ecog_ps: "≤1"
+    disease: "Unresectable locally advanced (stage IIIC T4b) or metastatic (stage IV) CRC adenocarcinoma"
+    line_of_therapy: "First-line (treatment-naive for metastatic disease)"
+    prior_adjuvant_allowed: true
+    prior_adjuvant_condition: ">6 months since end of adjuvant and first relapse"
+    prior_io_for_advanced_disease:
+      phase_1_and_arm_2A-1: "EXCLUDED"
+      arm_2A-2: "ALLOWED"
+    exclusions:
+      - "BRAF mutation (Exclusion #7)"
+      - "Active autoimmune disease (RA, lupus, Crohn's, UC)"
+      - "Prior chemotherapy for metastatic disease"
+      - "Resectable tumor with curative intent"
+    confidence: VERIFIED
+
+  timeline:
+    actual_start_date: "2025-06-17"
+    estimated_primary_completion: "2028-06"
+    estimated_study_completion: "2029-06"
+    overall_status: "RECRUITING"
+    status_as_of: "2025-12-19"
+    results_posted: false
+    confidence: VERIFIED
+
+  enrollment:
+    phase_1_target: "21–33 participants"
+    phase_2a_target: "57–60 participants"
+    total_target: "~90 participants"
+    confidence: VERIFIED
+
+  sites:
+    recruiting:
+      - name: "Institut Bergonié"
+        city: "Bordeaux"
+        country: "France"
+      - name: "Centre Georges François Leclerc (CGFL)"
+        city: "Dijon"
+        country: "France"
+      - name: "Hospices Civils de Lyon"
+        city: "Lyon"
+        country: "France"
+      - name: "Institut du Cancer de Montpellier"
+        city: "Montpellier"
+        country: "France"
+      - name: "Institut Gustave Roussy"
+        city: "Villejuif"
+        country: "France"
+    not_yet_recruiting:
+      - name: "Centre Léon Bérard"
+        city: "Lyon"
+        country: "France"
+      - name: "CHU de Poitiers"
+        city: "Poitiers"
+        country: "France"
+      - name: "Institut Jules Bordet"
+        city: "Brussels"
+        country: "Belgium"
+      - name: "Johns Hopkins"
+        city: "Baltimore"
+        country: "USA"
+    confidence: VERIFIED
+
+  human_clinical_data:
+    blocked: false
+    evidence_grade: "PRESS-RELEASE-ONLY"
+    # UPDATED 2026-04-29 — Weaponization Agent B-003 closure
+    # BusinessWire AACR 2026 CT051 (Apr 14, 2026) confirmed via Weaponization Agent retrieval
+    # Data is real and citable but carries PRESS-RELEASE-ONLY evidence grade
+    confirmed_data_points:
+      n_patients: 6
+      median_follow_up_months: 6
+      dlts: 0
+      dcr_recist: "100% (6/6)"
+      dth_responses: "Observed"
+    hard_constraints:
+      - "No confidence intervals available — do not assert statistical significance"
+      - "DCR 100% indistinguishable from mFOLFOX6±bev SOC (~80-90% DCR) — do not attribute to STC-1010"
+      - "DTH is a surrogate marker only — not evidence of tumor-directed immunity"
+      - "No peer-reviewed publication exists — do not present as peer-reviewed evidence"
+      - "Must carry PRESS-RELEASE-ONLY label in all downstream outputs"
+    source: "BusinessWire AACR 2026 CT051 (Apr 14, 2026) + Brenus PR Jan 2026"
+    b005_asco_2024_status: "INVALIDATED — ASCO 2024 was study design only; no patient data; first patients dosed Sep 2025"
+
+---
+
+nct03050814_comparator:
+  # Source: NCT03050814, ClinicalTrials.gov API v2 + results module
+  # CORRECTED: prior canon cited NCT02853604 — that is incorrect
+  nct_id: "NCT03050814"
+  corrected_from: "NCT02853604"
+  confidence: VERIFIED
+  trial_name: "QUILT-2.004"
+  official_title: "A Randomized Phase II Trial of Standard of Care Alone or in Combination With Ad-CEA Vaccine and Avelumab in Patients With Previously Untreated Metastatic or Unresectable Colorectal Cancer"
+  sponsor: "National Cancer Institute (NCI/NIH)"
+  pi: "Julius Y. Strauss MD"
+  sites:
+    - "NIH Clinical Center, Bethesda, MD"
+    - "Lombardi Comprehensive Cancer Center, Washington DC"
+
+  status: "TERMINATED"
+  termination_reason: "Terminated after an unplanned interim efficacy analysis"
+  termination_framing: "NEGATIVE — terminated for futility; must not be cited as positive precedent"
+  actual_completion_date: "2021-08-25"
+  confidence: VERIFIED
+
+  enrollment:
+    total_enrolled: 30
+    arm_a_enrolled: 10
+    arm_b_enrolled: 16
+    screen_failures_not_assigned: 4
+    target_enrollment: 70
+    confidence: VERIFIED
+
+  population:
+    msi_status: "MSS/pMMR"
+    msi_h_excluded: true
+    line_of_therapy: "First-line"
+    confidence: VERIFIED
+
+  primary_endpoint_results:
+    # CORRECTED: prior canon cited HR 1.02 (0.65–1.60) — that is incorrect
+    arm_a_median_pfs_months: 8.8
+    arm_a_pfs_ci_lower: 3.3
+    arm_a_pfs_ci_upper: 17.0
+    arm_b_median_pfs_months: 10.1
+    arm_b_pfs_ci_lower: 3.6
+    arm_b_pfs_ci_upper: 16.1
+    hazard_ratio: 1.061
+    hr_ci_lower: 0.380
+    hr_ci_upper: 2.966
+    p_value_log_rank: 0.91
+    interpretation: "No PFS benefit; wide CI reflects n=26 treated patients; negative result"
+    corrected_from_hr: "1.02 (0.65–1.60)"
+    confidence: VERIFIED
+
+  design_precedent_elements:
+    # These structural elements retain validity despite negative efficacy outcome
+    safety_lead_in:
+      n_subjects: 6
+      dlt_threshold: "≤1 DLT attributable to IND agents"
+      confidence: VERIFIED
+    bevacizumab_sequencing:
+      arm_b_bevacizumab_day: 2
+      arm_b_vaccine_avelumab_day: 1
+      note: "Bevacizumab administered Day 2, after vaccine/avelumab on Day 1"
+      confidence: VERIFIED
+    oxaliplatin_dose_reduction:
+      arm_a_oxaliplatin_mg_m2: 85
+      arm_b_oxaliplatin_mg_m2: 68
+      confidence: VERIFIED
+
+  safety:
+    arm_a_deaths_on_study: "1/10"
+    arm_a_serious_aes: "9/10"
+    arm_a_any_ae: "10/10"
+    arm_b_deaths_on_study: "1/16"
+    arm_b_serious_aes: "10/16"
+    arm_b_any_ae: "16/16"
+    confidence: VERIFIED
+
+---
+
+checkmate_9x8_comparator:
+  # Source: Lenz et al., J Immunother Cancer 2024, PMID 38485190, PMC10941175
+  # ADDED: 2026-04-29 — Weaponization Agent EQ-01 (maximum exploitation value)
+  nct_id: "NCT03414983"
+  confidence: VERIFIED
+  trial_name: "CheckMate 9X8"
+  sponsor: "Bristol-Myers Squibb"
+  phase: "Phase 2"
+  design: "Randomized; nivolumab+mFOLFOX6+bev vs. mFOLFOX6+bev (SOC)"
+  n_enrolled: 195
+  mss_pmmr_fraction: "~95%"
+  line_of_therapy: "First-line"
+  source_pmid: "38485190"
+  source_pmc: "PMC10941175"
+  source_citation: "Lenz et al., J Immunother Cancer 2024"
+
+  primary_endpoint_results:
+    primary_endpoint: "PFS"
+    primary_endpoint_met: false
+    hazard_ratio: 0.81
+    hr_ci_lower: 0.53
+    hr_ci_upper: 1.23
+    p_value: 0.30
+    interpretation: "Primary endpoint NOT MET. Phase 3 not triggered."
+    confidence: VERIFIED
+
+  secondary_results:
+    orr_experimental: "60%"
+    orr_control: "46%"
+    dor_experimental_months: 12.9
+    dor_control_months: 9.3
+    os_hazard_ratio: 1.03
+    os_interpretation: "No OS benefit"
+    grade_3_4_trae_experimental: "75%"
+    grade_3_4_trae_control: "48%"
+    confidence: VERIFIED
+
+  positioning_value:
+    exploitation_tier: "MAXIMUM"
+    rationale: "IDENTICAL backbone to BreAK CRC-001 (nivolumab+mFOLFOX6+bev). PD-1 blockade alone on this backbone failed in 1L mCRC. Strongest available argument that mechanistically distinct immune priming (STC-1010) is required."
+    crispro_use: "Primary null comparator for STC-1010 positioning. Use to argue checkpoint blockade alone is insufficient on this backbone."
+
+---
+
+stc1010_preclinical:
+  # Source: Alzeeb et al. 2024, Frontiers in Oncology, DOI 10.3389/fonc.2024.1427428
+  # SCOPE: Murine surrogate vaccine only — NOT the clinical STC-1010 product
+  publication_doi: "10.3389/fonc.2024.1427428"
+  publication_journal: "Frontiers in Oncology"
+  publication_year: 2024
+  confidence: VERIFIED
+
+  scope_warning: "All data in this section is from a MURINE SURROGATE VACCINE. Authors explicitly state human translation is unvalidated."
+  authors_caveat_verbatim: "Human vaccines based on STC technology should be tested in alternative models, such as ex vivo immune response activation tests, to better assess biological and clinical responses."
+
+  cell_lines_used:
+    # CORRECTED: prior canon attributed HCT116/HT29/LoVo — those are NOT in this paper
+    - name: "CT26"
+      species: "Murine"
+      origin: "BALB/c colon tumor"
+      catalog: "ATCC CRL-2639"
+      role: "Primary vaccine line (1CL and 3CL)"
+    - name: "CMT-93"
+      species: "Murine"
+      origin: "Rectal carcinoma"
+      catalog: "ECACC 89111413"
+      role: "3CL vaccine component"
+    - name: "LTPA"
+      species: "Murine"
+      origin: "Pancreatic adenocarcinoma"
+      catalog: "ATCC CRL-2389"
+      role: "3CL vaccine component (shared TAA rationale)"
+    - name: "MC38"
+      species: "Murine"
+      origin: "Colon carcinoma"
+      catalog: "Kerafast"
+      role: "Challenge model (anti-PD-1 resistant)"
+    confidence: VERIFIED
+
+  human_cell_line_identity:
+    blocked: false  # UPDATED 2026-04-28 [ASCO 2023 e14661 DIRECT_SOURCE] — B-001 RESOLVED
+    confirmed_by: "ASCO 2023 e14661 (DIRECT_SOURCE) — DOI: 10.1200/JCO.2023.41.16_suppl.e14661"
+    resolution_date: "2026-04-28"
+    cell_lines:
+      - HCT116
+      - HT29
+      - LoVo
+    source_excerpt: "We confirmed these proof-of-concept efficacy with the human STC-1010 using three CRC human cell lines (HCT116, HT29 and Lovo)."
+    confidence: VERIFIED
+    ht29_braf_conflict: active  # UPDATED 2026-04-28 — HT29 carries BRAF V600E; trial excludes BRAF-mutant patients; see SC-001
+    prior_status: "BLOCKED — ASCO 2023 abstract e14661 not retrieved (paywall/resolver failure)"
+
+  manufacturing_parameters:
+    # Murine surrogate only — clinical GMP parameters are BLOCKED
+    hapten: "DNFB (dinitrofluorobenzene)"
+    hapten_concentration_ug_per_ml: 12.7
+    hapten_duration_min: 30
+    physical_stressor_irradiation_gy: 10
+    physical_stressor_thermal_temp_c: 42
+    physical_stressor_thermal_duration_h: 1
+    physical_stressor_thermal_followup_temp_c: 37
+    physical_stressor_thermal_followup_duration_h: 14
+    final_inactivation_irradiation_gy: 25
+    formulation_cells_per_ml: "10e6"
+    formulation_buffer: "EBSS"
+    formulation_cryoprotectant: "80 g/L sucrose"
+    formulation_storage_temp_c: -80
+    confidence: VERIFIED
+
+  clinical_gmp_parameters:
+    blocked: true
+    reason: "Not disclosed in any retrieved source"
+
+  immunostimulant_regimen_preclinical:
+    cyclophosphamide_dose_mg_per_kg: 15
+    cyclophosphamide_route: "IP"
+    cyclophosphamide_timing: "Day -1 (one day before vaccination)"
+    gm_csf_dose_ug: 5
+    gm_csf_route: "SC"
+    gm_csf_timing: "Same day as vaccine, mixed with vaccine"
+    confidence: VERIFIED
+
+  efficacy_results:
+    study_a_1CL:
+      model: "CT26 subcutaneous syngeneic BALB/c"
+      group_treated: "IS + CT26-SH"
+      group_control: "Control"
+      tumor_volume_treated_mm3: 100
+      tumor_volume_control_mm3: 238
+      timepoint_days: 20
+      p_value_tumor_volume: "<0.0003"
+      test_tumor_volume: "Student's t"
+      survival_p_value: 0.0046
+      survival_test: "log-rank"
+      n_per_group: "9–10"
+      confidence: VERIFIED
+    study_b_3CL_vs_1CL:
+      model: "CT26 subcutaneous syngeneic BALB/c"
+      group_treated: "IS + 3CL-SH"
+      group_comparator: "IS + CT26-SH (1CL)"
+      tumor_volume_treated_mm3: 150
+      tumor_volume_comparator_mm3: 341
+      timepoint_days: 24
+      p_value_tumor_volume: 0.0002
+      test_tumor_volume: "Student's t"
+      median_os_treated_days: 38
+      median_os_comparator_days: 31.5
+      p_value_os: 0.05
+      survival_test: "log-rank"
+      n_per_group: "18–20"
+      confidence: VERIFIED
+    study_c_mc38_anti_pd1_resistant:
+      model: "MC38 anti-PD-1 resistant subcutaneous"
+      group_treated: "IS + 3CL-SH"
+      group_control: "Control"
+      survival_p_value: 0.00368
+      survival_test: "log-rank Mantel-Cox"
+      responder_rate_pct: 60
+      complete_responses: 1
+      cd8_infiltration_p_value: 0.045
+      m1_macrophage_infiltration_p_value: 0.02
+      n_per_group: 15
+      confidence: VERIFIED
+
+  proteomics_murine_only:
+    proteins_shared_all_3_lines_pct: 32
+    proteins_cell_line_specific_pct: 44
+    ct26_sh_unique_proteins: 429
+    cmt93_sh_unique_proteins: 423
+    ltpa_sh_unique_proteins: 986
+    ct26_proteins_shared_with_3cl_sh: 1196
+    confidence: VERIFIED
+    note: "Murine proteome numbers only — human vaccine proteome not reported in this paper"
+
+  safety_murine_only:
+    study_n_mice: 76
+    study_duration_weeks: 8
+    treatment: "Repeated SC vaccine + mGM-CSF + IP cyclophosphamide"
+    treatment_related_deaths: 0
+    treatment_related_clinical_signs: false
+    local_reactions: false
+    body_weight_effects: false
+    food_consumption_effects: false
+    confidence: VERIFIED
+    note: "Murine safety data only — does not constitute human safety evidence"
+
+  conflict_of_interest:
+    funding: "Fully funded by Brenus Pharma"
+    consultant_authors:
+      - "Gongora (CG)"
+      - "Limagne (E. Limagne)"
+      - "Apetoh (LA)"
+      - "Ghiringhelli (FG)"
+    confidence: VERIFIED
+
+---
+
+scientific_conflicts:  # UPDATED 2026-04-28 [ASCO 2023 e14661 DIRECT_SOURCE]
+  SC-001:
+    conflict_id: "SC-001"
+    status: "ACTIVE CONFLICT"
+    activated: "2026-04-28"
+    domain: "Vaccine composition / trial eligibility / translational biology"
+    description: "HT29 BRAF V600E vs. BRAF wild-type eligibility conflict"
+    known_facts:
+      - fact: "HT29 is confirmed as one of three human cell lines in clinical STC-1010"
+        confidence: VERIFIED
+        source: "ASCO 2023 e14661 DIRECT_SOURCE"
+      - fact: "HT29 carries BRAF V600E mutation"
+        confidence: VERIFIED
+        source: "Established cell line biology"
+      - fact: "BreAK CRC-001 Exclusion Criterion #7 excludes BRAF-mutant patients"
+        confidence: VERIFIED
+        source: "NCT06934538"
+      - fact: "All three BreAK CRC-001 arms require BRAF wild-type disease"
+        confidence: VERIFIED
+        source: "NCT06934538"
+    unknown:
+      - "Whether BRAF V600E inclusion in HT29 is intentional, incidental, or creates immunological mismatch for BRAF WT patients"
+      - "Whether BRAF V600E-associated antigens in HT29 contribute meaningfully to vaccine antigen repertoire for BRAF WT patients"
+      - "Scientific rationale for this design choice — not disclosed in any retrieved source"
+      - "Whether BRAF WT eligibility requirement is driven by vaccine biology or treatment safety considerations"
+    resolution_blocker: "B-006"
+    hard_rule: "Do not speculate about resolution. Do not assert conflict is benign or problematic. Document and flag as unresolved."
+
+---
+
+hapten_identity:
+  # CROSS_REFERENCED: confirmed by both Alzeeb et al. 2024 and Brenus website
+  hapten_compound: "Dinitrofluorobenzene (DNFB)"
+  confidence: CROSS_REFERENCED
+  sources:
+    - "Alzeeb et al. 2024 (uses abbreviation DFNB — same compound)"
+    - "Brenus Science & Innovation page (uses abbreviation DNFB)"
+
+---
+
+blocked_fields:
+  # These fields must not be asserted in downstream outputs
+  # Use blocked: true as a hard gate in any downstream agent logic
+
+  human_cell_line_identity_stc1010:
+    blocked: false  # UPDATED 2026-04-28 [ASCO 2023 e14661 DIRECT_SOURCE] — B-001 RESOLVED
+    blocker_id: "B-001"
+    resolution_status: "RESOLVED"
+    resolution_date: "2026-04-28"
+    confirmed_value: "HCT116, HT29, LoVo"
+    confirmed_by: "ASCO 2023 e14661 (DIRECT_SOURCE)"
+    note: "Field is no longer blocked. Use confirmed_value. See stc1010_preclinical.human_cell_line_identity for full details."
+
+  ht29_braf_conflict_resolution:
+    blocked: true  # UPDATED 2026-04-28 [ASCO 2023 e14661 DIRECT_SOURCE]
+    blocker_id: "B-006"
+    conflict_id: "SC-001"
+    reason: "No retrieved source addresses the scientific rationale for including BRAF V600E-mutant HT29 in a vaccine for BRAF WT patients. Requires additional data from Brenus or primary source."
+    hard_rule: "Do not assert resolution. Do not speculate. Document conflict SC-001 and flag B-006 as open."
+
+  clinical_gmp_manufacturing_parameters:
+    blocked: true
+    blocker_id: "B-002"
+    reason: "Not disclosed in any retrieved source"
+
+  human_clinical_efficacy_safety_stc1010:
+    blocked: true
+    blocker_id: "B-003"
+    reason: "No results posted; all press-release/abstract sources failed retrieval"
+    includes_blocked:
+      - "n=6 patient count"
+      - "100% DCR"
+      - "DTH response observations"
+      - "Any AACR 2026 abstract CT051 data"
+      - "Any BusinessWire/BioSpace press release data"
+
+  bevacizumab_arm_assignment_break_crc001:
+    blocked: true
+    blocker_id: "B-004"
+    reason: "Protocol document not publicly available"
+    provisional_note: "Registry states 'with or without' — arm-level assignment unknown"
+
+  asco_2024_abstract_specific_claims:
+    blocked: true
+    blocker_id: "B-005"
+    reason: "BioSpace/BusinessWire ASCO 2024 retrieval failed (404/Akamai)"
+
+---
+
+corrected_values:
+  # These prior-canon values must not be used — replaced by verified values above
+  - field: "NCT identifier for AdCEA+avelumab trial"
+    prior_value: "NCT02853604"
+    correct_value: "NCT03050814"
+    correction_id: "C-002"
+  - field: "NCT03050814 PFS hazard ratio"
+    prior_value: "1.02 (95% CI 0.65–1.60)"
+    correct_value: "1.061 (95% CI 0.380–2.966)"
+    correction_id: "C-003"
+  - field: "NCT03050814 p-value"
+    prior_value: "not specified in prior canon"
+    correct_value: "0.91 (log-rank)"
+    correction_id: "C-003"
+  - field: "NCT03050814 trial framing"
+    prior_value: "positive design precedent"
+    correct_value: "TERMINATED for futility — negative result"
+    correction_id: "C-006"
+  - field: "BreAK CRC-001 population scope"
+    prior_value: "MSS-only"
+    correct_value: "Three arms: Phase 1, Arm 2A-1 (MSS), Arm 2A-2 (MSI-H)"
+    correction_id: "C-001"
+  - field: "STC-1010 preclinical cell lines"
+    prior_value: "HCT116/HT29/LoVo (human)"
+    correct_value: "CT26/CMT-93/LTPA/MC38 (all murine) in Alzeeb 2024; human lines BLOCKED"
+    correction_id: "C-005"
+  - field: "200+ cancer-related proteins claim tag"
+    prior_value: "[VERIFIED]"
+    correct_value: "[COMPANY_CLAIM] — Brenus website only; not in peer-reviewed source"
+    correction_id: "C-004"
+
+# End of brenus_engine_safe_input_block_v2.yaml

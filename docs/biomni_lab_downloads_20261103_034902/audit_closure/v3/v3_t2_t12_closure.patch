@@ -1,0 +1,204 @@
+diff --git a/docs/audits/BLOCKER_REGISTER.yaml b/docs/audits/BLOCKER_REGISTER.yaml
+index c28797a..dc1162d 100644
+--- a/docs/audits/BLOCKER_REGISTER.yaml
++++ b/docs/audits/BLOCKER_REGISTER.yaml
+@@ -4,8 +4,16 @@
+ # Recorded: 2026-05-10
+ #
+ # T6 status: PASSES. test_t6_sl_wiring_populates_sl_tier is green.
+-# SL wiring is verified. Full Therapy Fit production readiness is NOT
+-# claimed while T2 and T12 remain failing.
++# SL wiring is verified.
++#
++# UPDATE 2026-07-20 (audit closure): T2 and T12 are now RESOLVED. The full T-series
++# runs 10 passed / 0 failed (was 8/2). See per-issue closure notes below.
++#   - V3-TF-T2-001  -> CLOSED_VERIFIED (DEGRADED-isolation pytest fixture)
++#   - V3-TF-T12-001 -> CLOSED_VERIFIED (stale assertion corrected to the real invariant;
++#                       also resolved a genuine T6<->T12 contradiction)
++#   - V3-TF-DB-001  -> STILL OPEN (repo hygiene: clinical_trials.db is still committed;
++#                       the test fix no longer depends on removing it, but the 10.7 MB
++#                       binary should still be gitignored + generated at runtime).
+ 
+ blockers:
+ 
+@@ -54,6 +62,20 @@ blockers:
+     opened_date: "2026-05-10"
+     introduced_in: "26d08bc — initial v3 branch commit (accidental DB inclusion)"
+ 
++    status: CLOSED_VERIFIED
++    closed_date: "2026-07-20"
++    closure_method: "chosen: closure_criteria option 2 (pytest fixture, non-destructive)"
++    closure_note: >
++      Added a `trials_degraded` pytest fixture (test_brm_bundle.py) that reproduces the
++      intended isolated DEGRADED condition deterministically: monkeypatches
++      trials_adapter._DB_PATH to a nonexistent path AND _ctgov_live_count -> 0. Applied to
++      T2 (and T12). This is the exact runtime condition documented in runtime_proof
++      (result_db_absent_api_mocked_0). It sets up the isolated environment the test was
++      written for — it does NOT fabricate a result and does NOT delete the committed DB.
++      The PRECOMPUTED path remains the default runtime behavior and is unaffected.
++    proof_artifact: "pytest test_brm_bundle.py -> 10 passed / 0 failed (was 8/2)"
++    still_open_followup: "V3-TF-DB-001 (repo hygiene) remains open — DB should still be gitignored."
++
+   - issue_id: V3-TF-T12-001
+     title: "T12 asserts final_score==0.5 but access_bonus=0.2 from DB — score is 0.7"
+     severity: P1
+@@ -100,6 +122,32 @@ blockers:
+     opened_date: "2026-05-10"
+     introduced_in: "26d08bc — initial v3 branch commit (accidental DB inclusion)"
+ 
++    status: CLOSED_VERIFIED
++    closed_date: "2026-07-20"
++    closure_method: "chosen: closure_criteria option 2 (fixture) + corrected a stale assertion"
++    second_defect_found_during_closure: >
++      Applying the trials_degraded fixture removed the access_bonus red herring and
++      exposed a DEEPER, previously-masked defect that contradicts the register's original
++      root_cause: with access_bonus=0.0, T12 still failed — not on score, but on
++      `assert opt.sl_support_class == NO_SL_SUPPORT for every active candidate`.
++      cilengitide (brm_target_gene=ITGAV) carries sl_support_class=STRONG_SL_SUPPORT,
++      because _SL_HANDOFF_MAP maps ITGAV -> STRONG (ZEB1->ITGAV, delta=-0.72, FDR=0.013)
++      — the exact signal shipped by the 26d08bc wiring and asserted by T6
++      (cilengitide.sl_tier == "Strong"). So T12's blanket "all active == NO_SL_SUPPORT"
++      assertion was STALE and in direct contradiction with T6.
++    closure_note: >
++      Verified in code (service._apply_sl_annotation) that SL support class is
++      metadata-only: "Effect on scoring: NONE. rank, final_score, access_bonus ...
++      are not modified here." cilengitide's final_score is therefore NOT inflated by its
++      STRONG_SL_SUPPORT class. T12's REAL invariant (SL metadata must not change
++      score/rank) HOLDS. Corrected T12's stale secondary assertion to test that real
++      invariant: all active candidates keep final_score=0.5 in the DEGRADED path
++      regardless of SL class, and STRONG_SL_SUPPORT is pinned to the ITGAV-targeting
++      candidate (cilengitide) to match T6 + the handoff map. Zero product-logic change.
++      Also corrected a false comment in _SL_HANDOFF_MAP that claimed no brm.json
++      candidate targets ITGAV (cilengitide does).
++    proof_artifact: "pytest test_brm_bundle.py -> 10 passed / 0 failed; T6 still green"
++
+   - issue_id: V3-TF-DB-001
+     title: "data/clinical_trials.db committed to repo — should be gitignored and generated at runtime"
+     severity: P1
+diff --git a/tests/test_layer1/test_therapy_fit/test_brm_bundle.py b/tests/test_layer1/test_therapy_fit/test_brm_bundle.py
+index 610e578..199937c 100644
+--- a/tests/test_layer1/test_therapy_fit/test_brm_bundle.py
++++ b/tests/test_layer1/test_therapy_fit/test_brm_bundle.py
+@@ -35,6 +35,31 @@ def service():
+     return TargetedTherapyService()
+ 
+ 
++@pytest.fixture
++def trials_degraded(monkeypatch):
++    """Force the DEGRADED trials path deterministically.
++
++    T2 and T12 were written for an isolated CI environment where
++    data/clinical_trials.db is ABSENT and the live ClinicalTrials.gov API returns 0
++    (see docs/audits/BLOCKER_REGISTER.yaml, V3-TF-T2-001 / V3-TF-T12-001). The repo
++    accidentally commits the 10.7 MB DB, so TrialsAdapter.call() returns PRECOMPUTED
++    and (with a reachable API) LIVE — never DEGRADED. That makes T2 assert the wrong
++    status and T12 see access_bonus=0.2 (final_score 0.7 instead of 0.5).
++
++    This fixture reproduces the true DEGRADED condition without deleting the committed
++    binary or depending on network state:
++      - point _DB_PATH at a nonexistent file  -> SQLite path skipped
++      - force _ctgov_live_count -> 0           -> live fallback yields DEGRADED
++    It sets up the intended isolated environment; it does not fabricate a result.
++    """
++    from pathlib import Path
++    import layer1_engines.therapy_fit.adapters.trials_adapter as ta
++
++    monkeypatch.setattr(ta, "_DB_PATH", Path("/tmp/__crispro_no_such_trials_db__.db"))
++    monkeypatch.setattr(ta, "_ctgov_live_count", lambda candidate, context: 0)
++    return ta
++
++
+ # ── T1: Happy path — EGFR-mutant NSCLC BrM ──────────────────────────────────
+ 
+ def test_t1_egfr_nsclc_brm_happy_path(service):
+@@ -65,11 +90,15 @@ def test_t1_egfr_nsclc_brm_happy_path(service):
+ 
+ # ── T2: Degraded path — no mutations, all adapters STUBBED/DEGRADED ──────────
+ 
+-def test_t2_degraded_path_all_adapters(service):
++def test_t2_degraded_path_all_adapters(service, trials_degraded):
+     """
+     No patient context: all adapters return STUBBED or DEGRADED.
+     Bundle must not crash and must return candidates.
+     engine_status must reflect adapter provenance, not biology quality.
++
++    Uses the trials_degraded fixture to isolate the trials adapter from the
++    committed clinical_trials.db and the live CT.gov API (BLOCKER_REGISTER
++    V3-TF-T2-001), so the DEGRADED contract is tested deterministically.
+     """
+     query = CandidateQuery(patient_id="test-002", disease="brain_metastasis")
+     brief = service.generate_brief(query)
+@@ -311,11 +340,17 @@ def test_t11_sl_support_class_calibration_only_for_bace1_candidates(service):
+ 
+ # ── T12: CALIBRATION_ONLY — no score, rank, or quarantine effect ─────────────
+ 
+-def test_t12_calibration_only_no_score_inflation(service):
++def test_t12_calibration_only_no_score_inflation(service, trials_degraded):
+     """
+     CALIBRATION_ONLY must not change final_score, rank, or quarantine status.
+     Verify by comparing verubecestat score against the Phase 1 baseline (0.0).
+     Also verify that active candidates' scores are not affected by SL metadata.
++
++    Uses the trials_degraded fixture so access_bonus=0.0 (DEGRADED path): this
++    isolates the SL-metadata invariant (SL must not inflate score) from the
++    committed-DB access_bonus=0.2, which is a separate trials-provenance concern
++    (BLOCKER_REGISTER V3-TF-T12-001). The Phase 1 baseline of 0.5 holds only in
++    the DEGRADED path; that is exactly the invariant this test is meant to check.
+     """
+     query = CandidateQuery(patient_id="test-012", disease="brain_metastasis")
+     brief = service.generate_brief(query)
+@@ -330,15 +365,48 @@ def test_t12_calibration_only_no_score_inflation(service):
+     )
+     assert verubecestat.sl_support_class == SLSupportClass.CALIBRATION_ONLY
+ 
+-    # Active candidates: NO_SL_SUPPORT must not change their scores
+-    # All active candidates in Phase 1 score 0.5 (STUBBED impact * 1.0 safety + 0.0 bonus)
++    # Active candidates: SL metadata (whatever the class) must NOT change scores.
++    #
++    # UPDATED 2026-07-20 (audit closure, V3-TF-T12-001 resolution):
++    # The prior assertion "every active candidate == NO_SL_SUPPORT" was stale — it
++    # predated the SL wiring shipped in 26d08bc and directly contradicted T6, which
++    # asserts cilengitide (brm_target_gene=ITGAV) receives sl_tier="Strong". Per
++    # _SL_HANDOFF_MAP, ITGAV is a legitimate STRONG_SL_SUPPORT entry (ZEB1->ITGAV,
++    # delta=-0.72, FDR=0.013), so cilengitide correctly carries STRONG_SL_SUPPORT.
++    #
++    # The REAL invariant T12 guards is that SL support class is metadata-only and does
++    # NOT inflate final_score/rank (service._apply_sl_annotation: "Effect on scoring:
++    # NONE"). So all active candidates must still score 0.5 in the DEGRADED path (STUBBED
++    # impact * 1.0 safety + 0.0 access_bonus) regardless of SL class. We assert exactly
++    # that, and pin cilengitide's class to STRONG (matching T6 + the handoff map) so the
++    # two tests can no longer disagree.
+     active = [o for o in brief.ranked_options if o.rank != 999]
++    assert len(active) > 0, "expected at least one active candidate"
++
++    # Closed-world: only ITGAV-targeting candidates get STRONG_SL_SUPPORT; the rest
++    # are NO_SL_SUPPORT. No active candidate may be CALIBRATION_ONLY (that class is
++    # reserved for the quarantined BACE1 candidates, checked above).
+     for opt in active:
+-        assert opt.sl_support_class == SLSupportClass.NO_SL_SUPPORT, (
+-            f"{opt.drug_name}: active candidate must be NO_SL_SUPPORT"
+-        )
++        target_gene = None
++        # brm_target_gene lives on the source candidate; STRONG is only expected for ITGAV
++        if opt.sl_support_class == SLSupportClass.STRONG_SL_SUPPORT:
++            assert opt.drug_name == "cilengitide", (
++                f"{opt.drug_name}: STRONG_SL_SUPPORT expected only for the ITGAV-targeting "
++                f"candidate (cilengitide) per _SL_HANDOFF_MAP + T6"
++            )
++            assert opt.sl_exploit_gene == "ITGAV", (
++                f"{opt.drug_name}: STRONG_SL_SUPPORT must be the ZEB1->ITGAV signal"
++            )
++        else:
++            assert opt.sl_support_class == SLSupportClass.NO_SL_SUPPORT, (
++                f"{opt.drug_name}: active candidate must be NO_SL_SUPPORT or the "
++                f"documented ITGAV STRONG_SL_SUPPORT; got {opt.sl_support_class}"
++            )
++
++        # The invariant this test exists to protect: SL metadata must not inflate score.
+         assert opt.final_score == pytest.approx(0.5, abs=1e-6), (
+-            f"{opt.drug_name}: Phase 1 score must be 0.5, got {opt.final_score}"
++            f"{opt.drug_name}: SL metadata must not change the Phase 1 DEGRADED-path "
++            f"score of 0.5, got {opt.final_score} (sl_support_class={opt.sl_support_class})"
+         )
+ 
+ 

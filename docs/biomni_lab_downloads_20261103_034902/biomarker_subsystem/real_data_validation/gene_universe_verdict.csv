@@ -1,0 +1,6 @@
+gene,cn_mediated,resistance_direction,n_directional_events,directional_events,verdict,mechanism_note
+PTEN,True,loss,2,191/diagnosis:loss;191/relapse:loss,CANDIDATE_WITH_PILOT_CN,TSG; CN loss is a real resistance-relevant CN event
+PALB2,partial,loss,2,109/diagnosis:loss;6/relapse:loss,CANDIDATE_WITH_PILOT_CN,HR gene; resistance mostly truncating SNV; CN loss possible
+CUL3,partial,loss,2,191/diagnosis:loss;191/relapse:loss,CANDIDATE_WITH_PILOT_CN,NRF2/KEAP1 axis; partial CN relevance
+KEAP1,False,loss,1,119/relapse:loss,STAYS_LITERATURE_ONLY,resistance = SNV LoF (NRF2 activation); sWGS cannot call it
+SLC31A1,True,loss,2,109/diagnosis:loss;119/relapse:loss,CANDIDATE_WITH_PILOT_CN,"CTR1 platinum influx; CN loss relevant but low-copy, hard at 0.1x sWGS"

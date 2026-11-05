@@ -1,0 +1,29 @@
+[{
+ "name": "2026-04-15_18:58",
+ "modelSeeds": [
+  "1206182459"
+ ],
+ "sequences": [
+  {
+   "rnaSequence": {
+    "sequence": "UCUUCCCAUGGCAGGCAAUCGUUUUAGAGCUAGAAAUAGCAAGUUAAAAUAAGGCUAGUCCGUUAUCAACUUGAAAAAGUGGCACCGAGUCGGUGC",
+    "count": 1
+   }
+  },
+  {
+   "dnaSequence": {
+    "sequence": "GGAAGTGTAGTCTTCCCATGGCAGGCAATCCGGCTTCCGGGGCTGGAGAGGGGTCTGGGAT",
+    "count": 1
+   }
+  },
+  {
+   "dnaSequence": {
+    "sequence": "ATCCCAGACCCCTCTCCAGCCCCGGAAGCCGGATTGCCTGCCATGGGAAGACTACACTTCC",
+    "count": 1
+   }
+  }
+ ],
+ "dialect": "alphafoldserver",
+ "version": 3
+}
+]

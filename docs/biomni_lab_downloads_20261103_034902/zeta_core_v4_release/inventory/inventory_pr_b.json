@@ -1,0 +1,199 @@
+{
+  "base_branch": "main",
+  "base_sha": "99dd39c657064839fd25c37a69851178bc5e6d9d",
+  "dependency_additions_total": [],
+  "frozen_source_commit": "80531e7f3fc0461ed7d72aa798fd7f6a92c4cc87",
+  "generated_utc": "2026-08-14T04:00:26+00:00",
+  "head_ref": "review/cohere-key-harness",
+  "head_sha": "d73f5d3abe89711b9ced7a7292db276032a919fb",
+  "head_tree": "8bf93b6b65fe77f52d001ba6111e20efc16a97d8",
+  "pr": "B",
+  "record_count": 13,
+  "records": [
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": ".github/workflows/zeta_core_v4_release.yml",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "ci/environment_drift_report.json",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "ci/environment_lock.comparison_env.txt",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "ci/requirements.ci.txt",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "report",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "release_inventory/build_inventory.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/ci/assert_no_unexpected_skips.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/ci/branch_scope.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/ci/environment_drift.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/ci/gen_ci_pins.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/ci/node_diff_receipt.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "ci",
+      "change": "added",
+      "curated": false,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "path": "scripts/ci/verify_frozen_artifacts.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "release_engineering_reviewer",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "modified",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "notes": "Old behavior: module-level credential handling aborted collection for some key states. New behavior: collection always succeeds; the live probe is a single explicitly marked test that skips only for an absent or empty key, fails for a malformed key, and reaches the provider path only when the key is validly shaped and the live flag is set.",
+      "path": "tests/test_cohere_with_key.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "role": "Cohere live-key integration module, collection-safe harness",
+      "runtime_behavior_affected": false
+    },
+    {
+      "artifact_class": "test",
+      "change": "added",
+      "curated": true,
+      "dependency_added": [],
+      "fail_closed_behavior_affected": false,
+      "notes": "Key-state branches covered: absent, empty or whitespace, malformed, and validly shaped. The validly shaped path is exercised against an injected fake provider, so no real provider call occurs at import or collection.",
+      "path": "tests/unit/test_cohere_key_harness.py",
+      "public_api_fields_affected": [],
+      "reviewer_required": "qa_test_reviewer",
+      "role": "hermetic contract tests for the four key states and for collection safety",
+      "runtime_behavior_affected": false
+    }
+  ],
+  "release_assertions": {
+    "cohere_collection_contract": {
+      "hermetic_coverage": "tests/unit/test_cohere_key_harness.py, 13 tests, injected fake provider",
+      "key_state_branches": {
+        "absent": "test skips with reason COHERE_KEY_ABSENT",
+        "empty_or_whitespace": "test skips with reason COHERE_KEY_EMPTY",
+        "malformed": "test fails with COHERE_KEY_MALFORMED; it must not skip",
+        "valid_shape_with_opt_in": "the provider path executes a real call",
+        "valid_shape_without_opt_in": "test skips with reason COHERE_LIVE_OPT_IN_REQUIRED"
+      },
+      "module": "tests/test_cohere_with_key.py",
+      "new_behavior": {
+        "credential_prefix_leaked_to_logs": false,
+        "import_side_effects": [],
+        "live_call_preconditions": [
+          "key classifies as VALID_SHAPE",
+          "COHERE_LIVE_TEST equals 1"
+        ],
+        "measured_collection_absent_key": "1 test collected, return code 0",
+        "measured_collection_valid_shape_key": "1 test collected, return code 0",
+        "real_provider_call_possible_at_collection": false
+      },
+      "old_behavior_on_main": {
+        "credential_prefix_leaked_to_logs": true,
+        "import_side_effects": [
+          "load_dotenv() at module import",
+          "banner printed to stdout at import",
+          "sys.exit(1) at module level when COHERE_API_KEY is absent",
+          "prints the first 10 characters of the key when a key is present",
+          "asyncio.run(test_cohere()) at module level, a real provider call"
+        ],
+        "measured_collection_absent_key": "pytest --collect-only aborts with INTERNALERROR SystemExit: 1, return code 3, 0 tests collected",
+        "real_provider_call_possible_at_collection": true
+      }
+    }
+  },
+  "self_reference_caveat": "This inventory cannot contain its own digest. It covers every path in the diff except itself and the SHA256SUMS file that records its digest.",
+  "title": "Zeta-Core v4 Cohere key harness, collection-safe"
+}

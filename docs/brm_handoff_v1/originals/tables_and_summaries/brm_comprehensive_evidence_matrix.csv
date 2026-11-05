@@ -1,0 +1,11 @@
+gene,verdict,GSE223499_LFC,GSE223499_sig,GSE200563_LFC,GSE200563_sig,GSE131907_LFC,GSE131907_sig,GSE161116_LFC,GSE161116_sig,CPTAC_LFC_TvsN,CPTAC_sig,DepMap_Chronos,DepMap_sig,evidence_notes
+NOM1,CONFIRMED,0.52,sig(padj<0.05),-0.067,NS,0.037,NS,,NS,1.813,sig(padj<0.05),-0.695,sig(padj<0.05),Sig in GSE223499 (padj=0.04); +1.81 CPTAC protein; DepMap essential (Chronos=-0.695) in lung+BrM lines
+BACE1,CONFIRMED,1.07,trend(p<0.1),0.158,NS,1.218,sig(padj<0.05),,NS,,NS,-0.041,lit_confirmed,Trending GSE223499 (padj=0.07); sig GSE131907 (padj=0.017); Chafe 2025 CRISPRa screen confirms BrM driver; cleaves EGFR
+FAM72A,TRENDING,1.05,trend(p<0.1),,NS,0.253,NS,,NS,,NS,,NS,Trending GSE223499 (padj=0.07); concordant ↑BrM GSE131907; absent CPTAC/DepMap; not detected GSE200563
+SLC45A4,CORROBORATED,1.06,NS,0.283,NS,0.575,NS,,NS,,NS,-0.023,NS,Concordant ↑BrM across 3 RNA datasets; none significant; not in CPTAC proteome
+ROPN1L,CORROBORATED,0.18,NS,0.147,NS,0.163,NS,,NS,-3.024,sig(padj<0.05),-0.085,NS,Concordant ↑BrM RNA (3 datasets); strongly ↓ CPTAC protein (diff=-3.02); RNA/protein discordance
+PTPRC,REINTERPRETED,-0.11,NS,-0.181,NS,-1.308,sig(padj<0.05),-0.861,trend(p<0.1),-0.458,sig(padj<0.05),-0.096,NS,Sig ↓BrM GSE131907 (padj=0.017); trending ↓ GSE161116 (p=0.083); ↓ CPTAC protein; immune depletion in BrM
+SENP8,CONFLICTED,-0.47,NS,0.276,sig(padj<0.05),0.397,NS,,NS,-1.723,sig(padj<0.05),-0.013,NS,Discordant: ↓BrM GSE223499 vs ↑BrM GSE200563★ and GSE131907; strongly ↓ CPTAC protein (-1.72)
+SLC25A32,WEAK,0.03,NS,0.173,NS,-0.144,NS,,NS,0.953,sig(padj<0.05),0.059,NS,Directionally inconsistent; ↑ CPTAC protein (+0.95); no RNA significance
+TFEB,WEAK,-0.34,NS,0.106,NS,0.431,NS,0.377,NS,0.09,NS,0.011,NS,Discordant RNA directions; no significance; may be cell-type specific (myeloid/T-cell)
+ATP10D,NO_EVIDENCE,-0.13,NS,0.141,NS,0.058,NS,,NS,-0.354,NS,0.007,NS,Discordant directions; ↓ CPTAC protein (-0.35); no significance across 4 datasets

@@ -1,0 +1,314 @@
+{
+  "absolute_width_difference": {
+    "max": 0.681607100820295,
+    "max_abs": 0.681607100820295,
+    "mean": 0.010065102750549369,
+    "median": 0.0001907301672927353,
+    "min": 0.0,
+    "n": 412,
+    "p25": 1.8596235662471372e-15,
+    "p75": 0.007220004659041629
+  },
+  "analysis_id": "D5_RUNTIME_EQUIVALENCE",
+  "cohort": {
+    "n_compared": 446,
+    "n_landmark_patients": 451,
+    "n_missing_receipt_row": 5,
+    "n_missing_series": 0
+  },
+  "confusion_matrix": {
+    "IMPRECISE->IMPRECISE": 238,
+    "IMPRECISE->RELIABLE": 1,
+    "IMPRECISE->SIGN_UNSTABLE": 7,
+    "INSUFFICIENT_FOR_UNCERTAINTY->INSUFFICIENT_FOR_UNCERTAINTY": 34,
+    "RELIABLE->IMPRECISE": 1,
+    "RELIABLE->RELIABLE": 55,
+    "SIGN_UNSTABLE->IMPRECISE": 5,
+    "SIGN_UNSTABLE->RELIABLE": 2,
+    "SIGN_UNSTABLE->SIGN_UNSTABLE": 103
+  },
+  "design": {
+    "frozen_replicates": 1000,
+    "min_distinct_days_for_uncertainty": 4,
+    "receipt_random_stream": "NumPy default_rng (PCG64)",
+    "replicates": 1000,
+    "runtime_random_stream": "CPython random.Random (Mersenne Twister)",
+    "seed": 20260813,
+    "streams_are_bitwise_identical": false
+  },
+  "does_not_activate_any_absolute_risk_or_treatment_field": true,
+  "does_not_define_a_band_activation_gate": true,
+  "extreme_width_difference_note": "15 of 412 patients with estimable width differ by more than 0.05 in percentile-interval width, the largest by 0.6816. Every one of them already had a receipt width of at least 0.2738, i.e. above the 0.2 released bound, so none of them was classified RELIABLE by either stream. Their released status is NOT always identical, however: 2 of the 15 flipped, including the worst case (IMPRECISE -> SIGN_UNSTABLE). The wide-interval tail is therefore where the two streams agree least, which is also where the index is least informative under either stream.",
+  "fail_direction_analysis": {
+    "disclosure": "The runtime's sign-stability refusal is Monte-Carlo unstable for patients whose resampled decline-sign stability sits within roughly 0.0143 of the frozen 0.95 bound. For those patients (7 of 446 in the reference cohort) the runtime stream serves a point index that the offline receipt stream refused. Replicate count and seed are frozen in the prespecification and were NOT raised in response to this finding; the instability is disclosed instead of tuned away.",
+    "max_sign_stability_distance_among_permissive_flips": 0.014285714285714346,
+    "n_flips_between_served_statuses_annotation_only": 2,
+    "n_flips_toward_refusal_conservative": 7,
+    "n_flips_toward_serving_permissive": 7,
+    "sign_unstable_is_a_full_fail_closed_status": true
+  },
+  "interpretation_constraints": [
+    "A status flip near a threshold is expected Monte-Carlo behaviour under the frozen design and is not evidence that the two implementations compute different quantities.",
+    "A point reproduction failure is NOT a Monte-Carlo difference. It means the runtime mirror did not reproduce the served k_day, and the runtime fails closed for that patient.",
+    "Agreement here does not validate the design itself. The design was frozen in the audit-correction prespecification before any of these numbers existed, and this script does not revise it.",
+    "No patient identifier is written by this script."
+  ],
+  "not_a_calibration_analysis": true,
+  "point_reproduction_failures": 0,
+  "purpose": "Quantify agreement between the stdlib API runtime estimator (random.Random / Mersenne Twister) and the NumPy PCG64 validation receipt under the identical frozen resampling design.",
+  "relative_width_difference_abs": {
+    "max": 0.6831388021704529,
+    "max_abs": 0.6831388021704529,
+    "mean": 0.025903020241557505,
+    "median": 0.0005393471963190382,
+    "min": 0.0,
+    "n": 412,
+    "p25": 4.369416203686652e-15,
+    "p75": 0.024786987945480444
+  },
+  "runtime_seconds": 1.898,
+  "signed_differences_runtime_minus_receipt": {
+    "boundary_crossing_probability": {
+      "max": 0.1413017977558217,
+      "max_abs": 0.1413017977558217,
+      "mean": -0.000960832149215797,
+      "median": 0.0,
+      "min": -0.06430564845353692,
+      "n": 412,
+      "p25": -0.0091100797229597,
+      "p75": 0.007736666476175005
+    },
+    "decline_sign_stability": {
+      "max": 0.03861739543343723,
+      "max_abs": 0.047047047047046986,
+      "mean": -0.00034860257937659785,
+      "median": 0.0,
+      "min": -0.047047047047046986,
+      "n": 412,
+      "p25": 0.0,
+      "p75": 0.0
+    },
+    "k_day_lower": {
+      "max": 0.018823866367904948,
+      "max_abs": 0.018823866367904948,
+      "mean": 2.3797850085181612e-05,
+      "median": 3.5344990823027445e-17,
+      "min": -0.0027808097151629,
+      "n": 412,
+      "p25": -1.0516761073109393e-16,
+      "p75": 1.48318857196017e-16
+    },
+    "k_day_upper": {
+      "max": 0.003884610609428213,
+      "max_abs": 0.00953657413720638,
+      "mean": -7.284095653602203e-05,
+      "median": 3.469446951953614e-17,
+      "min": -0.00953657413720638,
+      "n": 412,
+      "p25": -4.709774237277031e-16,
+      "p75": 1.929879867024198e-16
+    },
+    "percentile_interval_width": {
+      "max": 0.10992800285501902,
+      "max_abs": 0.681607100820295,
+      "mean": -0.0019148077756111117,
+      "median": 2.220446049250313e-16,
+      "min": -0.681607100820295,
+      "n": 412,
+      "p25": -2.8310687127941492e-14,
+      "p75": 0.0004144635703856661
+    },
+    "percentile_lower": {
+      "max": 0.681607100820295,
+      "max_abs": 0.681607100820295,
+      "mean": 0.0010362150708994064,
+      "median": -6.245004513516506e-17,
+      "min": -0.10844648712489362,
+      "n": 412,
+      "p25": -4.9509008004378074e-15,
+      "p75": 1.7832957333041577e-15
+    },
+    "percentile_upper": {
+      "max": 0.05901753565957546,
+      "max_abs": 0.12936668133552276,
+      "mean": -0.000878592704711749,
+      "median": 0.0,
+      "min": -0.12936668133552276,
+      "n": 412,
+      "p25": -1.0630385460785874e-14,
+      "p75": 1.887379141862766e-15
+    }
+  },
+  "status_agreement": {
+    "agreement_fraction": 0.9641255605381166,
+    "n_agree": 430,
+    "n_compared": 446,
+    "n_disagree": 16,
+    "n_disagree_within_0_02_of_a_threshold": 16
+  },
+  "status_counts_receipt": {
+    "IMPRECISE": 246,
+    "INSUFFICIENT_FOR_UNCERTAINTY": 34,
+    "RELIABLE": 56,
+    "SIGN_UNSTABLE": 110
+  },
+  "status_counts_runtime": {
+    "IMPRECISE": 244,
+    "INSUFFICIENT_FOR_UNCERTAINTY": 34,
+    "RELIABLE": 58,
+    "SIGN_UNSTABLE": 110
+  },
+  "status_flips": [
+    {
+      "distance_from_crossing_bound": 0.06319663512092541,
+      "distance_from_sign_stability_bound": 0.0010000000000000009,
+      "distance_from_width_bound": -0.03292786459142749,
+      "n_distinct_days": 6,
+      "receipt_status": "IMPRECISE",
+      "runtime_status": "SIGN_UNSTABLE"
+    },
+    {
+      "distance_from_crossing_bound": -0.24427966101694917,
+      "distance_from_sign_stability_bound": -0.0022088353413654005,
+      "distance_from_width_bound": -0.5857857301905383,
+      "n_distinct_days": 5,
+      "receipt_status": "SIGN_UNSTABLE",
+      "runtime_status": "IMPRECISE"
+    },
+    {
+      "distance_from_crossing_bound": -0.18283898305084748,
+      "distance_from_sign_stability_bound": 0.001612903225806428,
+      "distance_from_width_bound": -0.4047619904393996,
+      "n_distinct_days": 4,
+      "receipt_status": "IMPRECISE",
+      "runtime_status": "SIGN_UNSTABLE"
+    },
+    {
+      "distance_from_crossing_bound": 0.044162436548223404,
+      "distance_from_sign_stability_bound": 0.03796389167502523,
+      "distance_from_width_bound": -0.002432563403466287,
+      "n_distinct_days": 5,
+      "receipt_status": "IMPRECISE",
+      "runtime_status": "RELIABLE"
+    },
+    {
+      "distance_from_crossing_bound": -0.004689203925845098,
+      "distance_from_sign_stability_bound": -0.014285714285714346,
+      "distance_from_width_bound": -0.2951103986719199,
+      "n_distinct_days": 4,
+      "receipt_status": "SIGN_UNSTABLE",
+      "runtime_status": "IMPRECISE"
+    },
+    {
+      "distance_from_crossing_bound": 0.045000000000000005,
+      "distance_from_sign_stability_bound": 0.050000000000000044,
+      "distance_from_width_bound": 0.0005683067943499098,
+      "n_distinct_days": 5,
+      "receipt_status": "RELIABLE",
+      "runtime_status": "IMPRECISE"
+    },
+    {
+      "distance_from_crossing_bound": -0.38497854077253213,
+      "distance_from_sign_stability_bound": -0.0028455284552845184,
+      "distance_from_width_bound": -0.36143538645570034,
+      "n_distinct_days": 4,
+      "receipt_status": "SIGN_UNSTABLE",
+      "runtime_status": "IMPRECISE"
+    },
+    {
+      "distance_from_crossing_bound": -0.0193717277486911,
+      "distance_from_sign_stability_bound": 0.005955955955955994,
+      "distance_from_width_bound": -0.7977578475336324,
+      "n_distinct_days": 6,
+      "receipt_status": "IMPRECISE",
+      "runtime_status": "SIGN_UNSTABLE"
+    },
+    {
+      "distance_from_crossing_bound": 0.1,
+      "distance_from_sign_stability_bound": -0.010851926977687554,
+      "distance_from_width_bound": 0.05140926975948562,
+      "n_distinct_days": 4,
+      "receipt_status": "SIGN_UNSTABLE",
+      "runtime_status": "RELIABLE"
+    },
+    {
+      "distance_from_crossing_bound": 0.0407965554359527,
+      "distance_from_sign_stability_bound": 0.002820512820512877,
+      "distance_from_width_bound": -0.0886882940365753,
+      "n_distinct_days": 4,
+      "receipt_status": "IMPRECISE",
+      "runtime_status": "SIGN_UNSTABLE"
+    },
+    {
+      "distance_from_crossing_bound": -0.1008501594048884,
+      "distance_from_sign_stability_bound": 0.004361054766734429,
+      "distance_from_width_bound": -0.3979917522222706,
+      "n_distinct_days": 4,
+      "receipt_status": "IMPRECISE",
+      "runtime_status": "SIGN_UNSTABLE"
+    },
+    {
+      "distance_from_crossing_bound": 0.08458376156217891,
+      "distance_from_sign_stability_bound": 0.02300000000000002,
+      "distance_from_width_bound": -0.0026228628872685955,
+      "n_distinct_days": 5,
+      "receipt_status": "IMPRECISE",
+      "runtime_status": "SIGN_UNSTABLE"
+    },
+    {
+      "distance_from_crossing_bound": 0.0905163329820865,
+      "distance_from_sign_stability_bound": -5.005005004998786e-05,
+      "distance_from_width_bound": 0.003479272702743924,
+      "n_distinct_days": 5,
+      "receipt_status": "SIGN_UNSTABLE",
+      "runtime_status": "RELIABLE"
+    },
+    {
+      "distance_from_crossing_bound": -0.3347368421052631,
+      "distance_from_sign_stability_bound": 0.0,
+      "distance_from_width_bound": -0.5389210067264365,
+      "n_distinct_days": 5,
+      "receipt_status": "IMPRECISE",
+      "runtime_status": "SIGN_UNSTABLE"
+    },
+    {
+      "distance_from_crossing_bound": -0.41831896551724135,
+      "distance_from_sign_stability_bound": -0.008823529411764786,
+      "distance_from_width_bound": -0.70583963044618,
+      "n_distinct_days": 4,
+      "receipt_status": "SIGN_UNSTABLE",
+      "runtime_status": "IMPRECISE"
+    },
+    {
+      "distance_from_crossing_bound": 0.04155844155844161,
+      "distance_from_sign_stability_bound": -0.010020345879959147,
+      "distance_from_width_bound": -0.1267851863642004,
+      "n_distinct_days": 4,
+      "receipt_status": "SIGN_UNSTABLE",
+      "runtime_status": "IMPRECISE"
+    }
+  ],
+  "width_difference_tail": {
+    "any_classified_reliable_by_either_stream": false,
+    "min_receipt_width_among_them": 0.2738165553376895,
+    "n_above_threshold": 15,
+    "n_with_estimable_width": 412,
+    "n_with_flipped_status": 2,
+    "n_with_identical_status": 13,
+    "released_width_bound": 0.2,
+    "status_pairs": [
+      "IMPRECISE->IMPRECISE",
+      "IMPRECISE->SIGN_UNSTABLE",
+      "SIGN_UNSTABLE->IMPRECISE",
+      "SIGN_UNSTABLE->SIGN_UNSTABLE"
+    ],
+    "threshold": 0.05,
+    "worst_case": {
+      "abs_diff": 0.681607100820295,
+      "receipt_status": "IMPRECISE",
+      "receipt_width": 0.9977578475336324,
+      "runtime_status": "SIGN_UNSTABLE",
+      "runtime_width": 0.3161507467133374
+    }
+  }
+}

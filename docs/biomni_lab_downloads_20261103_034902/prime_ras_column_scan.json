@@ -1,0 +1,35 @@
+{
+  "trial": "PRIME",
+  "pubmed_id": "24024839",
+  "doi": "10.1056/NEJMoa1305275",
+  "citation": "Douillard JY, Oliner KS, Siena S, et al. Panitumumab-FOLFOX4 treatment and RAS mutations in colorectal cancer. N Engl J Med. 2013;369(11):1023-34.",
+  "final_results_pmid": "24718886",
+  "final_results_doi": "10.1093/annonc/mdu141",
+  "final_results_citation": "Douillard JY, Siena S, Cassidy J, et al. Final results from PRIME: randomized phase III study of panitumumab with FOLFOX4 for first-line treatment of metastatic colorectal cancer. Ann Oncol. 2014;25(7):1346-55.",
+  "ras_columns_found": [
+    "KRAS_exon2 (codons 12/13) — primary biomarker, all patients tested",
+    "KRAS_exon3 — retrospective expanded RAS panel",
+    "KRAS_exon4 — retrospective expanded RAS panel",
+    "NRAS_exon2 — retrospective expanded RAS panel",
+    "NRAS_exon3 — retrospective expanded RAS panel",
+    "NRAS_exon4 — retrospective expanded RAS panel",
+    "BRAF_exon15 (V600E) — negative prognostic factor, tested in expanded panel"
+  ],
+  "kras_exon2_only": false,
+  "expanded_ras": true,
+  "ras_ascertainment_rate": "90% of KRAS exon 2 wild-type patients (639/712)",
+  "n_ras_wildtype": 512,
+  "n_other_ras_mutations_in_kras_exon2_wt": 108,
+  "other_ras_mutation_rate_in_kras_exon2_wt": "17%",
+  "treatment_arms": [
+    "Panitumumab + FOLFOX4",
+    "FOLFOX4 alone"
+  ],
+  "endpoints": [
+    "PFS (primary): RAS WT — 10.1 vs 7.9 months, HR=0.72 (95% CI 0.58-0.90, P=0.004)",
+    "OS (secondary): RAS WT — 26.0 vs 20.2 months, HR=0.78 (95% CI 0.62-0.99, P=0.04)",
+    "PFS/OS in other RAS mutant patients: inferior with panitumumab (consistent with KRAS exon 2 mutant findings)"
+  ],
+  "data_availability": "Prospective-retrospective analysis of PRIME RCT (NCT00364013); Amgen-sponsored; published in NEJM with supplementary appendix; IPD not in public repository — Amgen data sharing request required",
+  "verdict": "PASS — Expanded RAS confirmed (KRAS exon 2/3/4 + NRAS exon 2/3/4 + BRAF exon 15); kras_exon2_only=FALSE; expanded_ras=TRUE; PFS and OS endpoints confirmed with HRs and CIs for RAS WT population"
+}

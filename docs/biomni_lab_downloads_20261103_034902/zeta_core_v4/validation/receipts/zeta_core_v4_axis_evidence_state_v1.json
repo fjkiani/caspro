@@ -1,0 +1,222 @@
+{
+  "axes": {
+    "BREAST_CA153_KINETICS": {
+      "calibrated_probability": null,
+      "claim_boundary": "No numerical activation.",
+      "implementation_state": "NO_QUALIFYING_RELEASED_DATA",
+      "marker_separation": "CA15-3 and CA27-29 are distinct and must not be pooled.",
+      "released_inventory_result": "Neither CA15-3 nor CA27-29 was detected in the 17 target breast caslibs.",
+      "status": "NOT_IMPLEMENTED",
+      "therapy_fit_score": null
+    },
+    "CRC_CEA_KINETICS": {
+      "adam_landmark_anchor": {
+        "evidence_level": "DISCOVERY_ONLY_SINGLE_COHORT_ASSOCIATION",
+        "external_validation_status": "BLOCKED_UNDERPOWERED_TRIAL_310_CONTROL_ARM",
+        "pooled_model_status": "UNDERPOWERED_TRIAL_STRATUM",
+        "trial_309_model_status": "ESTIMATED",
+        "trial_309_z_rank": {
+          "HR": 0.8312034072333545,
+          "ci_high": 0.9568797656792524,
+          "ci_low": 0.722033351500431,
+          "coef": -0.18488074003161034,
+          "p": 0.010067040629581386,
+          "se": 0.07183969145418913,
+          "z": -2.57351801336042
+        },
+        "trial_310_model_status": "UNDERPOWERED_EPV_LT_10"
+      },
+      "calibrated_probability": null,
+      "claim_boundary": "Fit and QC outputs only; no numeric CRC score or response probability.",
+      "implementation_state": "VALIDATION_FIT_QC_ONLY",
+      "legacy_ols_landmark_anchor": {
+        "association_does_not_override_failed_legacy_response_calibration": true,
+        "ecog_harmonization": "Binary ECOG>=2; trial 264 released only grouped 0-or-1 versus 2",
+        "evidence_level": "MULTITRIAL_PROGNOSTIC_ASSOCIATION_ANALYSIS",
+        "fixed_effect_meta_z_rank": {
+          "HR": 0.8367420901402063,
+          "I2_pct": 0.0,
+          "Q": 0.165610033358912,
+          "Q_df": 1,
+          "Q_p": 0.6840431497580959,
+          "ci_high": 0.9388641824690467,
+          "ci_low": 0.7457280174124481,
+          "coef": -0.1782393920095301,
+          "p": 0.002415490556634957,
+          "se": 0.05875252100313798,
+          "trials": [
+            "263",
+            "264"
+          ],
+          "z": -3.0337318121210544
+        },
+        "landmark_day": 154.0,
+        "pooled_trial_stratified": {
+          "model_status": "ESTIMATED",
+          "z_rank": {
+            "HR": 0.8713238031524584,
+            "ci_high": 0.9556007321046551,
+            "ci_low": 0.794479477080306,
+            "coef": -0.13774161099438095,
+            "p": 0.0034549415967748197,
+            "se": 0.047106229661496676,
+            "z": -2.9240635895546343
+          }
+        },
+        "source_measurement_cutoff_week": 20.0,
+        "trial_specific": {
+          "262": {
+            "constant_terms": [
+              "ecog"
+            ],
+            "model_status": "MODEL_NOT_IDENTIFIABLE_CONSTANT_COVARIATE",
+            "z_rank": null
+          },
+          "263": {
+            "constant_terms": null,
+            "model_status": "ESTIMATED",
+            "z_rank": {
+              "HR": 0.8094642143577957,
+              "ci_high": 0.9855482897080503,
+              "ci_low": 0.6648403951063457,
+              "coef": -0.21138271393512947,
+              "p": 0.03529807455891434,
+              "se": 0.10042304966261748,
+              "z": -2.1049222727779475
+            }
+          },
+          "264": {
+            "constant_terms": null,
+            "model_status": "ESTIMATED",
+            "z_rank": {
+              "HR": 0.8512995640017005,
+              "ci_high": 0.9811773946223803,
+              "ci_low": 0.7386135796049402,
+              "coef": -0.1609911982481355,
+              "p": 0.026265717527340544,
+              "se": 0.07244479694702967,
+              "z": -2.2222603283138382
+            }
+          }
+        }
+      },
+      "legacy_response_anchor": {
+        "calibration": "VERIFIED_ARTIFACT_ONLY",
+        "overall_gate_pass": false,
+        "same_schedule_aurocs_source_reconstructed": true,
+        "stress_split": "ONE_ORDERED_PAIR_DISCREPANCY"
+      },
+      "qualification_counts_are_endpoint_filtered": false,
+      "qualified_longitudinal_cohorts": [
+        "Colorec_Amgen_2004_310",
+        "Colorec_Amgen_2005_262",
+        "Colorec_Amgen_2006_263",
+        "Colorec_Amgen_2006_264",
+        "Colorec_Amgen_2006_309"
+      ],
+      "status": "NOT_YET_CALIBRATED",
+      "therapy_fit_score": null
+    },
+    "LUNG_CYFRA_KINETICS": {
+      "calibrated_probability": null,
+      "claim_boundary": "No numerical activation.",
+      "implementation_state": "NO_QUALIFYING_RELEASED_DATA",
+      "marker_separation": "NSCLC CYFRA 21-1 is distinct from SCLC NSE and ProGRP.",
+      "released_inventory_result": "CYFRA 21-1, NSE, and ProGRP were not detected in the 9 NSCLC and 6 SCLC target caslibs.",
+      "status": "NOT_IMPLEMENTED",
+      "therapy_fit_score": null
+    },
+    "PROSTATE_PSA_KINETICS": {
+      "calibrated_survival_probability": null,
+      "claim_boundary": "Raw fit/QC and narrow OS-anchored algorithm label; no calibrated survival probability.",
+      "excluded_from_confirmatory_cox": {
+        "TROPIC": "Released cohort lacks ECOG required by the locked Cox model."
+      },
+      "implementation_state": "OS_ANCHORED_EARLY_DECLINE_PROXY",
+      "qualification_counts_are_endpoint_filtered": false,
+      "qualified_longitudinal_cohorts": [
+        "Prostat_Sanofi_2007_79",
+        "Prostat_Sanofi_2007_83"
+      ],
+      "scope": [
+        "positive estimable k_day",
+        "survived through the week-15 landmark",
+        "complete age and ECOG covariates",
+        "TAX327 and VENICE OS anchor"
+      ],
+      "status": "ALGORITHM_VALIDATED",
+      "therapy_fit_score": null,
+      "validation_label": "ALGORITHM-VALIDATED (prostate PSA proxy, OS-anchored, early-decline population)",
+      "validation_verdict": "ALGORITHM_VALIDATED_PROSTATE_PSA_PROXY_OS_ANCHORED_EARLY_DECLINE"
+    }
+  },
+  "credentials_persisted": false,
+  "generated_date": "2026-08-12",
+  "governance": {
+    "duplicate_policy": "median by patient and elapsed time",
+    "legacy_crc_two_point_mode_separate": true,
+    "minimum_distinct_early_observations": 3,
+    "positive_estimable_k_day_primary_population": true,
+    "primary_model": "log(marker_t) = intercept - k_day * t_day",
+    "unsupported_crc_headline_metrics_prohibited": true
+  },
+  "input_sha256": {
+    "crc_adam_landmark_validation": "7869ec5bb91c8100e6a60236f9ea23b553947e8f70e0539e62e52e8610d532e0",
+    "crc_legacy_ols_landmark_validation": "f5cfa3606c36c65266b215dc84d063235d6b9fb1ff044f471b2e640698708dbc",
+    "crc_reconstruction_receipt": "42c84c40c1e75bd8ff5fc2e8f7c9614657c4d19872c4c4157ae5988ec00e39aa",
+    "frozen_prostate_cox_receipt": "21f3a2674368b4d95e3d1e283466fb511fa87bcb4be12354383f6b23d248e9c2",
+    "prostate_cox_anchor_verification": "c3f6380f70460bc7d266cc93ae6029231d86a3532c007162f33831f0b0e1d721",
+    "prostate_fitter_bridge": "111c33a3634890727d81d38a532eea2b78313377184ac5c7904dfbf96aed5eac",
+    "qualification_manifest": "cf3bd8568b8e699009366ac2b4686d73f720fb4305ef107b79bfdde066009513",
+    "qualification_summary": "6f821ec3d20fa93ddb5c30e13016476c1cf7808d324e2bec3239ee652938e1c7"
+  },
+  "patient_identifiers_persisted": false,
+  "patient_level_data_persisted": false,
+  "qualification_summary": {
+    "credentials_persisted": false,
+    "disease_counts": {
+      "breast": 17,
+      "colorectal": 16,
+      "lung_nsclc": 9,
+      "lung_sclc": 6,
+      "prostate": 19
+    },
+    "marker_summary": {
+      "CEA": {
+        "n_cohorts_found": 9,
+        "n_cohorts_longitudinally_qualified": 5,
+        "observed_units": [
+          "ug/L"
+        ],
+        "qualifying_caslibs": [
+          "Colorec_Amgen_2004_310",
+          "Colorec_Amgen_2005_262",
+          "Colorec_Amgen_2006_263",
+          "Colorec_Amgen_2006_264",
+          "Colorec_Amgen_2006_309"
+        ],
+        "sum_cohort_max_patients": 3980,
+        "sum_cohort_max_patients_ge3": 2790
+      },
+      "PSA": {
+        "n_cohorts_found": 4,
+        "n_cohorts_longitudinally_qualified": 2,
+        "observed_units": [
+          "NG/ML",
+          "ng/ml"
+        ],
+        "qualifying_caslibs": [
+          "Prostat_Sanofi_2007_79",
+          "Prostat_Sanofi_2007_83"
+        ],
+        "sum_cohort_max_patients": 981,
+        "sum_cohort_max_patients_ge3": 978
+      }
+    },
+    "parsed_receipts": 67,
+    "patient_level_data_persisted": false,
+    "target_caslibs": 67,
+    "verification_passed": true
+  },
+  "schema_version": "zeta_core_v4_axis_evidence_state_v1"
+}

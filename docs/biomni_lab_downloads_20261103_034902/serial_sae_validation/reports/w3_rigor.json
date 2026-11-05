@@ -1,0 +1,160 @@
+{
+  "worker": "W3",
+  "scope": "ML/statistical rigor",
+  "checks": [
+    {
+      "id": "W3-01",
+      "topic": "EPV",
+      "finding": "All models fall far below the conventional EPV>=10 threshold. Discovery 3-pathway EPV=1.0-1.33; even single-feature discovery EPV=4.0; BriTROC single-feature EPV=3.0 (3 resistant). High overfitting/instability risk; all estimates discovery-grade.",
+      "verdict": "SUPPORTED (manuscript discloses low EPV; quantified here)"
+    },
+    {
+      "id": "W3-02",
+      "topic": "class imbalance / fragility",
+      "finding": "With only 3 resistant patients, removing a single resistant case swings the s7-relapse AUROC materially (LORO range shown). The 0.874 headline is highly unstable.",
+      "detail": {
+        "base_auroc": 0.8739,
+        "n_resistant": 3,
+        "leave_one_resistant_out_aucs": [
+          0.8919,
+          0.8649,
+          0.8649
+        ],
+        "min_auc_LORO": 0.8649,
+        "max_auc_LORO": 0.8919
+      },
+      "verdict": "OVERSTATED (point estimate presented with insufficient emphasis on n=3 fragility)"
+    },
+    {
+      "id": "W3-03",
+      "topic": "no cross-validation on discovery",
+      "finding": "Discovery AUCs (post_pi3k 0.750, post_ddr 0.714) and correlations are APPARENT (full-sample, no CV, no bootstrap CI). With n=11 these are optimistic and lack uncertainty bounds. Manuscript discloses this explicitly.",
+      "verdict": "SUPPORTED (disclosed) but headline framing should always pair with 'apparent, n=11'"
+    },
+    {
+      "id": "W3-04",
+      "topic": "multiple testing (BH-FDR)",
+      "finding": "Applying BH-FDR across the 7 discovery tests: 6 survive at FDR<0.05. Manuscript applied NO correction. Even the strongest signals should be read as hypothesis-generating after correction.",
+      "detail": {
+        "post_ddr_corr": {
+          "p_raw": 0.014,
+          "p_bh": 0.0322,
+          "survives_0.05": true
+        },
+        "post_pi3k_corr": {
+          "p_raw": 0.02,
+          "p_bh": 0.0322,
+          "survives_0.05": true
+        },
+        "post_vegf_corr": {
+          "p_raw": 0.088,
+          "p_bh": 0.088,
+          "survives_0.05": false
+        },
+        "composite_equal_corr": {
+          "p_raw": 0.023,
+          "p_bh": 0.0322,
+          "survives_0.05": true
+        },
+        "composite_weighted_corr": {
+          "p_raw": 0.023,
+          "p_bh": 0.0322,
+          "survives_0.05": true
+        },
+        "km_post_ddr": {
+          "p_raw": 0.0124,
+          "p_bh": 0.0322,
+          "survives_0.05": true
+        },
+        "km_composite": {
+          "p_raw": 0.035,
+          "p_bh": 0.0408,
+          "survives_0.05": true
+        }
+      },
+      "verdict": "OVERSTATED (no MT correction applied; some p-values weaken under FDR)"
+    },
+    {
+      "id": "W3-05",
+      "topic": "KM median-split leakage",
+      "finding": "Kaplan-Meier stratification uses the median computed from the SAME n=11 data used for discovery. This is data leakage; the log-rank p (0.0124) is optimistic. A prespecified/external threshold is required. Manuscript discloses this.",
+      "verdict": "SUPPORTED (disclosed leakage) - keep as limitation, not a headline"
+    },
+    {
+      "id": "W3-06",
+      "topic": "effect-size framing",
+      "finding": "AUROC 0.874 and 0.750 are discrimination metrics on tiny cohorts; they are NOT clinical-utility evidence. No calibration, no decision-curve analysis, no prespecified threshold, no net-benefit. Prognostic association != predictive clinical utility.",
+      "verdict": "CONTEXT (framing guidance for report)"
+    }
+  ],
+  "EPV": {
+    "discovery_3feat_corrected_7R4S": {
+      "events_minority": 4,
+      "variables": 3,
+      "EPV": 1.33
+    },
+    "discovery_3feat_manuscript_8R3S": {
+      "events_minority": 3,
+      "variables": 3,
+      "EPV": 1.0
+    },
+    "discovery_1feat_corrected": {
+      "events_minority": 4,
+      "variables": 1,
+      "EPV": 4.0
+    },
+    "britroc_1feat": {
+      "events_minority": 3,
+      "variables": 1,
+      "EPV": 3.0
+    }
+  },
+  "britroc_fragility": {
+    "base_auroc": 0.8739,
+    "n_resistant": 3,
+    "leave_one_resistant_out_aucs": [
+      0.8919,
+      0.8649,
+      0.8649
+    ],
+    "min_auc_LORO": 0.8649,
+    "max_auc_LORO": 0.8919
+  },
+  "discovery_bh_fdr": {
+    "post_ddr_corr": {
+      "p_raw": 0.014,
+      "p_bh": 0.0322,
+      "survives_0.05": true
+    },
+    "post_pi3k_corr": {
+      "p_raw": 0.02,
+      "p_bh": 0.0322,
+      "survives_0.05": true
+    },
+    "post_vegf_corr": {
+      "p_raw": 0.088,
+      "p_bh": 0.088,
+      "survives_0.05": false
+    },
+    "composite_equal_corr": {
+      "p_raw": 0.023,
+      "p_bh": 0.0322,
+      "survives_0.05": true
+    },
+    "composite_weighted_corr": {
+      "p_raw": 0.023,
+      "p_bh": 0.0322,
+      "survives_0.05": true
+    },
+    "km_post_ddr": {
+      "p_raw": 0.0124,
+      "p_bh": 0.0322,
+      "survives_0.05": true
+    },
+    "km_composite": {
+      "p_raw": 0.035,
+      "p_bh": 0.0408,
+      "survives_0.05": true
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "trial": "VELOUR",
+  "pubmed_id": "22949147",
+  "doi": "10.1200/JCO.2012.42.8201",
+  "citation": "Van Cutsem E, Tabernero J, Lakomy R, et al. Addition of aflibercept to fluorouracil, leucovorin, and irinotecan improves survival in a phase III randomized trial in patients with metastatic colorectal cancer previously treated with an oxaliplatin-based regimen. J Clin Oncol. 2012;30(28):3499-506.",
+  "subgroup_paper_pmid": "24140268",
+  "subgroup_paper_doi": "10.1016/j.ejca.2013.09.013",
+  "subgroup_paper_citation": "Tabernero J, Van Cutsem E, Lakomý R, et al. Aflibercept versus placebo in combination with fluorouracil, leucovorin and irinotecan in the treatment of previously treated metastatic colorectal cancer: prespecified subgroup analyses from the VELOUR trial. Eur J Cancer. 2014;50(2):320-31.",
+  "primary_endpoint_table_found": true,
+  "primary_endpoint": "Overall survival",
+  "os_hr": "0.817",
+  "os_ci": "95.34% CI 0.713-0.937",
+  "os_p_value": "0.0032",
+  "os_median_aflibercept_months": "13.50",
+  "os_median_placebo_months": "12.06",
+  "pfs_hr": "0.758",
+  "pfs_ci": "95% CI 0.661-0.869",
+  "pfs_p_value": "<0.0001",
+  "pfs_median_aflibercept_months": "6.90",
+  "pfs_median_placebo_months": "4.67",
+  "treatment_arms": [
+    "Aflibercept 4 mg/kg IV q2w + FOLFIRI (n=612)",
+    "Placebo + FOLFIRI (n=614)"
+  ],
+  "subgroup_data": true,
+  "subgroups_available": [
+    "Prior bevacizumab vs no prior bevacizumab",
+    "ECOG PS 0 vs 1",
+    "Age <65 vs >=65",
+    "Geographic region",
+    "Number of metastatic sites",
+    "Time since last oxaliplatin dose",
+    "Elderly patients (age-based subgroup, PMID 28807738)",
+    "Post-hoc: exclusion of patients with recurrence within 6 months of adjuvant oxaliplatin (PMID 26706237)"
+  ],
+  "molecular_biomarker_columns": "NOT PRESENT in primary VELOUR publication — no KRAS/RAS/BRAF biomarker stratification in primary or subgroup papers",
+  "data_availability": "Published endpoint tables in JCO 2012 (PMID 22949147) and Eur J Cancer 2014 (PMID 24140268); Sanofi-sponsored; ClinicalTrials.gov NCT00561470; IPD not in public repository — Sanofi data sharing request required",
+  "verdict": "PASS — OS primary endpoint table confirmed with HR=0.817 (95.34% CI 0.713-0.937, P=0.0032); PFS confirmed; prespecified subgroup data confirmed (PMID 24140268); NO molecular biomarker columns (KRAS/RAS/BRAF) in VELOUR — angiogenesis-targeted trial without biomarker stratification"
+}

@@ -1,0 +1,11 @@
+Gene,GSE223499,GSE131907,GSE186344,CPTAC_Protein,DepMap,Meta_p,Previous_Verdict,Updated_Verdict,Change,Key_Caveat
+NOM1,★ padj=0.04 ↑,NS ↑,★★ p=1e-184 ↑,★★ +1.81 ↑,★ Essential (−0.695),N/A,CONFIRMED,CONFIRMED,—,Common essential — undruggable directly; SL partner needed
+BACE1,~ padj=0.07 ↑,★ padj=0.017 ↑,★ p=1e-9 ↑,Not detected,NS,N/A,CONFIRMED,CONFIRMED,—,CRISPRa functional validation (Chafe 2025); Phase 3 compounds available
+FAM72A,~ padj=0.07 ↑,↑ concordant,★★ p=1e-34 ↑,Not detected,Not screened,N/A,TRENDING,TRENDING,—,HPA: unfavorable prognosis LUAD p=1.4e-5; no protein/functional data
+SLC45A4,NS ↑ (LFC=+1.06),NS ↑ (LFC=+0.58),★★ p=1e-56 ↑,Not detected,NS,Fisher p=0.037 / Stouffer p=0.018 (3 datasets),CORROBORATED,CONFIRMED,↑ UPGRADED,Glycolytic reprogramming link (OC 2024); neuronal polyamine transporter (Nature 2025)
+ROPN1L,NS ↑ (LFC=+0.58),NS ↑ (LFC=+0.38),NS ↑ (LFC=+0.31),★★ −3.02 ↓ (RNA-protein discordance),NS,Fisher p=0.033 / Stouffer p=0.014 (3 datasets),CORROBORATED,CONFIRMED (RNA) / CONFLICTED (protein),↑ UPGRADED (RNA) — protein discordance persists,RNA-protein discordance is critical: CPTAC protein ↓3.02. RNA confirmation ≠ protein confirmation.
+PTPRC,NS ↓,★ padj=0.017 ↓,★★ p=1e-58 ↓,↓ (−0.46),NS,"N/A (immune marker, not tumor-intrinsic)",REINTERPRETED,REINTERPRETED,—,Immune desert biology confirmed (Xing 2025 pan-cancer BrM atlas); NECTIN2-TIGIT axis
+SENP8,↓ in tumor cells,↑ concordant,↑ spatial ROI,★★ −1.72 ↓,NS (safe window),N/A (conflicted directions),CONFLICTED,CONFLICTED,—,"Druggable (SM+PROTAC, crystal structures 1XT9/2BKQ); stroma vs tumor cell conflict unresolved"
+SLC25A32,NS,NS,★★ ↑ (MTC),+0.95 ↑,NS,N/A,WEAK,WEAK,—,Mitochondrial folate transporter; no BrM-specific literature
+TFEB,NS,NS,★★ ↑ (MTC),+0.09 (minimal),NS,N/A,WEAK,WEAK,—,TMEM106B→TFEB axis drives lung met (Nat Commun 2018); poor prognosis NSCLC
+ATP10D,NS (discordant),NS,NS,↓ (−0.35),NS,N/A,NO_EVIDENCE,NO_EVIDENCE,—,Found in BrM endothelial cell IP (ETH 2025 preprint); lipid flippase biology

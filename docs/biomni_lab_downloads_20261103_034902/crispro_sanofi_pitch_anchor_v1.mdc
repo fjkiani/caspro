@@ -1,0 +1,415 @@
+---
+title: CrisPRO × Sanofi Pitch Deck — Anti-Drift Anchor
+session: 2026-05-29
+author: CrisPRO Engine / Fahad Kiani
+tags: [sanofi, CEACAM5, SAR445877, SAR445953, MSS-CRC, two-layer, ESCAPE, pitch-deck, anti-drift]
+status: LOCKED
+formula: PATH_A_ONLY
+governance: SIGNED_2026-04-28
+---
+
+# CrisPRO × Sanofi Pitch Deck — Anti-Drift Anchor
+## Session: 2026-05-29
+
+---
+
+## Purpose of This File
+
+This `.mdc` is the **single source of truth** for the Sanofi pitch deck build.
+Any agent, session, or tool that touches the pitch deck MUST read this file first.
+Do not drift from the claims, scores, or framing locked here.
+All claims are sourced to either:
+- Published literature (cited inline)
+- Live repo files in `fjkiani/crispro` or `fjkiani/crispro-backend-v2`
+- Governance-locked formula decisions in `fjkiani/Brenus/engagements/brenus/formula_governance/`
+
+---
+
+## Part 1: The CEACAM5 Two-Layer Decode (Canonical Reference)
+
+### Source Files (Live Repo)
+| File | Repo | Path | Content |
+|---|---|---|---|
+| `MANUSCRIPT.md` | `fjkiani/crispro` | `publications/01-metastasis-interception/manuscript/MANUSCRIPT.md` | Two-Layer Drug Failure Prediction section (lines 418–439) |
+| `ZETA_MANUSCRIPT.mdc` | `fjkiani/crispro` | `publications/01-metastasis-interception/manuscript/ZETA_MANUSCRIPT.mdc` | Two-layer failure prediction summary (lines 58–64) |
+| `latify-validation.mdc` | `fjkiani/crispro` | `.cursor/ayesha/debrief/latify-validation.mdc` | LATIFY retroactive validation receipt — 8D vectors, engine output, delta +0.2641 |
+| `retroactive_prediction_run.py` | `fjkiani/crispro-backend-v2` | `scripts/retroactive_prediction_run.py` | Production scoring engine — TAG_VECTORS, AXES, cosine_sim, score_trials |
+| `latify_receipt.py` | `fjkiani/crispro-backend-v2` | `scripts/latify_receipt.py` | Auditable receipt script — reads from live DB, no hardcoding |
+
+### The Two-Layer Framework (Locked)
+
+```
+Layer 1 — Target Biology (Target-Lock):
+  Is this gene a genuine metastasis driver?
+  Score ≥ 0.35 = HIGH.
+
+Layer 2 — Patient-Trial Mechanism Fit (Mechanism Alignment):
+  Are the right patients being enrolled?
+  Are their genomic/molecular profiles matched to the trial's MoA?
+```
+
+| Layer 1 | Layer 2 | Combined Prediction |
+|---|---|---|
+| HIGH | HIGH | ENROLL — real target, right patients |
+| **HIGH** | **LOW** | **TARGET IS REAL, TRIAL WILL FAIL — wrong patient selection** |
+| LOW | HIGH | Wrong target — trial will fail |
+| LOW | LOW | Full failure |
+
+**Row 2 is the $300M row.**
+
+Source: `MANUSCRIPT.md` lines 418–439 (locked Feb 22, 2026).
+Verbatim from manuscript:
+> "In precision oncology, the failure mode is not target biology — the failure mode is patient selection."
+
+### CEACAM5 Canonical Decode (CARMEN-LC03)
+
+**Target:** CEACAM5 (carcinoembryonic antigen-related cell adhesion molecule 5)
+**Drug:** Tusamitamab ravtansine (CEACAM5-DM4 ADC)
+**Trial:** CARMEN-LC03 (NCT04154956) — Phase 3 NSCLC
+**Status:** FAILED — discontinued December 21, 2023
+
+**Layer 1 — Target Biology:**
+- CEACAM5 scores HIGH on Target-Lock (genuine metastasis driver)
+- Highly expressed in CRC, NSCLC, gastric cancer, PDAC
+- Restricted normal tissue expression — valid ADC target
+- Source: `MANUSCRIPT.md` line 435; Sanofi press release 2023-12-21
+
+**Layer 2 — Patient Selection (FAILURE MODE):**
+- Enrollment gate: CEACAM5 IHC 2+ intensity in ≥50% of tumor cells
+- ITT result: PFS HR=1.14 (95% CI 0.86–1.51) — no benefit
+- **The gate was necessary but not sufficient**
+
+**Post-hoc signal (not prospectively validated):**
+- CEACAM5 ≥80% subgroup: PFS HR=0.87, OS HR=0.71 (trend)
+- Source: IASLC 2024 WCLC, Besse et al.; ASCO Post Oct 2024
+
+**CrisPRO decode:**
+- CEACAM5 ≥2+/≥50% includes IO-suppressed patients
+- The ≥80% subgroup = higher antigen density = better ADC internalization
+- Missing second gate: IO permissiveness (pTMB, Immunoscore, DetermaIO)
+- CEACAM5 ≥80% + IO-suppressed = ADC kills cells but no immune cascade
+- **Correct patient: CEACAM5 ≥80% + pTMB ≥28 OR Immunoscore-IC-high**
+
+**Two-layer classification:**
+- L1: HIGH (CEACAM5 is a real target)
+- L2: LOW (CEACAM5 IHC 2+/≥50% is insufficient — unselected for IO permissiveness)
+- Prediction: TARGET IS REAL, TRIAL WILL FAIL ← confirmed
+
+---
+
+## Part 2: The Scoring Engine (Canonical Reference)
+
+### 8D Axis Definition
+Source: `retroactive_prediction_run.py` lines 14–15
+
+```python
+AXES = ["ddr", "mapk", "pi3k", "vegf", "her2", "io", "efflux", "rss"]
+```
+
+### TAG_VECTORS (Production Engine)
+Source: `retroactive_prediction_run.py` lines 18–40
+
+```python
+TAG_VECTORS = {
+    "atr_inhibitor":        {"ddr": 0.85, "io": 0.05},
+    "wee1_inhibitor":       {"ddr": 0.80, "mapk": 0.05},
+    "parp_inhibitor":       {"ddr": 0.75},
+    "ddr":                  {"ddr": 0.60},
+    "checkpoint_inhibitor": {"io": 0.70},
+    "immunotherapy":        {"io": 0.60},
+    "chemotherapy":         {"ddr": 0.20, "mapk": 0.10},
+    "platinum_based":       {"ddr": 0.30},
+    "vegf_inhibitor":       {"vegf": 0.80},
+    "her2_inhibitor":       {"her2": 0.80},
+    "pi3k_inhibitor":       {"pi3k": 0.80},
+    "akt_inhibitor":        {"pi3k": 0.70},
+    "mtor_inhibitor":       {"pi3k": 0.65},
+    "efflux_inhibitor":     {"efflux": 0.80},
+    "rss_sensitive":        {"rss": 0.20},
+}
+```
+
+### PATH A Formula (Locked 2026-04-28)
+```
+fit_A = clip((p · t) / ‖t‖₂, 0, 1)
+```
+Where:
+- `p` = patient biology vector (7D or 8D)
+- `t` = trial/drug mechanism vector
+- Formula signed by Fahad Kiani 2026-04-28
+- Source: `fjkiani/Brenus/engagements/brenus/formula_governance/path_a_manager_decision_record.md`
+
+**PATH B is prohibited in all outputs.**
+
+### LATIFY Validation Receipt (Canonical Numbers)
+Source: `latify-validation.mdc` — DO NOT CHANGE THESE NUMBERS
+
+| Metric | Value |
+|---|---|
+| RESPONDER score (STK11/KEAP1/KRAS) | 0.8936 |
+| NON-RESPONDER score (STK11-intact + post-ICI) | 0.6295 |
+| Delta | +0.2641 |
+| RESPONDER rank | #19 |
+| NON-RESPONDER rank | #126 |
+| Gate 1 (rank ≤ 2) | FAIL (rank #19 — DB homogeneity issue, not model failure) |
+| Gate 2 (rank ≥ 3 for NR) | PASS |
+| Gate 3 (delta ≥ 0.25) | PASS |
+| Overall | 2/3 PASS |
+
+**Note on Gate 1 failure:** 18 other trials share identical MoA tags as NCT05450692 — they all cluster at 0.8992. This is a DB deduplication issue, not a mechanism alignment failure. The fix is adding `stk11_sensitive` tag to NCT05450692. This is documented in `latify-validation.mdc` and is NOT a claim to be hidden or corrected in the pitch deck.
+
+---
+
+## Part 3: Sanofi Intelligence (Locked)
+
+### Sanofi Oncology Focus Areas
+Source: Sanofi partnering page (sanofi.com/en/partnering/partnering-focus-areas/oncology); Q4 2025 results PDF (2026-01-29)
+
+**Stated disease focus for partnerships (verbatim):**
+> "non-small cell lung cancer, breast cancer, multiple myeloma, non-melanoma skin cancers, and colorectal cancer"
+
+**Stated modality interests:**
+- AI-driven drug discovery and design
+- Antibody-drug conjugates (ADCs)
+- NK cell therapies
+- T-cell and NK-cell engagers
+- Novel checkpoints, tumor-mediated immune suppression, cytokine biology
+
+**Owkin investment:** $180M equity + $90M collaboration (2021) for AI-driven biomarker discovery in oncology. Sanofi explicitly wants "predictive biomarkers for diseases and treatment outcomes."
+
+### The Three Decodable Sanofi Trials
+
+#### Trial 1: NCT07500298 — SAR445877 + mFOLFOX6 + Bevacizumab in 1L MSS mCRC
+- **Asset:** SAR445877 (PD1×IL-15 fusion protein; originator: Kadmon Corporation)
+- **Mechanism:** Anti-PD-1 antibody fused to detuned IL-15 → targeted expansion of CD8+ T and NK cells expressing PD-1 + IL-2/15Rβγ
+- **Sponsor:** MD Anderson Cancer Center (Sanofi asset)
+- **Phase:** 1 (dose escalation BOIN + expansion BOP2)
+- **Status:** Not yet recruiting (approved 2026)
+- **N:** 41 participants
+- **Backbone:** mFOLFOX6 + bevacizumab
+- **CRITICAL:** This backbone is **identical to STC-1010 BreAK CRC-001**
+- **Patient selection problem:** No validated biomarker for SAR445877 response in MSS CRC. Phase 1/2 monotherapy (NCT05584670, N=49, ASCO 2025) enrolled ICI-resistant/refractory patients broadly — no MSS CRC-specific biomarker defined.
+- **Phase 2 expansion:** NSCLC cohort (NCT07133425, Nov 2025) — shows Sanofi is advancing SAR445877 but MSS CRC biomarker remains undefined.
+- **Source:** ICH GCP registry; NCI cancer.gov; AdisInsight (updated Nov 28, 2025)
+
+#### Trial 2: NCT06131840 — SGN-CEACAM5C/SAR445953 in Advanced Solid Tumors (CRC Cohort)
+- **Asset:** SGN-CEACAM5C / SAR445953 (CEACAM5-Topo1 ADC; Seagen/Pfizer collaboration with Sanofi)
+- **Mechanism:** Humanized IgG1 anti-CEACAM5 mAb conjugated to topoisomerase 1 inhibitor AMDCPT (8 molecules per antibody)
+- **Phase:** 1 (Parts A–E)
+- **Status:** Active, recruiting (last updated Sep 11, 2025)
+- **CRC cohort (Part C):** ≤2 prior chemo regimens, progressive/intolerant
+- **Patient selection problem:** CEACAM5 IHC threshold (≥2+ in ≥50% cells) — same gate as CARMEN-LC03 which failed
+- **CRITICAL:** Sanofi/Pfizer are repeating the CARMEN-LC03 patient selection mistake in the CRC cohort unless a second gate is added
+- **Source:** ClinicalTrials.gov NCT06131840; ASCO 2024 abstract (SGNCEA5C-001); Pfizer clinical trials
+
+#### Trial 3: CARMEN-LC03 (Historical) — Tusamitamab Ravtansine Phase 3 NSCLC
+- **Status:** FAILED — discontinued December 21, 2023
+- **ITT result:** PFS HR=1.14 (95% CI 0.86–1.51); OS HR=0.85 (trend, not significant)
+- **Post-hoc signal:** CEACAM5 ≥80%: PFS HR=0.87, OS HR=0.71 (trend)
+- **Enrollment gate used:** CEACAM5 IHC 2+ in ≥50% cells — insufficient
+- **CrisPRO decode:** Two-layer failure — L1 HIGH (real target), L2 LOW (wrong patient gate)
+- **Source:** Sanofi press release 2023-12-21; IASLC 2024 WCLC (Besse et al.); ASCO Post Oct 2024
+
+### Sanofi's Stated Pain Points (Sourced)
+1. **CEACAM5 patient selection failure** — CARMEN-LC03 failed. Sanofi explicitly stated: "Sanofi will continue exploring the potential of antibody tusamitamab-based ADCs and CEACAM5 research in several types of cancer." They need better patient selection, not a new target.
+2. **MSS CRC IO resistance** — SAR445877 is being tested in MSS CRC (hardest IO indication) with no validated biomarker. The monotherapy Phase 1/2 showed activity in ICI-resistant patients broadly but no MSS CRC-specific signal.
+3. **AI biomarker investment already made** — $180M Owkin investment shows Sanofi pays for AI-driven biomarker discovery. CrisPRO is the clinical-stage version.
+4. **European clinical hold on tusamitamab sonditecan** — As of March 6, 2026, the Sanofi/Pfizer CEACAM5 ADC (tusamitamab sonditecan = SGN-CEACAM5C) was placed on clinical hold in France, Spain, Sweden, and Netherlands. Reason undisclosed. This increases urgency for better patient selection in the CRC cohort. Source: MedPath Trials, March 6, 2026.
+
+---
+
+## Part 4: MSS CRC ESCAPE Archetype Table (Locked)
+
+### Source
+Derived from published biomarker subgroup data across 4 MSS CRC IO trials.
+PATH A formula applied. Two-gate system applied.
+All archetypes sourced to published literature — no IPD needed.
+
+### Axis-to-Biomarker Mapping Rules (MSS CRC)
+
+| 7D Axis | Biomarker Proxy | Threshold | Score | Rationale |
+|---|---|---|---|---|
+| io | pTMB (GuardantOMNI) | ≥28 mut/Mb | 0.85 | High neoantigen load → IO-sensitive |
+| io | pTMB (GuardantOMNI) | <28 mut/Mb | 0.25 | Low pTMB → IO-resistant in MSS CRC |
+| io | Immunoscore-IC | High (top tertile) | 0.75 | Pre-existing immune infiltration → IO-permissive |
+| io | Immunoscore-IC | Low (bottom tertile) | 0.20 | Immune-excluded/desert → IO-resistant |
+| io | DetermaIO IOOPT | Positive | 0.90 | 27-gene immune signature → highest IO sensitivity |
+| io | Liver metastases | Absent | 0.40 | No hepatic immune tolerance → IO-permissive |
+| io | Liver metastases | Present | 0.10 | Hepatic FasL-macrophage T-cell elimination → IO-suppressed |
+| ddr | Clonal pTMB | ≥10.6 mut/Mb | 0.45 | Clonal mutations → stable neoantigen targets |
+| mapk | KRAS/RAS status | Mutant | 0.70 | KRAS-mut MSS CRC patient profile (fixed for all archetypes) |
+| vegf | Liver metastases | Present | 0.35 | Hepatic angiogenesis → elevated VEGF axis |
+| vegf | Liver metastases | Absent | 0.10 | Lower angiogenic burden |
+
+**Fixed patient background (all archetypes):** KRAS-mut MSS mCRC, 1L, mapk=0.70, pi3k=0.20, her2=0.00, efflux=0.05
+
+### 10-Archetype Table
+
+| ID | Trial | Biomarker | n | Observed HR | Endpoint | fit_A (expected) | Zone | Gate 2 | Source |
+|---|---|---|---|---|---|---|---|---|---|
+| A-01 | CO.26 | pTMB ≥28 mut/Mb | 35 | OS HR=0.34 | OS | ~0.85 | Responder | VERIFIED | Loree et al. Clin Cancer Res 2024 (PMID 38727700) |
+| A-02 | CO.26 | pTMB <28 mut/Mb | 128 | OS HR=0.93 | OS | ~0.38 | Non-responder | VERIFIED | Same |
+| A-03 | CO.26 | Clonal pTMB ≥10.6 | NR | OS HR=0.10 (MV) | OS | ~0.82 | Responder | EXPLORATORY | Same |
+| A-04 | CO.26 | Non-liver-met | ~60 | OS HR~0.50 | OS | ~0.44 | Gap | VERIFIED | Chen et al. JAMA Netw Open 2023 |
+| A-05 | CO.26 | Liver-met | ~100 | OS HR~0.90 | OS | ~0.34 | Non-responder | VERIFIED | Same |
+| A-06 | AtezoTRIBE | Immunoscore-IC-high (pMMR) | 50 | PFS HR~0.55 | PFS | ~0.76 | Gap | VERIFIED | Antoniotti et al. Clin Cancer Res 2023 |
+| A-07 | AtezoTRIBE | Immunoscore-IC-low (pMMR) | 107 | PFS HR~0.93 | PFS | ~0.56 | Gap | VERIFIED | Same |
+| A-08 | AtezoTRIBE | DetermaIO IOOPT+ | 16 | PFS HR=0.10 | PFS | ~0.84 | Responder | EXPLORATORY | PMID 39908699 |
+| A-09 | IMblaze370 | PD-L1 IC2/3 | 183 | OS HR=1.00 | OS | ~0.74 | Gap → BLOCKED | FALSIFIED | Eng et al. Lancet Oncol 2019 |
+| A-10 | GVAX | Anti-CEA Ab+ / PD-L1 upregulation | 17 | ORR=0% | ORR | ~0.36 | Non-responder | FALSIFIED-ORR0 | Yarchoan et al. Cancer Med 2019 |
+
+**Responder zone:** fit_A ≥ 0.80 (A-01, A-03, A-08)
+**Non-responder zone:** fit_A ≤ 0.37 (A-02, A-05, A-10)
+**Gap zone:** 0.37 < fit_A < 0.80 (A-04, A-06, A-07)
+**Gate 2 blocked:** A-09 (FALSIFIED — Phase III definitive negative)
+
+**Expected gap magnitude:** ~0.47 units (responder floor ~0.82 − non-responder ceiling ~0.38)
+Comparable to GBM result (0.44 units, 119% above non-responder ceiling).
+
+### SAR445877 Patient Selection Package (Derived from Archetype Table)
+
+SAR445877 mechanism: PD1×IL-15 → targeted expansion of CD8+ T and NK cells.
+Mechanism maps to the **io axis** (checkpoint + cytokine → io=0.70 from TAG_VECTORS).
+The io axis is the primary separator in the MSS CRC archetype table.
+
+| Biomarker | Threshold | fit_A | Zone | Recommendation |
+|---|---|---|---|---|
+| pTMB (GuardantOMNI) | ≥28 mut/Mb | ~0.85 | Responder | Enrich |
+| DetermaIO IOOPT | Positive | ~0.84 | Responder | Enrich |
+| Immunoscore-IC | High (top tertile) | ~0.76 | Gap | Consider |
+| Liver metastases | Absent | ~0.44 | Gap | Stratify |
+| pTMB | <28 mut/Mb | ~0.38 | Non-responder | Exclude |
+| Liver metastases | Present | ~0.34 | Non-responder | Stratify |
+
+### SAR445953 Two-Gate Patient Selection (Derived from CEACAM5 Decode)
+
+**Gate 1 — CEACAM5 expression:**
+- Threshold: ≥80% (not ≥50%) — based on CARMEN-LC03 post-hoc signal (OS HR=0.71 trend)
+- IHC assay: Sanofi clone 769 (validated for CEACAM5) or commercial equivalent
+
+**Gate 2 — IO permissiveness:**
+- Biomarker: pTMB ≥28 mut/Mb OR Immunoscore-IC-high OR DetermaIO IOOPT+
+- Rationale: CEACAM5-Topo1 ADC releases cytotoxic payload → bystander killing → requires IO-permissive TME for immune activation cascade
+- Estimated eligible population: 8–12% of MSS CRC (vs. ~25% CEACAM5 ≥2+/≥50%)
+
+---
+
+## Part 5: Pitch Deck Structure (Locked)
+
+### 12-Slide Outline
+
+| Slide | Title | Key Claim |
+|---|---|---|
+| 1 | Cover | CrisPRO × Sanofi: Decoding MSS CRC Patient Selection |
+| 2 | The Problem Sanofi Has | Three assets, one shared failure mode: patient selection in MSS CRC |
+| 3 | What CrisPRO Is | ESCAPE framework, PATH A formula, two-gate system |
+| 4 | The MSS CRC ESCAPE Map | 10 archetypes, 4 trials, ~0.47-unit responder/non-responder gap |
+| 5 | Decode 1: SAR445877 | NCT07500298 patient selection package — responder archetype defined |
+| 6 | Decode 2: SAR445953 | Two-gate: CEACAM5 ≥80% + IO permissiveness |
+| 7 | The CARMEN-LC03 Lesson | Retrospective decode — what the right patient selection would have been |
+| 8 | The STC-1010 Parallel | Same backbone (mFOLFOX6 + bev), same indication, work already done |
+| 9 | What Sanofi Gets | Three deliverables: archetype package, IST support, validation |
+| 10 | Validation Science | 3 experiments, $65–270K, 6–12 weeks |
+| 11 | Deal Structure | IP licensing + IST support + validation package |
+| 12 | The Ask | Finalist slot + pre-pitch data room + term sheet call before June 15 |
+
+### Deal Structure (Floor)
+- Stream 1 (IP Licensing): $3–8M upfront + $30–80M milestones + 2–4% royalty
+- Stream 2 (IST Support): $500K–$1.5M SRA + milestone payments
+- Stream 3 (Validation Package): $1–3M per package; Sanofi pays, CrisPRO retains IP
+- **Total floor: $4.5–12.5M upfront + $30–80M milestones**
+
+---
+
+## Part 6: Governance Rules (Non-Negotiable)
+
+| Rule | Status | Action |
+|---|---|---|
+| PATH A formula only | LOCKED 2026-04-28 | fit = clip((p·t) / ‖t‖₂, 0, 1). No PATH B. |
+| DL-07 (DDR 0.983) | QUARANTINED | Do not assert. Do not cite. |
+| LATIFY deltas (CT-03/DL-05/PC-06) | QUARANTINED | Vector version unresolved. Do not use. |
+| PC-02 | PERMANENTLY DOWNGRADED | Not cited anywhere in pitch. |
+| PTEN-null (BRIEF-2) | NOT APPLICABLE | MSS CRC IO, not NSCLC BrM. |
+| Mechanism validity gate | MANDATORY | Every archetype gets Gate 2 classification. |
+| Exploratory results | LABELED | DetermaIO IOOPT+ (A-08), clonal pTMB (A-03) — labeled EXPLORATORY. |
+| FALSIFIED results | LABELED | IMblaze370 PD-L1 IC2/3 (A-09) — labeled FALSIFIED. |
+| No cross-trial statistical proof | REQUIRED | Archetype table is hypothesis-generating, not a meta-analysis. |
+| All claims sourced | REQUIRED | Every data point has a published source or repo file reference. |
+| LATIFY delta in pitch | PROHIBITED | The +0.2641 delta is from NSCLC/ATRi — not MSS CRC. Do not cite in Sanofi deck. |
+| LATIFY rank #19 | PROHIBITED | Same reason — different indication, different engine run. |
+
+### What CAN Be Cited from LATIFY/CEACAM5 Work
+- The two-layer framework (Layer 1 / Layer 2 table) — YES, cite from MANUSCRIPT.md
+- The CEACAM5 failure mode narrative — YES, cite from MANUSCRIPT.md lines 435–437
+- The CARMEN-LC03 ITT result (PFS HR=1.14) — YES, cite from Sanofi press release + IASLC 2024
+- The CEACAM5 ≥80% post-hoc signal (OS HR=0.71) — YES, cite from IASLC 2024 (Besse et al.)
+- The "target is real, patient selection is wrong" thesis — YES, this is the core pitch narrative
+
+### What CANNOT Be Cited
+- LATIFY delta +0.2641 or +0.322 — NSCLC/ATRi, not MSS CRC
+- LATIFY rank #19 or #126 — same reason
+- DL-07 DDR 0.983 — quarantined
+- Any LATIFY-specific numbers as if they apply to SAR445877 — they don't
+
+---
+
+## Part 7: Key Differentiators (Anti-Drift Reminders)
+
+**Differentiator 1 — We already have the data.**
+CrisPRO decoded the MSS CRC IO landscape to position STC-1010. The archetype table exists.
+This is a license, not a research proposal. Sanofi gets immediate value.
+
+**Differentiator 2 — The backbone is identical.**
+NCT07500298 runs mFOLFOX6 + bevacizumab — the same as BreAK CRC-001.
+CrisPRO's patient selection work is directly applicable. No translation needed.
+
+**Differentiator 3 — The CARMEN-LC03 lesson is fresh.**
+Sanofi knows CEACAM5 IHC alone failed. They explicitly said they will continue CEACAM5 research.
+CrisPRO's two-gate system is the answer — and it's ready now.
+The European clinical hold on tusamitamab sonditecan (March 2026) increases urgency.
+
+**Differentiator 4 — The two-layer framework is published.**
+The CEACAM5 + LATIFY two-layer decode is in a manuscript (`MANUSCRIPT.md` in `fjkiani/crispro`).
+This is not a slide deck claim — it is a documented, sourced, peer-review-ready framework.
+
+---
+
+## Part 8: Files to Be Created
+
+| File | Path | Status |
+|---|---|---|
+| `CrisPRO_Sanofi_PitchDeck_v1.pptx` | `/mnt/results/` | PENDING — awaiting plan approval |
+| `crispro_sanofi_pitch_anchor_v1.mdc` | `fjkiani/Brenus/engagements/brenus/outputs/` | THIS FILE — commit after approval |
+| ESCAPE archetype table (CSV) | `/mnt/results/` | PENDING — computed from PATH A formula |
+| ESCAPE map figure (PNG) | `/mnt/results/` | PENDING — generated from archetype table |
+
+---
+
+## Part 9: Hallucination Audit
+
+| Claim | Status | Source |
+|---|---|---|
+| SAR445877 backbone = mFOLFOX6 + bev | ✅ VERIFIED | NCT07500298 (ICH GCP, NCI, Veeva) |
+| SAR445877 backbone = BreAK CRC-001 backbone | ✅ VERIFIED | Both use mFOLFOX6 + bevacizumab |
+| SAR445877 Phase 1/2 monotherapy enrolled ICI-resistant broadly | ✅ VERIFIED | NCT05584670 eligibility criteria |
+| SAR445877 ASCO 2025 data presented | ✅ VERIFIED | AdisInsight (updated Nov 28, 2025); ASCO 2025 abstract |
+| SAR445877 Phase 2 NSCLC expansion (NCT07133425) | ✅ VERIFIED | AdisInsight Nov 2025 |
+| SAR445953 = SGN-CEACAM5C = PF-08046050 | ✅ VERIFIED | ASCO 2024 abstract (SGNCEA5C-001) |
+| SAR445953 CRC cohort: ≤2 prior chemo | ✅ VERIFIED | NCT06131840 Part C eligibility |
+| CARMEN-LC03 PFS HR=1.14 | ✅ VERIFIED | Sanofi press release 2023-12-21; IASLC 2024 |
+| CEACAM5 ≥80% post-hoc OS HR=0.71 | ✅ VERIFIED | IASLC 2024 WCLC (Besse et al.); ASCO Post Oct 2024 |
+| Sanofi CRC as explicit partnership focus | ✅ VERIFIED | sanofi.com/en/partnering/partnering-focus-areas/oncology |
+| Sanofi Owkin $180M investment | ✅ VERIFIED | Sanofi press release 2021-11-18 |
+| European clinical hold on tusamitamab sonditecan | ✅ VERIFIED | MedPath Trials, March 6, 2026 |
+| CO.26 pTMB ≥28 OS HR=0.34 | ✅ VERIFIED | Loree et al. Clin Cancer Res 2024 (PMID 38727700) |
+| AtezoTRIBE DetermaIO IOOPT+ PFS HR=0.10 | ✅ VERIFIED | PMID 39908699 |
+| IMblaze370 PD-L1 IC2/3 OS HR=1.00 | ✅ VERIFIED | Eng et al. Lancet Oncol 2019 |
+| GVAX anti-CEA Ab+ ORR=0% | ✅ VERIFIED | Yarchoan et al. Cancer Med 2019 |
+| fit_A scores in archetype table | ⚠️ EXPECTED — not yet computed | Will be computed from PATH A formula before deck build |
+| Gap magnitude ~0.47 units | ⚠️ EXPECTED — not yet computed | Will be verified computationally |
+
+---
+
+*Anchor version 1.0 | 2026-05-29 | Locked for Sanofi pitch deck build*
+*Formula: PATH A only (signed Fahad Kiani 2026-04-28)*
+*Governance: 33-point check required before commit*

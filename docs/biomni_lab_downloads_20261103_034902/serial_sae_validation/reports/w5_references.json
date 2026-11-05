@@ -1,0 +1,50 @@
+{
+  "worker": "W5",
+  "scope": "reference / accession verification",
+  "references_verified": [
+    {
+      "id": "discovery_dataset",
+      "accession": "GSE165897",
+      "verified_via": "GEO record",
+      "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE165897",
+      "record_match": "11 paired treatment-naive + post-NACT HGSOC patients; 51,786 cells (8,806 malignant epithelial, 8,045 stromal, 34,935 immune). Matches manuscript description exactly.",
+      "status": "CONFIRMED"
+    },
+    {
+      "id": "discovery_paper",
+      "citation": "Zhang K, Erkan EP, Jamalzadeh S, Dai J, Andersson N, Kaipio K, Lamminen T, Mansuri N, et al. Longitudinal single-cell RNA-seq analysis reveals stress-promoted chemoresistance in metastatic ovarian cancer.",
+      "journal": "Science Advances",
+      "year": 2022,
+      "doi": "10.1126/sciadv.abm1831",
+      "pmc": "PMC8865800",
+      "status": "CONFIRMED",
+      "note": "This is the DECIDER-associated Zhang et al. Sci Adv 2022 paper underlying GSE165897. The paper's own headline (a post-chemo stress transcriptional program associated with worse PFI) is directionally CONSISTENT with serial-SAE's post-treatment-residual-state thesis."
+    },
+    {
+      "id": "external_paper",
+      "citation": "Smith P, Bradley T, Morrill Gavarro L, et al. (BriTROC Consortium). The copy number and mutational landscape of recurrent ovarian high-grade serous carcinoma.",
+      "journal": "Nature Communications",
+      "year": 2023,
+      "doi": "10.1038/s41467-023-39867-7",
+      "pmid": "37474499",
+      "preprint": "medRxiv 10.1101/2022.10.21.22280992",
+      "status": "CONFIRMED"
+    }
+  ],
+  "flags": [
+    {
+      "id": "W5-FLAG-01",
+      "topic": "Zhang citation identifier mismatch",
+      "finding": "The corrected resistance_labels.json cites Zhang et al. with DOI 10.1126/sciadv.abm1831 (CORRECT - the actual Sci Adv 2022 paper, PMC8865800). The MANUSCRIPT_DRAFT cites 'PMID 36223460' for the same GSE165897/DECIDER source. PMID 36223460 does NOT correspond to the Sci Adv 2022 abm1831 paper. The DOI in the label file is authoritative; the manuscript PMID is an erroneous identifier.",
+      "action": "In-place correction: reconcile the discovery-paper citation to Zhang et al., Sci Adv 2022, DOI 10.1126/sciadv.abm1831 (PMC8865800). Remove/replace the mismatched PMID.",
+      "severity": "LOW (identifier hygiene; does not affect results)"
+    },
+    {
+      "id": "W5-FLAG-02",
+      "topic": "BriTROC 'genome-stable' headline vs serial-SAE s7-at-relapse use",
+      "finding": "The BriTROC-1 Nat Commun 2023 paper's OWN headline finding is that the HGSOC genome remains largely STABLE between diagnosis and relapse and that acquired resistance does NOT select for common CN drivers. Serial-SAE uses CN-signature-7 measured AT RELAPSE as a resistance discriminator (AUROC 0.874 vs 0.694 at diagnosis, +0.18). These are not strictly contradictory - a signature can be more DISCRIMINATIVE at relapse without the genome being globally reshaped, and s7 is exposure/dosage not a discrete driver event - but the tension must be surfaced honestly: the source cohort's authors emphasize stability, so serial-SAE's 'relapse state is more informative' claim rests on a modest +0.18 AUROC shift on only 3 resistant patients, not on genome-wide remodeling.",
+      "action": "Report note + caveat in BriTROC annotation: acknowledge the source paper's stability conclusion and frame the s7-at-relapse improvement as a discrimination shift on n=3 resistant, not evidence of resistance-driven genomic selection.",
+      "severity": "MEDIUM (interpretive framing)"
+    }
+  ]
+}

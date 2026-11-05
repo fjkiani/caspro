@@ -1,0 +1,1542 @@
+{
+  "meta": {
+    "file_id": "crispro_knowledge_graph",
+    "version": "v1.0",
+    "generated_date": "2026-07-03",
+    "purpose": "System prompt anchor for AACR abstract enrichment agent. Tells the agent what CrisPRO actually does, what it has proven, and how to match an abstract's biology to a specific CrisPRO offering. Every quantitative claim is traced to a verified source file.",
+    "primary_consumer": "AACR abstract enrichment agent — populates crispro_fit_tier, crispro_matched_program, crispro_opportunity fields on aacr2026_schema_a_master.json records",
+    "admissibility_map": {
+      "platform_identity": "external_safe",
+      "capability_registry": "external_safe",
+      "program_index": "external_safe",
+      "matching_rules": "external_safe",
+      "offering_catalog": "external_safe",
+      "governance_guardrails": "internal_only — agent uses but does not surface in user-facing output"
+    },
+    "source_files_used": [
+      "crispro_master_pipeline.json",
+      "crispro_ceacam5_capability_map_v1.md",
+      "brenus_capability_ownership_matrix.md",
+      "repo_census.md",
+      "crispro_module_requirements_brenus.csv",
+      "crispro_v3_sl_bridge_audit.md",
+      "crispro_500m_roadmap_v1.mdc",
+      "crispro_ip_valuation_glb_v1.mdc",
+      "8d_readiness_audit.md",
+      "crispro_target_ranking.md",
+      "aacr2026_schema_a_master.json (field structure only)"
+    ]
+  },
+  "platform_identity": {
+    "name": "CrisPRO",
+    "tagline": "AI that decodes why oncology trials fail — before they cost $300M",
+    "thesis": "Pharma trials fail not because the target is wrong, but because the wrong patients are enrolled. CrisPRO identifies the patient population and biological conditions under which a trial will succeed or fail — before enrollment begins.",
+    "the_one_defensible_claim": "CrisPRO would have changed the enrollment decision. Not that it guarantees trial success.",
+    "what_crispro_is": [
+      "An AI-driven oncology trial intelligence platform",
+      "A two-layer drug failure prediction system (Layer 1: target biology; Layer 2: patient selection)",
+      "A synthetic lethality asset generator (BRIEF programs)",
+      "A trial failure corpus decoder (42 trials, 7 programs, 8D framework)",
+      "A patient selection algorithm provider for ISTs and pharma BD"
+    ],
+    "what_crispro_is_not": [
+      "CrisPRO never holds an IND",
+      "CrisPRO never runs a clinical trial",
+      "CrisPRO does not predict individual patient outcomes",
+      "CrisPRO does not access proprietary pharma data",
+      "CrisPRO does not guarantee trial success"
+    ],
+    "revenue_model": [
+      "IP licensing — BRIEF SL assets licensed to pharma (benchmark: Roche paid $125M upfront for Repare's camonsertib)",
+      "IST support — biomarker strategy, patient selection algorithm, data analysis for investigator-sponsored trials",
+      "Validation packages — trial failure decode, patient selection package, BD intelligence package"
+    ],
+    "validated_metrics": {
+      "trials_decoded": 42,
+      "programs": 7,
+      "auroc_msk_met": "0.689 (N=25,775, MSK-MET cohort)",
+      "target_lock_auroc": "0.976 ± 0.035 (38-gene self-labeled panel); hold-out AUPRC 0.790",
+      "trials_ranked_by_engine": 609,
+      "aacr_2026_abstracts": 4,
+      "active_engagements": [
+        "Brenus Pharma (STC-1010 / BreAK CRC-001, NCT06934538)",
+        "Sanofi (finalist pitch July 1 2026)"
+      ],
+      "awards": [
+        "2nd place UC Berkeley AgentX Entrepreneurship Track",
+        "$3M Google.org GIC application filed 2026-05-01"
+      ]
+    },
+    "two_layer_system": {
+      "layer_1": {
+        "name": "Target Biology (Target-Lock Score)",
+        "question": "Is this gene a real driver of the cancer step being targeted?",
+        "threshold": "Target-Lock ≥ 0.35 = genuine driver",
+        "method": "Multi-modal: Evo2-7B evolutionary likelihood + Enformer chromatin accessibility + AlphaFold 3 structural confidence",
+        "panel": "38 genes in real_target_lock_data.csv (AUROC 0.976 self-labeled; AUPRC 0.790 hold-out)",
+        "source": "brenus_capability_ownership_matrix.md CAP-05; repo_census.md"
+      },
+      "layer_2": {
+        "name": "Patient Selection (Mechanism Fit)",
+        "question": "Are the right patients enrolled? Are their genomic profiles matched to the trial's mechanism?",
+        "formula": "fit = clip((p·t) / ‖t‖₂, 0, 1)",
+        "formula_name": "PATH A — LOCKED 2026-04-28",
+        "axes": [
+          "ddr",
+          "mapk",
+          "pi3k",
+          "vegf",
+          "her2",
+          "io",
+          "efflux",
+          "rss"
+        ],
+        "output_range": "[0, 1]",
+        "output_labels": {
+          "0.0_0.4": "LOW — high failure risk",
+          "0.4_0.6": "MODERATE — proceed with caution",
+          "0.6_0.8": "MODERATE-HIGH — favorable",
+          "0.8_1.0": "HIGH — strong fit"
+        },
+        "source": "repo_census.md REPO 1.1; crispro_master_pipeline.json platform.scoring_engine"
+      }
+    },
+    "failure_framework": {
+      "name": "8D Failure Vector Framework",
+      "domains": {
+        "D1": "Biology — target not a genuine driver in enrolled cancer type",
+        "D2": "Selection — patient population too broad; responder subgroup diluted",
+        "D3": "Architecture — trial design cannot detect the signal",
+        "D4": "Timing — drug at wrong disease stage",
+        "D5": "Combination — partner is antagonistic or redundant",
+        "D6": "Resistance — pre-existing or acquired resistance bypasses pathway",
+        "D7": "Translational — preclinical-to-clinical translation failure",
+        "D8": "Systemic — safety signal or regulatory hold"
+      },
+      "key_insight": "Most expensive failures are D2 (Selection) — the target is real, but the enrolled population cannot respond. The responder subgroup exists inside every failed trial. CrisPRO finds the gate.",
+      "source": "crispro_master_pipeline.json platform.failure_framework"
+    }
+  },
+  "capability_registry": {
+    "_instructions_for_agent": "Each capability has an evidence_tier. SOURCED = cite the source. COMPUTED = receipted run exists. EXPECTED = framework exists but run not executed — label as 'prospective' not 'proven'. ABSENT = no code exists. Never present EXPECTED as COMPUTED.",
+    "capabilities": [
+      {
+        "capability_id": "CAP-01",
+        "name": "Trial Failure Decode (8D Framework)",
+        "evidence_tier": "COMPUTED",
+        "description": "Classify any completed or ongoing oncology trial across 8 failure domains. Identify the primary failure mode, the responder subpopulation that existed within the failure, and the biomarker gate that was missing.",
+        "input_schema": {
+          "from_abstract": [
+            "trial_name or NCT number",
+            "drug/target",
+            "tumor_type",
+            "primary_result (ORR, PFS HR, OS HR)",
+            "failure_mode if stated"
+          ],
+          "required_minimum": "drug + tumor_type + primary_result"
+        },
+        "output_description": "8D failure vector with domain weights, primary/secondary classification, responder subpopulation identification, transfer lesson set",
+        "validated_on": [
+          "CARMEN-LC03 (CEACAM5 ADC, Phase III) — D2 Selection: IHC ≥50% too low",
+          "Berzosertib (ATRi) — D2 Selection: RS-High gate missing; ORR 40% vs 5%",
+          "Adavosertib (WEE1i) — D2 Selection: PTEN-loss resistance; ORR 0% vs 23%",
+          "CAPRI (ATRi+PARPi) — D2 Selection: PARPi-naive gate missing; ORR 36% vs 4%",
+          "QUILT-2.004 (vaccine+IO+chemo) — D1 Biology (0.7): pharmacodynamic dissociation",
+          "IMblaze370 (MEKi+CPI) — D1 Biology (0.9): MEK inhibition insufficient",
+          "CO.26 (D+T) — D2 Selection (0.8): pTMB ≥28 and liver-met status missing",
+          "GVAX (vaccine) — D1 Biology (0.8): T-cell activation ≠ tumor regression in MSS CRC"
+        ],
+        "cannot_do": "Cannot access proprietary trial data. Cannot decode a trial with no published results. Cannot guarantee the decode predicts future trial outcomes.",
+        "source": "crispro_master_pipeline.json programs[]; 8d_readiness_audit.md"
+      },
+      {
+        "capability_id": "CAP-02",
+        "name": "Mechanism Fit Scoring (PATH A Engine)",
+        "evidence_tier": "COMPUTED",
+        "description": "Score any drug-patient combination using the 8-axis PATH A formula. Produces a fit score [0,1] with axis-level breakdown showing which biological axes drive alignment or misalignment.",
+        "input_schema": {
+          "from_abstract": [
+            "drug mechanism (maps to trial vector axes)",
+            "tumor_type",
+            "biomarkers (maps to patient vector axes)",
+            "targets[].pathway"
+          ],
+          "required_minimum": "drug mechanism + tumor_type"
+        },
+        "output_description": "fit score [0,1], fit label (LOW/MODERATE/MODERATE-HIGH/HIGH), axis breakdown (which axes drive the score), primary driver axis",
+        "validated_on": [
+          "BreAK CRC-001 (STC-1010): fit=0.7375, io axis PRIMARY DRIVER 46.7%, mapk SECONDARY 30.7%",
+          "LATIFY (ceralasertib+durvalumab): responder score 0.8936 vs non-responder 0.6295 — ONLY receipted two-layer demonstration",
+          "CARMEN-LC03 (tusamitamab ravtansine): retrospective decode applied"
+        ],
+        "cannot_do": "PATH B formula is PROHIBITED. LATIFY delta value is QUARANTINED — do not cite a specific delta. Cannot score without knowing the drug's mechanism of action.",
+        "source": "repo_census.md REPO 1.1; crispro_master_pipeline.json platform.scoring_engine; brenus_capability_ownership_matrix.md CAP-01"
+      },
+      {
+        "capability_id": "CAP-03",
+        "name": "Patient Selection Package (Two-Gate System)",
+        "evidence_tier": "COMPUTED",
+        "description": "Build a two-gate patient selection framework for any oncology program. Gate 1: target expression threshold (IHC, genomic, liquid biopsy). Gate 2: IO permissiveness or pathway context. Output: ENRICH/CONSIDER/EXCLUDE stratification table.",
+        "input_schema": {
+          "from_abstract": [
+            "targets[].gene_or_protein",
+            "targets[].modality",
+            "biomarkers",
+            "tumor_type",
+            "clinical_stage"
+          ],
+          "required_minimum": "target gene + tumor_type"
+        },
+        "output_description": "Two-gate framework, ENRICH/CONSIDER/EXCLUDE table with biomarker thresholds, population size estimate, liquid biopsy proxy identification, protocol enrollment language",
+        "validated_on": [
+          "CEACAM5 (SAR445953): Gate 1 = IHC ≥80% (28% of MSS mCRC); Gate 2 = IO permissiveness (pTMB ≥28 or Immunoscore-IC high). Vector-Scalpel ranking: cCEA (27/33) > pTMB (23/33) > IHC (20/33) > Immunoscore (19/33) > DetermaIO (15/33)",
+          "ATR/DDR: Gate 1 = RS-High (berzosertib ORR 40% vs 5%); Gate 2 = PARPi-naive status (CAPRI ORR 36% vs 4%)",
+          "MSS CRC IO: Gate 1 = non-liver-metastatic (CO.26 Pint=0.02); Gate 2 = pTMB ≥28 (OS HR=0.34)"
+        ],
+        "cannot_do": "CEACAM5 IHC ≥80% prevalence in CRC (~28%) is an OPEN_ASSUMPTION (OA-08) — not confirmed from CRC-specific data. cCEA ≥100 data is from NSCLC only — CRC application is by inference.",
+        "source": "crispro_ceacam5_capability_map_v1.md CAP-02; crispro_master_pipeline.json programs[CEACAM5].key_findings"
+      },
+      {
+        "capability_id": "CAP-04",
+        "name": "Target-Lock Scoring (Layer 1)",
+        "evidence_tier": "COMPUTED",
+        "description": "Score any gene against the 8-step metastasis cascade to determine whether it is a genuine metastasis driver. Multi-modal composite: Evo2-7B + Enformer + AlphaFold 3. Panel of 38 genes scored.",
+        "input_schema": {
+          "from_abstract": [
+            "targets[].gene_or_protein",
+            "targets[].pathway",
+            "targets[].target_novelty"
+          ],
+          "required_minimum": "gene symbol"
+        },
+        "output_description": "target_lock_score [0,1]; HIGH if ≥0.35; per-gene classification across 8 metastasis steps",
+        "validated_on": [
+          "38-gene panel in real_target_lock_data.csv — AUROC 0.976 ± 0.035 (self-labeled); hold-out AUPRC 0.790",
+          "9 FDA-approved genes validated retroactively in predictions_2024_retroactive.json",
+          "AUROC 0.689 confirmed in MSK-MET (N=25,775)"
+        ],
+        "cannot_do": "CEACAM5 is NOT in the 38-gene panel — a CEACAM5 Target-Lock run has not been executed. Any claim that CEACAM5 scores HIGH is EXPECTED (analyst inference), not COMPUTED. Must be labeled as prospective.",
+        "source": "crispro_ceacam5_capability_map_v1.md CAP-05; brenus_capability_ownership_matrix.md CAP-01; crispro_master_pipeline.json platform.validated_predictions"
+      },
+      {
+        "capability_id": "CAP-05",
+        "name": "SL Therapy Bridge (Synthetic Lethality → Drug Mapping)",
+        "evidence_tier": "COMPUTED",
+        "description": "Map any SL vulnerability (broken pathway, SL gene pair) to actionable drugs with policy overlay (ALLOW/WARN/DISALLOW). Identifies which drugs are SL-indicated vs. mechanism-aligned vs. false-positive traps.",
+        "input_schema": {
+          "from_abstract": [
+            "targets[].gene_or_protein",
+            "targets[].alteration",
+            "targets[].pathway",
+            "models[].genotype_or_key_features"
+          ],
+          "required_minimum": "gene + alteration type (mutation/loss/amplification)"
+        },
+        "output_description": "SLIndicatedDrug list with ActionabilityTier (ALLOW/WARN/DISALLOW/PRECLINICAL_ONLY), PolicyOverlay, GapSummary (top_fit_blocked_count, best_actionable_rank)",
+        "validated_on": [
+          "BRCA2-mut → olaparib/niraparib/rucaparib (ALLOW, VALIDATED)",
+          "KRAS-mut NSCLC → EGFR TKIs (DISALLOW — KRAS-mut excludes EGFR TKI benefit)",
+          "PTEN-null → mTOR/PI3K inhibitors (WARN)",
+          "ATM-mut → ATR inhibitors (ALLOW)",
+          "ARID1A-mut → EZH2 inhibitors (ALLOW)",
+          "SMARCA4-mut → FHD-909 (ALLOW, PRECLINICAL_ONLY)",
+          "CCNE1-amp → CDK2 inhibitors (ALLOW)"
+        ],
+        "sl_therapy_map_genes": [
+          "BRCA1",
+          "BRCA2",
+          "ATM",
+          "ARID1A",
+          "SMARCA4",
+          "CCNE1_AMP",
+          "KRAS",
+          "PTEN"
+        ],
+        "cannot_do": "TP53 and other genes not in SL_THERAPY_MAP return no sl_indicated_drugs (no crash, no hallucination). PTEN-null → ITGAV (BRIEF-2) is COMPUTATIONAL_HYPOTHESIS — DepMap NULL across all 3 proxies — not in SL_THERAPY_MAP.",
+        "source": "crispro_v3_sl_bridge_audit.md; 20/20 tests PASS"
+      },
+      {
+        "capability_id": "CAP-06",
+        "name": "BRIEF Program Asset Generation",
+        "evidence_tier": "COMPUTED",
+        "description": "CrisPRO has generated 4 synthetic lethality patent assets (BRIEF programs) from CRISPR functional genomics. These are licensable IP assets, not just hypotheses.",
+        "input_schema": {
+          "from_abstract": [
+            "targets[].gene_or_protein (ZEB1, SPP1, NRF2, PTEN, ITGAV)",
+            "tumor_type (NSCLC, brain metastasis, ovarian)",
+            "models[].genotype_or_key_features"
+          ],
+          "trigger": "Abstract mentions ZEB1, SPP1, NRF2, ITGAV, PTEN-null, or synthetic lethality in NSCLC/BrM/ovarian context"
+        },
+        "brief_programs": [
+          {
+            "id": "BRIEF-1",
+            "axis": "ZEB1 → ITGAV (synthetic lethality)",
+            "evidence_tier": "CRISPR_VALIDATED",
+            "delta": -0.7184,
+            "fdr": 0.001203,
+            "status": "DEAL_READY",
+            "indication": "NSCLC brain metastasis",
+            "source": "crispro_ip_valuation_glb_v1.mdc; crispro_master_pipeline.json ip_estate.brief_programs[0]"
+          },
+          {
+            "id": "BRIEF-4",
+            "axis": "SPP1 → NRF2 (synthetic lethality)",
+            "evidence_tier": "CRISPR_VALIDATED",
+            "delta": -0.7326,
+            "fdr": 8e-06,
+            "status": "COMPUTATIONAL_LEAD",
+            "indication": "NSCLC brain metastasis",
+            "source": "crispro_ip_valuation_glb_v1.mdc; crispro_master_pipeline.json ip_estate.brief_programs[3]"
+          },
+          {
+            "id": "BRIEF-3",
+            "axis": "ZEB1 + PD-1 combination",
+            "evidence_tier": "MECHANISTICALLY_GROUNDED",
+            "correlation": "r=0.050, p=0.780 (GSE271259, n=34) — statistically insignificant",
+            "status": "CONDITIONAL_ONE_GAP",
+            "indication": "NSCLC brain metastasis",
+            "source": "crispro_ip_valuation_glb_v1.mdc; crispro_master_pipeline.json ip_estate.brief_programs[2]"
+          },
+          {
+            "id": "BRIEF-2",
+            "axis": "PTEN-null → ITGAV",
+            "evidence_tier": "COMPUTATIONAL_HYPOTHESIS",
+            "status": "VALIDATION_REQUIRED",
+            "mandatory_disclosure": "DepMap NULL across all 3 proxies — not CRISPR-validated. Must disclose in every context where BRIEF-2 appears.",
+            "indication": "NSCLC brain metastasis",
+            "source": "crispro_ip_valuation_glb_v1.mdc"
+          }
+        ],
+        "cannot_do": "BRIEF programs are NSCLC/BrM assets — do not apply to CRC, ovarian, or other indications without a new run. BRIEF-2 is not validated.",
+        "source": "crispro_ip_valuation_glb_v1.mdc; crispro_master_pipeline.json ip_estate"
+      },
+      {
+        "capability_id": "CAP-07",
+        "name": "EscapeMap — Bevacizumab Biomarker Stratification (Ovarian)",
+        "evidence_tier": "COMPUTED",
+        "description": "ZEB1 expression is a prognostic marker in the bevacizumab arm of ovarian cancer trials. CrisPRO has computed Cox regression, median-split, and tertile analyses across 3 datasets.",
+        "key_results": {
+          "OV_ZEB1_continuous_Cox": "HR=1.4803 (95% CI [1.1188, 1.9586], p=0.006042, c-stat=0.6444) — bevacizumab arm OS",
+          "OV_ZEB1_median_split": "HR=2.500 (95% CI [1.322, 4.727], log-rank p=0.0036, FDR=0.0499) — bevacizumab arm OS",
+          "OV_ZEB1_arm_interaction": "HR=1.243, p=0.246 — PROGNOSTIC, NOT ARM-SPECIFIC",
+          "OV_HIF1A": "HR=2.245 (95% CI [1.172, 4.300], p=0.0147) — PLATFORM_COMPRESSION signal",
+          "M2_stratum_OS": "34.4 months (CI 32.7–38.8), p=9.52×10⁻⁵"
+        },
+        "mandatory_wording": "Preparatory M2-bevacizumab biomarker panel for downstream descriptive and conditioning analyses — not a validated prognostic signature until dbGaP-linked patient-level outcomes are available. (LOCKED 2026-05-12)",
+        "input_schema": {
+          "from_abstract": [
+            "tumor_type = ovarian cancer",
+            "targets mentioning ZEB1, HIF1A, EMT, bevacizumab, VEGF"
+          ],
+          "trigger": "Abstract mentions ovarian cancer + bevacizumab OR ZEB1/EMT in ovarian context"
+        },
+        "cannot_do": "GBM ZEB1 is PERMANENTLY CLOSED — do not apply EscapeMap to GBM. ZEB1 arm interaction p=0.246 means this is prognostic, not bevacizumab-predictive.",
+        "source": "crispro_master_pipeline.json ip_estate.escapemap_ov_vectors; programs[GBM_ESCAPEMAP]"
+      },
+      {
+        "capability_id": "CAP-08",
+        "name": "IST Design Support (Biomarker Strategy)",
+        "evidence_tier": "COMPUTED",
+        "description": "Provide biomarker-driven IST protocol design support. Map the 6-domain suppression landscape, identify biomarker gates prior trials missed, produce fit-gap assessment, recommend enrollment criteria.",
+        "input_schema": {
+          "from_abstract": [
+            "tumor_type",
+            "clinical_stage (Phase I/II/III)",
+            "drug mechanism",
+            "biomarkers",
+            "combination_strategies"
+          ],
+          "trigger": "Abstract describes an IST, Phase I/II trial design, or biomarker strategy in an indication CrisPRO has decoded"
+        },
+        "output_description": "6-domain biomarker biology map, PATH A fit score with axis breakdown, 4-gap design risk inventory (CRITICAL/HIGH/MEDIUM), enrollment criteria recommendation, comparator trial context",
+        "validated_on": [
+          "BreAK CRC-001 (STC-1010): fit=0.7375, GAP-01 CRITICAL (liver metastasis), GAP-02 HIGH (pTMB), GAP-03 MEDIUM (io axis), GAP-04 HIGH (biomarker gate)",
+          "15 executable modules defined for BreAK CRC-001 (crispro_module_requirements_brenus.csv)"
+        ],
+        "cannot_do": "Cannot design trials in indications CrisPRO has not decoded. Cannot access proprietary protocol data.",
+        "source": "crispro_stc1010_fit_gap.json; crispro_module_requirements_brenus.csv; crispro_master_pipeline.json programs[BREAK_CRC_001]"
+      },
+      {
+        "capability_id": "CAP-09",
+        "name": "BD Intelligence Package (Pharma Engagement)",
+        "evidence_tier": "COMPUTED",
+        "description": "Produce pharma-ready BD packages anchored in decoded trial intelligence. Identify the specific failure mode in the counterparty's program, show how CrisPRO addresses it, produce pitch deck and anchor document.",
+        "input_schema": {
+          "from_abstract": [
+            "external_follow_up.company_or_sponsor",
+            "targets[].compound_name",
+            "tumor_type",
+            "key_findings (failure signals)"
+          ],
+          "trigger": "Abstract is from a pharma-affiliated speaker OR describes a trial from a company in CrisPRO's 33-company CRC ranking"
+        },
+        "crc_company_ranking_top10": [
+          {
+            "rank": 1,
+            "company": "Inhibrx Biosciences",
+            "drug": "Ozekibart (INBRX-109)",
+            "fit": 4.5,
+            "posture": "gap-hook"
+          },
+          {
+            "rank": 2,
+            "company": "Agenus",
+            "drug": "Botensilimab + Balstilimab",
+            "fit": 4.25,
+            "posture": "gap-hook"
+          },
+          {
+            "rank": 3,
+            "company": "Daiichi Sankyo/AstraZeneca",
+            "drug": "T-DXd (ENHERTU)",
+            "fit": 4.0,
+            "posture": "gap-hook"
+          },
+          {
+            "rank": 4,
+            "company": "AstraZeneca",
+            "drug": "Durvalumab combos",
+            "fit": 3.75,
+            "posture": "gap-hook"
+          },
+          {
+            "rank": 5,
+            "company": "Merus B.V.",
+            "drug": "Petosemtamab (MCLA-158)",
+            "fit": 4.75,
+            "posture": "gap-hook"
+          },
+          {
+            "rank": 5,
+            "company": "Oncolytics Biotech",
+            "drug": "Pelareorep + Bev + FOLFIRI",
+            "fit": 4.75,
+            "posture": "gap-hook"
+          },
+          {
+            "rank": 7,
+            "company": "Mirati/BMS",
+            "drug": "Adagrasib + Cetuximab",
+            "fit": 3.5,
+            "posture": "benchmark-hook"
+          },
+          {
+            "rank": 7,
+            "company": "Amgen",
+            "drug": "Sotorasib + Panitumumab",
+            "fit": 3.5,
+            "posture": "benchmark-hook"
+          },
+          {
+            "rank": 9,
+            "company": "Roche/Genentech",
+            "drug": "Atezolizumab + chemo",
+            "fit": 3.25,
+            "posture": "benchmark-hook"
+          },
+          {
+            "rank": 10,
+            "company": "BioNTech/Roche",
+            "drug": "RO7198457 (autogene cevumeran)",
+            "fit": 4.25,
+            "posture": "gap-hook"
+          }
+        ],
+        "validated_on": [
+          "Sanofi: 12-slide pitch deck submitted 2026-05-29, finalist July 1 2026 — CEACAM5 two-gate decode + SAR445877/SAR445953 patient selection",
+          "Brenus Pharma: 6 agent streams, fit-gap assessment, biomarker biology map, comparator corpus"
+        ],
+        "cannot_do": "Cannot access proprietary pharma data. Cannot claim CrisPRO has run a model on the counterparty's dataset.",
+        "source": "crispro_target_ranking.md; crispro_sanofi_pitch_anchor_v1.mdc; crispro_master_pipeline.json active_engagements"
+      },
+      {
+        "capability_id": "CAP-10",
+        "name": "IP Valuation — Trial Failure Corpus",
+        "evidence_tier": "COMPUTED",
+        "description": "Quantify the value of decoded trial intelligence relative to the total program investment that failed. Produce GLB set analysis and valuation memo.",
+        "validated_on": [
+          "ATR/DDR GLB set (4 trials): $1.95B in failed program investment decoded",
+          "RS-High gate (berzosertib), PTEN-intact gate (adavosertib), PARPi-naive gate (CAPRI) — three biomarker gates that would have changed enrollment decisions"
+        ],
+        "input_schema": {
+          "from_abstract": [
+            "external_follow_up.company_or_sponsor",
+            "targets[].compound_name",
+            "key_findings (failure signals)",
+            "clinical_stage"
+          ],
+          "trigger": "Abstract describes a failed or terminated trial with a published failure result"
+        },
+        "cannot_do": "Deal figures are benchmarks from comparable transactions — not projections or guarantees. Cannot value a trial that has not published results.",
+        "source": "crispro_ip_valuation_glb_v1.mdc; crispro_master_pipeline.json programs[ATR_DDR].ip_value"
+      }
+    ]
+  },
+  "program_index": {
+    "_instructions_for_agent": "Match abstract fields against indication_keywords and target_keywords. If a match is found, use what_crispro_proved as the evidence anchor and what_crispro_can_offer as the basis for crispro_opportunity. GBM_ESCAPEMAP is PERMANENTLY CLOSED — do not match abstracts to it.",
+    "programs": [
+      {
+        "program_id": "CEACAM5",
+        "program_name": "CEACAM5-Targeted Therapy Failure Corpus",
+        "indication_keywords": [
+          "colorectal cancer",
+          "CRC",
+          "NSCLC",
+          "non-small cell lung cancer",
+          "lung cancer",
+          "gastric cancer",
+          "solid tumors"
+        ],
+        "target_keywords": [
+          "CEACAM5",
+          "CEA",
+          "carcinoembryonic antigen",
+          "ADC",
+          "antibody-drug conjugate",
+          "tusamitamab",
+          "SAR408701",
+          "labetuzumab",
+          "cibisatamab",
+          "SGN-CEACAM5C"
+        ],
+        "failure_mode_keywords": [
+          "IHC threshold",
+          "patient selection",
+          "biomarker gate",
+          "ADC payload",
+          "archived tissue",
+          "on-target off-tumor toxicity"
+        ],
+        "what_crispro_proved": [
+          "CARMEN-LC03 (Phase III, N=389): PFS HR 1.14 (P=0.82) at IHC ≥50% — D2 Selection failure",
+          "CEACAM5 IHC ≥80% OS HR=0.71 (post-hoc, underpowered, CI not published) — candidate predictive gate",
+          "CEACAM5 50–79% PFS HR=1.38 (numerically harmful)",
+          "cCEA ≥100 ORR 41.7% vs 8.1% (P=0.003) in CEACAM5 high-expressing NSCLC — liquid biopsy proxy",
+          "IHC ↔ cCEA Spearman ρ=0.43 (n=92)",
+          "PROCEADE-CRC-01 (N=40): ORR 7.5%; IHC Spearman rho=−0.14 (P=0.4) — IHC not predictive in CRC",
+          "CEACAM5 any-positivity in CRC: 98.7% (Jansen et al. Cancers 2024)",
+          "MSS CRC has HIGHER CEACAM5 expression than MSI-H CRC (MMR deficiency → reduced CEA, P<0.0001)"
+        ],
+        "what_crispro_can_offer": "Two-gate patient selection framework (IHC ≥80% + IO permissiveness) for any CEACAM5-targeted program. CrisPRO decoded CARMEN-LC03's D2 failure and identified the ≥80% threshold as the candidate predictive gate. For CRC programs: IHC is not predictive at any threshold tested — the second gate (IO permissiveness, pTMB, TME) is mandatory.",
+        "active_engagement": "Sanofi (SAR445953 + SAR445877) — finalist pitch July 1 2026",
+        "admissibility": "external_safe",
+        "caveats": [
+          "CEACAM5 ≥80% OS HR=0.71 is post-hoc and underpowered — label as trend, not established",
+          "cCEA ≥100 data is from NSCLC only — CRC application is by inference"
+        ]
+      },
+      {
+        "program_id": "ATR_DDR",
+        "program_name": "ATR/DDR Inhibitor Failure Corpus",
+        "indication_keywords": [
+          "ovarian cancer",
+          "NSCLC",
+          "non-small cell lung cancer",
+          "solid tumors",
+          "DDR-deficient",
+          "DNA damage response"
+        ],
+        "target_keywords": [
+          "ATR",
+          "WEE1",
+          "PARP",
+          "PARPi",
+          "ATRi",
+          "WEE1i",
+          "ceralasertib",
+          "berzosertib",
+          "adavosertib",
+          "olaparib",
+          "niraparib",
+          "rucaparib",
+          "DDR",
+          "replication stress",
+          "RS score",
+          "BRCA",
+          "PTEN",
+          "STK11",
+          "KEAP1"
+        ],
+        "failure_mode_keywords": [
+          "replication stress",
+          "RS-High",
+          "RS-Low",
+          "PTEN-loss",
+          "PTEN-intact",
+          "PARPi-naive",
+          "post-PARPi",
+          "DDR deficiency",
+          "patient selection",
+          "biomarker gate"
+        ],
+        "what_crispro_proved": [
+          "Berzosertib (ATRi): RS-High ORR 40% vs RS-Low ORR 5% — 8x difference; D2 Selection failure",
+          "Adavosertib (WEE1i): PTEN-intact ORR 23% vs PTEN-loss ORR 0%; PFS HR 0.55 vs 1.82",
+          "CAPRI (ATRi+PARPi): PARPi-naive ORR 36% vs post-PARPi ORR 4%; PFS HR 0.42 vs 1.31",
+          "GLB set: 4 ATR/DDR trials representing $1.95B in failed program investment decoded",
+          "LATIFY (ceralasertib+durvalumab): responder score 0.8936 vs non-responder 0.6295 — ONLY receipted two-layer demonstration (delta QUARANTINED)"
+        ],
+        "what_crispro_can_offer": "For any ATR/DDR abstract: identify which biomarker gate is missing (RS-High, PTEN-intact, PARPi-naive) and what the responder ORR would be with correct patient selection. For new DDR programs: apply the 8D framework to predict the failure mode before enrollment.",
+        "admissibility": "external_safe",
+        "caveats": [
+          "LATIFY delta is QUARANTINED — do not cite a specific delta value",
+          "GLB set IP valuation figures are benchmarks, not guarantees"
+        ]
+      },
+      {
+        "program_id": "IO_CORE",
+        "program_name": "MSS CRC Immunotherapy Core Failure Corpus",
+        "indication_keywords": [
+          "colorectal cancer",
+          "CRC",
+          "mCRC",
+          "MSS",
+          "pMMR",
+          "microsatellite stable",
+          "proficient mismatch repair"
+        ],
+        "target_keywords": [
+          "PD-1",
+          "PD-L1",
+          "CTLA-4",
+          "checkpoint",
+          "immunotherapy",
+          "IO",
+          "MEK",
+          "cobimetinib",
+          "atezolizumab",
+          "durvalumab",
+          "tremelimumab",
+          "nivolumab",
+          "pembrolizumab",
+          "vaccine",
+          "GVAX",
+          "neoantigen",
+          "TME",
+          "tumor microenvironment",
+          "pTMB",
+          "TMB",
+          "Immunoscore",
+          "CD8",
+          "TIL",
+          "liver metastasis"
+        ],
+        "failure_mode_keywords": [
+          "IO failure",
+          "immune exclusion",
+          "pharmacodynamic dissociation",
+          "T-cell response without tumor regression",
+          "liver metastasis",
+          "pTMB",
+          "patient selection",
+          "unselected population"
+        ],
+        "what_crispro_proved": [
+          "THREE CONDITIONS for IO benefit in MSS CRC: (1) non-liver-metastatic disease, (2) pTMB ≥28, (3) immune-inflamed TME",
+          "CO.26: OS HR=0.73 (marginal); pTMB ≥28 OS HR=0.34 (90% CI 0.18–0.63, p=0.022) — strongest IO signal from randomized data",
+          "CO.26: liver-met PFS HR=1.39 vs no-LM PFS HR=0.54; Pint=0.02",
+          "REGONIVO US: ORR 7% (5/70); 0/5 liver-met responders; non-liver-met ORR 22% (5/23)",
+          "GVAX: ORR 0% despite confirmed T-cell responses — pharmacodynamic dissociation",
+          "IMblaze370 (Phase III): OS no significant difference — MEK inhibition definitively fails",
+          "AtezoTRIBE: pMMR PFS HR=0.86 (NOT significant); Immunoscore-IC high HR ~0.50 (exploratory)",
+          "QUILT-2.004: HR 1.061 (p=0.91) — vaccine + IO + mFOLFOX6 + bev terminated for futility"
+        ],
+        "what_crispro_can_offer": "For any MSS CRC IO abstract: identify which of the 3 conditions for IO benefit is present or missing. For trial designs: flag liver metastasis stratification (GAP-01 CRITICAL) and pTMB collection (GAP-02 HIGH) as mandatory. For failed trials: apply 8D decode to identify the primary failure domain.",
+        "active_engagement": "Brenus Pharma (BreAK CRC-001, STC-1010) — fit score 0.7375",
+        "admissibility": "external_safe",
+        "caveats": [
+          "pTMB ≥28 threshold is data-driven (not pre-specified in CO.26), GuardantOMNI-specific, 2L+ population — requires prospective validation",
+          "Liver metastasis is prognostic but AtezoTRIBE 2025 shows it is not predictive of IO resistance when Immunoscore-IC is high (Pint PFS=0.166)"
+        ]
+      },
+      {
+        "program_id": "IO_APPENDIX",
+        "program_name": "MSS CRC IO Supporting Evidence Corpus",
+        "indication_keywords": [
+          "colorectal cancer",
+          "CRC",
+          "MSI-H",
+          "dMMR",
+          "microsatellite instability"
+        ],
+        "target_keywords": [
+          "regorafenib",
+          "nivolumab",
+          "ipilimumab",
+          "REGONIVO",
+          "RIN",
+          "BOT/BAL",
+          "botensilimab",
+          "balstilimab",
+          "TGF-beta",
+          "bintrafusp",
+          "STELLAR-303",
+          "zanzalintinib"
+        ],
+        "failure_mode_keywords": [
+          "liver metastasis",
+          "non-liver-metastatic",
+          "NLM",
+          "IO enrichment",
+          "positive control",
+          "MSI-H"
+        ],
+        "what_crispro_proved": [
+          "RIN NLM subgroup: ORR 36.4%, mPFS 5.0 months, mOS 27.5 months (n=22) — highest reported IO ORR in MSS CRC",
+          "BOT/BAL Phase 1: ORR 17% (95% CI 10–26%) in no-liver-met MSS mCRC (n=101)",
+          "KEYNOTE-177 (MSI-H): PFS HR=0.60 — positive control confirming IO works in MSI-H",
+          "CheckMate 142 MSS cohort: ORR 0% (n=74) — confirms immune exclusion in MSS CRC",
+          "STELLAR-303 (zanzalintinib + atezolizumab): only ongoing randomized Phase III in refractory MSS CRC"
+        ],
+        "what_crispro_can_offer": "For liver metastasis stratification abstracts: CrisPRO has the most comprehensive NLM enrichment evidence base in MSS CRC (REGONIVO, RIN, BOT/BAL, CO.26). For MSI-H positive control abstracts: CrisPRO uses MSI-H data to define the contrast with MSS CRC.",
+        "admissibility": "external_safe",
+        "caveats": [
+          "RIN NLM n=22 is a small subgroup — 'highest reported' not 'highest validated'",
+          "BOT/BAL Phase 2 data is conference presentation only, not yet peer-reviewed"
+        ]
+      },
+      {
+        "program_id": "HISTORICAL_BENCHMARKS",
+        "program_name": "mFOLFOX6 ± Bevacizumab Backbone Benchmark Set",
+        "indication_keywords": [
+          "colorectal cancer",
+          "CRC",
+          "mCRC",
+          "1L",
+          "first-line",
+          "FOLFOX",
+          "mFOLFOX6",
+          "bevacizumab",
+          "FOLFIRI"
+        ],
+        "target_keywords": [
+          "oxaliplatin",
+          "5-FU",
+          "leucovorin",
+          "bevacizumab",
+          "VEGF",
+          "FOLFOX",
+          "FOLFIRI",
+          "FOLFOXIRI"
+        ],
+        "failure_mode_keywords": [
+          "control arm",
+          "benchmark",
+          "historical comparator",
+          "backbone chemotherapy"
+        ],
+        "what_crispro_proved": [
+          "TRIBE2 control arm (primary benchmark): mPFS 9.8 months (95% CI 9.0–10.5), ORR 50%, mOS 22.5 months",
+          "BECOME bev arm: mPFS 9.5 months, ORR 54.5%, mOS 25.7 months (liver-limited — inflates mOS)",
+          "QUILT-2.004 (design precedent): HR 1.061 — IO addition to mFOLFOX6+bev does not improve PFS in unselected MSS CRC"
+        ],
+        "what_crispro_can_offer": "For any 1L CRC trial adding an investigational agent to mFOLFOX6 ± bev: CrisPRO provides the control arm benchmark expectations and the design precedent showing that unselected IO addition fails.",
+        "admissibility": "external_safe",
+        "caveats": [
+          "BECOME liver-limited selection inflates mOS — not directly comparable to unselected populations"
+        ]
+      },
+      {
+        "program_id": "BREAK_CRC_001",
+        "program_name": "BreAK CRC-001 — Active Phase I/II Trial Asset",
+        "indication_keywords": [
+          "colorectal cancer",
+          "CRC",
+          "MSS",
+          "pMMR",
+          "KRAS-mutant",
+          "BRAF wild-type",
+          "whole-cell vaccine",
+          "haptenated vaccine",
+          "STC-1010",
+          "DNFB"
+        ],
+        "target_keywords": [
+          "STC-1010",
+          "DNFB",
+          "haptenation",
+          "whole-cell vaccine",
+          "GM-CSF",
+          "cyclophosphamide",
+          "ICD",
+          "immunogenic cell death",
+          "HSP70",
+          "CDK1",
+          "EPHA2"
+        ],
+        "failure_mode_keywords": [
+          "pharmacodynamic dissociation",
+          "T-cell priming",
+          "liver metastasis",
+          "pTMB",
+          "biomarker gate",
+          "concurrent sequencing"
+        ],
+        "what_crispro_proved": [
+          "PATH A fit score: 0.7375 (MODERATE-HIGH alignment)",
+          "io axis: PRIMARY DRIVER (46.7% of dot product); mapk: SECONDARY (30.7%)",
+          "GAP-01 CRITICAL: liver metastasis not pre-specified as stratification variable",
+          "GAP-02 HIGH: pTMB not collected prospectively",
+          "GAP-03 MEDIUM: io axis alignment moderate (patient io=0.40 below optimal ≥0.50)",
+          "GAP-04 HIGH: no biomarker gate for patient selection",
+          "15 executable CrisPRO modules defined (crispro_module_requirements_brenus.csv)",
+          "SC-001 ACTIVE CONFLICT: HT29 carries BRAF V600E; BreAK CRC-001 requires BRAF WT patients"
+        ],
+        "what_crispro_can_offer": "For any whole-cell vaccine or ICD-based abstract in MSS CRC: CrisPRO has the most detailed fit-gap analysis of this mechanism class (STC-1010 / BreAK CRC-001). For DNFB haptenation or ICD mechanism abstracts: CrisPRO can apply the same 15-module framework.",
+        "active_engagement": "Brenus Pharma — ACTIVE",
+        "admissibility": "external_safe",
+        "caveats": [
+          "SC-001: any abstract mentioning HT29 or BRAF V600E in vaccine context must carry the conflict flag",
+          "STC-1010 preliminary clinical data (AACR 2026 CT051) is press-release only — no quantitative values"
+        ]
+      },
+      {
+        "program_id": "BRIEF_SL",
+        "program_name": "BRIEF Synthetic Lethality Asset Programs",
+        "indication_keywords": [
+          "NSCLC",
+          "non-small cell lung cancer",
+          "lung cancer",
+          "brain metastasis",
+          "BrM",
+          "ovarian cancer"
+        ],
+        "target_keywords": [
+          "ZEB1",
+          "SPP1",
+          "NRF2",
+          "ITGAV",
+          "PTEN",
+          "integrin",
+          "EMT",
+          "epithelial-mesenchymal transition",
+          "synthetic lethality",
+          "SL",
+          "CRISPR screen",
+          "DepMap",
+          "functional genomics"
+        ],
+        "failure_mode_keywords": [
+          "synthetic lethality",
+          "SL pair",
+          "CRISPR validation",
+          "DepMap essentiality",
+          "metastasis driver"
+        ],
+        "what_crispro_proved": [
+          "BRIEF-1: ZEB1→ITGAV SL, delta=−0.7184, FDR=0.001203, CRISPR_VALIDATED, DEAL_READY",
+          "BRIEF-4: SPP1→NRF2 SL, delta=−0.7326, FDR=8×10⁻⁶, CRISPR_VALIDATED",
+          "BRIEF-3: ZEB1+PD-1 combination, r=0.050 p=0.780 (GSE271259, n=34) — statistically insignificant, MECHANISTICALLY_GROUNDED",
+          "BRIEF-2: PTEN-null→ITGAV, COMPUTATIONAL_HYPOTHESIS — DepMap NULL across all 3 proxies",
+          "OV ZEB1 continuous Cox: HR=1.4803 (95% CI [1.1188, 1.9586], p=0.006042) — bevacizumab arm OS",
+          "OV ZEB1 median split: HR=2.500 (95% CI [1.322, 4.727], FDR=0.0499) — bevacizumab arm OS"
+        ],
+        "what_crispro_can_offer": "For any ZEB1, SPP1, NRF2, or ITGAV abstract: CrisPRO has CRISPR-validated SL assets in these targets. For NSCLC/BrM abstracts: BRIEF-1 (ZEB1→ITGAV) is deal-ready. For ovarian cancer + bevacizumab abstracts: EscapeMap OV ZEB1 data is directly applicable.",
+        "admissibility": "external_safe (BRIEF-1, BRIEF-4 quantitative values are trade secrets — do not publish delta/FDR in external outputs)",
+        "caveats": [
+          "BRIEF-2 (PTEN-null→ITGAV) is COMPUTATIONAL_HYPOTHESIS — DepMap NULL — must disclose",
+          "BRIEF-3 correlation r=0.050 p=0.780 is statistically insignificant",
+          "OV ZEB1 arm interaction p=0.246 — prognostic, not bevacizumab-specific"
+        ]
+      }
+    ]
+  },
+  "matching_rules": {
+    "_instructions_for_agent": "Apply rules in order. First match wins for fit_tier assignment. Multiple rules can match for program assignment — list all matching programs. Rules are ordered from most specific (highest confidence) to least specific.",
+    "_output_fields_to_populate": {
+      "crispro_fit_tier": "HIGH | MEDIUM | LOW | NONE",
+      "crispro_matched_programs": "list of program_ids",
+      "crispro_matched_capability": "capability_id",
+      "crispro_opportunity": "1-2 sentence grounded opportunity statement using pitch_template from offering_catalog",
+      "crispro_evidence_anchor": "the specific CrisPRO result that backs the opportunity"
+    },
+    "rules": [
+      {
+        "rule_id": "R-01",
+        "priority": 1,
+        "name": "CEACAM5 direct target match",
+        "if": {
+          "targets_gene_or_protein_contains": [
+            "CEACAM5",
+            "CEA",
+            "carcinoembryonic antigen"
+          ]
+        },
+        "then": {
+          "fit_tier": "HIGH",
+          "matched_programs": [
+            "CEACAM5"
+          ],
+          "matched_capability": "CAP-03",
+          "rationale_template": "CrisPRO decoded CARMEN-LC03's D2 Selection failure (IHC ≥50% too low; PFS HR 1.14). The two-gate framework (IHC ≥80% + IO permissiveness) is directly applicable to {compound_name}'s patient selection strategy. CrisPRO can produce a ENRICH/CONSIDER/EXCLUDE stratification table for {tumor_type}."
+        }
+      },
+      {
+        "rule_id": "R-02",
+        "priority": 2,
+        "name": "ATR/WEE1/DDR direct target match",
+        "if": {
+          "targets_gene_or_protein_contains": [
+            "ATR",
+            "WEE1",
+            "PARP",
+            "ceralasertib",
+            "berzosertib",
+            "adavosertib",
+            "olaparib",
+            "niraparib",
+            "rucaparib"
+          ]
+        },
+        "then": {
+          "fit_tier": "HIGH",
+          "matched_programs": [
+            "ATR_DDR"
+          ],
+          "matched_capability": "CAP-01",
+          "rationale_template": "CrisPRO has decoded 4 ATR/DDR trials ($1.95B in failed investment). For {compound_name}: the biomarker gate that prior trials missed was {RS-High / PTEN-intact / PARPi-naive status}. CrisPRO can identify the responder subpopulation within {tumor_type} and produce a patient selection package."
+        }
+      },
+      {
+        "rule_id": "R-03",
+        "priority": 3,
+        "name": "ZEB1 / SPP1 / NRF2 / ITGAV SL target match",
+        "if": {
+          "targets_gene_or_protein_contains": [
+            "ZEB1",
+            "SPP1",
+            "NRF2",
+            "ITGAV",
+            "integrin alpha-V"
+          ]
+        },
+        "then": {
+          "fit_tier": "HIGH",
+          "matched_programs": [
+            "BRIEF_SL"
+          ],
+          "matched_capability": "CAP-06",
+          "rationale_template": "CrisPRO holds CRISPR-validated synthetic lethality assets in {gene}. BRIEF-1 (ZEB1→ITGAV, FDR=0.001203) and BRIEF-4 (SPP1→NRF2, FDR=8×10⁻⁶) are deal-ready. CrisPRO can discuss licensing or research collaboration for {tumor_type} programs targeting this axis."
+        }
+      },
+      {
+        "rule_id": "R-04",
+        "priority": 4,
+        "name": "MSS CRC IO trial — clinical stage",
+        "if": {
+          "tumor_types_contains": [
+            "colorectal cancer",
+            "CRC"
+          ],
+          "topic_categories_contains": [
+            "immunotherapy",
+            "cancer_vaccines",
+            "clinical_trial"
+          ],
+          "clinical_stage_not": "preclinical"
+        },
+        "then": {
+          "fit_tier": "HIGH",
+          "matched_programs": [
+            "IO_CORE",
+            "BREAK_CRC_001"
+          ],
+          "matched_capability": "CAP-01",
+          "rationale_template": "CrisPRO has decoded 22 IO trials in MSS CRC and identified 3 conditions for IO benefit: non-liver-metastatic disease, pTMB ≥28, and immune-inflamed TME. For {trial_name}: CrisPRO can apply the 8D framework to identify the primary failure domain and the responder subpopulation."
+        }
+      },
+      {
+        "rule_id": "R-05",
+        "priority": 5,
+        "name": "MSS CRC IO trial — preclinical / basic science",
+        "if": {
+          "tumor_types_contains": [
+            "colorectal cancer",
+            "CRC"
+          ],
+          "topic_categories_contains": [
+            "immunotherapy",
+            "tumor_microenvironment",
+            "basic_science"
+          ]
+        },
+        "then": {
+          "fit_tier": "MEDIUM",
+          "matched_programs": [
+            "IO_CORE"
+          ],
+          "matched_capability": "CAP-08",
+          "rationale_template": "CrisPRO's MSS CRC IO corpus (22 trials) provides the clinical translation context for {MOA_summary}. The 3 conditions for IO benefit (NLM disease, pTMB ≥28, immune-inflamed TME) define the patient population where {target/mechanism} is most likely to show clinical signal."
+        }
+      },
+      {
+        "rule_id": "R-06",
+        "priority": 6,
+        "name": "Ovarian cancer + bevacizumab / VEGF / EMT",
+        "if": {
+          "tumor_types_contains": [
+            "ovarian cancer"
+          ],
+          "targets_pathway_or_gene_contains": [
+            "bevacizumab",
+            "VEGF",
+            "ZEB1",
+            "EMT",
+            "HIF1A",
+            "angiogenesis"
+          ]
+        },
+        "then": {
+          "fit_tier": "HIGH",
+          "matched_programs": [
+            "BRIEF_SL"
+          ],
+          "matched_capability": "CAP-07",
+          "rationale_template": "CrisPRO's EscapeMap OV analysis shows ZEB1 is a prognostic marker in the bevacizumab arm of ovarian cancer trials (HR=1.4803, p=0.006042; median-split HR=2.500, FDR=0.0499). For {compound_name}: CrisPRO can provide a ZEB1-stratified patient selection framework for the bevacizumab arm."
+        }
+      },
+      {
+        "rule_id": "R-07",
+        "priority": 7,
+        "name": "Whole-cell vaccine / ICD / haptenation in solid tumors",
+        "if": {
+          "topic_categories_contains": [
+            "cancer_vaccines"
+          ],
+          "MOA_or_targets_contains": [
+            "whole-cell",
+            "hapten",
+            "DNFB",
+            "ICD",
+            "immunogenic cell death",
+            "DAMP",
+            "HSP70",
+            "GM-CSF",
+            "cyclophosphamide"
+          ]
+        },
+        "then": {
+          "fit_tier": "HIGH",
+          "matched_programs": [
+            "BREAK_CRC_001"
+          ],
+          "matched_capability": "CAP-08",
+          "rationale_template": "CrisPRO has the most detailed fit-gap analysis of ICD-based whole-cell vaccine mechanisms in MSS CRC (STC-1010 / BreAK CRC-001, fit=0.7375). For {compound_name}: CrisPRO can apply the same 15-module biomarker framework and identify the critical design gaps (liver metastasis stratification, pTMB collection)."
+        }
+      },
+      {
+        "rule_id": "R-08",
+        "priority": 8,
+        "name": "ADC in solid tumors — patient selection gap",
+        "if": {
+          "topic_categories_contains": [
+            "ADC"
+          ],
+          "targets_modality_contains": [
+            "ADC",
+            "antibody-drug conjugate"
+          ]
+        },
+        "then": {
+          "fit_tier": "MEDIUM",
+          "matched_programs": [
+            "CEACAM5"
+          ],
+          "matched_capability": "CAP-03",
+          "rationale_template": "CrisPRO decoded CARMEN-LC03 (CEACAM5 ADC, Phase III) — the canonical ADC patient selection failure. The IHC threshold failure pattern (≥50% too low; ≥80% shows directional benefit) is applicable to {compound_name}'s patient selection strategy. CrisPRO can produce a two-gate framework for {target} in {tumor_type}."
+        }
+      },
+      {
+        "rule_id": "R-09",
+        "priority": 9,
+        "name": "KRAS-mutant CRC — targeted therapy",
+        "if": {
+          "tumor_types_contains": [
+            "colorectal cancer",
+            "CRC"
+          ],
+          "targets_gene_or_protein_contains": [
+            "KRAS",
+            "EGFR",
+            "sotorasib",
+            "adagrasib",
+            "panitumumab",
+            "cetuximab"
+          ]
+        },
+        "then": {
+          "fit_tier": "MEDIUM",
+          "matched_programs": [
+            "IO_CORE",
+            "HISTORICAL_BENCHMARKS"
+          ],
+          "matched_capability": "CAP-09",
+          "rationale_template": "CrisPRO has ranked {company} in its 33-company CRC target ranking. For {compound_name}: CrisPRO can provide a KRAS-mutation-specific historical benchmark for the 1L CRC control arm and a resistance mechanism profile for the post-approval setting."
+        }
+      },
+      {
+        "rule_id": "R-10",
+        "priority": 10,
+        "name": "Neoantigen vaccine / personalized vaccine",
+        "if": {
+          "topic_categories_contains": [
+            "cancer_vaccines"
+          ],
+          "targets_or_MOA_contains": [
+            "neoantigen",
+            "personalized vaccine",
+            "mRNA vaccine",
+            "autogene cevumeran",
+            "RO7198457",
+            "mKRAS"
+          ]
+        },
+        "then": {
+          "fit_tier": "MEDIUM",
+          "matched_programs": [
+            "IO_APPENDIX",
+            "IO_CORE"
+          ],
+          "matched_capability": "CAP-01",
+          "rationale_template": "CrisPRO's MSS CRC IO corpus includes GRANITE GO-010 (personalized neoantigen vaccine) and AMPLIFY-201 (mKRAS vaccine). The pharmacodynamic dissociation pattern (T-cell responses ≠ tumor regression) is the primary failure mode for vaccine programs in MSS CRC. CrisPRO can decode {compound_name}'s failure mode and identify the enrichment strategy."
+        }
+      },
+      {
+        "rule_id": "R-11",
+        "priority": 11,
+        "name": "pTMB / TMB / liquid biopsy biomarker",
+        "if": {
+          "biomarkers_contains": [
+            "pTMB",
+            "TMB",
+            "tumor mutational burden",
+            "ctDNA",
+            "liquid biopsy",
+            "GuardantOMNI",
+            "Guardant360"
+          ]
+        },
+        "then": {
+          "fit_tier": "MEDIUM",
+          "matched_programs": [
+            "IO_CORE"
+          ],
+          "matched_capability": "CAP-03",
+          "rationale_template": "CrisPRO's CO.26 decode established pTMB ≥28 as the strongest IO enrichment signal in MSS CRC from randomized data (OS HR=0.34, 90% CI 0.18–0.63). For {compound_name}: CrisPRO can integrate pTMB as Gate 2 in a two-gate patient selection framework."
+        }
+      },
+      {
+        "rule_id": "R-12",
+        "priority": 12,
+        "name": "Liver metastasis / hepatic metastasis stratification",
+        "if": {
+          "key_findings_or_MOA_contains": [
+            "liver metastasis",
+            "hepatic metastasis",
+            "liver-limited",
+            "non-liver-metastatic",
+            "NLM"
+          ]
+        },
+        "then": {
+          "fit_tier": "MEDIUM",
+          "matched_programs": [
+            "IO_CORE",
+            "IO_APPENDIX"
+          ],
+          "matched_capability": "CAP-01",
+          "rationale_template": "CrisPRO's CO.26 decode confirmed liver metastasis as the critical IO stratification variable in MSS CRC (Pint=0.02; liver-met PFS HR=1.39 vs no-LM HR=0.54). For {trial_name}: CrisPRO can provide the liver metastasis stratification framework and the NLM enrichment evidence base."
+        }
+      },
+      {
+        "rule_id": "R-13",
+        "priority": 13,
+        "name": "BRCA / homologous recombination deficiency",
+        "if": {
+          "targets_gene_or_protein_contains": [
+            "BRCA1",
+            "BRCA2",
+            "HRD",
+            "homologous recombination",
+            "PALB2",
+            "RAD51"
+          ]
+        },
+        "then": {
+          "fit_tier": "MEDIUM",
+          "matched_programs": [
+            "ATR_DDR"
+          ],
+          "matched_capability": "CAP-05",
+          "rationale_template": "CrisPRO's SL Therapy Bridge maps BRCA mutations to actionable drugs (olaparib/niraparib/rucaparib, ALLOW tier). For {compound_name} in {tumor_type}: CrisPRO can produce a BRCA-stratified patient selection package and identify the combination partner that avoids the PARPi-naive/post-PARPi failure mode."
+        }
+      },
+      {
+        "rule_id": "R-14",
+        "priority": 14,
+        "name": "Pancreatic cancer — DDR / IO / KRAS",
+        "if": {
+          "tumor_types_contains": [
+            "pancreatic cancer",
+            "pancreatic ductal adenocarcinoma",
+            "PDAC"
+          ]
+        },
+        "then": {
+          "fit_tier": "LOW",
+          "matched_programs": [
+            "ATR_DDR"
+          ],
+          "matched_capability": "CAP-01",
+          "rationale_template": "CrisPRO's ATR/DDR corpus includes ovarian and NSCLC data with transfer lessons applicable to PDAC DDR programs. For {compound_name}: CrisPRO can apply the RS-High / PTEN-intact / PARPi-naive gate framework as a hypothesis-generating starting point for PDAC patient selection."
+        }
+      },
+      {
+        "rule_id": "R-15",
+        "priority": 15,
+        "name": "Spatial biology / TME profiling in IO-relevant tumors",
+        "if": {
+          "topic_categories_contains": [
+            "spatial_biology",
+            "tumor_microenvironment"
+          ],
+          "tumor_types_contains": [
+            "colorectal cancer",
+            "CRC",
+            "ovarian cancer",
+            "NSCLC",
+            "lung cancer"
+          ]
+        },
+        "then": {
+          "fit_tier": "LOW",
+          "matched_programs": [
+            "IO_CORE"
+          ],
+          "matched_capability": "CAP-08",
+          "rationale_template": "CrisPRO's MSS CRC IO corpus identified Immunoscore-IC and CD8+ TIL density as candidate IO enrichment biomarkers (AtezoTRIBE: Immunoscore-IC high HR ~0.50; MEDITREME: CD8-high + TGF-β-low). For {compound_name}: CrisPRO can integrate {spatial_readout} into the patient selection framework."
+        }
+      },
+      {
+        "rule_id": "R-16",
+        "priority": 16,
+        "name": "Pharma company in CrisPRO CRC ranking — any abstract",
+        "if": {
+          "external_follow_up_company_or_sponsor_contains": [
+            "Inhibrx",
+            "Agenus",
+            "Daiichi Sankyo",
+            "AstraZeneca",
+            "Merus",
+            "Oncolytics",
+            "Mirati",
+            "BMS",
+            "Bristol Myers Squibb",
+            "Amgen",
+            "Roche",
+            "Genentech",
+            "BioNTech",
+            "Pfizer",
+            "AbbVie",
+            "Seagen",
+            "Bavarian Nordic",
+            "Exelixis",
+            "Sanofi"
+          ]
+        },
+        "then": {
+          "fit_tier": "MEDIUM",
+          "matched_programs": [
+            "IO_CORE"
+          ],
+          "matched_capability": "CAP-09",
+          "rationale_template": "CrisPRO has ranked {company} in its 33-company CRC target ranking (fit score: {score}, posture: {posture}). For {compound_name}: CrisPRO can provide a BD intelligence package anchored in the decoded failure mode of {company}'s prior programs."
+        }
+      },
+      {
+        "rule_id": "R-17",
+        "priority": 17,
+        "name": "Failed or terminated trial — any indication",
+        "if": {
+          "key_findings_contains_failure_signal": true,
+          "novelty_flag": "negative_or_null_result"
+        },
+        "then": {
+          "fit_tier": "MEDIUM",
+          "matched_programs": [
+            "IO_CORE"
+          ],
+          "matched_capability": "CAP-01",
+          "rationale_template": "CrisPRO's 8D framework can decode {trial_name}'s failure. Based on {key_findings}, the primary failure domain appears to be {D1-D8}. CrisPRO can identify the responder subpopulation that existed within the failure and produce a transfer lesson set."
+        }
+      },
+      {
+        "rule_id": "R-18",
+        "priority": 18,
+        "name": "AI/ML platform for oncology — competitive positioning",
+        "if": {
+          "topic_categories_contains": [
+            "AI_ML"
+          ],
+          "tumor_types_not_empty": true
+        },
+        "then": {
+          "fit_tier": "LOW",
+          "matched_programs": [],
+          "matched_capability": "CAP-02",
+          "rationale_template": "CrisPRO's PATH A mechanism fit engine (609 trials ranked, AUROC 0.689 in MSK-MET N=25,775) is directly comparable to {compound_name}'s AI approach. CrisPRO can discuss the two-layer framework as a complementary or competitive positioning reference."
+        }
+      },
+      {
+        "rule_id": "R-19",
+        "priority": 19,
+        "name": "Biomarker development — any indication",
+        "if": {
+          "topic_categories_contains": [
+            "biomarker_development"
+          ]
+        },
+        "then": {
+          "fit_tier": "LOW",
+          "matched_programs": [],
+          "matched_capability": "CAP-03",
+          "rationale_template": "CrisPRO's patient selection framework (two-gate system, Vector-Scalpel 11-dimension ranking) is applicable to {biomarker} development in {tumor_type}. CrisPRO can provide the clinical translation context from its decoded trial corpus."
+        }
+      },
+      {
+        "rule_id": "R-20",
+        "priority": 20,
+        "name": "No match — default",
+        "if": {
+          "no_other_rule_matches": true
+        },
+        "then": {
+          "fit_tier": "NONE",
+          "matched_programs": [],
+          "matched_capability": null,
+          "rationale_template": "No direct match to CrisPRO's current program portfolio (ATR/DDR, CEACAM5, MSS CRC IO, BRIEF SL, BreAK CRC-001). CrisPRO's 8D framework is applicable to any oncology trial failure — if {tumor_type} or {target} becomes a future program focus, this abstract is a relevant signal."
+        }
+      }
+    ]
+  },
+  "offering_catalog": {
+    "_instructions_for_agent": "Select the offering whose trigger_conditions best match the abstract. Fill the pitch_template with abstract-specific values from {placeholders}. The evidence_anchor is the specific CrisPRO result that makes the pitch credible — always include it.",
+    "offerings": [
+      {
+        "offering_id": "OFFER-1",
+        "name": "Trial Failure Decode",
+        "tagline": "Understand why a trial failed — before you repeat the mistake.",
+        "trigger_conditions": {
+          "abstract_has": [
+            "a completed or terminated trial",
+            "a published failure result (HR, ORR, p-value)",
+            "a negative or null primary endpoint"
+          ],
+          "best_for": [
+            "clinical_trial topic category",
+            "negative_or_null_result novelty_flag",
+            "Phase II/III trials"
+          ]
+        },
+        "pitch_template": "CrisPRO's 8D framework can decode {trial_name}'s failure in {tumor_type}. Based on {key_finding}, the primary failure domain appears to be {D1-D8 domain} — {domain_description}. CrisPRO has decoded {N} similar trials and can identify the responder subpopulation that existed within this failure.",
+        "example": "CARMEN-LC03 (CEACAM5 ADC, Phase III, N=389): D2 Selection failure — IHC ≥50% threshold too low; CEACAM5 ≥80% subgroup shows directional OS benefit (HR=0.71). Transfer lesson: set IHC ≥80% as the enrollment gate for next-generation CEACAM5 programs.",
+        "evidence_anchor": "42 trials decoded across 7 programs; 8D framework receipted in trial_decode_registry_v2.md",
+        "turnaround": "5–10 business days per trial"
+      },
+      {
+        "offering_id": "OFFER-2",
+        "name": "Patient Selection Package",
+        "tagline": "Find the patients who will respond — before you enroll the ones who won't.",
+        "trigger_conditions": {
+          "abstract_has": [
+            "a biomarker or patient selection challenge",
+            "an IHC threshold or genomic gate",
+            "a subgroup analysis showing differential response"
+          ],
+          "best_for": [
+            "biomarker_development topic category",
+            "translational topic category",
+            "abstracts with biomarkers field populated"
+          ]
+        },
+        "pitch_template": "CrisPRO's two-gate patient selection framework is directly applicable to {compound_name} in {tumor_type}. Gate 1: {target expression threshold}. Gate 2: {IO permissiveness or pathway context}. CrisPRO decoded {reference_trial}'s patient selection failure and can produce an ENRICH/CONSIDER/EXCLUDE stratification table for {compound_name}'s enrollment criteria.",
+        "example": "SAR445953 (CEACAM5-Topo1 ADC): Gate 1 = CEACAM5 IHC ≥80% (28% of MSS mCRC patients); Gate 2 = IO permissiveness (pTMB ≥28 or Immunoscore-IC high). Vector-Scalpel ranking: cCEA (27/33) > pTMB (23/33) > IHC (20/33).",
+        "evidence_anchor": "CEACAM5 two-gate framework (crispro_ceacam5_capability_map_v1.md CAP-02); ATR/DDR RS-High gate (berzosertib ORR 40% vs 5%); CO.26 pTMB ≥28 OS HR=0.34",
+        "turnaround": "7–14 business days"
+      },
+      {
+        "offering_id": "OFFER-3",
+        "name": "IST Design Support",
+        "tagline": "Design investigator-sponsored trials that are built to succeed.",
+        "trigger_conditions": {
+          "abstract_has": [
+            "an IST or Phase I/II trial design",
+            "a biomarker strategy question",
+            "a speaker who is an academic PI or clinical investigator"
+          ],
+          "best_for": [
+            "clinical_trial topic category",
+            "translational topic category",
+            "academic_pi speaker role"
+          ]
+        },
+        "pitch_template": "CrisPRO's IST design support framework is applicable to {compound_name} in {tumor_type}. CrisPRO's fit-gap analysis of {reference_program} identified {N} design gaps — the most critical being {GAP-01 description}. CrisPRO can produce a PATH A fit score, 4-gap design risk inventory, and enrollment criteria recommendation for {compound_name}'s IST.",
+        "example": "BreAK CRC-001 (STC-1010): PATH A fit score 0.7375. GAP-01 CRITICAL: liver metastasis not pre-specified. GAP-02 HIGH: pTMB not collected. Recommendation: add liver metastasis stratification and prospective pTMB measurement.",
+        "evidence_anchor": "BreAK CRC-001 fit-gap analysis (crispro_stc1010_fit_gap.json); 15 executable modules (crispro_module_requirements_brenus.csv)",
+        "turnaround": "10–21 business days"
+      },
+      {
+        "offering_id": "OFFER-4",
+        "name": "BD Intelligence Package",
+        "tagline": "Walk into every pharma meeting knowing more about their trial than they do.",
+        "trigger_conditions": {
+          "abstract_has": [
+            "a pharma-affiliated speaker",
+            "a company in CrisPRO's 33-company CRC ranking",
+            "a drug with a known failure or design gap"
+          ],
+          "best_for": [
+            "external_follow_up.company_or_sponsor populated",
+            "industry speaker role",
+            "Phase II/III clinical trials from ranked companies"
+          ]
+        },
+        "pitch_template": "CrisPRO has ranked {company} in its 33-company CRC target ranking (fit score: {score}, posture: {posture}). For {compound_name}: CrisPRO decoded {reference_trial}'s failure mode ({D-domain}) and can produce a BD intelligence package showing how {compound_name}'s patient selection gap can be addressed. CrisPRO submitted a 12-slide pitch to Sanofi anchored in this framework.",
+        "example": "Sanofi pitch: CARMEN-LC03 D2 failure (IHC ≥50% too low) → SAR445953 two-gate solution (IHC ≥80% + IO permissiveness) → CrisPRO can decode SAR445877 patient selection before Sanofi's trial reads out. 12-slide deck committed to repo SHA 4de4297.",
+        "evidence_anchor": "33-company CRC ranking (crispro_target_ranking.md); Sanofi pitch (crispro_sanofi_pitch_anchor_v1.mdc, SHA 993aecd)",
+        "turnaround": "14–21 business days"
+      },
+      {
+        "offering_id": "OFFER-5",
+        "name": "SL Asset Licensing / Research Collaboration",
+        "tagline": "CRISPR-validated synthetic lethality assets ready for licensing or research collaboration.",
+        "trigger_conditions": {
+          "abstract_has": [
+            "ZEB1, SPP1, NRF2, ITGAV, or PTEN-null biology",
+            "synthetic lethality or CRISPR screen data",
+            "NSCLC or brain metastasis indication"
+          ],
+          "best_for": [
+            "targets mentioning ZEB1/SPP1/NRF2/ITGAV",
+            "NSCLC/BrM tumor type",
+            "first_in_class or emerging_target novelty_flag"
+          ]
+        },
+        "pitch_template": "CrisPRO holds CRISPR-validated SL assets in {gene} (BRIEF-{N}, {evidence_tier}). For {compound_name} in {tumor_type}: CrisPRO can discuss licensing the {BRIEF-N} asset or a research collaboration to validate the {SL_pair} axis in {tumor_type}. The Repare benchmark (Roche paid $125M upfront for camonsertib) defines the licensing value floor.",
+        "example": "BRIEF-1 (ZEB1→ITGAV, CRISPR_VALIDATED, DEAL_READY): applicable to any NSCLC/BrM program targeting ZEB1 or integrin signaling. BRIEF-4 (SPP1→NRF2, CRISPR_VALIDATED): applicable to NRF2-pathway programs in NSCLC.",
+        "evidence_anchor": "BRIEF-1 delta=−0.7184, FDR=0.001203 (CRISPR_VALIDATED); BRIEF-4 delta=−0.7326, FDR=8×10⁻⁶ (CRISPR_VALIDATED); crispro_ip_valuation_glb_v1.mdc",
+        "turnaround": "21–30 business days (licensing discussion); 5–10 business days (research collaboration scoping)"
+      }
+    ]
+  },
+  "governance_guardrails": {
+    "_admissibility": "internal_only — agent uses but does not surface in user-facing output",
+    "_instructions_for_agent": "Check every crispro_opportunity output against these guardrails before finalizing. If a prohibited claim is present, remove it. If a mandatory caveat is required, append it.",
+    "prohibited_claims": [
+      {
+        "id": "G-01",
+        "prohibited": "Any reference to PATH B formula (cosine similarity with ‖p‖₂ in denominator)",
+        "reason": "PATH B is PROHIBITED — signed decision 2026-04-28",
+        "correct_formula": "fit = clip((p·t) / ‖t‖₂, 0, 1) — PATH A only"
+      },
+      {
+        "id": "G-02",
+        "prohibited": "Any specific LATIFY delta value (e.g., +0.366 or +0.2641)",
+        "reason": "LATIFY delta is QUARANTINED — CT-03 blocker: patent delta +0.366 vs receipt delta +0.2641 — version conflict unresolved",
+        "correct_statement": "LATIFY is the only receipted two-layer demonstration. Responder score 0.8936 vs non-responder 0.6295. Delta value is quarantined."
+      },
+      {
+        "id": "G-03",
+        "prohibited": "DL-07 DDR figure (DDR mean 0.983)",
+        "reason": "DL-07 QUARANTINED — publication-blocking",
+        "correct_statement": "Do not cite any DDR axis mean value from Figure 2"
+      },
+      {
+        "id": "G-04",
+        "prohibited": "Any claim that GBM ZEB1 is a confirmed escape marker",
+        "reason": "GBM ZEB1 PERMANENTLY CLOSED — 3 datasets all null/contradicted (GLASS: delta=−0.34 DOWN; GSE222515: delta=−0.431 DOWN; GSE174554 snRNA-seq: delta=−0.076, p=0.742 NULL)",
+        "correct_statement": "GBM ZEB1 analysis is permanently closed. Do not reopen without new evidence."
+      },
+      {
+        "id": "G-05",
+        "prohibited": "Presenting BRIEF-2 (PTEN-null→ITGAV) as validated or CRISPR-confirmed",
+        "reason": "BRIEF-2 is COMPUTATIONAL_HYPOTHESIS — DepMap NULL across all 3 proxies",
+        "mandatory_disclosure": "PTEN-null→ITGAV is a computational hypothesis. DepMap shows NULL essentiality across all 3 proxies. Not CRISPR-validated. Requires experimental validation before any licensing discussion."
+      },
+      {
+        "id": "G-06",
+        "prohibited": "Claiming CEACAM5 has a confirmed Target-Lock score",
+        "reason": "CEACAM5 is NOT in the 38-gene Target-Lock panel — run has not been executed",
+        "correct_statement": "CEACAM5 Target-Lock scoring is prospective — the framework supports this run but it has not been executed. Label as EXPECTED, not COMPUTED."
+      },
+      {
+        "id": "G-07",
+        "prohibited": "Claiming CrisPRO guarantees trial success",
+        "reason": "The only defensible claim is: CrisPRO would have changed the enrollment decision",
+        "correct_statement": "CrisPRO identifies the patient population and biological conditions under which a trial will succeed or fail. It does not guarantee trial success."
+      },
+      {
+        "id": "G-08",
+        "prohibited": "Citing PC-02 retroactive prediction run results",
+        "reason": "PC-02 PERMANENTLY DOWNGRADED — retroactive_prediction_run.py has not cleanly reproduced documented deltas",
+        "correct_statement": "Do not cite PC-02 results"
+      }
+    ],
+    "mandatory_caveats": [
+      {
+        "id": "MC-01",
+        "trigger": "Any use of pTMB ≥28 as a predictive biomarker",
+        "required_caveat": "pTMB ≥28 threshold is data-driven (not pre-specified in CO.26 protocol), GuardantOMNI-specific, derived from 2L+ refractory population, and has not been validated in a prospective Phase III trial. Pint=0.070 (borderline). Requires prospective validation before use as an enrollment criterion."
+      },
+      {
+        "id": "MC-02",
+        "trigger": "Any use of CEACAM5 IHC ≥80% OS HR=0.71",
+        "required_caveat": "CEACAM5 ≥80% OS HR=0.71 is post-hoc, underpowered, and CI not published. Label as directional trend, not established predictive biomarker."
+      },
+      {
+        "id": "MC-03",
+        "trigger": "Any use of cCEA ≥100 data in CRC context",
+        "required_caveat": "cCEA ≥100 ORR data (41.7% vs 8.1%) is from NSCLC (NCT02187848). Application to CRC is by inference only. Must be labeled on every slide."
+      },
+      {
+        "id": "MC-04",
+        "trigger": "Any abstract mentioning HT29 or BRAF V600E in vaccine context",
+        "required_caveat": "SC-001 ACTIVE CONFLICT: HT29 carries BRAF V600E (ATCC/CCLE/COSMIC). BreAK CRC-001 requires BRAF wild-type patients (Exclusion Criterion #7). This scientific inconsistency must be flagged for any vaccine program using HT29 as a cell line component."
+      },
+      {
+        "id": "MC-05",
+        "trigger": "Any use of M2 stratum OS data",
+        "required_caveat": "Preparatory M2-bevacizumab biomarker panel for downstream descriptive and conditioning analyses — not a validated prognostic signature until dbGaP-linked patient-level outcomes are available. (LOCKED 2026-05-12)"
+      },
+      {
+        "id": "MC-06",
+        "trigger": "Any use of LATIFY as a proof-of-concept",
+        "required_caveat": "LATIFY is the only receipted two-layer demonstration. The specific delta value is quarantined (CT-03 — version conflict unresolved). Do not cite a specific delta. The responder/non-responder score separation (0.8936 vs 0.6295) is the correct citation."
+      },
+      {
+        "id": "MC-07",
+        "trigger": "Any use of BRIEF-3 (ZEB1+PD-1) as evidence of combination benefit",
+        "required_caveat": "BRIEF-3 correlation r=0.050, p=0.780 (GSE271259, n=34) is statistically insignificant. BRIEF-3 is MECHANISTICALLY_GROUNDED, not CRISPR_VALIDATED. The combination hypothesis is supported by mechanistic literature but not by the GSE271259 correlation."
+      },
+      {
+        "id": "MC-08",
+        "trigger": "Any use of OV ZEB1 arm interaction as bevacizumab-predictive",
+        "required_caveat": "OV ZEB1 arm interaction HR=1.243, p=0.246 — PROGNOSTIC, NOT ARM-SPECIFIC. ZEB1 is a prognostic marker in the bevacizumab arm, not a predictive marker of bevacizumab benefit."
+      }
+    ],
+    "evidence_tier_enforcement": {
+      "SOURCED": "Cite the source. No arithmetic. No cross-study transfer.",
+      "COMPUTED": "Receipted run exists. Cite the receipt. State the specific output values.",
+      "EXPECTED": "Framework exists but run not executed. Label as 'prospective' or 'the next execution step'. Never present as COMPUTED.",
+      "ABSENT": "No code exists. Do not claim this capability exists. State it as a gap."
+    },
+    "sc_001_flag": {
+      "conflict_id": "SC-001",
+      "status": "ACTIVE_CONFLICT",
+      "description": "HT29 carries BRAF V600E (established cell line biology — ATCC HTB-38, CCLE, COSMIC). BreAK CRC-001 Exclusion Criterion #7 requires BRAF wild-type patients. Any vaccine program using HT29 as a cell line component and enrolling BRAF WT patients has a scientific inconsistency.",
+      "trigger": "Abstract mentions HT29 OR BRAF V600E in vaccine/cell line context",
+      "action": "Flag the conflict. Do not suppress it."
+    }
+  }
+}

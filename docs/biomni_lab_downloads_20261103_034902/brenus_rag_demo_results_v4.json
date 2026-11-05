@@ -1,0 +1,75 @@
+{
+  "n_queries": 3,
+  "avg_faithfulness": 0.758,
+  "avg_answer_relevancy": 0.719,
+  "pass_rate": 0.667,
+  "results": [
+    {
+      "query": "What are the best IO benchmark results for MSS colorectal cancer, and what does the liver-met data show?",
+      "answer": "(a) The best available IO benchmark results for MSS colorectal cancer come from 7 IO comparator trials showing consistent positive deltas (fit_A > fit_B) with delta values ranging from 0.15 to 0.30. Liver-met data demonstrates universal IO suppression across all MSS CRC IO mechanisms, with the delta quantifying the suppression magnitude between IO-permissive (NLM) and IO-suppressed (liver-met) profiles.\n\n(b) Supporting evidence:\n- 7 MSS CRC IO comparator trials show fit_A values from 0.8262 down to 0.4000 and fit_B from 0.6751 down to 0.1000, with all 7 trials showing positive delta (P_A > P_B) [W1-IOCORE-001]\n- Delta range across trials: 0.1511 to 0.3000 [W1-IOCORE-001]\n- Universal finding: \"Liver-met IO suppression is universal across all MSS CRC IO mechanisms\" [W1-IOCORE-001]\n- PATH A Fit Scoring formula (fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1)) and Liver-Met IO Suppression Decoder quantify the delta between IO-permissive and IO-suppressed profiles [W3-CRISPRO-001]\n- CCTG CO.26 identified as canonical liver-met discrimination trial for MSS CRC [W1-CO26-001]\n\n(c) Caveats:\n- Individual trial identifiers/names are not provided in the benchmark data [W1-IOCORE-001]\n- PDS chemotherapy/targeted backbone trials show no available fit/delta values (all marked \"?\") [W1-PDS-001]\n- BreAK CRC-001 design gaps include liver metastasis not pre-specified as stratification variable and pTMB not collected prospectively [W2-GAPS-001]",
+      "citations": [
+        "W1-IOCORE-001",
+        "W3-CRISPRO-001",
+        "W1-CO26-001",
+        "W1-PDS-001",
+        "W2-GAPS-001"
+      ],
+      "guardrail_violations": [],
+      "faithfulness": 0.786,
+      "faithfulness_method": "cosine_fallback",
+      "answer_relevancy": 0.813,
+      "composite": 0.799,
+      "pass": true,
+      "latency_ms": {
+        "retrieval_ms": 877,
+        "generation_ms": 173071,
+        "eval_ms": 10104
+      }
+    },
+    {
+      "query": "Compare the BreAK CRC-001 trial design against the TRIBE2 benchmark. What are the critical gaps?",
+      "answer": "The user wants me to compare BreAK CRC-001 trial design against TRIBE2 benchmark and identify critical gaps. I need to use only the provided documents.\n\nLet me examine the documents:\n\nDocument 1: [W1-TRIBE2-001] - TRIBE2 is described as \"Primary Benchmark for BreAK CRC-001\" with tags: tribe2, benchmark, mfolfox6, bevacizumab, ras_mutant, 1l_mCRC. But it doesn't contain detailed information about TRIBE2 design.\n\nDocument 2: [W1-IOCORE-001] - IO CORE with 7 MSS CRC IO comparator trials, showing fit scores and deltas. Not directly about TRIBE2.\n\nDocument 3: [W2-GAPS-001] - BreAK CRC-001 Identified Design Gaps. This lists critical gaps including:\n- [CRITICAL] GAP-01: Liver metastasis not pre-specified as stratification variable\n- [HIGH] GAP-02: pTMB not collected prospectively\n- [MEDIUM] GAP-03: io=0.40 (moderate) \u2014 STC-1010 mechanism requires io\u22650.50 for optimal alignment\n- [HIGH] GAP-04: No biomarker gate for patient selection\n- [HIGH] GAP-05: Bevacizumab optionality creates immunomodulatory confounding\n- [MEDIUM] GAP-06: SC-001 ACTIVE CONFLICT: HT29 carries BRAF V600E vs BreAK CRC-001 BRAF-WT requirement\n\nDocument 4: [W2-ATRDDR-001] - ATR/DDR Trial Decodes, not relevant.\n\nDocument 5: [W2-BREAK-001] - BreAK CRC-001 Full Trial Decode. Shows mechanism, trial vector, patient vector, CrisPRO Fit Score 0.6944 (MODERATE alignment), axis breakdown, named TAAs.\n\nThe query asks to compare BreAK CRC-001 against TRIBE2 benchmark and identify critical gaps. Document 1 says TRIBE2 is \"Primary Benchmark for BreAK CRC-001\". Document 3 lists design gaps for BreAK CRC-001. But I don't have detailed TRIBE2 design specifications to compare against. The gaps listed in Document 3 are identified design gaps for BreAK CRC-001, but are they specifically in comparison to TRIBE2? The document title is \"BreAK CRC-001 \u2014 Identified Design Gaps\" and tags include \"break_crc_001, liver_met, ptmb, biomarker_gate, sc001, bevacizumab_scheduling\". It doesn't explicitly say these gaps are relative to TRIBE2.\n\nHowever, Document 1 indicates TRIBE2 is the primary benchmark for BreAK CRC-001. The gaps in Document 3 are likely the critical gaps identified when comparing against the benchmark (TRIBE2). But I need to be careful: the instruction says \"Answer using ONLY the provided context documents.\" I cannot infer that these gaps are specifically from TRIBE2 comparison unless stated.\n\nLet me check Document 3 again: \"BreAK CRC-001 \u2014 Identified Design Gaps\". It doesn't mention TRIBE2. But Document 1 says TRIBE2 is the primary benchmark for BreAK CRC-001. The user asks to compare against TRIBE2 benchmark. The only gaps document is Document 3. So likely the answer should reference Document 3 gaps as the critical gaps identified for BreAK CRC-001, with the understanding that TRIBE2 is the benchmark.\n\nBut I must cite every claim with document IDs. I can state that TRIBE2 is the primary benchmark for BreAK CRC-001 [W1-TRIBE2-001]. Then list the critical gaps from Document 3. However, the gaps in Document 3 are not explicitly linked to TRIBE2. But the user asks \"What are the critical gaps?\" and the only gaps document is Document 3. So I should present those gaps",
+      "citations": [
+        "W1-TRIBE2-001",
+        "W1-IOCORE-001",
+        "W2-GAPS-001",
+        "CRITICAL",
+        "HIGH",
+        "MEDIUM",
+        "W2-ATRDDR-001",
+        "W2-BREAK-001"
+      ],
+      "guardrail_violations": [],
+      "faithfulness": 0.578,
+      "faithfulness_method": "cosine_fallback",
+      "answer_relevancy": 0.739,
+      "composite": 0.658,
+      "pass": false,
+      "latency_ms": {
+        "retrieval_ms": 758,
+        "generation_ms": 163331,
+        "eval_ms": 23774
+      }
+    },
+    {
+      "query": "How does CrisPRO help Brenus Pharma address the design gaps in BreAK CRC-001?",
+      "answer": "(a) CrisPRO addresses BreAK CRC-001 design gaps by providing a mechanistic scoring system and specific stratification modules to identify and capture patient signals that were missing from the trial design.\n\n(b) Supporting evidence:\n- **Liver Metastasis Stratification**: CrisPRO's Liver-Met IO Suppression Decoder quantifies the delta between IO-permissive (NLM) and IO-suppressed (liver-met) profiles [W3-CRISPRO-001]. This directly addresses the critical gap where liver metastasis was not pre-specified as a stratification variable [W2-GAPS-001] and the gap in the trial design required to capture the NLM signal [W3-FITGAP-001].\n- **Biomarker Identification**: CrisPRO's Biomarker Gap Identification capability identifies missing biomarkers needed to exploit mechanistic signals [W3-CRISPRO-001]. This addresses the high-priority gaps regarding the lack of a biomarker gate for patient selection [W2-GAPS-001] and the failure to prospectively collect pTMB [W2-GAPS-001, W3-FITGAP-001].\n- **Mechanistic Alignment**: The PATH A Fit Scorer (formula: fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1)) provides a mechanistic alignment score between patient molecular profiles and trial mechanism-of-action vectors [W3-CRISPRO-001]. This addresses the moderate alignment gap (io=0.40) where the STC-1010 mechanism requires io\u22650.50 for optimal alignment [W2-GAPS-001].\n\n(c) Caveats: The Liver-Met Stratification Module and Prospective Biomarker Collection are currently listed as \"GAP\" requirements for the CrisPRO Fit-Gap Analysis for Brenus [W3-FITGAP-001].",
+      "citations": [
+        "W3-CRISPRO-001",
+        "W2-GAPS-001",
+        "W3-FITGAP-001"
+      ],
+      "guardrail_violations": [],
+      "faithfulness": 0.909,
+      "faithfulness_method": "cosine_fallback",
+      "answer_relevancy": 0.606,
+      "composite": 0.758,
+      "pass": true,
+      "latency_ms": {
+        "retrieval_ms": 725,
+        "generation_ms": 34892,
+        "eval_ms": 14448
+      }
+    }
+  ]
+}

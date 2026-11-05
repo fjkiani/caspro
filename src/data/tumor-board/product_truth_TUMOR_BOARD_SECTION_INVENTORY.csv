@@ -1,0 +1,12 @@
+section,status,evidence_source,product_safe_claim,prohibited_claim
+Biology map (pathway / MoA overlay),executable and live,shared intelligence layer,Displays named pathways and mechanism context for the profile.,Definitive mechanistic diagnosis.
+Vulnerability hypotheses (SL / dependency),executable but scope-limited,"SL layer, DepMap-derived signals",Lists candidate dependencies with evidence tiers.,Proven patient-specific vulnerability.
+Mechanism-aligned therapy options,executable and live (research framing),MoA + resistance layers,Enumerates mechanism-aligned research options with evidence tags.,Treatment recommendation.
+Trial exploration,executable and live,"trial-ledger-registry (7 programs, 42 trials current)",Ranks trials by mechanism alignment for the profile.,Enrollment / responder prediction.
+Escape / resistance risks,executable and live,resistance layer,Enumerates plausible escape routes with evidence tier.,Individual-patient escape prediction.
+Evidence trace / provenance,executable and live,shared provenance layer,Every output claim links to source with evidence tier.,Provenance is not clinical validation.
+Missing-data + confidence,executable and live,confidence-tier layer,Explicitly lists what the profile does NOT support and where confidence is low.,Confidence display is not a diagnostic confidence interval.
+PGx / safety flags,data-backed but scoped,PGx layer,Surfaces PGx evidence where validated data exists.,Prescribing authority.
+Wet-lab / research handoff (if requested),executable via Interception layer,Interception target-and-guide layer,Optionally hands off a candidate to the Interception target-and-perturbation workflow.,The handoff is not experimental result.
+Governance / RUO reminder,executable and live,governance ledger,"Shows RUO status, quarantines relevant to the case, and human-work-remaining note.",None.
+Demo patient cards (legacy),demo fixture — NOT the product,co-pilot demo bundles,Demo bundles illustrate the workspace UI on synthetic profiles.,Demo patient outputs are real case resolutions or clinical guidance.

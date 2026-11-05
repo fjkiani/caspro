@@ -1,0 +1,3279 @@
+{
+  "benchmark": [
+    {
+      "fixture_id": "A_HGSOC_HRDlow",
+      "expected_top_axis": "ddr",
+      "anchor_nct": "NCT05457595",
+      "determinism_ok": true,
+      "baseline": {
+        "id": "A_HGSOC_HRDlow",
+        "case": "baseline",
+        "patient_vector": {
+          "ddr": 0.6,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "fail_closed_axes": [],
+        "top10": [
+          "NCT05457595",
+          "NCT04969835",
+          "NCT07156253",
+          "NCT04104776",
+          "NCT06906341",
+          "NCT05327010",
+          "NCT06686030",
+          "NCT05039801",
+          "NCT05489211",
+          "NCT06799637"
+        ],
+        "top10_fits": [
+          {
+            "nct": "NCT05457595",
+            "fit": 0.5821
+          },
+          {
+            "nct": "NCT04969835",
+            "fit": 0.5821
+          },
+          {
+            "nct": "NCT07156253",
+            "fit": 0.5821
+          },
+          {
+            "nct": "NCT04104776",
+            "fit": 0.5821
+          },
+          {
+            "nct": "NCT06906341",
+            "fit": 0.4992
+          },
+          {
+            "nct": "NCT05327010",
+            "fit": 0.4992
+          },
+          {
+            "nct": "NCT06686030",
+            "fit": 0.4992
+          },
+          {
+            "nct": "NCT05039801",
+            "fit": 0.4867
+          },
+          {
+            "nct": "NCT05489211",
+            "fit": 0.4609
+          },
+          {
+            "nct": "NCT06799637",
+            "fit": 0.4382
+          }
+        ],
+        "anchor_rank": 1,
+        "trials_scored": 42,
+        "io_gate": "RULE_OUT",
+        "io_p_resp": 0.1,
+        "io_axis": 0.0
+      },
+      "perturbations": [
+        {
+          "id": "A_HGSOC_HRDlow",
+          "case": "null_repeat",
+          "patient_vector": {
+            "ddr": 0.6,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05457595",
+            "NCT04969835",
+            "NCT07156253",
+            "NCT04104776",
+            "NCT06906341",
+            "NCT05327010",
+            "NCT06686030",
+            "NCT05039801",
+            "NCT05489211",
+            "NCT06799637"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT07156253",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT04104776",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT05327010",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT06686030",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.4867
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.4609
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.4382
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "RULE_OUT",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect identical top-10 across two runs"
+        },
+        {
+          "id": "A_HGSOC_HRDlow",
+          "case": "boost_ddr_palb2",
+          "patient_vector": {
+            "ddr": 0.9,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05457595",
+            "NCT04969835",
+            "NCT07156253",
+            "NCT04104776",
+            "NCT06906341",
+            "NCT05327010",
+            "NCT06686030",
+            "NCT05039801",
+            "NCT05489211",
+            "NCT06799637"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.8731
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.8731
+            },
+            {
+              "nct": "NCT07156253",
+              "fit": 0.8731
+            },
+            {
+              "nct": "NCT04104776",
+              "fit": 0.8731
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.7488
+            },
+            {
+              "nct": "NCT05327010",
+              "fit": 0.7488
+            },
+            {
+              "nct": "NCT06686030",
+              "fit": 0.7488
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.73
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.6914
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.6573
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "RULE_OUT",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.3,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect ddr axis to increase"
+        },
+        {
+          "id": "A_HGSOC_HRDlow",
+          "case": "strip_primary_lever",
+          "patient_vector": {
+            "ddr": 0.15,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05457595",
+            "NCT04969835",
+            "NCT07156253",
+            "NCT04104776",
+            "NCT06906341",
+            "NCT05327010",
+            "NCT06686030",
+            "NCT05039801",
+            "NCT05489211",
+            "NCT06799637"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.1455
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.1455
+            },
+            {
+              "nct": "NCT07156253",
+              "fit": 0.1455
+            },
+            {
+              "nct": "NCT04104776",
+              "fit": 0.1455
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.1248
+            },
+            {
+              "nct": "NCT05327010",
+              "fit": 0.1248
+            },
+            {
+              "nct": "NCT06686030",
+              "fit": 0.1248
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.1217
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.1152
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.1095
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "RULE_OUT",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": -0.45,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect ddr to drop"
+        },
+        {
+          "id": "A_HGSOC_HRDlow",
+          "case": "lineage_unknown",
+          "patient_vector": {
+            "ddr": 0.6,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05457595",
+            "NCT04969835",
+            "NCT07156253",
+            "NCT04104776",
+            "NCT06906341",
+            "NCT05327010",
+            "NCT06686030",
+            "NCT05039801",
+            "NCT05489211",
+            "NCT06799637"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT07156253",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT04104776",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT05327010",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT06686030",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.4867
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.4609
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.4382
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "FAIL_CLOSED",
+          "io_p_resp": null,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect lineage->unknown; io fail-closed if lever was CPS/MSI"
+        },
+        {
+          "id": "A_HGSOC_HRDlow",
+          "case": "noise_unknown_gene",
+          "patient_vector": {
+            "ddr": 0.6,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05457595",
+            "NCT04969835",
+            "NCT07156253",
+            "NCT04104776",
+            "NCT06906341",
+            "NCT05327010",
+            "NCT06686030",
+            "NCT05039801",
+            "NCT05489211",
+            "NCT06799637"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT07156253",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT04104776",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT05327010",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT06686030",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.4867
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.4609
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.4382
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "RULE_OUT",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect no axis motion from unknown gene"
+        },
+        {
+          "id": "A_HGSOC_HRDlow",
+          "case": "adversarial_msi_and_mss",
+          "patient_vector": {
+            "ddr": 0.6,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.6,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05327010",
+            "NCT05969041",
+            "NCT06297525",
+            "NCT06686030",
+            "NCT04282044",
+            "NCT05955105",
+            "NCT05457595",
+            "NCT04969835",
+            "NCT07156253",
+            "NCT04104776"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05327010",
+              "fit": 0.832
+            },
+            {
+              "nct": "NCT05969041",
+              "fit": 0.832
+            },
+            {
+              "nct": "NCT06297525",
+              "fit": 0.832
+            },
+            {
+              "nct": "NCT06686030",
+              "fit": 0.832
+            },
+            {
+              "nct": "NCT04282044",
+              "fit": 0.832
+            },
+            {
+              "nct": "NCT05955105",
+              "fit": 0.7714
+            },
+            {
+              "nct": "NCT05457595",
+              "fit": 0.7276
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.7276
+            },
+            {
+              "nct": "NCT07156253",
+              "fit": 0.7276
+            },
+            {
+              "nct": "NCT04104776",
+              "fit": 0.7276
+            }
+          ],
+          "anchor_rank": 7,
+          "trials_scored": 42,
+          "io_gate": "JUSTIFIED",
+          "io_p_resp": 0.52,
+          "io_axis": 0.6,
+          "jaccard_top10_vs_baseline": 0.429,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.6,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 6,
+          "description": "MSI-H rule fires; MSS flag is CRC-specific fail-closed guard"
+        }
+      ]
+    },
+    {
+      "fixture_id": "B_MSS_CRC_STC1010",
+      "expected_top_axis": "mapk",
+      "anchor_nct": "NCT03579316",
+      "determinism_ok": true,
+      "baseline": {
+        "id": "B_MSS_CRC_STC1010",
+        "case": "baseline",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.65,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "fail_closed_axes": [],
+        "top10": [
+          "NCT06128551",
+          "NCT05691504",
+          "NCT06253520",
+          "NCT05950464",
+          "NCT02264678",
+          "NCT06906341",
+          "NCT06799637",
+          "NCT07023484",
+          "NCT03579316",
+          "NCT05489211"
+        ],
+        "top10_fits": [
+          {
+            "nct": "NCT06128551",
+            "fit": 0.65
+          },
+          {
+            "nct": "NCT05691504",
+            "fit": 0.5408
+          },
+          {
+            "nct": "NCT06253520",
+            "fit": 0.5408
+          },
+          {
+            "nct": "NCT05950464",
+            "fit": 0.4596
+          },
+          {
+            "nct": "NCT02264678",
+            "fit": 0.4596
+          },
+          {
+            "nct": "NCT06906341",
+            "fit": 0.3606
+          },
+          {
+            "nct": "NCT06799637",
+            "fit": 0.356
+          },
+          {
+            "nct": "NCT07023484",
+            "fit": 0.356
+          },
+          {
+            "nct": "NCT03579316",
+            "fit": 0.3479
+          },
+          {
+            "nct": "NCT05489211",
+            "fit": 0.3329
+          }
+        ],
+        "anchor_rank": 9,
+        "trials_scored": 42,
+        "io_gate": "INDETERMINATE",
+        "io_p_resp": 0.1,
+        "io_axis": 0.0
+      },
+      "perturbations": [
+        {
+          "id": "B_MSS_CRC_STC1010",
+          "case": "null_repeat",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.65,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT06128551",
+            "NCT05691504",
+            "NCT06253520",
+            "NCT05950464",
+            "NCT02264678",
+            "NCT06906341",
+            "NCT06799637",
+            "NCT07023484",
+            "NCT03579316",
+            "NCT05489211"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT06128551",
+              "fit": 0.65
+            },
+            {
+              "nct": "NCT05691504",
+              "fit": 0.5408
+            },
+            {
+              "nct": "NCT06253520",
+              "fit": 0.5408
+            },
+            {
+              "nct": "NCT05950464",
+              "fit": 0.4596
+            },
+            {
+              "nct": "NCT02264678",
+              "fit": 0.4596
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.3606
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.356
+            },
+            {
+              "nct": "NCT07023484",
+              "fit": 0.356
+            },
+            {
+              "nct": "NCT03579316",
+              "fit": 0.3479
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.3329
+            }
+          ],
+          "anchor_rank": 9,
+          "trials_scored": 42,
+          "io_gate": "INDETERMINATE",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect identical top-10 across two runs"
+        },
+        {
+          "id": "B_MSS_CRC_STC1010",
+          "case": "boost_mapk_braf",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 1.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT06128551",
+            "NCT05691504",
+            "NCT06253520",
+            "NCT05950464",
+            "NCT02264678",
+            "NCT06906341",
+            "NCT06799637",
+            "NCT07023484",
+            "NCT03579316",
+            "NCT05489211"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT06128551",
+              "fit": 1.0
+            },
+            {
+              "nct": "NCT05691504",
+              "fit": 0.832
+            },
+            {
+              "nct": "NCT06253520",
+              "fit": 0.832
+            },
+            {
+              "nct": "NCT05950464",
+              "fit": 0.7071
+            },
+            {
+              "nct": "NCT02264678",
+              "fit": 0.7071
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.5547
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.5477
+            },
+            {
+              "nct": "NCT07023484",
+              "fit": 0.5477
+            },
+            {
+              "nct": "NCT03579316",
+              "fit": 0.5353
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.5121
+            }
+          ],
+          "anchor_rank": 9,
+          "trials_scored": 42,
+          "io_gate": "INDETERMINATE",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.35,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect mapk axis to increase"
+        },
+        {
+          "id": "B_MSS_CRC_STC1010",
+          "case": "strip_primary_lever",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05457595",
+            "NCT06906341",
+            "NCT06799637",
+            "NCT05039801",
+            "NCT01174121",
+            "NCT04969835",
+            "NCT06508307",
+            "NCT05200559",
+            "NCT05691504",
+            "NCT07023484"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT01174121",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06508307",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05200559",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05691504",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT07023484",
+              "fit": 0.0
+            }
+          ],
+          "anchor_rank": null,
+          "trials_scored": 42,
+          "io_gate": "INDETERMINATE",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 0.25,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": -0.65,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": null,
+          "description": "expect mapk to drop"
+        },
+        {
+          "id": "B_MSS_CRC_STC1010",
+          "case": "lineage_unknown",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.65,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT06128551",
+            "NCT05691504",
+            "NCT06253520",
+            "NCT05950464",
+            "NCT02264678",
+            "NCT06906341",
+            "NCT06799637",
+            "NCT07023484",
+            "NCT03579316",
+            "NCT05489211"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT06128551",
+              "fit": 0.65
+            },
+            {
+              "nct": "NCT05691504",
+              "fit": 0.5408
+            },
+            {
+              "nct": "NCT06253520",
+              "fit": 0.5408
+            },
+            {
+              "nct": "NCT05950464",
+              "fit": 0.4596
+            },
+            {
+              "nct": "NCT02264678",
+              "fit": 0.4596
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.3606
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.356
+            },
+            {
+              "nct": "NCT07023484",
+              "fit": 0.356
+            },
+            {
+              "nct": "NCT03579316",
+              "fit": 0.3479
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.3329
+            }
+          ],
+          "anchor_rank": 9,
+          "trials_scored": 42,
+          "io_gate": "FAIL_CLOSED",
+          "io_p_resp": null,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect lineage->unknown; io fail-closed if lever was CPS/MSI"
+        },
+        {
+          "id": "B_MSS_CRC_STC1010",
+          "case": "noise_unknown_gene",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.65,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT06128551",
+            "NCT05691504",
+            "NCT06253520",
+            "NCT05950464",
+            "NCT02264678",
+            "NCT06906341",
+            "NCT06799637",
+            "NCT07023484",
+            "NCT03579316",
+            "NCT05489211"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT06128551",
+              "fit": 0.65
+            },
+            {
+              "nct": "NCT05691504",
+              "fit": 0.5408
+            },
+            {
+              "nct": "NCT06253520",
+              "fit": 0.5408
+            },
+            {
+              "nct": "NCT05950464",
+              "fit": 0.4596
+            },
+            {
+              "nct": "NCT02264678",
+              "fit": 0.4596
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.3606
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.356
+            },
+            {
+              "nct": "NCT07023484",
+              "fit": 0.356
+            },
+            {
+              "nct": "NCT03579316",
+              "fit": 0.3479
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.3329
+            }
+          ],
+          "anchor_rank": 9,
+          "trials_scored": 42,
+          "io_gate": "INDETERMINATE",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect no axis motion from unknown gene"
+        },
+        {
+          "id": "B_MSS_CRC_STC1010",
+          "case": "adversarial_msi_and_mss",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.65,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.6,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05691504",
+            "NCT06253520",
+            "NCT06128551",
+            "NCT05950464",
+            "NCT01174121",
+            "NCT06508307",
+            "NCT05200559",
+            "NCT06781983",
+            "NCT06910657",
+            "NCT05208762"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05691504",
+              "fit": 0.8737
+            },
+            {
+              "nct": "NCT06253520",
+              "fit": 0.8737
+            },
+            {
+              "nct": "NCT06128551",
+              "fit": 0.65
+            },
+            {
+              "nct": "NCT05950464",
+              "fit": 0.601
+            },
+            {
+              "nct": "NCT01174121",
+              "fit": 0.6
+            },
+            {
+              "nct": "NCT06508307",
+              "fit": 0.6
+            },
+            {
+              "nct": "NCT05200559",
+              "fit": 0.6
+            },
+            {
+              "nct": "NCT06781983",
+              "fit": 0.6
+            },
+            {
+              "nct": "NCT06910657",
+              "fit": 0.6
+            },
+            {
+              "nct": "NCT05208762",
+              "fit": 0.6
+            }
+          ],
+          "anchor_rank": null,
+          "trials_scored": 42,
+          "io_gate": "JUSTIFIED",
+          "io_p_resp": 0.52,
+          "io_axis": 0.6,
+          "jaccard_top10_vs_baseline": 0.25,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.6,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": null,
+          "description": "MSI-H rule fires; MSS flag is CRC-specific fail-closed guard"
+        }
+      ]
+    },
+    {
+      "fixture_id": "C_HER2plus_gastric",
+      "expected_top_axis": "her2",
+      "anchor_nct": "NCT06732336",
+      "determinism_ok": true,
+      "baseline": {
+        "id": "C_HER2plus_gastric",
+        "case": "baseline",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.8,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "fail_closed_axes": [],
+        "top10": [
+          "NCT06732336",
+          "NCT06330064",
+          "NCT07216105",
+          "NCT05005403",
+          "NCT05457595",
+          "NCT06906341",
+          "NCT06799637",
+          "NCT05039801",
+          "NCT01174121",
+          "NCT04969835"
+        ],
+        "top10_fits": [
+          {
+            "nct": "NCT06732336",
+            "fit": 0.8
+          },
+          {
+            "nct": "NCT06330064",
+            "fit": 0.8
+          },
+          {
+            "nct": "NCT07216105",
+            "fit": 0.6656
+          },
+          {
+            "nct": "NCT05005403",
+            "fit": 0.09
+          },
+          {
+            "nct": "NCT05457595",
+            "fit": 0.0
+          },
+          {
+            "nct": "NCT06906341",
+            "fit": 0.0
+          },
+          {
+            "nct": "NCT06799637",
+            "fit": 0.0
+          },
+          {
+            "nct": "NCT05039801",
+            "fit": 0.0
+          },
+          {
+            "nct": "NCT01174121",
+            "fit": 0.0
+          },
+          {
+            "nct": "NCT04969835",
+            "fit": 0.0
+          }
+        ],
+        "anchor_rank": 1,
+        "trials_scored": 42,
+        "io_gate": "INDETERMINATE",
+        "io_p_resp": 0.1,
+        "io_axis": 0.0
+      },
+      "perturbations": [
+        {
+          "id": "C_HER2plus_gastric",
+          "case": "null_repeat",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.8,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT06732336",
+            "NCT06330064",
+            "NCT07216105",
+            "NCT05005403",
+            "NCT05457595",
+            "NCT06906341",
+            "NCT06799637",
+            "NCT05039801",
+            "NCT01174121",
+            "NCT04969835"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT06732336",
+              "fit": 0.8
+            },
+            {
+              "nct": "NCT06330064",
+              "fit": 0.8
+            },
+            {
+              "nct": "NCT07216105",
+              "fit": 0.6656
+            },
+            {
+              "nct": "NCT05005403",
+              "fit": 0.09
+            },
+            {
+              "nct": "NCT05457595",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT01174121",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.0
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "INDETERMINATE",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect identical top-10 across two runs"
+        },
+        {
+          "id": "C_HER2plus_gastric",
+          "case": "boost_her2_confirm",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.8,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT06732336",
+            "NCT06330064",
+            "NCT07216105",
+            "NCT05005403",
+            "NCT05457595",
+            "NCT06906341",
+            "NCT06799637",
+            "NCT05039801",
+            "NCT01174121",
+            "NCT04969835"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT06732336",
+              "fit": 0.8
+            },
+            {
+              "nct": "NCT06330064",
+              "fit": 0.8
+            },
+            {
+              "nct": "NCT07216105",
+              "fit": 0.6656
+            },
+            {
+              "nct": "NCT05005403",
+              "fit": 0.09
+            },
+            {
+              "nct": "NCT05457595",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT01174121",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.0
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "INDETERMINATE",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect her2 axis high"
+        },
+        {
+          "id": "C_HER2plus_gastric",
+          "case": "strip_primary_lever",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05457595",
+            "NCT06906341",
+            "NCT06799637",
+            "NCT05039801",
+            "NCT01174121",
+            "NCT04969835",
+            "NCT06508307",
+            "NCT05200559",
+            "NCT05691504",
+            "NCT07023484"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT01174121",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06508307",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05200559",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05691504",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT07023484",
+              "fit": 0.0
+            }
+          ],
+          "anchor_rank": 19,
+          "trials_scored": 42,
+          "io_gate": "INDETERMINATE",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 0.429,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": -0.8,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 18,
+          "description": "expect her2 to drop"
+        },
+        {
+          "id": "C_HER2plus_gastric",
+          "case": "lineage_unknown",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.8,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT06732336",
+            "NCT06330064",
+            "NCT07216105",
+            "NCT05005403",
+            "NCT05457595",
+            "NCT06906341",
+            "NCT06799637",
+            "NCT05039801",
+            "NCT01174121",
+            "NCT04969835"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT06732336",
+              "fit": 0.8
+            },
+            {
+              "nct": "NCT06330064",
+              "fit": 0.8
+            },
+            {
+              "nct": "NCT07216105",
+              "fit": 0.6656
+            },
+            {
+              "nct": "NCT05005403",
+              "fit": 0.09
+            },
+            {
+              "nct": "NCT05457595",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT01174121",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.0
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "FAIL_CLOSED",
+          "io_p_resp": null,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect lineage->unknown; io fail-closed if lever was CPS/MSI"
+        },
+        {
+          "id": "C_HER2plus_gastric",
+          "case": "noise_unknown_gene",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.8,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT06732336",
+            "NCT06330064",
+            "NCT07216105",
+            "NCT05005403",
+            "NCT05457595",
+            "NCT06906341",
+            "NCT06799637",
+            "NCT05039801",
+            "NCT01174121",
+            "NCT04969835"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT06732336",
+              "fit": 0.8
+            },
+            {
+              "nct": "NCT06330064",
+              "fit": 0.8
+            },
+            {
+              "nct": "NCT07216105",
+              "fit": 0.6656
+            },
+            {
+              "nct": "NCT05005403",
+              "fit": 0.09
+            },
+            {
+              "nct": "NCT05457595",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT01174121",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.0
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "INDETERMINATE",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect no axis motion from unknown gene"
+        },
+        {
+          "id": "C_HER2plus_gastric",
+          "case": "adversarial_msi_and_mss",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.8,
+            "io": 0.6,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT07216105",
+            "NCT06732336",
+            "NCT06330064",
+            "NCT01174121",
+            "NCT06508307",
+            "NCT05200559",
+            "NCT06781983",
+            "NCT06910657",
+            "NCT05208762",
+            "NCT05763199"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT07216105",
+              "fit": 0.9985
+            },
+            {
+              "nct": "NCT06732336",
+              "fit": 0.8
+            },
+            {
+              "nct": "NCT06330064",
+              "fit": 0.8
+            },
+            {
+              "nct": "NCT01174121",
+              "fit": 0.6
+            },
+            {
+              "nct": "NCT06508307",
+              "fit": 0.6
+            },
+            {
+              "nct": "NCT05200559",
+              "fit": 0.6
+            },
+            {
+              "nct": "NCT06781983",
+              "fit": 0.6
+            },
+            {
+              "nct": "NCT06910657",
+              "fit": 0.6
+            },
+            {
+              "nct": "NCT05208762",
+              "fit": 0.6
+            },
+            {
+              "nct": "NCT05763199",
+              "fit": 0.6
+            }
+          ],
+          "anchor_rank": 2,
+          "trials_scored": 42,
+          "io_gate": "JUSTIFIED",
+          "io_p_resp": 0.52,
+          "io_axis": 0.6,
+          "jaccard_top10_vs_baseline": 0.25,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.6,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 1,
+          "description": "MSI-H rule fires; MSS flag is CRC-specific fail-closed guard"
+        }
+      ]
+    },
+    {
+      "fixture_id": "D_TNBC_BRCA1_germline",
+      "expected_top_axis": "ddr",
+      "anchor_nct": "NCT05457595",
+      "determinism_ok": true,
+      "baseline": {
+        "id": "D_TNBC_BRCA1_germline",
+        "case": "baseline",
+        "patient_vector": {
+          "ddr": 0.6,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.0,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "fail_closed_axes": [],
+        "top10": [
+          "NCT05457595",
+          "NCT04969835",
+          "NCT07156253",
+          "NCT04104776",
+          "NCT06906341",
+          "NCT05327010",
+          "NCT06686030",
+          "NCT05039801",
+          "NCT05489211",
+          "NCT06799637"
+        ],
+        "top10_fits": [
+          {
+            "nct": "NCT05457595",
+            "fit": 0.5821
+          },
+          {
+            "nct": "NCT04969835",
+            "fit": 0.5821
+          },
+          {
+            "nct": "NCT07156253",
+            "fit": 0.5821
+          },
+          {
+            "nct": "NCT04104776",
+            "fit": 0.5821
+          },
+          {
+            "nct": "NCT06906341",
+            "fit": 0.4992
+          },
+          {
+            "nct": "NCT05327010",
+            "fit": 0.4992
+          },
+          {
+            "nct": "NCT06686030",
+            "fit": 0.4992
+          },
+          {
+            "nct": "NCT05039801",
+            "fit": 0.4867
+          },
+          {
+            "nct": "NCT05489211",
+            "fit": 0.4609
+          },
+          {
+            "nct": "NCT06799637",
+            "fit": 0.4382
+          }
+        ],
+        "anchor_rank": 1,
+        "trials_scored": 42,
+        "io_gate": "INDETERMINATE",
+        "io_p_resp": 0.1,
+        "io_axis": 0.0
+      },
+      "perturbations": [
+        {
+          "id": "D_TNBC_BRCA1_germline",
+          "case": "null_repeat",
+          "patient_vector": {
+            "ddr": 0.6,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05457595",
+            "NCT04969835",
+            "NCT07156253",
+            "NCT04104776",
+            "NCT06906341",
+            "NCT05327010",
+            "NCT06686030",
+            "NCT05039801",
+            "NCT05489211",
+            "NCT06799637"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT07156253",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT04104776",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT05327010",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT06686030",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.4867
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.4609
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.4382
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "INDETERMINATE",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect identical top-10 across two runs"
+        },
+        {
+          "id": "D_TNBC_BRCA1_germline",
+          "case": "boost_ddr_palb2",
+          "patient_vector": {
+            "ddr": 0.9,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05457595",
+            "NCT04969835",
+            "NCT07156253",
+            "NCT04104776",
+            "NCT06906341",
+            "NCT05327010",
+            "NCT06686030",
+            "NCT05039801",
+            "NCT05489211",
+            "NCT06799637"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.8731
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.8731
+            },
+            {
+              "nct": "NCT07156253",
+              "fit": 0.8731
+            },
+            {
+              "nct": "NCT04104776",
+              "fit": 0.8731
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.7488
+            },
+            {
+              "nct": "NCT05327010",
+              "fit": 0.7488
+            },
+            {
+              "nct": "NCT06686030",
+              "fit": 0.7488
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.73
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.6914
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.6573
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "INDETERMINATE",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.3,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect ddr axis to increase"
+        },
+        {
+          "id": "D_TNBC_BRCA1_germline",
+          "case": "strip_primary_lever",
+          "patient_vector": {
+            "ddr": 0.15,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05457595",
+            "NCT04969835",
+            "NCT07156253",
+            "NCT04104776",
+            "NCT06906341",
+            "NCT05327010",
+            "NCT06686030",
+            "NCT05039801",
+            "NCT05489211",
+            "NCT06799637"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.1455
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.1455
+            },
+            {
+              "nct": "NCT07156253",
+              "fit": 0.1455
+            },
+            {
+              "nct": "NCT04104776",
+              "fit": 0.1455
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.1248
+            },
+            {
+              "nct": "NCT05327010",
+              "fit": 0.1248
+            },
+            {
+              "nct": "NCT06686030",
+              "fit": 0.1248
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.1217
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.1152
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.1095
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "INDETERMINATE",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": -0.45,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect ddr to drop"
+        },
+        {
+          "id": "D_TNBC_BRCA1_germline",
+          "case": "lineage_unknown",
+          "patient_vector": {
+            "ddr": 0.6,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05457595",
+            "NCT04969835",
+            "NCT07156253",
+            "NCT04104776",
+            "NCT06906341",
+            "NCT05327010",
+            "NCT06686030",
+            "NCT05039801",
+            "NCT05489211",
+            "NCT06799637"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT07156253",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT04104776",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT05327010",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT06686030",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.4867
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.4609
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.4382
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "FAIL_CLOSED",
+          "io_p_resp": null,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect lineage->unknown; io fail-closed if lever was CPS/MSI"
+        },
+        {
+          "id": "D_TNBC_BRCA1_germline",
+          "case": "noise_unknown_gene",
+          "patient_vector": {
+            "ddr": 0.6,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05457595",
+            "NCT04969835",
+            "NCT07156253",
+            "NCT04104776",
+            "NCT06906341",
+            "NCT05327010",
+            "NCT06686030",
+            "NCT05039801",
+            "NCT05489211",
+            "NCT06799637"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT07156253",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT04104776",
+              "fit": 0.5821
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT05327010",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT06686030",
+              "fit": 0.4992
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.4867
+            },
+            {
+              "nct": "NCT05489211",
+              "fit": 0.4609
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.4382
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "INDETERMINATE",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect no axis motion from unknown gene"
+        },
+        {
+          "id": "D_TNBC_BRCA1_germline",
+          "case": "adversarial_msi_and_mss",
+          "patient_vector": {
+            "ddr": 0.6,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.6,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05327010",
+            "NCT05969041",
+            "NCT06297525",
+            "NCT06686030",
+            "NCT04282044",
+            "NCT05955105",
+            "NCT05457595",
+            "NCT04969835",
+            "NCT07156253",
+            "NCT04104776"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05327010",
+              "fit": 0.832
+            },
+            {
+              "nct": "NCT05969041",
+              "fit": 0.832
+            },
+            {
+              "nct": "NCT06297525",
+              "fit": 0.832
+            },
+            {
+              "nct": "NCT06686030",
+              "fit": 0.832
+            },
+            {
+              "nct": "NCT04282044",
+              "fit": 0.832
+            },
+            {
+              "nct": "NCT05955105",
+              "fit": 0.7714
+            },
+            {
+              "nct": "NCT05457595",
+              "fit": 0.7276
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.7276
+            },
+            {
+              "nct": "NCT07156253",
+              "fit": 0.7276
+            },
+            {
+              "nct": "NCT04104776",
+              "fit": 0.7276
+            }
+          ],
+          "anchor_rank": 7,
+          "trials_scored": 42,
+          "io_gate": "JUSTIFIED",
+          "io_p_resp": 0.52,
+          "io_axis": 0.6,
+          "jaccard_top10_vs_baseline": 0.429,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.6,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 6,
+          "description": "MSI-H rule fires; MSS flag is CRC-specific fail-closed guard"
+        }
+      ]
+    },
+    {
+      "fixture_id": "E_MSI_H_CRC",
+      "expected_top_axis": "io",
+      "anchor_nct": "NCT01174121",
+      "determinism_ok": true,
+      "baseline": {
+        "id": "E_MSI_H_CRC",
+        "case": "baseline",
+        "patient_vector": {
+          "ddr": 0.0,
+          "mapk": 0.0,
+          "pi3k": 0.0,
+          "vegf": 0.0,
+          "her2": 0.0,
+          "io": 0.95,
+          "efflux": 0.0,
+          "rss": 0.0
+        },
+        "fail_closed_axes": [],
+        "top10": [
+          "NCT01174121",
+          "NCT06508307",
+          "NCT05200559",
+          "NCT06781983",
+          "NCT06910657",
+          "NCT05208762",
+          "NCT05763199",
+          "NCT04503278",
+          "NCT06341907",
+          "NCT03860272"
+        ],
+        "top10_fits": [
+          {
+            "nct": "NCT01174121",
+            "fit": 0.95
+          },
+          {
+            "nct": "NCT06508307",
+            "fit": 0.95
+          },
+          {
+            "nct": "NCT05200559",
+            "fit": 0.95
+          },
+          {
+            "nct": "NCT06781983",
+            "fit": 0.95
+          },
+          {
+            "nct": "NCT06910657",
+            "fit": 0.95
+          },
+          {
+            "nct": "NCT05208762",
+            "fit": 0.95
+          },
+          {
+            "nct": "NCT05763199",
+            "fit": 0.95
+          },
+          {
+            "nct": "NCT04503278",
+            "fit": 0.95
+          },
+          {
+            "nct": "NCT06341907",
+            "fit": 0.95
+          },
+          {
+            "nct": "NCT03860272",
+            "fit": 0.95
+          }
+        ],
+        "anchor_rank": 1,
+        "trials_scored": 42,
+        "io_gate": "JUSTIFIED",
+        "io_p_resp": 0.765,
+        "io_axis": 0.95
+      },
+      "perturbations": [
+        {
+          "id": "E_MSI_H_CRC",
+          "case": "null_repeat",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.95,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT01174121",
+            "NCT06508307",
+            "NCT05200559",
+            "NCT06781983",
+            "NCT06910657",
+            "NCT05208762",
+            "NCT05763199",
+            "NCT04503278",
+            "NCT06341907",
+            "NCT03860272"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT01174121",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT06508307",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT05200559",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT06781983",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT06910657",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT05208762",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT05763199",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT04503278",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT06341907",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT03860272",
+              "fit": 0.95
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "JUSTIFIED",
+          "io_p_resp": 0.765,
+          "io_axis": 0.95,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect identical top-10 across two runs"
+        },
+        {
+          "id": "E_MSI_H_CRC",
+          "case": "boost_io_cps50",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 1.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT01174121",
+            "NCT06508307",
+            "NCT05200559",
+            "NCT06781983",
+            "NCT06910657",
+            "NCT05208762",
+            "NCT05763199",
+            "NCT04503278",
+            "NCT06341907",
+            "NCT03860272"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT01174121",
+              "fit": 1.0
+            },
+            {
+              "nct": "NCT06508307",
+              "fit": 1.0
+            },
+            {
+              "nct": "NCT05200559",
+              "fit": 1.0
+            },
+            {
+              "nct": "NCT06781983",
+              "fit": 1.0
+            },
+            {
+              "nct": "NCT06910657",
+              "fit": 1.0
+            },
+            {
+              "nct": "NCT05208762",
+              "fit": 1.0
+            },
+            {
+              "nct": "NCT05763199",
+              "fit": 1.0
+            },
+            {
+              "nct": "NCT04503278",
+              "fit": 1.0
+            },
+            {
+              "nct": "NCT06341907",
+              "fit": 1.0
+            },
+            {
+              "nct": "NCT03860272",
+              "fit": 1.0
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "JUSTIFIED",
+          "io_p_resp": 0.8,
+          "io_axis": 1.0,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.05,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect io axis to increase further"
+        },
+        {
+          "id": "E_MSI_H_CRC",
+          "case": "strip_primary_lever",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT05457595",
+            "NCT06906341",
+            "NCT06799637",
+            "NCT05039801",
+            "NCT01174121",
+            "NCT04969835",
+            "NCT06508307",
+            "NCT05200559",
+            "NCT05691504",
+            "NCT07023484"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT01174121",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06508307",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05200559",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05691504",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT07023484",
+              "fit": 0.0
+            }
+          ],
+          "anchor_rank": 5,
+          "trials_scored": 42,
+          "io_gate": "INDETERMINATE",
+          "io_p_resp": 0.1,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 0.176,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": -0.95,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 4,
+          "description": "expect io to drop"
+        },
+        {
+          "id": "E_MSI_H_CRC",
+          "case": "lineage_unknown",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [
+            "io"
+          ],
+          "top10": [
+            "NCT05457595",
+            "NCT06906341",
+            "NCT06799637",
+            "NCT05039801",
+            "NCT01174121",
+            "NCT04969835",
+            "NCT06508307",
+            "NCT05200559",
+            "NCT05691504",
+            "NCT07023484"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT05457595",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06906341",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06799637",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05039801",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT01174121",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT04969835",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT06508307",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05200559",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT05691504",
+              "fit": 0.0
+            },
+            {
+              "nct": "NCT07023484",
+              "fit": 0.0
+            }
+          ],
+          "anchor_rank": 5,
+          "trials_scored": 42,
+          "io_gate": "FAIL_CLOSED",
+          "io_p_resp": null,
+          "io_axis": 0.0,
+          "jaccard_top10_vs_baseline": 0.176,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": -0.95,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 4,
+          "description": "expect lineage->unknown; io fail-closed if lever was CPS/MSI"
+        },
+        {
+          "id": "E_MSI_H_CRC",
+          "case": "noise_unknown_gene",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.95,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT01174121",
+            "NCT06508307",
+            "NCT05200559",
+            "NCT06781983",
+            "NCT06910657",
+            "NCT05208762",
+            "NCT05763199",
+            "NCT04503278",
+            "NCT06341907",
+            "NCT03860272"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT01174121",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT06508307",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT05200559",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT06781983",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT06910657",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT05208762",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT05763199",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT04503278",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT06341907",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT03860272",
+              "fit": 0.95
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "JUSTIFIED",
+          "io_p_resp": 0.765,
+          "io_axis": 0.95,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "expect no axis motion from unknown gene"
+        },
+        {
+          "id": "E_MSI_H_CRC",
+          "case": "adversarial_msi_and_mss",
+          "patient_vector": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.95,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "fail_closed_axes": [],
+          "top10": [
+            "NCT01174121",
+            "NCT06508307",
+            "NCT05200559",
+            "NCT06781983",
+            "NCT06910657",
+            "NCT05208762",
+            "NCT05763199",
+            "NCT04503278",
+            "NCT06341907",
+            "NCT03860272"
+          ],
+          "top10_fits": [
+            {
+              "nct": "NCT01174121",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT06508307",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT05200559",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT06781983",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT06910657",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT05208762",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT05763199",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT04503278",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT06341907",
+              "fit": 0.95
+            },
+            {
+              "nct": "NCT03860272",
+              "fit": 0.95
+            }
+          ],
+          "anchor_rank": 1,
+          "trials_scored": 42,
+          "io_gate": "JUSTIFIED",
+          "io_p_resp": 0.765,
+          "io_axis": 0.95,
+          "jaccard_top10_vs_baseline": 1.0,
+          "axis_delta": {
+            "ddr": 0.0,
+            "mapk": 0.0,
+            "pi3k": 0.0,
+            "vegf": 0.0,
+            "her2": 0.0,
+            "io": 0.0,
+            "efflux": 0.0,
+            "rss": 0.0
+          },
+          "anchor_rank_shift": 0,
+          "description": "MSI-H rule fires; MSS flag is CRC-specific fail-closed guard"
+        }
+      ]
+    }
+  ],
+  "red_team": [
+    {
+      "attack": "A1_msi_h_and_mss_confirmed_crc",
+      "expectation": "MSI-H rule fires; mss_confirmed only gates CO.26 CPS path.",
+      "outcome": "ran",
+      "patient_vector": {
+        "ddr": 0.0,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.6,
+        "efflux": 0.0,
+        "rss": 0.0
+      },
+      "fail_closed_axes": [],
+      "io_gate": "JUSTIFIED",
+      "io_p_resp": 0.52
+    },
+    {
+      "attack": "A2_cps_500_saturate",
+      "expectation": "monotone rule caps io axis; expect saturated w near 0.65.",
+      "outcome": "ran",
+      "patient_vector": {
+        "ddr": 0.0,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.65,
+        "efflux": 0.0,
+        "rss": 0.0
+      },
+      "fail_closed_axes": [],
+      "io_gate": "JUSTIFIED",
+      "io_p_resp": 0.555
+    },
+    {
+      "attack": "A3_kras_g12c_biomarker_vs_g12v_somatic",
+      "expectation": "biomarker rule wins (mapk=0.65 from G12C label).",
+      "outcome": "ran",
+      "patient_vector": {
+        "ddr": 0.0,
+        "mapk": 0.65,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.0
+      },
+      "fail_closed_axes": [],
+      "io_gate": "INDETERMINATE",
+      "io_p_resp": 0.1
+    },
+    {
+      "attack": "A4_empty_patient",
+      "expectation": "no axes fire; io either NULL or fail_closed; must not crash.",
+      "outcome": "ran",
+      "patient_vector": {
+        "ddr": 0.0,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.0
+      },
+      "fail_closed_axes": [],
+      "io_gate": "FAIL_CLOSED",
+      "io_p_resp": null
+    },
+    {
+      "attack": "A5_unknown_lineage_all_biomarkers",
+      "expectation": "io fail-closed on unknown lineage; mapk still fires (gene-based, not lineage-gated).",
+      "outcome": "ran",
+      "patient_vector": {
+        "ddr": 0.0,
+        "mapk": 0.65,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.0
+      },
+      "fail_closed_axes": [
+        "io"
+      ],
+      "io_gate": "FAIL_CLOSED",
+      "io_p_resp": null
+    },
+    {
+      "attack": "A6_duplicate_nct_registry",
+      "expectation": "registry uses PRIMARY KEY on nct_id; dupes impossible",
+      "outcome": "registry_schema_enforced"
+    },
+    {
+      "attack": "A7_planted_legacy_json_should_block_boot",
+      "expectation": "Orchestrator init raises RuntimeError",
+      "outcome": "raised",
+      "raised_msg": "Registry contract violation: legacy JSON file(s) present in production tree: /workspace/crispro-backend-v3-push/api/resources/trial_moa_vectors.json. Delete or move; unified SQLite"
+    },
+    {
+      "attack": "A8_string_cps_high",
+      "expectation": "invalid value; expect IO_PD_L1_CPS_INVALID_VALUE stamp; no delta.",
+      "outcome": "ran",
+      "patient_vector": {
+        "ddr": 0.0,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.0
+      },
+      "fail_closed_axes": [],
+      "io_gate": "INDETERMINATE",
+      "io_p_resp": 0.1
+    },
+    {
+      "attack": "A9_malformed_somatic_empty_dicts",
+      "expectation": "schema MUST reject malformed somatic (SomaticMutation.gene required).",
+      "outcome": "raised",
+      "error_type": "ValidationError",
+      "error_msg": "1 validation error for SomaticMutation\ngene\n  Field required [type=missing, input_value={}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/mi"
+    },
+    {
+      "attack": "A10_negative_cps",
+      "expectation": "monotone rule requires cps>=5 for CRC; must not produce positive weight.",
+      "outcome": "ran",
+      "patient_vector": {
+        "ddr": 0.0,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.0
+      },
+      "fail_closed_axes": [],
+      "io_gate": "INDETERMINATE",
+      "io_p_resp": 0.1
+    }
+  ],
+  "evaluation": {
+    "bench_pass": 5,
+    "bench_total": 5,
+    "bench_summary": [
+      {
+        "fixture": "A_HGSOC_HRDlow",
+        "determinism": true,
+        "anchor_ranked": true,
+        "strip_primary_drops_axis": true,
+        "noise_gene_no_motion": true,
+        "lineage_unknown_io_zero": true,
+        "verdict": "PASS"
+      },
+      {
+        "fixture": "B_MSS_CRC_STC1010",
+        "determinism": true,
+        "anchor_ranked": true,
+        "strip_primary_drops_axis": true,
+        "noise_gene_no_motion": true,
+        "lineage_unknown_io_zero": true,
+        "verdict": "PASS"
+      },
+      {
+        "fixture": "C_HER2plus_gastric",
+        "determinism": true,
+        "anchor_ranked": true,
+        "strip_primary_drops_axis": true,
+        "noise_gene_no_motion": true,
+        "lineage_unknown_io_zero": true,
+        "verdict": "PASS"
+      },
+      {
+        "fixture": "D_TNBC_BRCA1_germline",
+        "determinism": true,
+        "anchor_ranked": true,
+        "strip_primary_drops_axis": true,
+        "noise_gene_no_motion": true,
+        "lineage_unknown_io_zero": true,
+        "verdict": "PASS"
+      },
+      {
+        "fixture": "E_MSI_H_CRC",
+        "determinism": true,
+        "anchor_ranked": true,
+        "strip_primary_drops_axis": true,
+        "noise_gene_no_motion": true,
+        "lineage_unknown_io_zero": true,
+        "verdict": "PASS"
+      }
+    ],
+    "red_pass": 10,
+    "red_total": 10,
+    "red_summary": [
+      {
+        "attack": "A1_msi_h_and_mss_confirmed_crc",
+        "verdict": "PASS",
+        "note": "must complete cleanly"
+      },
+      {
+        "attack": "A2_cps_500_saturate",
+        "verdict": "PASS",
+        "note": "must complete cleanly"
+      },
+      {
+        "attack": "A3_kras_g12c_biomarker_vs_g12v_somatic",
+        "verdict": "PASS",
+        "note": "must complete cleanly"
+      },
+      {
+        "attack": "A4_empty_patient",
+        "verdict": "PASS",
+        "note": "must not crash"
+      },
+      {
+        "attack": "A5_unknown_lineage_all_biomarkers",
+        "verdict": "PASS",
+        "note": "io must fail-closed on unknown lineage"
+      },
+      {
+        "attack": "A6_duplicate_nct_registry",
+        "verdict": "PASS",
+        "note": "PRIMARY KEY dedup"
+      },
+      {
+        "attack": "A7_planted_legacy_json_should_block_boot",
+        "verdict": "PASS",
+        "note": "must raise on planted JSON"
+      },
+      {
+        "attack": "A8_string_cps_high",
+        "verdict": "PASS",
+        "note": "invalid CPS must not produce io weight"
+      },
+      {
+        "attack": "A9_malformed_somatic_empty_dicts",
+        "verdict": "PASS",
+        "note": "schema rejects malformed somatic (gene required)"
+      },
+      {
+        "attack": "A10_negative_cps",
+        "verdict": "PASS",
+        "note": "negative CPS must not produce io weight"
+      }
+    ]
+  }
+}

@@ -1,0 +1,291 @@
+{
+  "caslib": "Colorec_Allianc_2004_161",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CEA"
+  ],
+  "indication": "colorectal",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 3,
+  "n_tabular_files": 3,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "4f3cbe09437c405839fd7ac0752e85311c409507e9d0cdb8573d140fb666e77e",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "mask_id",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ADHERENC",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ARM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BWL_OBS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BWL_PERF",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "EXCLUDED",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "HISTO_G",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "NODES",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "SEX",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "STAGE_G",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "BAD_TOX",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "DRG_DTH",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ENDATRSN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "NUMCYCLE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "OBJ_STAT",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "LOST2FUP",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "PS",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "wild",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "endat_time",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "bmi2",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "racecat",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "agecat",
+          "type": "varchar"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "BWL_PERF"
+        ],
+        "endpoint": [
+          "DRG_DTH"
+        ],
+        "patient": [],
+        "time": [
+          "NUMCYCLE"
+        ],
+        "treatment": [
+          "ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2968,
+      "path": "characteristic.csv",
+      "size": 183319,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "mask_id",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "fustat8",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "futime8",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pgstat5",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "pgtime5",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "dfsstat5",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "dfstime5",
+          "type": "double"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "futime8"
+        ],
+        "patient": [],
+        "time": [],
+        "treatment": [],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2968,
+      "path": "objectives.csv",
+      "size": 70102,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "",
+          "name": "mask_id",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "ARM",
+          "type": "varchar"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "GRADE",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "",
+          "name": "tox",
+          "type": "varchar"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [],
+        "time": [],
+        "treatment": [
+          "ARM"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 2134,
+      "path": "tox.csv",
+      "size": 42531,
+      "status": "OK"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "ranking_key": {
+    "primary": "replication consistency (PASS_GATE > REPLICATES_1of2 > NEAR_NULL/NULL)",
+    "secondary": "best independent external C-index (then |HR-1|)",
+    "tertiary": "earned tier (validated > discovery_only)"
+  },
+  "consistency_levels": {
+    "PASS_GATE": 0,
+    "REPLICATES_1of2": 1,
+    "NEAR_NULL": 2,
+    "NULL": 3,
+    "DESCRIPTIVE": 2
+  },
+  "important": "This table ORDERS and PRESENTS existing honest results for a production-grade report. It changes NO status. All 4 models remain discovery_only. Ranking is a presentation device, not a validation upgrade.",
+  "source": "report_biomarker_subsystem.md sections 2-5 (existing receipts)."
+}

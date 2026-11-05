@@ -1,0 +1,5 @@
+endpoint,signature,AUROC_full_cohort,n_full,n_after_removing_errors,n_pos_after,n_neg_after,AUROC_after_removing_errors,STATUS
+chemoresponse,IPR,0.6923,75,38,31,7,1.0,CIRCULAR_NON_RELEASABLE
+chemoresponse,IndividCRS,0.6523,75,35,27,8,1.0,CIRCULAR_NON_RELEASABLE
+platinum_sensitivity,IPR,0.5624,75,40,20,20,1.0,CIRCULAR_NON_RELEASABLE
+platinum_sensitivity,IndividCRS,0.6198,75,41,18,23,1.0,CIRCULAR_NON_RELEASABLE

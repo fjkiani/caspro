@@ -1,0 +1,159 @@
+{
+  "artifact": "publications/04-technical-deep-dives/serial-sae",
+  "validation_date": "2026-07-19",
+  "classification": "RUO",
+  "validation_mode": "independent re-analysis from primary open-access sources; 5 parallel worker streams",
+  "verdict_tiers": ["SUPPORTED", "REPRODUCED", "OVERSTATED", "DISCREPANT", "NOT_REPRODUCED", "CONTEXT", "UNVERIFIABLE"],
+  "sources": {
+    "discovery": {"dataset": "GSE165897", "paper": "Zhang et al., Science Advances 2022", "doi": "10.1126/sciadv.abm1831", "pmc": "PMC8865800"},
+    "external": {"dataset": "BriTROC-1", "paper": "Smith/Bradley/Morrill Gavarro et al., Nature Communications 2023", "doi": "10.1038/s41467-023-39867-7", "pmid": "37474499"}
+  },
+  "claims": [
+    {
+      "id": "C01", "domain": "discovery", "severity": "critical",
+      "claim": "post-treatment DDR score inversely correlates with PFI (Spearman rho=-0.711, p=0.014)",
+      "claimed": {"rho": -0.711, "p": 0.014},
+      "reproduced": {"rho_corrected_7R4S": -0.2091, "p": 0.5372, "rho_manuscript_8R3S": -0.2091, "p_8R3S": 0.5372, "label_independent": true},
+      "verdict": "NOT_REPRODUCED",
+      "note": "Re-derived from raw GEO UMI matrix (51786 cells, 32/32 pathway genes present, SHA d604a459df7e5e70) using the manuscript's own gene sets and documented pseudobulk pipeline. Correlation is weak and non-significant under both label splits (rho vs continuous PFI is label-independent).",
+      "action": "Correct/retract the -0.711 value in ABSTRACT.md, MANUSCRIPT_DRAFT.md, BriTROC1_VALIDATION_RESULTS.md; re-derive with a fully specified deposited pipeline before any restatement."
+    },
+    {
+      "id": "C02", "domain": "discovery", "severity": "critical",
+      "claim": "post-treatment PI3K score: rho=-0.683 p=0.020, AUC=0.750",
+      "claimed": {"rho": -0.683, "p": 0.020, "auc": 0.750},
+      "reproduced": {"rho": 0.1091, "p": 0.7495, "auc_corrected_7R4S": 0.3571, "auc_manuscript_8R3S": 0.5},
+      "verdict": "NOT_REPRODUCED",
+      "note": "Reproduced correlation has the OPPOSITE sign (+0.109) and AUC is 0.36-0.50, not 0.75.",
+      "action": "Correct/retract; PI3K result is not the highest-AUC feature and is not significant on re-analysis."
+    },
+    {
+      "id": "C03", "domain": "discovery", "severity": "critical",
+      "claim": "Kaplan-Meier high vs low post-DDR log-rank p=0.0124",
+      "claimed": {"logrank_p": 0.0124},
+      "reproduced": {"logrank_p": 0.0721, "median_split": 2.3847, "label_independent": true},
+      "verdict": "NOT_REPRODUCED",
+      "note": "Median-split KM on the same n=11 gives log-rank p=0.072, not 0.0124. (Also affected by disclosed median-split leakage.)",
+      "action": "Correct value; keep leakage caveat."
+    },
+    {
+      "id": "C04", "domain": "discovery", "severity": "info",
+      "claim": "pathway deltas (post - pre) do not predict PFI (|rho|<0.3, p>0.3)",
+      "claimed": {"delta_predictive": false},
+      "reproduced": {"delta_ddr": {"rho": -0.1091, "p": 0.7495}, "delta_pi3k": {"rho": 0.0545, "p": 0.8734}, "delta_vegf": {"rho": -0.0364, "p": 0.9155}},
+      "verdict": "REPRODUCED",
+      "note": "The delta-null result reproduces cleanly and is the artifact's one reproduced discovery claim.",
+      "action": "Retain."
+    },
+    {
+      "id": "C05", "domain": "discovery", "severity": "medium",
+      "claim": "post-DDR AUC=0.714 (binary resistant vs sensitive)",
+      "claimed": {"auc": 0.714},
+      "reproduced": {"auc_corrected_7R4S": 0.5714, "auc_manuscript_8R3S": 0.75},
+      "verdict": "NOT_REPRODUCED",
+      "note": "Only reaches ~0.75 under the manuscript's own (superseded) 8R/3S labels; 0.571 under corrected labels. AUC is label-dependent.",
+      "action": "Correct; report label-conditional value."
+    },
+    {
+      "id": "C06", "domain": "external", "severity": "info",
+      "claim": "CN signature 7 at relapse AUROC=0.874 (95% CI 0.750-0.974), Wilcoxon p=0.035",
+      "claimed": {"auroc": 0.874, "ci": [0.750, 0.974], "p": 0.035},
+      "reproduced": {"auroc": 0.8739, "ci": [0.7622, 0.9717], "wilcoxon_p": 0.035},
+      "verdict": "SUPPORTED",
+      "note": "Independently reproduced to 3 decimals from open-access Nature Comms supplementary.",
+      "action": "Retain; pair with n=3 fragility caveat (C09)."
+    },
+    {
+      "id": "C07", "domain": "external", "severity": "info",
+      "claim": "s7 diagnosis AUROC=0.694; improvement diagnosis->relapse = +0.180",
+      "claimed": {"diag_auc": 0.694, "improvement": 0.180},
+      "reproduced": {"diag_auc": 0.6937, "rel_auc": 0.8739, "improvement": 0.1802},
+      "verdict": "SUPPORTED",
+      "note": "Exact. s6 improvement +0.2613 also supported; s4 improvement 0.000 as claimed.",
+      "action": "Retain."
+    },
+    {
+      "id": "C08", "domain": "consistency", "severity": "high",
+      "claim": "discovery resistance split = 8 resistant / 3 sensitive (EOC227 resistant)",
+      "claimed": {"n_res": 8, "n_sens": 3, "EOC227": "resistant"},
+      "reproduced": {"canonical_n_res": 7, "canonical_n_sens": 4, "EOC227": "sensitive", "EOC227_PFI_days": 230},
+      "verdict": "DISCREPANT",
+      "note": "Repo's own corrected resistance_labels.json (2026-05-09, from source Table 1) gives 7R/4S; EOC227 PFI=230d >= 180d is sensitive. Package inconsistent with its own source of truth.",
+      "action": "Adopt 7R/4S as canonical; show 8R/3S side-by-side with provenance note."
+    },
+    {
+      "id": "C09", "domain": "external", "severity": "high",
+      "claim": "BriTROC resistant count (some tables state 10 resistant); 'excellent discrimination'",
+      "claimed": {"n_resistant_stated": 10},
+      "reproduced": {"n_paired_cn": 47, "n_labeled": 40, "n_resistant": 3, "n_sensitive": 37, "leave_one_resistant_out_auroc": [0.8919, 0.8649, 0.8649]},
+      "verdict": "DISCREPANT_AND_OVERSTATED",
+      "note": "Correct count is 3 resistant / 37 sensitive. LORO shows a stable central AUROC (0.865-0.892) but the CI is wide (0.76-0.97) on only 3 events.",
+      "action": "Fix '10' -> '3'; reframe as stable point estimate with wide uncertainty, not 'excellent'."
+    },
+    {
+      "id": "C10", "domain": "framing", "severity": "high",
+      "claim": "serial monitoring can detect resistance 3-6 months before progression",
+      "verdict": "OVERSTATED",
+      "note": "Repo audit + OV-045 red-team: resistance signal present continuously (TF 1.0% day56, 0.8% day362). Package proves prognostic, not temporal-predictive.",
+      "action": "Downgrade to dynamic risk stratification; remove temporal early-detection claim."
+    },
+    {
+      "id": "C11", "domain": "consistency", "severity": "medium",
+      "claim": "Introduction: 'pathway changes during treatment predict resistance'",
+      "verdict": "DISCREPANT",
+      "note": "Contradicts the delta-null result (C04). Core thesis is absolute post-treatment state, not change.",
+      "action": "Rewrite Introduction sentence to match the finding."
+    },
+    {
+      "id": "C12", "domain": "rigor", "severity": "medium",
+      "claim": "no multiple-testing correction applied (as-published p-values)",
+      "verdict": "OVERSTATED",
+      "note": "BH-FDR on the 7 as-published tests: 6/7 survive FDR<0.05. But note the underlying p-values do not reproduce (C01-C03), so FDR is moot for discovery until re-derivation.",
+      "action": "Add FDR statement; supersede once discovery numbers are re-derived."
+    },
+    {
+      "id": "C13", "domain": "rigor", "severity": "info",
+      "claim": "EPV is low (~2-4); no cross-validation; median-split leakage",
+      "verdict": "SUPPORTED",
+      "note": "Confirmed and quantified: discovery EPV 1.0-1.33; single-feature 4.0; BriTROC 3.0. All << 10.",
+      "action": "Retain; emphasize."
+    },
+    {
+      "id": "C14", "domain": "reference", "severity": "low",
+      "claim": "Zhang et al. GSE165897 cited as PMID 36223460",
+      "verdict": "DISCREPANT",
+      "note": "Correct identifier: Zhang K et al., Science Advances 2022, DOI 10.1126/sciadv.abm1831 (PMC8865800). The label file's DOI is authoritative; the manuscript PMID is mismatched.",
+      "action": "Reconcile citation to abm1831 / PMC8865800."
+    },
+    {
+      "id": "C15", "domain": "reference", "severity": "medium",
+      "claim": "s7-at-relapse improvement supports resistance-associated post-treatment state",
+      "verdict": "CONTEXT",
+      "note": "BriTROC-1 paper's own headline is genome stability diagnosis->relapse with no selection for common CN drivers. Not strictly contradictory (s7 is exposure, more discriminative not more driven), but the +0.18 shift rests on 3 resistant patients.",
+      "action": "Add interpretive caveat in BriTROC annotation."
+    },
+    {
+      "id": "C16", "domain": "consistency", "severity": "low",
+      "claim": "MSK-Spectrum dbGaP access pending",
+      "verdict": "DISCREPANT",
+      "note": "Repo audit states data possessed locally; text stale. MSK-Spectrum is controlled-access and NOT used in this validation.",
+      "action": "Update status text; note it is not part of published results."
+    },
+    {
+      "id": "C17", "domain": "biology", "severity": "info",
+      "claim": "biological direction (post-DDR-high, CN s7/CCNE1, PI3K) coherent with resistance",
+      "verdict": "SUPPORTED",
+      "note": "Direction plausible: platinum selects repair-proficient cells; s7~CCNE1 amplification is a recognized platinum-resistance/HR-proficiency mechanism. Not a substitute for power/validation.",
+      "action": "Retain as directional support only."
+    }
+  ],
+  "summary_counts": {
+    "NOT_REPRODUCED": 4,
+    "REPRODUCED": 1,
+    "SUPPORTED": 4,
+    "DISCREPANT": 5,
+    "OVERSTATED": 3,
+    "CONTEXT": 1
+  },
+  "overall_assessment": "External BriTROC-1 copy-number finding reproduces essentially exactly and is the strongest element. Discovery-cohort headline statistics (DDR/PI3K correlations, KM) do NOT reproduce from raw GEO data under the documented methodology; only the delta-null result reproduces. Multiple label/count discrepancies and prognostic-vs-predictive overstatements corrected. Artifact remains Tier 3 hypothesis-generating, RUO; not clinical evidence."
+}

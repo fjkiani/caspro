@@ -1,0 +1,481 @@
+{
+  "audit_date": "2026-07-12T07:50:28.788652+00:00",
+  "registry_path": "/workspace/crispro-backend-v2/api/resources/trial_moa_vectors.json",
+  "registry_size": 609,
+  "ctgov_lookups_enabled": true,
+  "health_score": 0,
+  "defect_class_counts": {
+    "D1_all_zero": 349,
+    "D1_single_axis": 142,
+    "D1_multi_axis": 118,
+    "D2_string_confidence": 20,
+    "D2_missing_source": 22,
+    "D2_missing_reviewed_by": 28,
+    "D3_anchor_defective": 4,
+    "D3_anchor_absent": 1,
+    "D4_confirmed_non_oncology": 291,
+    "D4_false_positive_flags": 26,
+    "D4_false_negative_rate": 0.034,
+    "D5_dominance_issues": 1,
+    "D6_source_count": 11,
+    "D7_glb_defective": 3,
+    "D7_glb_absent": 3
+  },
+  "anchor_verdicts": [
+    {
+      "nct": "NCT02595892",
+      "drug": "Berzosertib (M6620) ATRi + gemcitabine",
+      "verdict": "DEFECTIVE",
+      "defect": "rss=0.75 dominates \u2014 routes RS to non-responder side under PATH A (LIFT-004 D1)",
+      "registry_vector": {
+        "ddr": 0.9,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.75
+      },
+      "expected_direction": "ddr-dominant; rss should favour responder (RS-Low), not non-responder",
+      "published": "RS-Low HR 0.34 (responder) vs RS-High HR 1.11 (non-responder), PMID 34552099",
+      "source": "retroactive_validation",
+      "confidence": 0.92
+    },
+    {
+      "nct": "NCT03579316",
+      "drug": "Adavosertib (AZD1775) WEE1i + gemcitabine",
+      "verdict": "DEFECTIVE",
+      "defect": "pi3k=1.0 encodes PTEN-loss resistance as a drug target (LIFT-004 D2); mapk=1.0 spurious for WEE1i (LIFT-004)",
+      "registry_vector": {
+        "ddr": 1.0,
+        "mapk": 1.0,
+        "pi3k": 1.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.7
+      },
+      "expected_direction": "ddr + rss_exploit; PTEN-loss (pi3k) is resistance, NOT a target",
+      "published": "CCNE1-amp ORR 36% (responder) vs PTEN-loss ORR 0% (non-responder), JCO 2023",
+      "source": null,
+      "confidence": "High"
+    },
+    {
+      "nct": "NCT03462342",
+      "drug": "Ceralasertib + olaparib (CAPRI Phase II)",
+      "verdict": "ABSENT",
+      "defect": "Trial not in registry",
+      "registry_vector": null,
+      "expected_direction": "ddr-dominant (ATR+PARP combo)",
+      "published": "PARPi-naive 54% vs ITT 0%, Shah Clin Cancer Res 2023"
+    },
+    {
+      "nct": "NCT05450692",
+      "drug": "Ceralasertib + durvalumab (LATIFY)",
+      "verdict": "DEFECTIVE",
+      "defect": "QUARANTINED under CT-03 regardless of vector (patent +0.366 vs receipt +0.2641)",
+      "registry_vector": {
+        "ddr": 0.85,
+        "mapk": 0.1,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.75,
+        "efflux": 0.0,
+        "rss": 0.75
+      },
+      "expected_direction": "ddr + io; quarantined regardless",
+      "published": "QUARANTINED CT-03 (patent +0.366 vs receipt +0.2641)",
+      "source": "retroactive_validation",
+      "confidence": 0.92
+    },
+    {
+      "nct": "NCT02264678",
+      "drug": "Ceralasertib + olaparib (Phase I/Ib)",
+      "verdict": "DEFECTIVE",
+      "defect": "ddr=0.0 missing for ATR+PARP combo (LIFT-004 D3); mapk=1.0 spurious for ATR+PARP combo",
+      "registry_vector": {
+        "ddr": 0.0,
+        "mapk": 1.0,
+        "pi3k": 1.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.0
+      },
+      "expected_direction": "ddr-dominant (ATR+PARP combo); patient-B vector undefined (CT-04)",
+      "published": "ITT 0%, BRCA1-mut trend, PARPi-naive 54%, Drew JCO 2022",
+      "source": null,
+      "confidence": "Medium"
+    }
+  ],
+  "glb_verdicts": [
+    {
+      "nct": "NCT02595892",
+      "drug": "Berzosertib (M6620) ATRi + gemcitabine",
+      "verdict": "DEFECTIVE",
+      "defect": "D3: rss=0.75 dominates \u2014 routes RS to non-responder side under PATH A (LIFT-004 D1)",
+      "vector": {
+        "ddr": 0.9,
+        "mapk": 0.0,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.75
+      },
+      "source": "retroactive_validation",
+      "confidence": 0.92
+    },
+    {
+      "nct": "NCT03579316",
+      "drug": "Adavosertib (AZD1775) WEE1i + gemcitabine",
+      "verdict": "DEFECTIVE",
+      "defect": "D3: pi3k=1.0 encodes PTEN-loss resistance as a drug target (LIFT-004 D2); mapk=1.0 spurious for WEE1i (LIFT-004)",
+      "vector": {
+        "ddr": 1.0,
+        "mapk": 1.0,
+        "pi3k": 1.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.0,
+        "efflux": 0.0,
+        "rss": 0.7
+      },
+      "source": null,
+      "confidence": "High"
+    },
+    {
+      "nct": "NCT03462342",
+      "drug": "Ceralasertib + olaparib (CAPRI Phase II)",
+      "verdict": "ABSENT",
+      "defect": "Not in registry",
+      "vector": null
+    },
+    {
+      "nct": "NCT05450692",
+      "drug": "Ceralasertib + durvalumab (LATIFY)",
+      "verdict": "DEFECTIVE",
+      "defect": "D3: QUARANTINED under CT-03 regardless of vector (patent +0.366 vs receipt +0.2641)",
+      "vector": {
+        "ddr": 0.85,
+        "mapk": 0.1,
+        "pi3k": 0.0,
+        "vegf": 0.0,
+        "her2": 0.0,
+        "io": 0.75,
+        "efflux": 0.0,
+        "rss": 0.75
+      },
+      "source": "retroactive_validation",
+      "confidence": 0.92
+    },
+    {
+      "nct": "NCT04154956",
+      "drug": "Tusamitamab ravtansine (CARMEN-LC03)",
+      "verdict": "ABSENT",
+      "defect": "Not in registry",
+      "vector": null
+    },
+    {
+      "nct": "NCT02870920",
+      "drug": "Durvalumab (CCTG CO.26)",
+      "verdict": "ABSENT",
+      "defect": "Not in registry",
+      "vector": null
+    }
+  ],
+  "source_matrix": {
+    "cohere_batch_tagging": {
+      "count": 498,
+      "all_zero_rate": 0.612,
+      "single_axis_rate": 0.163,
+      "confirmed_non_onco_rate": 0.492,
+      "mean_confidence": 0.656
+    },
+    "manual_keyword_matching": {
+      "count": 42,
+      "all_zero_rate": 0.0,
+      "single_axis_rate": 0.952,
+      "confirmed_non_onco_rate": 0.548,
+      "mean_confidence": 0.845
+    },
+    "MISSING": {
+      "count": 22,
+      "all_zero_rate": 0.727,
+      "single_axis_rate": 0.182,
+      "confirmed_non_onco_rate": 0.045,
+      "mean_confidence": 0.75
+    },
+    "gemini_batch_tagging": {
+      "count": 22,
+      "all_zero_rate": 0.727,
+      "single_axis_rate": 0.273,
+      "confirmed_non_onco_rate": 0.727,
+      "mean_confidence": 0.477
+    },
+    "openai_batch_tagging": {
+      "count": 10,
+      "all_zero_rate": 0.9,
+      "single_axis_rate": 0.1,
+      "confirmed_non_onco_rate": 0.6,
+      "mean_confidence": 0.08
+    },
+    "manual_intelligence_report": {
+      "count": 5,
+      "all_zero_rate": 0.0,
+      "single_axis_rate": 1.0,
+      "confirmed_non_onco_rate": 0.0,
+      "mean_confidence": 0.93
+    },
+    "manual_zo_addition": {
+      "count": 3,
+      "all_zero_rate": 0.333,
+      "single_axis_rate": 0.667,
+      "confirmed_non_onco_rate": 0.0,
+      "mean_confidence": 0.93
+    },
+    "gemini_batch_v2": {
+      "count": 2,
+      "all_zero_rate": 0.0,
+      "single_axis_rate": 1.0,
+      "confirmed_non_onco_rate": 0.0,
+      "mean_confidence": 0.975
+    },
+    "manual_zo_correction": {
+      "count": 2,
+      "all_zero_rate": 1.0,
+      "single_axis_rate": 0.0,
+      "confirmed_non_onco_rate": 0.0,
+      "mean_confidence": 0.99
+    },
+    "retroactive_validation": {
+      "count": 2,
+      "all_zero_rate": 0.0,
+      "single_axis_rate": 0.0,
+      "confirmed_non_onco_rate": 0.0,
+      "mean_confidence": 0.92
+    },
+    "manual_zo_update": {
+      "count": 1,
+      "all_zero_rate": 0.0,
+      "single_axis_rate": 1.0,
+      "confirmed_non_onco_rate": 0.0,
+      "mean_confidence": 0.99
+    }
+  },
+  "axis_stats": {
+    "ddr": {
+      "nonzero_count": 106,
+      "mean": 0.672,
+      "max": 1.0,
+      "top5": [
+        [
+          "NCT03579316",
+          1.0
+        ],
+        [
+          "NCT04284969",
+          0.95
+        ],
+        [
+          "NCT02655016",
+          0.95
+        ],
+        [
+          "NCT04001023",
+          0.9
+        ],
+        [
+          "NCT02244879",
+          0.9
+        ]
+      ]
+    },
+    "mapk": {
+      "nonzero_count": 46,
+      "mean": 0.489,
+      "max": 1.0,
+      "top5": [
+        [
+          "NCT05706779",
+          1.0
+        ],
+        [
+          "NCT07023731",
+          1.0
+        ],
+        [
+          "NCT06128551",
+          1.0
+        ],
+        [
+          "NCT03579316",
+          1.0
+        ],
+        [
+          "NCT02264678",
+          1.0
+        ]
+      ]
+    },
+    "pi3k": {
+      "nonzero_count": 39,
+      "mean": 0.441,
+      "max": 1.0,
+      "top5": [
+        [
+          "NCT01425879",
+          1.0
+        ],
+        [
+          "NCT03579316",
+          1.0
+        ],
+        [
+          "NCT02264678",
+          1.0
+        ],
+        [
+          "NCT06431594",
+          0.8
+        ],
+        [
+          "NCT03287271",
+          0.8
+        ]
+      ]
+    },
+    "vegf": {
+      "nonzero_count": 49,
+      "mean": 0.543,
+      "max": 1.0,
+      "top5": [
+        [
+          "NCT04938583",
+          1.0
+        ],
+        [
+          "NCT05445778",
+          1.0
+        ],
+        [
+          "NCT01000259",
+          0.9
+        ],
+        [
+          "NCT04164979",
+          0.9
+        ],
+        [
+          "NCT06332079",
+          0.9
+        ]
+      ]
+    },
+    "her2": {
+      "nonzero_count": 16,
+      "mean": 0.641,
+      "max": 1.0,
+      "top5": [
+        [
+          "NCT06883487",
+          1.0
+        ],
+        [
+          "NCT06732336",
+          1.0
+        ],
+        [
+          "NCT06330064",
+          1.0
+        ],
+        [
+          "NCT06331130",
+          0.95
+        ],
+        [
+          "NCT04986579",
+          0.9
+        ]
+      ]
+    },
+    "io": {
+      "nonzero_count": 173,
+      "mean": 0.576,
+      "max": 1.0,
+      "top5": [
+        [
+          "NCT06536179",
+          1.0
+        ],
+        [
+          "NCT06558279",
+          1.0
+        ],
+        [
+          "NCT06680479",
+          1.0
+        ],
+        [
+          "NCT05147779",
+          1.0
+        ],
+        [
+          "NCT05263479",
+          1.0
+        ]
+      ]
+    },
+    "efflux": {
+      "nonzero_count": 7,
+      "mean": 0.429,
+      "max": 0.8,
+      "top5": [
+        [
+          "NCT02898779",
+          0.8
+        ],
+        [
+          "NCT00005079",
+          0.7
+        ],
+        [
+          "NCT01048879",
+          0.5
+        ],
+        [
+          "NCT04649879",
+          0.4
+        ],
+        [
+          "NCT01965379",
+          0.3
+        ]
+      ]
+    },
+    "rss": {
+      "nonzero_count": 3,
+      "mean": 0.733,
+      "max": 0.75,
+      "top5": [
+        [
+          "NCT05450692",
+          0.75
+        ],
+        [
+          "NCT02595892",
+          0.75
+        ],
+        [
+          "NCT03579316",
+          0.7
+        ]
+      ]
+    }
+  }
+}

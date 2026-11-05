@@ -1,0 +1,1328 @@
+{
+  "caslib": "Breast_Amgen_2004_153",
+  "credentials_persisted": false,
+  "expected_markers": [
+    "CA15_3",
+    "CA27_29"
+  ],
+  "indication": "breast",
+  "longitudinal_aggregates": [],
+  "marker_ids_found": [],
+  "n_tables_failed": 0,
+  "n_tables_scanned": 7,
+  "n_tabular_files": 7,
+  "patient_level_data_persisted": false,
+  "receipt_sha256": "95fd0ed5585b311f81ee789d94c6d4a57b70bffefc229ca3f1e810c0f316a81f",
+  "schema_version": "zeta_core_pds_qualification_v1",
+  "tables": [
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment Received",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Age at Enrollment in Years",
+          "name": "AGEY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race Code",
+          "name": "RACECD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary-Derived Term",
+          "name": "AEDECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Body System or Organ Class",
+          "name": "AEBODSYS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Adverse Event Low Level Term",
+          "name": "AELLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Adverse Event High Level Term",
+          "name": "AEHLT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Adverse Event High Level Group Term",
+          "name": "AEHLGT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Study Day of Start of Adverse Event",
+          "name": "AESTDY",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Study Day of End of Adverse Event",
+          "name": "AEENDY",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Duration of Event in Days",
+          "name": "AEDURD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Adverse Event Continuing",
+          "name": "AECONT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Standard Toxicity Grade",
+          "name": "AETOXGR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Serious Event",
+          "name": "AESER",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Causality",
+          "name": "AEREL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "List of Action Code",
+          "name": "AEACTLST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Results in Death",
+          "name": "AESDTH",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Is Life Threatening",
+          "name": "AESLIFE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region",
+          "name": "georeg",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region Code",
+          "name": "georegcd",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "AELLT",
+          "AEHLT",
+          "AEHLGT",
+          "AESTDY",
+          "AEENDY",
+          "AEDURD",
+          "AECONT",
+          "AESER",
+          "AESDTH"
+        ],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID"
+        ],
+        "treatment": [
+          "TRTA"
+        ],
+        "unit": [],
+        "value": [
+          "AESDTH"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 802,
+      "path": "dataFiles_896/aae.sas7bdat",
+      "size": 352256,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment Received",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Age at Enrollment in Years",
+          "name": "AGEY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race Code",
+          "name": "RACECD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category of Bone Measurement",
+          "name": "BMCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Location Used for the Measurement",
+          "name": "BMLOC",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Bone Measurement Body Side",
+          "name": "BMSIDE",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Study Day of Finding",
+          "name": "BMDY",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Study Month of Finding",
+          "name": "BMMO",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Baseline Flag",
+          "name": "BMBLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit Name",
+          "name": "ANLVIS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "DXA BMD Analysis Population",
+          "name": "POPBMDXA",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "DXA BMD %Chg From BL",
+          "name": "DXABMDP",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "DXA BMD %Chg From BL (MOTH)",
+          "name": "DXABMDMP",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "DXA BMC (g)",
+          "name": "DXABMC",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "DXA BMC at BL (g)",
+          "name": "DXABMCB",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "DXA Area (cm^2)",
+          "name": "DXAAREA",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "DXA Area at BL (cm^2)",
+          "name": "DXAAREAB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region",
+          "name": "georeg",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region Code",
+          "name": "georegcd",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID"
+        ],
+        "treatment": [
+          "TRTA"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1840,
+      "path": "dataFiles_896/abmdxa.sas7bdat",
+      "size": 401408,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "LBCAT",
+          "n_unique": 2,
+          "values": [
+            "CHEMISTRY",
+            "HEMATOLOGY"
+          ]
+        },
+        {
+          "column": "LBSCAT",
+          "n_unique": 5,
+          "values": [
+            "CHEMISTRY",
+            "ELECTROLYTES",
+            "HEMATOLOGY",
+            "LIVER FUNCTION",
+            "RENAL FUNCTION"
+          ]
+        },
+        {
+          "column": "LBTESTCD",
+          "n_unique": 18,
+          "values": [
+            "ALB",
+            "ALP",
+            "BICARB",
+            "BILI_TL",
+            "BUN",
+            "CL",
+            "CREAT",
+            "GLUCOSE",
+            "K",
+            "MG",
+            "NA",
+            "PHOS",
+            "PLT",
+            "PRO_TL",
+            "RBC",
+            "SGOT",
+            "SGPT",
+            "WBC"
+          ]
+        },
+        {
+          "column": "LBTEST",
+          "n_unique": 18,
+          "values": [
+            "Alanine Amino Transferase",
+            "Albumin",
+            "Alkaline Phosphatase",
+            "Aspartate Amino Transferase",
+            "Bicarbonate",
+            "Blood Urea Nitrogen",
+            "Chloride",
+            "Creatinine",
+            "Glucose",
+            "Magnesium",
+            "Phosphorus",
+            "Platelets",
+            "Potassium",
+            "Red Blood Cells",
+            "Sodium",
+            "Total Bilirubin",
+            "Total Protein",
+            "White Blood Cells"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment Received",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Age at Enrollment in Years",
+          "name": "AGEY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race Code",
+          "name": "RACECD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category for Lab Test",
+          "name": "LBCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subcategory for Lab Test",
+          "name": "LBSCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LAB Test or Examination Short Name",
+          "name": "LBTESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "LAB Test or Examination Name",
+          "name": "LBTEST",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Report in Orig and Std Units",
+          "name": "LBRPORST",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Analysis Visit Number",
+          "name": "ANLVISNM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit Name",
+          "name": "ANLVIS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Analysis Flag",
+          "name": "ANLFLAG",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Result or Finding in Original Units",
+          "name": "LBORRES",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Numeric Result in Original Units",
+          "name": "LBORRESN",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Result in Orig Units at BL",
+          "name": "LBORSNB",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Result in Orig Units Chg From BL",
+          "name": "LBORSNC",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Result in Orig Units %Chg From BL",
+          "name": "LBORSNP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Original Units",
+          "name": "LBORRESU",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reference Range Lower Limit in Orig Unit",
+          "name": "LBORNRLO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reference Range Upper Limit in Orig Unit",
+          "name": "LBORNRHI",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Numeric Result/Finding in Standard Units",
+          "name": "LBSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Result in Std Units at BL",
+          "name": "LBSRSNB",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Result in Std Units Chg From BL",
+          "name": "LBSRSNC",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Result in Std Units %Chg From BL",
+          "name": "LBSRSNP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Standard Units",
+          "name": "LBSTRESU",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Reference Range Lower Limit-Std Units",
+          "name": "LBSTNRLO",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Reference Range Upper Limit-Std Units",
+          "name": "LBSTNRHI",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reference Range Indicator",
+          "name": "LBNRIND",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Toxicity Grade (Increase)",
+          "name": "LBTOXIN",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Toxicity Grade at BL (Increase)",
+          "name": "LBTOXINB",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Worst Toxicity Grade Post BL (Increase)",
+          "name": "LBTOXINW",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Toxicity Grade (Decrease)",
+          "name": "LBTOXDE",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Toxicity Grade at BL (Decrease)",
+          "name": "LBTOXDEB",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Worst Toxicity Grade Post BL (Decrease)",
+          "name": "LBTOXDEW",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Toxicity Grade Direction",
+          "name": "LBTOXDIR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region",
+          "name": "georeg",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region Code",
+          "name": "georegcd",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "LBCAT",
+          "LBSCAT",
+          "LBTESTCD",
+          "LBTEST"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID"
+        ],
+        "treatment": [
+          "TRTA"
+        ],
+        "unit": [
+          "LBRPORST",
+          "LBORRES",
+          "LBORRESN",
+          "LBORSNB",
+          "LBORSNC",
+          "LBORSNP",
+          "LBORRESU",
+          "LBORNRLO",
+          "LBORNRHI",
+          "LBSTRESN",
+          "LBSRSNB",
+          "LBSRSNC",
+          "LBSRSNP",
+          "LBSTRESU",
+          "LBSTNRLO",
+          "LBSTNRHI"
+        ],
+        "value": [
+          "LBORRES",
+          "LBORRESN",
+          "LBORSNB",
+          "LBORSNC",
+          "LBORSNP",
+          "LBSTRESN",
+          "LBSRSNB",
+          "LBSRSNC",
+          "LBSRSNP"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 12157,
+      "path": "dataFiles_896/albsaf.sas7bdat",
+      "size": 3375104,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment Received",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Age at Enrollment in Years",
+          "name": "AGEY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race Code",
+          "name": "RACECD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Dictionary-Derived Term",
+          "name": "MHDECOD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Body System or Organ Class",
+          "name": "MHBODSYS",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Study Day of Start of Event",
+          "name": "MHSTDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Event Continuing",
+          "name": "MHCONT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Event Resolved",
+          "name": "MHRSLV",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region",
+          "name": "georeg",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region Code",
+          "name": "georegcd",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [
+          "MHSTDY",
+          "MHCONT",
+          "MHRSLV"
+        ],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID"
+        ],
+        "treatment": [
+          "TRTA"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 1378,
+      "path": "dataFiles_896/amhgenl.sas7bdat",
+      "size": 278528,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment Received",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Age at Enrollment in Years",
+          "name": "AGEY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race Code",
+          "name": "RACECD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "BMI at BL (kg/m^2)",
+          "name": "BMIB",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "ECOG Status at BL",
+          "name": "ECOGB",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Lumbar Spine DXA Area at BL (cm^2)",
+          "name": "STOA_DAB",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Total Hip DXA Area at BL (cm^2)",
+          "name": "HTOT_DAB",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Femoral Neck DXA Area at BL (cm^2)",
+          "name": "FNCK_DAB",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Any Hx Fracture",
+          "name": "HXFX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Any Hx Vertebral Fracture",
+          "name": "HXVFX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Any Hx Non-Vertebral Fracture",
+          "name": "HXNVFX",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Num of Hx Fractures",
+          "name": "HXFXN",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Num of Hx Vertebral Fractures",
+          "name": "HXVFXN",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Num of Hx Non-Vertebral Fractures",
+          "name": "HXNVFXN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Any Prevalent Vertebral Fracture at BL",
+          "name": "VFXB",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Years Since Initial Cancer Diagnosis",
+          "name": "CADXY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Tumor Stage at Initial Diagnosis",
+          "name": "TSTAGE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Primary Tumor",
+          "name": "PRTMR",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Prior Chemotherapy",
+          "name": "HXCHEMO",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Prior Radiotherapy",
+          "name": "HXRADTX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region",
+          "name": "georeg",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region Code",
+          "name": "georegcd",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [
+          "ECOGB"
+        ],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID"
+        ],
+        "treatment": [
+          "TRTA"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 104,
+      "path": "dataFiles_896/aslbase.sas7bdat",
+      "size": 57344,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment Received",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Age at Enrollment in Years",
+          "name": "AGEY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race Code",
+          "name": "RACECD",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Study Exposure (Days)",
+          "name": "STYDURD",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Reason for Ending Inv Prod",
+          "name": "EOIP",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason Code for Ending Inv Prod",
+          "name": "EOIPCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason for Ending Study",
+          "name": "EOS",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Reason Code for Ending Study",
+          "name": "EOSCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region",
+          "name": "georeg",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region Code",
+          "name": "georegcd",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID",
+          "EOS",
+          "EOSCD"
+        ],
+        "treatment": [
+          "TRTA"
+        ],
+        "unit": [],
+        "value": []
+      },
+      "marker_hits": [],
+      "n_rows": 104,
+      "path": "dataFiles_896/aslinfo.sas7bdat",
+      "size": 57344,
+      "status": "OK"
+    },
+    {
+      "analyte_scans": [
+        {
+          "column": "VSTESTCD",
+          "n_unique": 8,
+          "values": [
+            "BMI",
+            "DIABP",
+            "HEIGHT",
+            "PULSE",
+            "RESP",
+            "SYSBP",
+            "TEMP",
+            "WEIGHT"
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "format": "",
+          "label": "Study Identifier",
+          "name": "STUDYID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Subject Identifier for the Study",
+          "name": "SUBJID",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Actual Treatment Received",
+          "name": "TRTA",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Age at Enrollment in Years",
+          "name": "AGEY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Sex",
+          "name": "SEX",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race",
+          "name": "RACE",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Race Code",
+          "name": "RACECD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Category for Vital Signs",
+          "name": "VSCAT",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vital Signs Test Short Name",
+          "name": "VSTESTCD",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Vital Signs Test Name",
+          "name": "VSTEST",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Study Day of Vital Signs (mon)",
+          "name": "VSDY",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Baseline Flag",
+          "name": "VSBLFL",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Visit Name",
+          "name": "VISIT",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Analysis Visit Number",
+          "name": "ANLVISNM",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Analysis Visit Name",
+          "name": "ANLVIS",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Numeric Result/Finding in Standard Units",
+          "name": "VSSTRESN",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Standard Units",
+          "name": "VSSTRESU",
+          "type": "char"
+        },
+        {
+          "format": "F",
+          "label": "Vital Signs at BL",
+          "name": "VSSRSNB",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Vital Signs Chg From BL",
+          "name": "VSSRSNC",
+          "type": "double"
+        },
+        {
+          "format": "F",
+          "label": "Vital Signs %Chg From BL",
+          "name": "VSSRSNP",
+          "type": "double"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region",
+          "name": "georeg",
+          "type": "char"
+        },
+        {
+          "format": "",
+          "label": "Geographic Region Code",
+          "name": "georegcd",
+          "type": "char"
+        }
+      ],
+      "field_candidates": {
+        "age": [],
+        "analyte": [
+          "VSTESTCD"
+        ],
+        "ecog": [],
+        "endpoint": [],
+        "patient": [
+          "SUBJID"
+        ],
+        "time": [
+          "SUBJID"
+        ],
+        "treatment": [
+          "TRTA"
+        ],
+        "unit": [
+          "VSSTRESN",
+          "VSSTRESU"
+        ],
+        "value": [
+          "VSSTRESN"
+        ]
+      },
+      "marker_hits": [],
+      "n_rows": 4651,
+      "path": "dataFiles_896/avs.sas7bdat",
+      "size": 958464,
+      "status": "OK"
+    }
+  ]
+}

@@ -38,9 +38,12 @@ function isNavItemActive(pathname: string | null, href: string, itemId: string):
   if (pathsEqual(pathname, href)) return true;
   const norm = (pathname ?? '').replace(/\/+$/, '') || '/';
   // Merged persona-aware nav: each ID owns a specific route family. ORG never highlights (external).
+  if (itemId === 'products' && norm.startsWith('/products')) return true;
+  if (itemId === 'engines' && norm.startsWith('/engine/')) return true;
   if (itemId === 'target-lock' && norm.startsWith('/engine/target-lock')) return true;
   if (itemId === 'moa-align' && norm.startsWith('/engine/mechanism-alignment')) return true;
   if (itemId === 'sl-engine' && norm.startsWith('/engine/synthetic-lethality')) return true;
+  // Live TB workspace only — brochure lives under PRODUCTS (/products/tumor-board)
   if (itemId === 'tumor-board' && norm.startsWith('/tumor-board')) return true;
   if (itemId === 'ledger' && norm.startsWith('/ledger')) return true;
   if (itemId === 'pipeline' && norm.startsWith('/pipeline')) return true;
@@ -95,8 +98,9 @@ export function ZetaDesktopNav({
 
   return (
     <div
-      className={`hidden lg:flex flex-1 min-w-0 justify-end flex-wrap items-center gap-x-4 gap-y-1 text-[11px] font-black tracking-widest ${navMuted}`}
+      className={`hidden lg:flex min-w-0 max-w-full flex-1 overflow-x-auto overflow-y-hidden scrollbar-hide ${navMuted}`}
     >
+      <div className="flex items-center gap-x-2.5 whitespace-nowrap px-1 text-[11px] font-black tracking-widest">
       {navItems.map((item) => {
         const isActive = isNavItemActive(pathname, item.href, item.id);
         const hasDropdown = Array.isArray(item.dropdownItems) && item.dropdownItems.length > 0;
@@ -162,7 +166,11 @@ export function ZetaDesktopNav({
                           : 'text-slate-900 hover:bg-slate-50'
                     }`}
                   >
-                    {item.id === 'ledger' ? 'Trial ledger hub // LOCKED' : 'Overview'}
+                    {item.id === 'ledger'
+                      ? 'Trial ledger hub // LOCKED'
+                      : item.id === 'products'
+                        ? 'All products'
+                        : 'Overview'}
                     <span className="text-[10px] font-black text-cyan-500/60">→</span>
                   </button>
                   {item.dropdownItems!.map((sub) => (
@@ -194,6 +202,7 @@ export function ZetaDesktopNav({
           </div>
         );
       })}
+      </div>
     </div>
   );
 }

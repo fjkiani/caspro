@@ -1,0 +1,637 @@
+{
+  "publication": "06-io-response-prediction",
+  "title": "Multi-Pathway Composite Score for Anti-PD-1 Response Prediction",
+  "validation_type": "Independent ML re-computation + methodology audit + clinical-utility framing (RUO)",
+  "validated_by": "Biomni 5-worker parallel validation",
+  "date": "2026-07-19",
+  "data_provenance": {
+    "GSE91061": "committed intermediates + raw NCBI TPM in scripts/data_acquisition/IO/ (re-run from source)",
+    "GSE227666": "self-contained receipt; verify_loo_auc.py reproduced offline",
+    "GSE206422": "raw NOT committed; response labels flagged SUSPECT in-repo; UNVERIFIABLE offline"
+  },
+  "reproduced_metrics": {
+    "n_total": 105,
+    "n_responders": 23,
+    "auc_apparent": 0.7142,
+    "auc_optimism_corrected": 0.6935,
+    "auc_cv_mean": 0.6762,
+    "pdl1_auc": 0.5721,
+    "gse227666_loo_cv_auc": 0.822115,
+    "corrected_auc_95CI_reproduced": [
+      0.57,
+      0.847
+    ],
+    "EPV_3feature": 7.67,
+    "vif_3pathway": {
+      "EXHAUSTION": 21.74,
+      "TIL_INFILTRATION": 24.21,
+      "T_EFFECTOR": 7.67
+    },
+    "twopath_nestedcv_auc_reproduced": 0.687,
+    "delong_vs_pdl1_2pathway_cv_p": 0.012,
+    "delong_vs_pdl1_3pathway_cv_p": 0.0225
+  },
+  "summary_counts": {
+    "DISCREPANT": 6,
+    "OVERSTATED": 8,
+    "SUPPORTED": 9,
+    "CONTEXT": 6,
+    "UNVERIFIABLE": 2
+  },
+  "claims": [
+    {
+      "id": "XW-01",
+      "worker": "cross-worker (W1+W3+W5)",
+      "severity": "high",
+      "claim": "Package presents a single consistent model",
+      "recomputed": {
+        "README_tables_STRATEGY": "3-pathway (EXH+TIL+T_EFF), AUC 0.711 apparent / 0.699 corrected",
+        "MANUSCRIPT_DRAFT (the paper)": "2-pathway (EXH+TIL), nested-CV AUC 0.601, test AUC 0.806",
+        "issue": "Two DIFFERENT models are each presented as the final result across files."
+      },
+      "verdict": "DISCREPANT",
+      "verdict_detail": "MODEL-DIVERGENCE (load-bearing)",
+      "evidence_tier": "Tier 2 (reproduced both)",
+      "note": "The 2-pathway MANUSCRIPT supersedes the 3-pathway README/tables. README's own 'Next Steps' admits the 8->3 cleanup is unfinished; the manuscript went further to 2 pathways. Headline should be the 2-pathway nested-CV estimate, not the 3-pathway apparent 0.711.",
+      "corrective_action": "Make the 2-pathway model canonical across README/tables/STRATEGY, OR explicitly label the 3-pathway artifacts as deprecated/superseded. Do not present 0.711 as the headline."
+    },
+    {
+      "id": "XW-02",
+      "worker": "cross-worker (W3 corroboration)",
+      "severity": "high",
+      "claim": "T_EFFECTOR is a valid model feature (README/tables 3-pathway)",
+      "recomputed": {
+        "VIF_reproduced": {
+          "EXHAUSTION": 21.74,
+          "TIL_INFILTRATION": 24.21,
+          "T_EFFECTOR": 7.67
+        },
+        "manuscript_VIF": "EXH 21.7, TIL 24.2, TEFF 7.7 (reproduced EXACTLY)",
+        "pairwise_r": "0.92-0.98"
+      },
+      "verdict": "OVERSTATED",
+      "verdict_detail": "MULTICOLLINEARITY-CONFIRMED",
+      "evidence_tier": "Tier 2 (reproduced exactly)",
+      "note": "VIF reproduced to the decimal (EXH 21.74, TIL 24.21). This is the SAME phenomenon as the T_EFFECTOR sign-flip (W3-04): severe collinearity makes the 3-pathway coefficients uninterpretable. The manuscript already dropped T_EFFECTOR for exactly this reason - the README/tables retain the flawed 3-pathway model.",
+      "corrective_action": "Remove/deprecate 3-pathway coefficient claims; cite VIF>20 as the reason (already in manuscript)."
+    },
+    {
+      "id": "XW-03",
+      "worker": "cross-worker (W1 reproduction)",
+      "severity": "medium",
+      "claim": "2-pathway nested-CV AUC = 0.601 +/- 0.071 (manuscript)",
+      "recomputed": {
+        "reproduced_20seed_mean": 0.676,
+        "reproduced_seed42": 0.687,
+        "claimed": 0.601
+      },
+      "verdict": "SUPPORTED",
+      "verdict_detail": "reproduced (same order; 0.601 is conservative)",
+      "evidence_tier": "Tier 2 (reproduced)",
+      "note": "Our reproduction gives ~0.60-0.69 depending on seed/inner-loop; manuscript's 0.601 sits on the honest lower end. Order-of-magnitude and direction confirmed.",
+      "corrective_action": "None; the manuscript's number is defensible and conservative."
+    },
+    {
+      "id": "W1-04",
+      "worker": "W1_headline",
+      "severity": "high",
+      "claim": "Training/apparent AUC = 0.780 (from benchmark_comparison.csv)",
+      "recomputed": 0.7142,
+      "verdict": "CONTEXT",
+      "verdict_detail": "CONTEXT",
+      "evidence_tier": "Tier 2/3 (see note)",
+      "note": "0.780 was the 8-pathway LR; 3-pathway apparent differs. Flag as pathway-count ambiguity.",
+      "corrective_action": "\u2014"
+    },
+    {
+      "id": "W1-06",
+      "worker": "W1_headline",
+      "severity": "high",
+      "claim": "95% CI lower bound near/below 0.50 (chance)",
+      "recomputed": [
+        0.572,
+        0.8402
+      ],
+      "verdict": "CONTEXT",
+      "verdict_detail": "CHECK",
+      "evidence_tier": "Tier 2/3 (see note)",
+      "note": "If CI lower<=0.5, model not clearly distinguishable from chance",
+      "corrective_action": "Clarify which CI is which: corrected-AUC CI is method-sensitive; our reproduction gives ~[0.57,0.85]; README's 0.503 lower bound not reproduced here."
+    },
+    {
+      "id": "W1-08",
+      "worker": "W1_headline",
+      "severity": "high",
+      "claim": "3-pathway coefficients: TIL +0.807, EXH +0.633, TEFF -0.893 (T_EFFECTOR NEGATIVE)",
+      "recomputed": {
+        "EXHAUSTION": 0.633,
+        "TIL_INFILTRATION": 0.807,
+        "T_EFFECTOR": -0.893,
+        "Intercept": -1.388
+      },
+      "verdict": "SUPPORTED",
+      "verdict_detail": "SUPPORTED",
+      "evidence_tier": "Tier 2 (reproduced)",
+      "note": "T_EFFECTOR negative coef despite positive univariate AUC (0.613) => suppressor/collinearity; provenance concern",
+      "corrective_action": "\u2014"
+    },
+    {
+      "id": "W2-02",
+      "worker": "W2_benchmark",
+      "severity": "high",
+      "claim": "Improvement vs PD-L1 = +25% (Table2) / +22% (README) [INCONSISTENT]",
+      "recomputed": {
+        "absolute_delta_AUC": 0.14,
+        "relative_pct_on_raw_AUC (=+25% claim)": 24.5,
+        "delta_over_our (would-be +20%)": 19.7,
+        "over_chance_ratio (0.211/0.071)": 2.97,
+        "note": "Table2 '+25%' = 0.140/0.571 on raw AUC. README '+22%' is not reproducible from these two numbers by any standard pairing -> internal inconsistency. Both raw-AUC ratios are statistically misleading because AUC's null is 0.5, not 0; over-chance improvement ~3x."
+      },
+      "verdict": "DISCREPANT",
+      "verdict_detail": "DISCREPANT",
+      "evidence_tier": "Tier 2/3 (see note)",
+      "note": "+25%=0.140/0.571 raw-AUC ratio reproduces; +22% does not reconcile; raw-AUC % is misleading (null=0.5)",
+      "corrective_action": "Fix README '+22%' vs Table2 '+25%': state single over-chance framing; note apparent vs corrected AUC base."
+    },
+    {
+      "id": "W2-03",
+      "worker": "W2_benchmark",
+      "severity": "high",
+      "claim": "Our model significantly beats PD-L1",
+      "recomputed": {
+        "DeLong_vs_PDL1": {
+          "2pathway_canonical_apparent": {
+            "p": 0.0046,
+            "auc": 0.676
+          },
+          "2pathway_canonical_crossvalidated": {
+            "p": 0.012,
+            "auc": 0.6628
+          },
+          "3pathway_apparent": {
+            "p": 0.0069,
+            "auc": 0.7142
+          },
+          "3pathway_crossvalidated": {
+            "p": 0.0225,
+            "auc": 0.6866
+          }
+        },
+        "note_on_earlier_run": "An initial DeLong used the shipped 8-pathway composite (AUC 0.78, p=0.0019); that model is overfit/superseded and inappropriate for this claim. The values above use the canonical 2-pathway and the 3-pathway models."
+      },
+      "verdict": "OVERSTATED",
+      "verdict_detail": "significant but weaker than claimed",
+      "evidence_tier": "Tier 2/3 (see note)",
+      "note": "Table 2 asserts p<0.001 vs PD-L1. Correctly specified: the difference vs the PD-L1 transcript is statistically significant but WEAKER than claimed - 2-pathway canonical p=0.0046 (apparent) / p=0.012 (cross-validated); 3-pathway p=0.0069 / 0.0225. No correctly-specified model reproduces p<0.001. 'Significant vs PD-L1 transcript' is not clinical superiority over guideline PD-L1 IHC.",
+      "corrective_action": "Replace Table 2 'p<0.001' with the model-appropriate DeLong p (~0.005-0.02); specify which model and whether apparent or cross-validated; do not use the 8-pathway composite."
+    },
+    {
+      "id": "W2-04",
+      "worker": "W2_benchmark",
+      "severity": "high",
+      "claim": "TIDE/IMPRES/TMEscore AUCs (0.380/0.587/0.619) + p (0.007/0.066/0.081)",
+      "recomputed": "NOT independently reproducible here (no committed per-sample signature scores; faithful reimplementation needs exact published gene sets + preprocessing).",
+      "verdict": "UNVERIFIABLE",
+      "verdict_detail": "UNVERIFIABLE",
+      "evidence_tier": "Tier 4 (not reproducible here)",
+      "note": "Table3 p-values: TMEscore 0.081 and IMPRES 0.066 are >0.05 => 'beats signatures' is NUMERICAL, not statistically significant, even taking the paper's own numbers at face value.",
+      "corrective_action": "Downgrade signature comparison to 'numerically higher; differences not statistically significant (paper's Table 3: TMEscore p=0.081, IMPRES p=0.066)'."
+    },
+    {
+      "id": "W2-05",
+      "worker": "W2_benchmark",
+      "severity": "high",
+      "claim": "'Beats published signatures' headline framing",
+      "recomputed": "By the paper's OWN Table 3, only PD-L1 (p=0.009) and TIDE (p=0.007) differ significantly; TIDE is WORSE (0.380). TMEscore/IMPRES differences NOT significant.",
+      "verdict": "OVERSTATED",
+      "verdict_detail": "OVERSTATED",
+      "evidence_tier": "Tier 3 (paper's own stats)",
+      "note": "",
+      "corrective_action": "Reword 'beats published signatures' -> 'performs comparably to / numerically above published signatures (not statistically significant except vs PD-L1/TIDE)'."
+    },
+    {
+      "id": "W3-02",
+      "worker": "W3_rigor",
+      "severity": "high",
+      "claim": "Sample adequate for a 3-pathway model",
+      "recomputed": {
+        "3_features": 7.67,
+        "8_features": 2.88,
+        "threshold": 10,
+        "verdict_3": "BELOW 10",
+        "verdict_8": "WELL BELOW 10"
+      },
+      "verdict": "OVERSTATED",
+      "verdict_detail": "OVERSTATED",
+      "evidence_tier": "Tier 1 (methodological fact)",
+      "note": "EPV=7.7 (3 feat) and 2.9 (8 feat), both < 10 => high overfitting risk; internal-validation only",
+      "corrective_action": "State EPV=7.7 (<10) and label internal-validation-only in abstract + limitations."
+    },
+    {
+      "id": "W3-03",
+      "worker": "W3_rigor",
+      "severity": "high",
+      "claim": "3 pathways objectively selected (no leakage)",
+      "recomputed": {
+        "selection_outside_CV_cv_mean (fixed top3)": 0.6762,
+        "selection_inside_CV_cv_mean (honest)": 0.6587,
+        "optimism_from_selection": 0.0175,
+        "note": "The published 3 pathways were chosen by univariate AUC on the FULL n=105 (selection outside CV). Honest nested selection (re-pick top-3 within each fold) is the leakage-free estimate. Any positive gap = optimism attributable to selection leakage."
+      },
+      "verdict": "OVERSTATED",
+      "verdict_detail": "LEAKAGE-RISK",
+      "evidence_tier": "Tier 1 (methodological fact)",
+      "note": "Selection done on full data outside CV; reported CV/optimism understate true out-of-sample error",
+      "corrective_action": "Disclose feature selection was performed outside CV; report as optimistic; recommend nested selection."
+    },
+    {
+      "id": "W3-04",
+      "worker": "W3_rigor",
+      "severity": "high",
+      "claim": "T_EFFECTOR is an interpretable predictor",
+      "recomputed": {
+        "univariate_auc": 0.6129,
+        "univariate_direction": "positive (AUC>0.5)",
+        "multivariate_coef_3pathway": -0.8931,
+        "sign_flip": true,
+        "pairwise_corr_within_3": {
+          "EXHAUSTION": {
+            "EXHAUSTION": 1.0,
+            "TIL_INFILTRATION": 0.976,
+            "T_EFFECTOR": 0.922
+          },
+          "TIL_INFILTRATION": {
+            "EXHAUSTION": 0.976,
+            "TIL_INFILTRATION": 1.0,
+            "T_EFFECTOR": 0.93
+          },
+          "T_EFFECTOR": {
+            "EXHAUSTION": 0.922,
+            "TIL_INFILTRATION": 0.93,
+            "T_EFFECTOR": 1.0
+          }
+        },
+        "note": "T_EFFECTOR has positive univariate association (AUC 0.613) but NEGATIVE multivariate coefficient. This is a classic suppressor/collinearity artifact -> the '3-pathway' model's interpretability claim ('T-effector reflects resistance') is fragile and likely a statistical artifact of small n + correlated features, not a biological finding."
+      },
+      "verdict": "OVERSTATED",
+      "verdict_detail": "ARTIFACT-LIKELY",
+      "evidence_tier": "Tier 1 (methodological fact)",
+      "note": "",
+      "corrective_action": "Add caveat: T_EFFECTOR negative multivariate coefficient despite positive univariate AUC => likely collinearity/suppressor artifact, not a resistance mechanism."
+    },
+    {
+      "id": "W3-06",
+      "worker": "W3_rigor",
+      "severity": "high",
+      "claim": "Classification of evidence",
+      "recomputed": "Internal-validation-only, discovery-stage biomarker (single cohort, small n, selection outside CV, borderline CI).",
+      "verdict": "OVERSTATED",
+      "verdict_detail": "DISCOVERY-ONLY",
+      "evidence_tier": "Tier 1 (assessment)",
+      "note": "",
+      "corrective_action": "Add explicit 'Discovery-stage / internal-validation-only; not clinically validated' statement."
+    },
+    {
+      "id": "W4-03",
+      "worker": "W4_cohorts",
+      "severity": "high",
+      "claim": "GSE206422 ovarian validation supports cross-cancer generalization",
+      "recomputed": {
+        "raw_committed": [],
+        "geo_reachable": true,
+        "suspect_labels": true
+      },
+      "verdict": "UNVERIFIABLE",
+      "verdict_detail": "UNVERIFIABLE",
+      "evidence_tier": "Tier 4 (unverifiable \u2014 data/labels)",
+      "note": "Expression matrix reachable on GEO, BUT the DCB/LCB response labels the ovarian claim depends on are flagged SUSPECT in the repo's own script and cannot be verified against the Nature Supplementary Table 1 within this environment. Recomputing an AUC on unverified labels would not constitute validation.",
+      "corrective_action": "Mark ovarian GSE206422 as UNVERIFIABLE (labels flagged suspect in-repo; not reproducible offline); present as hypothesis-generating."
+    },
+    {
+      "id": "W4-04",
+      "worker": "W4_cohorts",
+      "severity": "high",
+      "claim": "Ovarian result should be presented as validated",
+      "recomputed": "Labels unverifiable offline + flagged suspect in-repo => must be DISCOVERY-ONLY / hypothesis-generating.",
+      "verdict": "OVERSTATED",
+      "verdict_detail": "OVERSTATED",
+      "evidence_tier": "Tier 4 (unverifiable)",
+      "note": "",
+      "corrective_action": "Reword ovarian as exploratory/cross-cancer hypothesis, not validation."
+    },
+    {
+      "id": "W5-01",
+      "worker": "W5_consistency",
+      "severity": "high",
+      "claim": "Consistent headline AUC across package",
+      "recomputed": {
+        "0.711": [
+          "FIGURES_LEGENDS.md",
+          "MANUSCRIPT_DRAFT.md",
+          "TABLES_LEGENDS.md"
+        ],
+        "0.699": [
+          "FIGURES_LEGENDS.md",
+          "MANUSCRIPT_DRAFT.md",
+          "POSTER_PLAN.md",
+          "STRATEGY.md",
+          "TABLES_LEGENDS.md"
+        ],
+        "0.780": [
+          "MANUSCRIPT_DRAFT.md",
+          "README.md",
+          "STRATEGY.md",
+          "transcript.mdc"
+        ],
+        "0.822": []
+      },
+      "verdict": "DISCREPANT",
+      "verdict_detail": "DISCREPANT",
+      "evidence_tier": "Tier 2/3 (see note)",
+      "note": "0.711 (apparent), 0.699 (bootstrap-corrected), 0.780 (8-pathway training) all appear as 'the' AUC in different places -> reader confusion; must standardize to CV/corrected as primary.",
+      "corrective_action": "Standardize headline AUC: lead with cross-validated/optimism-corrected (~0.69-0.70); label 0.711 apparent, 0.780 as 8-pathway training."
+    },
+    {
+      "id": "W5-02",
+      "worker": "W5_consistency",
+      "severity": "high",
+      "claim": "Improvement vs PD-L1 stated consistently",
+      "recomputed": {
+        "22": [
+          "README.md"
+        ],
+        "25": [
+          "MANUSCRIPT_DRAFT.md"
+        ]
+      },
+      "verdict": "DISCREPANT",
+      "verdict_detail": "DISCREPANT",
+      "evidence_tier": "Tier 2/3 (see note)",
+      "note": "+22% and +25% both appear -> internal inconsistency (W2 confirms +25%=0.140/0.571; +22% unreconciled).",
+      "corrective_action": "Reconcile improvement % to one number with explicit AUC base."
+    },
+    {
+      "id": "W5-05",
+      "worker": "W5_consistency",
+      "severity": "high",
+      "claim": "CI reported consistently",
+      "recomputed": [
+        "0.043-0.217",
+        "0.15-0.85",
+        "0.241-0.521",
+        "0.294-0.552",
+        "0.339-0.597",
+        "0.425-0.683",
+        "0.427-0.685",
+        "0.431-0.689",
+        "0.435-0.704",
+        "0.443-0.701",
+        "0.460-0.742",
+        "0.461-0.712",
+        "0.478-0.753",
+        "0.484-0.742",
+        "0.503-0.872",
+        "0.545-0.803",
+        "0.55-0.60",
+        "0.55-0.65",
+        "0.550-0.808",
+        "0.60-0.65",
+        "0.60-0.70",
+        "0.65-0.75",
+        "0.65-0.80",
+        "0.69-0.83",
+        "0.70-0.83",
+        "0.73-0.80",
+        "0.75-0.80"
+      ],
+      "verdict": "DISCREPANT",
+      "verdict_detail": "DISCREPANT",
+      "evidence_tier": "Tier 2/3 (see note)",
+      "note": "0.503-0.872 (bootstrap-corrected, README) vs 0.569-0.837 (apparent, Table2) used interchangeably; the wider bootstrap CI (lower bound ~0.50) is the honest one.",
+      "corrective_action": "Use one CI convention; the bootstrap-corrected CI (wider) is the honest one to report."
+    },
+    {
+      "id": "W1-02",
+      "worker": "W1_headline",
+      "severity": "medium",
+      "claim": "Apparent AUC = 0.711",
+      "recomputed": 0.7142,
+      "verdict": "SUPPORTED",
+      "verdict_detail": "SUPPORTED",
+      "evidence_tier": "Tier 2 (reproduced)",
+      "note": "seed/scaling-dependent; tol 0.03",
+      "corrective_action": "\u2014"
+    },
+    {
+      "id": "W1-03",
+      "worker": "W1_headline",
+      "severity": "medium",
+      "claim": "Bootstrap-corrected AUC = 0.699",
+      "recomputed": 0.6935,
+      "verdict": "SUPPORTED",
+      "verdict_detail": "SUPPORTED",
+      "evidence_tier": "Tier 2 (reproduced)",
+      "note": "",
+      "corrective_action": "\u2014"
+    },
+    {
+      "id": "W1-07",
+      "worker": "W1_headline",
+      "severity": "medium",
+      "claim": "Sensitivity 100% / Specificity 68.8%",
+      "recomputed": {
+        "sens": 0.5652,
+        "spec": 0.9024,
+        "threshold_rule": "Youden-optimal (threshold choice affects both)"
+      },
+      "verdict": "CONTEXT",
+      "verdict_detail": "THRESHOLD-DEPENDENT",
+      "evidence_tier": "Tier 2/3 (see note)",
+      "note": "",
+      "corrective_action": "State sensitivity/specificity are threshold-dependent; 100%/68.8% is one operating point, not intrinsic."
+    },
+    {
+      "id": "W3-01",
+      "worker": "W3_rigor",
+      "severity": "medium",
+      "claim": "Overfitting = 10.4% (0.780 -> 0.699)",
+      "recomputed": {
+        "3pathway": {
+          "apparent": 0.7142,
+          "cv_mean": 0.6762,
+          "gap": 0.038
+        },
+        "8pathway": {
+          "apparent": 0.78,
+          "cv_mean": 0.6935,
+          "gap": 0.0864
+        },
+        "note": "Claimed 0.780->0.699 = 0.081 gap (10.4%). Larger gap for 8-pathway confirms complexity-driven overfitting."
+      },
+      "verdict": "SUPPORTED",
+      "verdict_detail": "SUPPORTED (directionally)",
+      "evidence_tier": "Tier 2/3 (see note)",
+      "note": "",
+      "corrective_action": "\u2014"
+    },
+    {
+      "id": "W3-05",
+      "worker": "W3_rigor",
+      "severity": "medium",
+      "claim": "Primary metric should be out-of-sample",
+      "recomputed": {
+        "apparent_0711": 0.7142,
+        "cv_mean": 0.6762,
+        "committed_folds_mean": 0.69
+      },
+      "verdict": "OVERSTATED",
+      "verdict_detail": "FRAMING",
+      "evidence_tier": "Tier 2/3 (see note)",
+      "note": "Headline should lead with CV/optimism-corrected (~0.69-0.70), not apparent 0.711",
+      "corrective_action": "\u2014"
+    },
+    {
+      "id": "W5-03",
+      "worker": "W5_consistency",
+      "severity": "medium",
+      "claim": "Model consistently described as 3-pathway",
+      "recomputed": {
+        "2": [
+          "MANUSCRIPT_DRAFT.md",
+          "POSTER_CONTENT.md"
+        ],
+        "3": [
+          "FIGURES_LEGENDS.md",
+          "MANUSCRIPT_DRAFT.md",
+          "OVARIAN_EXPANSION.md",
+          "POSTER_PLAN.md",
+          "README.md",
+          "STRATEGY.md",
+          "TABLES_LEGENDS.md"
+        ],
+        "8": [
+          "MANUSCRIPT_DRAFT.md",
+          "README.md",
+          "STRATEGY.md"
+        ]
+      },
+      "verdict": "DISCREPANT",
+      "verdict_detail": "RESIDUE",
+      "evidence_tier": "Tier 2/3 (see note)",
+      "note": "README 'Next Steps' itself says to correct all 8->3 pathway claims; 2-pathway title variant also exists. Residual 8-pathway/2-pathway language remains.",
+      "corrective_action": "Complete the 8->3 pathway cleanup (README Next Steps item); remove 2-pathway title residue."
+    },
+    {
+      "id": "W5-04",
+      "worker": "W5_consistency",
+      "severity": "medium",
+      "claim": "Sample size stated consistently",
+      "recomputed": {
+        "n_values_seen": [
+          "105",
+          "200",
+          "23",
+          "27",
+          "32",
+          "36",
+          "46",
+          "52",
+          "73",
+          "79",
+          "82"
+        ]
+      },
+      "verdict": "CONTEXT",
+      "verdict_detail": "CHECK",
+      "evidence_tier": "Tier 2/3 (see note)",
+      "note": "Confirm 105 (training) vs 51 (bootstrap n) vs 29/32 (GSE227666) are each used in the correct context and not conflated.",
+      "corrective_action": "\u2014"
+    },
+    {
+      "id": "W4-02",
+      "worker": "W4_cohorts",
+      "severity": "low",
+      "claim": "Paper reports n=32 / AUC 0.838 (Fig 3B)",
+      "recomputed": "Different completeness filter; not the locked receipt metric. Documented, not a discrepancy.",
+      "verdict": "CONTEXT",
+      "verdict_detail": "CONTEXT",
+      "evidence_tier": "Tier 2/3 (see note)",
+      "note": "",
+      "corrective_action": "\u2014"
+    },
+    {
+      "id": "W1-01",
+      "worker": "W1_headline",
+      "severity": "info",
+      "claim": "n=105 (23 responders / 82 non-responders)",
+      "recomputed": "n=105 (23R/82NR)",
+      "verdict": "SUPPORTED",
+      "verdict_detail": "SUPPORTED",
+      "evidence_tier": "Tier 2 (reproduced from source)",
+      "note": "",
+      "corrective_action": "\u2014"
+    },
+    {
+      "id": "W1-05",
+      "worker": "W1_headline",
+      "severity": "info",
+      "claim": "CV folds mean (committed) = 0.690",
+      "recomputed": {
+        "committed_mean": 0.6901,
+        "our_cv_mean": 0.6762,
+        "our_oof_pooled": 0.6866
+      },
+      "verdict": "SUPPORTED",
+      "verdict_detail": "SUPPORTED",
+      "evidence_tier": "Tier 2 (reproduced)",
+      "note": "committed folds mean=0.690; CV < apparent as expected",
+      "corrective_action": "\u2014"
+    },
+    {
+      "id": "W2-01",
+      "worker": "W2_benchmark",
+      "severity": "info",
+      "claim": "PD-L1 (CD274) AUC = 0.571",
+      "recomputed": 0.5721,
+      "verdict": "SUPPORTED",
+      "verdict_detail": "SUPPORTED",
+      "evidence_tier": "Tier 2 (reproduced)",
+      "note": "",
+      "corrective_action": "\u2014"
+    },
+    {
+      "id": "W4-01",
+      "worker": "W4_cohorts",
+      "severity": "info",
+      "claim": "GSE227666 LOO-CV AUC = 0.822 (n=29 NACT+P complete)",
+      "recomputed": {
+        "auc": 0.822115,
+        "n": 29,
+        "verifier": "n=29\nloo_cv_auc=0.822115\nlocked_backend=0.822000"
+      },
+      "verdict": "SUPPORTED",
+      "verdict_detail": "SUPPORTED",
+      "evidence_tier": "Tier 2 (independently reproduced, external cohort, exact match)",
+      "note": "Fully reproduced offline from committed receipt.",
+      "corrective_action": "\u2014"
+    }
+  ],
+  "clinical_utility_framing": {
+    "intended_use": "RESEARCH USE ONLY exploratory biomarker to estimate likelihood of response/benefit to anti-PD-1 monotherapy (nivolumab/pembrolizumab) from pre-treatment bulk tumor RNA-seq. Primary evidence is in metastatic melanoma; cross-cancer use (ovarian) is hypothesis-generating only.",
+    "target_population": "Patients with advanced/metastatic melanoma being considered for anti-PD-1 therapy and with available pre-treatment tumor RNA-seq. NOT established for other tumor types, combination IO, or treatment monitoring.",
+    "comparator_standard_of_care": "Current clinical practice uses PD-L1 IHC (and TMB/MSI in some settings). In this dataset PD-L1 (CD274) transcript AUC ~0.57; the model's apparent AUC ~0.71 / cross-validated ~0.69. Any 'improvement over PD-L1' is modest, of borderline statistical significance, and not equivalent to clinical superiority vs guideline PD-L1 IHC.",
+    "current_evidence_tier": "TIER 3 - internal-validation-only, single primary cohort (n=105, 23 events), feature selection performed outside CV, borderline 95% CI (lower bound ~0.50). Discovery / analytically-exploratory. NOT clinically validated.",
+    "prospective_evidence_roadmap_to_true_validation": [
+      "1. Independent EXTERNAL validation cohort(s) with pre-specified, locked model + threshold (no re-fitting).",
+      "2. Pre-registered analysis plan; feature selection frozen before validation.",
+      "3. Calibration assessment (calibration curve, Brier score), not just discrimination (AUC).",
+      "4. Clinical-utility analysis: decision-curve analysis / net benefit vs PD-L1 IHC standard of care.",
+      "5. Adequate events-per-variable (>=10) and sample size justified by a formal power calculation.",
+      "6. Head-to-head vs guideline biomarkers (PD-L1 IHC, TMB, MSI) on the SAME external samples.",
+      "7. Ultimately a prospective/interventional biomarker-stratified study for true clinical validation + any regulatory (e.g., companion-diagnostic) pathway."
+    ],
+    "RUO_statement": "This validation increases evidentiary rigor and defensibility; it does NOT constitute clinical validation. No regulatory clearance is implied. Findings are Research Use Only."
+  },
+  "disclaimer": "Validation = independent reproduction from cited sources / re-run from committed data. It is NOT clinical validation. True clinical validation requires prospective, externally validated, appropriately powered studies with pre-specified thresholds. Everything RUO; no regulatory clearance implied; no data fabricated.",
+  "key_finding": "PIVOTAL: the package contains TWO divergent models. The MANUSCRIPT_DRAFT (2-pathway EXH+TIL, nested-CV AUC ~0.60) is the honest, current, multicollinearity-corrected model and SUPERSEDES the 3-pathway model in README/tables/STRATEGY (apparent AUC 0.711). VIF reproduced exactly (EXH 21.7, TIL 24.2), confirming why T_EFFECTOR was dropped. The manuscript is already scientifically honest (mandatory external validation, premature-clinical-utility caveats); the main corrective need is reconciling the deprecated 3-pathway artifacts and residual overstatements."
+}

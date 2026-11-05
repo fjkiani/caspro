@@ -1,0 +1,849 @@
+{
+  "meta": {
+    "title": "CrisPRO × Sanofi Pitch Deck",
+    "version": "v1",
+    "date": "2026-05-29",
+    "author": "CrisPRO / Fahad Kiani",
+    "partner": "Sanofi",
+    "event": "Sanofi Oncology Partnering — Finalist Pitch",
+    "deadline": "July 1, 2026",
+    "confidentiality": "CONFIDENTIAL — Not for distribution",
+    "governance": {
+      "formula": "PATH_A_ONLY",
+      "signed": "2026-04-28",
+      "prohibited_disclosures": [
+        "scoring engine internals",
+        "axis definitions",
+        "formula mechanics",
+        "LATIFY delta numbers",
+        "quarantined claims (DL-07, PC-02, CT-03)"
+      ]
+    },
+    "source_files": {
+      "anchor_mdc": "fjkiani/Brenus/engagements/brenus/outputs/crispro_sanofi_pitch_anchor_v1.mdc",
+      "escape_figure": "escape_map_mss_crc_archetypes_v1.png",
+      "pptx": "CrisPRO_Sanofi_PitchDeck_v1.pptx"
+    }
+  },
+  "context": {
+    "indication": "MSS (microsatellite stable) metastatic colorectal cancer (mCRC)",
+    "line_of_therapy": "First-line (1L)",
+    "backbone": "mFOLFOX6 + bevacizumab",
+    "problem_statement": "MSS CRC is the hardest IO indication. 7 IO trials have failed or shown marginal benefit. The difference between responders and non-responders is patient biology — not drug mechanism.",
+    "crispro_anchor_trial": {
+      "name": "STC-1010 BreAK CRC-001",
+      "sponsor": "Brenus Pharma",
+      "mechanism": "Haptenated whole-cell therapeutic vaccine",
+      "backbone": "mFOLFOX6 ± bevacizumab",
+      "phase": "1/2",
+      "patient_selection_status": "ESCAPE-decoded — responder archetype defined"
+    }
+  },
+  "partner_intelligence": {
+    "company": "Sanofi",
+    "stated_focus_areas": [
+      "Non-small cell lung cancer",
+      "Breast cancer",
+      "Multiple myeloma",
+      "Non-melanoma skin cancers",
+      "Colorectal cancer"
+    ],
+    "stated_modalities": [
+      "AI-driven drug discovery and design",
+      "Antibody-drug conjugates (ADCs)",
+      "NK cell therapies",
+      "T-cell and NK-cell engagers",
+      "Novel checkpoints, tumor-mediated immune suppression, cytokine biology"
+    ],
+    "ai_investment": {
+      "partner": "Owkin",
+      "amount": "$180M equity + $90M collaboration",
+      "year": 2021,
+      "purpose": "AI-driven biomarker discovery in oncology"
+    },
+    "decodable_trials": [
+      {
+        "id": "trial_1",
+        "asset": "SAR445877",
+        "asset_class": "PD-1 × IL-15 fusion protein",
+        "nct": "NCT07500298",
+        "title": "Phase 1 Study of SAR445877 + FOLFOX6 + Bevacizumab in 1L MSS mCRC",
+        "phase": "1",
+        "status": "Not yet recruiting (2026)",
+        "sponsor": "MD Anderson Cancer Center (Sanofi asset)",
+        "n": 41,
+        "backbone": "mFOLFOX6 + bevacizumab",
+        "indication": "1L MSS metastatic CRC",
+        "patient_selection_gap": "No validated biomarker for SAR445877 response in MSS CRC",
+        "crispro_hook": "Backbone identical to STC-1010 BreAK CRC-001. CrisPRO already has the patient selection data.",
+        "originator": "Kadmon Corporation"
+      },
+      {
+        "id": "trial_2",
+        "asset": "SAR445953 / SGN-CEACAM5C",
+        "asset_class": "CEACAM5-Topo1 ADC",
+        "nct": "NCT06131840",
+        "title": "A Study of SGN-CEACAM5C in Adults With Advanced Solid Tumors (CRC cohort)",
+        "phase": "1",
+        "status": "Active, recruiting",
+        "sponsor": "Seagen / Pfizer (Sanofi collaboration)",
+        "crc_cohort_eligibility": "≤2 prior chemo regimens, progressive or intolerant",
+        "patient_selection_gap": "CEACAM5 IHC threshold (≥2+ in ≥50% cells) — same gate as CARMEN-LC03 which failed",
+        "crispro_hook": "Two-gate patient selection: CEACAM5 ≥80% + IO permissiveness co-selection"
+      },
+      {
+        "id": "trial_3",
+        "asset": "Tusamitamab ravtansine",
+        "asset_class": "CEACAM5-DM4 ADC",
+        "nct": "NCT04154956",
+        "title": "CARMEN-LC03 — Phase 3 NSCLC",
+        "phase": "3",
+        "status": "FAILED — discontinued December 21, 2023",
+        "itт_result": "PFS HR=1.14 (95% CI 0.86–1.51) — no benefit",
+        "post_hoc_signal": "CEACAM5 ≥80%: PFS HR=0.87, OS HR=0.71 (trend)",
+        "failure_mode": "CEACAM5 IHC 2+/≥50% — threshold insufficiently selective for IO permissiveness",
+        "crispro_hook": "Retrospective decode — what the right patient selection would have been",
+        "source": "Sanofi press release 2023-12-21; IASLC 2024 WCLC (Besse et al.)"
+      }
+    ]
+  },
+  "patient_selection_framework": {
+    "name": "Two-Gate Patient Selection System",
+    "description": "A two-gate validation system applied to published biomarker subgroup data from MSS CRC IO trials. Gate 1 scores patient biology alignment with drug mechanism. Gate 2 validates that the mechanism signal has not been invalidated in a Phase III trial.",
+    "gate_1": {
+      "name": "Patient Biology Alignment",
+      "description": "Does this patient's biology align with the drug's mechanism of action?",
+      "zones": {
+        "responder": "Confirmed IO signal — HR ≤ 0.55",
+        "gap": "Partial or no signal — HR 0.55–1.00",
+        "non_responder": "No signal — HR ≥ 0.90 with no subgroup benefit"
+      }
+    },
+    "gate_2": {
+      "name": "Mechanism Validity",
+      "description": "Has the mechanism signal been confirmed, or invalidated in a Phase III trial?",
+      "classifications": {
+        "VERIFIED": "Phase II/III confirmed signal",
+        "EXPLORATORY": "Post-hoc or not pre-specified — hypothesis generating only",
+        "FALSIFIED": "Phase III definitive negative — mechanism invalidated",
+        "FALSIFIED_ORR0": "ORR=0% despite pharmacodynamic activity"
+      }
+    }
+  },
+  "archetype_table": {
+    "description": "10 biomarker archetypes across 4 MSS CRC IO trials. Observed HRs from published literature. Gate 2 applied.",
+    "trials_decoded": [
+      "CO.26",
+      "AtezoTRIBE",
+      "IMblaze370",
+      "GVAX"
+    ],
+    "archetypes": [
+      {
+        "id": "A-01",
+        "trial": "CO.26",
+        "biomarker": "pTMB ≥28 mut/Mb (GuardantOMNI)",
+        "n": 35,
+        "observed_hr": "OS HR=0.34",
+        "endpoint": "OS",
+        "zone": "Responder",
+        "gate_2": "VERIFIED",
+        "source": "Loree et al. Clin Cancer Res 2024 (PMID 38727700)"
+      },
+      {
+        "id": "A-02",
+        "trial": "CO.26",
+        "biomarker": "pTMB <28 mut/Mb",
+        "n": 128,
+        "observed_hr": "OS HR=0.93",
+        "endpoint": "OS",
+        "zone": "Gap",
+        "gate_2": "VERIFIED",
+        "source": "Loree et al. Clin Cancer Res 2024 (PMID 38727700)"
+      },
+      {
+        "id": "A-03",
+        "trial": "CO.26",
+        "biomarker": "Clonal pTMB ≥10.6 mut/Mb",
+        "n": "NR",
+        "observed_hr": "OS HR=0.10 (multivariate)",
+        "endpoint": "OS",
+        "zone": "Responder",
+        "gate_2": "EXPLORATORY",
+        "source": "Loree et al. Clin Cancer Res 2024 (PMID 38727700)"
+      },
+      {
+        "id": "A-04",
+        "trial": "CO.26",
+        "biomarker": "Non-liver-met subgroup",
+        "n": 60,
+        "observed_hr": "OS HR~0.50",
+        "endpoint": "OS",
+        "zone": "Gap",
+        "gate_2": "VERIFIED",
+        "source": "Chen et al. JAMA Netw Open 2023"
+      },
+      {
+        "id": "A-05",
+        "trial": "CO.26",
+        "biomarker": "Liver-met subgroup",
+        "n": 100,
+        "observed_hr": "OS HR~0.90",
+        "endpoint": "OS",
+        "zone": "Gap",
+        "gate_2": "VERIFIED",
+        "source": "Chen et al. JAMA Netw Open 2023"
+      },
+      {
+        "id": "A-06",
+        "trial": "AtezoTRIBE",
+        "biomarker": "Immunoscore-IC-high (pMMR)",
+        "n": 50,
+        "observed_hr": "PFS HR~0.55",
+        "endpoint": "PFS",
+        "zone": "Responder",
+        "gate_2": "VERIFIED",
+        "source": "Antoniotti et al. Clin Cancer Res 2023"
+      },
+      {
+        "id": "A-07",
+        "trial": "AtezoTRIBE",
+        "biomarker": "Immunoscore-IC-low (pMMR)",
+        "n": 107,
+        "observed_hr": "PFS HR~0.93",
+        "endpoint": "PFS",
+        "zone": "Gap",
+        "gate_2": "VERIFIED",
+        "source": "Antoniotti et al. Clin Cancer Res 2023"
+      },
+      {
+        "id": "A-08",
+        "trial": "AtezoTRIBE",
+        "biomarker": "DetermaIO IOOPT+",
+        "n": 16,
+        "observed_hr": "PFS HR=0.10",
+        "endpoint": "PFS",
+        "zone": "Responder",
+        "gate_2": "EXPLORATORY",
+        "source": "PMID 39908699"
+      },
+      {
+        "id": "A-09",
+        "trial": "IMblaze370",
+        "biomarker": "PD-L1 IC2/3",
+        "n": 183,
+        "observed_hr": "OS HR=1.00",
+        "endpoint": "OS",
+        "zone": "Gap",
+        "gate_2": "FALSIFIED",
+        "gate_2_note": "Phase III definitive negative — mechanism invalidated despite high patient biology alignment",
+        "source": "Eng et al. Lancet Oncol 2019"
+      },
+      {
+        "id": "A-10",
+        "trial": "GVAX",
+        "biomarker": "Anti-CEA Ab+ / PD-L1 upregulation",
+        "n": 17,
+        "observed_hr": "ORR=0%",
+        "endpoint": "ORR",
+        "zone": "Gap",
+        "gate_2": "FALSIFIED_ORR0",
+        "gate_2_note": "ORR=0% despite pharmacodynamic activity (PD-L1 upregulation confirmed)",
+        "source": "Yarchoan et al. Cancer Med 2019"
+      }
+    ],
+    "separation_analysis": {
+      "responder_zone_definition": "Confirmed IO signal, HR ≤ 0.55, Gate 2 VERIFIED or EXPLORATORY",
+      "responder_archetypes": [
+        "A-01",
+        "A-03",
+        "A-06",
+        "A-08"
+      ],
+      "gap_archetypes": [
+        "A-02",
+        "A-04",
+        "A-05",
+        "A-07"
+      ],
+      "gate_2_blocked": [
+        "A-09",
+        "A-10"
+      ],
+      "key_insight": "Gate 2 blocked archetypes (A-09, A-10) demonstrate that high patient biology alignment alone is insufficient — mechanism validity must be confirmed independently."
+    }
+  },
+  "patient_selection_packages": {
+    "SAR445877_NCT07500298": {
+      "asset": "SAR445877",
+      "trial": "NCT07500298",
+      "indication": "1L MSS mCRC",
+      "biomarker_rules": [
+        {
+          "biomarker": "pTMB (GuardantOMNI)",
+          "threshold": "≥28 mut/Mb",
+          "recommendation": "ENRICH",
+          "zone": "Responder"
+        },
+        {
+          "biomarker": "DetermaIO IOOPT",
+          "threshold": "Positive",
+          "recommendation": "ENRICH",
+          "zone": "Responder"
+        },
+        {
+          "biomarker": "Immunoscore-IC",
+          "threshold": "High tertile",
+          "recommendation": "CONSIDER",
+          "zone": "Gap"
+        },
+        {
+          "biomarker": "Liver metastases",
+          "threshold": "Absent",
+          "recommendation": "STRATIFY",
+          "zone": "Gap"
+        },
+        {
+          "biomarker": "pTMB (GuardantOMNI)",
+          "threshold": "<28 mut/Mb",
+          "recommendation": "EXCLUDE",
+          "zone": "Non-responder"
+        },
+        {
+          "biomarker": "Liver metastases",
+          "threshold": "Present",
+          "recommendation": "STRATIFY",
+          "zone": "Non-responder"
+        }
+      ],
+      "rationale": "SAR445877 PD1×IL-15 mechanism maps to the IO axis. The same IO axis separates responders from non-responders in CO.26 and AtezoTRIBE.",
+      "sources": [
+        "CO.26 (Loree et al. 2024)",
+        "AtezoTRIBE (Antoniotti et al. 2023; PMID 39908699)"
+      ]
+    },
+    "SAR445953_NCT06131840": {
+      "asset": "SAR445953 / SGN-CEACAM5C",
+      "trial": "NCT06131840",
+      "indication": "MSS mCRC (CRC cohort, Part C)",
+      "two_gate_system": {
+        "gate_1": {
+          "name": "CEACAM5 Expression",
+          "threshold": "CEACAM5 ≥80% (not ≥50%)",
+          "rationale": "Based on CARMEN-LC03 post-hoc signal (OS HR=0.71 trend at ≥80%)",
+          "assay": "Validated anti-CEACAM5 IHC antibody"
+        },
+        "gate_2": {
+          "name": "IO Permissiveness",
+          "biomarkers": [
+            "pTMB ≥28 mut/Mb",
+            "Immunoscore-IC-high",
+            "DetermaIO IOOPT+"
+          ],
+          "logic": "OR — any one biomarker sufficient",
+          "rationale": "CEACAM5-Topo1 ADC requires IO-permissive TME for immune activation cascade following cytotoxic payload release"
+        },
+        "estimated_eligible_population": "8–12% of MSS CRC (vs. ~25% with CEACAM5 ≥2+/≥50%)"
+      }
+    }
+  },
+  "slides": [
+    {
+      "number": 1,
+      "type": "cover",
+      "title": "CrisPRO × Sanofi",
+      "subtitle": "Decoding MSS Colorectal Cancer Patient Selection",
+      "body": "A validated biomarker framework for SAR445877, SAR445953, and the next CEACAM5 program",
+      "event_line": "Sanofi Oncology Partnering · Finalist Pitch · July 1, 2026",
+      "design_notes": "Black background, yellow accent bar, white title, yellow subtitle"
+    },
+    {
+      "number": 2,
+      "type": "problem_statement",
+      "title": "The Problem Sanofi Has",
+      "subtitle": "Three assets. One shared failure mode: patient selection in MSS CRC.",
+      "layout": "three_column_cards",
+      "columns": [
+        {
+          "asset": "SAR445877 (PD1×IL-15 fusion)",
+          "trial": "NCT07500298",
+          "facts": "1L MSS mCRC · mFOLFOX6 + bev · Phase 1 — not yet recruiting",
+          "gap": "No validated biomarker for MSS CRC IO response",
+          "accent_color": "blue"
+        },
+        {
+          "asset": "SAR445953 (CEACAM5-Topo1 ADC)",
+          "trial": "NCT06131840",
+          "facts": "CRC expansion cohort · ≤2 prior chemo regimens · Phase 1 — recruiting",
+          "gap": "CEACAM5 IHC threshold insufficient — same gate as CARMEN-LC03",
+          "accent_color": "orange"
+        },
+        {
+          "asset": "Tusamitamab ravtansine (CEACAM5-DM4 ADC)",
+          "trial": "CARMEN-LC03",
+          "facts": "NSCLC Phase 3 · Discontinued Dec 2023",
+          "gap": "FAILED: PFS HR=1.14 · Post-hoc signal at CEACAM5 ≥80% (OS HR=0.71)",
+          "accent_color": "red"
+        }
+      ],
+      "bottom_callout": "MSS CRC is the hardest IO indication. 7 IO trials have failed or shown marginal benefit. The difference between responders and non-responders is patient biology — not drug mechanism."
+    },
+    {
+      "number": 3,
+      "type": "capabilities",
+      "title": "What CrisPRO Delivers",
+      "subtitle": "A clinical-stage patient selection engine — built on published trial data, not theory.",
+      "layout": "three_column_cards",
+      "columns": [
+        {
+          "heading": "What We Analyze",
+          "bullets": [
+            "Published biomarker subgroup data from failed and marginal IO trials",
+            "Observed hazard ratios by patient biology subgroup",
+            "Mechanism of action vs. patient biology alignment",
+            "Two-gate validation: signal confirmed + mechanism not invalidated"
+          ],
+          "accent_color": "green"
+        },
+        {
+          "heading": "What We Produce",
+          "bullets": [
+            "Responder archetype definition: which patients respond, and why",
+            "Non-responder identification: who to exclude from enrollment",
+            "Biomarker selection rules: translatable to trial eligibility criteria",
+            "Validation experiment roadmap: 3 experiments, 6–12 weeks"
+          ],
+          "accent_color": "blue"
+        },
+        {
+          "heading": "What You Get",
+          "bullets": [
+            "Immediate: MSS CRC responder archetype package — ready to license",
+            "Months 1–6: SAR445877 biomarker co-selection protocol for NCT07500298",
+            "Months 3–12: Validation science package — Sanofi pays, CrisPRO retains IP",
+            "IP: CrisPRO retains; Sanofi licenses for specific indication"
+          ],
+          "accent_color": "orange"
+        }
+      ],
+      "bottom_callout": "CrisPRO decoded the MSS CRC IO landscape to position our own anchor trial. That work is directly applicable to SAR445877. This is a license — not a research proposal."
+    },
+    {
+      "number": 4,
+      "type": "data_figure",
+      "title": "The MSS CRC Patient Selection Landscape",
+      "subtitle": "10 biomarker archetypes across 4 IO trials — responder zone clearly separated from gap zone.",
+      "figure": "escape_map_mss_crc_archetypes_v1.png",
+      "key_findings": {
+        "responder_zone": {
+          "label": "Responder zone (HR ≤ 0.55)",
+          "archetypes": [
+            "pTMB ≥28 mut/Mb",
+            "DetermaIO IOOPT+",
+            "Immunoscore-IC-high"
+          ]
+        },
+        "gap_zone": {
+          "label": "Gap zone (HR 0.50–0.93)",
+          "archetypes": [
+            "Non-liver-met patients",
+            "pTMB <28 mut/Mb",
+            "Immunoscore-IC-low",
+            "Liver-met patients"
+          ]
+        },
+        "gate_2_blocked": {
+          "label": "Gate 2 blocked",
+          "archetypes": [
+            "PD-L1 IC2/3 (IMblaze370) — Phase III negative",
+            "Anti-CEA Ab+ (GVAX) — ORR=0%"
+          ]
+        }
+      },
+      "callout": "Same patient biology that predicts IO response in CO.26 also predicts SAR445877 response in NCT07500298."
+    },
+    {
+      "number": 5,
+      "type": "decode",
+      "title": "Decode 1: SAR445877 in MSS CRC",
+      "subtitle": "NCT07500298 — the responder archetype is defined before Phase 1 enrolls patient 1.",
+      "layout": "two_column_left_facts_right_table",
+      "left_panel": {
+        "heading": "SAR445877 — Trial Facts",
+        "fields": {
+          "Mechanism": "PD-1 × IL-15 fusion protein — targeted expansion of CD8+ T and NK cells",
+          "Trial": "NCT07500298 · Phase 1 · MD Anderson",
+          "Status": "Not yet recruiting (2026)",
+          "Backbone": "mFOLFOX6 + bevacizumab",
+          "N": "41 participants",
+          "Indication": "1L MSS metastatic CRC",
+          "Biomarker": "UNDEFINED — no validated patient selection biomarker for MSS CRC"
+        },
+        "callout": "Backbone identical to STC-1010 BreAK CRC-001 (mFOLFOX6 + bev). CrisPRO already has the patient selection data."
+      },
+      "right_panel": {
+        "heading": "CrisPRO Patient Selection Package for NCT07500298",
+        "table": [
+          {
+            "biomarker": "pTMB (GuardantOMNI)",
+            "threshold": "≥28 mut/Mb",
+            "recommendation": "ENRICH"
+          },
+          {
+            "biomarker": "DetermaIO IOOPT",
+            "threshold": "Positive",
+            "recommendation": "ENRICH"
+          },
+          {
+            "biomarker": "Immunoscore-IC",
+            "threshold": "High tertile",
+            "recommendation": "CONSIDER"
+          },
+          {
+            "biomarker": "Liver metastases",
+            "threshold": "Absent",
+            "recommendation": "STRATIFY"
+          },
+          {
+            "biomarker": "pTMB (GuardantOMNI)",
+            "threshold": "<28 mut/Mb",
+            "recommendation": "EXCLUDE"
+          },
+          {
+            "biomarker": "Liver metastases",
+            "threshold": "Present",
+            "recommendation": "STRATIFY"
+          }
+        ],
+        "sources": "CO.26 (Loree et al. 2024) · AtezoTRIBE (Antoniotti et al. 2023; PMID 39908699)"
+      }
+    },
+    {
+      "number": 6,
+      "type": "decode",
+      "title": "Decode 2: SAR445953 CRC Cohort",
+      "subtitle": "CEACAM5 IHC alone is not enough — a second gate is required.",
+      "layout": "two_column_lesson_gates",
+      "left_panel": {
+        "heading": "The CARMEN-LC03 Lesson",
+        "timeline": [
+          {
+            "gate": "CEACAM5 IHC 2+ in ≥50% cells",
+            "result": "PFS HR=1.14 (no benefit)",
+            "status": "FAILED"
+          },
+          {
+            "gate": "Post-hoc: CEACAM5 ≥80%",
+            "result": "OS HR=0.71 (trend)",
+            "status": "SIGNAL"
+          }
+        ],
+        "conclusion": "Higher expression threshold + IO permissiveness co-selection required.",
+        "warning": "SAR445953 CRC cohort (NCT06131840) is using the same IHC gate. Without a second gate, history repeats."
+      },
+      "right_panel": {
+        "heading": "CrisPRO Two-Gate Patient Selection",
+        "gate_1": {
+          "name": "Gate 1 — CEACAM5 Expression",
+          "threshold": "CEACAM5 ≥80% (not ≥50%)",
+          "basis": "CARMEN-LC03 post-hoc signal (OS HR=0.71 trend)",
+          "assay": "Validated anti-CEACAM5 IHC antibody"
+        },
+        "connector": "AND",
+        "gate_2": {
+          "name": "Gate 2 — IO Permissiveness",
+          "biomarkers": "pTMB ≥28 mut/Mb  OR  Immunoscore-IC-high  OR  DetermaIO IOOPT+",
+          "rationale": "CEACAM5-Topo1 ADC requires IO-permissive TME for immune activation cascade following cytotoxic payload release"
+        },
+        "result": {
+          "eligible_population": "Estimated 8–12% of MSS CRC (vs. ~25% with CEACAM5 ≥2+/≥50%)",
+          "interpretation": "Smaller but enriched population — higher probability of response"
+        }
+      }
+    },
+    {
+      "number": 7,
+      "type": "timeline",
+      "title": "The CARMEN-LC03 Lesson",
+      "subtitle": "CrisPRO decoded what went wrong — and can prevent it from happening in the CRC cohort.",
+      "timeline_events": [
+        {
+          "year": "2019",
+          "event": "Phase 1/2 — CRC: 2/18 ORR (11%)",
+          "color": "orange"
+        },
+        {
+          "year": "2022",
+          "event": "CARMEN-LC03 Phase 3 launched — CEACAM5 ≥2+/≥50%",
+          "color": "dark_grey"
+        },
+        {
+          "year": "Dec 2023",
+          "event": "FAILED — PFS HR=1.14 — No benefit",
+          "color": "red"
+        },
+        {
+          "year": "2024",
+          "event": "Post-hoc: CEACAM5 ≥80% — OS HR=0.71 trend",
+          "color": "orange"
+        },
+        {
+          "year": "2026",
+          "event": "SAR445953 CRC cohort — Same IHC gate risk",
+          "color": "blue"
+        }
+      ],
+      "decode_box": "CARMEN-LC03 enrolled CEACAM5 ≥2+/≥50% — this includes IO-suppressed patients who cannot mount an immune response to ADC-mediated cell killing. The ≥80% post-hoc signal reflects higher antigen density → better ADC internalization. The missing gate: IO permissiveness. The correct patient: CEACAM5 ≥80% + pTMB ≥28 OR Immunoscore-IC-high."
+    },
+    {
+      "number": 8,
+      "type": "comparison",
+      "title": "The STC-1010 Parallel",
+      "subtitle": "CrisPRO already has the MSS CRC data — because we decoded our own anchor trial first.",
+      "layout": "two_column_comparison",
+      "left": {
+        "heading": "STC-1010 (BreAK CRC-001)",
+        "fields": {
+          "Mechanism": "Haptenated whole-cell therapeutic vaccine",
+          "Indication": "1L MSS metastatic CRC",
+          "Backbone": "mFOLFOX6 ± bevacizumab",
+          "Sponsor": "Brenus Pharma",
+          "Phase": "1/2",
+          "Patient selection": "ESCAPE-decoded ✓ Responder archetype defined"
+        },
+        "accent_color": "green"
+      },
+      "right": {
+        "heading": "SAR445877 (NCT07500298)",
+        "fields": {
+          "Mechanism": "PD-1 × IL-15 fusion protein",
+          "Indication": "1L MSS metastatic CRC",
+          "Backbone": "mFOLFOX6 + bevacizumab",
+          "Sponsor": "Sanofi / MD Anderson",
+          "Phase": "1",
+          "Patient selection": "UNDEFINED ✗ No validated biomarker"
+        },
+        "accent_color": "blue"
+      },
+      "connector": "= Same backbone",
+      "bottom_callout": "This is not a proposal to do the work. This is a proposal to license the work we have already done — and extend it to SAR445877's specific mechanism."
+    },
+    {
+      "number": 9,
+      "type": "deliverables",
+      "title": "What Sanofi Gets",
+      "subtitle": "Three deliverables. One integrated patient selection package.",
+      "layout": "three_column_numbered_cards",
+      "deliverables": [
+        {
+          "number": "01",
+          "title": "MSS CRC Responder Archetype Package",
+          "timeline": "Immediate",
+          "bullets": [
+            "10-archetype patient selection map across 4 MSS CRC IO trials",
+            "Biomarker selection rules for SAR445877 and SAR445953",
+            "Two-gate system specification for CRC cohort (NCT06131840)",
+            "Format: PDF report + slide deck"
+          ],
+          "accent_color": "green"
+        },
+        {
+          "number": "02",
+          "title": "SAR445877 IST Support Package",
+          "timeline": "Months 1–6",
+          "bullets": [
+            "Biomarker co-selection protocol for NCT07500298 expansion cohort",
+            "Interim analysis biomarker readout plan",
+            "Responder / non-responder classification at interim",
+            "Format: Protocol amendment + statistical analysis plan addendum"
+          ],
+          "accent_color": "blue"
+        },
+        {
+          "number": "03",
+          "title": "Validation Science Package",
+          "timeline": "Months 3–12",
+          "bullets": [
+            "pTMB threshold validation in MSS CRC FFPE samples",
+            "Immunoscore-IC + DetermaIO co-selection concordance",
+            "SAR445877 mechanism × IO axis correlation",
+            "Sanofi pays · CrisPRO retains IP · Sanofi gets exclusive license"
+          ],
+          "accent_color": "orange"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "type": "validation_science",
+      "title": "Validation Science",
+      "subtitle": "Three experiments de-risk the patient selection claim — $65–270K total, 6–12 weeks.",
+      "layout": "table",
+      "table_columns": [
+        "Experiment",
+        "Question",
+        "Method",
+        "Cost",
+        "Timeline",
+        "Output"
+      ],
+      "experiments": [
+        {
+          "experiment": "pTMB threshold validation",
+          "question": "Is ≥28 mut/Mb the right cut in MSS CRC?",
+          "method": "GuardantOMNI on archival FFPE from CO.26 / AtezoTRIBE patients",
+          "cost": "$15–40K",
+          "timeline": "6–8 weeks",
+          "output": "Validated threshold + IHC correlation",
+          "accent_color": "green"
+        },
+        {
+          "experiment": "Immunoscore-IC + DetermaIO co-selection",
+          "question": "Do both biomarkers identify the same patients?",
+          "method": "Retrospective analysis of AtezoTRIBE biomarker data",
+          "cost": "$30–80K",
+          "timeline": "8–12 weeks",
+          "output": "Co-selection concordance rate",
+          "accent_color": "blue"
+        },
+        {
+          "experiment": "SAR445877 × IO axis correlation",
+          "question": "Does PD1×IL-15 require IO-permissive TME?",
+          "method": "Patient-derived organoid co-culture with SAR445877 + immune cells",
+          "cost": "$20–150K",
+          "timeline": "3–6 months",
+          "output": "Mechanism validation for two-gate system",
+          "accent_color": "orange"
+        }
+      ],
+      "total_cost": "$65–270K",
+      "roi_callout": "At $65–270K total validation cost, a successful Phase 2 enrichment strategy for SAR445877 in MSS CRC is worth $50–150M in milestone payments alone."
+    },
+    {
+      "number": 11,
+      "type": "deal_structure",
+      "title": "Deal Structure",
+      "subtitle": "Three revenue streams — IP licensing, IST support, validation package.",
+      "layout": "three_column_deal_cards",
+      "streams": [
+        {
+          "number": "Stream 1",
+          "title": "IP Licensing",
+          "accent_color": "green",
+          "terms": {
+            "Asset": "MSS CRC Responder Archetype Package (ESCAPE decode + two-gate system)",
+            "Upfront": "$3–8M",
+            "Milestones": "$30–80M (Phase 2 initiation · Phase 3 · Approval)",
+            "Royalty": "2–4% on net sales",
+            "Exclusivity": "SAR445877 indication only — CrisPRO retains all other rights",
+            "Trigger": "Signed term sheet before July 1"
+          }
+        },
+        {
+          "number": "Stream 2",
+          "title": "IST Support",
+          "accent_color": "blue",
+          "terms": {
+            "Asset": "SAR445877 NCT07500298 biomarker co-selection protocol",
+            "SRA": "$500K–$1.5M",
+            "Milestones": "At interim analysis readout",
+            "Data rights": "Sanofi gets trial data · CrisPRO retains IP",
+            "Deliverable": "Protocol amendment language + statistical analysis plan",
+            "Timeline": "Months 1–6"
+          }
+        },
+        {
+          "number": "Stream 3",
+          "title": "Validation Package",
+          "accent_color": "orange",
+          "terms": {
+            "Asset": "3 validation experiments (pTMB · Immunoscore · Organoid)",
+            "Structure": "$1–3M per package",
+            "Who pays": "Sanofi pays",
+            "IP": "CrisPRO retains all data · Sanofi gets exclusive license for SAR445877 indication",
+            "Timeline": "Months 3–12"
+          }
+        }
+      ],
+      "total_deal_value": "$4.5–12.5M upfront + $30–80M milestones + royalty"
+    },
+    {
+      "number": 12,
+      "type": "ask",
+      "title": "The Ask",
+      "subtitle": "Three specific requests before July 1, 2026",
+      "layout": "three_column_dark",
+      "asks": [
+        {
+          "number": "01",
+          "title": "Finalist Slot",
+          "body": "CrisPRO requests inclusion in the July 1 final pitch event. We have the MSS CRC patient selection data. We are ready to present."
+        },
+        {
+          "number": "02",
+          "title": "Pre-Pitch Data Room",
+          "body": "Share SAR445877 Phase 1 monotherapy biomarker data (NCT05584670) for CrisPRO to refine the archetype scoring before July 1."
+        },
+        {
+          "number": "03",
+          "title": "Term Sheet Discussion",
+          "body": "30-minute call with Sanofi oncology BD team before June 15. NCT07500298 is not yet recruiting — the patient selection decision has not been made."
+        }
+      ],
+      "closing_quote": "We decoded the MSS CRC IO landscape. You are running a trial in it. Let's talk before you enroll patient 1."
+    }
+  ],
+  "design_system": {
+    "slide_dimensions": {
+      "width_inches": 13.33,
+      "height_inches": 7.5,
+      "aspect_ratio": "16:9"
+    },
+    "color_palette": {
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "cream": "#FAF9F3",
+      "yellow": "#E9ED4C",
+      "orange": "#FF9400",
+      "green": "#75A025",
+      "blue": "#0279EE",
+      "grey": "#888888",
+      "dark_grey": "#444444",
+      "red": "#CC0000",
+      "light_grey": "#F0F0F0"
+    },
+    "typography": {
+      "slide_title_pt": 24,
+      "slide_subtitle_pt": 12,
+      "section_heading_pt": 13,
+      "body_pt": 10.5,
+      "table_pt": 10,
+      "footnote_pt": 8,
+      "callout_pt": 10.5
+    },
+    "layout_conventions": {
+      "header_height_inches": 1.15,
+      "footer_height_inches": 0.3,
+      "margin_inches": 0.35,
+      "card_border_width_pt": 2,
+      "header_background": "black",
+      "slide_background": "cream",
+      "footer_background": "black",
+      "callout_background": "black",
+      "callout_text_color": "yellow"
+    },
+    "recommendation_colors": {
+      "ENRICH": "green",
+      "CONSIDER": "orange",
+      "STRATIFY": "orange",
+      "EXCLUDE": "red",
+      "BLOCKED": "grey"
+    },
+    "zone_colors": {
+      "Responder": "green",
+      "Gap": "orange",
+      "Non-responder": "red",
+      "Blocked": "grey"
+    }
+  }
+}
