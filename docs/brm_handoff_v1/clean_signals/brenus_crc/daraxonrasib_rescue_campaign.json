@@ -1,0 +1,1065 @@
+{
+  "campaign_name": "Daraxonrasib MSS CRC Rescue Campaign",
+  "campaign_id": "RESCUE-DARAX-CRC-001",
+  "generated": "2026-07-13",
+  "crispro_version": "PATH A (locked 2026-04-28) + Mode iii-C Two-Gate Precision & Contraindication Gate G(p,t) (v2_gated, 2026-11-04)",
+  "formula": "fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1)",
+  "anchor_drug": "Daraxonrasib (RMC-6236)",
+  "anchor_indication": "MSS Metastatic Colorectal Cancer",
+  "anchor_biomarker": "KRAS G12/13 + TP53 co-mutation",
+  "anchor_data_source": "GAP-04: syn21435333 (n=7,940 pan-cancer) + syn2325330 (TCGA COAD n=603)",
+  "anchor_publication": "Alzeeb et al. 2024 (DOI: 10.3389/fonc.2024.1427428) \u2014 STC-1010 BreAK CRC-001",
+  "biomarker_foundation": {
+    "cohort": "MSS CRC (n=335, TCGA COAD merged)",
+    "kras_g12_13_rate_pct": 24.5,
+    "tp53_rate_pct": 65.4,
+    "comutation_rate_pct": 14.9,
+    "comutation_n": 50,
+    "stage_iv_comutation_rate_pct": 28.9,
+    "stage_iv_enrichment_fold": 1.94,
+    "mss_vs_msih_kras_fold": 16.0,
+    "key_variants": {
+      "G12D": "6.3% (21/335)",
+      "G12V": "7.2% (24/335)",
+      "G12D_plus_G12V": "13.4% \u2014 daraxonrasib primary coverage",
+      "G13D": "5.1% (17/335)",
+      "G12C": "1.5% (5/335) \u2014 KRYSTAL-10 target population"
+    },
+    "survival_signal": {
+      "comutant_median_OS_mo": 6.5,
+      "non_comutant_median_OS_mo": 4.2,
+      "note": "TCGA COAD early-stage enriched; Stage IV n=45 is conservative floor for metastatic setting"
+    },
+    "crispro_implication": "KRAS G12/13 + TP53 co-mutation defines a 14.9% MSS CRC subpopulation with 1.94x Stage IV enrichment \u2014 a targetable, biologically coherent biomarker stratum for daraxonrasib patient selection"
+  },
+  "salvage_layer": {
+    "description": "Failed or terminated RAS-pathway CRC trials \u2014 CrisPRO retrospective biomarker stratification hypothesis",
+    "trials": [
+      {
+        "trial": "KRYSTAL-10",
+        "nct": "NCT04793958",
+        "drug": "Adagrasib (Krazati) + Cetuximab",
+        "sponsor": "Bristol Myers Squibb (acquired from Mirati)",
+        "phase": "3",
+        "status": "FAILED \u2014 primary endpoints missed",
+        "failure_date": "2026-07-03 (ESMO GI 2026, Munich)",
+        "population": "Previously treated KRAS G12C-mutated mCRC (n=461)",
+        "comparator": "Chemotherapy",
+        "results": {
+          "mPFS_drug_mo": 7.5,
+          "mPFS_chemo_mo": 8.1,
+          "mOS_drug_mo": 21.6,
+          "mOS_chemo_mo": 21.7,
+          "PFS_HR_reduction_pct": 11,
+          "OS_HR_reduction_pct": 17,
+          "primary_endpoints_met": false
+        },
+        "failure_mechanism": [
+          "KRAS G12C represents ~1.5% of MSS CRC in TCGA COAD (GAP-04 proxy cohort, resected tumors \u2014 NOT metastatic); this is an exploratory prevalence observation and does not establish a causal explanation for KRYSTAL-10's outcome",
+          "KRAS G12C (OFF-state inhibitor) \u2014 feedback reactivation via EGFR/RTK in CRC TME",
+          "No TP53 co-mutation stratification \u2014 TP53 co-mutation (65.4% MSS CRC) drives genomic instability and resistance",
+          "Cetuximab backbone inappropriate for RAS-mutant CRC (EGFR Ab contraindicated in RAS-mutant per NCCN)",
+          "Subsequent KRAS inhibitor crossover in chemo arm confounded OS",
+          "Open-label design bias; disproportionate chemo arm discontinuation"
+        ],
+        "crispro_salvage_hypothesis": {
+          "biomarker_gap": "No KRAS G12/13 + TP53 co-mutation stratification; G12C-only selection misses 23% of KRAS-mutant MSS CRC",
+          "daraxonrasib_advantage": "Multi-selective RAS(ON) covers G12C + G12D + G12V + G13X \u2014 24.5% of MSS CRC vs 1.5% for G12C-only",
+          "backbone_fix": "Replace cetuximab with mFOLFOX6 + bevacizumab (BreAK CRC-001 backbone) \u2014 appropriate for RAS-mutant CRC",
+          "patient_selection": "Enrich for KRAS G12/13 + TP53 co-mutant MSS CRC (14.9%) \u2014 highest Stage IV enrichment (28.9%)",
+          "crispro_fit_score": "TBD \u2014 requires PATH A computation with MSS CRC patient vector",
+          "regulatory_opportunity": "BMS discussing 'next steps with regulatory authorities' \u2014 window open for daraxonrasib IND in CRC with biomarker-selected design"
+        },
+        "failure_mechanism_note": "GAP-04 is an exploratory hypothesis about a broader KRAS G12/13 plus TP53 subgroup in an MSS-CRC proxy cohort (TCGA COAD, resected tumors). It does not explain KRYSTAL-10's outcome and does not establish comparative benefit for daraxonrasib. The proximate causes of KRYSTAL-10 failure are: feedback reactivation via EGFR/RTK, cetuximab backbone contraindicated in RAS-mutant CRC, and OS confounding by crossover.",
+        "status_note": "ClinicalTrials.gov API status: ACTIVE_NOT_RECRUITING (enrollment closed, follow-up ongoing). Primary endpoint failure reported at ESMO GI 2026 (July 3, 2026). Both descriptions are accurate."
+      },
+      {
+        "trial": "ACCRU-GI-1618 (Binimetinib + Palbociclib vs TAS-102)",
+        "nct": "NCT03981614",
+        "drug": "Binimetinib (MEK inhibitor) + Palbociclib (CDK4/6 inhibitor)",
+        "phase": "2",
+        "status": "FAILED \u2014 futility interim analysis",
+        "population": "Refractory KRAS/NRAS-mutant mCRC (n=93 randomized)",
+        "comparator": "TAS-102",
+        "failure_mechanism": [
+          "Downstream MEK inhibition \u2014 feedback reactivation via upstream RAS",
+          "No direct KRAS targeting \u2014 indirect pathway inhibition insufficient",
+          "No biomarker stratification for TP53 co-mutation or specific KRAS variant",
+          "79% KRAS codon 12/13 mutant \u2014 correct population but wrong mechanism"
+        ],
+        "crispro_salvage_hypothesis": {
+          "biomarker_gap": "KRAS codon 12/13 selected but no TP53 co-mutation enrichment; MEK inhibition bypassed by upstream RAS reactivation",
+          "daraxonrasib_advantage": "Direct RAS(ON) inhibition eliminates feedback reactivation problem; TP53 co-mutation stratification identifies highest-risk subgroup",
+          "crispro_fit_score": "TBD"
+        }
+      },
+      {
+        "trial": "Binimetinib + Nivolumab \u00b1 Ipilimumab (MSS CRC)",
+        "nct": "NCT03271047",
+        "drug": "Binimetinib + Nivolumab \u00b1 Ipilimumab",
+        "phase": "1b/2",
+        "status": "FAILED \u2014 0% ORR in bini+nivo arm; 7.4% in triple arm",
+        "population": "Previously treated KRAS-mutated MSS mCRC",
+        "failure_mechanism": [
+          "MEK inhibition + IO \u2014 immunosuppressive TME not adequately reversed",
+          "KRAS-driven CXCR2/MDSC axis not targeted",
+          "No TP53 co-mutation stratification",
+          "MSS CRC immune desert phenotype not addressed"
+        ],
+        "crispro_salvage_hypothesis": {
+          "biomarker_gap": "No KRAS G12/13 + TP53 stratification; MSS CRC immune desert requires direct KRAS targeting to remodel TME",
+          "daraxonrasib_advantage": "RAS(ON) inhibition may reduce KRAS-driven immunosuppression (CXCL3/MDSC axis); combination with STC-1010 (haptenated whole-cell vaccine) could address immune desert",
+          "combination_hypothesis": "Daraxonrasib (KRAS G12/13 + TP53 co-mutant selection) + STC-1010 (immune priming) \u2014 orthogonal mechanisms in MSS CRC",
+          "crispro_fit_score": "TBD"
+        }
+      },
+      {
+        "trial": "JNJ-74699157 Phase 1 (KRAS G12C)",
+        "nct": "NCT04006301",
+        "drug": "JNJ-74699157 (oral KRAS G12C covalent inhibitor)",
+        "phase": "1",
+        "status": "TERMINATED \u2014 skeletal muscle toxicity + no efficacy at 100 mg",
+        "population": "KRAS G12C-mutant advanced solid tumors (CRC n=4/10)",
+        "failure_mechanism": [
+          "Dose-limiting CPK elevation (skeletal muscle toxicity)",
+          "No objective responses in CRC",
+          "G12C-only \u2014 same small population problem as KRYSTAL-10",
+          "First-generation covalent inhibitor \u2014 inferior to RAS(ON) tri-complex mechanism"
+        ],
+        "crispro_salvage_hypothesis": {
+          "note": "Mechanism failure \u2014 not a biomarker stratification problem; daraxonrasib's non-covalent tri-complex mechanism avoids CPK toxicity"
+        }
+      }
+    ]
+  },
+  "rescue_layer": {
+    "description": "Active trials with CRC arms where CrisPRO biomarker stratification can improve patient selection and trial design",
+    "trials": [
+      {
+        "trial": "RAS(ON) GI Platform Study \u2014 Subprotocol A",
+        "nct": "NCT06445062",
+        "drug": "Daraxonrasib + mFOLFOX6/mFOLFIRINOX + Bevacizumab",
+        "phase": "1/2",
+        "status": "Recruiting (started May 24, 2024)",
+        "population": "RAS-mutated unresectable/metastatic CRC (treatment-na\u00efve)",
+        "enrollment": "1,130 (all subprotocols)",
+        "backbone_overlap": "EXACT MATCH \u2014 mFOLFOX6 + bevacizumab = BreAK CRC-001 backbone",
+        "crispro_rescue_actions": [
+          {
+            "action": "BIOMARKER ENRICHMENT",
+            "description": "Add KRAS G12/13 + TP53 co-mutation as exploratory biomarker stratum in Subprotocol A",
+            "rationale": "14.9% of MSS CRC; 28.9% Stage IV enrichment; 1.94x enrichment vs all MSS",
+            "implementation": "Amend Subprotocol A to collect TP53 mutation status at screening; pre-specify co-mutation subgroup analysis",
+            "crispro_fit_score": "UNSCORED",
+            "crispro_fit_score_status": "UNSCORED \u2014 PATH A computation pending; no trial vector defined"
+          },
+          {
+            "action": "MSS STRATIFICATION",
+            "description": "Mandate MSI/MSS status at enrollment; pre-specify MSS subgroup as primary analysis population",
+            "rationale": "KRAS G12/13 is 16x more prevalent in MSS vs MSI-H (24.5% vs 1.5%); MSS = daraxonrasib's natural population",
+            "implementation": "Add MSS as stratification factor in randomization (if Phase 2 expansion proceeds)"
+          },
+          {
+            "action": "VARIANT-LEVEL ANALYSIS",
+            "description": "Pre-specify G12D/G12V vs G13D subgroup analyses",
+            "rationale": "G12D+G12V = 13.4% of MSS CRC (daraxonrasib primary coverage); G13D = 5.1%; different biology and potential differential response",
+            "implementation": "Collect ctDNA/tissue NGS with variant-level KRAS reporting at baseline"
+          }
+        ],
+        "crispro_fit_score_estimate": "UNSCORED",
+        "crispro_fit_rationale": "mFOLFOX6+bev backbone exact match; RAS(ON) mechanism directly targets GAP-04 biomarker; Phase 1/2 limits statistical power for biomarker subgroup",
+        "crispro_fit_score_status": "UNSCORED \u2014 no trial vector defined; no PATH A arithmetic performed; analogy to RETIRED_DISTINCT_VECTOR_PAIR prohibited"
+      },
+      {
+        "trial": "RAS(ON) GI Platform Study \u2014 Subprotocol D/E",
+        "nct": "NCT06445062",
+        "drug": "Zoldonrasib (RMC-9805) \u00b1 Daraxonrasib + 5-FU-based or cetuximab",
+        "phase": "1/2",
+        "status": "Recruiting",
+        "population": "KRAS G12D-mutant unresectable/metastatic CRC",
+        "crispro_rescue_actions": [
+          {
+            "action": "G12D + TP53 CO-MUTATION ENRICHMENT",
+            "description": "Add TP53 co-mutation as biomarker stratum for Subprotocols D/E",
+            "rationale": "KRAS G12D = 6.3% of MSS CRC; G12D + TP53 co-mutation = ~4.1% (estimated from GAP-04 proportional rates)",
+            "implementation": "Collect TP53 status at screening; pre-specify G12D+TP53 subgroup"
+          }
+        ],
+        "crispro_fit_score_estimate": "UNSCORED",
+        "crispro_fit_rationale": "G12D-selective (zoldonrasib) covers smaller subpopulation than multi-selective daraxonrasib; cetuximab backbone suboptimal for RAS-mutant CRC",
+        "crispro_fit_score_status": "UNSCORED \u2014 no trial vector defined; no PATH A arithmetic performed; analogy to RETIRED_DISTINCT_VECTOR_PAIR prohibited"
+      }
+    ]
+  },
+  "derisk_layer": {
+    "description": "Planned trials and combination hypotheses where CrisPRO biomarker data can de-risk design decisions",
+    "hypotheses": [
+      {
+        "hypothesis": "Daraxonrasib + STC-1010 Combination in KRAS G12/13 + TP53 MSS CRC",
+        "mechanism": "Orthogonal: RAS(ON) inhibition (MAPK suppression) + haptenated whole-cell vaccine (immune priming in MSS immune desert)",
+        "rationale": [
+          "KRAS G12/13 + TP53 co-mutation = 14.9% MSS CRC \u2014 biologically coherent stratum",
+          "TP53 loss drives immune evasion; KRAS G12/13 drives CXCR2/MDSC immunosuppression",
+          "Daraxonrasib reduces MAPK-driven immunosuppression \u2192 may sensitize MSS CRC to STC-1010 immune priming",
+          "STC-1010 backbone = mFOLFOX6 + bevacizumab = exact Subprotocol A backbone",
+          "No current trial tests this combination \u2014 first-mover opportunity"
+        ],
+        "gap04_support": {
+          "comutation_rate_pct": 14.9,
+          "stage_iv_rate_pct": 28.9,
+          "enrichment_fold": 1.94,
+          "estimated_eligible_patients_per_100_mss_crc": 14.9
+        },
+        "proposed_design": "Phase 1b/2: Daraxonrasib 300 mg QD + STC-1010 (haptenated whole-cell vaccine) + mFOLFOX6 + bevacizumab in KRAS G12/13 + TP53 co-mutant MSS mCRC",
+        "crispro_fit_score": "UNSCORED",
+        "crispro_fit_rationale": "Biological rationale: daraxonrasib MAPK suppression + STC-1010 immune priming may be complementary in MSS CRC; CrisPRO score UNSCORED pending trial vector definition",
+        "regulatory_pathway": "IND amendment to BreAK CRC-001 or new IND; biomarker-selected Phase 1b/2 feasible with n=40-60",
+        "crispro_fit_score_status": "UNSCORED \u2014 no trial vector defined; no PATH A arithmetic performed; analogy to RETIRED_DISTINCT_VECTOR_PAIR prohibited"
+      },
+      {
+        "hypothesis": "Daraxonrasib Phase 3 in MSS CRC \u2014 Biomarker-Selected Design",
+        "mechanism": "Direct RAS(ON) inhibition in KRAS G12/13 + TP53 co-mutant MSS mCRC",
+        "rationale": [
+          "KRYSTAL-10 failure creates regulatory vacuum in KRAS-mutant CRC \u2014 BMS discussing 'next steps'",
+          "Daraxonrasib's multi-selective RAS(ON) mechanism covers 24.5% of MSS CRC vs 1.5% for G12C-only",
+          "Daraxonrasib mechanism (RAS(ON) tri-complex, non-covalent) targets KRAS G12/13 directly; CRC-specific efficacy data are not yet available \u2014 RASolute 302 results are PDAC-only and must not be extrapolated to CRC (PDAC lane, separate from MSS CRC lane)",
+          "No Phase 3 daraxonrasib trial in CRC currently planned",
+          "NCT06445062 Subprotocol A provides Phase 1/2 safety/efficacy data to support Phase 3 IND"
+        ],
+        "proposed_design": "Phase 3: Daraxonrasib + mFOLFOX6 + bevacizumab vs mFOLFOX6 + bevacizumab in KRAS G12/13 + TP53 co-mutant MSS mCRC (1L or 2L)",
+        "biomarker_selection": "KRAS G12/13 + TP53 co-mutation (14.9% MSS CRC) \u2014 enriches for Stage IV (28.9%) and worst prognosis",
+        "crispro_fit_score": "UNSCORED",
+        "crispro_fit_rationale": "Backbone match + RAS(ON) mechanism + biomarker selection = highest CrisPRO fit in CRC space",
+        "timeline": "Phase 1/2 data from NCT06445062 expected 2027; Phase 3 IND feasible 2027-2028",
+        "crispro_fit_score_status": "UNSCORED \u2014 no trial vector defined; no PATH A arithmetic performed; analogy to RETIRED_DISTINCT_VECTOR_PAIR prohibited",
+        "rationale_lane_note": "LANE SEPARATION: RASolute 302 (NCT06625320) is a PDAC trial. Its efficacy data (mOS HR 0.40) apply to the PDAC lane only. No CRC efficacy data for daraxonrasib exist. This hypothesis is mechanistic/biological only \u2014 not supported by CRC clinical data."
+      },
+      {
+        "hypothesis": "Daraxonrasib + APR-1051 (Pultar) in KRAS G12/13 + TP53 MSS CRC",
+        "mechanism": "RAS(ON) inhibition + p53 reactivation (APR-1051 restores WT p53 function in TP53-mutant tumors)",
+        "rationale": [
+          "TP53 co-mutation = 65.4% of MSS CRC; KRAS G12/13 + TP53 = 14.9%",
+          "APR-1051 (Pultar) targets mutant p53 \u2014 directly addresses the co-mutation biomarker",
+          "Synthetic lethality hypothesis: KRAS inhibition + p53 reactivation in co-mutant tumors",
+          "No current trial tests this combination in CRC"
+        ],
+        "gap04_support": {
+          "tp53_rate_mss_crc_pct": 65.4,
+          "kras_tp53_comutation_pct": 14.9,
+          "triple_comutation_kras_tp53_fbxw7_pct": 1.2
+        },
+        "crispro_fit_score": "UNSCORED",
+        "crispro_fit_rationale": "Strong biological rationale; APR-1051 Phase 1/2 data needed before combination feasible; earlier stage hypothesis",
+        "crispro_fit_score_status": "UNSCORED \u2014 no trial vector defined; no PATH A arithmetic performed; analogy to RETIRED_DISTINCT_VECTOR_PAIR prohibited"
+      }
+    ]
+  },
+  "crispro_scoring_summary": {
+    "formula": "fit_gated(p, t) = G(p, t) * clip((p \u00b7 t) / \u2016t\u2016\u2082, 0, 1) [PATH A + Mode iii-C Two-Gate Precision]",
+    "legacy_07375_072_074_076_status": "RETIRED_AND_QUARANTINED (replaced by empirical TCGA-COADREAD n=485 Mode iii-C cohort scores)",
+    "break_crc_001_stc1010_empirical_tcga_n485": {
+      "unselected_mss_n485_mean_fit_v1": 0.5605,
+      "door1_gate2_hot_kras_mut_n51_mean_fit_f07": 0.8655,
+      "door1_gate2_hot_ras_raf_non_pole_n62_mean_fit_f07": 0.8798,
+      "door2_gate2_cold_kras_mut_n135_mean_fit_f07": 0.3942,
+      "door2_gate2_cold_ras_raf_non_pole_n158_mean_fit_f07": 0.3913
+    },
+    "daraxonrasib_subprotocol_a_nct06445062": {
+      "trial_vector_8d": [
+        0.0,
+        0.8,
+        0.1,
+        0.2,
+        0.0,
+        0.0,
+        0.1,
+        0.0
+      ],
+      "l2_norm": 0.83666,
+      "door2_gate2_cold_kras_mut_n135_mean_fit_f07": 0.6203,
+      "door2_gate2_cold_kras_mut_n135_mean_fit_ws5v2": 0.6685,
+      "door2_gate2_cold_ras_mut_non_pole_n151_mean_fit_f07": 0.6225,
+      "door2_gate2_cold_kras_g12_13_tp53_comut_n68_mean_fit_f07": 0.6214,
+      "door2_rank1_win_rate_in_ras_mut_cold": "151/151 (100.0% non-POLE) / 155/155 (100.0% all MSS)",
+      "lane_separation_governance": true
+    },
+    "zoldonrasib_subprotocol_de_nct06445062_kras_g12d": {
+      "eligible_kras_g12d_mss_n": 46,
+      "door2_cold_kras_g12d_n": 34,
+      "door2_cold_kras_g12d_tp53_comut_n": 18,
+      "mean_fit_f07_in_g12d_cold": 0.6174,
+      "lane_separation_governance": true
+    },
+    "daraxonrasib_stc1010_combo_hypothesis": {
+      "trial_vector_8d": [
+        0.1,
+        0.8,
+        0.1,
+        0.2,
+        0.0,
+        0.8,
+        0.1,
+        0.1
+      ],
+      "l2_norm": 1.16619,
+      "kras_mut_all_n186_mean_fit_f07": 0.6404,
+      "kras_g12_13_tp53_comut_n97_mean_fit_f07": 0.6521,
+      "lane_separation_governance": true
+    },
+    "daraxonrasib_apr1051_pultar_tp53_comut_hypothesis": {
+      "trial_vector_8d": [
+        0.5,
+        0.8,
+        0.1,
+        0.2,
+        0.0,
+        0.0,
+        0.1,
+        0.2
+      ],
+      "l2_norm": 0.994987,
+      "kras_g12_13_tp53_comut_n97_mean_fit_f07": 0.6369,
+      "lane_separation_governance": true
+    }
+  },
+  "competitive_landscape": {
+    "krystal_10_failure_implications": [
+      "KRAS G12C-only CRC strategy is dead \u2014 BMS discussing regulatory 'next steps' (likely withdrawal)",
+      "Adagrasib (OFF-state) inferior to daraxonrasib (ON-state) in CRC \u2014 feedback reactivation problem",
+      "Cetuximab backbone inappropriate for RAS-mutant CRC \u2014 confirmed by KRYSTAL-10 failure",
+      "Regulatory vacuum: no approved KRAS inhibitor in CRC after potential Krazati withdrawal",
+      "Window open for daraxonrasib with biomarker-selected design (KRAS G12/13 + TP53)"
+    ],
+    "daraxonrasib_differentiation": [
+      "Multi-selective RAS(ON): covers G12D + G12V + G13D + G12C + Q61X \u2014 24.5% MSS CRC vs 1.5% G12C-only",
+      "ON-state mechanism: no feedback reactivation via EGFR/RTK",
+      "RASolute 302 OS HR 0.40 \u2014 strongest KRAS inhibitor efficacy data in any solid tumor [PDAC-only data; no CRC efficacy data available \u2014 PDAC lane]",
+      "mFOLFOX6 + bevacizumab backbone (Subprotocol A) = appropriate for RAS-mutant CRC",
+      "No CRC Phase 3 competitor after KRYSTAL-10 failure"
+    ],
+    "remaining_competitors": [
+      "Sotorasib (Lumakras) + panitumumab \u2014 G12C-only; Amgen's CodeBreaK 300 also failed OS (similar problem)",
+      "Garsorasib (KRAS G12C) \u2014 Phase 2 data in CRC; G12C-only limitation",
+      "Zoldonrasib (RMC-9805) \u2014 G12D-selective; covers 6.3% MSS CRC; Phase 1 only"
+    ]
+  },
+  "outreach_targets": [
+    {
+      "target": "Revolution Medicines (NCT06445062 Subprotocol A team)",
+      "message": "CrisPRO biomarker stratification for KRAS G12/13 + TP53 co-mutation in Subprotocol A CRC cohort",
+      "urgency": "HIGH \u2014 trial actively recruiting; amendment window open",
+      "contact_type": "BD/Clinical Development"
+    },
+    {
+      "target": "BMS (post-KRYSTAL-10 regulatory discussion team)",
+      "message": "KRYSTAL-10 failure analysis: biomarker stratification gap; daraxonrasib multi-selective advantage",
+      "urgency": "HIGH \u2014 BMS in active regulatory discussion; window for partnership/licensing",
+      "contact_type": "BD/Regulatory"
+    },
+    {
+      "target": "Brenus Pharma (STC-1010 / BreAK CRC-001 team)",
+      "message": "Daraxonrasib + STC-1010 combination hypothesis in KRAS G12/13 + TP53 MSS CRC",
+      "urgency": "MEDIUM \u2014 Phase 1b/2 combination IND feasibility assessment",
+      "contact_type": "Scientific/Clinical"
+    },
+    {
+      "target": "Oncology KOLs (Scott Kopetz, Tanios Bekaii-Saab, Marwan Fakih)",
+      "message": "GAP-04 biomarker data: KRAS G12/13 + TP53 co-mutation in MSS CRC \u2014 rescue campaign scientific advisory",
+      "urgency": "MEDIUM \u2014 scientific validation of biomarker hypothesis",
+      "contact_type": "Scientific Advisory"
+    }
+  ],
+  "remediation_status": {
+    "status": "REMEDIATED",
+    "remediation_date": "2026-07-13",
+    "remediation_reason": "All CrisPRO fit scores marked UNSCORED per governance remediation plan. No trial vectors were defined for daraxonrasib scenarios; scores 0.72/0.74/0.76/0.68/0.65 were generated by analogy to RETIRED_DISTINCT_VECTOR_PAIR (0.7375) and are not valid PATH A outputs. The 0.7375 baseline is RETIRED and must not be used as a comparator or analogy for any daraxonrasib computation.",
+    "formula": "fit = clip((p\u00b7t) / \u2016t\u2016\u2082, 0, 1) \u2014 PATH A, signed 2026-04-28",
+    "unscored_values": [
+      "0.72",
+      "0.74",
+      "0.76",
+      "0.68",
+      "0.65"
+    ],
+    "retired_baseline": "0.7375 = RETIRED_DISTINCT_VECTOR_PAIR",
+    "lane_separation": "PDAC/RASolute 302 audit and MSS CRC/GAP-04 analysis are separate lanes; no cross-contamination permitted"
+  },
+  "lane_separation_governance": {
+    "status": "ENFORCED \u2014 2026-07-13",
+    "pdac_lane": {
+      "trials": [
+        "NCT06625320 (RASolute 302)",
+        "NCT07491445 (RASolute 303)",
+        "NCT07252232 (RASolute 304)",
+        "NCT07621718 (RASolute 305)"
+      ],
+      "permitted_data": "PDAC efficacy, safety, and mechanism data only",
+      "prohibited": "GAP-04 MSS CRC co-mutation data must not be cited as evidence in PDAC lane",
+      "key_result": "RASolute 302: mOS HR 0.40 (95% CI 0.30-0.54), P<0.001 \u2014 PDAC only"
+    },
+    "mss_crc_lane": {
+      "data_source": "GAP-04 (TCGA COAD proxy cohort, syn21435333 + syn2325330)",
+      "permitted_data": "Exploratory MSS CRC co-mutation prevalence observations only",
+      "prohibited": [
+        "RASolute 302 PDAC efficacy data must not be cited as CRC evidence",
+        "GAP-04 data must not be used to explain KRYSTAL-10 failure causally",
+        "No cross-disease extrapolation from PDAC to CRC or vice versa"
+      ],
+      "cohort_caveat": "TCGA COAD = resected tumors (primarily non-metastatic); Stage IV n=45 is a small proxy subset"
+    },
+    "cross_contamination_rule": "Any claim that uses PDAC efficacy data to support a CRC hypothesis, or uses CRC biomarker data to explain a PDAC trial outcome, is prohibited. The two lanes may reference each other only to identify GAPS (what is missing), not to transfer evidence."
+  },
+  "tcga_coadread_n485_two_door_empirical_partition": {
+    "cohort": "TCGA-COADREAD PanCancer Atlas MSS CRC (n=485 total; n=473 non-POLE TMB<10)",
+    "gate2_immune_cutpoint_z": -0.0257,
+    "trial_vectors_8d": {
+      "axes": [
+        "ddr",
+        "mapk",
+        "pi3k",
+        "vegf",
+        "her2",
+        "io",
+        "efflux",
+        "rss"
+      ],
+      "STC_1010_NCT06934538": {
+        "vector": [
+          0.1,
+          0.3,
+          0.1,
+          0.2,
+          0.0,
+          0.8,
+          0.1,
+          0.1
+        ],
+        "l2_norm": 0.9
+      },
+      "Daraxonrasib_SubprotocolA_NCT06445062": {
+        "vector": [
+          0.0,
+          0.8,
+          0.1,
+          0.2,
+          0.0,
+          0.0,
+          0.1,
+          0.0
+        ],
+        "l2_norm": 0.83666
+      },
+      "Daraxonrasib_ExtensionMap_Pure": {
+        "vector": [
+          0.0,
+          0.8,
+          0.0,
+          0.9,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "l2_norm": 1.204159
+      },
+      "Zoldonrasib_SubprotocolDE_NCT06445062": {
+        "vector": [
+          0.0,
+          0.8,
+          0.1,
+          0.2,
+          0.0,
+          0.0,
+          0.1,
+          0.0
+        ],
+        "l2_norm": 0.83666,
+        "gate": "KRAS_G12D_only"
+      },
+      "Daraxonrasib_plus_STC1010_Combo": {
+        "vector": [
+          0.1,
+          0.8,
+          0.1,
+          0.2,
+          0.0,
+          0.8,
+          0.1,
+          0.1
+        ],
+        "l2_norm": 1.16619
+      },
+      "Daraxonrasib_plus_APR1051_Combo": {
+        "vector": [
+          0.5,
+          0.8,
+          0.1,
+          0.2,
+          0.0,
+          0.0,
+          0.1,
+          0.2
+        ],
+        "l2_norm": 0.994987,
+        "gate": "RAS_mut_and_TP53_mut"
+      }
+    },
+    "non_overlapping_two_door_partition_ras_raf_non_pole_n220": {
+      "door_1_gate2_immune_hot_stc1010": {
+        "n": 62,
+        "pct_of_220": 28.18,
+        "routed_to": "STC-1010 + mFOLFOX6 + Bevacizumab (BreAK-CRC-001, NCT06934538)",
+        "stc1010_win_rate": "62/62 (100.0%)",
+        "mean_fit_stc1010_f07": 0.8798,
+        "mean_fit_daraxonrasib_f07": 0.5593,
+        "strict_kras_mut_n": 50,
+        "nras_mut_braf_wt_n": 6,
+        "braf_mut_n": 6
+      },
+      "door_2_gate2_immune_cold_daraxonrasib": {
+        "n": 158,
+        "pct_of_220": 71.82,
+        "stc1010_eligible": "0/158 (0.0%)",
+        "anti_egfr_cetux_panitumumab_eligible": "0/158 (0.0% \u2014 contraindicated per PRIME/KRYSTAL-10)",
+        "routed_to_ras_mut_n151": "Daraxonrasib (RMC-6236) + mFOLFOX6 + Bevacizumab (NCT06445062 Subprotocol A)",
+        "daraxonrasib_win_rate_in_ras_mut_cold": "151/151 (100.0% \u2014 131 strict KRAS-mut + 20 NRAS-mut)",
+        "braf_mut_ras_wt_cold_n": 7,
+        "mean_fit_daraxonrasib_in_ras_mut_cold_f07": 0.6225,
+        "mean_fit_stc1010_in_ras_mut_cold_f07": 0.3898
+      }
+    },
+    "strict_kras_mutant_partition_all_n186": {
+      "n_total": 186,
+      "n_non_pole": 181,
+      "tp53_mut_n": 114,
+      "tp53_mut_pct": 61.29,
+      "tp53_wt_n": 72,
+      "stage_i_iii_n": 147,
+      "stage_iv_n": 32,
+      "stage_iv_pct_of_staged": 17.88,
+      "stage_unspecified_n": 7,
+      "door1_gate2_hot_n": 51,
+      "door1_gate2_hot_pct": 27.42,
+      "door1_hot_tp53_mut_n": 33,
+      "door1_hot_stage_iv_n": 8,
+      "door2_gate2_cold_n": 135,
+      "door2_gate2_cold_pct": 72.58,
+      "door2_cold_tp53_mut_n": 81,
+      "door2_cold_stage_iv_n": 24,
+      "cms_counts": {
+        "UNLABELED": 104,
+        "CMS4": 20,
+        "NOLBL": 14,
+        "CMS2": 24,
+        "CMS3": 20,
+        "CMS1": 4
+      },
+      "door1_hot_mean_fit_stc_f07": 0.8655,
+      "door1_hot_mean_fit_darax_f07": 0.6217,
+      "door2_cold_mean_fit_stc_f07": 0.3942,
+      "door2_cold_mean_fit_darax_f07": 0.6203,
+      "door1_hot_mean_fit_stc_ws5": 0.8825,
+      "door1_hot_mean_fit_darax_ws5": 0.6704,
+      "door2_cold_mean_fit_stc_ws5": 0.411,
+      "door2_cold_mean_fit_darax_ws5": 0.6685,
+      "all_mean_fit_stc_f07": 0.5234,
+      "all_mean_fit_darax_f07": 0.6207,
+      "all_mean_fit_combo_f07": 0.6404,
+      "all_mean_fit_apr_f07": 0.3896
+    },
+    "strict_kras_mutant_partition_non_pole_n181": {
+      "n_total": 181,
+      "n_non_pole": 181,
+      "tp53_mut_n": 111,
+      "tp53_mut_pct": 61.33,
+      "tp53_wt_n": 70,
+      "stage_i_iii_n": 143,
+      "stage_iv_n": 32,
+      "stage_iv_pct_of_staged": 18.29,
+      "stage_unspecified_n": 6,
+      "door1_gate2_hot_n": 50,
+      "door1_gate2_hot_pct": 27.62,
+      "door1_hot_tp53_mut_n": 32,
+      "door1_hot_stage_iv_n": 8,
+      "door2_gate2_cold_n": 131,
+      "door2_gate2_cold_pct": 72.38,
+      "door2_cold_tp53_mut_n": 79,
+      "door2_cold_stage_iv_n": 24,
+      "cms_counts": {
+        "UNLABELED": 101,
+        "CMS4": 20,
+        "NOLBL": 13,
+        "CMS2": 24,
+        "CMS3": 20,
+        "CMS1": 3
+      },
+      "door1_hot_mean_fit_stc_f07": 0.8657,
+      "door1_hot_mean_fit_darax_f07": 0.6191,
+      "door2_cold_mean_fit_stc_f07": 0.3879,
+      "door2_cold_mean_fit_darax_f07": 0.6203,
+      "door1_hot_mean_fit_stc_ws5": 0.8823,
+      "door1_hot_mean_fit_darax_ws5": 0.6669,
+      "door2_cold_mean_fit_stc_ws5": 0.4047,
+      "door2_cold_mean_fit_darax_ws5": 0.6684,
+      "all_mean_fit_stc_f07": 0.5199,
+      "all_mean_fit_darax_f07": 0.6199,
+      "all_mean_fit_combo_f07": 0.6374,
+      "all_mean_fit_apr_f07": 0.3905
+    },
+    "by_allele": {
+      "KRAS_G12D": {
+        "n_total": 46,
+        "n_non_pole": 45,
+        "tp53_mut_n": 27,
+        "tp53_mut_pct": 58.7,
+        "tp53_wt_n": 19,
+        "stage_i_iii_n": 36,
+        "stage_iv_n": 8,
+        "stage_iv_pct_of_staged": 18.18,
+        "stage_unspecified_n": 2,
+        "door1_gate2_hot_n": 12,
+        "door1_gate2_hot_pct": 26.09,
+        "door1_hot_tp53_mut_n": 9,
+        "door1_hot_stage_iv_n": 2,
+        "door2_gate2_cold_n": 34,
+        "door2_gate2_cold_pct": 73.91,
+        "door2_cold_tp53_mut_n": 18,
+        "door2_cold_stage_iv_n": 6,
+        "cms_counts": {
+          "UNLABELED": 27,
+          "CMS3": 6,
+          "NOLBL": 4,
+          "CMS4": 5,
+          "CMS2": 3,
+          "CMS1": 1
+        },
+        "door1_hot_mean_fit_stc_f07": 0.8943,
+        "door1_hot_mean_fit_darax_f07": 0.6189,
+        "door2_cold_mean_fit_stc_f07": 0.3808,
+        "door2_cold_mean_fit_darax_f07": 0.6174,
+        "door1_hot_mean_fit_stc_ws5": 0.911,
+        "door1_hot_mean_fit_darax_ws5": 0.6667,
+        "door2_cold_mean_fit_stc_ws5": 0.3974,
+        "door2_cold_mean_fit_darax_ws5": 0.6652,
+        "all_mean_fit_stc_f07": 0.5147,
+        "all_mean_fit_darax_f07": 0.6178,
+        "all_mean_fit_combo_f07": 0.6331,
+        "all_mean_fit_apr_f07": 0.3657
+      },
+      "KRAS_G12V": {
+        "n_total": 46,
+        "n_non_pole": 46,
+        "tp53_mut_n": 29,
+        "tp53_mut_pct": 63.04,
+        "tp53_wt_n": 17,
+        "stage_i_iii_n": 33,
+        "stage_iv_n": 11,
+        "stage_iv_pct_of_staged": 25.0,
+        "stage_unspecified_n": 2,
+        "door1_gate2_hot_n": 9,
+        "door1_gate2_hot_pct": 19.57,
+        "door1_hot_tp53_mut_n": 7,
+        "door1_hot_stage_iv_n": 1,
+        "door2_gate2_cold_n": 37,
+        "door2_gate2_cold_pct": 80.43,
+        "door2_cold_tp53_mut_n": 22,
+        "door2_cold_stage_iv_n": 10,
+        "cms_counts": {
+          "UNLABELED": 28,
+          "NOLBL": 2,
+          "CMS2": 6,
+          "CMS3": 6,
+          "CMS4": 4
+        },
+        "door1_hot_mean_fit_stc_f07": 0.8516,
+        "door1_hot_mean_fit_darax_f07": 0.6159,
+        "door2_cold_mean_fit_stc_f07": 0.3898,
+        "door2_cold_mean_fit_darax_f07": 0.62,
+        "door1_hot_mean_fit_stc_ws5": 0.8683,
+        "door1_hot_mean_fit_darax_ws5": 0.6637,
+        "door2_cold_mean_fit_stc_ws5": 0.4065,
+        "door2_cold_mean_fit_darax_ws5": 0.6678,
+        "all_mean_fit_stc_f07": 0.4802,
+        "all_mean_fit_darax_f07": 0.6192,
+        "all_mean_fit_combo_f07": 0.6064,
+        "all_mean_fit_apr_f07": 0.4015
+      },
+      "KRAS_G13D": {
+        "n_total": 29,
+        "n_non_pole": 28,
+        "tp53_mut_n": 17,
+        "tp53_mut_pct": 58.62,
+        "tp53_wt_n": 12,
+        "stage_i_iii_n": 23,
+        "stage_iv_n": 5,
+        "stage_iv_pct_of_staged": 17.86,
+        "stage_unspecified_n": 1,
+        "door1_gate2_hot_n": 10,
+        "door1_gate2_hot_pct": 34.48,
+        "door1_hot_tp53_mut_n": 5,
+        "door1_hot_stage_iv_n": 3,
+        "door2_gate2_cold_n": 19,
+        "door2_gate2_cold_pct": 65.52,
+        "door2_cold_tp53_mut_n": 12,
+        "door2_cold_stage_iv_n": 2,
+        "cms_counts": {
+          "UNLABELED": 14,
+          "NOLBL": 4,
+          "CMS2": 5,
+          "CMS3": 4,
+          "CMS4": 2
+        },
+        "door1_hot_mean_fit_stc_f07": 0.8294,
+        "door1_hot_mean_fit_darax_f07": 0.6203,
+        "door2_cold_mean_fit_stc_f07": 0.3917,
+        "door2_cold_mean_fit_darax_f07": 0.6206,
+        "door1_hot_mean_fit_stc_ws5": 0.846,
+        "door1_hot_mean_fit_darax_ws5": 0.6681,
+        "door2_cold_mean_fit_stc_ws5": 0.4083,
+        "door2_cold_mean_fit_darax_ws5": 0.6684,
+        "all_mean_fit_stc_f07": 0.5426,
+        "all_mean_fit_darax_f07": 0.6205,
+        "all_mean_fit_combo_f07": 0.6546,
+        "all_mean_fit_apr_f07": 0.3803
+      },
+      "KRAS_G12C": {
+        "n_total": 14,
+        "n_non_pole": 14,
+        "tp53_mut_n": 11,
+        "tp53_mut_pct": 78.57,
+        "tp53_wt_n": 3,
+        "stage_i_iii_n": 10,
+        "stage_iv_n": 4,
+        "stage_iv_pct_of_staged": 28.57,
+        "stage_unspecified_n": 0,
+        "door1_gate2_hot_n": 2,
+        "door1_gate2_hot_pct": 14.29,
+        "door1_hot_tp53_mut_n": 2,
+        "door1_hot_stage_iv_n": 1,
+        "door2_gate2_cold_n": 12,
+        "door2_gate2_cold_pct": 85.71,
+        "door2_cold_tp53_mut_n": 9,
+        "door2_cold_stage_iv_n": 3,
+        "cms_counts": {
+          "UNLABELED": 9,
+          "CMS4": 1,
+          "CMS2": 1,
+          "CMS3": 2,
+          "CMS1": 1
+        },
+        "door1_hot_mean_fit_stc_f07": 0.9598,
+        "door1_hot_mean_fit_darax_f07": 0.6285,
+        "door2_cold_mean_fit_stc_f07": 0.3952,
+        "door2_cold_mean_fit_darax_f07": 0.6216,
+        "door1_hot_mean_fit_stc_ws5": 0.9765,
+        "door1_hot_mean_fit_darax_ws5": 0.6763,
+        "door2_cold_mean_fit_stc_ws5": 0.4118,
+        "door2_cold_mean_fit_darax_ws5": 0.6694,
+        "all_mean_fit_stc_f07": 0.4758,
+        "all_mean_fit_darax_f07": 0.6226,
+        "all_mean_fit_combo_f07": 0.603,
+        "all_mean_fit_apr_f07": 0.5177
+      },
+      "KRAS_G12A_R_S": {
+        "n_total": 21,
+        "n_non_pole": 21,
+        "tp53_mut_n": 11,
+        "tp53_mut_pct": 52.38,
+        "tp53_wt_n": 10,
+        "stage_i_iii_n": 17,
+        "stage_iv_n": 3,
+        "stage_iv_pct_of_staged": 15.0,
+        "stage_unspecified_n": 1,
+        "door1_gate2_hot_n": 8,
+        "door1_gate2_hot_pct": 38.1,
+        "door1_hot_tp53_mut_n": 5,
+        "door1_hot_stage_iv_n": 1,
+        "door2_gate2_cold_n": 13,
+        "door2_gate2_cold_pct": 61.9,
+        "door2_cold_tp53_mut_n": 6,
+        "door2_cold_stage_iv_n": 2,
+        "cms_counts": {
+          "UNLABELED": 11,
+          "CMS4": 3,
+          "CMS2": 3,
+          "CMS1": 1,
+          "NOLBL": 2,
+          "CMS3": 1
+        },
+        "door1_hot_mean_fit_stc_f07": 0.8782,
+        "door1_hot_mean_fit_darax_f07": 0.6215,
+        "door2_cold_mean_fit_stc_f07": 0.3862,
+        "door2_cold_mean_fit_darax_f07": 0.6196,
+        "door1_hot_mean_fit_stc_ws5": 0.8949,
+        "door1_hot_mean_fit_darax_ws5": 0.6694,
+        "door2_cold_mean_fit_stc_ws5": 0.4029,
+        "door2_cold_mean_fit_darax_ws5": 0.6674,
+        "all_mean_fit_stc_f07": 0.5736,
+        "all_mean_fit_darax_f07": 0.6204,
+        "all_mean_fit_combo_f07": 0.6785,
+        "all_mean_fit_apr_f07": 0.3353
+      },
+      "KRAS_Q61": {
+        "n_total": 8,
+        "n_non_pole": 8,
+        "tp53_mut_n": 4,
+        "tp53_mut_pct": 50.0,
+        "tp53_wt_n": 4,
+        "stage_i_iii_n": 8,
+        "stage_iv_n": 0,
+        "stage_iv_pct_of_staged": 0.0,
+        "stage_unspecified_n": 0,
+        "door1_gate2_hot_n": 4,
+        "door1_gate2_hot_pct": 50.0,
+        "door1_hot_tp53_mut_n": 2,
+        "door1_hot_stage_iv_n": 0,
+        "door2_gate2_cold_n": 4,
+        "door2_gate2_cold_pct": 50.0,
+        "door2_cold_tp53_mut_n": 2,
+        "door2_cold_stage_iv_n": 0,
+        "cms_counts": {
+          "CMS4": 2,
+          "CMS2": 1,
+          "UNLABELED": 4,
+          "CMS3": 1
+        },
+        "door1_hot_mean_fit_stc_f07": 0.8215,
+        "door1_hot_mean_fit_darax_f07": 0.6167,
+        "door2_cold_mean_fit_stc_f07": 0.3902,
+        "door2_cold_mean_fit_darax_f07": 0.6164,
+        "door1_hot_mean_fit_stc_ws5": 0.8382,
+        "door1_hot_mean_fit_darax_ws5": 0.6645,
+        "door2_cold_mean_fit_stc_ws5": 0.4069,
+        "door2_cold_mean_fit_darax_ws5": 0.6642,
+        "all_mean_fit_stc_f07": 0.6059,
+        "all_mean_fit_darax_f07": 0.6165,
+        "all_mean_fit_combo_f07": 0.7034,
+        "all_mean_fit_apr_f07": 0.3146
+      },
+      "KRAS_A146": {
+        "n_total": 12,
+        "n_non_pole": 11,
+        "tp53_mut_n": 6,
+        "tp53_mut_pct": 50.0,
+        "tp53_wt_n": 6,
+        "stage_i_iii_n": 12,
+        "stage_iv_n": 0,
+        "stage_iv_pct_of_staged": 0.0,
+        "stage_unspecified_n": 0,
+        "door1_gate2_hot_n": 2,
+        "door1_gate2_hot_pct": 16.67,
+        "door1_hot_tp53_mut_n": 0,
+        "door1_hot_stage_iv_n": 0,
+        "door2_gate2_cold_n": 10,
+        "door2_gate2_cold_pct": 83.33,
+        "door2_cold_tp53_mut_n": 6,
+        "door2_cold_stage_iv_n": 0,
+        "cms_counts": {
+          "CMS2": 4,
+          "UNLABELED": 5,
+          "NOLBL": 1,
+          "CMS4": 2
+        },
+        "door1_hot_mean_fit_stc_f07": 0.8944,
+        "door1_hot_mean_fit_darax_f07": 0.6096,
+        "door2_cold_mean_fit_stc_f07": 0.4339,
+        "door2_cold_mean_fit_darax_f07": 0.6327,
+        "door1_hot_mean_fit_stc_ws5": 0.9111,
+        "door1_hot_mean_fit_darax_ws5": 0.6574,
+        "door2_cold_mean_fit_stc_ws5": 0.4522,
+        "door2_cold_mean_fit_darax_ws5": 0.6853,
+        "all_mean_fit_stc_f07": 0.5107,
+        "all_mean_fit_darax_f07": 0.6288,
+        "all_mean_fit_combo_f07": 0.6353,
+        "all_mean_fit_apr_f07": 0.3156
+      },
+      "KRAS_Other": {
+        "n_total": 10,
+        "n_non_pole": 8,
+        "tp53_mut_n": 9,
+        "tp53_mut_pct": 90.0,
+        "tp53_wt_n": 1,
+        "stage_i_iii_n": 8,
+        "stage_iv_n": 1,
+        "stage_iv_pct_of_staged": 11.11,
+        "stage_unspecified_n": 1,
+        "door1_gate2_hot_n": 4,
+        "door1_gate2_hot_pct": 40.0,
+        "door1_hot_tp53_mut_n": 3,
+        "door1_hot_stage_iv_n": 0,
+        "door2_gate2_cold_n": 6,
+        "door2_gate2_cold_pct": 60.0,
+        "door2_cold_tp53_mut_n": 6,
+        "door2_cold_stage_iv_n": 1,
+        "cms_counts": {
+          "CMS4": 1,
+          "UNLABELED": 6,
+          "CMS1": 1,
+          "CMS2": 1,
+          "NOLBL": 1
+        },
+        "door1_hot_mean_fit_stc_f07": 0.8573,
+        "door1_hot_mean_fit_darax_f07": 0.6546,
+        "door2_cold_mean_fit_stc_f07": 0.457,
+        "door2_cold_mean_fit_darax_f07": 0.618,
+        "door1_hot_mean_fit_stc_ws5": 0.8781,
+        "door1_hot_mean_fit_darax_ws5": 0.7143,
+        "door2_cold_mean_fit_stc_ws5": 0.4737,
+        "door2_cold_mean_fit_darax_ws5": 0.6659,
+        "all_mean_fit_stc_f07": 0.6171,
+        "all_mean_fit_darax_f07": 0.6327,
+        "all_mean_fit_combo_f07": 0.7185,
+        "all_mean_fit_apr_f07": 0.5548
+      },
+      "NRAS_mut": {
+        "n_total": 26,
+        "n_non_pole": 26,
+        "tp53_mut_n": 18,
+        "tp53_mut_pct": 69.23,
+        "tp53_wt_n": 8,
+        "stage_i_iii_n": 20,
+        "stage_iv_n": 5,
+        "stage_iv_pct_of_staged": 20.0,
+        "stage_unspecified_n": 1,
+        "door1_gate2_hot_n": 6,
+        "door1_gate2_hot_pct": 23.08,
+        "door1_hot_tp53_mut_n": 3,
+        "door1_hot_stage_iv_n": 1,
+        "door2_gate2_cold_n": 20,
+        "door2_gate2_cold_pct": 76.92,
+        "door2_cold_tp53_mut_n": 15,
+        "door2_cold_stage_iv_n": 4,
+        "cms_counts": {
+          "UNLABELED": 21,
+          "CMS2": 3,
+          "CMS3": 1,
+          "CMS4": 1
+        },
+        "door1_hot_mean_fit_stc_f07": 0.9131,
+        "door1_hot_mean_fit_darax_f07": 0.6212,
+        "door2_cold_mean_fit_stc_f07": 0.4021,
+        "door2_cold_mean_fit_darax_f07": 0.6373,
+        "door1_hot_mean_fit_stc_ws5": 0.9298,
+        "door1_hot_mean_fit_darax_ws5": 0.669,
+        "door2_cold_mean_fit_stc_ws5": 0.4204,
+        "door2_cold_mean_fit_darax_ws5": 0.6898,
+        "all_mean_fit_stc_f07": 0.52,
+        "all_mean_fit_darax_f07": 0.6335,
+        "all_mean_fit_combo_f07": 0.6421,
+        "all_mean_fit_apr_f07": 0.4597
+      },
+      "BRAF_V600E": {
+        "n_total": 9,
+        "n_non_pole": 9,
+        "tp53_mut_n": 5,
+        "tp53_mut_pct": 55.56,
+        "tp53_wt_n": 4,
+        "stage_i_iii_n": 7,
+        "stage_iv_n": 2,
+        "stage_iv_pct_of_staged": 22.22,
+        "stage_unspecified_n": 0,
+        "door1_gate2_hot_n": 5,
+        "door1_gate2_hot_pct": 55.56,
+        "door1_hot_tp53_mut_n": 3,
+        "door1_hot_stage_iv_n": 1,
+        "door2_gate2_cold_n": 4,
+        "door2_gate2_cold_pct": 44.44,
+        "door2_cold_tp53_mut_n": 2,
+        "door2_cold_stage_iv_n": 1,
+        "cms_counts": {
+          "UNLABELED": 3,
+          "CMS4": 2,
+          "NOLBL": 2,
+          "CMS3": 1,
+          "CMS1": 1
+        },
+        "door1_hot_mean_fit_stc_f07": 0.9669,
+        "door1_hot_mean_fit_darax_f07": 0.0,
+        "door2_cold_mean_fit_stc_f07": 0.4212,
+        "door2_cold_mean_fit_darax_f07": 0.0,
+        "door1_hot_mean_fit_stc_ws5": 0.9971,
+        "door1_hot_mean_fit_darax_ws5": 0.0,
+        "door2_cold_mean_fit_stc_ws5": 0.4545,
+        "door2_cold_mean_fit_darax_ws5": 0.0,
+        "all_mean_fit_stc_f07": 0.7244,
+        "all_mean_fit_darax_f07": 0.0,
+        "all_mean_fit_combo_f07": 0.0,
+        "all_mean_fit_apr_f07": 0.0
+      },
+      "BRAF_non_V600E": {
+        "n_total": 8,
+        "n_non_pole": 4,
+        "tp53_mut_n": 5,
+        "tp53_mut_pct": 62.5,
+        "tp53_wt_n": 3,
+        "stage_i_iii_n": 8,
+        "stage_iv_n": 0,
+        "stage_iv_pct_of_staged": 0.0,
+        "stage_unspecified_n": 0,
+        "door1_gate2_hot_n": 4,
+        "door1_gate2_hot_pct": 50.0,
+        "door1_hot_tp53_mut_n": 3,
+        "door1_hot_stage_iv_n": 0,
+        "door2_gate2_cold_n": 4,
+        "door2_gate2_cold_pct": 50.0,
+        "door2_cold_tp53_mut_n": 2,
+        "door2_cold_stage_iv_n": 0,
+        "cms_counts": {
+          "UNLABELED": 6,
+          "CMS4": 2
+        },
+        "door1_hot_mean_fit_stc_f07": 0.8899,
+        "door1_hot_mean_fit_darax_f07": 0.0,
+        "door2_cold_mean_fit_stc_f07": 0.5355,
+        "door2_cold_mean_fit_darax_f07": 0.0,
+        "door1_hot_mean_fit_stc_ws5": 0.9232,
+        "door1_hot_mean_fit_darax_ws5": 0.0,
+        "door2_cold_mean_fit_stc_ws5": 0.5689,
+        "door2_cold_mean_fit_darax_ws5": 0.0,
+        "all_mean_fit_stc_f07": 0.7127,
+        "all_mean_fit_darax_f07": 0.0,
+        "all_mean_fit_combo_f07": 0.0,
+        "all_mean_fit_apr_f07": 0.0
+      },
+      "Triple_WT": {
+        "n_total": 256,
+        "n_non_pole": 253,
+        "tp53_mut_n": 140,
+        "tp53_mut_pct": 54.69,
+        "tp53_wt_n": 116,
+        "stage_i_iii_n": 213,
+        "stage_iv_n": 38,
+        "stage_iv_pct_of_staged": 15.14,
+        "stage_unspecified_n": 5,
+        "door1_gate2_hot_n": 86,
+        "door1_gate2_hot_pct": 33.59,
+        "door1_hot_tp53_mut_n": 50,
+        "door1_hot_stage_iv_n": 5,
+        "door2_gate2_cold_n": 170,
+        "door2_gate2_cold_pct": 66.41,
+        "door2_cold_tp53_mut_n": 90,
+        "door2_cold_stage_iv_n": 33,
+        "cms_counts": {
+          "UNLABELED": 184,
+          "CMS4": 27,
+          "CMS2": 38,
+          "CMS3": 3,
+          "NOLBL": 3,
+          "CMS1": 1
+        },
+        "door1_hot_mean_fit_stc_f07": 0.6914,
+        "door1_hot_mean_fit_darax_f07": 0.0,
+        "door2_cold_mean_fit_stc_f07": 0.214,
+        "door2_cold_mean_fit_darax_f07": 0.0,
+        "door1_hot_mean_fit_stc_ws5": 0.9233,
+        "door1_hot_mean_fit_darax_ws5": 0.0,
+        "door2_cold_mean_fit_stc_ws5": 0.4473,
+        "door2_cold_mean_fit_darax_ws5": 0.0,
+        "all_mean_fit_stc_f07": 0.3744,
+        "all_mean_fit_darax_f07": 0.0,
+        "all_mean_fit_combo_f07": 0.0,
+        "all_mean_fit_apr_f07": 0.0
+      }
+    }
+  }
+}

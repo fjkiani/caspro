@@ -1,0 +1,4959 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_id": "sanofi_ceacam5_top1_adc_computed_receipt",
+  "generated_at": "2026-11-05T04:35:00Z",
+  "ruo": true,
+  "hypothesis_tested": {
+    "program": "Sanofi CEACAM5 ADC Franchise Pivot: Tusamitamab ravtansine (SAR408701, DM4 tubulin payload, CARMEN-LC03 Phase III failure) vs SGN-CEACAM5C / SAR445953 / M9140 (Topoisomerase-1 inhibitor payload) in MSS CRC & NSCLC",
+    "three_gate_architecture": {
+      "Gate_1_Target_Density": "CEACAM5 expression (Q75 / Q90 / z>=0) and oncogenic driver / subtype enrichment (MSS vs MSI-H, CMS1-4, KRAS/BRAF/TP53/EGFR/STK11/KEAP1)",
+      "Gate_2_Payload_Mechanism_Fit": "TOP1 & SLFN11 & ATR/CHEK1 replication-stress sensitivity vs TUBB3 & ABCB1 (MDR1 efflux) microtubule resistance",
+      "Gate_3_Stromal_TGFB_Immune_Barrier": "FAP stromal fibroblast barrier, SMAD4 loss (TGF-beta switch), and Mode iii-C transcriptomic immune context (z_imm)"
+    }
+  },
+  "data_provenance": {
+    "cohort_1_tcga_coadread": {
+      "study_id": "coadread_tcga_pan_can_atlas_2018",
+      "n_full_rna_seq_v2": 592,
+      "n_mss_ranker_cohort": 485,
+      "n_mss_rna_evaluable": 483,
+      "primary_z_profile": "coadread_tcga_pan_can_atlas_2018_rna_seq_v2_mrna_median_all_sample_Zscores",
+      "local_sources_joined": [
+        "src/data/pharma/crc-ranker-v1/crc_ranker_results_v2_gated.csv",
+        "crispro-backend-v2/biomarker_enriched_cohorts/data/coadread_tcga_pan_can_atlas_2018_enriched_v1.json",
+        "cBioPortal REST API molecular-profiles & mutations & GISTIC CNA"
+      ]
+    },
+    "cohort_2_tcga_luad": {
+      "study_id": "luad_tcga_pan_can_atlas_2018",
+      "n_rna_seq_v2_evaluable": 510,
+      "n_sequenced_overlap": 510,
+      "n_gistic_cna_overlap": 507,
+      "primary_z_profile": "luad_tcga_pan_can_atlas_2018_rna_seq_v2_mrna_median_all_sample_Zscores"
+    },
+    "cohort_3_pharmacology_depmap": {
+      "gdsc2_parquet": "/tmp/zo_backend_saved/files/.cache/gdsc/gdsc2.parquet (242,036 rows)",
+      "depmap_expression": "/Users/fahadkiani/Desktop/development/crispr-assistant-main/OmicsExpression.parquet (1,517 models)",
+      "depmap_crispr": "/Users/fahadkiani/Desktop/development/crispr-assistant-main/data/depmap/CRISPRGeneEffect.csv (1,186 models)",
+      "depmap_models": "/Users/fahadkiani/Desktop/development/crispr-assistant-main/data/depmap/Model.csv (2,132 models)"
+    }
+  },
+  "cohort_1_tcga_coadread_results": {
+    "ceacam5_empirical_distributions": {
+      "mss_483_all_sample_z": {
+        "n": 483,
+        "mean": 0.15647,
+        "sd": 0.893253,
+        "median": 0.2935,
+        "q25": -0.15105,
+        "q75": 0.7216,
+        "iqr": 0.87265,
+        "q10": -0.86056,
+        "q80": 0.82448,
+        "q90": 1.03456,
+        "min": -6.6582,
+        "max": 2.0434,
+        "n_gt_0": 318,
+        "pct_gt_0": 65.8385,
+        "n_ge_0": 319,
+        "pct_ge_0": 66.0455
+      },
+      "mss_483_diploid_z": {
+        "n": 483,
+        "mean": 0.215676,
+        "sd": 1.011925,
+        "median": 0.1151,
+        "q25": -0.50225,
+        "q75": 0.82595,
+        "iqr": 1.3282,
+        "q10": -0.94576,
+        "q80": 1.00162,
+        "q90": 1.55094,
+        "min": -1.8917,
+        "max": 5.4911,
+        "n_gt_0": 258,
+        "pct_gt_0": 53.4161,
+        "n_ge_0": 258,
+        "pct_ge_0": 53.4161
+      },
+      "mss_483_log2_rsem": {
+        "n": 483,
+        "mean": 16.65954,
+        "sd": 1.016214,
+        "median": 16.815446,
+        "q25": 16.309716,
+        "q75": 17.302418,
+        "iqr": 0.992702,
+        "q10": 15.502483,
+        "q80": 17.41949,
+        "q90": 17.658505,
+        "min": 8.906802,
+        "max": 18.806235,
+        "n_gt_0": 483,
+        "pct_gt_0": 100.0,
+        "n_ge_0": 483,
+        "pct_ge_0": 100.0
+      },
+      "full_592_all_sample_z": {
+        "n": 592,
+        "mean": 0.0,
+        "sd": 1.000845,
+        "median": 0.19205,
+        "q25": -0.373375,
+        "q75": 0.6581,
+        "iqr": 1.031475,
+        "q10": -1.27475,
+        "q80": 0.77208,
+        "q90": 0.98426,
+        "min": -6.6582,
+        "max": 2.0434,
+        "n_gt_0": 353,
+        "pct_gt_0": 59.6284,
+        "n_ge_0": 354,
+        "pct_ge_0": 59.7973
+      },
+      "full_592_log2_rsem": {
+        "n": 592,
+        "mean": 16.481531,
+        "sd": 1.138618,
+        "median": 16.700047,
+        "q25": 16.05676,
+        "q75": 17.230227,
+        "iqr": 1.173467,
+        "q10": 15.031326,
+        "q80": 17.359938,
+        "q90": 17.60132,
+        "min": 8.906802,
+        "max": 18.806235,
+        "n_gt_0": 592,
+        "pct_gt_0": 100.0,
+        "n_ge_0": 592,
+        "pct_ge_0": 100.0
+      },
+      "msih_105_all_sample_z": {
+        "n": 107,
+        "mean": -0.703839,
+        "sd": 1.158536,
+        "median": -0.5376,
+        "q25": -1.42665,
+        "q75": 0.1123,
+        "iqr": 1.53895,
+        "q10": -2.02378,
+        "q80": 0.3361,
+        "q90": 0.6558,
+        "min": -4.6808,
+        "max": 1.2957,
+        "n_gt_0": 34,
+        "pct_gt_0": 31.7757,
+        "n_ge_0": 34,
+        "pct_ge_0": 31.7757
+      }
+    },
+    "panel_gene_distributions_mss_483_z_all": {
+      "CEACAM5": {
+        "n": 483,
+        "mean": 0.15647,
+        "sd": 0.893253,
+        "median": 0.2935,
+        "q25": -0.15105,
+        "q75": 0.7216,
+        "iqr": 0.87265,
+        "q10": -0.86056,
+        "q80": 0.82448,
+        "q90": 1.03456,
+        "min": -6.6582,
+        "max": 2.0434,
+        "n_gt_0": 318,
+        "pct_gt_0": 65.8385,
+        "n_ge_0": 319,
+        "pct_ge_0": 66.0455
+      },
+      "CEACAM6": {
+        "n": 483,
+        "mean": 0.129,
+        "sd": 0.944633,
+        "median": 0.2607,
+        "q25": -0.3302,
+        "q75": 0.8043,
+        "iqr": 1.1345,
+        "q10": -0.9982,
+        "q80": 0.92734,
+        "q90": 1.14446,
+        "min": -6.2475,
+        "max": 1.7517,
+        "n_gt_0": 294,
+        "pct_gt_0": 60.8696,
+        "n_ge_0": 294,
+        "pct_ge_0": 60.8696
+      },
+      "TOP1": {
+        "n": 483,
+        "mean": 0.044502,
+        "sd": 1.039216,
+        "median": 0.1562,
+        "q25": -0.4635,
+        "q75": 0.7129,
+        "iqr": 1.1764,
+        "q10": -1.19212,
+        "q80": 0.85454,
+        "q90": 1.17792,
+        "min": -4.9121,
+        "max": 3.1744,
+        "n_gt_0": 280,
+        "pct_gt_0": 57.971,
+        "n_ge_0": 280,
+        "pct_ge_0": 57.971
+      },
+      "SLFN11": {
+        "n": 483,
+        "mean": -0.095067,
+        "sd": 0.960652,
+        "median": -0.063,
+        "q25": -0.63435,
+        "q75": 0.56,
+        "iqr": 1.19435,
+        "q10": -1.38514,
+        "q80": 0.7185,
+        "q90": 1.05502,
+        "min": -3.0159,
+        "max": 2.8856,
+        "n_gt_0": 229,
+        "pct_gt_0": 47.412,
+        "n_ge_0": 229,
+        "pct_ge_0": 47.412
+      },
+      "ATR": {
+        "n": 483,
+        "mean": 0.089938,
+        "sd": 1.009831,
+        "median": 0.212,
+        "q25": -0.3577,
+        "q75": 0.73935,
+        "iqr": 1.09705,
+        "q10": -0.84016,
+        "q80": 0.86242,
+        "q90": 1.13158,
+        "min": -8.3296,
+        "max": 2.5482,
+        "n_gt_0": 287,
+        "pct_gt_0": 59.4203,
+        "n_ge_0": 287,
+        "pct_ge_0": 59.4203
+      },
+      "CHEK1": {
+        "n": 483,
+        "mean": -0.05528,
+        "sd": 1.05005,
+        "median": 0.0452,
+        "q25": -0.661,
+        "q75": 0.6497,
+        "iqr": 1.3107,
+        "q10": -1.41152,
+        "q80": 0.80362,
+        "q90": 1.2009,
+        "min": -3.7912,
+        "max": 2.5367,
+        "n_gt_0": 253,
+        "pct_gt_0": 52.381,
+        "n_ge_0": 253,
+        "pct_ge_0": 52.381
+      },
+      "TUBB3": {
+        "n": 483,
+        "mean": 0.013892,
+        "sd": 1.002896,
+        "median": -0.0339,
+        "q25": -0.67915,
+        "q75": 0.71345,
+        "iqr": 1.3926,
+        "q10": -1.21354,
+        "q80": 0.86564,
+        "q90": 1.2833,
+        "min": -3.1455,
+        "max": 3.0825,
+        "n_gt_0": 237,
+        "pct_gt_0": 49.0683,
+        "n_ge_0": 237,
+        "pct_ge_0": 49.0683
+      },
+      "ABCB1": {
+        "n": 483,
+        "mean": 0.156364,
+        "sd": 0.920079,
+        "median": 0.2935,
+        "q25": -0.43155,
+        "q75": 0.84435,
+        "iqr": 1.2759,
+        "q10": -1.07872,
+        "q80": 0.98454,
+        "q90": 1.22388,
+        "min": -3.0342,
+        "max": 2.1058,
+        "n_gt_0": 286,
+        "pct_gt_0": 59.2133,
+        "n_ge_0": 286,
+        "pct_ge_0": 59.2133
+      },
+      "ABCG2": {
+        "n": 483,
+        "mean": -0.01052,
+        "sd": 1.007713,
+        "median": -0.1195,
+        "q25": -0.64175,
+        "q75": 0.53165,
+        "iqr": 1.1734,
+        "q10": -1.2032,
+        "q80": 0.71948,
+        "q90": 1.29644,
+        "min": -3.164,
+        "max": 3.8468,
+        "n_gt_0": 216,
+        "pct_gt_0": 44.7205,
+        "n_ge_0": 216,
+        "pct_ge_0": 44.7205
+      },
+      "SMAD4": {
+        "n": 483,
+        "mean": -0.149531,
+        "sd": 0.966825,
+        "median": -0.0106,
+        "q25": -0.57385,
+        "q75": 0.43325,
+        "iqr": 1.0071,
+        "q10": -1.17268,
+        "q80": 0.57784,
+        "q90": 0.86564,
+        "min": -6.2909,
+        "max": 1.9999,
+        "n_gt_0": 238,
+        "pct_gt_0": 49.2754,
+        "n_ge_0": 238,
+        "pct_ge_0": 49.2754
+      },
+      "FAP": {
+        "n": 483,
+        "mean": -0.067816,
+        "sd": 1.012911,
+        "median": 0.0224,
+        "q25": -0.7078,
+        "q75": 0.64545,
+        "iqr": 1.35325,
+        "q10": -1.42914,
+        "q80": 0.79822,
+        "q90": 1.1908,
+        "min": -3.613,
+        "max": 2.2563,
+        "n_gt_0": 243,
+        "pct_gt_0": 50.3106,
+        "n_ge_0": 243,
+        "pct_ge_0": 50.3106
+      },
+      "TGFB1": {
+        "n": 483,
+        "mean": -0.118938,
+        "sd": 0.958311,
+        "median": -0.1076,
+        "q25": -0.72835,
+        "q75": 0.52855,
+        "iqr": 1.2569,
+        "q10": -1.334,
+        "q80": 0.645,
+        "q90": 1.07902,
+        "min": -2.6727,
+        "max": 2.811,
+        "n_gt_0": 215,
+        "pct_gt_0": 44.5135,
+        "n_ge_0": 215,
+        "pct_ge_0": 44.5135
+      }
+    },
+    "gate1_subgroup_and_driver_comparisons": {
+      "MSS_vs_MSIH_in_full_592": {
+        "n_pos": 483,
+        "n_neg": 107,
+        "median_pos": 0.2935,
+        "iqr_pos": 0.87265,
+        "mean_pos": 0.15647,
+        "pct_z_gt_0_pos": 65.84,
+        "median_neg": -0.5376,
+        "iqr_neg": 1.53895,
+        "mean_neg": -0.703839,
+        "pct_z_gt_0_neg": 31.78,
+        "delta_median": 0.8311,
+        "delta_mean": 0.86031,
+        "mwu_p": 1.5048493885551024e-14,
+        "welch_t_p": 3.3865676435787194e-11
+      },
+      "KRAS_mut_vs_WT_in_MSS_483": {
+        "n_pos": 186,
+        "n_neg": 297,
+        "median_pos": 0.2615,
+        "iqr_pos": 0.937475,
+        "mean_pos": 0.101931,
+        "pct_z_gt_0_pos": 62.9,
+        "median_neg": 0.3149,
+        "iqr_neg": 0.8685,
+        "mean_neg": 0.190627,
+        "pct_z_gt_0_neg": 67.68,
+        "delta_median": -0.0534,
+        "delta_mean": -0.088696,
+        "mwu_p": 0.3477742451033523,
+        "welch_t_p": 0.3098858870366732
+      },
+      "BRAF_mut_vs_WT_in_MSS_483": {
+        "n_pos": 21,
+        "n_neg": 462,
+        "median_pos": -1.2243,
+        "iqr_pos": 1.9465,
+        "mean_pos": -0.937138,
+        "pct_z_gt_0_pos": 23.81,
+        "median_neg": 0.31805,
+        "iqr_neg": 0.859375,
+        "mean_neg": 0.20618,
+        "pct_z_gt_0_neg": 67.75,
+        "delta_median": -1.54235,
+        "delta_mean": -1.143318,
+        "mwu_p": 1.9491642996865327e-05,
+        "welch_t_p": 0.0014074958030754678
+      },
+      "TP53_mut_vs_WT_in_MSS_483": {
+        "n_pos": 282,
+        "n_neg": 201,
+        "median_pos": 0.24215,
+        "iqr_pos": 0.910825,
+        "mean_pos": 0.092161,
+        "pct_z_gt_0_pos": 63.12,
+        "median_neg": 0.3687,
+        "iqr_neg": 0.8899,
+        "mean_neg": 0.246696,
+        "pct_z_gt_0_neg": 69.65,
+        "delta_median": -0.12655,
+        "delta_mean": -0.154535,
+        "mwu_p": 0.028347302042584763,
+        "welch_t_p": 0.06233827737906668
+      },
+      "SMAD4_genomic_loss_vs_intact_in_MSS_483": {
+        "n_pos": 71,
+        "n_neg": 412,
+        "median_pos": 0.1147,
+        "iqr_pos": 0.9938,
+        "mean_pos": -0.007501,
+        "pct_z_gt_0_pos": 60.56,
+        "median_neg": 0.32115,
+        "iqr_neg": 0.856775,
+        "mean_neg": 0.184728,
+        "pct_z_gt_0_neg": 66.75,
+        "delta_median": -0.20645,
+        "delta_mean": -0.192229,
+        "mwu_p": 0.1937777130542787,
+        "welch_t_p": 0.1597535843541589
+      },
+      "SMAD4_composite_loss_vs_intact_in_MSS_483": {
+        "n_pos": 107,
+        "n_neg": 376,
+        "median_pos": 0.1558,
+        "iqr_pos": 0.98515,
+        "mean_pos": -0.000264,
+        "pct_z_gt_0_pos": 60.75,
+        "median_neg": 0.34845,
+        "iqr_neg": 0.8711,
+        "mean_neg": 0.201073,
+        "pct_z_gt_0_neg": 67.29,
+        "delta_median": -0.19265,
+        "delta_mean": -0.201338,
+        "mwu_p": 0.06472420092992076,
+        "welch_t_p": 0.06391874970794924
+      },
+      "APC_mut_vs_WT_in_MSS_483": {
+        "n_pos": 341,
+        "n_neg": 142,
+        "median_pos": 0.2613,
+        "iqr_pos": 0.8457,
+        "mean_pos": 0.14214,
+        "pct_z_gt_0_pos": 64.52,
+        "median_neg": 0.38765,
+        "iqr_neg": 0.945625,
+        "mean_neg": 0.190882,
+        "pct_z_gt_0_neg": 69.01,
+        "delta_median": -0.12635,
+        "delta_mean": -0.048742,
+        "mwu_p": 0.2401574584349938,
+        "welch_t_p": 0.5863817372780773
+      },
+      "PIK3CA_mut_vs_WT_in_MSS_483": {
+        "n_pos": 108,
+        "n_neg": 375,
+        "median_pos": 0.2278,
+        "iqr_pos": 0.894325,
+        "mean_pos": 0.088963,
+        "pct_z_gt_0_pos": 62.96,
+        "median_neg": 0.3193,
+        "iqr_neg": 0.90695,
+        "mean_neg": 0.175913,
+        "pct_z_gt_0_neg": 66.67,
+        "delta_median": -0.0915,
+        "delta_mean": -0.08695,
+        "mwu_p": 0.1856807578579006,
+        "welch_t_p": 0.35141954384724483
+      },
+      "Gate2_Immune_Hot_vs_Cold_in_MSS_483": {
+        "n_pos": 152,
+        "n_neg": 331,
+        "median_pos": 0.21815,
+        "iqr_pos": 1.08775,
+        "mean_pos": -0.020982,
+        "pct_z_gt_0_pos": 57.24,
+        "median_neg": 0.3541,
+        "iqr_neg": 0.87205,
+        "mean_neg": 0.237959,
+        "pct_z_gt_0_neg": 69.79,
+        "delta_median": -0.13595,
+        "delta_mean": -0.25894,
+        "mwu_p": 0.008208984899343104,
+        "welch_t_p": 0.007931950794067208
+      }
+    },
+    "gate1_cms_distribution_mss_483": {
+      "kruskal_wallis_p_across_cms1_to_cms4": 0.014914600292899658,
+      "kruskal_wallis_h_stat": 10.4775,
+      "by_cms": {
+        "CMS1": {
+          "n": 6,
+          "mean": -1.682783,
+          "sd": 1.723378,
+          "median": -1.57905,
+          "q25": -2.58975,
+          "q75": -0.84615,
+          "iqr": 1.7436,
+          "q10": -3.42615,
+          "q80": -0.8396,
+          "q90": -0.04315,
+          "min": -4.1634,
+          "max": 0.7533,
+          "n_gt_0": 1,
+          "pct_gt_0": 16.6667,
+          "n_ge_0": 1,
+          "pct_ge_0": 16.6667,
+          "median_TOP1_z": -0.36195,
+          "median_SLFN11_z": 0.20945,
+          "median_FAP_z": 0.5052,
+          "median_ABCB1_z": -1.42065,
+          "median_TUBB3_z": 1.3993,
+          "median_immune_score_rna": 0.97405
+        },
+        "CMS2": {
+          "n": 65,
+          "mean": 0.065468,
+          "sd": 0.825965,
+          "median": 0.2193,
+          "q25": -0.1111,
+          "q75": 0.4776,
+          "iqr": 0.5887,
+          "q10": -0.90944,
+          "q80": 0.68342,
+          "q90": 0.98648,
+          "min": -3.1485,
+          "max": 1.4529,
+          "n_gt_0": 41,
+          "pct_gt_0": 63.0769,
+          "n_ge_0": 41,
+          "pct_ge_0": 63.0769,
+          "median_TOP1_z": 0.5989,
+          "median_SLFN11_z": -0.3544,
+          "median_FAP_z": -0.3467,
+          "median_ABCB1_z": 0.3829,
+          "median_TUBB3_z": -0.186,
+          "median_immune_score_rna": -0.8741
+        },
+        "CMS3": {
+          "n": 25,
+          "mean": 0.173632,
+          "sd": 0.781188,
+          "median": 0.3057,
+          "q25": -0.2374,
+          "q75": 0.7021,
+          "iqr": 0.9395,
+          "q10": -0.56484,
+          "q80": 0.83374,
+          "q90": 0.9465,
+          "min": -2.1215,
+          "max": 1.3367,
+          "n_gt_0": 15,
+          "pct_gt_0": 60.0,
+          "n_ge_0": 15,
+          "pct_ge_0": 60.0,
+          "median_TOP1_z": -0.5008,
+          "median_SLFN11_z": -0.4994,
+          "median_FAP_z": -0.6632,
+          "median_ABCB1_z": 0.8036,
+          "median_TUBB3_z": -0.2097,
+          "median_immune_score_rna": -0.7218
+        },
+        "CMS4": {
+          "n": 52,
+          "mean": -0.172002,
+          "sd": 0.816184,
+          "median": -0.0316,
+          "q25": -0.55695,
+          "q75": 0.416825,
+          "iqr": 0.973775,
+          "q10": -1.2708,
+          "q80": 0.53352,
+          "q90": 0.6645,
+          "min": -2.3993,
+          "max": 0.9849,
+          "n_gt_0": 22,
+          "pct_gt_0": 42.3077,
+          "n_ge_0": 23,
+          "pct_ge_0": 44.2308,
+          "median_TOP1_z": 0.19335,
+          "median_SLFN11_z": 0.86175,
+          "median_FAP_z": 1.1779,
+          "median_ABCB1_z": 0.68535,
+          "median_TUBB3_z": 0.306,
+          "median_immune_score_rna": 0.2094
+        },
+        "NOLBL": {
+          "n": 19,
+          "mean": 0.011553,
+          "sd": 0.910941,
+          "median": 0.0013,
+          "q25": -0.4577,
+          "q75": 0.42025,
+          "iqr": 0.87795,
+          "q10": -0.77392,
+          "q80": 0.50824,
+          "q90": 0.90658,
+          "min": -2.2487,
+          "max": 2.0434,
+          "n_gt_0": 10,
+          "pct_gt_0": 52.6316,
+          "n_ge_0": 10,
+          "pct_ge_0": 52.6316,
+          "median_TOP1_z": 0.331,
+          "median_SLFN11_z": -0.1276,
+          "median_FAP_z": 0.433,
+          "median_ABCB1_z": 0.673,
+          "median_TUBB3_z": -0.265,
+          "median_immune_score_rna": -0.7056
+        }
+      }
+    },
+    "coexpression_correlations_with_CEACAM5_mss_483": {
+      "CEACAM6_z_all": {
+        "n": 483,
+        "spearman_rho": 0.579175,
+        "spearman_p": 1.3030565068336535e-44,
+        "pearson_r": 0.622469,
+        "pearson_p": 3.712186525145522e-53
+      },
+      "TOP1_z_all": {
+        "n": 483,
+        "spearman_rho": 0.058307,
+        "spearman_p": 0.20083154162213435,
+        "pearson_r": 0.077224,
+        "pearson_p": 0.09001758414635447
+      },
+      "SLFN11_z_all": {
+        "n": 483,
+        "spearman_rho": -0.028037,
+        "spearman_p": 0.5387499621466019,
+        "pearson_r": -0.008246,
+        "pearson_p": 0.8565653900369331
+      },
+      "ATR_z_all": {
+        "n": 483,
+        "spearman_rho": 0.015324,
+        "spearman_p": 0.7369225030589901,
+        "pearson_r": 0.061756,
+        "pearson_p": 0.17541488153379317
+      },
+      "CHEK1_z_all": {
+        "n": 483,
+        "spearman_rho": 0.006311,
+        "spearman_p": 0.8899750671927251,
+        "pearson_r": 0.01856,
+        "pearson_p": 0.6840975587959238
+      },
+      "DDR_ATR_CHEK1_z_all": {
+        "n": 483,
+        "spearman_rho": 0.015245,
+        "spearman_p": 0.7382329022554507,
+        "pearson_r": 0.047563,
+        "pearson_p": 0.2968599529361506
+      },
+      "TOP1_SLFN11_mean_z_all": {
+        "n": 483,
+        "spearman_rho": 0.020329,
+        "spearman_p": 0.6558365931399259,
+        "pearson_r": 0.050312,
+        "pearson_p": 0.26979082016606387
+      },
+      "TUBB3_z_all": {
+        "n": 483,
+        "spearman_rho": -0.147166,
+        "spearman_p": 0.0011802631853559844,
+        "pearson_r": -0.131925,
+        "pearson_p": 0.0036778485494929577
+      },
+      "ABCB1_z_all": {
+        "n": 483,
+        "spearman_rho": -0.06292,
+        "spearman_p": 0.1674059726220433,
+        "pearson_r": 0.065974,
+        "pearson_p": 0.1476882500589246
+      },
+      "ABCG2_z_all": {
+        "n": 483,
+        "spearman_rho": -0.14904,
+        "spearman_p": 0.0010185120652292518,
+        "pearson_r": -0.144338,
+        "pearson_p": 0.0014697289079851708
+      },
+      "TUBB3_ABCB1_mean_z_all": {
+        "n": 483,
+        "spearman_rho": -0.139234,
+        "spearman_p": 0.0021622036738055263,
+        "pearson_r": -0.051894,
+        "pearson_p": 0.2549970440284595
+      },
+      "SMAD4_z_all": {
+        "n": 483,
+        "spearman_rho": 0.064817,
+        "spearman_p": 0.1549371769734127,
+        "pearson_r": 0.032758,
+        "pearson_p": 0.47260094677024994
+      },
+      "FAP_z_all": {
+        "n": 483,
+        "spearman_rho": -0.204906,
+        "spearman_p": 5.628801784404161e-06,
+        "pearson_r": -0.201828,
+        "pearson_p": 7.814407552224628e-06
+      },
+      "TGFB1_z_all": {
+        "n": 483,
+        "spearman_rho": -0.125688,
+        "spearman_p": 0.005673131290712014,
+        "pearson_r": -0.160306,
+        "pearson_p": 0.0004049245843536824
+      },
+      "FAP_TGFB1_mean_z_all": {
+        "n": 483,
+        "spearman_rho": -0.1756,
+        "spearman_p": 0.00010471999622794348,
+        "pearson_r": -0.199823,
+        "pearson_p": 9.649388048278455e-06
+      },
+      "SPP1_z_all": {
+        "n": 483,
+        "spearman_rho": -0.216695,
+        "spearman_p": 1.5301353961460256e-06,
+        "pearson_r": -0.201824,
+        "pearson_p": 7.817039395745108e-06
+      },
+      "CD68_z_all": {
+        "n": 483,
+        "spearman_rho": -0.013759,
+        "spearman_p": 0.7629382964474531,
+        "pearson_r": -0.076427,
+        "pearson_p": 0.09339522294445969
+      },
+      "CD8A_z_all": {
+        "n": 483,
+        "spearman_rho": -0.042147,
+        "spearman_p": 0.35533435368694977,
+        "pearson_r": 0.010824,
+        "pearson_p": 0.812451254487519
+      },
+      "CXCL9_z_all": {
+        "n": 483,
+        "spearman_rho": -0.026395,
+        "spearman_p": 0.5627997489752676,
+        "pearson_r": -0.003894,
+        "pearson_p": 0.9319765284280419
+      },
+      "CXCL10_z_all": {
+        "n": 483,
+        "spearman_rho": -0.059091,
+        "spearman_p": 0.194826202916435,
+        "pearson_r": -0.039385,
+        "pearson_p": 0.3877705696825694
+      },
+      "GZMB_z_all": {
+        "n": 483,
+        "spearman_rho": -0.038267,
+        "spearman_p": 0.4013951822599645,
+        "pearson_r": -0.014283,
+        "pearson_p": 0.7541943789331791
+      },
+      "IFNG_z_all": {
+        "n": 483,
+        "spearman_rho": -0.054634,
+        "spearman_p": 0.23072357020733417,
+        "pearson_r": -0.100889,
+        "pearson_p": 0.02661023074396492
+      },
+      "CD274_z_all": {
+        "n": 483,
+        "spearman_rho": -0.021866,
+        "spearman_p": 0.6316716528460378,
+        "pearson_r": -0.107871,
+        "pearson_p": 0.01771626298733754
+      },
+      "CD8_CXCR3_effector_z_all": {
+        "n": 483,
+        "spearman_rho": -0.049236,
+        "spearman_p": 0.2801784283966203,
+        "pearson_r": -0.037408,
+        "pearson_p": 0.41205286677254105
+      },
+      "immune_score_rna": {
+        "n": 483,
+        "spearman_rho": -0.061382,
+        "spearman_p": 0.17805364116163835,
+        "pearson_r": -0.193836,
+        "pearson_p": 1.7891293193484944e-05
+      },
+      "tmb": {
+        "n": 483,
+        "spearman_rho": -0.064149,
+        "spearman_p": 0.15924585596785207,
+        "pearson_r": -0.222694,
+        "pearson_p": 7.663857408022564e-07
+      },
+      "fraction_genome_altered": {
+        "n": 480,
+        "spearman_rho": -0.030878,
+        "spearman_p": 0.49973475740189743,
+        "pearson_r": -0.064243,
+        "pearson_p": 0.15994196634530827
+      },
+      "aneuploidy_score": {
+        "n": 483,
+        "spearman_rho": -0.01461,
+        "spearman_p": 0.7487565733448293,
+        "pearson_r": -0.017514,
+        "pearson_p": 0.7010157661401769
+      }
+    },
+    "three_gate_stratification_mode_1_z_ge_0": {
+      "gate1_definition": "CEACAM5_z_all >= 0.0",
+      "cutpoints": {
+        "CEACAM5_Q75_z_all": 0.7216,
+        "TOP1_median_z_all": 0.1562,
+        "SLFN11_median_z_all": -0.063,
+        "FAP_Q75_z_all": 0.64545,
+        "ABCB1_Q75_z_all": 0.84435,
+        "TUBB3_Q75_z_all": 0.71345
+      },
+      "mutually_exclusive_partition_483": {
+        "Stratum_A_Ideal_SGN_CEACAM5C_Responder": {
+          "label": "CEACAM5-High + TOP1/SLFN11-Sens + FAP<Q75 & SMAD4-Intact",
+          "n": 144,
+          "pct_of_483_rna_mss": 29.81,
+          "pct_of_485_total_mss": 29.69,
+          "n_kras_mut": 51,
+          "pct_kras_mut_within_stratum": 35.42,
+          "n_braf_mut": 0,
+          "n_tp53_mut": 90,
+          "n_smad4_genomic_loss": 0,
+          "n_smad4_composite_loss": 0,
+          "n_gate2_immune_hot": 37,
+          "pct_gate2_immune_hot": 25.69,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 49,
+          "cms_breakdown": {
+            "UNLABELED": 107,
+            "CMS2": 29,
+            "NOLBL": 3,
+            "CMS3": 3,
+            "CMS4": 1,
+            "CMS1": 1
+          },
+          "median_CEACAM5_z": 0.6505,
+          "median_TOP1_z": 0.4398,
+          "median_SLFN11_z": 0.0391,
+          "median_FAP_z": -0.2835,
+          "median_ABCB1_z": 0.2877,
+          "median_TUBB3_z": -0.2733
+        },
+        "Stratum_B_CEACAM5_High_Stromal_TGFB_Excluded": {
+          "label": "CEACAM5-High + TOP1/SLFN11-Sens + (FAP>=Q75 OR SMAD4-Loss)",
+          "n": 95,
+          "pct_of_483_rna_mss": 19.67,
+          "pct_of_485_total_mss": 19.59,
+          "n_kras_mut": 38,
+          "pct_kras_mut_within_stratum": 40.0,
+          "n_braf_mut": 0,
+          "n_tp53_mut": 61,
+          "n_smad4_genomic_loss": 29,
+          "n_smad4_composite_loss": 45,
+          "n_gate2_immune_hot": 35,
+          "pct_gate2_immune_hot": 36.84,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 33,
+          "cms_breakdown": {
+            "UNLABELED": 59,
+            "CMS4": 22,
+            "CMS2": 6,
+            "CMS3": 4,
+            "NOLBL": 4
+          },
+          "median_CEACAM5_z": 0.5885,
+          "median_TOP1_z": 0.2954,
+          "median_SLFN11_z": 0.3518,
+          "median_FAP_z": 0.7975,
+          "median_ABCB1_z": 0.3662,
+          "median_TUBB3_z": 0.0211
+        },
+        "Stratum_C2_CEACAM5_High_TOP1_SLFN11_Low": {
+          "label": "CEACAM5-High + TOP1<Med & SLFN11<Med (Payload-Insensitive)",
+          "n": 80,
+          "pct_of_483_rna_mss": 16.56,
+          "pct_of_485_total_mss": 16.49,
+          "n_kras_mut": 28,
+          "pct_kras_mut_within_stratum": 35.0,
+          "n_braf_mut": 5,
+          "n_tp53_mut": 28,
+          "n_smad4_genomic_loss": 14,
+          "n_smad4_composite_loss": 20,
+          "n_gate2_immune_hot": 16,
+          "pct_gate2_immune_hot": 20.0,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 33,
+          "cms_breakdown": {
+            "UNLABELED": 63,
+            "CMS3": 8,
+            "CMS2": 6,
+            "NOLBL": 3
+          },
+          "median_CEACAM5_z": 0.5482,
+          "median_TOP1_z": -0.514,
+          "median_SLFN11_z": -0.5241,
+          "median_FAP_z": -0.7261,
+          "median_ABCB1_z": -0.0474,
+          "median_TUBB3_z": 0.0407
+        },
+        "Stratum_C1_CEACAM5_Low_Moderate": {
+          "label": "CEACAM5-Low/Moderate (Target-Low)",
+          "n": 164,
+          "pct_of_483_rna_mss": 33.95,
+          "pct_of_485_total_mss": 33.81,
+          "n_kras_mut": 69,
+          "pct_kras_mut_within_stratum": 42.07,
+          "n_braf_mut": 16,
+          "n_tp53_mut": 103,
+          "n_smad4_genomic_loss": 28,
+          "n_smad4_composite_loss": 42,
+          "n_gate2_immune_hot": 64,
+          "pct_gate2_immune_hot": 39.02,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 88,
+          "cms_breakdown": {
+            "UNLABELED": 87,
+            "CMS4": 29,
+            "CMS2": 24,
+            "CMS3": 10,
+            "NOLBL": 9,
+            "CMS1": 5
+          },
+          "median_CEACAM5_z": -0.419,
+          "median_TOP1_z": 0.123,
+          "median_SLFN11_z": -0.0081,
+          "median_FAP_z": 0.286,
+          "median_ABCB1_z": 0.32,
+          "median_TUBB3_z": 0.1421
+        }
+      },
+      "additional_mechanistic_slices": {
+        "Gate1_CEACAM5_High_Total": {
+          "label": "All CEACAM5-High",
+          "n": 319,
+          "pct_of_483_rna_mss": 66.05,
+          "pct_of_485_total_mss": 65.77,
+          "n_kras_mut": 117,
+          "pct_kras_mut_within_stratum": 36.68,
+          "n_braf_mut": 5,
+          "n_tp53_mut": 179,
+          "n_smad4_genomic_loss": 43,
+          "n_smad4_composite_loss": 65,
+          "n_gate2_immune_hot": 88,
+          "pct_gate2_immune_hot": 27.59,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 115,
+          "cms_breakdown": {
+            "UNLABELED": 229,
+            "CMS2": 41,
+            "CMS4": 23,
+            "CMS3": 15,
+            "NOLBL": 10,
+            "CMS1": 1
+          },
+          "median_CEACAM5_z": 0.5866,
+          "median_TOP1_z": 0.1946,
+          "median_SLFN11_z": -0.0796,
+          "median_FAP_z": -0.1913,
+          "median_ABCB1_z": 0.288,
+          "median_TUBB3_z": -0.0713
+        },
+        "Stratum_A_FAP_Gate_Only": {
+          "label": "CEACAM5-High + TOP1/SLFN11-Sens + FAP<Q75 (ignoring SMAD4)",
+          "n": 178,
+          "pct_of_483_rna_mss": 36.85,
+          "pct_of_485_total_mss": 36.7,
+          "n_kras_mut": 66,
+          "pct_kras_mut_within_stratum": 37.08,
+          "n_braf_mut": 0,
+          "n_tp53_mut": 112,
+          "n_smad4_genomic_loss": 18,
+          "n_smad4_composite_loss": 34,
+          "n_gate2_immune_hot": 42,
+          "pct_gate2_immune_hot": 23.6,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 58,
+          "cms_breakdown": {
+            "UNLABELED": 132,
+            "CMS2": 33,
+            "CMS3": 6,
+            "NOLBL": 5,
+            "CMS4": 1,
+            "CMS1": 1
+          },
+          "median_CEACAM5_z": 0.6327,
+          "median_TOP1_z": 0.4265,
+          "median_SLFN11_z": 0.0312,
+          "median_FAP_z": -0.3273,
+          "median_ABCB1_z": 0.2983,
+          "median_TUBB3_z": -0.2733
+        },
+        "Stratum_A_Strict_No_ABCB1_Efflux": {
+          "label": "CEACAM5-High + TOP1/SLFN11-Sens + FAP<Q75 & SMAD4-Intact & ABCB1<Q75",
+          "n": 110,
+          "pct_of_483_rna_mss": 22.77,
+          "pct_of_485_total_mss": 22.68,
+          "n_kras_mut": 35,
+          "pct_kras_mut_within_stratum": 31.82,
+          "n_braf_mut": 0,
+          "n_tp53_mut": 67,
+          "n_smad4_genomic_loss": 0,
+          "n_smad4_composite_loss": 0,
+          "n_gate2_immune_hot": 29,
+          "pct_gate2_immune_hot": 26.36,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 15,
+          "cms_breakdown": {
+            "UNLABELED": 84,
+            "CMS2": 21,
+            "CMS3": 3,
+            "NOLBL": 1,
+            "CMS1": 1
+          },
+          "median_CEACAM5_z": 0.7013,
+          "median_TOP1_z": 0.396,
+          "median_SLFN11_z": 0.0688,
+          "median_FAP_z": -0.335,
+          "median_ABCB1_z": -0.0653,
+          "median_TUBB3_z": -0.3461
+        },
+        "Stratum_B_All_CEACAM5_High_Stromal_or_SMAD4": {
+          "label": "CEACAM5-High + (FAP>=Q75 OR SMAD4-Loss) regardless of TOP1",
+          "n": 117,
+          "pct_of_483_rna_mss": 24.22,
+          "pct_of_485_total_mss": 24.12,
+          "n_kras_mut": 47,
+          "pct_kras_mut_within_stratum": 40.17,
+          "n_braf_mut": 1,
+          "n_tp53_mut": 70,
+          "n_smad4_genomic_loss": 43,
+          "n_smad4_composite_loss": 65,
+          "n_gate2_immune_hot": 38,
+          "pct_gate2_immune_hot": 32.48,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 43,
+          "cms_breakdown": {
+            "UNLABELED": 75,
+            "CMS4": 22,
+            "CMS2": 8,
+            "CMS3": 7,
+            "NOLBL": 5
+          },
+          "median_CEACAM5_z": 0.5596,
+          "median_TOP1_z": 0.183,
+          "median_SLFN11_z": 0.2474,
+          "median_FAP_z": 0.6915,
+          "median_ABCB1_z": 0.3409,
+          "median_TUBB3_z": 0.028
+        },
+        "Stratum_C_Combined_Failure_Pool": {
+          "label": "CEACAM5-Low/Mod OR (CEACAM5-High + TOP1/SLFN11-Low)",
+          "n": 244,
+          "pct_of_483_rna_mss": 50.52,
+          "pct_of_485_total_mss": 50.31,
+          "n_kras_mut": 97,
+          "pct_kras_mut_within_stratum": 39.75,
+          "n_braf_mut": 21,
+          "n_tp53_mut": 131,
+          "n_smad4_genomic_loss": 42,
+          "n_smad4_composite_loss": 62,
+          "n_gate2_immune_hot": 80,
+          "pct_gate2_immune_hot": 32.79,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 121,
+          "cms_breakdown": {
+            "UNLABELED": 150,
+            "CMS2": 30,
+            "CMS4": 29,
+            "CMS3": 18,
+            "NOLBL": 12,
+            "CMS1": 5
+          },
+          "median_CEACAM5_z": -0.1459,
+          "median_TOP1_z": -0.1077,
+          "median_SLFN11_z": -0.3337,
+          "median_FAP_z": -0.1183,
+          "median_ABCB1_z": 0.2455,
+          "median_TUBB3_z": 0.0846
+        },
+        "DM4_Tubulin_Efflux_Vulnerable_Within_CEACAM5_High": {
+          "label": "CEACAM5-High + (ABCB1>=Q75 OR TUBB3>=Q75) \u2014 DM4 Resistant, TOP1 Salvageable",
+          "n": 115,
+          "pct_of_483_rna_mss": 23.81,
+          "pct_of_485_total_mss": 23.71,
+          "n_kras_mut": 50,
+          "pct_kras_mut_within_stratum": 43.48,
+          "n_braf_mut": 1,
+          "n_tp53_mut": 64,
+          "n_smad4_genomic_loss": 14,
+          "n_smad4_composite_loss": 23,
+          "n_gate2_immune_hot": 36,
+          "pct_gate2_immune_hot": 31.3,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 115,
+          "cms_breakdown": {
+            "UNLABELED": 73,
+            "CMS2": 15,
+            "CMS4": 13,
+            "CMS3": 7,
+            "NOLBL": 6,
+            "CMS1": 1
+          },
+          "median_CEACAM5_z": 0.4775,
+          "median_TOP1_z": 0.205,
+          "median_SLFN11_z": -0.2713,
+          "median_FAP_z": -0.21,
+          "median_ABCB1_z": 0.9322,
+          "median_TUBB3_z": 0.8108
+        }
+      }
+    },
+    "three_gate_stratification_mode_2_top_quartile_Q75": {
+      "gate1_definition": "CEACAM5_z_all >= Q75 (0.7216)",
+      "cutpoints": {
+        "CEACAM5_Q75_z_all": 0.7216,
+        "TOP1_median_z_all": 0.1562,
+        "SLFN11_median_z_all": -0.063,
+        "FAP_Q75_z_all": 0.64545,
+        "ABCB1_Q75_z_all": 0.84435,
+        "TUBB3_Q75_z_all": 0.71345
+      },
+      "mutually_exclusive_partition_483": {
+        "Stratum_A_Ideal_SGN_CEACAM5C_Responder": {
+          "label": "CEACAM5-High + TOP1/SLFN11-Sens + FAP<Q75 & SMAD4-Intact",
+          "n": 64,
+          "pct_of_483_rna_mss": 13.25,
+          "pct_of_485_total_mss": 13.2,
+          "n_kras_mut": 24,
+          "pct_kras_mut_within_stratum": 37.5,
+          "n_braf_mut": 0,
+          "n_tp53_mut": 34,
+          "n_smad4_genomic_loss": 0,
+          "n_smad4_composite_loss": 0,
+          "n_gate2_immune_hot": 14,
+          "pct_gate2_immune_hot": 21.88,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 17,
+          "cms_breakdown": {
+            "UNLABELED": 54,
+            "CMS2": 7,
+            "NOLBL": 1,
+            "CMS3": 1,
+            "CMS1": 1
+          },
+          "median_CEACAM5_z": 1.0337,
+          "median_TOP1_z": 0.462,
+          "median_SLFN11_z": 0.0391,
+          "median_FAP_z": -0.3389,
+          "median_ABCB1_z": 0.185,
+          "median_TUBB3_z": -0.4727
+        },
+        "Stratum_B_CEACAM5_High_Stromal_TGFB_Excluded": {
+          "label": "CEACAM5-High + TOP1/SLFN11-Sens + (FAP>=Q75 OR SMAD4-Loss)",
+          "n": 34,
+          "pct_of_483_rna_mss": 7.04,
+          "pct_of_485_total_mss": 7.01,
+          "n_kras_mut": 14,
+          "pct_kras_mut_within_stratum": 41.18,
+          "n_braf_mut": 0,
+          "n_tp53_mut": 22,
+          "n_smad4_genomic_loss": 10,
+          "n_smad4_composite_loss": 15,
+          "n_gate2_immune_hot": 12,
+          "pct_gate2_immune_hot": 35.29,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 8,
+          "cms_breakdown": {
+            "UNLABELED": 26,
+            "CMS4": 5,
+            "CMS2": 2,
+            "CMS3": 1
+          },
+          "median_CEACAM5_z": 0.916,
+          "median_TOP1_z": 0.2807,
+          "median_SLFN11_z": 0.2612,
+          "median_FAP_z": 0.7763,
+          "median_ABCB1_z": 0.3599,
+          "median_TUBB3_z": -0.0811
+        },
+        "Stratum_C2_CEACAM5_High_TOP1_SLFN11_Low": {
+          "label": "CEACAM5-High + TOP1<Med & SLFN11<Med (Payload-Insensitive)",
+          "n": 23,
+          "pct_of_483_rna_mss": 4.76,
+          "pct_of_485_total_mss": 4.74,
+          "n_kras_mut": 5,
+          "pct_kras_mut_within_stratum": 21.74,
+          "n_braf_mut": 1,
+          "n_tp53_mut": 5,
+          "n_smad4_genomic_loss": 6,
+          "n_smad4_composite_loss": 7,
+          "n_gate2_immune_hot": 3,
+          "pct_gate2_immune_hot": 13.04,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 7,
+          "cms_breakdown": {
+            "UNLABELED": 17,
+            "CMS3": 4,
+            "NOLBL": 2
+          },
+          "median_CEACAM5_z": 0.9096,
+          "median_TOP1_z": -0.4208,
+          "median_SLFN11_z": -0.4994,
+          "median_FAP_z": -0.7662,
+          "median_ABCB1_z": 0.2663,
+          "median_TUBB3_z": -0.1088
+        },
+        "Stratum_C1_CEACAM5_Low_Moderate": {
+          "label": "CEACAM5-Low/Moderate (Target-Low)",
+          "n": 362,
+          "pct_of_483_rna_mss": 74.95,
+          "pct_of_485_total_mss": 74.64,
+          "n_kras_mut": 143,
+          "pct_kras_mut_within_stratum": 39.5,
+          "n_braf_mut": 20,
+          "n_tp53_mut": 221,
+          "n_smad4_genomic_loss": 55,
+          "n_smad4_composite_loss": 85,
+          "n_gate2_immune_hot": 123,
+          "pct_gate2_immune_hot": 33.98,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 171,
+          "cms_breakdown": {
+            "UNLABELED": 219,
+            "CMS2": 56,
+            "CMS4": 47,
+            "CMS3": 19,
+            "NOLBL": 16,
+            "CMS1": 5
+          },
+          "median_CEACAM5_z": 0.0563,
+          "median_TOP1_z": 0.1281,
+          "median_SLFN11_z": -0.055,
+          "median_FAP_z": 0.0805,
+          "median_ABCB1_z": 0.2999,
+          "median_TUBB3_z": 0.0565
+        }
+      },
+      "additional_mechanistic_slices": {
+        "Gate1_CEACAM5_High_Total": {
+          "label": "All CEACAM5-High",
+          "n": 121,
+          "pct_of_483_rna_mss": 25.05,
+          "pct_of_485_total_mss": 24.95,
+          "n_kras_mut": 43,
+          "pct_kras_mut_within_stratum": 35.54,
+          "n_braf_mut": 1,
+          "n_tp53_mut": 61,
+          "n_smad4_genomic_loss": 16,
+          "n_smad4_composite_loss": 22,
+          "n_gate2_immune_hot": 29,
+          "pct_gate2_immune_hot": 23.97,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 32,
+          "cms_breakdown": {
+            "UNLABELED": 97,
+            "CMS2": 9,
+            "CMS3": 6,
+            "CMS4": 5,
+            "NOLBL": 3,
+            "CMS1": 1
+          },
+          "median_CEACAM5_z": 0.9639,
+          "median_TOP1_z": 0.2542,
+          "median_SLFN11_z": -0.063,
+          "median_FAP_z": -0.291,
+          "median_ABCB1_z": 0.236,
+          "median_TUBB3_z": -0.265
+        },
+        "Stratum_A_FAP_Gate_Only": {
+          "label": "CEACAM5-High + TOP1/SLFN11-Sens + FAP<Q75 (ignoring SMAD4)",
+          "n": 77,
+          "pct_of_483_rna_mss": 15.94,
+          "pct_of_485_total_mss": 15.88,
+          "n_kras_mut": 28,
+          "pct_kras_mut_within_stratum": 36.36,
+          "n_braf_mut": 0,
+          "n_tp53_mut": 40,
+          "n_smad4_genomic_loss": 8,
+          "n_smad4_composite_loss": 13,
+          "n_gate2_immune_hot": 16,
+          "pct_gate2_immune_hot": 20.78,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 19,
+          "cms_breakdown": {
+            "UNLABELED": 65,
+            "CMS2": 8,
+            "CMS3": 2,
+            "NOLBL": 1,
+            "CMS1": 1
+          },
+          "median_CEACAM5_z": 1.0285,
+          "median_TOP1_z": 0.4278,
+          "median_SLFN11_z": 0.0252,
+          "median_FAP_z": -0.4293,
+          "median_ABCB1_z": 0.1904,
+          "median_TUBB3_z": -0.4829
+        },
+        "Stratum_A_Strict_No_ABCB1_Efflux": {
+          "label": "CEACAM5-High + TOP1/SLFN11-Sens + FAP<Q75 & SMAD4-Intact & ABCB1<Q75",
+          "n": 52,
+          "pct_of_483_rna_mss": 10.77,
+          "pct_of_485_total_mss": 10.72,
+          "n_kras_mut": 19,
+          "pct_kras_mut_within_stratum": 36.54,
+          "n_braf_mut": 0,
+          "n_tp53_mut": 29,
+          "n_smad4_genomic_loss": 0,
+          "n_smad4_composite_loss": 0,
+          "n_gate2_immune_hot": 11,
+          "pct_gate2_immune_hot": 21.15,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 5,
+          "cms_breakdown": {
+            "UNLABELED": 45,
+            "CMS2": 5,
+            "CMS3": 1,
+            "CMS1": 1
+          },
+          "median_CEACAM5_z": 1.0269,
+          "median_TOP1_z": 0.462,
+          "median_SLFN11_z": 0.0484,
+          "median_FAP_z": -0.41,
+          "median_ABCB1_z": -0.0797,
+          "median_TUBB3_z": -0.6131
+        },
+        "Stratum_B_All_CEACAM5_High_Stromal_or_SMAD4": {
+          "label": "CEACAM5-High + (FAP>=Q75 OR SMAD4-Loss) regardless of TOP1",
+          "n": 41,
+          "pct_of_483_rna_mss": 8.49,
+          "pct_of_485_total_mss": 8.45,
+          "n_kras_mut": 16,
+          "pct_kras_mut_within_stratum": 39.02,
+          "n_braf_mut": 0,
+          "n_tp53_mut": 23,
+          "n_smad4_genomic_loss": 16,
+          "n_smad4_composite_loss": 22,
+          "n_gate2_immune_hot": 13,
+          "pct_gate2_immune_hot": 31.71,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 12,
+          "cms_breakdown": {
+            "UNLABELED": 30,
+            "CMS4": 5,
+            "CMS3": 4,
+            "CMS2": 2
+          },
+          "median_CEACAM5_z": 0.9435,
+          "median_TOP1_z": 0.1818,
+          "median_SLFN11_z": 0.126,
+          "median_FAP_z": 0.6548,
+          "median_ABCB1_z": 0.3662,
+          "median_TUBB3_z": -0.0889
+        },
+        "Stratum_C_Combined_Failure_Pool": {
+          "label": "CEACAM5-Low/Mod OR (CEACAM5-High + TOP1/SLFN11-Low)",
+          "n": 385,
+          "pct_of_483_rna_mss": 79.71,
+          "pct_of_485_total_mss": 79.38,
+          "n_kras_mut": 148,
+          "pct_kras_mut_within_stratum": 38.44,
+          "n_braf_mut": 21,
+          "n_tp53_mut": 226,
+          "n_smad4_genomic_loss": 61,
+          "n_smad4_composite_loss": 92,
+          "n_gate2_immune_hot": 126,
+          "pct_gate2_immune_hot": 32.73,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 178,
+          "cms_breakdown": {
+            "UNLABELED": 236,
+            "CMS2": 56,
+            "CMS4": 47,
+            "CMS3": 23,
+            "NOLBL": 18,
+            "CMS1": 5
+          },
+          "median_CEACAM5_z": 0.0991,
+          "median_TOP1_z": 0.0705,
+          "median_SLFN11_z": -0.1235,
+          "median_FAP_z": 0.0365,
+          "median_ABCB1_z": 0.2994,
+          "median_TUBB3_z": 0.0367
+        },
+        "DM4_Tubulin_Efflux_Vulnerable_Within_CEACAM5_High": {
+          "label": "CEACAM5-High + (ABCB1>=Q75 OR TUBB3>=Q75) \u2014 DM4 Resistant, TOP1 Salvageable",
+          "n": 32,
+          "pct_of_483_rna_mss": 6.63,
+          "pct_of_485_total_mss": 6.6,
+          "n_kras_mut": 17,
+          "pct_kras_mut_within_stratum": 53.12,
+          "n_braf_mut": 1,
+          "n_tp53_mut": 15,
+          "n_smad4_genomic_loss": 5,
+          "n_smad4_composite_loss": 7,
+          "n_gate2_immune_hot": 9,
+          "pct_gate2_immune_hot": 28.12,
+          "n_abcb1_or_tubb3_high_dm4_resistant": 32,
+          "cms_breakdown": {
+            "UNLABELED": 21,
+            "NOLBL": 3,
+            "CMS3": 3,
+            "CMS2": 2,
+            "CMS4": 2,
+            "CMS1": 1
+          },
+          "median_CEACAM5_z": 0.978,
+          "median_TOP1_z": 0.2074,
+          "median_SLFN11_z": -0.2492,
+          "median_FAP_z": -0.0779,
+          "median_ABCB1_z": 1.1025,
+          "median_TUBB3_z": 0.6216
+        }
+      }
+    }
+  },
+  "cohort_2_tcga_luad_results": {
+    "ceacam5_empirical_distributions": {
+      "luad_510_all_sample_z": {
+        "n": 510,
+        "mean": 0.0,
+        "sd": 1.000981,
+        "median": 0.1243,
+        "q25": -0.704575,
+        "q75": 0.812075,
+        "iqr": 1.51665,
+        "q10": -1.38827,
+        "q80": 0.92994,
+        "q90": 1.21175,
+        "min": -3.1898,
+        "max": 2.0323,
+        "n_gt_0": 276,
+        "pct_gt_0": 54.1176,
+        "n_ge_0": 276,
+        "pct_ge_0": 54.1176
+      },
+      "luad_510_diploid_z": {
+        "n": 510,
+        "mean": 0.042549,
+        "sd": 1.199435,
+        "median": -0.4516,
+        "q25": -0.583725,
+        "q75": 0.15395,
+        "iqr": 0.737675,
+        "q10": -0.60181,
+        "q80": 0.39248,
+        "q90": 1.31024,
+        "min": -0.6064,
+        "max": 12.1852,
+        "n_gt_0": 140,
+        "pct_gt_0": 27.451,
+        "n_ge_0": 141,
+        "pct_ge_0": 27.6471
+      },
+      "luad_510_log2_rsem": {
+        "n": 510,
+        "mean": 11.903183,
+        "sd": 3.340384,
+        "median": 12.317934,
+        "q25": 9.551973,
+        "q75": 14.613029,
+        "iqr": 5.061056,
+        "q10": 7.270529,
+        "q80": 15.006635,
+        "q90": 15.946828,
+        "min": 1.258398,
+        "max": 18.685286,
+        "n_gt_0": 510,
+        "pct_gt_0": 100.0,
+        "n_ge_0": 510,
+        "pct_ge_0": 100.0
+      }
+    },
+    "panel_gene_distributions_luad_510_z_all": {
+      "CEACAM5": {
+        "n": 510,
+        "mean": 0.0,
+        "sd": 1.000981,
+        "median": 0.1243,
+        "q25": -0.704575,
+        "q75": 0.812075,
+        "iqr": 1.51665,
+        "q10": -1.38827,
+        "q80": 0.92994,
+        "q90": 1.21175,
+        "min": -3.1898,
+        "max": 2.0323,
+        "n_gt_0": 276,
+        "pct_gt_0": 54.1176,
+        "n_ge_0": 276,
+        "pct_ge_0": 54.1176
+      },
+      "CEACAM6": {
+        "n": 510,
+        "mean": -1e-06,
+        "sd": 1.000982,
+        "median": 0.2524,
+        "q25": -0.412675,
+        "q75": 0.687975,
+        "iqr": 1.10065,
+        "q10": -1.30855,
+        "q80": 0.78756,
+        "q90": 0.97167,
+        "min": -4.5368,
+        "max": 1.6767,
+        "n_gt_0": 309,
+        "pct_gt_0": 60.5882,
+        "n_ge_0": 309,
+        "pct_ge_0": 60.5882
+      },
+      "TOP1": {
+        "n": 510,
+        "mean": 1e-06,
+        "sd": 1.000983,
+        "median": -0.07025,
+        "q25": -0.724425,
+        "q75": 0.67995,
+        "iqr": 1.404375,
+        "q10": -1.2356,
+        "q80": 0.84362,
+        "q90": 1.30347,
+        "min": -2.8814,
+        "max": 3.0569,
+        "n_gt_0": 241,
+        "pct_gt_0": 47.2549,
+        "n_ge_0": 241,
+        "pct_ge_0": 47.2549
+      },
+      "SLFN11": {
+        "n": 510,
+        "mean": 1e-06,
+        "sd": 1.000982,
+        "median": 0.0823,
+        "q25": -0.691725,
+        "q75": 0.72175,
+        "iqr": 1.413475,
+        "q10": -1.33368,
+        "q80": 0.86068,
+        "q90": 1.20579,
+        "min": -3.0562,
+        "max": 2.4428,
+        "n_gt_0": 275,
+        "pct_gt_0": 53.9216,
+        "n_ge_0": 275,
+        "pct_ge_0": 53.9216
+      },
+      "ATR": {
+        "n": 510,
+        "mean": 1e-06,
+        "sd": 1.000984,
+        "median": 0.05695,
+        "q25": -0.576625,
+        "q75": 0.6249,
+        "iqr": 1.201525,
+        "q10": -1.24959,
+        "q80": 0.7454,
+        "q90": 1.13818,
+        "min": -3.1114,
+        "max": 3.4157,
+        "n_gt_0": 266,
+        "pct_gt_0": 52.1569,
+        "n_ge_0": 266,
+        "pct_ge_0": 52.1569
+      },
+      "CHEK1": {
+        "n": 510,
+        "mean": -0.0,
+        "sd": 1.000982,
+        "median": 0.037,
+        "q25": -0.736875,
+        "q75": 0.642675,
+        "iqr": 1.37955,
+        "q10": -1.28436,
+        "q80": 0.83422,
+        "q90": 1.32524,
+        "min": -2.5605,
+        "max": 2.7094,
+        "n_gt_0": 261,
+        "pct_gt_0": 51.1765,
+        "n_ge_0": 261,
+        "pct_ge_0": 51.1765
+      },
+      "TUBB3": {
+        "n": 510,
+        "mean": -2e-06,
+        "sd": 1.000983,
+        "median": 0.1316,
+        "q25": -0.610925,
+        "q75": 0.77505,
+        "iqr": 1.385975,
+        "q10": -1.51243,
+        "q80": 0.90626,
+        "q90": 1.1759,
+        "min": -3.1926,
+        "max": 2.3394,
+        "n_gt_0": 281,
+        "pct_gt_0": 55.098,
+        "n_ge_0": 281,
+        "pct_ge_0": 55.098
+      },
+      "ABCB1": {
+        "n": 510,
+        "mean": -2e-06,
+        "sd": 1.00098,
+        "median": 0.0019,
+        "q25": -0.690775,
+        "q75": 0.642625,
+        "iqr": 1.3334,
+        "q10": -1.23337,
+        "q80": 0.79942,
+        "q90": 1.18535,
+        "min": -3.1722,
+        "max": 3.6243,
+        "n_gt_0": 255,
+        "pct_gt_0": 50.0,
+        "n_ge_0": 255,
+        "pct_ge_0": 50.0
+      },
+      "ABCG2": {
+        "n": 510,
+        "mean": 2e-06,
+        "sd": 1.000984,
+        "median": 0.0041,
+        "q25": -0.58395,
+        "q75": 0.637375,
+        "iqr": 1.221325,
+        "q10": -1.23545,
+        "q80": 0.79424,
+        "q90": 1.17158,
+        "min": -4.2948,
+        "max": 3.1893,
+        "n_gt_0": 256,
+        "pct_gt_0": 50.1961,
+        "n_ge_0": 256,
+        "pct_ge_0": 50.1961
+      },
+      "SMAD4": {
+        "n": 510,
+        "mean": -0.0,
+        "sd": 1.000981,
+        "median": 0.097,
+        "q25": -0.5947,
+        "q75": 0.6072,
+        "iqr": 1.2019,
+        "q10": -1.26168,
+        "q80": 0.79412,
+        "q90": 1.08187,
+        "min": -3.7474,
+        "max": 3.4376,
+        "n_gt_0": 276,
+        "pct_gt_0": 54.1176,
+        "n_ge_0": 276,
+        "pct_ge_0": 54.1176
+      },
+      "FAP": {
+        "n": 510,
+        "mean": 2e-06,
+        "sd": 1.000985,
+        "median": 0.01815,
+        "q25": -0.6072,
+        "q75": 0.6819,
+        "iqr": 1.2891,
+        "q10": -1.20694,
+        "q80": 0.83744,
+        "q90": 1.22642,
+        "min": -4.5649,
+        "max": 2.888,
+        "n_gt_0": 260,
+        "pct_gt_0": 50.9804,
+        "n_ge_0": 260,
+        "pct_ge_0": 50.9804
+      },
+      "TGFB1": {
+        "n": 510,
+        "mean": -1e-06,
+        "sd": 1.000981,
+        "median": 0.05435,
+        "q25": -0.496075,
+        "q75": 0.7257,
+        "iqr": 1.221775,
+        "q10": -1.30239,
+        "q80": 0.84126,
+        "q90": 1.14978,
+        "min": -3.9175,
+        "max": 2.7241,
+        "n_gt_0": 271,
+        "pct_gt_0": 53.1373,
+        "n_ge_0": 271,
+        "pct_ge_0": 53.1373
+      }
+    },
+    "cross_indication_bimodality_and_tail_comparison_luad_vs_coadread": {
+      "luad_log2_rsem_dist": {
+        "n": 510,
+        "mean": 11.903183,
+        "sd": 3.340384,
+        "median": 12.317934,
+        "q25": 9.551973,
+        "q75": 14.613029,
+        "iqr": 5.061056,
+        "q10": 7.270529,
+        "q80": 15.006635,
+        "q90": 15.946828,
+        "min": 1.258398,
+        "max": 18.685286,
+        "n_gt_0": 510,
+        "pct_gt_0": 100.0,
+        "n_ge_0": 510,
+        "pct_ge_0": 100.0
+      },
+      "coad_mss_log2_rsem_dist": {
+        "n": 483,
+        "mean": 16.65954,
+        "sd": 1.016214,
+        "median": 16.815446,
+        "q25": 16.309716,
+        "q75": 17.302418,
+        "iqr": 0.992702,
+        "q10": 15.502483,
+        "q80": 17.41949,
+        "q90": 17.658505,
+        "min": 8.906802,
+        "max": 18.806235,
+        "n_gt_0": 483,
+        "pct_gt_0": 100.0,
+        "n_ge_0": 483,
+        "pct_ge_0": 100.0
+      },
+      "luad_raw_rsem_median": 5104.85,
+      "luad_raw_rsem_q75": 25057.82,
+      "luad_raw_rsem_q90": 63163.59,
+      "coad_mss_raw_rsem_median": 115332.0,
+      "coad_mss_raw_rsem_q75": 161640.4,
+      "coad_mss_raw_rsem_q90": 206889.15,
+      "fold_difference_median_rsem_coad_vs_luad": 22.59,
+      "pct_luad_exceeding_coad_q25_log2_rsem": 7.06,
+      "pct_luad_exceeding_coad_median_log2_rsem": 3.14,
+      "luad_skewness_log2_rsem": -0.4965,
+      "coad_mss_skewness_log2_rsem": -2.0999,
+      "luad_pct_low_tail_log2_rsem_lt_8": 15.1,
+      "luad_pct_high_tail_log2_rsem_ge_14": 32.16,
+      "coad_mss_pct_high_tail_log2_rsem_ge_14": 97.31
+    },
+    "coexpression_correlations_with_CEACAM5_luad_510": {
+      "CEACAM6_z_all": {
+        "n": 510,
+        "spearman_rho": 0.562013,
+        "spearman_p": 8.399200787883266e-44,
+        "pearson_r": 0.623211,
+        "pearson_p": 3.2887376686372596e-56
+      },
+      "TOP1_z_all": {
+        "n": 510,
+        "spearman_rho": 0.055987,
+        "spearman_p": 0.20686011095961832,
+        "pearson_r": 0.056422,
+        "pearson_p": 0.20334762629801797
+      },
+      "SLFN11_z_all": {
+        "n": 510,
+        "spearman_rho": 0.079841,
+        "spearman_p": 0.07162248161085184,
+        "pearson_r": 0.072745,
+        "pearson_p": 0.10080756253796225
+      },
+      "ATR_z_all": {
+        "n": 510,
+        "spearman_rho": -0.106772,
+        "spearman_p": 0.015855531764547532,
+        "pearson_r": -0.096275,
+        "pearson_p": 0.029711955036182177
+      },
+      "CHEK1_z_all": {
+        "n": 510,
+        "spearman_rho": -0.076642,
+        "spearman_p": 0.08378638028998435,
+        "pearson_r": -0.11444,
+        "pearson_p": 0.009693144249586618
+      },
+      "DDR_ATR_CHEK1_z_all": {
+        "n": 510,
+        "spearman_rho": -0.104337,
+        "spearman_p": 0.018427411125225373,
+        "pearson_r": -0.133639,
+        "pearson_p": 0.0024932823916288403
+      },
+      "TUBB3_z_all": {
+        "n": 510,
+        "spearman_rho": 0.001508,
+        "spearman_p": 0.9729028028229065,
+        "pearson_r": 0.026778,
+        "pearson_p": 0.5462786517423338
+      },
+      "ABCB1_z_all": {
+        "n": 510,
+        "spearman_rho": -0.036444,
+        "spearman_p": 0.4114921193704538,
+        "pearson_r": -0.016089,
+        "pearson_p": 0.7170017011143758
+      },
+      "ABCG2_z_all": {
+        "n": 510,
+        "spearman_rho": 0.038094,
+        "spearman_p": 0.39062779542015114,
+        "pearson_r": -0.015845,
+        "pearson_p": 0.7211178710212771
+      },
+      "SMAD4_z_all": {
+        "n": 510,
+        "spearman_rho": -0.056713,
+        "spearman_p": 0.20102026687094615,
+        "pearson_r": -0.067037,
+        "pearson_p": 0.13055853859532207
+      },
+      "FAP_z_all": {
+        "n": 510,
+        "spearman_rho": 0.062175,
+        "spearman_p": 0.16090910899503175,
+        "pearson_r": 0.051057,
+        "pearson_p": 0.24975543145045057
+      },
+      "TGFB1_z_all": {
+        "n": 510,
+        "spearman_rho": -0.069426,
+        "spearman_p": 0.1173689344001132,
+        "pearson_r": -0.079606,
+        "pearson_p": 0.07246469951574526
+      },
+      "SPP1_z_all": {
+        "n": 510,
+        "spearman_rho": 0.065188,
+        "spearman_p": 0.1415330602197864,
+        "pearson_r": 0.046168,
+        "pearson_p": 0.29805169691093786
+      },
+      "CD68_z_all": {
+        "n": 510,
+        "spearman_rho": -0.030608,
+        "spearman_p": 0.49038838739424084,
+        "pearson_r": -0.039721,
+        "pearson_p": 0.37068558790574374
+      },
+      "CD8A_z_all": {
+        "n": 510,
+        "spearman_rho": -0.048126,
+        "spearman_p": 0.27801409127838256,
+        "pearson_r": -0.03888,
+        "pearson_p": 0.38091948054855157
+      },
+      "CXCL9_z_all": {
+        "n": 510,
+        "spearman_rho": -0.053247,
+        "spearman_p": 0.22999143232931493,
+        "pearson_r": -0.044085,
+        "pearson_p": 0.32041268615799284
+      },
+      "CXCL10_z_all": {
+        "n": 510,
+        "spearman_rho": -0.087642,
+        "spearman_p": 0.047907644449842024,
+        "pearson_r": -0.104994,
+        "pearson_p": 0.017700224029701297
+      },
+      "GZMB_z_all": {
+        "n": 510,
+        "spearman_rho": -0.068149,
+        "spearman_p": 0.12428350788865766,
+        "pearson_r": -0.071493,
+        "pearson_p": 0.10682275457156662
+      },
+      "IFNG_z_all": {
+        "n": 510,
+        "spearman_rho": -0.072777,
+        "spearman_p": 0.10065657870106273,
+        "pearson_r": -0.082832,
+        "pearson_p": 0.06158966382442562
+      },
+      "CD274_z_all": {
+        "n": 510,
+        "spearman_rho": -0.13745,
+        "spearman_p": 0.0018631664616206279,
+        "pearson_r": -0.162641,
+        "pearson_p": 0.00022554814804947017
+      },
+      "CD8_CXCR3_effector_z_all": {
+        "n": 510,
+        "spearman_rho": -0.071623,
+        "spearman_p": 0.1061861177823835,
+        "pearson_r": -0.075485,
+        "pearson_p": 0.08857865034497224
+      }
+    },
+    "driver_mutation_comparisons_luad_510": {
+      "KRAS_mut_vs_WT": {
+        "n_pos": 154,
+        "n_neg": 356,
+        "median_pos": 0.19965,
+        "iqr_pos": 1.433675,
+        "mean_pos": 0.106826,
+        "pct_z_gt_0_pos": 58.44,
+        "median_neg": 0.05575,
+        "iqr_neg": 1.5556,
+        "mean_neg": -0.046211,
+        "pct_z_gt_0_neg": 52.25,
+        "delta_median": 0.1439,
+        "delta_mean": 0.153037,
+        "mwu_p": 0.1790639591747678,
+        "welch_t_p": 0.09644282714181383
+      },
+      "EGFR_mut_vs_WT": {
+        "n_pos": 66,
+        "n_neg": 444,
+        "median_pos": 0.2819,
+        "iqr_pos": 1.475575,
+        "mean_pos": 0.114452,
+        "pct_z_gt_0_pos": 59.09,
+        "median_neg": 0.1105,
+        "iqr_neg": 1.54735,
+        "mean_neg": -0.017013,
+        "pct_z_gt_0_neg": 53.38,
+        "delta_median": 0.1714,
+        "delta_mean": 0.131464,
+        "mwu_p": 0.39832597898776634,
+        "welch_t_p": 0.2828113132128284
+      },
+      "STK11_mut_vs_WT": {
+        "n_pos": 73,
+        "n_neg": 437,
+        "median_pos": 0.1642,
+        "iqr_pos": 1.3149,
+        "mean_pos": 0.117112,
+        "pct_z_gt_0_pos": 58.9,
+        "median_neg": 0.1111,
+        "iqr_neg": 1.5612,
+        "mean_neg": -0.019563,
+        "pct_z_gt_0_neg": 53.32,
+        "delta_median": 0.0531,
+        "delta_mean": 0.136675,
+        "mwu_p": 0.3812636318344601,
+        "welch_t_p": 0.2293840911234399
+      },
+      "KEAP1_mut_vs_WT": {
+        "n_pos": 93,
+        "n_neg": 417,
+        "median_pos": -0.065,
+        "iqr_pos": 1.6561,
+        "mean_pos": -0.004429,
+        "pct_z_gt_0_pos": 47.31,
+        "median_neg": 0.1662,
+        "iqr_neg": 1.4861,
+        "mean_neg": 0.000988,
+        "pct_z_gt_0_neg": 55.64,
+        "delta_median": -0.2312,
+        "delta_mean": -0.005417,
+        "mwu_p": 0.8846102530462262,
+        "welch_t_p": 0.9637804329416412
+      },
+      "STK11_or_KEAP1_mut_vs_WT": {
+        "n_pos": 141,
+        "n_neg": 369,
+        "median_pos": 0.143,
+        "iqr_pos": 1.5873,
+        "mean_pos": 0.104541,
+        "pct_z_gt_0_pos": 55.32,
+        "median_neg": 0.1198,
+        "iqr_neg": 1.5123,
+        "mean_neg": -0.039946,
+        "pct_z_gt_0_neg": 53.66,
+        "delta_median": 0.0232,
+        "delta_mean": 0.144487,
+        "mwu_p": 0.1697901202397203,
+        "welch_t_p": 0.14299088027117993
+      },
+      "TP53_mut_vs_WT": {
+        "n_pos": 263,
+        "n_neg": 247,
+        "median_pos": 0.0794,
+        "iqr_pos": 1.56835,
+        "mean_pos": -0.061711,
+        "pct_z_gt_0_pos": 53.23,
+        "median_neg": 0.1642,
+        "iqr_neg": 1.4724,
+        "mean_neg": 0.065709,
+        "pct_z_gt_0_neg": 55.06,
+        "delta_median": -0.0848,
+        "delta_mean": -0.127421,
+        "mwu_p": 0.2473533859750825,
+        "welch_t_p": 0.14940957702753427
+      },
+      "BRAF_mut_vs_WT": {
+        "n_pos": 41,
+        "n_neg": 469,
+        "median_pos": 0.1198,
+        "iqr_pos": 1.4083,
+        "mean_pos": 0.105629,
+        "pct_z_gt_0_pos": 60.98,
+        "median_neg": 0.1251,
+        "iqr_neg": 1.5461,
+        "mean_neg": -0.009234,
+        "pct_z_gt_0_neg": 53.52,
+        "delta_median": -0.0053,
+        "delta_mean": 0.114863,
+        "mwu_p": 0.5981012093340421,
+        "welch_t_p": 0.4251121985121601
+      },
+      "SMAD4_loss_composite_vs_intact": {
+        "n_pos": 90,
+        "n_neg": 420,
+        "median_pos": 0.2282,
+        "iqr_pos": 1.397125,
+        "mean_pos": 0.134192,
+        "pct_z_gt_0_pos": 60.0,
+        "median_neg": 0.11545,
+        "iqr_neg": 1.500225,
+        "mean_neg": -0.028755,
+        "pct_z_gt_0_neg": 52.86,
+        "delta_median": 0.11275,
+        "delta_mean": 0.162947,
+        "mwu_p": 0.14764045895852695,
+        "welch_t_p": 0.16673988588789446
+      }
+    },
+    "carmen_lc03_50_79_toxic_zone_vs_ge_80_zone": {
+      "zone_50_to_79_pct_n": 153,
+      "zone_ge_80_pct_n": 102,
+      "zone_50_79_pct_stk11_or_keap1": 21.57,
+      "zone_ge_80_pct_stk11_or_keap1": 38.24,
+      "zone_50_79_median_CD8A_z": 0.0226,
+      "zone_ge_80_median_CD8A_z": -0.1396,
+      "zone_50_79_median_TOP1_z": -0.0604,
+      "zone_ge_80_median_TOP1_z": 0.1032
+    },
+    "stratification_at_Q50_carmen_proxy": {
+      "gate1_tier": "Q50_CARMEN_50pct_Gate_Proxy",
+      "cutpoint_CEACAM5_z_all": 0.1243,
+      "slices": {
+        "Gate1_CEACAM5_High_Total": {
+          "description": "CEACAM5-High (Q50_CARMEN_50pct_Gate_Proxy)",
+          "n": 255,
+          "pct_of_510_luad": 50.0,
+          "pct_of_ceacam5_high": 100.0,
+          "n_kras_mut": 82,
+          "n_egfr_mut": 38,
+          "n_stk11_mut": 39,
+          "n_keap1_mut": 40,
+          "n_stk11_or_keap1_mut": 72,
+          "n_tp53_mut": 130,
+          "n_smad4_loss": 48,
+          "n_fap_high": 63,
+          "n_tubb3_high": 59,
+          "n_abcb1_high": 57,
+          "median_CEACAM5_z": 0.8125,
+          "median_TOP1_z": -0.0049,
+          "median_SLFN11_z": 0.1643,
+          "median_TUBB3_z": 0.148,
+          "median_ABCB1_z": -0.0245,
+          "median_FAP_z": 0.0642
+        },
+        "SGN_CEACAM5C_TOP1_Sensitive_Responder": {
+          "description": "CEACAM5-High (Q50_CARMEN_50pct_Gate_Proxy) + TOP1/SLFN11-Sensitive (>= median)",
+          "n": 196,
+          "pct_of_510_luad": 38.43,
+          "pct_of_ceacam5_high": 76.86,
+          "n_kras_mut": 59,
+          "n_egfr_mut": 27,
+          "n_stk11_mut": 28,
+          "n_keap1_mut": 26,
+          "n_stk11_or_keap1_mut": 52,
+          "n_tp53_mut": 105,
+          "n_smad4_loss": 35,
+          "n_fap_high": 58,
+          "n_tubb3_high": 49,
+          "n_abcb1_high": 44,
+          "median_CEACAM5_z": 0.8116,
+          "median_TOP1_z": 0.2643,
+          "median_SLFN11_z": 0.4595,
+          "median_TUBB3_z": 0.1371,
+          "median_ABCB1_z": 0.0066,
+          "median_FAP_z": 0.1531
+        },
+        "SGN_CEACAM5C_3Gate_Ideal_LowStroma": {
+          "description": "CEACAM5-High (Q50_CARMEN_50pct_Gate_Proxy) + TOP1/SLFN11-Sensitive + FAP<Q75 & SMAD4-Intact",
+          "n": 114,
+          "pct_of_510_luad": 22.35,
+          "pct_of_ceacam5_high": 44.71,
+          "n_kras_mut": 34,
+          "n_egfr_mut": 16,
+          "n_stk11_mut": 19,
+          "n_keap1_mut": 15,
+          "n_stk11_or_keap1_mut": 32,
+          "n_tp53_mut": 56,
+          "n_smad4_loss": 0,
+          "n_fap_high": 0,
+          "n_tubb3_high": 23,
+          "n_abcb1_high": 22,
+          "median_CEACAM5_z": 0.7631,
+          "median_TOP1_z": 0.331,
+          "median_SLFN11_z": 0.4286,
+          "median_TUBB3_z": -0.0413,
+          "median_ABCB1_z": 0.0416,
+          "median_FAP_z": -0.1258
+        },
+        "SGN_CEACAM5C_Stromal_TGFB_CoTarget_Needed": {
+          "description": "CEACAM5-High (Q50_CARMEN_50pct_Gate_Proxy) + TOP1/SLFN11-Sensitive + (FAP>=Q75 OR SMAD4-Loss)",
+          "n": 82,
+          "pct_of_510_luad": 16.08,
+          "pct_of_ceacam5_high": 32.16,
+          "n_kras_mut": 25,
+          "n_egfr_mut": 11,
+          "n_stk11_mut": 9,
+          "n_keap1_mut": 11,
+          "n_stk11_or_keap1_mut": 20,
+          "n_tp53_mut": 49,
+          "n_smad4_loss": 35,
+          "n_fap_high": 58,
+          "n_tubb3_high": 26,
+          "n_abcb1_high": 22,
+          "median_CEACAM5_z": 0.8837,
+          "median_TOP1_z": 0.1644,
+          "median_SLFN11_z": 0.5085,
+          "median_TUBB3_z": 0.2402,
+          "median_ABCB1_z": -0.0041,
+          "median_FAP_z": 0.894
+        },
+        "CARMEN_LC03_DM4_Tubulin_or_Efflux_Resistant": {
+          "description": "CEACAM5-High (Q50_CARMEN_50pct_Gate_Proxy) + DM4/Tubulin-Resistant (TUBB3>=Q75 OR ABCB1>=Q75)",
+          "n": 104,
+          "pct_of_510_luad": 20.39,
+          "pct_of_ceacam5_high": 40.78,
+          "n_kras_mut": 33,
+          "n_egfr_mut": 13,
+          "n_stk11_mut": 19,
+          "n_keap1_mut": 12,
+          "n_stk11_or_keap1_mut": 28,
+          "n_tp53_mut": 55,
+          "n_smad4_loss": 20,
+          "n_fap_high": 33,
+          "n_tubb3_high": 59,
+          "n_abcb1_high": 57,
+          "median_CEACAM5_z": 0.7035,
+          "median_TOP1_z": 0.0112,
+          "median_SLFN11_z": 0.3416,
+          "median_TUBB3_z": 0.9001,
+          "median_ABCB1_z": 0.7256,
+          "median_FAP_z": 0.2265
+        },
+        "CARMEN_LC03_DM4_Resistant_OR_TOP1_Resistant": {
+          "description": "CEACAM5-High (Q50_CARMEN_50pct_Gate_Proxy) + (DM4/Tubulin-Resistant OR TOP1/SLFN11-Low)",
+          "n": 143,
+          "pct_of_510_luad": 28.04,
+          "pct_of_ceacam5_high": 56.08,
+          "n_kras_mut": 49,
+          "n_egfr_mut": 22,
+          "n_stk11_mut": 23,
+          "n_keap1_mut": 21,
+          "n_stk11_or_keap1_mut": 39,
+          "n_tp53_mut": 71,
+          "n_smad4_loss": 30,
+          "n_fap_high": 36,
+          "n_tubb3_high": 59,
+          "n_abcb1_high": 57,
+          "median_CEACAM5_z": 0.7428,
+          "median_TOP1_z": -0.3324,
+          "median_SLFN11_z": -0.0631,
+          "median_TUBB3_z": 0.4049,
+          "median_ABCB1_z": 0.1286,
+          "median_FAP_z": 0.155
+        },
+        "TOP1_Payload_Switch_Salvage_of_DM4_Failures": {
+          "description": "CEACAM5-High (Q50_CARMEN_50pct_Gate_Proxy) + DM4-Resistant (TUBB3/ABCB1-High) BUT TOP1/SLFN11-Sensitive",
+          "n": 84,
+          "pct_of_510_luad": 16.47,
+          "pct_of_ceacam5_high": 32.94,
+          "n_kras_mut": 26,
+          "n_egfr_mut": 11,
+          "n_stk11_mut": 12,
+          "n_keap1_mut": 7,
+          "n_stk11_or_keap1_mut": 19,
+          "n_tp53_mut": 46,
+          "n_smad4_loss": 17,
+          "n_fap_high": 31,
+          "n_tubb3_high": 49,
+          "n_abcb1_high": 44,
+          "median_CEACAM5_z": 0.7382,
+          "median_TOP1_z": 0.264,
+          "median_SLFN11_z": 0.4503,
+          "median_TUBB3_z": 0.9081,
+          "median_ABCB1_z": 0.6901,
+          "median_FAP_z": 0.2394
+        },
+        "TOP1_Payload_Refractory_Within_CEACAM5_High": {
+          "description": "CEACAM5-High (Q50_CARMEN_50pct_Gate_Proxy) + TOP1<Med & SLFN11<Med",
+          "n": 59,
+          "pct_of_510_luad": 11.57,
+          "pct_of_ceacam5_high": 23.14,
+          "n_kras_mut": 23,
+          "n_egfr_mut": 11,
+          "n_stk11_mut": 11,
+          "n_keap1_mut": 14,
+          "n_stk11_or_keap1_mut": 20,
+          "n_tp53_mut": 25,
+          "n_smad4_loss": 13,
+          "n_fap_high": 5,
+          "n_tubb3_high": 10,
+          "n_abcb1_high": 13,
+          "median_CEACAM5_z": 0.8148,
+          "median_TOP1_z": -0.6099,
+          "median_SLFN11_z": -0.6948,
+          "median_TUBB3_z": 0.1744,
+          "median_ABCB1_z": -0.1068,
+          "median_FAP_z": -0.0814
+        },
+        "CEACAM5_Low_Moderate_Excluded": {
+          "description": "CEACAM5-Low/Moderate (< Q50_CARMEN_50pct_Gate_Proxy)",
+          "n": 255,
+          "pct_of_510_luad": 50.0,
+          "pct_of_ceacam5_high": 100.0,
+          "n_kras_mut": 72,
+          "n_egfr_mut": 28,
+          "n_stk11_mut": 34,
+          "n_keap1_mut": 53,
+          "n_stk11_or_keap1_mut": 69,
+          "n_tp53_mut": 133,
+          "n_smad4_loss": 42,
+          "n_fap_high": 65,
+          "n_tubb3_high": 69,
+          "n_abcb1_high": 71,
+          "median_CEACAM5_z": -0.7078,
+          "median_TOP1_z": -0.13,
+          "median_SLFN11_z": 0.0341,
+          "median_TUBB3_z": 0.1068,
+          "median_ABCB1_z": 0.088,
+          "median_FAP_z": -0.0752
+        }
+      }
+    },
+    "stratification_at_Q75_top_quartile": {
+      "gate1_tier": "Q75_Top_Quartile",
+      "cutpoint_CEACAM5_z_all": 0.812075,
+      "slices": {
+        "Gate1_CEACAM5_High_Total": {
+          "description": "CEACAM5-High (Q75_Top_Quartile)",
+          "n": 128,
+          "pct_of_510_luad": 25.1,
+          "pct_of_ceacam5_high": 100.0,
+          "n_kras_mut": 43,
+          "n_egfr_mut": 17,
+          "n_stk11_mut": 19,
+          "n_keap1_mut": 27,
+          "n_stk11_or_keap1_mut": 44,
+          "n_tp53_mut": 59,
+          "n_smad4_loss": 28,
+          "n_fap_high": 34,
+          "n_tubb3_high": 23,
+          "n_abcb1_high": 24,
+          "median_CEACAM5_z": 1.1403,
+          "median_TOP1_z": 0.0254,
+          "median_SLFN11_z": 0.0863,
+          "median_TUBB3_z": 0.142,
+          "median_ABCB1_z": -0.0512,
+          "median_FAP_z": 0.0303
+        },
+        "SGN_CEACAM5C_TOP1_Sensitive_Responder": {
+          "description": "CEACAM5-High (Q75_Top_Quartile) + TOP1/SLFN11-Sensitive (>= median)",
+          "n": 98,
+          "pct_of_510_luad": 19.22,
+          "pct_of_ceacam5_high": 76.56,
+          "n_kras_mut": 32,
+          "n_egfr_mut": 12,
+          "n_stk11_mut": 14,
+          "n_keap1_mut": 20,
+          "n_stk11_or_keap1_mut": 33,
+          "n_tp53_mut": 48,
+          "n_smad4_loss": 19,
+          "n_fap_high": 31,
+          "n_tubb3_high": 19,
+          "n_abcb1_high": 19,
+          "median_CEACAM5_z": 1.1633,
+          "median_TOP1_z": 0.3467,
+          "median_SLFN11_z": 0.4718,
+          "median_TUBB3_z": 0.1333,
+          "median_ABCB1_z": 0.037,
+          "median_FAP_z": 0.0303
+        },
+        "SGN_CEACAM5C_3Gate_Ideal_LowStroma": {
+          "description": "CEACAM5-High (Q75_Top_Quartile) + TOP1/SLFN11-Sensitive + FAP<Q75 & SMAD4-Intact",
+          "n": 53,
+          "pct_of_510_luad": 10.39,
+          "pct_of_ceacam5_high": 41.41,
+          "n_kras_mut": 16,
+          "n_egfr_mut": 8,
+          "n_stk11_mut": 8,
+          "n_keap1_mut": 10,
+          "n_stk11_or_keap1_mut": 17,
+          "n_tp53_mut": 23,
+          "n_smad4_loss": 0,
+          "n_fap_high": 0,
+          "n_tubb3_high": 6,
+          "n_abcb1_high": 8,
+          "median_CEACAM5_z": 1.1605,
+          "median_TOP1_z": 0.383,
+          "median_SLFN11_z": 0.272,
+          "median_TUBB3_z": -0.0373,
+          "median_ABCB1_z": 0.0667,
+          "median_FAP_z": -0.1338
+        },
+        "SGN_CEACAM5C_Stromal_TGFB_CoTarget_Needed": {
+          "description": "CEACAM5-High (Q75_Top_Quartile) + TOP1/SLFN11-Sensitive + (FAP>=Q75 OR SMAD4-Loss)",
+          "n": 45,
+          "pct_of_510_luad": 8.82,
+          "pct_of_ceacam5_high": 35.16,
+          "n_kras_mut": 16,
+          "n_egfr_mut": 4,
+          "n_stk11_mut": 6,
+          "n_keap1_mut": 10,
+          "n_stk11_or_keap1_mut": 16,
+          "n_tp53_mut": 25,
+          "n_smad4_loss": 19,
+          "n_fap_high": 31,
+          "n_tubb3_high": 13,
+          "n_abcb1_high": 11,
+          "median_CEACAM5_z": 1.1723,
+          "median_TOP1_z": 0.0896,
+          "median_SLFN11_z": 0.6793,
+          "median_TUBB3_z": 0.1595,
+          "median_ABCB1_z": 0.0239,
+          "median_FAP_z": 0.8794
+        },
+        "CARMEN_LC03_DM4_Tubulin_or_Efflux_Resistant": {
+          "description": "CEACAM5-High (Q75_Top_Quartile) + DM4/Tubulin-Resistant (TUBB3>=Q75 OR ABCB1>=Q75)",
+          "n": 43,
+          "pct_of_510_luad": 8.43,
+          "pct_of_ceacam5_high": 33.59,
+          "n_kras_mut": 16,
+          "n_egfr_mut": 4,
+          "n_stk11_mut": 9,
+          "n_keap1_mut": 8,
+          "n_stk11_or_keap1_mut": 17,
+          "n_tp53_mut": 21,
+          "n_smad4_loss": 12,
+          "n_fap_high": 15,
+          "n_tubb3_high": 23,
+          "n_abcb1_high": 24,
+          "median_CEACAM5_z": 1.0435,
+          "median_TOP1_z": 0.0027,
+          "median_SLFN11_z": 0.4003,
+          "median_TUBB3_z": 0.8358,
+          "median_ABCB1_z": 0.7126,
+          "median_FAP_z": 0.4356
+        },
+        "CARMEN_LC03_DM4_Resistant_OR_TOP1_Resistant": {
+          "description": "CEACAM5-High (Q75_Top_Quartile) + (DM4/Tubulin-Resistant OR TOP1/SLFN11-Low)",
+          "n": 65,
+          "pct_of_510_luad": 12.75,
+          "pct_of_ceacam5_high": 50.78,
+          "n_kras_mut": 25,
+          "n_egfr_mut": 8,
+          "n_stk11_mut": 11,
+          "n_keap1_mut": 14,
+          "n_stk11_or_keap1_mut": 24,
+          "n_tp53_mut": 29,
+          "n_smad4_loss": 19,
+          "n_fap_high": 17,
+          "n_tubb3_high": 23,
+          "n_abcb1_high": 24,
+          "median_CEACAM5_z": 1.1077,
+          "median_TOP1_z": -0.4304,
+          "median_SLFN11_z": -0.1421,
+          "median_TUBB3_z": 0.3942,
+          "median_ABCB1_z": 0.0988,
+          "median_FAP_z": 0.2204
+        },
+        "TOP1_Payload_Switch_Salvage_of_DM4_Failures": {
+          "description": "CEACAM5-High (Q75_Top_Quartile) + DM4-Resistant (TUBB3/ABCB1-High) BUT TOP1/SLFN11-Sensitive",
+          "n": 35,
+          "pct_of_510_luad": 6.86,
+          "pct_of_ceacam5_high": 27.34,
+          "n_kras_mut": 14,
+          "n_egfr_mut": 3,
+          "n_stk11_mut": 6,
+          "n_keap1_mut": 7,
+          "n_stk11_or_keap1_mut": 13,
+          "n_tp53_mut": 18,
+          "n_smad4_loss": 10,
+          "n_fap_high": 14,
+          "n_tubb3_high": 19,
+          "n_abcb1_high": 19,
+          "median_CEACAM5_z": 1.0535,
+          "median_TOP1_z": 0.0896,
+          "median_SLFN11_z": 0.4828,
+          "median_TUBB3_z": 0.8358,
+          "median_ABCB1_z": 0.7386,
+          "median_FAP_z": 0.4562
+        },
+        "TOP1_Payload_Refractory_Within_CEACAM5_High": {
+          "description": "CEACAM5-High (Q75_Top_Quartile) + TOP1<Med & SLFN11<Med",
+          "n": 30,
+          "pct_of_510_luad": 5.88,
+          "pct_of_ceacam5_high": 23.44,
+          "n_kras_mut": 11,
+          "n_egfr_mut": 5,
+          "n_stk11_mut": 5,
+          "n_keap1_mut": 7,
+          "n_stk11_or_keap1_mut": 11,
+          "n_tp53_mut": 11,
+          "n_smad4_loss": 9,
+          "n_fap_high": 3,
+          "n_tubb3_high": 4,
+          "n_abcb1_high": 5,
+          "median_CEACAM5_z": 1.1145,
+          "median_TOP1_z": -0.6778,
+          "median_SLFN11_z": -0.6687,
+          "median_TUBB3_z": 0.1926,
+          "median_ABCB1_z": -0.337,
+          "median_FAP_z": 0.0176
+        },
+        "CEACAM5_Low_Moderate_Excluded": {
+          "description": "CEACAM5-Low/Moderate (< Q75_Top_Quartile)",
+          "n": 382,
+          "pct_of_510_luad": 74.9,
+          "pct_of_ceacam5_high": 298.44,
+          "n_kras_mut": 111,
+          "n_egfr_mut": 49,
+          "n_stk11_mut": 54,
+          "n_keap1_mut": 66,
+          "n_stk11_or_keap1_mut": 97,
+          "n_tp53_mut": 204,
+          "n_smad4_loss": 62,
+          "n_fap_high": 94,
+          "n_tubb3_high": 105,
+          "n_abcb1_high": 104,
+          "median_CEACAM5_z": -0.2745,
+          "median_TOP1_z": -0.1269,
+          "median_SLFN11_z": 0.0692,
+          "median_TUBB3_z": 0.1121,
+          "median_ABCB1_z": 0.0108,
+          "median_FAP_z": 0.0117
+        }
+      }
+    },
+    "stratification_at_Q90_top_decile": {
+      "gate1_tier": "Q90_Top_Decile",
+      "cutpoint_CEACAM5_z_all": 1.21175,
+      "slices": {
+        "Gate1_CEACAM5_High_Total": {
+          "description": "CEACAM5-High (Q90_Top_Decile)",
+          "n": 51,
+          "pct_of_510_luad": 10.0,
+          "pct_of_ceacam5_high": 100.0,
+          "n_kras_mut": 14,
+          "n_egfr_mut": 7,
+          "n_stk11_mut": 6,
+          "n_keap1_mut": 16,
+          "n_stk11_or_keap1_mut": 21,
+          "n_tp53_mut": 29,
+          "n_smad4_loss": 13,
+          "n_fap_high": 13,
+          "n_tubb3_high": 9,
+          "n_abcb1_high": 7,
+          "median_CEACAM5_z": 1.3815,
+          "median_TOP1_z": 0.0896,
+          "median_SLFN11_z": 0.272,
+          "median_TUBB3_z": 0.2817,
+          "median_ABCB1_z": -0.2074,
+          "median_FAP_z": 0.0382
+        },
+        "SGN_CEACAM5C_TOP1_Sensitive_Responder": {
+          "description": "CEACAM5-High (Q90_Top_Decile) + TOP1/SLFN11-Sensitive (>= median)",
+          "n": 41,
+          "pct_of_510_luad": 8.04,
+          "pct_of_ceacam5_high": 80.39,
+          "n_kras_mut": 11,
+          "n_egfr_mut": 5,
+          "n_stk11_mut": 5,
+          "n_keap1_mut": 13,
+          "n_stk11_or_keap1_mut": 18,
+          "n_tp53_mut": 26,
+          "n_smad4_loss": 9,
+          "n_fap_high": 12,
+          "n_tubb3_high": 8,
+          "n_abcb1_high": 7,
+          "median_CEACAM5_z": 1.3794,
+          "median_TOP1_z": 0.3298,
+          "median_SLFN11_z": 0.4828,
+          "median_TUBB3_z": 0.2892,
+          "median_ABCB1_z": -0.1123,
+          "median_FAP_z": 0.0225
+        },
+        "SGN_CEACAM5C_3Gate_Ideal_LowStroma": {
+          "description": "CEACAM5-High (Q90_Top_Decile) + TOP1/SLFN11-Sensitive + FAP<Q75 & SMAD4-Intact",
+          "n": 22,
+          "pct_of_510_luad": 4.31,
+          "pct_of_ceacam5_high": 43.14,
+          "n_kras_mut": 5,
+          "n_egfr_mut": 4,
+          "n_stk11_mut": 1,
+          "n_keap1_mut": 7,
+          "n_stk11_or_keap1_mut": 8,
+          "n_tp53_mut": 14,
+          "n_smad4_loss": 0,
+          "n_fap_high": 0,
+          "n_tubb3_high": 2,
+          "n_abcb1_high": 2,
+          "median_CEACAM5_z": 1.4078,
+          "median_TOP1_z": 0.4763,
+          "median_SLFN11_z": 0.1796,
+          "median_TUBB3_z": 0.2397,
+          "median_ABCB1_z": -0.1598,
+          "median_FAP_z": -0.0935
+        },
+        "SGN_CEACAM5C_Stromal_TGFB_CoTarget_Needed": {
+          "description": "CEACAM5-High (Q90_Top_Decile) + TOP1/SLFN11-Sensitive + (FAP>=Q75 OR SMAD4-Loss)",
+          "n": 19,
+          "pct_of_510_luad": 3.73,
+          "pct_of_ceacam5_high": 37.25,
+          "n_kras_mut": 6,
+          "n_egfr_mut": 1,
+          "n_stk11_mut": 4,
+          "n_keap1_mut": 6,
+          "n_stk11_or_keap1_mut": 10,
+          "n_tp53_mut": 12,
+          "n_smad4_loss": 9,
+          "n_fap_high": 12,
+          "n_tubb3_high": 6,
+          "n_abcb1_high": 5,
+          "median_CEACAM5_z": 1.3593,
+          "median_TOP1_z": -0.069,
+          "median_SLFN11_z": 0.5803,
+          "median_TUBB3_z": 0.3097,
+          "median_ABCB1_z": -0.0056,
+          "median_FAP_z": 0.8506
+        },
+        "CARMEN_LC03_DM4_Tubulin_or_Efflux_Resistant": {
+          "description": "CEACAM5-High (Q90_Top_Decile) + DM4/Tubulin-Resistant (TUBB3>=Q75 OR ABCB1>=Q75)",
+          "n": 13,
+          "pct_of_510_luad": 2.55,
+          "pct_of_ceacam5_high": 25.49,
+          "n_kras_mut": 4,
+          "n_egfr_mut": 0,
+          "n_stk11_mut": 2,
+          "n_keap1_mut": 5,
+          "n_stk11_or_keap1_mut": 7,
+          "n_tp53_mut": 8,
+          "n_smad4_loss": 6,
+          "n_fap_high": 4,
+          "n_tubb3_high": 9,
+          "n_abcb1_high": 7,
+          "median_CEACAM5_z": 1.3794,
+          "median_TOP1_z": -0.0301,
+          "median_SLFN11_z": 0.4828,
+          "median_TUBB3_z": 1.15,
+          "median_ABCB1_z": 0.7386,
+          "median_FAP_z": 0.0642
+        },
+        "CARMEN_LC03_DM4_Resistant_OR_TOP1_Resistant": {
+          "description": "CEACAM5-High (Q90_Top_Decile) + (DM4/Tubulin-Resistant OR TOP1/SLFN11-Low)",
+          "n": 22,
+          "pct_of_510_luad": 4.31,
+          "pct_of_ceacam5_high": 43.14,
+          "n_kras_mut": 7,
+          "n_egfr_mut": 2,
+          "n_stk11_mut": 3,
+          "n_keap1_mut": 8,
+          "n_stk11_or_keap1_mut": 10,
+          "n_tp53_mut": 10,
+          "n_smad4_loss": 9,
+          "n_fap_high": 5,
+          "n_tubb3_high": 9,
+          "n_abcb1_high": 7,
+          "median_CEACAM5_z": 1.3804,
+          "median_TOP1_z": -0.4672,
+          "median_SLFN11_z": -0.2334,
+          "median_TUBB3_z": 0.4034,
+          "median_ABCB1_z": -0.2507,
+          "median_FAP_z": 0.0925
+        },
+        "TOP1_Payload_Switch_Salvage_of_DM4_Failures": {
+          "description": "CEACAM5-High (Q90_Top_Decile) + DM4-Resistant (TUBB3/ABCB1-High) BUT TOP1/SLFN11-Sensitive",
+          "n": 12,
+          "pct_of_510_luad": 2.35,
+          "pct_of_ceacam5_high": 23.53,
+          "n_kras_mut": 4,
+          "n_egfr_mut": 0,
+          "n_stk11_mut": 2,
+          "n_keap1_mut": 5,
+          "n_stk11_or_keap1_mut": 7,
+          "n_tp53_mut": 7,
+          "n_smad4_loss": 5,
+          "n_fap_high": 4,
+          "n_tubb3_high": 8,
+          "n_abcb1_high": 7,
+          "median_CEACAM5_z": 1.3693,
+          "median_TOP1_z": 0.0297,
+          "median_SLFN11_z": 0.5967,
+          "median_TUBB3_z": 1.1442,
+          "median_ABCB1_z": 0.7686,
+          "median_FAP_z": 0.1974
+        },
+        "TOP1_Payload_Refractory_Within_CEACAM5_High": {
+          "description": "CEACAM5-High (Q90_Top_Decile) + TOP1<Med & SLFN11<Med",
+          "n": 10,
+          "pct_of_510_luad": 1.96,
+          "pct_of_ceacam5_high": 19.61,
+          "n_kras_mut": 3,
+          "n_egfr_mut": 2,
+          "n_stk11_mut": 1,
+          "n_keap1_mut": 3,
+          "n_stk11_or_keap1_mut": 3,
+          "n_tp53_mut": 3,
+          "n_smad4_loss": 4,
+          "n_fap_high": 1,
+          "n_tubb3_high": 1,
+          "n_abcb1_high": 0,
+          "median_CEACAM5_z": 1.4589,
+          "median_TOP1_z": -0.7232,
+          "median_SLFN11_z": -0.6012,
+          "median_TUBB3_z": -0.6055,
+          "median_ABCB1_z": -0.613,
+          "median_FAP_z": 0.0925
+        },
+        "CEACAM5_Low_Moderate_Excluded": {
+          "description": "CEACAM5-Low/Moderate (< Q90_Top_Decile)",
+          "n": 459,
+          "pct_of_510_luad": 90.0,
+          "pct_of_ceacam5_high": 900.0,
+          "n_kras_mut": 140,
+          "n_egfr_mut": 59,
+          "n_stk11_mut": 67,
+          "n_keap1_mut": 77,
+          "n_stk11_or_keap1_mut": 120,
+          "n_tp53_mut": 234,
+          "n_smad4_loss": 77,
+          "n_fap_high": 115,
+          "n_tubb3_high": 119,
+          "n_abcb1_high": 121,
+          "median_CEACAM5_z": -0.0173,
+          "median_TOP1_z": -0.0964,
+          "median_SLFN11_z": 0.0666,
+          "median_TUBB3_z": 0.1068,
+          "median_ABCB1_z": 0.0216,
+          "median_FAP_z": 0.0096
+        }
+      }
+    }
+  },
+  "cohort_3_pharmacology_and_crispr_validation": {
+    "gdsc2_drug_sensitivity_by_lineage_and_ceacam5": {
+      "Pan_Cancer_All_Lines": {
+        "Camptothecin": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 704,
+          "median_LN_IC50": -2.4177,
+          "iqr_LN_IC50": 2.5358,
+          "median_AUC": 0.8494,
+          "median_Z_SCORE": -0.0862,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 704,
+            "spearman_rho": -0.48596,
+            "spearman_p": 5.302031231641233e-43,
+            "pearson_r": -0.4962,
+            "pearson_p": 4.954518376577708e-45
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 704,
+            "spearman_rho": -0.102092,
+            "spearman_p": 0.00670629735820024,
+            "pearson_r": -0.098588,
+            "pearson_p": 0.00885613869000666
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 704,
+            "spearman_rho": 0.022989,
+            "spearman_p": 0.5425557909318105,
+            "pearson_r": 0.002647,
+            "pearson_p": 0.9441056923805746
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 704,
+            "spearman_rho": 0.073715,
+            "spearman_p": 0.05057649622686197,
+            "pearson_r": 0.096558,
+            "pearson_p": 0.010365251319108638
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 704,
+            "spearman_rho": 0.205856,
+            "spearman_p": 3.559583062627642e-08,
+            "pearson_r": 0.21371,
+            "pearson_p": 1.0247211074930929e-08
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 704,
+            "spearman_rho": -0.03829,
+            "spearman_p": 0.3103423306798291,
+            "pearson_r": -0.038401,
+            "pearson_p": 0.3089393960946442
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 704,
+            "spearman_rho": -0.167973,
+            "spearman_p": 7.437325972247256e-06,
+            "pearson_r": -0.141568,
+            "pearson_p": 0.0001641999414514922
+          }
+        },
+        "Irinotecan": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 702,
+          "median_LN_IC50": 2.4985,
+          "iqr_LN_IC50": 2.7161,
+          "median_AUC": 0.8892,
+          "median_Z_SCORE": 0.0091,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 702,
+            "spearman_rho": -0.44818,
+            "spearman_p": 5.526179591479948e-36,
+            "pearson_r": -0.460603,
+            "pearson_p": 3.6979005310048354e-38
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 702,
+            "spearman_rho": -0.117204,
+            "spearman_p": 0.0018674053637700338,
+            "pearson_r": -0.106518,
+            "pearson_p": 0.004724421980316866
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 702,
+            "spearman_rho": 0.057268,
+            "spearman_p": 0.12955100597033384,
+            "pearson_r": 0.055224,
+            "pearson_p": 0.14383156667876243
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 702,
+            "spearman_rho": 0.082576,
+            "spearman_p": 0.028689869119018687,
+            "pearson_r": 0.112461,
+            "pearson_p": 0.0028466072726442792
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 702,
+            "spearman_rho": 0.174087,
+            "spearman_p": 3.4886490242773045e-06,
+            "pearson_r": 0.17696,
+            "pearson_p": 2.3872886920504947e-06
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 702,
+            "spearman_rho": -0.05262,
+            "spearman_p": 0.16372460274741626,
+            "pearson_r": -0.059072,
+            "pearson_p": 0.11788400177278559
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 702,
+            "spearman_rho": -0.197221,
+            "spearman_p": 1.3797053422403856e-07,
+            "pearson_r": -0.171986,
+            "pearson_p": 4.585702574339342e-06
+          }
+        },
+        "SN-38": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 695,
+          "median_LN_IC50": -3.51,
+          "iqr_LN_IC50": 2.7765,
+          "median_AUC": 0.8941,
+          "median_Z_SCORE": -0.0411,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 695,
+            "spearman_rho": -0.425806,
+            "spearman_p": 5.560755122583941e-32,
+            "pearson_r": -0.431947,
+            "pearson_p": 5.856929821823818e-33
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 695,
+            "spearman_rho": -0.106659,
+            "spearman_p": 0.004880640963983932,
+            "pearson_r": -0.092489,
+            "pearson_p": 0.014723432741191695
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 695,
+            "spearman_rho": 0.035162,
+            "spearman_p": 0.3546605084089677,
+            "pearson_r": 0.028304,
+            "pearson_p": 0.456283007327025
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 695,
+            "spearman_rho": 0.087641,
+            "spearman_p": 0.02084598975457131,
+            "pearson_r": 0.132234,
+            "pearson_p": 0.0004737987669252858
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 695,
+            "spearman_rho": 0.17846,
+            "spearman_p": 2.198249378145817e-06,
+            "pearson_r": 0.206344,
+            "pearson_p": 4.0374850098512725e-08
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 695,
+            "spearman_rho": -0.013796,
+            "spearman_p": 0.7165658836908566,
+            "pearson_r": -0.011048,
+            "pearson_p": 0.7712551732435117
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 695,
+            "spearman_rho": -0.151824,
+            "spearman_p": 5.853923069513397e-05,
+            "pearson_r": -0.142498,
+            "pearson_p": 0.0001638020084205488
+          }
+        },
+        "Topotecan": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 547,
+          "median_LN_IC50": 0.1535,
+          "iqr_LN_IC50": 2.6247,
+          "median_AUC": 0.7734,
+          "median_Z_SCORE": 0.0143,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 547,
+            "spearman_rho": -0.514339,
+            "spearman_p": 2.861923450382835e-38,
+            "pearson_r": -0.533638,
+            "pearson_p": 1.3830309830288736e-41
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 547,
+            "spearman_rho": -0.128779,
+            "spearman_p": 0.0025480538587588286,
+            "pearson_r": -0.145812,
+            "pearson_p": 0.000624455269200486
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 547,
+            "spearman_rho": 0.054417,
+            "spearman_p": 0.20381904126812037,
+            "pearson_r": 0.037768,
+            "pearson_p": 0.3779889821674217
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 547,
+            "spearman_rho": 0.138626,
+            "spearman_p": 0.001152134189592076,
+            "pearson_r": 0.161795,
+            "pearson_p": 0.00014441994075911534
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 547,
+            "spearman_rho": 0.183952,
+            "spearman_p": 1.4949704016658583e-05,
+            "pearson_r": 0.21275,
+            "pearson_p": 5.112722838277223e-07
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 547,
+            "spearman_rho": -0.080323,
+            "spearman_p": 0.06047393907192769,
+            "pearson_r": -0.074875,
+            "pearson_p": 0.08018205401355813
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 547,
+            "spearman_rho": -0.139098,
+            "spearman_p": 0.0011076705150460595,
+            "pearson_r": -0.120243,
+            "pearson_p": 0.004862094989506834
+          }
+        },
+        "Docetaxel": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 704,
+          "median_LN_IC50": -3.8403,
+          "iqr_LN_IC50": 3.4238,
+          "median_AUC": 0.7469,
+          "median_Z_SCORE": -0.0971,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 704,
+            "spearman_rho": -0.132106,
+            "spearman_p": 0.00044083535818024473,
+            "pearson_r": -0.130754,
+            "pearson_p": 0.0005050245952967527
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 704,
+            "spearman_rho": 0.004141,
+            "spearman_p": 0.912667360858865,
+            "pearson_r": 0.026463,
+            "pearson_p": 0.48329022261826204
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 704,
+            "spearman_rho": 0.151911,
+            "spearman_p": 5.1878624224607754e-05,
+            "pearson_r": 0.165356,
+            "pearson_p": 1.0337772613948111e-05
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 704,
+            "spearman_rho": 0.101626,
+            "spearman_p": 0.006962347498735015,
+            "pearson_r": 0.116099,
+            "pearson_p": 0.0020327204774945075
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 704,
+            "spearman_rho": 0.11919,
+            "spearman_p": 0.0015340850441748662,
+            "pearson_r": 0.121125,
+            "pearson_p": 0.0012820497187615522
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 704,
+            "spearman_rho": -0.032471,
+            "spearman_p": 0.3896512782059509,
+            "pearson_r": -0.033315,
+            "pearson_p": 0.37744202573111785
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 704,
+            "spearman_rho": -0.118504,
+            "spearman_p": 0.0016338409948564144,
+            "pearson_r": -0.097713,
+            "pearson_p": 0.009480304492212297
+          }
+        },
+        "Paclitaxel": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 697,
+          "median_LN_IC50": -3.2513,
+          "iqr_LN_IC50": 2.8083,
+          "median_AUC": 0.9112,
+          "median_Z_SCORE": -0.0887,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 697,
+            "spearman_rho": -0.112684,
+            "spearman_p": 0.0028909070660582876,
+            "pearson_r": -0.116477,
+            "pearson_p": 0.0020696290352587346
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 697,
+            "spearman_rho": -0.015895,
+            "spearman_p": 0.6752836918661143,
+            "pearson_r": -0.011774,
+            "pearson_p": 0.7563433851714505
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 697,
+            "spearman_rho": 0.256022,
+            "spearman_p": 6.803514219312709e-12,
+            "pearson_r": 0.290978,
+            "pearson_p": 4.559930858224425e-15
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 697,
+            "spearman_rho": 0.147719,
+            "spearman_p": 9.062994391269547e-05,
+            "pearson_r": 0.164563,
+            "pearson_p": 1.2620108087128023e-05
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 697,
+            "spearman_rho": 0.153761,
+            "spearman_p": 4.573908101746879e-05,
+            "pearson_r": 0.120716,
+            "pearson_p": 0.0014082708447226693
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 697,
+            "spearman_rho": -0.039677,
+            "spearman_p": 0.29554607617765466,
+            "pearson_r": -0.051307,
+            "pearson_p": 0.17605729219688895
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 697,
+            "spearman_rho": -0.121418,
+            "spearman_p": 0.001319690226667119,
+            "pearson_r": -0.107181,
+            "pearson_p": 0.00461511083415982
+          }
+        },
+        "Vinblastine": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 570,
+          "median_LN_IC50": -3.788,
+          "iqr_LN_IC50": 3.2571,
+          "median_AUC": 0.7226,
+          "median_Z_SCORE": -0.1361,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 570,
+            "spearman_rho": -0.12576,
+            "spearman_p": 0.0026312019825187657,
+            "pearson_r": -0.121734,
+            "pearson_p": 0.003604859469047767
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 570,
+            "spearman_rho": -0.039832,
+            "spearman_p": 0.3424816829467965,
+            "pearson_r": -0.018411,
+            "pearson_p": 0.6609292307123371
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 570,
+            "spearman_rho": 0.082025,
+            "spearman_p": 0.05031033721135955,
+            "pearson_r": 0.119134,
+            "pearson_p": 0.004397003019355703
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 570,
+            "spearman_rho": 0.147467,
+            "spearman_p": 0.0004119060654897691,
+            "pearson_r": 0.157936,
+            "pearson_p": 0.000152986857224114
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 570,
+            "spearman_rho": 0.192986,
+            "spearman_p": 3.4663750554457987e-06,
+            "pearson_r": 0.157783,
+            "pearson_p": 0.00015528651750380094
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 570,
+            "spearman_rho": -0.01238,
+            "spearman_p": 0.7680532336081104,
+            "pearson_r": 0.014513,
+            "pearson_p": 0.7295311571457879
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 570,
+            "spearman_rho": -0.188115,
+            "spearman_p": 6.133133203967659e-06,
+            "pearson_r": -0.151982,
+            "pearson_p": 0.0002708217766315046
+          }
+        },
+        "Vinorelbine": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 694,
+          "median_LN_IC50": -3.15,
+          "iqr_LN_IC50": 3.0245,
+          "median_AUC": 0.79,
+          "median_Z_SCORE": -0.0713,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 694,
+            "spearman_rho": -0.128362,
+            "spearman_p": 0.0007002646830734222,
+            "pearson_r": -0.122457,
+            "pearson_p": 0.0012277462388225004
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 694,
+            "spearman_rho": -0.069908,
+            "spearman_p": 0.06568480827727659,
+            "pearson_r": -0.046826,
+            "pearson_p": 0.21793905713833506
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 694,
+            "spearman_rho": 0.126909,
+            "spearman_p": 0.0008057545192024899,
+            "pearson_r": 0.169716,
+            "pearson_p": 6.938774898276253e-06
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 694,
+            "spearman_rho": 0.152901,
+            "spearman_p": 5.242423053484069e-05,
+            "pearson_r": 0.165934,
+            "pearson_p": 1.1130597871486444e-05
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 694,
+            "spearman_rho": 0.124527,
+            "spearman_p": 0.0010110829800559543,
+            "pearson_r": 0.134089,
+            "pearson_p": 0.00039700006035637604
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 694,
+            "spearman_rho": -0.051145,
+            "spearman_p": 0.1783668086340975,
+            "pearson_r": -0.051979,
+            "pearson_p": 0.17137665509841643
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 694,
+            "spearman_rho": -0.170362,
+            "spearman_p": 6.393906727392088e-06,
+            "pearson_r": -0.157601,
+            "pearson_p": 3.0401625023639008e-05
+          }
+        }
+      },
+      "CRC_Bowel_Lineage": {
+        "Camptothecin": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 43,
+          "median_LN_IC50": -2.0155,
+          "iqr_LN_IC50": 2.8699,
+          "median_AUC": 0.8724,
+          "median_Z_SCORE": 0.1328,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 43,
+            "spearman_rho": -0.025192,
+            "spearman_p": 0.8726033322846946,
+            "pearson_r": -0.359266,
+            "pearson_p": 0.017979300858792686
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 43,
+            "spearman_rho": 0.105557,
+            "spearman_p": 0.5005184114563546,
+            "pearson_r": 0.056433,
+            "pearson_p": 0.7192693015976719
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 43,
+            "spearman_rho": 0.124887,
+            "spearman_p": 0.42490727182002175,
+            "pearson_r": 0.044384,
+            "pearson_p": 0.7774794238823116
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 43,
+            "spearman_rho": 0.209755,
+            "spearman_p": 0.17701567735734475,
+            "pearson_r": 0.115139,
+            "pearson_p": 0.4622045337069542
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 43,
+            "spearman_rho": 0.1113,
+            "spearman_p": 0.4773642833048318,
+            "pearson_r": 0.016017,
+            "pearson_p": 0.9188007752823453
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 43,
+            "spearman_rho": 0.057989,
+            "spearman_p": 0.7118577594270028,
+            "pearson_r": 0.043696,
+            "pearson_p": 0.7808388530676392
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 43,
+            "spearman_rho": 0.084494,
+            "spearman_p": 0.5900909266697734,
+            "pearson_r": 0.093865,
+            "pearson_p": 0.5493717613445952
+          }
+        },
+        "Irinotecan": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 43,
+          "median_LN_IC50": 3.3967,
+          "iqr_LN_IC50": 2.4647,
+          "median_AUC": 0.9218,
+          "median_Z_SCORE": 0.4752,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 43,
+            "spearman_rho": -0.035859,
+            "spearman_p": 0.8194232038425703,
+            "pearson_r": -0.321182,
+            "pearson_p": 0.03572274218820761
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 43,
+            "spearman_rho": 0.021444,
+            "spearman_p": 0.8914358111240945,
+            "pearson_r": 0.017314,
+            "pearson_p": 0.9122546560977621
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 43,
+            "spearman_rho": 0.112504,
+            "spearman_p": 0.47258287446397695,
+            "pearson_r": 0.077477,
+            "pearson_p": 0.6214321632994649
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 43,
+            "spearman_rho": 0.184989,
+            "spearman_p": 0.2349930283650222,
+            "pearson_r": 0.090949,
+            "pearson_p": 0.5618988496928531
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 43,
+            "spearman_rho": 0.059123,
+            "spearman_p": 0.7064685758120502,
+            "pearson_r": -0.011107,
+            "pearson_p": 0.9436455283171389
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 43,
+            "spearman_rho": 0.084265,
+            "spearman_p": 0.5911056493099718,
+            "pearson_r": 0.059963,
+            "pearson_p": 0.7024904637331028
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 43,
+            "spearman_rho": 0.089478,
+            "spearman_p": 0.5682691779071989,
+            "pearson_r": 0.113373,
+            "pearson_p": 0.46914830566114624
+          }
+        },
+        "SN-38": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 42,
+          "median_LN_IC50": -2.7453,
+          "iqr_LN_IC50": 2.3426,
+          "median_AUC": 0.9227,
+          "median_Z_SCORE": 0.3362,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 42,
+            "spearman_rho": 0.027606,
+            "spearman_p": 0.8622240300858905,
+            "pearson_r": -0.363515,
+            "pearson_p": 0.017965048458482437
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 42,
+            "spearman_rho": -0.021149,
+            "spearman_p": 0.894241051871299,
+            "pearson_r": -0.041638,
+            "pearson_p": 0.7934628908425905
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 42,
+            "spearman_rho": 0.090349,
+            "spearman_p": 0.5693389107470086,
+            "pearson_r": 0.032619,
+            "pearson_p": 0.8375171298197917
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 42,
+            "spearman_rho": 0.068633,
+            "spearman_p": 0.6658290465391551,
+            "pearson_r": 0.00169,
+            "pearson_p": 0.9915231505717079
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 42,
+            "spearman_rho": 0.203233,
+            "spearman_p": 0.19674720401150597,
+            "pearson_r": 0.175043,
+            "pearson_p": 0.2675343011431581
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 42,
+            "spearman_rho": 0.096346,
+            "spearman_p": 0.5438762947655076,
+            "pearson_r": 0.078928,
+            "pearson_p": 0.6192924228732007
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 42,
+            "spearman_rho": 0.03136,
+            "spearman_p": 0.843708589496318,
+            "pearson_r": 0.006556,
+            "pearson_p": 0.9671338181168869
+          }
+        },
+        "Topotecan": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 41,
+          "median_LN_IC50": 1.0001,
+          "iqr_LN_IC50": 1.9831,
+          "median_AUC": 0.825,
+          "median_Z_SCORE": 0.4504,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 41,
+            "spearman_rho": 0.114962,
+            "spearman_p": 0.47415890204719646,
+            "pearson_r": -0.319823,
+            "pearson_p": 0.04150777773468988
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 41,
+            "spearman_rho": -0.0223,
+            "spearman_p": 0.8899331677861008,
+            "pearson_r": -0.044568,
+            "pearson_p": 0.7820200254232065
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 41,
+            "spearman_rho": 0.307143,
+            "spearman_p": 0.050777189801084754,
+            "pearson_r": 0.192225,
+            "pearson_p": 0.22857300650749796
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 41,
+            "spearman_rho": 0.115854,
+            "spearman_p": 0.4707135520783271,
+            "pearson_r": 0.084961,
+            "pearson_p": 0.5973981383463052
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 41,
+            "spearman_rho": 0.181802,
+            "spearman_p": 0.25528156347322367,
+            "pearson_r": 0.031862,
+            "pearson_p": 0.8432353235023633
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 41,
+            "spearman_rho": 0.107317,
+            "spearman_p": 0.5042315457627341,
+            "pearson_r": 0.100534,
+            "pearson_p": 0.531702481522875
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 41,
+            "spearman_rho": -0.038765,
+            "spearman_p": 0.8098420911425683,
+            "pearson_r": 0.034427,
+            "pearson_p": 0.8307916307149529
+          }
+        },
+        "Docetaxel": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 43,
+          "median_LN_IC50": -2.9031,
+          "iqr_LN_IC50": 3.9313,
+          "median_AUC": 0.7698,
+          "median_Z_SCORE": 0.2224,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 43,
+            "spearman_rho": 0.115142,
+            "spearman_p": 0.4621947448014099,
+            "pearson_r": -0.183679,
+            "pearson_p": 0.23838508207666517
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 43,
+            "spearman_rho": 0.142857,
+            "spearman_p": 0.36078398525491406,
+            "pearson_r": 0.138378,
+            "pearson_p": 0.3761912929918559
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 43,
+            "spearman_rho": 0.292812,
+            "spearman_p": 0.0567131268180214,
+            "pearson_r": 0.228088,
+            "pearson_p": 0.14127299945113966
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 43,
+            "spearman_rho": 0.282996,
+            "spearman_p": 0.06593909619222835,
+            "pearson_r": 0.20564,
+            "pearson_p": 0.18586009440025797
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 43,
+            "spearman_rho": 0.046664,
+            "spearman_p": 0.7663566173966583,
+            "pearson_r": -0.012172,
+            "pearson_p": 0.938253758798162
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 43,
+            "spearman_rho": 0.20749,
+            "spearman_p": 0.1818455764818628,
+            "pearson_r": 0.170555,
+            "pearson_p": 0.2741810440254079
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 43,
+            "spearman_rho": 0.131838,
+            "spearman_p": 0.3993773550448154,
+            "pearson_r": 0.176869,
+            "pearson_p": 0.2565416447484488
+          }
+        },
+        "Paclitaxel": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 41,
+          "median_LN_IC50": -2.1887,
+          "iqr_LN_IC50": 3.3773,
+          "median_AUC": 0.9511,
+          "median_Z_SCORE": 0.515,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 41,
+            "spearman_rho": -0.051745,
+            "spearman_p": 0.747982860483366,
+            "pearson_r": -0.273514,
+            "pearson_p": 0.08356729972519146
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 41,
+            "spearman_rho": 0.118641,
+            "spearman_p": 0.4600309077585256,
+            "pearson_r": 0.103216,
+            "pearson_p": 0.5207547428566488
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 41,
+            "spearman_rho": 0.439373,
+            "spearman_p": 0.004051605299030446,
+            "pearson_r": 0.393992,
+            "pearson_p": 0.010809858219785716
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 41,
+            "spearman_rho": 0.274564,
+            "spearman_p": 0.0823406951726024,
+            "pearson_r": 0.161898,
+            "pearson_p": 0.3118787711933826
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 41,
+            "spearman_rho": -0.08868,
+            "spearman_p": 0.5813897690793463,
+            "pearson_r": -0.138838,
+            "pearson_p": 0.38664908363114964
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 41,
+            "spearman_rho": 0.188153,
+            "spearman_p": 0.2387692181974903,
+            "pearson_r": 0.128866,
+            "pearson_p": 0.42198455220770575
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 41,
+            "spearman_rho": 0.136591,
+            "spearman_p": 0.39445559323433965,
+            "pearson_r": 0.169411,
+            "pearson_p": 0.2896508524187256
+          }
+        },
+        "Vinblastine": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 36,
+          "median_LN_IC50": -3.4213,
+          "iqr_LN_IC50": 3.577,
+          "median_AUC": 0.7611,
+          "median_Z_SCORE": 0.0324,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 36,
+            "spearman_rho": -0.030051,
+            "spearman_p": 0.8618797026689979,
+            "pearson_r": -0.3162,
+            "pearson_p": 0.06027575262682532
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 36,
+            "spearman_rho": 0.141828,
+            "spearman_p": 0.4093056060558884,
+            "pearson_r": 0.113682,
+            "pearson_p": 0.5091497209936748
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 36,
+            "spearman_rho": 0.396654,
+            "spearman_p": 0.016615380377926526,
+            "pearson_r": 0.274611,
+            "pearson_p": 0.10504942541053774
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 36,
+            "spearman_rho": 0.345689,
+            "spearman_p": 0.038915327081233145,
+            "pearson_r": 0.273965,
+            "pearson_p": 0.10590394236376663
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 36,
+            "spearman_rho": 0.071433,
+            "spearman_p": 0.6788722013481538,
+            "pearson_r": 0.019999,
+            "pearson_p": 0.9078325059039893
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 36,
+            "spearman_rho": 0.277992,
+            "spearman_p": 0.10066694816196836,
+            "pearson_r": 0.222794,
+            "pearson_p": 0.19152678146858304
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 36,
+            "spearman_rho": 0.073621,
+            "spearman_p": 0.6695848450834497,
+            "pearson_r": -0.004006,
+            "pearson_p": 0.9814990040396199
+          }
+        },
+        "Vinorelbine": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 42,
+          "median_LN_IC50": -2.9823,
+          "iqr_LN_IC50": 2.7149,
+          "median_AUC": 0.8021,
+          "median_Z_SCORE": 0.0084,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 42,
+            "spearman_rho": 0.039542,
+            "spearman_p": 0.8036501819878799,
+            "pearson_r": -0.241333,
+            "pearson_p": 0.1236391679319966
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 42,
+            "spearman_rho": 0.154688,
+            "spearman_p": 0.32800475467037893,
+            "pearson_r": 0.138863,
+            "pearson_p": 0.3804658314490918
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 42,
+            "spearman_rho": 0.376226,
+            "spearman_p": 0.01406461529601097,
+            "pearson_r": 0.286376,
+            "pearson_p": 0.06596796443790487
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 42,
+            "spearman_rho": 0.20282,
+            "spearman_p": 0.19767890362361612,
+            "pearson_r": 0.112954,
+            "pearson_p": 0.4763276487420868
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 42,
+            "spearman_rho": 0.051295,
+            "spearman_p": 0.7469930644108594,
+            "pearson_r": -0.019691,
+            "pearson_p": 0.9014936131619133
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 42,
+            "spearman_rho": 0.253383,
+            "spearman_p": 0.10542596475000776,
+            "pearson_r": 0.153719,
+            "pearson_p": 0.3310806760661642
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 42,
+            "spearman_rho": 0.12066,
+            "spearman_p": 0.4465660610360491,
+            "pearson_r": 0.102152,
+            "pearson_p": 0.5197493202720034
+          }
+        }
+      },
+      "NSCLC_Lung_Lineage": {
+        "Camptothecin": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 133,
+          "median_LN_IC50": -1.9191,
+          "iqr_LN_IC50": 2.3082,
+          "median_AUC": 0.8729,
+          "median_Z_SCORE": 0.1853,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 133,
+            "spearman_rho": -0.472155,
+            "spearman_p": 9.611707334337167e-09,
+            "pearson_r": -0.500747,
+            "pearson_p": 8.350998553516799e-10
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 133,
+            "spearman_rho": -0.133645,
+            "spearman_p": 0.1251263658718721,
+            "pearson_r": -0.106631,
+            "pearson_p": 0.2218582400787854
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 133,
+            "spearman_rho": 0.054115,
+            "spearman_p": 0.5361498774190665,
+            "pearson_r": 0.05463,
+            "pearson_p": 0.5322697137205707
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 133,
+            "spearman_rho": -0.067274,
+            "spearman_p": 0.44166206561955934,
+            "pearson_r": -0.057082,
+            "pearson_p": 0.5140028323865128
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 133,
+            "spearman_rho": 0.076396,
+            "spearman_p": 0.3821186877857954,
+            "pearson_r": 0.120945,
+            "pearson_p": 0.16552169291867827
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 133,
+            "spearman_rho": 0.054573,
+            "spearman_p": 0.532698897009358,
+            "pearson_r": 0.039414,
+            "pearson_p": 0.6524045356708622
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 133,
+            "spearman_rho": -0.036362,
+            "spearman_p": 0.6777547391754226,
+            "pearson_r": -0.141093,
+            "pearson_p": 0.10525025451383237
+          }
+        },
+        "Irinotecan": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 132,
+          "median_LN_IC50": 2.8135,
+          "iqr_LN_IC50": 2.537,
+          "median_AUC": 0.9058,
+          "median_Z_SCORE": 0.1726,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 132,
+            "spearman_rho": -0.350558,
+            "spearman_p": 3.7747550537594885e-05,
+            "pearson_r": -0.390152,
+            "pearson_p": 3.7550563512943156e-06
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 132,
+            "spearman_rho": -0.114139,
+            "spearman_p": 0.19252596931337213,
+            "pearson_r": -0.089107,
+            "pearson_p": 0.30960575899038123
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 132,
+            "spearman_rho": 0.071634,
+            "spearman_p": 0.41436935764696325,
+            "pearson_r": -0.006735,
+            "pearson_p": 0.938910644219745
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 132,
+            "spearman_rho": -0.121138,
+            "spearman_p": 0.16646948276667317,
+            "pearson_r": -0.118536,
+            "pearson_p": 0.17583282297259187
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 132,
+            "spearman_rho": -0.054304,
+            "spearman_p": 0.5362902450592588,
+            "pearson_r": -0.010602,
+            "pearson_p": 0.9039671319193794
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 132,
+            "spearman_rho": -0.000141,
+            "spearman_p": 0.9987208276750976,
+            "pearson_r": -0.04131,
+            "pearson_p": 0.6381365417379998
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 132,
+            "spearman_rho": -0.125516,
+            "spearman_p": 0.15156211384353513,
+            "pearson_r": -0.239665,
+            "pearson_p": 0.005643492575109236
+          }
+        },
+        "SN-38": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 133,
+          "median_LN_IC50": -3.2291,
+          "iqr_LN_IC50": 2.7444,
+          "median_AUC": 0.8947,
+          "median_Z_SCORE": 0.0975,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 133,
+            "spearman_rho": -0.448239,
+            "spearman_p": 6.28854772993651e-08,
+            "pearson_r": -0.471867,
+            "pearson_p": 9.839603100532995e-09
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 133,
+            "spearman_rho": -0.135792,
+            "spearman_p": 0.11911971672092492,
+            "pearson_r": -0.119468,
+            "pearson_p": 0.170788620920779
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 133,
+            "spearman_rho": -0.025966,
+            "spearman_p": 0.7667111709729664,
+            "pearson_r": 0.017823,
+            "pearson_p": 0.8386524016795035
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 133,
+            "spearman_rho": -0.116297,
+            "spearman_p": 0.18250998312434957,
+            "pearson_r": -0.086592,
+            "pearson_p": 0.32165325462034006
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 133,
+            "spearman_rho": 0.068605,
+            "spearman_p": 0.4326577303302247,
+            "pearson_r": 0.106086,
+            "pearson_p": 0.2242425768683533
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 133,
+            "spearman_rho": 0.085324,
+            "spearman_p": 0.32881527353779494,
+            "pearson_r": 0.072121,
+            "pearson_p": 0.4093952607823489
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 133,
+            "spearman_rho": -0.026862,
+            "spearman_p": 0.758907779883086,
+            "pearson_r": -0.112294,
+            "pearson_p": 0.19813153193216
+          }
+        },
+        "Topotecan": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 96,
+          "median_LN_IC50": 0.6884,
+          "iqr_LN_IC50": 2.1867,
+          "median_AUC": 0.8011,
+          "median_Z_SCORE": 0.2899,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 96,
+            "spearman_rho": -0.425779,
+            "spearman_p": 1.526579711131933e-05,
+            "pearson_r": -0.455602,
+            "pearson_p": 3.0965162507957847e-06
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 96,
+            "spearman_rho": -0.104816,
+            "spearman_p": 0.3094732279652869,
+            "pearson_r": -0.093635,
+            "pearson_p": 0.36419185638932433
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 96,
+            "spearman_rho": 0.148784,
+            "spearman_p": 0.14796739430375805,
+            "pearson_r": 0.047951,
+            "pearson_p": 0.6426924164451971
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 96,
+            "spearman_rho": 0.086659,
+            "spearman_p": 0.4011650252841774,
+            "pearson_r": -0.024779,
+            "pearson_p": 0.8106129110768334
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 96,
+            "spearman_rho": -0.007022,
+            "spearman_p": 0.9458682770178695,
+            "pearson_r": 0.070616,
+            "pearson_p": 0.49417210543887574
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 96,
+            "spearman_rho": -0.089516,
+            "spearman_p": 0.38576457460698343,
+            "pearson_r": -0.101067,
+            "pearson_p": 0.3271891571203682
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 96,
+            "spearman_rho": -0.022307,
+            "spearman_p": 0.8291972553591127,
+            "pearson_r": -0.092766,
+            "pearson_p": 0.36868091995238705
+          }
+        },
+        "Docetaxel": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 133,
+          "median_LN_IC50": -3.5829,
+          "iqr_LN_IC50": 3.6097,
+          "median_AUC": 0.7841,
+          "median_Z_SCORE": -0.0182,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 133,
+            "spearman_rho": 0.134402,
+            "spearman_p": 0.12298312203794307,
+            "pearson_r": 0.140008,
+            "pearson_p": 0.10797937801362535
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 133,
+            "spearman_rho": 0.152615,
+            "spearman_p": 0.0794785649079475,
+            "pearson_r": 0.16643,
+            "pearson_p": 0.055539978648328464
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 133,
+            "spearman_rho": 0.073564,
+            "spearman_p": 0.400060318699726,
+            "pearson_r": 0.082575,
+            "pearson_p": 0.34469669547020115
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 133,
+            "spearman_rho": -0.010952,
+            "spearman_p": 0.9004338825430562,
+            "pearson_r": -0.003001,
+            "pearson_p": 0.9726542561990725
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 133,
+            "spearman_rho": 0.050609,
+            "spearman_p": 0.5629176451732864,
+            "pearson_r": 0.002904,
+            "pearson_p": 0.9735316424237116
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 133,
+            "spearman_rho": 0.030767,
+            "spearman_p": 0.7251737852327851,
+            "pearson_r": -0.011921,
+            "pearson_p": 0.8916698420221734
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 133,
+            "spearman_rho": -0.02777,
+            "spearman_p": 0.7510208340479886,
+            "pearson_r": -0.046553,
+            "pearson_p": 0.5946598644433412
+          }
+        },
+        "Paclitaxel": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 132,
+          "median_LN_IC50": -2.8982,
+          "iqr_LN_IC50": 3.0325,
+          "median_AUC": 0.923,
+          "median_Z_SCORE": 0.1119,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 132,
+            "spearman_rho": 0.144885,
+            "spearman_p": 0.09741323753996915,
+            "pearson_r": 0.133413,
+            "pearson_p": 0.12724727987450057
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 132,
+            "spearman_rho": 0.082143,
+            "spearman_p": 0.34908712593732616,
+            "pearson_r": 0.095605,
+            "pearson_p": 0.275506388724969
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 132,
+            "spearman_rho": 0.08587,
+            "spearman_p": 0.3275815544197841,
+            "pearson_r": 0.082347,
+            "pearson_p": 0.34788729971151716
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 132,
+            "spearman_rho": -0.012995,
+            "spearman_p": 0.8824329309528232,
+            "pearson_r": -0.013923,
+            "pearson_p": 0.8740986644920116
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 132,
+            "spearman_rho": 0.070124,
+            "spearman_p": 0.42429597654128137,
+            "pearson_r": 0.018338,
+            "pearson_p": 0.8346818247329074
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 132,
+            "spearman_rho": 0.07593,
+            "spearman_p": 0.3868640164494709,
+            "pearson_r": 0.055086,
+            "pearson_p": 0.5304281186288786
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 132,
+            "spearman_rho": -0.059117,
+            "spearman_p": 0.5007326618936926,
+            "pearson_r": -0.069358,
+            "pearson_p": 0.429388920164302
+          }
+        },
+        "Vinblastine": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 98,
+          "median_LN_IC50": -3.13,
+          "iqr_LN_IC50": 3.4538,
+          "median_AUC": 0.7819,
+          "median_Z_SCORE": 0.1663,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 98,
+            "spearman_rho": 0.141852,
+            "spearman_p": 0.16352728426140564,
+            "pearson_r": 0.141354,
+            "pearson_p": 0.16502704055078415
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 98,
+            "spearman_rho": 0.064196,
+            "spearman_p": 0.5300056405582071,
+            "pearson_r": 0.091877,
+            "pearson_p": 0.3682435173571348
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 98,
+            "spearman_rho": 0.073502,
+            "spearman_p": 0.4719746288566723,
+            "pearson_r": 0.092223,
+            "pearson_p": 0.36643510572143023
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 98,
+            "spearman_rho": -0.044291,
+            "spearman_p": 0.6649806931194839,
+            "pearson_r": -0.074697,
+            "pearson_p": 0.4647793074855598
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 98,
+            "spearman_rho": 0.064655,
+            "spearman_p": 0.5270577666196012,
+            "pearson_r": 0.025373,
+            "pearson_p": 0.8041363222425743
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 98,
+            "spearman_rho": 0.036481,
+            "spearman_p": 0.7213677420091567,
+            "pearson_r": 0.02995,
+            "pearson_p": 0.7697135507756373
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 98,
+            "spearman_rho": -0.093785,
+            "spearman_p": 0.35833820326188137,
+            "pearson_r": -0.108429,
+            "pearson_p": 0.28789272207144956
+          }
+        },
+        "Vinorelbine": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 131,
+          "median_LN_IC50": -2.8744,
+          "iqr_LN_IC50": 3.3294,
+          "median_AUC": 0.8112,
+          "median_Z_SCORE": 0.0596,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 131,
+            "spearman_rho": 0.089577,
+            "spearman_p": 0.3089268839503871,
+            "pearson_r": 0.061335,
+            "pearson_p": 0.48647015683892686
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 131,
+            "spearman_rho": 0.082528,
+            "spearman_p": 0.34869436039029444,
+            "pearson_r": 0.147164,
+            "pearson_p": 0.09346972134279985
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 131,
+            "spearman_rho": 0.079423,
+            "spearman_p": 0.3671906067838998,
+            "pearson_r": 0.106301,
+            "pearson_p": 0.22687786304326907
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 131,
+            "spearman_rho": -0.058875,
+            "spearman_p": 0.5041500283210245,
+            "pearson_r": -0.05851,
+            "pearson_p": 0.5068017041046335
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 131,
+            "spearman_rho": 0.129591,
+            "spearman_p": 0.14014691529958123,
+            "pearson_r": 0.046829,
+            "pearson_p": 0.5953228333248336
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 131,
+            "spearman_rho": 0.048159,
+            "spearman_p": 0.5849027161443601,
+            "pearson_r": -0.001675,
+            "pearson_p": 0.9848551202970214
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 131,
+            "spearman_rho": -0.055784,
+            "spearman_p": 0.5268300366955431,
+            "pearson_r": -0.063313,
+            "pearson_p": 0.47249300103751646
+          }
+        }
+      },
+      "CEACAM5_High_TopQuartile_Lines": {
+        "Camptothecin": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 205,
+          "median_LN_IC50": -1.7069,
+          "iqr_LN_IC50": 3.0468,
+          "median_AUC": 0.8825,
+          "median_Z_SCORE": 0.3008,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 205,
+            "spearman_rho": -0.46478,
+            "spearman_p": 2.2129388581690764e-12,
+            "pearson_r": -0.535948,
+            "pearson_p": 1.2222874901109168e-16
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 205,
+            "spearman_rho": 0.011049,
+            "spearman_p": 0.8750624800294412,
+            "pearson_r": 0.029951,
+            "pearson_p": 0.669885195235512
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 205,
+            "spearman_rho": -0.013589,
+            "spearman_p": 0.8466590303969059,
+            "pearson_r": -0.031432,
+            "pearson_p": 0.6545911950400745
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 205,
+            "spearman_rho": 0.007065,
+            "spearman_p": 0.9199176574755132,
+            "pearson_r": -0.035477,
+            "pearson_p": 0.6135544964186971
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 205,
+            "spearman_rho": 0.099219,
+            "spearman_p": 0.1569493815867154,
+            "pearson_r": 0.119104,
+            "pearson_p": 0.08895298774189969
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 205,
+            "spearman_rho": -0.03194,
+            "spearman_p": 0.6493743142956269,
+            "pearson_r": -0.03155,
+            "pearson_p": 0.6533719050157826
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 205,
+            "spearman_rho": -0.077327,
+            "spearman_p": 0.27044872218808097,
+            "pearson_r": -0.032157,
+            "pearson_p": 0.6471486821339159
+          }
+        },
+        "Irinotecan": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 204,
+          "median_LN_IC50": 3.3112,
+          "iqr_LN_IC50": 2.7502,
+          "median_AUC": 0.9204,
+          "median_Z_SCORE": 0.4308,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 204,
+            "spearman_rho": -0.421639,
+            "spearman_p": 3.3749344358990943e-10,
+            "pearson_r": -0.486852,
+            "pearson_p": 1.5425843933056927e-13
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 204,
+            "spearman_rho": -0.007714,
+            "spearman_p": 0.9128087564386689,
+            "pearson_r": 0.035938,
+            "pearson_p": 0.609834292883438
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 204,
+            "spearman_rho": 0.057004,
+            "spearman_p": 0.4180367322332096,
+            "pearson_r": 0.040251,
+            "pearson_p": 0.5675941127812874
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 204,
+            "spearman_rho": 0.010757,
+            "spearman_p": 0.8786355367939028,
+            "pearson_r": -0.049701,
+            "pearson_p": 0.48022378948501176
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 204,
+            "spearman_rho": 0.056545,
+            "spearman_p": 0.4218003507702762,
+            "pearson_r": 0.091264,
+            "pearson_p": 0.19421287822736774
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 204,
+            "spearman_rho": -0.046002,
+            "spearman_p": 0.5135280666227684,
+            "pearson_r": -0.044504,
+            "pearson_p": 0.5273496388783013
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 204,
+            "spearman_rho": -0.126129,
+            "spearman_p": 0.07224066326718354,
+            "pearson_r": -0.07511,
+            "pearson_p": 0.28565272953403137
+          }
+        },
+        "SN-38": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 204,
+          "median_LN_IC50": -2.8663,
+          "iqr_LN_IC50": 2.8069,
+          "median_AUC": 0.9085,
+          "median_Z_SCORE": 0.2764,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 204,
+            "spearman_rho": -0.420047,
+            "spearman_p": 3.992661891036652e-10,
+            "pearson_r": -0.482326,
+            "pearson_p": 2.777526111584352e-13
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 204,
+            "spearman_rho": 0.009435,
+            "spearman_p": 0.893452416544686,
+            "pearson_r": 0.020861,
+            "pearson_p": 0.7671112831527164
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 204,
+            "spearman_rho": -0.07573,
+            "spearman_p": 0.2816873990542126,
+            "pearson_r": -0.022152,
+            "pearson_p": 0.7531553986876558
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 204,
+            "spearman_rho": -0.003562,
+            "spearman_p": 0.9596729620363064,
+            "pearson_r": -0.001892,
+            "pearson_p": 0.9785760053371144
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 204,
+            "spearman_rho": 0.134628,
+            "spearman_p": 0.054883143341719155,
+            "pearson_r": 0.148298,
+            "pearson_p": 0.03427472618719992
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 204,
+            "spearman_rho": 0.029838,
+            "spearman_p": 0.67182243874751,
+            "pearson_r": 0.020933,
+            "pearson_p": 0.7663301314282869
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 204,
+            "spearman_rho": -0.069186,
+            "spearman_p": 0.32546875934489716,
+            "pearson_r": -0.050618,
+            "pearson_p": 0.4721491358532395
+          }
+        },
+        "Topotecan": {
+          "drug_class": "TOP1_inhibitor",
+          "n_cell_lines": 160,
+          "median_LN_IC50": 0.6491,
+          "iqr_LN_IC50": 2.6011,
+          "median_AUC": 0.8128,
+          "median_Z_SCORE": 0.2696,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 160,
+            "spearman_rho": -0.51076,
+            "spearman_p": 5.187838011222692e-12,
+            "pearson_r": -0.57003,
+            "pearson_p": 3.621709274465533e-15
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 160,
+            "spearman_rho": -0.082237,
+            "spearman_p": 0.30122212010488403,
+            "pearson_r": -0.076801,
+            "pearson_p": 0.33441024330551183
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 160,
+            "spearman_rho": 0.127942,
+            "spearman_p": 0.10689658654084266,
+            "pearson_r": 0.107513,
+            "pearson_p": 0.17599000311928437
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 160,
+            "spearman_rho": -0.013641,
+            "spearman_p": 0.8640636982567401,
+            "pearson_r": -0.081444,
+            "pearson_p": 0.3059186238181573
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 160,
+            "spearman_rho": 0.218849,
+            "spearman_p": 0.005430468855711032,
+            "pearson_r": 0.230082,
+            "pearson_p": 0.0034237854060931556
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 160,
+            "spearman_rho": -0.105069,
+            "spearman_p": 0.18607723269625837,
+            "pearson_r": -0.084451,
+            "pearson_p": 0.28835053857493315
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 160,
+            "spearman_rho": -0.029868,
+            "spearman_p": 0.7077170498802512,
+            "pearson_r": 0.001264,
+            "pearson_p": 0.9873411289909255
+          }
+        },
+        "Docetaxel": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 205,
+          "median_LN_IC50": -2.9918,
+          "iqr_LN_IC50": 3.5975,
+          "median_AUC": 0.7823,
+          "median_Z_SCORE": 0.228,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 205,
+            "spearman_rho": -0.074499,
+            "spearman_p": 0.28840750694803163,
+            "pearson_r": -0.088176,
+            "pearson_p": 0.20867374010516812
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 205,
+            "spearman_rho": 0.175537,
+            "spearman_p": 0.01181831855199208,
+            "pearson_r": 0.210645,
+            "pearson_p": 0.0024324676785560015
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 205,
+            "spearman_rho": 0.123387,
+            "spearman_p": 0.07797170822328504,
+            "pearson_r": 0.178202,
+            "pearson_p": 0.010577256540571863
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 205,
+            "spearman_rho": 0.099978,
+            "spearman_p": 0.15378580118070148,
+            "pearson_r": 0.066496,
+            "pearson_p": 0.3434855229381457
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 205,
+            "spearman_rho": -0.004172,
+            "spearman_p": 0.952659669182548,
+            "pearson_r": 0.027806,
+            "pearson_p": 0.6922831687148443
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 205,
+            "spearman_rho": -0.008437,
+            "spearman_p": 0.9044330668138061,
+            "pearson_r": -0.016891,
+            "pearson_p": 0.8100370879922169
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 205,
+            "spearman_rho": 0.081015,
+            "spearman_p": 0.24818614949791265,
+            "pearson_r": 0.11596,
+            "pearson_p": 0.09777524654499123
+          }
+        },
+        "Paclitaxel": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 201,
+          "median_LN_IC50": -2.4882,
+          "iqr_LN_IC50": 2.9511,
+          "median_AUC": 0.9258,
+          "median_Z_SCORE": 0.3449,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 201,
+            "spearman_rho": -0.063569,
+            "spearman_p": 0.36997203634494,
+            "pearson_r": -0.083708,
+            "pearson_p": 0.23742899164433842
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 201,
+            "spearman_rho": 0.113001,
+            "spearman_p": 0.1102213066218414,
+            "pearson_r": 0.154196,
+            "pearson_p": 0.028847903813886386
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 201,
+            "spearman_rho": 0.148808,
+            "spearman_p": 0.035003651830384626,
+            "pearson_r": 0.216487,
+            "pearson_p": 0.002023346536026451
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 201,
+            "spearman_rho": 0.121887,
+            "spearman_p": 0.08476145495990776,
+            "pearson_r": 0.104347,
+            "pearson_p": 0.14043409433713233
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 201,
+            "spearman_rho": -0.027631,
+            "spearman_p": 0.696999221285401,
+            "pearson_r": -0.020011,
+            "pearson_p": 0.7779748521768778
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 201,
+            "spearman_rho": -0.022491,
+            "spearman_p": 0.751308699423807,
+            "pearson_r": -0.024989,
+            "pearson_p": 0.7247425246486606
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 201,
+            "spearman_rho": 0.083952,
+            "spearman_p": 0.23606116106027913,
+            "pearson_r": 0.113216,
+            "pearson_p": 0.10954239832868025
+          }
+        },
+        "Vinblastine": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 167,
+          "median_LN_IC50": -2.7333,
+          "iqr_LN_IC50": 3.5638,
+          "median_AUC": 0.8161,
+          "median_Z_SCORE": 0.3486,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 167,
+            "spearman_rho": -0.053422,
+            "spearman_p": 0.4929226155198695,
+            "pearson_r": -0.088798,
+            "pearson_p": 0.25380369724389795
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 167,
+            "spearman_rho": 0.086852,
+            "spearman_p": 0.26439776586969543,
+            "pearson_r": 0.088876,
+            "pearson_p": 0.253386520829337
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 167,
+            "spearman_rho": 0.063994,
+            "spearman_p": 0.4112927622599787,
+            "pearson_r": 0.142205,
+            "pearson_p": 0.06676929146123743
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 167,
+            "spearman_rho": 0.110766,
+            "spearman_p": 0.15414442741446713,
+            "pearson_r": 0.066217,
+            "pearson_p": 0.39520445087350003
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 167,
+            "spearman_rho": -0.050266,
+            "spearman_p": 0.5188557700331431,
+            "pearson_r": -0.008945,
+            "pearson_p": 0.9086622283880289
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 167,
+            "spearman_rho": 0.083509,
+            "spearman_p": 0.28329398120158256,
+            "pearson_r": 0.072456,
+            "pearson_p": 0.35210040007541293
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 167,
+            "spearman_rho": -0.024257,
+            "spearman_p": 0.7556740492776712,
+            "pearson_r": 0.006791,
+            "pearson_p": 0.9305950241674668
+          }
+        },
+        "Vinorelbine": {
+          "drug_class": "Microtubule_inhibitor",
+          "n_cell_lines": 202,
+          "median_LN_IC50": -2.5331,
+          "iqr_LN_IC50": 3.4934,
+          "median_AUC": 0.8392,
+          "median_Z_SCORE": 0.2216,
+          "corr_LN_IC50_vs_SLFN11_expr": {
+            "n": 202,
+            "spearman_rho": -0.014682,
+            "spearman_p": 0.8357067143599421,
+            "pearson_r": -0.052781,
+            "pearson_p": 0.4556549401808745
+          },
+          "corr_LN_IC50_vs_TOP1_expr": {
+            "n": 202,
+            "spearman_rho": 0.118974,
+            "spearman_p": 0.09171042266731388,
+            "pearson_r": 0.175702,
+            "pearson_p": 0.012378066829127331
+          },
+          "corr_LN_IC50_vs_ABCB1_expr": {
+            "n": 202,
+            "spearman_rho": 0.033168,
+            "spearman_p": 0.6393462493594999,
+            "pearson_r": 0.097867,
+            "pearson_p": 0.16585296500261906
+          },
+          "corr_LN_IC50_vs_TUBB3_expr": {
+            "n": 202,
+            "spearman_rho": 0.113627,
+            "spearman_p": 0.10736846080157422,
+            "pearson_r": 0.080174,
+            "pearson_p": 0.25669043149384135
+          },
+          "corr_LN_IC50_vs_CEACAM5_expr": {
+            "n": 202,
+            "spearman_rho": -0.020248,
+            "spearman_p": 0.7748647766933324,
+            "pearson_r": 0.013578,
+            "pearson_p": 0.8479114587194784
+          },
+          "corr_LN_IC50_vs_ATR_expr": {
+            "n": 202,
+            "spearman_rho": -0.001145,
+            "spearman_p": 0.9870957879596358,
+            "pearson_r": -0.022201,
+            "pearson_p": 0.7538104902195498
+          },
+          "corr_LN_IC50_vs_CHEK1_expr": {
+            "n": 202,
+            "spearman_rho": -0.0034,
+            "spearman_p": 0.9616941908352628,
+            "pearson_r": 0.017013,
+            "pearson_p": 0.8100810283396992
+          }
+        }
+      }
+    },
+    "head_to_head_ABCB1_efflux_and_SLFN11_shifts": {
+      "Camptothecin": {
+        "ABCB1_High_vs_Low_LN_IC50": {
+          "n_pos": 168,
+          "n_neg": 536,
+          "median_pos": -2.444597,
+          "iqr_pos": 2.486153,
+          "mean_pos": -2.215472,
+          "pct_z_gt_0_pos": 16.67,
+          "median_neg": -2.395288,
+          "iqr_neg": 2.573413,
+          "mean_neg": -2.14594,
+          "pct_z_gt_0_neg": 15.11,
+          "delta_median": -0.049309,
+          "delta_mean": -0.069533,
+          "mwu_p": 0.6304650387275654,
+          "welch_t_p": 0.669515893344552
+        },
+        "SLFN11_High_vs_Low_LN_IC50": {
+          "n_pos": 357,
+          "n_neg": 347,
+          "median_pos": -3.110903,
+          "iqr_pos": 2.118515,
+          "mean_pos": -2.942372,
+          "pct_z_gt_0_pos": 5.6,
+          "median_neg": -1.457202,
+          "iqr_neg": 2.851711,
+          "mean_neg": -1.36022,
+          "pct_z_gt_0_neg": 25.65,
+          "delta_median": -1.653701,
+          "delta_mean": -1.582152,
+          "mwu_p": 7.464801836819707e-30,
+          "welch_t_p": 6.058354395136201e-32
+        }
+      },
+      "Irinotecan": {
+        "ABCB1_High_vs_Low_LN_IC50": {
+          "n_pos": 168,
+          "n_neg": 534,
+          "median_pos": 2.597023,
+          "iqr_pos": 2.632645,
+          "mean_pos": 2.724544,
+          "pct_z_gt_0_pos": 94.05,
+          "median_neg": 2.48015,
+          "iqr_neg": 2.773136,
+          "mean_neg": 2.585308,
+          "pct_z_gt_0_neg": 92.32,
+          "delta_median": 0.116874,
+          "delta_mean": 0.139236,
+          "mwu_p": 0.5054990477619536,
+          "welch_t_p": 0.41716037205336354
+        },
+        "SLFN11_High_vs_Low_LN_IC50": {
+          "n_pos": 356,
+          "n_neg": 346,
+          "median_pos": 1.811094,
+          "iqr_pos": 2.308495,
+          "mean_pos": 1.908859,
+          "pct_z_gt_0_pos": 87.64,
+          "median_neg": 3.34655,
+          "iqr_neg": 2.769264,
+          "mean_neg": 3.348913,
+          "pct_z_gt_0_neg": 97.98,
+          "delta_median": -1.535455,
+          "delta_mean": -1.440054,
+          "mwu_p": 1.5138431078371362e-23,
+          "welch_t_p": 9.593367916433336e-25
+        }
+      },
+      "SN-38": {
+        "ABCB1_High_vs_Low_LN_IC50": {
+          "n_pos": 166,
+          "n_neg": 529,
+          "median_pos": -3.536298,
+          "iqr_pos": 2.432383,
+          "mean_pos": -3.29423,
+          "pct_z_gt_0_pos": 7.23,
+          "median_neg": -3.507466,
+          "iqr_neg": 2.860185,
+          "mean_neg": -3.395787,
+          "pct_z_gt_0_neg": 4.91,
+          "delta_median": -0.028832,
+          "delta_mean": 0.101556,
+          "mwu_p": 0.5334288050945042,
+          "welch_t_p": 0.5598995099300292
+        },
+        "SLFN11_High_vs_Low_LN_IC50": {
+          "n_pos": 357,
+          "n_neg": 338,
+          "median_pos": -4.337361,
+          "iqr_pos": 2.387579,
+          "mean_pos": -4.07206,
+          "pct_z_gt_0_pos": 3.08,
+          "median_neg": -2.713424,
+          "iqr_neg": 2.296945,
+          "mean_neg": -2.631622,
+          "pct_z_gt_0_neg": 7.99,
+          "delta_median": -1.623936,
+          "delta_mean": -1.440438,
+          "mwu_p": 6.067508256933932e-23,
+          "welch_t_p": 7.375362344133034e-23
+        }
+      },
+      "Topotecan": {
+        "ABCB1_High_vs_Low_LN_IC50": {
+          "n_pos": 132,
+          "n_neg": 415,
+          "median_pos": 0.169678,
+          "iqr_pos": 2.636635,
+          "mean_pos": 0.268098,
+          "pct_z_gt_0_pos": 57.58,
+          "median_neg": 0.014417,
+          "iqr_neg": 2.623386,
+          "mean_neg": 0.145442,
+          "pct_z_gt_0_neg": 50.36,
+          "delta_median": 0.155261,
+          "delta_mean": 0.122656,
+          "mwu_p": 0.47358626639073886,
+          "welch_t_p": 0.514982589608292
+        },
+        "SLFN11_High_vs_Low_LN_IC50": {
+          "n_pos": 278,
+          "n_neg": 269,
+          "median_pos": -0.763861,
+          "iqr_pos": 2.410857,
+          "mean_pos": -0.695603,
+          "pct_z_gt_0_pos": 33.09,
+          "median_neg": 1.034258,
+          "iqr_neg": 2.368056,
+          "mean_neg": 1.074815,
+          "pct_z_gt_0_neg": 71.75,
+          "delta_median": -1.798119,
+          "delta_mean": -1.770418,
+          "mwu_p": 1.2640129242435674e-27,
+          "welch_t_p": 1.6203784266817853e-30
+        }
+      },
+      "Docetaxel": {
+        "ABCB1_High_vs_Low_LN_IC50": {
+          "n_pos": 168,
+          "n_neg": 536,
+          "median_pos": -3.106479,
+          "iqr_pos": 3.422384,
+          "mean_pos": -3.015985,
+          "pct_z_gt_0_pos": 8.93,
+          "median_neg": -4.047222,
+          "iqr_neg": 3.234405,
+          "mean_neg": -3.627771,
+          "pct_z_gt_0_neg": 6.9,
+          "delta_median": 0.940742,
+          "delta_mean": 0.611786,
+          "mwu_p": 0.0004342034775534629,
+          "welch_t_p": 0.0011568631284413335
+        },
+        "SLFN11_High_vs_Low_LN_IC50": {
+          "n_pos": 357,
+          "n_neg": 347,
+          "median_pos": -4.050462,
+          "iqr_pos": 3.10058,
+          "mean_pos": -3.682262,
+          "pct_z_gt_0_pos": 6.44,
+          "median_neg": -3.534916,
+          "iqr_neg": 3.555264,
+          "mean_neg": -3.275514,
+          "pct_z_gt_0_neg": 8.36,
+          "delta_median": -0.515546,
+          "delta_mean": -0.406748,
+          "mwu_p": 0.010983474505652076,
+          "welch_t_p": 0.012679624212908044
+        }
+      },
+      "Paclitaxel": {
+        "ABCB1_High_vs_Low_LN_IC50": {
+          "n_pos": 165,
+          "n_neg": 532,
+          "median_pos": -2.188721,
+          "iqr_pos": 2.358882,
+          "mean_pos": -2.25157,
+          "pct_z_gt_0_pos": 7.88,
+          "median_neg": -3.592413,
+          "iqr_neg": 2.663405,
+          "mean_neg": -3.242266,
+          "pct_z_gt_0_neg": 4.89,
+          "delta_median": 1.403691,
+          "delta_mean": 0.990697,
+          "mwu_p": 6.195663891275787e-11,
+          "welch_t_p": 9.938602346364482e-11
+        },
+        "SLFN11_High_vs_Low_LN_IC50": {
+          "n_pos": 353,
+          "n_neg": 344,
+          "median_pos": -3.446213,
+          "iqr_pos": 2.830183,
+          "mean_pos": -3.135317,
+          "pct_z_gt_0_pos": 5.1,
+          "median_neg": -3.042883,
+          "iqr_neg": 2.758451,
+          "mean_neg": -2.876826,
+          "pct_z_gt_0_neg": 6.1,
+          "delta_median": -0.40333,
+          "delta_mean": -0.258491,
+          "mwu_p": 0.03532174511219074,
+          "welch_t_p": 0.05509229807791113
+        }
+      },
+      "Vinblastine": {
+        "ABCB1_High_vs_Low_LN_IC50": {
+          "n_pos": 131,
+          "n_neg": 439,
+          "median_pos": -3.395133,
+          "iqr_pos": 3.639306,
+          "mean_pos": -3.001878,
+          "pct_z_gt_0_pos": 9.92,
+          "median_neg": -3.962508,
+          "iqr_neg": 3.195187,
+          "mean_neg": -3.466555,
+          "pct_z_gt_0_neg": 7.97,
+          "delta_median": 0.567375,
+          "delta_mean": 0.464677,
+          "mwu_p": 0.02971836865242813,
+          "welch_t_p": 0.038455963823016796
+        },
+        "SLFN11_High_vs_Low_LN_IC50": {
+          "n_pos": 289,
+          "n_neg": 281,
+          "median_pos": -4.052276,
+          "iqr_pos": 3.269292,
+          "mean_pos": -3.520179,
+          "pct_z_gt_0_pos": 7.27,
+          "median_neg": -3.645566,
+          "iqr_neg": 3.310638,
+          "mean_neg": -3.194776,
+          "pct_z_gt_0_neg": 9.61,
+          "delta_median": -0.40671,
+          "delta_mean": -0.325403,
+          "mwu_p": 0.059874149875780026,
+          "welch_t_p": 0.07914568036988232
+        }
+      },
+      "Vinorelbine": {
+        "ABCB1_High_vs_Low_LN_IC50": {
+          "n_pos": 167,
+          "n_neg": 527,
+          "median_pos": -2.512881,
+          "iqr_pos": 3.111606,
+          "mean_pos": -2.427497,
+          "pct_z_gt_0_pos": 12.57,
+          "median_neg": -3.374768,
+          "iqr_neg": 3.002436,
+          "mean_neg": -3.04098,
+          "pct_z_gt_0_neg": 10.25,
+          "delta_median": 0.861887,
+          "delta_mean": 0.613483,
+          "mwu_p": 0.0002325537156614576,
+          "welch_t_p": 0.0008755465212161054
+        },
+        "SLFN11_High_vs_Low_LN_IC50": {
+          "n_pos": 354,
+          "n_neg": 340,
+          "median_pos": -3.479635,
+          "iqr_pos": 2.961356,
+          "mean_pos": -3.058856,
+          "pct_z_gt_0_pos": 10.17,
+          "median_neg": -2.875369,
+          "iqr_neg": 2.992611,
+          "mean_neg": -2.72104,
+          "pct_z_gt_0_neg": 11.47,
+          "delta_median": -0.604266,
+          "delta_mean": -0.337816,
+          "mwu_p": 0.019101721446582,
+          "welch_t_p": 0.036903059021755585
+        }
+      }
+    },
+    "depmap_crispr_chronos_essentiality": {
+      "Pan_Cancer": {
+        "n_models": 1080,
+        "genes": {
+          "TOP1": {
+            "median_chronos": -0.8482,
+            "mean_chronos": -0.8502,
+            "iqr_chronos": 0.2784,
+            "pct_essential_lt_neg05": 94.72,
+            "pct_strongly_essential_lt_neg10": 22.78
+          },
+          "ATR": {
+            "median_chronos": -1.0897,
+            "mean_chronos": -1.096,
+            "iqr_chronos": 0.2918,
+            "pct_essential_lt_neg05": 97.87,
+            "pct_strongly_essential_lt_neg10": 67.22
+          },
+          "CHEK1": {
+            "median_chronos": -1.7735,
+            "mean_chronos": -1.7917,
+            "iqr_chronos": 0.4346,
+            "pct_essential_lt_neg05": 99.91,
+            "pct_strongly_essential_lt_neg10": 98.24
+          },
+          "CEACAM5": {
+            "median_chronos": 0.0215,
+            "mean_chronos": 0.0205,
+            "iqr_chronos": 0.1234,
+            "pct_essential_lt_neg05": 0.0,
+            "pct_strongly_essential_lt_neg10": 0.0
+          },
+          "SLFN11": {
+            "median_chronos": 0.0435,
+            "mean_chronos": 0.0455,
+            "iqr_chronos": 0.1479,
+            "pct_essential_lt_neg05": 0.0,
+            "pct_strongly_essential_lt_neg10": 0.0
+          },
+          "TUBB3": {
+            "median_chronos": -0.0419,
+            "mean_chronos": -0.0433,
+            "iqr_chronos": 0.3372,
+            "pct_essential_lt_neg05": 5.74,
+            "pct_strongly_essential_lt_neg10": 0.09
+          },
+          "ABCB1": {
+            "median_chronos": -0.0917,
+            "mean_chronos": -0.0909,
+            "iqr_chronos": 0.1323,
+            "pct_essential_lt_neg05": 0.37,
+            "pct_strongly_essential_lt_neg10": 0.0
+          },
+          "SMAD4": {
+            "median_chronos": -0.0461,
+            "mean_chronos": -0.044,
+            "iqr_chronos": 0.2215,
+            "pct_essential_lt_neg05": 1.57,
+            "pct_strongly_essential_lt_neg10": 0.09
+          }
+        }
+      },
+      "CRC_Bowel": {
+        "n_models": 58,
+        "genes": {
+          "TOP1": {
+            "median_chronos": -0.7662,
+            "mean_chronos": -0.7412,
+            "iqr_chronos": 0.3197,
+            "pct_essential_lt_neg05": 89.66,
+            "pct_strongly_essential_lt_neg10": 15.52
+          },
+          "ATR": {
+            "median_chronos": -0.9762,
+            "mean_chronos": -0.9421,
+            "iqr_chronos": 0.3,
+            "pct_essential_lt_neg05": 91.38,
+            "pct_strongly_essential_lt_neg10": 43.1
+          },
+          "CHEK1": {
+            "median_chronos": -1.7136,
+            "mean_chronos": -1.7131,
+            "iqr_chronos": 0.3943,
+            "pct_essential_lt_neg05": 100.0,
+            "pct_strongly_essential_lt_neg10": 96.55
+          },
+          "CEACAM5": {
+            "median_chronos": 0.0451,
+            "mean_chronos": 0.0727,
+            "iqr_chronos": 0.1377,
+            "pct_essential_lt_neg05": 0.0,
+            "pct_strongly_essential_lt_neg10": 0.0
+          },
+          "SLFN11": {
+            "median_chronos": 0.0527,
+            "mean_chronos": 0.0368,
+            "iqr_chronos": 0.1636,
+            "pct_essential_lt_neg05": 0.0,
+            "pct_strongly_essential_lt_neg10": 0.0
+          },
+          "TUBB3": {
+            "median_chronos": -0.0062,
+            "mean_chronos": 0.0293,
+            "iqr_chronos": 0.2295,
+            "pct_essential_lt_neg05": 1.72,
+            "pct_strongly_essential_lt_neg10": 0.0
+          },
+          "ABCB1": {
+            "median_chronos": -0.0824,
+            "mean_chronos": -0.0776,
+            "iqr_chronos": 0.1284,
+            "pct_essential_lt_neg05": 0.0,
+            "pct_strongly_essential_lt_neg10": 0.0
+          },
+          "SMAD4": {
+            "median_chronos": -0.1833,
+            "mean_chronos": -0.1838,
+            "iqr_chronos": 0.3533,
+            "pct_essential_lt_neg05": 13.79,
+            "pct_strongly_essential_lt_neg10": 1.72
+          }
+        }
+      },
+      "NSCLC_Lung": {
+        "n_models": 121,
+        "genes": {
+          "TOP1": {
+            "median_chronos": -0.8589,
+            "mean_chronos": -0.8466,
+            "iqr_chronos": 0.269,
+            "pct_essential_lt_neg05": 94.21,
+            "pct_strongly_essential_lt_neg10": 21.49
+          },
+          "ATR": {
+            "median_chronos": -1.1486,
+            "mean_chronos": -1.1321,
+            "iqr_chronos": 0.2763,
+            "pct_essential_lt_neg05": 100.0,
+            "pct_strongly_essential_lt_neg10": 72.73
+          },
+          "CHEK1": {
+            "median_chronos": -1.7878,
+            "mean_chronos": -1.8196,
+            "iqr_chronos": 0.5064,
+            "pct_essential_lt_neg05": 100.0,
+            "pct_strongly_essential_lt_neg10": 98.35
+          },
+          "CEACAM5": {
+            "median_chronos": 0.0202,
+            "mean_chronos": 0.0173,
+            "iqr_chronos": 0.1378,
+            "pct_essential_lt_neg05": 0.0,
+            "pct_strongly_essential_lt_neg10": 0.0
+          },
+          "SLFN11": {
+            "median_chronos": 0.03,
+            "mean_chronos": 0.0364,
+            "iqr_chronos": 0.1416,
+            "pct_essential_lt_neg05": 0.0,
+            "pct_strongly_essential_lt_neg10": 0.0
+          },
+          "TUBB3": {
+            "median_chronos": -0.0312,
+            "mean_chronos": -0.0259,
+            "iqr_chronos": 0.3392,
+            "pct_essential_lt_neg05": 4.96,
+            "pct_strongly_essential_lt_neg10": 0.83
+          },
+          "ABCB1": {
+            "median_chronos": -0.108,
+            "mean_chronos": -0.1131,
+            "iqr_chronos": 0.1169,
+            "pct_essential_lt_neg05": 1.65,
+            "pct_strongly_essential_lt_neg10": 0.0
+          },
+          "SMAD4": {
+            "median_chronos": -0.0351,
+            "mean_chronos": -0.0361,
+            "iqr_chronos": 0.1833,
+            "pct_essential_lt_neg05": 0.0,
+            "pct_strongly_essential_lt_neg10": 0.0
+          }
+        }
+      }
+    }
+  }
+}

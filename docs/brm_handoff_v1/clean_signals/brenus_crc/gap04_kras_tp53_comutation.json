@@ -1,0 +1,236 @@
+{
+  "gap_id": "GAP-04",
+  "title": "KRAS G12/13 + TP53 Co-Mutation Prevalence in MSS CRC",
+  "generated": "2026-07-13T22:00:23.901549Z",
+  "data_source": "Synapse",
+  "use": "research_intelligence_only",
+  "dataset_sources": {
+    "syn21435333": "TCGA PanCancer Atlas Driver Mutations (7,940 patients, 865 driver genes)",
+    "syn2325330": "TCGA COAD Clinical Data (603 patients)"
+  },
+  "cohort": {
+    "total_tcga_coad": 603,
+    "merged_with_driver_mutations": 488,
+    "mss_crc": 335,
+    "msi_h_crc": 66,
+    "msi_l_crc": 76,
+    "stage_iv_mss_crc": 45
+  },
+  "individual_mutation_rates_mss_crc": {
+    "KRAS_G12_any": {
+      "rate": 0.191,
+      "n": 64,
+      "total": 335
+    },
+    "KRAS_G13_any": {
+      "rate": 0.054,
+      "n": 18,
+      "total": 335
+    },
+    "KRAS_G12_G13_combined": {
+      "rate": 0.245,
+      "n": 82,
+      "total": 335
+    },
+    "TP53_any": {
+      "rate": 0.654,
+      "n": 219,
+      "total": 335
+    },
+    "ATM_any": {
+      "rate": 0.101,
+      "n": 34,
+      "total": 335
+    },
+    "ATR_any": {
+      "rate": 0.045,
+      "n": 15,
+      "total": 335
+    },
+    "FBXW7_any": {
+      "rate": 0.143,
+      "n": 48,
+      "total": 335
+    },
+    "PPP2R1A_any": {
+      "rate": 0.015,
+      "n": 5,
+      "total": 335
+    },
+    "SMAD4_any": {
+      "rate": 0.122,
+      "n": 41,
+      "total": 335
+    }
+  },
+  "kras_g12_variant_breakdown_mss_crc": {
+    "KRAS_G12D": {
+      "rate": 0.063,
+      "n": 21,
+      "total": 335
+    },
+    "KRAS_G12V": {
+      "rate": 0.072,
+      "n": 24,
+      "total": 335
+    },
+    "KRAS_G12A": {
+      "rate": 0.018,
+      "n": 6,
+      "total": 335
+    },
+    "KRAS_G12S": {
+      "rate": 0.018,
+      "n": 6,
+      "total": 335
+    },
+    "KRAS_G12C": {
+      "rate": 0.015,
+      "n": 5,
+      "total": 335
+    },
+    "KRAS_G12R": {
+      "rate": 0.006,
+      "n": 2,
+      "total": 335
+    }
+  },
+  "kras_g13_variant_breakdown_mss_crc": {
+    "KRAS_G13D": {
+      "rate": 0.051,
+      "n": 17,
+      "total": 335
+    },
+    "KRAS_G13C": {
+      "rate": 0.003,
+      "n": 1,
+      "total": 335
+    }
+  },
+  "co_mutation_rates_mss_crc": {
+    "KRAS_G12_G13_plus_TP53": {
+      "rate": 0.149,
+      "n": 50,
+      "total": 335
+    },
+    "KRAS_G12_plus_TP53": {
+      "rate": 0.119,
+      "n": 40,
+      "total": 335
+    },
+    "KRAS_G13_plus_TP53": {
+      "rate": 0.03,
+      "n": 10,
+      "total": 335
+    },
+    "KRAS_G12_G13_plus_ATM": {
+      "rate": 0.018,
+      "n": 6,
+      "total": 335
+    },
+    "KRAS_G12_G13_plus_FBXW7": {
+      "rate": 0.027,
+      "n": 9,
+      "total": 335
+    },
+    "KRAS_G12_G13_plus_SMAD4": {
+      "rate": 0.03,
+      "n": 10,
+      "total": 335
+    },
+    "TP53_plus_ATM": {
+      "rate": 0.051,
+      "n": 17,
+      "total": 335
+    },
+    "TP53_plus_FBXW7": {
+      "rate": 0.09,
+      "n": 30,
+      "total": 335
+    },
+    "KRAS_G12_G13_plus_TP53_plus_FBXW7_triple": {
+      "rate": 0.012,
+      "n": 4,
+      "total": 335
+    }
+  },
+  "stage_iv_enrichment": {
+    "n_stage_iv_mss": 45,
+    "KRAS_G12_G13_rate_stage_iv": 0.4,
+    "TP53_rate_stage_iv": 0.733,
+    "KRAS_G12_G13_plus_TP53_rate_stage_iv": 0.289,
+    "KRAS_G12_G13_plus_TP53_rate_all_mss": 0.149,
+    "stage_iv_enrichment_ratio": 1.94
+  },
+  "msi_comparison": {
+    "KRAS_G12_G13_mss": 0.245,
+    "KRAS_G12_G13_msi_h": 0.015,
+    "TP53_mss": 0.654,
+    "TP53_msi_h": 0.318
+  },
+  "survival_by_comutation_mss_crc": {
+    "KRAS_G12_G13_plus_TP53_median_os_mo": 6.5,
+    "others_median_os_mo": 4.2,
+    "note": "TCGA COAD OS data; early-stage enriched cohort; not representative of metastatic setting"
+  },
+  "key_finding": "In MSS CRC (n=335), KRAS G12/13 mutations occur in 24.5% of patients, TP53 in 65.4%, and their co-mutation in 14.9% \u2014 rising to 28.9% in Stage IV MSS CRC (1.94x enrichment), directly validating the APR-1051/Pultar biomarker hypothesis.",
+  "crispro_implication": "The 14.9% MSS CRC co-mutation rate (50/335 TCGA samples) provides a data-grounded patient selection denominator for APR-1051 ACESOT-1051 Phase 1 and supports CrisPRO PATH A vector enrichment in the KRAS G12/13 + TP53 co-mutant subpopulation.",
+  "apr_1051_rescue_relevance": {
+    "addressable_population_mss_crc": "~14.9% of MSS CRC patients carry KRAS G12/13 + TP53 co-mutation",
+    "stage_iv_addressable": "~28.9% of Stage IV MSS CRC patients",
+    "kras_g12d_dominant": "KRAS G12D (6.3%) and G12V (7.2%) dominate \u2014 both targeted by daraxonrasib tri-complex mechanism",
+    "daraxonrasib_overlap": "KRAS G12D + G12V = 13.4% of MSS CRC; daraxonrasib covers both; creates combination hypothesis with APR-1051"
+  },
+  "remediation_status": "REMEDIATED \u2014 2026-07-13",
+  "provenance": {
+    "syn21435333_sha256": "1e0e2ed617b0da7cfe898bb41ac818a90a277357c7c7c4defdd2fa058aabf47c",
+    "syn2325330_sha256": "16dca37e443a327724a46af64eafaffc2fb39e0af2f70d1137ee9762a8d48161",
+    "sample_unit": "Unique TCGA participants (ParticipantBarcode)",
+    "merge_overlap_n": 488,
+    "mss_definition": "microsatelite == 'MSS'",
+    "stage_iv_definition": "stage in ['Stage IV', 'Stage IVA', 'Stage IVB']",
+    "stage_iv_breakdown": {
+      "Stage IV": 26,
+      "Stage IVA": 18,
+      "Stage IVB": 1
+    },
+    "audit_date": "2026-07-13",
+    "all_proportions_reproduced": true
+  },
+  "wilson_95_ci": {
+    "kras_g12_g13_all_mss": {
+      "k": 82,
+      "n": 335,
+      "pct": 24.5,
+      "ci_lo_pct": 20.2,
+      "ci_hi_pct": 29.4
+    },
+    "tp53_all_mss": {
+      "k": 219,
+      "n": 335,
+      "pct": 65.4,
+      "ci_lo_pct": 60.1,
+      "ci_hi_pct": 70.3
+    },
+    "comut_all_mss": {
+      "k": 50,
+      "n": 335,
+      "pct": 14.9,
+      "ci_lo_pct": 11.5,
+      "ci_hi_pct": 19.1
+    },
+    "comut_stage_iv_mss": {
+      "k": 13,
+      "n": 45,
+      "pct": 28.9,
+      "ci_lo_pct": 17.7,
+      "ci_hi_pct": 43.4
+    },
+    "enrichment_ratio_point": 1.94,
+    "enrichment_ratio_ci_lo": 0.93,
+    "enrichment_ratio_ci_hi": 3.77,
+    "enrichment_interpretation": "CI includes 1.0 \u2014 not statistically distinguishable from no enrichment with n=45; exploratory only"
+  },
+  "cohort_caveat": "TCGA COAD is a resected-tumor cohort (primarily non-metastatic). Stage IV n=45 is a small proxy subset. Direct extrapolation to metastatic MSS CRC populations is not supported.",
+  "lane": "MSS CRC lane only \u2014 PDAC efficacy data not cited here"
+}

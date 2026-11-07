@@ -1,0 +1,109 @@
+{
+  "manifest_id": "quarantine_manifest_u01_u12",
+  "generated_utc": "2026-11-05T04:39:16.025471+00:00",
+  "all_12_closed": true,
+  "items": {
+    "U-01": {
+      "id": "U-01",
+      "topic": "Dual-canon PATH A 'SIGNED' vs formula_decision_onepager.md 'DECISION PENDING'",
+      "status": "CLOSED_LOCKED",
+      "action_taken": "Updated formula_decision_onepager.md across all copies and clean_signals/brenus_crc/ to LOCKED: PATH A (Signed 2026-04-28; Augmented with Contraindication Gate G(p,t) in v2_gated).",
+      "artifact_path": "/Users/fahadkiani/Desktop/development/caspro/caspro/docs/brm_handoff_v1/clean_signals/brenus_crc/formula_decision_onepager.md",
+      "sha256": "c00507d54db568ae0ab53b9acd80c32e3e0c9464ad6c01383872c301ed87464a"
+    },
+    "U-02": {
+      "id": "U-02",
+      "topic": "GAP-04 raw Synapse matrices vs TCGA-COADREAD participant-level KRAS/TP53 verification",
+      "status": "CLOSED_VERIFIED_ON_TCGA_COADREAD_AND_PROVENANCE_LOCKED",
+      "action_taken": "Staged gap04_kras_tp53_comutation.json (recording syn21435333 sha256=1e0e2ed617b0da7c... & syn2325330 sha256=16dca37e443a3277...) and independently verified participant-level KRAS/NRAS/BRAF/TP53/Stage co-mutations across all 485 MSS CRC patients via pinned cBioPortal/datahub (860b63a7f2d23540c94e25dd35302e133c29f48b) and cBioPortal API.",
+      "artifact_path": "/Users/fahadkiani/Desktop/development/caspro/caspro/docs/brm_handoff_v1/clean_signals/brenus_crc/gap04_kras_tp53_comutation.json",
+      "sha256": "f94903890d012956650f71ad18868bb318f51ae589f444f5e8ddf2f8a976e272",
+      "provenance_audit_sha256": "8d83cdd9ae5b13d8f3de5f1f126503720e420a2cf481f2e496f54f52ce76bfe4"
+    },
+    "U-03": {
+      "id": "U-03",
+      "topic": "Dirty Downloads daraxonrasib_rescue_campaign.json (0.7375/0.72/0.74/0.76) vs remediated bundle",
+      "status": "CLOSED_QUARANTINED_AND_EMPIRICALLY_SCORED",
+      "action_taken": "Marked /Users/fahadkiani/Downloads/synapse_extraction_daraxonrasib_rescue_campaign.json (sha256=870e7bc1a9b673e3e00a8f28b1cd20c7764fa58c2ce904a0c436f3bb651f7969) as SUPERSEDED_QUARANTINED and staged empirical TCGA-COADREAD n=485 Mode iii-C Two-Door scored daraxonrasib_rescue_campaign.json in clean_signals/brenus_crc/.",
+      "quarantined_dirty_path": "/Users/fahadkiani/Downloads/synapse_extraction_daraxonrasib_rescue_campaign.json",
+      "quarantined_dirty_sha256": "870e7bc1a9b673e3e00a8f28b1cd20c7764fa58c2ce904a0c436f3bb651f7969",
+      "quarantine_disposition": "SUPERSEDED_QUARANTINED",
+      "clean_artifact_path": "/Users/fahadkiani/Desktop/development/caspro/caspro/docs/brm_handoff_v1/clean_signals/brenus_crc/daraxonrasib_rescue_campaign.json",
+      "clean_sha256": "64325fe8c9d224a1157d5c65629325fbbef8f15880e878f8f5e7de50d6d0de06"
+    },
+    "U-04": {
+      "id": "U-04",
+      "topic": "CRC ranker 485 MSS x 8 trials CSV/summary hashed inside caspro tree",
+      "status": "CLOSED_VERIFIED",
+      "action_taken": "Hashed crc_ranker_results_v1.csv (29e31a66...) and crc_ranker_results_v2_gated.csv (05971fa3...) in src/data/pharma/crc-ranker-v1/ and staged into clean_signals/brenus_crc/.",
+      "artifact_path": "/Users/fahadkiani/Desktop/development/caspro/caspro/docs/brm_handoff_v1/clean_signals/brenus_crc/crc_ranker_results_v2_gated.csv",
+      "sha256": "05971fa34de76fecf48b685a825123483a0fb40b79f006b17eb4c8278c9c37e7"
+    },
+    "U-05": {
+      "id": "U-05",
+      "topic": "CARMEN-LC03 HRs (ITT PFS HR 1.14, OS interim HR 0.85, CEACAM5 >=80% OS HR 0.71) source qualification",
+      "status": "CLOSED_AUDITED_DOSSIER_LOCKED",
+      "action_taken": "Verified exact CARMEN-LC03 WCLC 2024 (Besse et al. OA08.05) HR table and prognostic confound notes in S3 bundle engagements/brenus/outputs/sanofi_dossier/SANOFI_SOURCE_OF_TRUTH.md and ceacam5_signal_cards.json.",
+      "artifact_path": "/tmp/brenus_s3_review_repo/engagements/brenus/outputs/sanofi_dossier/SANOFI_SOURCE_OF_TRUTH.md",
+      "sha256": "663dd94042f3c9f9b955c3bf410571c583963b8953f7bd90da05059c74642bdb"
+    },
+    "U-06": {
+      "id": "U-06",
+      "topic": "Tusamitamab sonditecan (precemtabart tocentecan / M9140) March 6, 2026 EU hold claim",
+      "status": "CLOSED_QUARANTINED_UNVERIFIED_HOOK",
+      "action_taken": "Quarantined unverified regulatory hold date hook from external pitch claims; restricted Sanofi CEACAM5 positioning to verified CARMEN-LC03 WCLC 2024 readouts and NCT06131840 clinicaltrials.gov protocol structure.",
+      "artifact_path": "/tmp/brenus_s3_review_repo/engagements/brenus/outputs/sanofi_dossier/STRESS_TEST_AUDIT.json",
+      "sha256": "20488dc9ddbf3927da047f9f5cb9257154732f54bba86366c0c0c4d7f2fccea2"
+    },
+    "U-07": {
+      "id": "U-07",
+      "topic": "dbGaP phs003428 (CALGB/SWOG 80405) actual access status vs public GSE196576 expression",
+      "status": "CLOSED_DOCUMENTED",
+      "action_taken": "Verified dbgap_phs003428_access_status.json: phs003428.v1.p1 (N=1,464) requires PI eRA Commons + IRB + CTEP notification + NCI DAC DUA (10-14 wks), whereas linked GSE196576 RNA-seq (N=579 samples) is public without outcome linkage.",
+      "artifact_path": "/tmp/brenus_s3_review_repo/engagements/brenus/escape_map/access_tracks/dbgap_phs003428_access_status.json",
+      "sha256": "5b438e0d453184a4c08cf87076adf36d4d32c1d27c36ef005355a0496aa0876b"
+    },
+    "U-08": {
+      "id": "U-08",
+      "topic": "GEO accessions for CRC/Brenus/Sanofi cohorts",
+      "status": "CLOSED_ENUMERATED",
+      "action_taken": "Verified exact GEO accessions in bundle and biomarker lock: GSE39582 (n=444 MSS CRC Affymetrix GPL570 validation cohort in stc1010_mss_crc_biomarker_lock_v2.json), GSE196576 (CALGB 80405 n=579 RNA-seq), and GSE140082 (ICON7 ovarian bev escape map).",
+      "artifact_path": "/Users/fahadkiani/Desktop/development/caspro/caspro/src/data/brenus/stc1010_mss_crc_biomarker_lock_v2.json",
+      "sha256": "ee12c33aa6450773ff29619fc93e1a1080c26afa90e48e4b3628fb0942f5ac4a"
+    },
+    "U-09": {
+      "id": "U-09",
+      "topic": "Plaintext OpenRouter keys in brenus_rag_pipeline_v5.py (and v4/v6)",
+      "status": "CLOSED_REDACTED",
+      "action_taken": "Replaced all plaintext OpenRouter sk-or-v1-... keys in brenus_rag_pipeline_v5.py:31-35 with os.environ['OPENROUTER_API_KEY'] (and redacted Qdrant/Groq keys in v4/v5/v6) across all copies on disk and committed in /tmp/brenus_s3_review_repo.",
+      "artifact_path": "/Users/fahadkiani/Desktop/development/caspro/caspro/docs/brm_handoff_v1/clean_signals/brenus_crc/brenus_rag_pipeline_v5.py",
+      "sha256": "c612916e182f01cddc55682d806c5ed622f3d2bde75d96e7fd1517957b272d85"
+    },
+    "U-10": {
+      "id": "U-10",
+      "topic": "Brenus GitHub PAT incident in PREFLIGHT_AUDIT.md:10-12",
+      "status": "CLOSED_REDACTED_AND_FLAGGED",
+      "action_taken": "Redacted any ghp_/github_pat_ strings and updated PREFLIGHT_AUDIT.md:10-12 to REDACTED & FLAGGED FOR ROTATION (U-10), staged in clean_signals/brenus_crc/PREFLIGHT_AUDIT.md.",
+      "artifact_path": "/Users/fahadkiani/Desktop/development/caspro/caspro/docs/brm_handoff_v1/clean_signals/brenus_crc/PREFLIGHT_AUDIT.md",
+      "sha256": "dc16e507d319670a04b048f93802ddf5ecf777fec04211cc8fa221d9f1734ec9"
+    },
+    "U-11": {
+      "id": "U-11",
+      "topic": "RASolute 302 (NCT06625320) PDAC HR 0.40 lane separation from MSS CRC",
+      "status": "CLOSED_LANE_SEPARATION_ENFORCED",
+      "action_taken": "Enforced lane_separation_governance=True across daraxonrasib_rescue_campaign.json and kras_two_door_stc1010_vs_daraxonrasib_receipt.json: zero PDAC HR 0.40 transfer into CRC scoring.",
+      "artifact_path": "/Users/fahadkiani/Desktop/development/caspro/caspro/docs/brm_handoff_v1/clean_signals/brenus_crc/kras_two_door_stc1010_vs_daraxonrasib_receipt.json",
+      "sha256": "060c57d641bb7121460986b08a6d9fbd9c942f0a8b392597e7e3c5ccd11a37d7"
+    },
+    "U-12": {
+      "id": "U-12",
+      "topic": "Duplicate 04_ filenames in docs/brm_handoff_v1/",
+      "status": "CLOSED_RENAMED",
+      "action_taken": "Renamed 04_IRON_LEASH_AND_NEXT_STEPS.md -> 04A_IRON_LEASH_AND_NEXT_STEPS.md and 04_BRENUS_CRC_SANOFI_CHAT_EXTRACT.md -> 04B_BRENUS_CRC_SANOFI_CHAT_EXTRACT.md, and updated references in 00_START_HERE_MASTER_INDEX.md, brm_forensic_audit.md, and 06_CHAT_MAP_BURIED_SCIENCE_MOAT.md.",
+      "artifact_04A_path": "/Users/fahadkiani/Desktop/development/caspro/caspro/docs/brm_handoff_v1/04A_IRON_LEASH_AND_NEXT_STEPS.md",
+      "artifact_04A_sha256": "ec40ce6ab120fb796222782c77fc39bf89f5dd62d30277700a86ad744fe4aa0a",
+      "artifact_04B_path": "/Users/fahadkiani/Desktop/development/caspro/caspro/docs/brm_handoff_v1/04B_BRENUS_CRC_SANOFI_CHAT_EXTRACT.md",
+      "artifact_04B_sha256": "d969450afb47d488b7994aed8e786a718dd05cf80fecc2028c7b0712908bf564"
+    }
+  }
+}

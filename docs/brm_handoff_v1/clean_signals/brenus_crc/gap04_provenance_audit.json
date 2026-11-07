@@ -1,0 +1,89 @@
+{
+  "audit_date": "2026-07-13",
+  "audit_status": "VERIFIED \u2014 all prior session claims reproduced exactly",
+  "data_sources": {
+    "syn21435333": {
+      "description": "TCGA pan-cancer driver mutation matrix (Mut/Wt binary)",
+      "sha256": "1e0e2ed617b0da7cfe898bb41ac818a90a277357c7c7c4defdd2fa058aabf47c",
+      "file_size_bytes": 20802907,
+      "shape": [
+        7940,
+        865
+      ],
+      "index_column": "ParticipantBarcode",
+      "duplicate_index_entries": 0
+    },
+    "syn2325330": {
+      "description": "TCGA CRC clinical data (stage, microsatellite, OS, etc.)",
+      "sha256": "16dca37e443a327724a46af64eafaffc2fb39e0af2f70d1137ee9762a8d48161",
+      "file_size_bytes": 53457,
+      "shape": [
+        603,
+        15
+      ],
+      "index_column": "id",
+      "duplicate_index_entries": 0
+    }
+  },
+  "merge_logic": {
+    "method": "inner join on ParticipantBarcode/id",
+    "overlap_n": 488,
+    "driver_only_n": 7452,
+    "clinical_only_n": 115,
+    "merged_shape": [
+      488,
+      871
+    ],
+    "duplicate_entries_after_merge": 0
+  },
+  "sample_unit": "Unique TCGA participants (ParticipantBarcode = participant-level ID, not aliquot or sample)",
+  "mss_definition": "microsatelite == 'MSS' (exact string match; column from syn2325330)",
+  "mss_n": 335,
+  "stage_iv_definition": "stage in ['Stage IV', 'Stage IVA', 'Stage IVB'] (column from syn2325330)",
+  "stage_iv_mss_n": 45,
+  "stage_iv_breakdown": {
+    "Stage IV": 26,
+    "Stage IVA": 18,
+    "Stage IVB": 1
+  },
+  "kras_g12_cols": [
+    "KRAS G12R",
+    "KRAS G12A",
+    "KRAS G12S",
+    "KRAS G12D",
+    "KRAS G12C",
+    "KRAS G12",
+    "KRAS G12V"
+  ],
+  "kras_g13_cols": [
+    "KRAS G13D",
+    "KRAS G13",
+    "KRAS G13C"
+  ],
+  "tp53_col": "TP53",
+  "mutation_value": "Mut",
+  "verified_counts": {
+    "kras_g12_g13_all_mss": {
+      "k": 82,
+      "n": 335,
+      "pct": 24.5
+    },
+    "tp53_all_mss": {
+      "k": 219,
+      "n": 335,
+      "pct": 65.4
+    },
+    "comut_all_mss": {
+      "k": 50,
+      "n": 335,
+      "pct": 14.9
+    },
+    "comut_stage_iv_mss": {
+      "k": 13,
+      "n": 45,
+      "pct": 28.9
+    }
+  },
+  "cohort_caveat": "TCGA COAD is a resected-tumor cohort (primarily non-metastatic). Stage IV n=45 is a small proxy subset. Direct extrapolation to metastatic MSS CRC populations is not supported.",
+  "prior_session_match": "ALL FOUR PROPORTIONS REPRODUCED EXACTLY \u2014 82/335, 219/335, 50/335, 13/45"
+}

@@ -1,0 +1,22 @@
+{
+  "brm_gbm_two_door_contract_v1.json": {
+    "size_bytes": 300312,
+    "sha256": "0e9ae5a65939ab4921d5965c769517389d17fca7e49f5522f3a13b588e4c9ffd"
+  },
+  "brm_two_door_and_immune_v12_stratification.csv": {
+    "size_bytes": 235636,
+    "sha256": "7d739ab43527f475562f7aaf7212dcdcc3ae157344e67f373c65a76b4d783dc0"
+  },
+  "cns_brm_two_door_drug_and_crispr_anchoring.csv": {
+    "size_bytes": 614822,
+    "sha256": "327a472ad2b57a945927ae731527c1b1cd60677e99caeafd5736fa488d3ec756"
+  },
+  "gse223499_top25_up_down_all_4_compartments.csv": {
+    "size_bytes": 38125,
+    "sha256": "ce960ae60fee34f0fe3221cfe07a9de02802056a3a76378acba32d6d56304018"
+  },
+  "zhang2022_all_sheets_druggable_and_tails.csv": {
+    "size_bytes": 124229,
+    "sha256": "a3ee061b6d15def9590f4e6487a22041bcf70bf5e1aba3ae67abea9abbd86233"
+  }
+}
