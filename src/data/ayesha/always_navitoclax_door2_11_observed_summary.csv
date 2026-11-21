@@ -1,0 +1,3 @@
+method,n,z_gt_0_50,q75,hit_drug50,auroc,source
+Always-Navitoclax_OBSERVED,11,3/11,3/11,6/11,N/A_not_LODO,pillar_e_v12_model.json observed Door2
+Always-Dasatinib_OBSERVED,11,3/11,0/11,6/11,see LODO Always-Dasatinib_q75,pillar_e_v12_model.json observed Door2

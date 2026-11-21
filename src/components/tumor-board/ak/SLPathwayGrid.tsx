@@ -53,7 +53,7 @@ export default function SLPathwayGrid({ mode = 'both' }: { mode?: PathwayMode })
             {r.meta ? <span className={`ml-2 ${muted}`}>{r.meta}</span> : null}
           </li>
         ))}
-        {rows.length === 0 ? <li className={`text-[12px] ${muted}`}>None on this fixture.</li> : null}
+        {rows.length === 0 ? <li className={`text-[12px] ${muted}`}>None on this case.</li> : null}
       </ul>
     </section>
   );
@@ -62,7 +62,7 @@ export default function SLPathwayGrid({ mode = 'both' }: { mode?: PathwayMode })
     return (
       <Pane
         title="Broken pathways"
-        blurb={patient.doubleHit?.description ?? 'No double-hit pattern on this fixture.'}
+        blurb={patient.doubleHit?.description ?? 'No double-hit pattern on this case.'}
         rows={broken}
       />
     );
@@ -81,7 +81,7 @@ export default function SLPathwayGrid({ mode = 'both' }: { mode?: PathwayMode })
     <div className="grid min-h-0 gap-3 md:grid-cols-2">
       <Pane
         title="Broken pathways"
-        blurb={patient.doubleHit?.description ?? 'No double-hit pattern on this fixture.'}
+        blurb={patient.doubleHit?.description ?? 'No double-hit pattern on this case.'}
         rows={broken}
       />
       <Pane

@@ -7,6 +7,7 @@ import { useTheme } from '@/context/ThemeContext';
 
 import * as THREE from 'three';
 import { HeroSyncedFadeCopy } from '@/components/ui/HeroSyncedFadeCopy';
+import { ClinicalCaseSwitcher } from '@/components/clinical/ClinicalCaseSwitcher';
 import { HERO_ACTIVE_GATE_LINES } from '@/data/hero-active-gate-lines';
 import { HERO_ORACLE_TAGLINES } from '@/data/hero-oracle-taglines';
 
@@ -218,24 +219,13 @@ export function DnaHero({ embedded = false }: { embedded?: boolean }) {
       <div className="absolute inset-0 z-10 flex flex-col justify-end px-3 py-4 sm:p-8 lg:p-12 pointer-events-none">
 
         {/* Bottom Section: Headline + CTA */}
-        <div className="flex flex-col sm:flex-row sm:justify-start sm:items-end pb-[7.5rem] sm:pb-28 gap-4 sm:gap-12 pointer-events-auto w-full">
-          
-          {/* Left: Primary Copy */}
-          <div className="w-full max-w-2xl space-y-3 sm:space-y-6 min-w-0">
-            {/* Tagline + ACTIVE GATE — synced fade / repair (fixed height, no layout jump) */}
+        <div className="flex flex-col justify-end pb-[5.5rem] sm:pb-24 gap-3 sm:gap-4 pointer-events-auto w-full max-h-full overflow-y-auto">
+          <div className="w-full max-w-2xl space-y-3 sm:space-y-4 min-w-0">
             <HeroSyncedFadeCopy
               taglines={HERO_ORACLE_TAGLINES}
               gateLines={HERO_ACTIVE_GATE_LINES}
               isDarkMode={isDarkMode}
             />
-
-            {/* Subline */}
-            {/* <p className={`text-[11px] uppercase tracking-[0.3em] font-bold flex items-center gap-4 ${isDarkMode ? 'text-zinc-500' : 'text-slate-600'}`}>
-              <Zap className={`w-3 h-3 ${isDarkMode ? 'text-cyan-500' : 'text-indigo-600'}`} />
-              FIVE PHASE III FAILURES. FIVE RECEIPTS. ZERO EXCUSES.
-            </p> */}
-
-            {/* CTAs */}
             <div className="flex flex-col min-[400px]:flex-row items-stretch gap-2.5 sm:gap-4">
               <Link
                 href="/ledger/"
@@ -261,6 +251,7 @@ export function DnaHero({ embedded = false }: { embedded?: boolean }) {
               </Link>
             </div>
           </div>
+          <ClinicalCaseSwitcher defaultCase="myeloma" showTiles />
         </div>
       </div>
     </div>

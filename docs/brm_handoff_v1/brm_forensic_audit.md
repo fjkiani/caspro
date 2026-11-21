@@ -7,7 +7,7 @@
 > | **01 — Verified Signals** | `docs/brm_handoff_v1/01_CLEAN_SIGNAL_LEDGER.md` | 100% verified signals (`BACE1`, `PTPRC`, `SLC25A32`, corrected AF3 R-loop geometry, and `MOESM6_ESM.xlsx` `LRP1` `+1.8066 log2FC` peritumoral sink discovery) |
 > | **02 — Quarantined Slop** | `docs/brm_handoff_v1/02_STRUCTURED_MAP_5708_LINES.md` | Retracted `0.976` tautology, 10-gene DESeq2 size-factor distortion, `Tumor (Not Tumor)` glia substitution, and scrambled Table S2 `baseMean` values |
 > | **03 — Session Forensics** | `docs/brm_handoff_v1/03_NO_MERCY_SABOTAGE_AUDIT.md` | Chronological audit of `docs/brm.md` (`5,708` lines across 9 sessions) |
-> | **04 — Iron Leash & Roadmap** | `docs/brm_handoff_v1/04_IRON_LEASH_AND_NEXT_STEPS.md` | 10 runnable Python assertion leash gates, copy-paste `ZETA-ENFORCER` prompt, and 6-strike execution roadmap |
+> | **04 — Iron Leash & Roadmap** | `docs/brm_handoff_v1/04A_IRON_LEASH_AND_NEXT_STEPS.md` | 10 runnable Python assertion leash gates, copy-paste `ZETA-ENFORCER` prompt, and 6-strike execution roadmap |
 > | **Clean Signals Data** | `docs/brm_handoff_v1/clean_signals/` | Recomputed, hash-verified CSV/JSON tables ready for manuscript & frontend ingestion |
 > | **Full Unabridged Audit** | `docs/brm_handoff_v1/brm_forensic_audit_full.md` | Complete single-file forensic audit (`343+` lines) |
 

@@ -1,0 +1,126 @@
+{
+  "provenance": {
+    "kind": "OBSERVED_Door2_11_Always_drug_rates",
+    "source_file": "api/resources/models/pillar_e_v12_model.json",
+    "note": "NOT a LODO Always-Navitoclax head. LODO CSV only has Always-Dasatinib_*. Rates recomputed from observed Door2 responses vs per-patient drug reference distributions.",
+    "generated_at": "2026-11-15T06:43:09.456036+00:00",
+    "backend_head_at_write": "65a967d98b9e285b0e5fd2f3bf26fe4d0cdfa06b",
+    "consolidation_commit": "f7d52461"
+  },
+  "Always-Navitoclax": {
+    "z>0.50": "3/11",
+    "Q75": "3/11",
+    "hit_drug50": "6/11",
+    "patients": [
+      {
+        "PatientID": "PT-6ZFCGi",
+        "z": -0.536212868401314,
+        "median": -0.25207988084640415,
+        "q75": 0.49407526975891075,
+        "z_gt_0_50": false,
+        "z_gt_q75": false,
+        "hit_drug50": false
+      },
+      {
+        "PatientID": "PT-9fFef6",
+        "z": -0.6608282931893112,
+        "median": -0.2484140442607996,
+        "q75": 0.4988027936786835,
+        "z_gt_0_50": false,
+        "z_gt_q75": false,
+        "hit_drug50": false
+      },
+      {
+        "PatientID": "PT-9pirK7",
+        "z": 0.6180995594387014,
+        "median": -0.22443692521434358,
+        "q75": 0.49047469148350176,
+        "z_gt_0_50": true,
+        "z_gt_q75": true,
+        "hit_drug50": true
+      },
+      {
+        "PatientID": "PT-BexFYH",
+        "z": -0.6426249352675011,
+        "median": -0.24343877688999788,
+        "q75": 0.5019464150717887,
+        "z_gt_0_50": false,
+        "z_gt_q75": false,
+        "hit_drug50": false
+      },
+      {
+        "PatientID": "PT-F6NvL5",
+        "z": 0.1382762082340462,
+        "median": -0.2333044643375684,
+        "q75": 0.506909785842978,
+        "z_gt_0_50": false,
+        "z_gt_q75": false,
+        "hit_drug50": true
+      },
+      {
+        "PatientID": "PT-S0isOw",
+        "z": -0.7199358325922453,
+        "median": -0.24486305499721592,
+        "q75": 0.5001285797269424,
+        "z_gt_0_50": false,
+        "z_gt_q75": false,
+        "hit_drug50": false
+      },
+      {
+        "PatientID": "PT-bnZfQQ",
+        "z": 1.7002987857730123,
+        "median": -0.2146645348228084,
+        "q75": 0.5352970105395047,
+        "z_gt_0_50": true,
+        "z_gt_q75": true,
+        "hit_drug50": true
+      },
+      {
+        "PatientID": "PT-cdCVJ4",
+        "z": -1.4145575397239376,
+        "median": -0.2862194983143792,
+        "q75": 0.4824742705923456,
+        "z_gt_0_50": false,
+        "z_gt_q75": false,
+        "hit_drug50": false
+      },
+      {
+        "PatientID": "PT-gCHPXX",
+        "z": 0.05299240466331758,
+        "median": -0.24219445839370485,
+        "q75": 0.5066168600861739,
+        "z_gt_0_50": false,
+        "z_gt_q75": false,
+        "hit_drug50": true
+      },
+      {
+        "PatientID": "PT-kmyeHR",
+        "z": -0.04697859790661163,
+        "median": -0.2345420591053734,
+        "q75": 0.5221246540566098,
+        "z_gt_0_50": false,
+        "z_gt_q75": false,
+        "hit_drug50": true
+      },
+      {
+        "PatientID": "PT-oYazft",
+        "z": 1.1023371971674814,
+        "median": -0.20041742754654918,
+        "q75": 0.5094452259219749,
+        "z_gt_0_50": true,
+        "z_gt_q75": true,
+        "hit_drug50": true
+      }
+    ]
+  },
+  "Always-Dasatinib": {
+    "z>0.50": "3/11",
+    "Q75": "0/11",
+    "hit_drug50": "6/11"
+  },
+  "Always-Olaparib": {
+    "z>0.50": "0/11",
+    "Q75": "0/11",
+    "hit_drug50": "3/11"
+  }
+}

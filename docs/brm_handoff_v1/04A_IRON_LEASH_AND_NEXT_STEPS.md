@@ -123,10 +123,11 @@ def assert_gate3_malignant_cnv_and_covariates(cell_metadata_df, cell_type_col: s
 ```python
 def compute_gate4_signed_rna_score(lfc: float, pval: float, expected_sign: int = 1) -> tuple[float, str]:
     assert expected_sign in (1, -1), "expected_sign must be +1 (upregulated driver) or -1 (tumor suppressor loss)"
-    if lfc * expected_sign <= 0:
+    directional_lfc = lfc if expected_sign == 1 else -lfc
+    if directional_lfc <= 0.0:
         return 0.0, "CONTRADICTS_HYPOTHESIS"
     import math
-    signed_mag = min(abs(lfc) / 2.0, 1.0)
+    signed_mag = min(max(0.0, directional_lfc) / 2.0, 1.0)
     sig_weight = min(-math.log10(max(pval, 1e-300)) / 4.0, 1.0)
     return round(0.6 * signed_mag + 0.4 * sig_weight, 6), "CONCORDANT"
 ```

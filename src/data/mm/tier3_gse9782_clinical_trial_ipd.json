@@ -1,0 +1,233 @@
+{
+  "benchmark": "Tier 3 Real Human Clinical Trial Patient Validation (GSE9782 Mulligan Blood 2007)",
+  "dataset": "GSE9782 (GPL96 Affymetrix HG-U133A, n=264 total, n=239 evaluable IPD)",
+  "cohorts": {
+    "PS341_Bortezomib": {
+      "n_total": 188,
+      "n_evaluable": 169,
+      "n_R": 85,
+      "n_NR": 84,
+      "n_IE": 19
+    },
+    "Dex_Dexamethasone": {
+      "n_total": 76,
+      "n_evaluable": 70,
+      "n_R": 28,
+      "n_NR": 42,
+      "n_IE": 6
+    }
+  },
+  "mapped_probe_counts": {
+    "P4_Proteasome_UPR": 99,
+    "P6_HighRisk_1q21_TP53": 42,
+    "P1_MAPK_ERK": 24,
+    "P3_BCL2_t11_14": 22,
+    "P5_CRBN_IKZF_IRF4": 15,
+    "E_Mulligan_Bortezomib_Lit": 74
+  },
+  "evaluation_protocol": "5-Fold Stratified Cross-Validation (strictly out-of-fold predictions, 2000-bootstrap 95% CI, seed=42)",
+  "bortezomib_ps341_oof_ablations": {
+    "S_only_TC_Class": {
+      "auroc": 0.5691,
+      "auroc_95ci": [
+        0.4816,
+        0.6612
+      ],
+      "auprc": 0.5396,
+      "mann_whitney_p": 0.12051868113485849,
+      "brier": 0.2465,
+      "brier_skill_score": 0.0141,
+      "ece": 0.094,
+      "mean_prob_R": 0.5125,
+      "mean_prob_NR": 0.4903
+    },
+    "P_only_6Axis_Pathway": {
+      "auroc": 0.6403,
+      "auroc_95ci": [
+        0.5593,
+        0.7193
+      ],
+      "auprc": 0.6019,
+      "mann_whitney_p": 0.0016384910036130523,
+      "brier": 0.2357,
+      "brier_skill_score": 0.0573,
+      "ece": 0.0649,
+      "mean_prob_R": 0.5457,
+      "mean_prob_NR": 0.4671
+    },
+    "E_only_Mulligan_Biomarker": {
+      "auroc": 0.6896,
+      "auroc_95ci": [
+        0.6073,
+        0.769
+      ],
+      "auprc": 0.6525,
+      "mann_whitney_p": 2.083566326049748e-05,
+      "brier": 0.2267,
+      "brier_skill_score": 0.093,
+      "ece": 0.0615,
+      "mean_prob_R": 0.5708,
+      "mean_prob_NR": 0.4388
+    },
+    "SP_Combined": {
+      "auroc": 0.652,
+      "auroc_95ci": [
+        0.5672,
+        0.7302
+      ],
+      "auprc": 0.6114,
+      "mann_whitney_p": 0.0006497740561277859,
+      "brier": 0.2332,
+      "brier_skill_score": 0.067,
+      "ece": 0.0689,
+      "mean_prob_R": 0.55,
+      "mean_prob_NR": 0.4641
+    },
+    "SPE_MM_SPE_ML_Ensemble": {
+      "auroc": 0.6629,
+      "auroc_95ci": [
+        0.5786,
+        0.7447
+      ],
+      "auprc": 0.6132,
+      "mann_whitney_p": 0.000256991062417178,
+      "brier": 0.2327,
+      "brier_skill_score": 0.0693,
+      "ece": 0.0784,
+      "mean_prob_R": 0.5547,
+      "mean_prob_NR": 0.4355
+    }
+  },
+  "drug_specificity_control_dex": {
+    "Dex_Comparator_SPE_Applied": {
+      "auroc": 0.4991,
+      "auroc_95ci": [
+        0.3605,
+        0.6367
+      ],
+      "auprc": 0.4212,
+      "mann_whitney_p": 0.995217386857659,
+      "brier": 0.3005,
+      "brier_skill_score": -0.2523,
+      "ece": 0.2022,
+      "mean_prob_R": 0.5521,
+      "mean_prob_NR": 0.5518
+    },
+    "Dex_Comparator_P_Applied": {
+      "auroc": 0.5085,
+      "auroc_95ci": [
+        0.3615,
+        0.6454
+      ],
+      "auprc": 0.4133,
+      "mann_whitney_p": 0.9093258659184316,
+      "brier": 0.2872,
+      "brier_skill_score": -0.1968,
+      "ece": 0.2259,
+      "mean_prob_R": 0.5474,
+      "mean_prob_NR": 0.557
+    },
+    "Dex_Comparator_E_Applied": {
+      "auroc": 0.4898,
+      "auroc_95ci": [
+        0.3464,
+        0.6262
+      ],
+      "auprc": 0.4014,
+      "mann_whitney_p": 0.8903467099940112,
+      "brier": 0.3019,
+      "brier_skill_score": -0.2579,
+      "ece": 0.2205,
+      "mean_prob_R": 0.5308,
+      "mean_prob_NR": 0.5462
+    },
+    "delta_AUROC_Bortezomib_vs_Dex": 0.1638
+  },
+  "bortezomib_survival_ttp_validation": {
+    "median_SPE_cutoff": 0.5166,
+    "TTP_days_median_SPE_high": 138.5,
+    "TTP_days_median_SPE_low": 90.0,
+    "TTP_days_mean_SPE_high": 181.3,
+    "TTP_days_mean_SPE_low": 144.9,
+    "TTP_mann_whitney_p": 0.013406372136466917,
+    "TTP_spearman_r": 0.2131,
+    "TTP_spearman_p": 0.005833593055005487,
+    "OS_days_median_SPE_high": 514.0,
+    "OS_days_median_SPE_low": 441.0,
+    "OS_mann_whitney_p": 0.16034247328939888
+  },
+  "bortezomib_response_category_breakdown": {
+    "CR": {
+      "count": 13,
+      "mean": 0.5146,
+      "median": 0.5124,
+      "std": 0.1612
+    },
+    "MR": {
+      "count": 12,
+      "mean": 0.5766,
+      "median": 0.6549,
+      "std": 0.2276
+    },
+    "NC": {
+      "count": 43,
+      "mean": 0.4536,
+      "median": 0.4416,
+      "std": 0.2155
+    },
+    "PD": {
+      "count": 41,
+      "mean": 0.4166,
+      "median": 0.3785,
+      "std": 0.2143
+    },
+    "PR": {
+      "count": 60,
+      "mean": 0.559,
+      "median": 0.5882,
+      "std": 0.1751
+    }
+  },
+  "tc_class_2006_breakdown": {
+    "11q13": {
+      "n": 22,
+      "responder_rate": 0.3636,
+      "mean_SPE_score": 0.4805
+    },
+    "4p16": {
+      "n": 33,
+      "responder_rate": 0.6364,
+      "mean_SPE_score": 0.6121
+    },
+    "D1": {
+      "n": 64,
+      "responder_rate": 0.4531,
+      "mean_SPE_score": 0.4209
+    },
+    "D1+D2": {
+      "n": 10,
+      "responder_rate": 0.7,
+      "mean_SPE_score": 0.6247
+    },
+    "D2": {
+      "n": 26,
+      "responder_rate": 0.6154,
+      "mean_SPE_score": 0.5431
+    },
+    "D3": {
+      "n": 2,
+      "responder_rate": 0.0,
+      "mean_SPE_score": 0.2462
+    },
+    "MAF": {
+      "n": 7,
+      "responder_rate": 0.5714,
+      "mean_SPE_score": 0.5808
+    },
+    "None": {
+      "n": 5,
+      "responder_rate": 0.0,
+      "mean_SPE_score": 0.2194
+    }
+  }
+}

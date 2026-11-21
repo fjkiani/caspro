@@ -1,41 +1,15 @@
+import { HOME_HERO } from '@/data/clinical-case-ui';
+
 export type HeroOracleTagline = {
-  /** Rotating suffix after the fixed prefix */
+  /** Rotating suffix after the fixed prefix — keep short (subhead budget) */
   accent: string;
 };
 
-/** Fixed on screen — only the accent line below animates */
-export const HERO_ORACLE_PREFIX = 'Precision Computional Oncology';
+/** ≤8 words — homepage hero headline (canon: HOME_HERO) */
+export const HERO_ORACLE_PREFIX = HOME_HERO.headline;
 
 export const HERO_ORACLE_TAGLINES: HeroOracleTagline[] = [
-  {
-    accent: 'that mathematically guarantees precision-eligible enrollment before you burn your first million.',
-  },
-
-  {
-    accent: 'that replaces clinicopathologic guessing with deterministic, dependency-first frameworks.',
-  },
-  {
-    accent: 'that enrolls based on absolute molecular addiction—not lazy geographic tumor labels.',
-  },
-  {
-    accent: 'that isolates the 5% of true responders buried alive in your failed Phase III cohort.',
-  },
-  {
-    accent: 'that detects the tumor\'s escape architecture before the radiologist even blinks.',
-  },
-  {
-    accent: 'that forensically autopsies Phase III failures—with the unforgeable JSON receipts to prove it.',
-  },
-  {
-    accent: 'that strips out the AI slop for raw, A100-computed truth backed by hard PMIDs.',
-  },
-  {
-    accent: 'that stops you from setting $300M on fire in a mathematically doomed, all-comers clinical trial.',
-  },
-  {
-    accent: 'that salvages dead IP from the pharmaceutical graveyard and resurrects it for pennies.',
-  },
-  {
-    accent: 'that catches lethal drug-drug interactions standard EMRs can\'t see.',
-  }
+  { accent: HOME_HERO.subhead },
+  { accent: 'Name the responder before the drug debate starts.' },
+  { accent: 'Block the mismatch. Prioritize the line that fits.' },
 ];

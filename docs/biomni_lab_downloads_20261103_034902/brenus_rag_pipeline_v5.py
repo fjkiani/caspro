@@ -11,7 +11,7 @@ Judge      : meta-llama/llama-3.1-8b-instruct (clean JSON, $0.02/1M)
 Retriever  : Qdrant, all-mpnet-base-v2, 768-dim, 4 collections, 22 chunks
 """
 from __future__ import annotations
-import json, re, textwrap, time
+import json, os, re, textwrap, time
 from dataclasses import dataclass, field
 from typing import Any
 import numpy as np
@@ -20,18 +20,12 @@ from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
 
 # ── Credentials ───────────────────────────────────────────────────────────────
-QDRANT_URL = "https://***REDACTED_QDRANT_URL***"
-QDRANT_KEY = (
-    "***REDACTED_QDRANT_KEY_SEG***"
-    ".***REDACTED_QDRANT_KEY_SEG***"
-    ".***REDACTED_QDRANT_KEY_SEG***"
-)
+QDRANT_URL = os.environ.get("QDRANT_URL", "https://REDACTED.qdrant.io")
+QDRANT_KEY = os.environ.get("QDRANT_API_KEY", "REDACTED_QDRANT_KEY")
 
 # Rotate through 3 keys to distribute load (redacted per U-09 / Leash 10)
 OR_KEYS = [
-    "***REDACTED_OPENROUTER_KEY_1***",
-    "***REDACTED_OPENROUTER_KEY_2***",
-    "***REDACTED_OPENROUTER_KEY_3***",
+    os.environ["OPENROUTER_API_KEY"],
 ]
 OR_URL = "https://openrouter.ai/api/v1/chat/completions"
 

@@ -1,0 +1,380 @@
+{
+  "meta": {
+    "generated_at_utc": "2026-11-21T20:38:17Z",
+    "closes_directive_block": "1_DISSECT_485_CRC_ROUTING",
+    "source_csv": "/Users/fahadkiani/Desktop/development/caspro/caspro/src/data/pharma/crc-ranker-v1/crc_ranker_results_v2_gated.csv",
+    "source_csv_sha256": "05971fa34de76fecf48b685a825123483a0fb40b79f006b17eb4c8278c9c37e7",
+    "receipt_sha256_after_write": "61e94a5b8246b39e16cbdd0ea39c75a7ec60965e6f84a41a0bad08a464b22fdb",
+    "n_patients": 485,
+    "column_mapping": {
+      "modes": "Only top_1_trial_iiia|iiib|iiic present (Mode iii-A/B/C). No Mode i or ii-A/B in CSV.",
+      "gate2_hot": "gate2_immune_hot",
+      "genotype": "is_non_pole_tmb_lt_10; ras_raf_status TRIPLE_WT | BRAF_MUT | KRAS_MUT/NRAS_MUT/KRAS_NRAS_COMUT/RAS_BRAF_COMUT -> KRAS/NRAS-mut bucket",
+      "cms": "cms_label",
+      "trials_canonical_names": {
+        "MOSAIC": "TRIBE2",
+        "HORIZON_III": "CALGB80405",
+        "VELOUR": "FIRE3"
+      },
+      "missing_columns": [
+        "stress_tier not in gated CSV"
+      ]
+    },
+    "breAK_stress_cohort": {
+      "path": "/Users/fahadkiani/Desktop/development/Brenus-repo/engagements/brenus/scientific_outputs/stc1010_gating_engine/artifacts/BreAK_CRC-001_stress_cohort_records.csv",
+      "sha256": "963192469df999ca603b97c42600e3fb81cb7ebbc3859a2b3db0ab7d473f7662",
+      "note": "Reference only; not row-joined to 485 ranker CSV in this receipt."
+    }
+  },
+  "strata_counts_verified": {
+    "gate2_hot_non_pole": 146,
+    "gate2_cold_non_pole": 327,
+    "pole_tmb10_plus": 12,
+    "hot_triple_wt_84": 84,
+    "hot_kras_nras_56": 56,
+    "hot_braf_6": 6,
+    "cold_triple_wt_169": 169,
+    "cold_kras_nras_151": 151,
+    "cold_braf_7": 7,
+    "hot_ras_raf_combined": 62,
+    "cold_ras_raf_combined": 158
+  },
+  "rank1_trial_distribution": {
+    "iii_a": {
+      "all_485": {
+        "n": 485,
+        "rank1_trial_counts": {
+          "STC_1010": 461,
+          "TRIBE2": 2,
+          "N0147": 22
+        }
+      },
+      "gate2_hot_non_pole_146": {
+        "n": 146,
+        "rank1_trial_counts": {
+          "STC_1010": 146
+        }
+      },
+      "gate2_cold_non_pole_327": {
+        "n": 327,
+        "rank1_trial_counts": {
+          "STC_1010": 303,
+          "TRIBE2": 2,
+          "N0147": 22
+        }
+      },
+      "hot_triple_wt_84": {
+        "n": 84,
+        "rank1_trial_counts": {
+          "STC_1010": 84
+        }
+      },
+      "hot_kras_nras_56": {
+        "n": 56,
+        "rank1_trial_counts": {
+          "STC_1010": 56
+        }
+      },
+      "hot_braf_6": {
+        "n": 6,
+        "rank1_trial_counts": {
+          "STC_1010": 6
+        }
+      },
+      "cold_triple_wt_169": {
+        "n": 169,
+        "rank1_trial_counts": {
+          "STC_1010": 167,
+          "TRIBE2": 2
+        }
+      },
+      "cold_kras_nras_151": {
+        "n": 151,
+        "rank1_trial_counts": {
+          "STC_1010": 130,
+          "N0147": 21
+        }
+      },
+      "cold_braf_7": {
+        "n": 7,
+        "rank1_trial_counts": {
+          "STC_1010": 6,
+          "N0147": 1
+        }
+      }
+    },
+    "iii_b": {
+      "all_485": {
+        "n": 485,
+        "rank1_trial_counts": {
+          "STC_1010": 285,
+          "N0147": 30,
+          "PRIME": 170
+        }
+      },
+      "gate2_hot_non_pole_146": {
+        "n": 146,
+        "rank1_trial_counts": {
+          "STC_1010": 144,
+          "PRIME": 2
+        }
+      },
+      "gate2_cold_non_pole_327": {
+        "n": 327,
+        "rank1_trial_counts": {
+          "STC_1010": 129,
+          "N0147": 30,
+          "PRIME": 168
+        }
+      },
+      "hot_triple_wt_84": {
+        "n": 84,
+        "rank1_trial_counts": {
+          "STC_1010": 82,
+          "PRIME": 2
+        }
+      },
+      "hot_kras_nras_56": {
+        "n": 56,
+        "rank1_trial_counts": {
+          "STC_1010": 56
+        }
+      },
+      "hot_braf_6": {
+        "n": 6,
+        "rank1_trial_counts": {
+          "STC_1010": 6
+        }
+      },
+      "cold_triple_wt_169": {
+        "n": 169,
+        "rank1_trial_counts": {
+          "PRIME": 168,
+          "STC_1010": 1
+        }
+      },
+      "cold_kras_nras_151": {
+        "n": 151,
+        "rank1_trial_counts": {
+          "STC_1010": 123,
+          "N0147": 28
+        }
+      },
+      "cold_braf_7": {
+        "n": 7,
+        "rank1_trial_counts": {
+          "STC_1010": 5,
+          "N0147": 2
+        }
+      }
+    },
+    "iii_c": {
+      "all_485": {
+        "n": 485,
+        "rank1_trial_counts": {
+          "N0147": 160,
+          "FIRE3": 151,
+          "TRIBE2": 18,
+          "STC_1010": 156
+        }
+      },
+      "gate2_hot_non_pole_146": {
+        "n": 146,
+        "rank1_trial_counts": {
+          "STC_1010": 146
+        }
+      },
+      "gate2_cold_non_pole_327": {
+        "n": 327,
+        "rank1_trial_counts": {
+          "N0147": 158,
+          "FIRE3": 151,
+          "TRIBE2": 18
+        }
+      },
+      "hot_triple_wt_84": {
+        "n": 84,
+        "rank1_trial_counts": {
+          "STC_1010": 84
+        }
+      },
+      "hot_kras_nras_56": {
+        "n": 56,
+        "rank1_trial_counts": {
+          "STC_1010": 56
+        }
+      },
+      "hot_braf_6": {
+        "n": 6,
+        "rank1_trial_counts": {
+          "STC_1010": 6
+        }
+      },
+      "cold_triple_wt_169": {
+        "n": 169,
+        "rank1_trial_counts": {
+          "FIRE3": 151,
+          "TRIBE2": 18
+        }
+      },
+      "cold_kras_nras_151": {
+        "n": 151,
+        "rank1_trial_counts": {
+          "N0147": 151
+        }
+      },
+      "cold_braf_7": {
+        "n": 7,
+        "rank1_trial_counts": {
+          "N0147": 7
+        }
+      }
+    }
+  },
+  "mode_iii_c_stc_capture": {
+    "all_non_pole_stc_rank1_n": 146,
+    "gate2_hot_stc_rank1_n": 146,
+    "gate2_cold_stc_rank1_n": 0,
+    "by_cms_non_pole": {
+      "CMS1": {
+        "n_non_pole": 5,
+        "stc_rank1_iiic": 3,
+        "frac_stc_rank1_iiic": 0.6
+      },
+      "CMS2": {
+        "n_non_pole": 65,
+        "stc_rank1_iiic": 12,
+        "frac_stc_rank1_iiic": 0.1846
+      },
+      "CMS3": {
+        "n_non_pole": 25,
+        "stc_rank1_iiic": 5,
+        "frac_stc_rank1_iiic": 0.2
+      },
+      "CMS4": {
+        "n_non_pole": 51,
+        "stc_rank1_iiic": 31,
+        "frac_stc_rank1_iiic": 0.6078
+      },
+      "NOLBL": {
+        "n_non_pole": 18,
+        "stc_rank1_iiic": 8,
+        "frac_stc_rank1_iiic": 0.4444
+      },
+      "UNLABELED": {
+        "n_non_pole": 309,
+        "stc_rank1_iiic": 87,
+        "frac_stc_rank1_iiic": 0.2816
+      }
+    }
+  },
+  "gate2_cold_when_stc_not_rank1": {
+    "iii_a": {
+      "n": 24,
+      "rank1_when_stc_off": {
+        "TRIBE2": 2,
+        "N0147": 22
+      }
+    },
+    "iii_b": {
+      "n": 198,
+      "rank1_when_stc_off": {
+        "N0147": 30,
+        "PRIME": 168
+      }
+    },
+    "iii_c": {
+      "n": 327,
+      "rank1_when_stc_off": {
+        "N0147": 158,
+        "FIRE3": 151,
+        "TRIBE2": 18
+      }
+    }
+  },
+  "cms_x_gate2_x_genotype_counts": {
+    "UNLABELED": {
+      "COLD": {
+        "KRAS/NRAS-mut": 92,
+        "Triple-WT": 125,
+        "BRAF-mut": 5
+      },
+      "HOT": {
+        "Triple-WT": 56,
+        "KRAS/NRAS-mut": 30,
+        "BRAF-mut": 1
+      },
+      "POLE": {
+        "POLE_TMB10+": 9
+      }
+    },
+    "CMS4": {
+      "HOT": {
+        "Triple-WT": 16,
+        "KRAS/NRAS-mut": 12,
+        "BRAF-mut": 3
+      },
+      "COLD": {
+        "Triple-WT": 11,
+        "KRAS/NRAS-mut": 9
+      },
+      "POLE": {
+        "POLE_TMB10+": 1
+      }
+    },
+    "NOLBL": {
+      "HOT": {
+        "KRAS/NRAS-mut": 6,
+        "Triple-WT": 1,
+        "BRAF-mut": 1
+      },
+      "COLD": {
+        "KRAS/NRAS-mut": 7,
+        "BRAF-mut": 1,
+        "Triple-WT": 2
+      },
+      "POLE": {
+        "POLE_TMB10+": 1
+      }
+    },
+    "CMS2": {
+      "COLD": {
+        "Triple-WT": 29,
+        "KRAS/NRAS-mut": 24
+      },
+      "HOT": {
+        "Triple-WT": 9,
+        "KRAS/NRAS-mut": 3
+      }
+    },
+    "CMS3": {
+      "HOT": {
+        "Triple-WT": 2,
+        "KRAS/NRAS-mut": 3
+      },
+      "COLD": {
+        "KRAS/NRAS-mut": 18,
+        "BRAF-mut": 1,
+        "Triple-WT": 1
+      }
+    },
+    "CMS1": {
+      "HOT": {
+        "KRAS/NRAS-mut": 2,
+        "BRAF-mut": 1
+      },
+      "POLE": {
+        "POLE_TMB10+": 1
+      },
+      "COLD": {
+        "Triple-WT": 1,
+        "KRAS/NRAS-mut": 1
+      }
+    }
+  },
+  "secondary_atr_ddr_rescue_gate2_cold_n327": {
+    "rule": "fga_raw>=0.2671 OR brca_somatic OR p_ddr>=0.4 (receipt proxy; see all_42_trials_vector_audit ddr_ge_015)",
+    "eligible_n": 0,
+    "eligible_pct": 0.0
+  }
+}

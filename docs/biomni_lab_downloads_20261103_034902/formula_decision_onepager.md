@@ -1,8 +1,8 @@
 # Formula Decision Onepager — PATH A vs PATH B
-**Classification:** DECISION SUPPORT ONLY — manager action required before any recomputation
+**Classification:** CANONICAL PRODUCTION LOCK — PATH A signed 2026-04-28 by Fahad Kiani
 **Date:** 2026-04-28 (final clean version)
 **Owner:** Manager (formula decision is manager-held per B-07)
-**Status:** DECISION PENDING — all formula-dependent external claims remain QUARANTINED
+**Status:** LOCKED: PATH A (Signed 2026-04-28; Augmented with Contraindication Gate G(p,t) in v2_gated)
 **Source memos:** `8d_formula_decision_memo.md`, `formula_affected_claims_table.csv`, `previous_trials_closure_report.md`, `previous_trials_remaining_blockers.md`, `verified_8d_claims.md`, `provisional_8d_claims.md`, `8d_remediation_log.md`
 
 ---

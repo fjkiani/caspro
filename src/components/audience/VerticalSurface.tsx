@@ -358,42 +358,27 @@ export default function VerticalSurface({ data, headerLink }: Props) {
           <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
             <span className={`text-[10px] font-black uppercase tracking-[0.4em] ${label}`}>Engine deep dives</span>
             <div className="flex flex-wrap items-center gap-2">
-              <Link
-                href="/engine/target-lock/scroll"
-                className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider transition-colors ${
-                  isDarkMode ? 'border-zinc-800 text-zinc-300 hover:border-cyan-500/50' : 'border-slate-300 text-slate-700 hover:border-indigo-400'
-                }`}
-              >
-                Target-Lock · Brain-Met · Scroll
-                <ArrowRight className="h-3 w-3" />
-              </Link>
-              <Link
-                href="/engine/target-lock/"
-                className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider transition-colors ${
-                  isDarkMode ? 'border-zinc-800 text-zinc-300 hover:border-cyan-500/50' : 'border-slate-300 text-slate-700 hover:border-indigo-400'
-                }`}
-              >
-                Target-Lock · Brain-Met
-                <ArrowRight className="h-3 w-3" />
-              </Link>
-              <Link
-                href="/engine/synthetic-lethality/scroll"
-                className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider transition-colors ${
-                  isDarkMode ? 'border-zinc-800 text-zinc-300 hover:border-cyan-500/50' : 'border-slate-300 text-slate-700 hover:border-indigo-400'
-                }`}
-              >
-                SL · MBD4 · Scroll
-                <ArrowRight className="h-3 w-3" />
-              </Link>
-              <Link
-                href="/engine/synthetic-lethality/tabs"
-                className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider transition-colors ${
-                  isDarkMode ? 'border-zinc-800 text-zinc-300 hover:border-cyan-500/50' : 'border-slate-300 text-slate-700 hover:border-indigo-400'
-                }`}
-              >
-                SL · MBD4 · Tabs
-                <ArrowRight className="h-3 w-3" />
-              </Link>
+              {(
+                [
+                  { href: '/engine/target-lock/', label: 'Target Lock' },
+                  { href: '/engine/mechanism-alignment/', label: 'Mechanism Alignment' },
+                  { href: '/engine/synthetic-lethality/', label: 'Synthetic Lethality' },
+                  { href: '/engine/safety-dosing/', label: 'Safety & Dosing' },
+                ] as const
+              ).map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                    isDarkMode
+                      ? 'border-zinc-800 text-zinc-300 hover:border-cyan-500/50'
+                      : 'border-slate-300 text-slate-700 hover:border-indigo-400'
+                  }`}
+                >
+                  {link.label}
+                  <ArrowRight className="h-3 w-3" />
+                </Link>
+              ))}
             </div>
           </div>
         </footer>

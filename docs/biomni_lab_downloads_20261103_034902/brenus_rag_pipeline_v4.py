@@ -67,11 +67,7 @@ QDRANT_URL = (
     "https://***REDACTED_QDRANT_URL_SEG***"
     ".eu-west-2-0.aws.cloud.qdrant.io"
 )
-QDRANT_KEY = (
-    "***REDACTED_QDRANT_KEY_SEG***"
-    ".***REDACTED_QDRANT_KEY_SEG***"
-    ".***REDACTED_QDRANT_KEY_SEG***"
-)
+QDRANT_KEY = os.environ.get("QDRANT_API_KEY", "REDACTED_QDRANT_KEY")
 
 COLLECTIONS = [
     "brenus_p1_benchmarks",

@@ -1,0 +1,24 @@
+---
+alwaysApply: true
+---
+# Product voice — human clinical English + UI budgets (always on)
+
+Load `.cursor/skills/product-voice-no-hedge/SKILL.md` on all public caspro pages.
+
+## Word budgets
+
+Hero headline ≤8 words (no numbers/drugs) · subhead ≤20 · card body ≤22 · metric = 1 number + 3–5 word label. Study IDs / p-values / long regimens → **View Clinical Evidence** drawers only.
+
+## Banned on main screen
+
+`Door 1/2`, `Gate 0`, `SPE-high`, `on disk`, `UNCLEAR`, `frozen JSON`, `GSE*`, `TCGA-*`, `bioRxiv`, `AUROC`, `p =`, robotic em-dash templates, developer jargon.
+
+Translate: dividing vs dormant tumor. Case switcher over walls of text.
+
+## Execute
+
+Over-budget or banned jargon → rewrite same turn. No permission theater.
+
+## Still bound
+
+No commit unless Alpha asks · no invented meters · no fabricated FDA clearance.

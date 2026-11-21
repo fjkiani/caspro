@@ -26,8 +26,8 @@ export default function RecommendedDrugsPanel() {
         <div>
           <h2 className={`text-lg font-semibold ${heading}`}>Ranked options</h2>
           <p className={`mt-1 text-xs ${sub}`}>
-            Lead option: <span className={anchorHi}>{anchorName}</span>. Ordered for this
-            fixture's biology — research discussion, not a prescription.
+            Lead option: <span className={anchorHi}>{anchorName}</span>. Ranked for this case's
+            biology — discuss first; rule-outs stay visible on Gaps.
           </p>
         </div>
         <span className={`text-[10px] uppercase tracking-widest ${pathTag}`}>RUO</span>

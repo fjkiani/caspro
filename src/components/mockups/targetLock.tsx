@@ -232,7 +232,7 @@ export function TargetLockCascadeView({
               </p>
             </div>
             <p className={`text-[9px] leading-relaxed ${isDarkMode ? 'text-zinc-600' : 'text-slate-500'}`}>
-              L1 Target-Lock ranks drivers on 38 genes × 8 steps (Evo2 + Enformer). Structural triage is pre-synthesis only — not cleavage validated.
+              L1 Target-Lock ranks drivers on 29 genes × 7 steps (Evo2 + Enformer). Structural triage is pre-synthesis only — not cleavage validated.
             </p>
           </div>
           <div className={`border-t shrink-0 ${compact ? 'pt-3' : 'pt-5'} ${isDarkMode ? 'border-zinc-900' : 'border-slate-200'}`}>

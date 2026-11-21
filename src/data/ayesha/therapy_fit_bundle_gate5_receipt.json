@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "source_test": "oncology-backend-minimal/tests/test_therapy_fit_v4.py::test_bundle_top_level_v4_fields",
+    "backend_repo": "/Users/fahadkiani/Desktop/development/crispr-assistant-main/oncology-coPilot/oncology-backend-minimal",
+    "backend_head_locked": "f7d524610aebe1ac04a93c3375427d389a165bfb",
+    "backend_head_checkout": "65a967d98b9e285b0e5fd2f3bf26fe4d0cdfa06b",
+    "crispr_assistant_root": "d61307b320d7d29e968b13855f02a774292419f6",
+    "endpoint_day0": "POST /api/ayesha/therapy-fit/bundle?level=l1&include_synthetic_lethality=false",
+    "endpoint_door2": "POST /api/ayesha/therapy-fit/bundle?level=l1&include_synthetic_lethality=false",
+    "captured": "2026-11-15 TestClient live run (this turn)"
+  },
+  "request_day0": {},
+  "request_door2_post_nact": {
+    "post_H_clean": 3.3602410192058887,
+    "post_S_sen": 4.1663709675362295,
+    "post_DDR": 0.035789058341352986,
+    "post_BCL2A1_z": -0.18181484127915193,
+    "delta_MCL1_z": 1.7373046656403557,
+    "post_EMT_z": 0.44326565209960356
+  },
+  "response_day0": {
+    "door_state": "DOOR_1_DDR_REPLICATION_STRESS",
+    "ranked_drugs": [
+      "Gemcitabine + Carboplatin \u00b1 Bevacizumab",
+      "Ceralasertib (AZD6738) / Berzosertib"
+    ],
+    "contraindicated_blacklist": [
+      {
+        "drug_name": "Olaparib / Niraparib",
+        "status": "GENOTYPE_FALSIFIED"
+      }
+    ]
+  },
+  "response_door2": {
+    "door_state": "DOOR_2_HIBERNATION_SENOLYTIC",
+    "ranked_drugs": [
+      "Dasatinib (Sprycel)",
+      "Navitoclax / DT2216 (BCL-xL)",
+      "Doxercalciferol / Paricalcitol (VDR Agonist)",
+      "Azithromycin"
+    ],
+    "contraindicated_blacklist": [
+      {
+        "drug_name": "Vismodegib",
+        "status": "BLACKLISTED_DOOR_2: myCAF collapse hazard"
+      },
+      {
+        "drug_name": "Venetoclax",
+        "status": "BLACKLISTED_DOOR_2: BCL-2 selective (fails BCL-xL/BCL2L1 dependency in ovarian hibernation)"
+      },
+      {
+        "drug_name": "Vorinostat",
+        "status": "BLACKLISTED_DOOR_2: Non-selective HDACi toxicity without Door 2 S_sen selectivity"
+      },
+      {
+        "drug_name": "Atorvastatin",
+        "status": "BLACKLISTED_DOOR_2: Fails dose-response consensus in Door 2 persister panel"
+      },
+      {
+        "drug_name": "Olaparib",
+        "status": "BLACKLISTED_DOOR_2_AND_GENOTYPE_FALSIFIED"
+      }
+    ]
+  }
+}

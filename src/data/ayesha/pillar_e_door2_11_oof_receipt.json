@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "source_csv": "crispr-assistant-main/oncology-coPilot/oncology-backend-minimal/api/resources/models/18_head_oof_summary.csv",
+    "csv_sha256": "e01010c11cb11d10c01fcbbdc531f2806d81471c7d2bab0fb040cea33188f400",
+    "pillar_e_v12_model_sha256": "5f0a08ac501215582b446ff373978f5e4619cb638eac80a725ad99d86c9dc9c2",
+    "population": "Door2_11",
+    "note": "Always-Navitoclax rows NOT in 18_head_oof_summary.csv (UNCLEAR on disk); Always-Dasatinib in pillar_e_v12_lodo_benchmark_comparison.csv only."
+  },
+  "oof_heads_Door2_11": {
+    "Measured_Available::v12_sparse_all28_logistic_positive": {
+      "hit_drug50_n": 5,
+      "hit_drug75_n": 2,
+      "hit_positive_n": 5,
+      "AUROC": 0.6125541125541126,
+      "donors": 11
+    },
+    "Measured_Available::v12_sparse_all28_ridge_positive": {
+      "hit_drug50_n": 6,
+      "hit_drug75_n": 3,
+      "hit_positive_n": 6,
+      "AUROC": 0.6268281268281268,
+      "donors": 11
+    },
+    "Measured_Available::v12_sparse_all28_logistic_q75": {
+      "hit_drug50_n": 5,
+      "hit_drug75_n": 4,
+      "hit_positive_n": 5,
+      "AUROC": 0.6840381179273377,
+      "donors": 11
+    },
+    "Complete_core4::v12_sparse_core4_logistic_positive": {
+      "hit_drug50_n": 6,
+      "hit_drug75_n": 0,
+      "hit_positive_n": 6,
+      "AUROC": 0.6378947368421053,
+      "donors": 11
+    },
+    "Complete_core4::v12_sparse_core4_ridge_positive": {
+      "hit_drug50_n": 6,
+      "hit_drug75_n": 2,
+      "hit_positive_n": 5,
+      "AUROC": 0.6568421052631579,
+      "donors": 11
+    },
+    "Complete_core4::v12_sparse_core4_logistic_q75": {
+      "hit_drug50_n": 6,
+      "hit_drug75_n": 2,
+      "hit_positive_n": 6,
+      "AUROC": 0.767543859649123,
+      "donors": 11
+    },
+    "Requested_core8::v12_sparse_core8_logistic_positive": {
+      "hit_drug50_n": 7,
+      "hit_drug75_n": 1,
+      "hit_positive_n": 7,
+      "AUROC": 0.6303206997084548,
+      "donors": 11
+    },
+    "Requested_core8::v12_sparse_core8_ridge_positive": {
+      "hit_drug50_n": 6,
+      "hit_drug75_n": 3,
+      "hit_positive_n": 6,
+      "AUROC": 0.6361516034985422,
+      "donors": 11
+    },
+    "Requested_core8::v12_sparse_core8_logistic_q75": {
+      "hit_drug50_n": 6,
+      "hit_drug75_n": 2,
+      "hit_positive_n": 5,
+      "AUROC": 0.5952677459526774,
+      "donors": 11
+    },
+    "Measured_Available::v12_unified_all28_logistic_positive": {
+      "hit_drug50_n": 7,
+      "hit_drug75_n": 4,
+      "hit_positive_n": 7,
+      "AUROC": 0.6130806130806131,
+      "donors": 11
+    },
+    "Measured_Available::v12_unified_all28_ridge_positive": {
+      "hit_drug50_n": 7,
+      "hit_drug75_n": 3,
+      "hit_positive_n": 7,
+      "AUROC": 0.6272961272961274,
+      "donors": 11
+    },
+    "Measured_Available::v12_unified_all28_logistic_q75": {
+      "hit_drug50_n": 5,
+      "hit_drug75_n": 3,
+      "hit_positive_n": 5,
+      "AUROC": 0.6846337105419893,
+      "donors": 11
+    },
+    "Complete_core4::v12_unified_core4_logistic_positive": {
+      "hit_drug50_n": 6,
+      "hit_drug75_n": 0,
+      "hit_positive_n": 6,
+      "AUROC": 0.68,
+      "donors": 11
+    },
+    "Complete_core4::v12_unified_core4_ridge_positive": {
+      "hit_drug50_n": 6,
+      "hit_drug75_n": 3,
+      "hit_positive_n": 5,
+      "AUROC": 0.6421052631578947,
+      "donors": 11
+    },
+    "Complete_core4::v12_unified_core4_logistic_q75": {
+      "hit_drug50_n": 7,
+      "hit_drug75_n": 1,
+      "hit_positive_n": 7,
+      "AUROC": 0.6666666666666667,
+      "donors": 11
+    },
+    "Requested_core8::v12_unified_core8_logistic_positive": {
+      "hit_drug50_n": 7,
+      "hit_drug75_n": 2,
+      "hit_positive_n": 7,
+      "AUROC": 0.6384839650145773,
+      "donors": 11
+    },
+    "Requested_core8::v12_unified_core8_ridge_positive": {
+      "hit_drug50_n": 8,
+      "hit_drug75_n": 2,
+      "hit_positive_n": 9,
+      "AUROC": 0.636734693877551,
+      "donors": 11
+    },
+    "Requested_core8::v12_unified_core8_logistic_q75": {
+      "hit_drug50_n": 7,
+      "hit_drug75_n": 2,
+      "hit_positive_n": 7,
+      "AUROC": 0.5242839352428393,
+      "donors": 11
+    }
+  },
+  "alpha_table_unclear": {
+    "Always-Navitoclax_q75": "NOT_FOUND in backend lodo CSVs at f7d52461 \u2014 cite Alpha authority only until row located"
+  }
+}

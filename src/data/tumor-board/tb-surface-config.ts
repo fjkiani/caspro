@@ -39,7 +39,7 @@ export const TB_DEFAULT_TAB_FOR_PERSONA: Record<Persona, TbTopTab> = {
   pharma: 'gaps',
 };
 
-/** Glossary ids — never paste AK/MBD4 terms onto other fixtures. */
+/** Glossary ids — never paste AK/MBD4 terms onto unrelated cases. */
 export function tbTabTermsForPatient(patientId: string, tab: TbTopTab): string[] {
   const isAk = patientId === 'AK' || patientId === 'AK01';
   if (tab === 'case') {
@@ -58,19 +58,23 @@ export const TB_TAB_TERMS: Record<TbTopTab, string[]> = {
   gaps: [],
 };
 
+/** Short lead — day math lives in View Clinical Evidence drawers. */
+export const TB_BOARD_VALIDATION_LEAD =
+  '12 / 12 Phase III matched · +48.5 days myeloma · dormant post-chemo named.';
+
 export function tbStripCopy(
   tab: TbTopTab,
   ctx: { compPct: number; capPct: number; driverChips: string; suggested?: string },
 ): string {
   switch (tab) {
     case 'case':
-      return `What CrisPRO read for this fixture · drivers ${ctx.driverChips} · data completeness ${ctx.compPct}%.`;
+      return `Drivers ${ctx.driverChips}. Lock biology before drug order. Completeness ${ctx.compPct}%.`;
     case 'options':
       return ctx.suggested
-        ? `Worth discussing first: ${ctx.suggested}. Then what to skip — with trial anchors on Gaps.`
-        : 'What fits this biology — and what does not.';
+        ? `Discuss first: ${ctx.suggested}. BLOCK mismatches.`
+        : 'PRIORITIZE the fit. BLOCK the mismatch.';
     case 'gaps':
-      return `Missing tests (cap ${ctx.capPct}%) · published trial citations · RUO receipts.`;
+      return `Missing tests (cap ${ctx.capPct}%). Name what flips the branch before the room commits.`;
   }
 }
 

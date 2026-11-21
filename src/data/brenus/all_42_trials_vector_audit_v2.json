@@ -5,7 +5,7 @@
     "closes_ledger_item": "U9",
     "source_registry": "src/data/brenus/trial_decode_registry_v2.json",
     "source_registry_sha256": "f6ff9294d6080d1ffddcdca483ca71d83f9eded6c399f776d5a5b933f5543198",
-    "pathway_8d_ranker_sha256": "3335184774f6493e6f812dd7e3c8908b0e590d7c70092e7e53fe3f3a4b50dc9e",
+    "pathway_8d_ranker_sha256": "7a87cef2a561b8c9c6df201f48029175ba4d866c6bbad73cd80e5c47512e9e43",
     "total_registry_entries": 42,
     "registry_audit_status_counts": {
       "LOCKED_VERIFIED": 8,

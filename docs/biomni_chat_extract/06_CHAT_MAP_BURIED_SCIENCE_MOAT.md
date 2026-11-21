@@ -5,7 +5,7 @@
 **URL:** https://biomni.phylo.bio/projects/proj_0a834004bb/tasks/sess_be00d436f181  
 **Extracted:** `2026-11-03T04:22:50.983Z`  
 **Moat HEAD (prior-turn `git log -1`, not re-run this fold):** `scientist-monai-moat` branch `feat/ten-capability-delivery-20260928` **`72a8bbd`**  
-**Sibling fold (this patch):** `04_BRENUS_CRC_SANOFI_CHAT_EXTRACT.md` (306 lines) and `05_GBM_VECTOR_8D_GATES_FORMULAS.md` (827 lines) **Read this turn**. Crosswalk = §1.4. Contradictions = §1.5. Existing `04_IRON_LEASH_AND_NEXT_STEPS.md` is the BrM leash — **different file** from `04_BRENUS_*` (04 U-12 numbering collision stays OPEN). No PASS.
+**Sibling fold (this patch):** `04B_BRENUS_CRC_SANOFI_CHAT_EXTRACT.md` (306 lines) and `05_GBM_VECTOR_8D_GATES_FORMULAS.md` (827 lines) **Read this turn**. Crosswalk = §1.4. Contradictions = §1.5. Existing `04A_IRON_LEASH_AND_NEXT_STEPS.md` is the BrM leash — **different file** from `04_BRENUS_*` (04 U-12 numbering collision stays OPEN). No PASS.
 
 **One-line verdict:** This chat **started as Brenus/STC-1010/8D/CRC** (msg `0`, `2026-04-28`) and **ended by asking to zip “2 door + brenus + resistance prophet”** (msg `28611`, `2026-11-03`). In between, **July alone is 17,585 / 28,570 messages (61.5%)** of ovarian/MFAP4/MBD4/KELIM/Resistance-Prophet volume. The BrM GSE/AF3 fraud audited in `docs/brm.md` is a **different transcript**. Mixing the two is how CRC/8D/GBM get buried.
 
@@ -57,7 +57,7 @@ No PASS. No new science computed. No secrets copied into this file.
 
 Do **not** copy 04/05 ledgers here. Cite headings + the counts that change this map.
 
-**`04_BRENUS_CRC_SANOFI_CHAT_EXTRACT.md`**
+**`04B_BRENUS_CRC_SANOFI_CHAT_EXTRACT.md`**
 
 | 04 heading | What 06 absorbs | Key counts / quotes |
 | :--- | :--- | :--- |
@@ -105,7 +105,7 @@ Do **not** copy 04/05 ledgers here. Cite headings + the counts that change this 
 | **C-12** | PATH A memo `message_index` | 356 / 411 | n/a | P0 “memo at `405`” | **UNCLEAR which index is the wrap.** 11-phase map **kept**. | Map authors |
 | **C-13** | `mechanism_fit_ranker.py` in caspro | n/a | **ABSENT**; TS constants only | BS-02 “wire locked fit” | **05 adds.** Chat over-claimed code presence. Revive path stays “wire,” not “already executes.” | Next CRC wire |
 | **C-14** | 7D vs 8D.v1 | Formula has no axis count | F26 Brenus lock **7D** (RSS omitted); CRC ranker **8D.v1** | Did not distinguish | **UNCLEAR version** on any LATIFY/Brenus score that omits the axis list. Do not mix. | Next CRC wire |
-| **C-15** | Two files named `04_*` | U-12 | Cites `04_IRON_LEASH_AND_NEXT_STEPS.md` | Header already said IRON_LEASH ≠ Brenus extract | **Agree.** Numbering collision OPEN. | Alpha |
+| **C-15** | Two files named `04_*` | U-12 | Cites `04A_IRON_LEASH_AND_NEXT_STEPS.md` | Header already said IRON_LEASH ≠ Brenus extract | **Agree.** Numbering collision OPEN. | Alpha |
 
 ---
 
@@ -246,7 +246,7 @@ Lead with the meter, then the sentence.
 
 ## 6. Leash for the next iteration (checklist, not essay)
 
-Copy this. Fail-closed. Complements `04_IRON_LEASH_AND_NEXT_STEPS.md` (BrM gates) — does **not** replace it.
+Copy this. Fail-closed. Complements `04A_IRON_LEASH_AND_NEXT_STEPS.md` (BrM gates) — does **not** replace it.
 
 ```text
 [CHAT-MAP LEASH — sess_be00d436f181 / caspro 06]
@@ -329,7 +329,7 @@ Copy this. Fail-closed. Complements `04_IRON_LEASH_AND_NEXT_STEPS.md` (BrM gates
 | `docs/brm.md` | 5,707 lines | `wc -l` this fold (C-11 resolved) | H |
 | GSE223499 etc. absent | 0 no-truncate | Python full-content scan (prior turn) | H |
 | Moat HEAD | `72a8bbd` | Prior-turn `git log -1`; not re-run this fold | M |
-| Sibling 04 | 306 lines; 19 trials / 17 buried CRC | Read `04_BRENUS_CRC_SANOFI_CHAT_EXTRACT.md` this turn | H |
+| Sibling 04 | 306 lines; 19 trials / 17 buried CRC | Read `04B_BRENUS_CRC_SANOFI_CHAT_EXTRACT.md` this turn | H |
 | Sibling 05 | 827 lines; 32 formulas / 8 axes / elig 0.75 | Read `05_GBM_VECTOR_8D_GATES_FORMULAS.md` this turn | H |
 | Floor JSON both bars | 22.0 **and** 23.6 | Read `break_crc001_comparator_floor.json` L19 + L28 this turn | H |
 | Forensic A/B/C/D | Not rewritten; cited | Prior-turn Reads; 04/05 fold only | H |
@@ -345,7 +345,7 @@ No Confidence **L** rows. **M** rows: U-04, U-05, moat HEAD not re-logged this f
 - **U-03 / U2 CLEARED (GBM 6×3=18/18 `t` recovery):** `full_alignment = p_i * t_i` in `8d_vector_run_results.json` recovers exact `t` and reproduces 18/18 fits (`05` §10A).
 - **U-04 / U4 CLEARED (`bm01_evo2.ts` / `BrmTargetLockPanel.tsx` / `brm_pipeline_20260328T070235Z.json`):** Retracted `0.976` `mission_fit_discount` quarantined (`RETRACTED_LABEL_LEAK_QUARANTINED`); honest `0.6889` (`n_genes=29` across `n_steps=7` cascade steps; legacy 36/38-gene × 8-step prose alias reconciled) / `0.7478` (`24` observed-only) surfaced; Enformer set to `DISABLED_DEFAULT_0.5`.
 - **U-19 / U5 CLEARED (Immuno v3 line-quotes):** `zeta_immunotherapy_contract_v3.json` (`5692cbcb…`) line-quoted in `05` §10E (`Gide` `0.8038` / OS HR `0.3697`, `Riaz` `0.6996`, `TCGA-SKCM` adj HR `0.7179`, `GSE120575` `0.8767`).
-- **U-20 / U1 / U8 / U9 CLEARED (485-row `TMB -> io`, v2 Gated Ranker, & 42-Trial Audit):** `io = clip(0.20 + (tmb/50.0)*0.40, 0.20, 0.60)` + cell-732 `fga or 0.2671` reproduces 3,880/3,880 v1 cells. Landed `crc_ranker_results_v2_gated.csv` (`05971fa3…`) + `crc_ranker_summary_v2_gated.json` + `all_42_trials_vector_audit_v2.json` (`797eaca7…`, 42/42 rows audited: `8 LOCKED_VERIFIED`, `5 APPROXIMATE_QUARANTINED`, `29 METADATA_ONLY` + secondary `ATR_DDR`/`CEACAM5` rescue on 327 Cold MSS patients) + moat `pathway_8d_ranker.py` (`33351847…`) & `test_pathway_8d_ranker.py` (`e79e0d8f…`, 5/5 passed).
+- **U-20 / U1 / U8 / U9 CLEARED (485-row `TMB -> io`, v2 Gated Ranker, & 42-Trial Audit):** `io = clip(0.20 + (tmb/50.0)*0.40, 0.20, 0.60)` + cell-732 `fga or 0.2671` reproduces 3,880/3,880 v1 cells. Landed `crc_ranker_results_v2_gated.csv` (`05971fa3…`) + `crc_ranker_summary_v2_gated.json` + `all_42_trials_vector_audit_v2.json` (`797eaca7…`, 42/42 rows audited: `8 LOCKED_VERIFIED`, `5 APPROXIMATE_QUARANTINED`, `29 METADATA_ONLY` + secondary `ATR_DDR`/`CEACAM5` rescue on 327 Cold MSS patients) + moat `pathway_8d_ranker.py` (`7a87cef2…`) & `test_pathway_8d_ranker.py` (10/10 with `PYTHONPATH=src`).
 - **U3 / U6 / U7 CLEARED:** `U3` fixed in `patient_vector_builder.py` (`+0.15 additive DDR boost`); `U6` quarantined as `UNVERIFIED_PROSE_CLAIM_QUARANTINED (no local DepMap glioma CSV receipt; worker-0.ipynb computed ΔChronos=-0.72, FDR=0.013 on n=95 NSCLC lines, not 24/24 glioma)`; `U7` locked as `LOCKED_CURATED_ARCHETYPE_CONSTANTS (RS-High=0.6, RS-Intermediate=0.4, RS-Low=0.2 in GBM_PROFILE_VECTORS_8D)`.
 
 *End of `06_CHAT_MAP_BURIED_SCIENCE_MOAT.md`. 04/05 folded & U1–U9 closed 2026-11-03. No PASS.*

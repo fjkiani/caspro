@@ -1,0 +1,9 @@
+{
+  "source_dir": "/Users/fahadkiani/Desktop/development/crispr-assistant-main/publications/04-mm-drug-efficacy/results_v2_ml",
+  "files": {
+    "tier3_gse9782_clinical_trial_ipd.json": "db26e732066d3773",
+    "tier3_gse9782_patient_scores.csv": "19de91b5240eae56"
+  },
+  "vendored_at": "2026-11-15T06:43:09.569032+00:00",
+  "note": "Myeloma Tier3 GSE9782 IPD receipt \u2014 vendored for FE/live runner; bytes from publications/04-mm-drug-efficacy/results_v2_ml"
+}

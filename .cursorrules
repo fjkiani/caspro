@@ -82,7 +82,8 @@ Cursor learned
 - **Tailwind:** This project’s `tailwind.config.cjs` has no `xs` breakpoint unless extended — use `sm:` / `md:` / `lg:` for responsive grids (e.g. metrics: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`).
 - **AK structural kit:** `structural/AK_case/` from agent/ak-case-structural. MBD4 WT+trunc AF2 folds + impact panel wired (`AkMbd4PairPane`, `/models/ak-case/`, receipts in `src/data/ak-case/`). Not AF3 — AF2 monomer_ptm. TP53/PDGFRA mut panels when GPU completes.
 
-- **No sandbag product copy:** Lead with what Tumor Board does (rank options, resolve case, surface SL, fit trials). Charter “what it is not” is for Proof — never as the voice of Decision–Output.
+- **Clinical-lead product copy (2026-11-15):** Surface = short clinical English; AUROC/weights only in meter `detail` / evidence drawer. RUO once in footer. **`product-voice-no-hedge.mdc`** + skill.
+- **UI word-budget override (2026-11-15):** Hero ≤8w / sub ≤20 / card ≤22 / tiles = 1 number + 3–5w label. Ban Door/Gate/SPE/GSE/p-values on surface. Study IDs + day math → `View Clinical Evidence` drawer only. Case switcher Ovarian/Myeloma/CRC. CRC Stage IV cold = **16 of 19** never 19/19. Canon: `src/data/clinical-case-ui.ts`.
 - **Two L1–L5 stacks:** Tumor Board contract = Gateway→Normalizer→Evidence→Co-scientist gen/reflect/rank→Arbiter. Imaging README = DICOM→PubMed→logistic→MONAI/MedSigLIP/TxGemma→Co-Scientist. Do not conflate.
 - **e2aa31a is E2E, not a soft mockup:** NSCLC = live MONAI RetinaNet→heuristic→NCCN-lite→Elo; AK = manuscript bundle validate + Elo audit sort. Lead with `loaded_*` model_state and pipeline layers. Do not demote to “hand-off mockup / EXAMPLE-DATA story.” RUO banner once.
 - **MOA reel vs manuscripts:** Worker Workstream A `MOA_morphs/` + `MOA_reel_manifest.json` (WRN/PD-1/MP4s) is **not** in caspro. The mechanism-forward manuscripts reel **is** here: `structural/manuscripts/gifs/` + copy at `structural/animations/` from `ak-case-structural` `fcbcd16`/`65a8fe0`.
@@ -96,7 +97,20 @@ Cursor learned
 
 Scratchpad
 ==========
-## Current Task: STC-1010 v2 Native Biomni API Pull + 4-Stratum Engine Wiring — 2026-11-03 DONE
+## Current Task: TB gut + receipt loaders + live proxies — 2026-11-15 IN PROGRESS
+
+[X] 4 TB tabs (Cases / Treatment / Proof / Live runner) — no ClinicalCaseSwitcher clone
+[X] Products hub → 3 paths; VerticalSurface footer → 4 canonical engines; Picker clinical labels
+[X] `/api/live/{therapy-fit,ranker-8d,sae}` → BACKEND/MOAT fail-closed 200 + snapshot
+[X] `clinical-evidence-from-receipts.ts` loads ovarian/CRC from JSON; myeloma numbers withheld
+[X] curl `/` `/products/` `/products/tumor-board/` + GET/POST `/api/live/therapy-fit/` → 200 offline pill
+OPEN: vendored `tier3_gse9782` JSON; therapy-fit/ranker/SAE POST schema; bioRxiv receipt on disk; optional LiveRunner on `[patientId]` board
+OPEN: legacy product subpages AUROC-heavy; pre-existing tsc noise outside touched paths; no commit
+
+## Prior: 04-mm-drug-efficacy 4-Strike — 2026-11-06 DONE
+[X] Strikes 1–4 closed (Evo2 deltas, sklearn SPE, GSE9782 Tier3, SHA256SUMS)
+
+## Prior: STC-1010 v2 Native Biomni API Pull + 4-Stratum Engine Wiring — 2026-11-03 DONE
 
 [X] Pulled 364 delta messages (`message_index` 28677->29045) from `GET https://api.phylo.bio/v2/agent/sess_be00d436f181/messages?limit=500&offset=0`; saved `docs/biomni_chat_extract/stc1010_v2_api_delta.json` (`16e15781…`) and `stc1010_v2_api_delta.md` (`367fde5f…`)
 [X] Forensically verified all `N=934` MSS CRC (`490/492` TCGA + `444/444` GSE39582) numbers, GPL570 probe audit (`207255_at` is LEPROT/LEPR -> rejected; `203507_at` CD68 proxy; 4-gene `SPP1_Core_Barrier`), 102-test BH Cox family, 60m RMST, and `KRAS G12D` `CD47` ($\delta = -0.295$) / `BRAF V600E` `D6` ($\delta = +0.771$)
@@ -113,7 +127,7 @@ Scratchpad
 [X] 17 decoded = ATR_DDR 5 + CEACAM5 5 + IO_CORE 7 (registry has 42)
 [X] Honest Target-Lock: quarantined 0.976 `mission_fit_discount` in `brm_pipeline_20260328T070235Z.json` (`db98080e…`), `bm01_evo2.ts` (`13fc62a4…`), `BrmTargetLockPanel.tsx` (`a4b546fc…`); surfaced 0.6889/0.7478
 [X] Immuno contract line-quotes: Gide 0.8038/HR 0.3697, Riaz 0.6996, SKCM adj HR 0.7179, GSE120575 0.8767
-[X] Wired `scientist-monai-moat/src/oncology_arbiter/arbiter/pathway_8d_ranker.py` (`33351847…`) + `tests/unit/test_pathway_8d_ranker.py` (`e79e0d8f…`, 5/5 pytest passed)
+[X] Wired `scientist-monai-moat/src/oncology_arbiter/arbiter/pathway_8d_ranker.py` (`7a87cef2…`) + `POST /v1/ranker/8d/score` + `tests/unit/test_pathway_8d_ranker.py` (10/10 pytest with `PYTHONPATH=src`)
 [X] Wrote `src/data/brenus/all_42_trials_vector_audit_v2.json` (`797eaca7…`) + updated `crc_ranker_summary_v2_gated.json` with 485-patient 8-trial routing matrix, CMS1–4 × Gate-2 × Genotype 2D cross-tab, and secondary ATR_DDR / CEACAM5 rescue analysis
 [X] Closed U3 (`patient_vector_builder.py` +0.15 DDR boost), U4 (`n_genes=29` × `n_steps=7`), U6 (quarantined glioma -0.72/FDR=0.001 claim; NSCLC n=95 FDR=0.013), U7 (locked GBM BrM rss archetype constants), U9 (42/42 trials audited)
 9 / 9 (`U1–U9`) CLOSED.

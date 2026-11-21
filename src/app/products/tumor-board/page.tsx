@@ -3,8 +3,7 @@ import TumorBoardProductWorkspace from '@/components/products/tumor-board/TumorB
 
 export const metadata: Metadata = {
   title: 'Tumor Board · CrisPRO',
-  description:
-    'Rank options · rule out mismatches. Walk into the room with a ranked case package — Research use only.',
+  description: 'Rank the patient before the drug list. Case walk with clear rule-outs.',
 };
 
 export default function TumorBoardProductPage() {

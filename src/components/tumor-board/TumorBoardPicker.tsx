@@ -1,58 +1,47 @@
 'use client';
 
 /**
- * /tumor-board/ — open a case via three doors into one board grammar.
- * Case → Options → Gaps. No fake Ready / Pipeline-run chrome.
+ * /tumor-board/ — open a clinical case with clear labels.
  */
 import Link from 'next/link';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { listPatientCards } from '@/data/patients/registry';
-import { getL5Case } from '@/data/tumor-board/l5-case-registry';
 
-type Door = {
+type CasePath = {
   id: string;
   title: string;
   blurb: string;
-  /** Primary walk — board when wired; otherwise honest receipts path. */
   boardHref: string;
-  boardCta: string;
-  receiptsHref?: string;
-  badge: string;
 };
 
-const DOORS: Door[] = [
+const CASE_PATHS: CasePath[] = [
   {
-    id: 'a-ct',
-    title: 'Lung cancer · CT scan',
-    blurb:
-      'Chest CT in → ranked workup out. Same Case → Options → Gaps walk as molecular.',
+    id: 'lung-ct',
+    title: 'Lung CT Case',
+    blurb: 'Chest CT in. Rank biopsy, PET, or follow-up for the room.',
     boardHref: '/tumor-board/nsclc/',
-    boardCta: 'Open board walk',
-    receiptsHref: '/tumor-board/receipts/nsclc_luna16/',
-    badge: 'RUO · door A',
   },
   {
-    id: 'b-molecular',
-    title: 'Ovarian · MBD4 loss',
-    blurb: 'Molecular profile in → Case → Options → Gaps. Manuscript-locked twin has receipts.',
+    id: 'ovarian-mbd4',
+    title: 'Ovarian MBD4 Case',
+    blurb: 'Post-chemo biology: prioritize escape lines; block PARP on dormant disease.',
     boardHref: '/tumor-board/AK/',
-    boardCta: 'Open board walk',
-    receiptsHref: getL5Case('ak_mbd4_lof')?.href,
-    badge: 'RUO · door B',
   },
   {
-    id: 'c-breast',
-    title: 'Triple-negative breast · BRCA1',
-    blurb:
-      'After chemo, which targeted options still fit — and what tests are still missing.',
+    id: 'breast-brca1',
+    title: 'Breast BRCA1 Case',
+    blurb: 'After chemo, which targeted options fit — and which tests are missing.',
     boardHref: '/tumor-board/BR01/',
-    boardCta: 'Open board walk',
-    badge: 'RUO · door C',
   },
 ];
 
 const MORE_IDS = new Set(['CRC01', 'BM01']);
+
+const MORE_LABELS: Record<string, string> = {
+  CRC01: 'Colorectal KRAS Case',
+  BM01: 'Brain Met Case',
+};
 
 export default function TumorBoardPicker() {
   const { isDarkMode } = useTheme();
@@ -68,9 +57,6 @@ export default function TumorBoardPicker() {
   const body = isDarkMode ? 'text-zinc-300' : 'text-slate-600';
   const border = isDarkMode ? 'border-white/5' : 'border-slate-200';
   const dash = isDarkMode ? 'border-zinc-800' : 'border-slate-200';
-  const badgeNeutral = isDarkMode
-    ? 'border-zinc-700 bg-zinc-900 text-zinc-300'
-    : 'border-slate-300 bg-slate-100 text-slate-700';
 
   return (
     <div className={`flex h-[calc(100dvh-3.5rem)] flex-col overflow-hidden font-mono ${shell}`}>
@@ -107,7 +93,7 @@ export default function TumorBoardPicker() {
                 Open a case
               </div>
               <div className={`truncate text-[10px] font-black uppercase tracking-widest ${muted}`}>
-                Same board · CT · molecular · breast path · RUO
+                Rank the patient · then the drug list
               </div>
             </div>
           </div>
@@ -117,7 +103,7 @@ export default function TumorBoardPicker() {
               isDarkMode ? 'text-zinc-500 hover:text-cyan-400' : 'text-slate-500 hover:text-indigo-600'
             }`}
           >
-            What Tumor Board is
+            Tumor Board product
             <ArrowRight className="h-3 w-3" />
           </Link>
         </div>
@@ -125,53 +111,29 @@ export default function TumorBoardPicker() {
 
       <main className="mx-auto flex min-h-0 w-full max-w-[1600px] flex-1 flex-col gap-4 overflow-y-auto px-4 py-4 sm:px-8">
         <p className={`shrink-0 text-[13px] leading-snug ${body}`}>
-          Same Case → Options → Gaps walk whether you start from a chest CT, a molecular bundle, or a
-          breast pathology profile.
+          Boards open drug lists first. Pick a case — PRIORITIZE fits, BLOCK mismatches.
         </p>
 
         <section className="grid shrink-0 grid-cols-1 gap-3 lg:grid-cols-3">
-          {DOORS.map((door) => (
-            <div key={door.id} className={`flex flex-col rounded border p-4 transition-colors ${panel}`}>
-              <Link href={door.boardHref} className="group flex min-w-0 flex-1 flex-col">
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <span className={`text-[10px] font-black uppercase tracking-widest ${muted}`}>
-                    Way in
-                  </span>
-                  <span
-                    className={`rounded border px-2 py-0.5 text-[10px] uppercase tracking-widest ${badgeNeutral}`}
-                  >
-                    {door.badge}
-                  </span>
-                </div>
-                <h2
-                  className={`mt-2 text-base font-black tracking-tight ${main} ${
-                    isDarkMode ? 'group-hover:text-cyan-300' : 'group-hover:text-indigo-700'
-                  }`}
-                >
-                  {door.title}
-                </h2>
-                <p className={`mt-1.5 flex-1 text-[12px] leading-snug ${body}`}>{door.blurb}</p>
-                <p className={`mt-3 text-[11px] font-black uppercase tracking-widest ${accent}`}>
-                  {door.boardCta}
-                  <ArrowRight className="ml-1 inline h-3 w-3" />
-                </p>
-              </Link>
-              {door.receiptsHref && door.receiptsHref !== door.boardHref ? (
-                <Link
-                  href={door.receiptsHref}
-                  className={`mt-2 border-t border-dashed pt-2 text-[10px] font-black uppercase tracking-widest ${accent} ${dash}`}
-                >
-                  Receipts →
-                </Link>
-              ) : null}
-            </div>
+          {CASE_PATHS.map((path) => (
+            <Link
+              key={path.id}
+              href={path.boardHref}
+              className={`flex flex-col rounded border p-4 transition-colors ${panel}`}
+            >
+              <h2 className={`text-base font-black tracking-tight ${main}`}>{path.title}</h2>
+              <p className={`mt-1.5 flex-1 text-[12px] leading-snug ${body}`}>{path.blurb}</p>
+              <p className={`mt-3 text-[11px] font-black uppercase tracking-widest ${accent}`}>
+                Open Case →
+              </p>
+            </Link>
           ))}
         </section>
 
         {more.length > 0 ? (
           <section className={`shrink-0 border-t border-dashed pt-4 ${dash}`}>
             <p className={`mb-2 text-[11px] font-black uppercase tracking-widest ${muted}`}>
-              More fixtures · early look
+              Additional cases
             </p>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {more.map((c) => (
@@ -180,22 +142,13 @@ export default function TumorBoardPicker() {
                   href={`/tumor-board/${c.patientId}/`}
                   className={`rounded border p-3 transition-colors ${panel}`}
                 >
-                  <div className="flex items-baseline justify-between gap-2">
-                    <span className={`text-[9px] font-black uppercase tracking-widest ${muted}`}>
-                      {c.patientId}
-                    </span>
-                    <span
-                      className={`rounded border px-2 py-0.5 text-[9px] uppercase tracking-widest ${
-                        isDarkMode
-                          ? 'border-amber-500/40 bg-amber-500/10 text-amber-200'
-                          : 'border-amber-300 bg-amber-50 text-amber-800'
-                      }`}
-                    >
-                      Early look
-                    </span>
-                  </div>
-                  <p className={`mt-1 text-[12px] font-black leading-snug ${main}`}>{c.displayName}</p>
+                  <p className={`text-[12px] font-black leading-snug ${main}`}>
+                    {MORE_LABELS[c.patientId] ?? c.displayName}
+                  </p>
                   <p className={`mt-1 text-[11px] ${body}`}>{c.tumorSubtype}</p>
+                  <p className={`mt-2 text-[10px] font-black uppercase tracking-widest ${accent}`}>
+                    Open Case →
+                  </p>
                 </Link>
               ))}
             </div>
@@ -209,7 +162,7 @@ export default function TumorBoardPicker() {
         <div
           className={`mx-auto flex max-w-[1600px] items-center justify-between gap-2 px-4 py-2 text-[9px] font-black uppercase tracking-widest sm:px-8 ${muted}`}
         >
-          <span>Research case workspace · RUO · not a prescription</span>
+          <span>Case workspace · RUO</span>
           <Link
             href="/products/tumor-board/"
             className={isDarkMode ? 'hover:text-cyan-400' : 'hover:text-indigo-600'}

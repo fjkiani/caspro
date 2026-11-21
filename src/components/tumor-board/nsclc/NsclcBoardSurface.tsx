@@ -61,7 +61,7 @@ export default function NsclcBoardSurface() {
             : 'border-amber-200 bg-amber-50 text-amber-900'
         }`}
       >
-        Research use only · not a diagnosis · not a prescription
+        CT workup ranked for this case — lung nodule risk bucket drives biopsy versus surveillance next
       </div>
 
       <header className={`shrink-0 border-b ${border} ${isDarkMode ? 'bg-black/40' : 'bg-white/80'}`}>

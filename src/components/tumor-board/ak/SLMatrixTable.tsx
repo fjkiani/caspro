@@ -75,13 +75,13 @@ export default function SLMatrixTable({ mode = 'both' }: { mode?: MatrixMode }) 
         title="Worth discussing"
         titleCls={ok}
         list={support}
-        empty="No supported axes on this fixture."
+        empty="No supported axes on this case."
       />
     );
   }
   if (mode === 'ruleOut') {
     return (
-      <List title="Rule out" titleCls={skip} list={ruleOut} empty="No explicit rule-outs on this fixture." />
+      <List title="Rule out" titleCls={skip} list={ruleOut} empty="No explicit rule-outs on this case." />
     );
   }
 
@@ -91,9 +91,9 @@ export default function SLMatrixTable({ mode = 'both' }: { mode?: MatrixMode }) 
         title="Worth discussing"
         titleCls={ok}
         list={support}
-        empty="No supported axes on this fixture."
+        empty="No supported axes on this case."
       />
-      <List title="Rule out" titleCls={skip} list={ruleOut} empty="No explicit rule-outs on this fixture." />
+      <List title="Rule out" titleCls={skip} list={ruleOut} empty="No explicit rule-outs on this case." />
     </div>
   );
 }

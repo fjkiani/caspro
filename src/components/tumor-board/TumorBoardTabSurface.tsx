@@ -3,7 +3,7 @@
 /**
  * TumorBoardTabSurface — /tumor-board/[patientId]/
  *
- * Decision surface for oncology rehearsal fixtures:
+ * Decision surface for oncology case walks:
  * Case → Options → Gaps & evidence.
  * Product story: /products/tumor-board/.
  */
@@ -102,7 +102,7 @@ function ProteinPane({
             isDarkMode ? 'border-zinc-800 text-zinc-500' : 'border-slate-200 text-slate-500'
           }`}
         >
-          No structure model loaded for {gene} on this fixture.
+          No structure model loaded for {gene} on this case.
         </div>
       )}
     </aside>
@@ -271,7 +271,7 @@ export default function TumorBoardTabSurface() {
                   isDarkMode ? 'text-zinc-500' : 'text-slate-500'
                 }`}
               >
-                {isAkCase ? 'Board walk' : 'Research fixture'} ·{' '}
+                Case walk ·{' '}
                 {patient.tumorContext.subtype ?? patient.tumorContext.cancerType} · {driverChips}
               </div>
             </div>
@@ -537,7 +537,7 @@ export default function TumorBoardTabSurface() {
           }`}
         >
           <span>
-            Fixture {patient.meta.patientId} · completeness {compPct}% · RUO · research discussion only
+            Case {patient.meta.patientId} · completeness {compPct}% · RUO · rank · rule out · gaps
           </span>
           <div className="flex items-center gap-4">
             {l5Twin ? (
