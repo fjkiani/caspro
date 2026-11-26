@@ -14,10 +14,14 @@
  * Flow:
  *   1. Ensure Category slug `notebooklm-learning`
  *   2. Optional: createAsset from slides.pdf public URL or local file via uploadUrl
- *   3. Upsert NotebookBundle (quiz/flashcards/mindMap/csv/audio)
- *   4. Upsert Post body + connect notebookBundle (+ category, author, featuredImage)
+ *   3. Upsert NotebookBundle (quiz/flashcards/mindMap/csv/audio/faq)
+ *   4. Upsert Post body from report.md (NLM blog-post) + connect notebookBundle
  *   5. Optional MediaItem DECK with same slug
  *   6. publish*
+ *
+ * Artifact filenames (under --artifacts):
+ *   quiz.json flashcards.json mindMap.json data.csv
+ *   slides.pdf audio.mp3 report.md faq.json
  */
 
 import fs from 'fs';
@@ -102,36 +106,88 @@ function readTextIfExists(filePath) {
   return fs.readFileSync(filePath, 'utf8');
 }
 
-function bodyToSlate({ title, excerpt, notebookId }) {
-  return {
+/**
+ * Convert NotebookLM report.md (blog-post / study-guide) into Hygraph Slate JSON.
+ * Prefer report body over the old stub paragraph.
+ */
+function markdownToSlate(markdown, { title, excerpt, notebookId } = {}) {
+  const nodes = [];
+  const md = String(markdown || '').replace(/\r\n/g, '\n').trim();
+
+  if (!md) {
+    nodes.push({ type: 'heading-two', children: [{ text: title || 'Untitled' }] });
+    nodes.push({
+      type: 'paragraph',
+      children: [
+        {
+          text:
+            excerpt ||
+            'Interactive NotebookLM study pack (quiz, flashcards, mind map, audio).',
+        },
+      ],
+    });
+  } else {
+    const blocks = md.split(/\n{2,}/);
+    for (const block of blocks) {
+      const line = block.trim();
+      if (!line) continue;
+      if (/^###\s+/.test(line)) {
+        nodes.push({
+          type: 'heading-three',
+          children: [{ text: line.replace(/^###\s+/, '').replace(/\n/g, ' ') }],
+        });
+      } else if (/^##\s+/.test(line)) {
+        nodes.push({
+          type: 'heading-two',
+          children: [{ text: line.replace(/^##\s+/, '').replace(/\n/g, ' ') }],
+        });
+      } else if (/^#\s+/.test(line)) {
+        nodes.push({
+          type: 'heading-one',
+          children: [{ text: line.replace(/^#\s+/, '').replace(/\n/g, ' ') }],
+        });
+      } else if (/^[-*]\s+/m.test(line)) {
+        const items = line.split('\n').filter((l) => /^[-*]\s+/.test(l.trim()));
+        for (const item of items) {
+          nodes.push({
+            type: 'bulleted-list',
+            children: [
+              {
+                type: 'list-item',
+                children: [{ text: item.replace(/^[-*]\s+/, '').trim() }],
+              },
+            ],
+          });
+        }
+      } else {
+        nodes.push({
+          type: 'paragraph',
+          children: [{ text: line.replace(/\n/g, ' ') }],
+        });
+      }
+    }
+  }
+
+  if (notebookId) {
+    nodes.push({
+      type: 'paragraph',
+      children: [{ text: `Notebook ID: ${notebookId}` }],
+    });
+  }
+  nodes.push({
+    type: 'paragraph',
     children: [
-      { type: 'heading-two', children: [{ text: title }] },
       {
-        type: 'paragraph',
-        children: [
-          {
-            text:
-              excerpt ||
-              'Interactive NotebookLM study pack (quiz, flashcards, mind map, audio).',
-          },
-        ],
+        text: 'Scroll to the Notebook study pack below for Listen → Explore → Study → Ask.',
       },
-      notebookId
-        ? {
-            type: 'paragraph',
-            children: [{ text: `Notebook ID: ${notebookId}` }],
-          }
-        : null,
-      {
-        type: 'paragraph',
-        children: [
-          {
-            text: 'Scroll to the Notebook study pack below for Listen → Explore → Study → Ask.',
-          },
-        ],
-      },
-    ].filter(Boolean),
-  };
+    ],
+  });
+
+  return { children: nodes };
+}
+
+function bodyToSlate({ title, excerpt, notebookId, reportMarkdown }) {
+  return markdownToSlate(reportMarkdown, { title, excerpt, notebookId });
 }
 
 async function ensureCategory() {
@@ -226,9 +282,6 @@ async function createAssetFromUploadUrl(uploadUrl) {
 export async function publishNotebookToBlog(opts) {
   const slug = hygraphSlug(opts.slug);
   const title = opts.title || slug;
-  const excerpt =
-    opts.excerpt ||
-    `TEST NotebookLM learning post — ${title}. Interactive quiz / flashcards / mind map.`;
   const artifactsDir = opts.artifactsDir || null;
   const notebookId =
     opts.notebookId ||
@@ -251,6 +304,16 @@ export async function publishNotebookToBlog(opts) {
     opts.dataTableCsv ||
     readTextIfExists(opts.csvPath) ||
     readTextIfExists(artifactsDir && path.join(artifactsDir, 'data.csv'));
+
+  const reportMarkdown =
+    opts.reportMarkdown ||
+    readTextIfExists(opts.reportPath) ||
+    readTextIfExists(artifactsDir && path.join(artifactsDir, 'report.md'));
+
+  const faqJson =
+    opts.faqJson ||
+    readJsonIfExists(opts.faqPath) ||
+    readJsonIfExists(artifactsDir && path.join(artifactsDir, 'faq.json'));
 
   let audioUrl = opts.audioUrl || null;
   if (!audioUrl && artifactsDir) {
@@ -280,7 +343,7 @@ export async function publishNotebookToBlog(opts) {
     flashcardsJson: flashcards || undefined,
     mindMapJson: mindMap || undefined,
     dataTableCsv: dataTableCsv || undefined,
-    faqJson: opts.faqJson || undefined,
+    faqJson: faqJson || undefined,
     ...(slideAsset?.id ? { slidePdf: { connect: { id: slideAsset.id } } } : {}),
   };
 
@@ -323,12 +386,23 @@ export async function publishNotebookToBlog(opts) {
     bundleId = created.createNotebookBundle.id;
   }
 
-  // Upsert Post
+  const excerpt =
+    opts.excerpt ||
+    (reportMarkdown
+      ? String(reportMarkdown)
+          .split('\n')
+          .find((l) => l.trim() && !l.trim().startsWith('#'))
+          ?.trim()
+          .slice(0, 220)
+      : null) ||
+    `NotebookLM learning post — ${title}. Interactive quiz / flashcards / mind map.`;
+
+  // Upsert Post — prefer NotebookLM report.md as body (blog-post format)
   const postData = {
     title,
     excerpt,
     featuredPost: false,
-    content: bodyToSlate({ title, excerpt, notebookId }),
+    content: bodyToSlate({ title, excerpt, notebookId, reportMarkdown }),
     featuredImage: { connect: { id: featuredImageId } },
     author: { connect: [{ id: AUTHOR_ID }] },
     categories: { connect: [{ id: category.id }] },

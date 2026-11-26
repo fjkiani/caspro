@@ -14,7 +14,7 @@
 | `flashcardsJson` | JSON | NotebookLM `flashcards.json` |
 | `mindMapJson` | JSON | NotebookLM `mindMap.json` |
 | `dataTableCsv` | STRING | NotebookLM `data.csv` text |
-| `faqJson` | JSON | optional Ask section |
+| `faqJson` | JSON | optional Ask section (`faq.json` from `ask --json`) |
 | `slidePdf` | Asset | optional See / PDF |
 | `post` | Post | reverse of Post.notebookBundle |
 
