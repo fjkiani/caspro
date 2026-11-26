@@ -77,21 +77,31 @@ Cursor learned
 Scratchpad
 ==========
 
-## Current Task: Gut NotebookLM blockers + wire Gemini Pro (2026-11-26)
+## Current Task: NotebookLM recalibrated — blockers gone (2026-11-26)
 
-**Goal:** Remove artificial free-tier / missing-prompt / stub-success blockers in zeta-tech portal generate path; wire `fjkiani1@gmail.com` Gemini Pro identity.
+**Status:** Auth + env unblocked. Recalibrate ship order; no more secret prompts.
 
-**Repos:** zeta-tech primary (`/workspace`). Caspro only if schema blocks (not needed).
+**Proven:** Fresh agent `bc-d34e04a6` — `NOTEBOOKLM_MASTER_TOKEN_JSON` (len≈335), bootstrap OK, auth check OK, smoke mind-map generate OK. Profile: `agent-cloud`. Account: `fjkiani1@gmail.com` Gemini Pro.
 
-**Plan:**
-- [X] Inspect auth (`auth check` / usage) — missing cookies in VM
-- [X] Rewrite `portal/app/lib/notebooklm.js` (prompts, ensureAuth, stub guard, usage)
-- [X] Update generate route + generate-all + README/env
-- [X] Artifacts: NOTEBOOKLM-BLOCKERS-GUTTED.md + NOTEBOOKLM-AUTH-BLOCKER.md
-- [ ] Human: set NOTEBOOKLM_AUTH_JSON or `notebooklm login` as fjkiani1@gmail.com
-- [ ] Commit/push zeta-tech PR
+**Env f7fc3006… SAVED:** install portal npm + `notebooklm-py[headless]`; start portal `:3000`. Runtime secrets: MASTER_TOKEN + ACCOUNT_EMAIL. Skip AUTH_JSON (4096).
 
-**Lessons:** notebooklm-py reads `NOTEBOOKLM_AUTH_JSON` for headless auth; `auth refresh` is incompatible with that env var (file-based cookies only). Tier enum: 1=Free, 2=Pro. data-table description is required by CLI. Sample audio.mp3 can be a 25-byte stub — reject &lt;1KB.
+**This agent (bc-01a21503…):** started pre-inject — cannot see Runtime secrets. Code/PRs/Hygraph only. Live generate → fresh agent.
+
+**Open PRs (CI green):**
+- zeta-tech [#2](https://github.com/fjkiani/zeta-tech/pull/2) — blockers gutted + master-token path
+- caspro [#6](https://github.com/fjkiani/caspro/pull/6) — NotebookBundle + BlogNotebookStudy + publish script
+- Preview: https://deploy-preview-6--crispro.netlify.app/research/blog/nlm-test-python-types-bundle/
+
+**Next (priority):**
+1. [ ] Merge #2 + #6 when product-ready (or keep preview)
+2. [ ] Fresh-agent E2E: full 6-pack generate → publishNotebookToBlog → preview audit
+3. [ ] Wire `report --format blog-post` → Post.content (highest unused ROI)
+4. [ ] `ask --json` → faqJson
+5. [ ] Later: video/infographic + public Hygraph CDN; NOT Arcade/LinkedIn lane
+
+**Handoff:** `/opt/cursor/artifacts/NOTEBOOKLM-RECALIBRATED.md`
+
+**Lessons:** Cursor app-publish secrets ≠ Cloud Agent Runtime secrets — Runtime injects only into new agent boots. AUTH_JSON often >4096 — use MASTER_TOKEN_JSON → `profiles/agent-cloud/master_token.json` + `auth refresh`. data-table description required. Reject stub audio &lt;1KB.
 
 ---
 
