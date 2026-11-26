@@ -77,7 +77,42 @@ Cursor learned
 Scratchpad
 ==========
 
-## Current Task: NotebookLM → Hygraph → Caspro blog bundle (2026-11-26)
+## Current Task: Gut NotebookLM blockers + wire Gemini Pro (2026-11-26)
+
+**Goal:** Remove artificial free-tier / missing-prompt / stub-success blockers in zeta-tech portal generate path; wire `fjkiani1@gmail.com` Gemini Pro identity.
+
+**Repos:** zeta-tech primary (`/workspace`). Caspro only if schema blocks (not needed).
+
+**Plan:**
+- [X] Inspect auth (`auth check` / usage) — missing cookies in VM
+- [X] Rewrite `portal/app/lib/notebooklm.js` (prompts, ensureAuth, stub guard, usage)
+- [X] Update generate route + generate-all + README/env
+- [X] Artifacts: NOTEBOOKLM-BLOCKERS-GUTTED.md + NOTEBOOKLM-AUTH-BLOCKER.md
+- [ ] Human: set NOTEBOOKLM_AUTH_JSON or `notebooklm login` as fjkiani1@gmail.com
+- [ ] Commit/push zeta-tech PR
+
+**Lessons:** notebooklm-py reads `NOTEBOOKLM_AUTH_JSON` for headless auth; `auth refresh` is incompatible with that env var (file-based cookies only). Tier enum: 1=Free, 2=Pro. data-table description is required by CLI. Sample audio.mp3 can be a 25-byte stub — reject &lt;1KB.
+
+---
+
+## Current Task: NotebookLM capability map (architecture briefing) (2026-11-26)
+
+**Goal:** End-to-end capability map of notebooklm-py + zeta-tech portal + Caspro NotebookBundle — NOT LinkedIn/Arcade.
+
+**Plan:**
+- [X] Map portal notebooklm.js + generate route + CLI wrapper
+- [X] Inspect artifacts esp. cml7i2dbssm7707lrx9g6m66q
+- [X] Map Caspro adapters / BlogNotebookStudy / publishNotebookToBlog
+- [X] Fetch upstream CLI + Python API + quotas from teng-lin/notebooklm-py main
+- [X] Write durable briefing `/opt/cursor/artifacts/NOTEBOOKLM-CAPABILITY-MAP.md`
+
+**Key findings:** Portal wires 6/11 generate types; ignores difficulty/quantity/report/video/infographic/ask. mindMap is flat parent hierarchy (2 levels in sample). Report blog-post is best unused blog-body path. DynamicDeckViewer needs registry decks ≠ NLM PDF.
+
+**Lessons:** `quantity`/`difficulty` defaults are sent explicitly as STANDARD/MEDIUM (not “server choose”). Quiz `--language` does not inherit `NOTEBOOKLM_HL`. Interactive mind-map honors `--instructions`; note-backed may not. Local `audio.mp3` in sample pack can be a 25-byte stub.
+
+---
+
+## Prior: NotebookLM → Hygraph → Caspro blog bundle (2026-11-26)
 
 **Goal:** Wire NLM artifacts into Hygraph + blog post detail (Listen→Read→See→Explore→Study→Ask).
 
