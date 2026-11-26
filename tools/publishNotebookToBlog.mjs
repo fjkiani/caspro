@@ -333,17 +333,13 @@ export async function publishNotebookToBlog(opts) {
     slideAsset = await createAssetFromUploadUrl(slidesUploadUrl);
   }
 
-  // Upsert NotebookBundle
-  const bundleData = {
+  // Upsert NotebookBundle — create shell first, then patch JSON fields one-by-one.
+  // Full-pack mutations exceed Hygraph "payload exceeds technical request size limit".
+  const bundleMeta = {
     title: quiz?.title || flashcards?.title || mindMap?.title || title,
     slug,
     notebookId,
     audioUrl: audioUrl || undefined,
-    quizJson: quiz || undefined,
-    flashcardsJson: flashcards || undefined,
-    mindMapJson: mindMap || undefined,
-    dataTableCsv: dataTableCsv || undefined,
-    faqJson: faqJson || undefined,
     ...(slideAsset?.id ? { slidePdf: { connect: { id: slideAsset.id } } } : {}),
   };
 
@@ -368,12 +364,12 @@ export async function publishNotebookToBlog(opts) {
 
   let bundleId;
   if (existingBundle?.id) {
-    const { slug: _slug, ...updateBundle } = bundleData;
+    const { slug: _slug, ...updateMeta } = bundleMeta;
     const updated = await gql(
       `mutation($id: ID!, $data: NotebookBundleUpdateInput!) {
         updateNotebookBundle(where: { id: $id }, data: $data) { id slug }
       }`,
-      { id: existingBundle.id, data: updateBundle },
+      { id: existingBundle.id, data: updateMeta },
     );
     bundleId = updated.updateNotebookBundle.id;
   } else {
@@ -381,9 +377,26 @@ export async function publishNotebookToBlog(opts) {
       `mutation($data: NotebookBundleCreateInput!) {
         createNotebookBundle(data: $data) { id slug }
       }`,
-      { data: bundleData },
+      { data: bundleMeta },
     );
     bundleId = created.createNotebookBundle.id;
+  }
+
+  const fieldPatches = [
+    mindMap ? { mindMapJson: mindMap } : null,
+    dataTableCsv ? { dataTableCsv } : null,
+    faqJson ? { faqJson } : null,
+    quiz ? { quizJson: quiz } : null,
+    flashcards ? { flashcardsJson: flashcards } : null,
+  ].filter(Boolean);
+
+  for (const data of fieldPatches) {
+    await gql(
+      `mutation($id: ID!, $data: NotebookBundleUpdateInput!) {
+        updateNotebookBundle(where: { id: $id }, data: $data) { id }
+      }`,
+      { id: bundleId, data },
+    );
   }
 
   const excerpt =
