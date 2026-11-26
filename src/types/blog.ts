@@ -26,6 +26,21 @@ export interface PostNode {
   categories?: Category[];
 }
 
+/** NotebookLM study pack linked from Post.notebookBundle (Hygraph NotebookBundle model). */
+export interface NotebookBundle {
+  id?: string;
+  title?: string | null;
+  slug?: string | null;
+  notebookId?: string | null;
+  audioUrl?: string | null;
+  quizJson?: unknown;
+  flashcardsJson?: unknown;
+  mindMapJson?: unknown;
+  dataTableCsv?: string | null;
+  faqJson?: unknown;
+  slidePdf?: { id?: string; url: string; fileName?: string | null; mimeType?: string | null } | null;
+}
+
 export interface PostDetail extends PostNode {
   content: {
     raw: any;
@@ -47,4 +62,6 @@ export interface PostDetail extends PostNode {
    * `deckId`, `MediaItem.deckSlug` / `slideDeckSlug`, or linked `Post.deck` (MediaItem).
    */
   slideDeckSlug?: string | null;
+  /** Interactive NotebookLM study content (Listen → Explore → Study → Ask). */
+  notebookBundle?: NotebookBundle | null;
 }

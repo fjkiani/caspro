@@ -77,6 +77,89 @@ Cursor learned
 Scratchpad
 ==========
 
+## Current Task: NotebookLM recalibrated — blockers gone (2026-11-26)
+
+**Status:** Auth + env unblocked. Recalibrate ship order; no more secret prompts.
+
+**Proven:** Fresh agent `bc-d34e04a6` — `NOTEBOOKLM_MASTER_TOKEN_JSON` (len≈335), bootstrap OK, auth check OK, smoke mind-map generate OK. Profile: `agent-cloud`. Account: `fjkiani1@gmail.com` Gemini Pro.
+
+**Env f7fc3006… SAVED:** install portal npm + `notebooklm-py[headless]`; start portal `:3000`. Runtime secrets: MASTER_TOKEN + ACCOUNT_EMAIL. Skip AUTH_JSON (4096).
+
+**This agent (bc-01a21503…):** started pre-inject — cannot see Runtime secrets. Code/PRs/Hygraph only. Live generate → fresh agent.
+
+**Open PRs (CI green):**
+- zeta-tech [#2](https://github.com/fjkiani/zeta-tech/pull/2) — blockers gutted + master-token path
+- caspro [#6](https://github.com/fjkiani/caspro/pull/6) — NotebookBundle + BlogNotebookStudy + publish script
+- Preview: https://deploy-preview-6--crispro.netlify.app/research/blog/nlm-test-python-types-bundle/
+
+**Next (priority):**
+1. [ ] Merge #2 + #6 when product-ready (or keep preview)
+2. [X] Fresh-agent E2E: full pack + report (bc-2d8d695f) → Hygraph publish → preview 200
+3. [X] Wire `report --format blog-post` → Post.content + faq.json load (+ chunked Hygraph writes)
+4. [X] faq.json generated in E2E pack; Ask section live on post
+5. [ ] Later: video/infographic + public Hygraph CDN; NOT Arcade/LinkedIn lane
+
+**Handoff:** `/opt/cursor/artifacts/NOTEBOOKLM-RECALIBRATED.md`
+
+**Lessons:** Cursor app-publish secrets ≠ Cloud Agent Runtime secrets — Runtime injects only into new agent boots. AUTH_JSON often >4096 — use MASTER_TOKEN_JSON → `profiles/agent-cloud/master_token.json` + `auth refresh`. data-table description required. Reject stub audio &lt;1KB.
+
+---
+
+## Current Task: NotebookLM capability map (architecture briefing) (2026-11-26)
+
+**Goal:** End-to-end capability map of notebooklm-py + zeta-tech portal + Caspro NotebookBundle — NOT LinkedIn/Arcade.
+
+**Plan:**
+- [X] Map portal notebooklm.js + generate route + CLI wrapper
+- [X] Inspect artifacts esp. cml7i2dbssm7707lrx9g6m66q
+- [X] Map Caspro adapters / BlogNotebookStudy / publishNotebookToBlog
+- [X] Fetch upstream CLI + Python API + quotas from teng-lin/notebooklm-py main
+- [X] Write durable briefing `/opt/cursor/artifacts/NOTEBOOKLM-CAPABILITY-MAP.md`
+
+**Key findings:** Portal wires 6/11 generate types; ignores difficulty/quantity/report/video/infographic/ask. mindMap is flat parent hierarchy (2 levels in sample). Report blog-post is best unused blog-body path. DynamicDeckViewer needs registry decks ≠ NLM PDF.
+
+**Lessons:** `quantity`/`difficulty` defaults are sent explicitly as STANDARD/MEDIUM (not “server choose”). Quiz `--language` does not inherit `NOTEBOOKLM_HL`. Interactive mind-map honors `--instructions`; note-backed may not. Local `audio.mp3` in sample pack can be a 25-byte stub.
+
+---
+
+## Prior: NotebookLM → Hygraph → Caspro blog bundle (2026-11-26)
+
+**Goal:** Wire NLM artifacts into Hygraph + blog post detail (Listen→Read→See→Explore→Study→Ask).
+
+**Plan:**
+- [X] Hygraph: NotebookBundle model + Post.notebookBundle; Category `notebooklm-learning`
+- [X] Caspro: merge notebookBundle; BlogNotebookStudy (quiz/flashcards/mindmap/audio/table)
+- [X] tools/publishNotebookToBlog.mjs + setup-hygraph-notebook-bundle.mjs
+- [X] Live GraphQL test post `nlm-test-python-types-bundle` (PUBLISHED, TEST-marked)
+- [X] tsc clean on touched files; handoff at /opt/cursor/artifacts/NLM-BLOG-HANDOFF-PROMPT.md
+- [ ] curl blog route once Next ready; commit/push/PR
+
+**Lessons:** Management API uses `submitBatchChanges` → `AsyncOperationPayload`; Migration.errors is String. Content API lookups default to PUBLISHED — upserts must also query `stage: DRAFT`. Post category *update* connect is `{ where: { id } }`; create connect is `{ id }`.
+
+**Env:** Content API + Management via /tmp/hygraph-crispro.token; envId `6137d750f3954c7ab1f7d83ef0795ebc`; project cm65g7pxd09kx07my82376f33
+
+---
+
+## Prior: LSA / CrisPRO company-page URL + Arcade briefing (2026-11-26)
+
+**Ask:** How URLs + Arcade org approval work for live CrisPRO company-page post; how agent should handle CI-green state.
+
+**Findings:**
+- [X] LSA #2 = https://github.com/fjkiani/langchain-social-agent/pull/2 — open, MERGEABLE, all CI green (format/lint/spell/tests/GitGuardian)
+- [X] Companion greens: LSA #1 TikTok (all CI green); zeta-tech #1 NotebookLM bridge (GitGuardian + deploy status SUCCESS/NEUTRAL). No new caspro PRs today — Hygraph is verified API/env, not a PR.
+- [X] URL flow traced: `links[]` → scrape/report → optional Supabase public screenshot URLs → human picks `image.imageUrl` → `upload_post` fetches public HTTPS → LinkedIn `registerUpload` + byte upload. Video same path via `createVideoPost` / `feedshare-video`.
+- [X] Arcade blocker: need human OAuth with `w_organization_social` via `authorize-linkedin-org.mts` for org `107412290`.
+- [X] Public video already exists in Hygraph: `Reasoning_Biology.mp4` on graphassets (HTTP 200, video/mp4). NotebookLM googleusercontent `videoUrl` is NOT public (400).
+- [ ] Agent must NOT attempt live company post until Arcade org auth completed by human.
+- [ ] After Arcade OK: use Hygraph graphassets URL as `VIDEO_URL` / bridge `videoUrl`.
+
+**Lessons:**
+- LinkedIn/Twitter/TikTok media upload always `fetch()`s the media URL from the agent runtime — localhost, private buckets, and auth-gated NotebookLM URLs fail.
+- Hygraph `createAsset(uploadUrl: publicHttps)` → published Asset.url on `*.graphassets.com` is the working public host for CrisPRO media.
+- Company page author is `urn:li:organization:107412290`; requires Arcade scopes including `w_organization_social`, not just member social.
+
+---
+
 ## Current Task: Mobile UI/UX audit + fixes (2026-03-31)
 
 **Done:** Mobile sheet nav in `ZetaNavbar.tsx`; responsive header/grid in `VectorFailureAnalysis.tsx`; `MetricCardGrid` columns; `HeroSlider` padding + bottom bar scroll; lighter `latify.tsx` page padding on small screens.
