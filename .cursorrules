@@ -94,9 +94,9 @@ Scratchpad
 
 **Next (priority):**
 1. [ ] Merge #2 + #6 when product-ready (or keep preview)
-2. [ ] Fresh-agent E2E: full 6-pack generate → publishNotebookToBlog → preview audit
-3. [ ] Wire `report --format blog-post` → Post.content (highest unused ROI)
-4. [ ] `ask --json` → faqJson
+2. [ ] Fresh-agent E2E: full 6-pack + report generate → publish → preview audit (in flight: bc-2d8d695f)
+3. [X] Wire `report --format blog-post` → Post.content + faq.json load
+4. [ ] `ask --json` → faqJson generation in portal/CLI path
 5. [ ] Later: video/infographic + public Hygraph CDN; NOT Arcade/LinkedIn lane
 
 **Handoff:** `/opt/cursor/artifacts/NOTEBOOKLM-RECALIBRATED.md`

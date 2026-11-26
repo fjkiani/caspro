@@ -33,6 +33,9 @@ Migration script: `node tools/setup-hygraph-notebook-bundle.mjs [--dry-run]`
 ## Publish
 
 ```bash
+Artifact folder may include `report.md` (from `generate report --format blog-post`)
+and `faq.json`; report becomes Post.content, faqJson fills the Ask section.
+
 node tools/publishNotebookToBlog.mjs \
   --artifacts /path/to/artifacts/<notebookId> \
   --slug my-post-slug \
