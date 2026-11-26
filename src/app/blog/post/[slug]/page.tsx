@@ -8,7 +8,9 @@ import BlogPostMedia from '@/components/blog/BlogPostMedia';
 import BlogPostHero from '@/components/blog/BlogPostHero';
 import BlogPostBody from '@/components/blog/BlogPostBody';
 import BlogMarkdown from '@/components/blog/BlogMarkdown';
+import BlogNotebookStudy from '@/components/blog/BlogNotebookStudy';
 import { looksLikeMarkdown } from '@/lib/blog/markdown-heuristics';
+import { normalizeNotebookBundle } from '@/lib/blog/notebooklm-adapters';
 import { researchBlogPostPath, RESEARCH_SECTIONS } from '@/lib/blog/paths';
 
 interface PostPageProps {
@@ -187,6 +189,12 @@ export default async function PostDetailPage({ params }: PostPageProps) {
           <div className="not-prose">
             <BlogPostBody content={post.content} />
           </div>
+
+          <BlogNotebookStudy
+            bundle={normalizeNotebookBundle(
+              post.notebookBundle as Record<string, unknown> | null | undefined,
+            )}
+          />
 
           {post.categories && post.categories.length > 0 && (
             <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-700">
