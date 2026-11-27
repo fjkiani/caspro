@@ -1,66 +1,55 @@
 # NotebookLM Infographic + Ask LLM
 
-**Branch:** `cursor/nlm-book-tabs-plan-1195` (PR #7)  
-**Post:** `nlm-python-datatypes-e2e`
+**PR:** https://github.com/fjkiani/caspro/pull/7  
+**Branch:** `cursor/nlm-book-tabs-plan-1195`  
+**Commits:** `b848159` (infographic + ask), `11424b8` (nested mind-map normalize)  
+**Post:** `nlm-python-datatypes-e2e`  
+**Preview:** https://deploy-preview-7--crispro.netlify.app/research/blog/nlm-python-datatypes-e2e/
 
-## Decisions
+## What was produced
 
-| Topic | Choice | Why |
-|---|---|---|
-| Infographic storage | **Derive client-side** from `mindMapJson` + `dataTableCsv` + `faqJson` + flashcards | DRY with existing Hygraph fields; no new `infographicJson` / Asset. NLM `generate infographic` (image) stays optional future upload. |
-| Ask grounding | Caspro `/api/notebook/ask` RAG-lite | Same Gemini → OpenAI → Anthropic pattern as `/api/docs/chat`. Context built from report + FAQ + captions + table + mind map. |
-| Portal NLM ask | **Not required for frontend** | `notebooklm ask` remains publish-side FAQ generation (`generateFaqJson`). Headless auth must not block the book UI. |
+### Infographic (derive-first)
+- Pure synthesizer: `synthesizeNotebookInfographic(bundle)` → hierarchy + metrics + process + key facts
+- Renderer: `BlogNotebookInfographic` — one composition (not 4 stacked widgets)
+- Mind maps: supports flat `{root,nodes}` **and** nested `{name,children}` (live Hygraph)
+- **No new Hygraph field** — reuse `mindMapJson` / `dataTableCsv` / `faqJson` / flashcards
 
-## Architecture
+### Ask (grounded LLM)
+- Client: `BlogNotebookAsk` — chat + FAQ suggestion chips
+- Context: `buildNotebookAskContext` (report + captions + FAQ + CSV + mind map + flashcards)
+- API: `POST /api/notebook/ask/` — Gemini → OpenAI → Anthropic (same pattern as `/api/docs/chat`)
+- Without keys: FAQ fuzzy match (`mode: faq`) or clear empty-state naming env vars
+- No zeta-tech ask proxy (NLM `ask` stays publish-side FAQ)
 
-```
-normalizeNotebookBundle
-        │
-        ├─► synthesizeNotebookInfographic ──► BlogNotebookInfographic (one-pager)
-        │
-        └─► buildNotebookAskContext ──► BlogNotebookAsk ──► POST /api/notebook/ask
-```
+## Local CDP proof (2026-11-27)
 
-Chapters remain **Deck | Infographic | Ask** only. Sticky audio + viewport lock unchanged.
+Against `http://127.0.0.1:3017/research/blog/nlm-python-datatypes-e2e/`:
 
-### Infographic model
+| Check | Result |
+|---|---|
+| chapters Deck \| Infographic \| Ask | ✅ |
+| sticky audio + htmlLock | ✅ |
+| Infographic · derived + 6 themes + metrics + key facts | ✅ |
+| Nested mind hierarchy (Core Workflow → Input/Process/Output, …) | ✅ |
+| Ask chat input + send + suggestions | ✅ |
+| FAQ-grounded answer (`mode: faq`) without LLM keys | ✅ |
 
-`src/lib/blog/synthesize-notebook-infographic.ts` → `NotebookInfographicModel`:
+Screenshots:
+- `/opt/cursor/artifacts/nlm-ia-infographic.png`
+- `/opt/cursor/artifacts/nlm-ia-ask.png`
+- `/opt/cursor/artifacts/nlm-ia-proof.json`
 
-- **Hierarchy** — mind-map root + top-level branch columns (children listed under each)
-- **Metrics** — CSV rows as label/value/detail strip
-- **Process** — flashcards that look like workflow steps (else concept trail)
-- **Key facts** — up to 4 FAQ items integrated into the one-pager
-
-Not a vertical dump of `MindMap` + `DataTable` + `Flashcards` widgets.
-
-### Ask
-
-- Client: `BlogNotebookAsk` — chat input, suggestion chips from FAQ, request/response (no streaming).
-- Server: stuffs notebook context into the system prompt; answers only from that context.
-- **No LLM keys:** FAQ fuzzy match if possible; otherwise clear empty-state naming `GEMINI_API_KEY` / `OPENAI_API_KEY` / `ANTHROPIC_API_KEY`.
-
-## Env vars
+## Env vars (preview / prod)
 
 | Var | Role |
 |---|---|
-| `GEMINI_API_KEY` | Preferred (same as docs chat) |
+| `GEMINI_API_KEY` | Preferred |
 | `OPENAI_API_KEY` | Fallback |
 | `ANTHROPIC_API_KEY` | Fallback |
 
-Configure on Netlify / Vercel for preview + production. Local `.env.local` optional.
-
-## Files
-
-- `src/lib/blog/synthesize-notebook-infographic.ts`
-- `src/lib/blog/notebook-ask-context.ts`
-- `src/components/blog/BlogNotebookInfographic.tsx` (rewritten)
-- `src/components/blog/BlogNotebookAsk.tsx` (new)
-- `src/app/api/notebook/ask/route.ts` (new)
-- `src/components/blog/BlogNotebookStudy.tsx` (wires both)
-
 ## Gaps
 
-- NotebookLM Studio **infographic image** generate type not wired in portal `TYPE_TO_CLI` — image Asset path deferred.
-- No streaming responses yet.
-- No zeta-tech `/api/nlm/ask` proxy (frontend does not need headless NotebookLM for chat).
+- NotebookLM Studio **infographic image** generate type not wired in portal
+- No streaming Ask responses
+- Flashcards in Hygraph sometimes store `{text}` objects — sideText hardened; full re-publish optional
+- Netlify DP7 rebuild in progress after `11424b8`

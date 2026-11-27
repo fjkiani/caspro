@@ -89,9 +89,16 @@ Scratchpad
 
 **Progress:**
 - [X] Explore adapters, Infographic dump, Ask FAQ-only, docs/chat LLM, portal ask
-- [ ] `synthesizeNotebookInfographic` + rewrite renderer as true one-pager
-- [ ] `buildNotebookAskContext` + `/api/notebook/ask` + `BlogNotebookAsk`
-- [ ] Wire Study shell; docs; commit/push; DP7 proof
+- [X] `synthesizeNotebookInfographic` + rewrite renderer as true one-pager
+- [X] Nested mind-map normalize (live Hygraph `{name,children}`)
+- [X] `buildNotebookAskContext` + `/api/notebook/ask` + `BlogNotebookAsk`
+- [X] Wire Study shell; docs; commit/push; local CDP proof
+- [ ] Netlify DP7 green on latest commit (rebuild in flight)
+
+**Lessons:**
+- Live Hygraph mind maps are nested `{name,children}` — always normalize before rendering.
+- Ask fetch must use trailing slash (`/api/notebook/ask/`) with `trailingSlash: true`.
+- Without LLM keys, FAQ fuzzy match is a real degrade path — not a stub UI.
 
 ---
 
