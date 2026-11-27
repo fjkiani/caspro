@@ -92,7 +92,7 @@ export default function BlogNotebookAsk({
         .slice(-8)
         .map((m) => ({ role: m.role, content: m.content }));
 
-      const res = await fetch('/api/notebook/ask', {
+      const res = await fetch('/api/notebook/ask/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

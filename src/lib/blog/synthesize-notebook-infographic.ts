@@ -7,6 +7,7 @@
  */
 
 import {
+  normalizeMindMapPayload,
   parseCsvTable,
   parseFaqItems,
   type FaqItem,
@@ -42,8 +43,9 @@ function mindBranches(mindMap: NlmMindMapPayload | null | undefined): {
   root: string;
   branches: InfographicBranch[];
 } {
-  const nodes = mindMap?.nodes || [];
-  const root = mindMap?.root || mindMap?.title || 'Overview';
+  const normalized = normalizeMindMapPayload(mindMap) || mindMap;
+  const nodes = normalized?.nodes || [];
+  const root = normalized?.root || normalized?.title || normalized?.name || 'Overview';
   if (!nodes.length) return { root, branches: [] };
 
   const top = nodes.filter((n) => !n.parent);
@@ -100,13 +102,23 @@ function metricsFromCsv(csv: string | null | undefined): InfographicMetric[] {
   return out;
 }
 
+function sideText(value: unknown): string {
+  if (typeof value === 'string') return value.trim();
+  if (value && typeof value === 'object') {
+    const o = value as Record<string, unknown>;
+    if (typeof o.text === 'string') return o.text.trim();
+    if (typeof o.content === 'string') return o.content.trim();
+  }
+  return '';
+}
+
 function processFromFlashcards(bundle: NotebookBundleData): string[] {
   const cards = bundle.flashcardsJson?.cards || [];
   // Prefer short "definition" style backs that look like steps or types
   const steps: string[] = [];
   for (const c of cards) {
-    const front = (c.front || '').trim();
-    const back = (c.back || '').trim();
+    const front = sideText(c.front);
+    const back = sideText(c.back);
     if (!front || !back) continue;
     // Heuristic: process-like cards mention → or workflow keywords
     if (/→|->|workflow|process|step|input|output/i.test(`${front} ${back}`)) {
@@ -121,7 +133,7 @@ function processFromFlashcards(bundle: NotebookBundleData): string[] {
   // Fallback: first N flashcard fronts as concept trail
   return cards
     .slice(0, 5)
-    .map((c) => (c.front || '').replace(/\?$/, '').trim())
+    .map((c) => sideText(c.front).replace(/\?$/, '').trim())
     .filter((s) => s.length > 0 && s.length <= 64);
 }
 

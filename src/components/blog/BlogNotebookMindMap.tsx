@@ -1,6 +1,9 @@
 'use client';
 
-import type { NlmMindMapPayload } from '@/lib/blog/notebooklm-adapters';
+import {
+  normalizeMindMapPayload,
+  type NlmMindMapPayload,
+} from '@/lib/blog/notebooklm-adapters';
 
 interface BlogNotebookMindMapProps {
   mindMap: NlmMindMapPayload;
@@ -51,16 +54,21 @@ function TreeNode({
 }
 
 export default function BlogNotebookMindMap({ mindMap }: BlogNotebookMindMapProps) {
-  const nodes = mindMap.nodes || [];
-  if (!nodes.length && !mindMap.root) return null;
+  const normalized = normalizeMindMapPayload(mindMap) || mindMap;
+  const nodes = normalized.nodes || [];
+  if (!nodes.length && !normalized.root && !normalized.name) return null;
 
   return (
     <div className="space-y-3">
       <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-        {mindMap.title || 'Mind map'}
+        {normalized.title || normalized.name || 'Mind map'}
       </h3>
       <ul className="space-y-2">
-        <TreeNode label={mindMap.root || 'Root'} nodes={nodes} depth={0} />
+        <TreeNode
+          label={normalized.root || normalized.name || 'Root'}
+          nodes={nodes}
+          depth={0}
+        />
       </ul>
     </div>
   );

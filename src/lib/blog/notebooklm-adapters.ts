@@ -39,10 +39,60 @@ export interface NlmMindMapNode {
   parent?: string;
 }
 
+/** Nested NotebookLM / Hygraph mind-map shape (name + children). */
+export interface NlmMindMapNestedNode {
+  name?: string;
+  label?: string;
+  children?: NlmMindMapNestedNode[];
+}
+
 export interface NlmMindMapPayload {
   title?: string;
   root?: string;
+  /** Flat parent-pointer nodes (portal sample packs) */
   nodes?: NlmMindMapNode[];
+  /** Nested tree (live Hygraph E2E pack) */
+  name?: string;
+  children?: NlmMindMapNestedNode[];
+}
+
+/** Normalize flat or nested mind-map JSON into { title, root, nodes }. */
+export function normalizeMindMapPayload(
+  raw: NlmMindMapPayload | null | undefined,
+): NlmMindMapPayload | null {
+  if (!raw || typeof raw !== 'object') return null;
+  if (Array.isArray(raw.nodes) && raw.nodes.length) {
+    return {
+      title: raw.title,
+      root: raw.root || raw.title || raw.name,
+      nodes: raw.nodes,
+    };
+  }
+  // Nested: { name, children: [{ name, children }] }
+  if (Array.isArray(raw.children) && (raw.name || raw.title || raw.root)) {
+    const rootLabel = raw.root || raw.name || raw.title || 'Root';
+    const nodes: NlmMindMapNode[] = [];
+    let seq = 0;
+    const walk = (list: NlmMindMapNestedNode[], parentId?: string) => {
+      for (const child of list) {
+        if (!child || typeof child !== 'object') continue;
+        const label = (child.name || child.label || '').trim();
+        if (!label) continue;
+        seq += 1;
+        const id = `n${seq}`;
+        nodes.push({ id, label, parent: parentId });
+        if (Array.isArray(child.children) && child.children.length) {
+          walk(child.children, id);
+        }
+      }
+    };
+    walk(raw.children);
+    return { title: raw.title || raw.name, root: rootLabel, nodes };
+  }
+  if (raw.root || raw.title || raw.name) {
+    return { title: raw.title || raw.name, root: raw.root || raw.name || raw.title, nodes: [] };
+  }
+  return null;
 }
 
 export interface NotebookBundleData {
@@ -83,7 +133,7 @@ export function normalizeNotebookBundle(raw: Record<string, unknown> | null | un
     audioUrl: (raw.audioUrl as string) ?? null,
     quizJson: parseMaybeJson<NlmQuizPayload>(raw.quizJson),
     flashcardsJson: parseMaybeJson<NlmFlashcardsPayload>(raw.flashcardsJson),
-    mindMapJson: parseMaybeJson<NlmMindMapPayload>(raw.mindMapJson),
+    mindMapJson: normalizeMindMapPayload(parseMaybeJson<NlmMindMapPayload>(raw.mindMapJson)),
     dataTableCsv: typeof raw.dataTableCsv === 'string' ? raw.dataTableCsv : null,
     faqJson: raw.faqJson ?? null,
     slidePdf: (raw.slidePdf as NotebookBundleData['slidePdf']) ?? null,
@@ -122,20 +172,35 @@ export function nlmQuizToQuestions(payload: NlmQuizPayload | null | undefined): 
   });
 }
 
+function flashcardSideText(value: unknown): string {
+  if (typeof value === 'string') return value;
+  if (value && typeof value === 'object') {
+    const o = value as Record<string, unknown>;
+    if (typeof o.text === 'string') return o.text;
+    if (typeof o.content === 'string') return o.content;
+    if (typeof o.markdown === 'string') return o.markdown;
+  }
+  return '';
+}
+
 /** Map flashcards.json → UniversalCard flip cards. */
 export function nlmFlashcardsToCards(payload: NlmFlashcardsPayload | null | undefined): UniversalCard[] {
   const cards = payload?.cards;
   if (!Array.isArray(cards)) return [];
-  return cards.map((c, index) => ({
-    id: `nlm-fc-${index + 1}`,
-    title: `Card ${index + 1}`,
-    type: 'flip' as const,
-    color: 'blue',
-    content: {
-      front: c.front,
-      back: c.back,
-    },
-  }));
+  return cards
+    .map((c, index) => {
+      const front = flashcardSideText(c?.front);
+      const back = flashcardSideText(c?.back);
+      if (!front && !back) return null;
+      return {
+        id: `nlm-fc-${index + 1}`,
+        title: `Card ${index + 1}`,
+        type: 'flip' as const,
+        color: 'blue',
+        content: { front, back },
+      } satisfies UniversalCard;
+    })
+    .filter((c): c is UniversalCard => Boolean(c));
 }
 
 /** Map mindMap.json → KnowledgeGraph nodes/edges. */
