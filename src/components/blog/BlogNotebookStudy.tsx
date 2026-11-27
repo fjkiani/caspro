@@ -15,7 +15,9 @@ import {
 } from '@/lib/blog/pair-slides-with-captions';
 import BlogPdfPager from './BlogPdfPager';
 import BlogNotebookInfographic from './BlogNotebookInfographic';
+import BlogNotebookAsk from './BlogNotebookAsk';
 import BlogPostBody, { type BlogPostBodyContent } from './BlogPostBody';
+import { synthesizeNotebookInfographic } from '@/lib/blog/synthesize-notebook-infographic';
 import { RESEARCH_SECTIONS } from '@/lib/blog/paths';
 
 export interface BlogNotebookStudyProps {
@@ -57,15 +59,17 @@ export default function BlogNotebookStudy({
   const faqs = parseFaqItems(bundle?.faqJson);
   const hasAudio = Boolean(bundle?.audioUrl?.trim());
   const hasPdf = Boolean(bundle?.slidePdf?.url);
-  const hasMind = Boolean(bundle?.mindMapJson?.nodes?.length || bundle?.mindMapJson?.root);
-  const hasTable = Boolean(bundle?.dataTableCsv?.trim());
-  const hasFlash = Boolean(bundle?.flashcardsJson?.cards?.length);
   const hasRead = Boolean(readContent?.raw || readContent?.markdown || readContent?.text);
-  const hasAsk = faqs.length > 0;
-  const hasInfographic = hasMind || hasTable || hasFlash || hasAsk;
   const hasDeck = hasPdf || hasRead;
   const hasAny =
     notebookBundleHasStudyContent(bundle) || hasRead;
+  // Ask is available whenever we have a bundle with grounding content (report/FAQ/etc.)
+  const hasAsk = Boolean(bundle && hasAny);
+  const infographicModel = useMemo(
+    () => (bundle ? synthesizeNotebookInfographic(bundle) : null),
+    [bundle],
+  );
+  const hasInfographic = Boolean(infographicModel);
 
   const available = useMemo(
     () =>
@@ -249,22 +253,25 @@ export default function BlogNotebookStudy({
           </div>
         ) : null}
 
-        {active === 'ask' ? (
-          <dl className="space-y-3 px-4 py-4 pb-8 sm:px-6">
-            {faqs.map((item, i) => (
-              <div key={`${item.question}-${i}`} className="border-b border-slate-200 pb-3 dark:border-slate-700">
-                <dt className="font-semibold text-slate-900 dark:text-slate-100">{item.question}</dt>
-                <dd className="mt-2 text-sm text-slate-600 dark:text-slate-300">{item.answer}</dd>
-              </div>
-            ))}
-          </dl>
+        {active === 'ask' && bundle ? (
+          <BlogNotebookAsk
+            bundle={bundle}
+            reportMarkdown={readContent?.markdown}
+            reportText={readContent?.text}
+            reportRaw={readContent?.raw}
+            captions={captions}
+          />
         ) : null}
       </div>
 
       <footer className="shrink-0 border-t border-slate-200 px-4 py-1.5 text-center text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-400 sm:px-6">
         {active === 'deck' && hasPdf
           ? '← → change slide · audio stays on top'
-          : 'Deck pairs each slide with its explanation'}
+          : active === 'ask'
+            ? 'Answers grounded in this notebook’s report, FAQ, and captions'
+            : active === 'infographic'
+              ? 'One-pager derived from mind map · metrics · FAQ'
+              : 'Deck pairs each slide with its explanation'}
       </footer>
     </section>
   );

@@ -77,35 +77,29 @@ Cursor learned
 Scratchpad
 ==========
 
-## Current Task: NLM DRY PDF+caption shell (2026-11-27)
+## Current Task: NLM Infographic produce/render + Ask LLM (2026-11-27)
 
-**User intent:** Embed NotebookLM context under each PDF page (not siloed Read/See tabs); sticky audio on top; gut quiz; infographic one-pager; DRY.
+**User intent:** Real one-pager infographic (not 4-widget dump) + grounded LLM Ask about this notebook.
 
 **Branch:** continue PR #7 `cursor/nlm-book-tabs-plan-1195`
 
+**Decisions:**
+- Infographic: **derive-first** via `synthesizeNotebookInfographic(bundle)` from mindMapJson + dataTableCsv + FAQ + flashcards. No new Hygraph field. NLM `generate infographic` image remains optional future Asset.
+- Ask: caspro `/api/notebook/ask` RAG-lite (report + FAQ + captions + table) using same Gemini/OpenAI/Anthropic pattern as `/api/docs/chat`. No zeta-tech ask proxy required for frontend (NLM `ask` stays publish-side FAQ).
+
 **Progress:**
-- [X] `pairSlidesWithCaptions` pure helper
-- [X] Extend `BlogPdfPager` for caption under page
-- [X] Rewrite `BlogNotebookStudy`: sticky audio + Deck | Infographic | Ask
-- [X] `BlogNotebookInfographic` one-pager (reuse mind/FAQ/table/flashcards)
-- [X] Gut quiz from this surface
-- [X] Commit/push PR #7; DP7 proof; `NLM-DRY-PDF-CAPTION.md`
+- [X] Explore adapters, Infographic dump, Ask FAQ-only, docs/chat LLM, portal ask
+- [ ] `synthesizeNotebookInfographic` + rewrite renderer as true one-pager
+- [ ] `buildNotebookAskContext` + `/api/notebook/ask` + `BlogNotebookAsk`
+- [ ] Wire Study shell; docs; commit/push; DP7 proof
 
-**Proven DP7 CDP:** audio sticky; Deck+caption; no quiz; no Listen/See silo; htmlLock; screenshots in `/opt/cursor/artifacts/nlm-dry-*.png`
+---
 
-**Lessons:**
-- Caption pairing belongs in a pure helper (`pairSlidesWithCaptions`), not in JSX.
-- Sticky audio must sit outside chapter panes — never a Listen-only replacement view.
-- `gh pr edit/comment` may be read-only for this integration; push to PR branch still updates PR #7.
+## Prior: NLM DRY PDF+caption shell (2026-11-27)
 
-**Shell:**
-```
-sticky AUDIO
-thin: Deck | Infographic | Ask
-MAIN: PDF page N + caption underneath (pager)
-```
+**Done:** sticky audio + Deck|Infographic|Ask; `pairSlidesWithCaptions`; quiz gutted; DP7 proof.
 
-**Caption pairing:** report sections → FAQ → flashcards → mindmap labels; 1:1 if counts match else slice by pageCount.
+**Lessons:** Caption pairing in pure helper; sticky audio outside chapters; `gh pr edit` may be read-only — push updates PR #7.
 
 ---
 
