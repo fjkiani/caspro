@@ -88,7 +88,7 @@ Scratchpad
 - [X] Upload audio.mp3 + slides.pdf via Hygraph createAsset→S3; publish URLs (HTTP 200)
 - [X] Fix document scroll: fixed shell + `nlm-book-lock` + hide ResearchChrome + drop min-h stack
 - [X] Publisher auto-uploads local audio/slides from `--artifacts`
-- [ ] Push PR #7 branch; re-check Netlify preview after deploy
+- [X] Push PR #7 branch; CDP proof on DP7 (no doc scroll; Listen 22:04; See 13 slides)
 
 **Lessons:**
 - Book shell `h-[calc(100dvh-3.5rem)]` is useless if layout adds `min-h-[100dvh]` + ResearchChrome + page chrome — document still scrolls. Use `fixed` under nav + lock html/body.
