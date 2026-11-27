@@ -88,7 +88,7 @@ Scratchpad
 - [X] Locate reusable manuscript/tabs/swipe UI (`BlogPdfPager`, `DeckViewerPage` swipe, `TabbedContent`)
 - [X] Design tab UX (Read/Listen/See/Explore/Study/Ask) + E2E on-demand workflow
 - [X] Write P0/P1/P2 plan with real file paths + risks
-- [ ] P0: Refactor `BlogNotebookStudy` → viewport book shell; See → `BlogPdfPager`
+- [X] P0: Refactor `BlogNotebookStudy` → viewport book shell; See → `BlogPdfPager` (PR #7)
 - [ ] P1: Portal `blog-pack` API + public asset URLs + publish hook
 - [ ] P2: video/infographic schema + CDN hardening
 
