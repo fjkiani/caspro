@@ -62,4 +62,14 @@ Preview HTML already contained `100dvh-3.5rem` — this was not “old build onl
 
 - [x] GraphQL PUBLISHED: `audioUrl` + `slidePdf.url` non-null
 - [x] HEAD/GET media URLs → HTTP 200
-- [ ] After Netlify redeploy: tabs show Listen + See; document does not scroll; pane scrolls on Read/Study
+- [x] Netlify DP7 redeployed (`9968268`) — JS chunk contains `nlm-book-lock` + `inset-x-0 top-14 bottom-0`
+- [x] CDP metrics on DP7 `#read`: `hasLock=true`, `htmlOverflow=hidden`, `canScrollDoc=false`, tabs = Read/Listen/See/Explore/Study/Ask
+- [x] `#listen`: audio `readyState=4`, duration ≈ 1324s (22:04), graphassets src
+- [x] `#see`: PDF canvas rendered (`hasCanvas=true`, loading false), `canScrollDoc=false`
+- Screenshots: `/opt/cursor/artifacts/nlm-book-{read,listen,see}.png`
+
+## PR / preview
+
+- Caspro PR: https://github.com/fjkiani/caspro/pull/7 (branch `cursor/nlm-book-tabs-plan-1195`)
+- Audit preview: https://deploy-preview-7--crispro.netlify.app/research/blog/nlm-python-datatypes-e2e/
+- No zeta-tech PR needed (graphassets host)
