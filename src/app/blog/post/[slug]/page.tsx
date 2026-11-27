@@ -10,7 +10,10 @@ import BlogPostBody from '@/components/blog/BlogPostBody';
 import BlogMarkdown from '@/components/blog/BlogMarkdown';
 import BlogNotebookStudy from '@/components/blog/BlogNotebookStudy';
 import { looksLikeMarkdown } from '@/lib/blog/markdown-heuristics';
-import { normalizeNotebookBundle } from '@/lib/blog/notebooklm-adapters';
+import {
+  normalizeNotebookBundle,
+  notebookBundleHasStudyContent,
+} from '@/lib/blog/notebooklm-adapters';
 import { researchBlogPostPath, RESEARCH_SECTIONS } from '@/lib/blog/paths';
 
 interface PostPageProps {
@@ -132,6 +135,46 @@ export default async function PostDetailPage({ params }: PostPageProps) {
   const matchedCategory =
     nextPost?.categories?.find((c) => categorySlugs.includes(c.slug))?.name ?? null;
 
+  const notebookBundle = normalizeNotebookBundle(
+    post.notebookBundle as Record<string, unknown> | null | undefined,
+  );
+  const isNotebookBook = notebookBundleHasStudyContent(notebookBundle);
+
+  // NotebookLM posts: viewport book shell (tabs / swipe) — no stacked page scroll
+  if (isNotebookBook) {
+    return (
+      <main className="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100">
+        <div className="border-b border-slate-200 px-4 py-2 dark:border-slate-700">
+          <div className="mx-auto flex max-w-5xl items-center justify-between gap-3">
+            <Link
+              href={RESEARCH_SECTIONS.blog}
+              className="inline-flex items-center text-sm font-medium text-primary hover:underline"
+            >
+              <ChevronLeft className="mr-1 h-4 w-4" />
+              Blog
+            </Link>
+            <p className="truncate text-xs text-slate-500 dark:text-slate-400">
+              {post.author?.name || 'CrisPRO'} ·{' '}
+              {new Date(post.createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })}
+            </p>
+          </div>
+        </div>
+        <div className="mx-auto max-w-5xl sm:px-4 sm:pt-3">
+          <BlogNotebookStudy
+            bundle={notebookBundle}
+            readContent={post.content}
+            title={post.title}
+            bookMode
+          />
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="pt-4 pb-16 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">
       <div className="container mx-auto px-4 max-w-4xl">
@@ -189,12 +232,6 @@ export default async function PostDetailPage({ params }: PostPageProps) {
           <div className="not-prose">
             <BlogPostBody content={post.content} />
           </div>
-
-          <BlogNotebookStudy
-            bundle={normalizeNotebookBundle(
-              post.notebookBundle as Record<string, unknown> | null | undefined,
-            )}
-          />
 
           {post.categories && post.categories.length > 0 && (
             <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-700">

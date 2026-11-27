@@ -1,5 +1,7 @@
 'use client';
 
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import {
   nlmFlashcardsToCards,
   nlmQuizToQuestions,
@@ -11,22 +13,42 @@ import BlogNotebookQuiz from './BlogNotebookQuiz';
 import BlogNotebookFlashcards from './BlogNotebookFlashcards';
 import BlogNotebookMindMap from './BlogNotebookMindMap';
 import BlogNotebookDataTable from './BlogNotebookDataTable';
+import BlogPdfPager from './BlogPdfPager';
+import BlogPostBody, { type BlogPostBodyContent } from './BlogPostBody';
 
-interface BlogNotebookStudyProps {
+export interface BlogNotebookStudyProps {
   bundle: NotebookBundleData | null | undefined;
+  /** Post body (report.md → Slate) for the Read tab */
+  readContent?: BlogPostBodyContent | null;
+  title?: string;
+  /** Compact chrome: fill remaining viewport (book mode) */
+  bookMode?: boolean;
 }
 
-const SECTIONS = [
+type TabId = 'read' | 'listen' | 'see' | 'explore' | 'study' | 'ask';
+
+const TAB_META: { id: TabId; label: string }[] = [
+  { id: 'read', label: 'Read' },
   { id: 'listen', label: 'Listen' },
   { id: 'see', label: 'See' },
   { id: 'explore', label: 'Explore' },
   { id: 'study', label: 'Study' },
   { id: 'ask', label: 'Ask' },
-] as const;
+];
 
-export default function BlogNotebookStudy({ bundle }: BlogNotebookStudyProps) {
-  if (!notebookBundleHasStudyContent(bundle)) return null;
+function tabFromHash(): TabId | null {
+  if (typeof window === 'undefined') return null;
+  const raw = window.location.hash.replace(/^#/, '').replace(/^nlm-/, '');
+  if (TAB_META.some((t) => t.id === raw)) return raw as TabId;
+  return null;
+}
 
+export default function BlogNotebookStudy({
+  bundle,
+  readContent = null,
+  title,
+  bookMode = true,
+}: BlogNotebookStudyProps) {
   const quizQuestions = nlmQuizToQuestions(bundle?.quizJson);
   const flashcards = nlmFlashcardsToCards(bundle?.flashcardsJson);
   const faqs = parseFaqItems(bundle?.faqJson);
@@ -35,118 +57,230 @@ export default function BlogNotebookStudy({ bundle }: BlogNotebookStudyProps) {
   const hasMind = Boolean(bundle?.mindMapJson?.nodes?.length || bundle?.mindMapJson?.root);
   const hasTable = Boolean(bundle?.dataTableCsv?.trim());
   const hasStudy = quizQuestions.length > 0 || flashcards.length > 0;
+  const hasRead = Boolean(readContent?.raw || readContent?.markdown || readContent?.text);
+  const hasAsk = faqs.length > 0;
+  const hasExplore = hasMind || hasTable;
+  const hasAny =
+    notebookBundleHasStudyContent(bundle) || hasRead;
 
-  const available = SECTIONS.filter((s) => {
-    if (s.id === 'listen') return hasAudio;
-    if (s.id === 'see') return hasPdf;
-    if (s.id === 'explore') return hasMind || hasTable;
-    if (s.id === 'study') return hasStudy;
-    if (s.id === 'ask') return faqs.length > 0;
-    return false;
-  });
+  const available = useMemo(
+    () =>
+      TAB_META.filter((s) => {
+        if (s.id === 'read') return hasRead;
+        if (s.id === 'listen') return hasAudio;
+        if (s.id === 'see') return hasPdf;
+        if (s.id === 'explore') return hasExplore;
+        if (s.id === 'study') return hasStudy;
+        if (s.id === 'ask') return hasAsk;
+        return false;
+      }),
+    [hasRead, hasAudio, hasPdf, hasExplore, hasStudy, hasAsk],
+  );
+
+  const [active, setActive] = useState<TabId>('read');
+  const touchStartX = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (!available.length) return;
+    const fromHash = tabFromHash();
+    if (fromHash && available.some((t) => t.id === fromHash)) {
+      setActive(fromHash);
+      return;
+    }
+    setActive((prev) =>
+      available.some((t) => t.id === prev) ? prev : available[0].id,
+    );
+  }, [available]);
+
+  const selectTab = useCallback((id: TabId) => {
+    setActive(id);
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `#${id}`);
+    }
+  }, []);
+
+  const goRelative = useCallback(
+    (delta: number) => {
+      const idx = available.findIndex((t) => t.id === active);
+      if (idx < 0) return;
+      const next = available[idx + delta];
+      if (next) selectTab(next.id);
+    },
+    [available, active, selectTab],
+  );
+
+  useEffect(() => {
+    if (!hasAny) return;
+    const onKey = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goRelative(-1);
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goRelative(1);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [goRelative, hasAny]);
+
+  if (!hasAny || !available.length) return null;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.changedTouches[0]?.clientX ?? null;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const start = touchStartX.current;
+    touchStartX.current = null;
+    if (start == null) return;
+    const end = e.changedTouches[0]?.clientX ?? start;
+    const dx = end - start;
+    if (Math.abs(dx) < 56) return;
+    if (dx < 0) goRelative(1);
+    else goRelative(-1);
+  };
+
+  const pane: Record<TabId, ReactNode> = {
+    read: hasRead ? (
+      <div className="prose prose-slate dark:prose-invert max-w-none px-1 pb-8">
+        <BlogPostBody content={readContent} />
+      </div>
+    ) : null,
+    listen: hasAudio ? (
+      <div className="flex h-full flex-col items-center justify-center gap-6 px-4">
+        <p className="text-sm text-slate-500 dark:text-slate-400">Audio overview</p>
+        <audio controls className="w-full max-w-xl" preload="metadata" src={bundle!.audioUrl!}>
+          <track kind="captions" />
+        </audio>
+      </div>
+    ) : null,
+    see: hasPdf ? (
+      <div className="flex h-full min-h-[50vh] flex-col">
+        <BlogPdfPager
+          url={bundle!.slidePdf!.url}
+          title={bundle?.slidePdf?.fileName || bundle?.title || 'Slides'}
+          className="min-h-[50vh] flex-1"
+        />
+      </div>
+    ) : null,
+    explore: hasExplore ? (
+      <div className="space-y-8 px-1 pb-8">
+        {hasMind && bundle?.mindMapJson ? (
+          <BlogNotebookMindMap mindMap={bundle.mindMapJson} />
+        ) : null}
+        {hasTable && bundle?.dataTableCsv ? (
+          <BlogNotebookDataTable csv={bundle.dataTableCsv} />
+        ) : null}
+      </div>
+    ) : null,
+    study: hasStudy ? (
+      <div className="space-y-10 px-1 pb-8">
+        {quizQuestions.length ? (
+          <BlogNotebookQuiz
+            questions={quizQuestions}
+            title={bundle?.quizJson?.title || 'Study quiz'}
+          />
+        ) : null}
+        {flashcards.length ? (
+          <BlogNotebookFlashcards
+            cards={flashcards}
+            title={bundle?.flashcardsJson?.title || 'Flashcards'}
+          />
+        ) : null}
+      </div>
+    ) : null,
+    ask: hasAsk ? (
+      <dl className="space-y-3 px-1 pb-8">
+        {faqs.map((item, i) => (
+          <div
+            key={`${item.question}-${i}`}
+            className="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900/60"
+          >
+            <dt className="font-semibold text-slate-900 dark:text-slate-100">{item.question}</dt>
+            <dd className="mt-2 text-sm text-slate-600 dark:text-slate-300">{item.answer}</dd>
+          </div>
+        ))}
+      </dl>
+    ) : null,
+  };
+
+  const shellClass = bookMode
+    ? 'not-prose flex h-[calc(100dvh-3.5rem)] flex-col overflow-hidden bg-slate-50 dark:bg-slate-950 sm:rounded-2xl sm:border sm:border-slate-200 dark:sm:border-slate-700'
+    : 'not-prose my-12 flex min-h-[70vh] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/60 dark:border-slate-700 dark:bg-slate-900/40';
+
+  const activeIdx = available.findIndex((t) => t.id === active);
 
   return (
-    <section className="not-prose my-12 space-y-10 rounded-2xl border border-slate-200 bg-slate-50/60 p-5 dark:border-slate-700 dark:bg-slate-900/40 sm:p-8">
-      <header className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700 dark:text-sky-300">
-          Notebook study pack
-        </p>
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-50">
-          {bundle?.title || 'Interactive study'}
-        </h2>
-        <p className="max-w-2xl text-sm text-slate-600 dark:text-slate-400">
-          Listen → See → Explore → Study → Ask. Content generated from NotebookLM and published
-          through Hygraph.
-        </p>
-        {available.length ? (
-          <nav className="flex flex-wrap gap-2 pt-2">
-            {available.map((s) => (
-              <a
+    <section className={shellClass}>
+      <header className="shrink-0 border-b border-slate-200 px-4 py-3 dark:border-slate-700 sm:px-6">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-sky-700 dark:text-sky-300">
+              Notebook study
+            </p>
+            <h2 className="truncate text-lg font-bold text-slate-900 dark:text-slate-50 sm:text-xl">
+              {title || bundle?.title || 'Interactive study'}
+            </h2>
+          </div>
+          <div className="flex shrink-0 items-center gap-1">
+            <button
+              type="button"
+              aria-label="Previous chapter"
+              disabled={activeIdx <= 0}
+              onClick={() => goRelative(-1)}
+              className="rounded-lg border border-slate-300 p-2 text-slate-600 disabled:opacity-30 dark:border-slate-600 dark:text-slate-300"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next chapter"
+              disabled={activeIdx < 0 || activeIdx >= available.length - 1}
+              onClick={() => goRelative(1)}
+              className="rounded-lg border border-slate-300 p-2 text-slate-600 disabled:opacity-30 dark:border-slate-600 dark:text-slate-300"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+        <nav className="mt-3 flex gap-1 overflow-x-auto pb-1" aria-label="Study chapters">
+          {available.map((s) => {
+            const isOn = s.id === active;
+            return (
+              <button
                 key={s.id}
-                href={`#nlm-${s.id}`}
-                className="rounded-full border border-slate-300 px-3 py-1 text-xs font-medium text-slate-700 hover:border-sky-500 hover:text-sky-700 dark:border-slate-600 dark:text-slate-300"
+                type="button"
+                onClick={() => selectTab(s.id)}
+                className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                  isOn
+                    ? 'bg-sky-600 text-white shadow'
+                    : 'border border-slate-300 text-slate-700 hover:border-sky-500 dark:border-slate-600 dark:text-slate-300'
+                }`}
+                aria-current={isOn ? 'page' : undefined}
               >
                 {s.label}
-              </a>
-            ))}
-          </nav>
-        ) : null}
+              </button>
+            );
+          })}
+        </nav>
       </header>
 
-      {hasAudio ? (
-        <div id="nlm-listen" className="space-y-3 scroll-mt-24">
-          <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Listen</h3>
-          <audio controls className="w-full" preload="metadata" src={bundle!.audioUrl!}>
-            <track kind="captions" />
-          </audio>
-        </div>
-      ) : null}
+      <div
+        className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-4 sm:px-6"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        role="tabpanel"
+        id={`nlm-${active}`}
+      >
+        {pane[active]}
+      </div>
 
-      {hasPdf ? (
-        <div id="nlm-see" className="space-y-3 scroll-mt-24">
-          <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">See</h3>
-          <div className="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700">
-            <iframe
-              title={bundle?.slidePdf?.fileName || 'Slide deck PDF'}
-              src={bundle!.slidePdf!.url}
-              className="h-[70vh] w-full bg-white"
-            />
-          </div>
-          <a
-            href={bundle!.slidePdf!.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-medium text-sky-700 hover:underline dark:text-sky-300"
-          >
-            Open PDF
-          </a>
-        </div>
-      ) : null}
-
-      {hasMind || hasTable ? (
-        <div id="nlm-explore" className="space-y-8 scroll-mt-24">
-          {hasMind && bundle?.mindMapJson ? (
-            <BlogNotebookMindMap mindMap={bundle.mindMapJson} />
-          ) : null}
-          {hasTable && bundle?.dataTableCsv ? (
-            <BlogNotebookDataTable csv={bundle.dataTableCsv} />
-          ) : null}
-        </div>
-      ) : null}
-
-      {hasStudy ? (
-        <div id="nlm-study" className="space-y-10 scroll-mt-24">
-          {quizQuestions.length ? (
-            <BlogNotebookQuiz
-              questions={quizQuestions}
-              title={bundle?.quizJson?.title || 'Study quiz'}
-            />
-          ) : null}
-          {flashcards.length ? (
-            <BlogNotebookFlashcards
-              cards={flashcards}
-              title={bundle?.flashcardsJson?.title || 'Flashcards'}
-            />
-          ) : null}
-        </div>
-      ) : null}
-
-      {faqs.length ? (
-        <div id="nlm-ask" className="space-y-4 scroll-mt-24">
-          <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Ask</h3>
-          <dl className="space-y-3">
-            {faqs.map((item, i) => (
-              <div
-                key={`${item.question}-${i}`}
-                className="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900/60"
-              >
-                <dt className="font-semibold text-slate-900 dark:text-slate-100">{item.question}</dt>
-                <dd className="mt-2 text-sm text-slate-600 dark:text-slate-300">{item.answer}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      ) : null}
+      <footer className="shrink-0 border-t border-slate-200 px-4 py-2 text-center text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-400 sm:px-6">
+        Swipe or ← → to change chapter · {activeIdx + 1}/{available.length || 1}
+      </footer>
     </section>
   );
 }
