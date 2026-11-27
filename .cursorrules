@@ -84,12 +84,14 @@ Scratchpad
 **Branch:** continue PR #7 `cursor/nlm-book-tabs-plan-1195`
 
 **Progress:**
-- [ ] `pairSlidesWithCaptions` pure helper
-- [ ] Extend `BlogPdfPager` for caption under page
-- [ ] Rewrite `BlogNotebookStudy`: sticky audio + Deck | Infographic | Ask
-- [ ] `BlogNotebookInfographic` one-pager (reuse mind/FAQ/table/flashcards)
-- [ ] Gut quiz from this surface
-- [ ] Commit/push PR #7; DP7 proof; `NLM-DRY-PDF-CAPTION.md`
+- [X] `pairSlidesWithCaptions` pure helper
+- [X] Extend `BlogPdfPager` for caption under page
+- [X] Rewrite `BlogNotebookStudy`: sticky audio + Deck | Infographic | Ask
+- [X] `BlogNotebookInfographic` one-pager (reuse mind/FAQ/table/flashcards)
+- [X] Gut quiz from this surface
+- [X] Commit/push PR #7; DP7 proof; `NLM-DRY-PDF-CAPTION.md`
+
+**Proven DP7 CDP:** audio sticky; Deck+caption; no quiz; no Listen/See silo; htmlLock; screenshots in `/opt/cursor/artifacts/nlm-dry-*.png`
 
 **Shell:**
 ```
