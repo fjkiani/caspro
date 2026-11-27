@@ -1,26 +1,26 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import {
-  nlmFlashcardsToCards,
-  nlmQuizToQuestions,
   notebookBundleHasStudyContent,
   parseFaqItems,
   type NotebookBundleData,
 } from '@/lib/blog/notebooklm-adapters';
-import BlogNotebookQuiz from './BlogNotebookQuiz';
-import BlogNotebookFlashcards from './BlogNotebookFlashcards';
-import BlogNotebookMindMap from './BlogNotebookMindMap';
-import BlogNotebookDataTable from './BlogNotebookDataTable';
+import {
+  formatSlideCaption,
+  pairSlidesWithCaptions,
+  type SlideCaption,
+} from '@/lib/blog/pair-slides-with-captions';
 import BlogPdfPager from './BlogPdfPager';
+import BlogNotebookInfographic from './BlogNotebookInfographic';
 import BlogPostBody, { type BlogPostBodyContent } from './BlogPostBody';
 import { RESEARCH_SECTIONS } from '@/lib/blog/paths';
 
 export interface BlogNotebookStudyProps {
   bundle: NotebookBundleData | null | undefined;
-  /** Post body (report.md → Slate) for the Read tab */
+  /** Post body (report.md → Slate) — paired under PDF pages, not a siloed Read tab */
   readContent?: BlogPostBodyContent | null;
   title?: string;
   /** Compact chrome: fill remaining viewport (book mode) */
@@ -29,21 +29,21 @@ export interface BlogNotebookStudyProps {
   blogHref?: string;
 }
 
-type TabId = 'read' | 'listen' | 'see' | 'explore' | 'study' | 'ask';
+type ChapterId = 'deck' | 'infographic' | 'ask';
 
-const TAB_META: { id: TabId; label: string }[] = [
-  { id: 'read', label: 'Read' },
-  { id: 'listen', label: 'Listen' },
-  { id: 'see', label: 'See' },
-  { id: 'explore', label: 'Explore' },
-  { id: 'study', label: 'Study' },
+const CHAPTER_META: { id: ChapterId; label: string }[] = [
+  { id: 'deck', label: 'Deck' },
+  { id: 'infographic', label: 'Infographic' },
   { id: 'ask', label: 'Ask' },
 ];
 
-function tabFromHash(): TabId | null {
+function chapterFromHash(): ChapterId | null {
   if (typeof window === 'undefined') return null;
   const raw = window.location.hash.replace(/^#/, '').replace(/^nlm-/, '');
-  if (TAB_META.some((t) => t.id === raw)) return raw as TabId;
+  // Legacy hashes from siloed tabs → map into new chapters
+  if (raw === 'read' || raw === 'see' || raw === 'listen' || raw === 'study') return 'deck';
+  if (raw === 'explore') return 'infographic';
+  if (CHAPTER_META.some((t) => t.id === raw)) return raw as ChapterId;
   return null;
 }
 
@@ -54,40 +54,37 @@ export default function BlogNotebookStudy({
   bookMode = true,
   blogHref = RESEARCH_SECTIONS.blog,
 }: BlogNotebookStudyProps) {
-  const quizQuestions = nlmQuizToQuestions(bundle?.quizJson);
-  const flashcards = nlmFlashcardsToCards(bundle?.flashcardsJson);
   const faqs = parseFaqItems(bundle?.faqJson);
   const hasAudio = Boolean(bundle?.audioUrl?.trim());
   const hasPdf = Boolean(bundle?.slidePdf?.url);
   const hasMind = Boolean(bundle?.mindMapJson?.nodes?.length || bundle?.mindMapJson?.root);
   const hasTable = Boolean(bundle?.dataTableCsv?.trim());
-  const hasStudy = quizQuestions.length > 0 || flashcards.length > 0;
+  const hasFlash = Boolean(bundle?.flashcardsJson?.cards?.length);
   const hasRead = Boolean(readContent?.raw || readContent?.markdown || readContent?.text);
   const hasAsk = faqs.length > 0;
-  const hasExplore = hasMind || hasTable;
+  const hasInfographic = hasMind || hasTable || hasFlash || hasAsk;
+  const hasDeck = hasPdf || hasRead;
   const hasAny =
     notebookBundleHasStudyContent(bundle) || hasRead;
 
   const available = useMemo(
     () =>
-      TAB_META.filter((s) => {
-        if (s.id === 'read') return hasRead;
-        if (s.id === 'listen') return hasAudio;
-        if (s.id === 'see') return hasPdf;
-        if (s.id === 'explore') return hasExplore;
-        if (s.id === 'study') return hasStudy;
+      CHAPTER_META.filter((s) => {
+        if (s.id === 'deck') return hasDeck;
+        if (s.id === 'infographic') return hasInfographic;
         if (s.id === 'ask') return hasAsk;
         return false;
       }),
-    [hasRead, hasAudio, hasPdf, hasExplore, hasStudy, hasAsk],
+    [hasDeck, hasInfographic, hasAsk],
   );
 
-  const [active, setActive] = useState<TabId>('read');
-  const touchStartX = useRef<number | null>(null);
+  const [active, setActive] = useState<ChapterId>('deck');
+  const [pageCount, setPageCount] = useState(0);
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     if (!available.length) return;
-    const fromHash = tabFromHash();
+    const fromHash = chapterFromHash();
     if (fromHash && available.some((t) => t.id === fromHash)) {
       setActive(fromHash);
       return;
@@ -107,205 +104,167 @@ export default function BlogNotebookStudy({
     };
   }, [bookMode, hasAny]);
 
-  const selectTab = useCallback((id: TabId) => {
+  const captions: SlideCaption[] = useMemo(() => {
+    const count = pageCount > 0 ? pageCount : hasPdf ? 1 : 0;
+    if (!count) return [];
+    return pairSlidesWithCaptions({
+      pageCount: count,
+      reportMarkdown: readContent?.markdown,
+      reportText: readContent?.text,
+      reportRaw: readContent?.raw,
+      faqs,
+      flashcards: bundle?.flashcardsJson,
+      mindMap: bundle?.mindMapJson,
+    });
+  }, [
+    pageCount,
+    hasPdf,
+    readContent?.markdown,
+    readContent?.text,
+    readContent?.raw,
+    faqs,
+    bundle?.flashcardsJson,
+    bundle?.mindMapJson,
+  ]);
+
+  const currentCaption = captions[Math.max(0, pageNumber - 1)];
+  const captionText = formatSlideCaption(currentCaption);
+
+  const selectChapter = useCallback((id: ChapterId) => {
     setActive(id);
     if (typeof window !== 'undefined') {
       window.history.replaceState(null, '', `#${id}`);
     }
   }, []);
 
-  const goRelative = useCallback(
-    (delta: number) => {
-      const idx = available.findIndex((t) => t.id === active);
-      if (idx < 0) return;
-      const next = available[idx + delta];
-      if (next) selectTab(next.id);
-    },
-    [available, active, selectTab],
-  );
-
-  useEffect(() => {
-    if (!hasAny) return;
-    const onKey = (e: KeyboardEvent) => {
-      const tag = (e.target as HTMLElement)?.tagName;
-      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        goRelative(-1);
-      }
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        goRelative(1);
-      }
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [goRelative, hasAny]);
+  const onPageChange = useCallback((page: number, numPages: number) => {
+    setPageNumber(page);
+    setPageCount(numPages);
+  }, []);
 
   if (!hasAny || !available.length) return null;
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.changedTouches[0]?.clientX ?? null;
-  };
-  const onTouchEnd = (e: React.TouchEvent) => {
-    const start = touchStartX.current;
-    touchStartX.current = null;
-    if (start == null) return;
-    const end = e.changedTouches[0]?.clientX ?? start;
-    const dx = end - start;
-    if (Math.abs(dx) < 56) return;
-    if (dx < 0) goRelative(1);
-    else goRelative(-1);
-  };
-
-  const pane: Record<TabId, ReactNode> = {
-    read: hasRead ? (
-      <div className="prose prose-slate dark:prose-invert max-w-none px-1 pb-8">
-        <BlogPostBody content={readContent} />
-      </div>
-    ) : null,
-    listen: hasAudio ? (
-      <div className="flex h-full flex-col items-center justify-center gap-6 px-4">
-        <p className="text-sm text-slate-500 dark:text-slate-400">Audio overview</p>
-        <audio controls className="w-full max-w-xl" preload="metadata" src={bundle!.audioUrl!}>
-          <track kind="captions" />
-        </audio>
-      </div>
-    ) : null,
-    see: hasPdf ? (
-      <div className="flex h-full min-h-0 flex-col">
-        <BlogPdfPager
-          url={bundle!.slidePdf!.url}
-          title={bundle?.slidePdf?.fileName || bundle?.title || 'Slides'}
-          className="min-h-0 flex-1"
-        />
-      </div>
-    ) : null,
-    explore: hasExplore ? (
-      <div className="space-y-8 px-1 pb-8">
-        {hasMind && bundle?.mindMapJson ? (
-          <BlogNotebookMindMap mindMap={bundle.mindMapJson} />
-        ) : null}
-        {hasTable && bundle?.dataTableCsv ? (
-          <BlogNotebookDataTable csv={bundle.dataTableCsv} />
-        ) : null}
-      </div>
-    ) : null,
-    study: hasStudy ? (
-      <div className="space-y-10 px-1 pb-8">
-        {quizQuestions.length ? (
-          <BlogNotebookQuiz
-            questions={quizQuestions}
-            title={bundle?.quizJson?.title || 'Study quiz'}
-          />
-        ) : null}
-        {flashcards.length ? (
-          <BlogNotebookFlashcards
-            cards={flashcards}
-            title={bundle?.flashcardsJson?.title || 'Flashcards'}
-          />
-        ) : null}
-      </div>
-    ) : null,
-    ask: hasAsk ? (
-      <dl className="space-y-3 px-1 pb-8">
-        {faqs.map((item, i) => (
-          <div
-            key={`${item.question}-${i}`}
-            className="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900/60"
-          >
-            <dt className="font-semibold text-slate-900 dark:text-slate-100">{item.question}</dt>
-            <dd className="mt-2 text-sm text-slate-600 dark:text-slate-300">{item.answer}</dd>
-          </div>
-        ))}
-      </dl>
-    ) : null,
-  };
 
   // Fixed under ZetaNavbar (h-14). Document scroll is locked via .nlm-book-lock.
   const shellClass = bookMode
     ? 'not-prose fixed inset-x-0 top-14 bottom-0 z-40 flex flex-col overflow-hidden bg-slate-50 dark:bg-slate-950'
     : 'not-prose my-12 flex min-h-[70vh] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/60 dark:border-slate-700 dark:bg-slate-900/40';
 
-  const activeIdx = available.findIndex((t) => t.id === active);
-
   return (
     <section className={shellClass}>
-      <header className="shrink-0 border-b border-slate-200 px-4 py-3 dark:border-slate-700 sm:px-6">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            {bookMode ? (
+      {/* Sticky audio — always visible when present; play while reading deck below */}
+      {hasAudio ? (
+        <div className="shrink-0 border-b border-slate-200 bg-white/95 px-4 py-2 backdrop-blur dark:border-slate-700 dark:bg-slate-900/95 sm:px-6">
+          <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-4">
+            <div className="min-w-0 shrink-0">
               <Link
                 href={blogHref}
-                className="mb-1 inline-flex items-center text-[11px] font-semibold text-sky-700 hover:underline dark:text-sky-300"
+                className="inline-flex items-center text-[11px] font-semibold text-sky-700 hover:underline dark:text-sky-300"
               >
                 <ChevronLeft className="mr-0.5 h-3.5 w-3.5" />
                 Blog
               </Link>
-            ) : (
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-sky-700 dark:text-sky-300">
-                Notebook study
+              <p className="truncate text-sm font-semibold text-slate-900 dark:text-slate-50">
+                {title || bundle?.title || 'Interactive study'}
               </p>
-            )}
-            <h2 className="truncate text-lg font-bold text-slate-900 dark:text-slate-50 sm:text-xl">
-              {title || bundle?.title || 'Interactive study'}
-            </h2>
-          </div>
-          <div className="flex shrink-0 items-center gap-1">
-            <button
-              type="button"
-              aria-label="Previous chapter"
-              disabled={activeIdx <= 0}
-              onClick={() => goRelative(-1)}
-              className="rounded-lg border border-slate-300 p-2 text-slate-600 disabled:opacity-30 dark:border-slate-600 dark:text-slate-300"
+            </div>
+            <audio
+              controls
+              className="w-full min-w-0 flex-1"
+              preload="metadata"
+              src={bundle!.audioUrl!}
             >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button
-              type="button"
-              aria-label="Next chapter"
-              disabled={activeIdx < 0 || activeIdx >= available.length - 1}
-              onClick={() => goRelative(1)}
-              className="rounded-lg border border-slate-300 p-2 text-slate-600 disabled:opacity-30 dark:border-slate-600 dark:text-slate-300"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
+              <track kind="captions" />
+            </audio>
           </div>
         </div>
-        <nav className="mt-3 flex gap-1 overflow-x-auto pb-1" aria-label="Study chapters">
-          {available.map((s) => {
-            const isOn = s.id === active;
-            return (
-              <button
-                key={s.id}
-                type="button"
-                onClick={() => selectTab(s.id)}
-                className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition ${
-                  isOn
-                    ? 'bg-sky-600 text-white shadow'
-                    : 'border border-slate-300 text-slate-700 hover:border-sky-500 dark:border-slate-600 dark:text-slate-300'
-                }`}
-                aria-current={isOn ? 'page' : undefined}
-              >
-                {s.label}
-              </button>
-            );
-          })}
-        </nav>
-      </header>
+      ) : (
+        <header className="shrink-0 border-b border-slate-200 px-4 py-3 dark:border-slate-700 sm:px-6">
+          {bookMode ? (
+            <Link
+              href={blogHref}
+              className="mb-1 inline-flex items-center text-[11px] font-semibold text-sky-700 hover:underline dark:text-sky-300"
+            >
+              <ChevronLeft className="mr-0.5 h-3.5 w-3.5" />
+              Blog
+            </Link>
+          ) : (
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-sky-700 dark:text-sky-300">
+              Notebook study
+            </p>
+          )}
+          <h2 className="truncate text-lg font-bold text-slate-900 dark:text-slate-50 sm:text-xl">
+            {title || bundle?.title || 'Interactive study'}
+          </h2>
+        </header>
+      )}
 
-      <div
-        className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-4 sm:px-6"
-        onTouchStart={onTouchStart}
-        onTouchEnd={onTouchEnd}
-        role="tabpanel"
-        id={`nlm-${active}`}
+      {/* Thin chapter switcher — not siloed Read/See/Listen */}
+      <nav
+        className="flex shrink-0 gap-1 overflow-x-auto border-b border-slate-200 px-4 py-2 dark:border-slate-700 sm:px-6"
+        aria-label="Study chapters"
       >
-        {pane[active]}
+        {available.map((s) => {
+          const isOn = s.id === active;
+          return (
+            <button
+              key={s.id}
+              type="button"
+              onClick={() => selectChapter(s.id)}
+              className={`shrink-0 rounded-md px-3 py-1 text-xs font-semibold transition ${
+                isOn
+                  ? 'bg-sky-600 text-white'
+                  : 'text-slate-600 hover:bg-slate-200/80 dark:text-slate-300 dark:hover:bg-slate-800'
+              }`}
+              aria-current={isOn ? 'page' : undefined}
+            >
+              {s.label}
+            </button>
+          );
+        })}
+      </nav>
+
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain" role="tabpanel" id={`nlm-${active}`}>
+        {active === 'deck' ? (
+          hasPdf ? (
+            <div className="flex h-full min-h-0 flex-col px-2 py-2 sm:px-4">
+              <BlogPdfPager
+                url={bundle!.slidePdf!.url}
+                title={bundle?.slidePdf?.fileName || bundle?.title || 'Slides'}
+                className="min-h-0 flex-1"
+                compact
+                onPageChange={onPageChange}
+                caption={captionText || null}
+              />
+            </div>
+          ) : hasRead ? (
+            <div className="prose prose-slate dark:prose-invert max-w-none px-4 py-4 pb-8 sm:px-6">
+              <BlogPostBody content={readContent} />
+            </div>
+          ) : null
+        ) : null}
+
+        {active === 'infographic' && bundle ? (
+          <div className="px-4 py-4 sm:px-6">
+            <BlogNotebookInfographic bundle={bundle} />
+          </div>
+        ) : null}
+
+        {active === 'ask' ? (
+          <dl className="space-y-3 px-4 py-4 pb-8 sm:px-6">
+            {faqs.map((item, i) => (
+              <div key={`${item.question}-${i}`} className="border-b border-slate-200 pb-3 dark:border-slate-700">
+                <dt className="font-semibold text-slate-900 dark:text-slate-100">{item.question}</dt>
+                <dd className="mt-2 text-sm text-slate-600 dark:text-slate-300">{item.answer}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : null}
       </div>
 
-      <footer className="shrink-0 border-t border-slate-200 px-4 py-2 text-center text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-400 sm:px-6">
-        Swipe or ← → to change chapter · {activeIdx + 1}/{available.length || 1}
+      <footer className="shrink-0 border-t border-slate-200 px-4 py-1.5 text-center text-[11px] text-slate-500 dark:border-slate-700 dark:text-slate-400 sm:px-6">
+        {active === 'deck' && hasPdf
+          ? '← → change slide · audio stays on top'
+          : 'Deck pairs each slide with its explanation'}
       </footer>
     </section>
   );

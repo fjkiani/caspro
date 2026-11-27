@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { ChevronLeft, ChevronRight, Maximize2, Minimize2 } from 'lucide-react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
@@ -16,16 +16,31 @@ export interface BlogPdfPagerProps {
   url: string;
   title: string;
   className?: string;
+  /** Optional caption under the current page (paired explanation). */
+  caption?: ReactNode;
+  /** Fires when page count known or current page changes (1-based). */
+  onPageChange?: (page: number, numPages: number) => void;
+  /** Compact layout for book shell (less min-height, caption room). */
+  compact?: boolean;
 }
 
-export default function BlogPdfPager({ url, title, className = '' }: BlogPdfPagerProps) {
+export default function BlogPdfPager({
+  url,
+  title,
+  className = '',
+  caption,
+  onPageChange,
+  compact = false,
+}: BlogPdfPagerProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const shellRef = useRef<HTMLDivElement>(null);
-  const [pageHeight, setPageHeight] = useState(560);
+  const [pageHeight, setPageHeight] = useState(compact ? 320 : 560);
   const [numPages, setNumPages] = useState(0);
   const [pageNumber, setPageNumber] = useState(1);
   const [fatalError, setFatalError] = useState<string | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
+  const onPageChangeRef = useRef(onPageChange);
+  onPageChangeRef.current = onPageChange;
 
   const setExpanded = useCallback(async (next: boolean) => {
     if (next) {
@@ -71,17 +86,23 @@ export default function BlogPdfPager({ url, title, className = '' }: BlogPdfPage
   }, [url]);
 
   useEffect(() => {
+    if (numPages > 0) {
+      onPageChangeRef.current?.(pageNumber, numPages);
+    }
+  }, [pageNumber, numPages]);
+
+  useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
     const ro = new ResizeObserver((entries) => {
       const h = entries[0]?.contentRect.height;
-      if (h && h > 80) setPageHeight(Math.max(200, Math.floor(h - 24)));
+      if (h && h > 80) setPageHeight(Math.max(160, Math.floor(h - 16)));
     });
     ro.observe(el);
     const h0 = el.getBoundingClientRect().height;
-    if (h0 > 80) setPageHeight(Math.max(200, Math.floor(h0 - 24)));
+    if (h0 > 80) setPageHeight(Math.max(160, Math.floor(h0 - 16)));
     return () => ro.disconnect();
-  }, []);
+  }, [compact, Boolean(caption), isExpanded]);
 
   const go = useCallback(
     (dir: -1 | 1) => {
@@ -90,7 +111,7 @@ export default function BlogPdfPager({ url, title, className = '' }: BlogPdfPage
         return clamp(p + dir, 1, numPages);
       });
     },
-    [numPages]
+    [numPages],
   );
 
   const onDocLoad = useCallback((pdf: { numPages: number }) => {
@@ -121,10 +142,12 @@ export default function BlogPdfPager({ url, title, className = '' }: BlogPdfPage
     );
   }
 
+  const hasCaption = caption != null && caption !== false && caption !== '';
+
   return (
     <div
       ref={shellRef}
-      className={`flex flex-col bg-white outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/60 focus-visible:ring-offset-2 dark:bg-zinc-950 dark:focus-visible:ring-offset-zinc-900 ${
+      className={`flex min-h-0 flex-col bg-white outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/60 focus-visible:ring-offset-2 dark:bg-zinc-950 dark:focus-visible:ring-offset-zinc-900 ${
         isExpanded ? 'fixed inset-0 z-[9999] h-[100dvh]' : ''
       } ${className}`.trim()}
       role="region"
@@ -145,7 +168,7 @@ export default function BlogPdfPager({ url, title, className = '' }: BlogPdfPage
         }
       }}
     >
-      <div className="flex items-center justify-end gap-2 border-b border-slate-200 px-3 py-2 dark:border-zinc-700">
+      <div className="flex shrink-0 items-center justify-end gap-2 border-b border-slate-200 px-3 py-1.5 dark:border-zinc-700">
         <button
           type="button"
           onClick={() => void setExpanded(!isExpanded)}
@@ -156,10 +179,17 @@ export default function BlogPdfPager({ url, title, className = '' }: BlogPdfPage
           <span className="hidden min-[420px]:inline">{isExpanded ? 'Exit' : 'Expand'}</span>
         </button>
       </div>
+
       <div
         ref={wrapRef}
-        className={`flex w-full flex-1 items-center justify-center overflow-hidden p-3 ${
-          isExpanded ? 'min-h-0 h-[calc(100dvh-7rem)]' : 'min-h-[420px] h-[min(72vh,640px)]'
+        className={`flex w-full min-h-0 flex-1 items-center justify-center overflow-hidden p-2 ${
+          isExpanded
+            ? 'h-[calc(100dvh-7rem)]'
+            : compact
+              ? hasCaption
+                ? 'max-h-[min(48vh,420px)] min-h-[180px]'
+                : 'min-h-[240px]'
+              : 'min-h-[420px] h-[min(72vh,640px)]'
         }`}
       >
         <Document
@@ -182,8 +212,23 @@ export default function BlogPdfPager({ url, title, className = '' }: BlogPdfPage
         </Document>
       </div>
 
+      {hasCaption ? (
+        <div
+          className="shrink-0 border-t border-slate-200 px-4 py-3 dark:border-zinc-700"
+          aria-live="polite"
+        >
+          <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+            Page {pageNumber}
+            {numPages ? ` / ${numPages}` : ''}
+          </p>
+          <div className="max-h-[min(28vh,220px)] overflow-y-auto overscroll-contain text-sm leading-relaxed text-slate-700 dark:text-slate-300 whitespace-pre-wrap">
+            {caption}
+          </div>
+        </div>
+      ) : null}
+
       {numPages > 1 ? (
-        <div className="flex items-center justify-center gap-4 border-t border-slate-200 py-3 dark:border-zinc-700">
+        <div className="flex shrink-0 items-center justify-center gap-4 border-t border-slate-200 py-2 dark:border-zinc-700">
           <button
             type="button"
             className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 disabled:opacity-40 dark:text-slate-400 dark:hover:bg-zinc-800"
