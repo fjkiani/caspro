@@ -77,35 +77,44 @@ Cursor learned
 Scratchpad
 ==========
 
-## Current Task: NotebookLM recalibrated — blockers gone (2026-11-26)
+## Current Task: NLM → Hygraph → Book-Tabs UX (2026-11-27)
 
-**Status:** Auth + env unblocked. Recalibrate ship order; no more secret prompts.
+**Goal:** On-demand NotebookLM content → Hygraph → blog UI that is **tabs/book (no forced page scroll)**, not stacked sections.
 
-**Proven:** Fresh agent `bc-d34e04a6` — `NOTEBOOKLM_MASTER_TOKEN_JSON` (len≈335), bootstrap OK, auth check OK, smoke mind-map generate OK. Profile: `agent-cloud`. Account: `fjkiani1@gmail.com` Gemini Pro.
+**Plan doc:** `/opt/cursor/artifacts/NLM-BOOK-TABS-WORKFLOW.md` (mirrored `docs/NLM-BOOK-TABS-WORKFLOW.md`)
 
-**Env f7fc3006… SAVED:** install portal npm + `notebooklm-py[headless]`; start portal `:3000`. Runtime secrets: MASTER_TOKEN + ACCOUNT_EMAIL. Skip AUTH_JSON (4096).
+**Progress:**
+- [X] Inventory NLM generate/download types + Hygraph/`BlogNotebookStudy` mapping
+- [X] Locate reusable manuscript/tabs/swipe UI (`BlogPdfPager`, `DeckViewerPage` swipe, `TabbedContent`)
+- [X] Design tab UX (Read/Listen/See/Explore/Study/Ask) + E2E on-demand workflow
+- [X] Write P0/P1/P2 plan with real file paths + risks
+- [ ] P0: Refactor `BlogNotebookStudy` → viewport book shell; See → `BlogPdfPager`
+- [ ] P1: Portal `blog-pack` API + public asset URLs + publish hook
+- [ ] P2: video/infographic schema + CDN hardening
 
-**This agent (bc-01a21503…):** started pre-inject — cannot see Runtime secrets. Code/PRs/Hygraph only. Live generate → fresh agent.
+**Reuse (do not rebuild):** `BlogNotebookStudy` sections; `BlogPdfPager`; swipe pattern from `src/src2/pages/DeckViewerPage.tsx`; `TabbedContent`; `publishNotebookToBlog.mjs` chunking; adapters in `notebooklm-adapters.ts`.
 
-**Open PRs (CI green):**
-- zeta-tech [#2](https://github.com/fjkiani/zeta-tech/pull/2) — blockers gutted + master-token path
-- caspro [#6](https://github.com/fjkiani/caspro/pull/6) — NotebookBundle + BlogNotebookStudy + publish script
-- Preview: https://deploy-preview-6--crispro.netlify.app/research/blog/nlm-test-python-types-bundle/
+**Proven pack:** `nlm-python-datatypes-e2e` — use for P0 UI without waiting on generate.
 
-**Next (priority):**
-1. [ ] Merge #2 + #6 when product-ready (or keep preview)
-2. [X] Fresh-agent E2E: full pack + report (bc-2d8d695f) → Hygraph publish → preview 200
-3. [X] Wire `report --format blog-post` → Post.content + faq.json load (+ chunked Hygraph writes)
-4. [X] faq.json generated in E2E pack; Ask section live on post
-5. [ ] Later: video/infographic + public Hygraph CDN; NOT Arcade/LinkedIn lane
-
-**Handoff:** `/opt/cursor/artifacts/NOTEBOOKLM-RECALIBRATED.md`
-
-**Lessons:** Cursor app-publish secrets ≠ Cloud Agent Runtime secrets — Runtime injects only into new agent boots. AUTH_JSON often >4096 — use MASTER_TOKEN_JSON → `profiles/agent-cloud/master_token.json` + `auth refresh`. data-table description required. Reject stub audio &lt;1KB.
+**Auth (unchanged):** Runtime `NOTEBOOKLM_MASTER_TOKEN_JSON` + `NOTEBOOKLM_ACCOUNT_EMAIL`; profile `agent-cloud`; skip AUTH_JSON; fresh agent for live generate.
 
 ---
 
-## Current Task: NotebookLM capability map (architecture briefing) (2026-11-26)
+## Prior: NotebookLM recalibrated — blockers gone (2026-11-26)
+
+**Status:** Auth + env unblocked. E2E pack + report/faq publish done.
+
+**Proven:** Fresh agent auth + smoke; E2E `python-datatypes-90150c` → Hygraph; chunked writes; Ask section live.
+
+**Open PRs:** zeta-tech #2/#3; caspro #6. Preview deploy-preview-6.
+
+**Handoff:** `/opt/cursor/artifacts/NOTEBOOKLM-RECALIBRATED.md`
+
+**Lessons:** Runtime secrets only on new boots. AUTH_JSON >4096 → MASTER_TOKEN_JSON. data-table needs prompt; stub audio &lt;1KB reject. Hygraph payload → chunk field patches.
+
+---
+
+## Prior: NotebookLM capability map (architecture briefing) (2026-11-26)
 
 **Goal:** End-to-end capability map of notebooklm-py + zeta-tech portal + Caspro NotebookBundle — NOT LinkedIn/Arcade.
 
