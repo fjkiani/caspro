@@ -93,6 +93,11 @@ Scratchpad
 
 **Proven DP7 CDP:** audio sticky; Deck+caption; no quiz; no Listen/See silo; htmlLock; screenshots in `/opt/cursor/artifacts/nlm-dry-*.png`
 
+**Lessons:**
+- Caption pairing belongs in a pure helper (`pairSlidesWithCaptions`), not in JSX.
+- Sticky audio must sit outside chapter panes — never a Listen-only replacement view.
+- `gh pr edit/comment` may be read-only for this integration; push to PR branch still updates PR #7.
+
 **Shell:**
 ```
 sticky AUDIO
