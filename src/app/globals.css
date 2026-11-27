@@ -35,6 +35,17 @@ html, body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* NotebookLM book mode: document must not scroll; only the study pane scrolls */
+html.nlm-book-lock,
+html.nlm-book-lock body {
+  height: 100%;
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+html.nlm-book-lock [data-research-chrome] {
+  display: none !important;
+}
+
 /* ─── DESIGN TOKENS: DARK MODE (DEFAULT) ─── */
 :root {
   /* ZETA-PRIME: THE REDOUT */

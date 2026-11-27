@@ -140,37 +140,17 @@ export default async function PostDetailPage({ params }: PostPageProps) {
   );
   const isNotebookBook = notebookBundleHasStudyContent(notebookBundle);
 
-  // NotebookLM posts: viewport book shell (tabs / swipe) — no stacked page scroll
+  // NotebookLM posts: fixed viewport book shell — document scroll locked in BlogNotebookStudy
   if (isNotebookBook) {
     return (
       <main className="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100">
-        <div className="border-b border-slate-200 px-4 py-2 dark:border-slate-700">
-          <div className="mx-auto flex max-w-5xl items-center justify-between gap-3">
-            <Link
-              href={RESEARCH_SECTIONS.blog}
-              className="inline-flex items-center text-sm font-medium text-primary hover:underline"
-            >
-              <ChevronLeft className="mr-1 h-4 w-4" />
-              Blog
-            </Link>
-            <p className="truncate text-xs text-slate-500 dark:text-slate-400">
-              {post.author?.name || 'CrisPRO'} ·{' '}
-              {new Date(post.createdAt).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-              })}
-            </p>
-          </div>
-        </div>
-        <div className="mx-auto max-w-5xl sm:px-4 sm:pt-3">
-          <BlogNotebookStudy
-            bundle={notebookBundle}
-            readContent={post.content}
-            title={post.title}
-            bookMode
-          />
-        </div>
+        <BlogNotebookStudy
+          bundle={notebookBundle}
+          readContent={post.content}
+          title={post.title}
+          bookMode
+          blogHref={RESEARCH_SECTIONS.blog}
+        />
       </main>
     );
   }

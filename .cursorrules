@@ -77,7 +77,27 @@ Cursor learned
 Scratchpad
 ==========
 
-## Current Task: NLM → Hygraph → Book-Tabs UX (2026-11-27)
+## Current Task: NLM UX fix — scroll + audio/deck (2026-11-27)
+
+**User:** "where is the deck audio why does this still have a scroll" — prior ship incomplete.
+
+**Diagnosis:** `/opt/cursor/artifacts/NLM-UX-AUDIT.md`
+
+**Progress:**
+- [X] Verify Hygraph: audioUrl/slidePdf were null on `nlm-python-datatypes-e2e`
+- [X] Upload audio.mp3 + slides.pdf via Hygraph createAsset→S3; publish URLs (HTTP 200)
+- [X] Fix document scroll: fixed shell + `nlm-book-lock` + hide ResearchChrome + drop min-h stack
+- [X] Publisher auto-uploads local audio/slides from `--artifacts`
+- [ ] Push PR #7 branch; re-check Netlify preview after deploy
+
+**Lessons:**
+- Book shell `h-[calc(100dvh-3.5rem)]` is useless if layout adds `min-h-[100dvh]` + ResearchChrome + page chrome — document still scrolls. Use `fixed` under nav + lock html/body.
+- Never claim Listen/See shipped if Hygraph `audioUrl`/`slidePdf` are null — tabs are gated on those fields.
+- Hygraph local upload: `createAsset({ fileName })` → S3 POST `requestPostData` (no Content-Type field) → poll → publishAsset.
+
+---
+
+## Prior: NLM → Hygraph → Book-Tabs UX (2026-11-27)
 
 **Goal:** On-demand NotebookLM content → Hygraph → blog UI that is **tabs/book (no forced page scroll)**, not stacked sections.
 
@@ -89,6 +109,7 @@ Scratchpad
 - [X] Design tab UX (Read/Listen/See/Explore/Study/Ask) + E2E on-demand workflow
 - [X] Write P0/P1/P2 plan with real file paths + risks
 - [X] P0: Refactor `BlogNotebookStudy` → viewport book shell; See → `BlogPdfPager` (PR #7)
+- [X] P0.1: Real audio/deck on Hygraph + true no-document-scroll shell
 - [ ] P1: Portal `blog-pack` API + public asset URLs + publish hook
 - [ ] P2: video/infographic schema + CDN hardening
 

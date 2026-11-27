@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import {
   nlmFlashcardsToCards,
@@ -15,6 +16,7 @@ import BlogNotebookMindMap from './BlogNotebookMindMap';
 import BlogNotebookDataTable from './BlogNotebookDataTable';
 import BlogPdfPager from './BlogPdfPager';
 import BlogPostBody, { type BlogPostBodyContent } from './BlogPostBody';
+import { RESEARCH_SECTIONS } from '@/lib/blog/paths';
 
 export interface BlogNotebookStudyProps {
   bundle: NotebookBundleData | null | undefined;
@@ -23,6 +25,8 @@ export interface BlogNotebookStudyProps {
   title?: string;
   /** Compact chrome: fill remaining viewport (book mode) */
   bookMode?: boolean;
+  /** Back link target when bookMode (defaults to research blog index) */
+  blogHref?: string;
 }
 
 type TabId = 'read' | 'listen' | 'see' | 'explore' | 'study' | 'ask';
@@ -48,6 +52,7 @@ export default function BlogNotebookStudy({
   readContent = null,
   title,
   bookMode = true,
+  blogHref = RESEARCH_SECTIONS.blog,
 }: BlogNotebookStudyProps) {
   const quizQuestions = nlmQuizToQuestions(bundle?.quizJson);
   const flashcards = nlmFlashcardsToCards(bundle?.flashcardsJson);
@@ -91,6 +96,16 @@ export default function BlogNotebookStudy({
       available.some((t) => t.id === prev) ? prev : available[0].id,
     );
   }, [available]);
+
+  // Lock document scroll while book mode is mounted (ResearchChrome is CSS-hidden).
+  useEffect(() => {
+    if (!bookMode || !hasAny) return;
+    const root = document.documentElement;
+    root.classList.add('nlm-book-lock');
+    return () => {
+      root.classList.remove('nlm-book-lock');
+    };
+  }, [bookMode, hasAny]);
 
   const selectTab = useCallback((id: TabId) => {
     setActive(id);
@@ -158,11 +173,11 @@ export default function BlogNotebookStudy({
       </div>
     ) : null,
     see: hasPdf ? (
-      <div className="flex h-full min-h-[50vh] flex-col">
+      <div className="flex h-full min-h-0 flex-col">
         <BlogPdfPager
           url={bundle!.slidePdf!.url}
           title={bundle?.slidePdf?.fileName || bundle?.title || 'Slides'}
-          className="min-h-[50vh] flex-1"
+          className="min-h-0 flex-1"
         />
       </div>
     ) : null,
@@ -207,8 +222,9 @@ export default function BlogNotebookStudy({
     ) : null,
   };
 
+  // Fixed under ZetaNavbar (h-14). Document scroll is locked via .nlm-book-lock.
   const shellClass = bookMode
-    ? 'not-prose flex h-[calc(100dvh-3.5rem)] flex-col overflow-hidden bg-slate-50 dark:bg-slate-950 sm:rounded-2xl sm:border sm:border-slate-200 dark:sm:border-slate-700'
+    ? 'not-prose fixed inset-x-0 top-14 bottom-0 z-40 flex flex-col overflow-hidden bg-slate-50 dark:bg-slate-950'
     : 'not-prose my-12 flex min-h-[70vh] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/60 dark:border-slate-700 dark:bg-slate-900/40';
 
   const activeIdx = available.findIndex((t) => t.id === active);
@@ -218,9 +234,19 @@ export default function BlogNotebookStudy({
       <header className="shrink-0 border-b border-slate-200 px-4 py-3 dark:border-slate-700 sm:px-6">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-sky-700 dark:text-sky-300">
-              Notebook study
-            </p>
+            {bookMode ? (
+              <Link
+                href={blogHref}
+                className="mb-1 inline-flex items-center text-[11px] font-semibold text-sky-700 hover:underline dark:text-sky-300"
+              >
+                <ChevronLeft className="mr-0.5 h-3.5 w-3.5" />
+                Blog
+              </Link>
+            ) : (
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-sky-700 dark:text-sky-300">
+                Notebook study
+              </p>
+            )}
             <h2 className="truncate text-lg font-bold text-slate-900 dark:text-slate-50 sm:text-xl">
               {title || bundle?.title || 'Interactive study'}
             </h2>

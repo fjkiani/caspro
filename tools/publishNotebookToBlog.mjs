@@ -264,6 +264,81 @@ async function createAssetFromUploadUrl(uploadUrl) {
 }
 
 /**
+ * Upload a local file via Hygraph createAsset → S3 POST (requestPostData).
+ * Prefer this over uploadUrl when the file is only on disk (no public HTTPS yet).
+ */
+async function createAssetFromLocalFile(filePath, fileName) {
+  if (!filePath || !fs.existsSync(filePath)) return null;
+  const name = fileName || path.basename(filePath);
+  const { createAsset } = await gql(
+    `mutation($fn: String!) {
+      createAsset(data: { fileName: $fn }) {
+        id url fileName
+        upload {
+          status
+          requestPostData {
+            url date key algorithm policy credential securityToken signature
+          }
+        }
+      }
+    }`,
+    { fn: name },
+  );
+  const post = createAsset?.upload?.requestPostData;
+  if (!post?.url) {
+    throw new Error(`Hygraph createAsset returned no upload credentials for ${name}`);
+  }
+
+  const form = new FormData();
+  form.append('key', post.key);
+  form.append('X-Amz-Algorithm', post.algorithm);
+  form.append('X-Amz-Credential', post.credential);
+  form.append('X-Amz-Date', post.date);
+  form.append('X-Amz-Security-Token', post.securityToken);
+  form.append('Policy', post.policy);
+  form.append('X-Amz-Signature', post.signature);
+  form.append('file', new Blob([fs.readFileSync(filePath)]), name);
+
+  const up = await fetch(post.url, { method: 'POST', body: form });
+  if (!up.ok && up.status !== 204) {
+    const body = await up.text().catch(() => '');
+    throw new Error(`S3 upload failed HTTP ${up.status}: ${body.slice(0, 400)}`);
+  }
+
+  for (let i = 0; i < 90; i++) {
+    const { asset } = await gql(
+      `query($id: ID!) {
+        asset(where: { id: $id }, stage: DRAFT) {
+          id url fileName mimeType size
+          upload { status error { code message } }
+        }
+      }`,
+      { id: createAsset.id },
+    );
+    const status = asset?.upload?.status;
+    if (asset?.size && (status === 'ASSET_UPLOAD_COMPLETE' || status === 'ASSET_UPDATE_COMPLETE')) {
+      try {
+        await gql(`mutation($id: ID!) { publishAsset(where: { id: $id }, to: PUBLISHED) { id url } }`, {
+          id: createAsset.id,
+        });
+      } catch {
+        /* may already be published */
+      }
+      const pub = await gql(
+        `query($id: ID!) { asset(where: { id: $id }, stage: PUBLISHED) { id url fileName mimeType size } }`,
+        { id: createAsset.id },
+      );
+      return pub.asset || asset;
+    }
+    if (status && String(status).includes('FAIL')) {
+      throw new Error(`Asset upload failed: ${JSON.stringify(asset?.upload?.error || status)}`);
+    }
+    await new Promise((r) => setTimeout(r, 2000));
+  }
+  throw new Error(`Timed out waiting for asset ${createAsset.id}`);
+}
+
+/**
  * @param {object} opts
  * @param {string} opts.slug
  * @param {string} opts.title
@@ -316,11 +391,18 @@ export async function publishNotebookToBlog(opts) {
     readJsonIfExists(artifactsDir && path.join(artifactsDir, 'faq.json'));
 
   let audioUrl = opts.audioUrl || null;
+  if (!audioUrl && opts.audioUploadUrl) {
+    audioUrl = opts.audioUploadUrl;
+  }
   if (!audioUrl && artifactsDir) {
     const audioPath = path.join(artifactsDir, 'audio.mp3');
-    // Local file is not public; only set if caller provided uploadUrl/public URL
-    if (fs.existsSync(audioPath) && opts.audioUploadUrl) {
-      audioUrl = opts.audioUploadUrl;
+    if (fs.existsSync(audioPath) && fs.statSync(audioPath).size > 1024) {
+      console.log('Uploading local audio.mp3 to Hygraph Asset…');
+      const audioAsset = await createAssetFromLocalFile(
+        audioPath,
+        `${slug}-audio.mp3`,
+      );
+      audioUrl = audioAsset?.url || null;
     }
   }
 
@@ -331,6 +413,15 @@ export async function publishNotebookToBlog(opts) {
   const slidesUploadUrl = opts.slidesUploadUrl || null;
   if (slidesUploadUrl) {
     slideAsset = await createAssetFromUploadUrl(slidesUploadUrl);
+  } else if (artifactsDir) {
+    const slidesPath = path.join(artifactsDir, 'slides.pdf');
+    if (fs.existsSync(slidesPath) && fs.statSync(slidesPath).size > 1024) {
+      console.log('Uploading local slides.pdf to Hygraph Asset…');
+      slideAsset = await createAssetFromLocalFile(
+        slidesPath,
+        `${slug}-slides.pdf`,
+      );
+    }
   }
 
   // Upsert NotebookBundle — create shell first, then patch JSON fields one-by-one.

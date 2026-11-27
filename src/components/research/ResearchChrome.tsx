@@ -40,6 +40,7 @@ export default function ResearchChrome({
 
   return (
     <header
+      data-research-chrome
       className={`border-b backdrop-blur-md sticky top-14 z-30 ${
         isDarkMode ? 'bg-zinc-950/95 border-zinc-800' : 'bg-white/95 border-slate-200'
       }`}
