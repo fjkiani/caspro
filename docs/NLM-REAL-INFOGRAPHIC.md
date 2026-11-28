@@ -78,7 +78,7 @@ curl -I "$INFOGRAPHIC_HTTPS_URL"   # expect 200
 | Publish uploads PNG | ✅ code |
 | Artifact PNG non-trivial bytes | ⛔ blocked — no NLM auth on this pod |
 | Hygraph public HTTPS 200 | ⛔ waiting on generate |
-| Screenshot `/opt/cursor/artifacts/nlm-real-infographic.png` | ⛔ waiting on generate |
+| Screenshot `/opt/cursor/artifacts/nlm-real-infographic.png` | ✅ empty state after gut (collage gone; “Infographic not generated yet”) |
 
 ## Code deleted / rewritten
 
