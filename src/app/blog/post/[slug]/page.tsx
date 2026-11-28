@@ -8,7 +8,12 @@ import BlogPostMedia from '@/components/blog/BlogPostMedia';
 import BlogPostHero from '@/components/blog/BlogPostHero';
 import BlogPostBody from '@/components/blog/BlogPostBody';
 import BlogMarkdown from '@/components/blog/BlogMarkdown';
+import BlogNotebookStudy from '@/components/blog/BlogNotebookStudy';
 import { looksLikeMarkdown } from '@/lib/blog/markdown-heuristics';
+import {
+  normalizeNotebookBundle,
+  notebookBundleHasStudyContent,
+} from '@/lib/blog/notebooklm-adapters';
 import { researchBlogPostPath, RESEARCH_SECTIONS } from '@/lib/blog/paths';
 
 interface PostPageProps {
@@ -129,6 +134,26 @@ export default async function PostDetailPage({ params }: PostPageProps) {
 
   const matchedCategory =
     nextPost?.categories?.find((c) => categorySlugs.includes(c.slug))?.name ?? null;
+
+  const notebookBundle = normalizeNotebookBundle(
+    post.notebookBundle as Record<string, unknown> | null | undefined,
+  );
+  const isNotebookBook = notebookBundleHasStudyContent(notebookBundle);
+
+  // NotebookLM posts: fixed viewport book shell — document scroll locked in BlogNotebookStudy
+  if (isNotebookBook) {
+    return (
+      <main className="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100">
+        <BlogNotebookStudy
+          bundle={notebookBundle}
+          readContent={post.content}
+          title={post.title}
+          bookMode
+          blogHref={RESEARCH_SECTIONS.blog}
+        />
+      </main>
+    );
+  }
 
   return (
     <main className="pt-4 pb-16 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">

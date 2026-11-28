@@ -105,6 +105,38 @@ const GET_POST_DETAILS_CORE = gql`
  * On `Post`, add an Asset field with API ID **pdfDeck** (same as UseCase) and upload the PDF there.
  * Kept in its own query so missing *other* optional fields never blocks this from merging.
  */
+const MERGE_POST_NOTEBOOK_BUNDLE = gql`
+  query MergePostNotebookBundle($slug: String!) {
+    post(where: { slug: $slug }) {
+      notebookBundle {
+        id
+        title
+        slug
+        notebookId
+        audioUrl
+        quizJson
+        flashcardsJson
+        mindMapJson
+        dataTableCsv
+        faqJson
+        slidePdf {
+          id
+          url
+          fileName
+          mimeType
+        }
+        infographic {
+          id
+          url
+          fileName
+          mimeType
+        }
+        infographicUrl
+      }
+    }
+  }
+`;
+
 const MERGE_POST_PDF_DECK = gql`
   query MergePostPdfDeck($slug: String!) {
     post(where: { slug: $slug }) {
@@ -472,6 +504,7 @@ export const getPostDetails = async (slug) => {
     }
   };
 
+  await tryMerge(MERGE_POST_NOTEBOOK_BUNDLE);
   await tryMerge(MERGE_POST_PDF_DECK);
   await tryMerge(MERGE_POST_SLIDE_DECK_SLUG);
   await tryMerge(MERGE_POST_PDF_DECK_URL);
