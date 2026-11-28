@@ -168,6 +168,8 @@ export const NOTEBOOK_BUNDLE_FIELD_API_IDS = [
   'dataTableCsv',
   'faqJson',
   'slidePdf',
+  'infographic',
+  'infographicUrl',
 ];
 
 async function main() {

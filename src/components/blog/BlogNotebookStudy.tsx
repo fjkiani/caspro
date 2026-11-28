@@ -17,7 +17,6 @@ import BlogPdfPager from './BlogPdfPager';
 import BlogNotebookInfographic from './BlogNotebookInfographic';
 import BlogNotebookAsk from './BlogNotebookAsk';
 import BlogPostBody, { type BlogPostBodyContent } from './BlogPostBody';
-import { synthesizeNotebookInfographic } from '@/lib/blog/synthesize-notebook-infographic';
 import { RESEARCH_SECTIONS } from '@/lib/blog/paths';
 
 export interface BlogNotebookStudyProps {
@@ -65,21 +64,18 @@ export default function BlogNotebookStudy({
     notebookBundleHasStudyContent(bundle) || hasRead;
   // Ask is available whenever we have a bundle with grounding content (report/FAQ/etc.)
   const hasAsk = Boolean(bundle && hasAny);
-  const infographicModel = useMemo(
-    () => (bundle ? synthesizeNotebookInfographic(bundle) : null),
-    [bundle],
-  );
-  const hasInfographic = Boolean(infographicModel);
+  // Always offer Infographic chapter when a bundle exists — empty state if Asset missing.
+  const hasInfographicChapter = Boolean(bundle);
 
   const available = useMemo(
     () =>
       CHAPTER_META.filter((s) => {
         if (s.id === 'deck') return hasDeck;
-        if (s.id === 'infographic') return hasInfographic;
+        if (s.id === 'infographic') return hasInfographicChapter;
         if (s.id === 'ask') return hasAsk;
         return false;
       }),
-    [hasDeck, hasInfographic, hasAsk],
+    [hasDeck, hasInfographicChapter, hasAsk],
   );
 
   const [active, setActive] = useState<ChapterId>('deck');
@@ -248,7 +244,7 @@ export default function BlogNotebookStudy({
         ) : null}
 
         {active === 'infographic' && bundle ? (
-          <div className="px-4 py-4 sm:px-6">
+          <div className="flex h-full min-h-0 flex-col px-0 py-0 sm:px-0">
             <BlogNotebookInfographic bundle={bundle} />
           </div>
         ) : null}
@@ -270,7 +266,7 @@ export default function BlogNotebookStudy({
           : active === 'ask'
             ? 'Answers grounded in this notebook’s report, FAQ, and captions'
             : active === 'infographic'
-              ? 'One-pager derived from mind map · metrics · FAQ'
+              ? 'NotebookLM Studio infographic'
               : 'Deck pairs each slide with its explanation'}
       </footer>
     </section>

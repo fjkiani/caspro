@@ -22,6 +22,7 @@
  * Artifact filenames (under --artifacts):
  *   quiz.json flashcards.json mindMap.json data.csv
  *   slides.pdf audio.mp3 report.md faq.json
+ *   infographic.png  (NotebookLM Studio generate infographic → PNG)
  */
 
 import fs from 'fs';
@@ -424,6 +425,23 @@ export async function publishNotebookToBlog(opts) {
     }
   }
 
+  let infographicAsset = null;
+  let infographicUrl = opts.infographicUrl || null;
+  if (opts.infographicUploadUrl) {
+    infographicAsset = await createAssetFromUploadUrl(opts.infographicUploadUrl);
+    infographicUrl = infographicAsset?.url || infographicUrl;
+  } else if (artifactsDir) {
+    const pngPath = path.join(artifactsDir, 'infographic.png');
+    if (fs.existsSync(pngPath) && fs.statSync(pngPath).size > 8 * 1024) {
+      console.log('Uploading local infographic.png to Hygraph Asset…');
+      infographicAsset = await createAssetFromLocalFile(
+        pngPath,
+        `${slug}-infographic.png`,
+      );
+      infographicUrl = infographicAsset?.url || infographicUrl;
+    }
+  }
+
   // Upsert NotebookBundle — create shell first, then patch JSON fields one-by-one.
   // Full-pack mutations exceed Hygraph "payload exceeds technical request size limit".
   const bundleMeta = {
@@ -432,6 +450,10 @@ export async function publishNotebookToBlog(opts) {
     notebookId,
     audioUrl: audioUrl || undefined,
     ...(slideAsset?.id ? { slidePdf: { connect: { id: slideAsset.id } } } : {}),
+    ...(infographicAsset?.id
+      ? { infographic: { connect: { id: infographicAsset.id } } }
+      : {}),
+    ...(infographicUrl ? { infographicUrl } : {}),
   };
 
   async function findBySlug(type, s) {
@@ -639,6 +661,8 @@ async function main() {
   const noMedia = Boolean(arg('no-media'));
   const slidesUploadUrl = arg('slides-upload-url');
   const audioUrl = arg('audio-url');
+  const infographicUrl = arg('infographic-url');
+  const infographicUploadUrl = arg('infographic-upload-url');
 
   if (!slug) {
     console.error('Required: --slug and usually --artifacts <dir>');
@@ -651,6 +675,8 @@ async function main() {
     artifactsDir: artifacts || undefined,
     slidesUploadUrl: slidesUploadUrl || undefined,
     audioUrl: audioUrl || undefined,
+    infographicUrl: infographicUrl || undefined,
+    infographicUploadUrl: infographicUploadUrl || undefined,
     publish: !draft,
     withMediaItem: !noMedia,
   });

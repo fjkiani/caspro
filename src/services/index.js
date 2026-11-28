@@ -125,6 +125,13 @@ const MERGE_POST_NOTEBOOK_BUNDLE = gql`
           fileName
           mimeType
         }
+        infographic {
+          id
+          url
+          fileName
+          mimeType
+        }
+        infographicUrl
       }
     }
   }

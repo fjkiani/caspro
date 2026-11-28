@@ -95,6 +95,13 @@ export function normalizeMindMapPayload(
   return null;
 }
 
+export type NotebookAssetRef = {
+  id?: string;
+  url: string;
+  fileName?: string | null;
+  mimeType?: string | null;
+} | null;
+
 export interface NotebookBundleData {
   id?: string;
   title?: string | null;
@@ -106,7 +113,11 @@ export interface NotebookBundleData {
   mindMapJson?: NlmMindMapPayload | null;
   dataTableCsv?: string | null;
   faqJson?: unknown;
-  slidePdf?: { id?: string; url: string; fileName?: string | null; mimeType?: string | null } | null;
+  slidePdf?: NotebookAssetRef;
+  /** NotebookLM Studio infographic Asset (PNG/SVG/PDF) — preferred. */
+  infographic?: NotebookAssetRef;
+  /** Fallback public HTTPS URL when Asset relation is unset. */
+  infographicUrl?: string | null;
 }
 
 function parseMaybeJson<T>(value: unknown): T | null {
@@ -137,7 +148,17 @@ export function normalizeNotebookBundle(raw: Record<string, unknown> | null | un
     dataTableCsv: typeof raw.dataTableCsv === 'string' ? raw.dataTableCsv : null,
     faqJson: raw.faqJson ?? null,
     slidePdf: (raw.slidePdf as NotebookBundleData['slidePdf']) ?? null,
+    infographic: (raw.infographic as NotebookBundleData['infographic']) ?? null,
+    infographicUrl:
+      typeof raw.infographicUrl === 'string' ? raw.infographicUrl : null,
   };
+}
+
+export function notebookBundleHasInfographic(
+  bundle: NotebookBundleData | null | undefined,
+): boolean {
+  if (!bundle) return false;
+  return Boolean(bundle.infographic?.url?.trim() || bundle.infographicUrl?.trim());
 }
 
 export function notebookBundleHasStudyContent(bundle: NotebookBundleData | null | undefined): boolean {
@@ -149,6 +170,7 @@ export function notebookBundleHasStudyContent(bundle: NotebookBundleData | null 
       bundle.mindMapJson?.nodes?.length ||
       (bundle.dataTableCsv && bundle.dataTableCsv.trim()) ||
       bundle.slidePdf?.url ||
+      notebookBundleHasInfographic(bundle) ||
       bundle.faqJson,
   );
 }

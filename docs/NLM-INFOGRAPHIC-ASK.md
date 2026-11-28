@@ -2,54 +2,37 @@
 
 **PR:** https://github.com/fjkiani/caspro/pull/7  
 **Branch:** `cursor/nlm-book-tabs-plan-1195`  
-**Commits:** `b848159` (infographic + ask), `11424b8` (nested mind-map normalize)  
 **Post:** `nlm-python-datatypes-e2e`  
 **Preview:** https://deploy-preview-7--crispro.netlify.app/research/blog/nlm-python-datatypes-e2e/
 
-## What was produced
+## Infographic — REAL NotebookLM Studio PNG
 
-### Infographic (derive-first)
-- Pure synthesizer: `synthesizeNotebookInfographic(bundle)` → hierarchy + metrics + process + key facts
-- Renderer: `BlogNotebookInfographic` — one composition (not 4 stacked widgets)
-- Mind maps: supports flat `{root,nodes}` **and** nested `{name,children}` (live Hygraph)
-- **No new Hygraph field** — reuse `mindMapJson` / `dataTableCsv` / `faqJson` / flashcards
+**Gutted (sandbag rejected):**
+- Deleted `src/lib/blog/synthesize-notebook-infographic.ts`
+- Collage UI that rebranded mind-map / FAQ / metrics as “Infographic · derived”
 
-### Ask (grounded LLM)
-- Client: `BlogNotebookAsk` — chat + FAQ suggestion chips
-- Context: `buildNotebookAskContext` (report + captions + FAQ + CSV + mind map + flashcards)
-- API: `POST /api/notebook/ask/` — Gemini → OpenAI → Anthropic (same pattern as `/api/docs/chat`)
-- Without keys: FAQ fuzzy match (`mode: faq`) or clear empty-state naming env vars
-- No zeta-tech ask proxy (NLM `ask` stays publish-side FAQ)
+**Production path:**
+1. `notebooklm generate infographic` → `notebooklm download infographic` → `infographic.png`
+2. `publishNotebookToBlog.mjs` uploads PNG → Hygraph `NotebookBundle.infographic` (Asset) + `infographicUrl`
+3. Infographic chapter renders that Asset full-bleed. Missing asset → “Infographic not generated yet” only.
 
-## Local CDP proof (2026-11-27)
+```bash
+# zeta-tech (requires NOTEBOOKLM_MASTER_TOKEN_JSON on a post-inject pod)
+cd portal && node scripts/generate-infographic.js \
+  --notebook 90150c19-4744-4439-a4f2-37503402afaa \
+  --out public/artifacts/python-datatypes-90150c
 
-Against `http://127.0.0.1:3017/research/blog/nlm-python-datatypes-e2e/`:
+# caspro
+node tools/publishNotebookToBlog.mjs \
+  --artifacts /path/to/python-datatypes-90150c \
+  --slug nlm-python-datatypes-e2e \
+  --title "NotebookLM: Python Data Types (E2E)"
+```
 
-| Check | Result |
-|---|---|
-| chapters Deck \| Infographic \| Ask | ✅ |
-| sticky audio + htmlLock | ✅ |
-| Infographic · derived + 6 themes + metrics + key facts | ✅ |
-| Nested mind hierarchy (Core Workflow → Input/Process/Output, …) | ✅ |
-| Ask chat input + send + suggestions | ✅ |
-| FAQ-grounded answer (`mode: faq`) without LLM keys | ✅ |
+Schema migration: `tools/setup-hygraph-notebook-infographic.mjs` (fields live).
 
-Screenshots:
-- `/opt/cursor/artifacts/nlm-ia-infographic.png`
-- `/opt/cursor/artifacts/nlm-ia-ask.png`
-- `/opt/cursor/artifacts/nlm-ia-proof.json`
+## Ask + Deck + sticky audio — unchanged
 
-## Env vars (preview / prod)
-
-| Var | Role |
-|---|---|
-| `GEMINI_API_KEY` | Preferred |
-| `OPENAI_API_KEY` | Fallback |
-| `ANTHROPIC_API_KEY` | Fallback |
-
-## Gaps
-
-- NotebookLM Studio **infographic image** generate type not wired in portal
-- No streaming Ask responses
-- Flashcards in Hygraph sometimes store `{text}` objects — sideText hardened; full re-publish optional
-- Netlify DP7 rebuild in progress after `11424b8`
+- Ask: `BlogNotebookAsk` + `POST /api/notebook/ask/`
+- Deck: PDF pager + captions
+- Sticky audio outside chapters

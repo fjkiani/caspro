@@ -39,6 +39,10 @@ export interface NotebookBundle {
   dataTableCsv?: string | null;
   faqJson?: unknown;
   slidePdf?: { id?: string; url: string; fileName?: string | null; mimeType?: string | null } | null;
+  /** NotebookLM Studio infographic Asset (PNG). */
+  infographic?: { id?: string; url: string; fileName?: string | null; mimeType?: string | null } | null;
+  /** Fallback public HTTPS URL when Asset unset. */
+  infographicUrl?: string | null;
 }
 
 export interface PostDetail extends PostNode {
